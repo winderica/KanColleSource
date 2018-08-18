@@ -42,7 +42,7 @@ const function896 = function (t, e, i) {
                         i.slotDisassemblyChoice.update(n, e), i.slotDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemSlotIdList = e
                     }
                 }, i._onClickDisassembly = function (t) {
-                    var e = new y.DestroyItem2API(t), n = i.slotDisassemblyConfirm.icon,
+                    var e = new y.DestroyItem2API(t), n = i.slotDisassemblyConfirm.viewIcon,
                         s = new m.DisassemblyAnimation(162, 142);
                     s.position.x = n.x + -.5 * n.width, s.position.y = n.y + -.5 * n.height, o.default.view.clickGuard = !0, e.start(function () {
                         var t = new PIXI.Graphics;
@@ -53,7 +53,7 @@ const function896 = function (t, e, i) {
                         createjs.Tween.get(n).call(function () {
                             e(), s.play(5)
                         }).to({ alpha: .33 }, 1e3).call(e).to({ alpha: .66 }, 1e3).call(e).to({ alpha: 1 }, 1e3).call(function () {
-                            s.dispose(), t.clear(), o.default.view.overLayer.removeChild(t), n.parent.removeChild(s), i.slotDisassemblyConfirm.icon.alpha = 1;
+                            s.dispose(), t.clear(), o.default.view.overLayer.removeChild(t), n.parent.removeChild(s), i.slotDisassemblyConfirm.viewIcon.alpha = 1;
                             var e = [], r = o.default.model.slot.createUnsetList(),
                                 a = i._sortAndFilter(r, i.slotItemFilterKeyType), _ = i._getPage(a.length),
                                 u = i._pageIndex;
@@ -124,7 +124,7 @@ const function896 = function (t, e, i) {
                 })
             }, e.prototype.hide = function (t) {
                 var e = this;
-                h.TaskLoadSlotResource.abortBy(this.slotDisassemblyConfirm.icon), this.dialogBackground.width = r.default.width;
+                h.TaskLoadSlotResource.abortBy(this.slotDisassemblyConfirm.viewIcon), this.dialogBackground.width = r.default.width;
                 var i = function () {
                     e.x = 1200 - 945 * (1 - e.animation.progress), e.dialogBackground.alpha = 1 - e.animation.progress
                 };

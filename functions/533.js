@@ -63,9 +63,9 @@ const function533 = function (t, e, i) {
                     })
                 })
             }, e.prototype._playTitleCall = function () {
-                var t = this, e = Math.floor(37 * Math.random()) + 1;
+                var t = this, e = Math.floor(84 * Math.random()) + 1;
                 r.default.sound.voice.play("titlecall_1", e, function () {
-                    var e = Math.floor(2 * Math.random()) + 1;
+                    var e = Math.floor(47 * Math.random()) + 1;
                     r.default.sound.voice.play("titlecall_2", e, function () {
                         t._end_titlecall = !0, t._preInitPort()
                     })

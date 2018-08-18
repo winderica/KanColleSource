@@ -28,7 +28,7 @@ const function597 = function (t, e, i) {
                 this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function (t, e, i) {
-            this._ship_mst_id = t;
+            this._touch_count = 0, this._ship_mst_id = t;
             var n = o.default.resources.getShip(t, e, "full");
             this._chara.texture = n;
             var r = new PIXI.Sprite(n);
@@ -48,9 +48,9 @@ const function597 = function (t, e, i) {
             return 1 == i && this._onClick(), i
         }, e.prototype._showMarriageEff = function () {
             var t = new PIXI.Rectangle(600, 0, 600, 720);
-            this._sakura.startAnimation(t)
+            this._ship_is_marriage = !0, this._sakura.startAnimation(t)
         }, e.prototype._hideMarriageEff = function () {
-            this._sakura.stopAnimation()
+            this._ship_is_marriage = !1, this._sakura.stopAnimation()
         }, e.prototype._isCharaHit = function (t, e) {
             if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
             var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));

@@ -185,7 +185,7 @@ const function175 = function (t, e, i) {
         }, e.prototype._damage = function (t, e) {
             if (null != t) {
                 var i = t.index, n = e.getRai(i), o = e.getBak(i), r = e.getDamage(i);
-                if (this._damage_cutin.notifyGauge(t.friend, i, t.hp_now, r), 0 == n && (1 == o || r > 0)) {
+                if (0 == n && (1 == o || r > 0)) {
                     var s = this._scene.view.bannerGroupLayer.getBanner(t), a = e.isShield(i);
                     if (1 == a) {
                         var _ = this._scene.view.bannerGroupLayer.getShieldTargetBanner(s);

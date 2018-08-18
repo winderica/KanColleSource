@@ -21,7 +21,7 @@ const function91 = function (t, e, i) {
             return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
         }
 
-        return n(e, t), e.prototype.notifyGauge = function (t, e, i, n) {
+        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n) {
             if (0 != this._scene.view.layer_gauge.hasGauge() && 1 != t && 0 == e) {
                 var o = this._scene.view.layer_gauge, r = o.now, s = this._scene.data.model.gauge_type;
                 if (2 == s) {
@@ -31,18 +31,18 @@ const function91 = function (t, e, i) {
             }
         }, e.prototype.causeDamage = function (t, e) {
             if (null != t) {
-                t.hp_now;
-                t.causeDamage(e), this._registerDamageEvents(t, e)
+                var i = t.hp_now;
+                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, e)
             }
         }, e.prototype.causeDoubleDamage1st = function (t, e) {
             if (null != t) {
-                t.hp_now;
-                t.causeDamage(e)
+                var i = t.hp_now;
+                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, e)
             }
         }, e.prototype.causeDoubleDamage2nd = function (t, e) {
             if (null != t) {
-                t.hp_now;
-                t.causeDamage(e, !1), this._registerDamageEvents(t, e)
+                var i = t.hp_now;
+                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, e)
             }
         }, e.prototype._registerDamageEvents = function (t, e) {
             if (0 == t.friend) {

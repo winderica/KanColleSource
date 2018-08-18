@@ -26,7 +26,7 @@ const function546 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png?START_TIME";
+            var t = this, e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
             new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
                 t._onComplete()
             })

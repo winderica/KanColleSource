@@ -18,6 +18,7 @@ const function14 = function (t, e, i) {
             switch (t) {
                 case 754:
                 case 755:
+                case 984:
                 case 1003:
                 case 1004:
                 case 1005:

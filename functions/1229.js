@@ -15,7 +15,7 @@ const function1229 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(74), s = i(22), a = i(7), _ = i(2), u = function (t) {
+    var o = i(0), r = i(17), s = i(74), a = i(22), _ = i(7), u = i(2), l = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o) for (var s = 0, a = o; s < a.length; s++) {
@@ -26,9 +26,9 @@ const function1229 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._getPath("info.json");
+            var t = this, e = this._getPath("info.json?" + r.START_TIME);
             axios.get(e).then(function (e) {
-                var i = a.ObjUtil.getObject(e, "data");
+                var i = _.ObjUtil.getObject(e, "data");
                 t._mapInfo.add(i), t._loadSpriteSheet()
             }).catch(function (e) {
                 t._failedEnd()
@@ -37,16 +37,16 @@ const function1229 = function (t, e, i) {
             var t = this, e = this._getPath("image.json");
             if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo(); else {
                 var i = new PIXI.loaders.Loader;
-                i.add(e), i.load(function () {
+                i.defaultQueryString = "" + r.START_TIME, i.add(e), i.load(function () {
                     t._loadAddingInfo()
                 })
             }
         }, e.prototype._loadAddingInfo = function () {
             var t = this;
             if (this._mapInfo.spots.length >= this._memDataNum) return void this._createMapBackGround();
-            var e = this._mapInfo.spots.length, i = this._getPath("info" + e + ".json");
+            var e = this._mapInfo.spots.length, i = this._getPath("info" + e + ".json?" + r.START_TIME);
             axios.get(i).then(function (i) {
-                var n = a.ObjUtil.getObject(i, "data");
+                var n = _.ObjUtil.getObject(i, "data");
                 t._mapInfo.add(n), t._loadAddingSpriteSheet(e)
             }).catch(function (e) {
                 t._failedEnd()
@@ -55,21 +55,21 @@ const function1229 = function (t, e, i) {
             var e = this, i = this._getPath("image" + t + ".json");
             if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo(); else {
                 var n = new PIXI.loaders.Loader;
-                n.add(i), n.load(function () {
+                n.defaultQueryString = "" + r.START_TIME, n.add(i), n.load(function () {
                     e._loadAddingInfo()
                 })
             }
         }, e.prototype._createMapBackGround = function () {
             for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.MapUtil.toResKey(this._map_id), s = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(s);
+                var n = i[e], o = s.MapUtil.toResKey(this._map_id), r = "map" + o + "_" + n.img,
+                    a = PIXI.Texture.fromFrame(r);
                 this._mapView.bg.addBGLayer(a, n.name)
             }
             this._createLabel()
         }, e.prototype._createLabel = function () {
             for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.MapUtil.toResKey(this._map_id), s = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(s);
+                var n = i[e], o = s.MapUtil.toResKey(this._map_id), r = "map" + o + "_" + n.img,
+                    a = PIXI.Texture.fromFrame(r);
                 this._mapView.bg.addLabel(a, n.x, n.y)
             }
             this._createSpots()
@@ -98,9 +98,9 @@ const function1229 = function (t, e, i) {
             }
             this._endTask()
         }, e.prototype._getPath = function (t) {
-            var e = r.MapUtil.toAreaID(this._map_id), i = r.MapUtil.toMapNo(this._map_id);
-            return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
+            var e = s.MapUtil.toAreaID(this._map_id), i = s.MapUtil.toMapNo(this._map_id);
+            return o.default.settings.path_root + "resources/map/" + a.MathUtil.zeroPadding(e, 3) + "/" + a.MathUtil.zeroPadding(i, 2) + "_" + t
         }, e
-    }(_.TaskBase);
-    e.TaskCreateMap = u
+    }(u.TaskBase);
+    e.TaskCreateMap = l
 }

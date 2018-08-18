@@ -21,7 +21,7 @@ const function1411 = function (t, e, i) {
                 if (1 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
                 var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
                 if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "api_n_support_airatack");
+                var e = n.ObjUtil.getObject(t, "api_support_airatack");
                 return new o.AirSupportData(e)
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "support_hou", {
@@ -29,7 +29,7 @@ const function1411 = function (t, e, i) {
                 if (2 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
                 var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
                 if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "api_n_support_hourai");
+                var e = n.ObjUtil.getObject(t, "api_support_hourai");
                 return new s.SupportData(e)
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "support_rai", {
@@ -37,7 +37,7 @@ const function1411 = function (t, e, i) {
                 if (3 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
                 var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
                 if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "api_n_support_hourai");
+                var e = n.ObjUtil.getObject(t, "api_support_hourai");
                 return new s.SupportData(e)
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "support_taisen", {
@@ -45,7 +45,7 @@ const function1411 = function (t, e, i) {
                 if (4 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
                 var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
                 if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "api_n_support_airatack");
+                var e = n.ObjUtil.getObject(t, "api_support_airatack");
                 return new o.AirSupportData(e)
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "hougeki", {
@@ -74,11 +74,11 @@ const function1411 = function (t, e, i) {
         }, t.prototype.getFlareLightFriend = function () {
             if (null == this._o) return -1;
             var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-            return null == t ? -1 : t.length < 1 ? -1 : t[0] - 1
+            return null == t ? -1 : t.length < 1 ? -1 : t[0]
         }, t.prototype.getFlareLightEnemy = function () {
             if (null == this._o) return -1;
             var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-            return null == t ? -1 : t.length < 2 ? -1 : t[1] - 1
+            return null == t ? -1 : t.length < 2 ? -1 : t[1]
         }, t.prototype.hasDayBattle = function () {
             return 1 == n.ObjUtil.getNumber(this._o, "api_day_flag")
         }, t

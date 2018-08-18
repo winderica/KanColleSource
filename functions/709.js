@@ -29,7 +29,7 @@ const function709 = function (t, e, i) {
                     var d = e.presetExpansionSlots[t].PresetId, f = e.presetList.getPresetDeckData(d);
                     if (e.alertOrganizedPopup.visible = !1, e.alertLostPopup.visible = !1, e.previewBalloon.visible = !1, f.hasLostShip()) e.setAlertLostPopup(t), e.updateAlert(f), e.alertLostPopup.visible = !0; else if (f.hasOtherDeckShip(e.memDeckId)) e.setAlertOrganizedPopup(t), e.updateAlert(f), e.alertOrganizedPopup.visible = !0; else {
                         var y = t < 3 ? _.Direction.Top : _.Direction.Bottom;
-                        e.setPreviewBalloon(y, t), e.previewBalloon.visible = !0
+                        e.setPreviewBalloon(y, t), e.previewBalloon.update(e.memDeckId, y, e.presetList.getPresetDeckData(d)), e.previewBalloon.visible = !0
                     }
                 } else if (c) {
                     var d = e.presetExpansionSlots[t].PresetId, y = t < 3 ? _.Direction.Top : _.Direction.Bottom;

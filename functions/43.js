@@ -61,7 +61,7 @@ const function43 = function (t, e, i) {
             void 0 === r && (r = null), this._scene.view.layer_damage.showAtBanner(e, n, o);
             var a = createjs.Tween.get(null);
             a.wait(200), a.call(function () {
-                s._damage_cutin.notifyGauge(i.friend, i.index, i.hp_now, n), s._damage_cutin.causeDamage(i, n), e.updateHp(i.hp_now), t.moveDefault()
+                s._damage_cutin.causeDamage(i, n), e.updateHp(i.hp_now), t.moveDefault()
             }), a.wait(600), null == r ? a.call(function () {
                 s._endTask()
             }) : a.call(r)

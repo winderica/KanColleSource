@@ -46,10 +46,10 @@ const function807 = function (t, e, i) {
             this.hideAll();
             var i = new h;
             i.update(t, e), this.addChild(i), this._current = i
-        }, e.prototype.showAlertLackOfItem = function (t) {
+        }, e.prototype.showAlertLackOfItem = function (t, e) {
             this.hideAll();
-            var e = new p;
-            e.update(t), this.addChild(e), this._current = e
+            var i = new p;
+            i.update(t, e), this.addChild(i), this._current = i
         }, e.prototype.hideAll = function () {
             null != this._current && (null != this._current.parent && this._current.parent.removeChild(this._current), this._current.dispose(), this._current = null)
         }, e.prototype.dispose = function () {
@@ -178,8 +178,8 @@ const function807 = function (t, e, i) {
             return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(0, 81), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 81), e.addChild(e._message2), e._message3 = new r.TextBox(18, 1644567), e.addChild(e._message3), e
         }
 
-        return o(e, t), e.prototype.update = function (t) {
-            if (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), 58 == t) this._message1.style.fontSize = 15, this._message1.style.fill = 1644567, this._message2.style.fontSize = 15, this._message2.style.fill = 16724736, this._message3.style.fontSize = 15, this._message3.style.fill = 1644567, this._message1.text = "\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c", this._message2.text = "\u8db3\u308a\u307e\u305b\u3093\u3002", this._message2.position.set(this._message1.width, 81), this._message3.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c1\u679a\n\u5fc5\u8981\u3067\u3059\u3002\u52f2\u7ae0\u30924\u500b\u96c6\u3081\u308b\u3068\u3001\n\u30a2\u30a4\u30c6\u30e0\u753b\u9762\u3067\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3068\n\u4ea4\u63db\u3067\u304d\u307e\u3059\u3002", this._message3.y = this._message1.y + this._message1.height; else {
+        return o(e, t), e.prototype.update = function (t, e) {
+            if (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), 58 == t) this._message1.style.fontSize = 15, this._message1.style.fill = 1644567, this._message2.style.fontSize = 15, this._message2.style.fill = 16724736, this._message3.style.fontSize = 15, this._message3.style.fill = 1644567, this._message1.text = "\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c", this._message2.text = "\u8db3\u308a\u307e\u305b\u3093\u3002", this._message2.position.set(this._message1.width, 81), this._message3.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c" + e + "\u679a\n\u5fc5\u8981\u3067\u3059\u3002\u52f2\u7ae0\u30924\u500b\u96c6\u3081\u308b\u3068\u3001\n\u30a2\u30a4\u30c6\u30e0\u753b\u9762\u3067\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3068\n\u4ea4\u63db\u3067\u304d\u307e\u3059\u3002", this._message3.y = this._message1.y + this._message1.height; else {
                 switch (this._message1.style.fontSize = 18, this._message1.style.fill = 39270, this._message2.style.fontSize = 18, this._message2.style.fill = 1644567, t) {
                     case 65:
                         this._message1.text = "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";

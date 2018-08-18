@@ -100,7 +100,7 @@ const function73 = function (t, e, i) {
                 var d = v[y];
                 if (null != d) {
                     var _ = u[d.index];
-                    null != _ && (this._damageBase(d, _), this._damage_cutin.notifyGauge(d.friend, d.index, d.hp_now, _.damage))
+                    null != _ && this._damageBase(d, _)
                 }
             }
             if (1 == this._data.hasShield_e()) {

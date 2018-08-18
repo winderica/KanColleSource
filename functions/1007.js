@@ -15,7 +15,7 @@ const function1007 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(81), s = i(32), a = i(53), _ = function (t) {
+    var o = i(4), r = i(81), s = i(32), a = i(13), _ = i(53), u = function (t) {
         function e() {
             return t.call(this) || this
         }
@@ -25,15 +25,15 @@ const function1007 = function (t, e, i) {
                 return this._banner
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(34));
-            this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(22, 4999235), this._star = new r.StarRateView, t.position.set(330, 12), this._name.position.set(243, 0);
-            var e = new PIXI.Graphics;
-            e.beginFill(0), e.drawRect(0, 0, 117, this._name.height), e.endFill(), this._name.mask = e, this._level.position.set(391, 9), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this._name.addChild(e), this.addChild(this._name), this.addChild(this._level), this.addChild(this._star)
+            var t = new PIXI.Sprite(_.SALLY_PRACTICE.getTexture(34));
+            this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(20, 4999235), this._star = new r.StarRateView, this._container = new PIXI.Container, t.position.set(330, 12);
+            var e = a.CreateRect.gradientLeftToRight(95, this._name.height, .85, .9);
+            this._container.position.set(243, 0), this._level.position.set(392, 11), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this.addChild(this._container), this._container.addChild(this._name, e), this._container.mask = e, this.addChild(this._level), this.addChild(this._star)
         }, e.prototype.update = function (t) {
-            null == t ? this.visible = !1 : (this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0)
+            null == t ? this.visible = !1 : (this._container.cacheAsBitmap = !1, this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0, this._container.cacheAsBitmap = !0)
         }, e.prototype.dispose = function () {
-            this._banner.dispose()
+            this.removeChildren(), this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
         }, e
     }(PIXI.Container);
-    e.CompRivalShip = _
+    e.CompRivalShip = u
 }

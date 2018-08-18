@@ -109,7 +109,7 @@ const function327 = function (t, e, i) {
                 case 6:
                     return 18;
                 case 7:
-                    return 20;
+                    return 21;
                 case 8:
                 case 9:
                     return 19;
@@ -134,7 +134,7 @@ const function327 = function (t, e, i) {
                 case 19:
                     return 7;
                 case 20:
-                    return 3;
+                    return 5;
                 case 21:
                     return 9;
                 case 22:

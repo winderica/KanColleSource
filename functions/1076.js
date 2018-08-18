@@ -41,8 +41,8 @@ const function1076 = function (t, e, i) {
                         e._playVoice(i, 25)
                     }
                 }, e._onMovie = function (t) {
-                    if (t.stopPropagation(), null != e._data_list && 0 != e._data_list.length) {
-                        var i = e._data_list[0].mst_id;
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._current.mst_id;
                         66 == i ? 1 == e._option.takao_flag ? (i = 269, e._option.takao_flag = 0) : e._option.takao_flag = 1 : 67 == i && (1 == e._option.atago_flag ? (i = 270, e._option.atago_flag = 0) : e._option.atago_flag = 1);
                         var n = new s.AreaBox(1, 16777215);
                         n.alpha = 0, o.default.view.overLayer.addChild(n), e._stopVoice();

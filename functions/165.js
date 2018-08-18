@@ -22,7 +22,7 @@ const function165 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._icon = new PIXI.Sprite(o.COMMON_MISC.getTexture(111)), this._text = new r.TextBox(14, 4999235), this._text.position.set(23, 10), this.addChild(this._icon), this.addChild(this._text)
+            this._icon = new PIXI.Sprite(o.COMMON_MISC.getTexture(111)), this._text = new r.TextBox(21, 4999235), this._text.position.set(35, 15), this.addChild(this._icon), this.addChild(this._text)
         }, e.prototype.update = function (t, e) {
             void 0 === e && (e = 4999235), t > 0 ? (this._text.style.fill = e, this._text.text = t.toString(), this.visible = !0) : this.visible = !1
         }, e.prototype.dispose = function () {
