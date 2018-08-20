@@ -12,6 +12,10 @@ const function474 = function (t, e, i) {
         return t
     }
 
+    const r = i(0),
+        s = i(5),
+        a = i(533);
+
     // In console, choose `index.php`, type `KCS.init.toString()`, then it outputs this function
     function o() {
         createjs.Ticker.timingMode = createjs.Ticker.TIMEOUT, createjs.Ticker.setFPS(60);
@@ -21,6 +25,7 @@ const function474 = function (t, e, i) {
         var i = n();
         i.renderer = e.renderer, new a.AppInitializeTask(i).start()
     }
+
     /*
      * Review:
      * `Object.defineProperty`
@@ -30,6 +35,6 @@ const function474 = function (t, e, i) {
      * which is different from `e.__esModule = true`
      */
     Object.defineProperty(e, "__esModule", { value: true });
-    var r = i(0), s = i(5), a = i(533), _ = { init: o };
+    const _ = { init: o };
     e.default = _;
 };

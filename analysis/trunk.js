@@ -61,7 +61,9 @@ function e(n) {
 e.m = functions;
 e.c = i;
 e.d = function (t, i, n) {
-    e.o(t, i) || Object.defineProperty(t, i, { configurable: !1, enumerable: !0, get: n })
+    if (!e.o(t, i)) {
+        Object.defineProperty(t, i, { configurable: false, enumerable: true, get: n })
+    }
 };
 e.n = function (t) {
     var i = t && t.__esModule ? function () {
@@ -73,6 +75,20 @@ e.n = function (t) {
     return i;
 };
 e.o = function (t, e) {
+    /*
+     * Review:
+     * `hasOwnProperty`
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
+     *
+     * the code below is almost the same as `t.hasOwnProperty(e)`,
+     * but it's used to get avoid of this situation:
+            var foo = {
+              hasOwnProperty: function() {
+                return false;
+              },
+              bar: 'Here be dragons'
+            };
+     */
     return Object.prototype.hasOwnProperty.call(t, e)
 };
 e.p = "";
