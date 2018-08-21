@@ -130,9 +130,9 @@ const function534 = function (t, e, i) {
             };
             /*
              * title call is
-             * ①: `行きますよ、暁の水平線に、勝利を刻みなさい！`
+             * ①: `艦これ` or `お帰りなさい`
              * and
-             * ②: `提督が、鎮守府に着任しました、これより、艦隊の指揮に入ります！`
+             * ②: `いいこと、暁の水平線に、勝利を刻みなさい！` or `提督が、鎮守府に着任しました、これより、艦隊の指揮に入ります！`
              */
             e.prototype._playTitleCall = function () {
                 // there are 84 kinds of voice ①!!!
