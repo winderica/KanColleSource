@@ -15,10 +15,10 @@ const function991 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(231), r = i(232), s = function (t) {
+    var o = i(232), r = i(233), s = function (t) {
         function e(e, i, n) {
-            for (var o = t.call(this, e, n) || this, s = 0; s < 4; s++) {
-                var a = new r.EventMapThumbnail(4, i, n, o._onMouseOver, o._onMouseOut), _ = 207 + 108 * s;
+            for (var o = t.call(this, e, n) || this, s = 0; s < 2; s++) {
+                var a = new r.EventMapThumbnail(2, i, n, o._onMouseOver, o._onMouseOut), _ = 207 + 216 * s;
                 a.position.set(501, _), o.addChild(a), o._maps.push(a)
             }
             return o
@@ -26,5 +26,5 @@ const function991 = function (t, e, i) {
 
         return n(e, t), e
     }(o.EventLayoutBase);
-    e.LayoutEventMap4 = s
+    e.LayoutEventMap2 = s
 }

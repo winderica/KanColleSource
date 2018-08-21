@@ -15,75 +15,15 @@ const function850 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(851), a = i(852), _ = i(114), u = i(221), l = i(884), c = i(885), h = i(114),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
-                    e.menuLayer.hasLimitOver = n, e.dockLayer.updateCondition(t, i, n)
-                }, e.onChangeArsenalTimer = function () {
-                    if (e.dockLayer.ArsenalTimerMode == _.ArsenalTimerMode.WaitComplete) {
-                        var t = Date.now();
-                        o.default.model.kdock.getAll().forEach(function (i) {
-                            if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
-                                if (i.complete_time < t) {
-                                    e.dockLayer.hideHighSpeedButton(i.id);
-                                    i.__complete__(), e.dockLayer.complete(i.id)
-                                } else e.dockLayer.notifyTime(i.id, t)
-                            }
-                        })
-                    }
-                }, e
-            }
+    var o = i(2), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i.repairScene = e, i.repairScene.dispose(), i
+        }
 
-            return n(e, t), e.prototype.start = function () {
-                var t = o.default.model.kdock.getAll();
-                this.menuLayer = new c.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new h.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new l.TopBarLayer;
-                for (var e = u.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
-                    var r = t[n];
-                    switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
-                        case 2:
-                            var s = o.default.model.ship.getMst(r.ship_mst_id), a = s.build_time,
-                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num, p = Date.now(),
-                                d = r.isLargeBuild(), f = r.complete_time, y = !1;
-                            y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
-                            var v = .5 < Math.random(), g = .5 < Math.random() || 0 == v;
-                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, v, g, a, f, p, _);
-                            break;
-                        case-1:
-                            if (0 == i) {
-                                var m = 0 < o.default.model.useItem.get(49).count, b = !0;
-                                this.dockLayer.noDock(r.id, b, m)
-                            } else {
-                                var b = !1, m = !1;
-                                this.dockLayer.noDock(r.id, b, m)
-                            }
-                            i = !0;
-                            break;
-                        case 3:
-                            var v = .5 < Math.random(), g = .5 < Math.random() || 0 == v;
-                            this.dockLayer.updateMotivation(r.id, v, g);
-                            var s = o.default.model.ship.getMst(r.ship_mst_id),
-                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
-                                w = r.isLargeBuild();
-                            this.dockLayer.completed(r.id, _, w);
-                            break;
-                        case 0:
-                            this.dockLayer.standby(r.id)
-                    }
-                }
-                u.ArsenalUtil.playVoiceOnBuildComplete();
-                var x = createjs.Tween.get(this.arsenalTimerKey, { loop: !0 }).wait(500);
-                x.addEventListener("change", this.onChangeArsenalTimer), this.addChild(this.dockLayer, this.menuLayer, this.topBarLayer), this.arsenalTimer = x
-            }, e.prototype.getPreInitializeTask = function (t) {
-                return new a.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new s.InitializeTask
-            }, e.prototype.getFinalizeTask = function () {
-                return this.dispose(), null
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.arsenalTimer.target), this.topBarLayer.dispose(), this.menuLayer.dispose(), this.dockLayer.dispose(), this.menuLayer = null, this.dockLayer = null, this.arsenalTimerKey = null, this.arsenalTimer = null, this.topBarLayer = null, this.removeChildren()
-            }, e
-        }(r.SceneBase);
-    e.ArsenalScene = p
+        return n(e, t), e.prototype._start = function () {
+            this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.DisposeTask = r
 }

@@ -15,18 +15,27 @@ const function779 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)),
-                n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16));
-            i.position.set(-14, -14), i.alpha = 0, e.addChild(i, n), e.btnSoubi3 = n, e.btnSoubi3Light = i;
-            var r = createjs.Tween.get(i).to({ alpha: 0 }).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3);
-            return r.loop = !0, r.play(null), e
+            var e = t.call(this) || this;
+            e.TYPE_UNEQUIPS = "uniquips", e.TYPE_EQUIPS_OTHER = "equipsother", e._onClick = function () {
+                e.onClick()
+            };
+            var i = o.REMODEL_MAIN.getTexture(14), n = o.REMODEL_MAIN.getTexture(15);
+            return e.btnSoubi1 = i, e.btnSoubi2 = n, e.addListener(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this), this.btnSoubi3.texture = PIXI.Texture.EMPTY, this.btnSoubi3Light.texture = PIXI.Texture.EMPTY, this.btnSoubi3 = null, this.btnSoubi3Light = null, this.removeChildren()
+        return n(e, t), e.prototype.update = function (t) {
+            switch (this.texture = PIXI.Texture.EMPTY, t) {
+                case this.TYPE_UNEQUIPS:
+                    this.texture = this.btnSoubi1;
+                    break;
+                case this.TYPE_EQUIPS_OTHER:
+                    this.texture = this.btnSoubi2
+            }
+        }, e.prototype.dispose = function () {
+            this.onClick = this._onClick = null, this.texture = PIXI.Texture.EMPTY, this.btnSoubi1 = null, this.btnSoubi2 = null, this.removeAllListeners(r.EventType.CLICK), this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.InUseMarker = r
+    }(PIXI.Sprite);
+    e.ChangeListSwitch = s
 }

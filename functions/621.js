@@ -15,7 +15,7 @@ const function621 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(9), s = i(48), a = function (t) {
+    var o = i(0), r = i(305), s = i(4), a = i(75), _ = i(48), u = function (t) {
         function e(e, i) {
             return t.call(this, e, i) || this
         }
@@ -25,11 +25,18 @@ const function621 = function (t, e, i) {
                 return this._model
             }, enumerable: !0, configurable: !0
         }), e.prototype._createContent = function () {
-            var t = r.COMMON_MISC.getTexture(147);
-            this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135, this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = "\u5927\u578b\u8266\u5efa\u9020\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u958b\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
+            var t = this, e = this.model.mst_id, i = this.model.name, n = new a.FurnitureLoader;
+            n.add(e, "reward"), n.load(function () {
+                var n = o.default.model.furniture.getData(e);
+                if (null != n) {
+                    var a = (n.type, o.default.resources.getFurniture(e, "reward"));
+                    t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
+                }
+                t._showDialog()
+            })
         }, e.prototype._removeContent = function () {
-            this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1 = null, this._text2 = null
+            null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && null != this._text.parent && this._text.parent.removeChild(this._text), this._text = null
         }, e
-    }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogLargeBuild = a
+    }(_.TaskRewardDialogBase);
+    e.TaskRewardDialogFurniture = u
 }

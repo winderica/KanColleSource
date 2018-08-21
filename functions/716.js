@@ -15,15 +15,27 @@ const function716 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(717), s = function (t) {
+    var o = i(17), r = i(2), s = i(24), a = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._url = "api_get_member/preset_deck", e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._completedEnd = function () {
-            this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new s.UIImageLoader("organize");
+            switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
+                case 2:
+                    e.add("organize_hokyu_dialog_xmas.json");
+                    break;
+                case 4:
+                    e.add("organize_hokyu_dialog_summer.json");
+                    break;
+                default:
+                    e.add("organize_hokyu_dialog_default.json")
+            }
+            e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.APIBase);
-    e.PresetDeckAPI = s
+    }(r.TaskBase);
+    e.TaskLoadResourcesOrganize = a
 }

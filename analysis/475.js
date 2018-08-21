@@ -1,5 +1,5 @@
 // This function is first executed (See ./trunk.js)
-const function474 = function (t, e, i) {
+const function475 = function (t, e, i) {
     "use strict";
 
     // parse url to object
@@ -14,7 +14,7 @@ const function474 = function (t, e, i) {
 
     const r = i(0),
         s = i(5),
-        a = i(533);
+        a = i(534);
 
     // In console, choose `index.php`, type `KCS.init.toString()`, then it outputs this function
     function o() {

@@ -1,6 +1,122 @@
-const function266 = function (t, e) {
-    t.exports = {
-        resource: [6657, 5699, 3371, 8909, 7719, 6229, 5449, 8561, 2987, 5501, 3127, 9319, 4365, 9811, 9927, 2423, 3439, 1865, 5925, 4409, 5509, 1517, 9695, 9255, 5325, 3691, 5519, 6949, 5607, 9539, 4133, 7795, 5465, 2659, 6381, 6875, 4019, 9195, 5645, 2887, 1213, 1815, 8671, 3015, 3147, 2991, 7977, 7045, 1619, 7909, 4451, 6573, 4545, 8251, 5983, 2849, 7249, 7449, 9477, 5963, 2711, 9019, 7375, 2201, 5631, 4893, 7653, 3719, 8819, 5839, 1853, 9843, 9119, 7023, 5681, 2345, 9873, 6349, 9315, 3795, 9737, 4633, 4173, 7549, 7171, 6147, 4723, 5039, 2723, 7815, 6201, 5999, 5339, 4431, 2911, 4435, 3611, 4423, 9517, 3243],
-        voice: [2475, 6547, 1471, 8691, 7847, 3595, 1767, 3311, 2507, 9651, 5321, 4473, 7117, 5947, 9489, 2669, 8741, 6149, 1301, 7297, 2975, 6413, 8391, 9705, 2243, 2091, 4231, 3107, 9499, 4205, 6013, 3393, 6401, 6985, 3683, 9447, 3287, 5181, 7587, 9353, 2135, 4947, 5405, 5223, 9457, 5767, 9265, 8191, 3927, 3061, 2805, 3273, 7331]
-    }
+const function266 = function (t, e, i) {
+    "use strict";
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var n = i(0), o = i(7), r = function () {
+        function t(t) {
+            this._o = t
+        }
+
+        return Object.defineProperty(t.prototype, "mstID", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_slotitem_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "memID", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? "" : t.name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_level")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "skillLevel", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_alv")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "cardType", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.cardType
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "equipType", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.equipType
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "equipTypeSp", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.equipTypeSp
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "iconType", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.iconType
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "range", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.range
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "karyoku", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.karyoku
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "raisou", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.raisou
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "taiku", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.taiku
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "taisen", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.taisen
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "bakusou", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.bakusou
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "meichu", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.meichu
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "kaihi", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.kaihi
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "sakuteki", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.sakuteki
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "soukou", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.soukou
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "distance", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.distance
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "cost", {
+            get: function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null == t ? 0 : t.cost
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isLocked = function () {
+            return 1 == o.ObjUtil.getNumber(this._o, "api_locked")
+        }, t.prototype.__setLocked__ = function (t) {
+            this._o.api_locked = t ? 1 : 0
+        }, t.prototype.__updateObject__ = function (t) {
+            this._o = t
+        }, t.prototype.isPlane = function () {
+            var t = n.default.model.slot.getMst(this.mstID);
+            return null != t && t.isPlane()
+        }, t
+    }();
+    e.SlotitemModel = r
 }

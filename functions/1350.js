@@ -3,9 +3,9 @@ const function1350 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("battle_jin_combined_" + t)
+            return PIXI.Texture.fromFrame("battle_jin_" + t)
         }
 
         t.getTexture = e
-    }(e.BATTLE_JIN_COMBINED || (e.BATTLE_JIN_COMBINED = {}))
+    }(e.BATTLE_JIN || (e.BATTLE_JIN = {}))
 }

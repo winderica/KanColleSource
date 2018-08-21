@@ -15,21 +15,23 @@ const function871 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(35), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClickYes = function () {
-                i._cb_onComplete(!0)
-            }, i._onClickNo = function () {
-                i._cb_onComplete(!1)
-            }, i._cb_onComplete = e;
-            var n = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(79));
-            return n.position.set(271, 87), i.addChild(n), i._btn_yes = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(39)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(435, 505), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(35)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(615, 505), i.addChild(i._btn_no), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i
+    var o = i(0), r = i(8), s = i(872), a = function (t) {
+        function e() {
+            var e = t.call(this, .8) || this;
+            return e.alpha = 0, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this._cb_onComplete = null, this.removeChildren()
+        return n(e, t), e.prototype.show = function (t) {
+            this.removeChildren(), this.largeBuildConfirm = new s.LargeBuildConfirm(t), this.addChild(this.largeBuildConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({ alpha: 1 }, 250).call(function () {
+                o.default.view.clickGuard = !1
+            })
+        }, e.prototype.hide = function (t) {
+            createjs.Tween.get(this).to({ alpha: 0 }, 250).call(function () {
+                t()
+            })
+        }, e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this), this.removeChildren(), this.largeBuildConfirm.dispose(), this.largeBuildConfirm = null
         }, e
-    }(PIXI.Container);
-    e.LargeBuildConfirm = s
+    }(r.AreaBox);
+    e.LargeBuildConfirmContainer = a
 }

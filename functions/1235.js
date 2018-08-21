@@ -15,39 +15,75 @@ const function1235 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(18), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._ship = e, o._type = i, o._directionType = n, o
+    var o = i(2), r = i(64), s = i(27), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n.TIME = 2e3, n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new a;
-            e.initialize(this._type, this._directionType), e.alpha = 0, this._ship.addChild(e), createjs.Tween.get(e).to({
-                y: -23,
-                alpha: 1
-            }, 100).wait(2e3).to({ y: 0, alpha: 0 }, 100).call(function () {
-                t._ship.removeChild(e), t._endTask()
+            this._initialize()
+        }, e.prototype._initialize = function () {
+            var t = this, e = new s.ParallelTask, i = new _(this._scene, this._model, this.TIME);
+            e.add(i);
+            var n = new u(this._scene, this._model, this.TIME);
+            e.add(n), e.start(function () {
+                t._setCellColor()
             })
+        }, e.prototype._setCellColor = function () {
+            var t = this._model.sortie.getNextCell().no, e = this._scene.view.map.spotLayer.getSpot(t);
+            if (null != e) {
+                e.showLine();
+                for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
+                    var o = i[n].no;
+                    if (0 == n) {
+                        var r = this._model.sortie.getCellInfo(o);
+                        this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
+                    } else {
+                        this._scene.view.map.spotLayer.getSpot(o).setColor(0)
+                    }
+                }
+            }
+            this._endTask()
         }, e
     }(o.TaskBase);
-    e.AnimBalloon = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    e.AnimShipMove = a;
+    var _ = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._scene = e, o._model = i, o._time = n, o
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            1 == t ? this._initializeFoundEnemy(e) : 2 == t && this._initializeFoundTarget(e), 3 == t && this._initializePatrol(e), this._addOffset(e)
-        }, e.prototype._initializeFoundEnemy = function (t) {
-            0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(45), this._img.position.set(-66, -77)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(27), this._img.position.set(-15, -68)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(26), this._img.position.set(0, -36)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(28), this._img.position.set(-114, -68))
-        }, e.prototype._initializeFoundTarget = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(29), this._img.position.set(-15, -68)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(30), this._img.position.set(-140, -66))
-        }, e.prototype._initializePatrol = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(31), this._img.position.set(-14, -66)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(32), this._img.position.set(-114, -66))
-        }, e.prototype._addOffset = function (t) {
-            0 == t ? (this._img.x += -3, this._img.y += -9) : 1 == t ? (this._img.x += 21, this._img.y += -6) : 2 == t ? (this._img.x += 39, this._img.y += 9) : 3 == t || 4 == t || 5 == t || 6 == t || 7 == t && (this._img.x += -21, this._img.y += -6)
+        return n(e, t), e.prototype._start = function () {
+            var t, e = this, i = this._scene.view.map, n = i.ship_icon, o = this._model.sortie.now_cell_no,
+                s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no), a = i.spotLayer.getSpot(s),
+                _ = this._scene.resInfo.getControlPoint(s);
+            if (null == _) t = createjs.Tween.get(n), t.to({ x: a.x, y: a.y }, this._time); else {
+                var u = new PIXI.Point(n.x, n.y), l = new PIXI.Point(a.x, a.y),
+                    c = r.TweenUtil.create2BezierPoints(u, _, l, this._time);
+                t = createjs.Tween.get(n);
+                for (var h = 0, p = c; h < p.length; h++) {
+                    var d = p[h];
+                    t.to({ x: d.x, y: d.y }, d.t)
+                }
+            }
+            t.call(function () {
+                e._endTask()
+            })
         }, e
-    }(PIXI.Container)
+    }(o.TaskBase), u = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._scene = e, o._model = i, o._time = n, o
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._model.sortie.getNextCell().no, i = this._scene.resInfo.getAirRaidOption(e);
+            if (null == i) this._endTask(); else {
+                this._scene.view.map.plane_layer.show(e, i, 2e3, function () {
+                    t._endTask()
+                })
+            }
+        }, e
+    }(o.TaskBase)
 }

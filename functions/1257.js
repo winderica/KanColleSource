@@ -15,68 +15,59 @@ const function1257 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(14), a = function (t) {
+    var o = i(2), r = i(6), s = i(18), a = i(435), _ = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._additional_waittime = 0, n._scene = e, n._model = i, n
+            return n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this._model.sortie, e = t.getNextCell().isDeadEnd(),
-                i = this._scene.resInfo.hasAirReconnaissancePoint();
-            1 == e && 1 == i ? (this._additional_waittime = 3e3, o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1e3).call(function () {
-                o.default.sound.bgm.play(4, !1, 1e3, "fanfare")
-            }), this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002\n\u672c\u4f5c\u6226\u5b8c\u9042\u5931\u6557\u3002")) : this._selectMessage()
-        }, e.prototype._selectMessage = function () {
-            var t = this._model.sortie.getNextCell().flavor_text;
-            if (null != t && t.length > 0) {
-                0 == this._model.sortie.getNextCell().flavor_text_type ? this._merefancy(t) : this._calm_sea(t)
-            } else {
-                var e = this._model.sortie.getNextCell().event_detail_id;
-                0 == e ? this._merefancy("\u6c17\u306e\u305b\u3044\u3060\u3063\u305f\u3002") : 1 == e ? this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002") : 3 == e ? this._calm_sea("\u7a4f\u3084\u304b\u306a\u6d77\u3067\u3059\u3002") : 4 == e ? this._merefancy("\u7a4f\u3084\u304b\u306a\u6d77\u5ce1\u3067\u3059\u3002") : 5 == e ? this._merefancy("\u8b66\u6212\u304c\u5fc5\u8981\u3067\u3059\u3002") : 6 == e ? this._calm_sea("\u9759\u304b\u306a\u6d77\u3067\u3059\u3002") : this._merefancy("")
-            }
-        }, e.prototype._merefancy = function (t) {
-            var e = this;
-            this._scene.view.map.ship_icon.startWaveRed(function () {
-                e._scene.view.message_box.text = t, e._stopShipWave(1e3)
+            var t = this;
+            this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new u;
+            var e = this._scene.view.map.ship_icon;
+            e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
+            var i = { rad: 0, a: 36 };
+            createjs.Tween.get(i, {
+                onChange: function () {
+                    e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
+                }
+            }).to({ a: 0 }, 2400).call(function () {
+                e.stopWave(), t._animItem()
             })
-        }, e.prototype._calm_sea = function (t) {
-            var e, i = this, n = this._model.deck_f.ships;
-            if (n.length > 6) {
-                e = n[Math.random() < .5 ? 0 : 6]
-            } else e = n[0];
-            var o = e.mst_id, r = e.isDamaged(), a = new s.ShipLoader;
-            a.add(o, r, "full"), a.load(function () {
-                i._calm_sea2(o, r, t)
+        }, e.prototype._animItem = function () {
+            var t = this, e = this._data.getUseitemMstID(), i = this._data.lost_count, n = new a.CompDropItem;
+            n.initialize(e, i);
+            var o = this._scene.view.map.ship_icon;
+            o.under.addChild(n), createjs.Tween.get(n).to({ x: -120 }, 1400), createjs.Tween.get(n).to({ y: -60 }, 400, createjs.Ease.quadOut).to({ y: 150 }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({ alpha: 0 }, 200).call(function () {
+                o.under.removeChild(n), t._hideUzu()
             })
-        }, e.prototype._calm_sea2 = function (t, e, i) {
-            var n = this;
-            this._chara = new PIXI.Sprite, this._chara.alpha = 0, this._chara.texture = o.default.resources.getShip(t, e, "full");
-            var r = o.default.model.ship_graph.get(t).getMapOffset(e);
-            this._chara.x = -80 + r.x, this._chara.y = -93 + r.y, this._scene.view.chara_layer.addChild(this._chara), createjs.Tween.get(this._chara).to({ alpha: 1 }, 300).call(function () {
-                n._calm_sea3(i)
+        }, e.prototype._hideUzu = function () {
+            var t = this, e = this._scene.view.map.ship_icon;
+            createjs.Tween.get(this._uzu).to({ alpha: 0 }, 200).call(function () {
+                e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
             })
-        }, e.prototype._calm_sea3 = function (t) {
-            var e = this;
-            this._scene.view.map.ship_icon.startWaveRed(function () {
-                e._scene.view.message_box.text = t, e._stopShipWave(1e3)
+        }, e.prototype._showText = function () {
+            var t = this, e = this._data.getUseitemMstID(), i = this._data.lost_count, n = this._data.isDentan();
+            this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
+                t._endTask()
             })
-        }, e.prototype._stopShipWave = function (t) {
-            var e = this;
-            createjs.Tween.get(null).wait(t).call(function () {
-                e._scene.view.map.ship_icon.stopWave(), e._changeCellColor()
-            })
-        }, e.prototype._changeCellColor = function () {
-            var t = this, e = this._model.sortie.getNextCell();
-            (this._scene.view.map.spotLayer.getSpot(e.no).setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({ alpha: 0 }, 300).call(function () {
-                t._chara.parent.removeChild(t._chara), t._endTask()
-            })) : this._endTask()
         }, e.prototype._endTask = function () {
-            var e = this;
-            createjs.Tween.get(null).wait(this._additional_waittime).call(function () {
-                t.prototype._endTask.call(e)
-            })
+            this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.CellTaskFancy = a
+    }(o.TaskBase);
+    e.CellTaskHappening = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.scale.y = .5;
+            var i = s.MAP_COMMON.getTexture(154);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
+        }
+
+        return n(e, t), e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._content, { loop: !0 }).to({ rotation: 2 * Math.PI }, 3e3))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Container)
 }

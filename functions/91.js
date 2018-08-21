@@ -15,49 +15,48 @@ const function91 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(173), a = i(1318), _ = i(1322), u = function (t) {
+    var o = i(0), r = i(2), s = i(173), a = i(1320), _ = i(1324), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
         }
 
-        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n) {
-            if (0 != this._scene.view.layer_gauge.hasGauge() && 1 != t && 0 == e) {
-                var o = this._scene.view.layer_gauge, r = o.now, s = this._scene.data.model.gauge_type;
-                if (2 == s) {
-                    var a = Math.max(0, r - n);
-                    o.update(a)
-                } else 1 == s && r > 0 && n >= i && o.update(r - 1)
+        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n, o) {
+            if (0 != this._scene.view.layer_gauge.hasGauge() && 1 != t && 0 == e && i != n) {
+                var r = this._scene.view.layer_gauge, s = r.now, a = this._scene.data.model.gauge_type;
+                if (2 == a) {
+                    var _ = Math.max(0, s - o);
+                    r.update(_)
+                } else 1 == a && s > 0 && o >= i && r.update(s - 1);
+                0 == r.now && 0 == n && r.explode()
             }
         }, e.prototype.causeDamage = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, e)
+                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
             }
         }, e.prototype.causeDoubleDamage1st = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, e)
+                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
             }
         }, e.prototype.causeDoubleDamage2nd = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, e)
+                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
             }
         }, e.prototype._registerDamageEvents = function (t, e) {
-            if (0 == t.friend) {
-                if (t.hp_now > 0 && e > 0) {
-                    var i = s.EnemyVoiceConst.getDamagedVoiceIDs(this._scene, t);
-                    if (null != i && i.length > 0) {
-                        var n = i[Math.floor(Math.random() * i.length)];
-                        o.default.sound.voice.play("9998", n)
-                    }
+            if (0 != t.friend) {
+                if (!(t.mst_id < 0)) {
+                    var i = t.damageType_before, n = t.damageType;
+                    i != n && (75 == n && 100 == i ? 1 == t.friend && o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : 50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t))
                 }
-                return void(0 == t.index && 0 == t.damageType && this._scene.view.layer_gauge.explode())
-            }
-            if (!(t.mst_id < 0)) {
-                var r = t.damageType_before, a = t.damageType;
-                r != a && (75 == a && 100 == r ? 1 == t.friend && o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : 50 == a && 75 == r ? this._chuha_ships.push(t) : 50 == a && 100 == r ? this._chuha_ships.push(t) : 25 == a && 75 == r ? this._taiha_ships.push(t) : 25 == a && 100 == r ? this._taiha_ships.push(t) : 0 == a && this._gouchin_ships.push(t))
+            } else if (t.hp_now > 0 && e > 0) {
+                var r = s.EnemyVoiceConst.getDamagedVoiceIDs(this._scene, t);
+                if (null != r && r.length > 0) {
+                    var a = r[Math.floor(Math.random() * r.length)];
+                    o.default.sound.voice.play("9998", a)
+                }
             }
         }, e.prototype._start = function () {
             var t = this;

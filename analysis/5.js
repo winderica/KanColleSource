@@ -1,5 +1,5 @@
 /*
- * the function called by `474.js`
+ * the function called by `475.js`
  * configuration of width and height
  */
 const function5 = function (t, e, i) {

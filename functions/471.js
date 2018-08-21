@@ -15,49 +15,70 @@ const function471 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(29), r = i(9), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._particles = [], e
-        }
+    var o = i(5), r = i(0), s = i(1), a = i(64), _ = i(8), u = i(41), l = i(23), c = i(205), h = i(1458),
+        p = i(207), d = function (t) {
+            function e(e, i, n, l) {
+                void 0 === l && (l = null);
+                var c = t.call(this) || this;
+                return c._moveCard = function () {
+                    null != c._pre_task && (c._pre_task.dispose(), c._pre_task = null), r.default.sound.bgm.play(132, !0, 1e3);
+                    var t = new PIXI.Point(c._insert.card.x, c._insert.card.y),
+                        e = new PIXI.Point(o.default.width / 2, o.default.height / 2),
+                        i = new PIXI.Point(t.x + 300, t.y), n = new PIXI.Point(e.x + 150, e.y + 150);
+                    a.TweenUtil.create3BezierTween(c._insert.card, t, i, n, e, 700), createjs.Tween.get(c._insert.card).to({
+                        scaleX: .86,
+                        scaleY: .86,
+                        rotation: 4 * Math.PI
+                    }, 700).to({ scaleX: 1, scaleY: 1 }, 133).wait(700).call(function () {
+                        c._insert.particle.activate()
+                    }).wait(1e3).call(c._flash)
+                }, c._flash = function () {
+                    var t = r.default.model.slot.getMst(c._mst_id);
+                    c._bonus.initialize(t.mstID, c._count, t.name), createjs.Tween.get(c._insert.card).to({ alpha: 0 }, 800), createjs.Tween.get(c._insert.bg_dark).to({ alpha: 0 }, 800), createjs.Tween.get(c._insert.flash).to({
+                        scaleX: 3.5,
+                        scaleY: 3.5
+                    }, 800), createjs.Tween.get(c._insert).wait(800).to({ alpha: 0 }, 200).call(function () {
+                        c._layer.removeChild(c._insert), c._insert.dispose(), c._insert = null, c._showBonus()
+                    })
+                }, c._showMessageBox = function () {
+                    createjs.Tween.get(c._bonus.message_box).to({ y: 480 }, 300).call(c._waitClick)
+                }, c._waitClick = function () {
+                    c._bonus.message_box.activate();
+                    var t = new u.GearBtnHome;
+                    t.position.set(1140, 660), t.initialize(), t.activate(), c._bonus.addChild(t);
+                    var e = new _.AreaBox(0);
+                    e.interactive = !0, e.buttonMode = !0, c._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
+                        c._bonus.removeChild(e), c._finalize(t)
+                    })
+                }, c._layer = e, c._mst_id = i, c._count = n, c._pre_task = l, c
+            }
 
-        return n(e, t), e.prototype.addParticle = function (t, e) {
-            var i = new a;
-            i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
-        }, e.prototype.startAnimation = function () {
-            for (var t = 0, e = this._particles; t < e.length; t++) {
-                e[t].startAnimation()
-            }
-        }, e.prototype.stopAnimation = function () {
-            for (var t = 0, e = this._particles; t < e.length; t++) {
-                e[t].stopAnimation()
-            }
-        }, e
-    }(PIXI.Container);
-    e.ParticleLayer = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            if (null == this._anim) {
-                var e = 2e3 * Math.random();
-                this._anim = createjs.Tween.get(this).wait(e).to({ scaleX: 1, scaleY: 1 }, 100).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 200).call(function () {
-                    t._anim = null, t.startAnimation()
-                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
-                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
-                createjs.Tween.get(this._r_canvas).wait(e).to({ rotation: i }, 300)
-            }
-        }, e.prototype.stopAnimation = function () {
-            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
-        }, e
-    }(o.Container)
+            return n(e, t), e.prototype._start = function () {
+                this._bonus = new h.BonusSlot, this._layer.addChild(this._bonus), this._insert = new c.BonusInsert, this._loadBG()
+            }, e.prototype._loadBG = function () {
+                var t = this, e = r.default.model.slot.getMst(this._mst_id);
+                this._bonus.bg.initiailzeForSlotitem(e.rarity, function () {
+                    t._loadSlotImage()
+                })
+            }, e.prototype._loadSlotImage = function () {
+                var t = this, e = new l.SlotLoader;
+                e.add(this._mst_id, "card"), e.load(function () {
+                    t._insert.preload(function () {
+                        t._showInsert()
+                    })
+                })
+            }, e.prototype._showInsert = function () {
+                this._insert.initialize(2), this._insert.alpha = 0, this._insert.card.scale.set(.38), this._insert.card.position.set(o.default.width / 2 - 228, o.default.height / 2 + 521), this._insert.flash.position.set(o.default.width / 2, o.default.height / 2), this._layer.addChild(this._insert), createjs.Tween.get(this._insert).to({ alpha: 1 }, 500).call(this._moveCard)
+            }, e.prototype._showBonus = function () {
+                this._bonus.particle.activate(), createjs.Tween.get(this._bonus.white).to({ alpha: 0 }, 500).call(this._showMessageBox)
+            }, e.prototype._finalize = function (t) {
+                var e = this;
+                r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                    t.deactivate(), e._bonus.removeChild(t), e._endTask()
+                })
+            }, e.prototype.dispose = function () {
+                this._bonus.dispose(), this._layer.removeChild(this._bonus), this._layer = null, this._bonus = null
+            }, e
+        }(p.TaskBonusBase);
+    e.TaskBonusSlot = d
 }

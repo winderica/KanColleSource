@@ -15,138 +15,87 @@ const function604 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(104), a = i(149), _ = i(1), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._down_flg = !1, e._onMouseOver = function () {
-                e._off.visible = !1, e._on.visible = !0, e._on.activate(), null == e._waves.parent && (e.addChild(e._waves), e._waves.startAnimation()), e._showDescription(), e._down_flg = !1
-            }, e._onMouseOut = function () {
-                e._off.visible = !0, e._on.visible = !1, e._on.deactivate(), null != e._waves.parent && (e.removeChild(e._waves), e._waves.stopAnimation()), e._on.scale.set(1, 1), e._hideDescription(), e._down_flg = !1
-            }, e._onMouseDown = function () {
-                e._off.visible = !1, e._on.visible = !0, e._on.deactivate(), null != e._waves.parent && (e.removeChild(e._waves), e._waves.stopAnimation()), e._on.scale.set(.9, .9), e._hideDescription(), e._down_flg = !0
-            }, e._onMouseUp = function () {
-                e._off.visible = !1, e._on.visible = !0, e._on.activate(), null == e._waves.parent && (e.addChild(e._waves), e._waves.startAnimation()), e._on.scale.set(1, 1), e._showDescription(), 1 == e._down_flg && 1 == o.default.scene.change(16) && r.SE.play("246"), e._down_flg = !1
-            }, e._off = new l, e.addChild(e._off), e._on = new c, e._on.visible = !1, e.addChild(e._on), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 102), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e._waves = new a.RingMenuWaves, e
+    var o = i(0), r = i(6), s = i(291), a = i(292), _ = i(293), u = i(294), l = i(149), c = i(1), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mouse_down = !1, i._open_force = !1, i._onMouseOver = function () {
+                i._mouse_down = !1, i._open()
+            }, i._onMouseOut = function () {
+                i._mouse_down = !1, i._close()
+            }, i._onMouseDown = function () {
+                i._mouse_down = !0
+            }, i._onMouseUp = function () {
+                1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
+            }, i._type = e, i._content = new p, i._content.alpha = 0, i.addChild(i._content), i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._off.initialize(), this._on.initialize(), this._waves.initialize()
+            this._content.initialize(this._type, this._onMouseOver, this._onMouseOut, this._onMouseDown, this._onMouseUp), this._onMouseOut()
         }, e.prototype.activate = function () {
-            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(_.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(_.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(_.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(_.EventType.MOUSEUP, this._onMouseUp))
+            this._content.activate()
         }, e.prototype.deactivate = function () {
-            this._hit_area.buttonMode = !1, this._hit_area.off(_.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(_.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(_.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(_.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
+            this._content.deactivate(), this._onMouseOut()
+        }, e.prototype.interactiveApply = function (t) {
+            this._content.interactiveApply(t)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._on.dispose(), this._hideDescription()
-        }, e.prototype._showDescription = function () {
+            this._content.dispose(), this._stopOpenTween(), this._stopCloseTween()
+        }, e.prototype.open = function () {
+            this._open_force = !0, this._open()
+        }, e.prototype.close = function () {
+            this._open_force = !1, this._close()
+        }, e.prototype._open = function () {
             var t = this;
-            null == this._description && (this._description = new PIXI.Sprite(s.PORT_RINGMENU.getTexture(13))), null == this._description.parent && (this._description.position.set(5, -23), this._description.alpha = 0, this.addChild(this._description), this._description_tween = createjs.Tween.get(this._description).wait(400).to({
-                x: 35,
+            this._stopCloseTween(), null == this._t_open && (this._t_open = createjs.Tween.get(this._content).to({
+                x: 75,
                 alpha: 1
-            }, 100).call(function () {
-                t._description_tween = null
+            }, 700).call(function () {
+                t._t_open = null
             }))
-        }, e.prototype._hideDescription = function () {
-            null != this._description_tween && (this._description_tween.setPaused(!0), this._description_tween = null), null != this._description && null != this._description.parent && this.removeChild(this._description)
+        }, e.prototype._close = function () {
+            var t = this;
+            1 != this._open_force && (this._stopOpenTween(), null == this._t_close && (this._t_close = createjs.Tween.get(this._content).to({
+                x: 0,
+                alpha: 0
+            }, 700).call(function () {
+                t._t_close = null
+            })))
+        }, e.prototype._stopOpenTween = function () {
+            null != this._t_open && (this._t_open.setPaused(!0), this._t_open = null)
+        }, e.prototype._stopCloseTween = function () {
+            null != this._t_close && (this._t_close.setPaused(!0), this._t_close = null)
         }, e
     }(PIXI.Container);
-    e.RingMenuBtnSally = u;
-    var l = function (t) {
+    e.RingMenuBtnRevamp = h;
+    var p = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._left = new PIXI.Sprite, e._left.position.set(-125, 2), e.addChild(e._left), e._right = new PIXI.Sprite, e._right.position.set(-50, 2), e.addChild(e._right), e._gear = new PIXI.Sprite, e._gear.position.set(-102, -101), e.addChild(e._gear), e._ship = new PIXI.Sprite, e._ship.position.set(-102, -86), e.addChild(e._ship), e._text = new PIXI.Sprite, e._text.position.set(-69, -18), e.addChild(e._text), e
+            return e._onMouseOver = function () {
+                e._bg_on.visible = !0, e._bg_on.activate(), e._img.visible = !1, e._img_on.visible = !0, e._showWaves(), e._description.show(), null != e._cb_onMouseOver && e._cb_onMouseOver()
+            }, e._onMouseOut = function () {
+                e._bg_on.visible = !1, e._bg_on.deactivate(), e._img.visible = !0, e._img_on.visible = !1, e._setScale(1), e._hideWaves(), e._description.hide(), null != e._cb_onMouseOut && e._cb_onMouseOut()
+            }, e._onMouseDown = function () {
+                e._bg_on.visible = !0, e._bg_on.deactivate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(.9), e._hideWaves(), e._description.hide(), null != e._cb_onMouseDown && e._cb_onMouseDown()
+            }, e._onMouseUp = function () {
+                e._bg_on.visible = !0, e._bg_on.activate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(1), e._showWaves(), e._description.show(), null != e._cb_onMouseUp && e._cb_onMouseUp()
+            }, e._bg_on = new s.RingMenuBtnBgOn, e.addChild(e._bg_on), e._img = new _.RingMenuBtnImg, e.addChild(e._img), e._img_on = new u.RingMenuBtnImgOn, e.addChild(e._img_on), e._waves = new l.RingMenuWaves, e._description = new a.RingMenuBtnDescription, e.addChild(e._description), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 71), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._left.texture = s.PORT_RINGMENU.getTexture(4), this._right.texture = s.PORT_RINGMENU.getTexture(3), this._gear.texture = s.PORT_RINGMENU.getTexture(0), this._ship.texture = s.PORT_RINGMENU.getTexture(2), this._text.texture = s.PORT_RINGMENU.getTexture(1)
-        }, e
-    }(PIXI.Container), c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._gear = new h, e.addChild(e._gear), e._right = new p, e.addChild(e._right), e._left = new d, e.addChild(e._left), e._bg = new PIXI.Sprite, e.addChild(e._bg), e._ship = new f, e.addChild(e._ship), e._text = new PIXI.Sprite, e.addChild(e._text), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._gear.initialize(), this._right.initialize(), this._left.initialize(), this._bg.texture = s.PORT_RINGMENU.getTexture(23), this._bg.x = Math.round(-this._bg.width / 2), this._bg.y = Math.round(-this._bg.height / 2), this._ship.initialize(), this._text.texture = s.PORT_RINGMENU.getTexture(28), this._text.position.set(-68, -18)
+        return n(e, t), e.prototype.initialize = function (t, e, i, n, o) {
+            this._bg_on.initialize(), this._img.initialize(t), this._img_on.initialize(t), this._waves.initialize(), this._description.initialize(t), this._onMouseOut(), this._cb_onMouseOver = e, this._cb_onMouseOut = i, this._cb_onMouseDown = n, this._cb_onMouseUp = o
         }, e.prototype.activate = function () {
-            this._gear.activate(), this._right.activate(), this._left.activate(), this._ship.activate()
+            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
         }, e.prototype.deactivate = function () {
-            this._gear.deactivate(), this._right.deactivate(), this._left.deactivate(), this._ship.deactivate()
+            this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp)
+        }, e.prototype.interactiveApply = function (t) {
+            this._hit_area.interactive = t
         }, e.prototype.dispose = function () {
-            this._gear.dispose(), this._right.dispose(), this._left.dispose(), this._ship.dispose()
-        }, e
-    }(PIXI.Container), h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = s.PORT_RINGMENU.getTexture(24), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: 2 * Math.PI }, 24e3), this._t.setPaused(!0)
-        }, e.prototype.activate = function () {
-            this._t.setPaused(!1)
-        }, e.prototype.deactivate = function () {
-            this._t.setPaused(!0)
-        }, e.prototype.dispose = function () {
-            this._t.setPaused(!0), this._t = null, this.rotation = 0
-        }, e
-    }(PIXI.Container), p = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = s.PORT_RINGMENU.getTexture(26), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(38, 45), this.rotation = 0
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: Math.PI / 36 }, 700).to({
-                x: 62,
-                y: 48
-            }, 800).to({ x: 66, y: 42, rotation: 0 }, 500).to({
-                x: 62,
-                y: 38,
-                rotation: -Math.PI / 60
-            }, 400).to({ x: 38, y: 45, rotation: 0 }, 1600))
-        }, e.prototype.deactivate = function () {
-            this.position.set(38, 45), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e
-    }(PIXI.Container), d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = s.PORT_RINGMENU.getTexture(25), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(-38, 45), this.rotation = 0
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: -Math.PI / 36 }, 500).to({
-                x: -59,
-                y: 48
-            }, 800).to({ x: -63, y: 45, rotation: 0 }, 500).to({
-                x: -60,
-                y: 42,
-                rotation: Math.PI / 60
-            }, 400).to({ x: -38, y: 45, rotation: 0 }, 1800))
-        }, e.prototype.deactivate = function () {
-            this.position.set(-38, 45), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e
-    }(PIXI.Container), f = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = s.PORT_RINGMENU.getTexture(27), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(6, -38), this.rotation = 0
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: Math.PI / 60 }, 1e3).to({ rotation: 0 }, 1e3).to({ rotation: -Math.PI / 60 }, 1e3).to({ rotation: 0 }, 1e3))
-        }, e.prototype.deactivate = function () {
-            this.position.set(6, -38), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.deactivate(), this._hideWaves(), this._bg_on.dispose(), this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onMouseDown = null, this._cb_onMouseUp = null
+        }, e.prototype._showWaves = function () {
+            null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
+        }, e.prototype._hideWaves = function () {
+            null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
+        }, e.prototype._setScale = function (t) {
+            this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
         }, e
     }(PIXI.Container)
 }

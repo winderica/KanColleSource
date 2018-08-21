@@ -15,56 +15,23 @@ const function963 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(52), a = i(360), _ = i(964), u = function (t) {
+    var o = i(25), r = i(1), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
-                null != i._cb && i._cb(t.area_id)
-            }, i._cb = e, i._btns = new Array;
-            for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
-                var r = new a.AreaIconBtn(o + 1);
-                r.position.set(n[o], 0), i._btns.push(r)
-            }
-            return i
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i.interactive = !0, i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            if (1 != this._initialized) {
-                this._initialized = !0;
-                var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
-                if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
-                    if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
-                        var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                        e.position.set(866, -4), this._btns.push(e)
-                    }
-                }
-                for (var i = 0, n = this._btns; i < n.length; i++) {
-                    var e = n[i];
-                    e.initialize(this._onSelectArea), this.addChild(e)
-                }
-            }
-        }, e.prototype.update = function (t) {
-            for (var e = 0, i = this._btns; e < i.length; e++) {
-                var n = i[e], o = n.area_id == t;
-                n.selected = o, o ? n.deactivate() : n.activate()
-            }
+            this.texture = o.SALLY_AIRUNIT.getTexture(6)
         }, e.prototype.activate = function () {
-            if (0 == this._activated) {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].activate()
-                }
-                this._activated = !0
-            }
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {
-            this._activated = !1;
-            for (var t = 0, e = this._btns; t < e.length; t++) {
-                e[t].deactivate()
-            }
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._btns; t < e.length; t++) {
-                e[t].dispose()
-            }
+            this.deactivate(), this._cb_onClick = null
         }, e
-    }(PIXI.Container);
-    e.CompAreaIcons = u
+    }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

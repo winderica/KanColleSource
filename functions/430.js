@@ -15,7 +15,7 @@ const function430 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1210), r = function (t) {
+    var o = i(1212), r = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.KEIKAIJIN = !1, e._count = 0, e._boxes = [];

@@ -15,37 +15,43 @@ const function1039 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1040), a = i(13), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
+    var o = i(0), r = i(11), s = i(1040), a = i(1042), _ = i(1043), u = i(1050), l = i(1053), c = i(1054),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._dispose = function () {
+                    null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
+                }, e
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
-            })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = _;
-    var u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(102), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = u
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+                get: function () {
+                    return this._viewTop
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "viewInfo", {
+                get: function () {
+                    return this._viewInfo
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "viewRanking", {
+                get: function () {
+                    return this._viewRanking
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new s.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new s.InitializeTask(this)
+            }, e.prototype.getPreFinalizeTask = function () {
+                return new a.PreFinalizeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new a.FinalizeTask(this._dispose)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new u.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new l.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
+            }, e.prototype.startTopTask = function () {
+                var t = this, e = o.default.model.deck.get(1).getShipList()[0].mstID;
+                o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
+                })
+            }, e
+        }(r.SceneBase);
+    e.RecordScene = h
 }

@@ -15,12 +15,17 @@ const function1102 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(11), r = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = null !== t && t.apply(this, arguments) || this;
+            return e._result = null, e
         }
 
-        return n(e, t), e
-    }(PIXI.Sprite);
-    e.DialogBase = o
+        return n(e, t), Object.defineProperty(e.prototype, "result", {
+            get: function () {
+                return this._result
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(o.TaskBase);
+    e.TaskWithResult = r
 }

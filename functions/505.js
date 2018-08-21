@@ -15,35 +15,42 @@ const function505 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(506), s = function () {
-        function t() {
-            this._dic = {}
+    var o = i(7), r = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return t.prototype.getData = function (t) {
-            var e = t.toString();
-            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getOrder = function (t) {
-            return null == this._orders ? [] : this._orders.length <= t ? [] : this._orders[t]
-        }, t
+        return Object.defineProperty(t.prototype, "mstID", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "state", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_state", -1)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "shipMemID", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_ship_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "completeTime", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_complete_time")
+            }, enumerable: !0, configurable: !0
+        }), t
     }();
-    e.PayItemModelHolder = s;
-    var a = function (t) {
-        function e() {
-            return t.call(this) || this
+    e.NDockModel = r;
+    var s = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.setData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new r.PayItemModel(i), o = n.id;
-                o > 0 && (this._dic[o] = n)
-            }
-        }, e.prototype.setOrders = function (t) {
-            if (this._orders = [], null != t) {
-                var e = o.ObjUtil.getNumArray(t, "api_cabinet_1");
-                null == e ? this._orders.push([]) : this._orders.push(e), e = o.ObjUtil.getNumArray(t, "api_cabinet_2"), null == e ? this._orders.push([]) : this._orders.push(e)
-            }
+        return n(e, t), e.prototype.__updateState__ = function (t) {
+            this._o.api_state = t
+        }, e.prototype.__updateShipId__ = function (t) {
+            this._o.api_ship_id = t
+        }, e.prototype.__updateCompleteTime__ = function (t) {
+            this._o.api_complete_time = t
         }, e
-    }(s);
-    e.PayItemModelHolderEdit = a
+    }(r);
+    e.NDockModelEdit = s
 }

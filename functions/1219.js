@@ -15,25 +15,27 @@ const function1219 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(7), a = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
+    var o = i(16), r = i(146), s = i(54), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
-                var r = n[i];
-                o.default.model.deck.updateData(r)
-            }
-            for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, u = a; _ < u.length; _++) {
-                var r = u[_];
-                o.default.model.ship.updateData(r)
-            }
-            t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "black", {
+            get: function () {
+                return this._black
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shutter", {
+            get: function () {
+                return this._shutter
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._shutter.initializeLight()
         }, e
-    }(r.APIBase);
-    e.APIShipDeck = a
+    }(PIXI.Container);
+    e.ViewMain = a
 }

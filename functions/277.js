@@ -15,21 +15,29 @@ const function277 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(54), r = function (t) {
+    var o = i(54), r = i(146), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._shutter = new o.Shutter, e.addChild(e._shutter), e
+            return e._bg = new r.MapBG, e.addChild(e._bg), e._content = new PIXI.Container, e._shutter2 = new o.Shutter, e.addChild(e._content), e.addChild(e._shutter2), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "shutter", {
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
             get: function () {
-                return this._shutter
+                return this._bg
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.shutter.initializeDark(), this.shutter.close(0)
-        }, e.prototype.start = function (t) {
-            this._model = t
+        }), Object.defineProperty(e.prototype, "content", {
+            get: function () {
+                return this._content
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shutter2", {
+            get: function () {
+                return this._shutter2
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._shutter2.initializeDark()
+        }, e.prototype.dispose = function () {
+        }, e.prototype.start = function () {
         }, e
     }(PIXI.Container);
-    e.BattleResultSceneBase = r
+    e.BattleSceneBase = s
 }

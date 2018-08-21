@@ -15,33 +15,57 @@ const function1457 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(58), a = i(79), _ = i(206), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
+    var o = (i(0), i(2)), r = i(204), s = i(471), a = i(247), _ = i(1459), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "particle", {
-            get: function () {
-                return this._particle
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "white", {
-            get: function () {
-                return this._white
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i) {
-            this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(i, e)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg = null, this._item = null, this._particle.deactivate(), this._particle = null, this._message_box.deactivate(), this._message_box = null, this._white = null
+        return n(e, t), e.prototype._start = function () {
+            this._useitemBonus()
+        }, e.prototype._useitemBonus = function () {
+            var t = this, e = this._scene.data.getBonusUseitem();
+            if (null != e) {
+                var i = this._scene.view.layer_cutin, n = e.mst_id;
+                new _.TaskBonusTelop(i, 6, n).start(function () {
+                    var e = new a.TaskBonusUseItem(i, n, 1);
+                    e.start(function () {
+                        t._slotitemBonus(e)
+                    })
+                })
+            } else this._slotitemBonus(null)
+        }, e.prototype._slotitemBonus = function (t) {
+            var e = this, i = this._scene.data.getBonusSlot();
+            if (null != i) {
+                var n = this._scene.view.layer_cutin, o = i.mst_id;
+                new _.TaskBonusTelop(n, 2, o).start(function () {
+                    var i = new s.TaskBonusSlot(n, o, 1, t);
+                    i.start(function () {
+                        e._shipBonus(i)
+                    })
+                })
+            } else this._shipBonus(t)
+        }, e.prototype._shipBonus = function (t) {
+            var e = this, i = this._scene.data.getBonusShip();
+            if (null != i) {
+                var n = this._scene.view.layer_cutin, o = i.mst_id,
+                    s = this._scene.data.battle_model.map_info.area_id,
+                    a = this._scene.data.battle_model.map_info.map_no, u = 1 == s && (1 == a || 2 == a || 3 == a);
+                new _.TaskBonusTelop(n, 3, o, u).start(function () {
+                    var i = new r.TaskBonusShip(n, o, t);
+                    i.start(function () {
+                        e._closeShutter(i)
+                    })
+                })
+            } else this._closeShutter(null)
+        }, e.prototype._closeShutter = function (t) {
+            var e = this, i = this._scene.view.shutter;
+            i.close(), i.once("closed", function () {
+                null != t && t.dispose(), e._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.BonusSlot = u
+    }(o.TaskBase);
+    e.TaskNormalBonus = u
 }

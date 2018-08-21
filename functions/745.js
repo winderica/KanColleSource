@@ -15,19 +15,17 @@ const function745 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = function (t) {
+    var o = i(3), r = i(3), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new r.TextBox(24, 5523516), n = new r.TextBox(24, 5523516),
-                s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(21)),
-                a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(22));
-            return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(60));
+            e.headerSupplyBg = i;
+            var n = new PIXI.Sprite(r.SUPPLY_MAIN.getTexture(0));
+            return e.headerSupplyText = n, n.position.set(24, 11), e.addChild(i, n), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.textAmmo = null, this.textFuel = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
+            this.removeChildren(), this.headerSupplyBg.texture = PIXI.Texture.EMPTY, this.headerSupplyText.texture = PIXI.Texture.EMPTY, this.headerSupplyBg = null, this.headerSupplyText = null
         }, e
     }(PIXI.Container);
-    e.MaterialCounterView = s
+    e.HeaderSupply = s
 }

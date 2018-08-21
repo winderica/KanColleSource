@@ -15,7 +15,7 @@ const function372 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(52), r = i(983), s = function (t) {
+    var o = i(52), r = i(984), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._type = e, i._black = new PIXI.Sprite, i._key = new PIXI.Sprite, i._cloud = new r.MapThumbnailLockedCloud, i._text = new PIXI.Container, i

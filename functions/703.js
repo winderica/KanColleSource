@@ -15,31 +15,24 @@ const function703 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(112), r = i(704), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            o.HEIGHT = 76, o.presetEditSlots = [];
-            for (var s = 0; s < 5; s++) {
-                var a = new r.PresetEditSlot(s);
-                a.onClickSave = e, a.onClickDelete = i, a.onClickExtension = n, a.position.y = o.HEIGHT * s, o.presetEditSlots.push(a)
-            }
-            return o.presetEditSlots.forEach(function (t) {
-                return o.addChild(t)
-            }), o
+    var o = i(3), r = i(4), s = i(56), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClickYes = function () {
+                e.onClickYES()
+            }, e._onClickNo = function () {
+                e.onClickNO()
+            }, e.text = new r.TextBox(24, 5523516);
+            var i = o.ORGANIZE_MAIN.getTexture(28), n = o.ORGANIZE_MAIN.getTexture(14),
+                a = o.ORGANIZE_MAIN.getTexture(7);
+            return e.message = new PIXI.Sprite(i), e.buttonYes = new s.SimpleButton(n, n), e.buttonNo = new s.SimpleButton(a, a), e.text.position.set(Math.floor(435 - .5 * e.text.width), Math.floor(138 - .5 * e.text.height)), e.buttonYes.position.set(171, 213), e.buttonNo.position.set(385, 213), e.buttonYes.onClick = e._onClickYes, e.buttonNo.onClick = e._onClickNo, e.addChild(e.message, e.text, e.buttonYes, e.buttonNo), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "slotsLength", {
-            get: function () {
-                return this.presetEditSlots.length
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            o.TaskLoadShipResource.abortBy(this), this.presetEditSlots.forEach(function (t) {
-                t.dispose(), t = null
-            }), this.presetEditSlots = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n, r) {
-            void 0 === r && (r = null), o.TaskLoadShipResource.abortBy(this);
-            for (var s = !1, a = 0; a < 5; a++) s = this.presetEditSlots[a].update(t[a], e, i, n, r, s)
+        return n(e, t), e.prototype.update = function (t) {
+            this.text.text = t + " \u2192 " + (t - 1)
+        }, e.prototype.dispose = function () {
+            this.message.texture = PIXI.Texture.EMPTY, this.buttonYes.onClick = this._onClickYes = null, this.buttonNo.onClick = this._onClickNo = null, this.buttonYes.dispose(), this.buttonNo.dispose(), this.onClickYES = null, this.onClickNO = null, this.text = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.PresetEditContainer = s
+    e.ExtensionPresetConfirm = a
 }

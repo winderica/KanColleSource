@@ -15,15 +15,37 @@ const function611 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
+    var o = i(9), r = i(8), s = i(29), a = i(29), _ = i(304), u = i(202), l = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            var e = -1;
-            1 == t ? e = 47 : 2 == t ? e = 46 : 3 == t ? e = 45 : 4 == t ? e = 44 : 5 == t ? e = 43 : 6 == t ? e = 42 : 7 == t ? e = 41 : 8 == t ? e = 40 : 9 == t ? e = 39 : 10 == t && (e = 38), this.visible = !1, -1 != e && (this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0)
+        return n(e, t), e.prototype._initBG = function () {
+            var t = this;
+            this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                t._animation()
+            })
+        }, e.prototype._createItemTobe = function (t, e) {
+            var i = o.COMMON_MISC.getTexture(49), n = new u.CenteringSprite(i);
+            return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+        }, e.prototype._change = function () {
+            var e = this;
+            t.prototype._change.call(this);
+            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+            i.x = -i.width / 2, i.y = -i.height / 2;
+            var n = new a.Container;
+            n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                scaleX: 3.3,
+                scaleY: 3.3,
+                alpha: 1
+            }, 350).to({ scaleX: 5, scaleY: 5 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                e._layer.removeChild(n)
+            });
+            var s = new r.AreaBox(1, 16777215);
+            s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({ alpha: 1 }, 500).wait(600).to({ alpha: 0 }, 300).call(function () {
+                e._layer.removeChild(s)
+            })
         }, e
-    }(PIXI.Sprite);
-    e.RankIcon = r
+    }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = l
 }

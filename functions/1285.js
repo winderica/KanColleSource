@@ -15,55 +15,51 @@ const function1285 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(146), r = i(54), s = i(428), a = i(1286), _ = i(1287), u = i(1299), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
+    var o = i(6), r = i(1286), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onClick = function (t) {
+                n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+            }, n._onDoubleClick = function (t) {
+                var e = n._selected_spot_no.lastIndexOf(t);
+                -1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+            }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "shutter", {
-            get: function () {
-                return this._shutter
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "map", {
-            get: function () {
-                return this._map
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "upper", {
-            get: function () {
-                return this._upper
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "gauge_layer", {
-            get: function () {
-                return this._gauge_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara_layer", {
-            get: function () {
-                return this._chara_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "universal_layer", {
-            get: function () {
-                return this._universal_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "top_layer", {
-            get: function () {
-                return this._top_layer
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+        return n(e, t), e.prototype.initialize = function (t, e, i) {
+            this._clear(), e = this._dedupeCells(e);
+            for (var n = 0, o = e; n < o.length; n++) {
+                var s = o[n], a = s.no, _ = i.getCellInfo(a);
+                if (!(_.distance <= 0) && !(_.distance > t)) {
+                    var u = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                    u.initialize(a), u.x = s.x, u.y = s.y, this.addChild(u), this._points[a] = u
+                }
+            }
+        }, e.prototype.update = function () {
+            var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+            for (var i in this._points) {
+                var n = this._points[i];
+                n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+            }
         }, e.prototype.dispose = function () {
-            this._map.dispose(), this._message_box.dispose()
-        }, e.prototype.frontOfGaugeLayer = function () {
-            this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+            this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+        }, e.prototype._clear = function () {
+            for (var t in this._points) this._points[t].dispose();
+            this.removeChildren(), this._points = []
+        }, e.prototype._dedupeCells = function (t) {
+            for (var e = [], i = t.concat(); i.length > 0;) {
+                for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                    var a = s[r], _ = n.x - a.x, u = n.y - a.y;
+                    if (Math.sqrt(_ * _ + u * u) <= 10) {
+                        o = !0;
+                        break
+                    }
+                }
+                0 == o && e.push(n)
+            }
+            return e
         }, e
     }(PIXI.Container);
-    e.ViewMain = l
+    e.AirUnitAppointmentLayer = s
 }

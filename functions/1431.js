@@ -15,48 +15,25 @@ const function1431 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(431), s = i(1432), a = i(1433), _ = i(15), u = i(1434), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._touch_plane = new u.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._touch_plane), i
+    var o = i(1432), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
+        return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
             get: function () {
-                return this._touch_plane
+                return this._rader_f
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._wave1.texture = _.BATTLE_MAIN.getTexture(85), this._wave2.texture = _.BATTLE_MAIN.getTexture(85), this._bg.texture = _.BATTLE_MAIN.getTexture(84)
-        }, e.prototype.show = function (t, e, i, n) {
-            0 == e ? this._show(t, i) : this._showCombined(t, e, i, n)
-        }, e.prototype.wave = function () {
-            var t = this;
-            null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
-                t._wave1.scale.set(0), t._wave1.alpha = 1
-            }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
-                t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
-            }))
-        }, e.prototype._show = function (t, e) {
-            var i = this, n = createjs.Tween.get(this._bg);
-            n.to({ scaleX: 1, scaleY: 1 }, 800), e <= 0 || n.call(function () {
-                var n = new r.FormationPoints(i._friend);
-                n.scale.set(.65), n.initialize(t, e), i._points.addChild(n), 1 == i._friend && (n.rotation = Math.PI), n.show()
-            })
-        }, e.prototype._showCombined = function (t, e, i, n) {
-            var o = this, r = createjs.Tween.get(this._bg);
-            r.to({ scaleX: 1, scaleY: 1 }, 800), i <= 0 || r.call(function () {
-                var r = new s.FormationPointsCombinedMain(o._friend);
-                r.initialize(t, i, e), o._points.addChild(r);
-                var _ = new a.FormationPointsCombinedSub(o._friend);
-                _.initialize(t, n), o._points.addChild(_), 0 == o._friend && (r.rotation = Math.PI, _.rotation = Math.PI), r.show(), _.show()
-            })
+        }), Object.defineProperty(e.prototype, "rader_e", {
+            get: function () {
+                return this._rader_e
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
+        }, e.prototype.resetChildren = function () {
+            this.addChild(this._rader_f), this.addChild(this._rader_e)
         }, e
     }(PIXI.Container);
-    e.Rader = l
+    e.RaderLayer = r
 }

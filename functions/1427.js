@@ -15,31 +15,23 @@ const function1427 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(1428), s = i(1429), a = function (t) {
+    var o = i(15), r = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
-            void 0 === n && (n = null);
-            var o = t.getGlobalPos(!0), r = 1 == t.friend ? o.x + 23 : o.x - 74, s = o.y + 7;
-            this.show(r, s, e, i, n)
-        }, e.prototype.show = function (t, e, i, n, o) {
-            var s = this;
-            void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
-            var a = new r.DamageNumber;
-            a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
-                createjs.Tween.get(a).to({ alpha: 0 }, 230).call(function () {
-                    s.removeChild(a), null != o && o()
-                })
+        return n(e, t), e.prototype.showSanshiki = function (t, e) {
+            var i = this, n = o.BATTLE_MAIN.getTexture(137), r = new PIXI.Sprite(n);
+            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                i.removeChild(r)
             })
-        }, e.prototype.showShieldAtBanner = function (t) {
-            var e = t.getGlobalPos(!0), i = e.x, n = e.y, r = t.friend;
-            1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
-        }, e.prototype.showShield = function (t, e, i) {
-            var n = new s.Shield;
-            n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
+        }, e.prototype.showDanmaku = function (t, e) {
+            var i = this, n = o.BATTLE_MAIN.getTexture(135), r = new PIXI.Sprite(n);
+            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                i.removeChild(r)
+            })
+        }, e.prototype.dispose = function () {
         }, e
     }(PIXI.Container);
-    e.LayerDamage = a
+    e.BannerInfoLayer = r
 }

@@ -1,11 +1,68 @@
 const function1055 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = function () {
-        function t() {
-        }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-        return t.BGM_ID_FOR_SHIP = 123, t.BGM_ID_FOR_SLOT = 102, t.COUNT_INTAB = 7, t.COUNT_INPAGE = 10, t
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
     }();
-    e.AlbumConst = n
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(0), r = i(11), s = i(16), a = i(112), _ = i(166), u = i(70), l = i(70), c = i(70), h = i(70),
+        p = i(381), d = i(133), f = i(133), y = i(133), v = i(133), g = i(133), m = i(39), b = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._selected_state = 1, e._selected_tab_no = 0, e._onChangeTab = function (t, i) {
+                    if (1 == t) {
+                        var n = _.AlbumConst.BGM_ID_FOR_SHIP;
+                        o.default.sound.bgm.play(n)
+                    } else {
+                        var n = _.AlbumConst.BGM_ID_FOR_SLOT;
+                        o.default.sound.bgm.play(n)
+                    }
+                    e._selected_state = t;
+                    var r = i * _.AlbumConst.COUNT_INTAB * _.AlbumConst.COUNT_INPAGE;
+                    if (e._selected_tab_no = r, e._view.tab_container.update(t, i), 0 == e._model.hasData(t, i)) {
+                        new p.AlbumAPI(t, i, e._model).start(function () {
+                            e._update(t, r)
+                        })
+                    } else e._update(t, r)
+                }, e._onChangePage = function (t) {
+                    var i = e._selected_state;
+                    e._update(i, t)
+                }, e._onSelect = function (t) {
+                    if (t instanceof c.AlbumShipModel) {
+                        var i = new v.TaskShowShipDetail(e._over, t, e._option, e._view);
+                        i.start()
+                    } else if (t instanceof h.AlbumSlotModel) {
+                        var i = new g.TaskShowSlotDetail(e._over, t, e._view);
+                        i.start()
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._option = new u.AlbumSceneOptionModel, e._model = new l.AlbumModelManager, e._view = new m.MainView(e._onChangeTab, e._onChangePage, e._onSelect), e.addChild(e._view), e._over = new s.FadeBox(1, 0, 1200, 720), e._over.hide(0), e._over.visible = !1, e.addChild(e._over), e
+            }
+
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new d.TaskScenePreInitialize(t, this._model, this._view, this._onBack)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new f.TaskSceneInitialize(t, this._view)
+            }, e.prototype.getFinalizeTask = function () {
+                return a.TaskLoadBase.abortAll(), new y.TaskSceneFinalize(this._view)
+            }, e.prototype._update = function (t, e) {
+                a.TaskLoadBase.abortAll();
+                var i = _.AlbumConst.COUNT_INPAGE, n = this._model.getData(t, e, i), o = this._selected_tab_no;
+                this._view.pager.update(o, e);
+                var r = this._view.content;
+                r.deactivate(), r.update(t, e, n), r.activate()
+            }, e
+        }(r.SceneBase);
+    e.AlbumScene = b
 }

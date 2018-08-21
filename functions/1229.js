@@ -15,92 +15,19 @@ const function1229 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(74), a = i(22), _ = i(7), u = i(2), l = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o) for (var s = 0, a = o; s < a.length; s++) {
-                var _ = a[s];
-                r._memData[_.no] = _, r._memDataNum++
-            }
-            return r
+    var o = i(2), r = i(24), s = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._getPath("info.json?" + r.START_TIME);
-            axios.get(e).then(function (e) {
-                var i = _.ObjUtil.getObject(e, "data");
-                t._mapInfo.add(i), t._loadSpriteSheet()
-            }).catch(function (e) {
-                t._failedEnd()
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("map");
+            e.add("map_common.json"), e.add("map_compass.json"), e.add("map_flagship_damage.json"), e.load(function () {
+                t._endTask()
             })
-        }, e.prototype._loadSpriteSheet = function () {
-            var t = this, e = this._getPath("image.json");
-            if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo(); else {
-                var i = new PIXI.loaders.Loader;
-                i.defaultQueryString = "" + r.START_TIME, i.add(e), i.load(function () {
-                    t._loadAddingInfo()
-                })
-            }
-        }, e.prototype._loadAddingInfo = function () {
-            var t = this;
-            if (this._mapInfo.spots.length >= this._memDataNum) return void this._createMapBackGround();
-            var e = this._mapInfo.spots.length, i = this._getPath("info" + e + ".json?" + r.START_TIME);
-            axios.get(i).then(function (i) {
-                var n = _.ObjUtil.getObject(i, "data");
-                t._mapInfo.add(n), t._loadAddingSpriteSheet(e)
-            }).catch(function (e) {
-                t._failedEnd()
-            })
-        }, e.prototype._loadAddingSpriteSheet = function (t) {
-            var e = this, i = this._getPath("image" + t + ".json");
-            if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo(); else {
-                var n = new PIXI.loaders.Loader;
-                n.defaultQueryString = "" + r.START_TIME, n.add(i), n.load(function () {
-                    e._loadAddingInfo()
-                })
-            }
-        }, e.prototype._createMapBackGround = function () {
-            for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = s.MapUtil.toResKey(this._map_id), r = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(r);
-                this._mapView.bg.addBGLayer(a, n.name)
-            }
-            this._createLabel()
-        }, e.prototype._createLabel = function () {
-            for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = s.MapUtil.toResKey(this._map_id), r = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(r);
-                this._mapView.bg.addLabel(a, n.x, n.y)
-            }
-            this._createSpots()
-        }, e.prototype._createSpots = function () {
-            for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = n.no;
-                this._memDataNum > 0 && null == this._memData[o] || (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing && this._mapView.spotLayer.addFlag(o, n.landing.x, n.landing.y))
-            }
-            this._createAirBase()
-        }, e.prototype._createAirBase = function () {
-            var t = this._mapInfo.getAirBasePos();
-            null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
-        }, e.prototype._initCellColor = function () {
-            for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
-                var o = n[i];
-                if (!(t.indexOf(o.no) >= 0)) {
-                    for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), u = 0, l = _; u < l.length; u++) {
-                        var c = l[u];
-                        t.push(c.no), 0 == s && (s = c.color);
-                        var h = this._memData[c.no];
-                        null != h && (r = r || h.passed, 0 == a && (a = h.color))
-                    }
-                    var p = _[0].no, d = this._mapView.spotLayer.getSpot(p);
-                    1 == r ? d.setColor(a) : d.setColor(s)
-                }
-            }
-            this._endTask()
-        }, e.prototype._getPath = function (t) {
-            var e = s.MapUtil.toAreaID(this._map_id), i = s.MapUtil.toMapNo(this._map_id);
-            return o.default.settings.path_root + "resources/map/" + a.MathUtil.zeroPadding(e, 3) + "/" + a.MathUtil.zeroPadding(i, 2) + "_" + t
         }, e
-    }(u.TaskBase);
-    e.TaskCreateMap = l
+    }(o.TaskBase);
+    e.TaskLoadResourcesMap = s
 }

@@ -15,12 +15,17 @@ const function1197 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(11), r = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._url = "api_req_kousyou/remodel_slotlist_detail", r._id = e, r._slot_id = i, r._revampSlotlistModel = n, r._boxno = o, r._post_data.api_id = r._id, r._post_data.api_slot_id = r._slot_id, r
         }
 
-        return n(e, t), e
-    }(PIXI.Container);
-    e.ViewMainBase = o
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._revampSlotlistModel.SetDetail(this._raw_data, this._boxno), t.prototype._completedEnd.call(this)
+        }, e
+    }(o.APIBase);
+    e.RevampSlotListDetailAPI = r
 }

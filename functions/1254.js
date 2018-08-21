@@ -15,118 +15,122 @@ const function1254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(125), r = i(170), s = i(1), a = function (t) {
+    var o = i(5), r = i(0), s = i(2), a = i(16), _ = i(12), u = i(14), l = i(170), c = i(18), h = i(1255),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._selected_formation = 12, n._showText = function () {
+                    var t = n._telopContainer.text;
+                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(107), createjs.Tween.get(t).to({
+                        x: 630,
+                        alpha: 1
+                    }, 500).to({ x: 585 }, 500).call(n._formationSelect), createjs.Tween.get(n._chara).to({ alpha: 1 }, 500);
+                    var e = n._view.shutter;
+                    e.alpha = 0, e.close(0), createjs.Tween.get(e).to({ alpha: 1 }, 400)
+                }, n._formationSelect = function () {
+                    var t = n._deck.type, e = n._deck.getCountSubDeck();
+                    if (n._layer.boxes.initialize(t, e, n._onSelectFormation), n._layer.boxes.alpha = 0, n._layer.boxes.count <= 1) {
+                        var i = n._telopContainer.bg;
+                        createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100).call(n._showText2);
+                        var o = n._telopContainer.text;
+                        createjs.Tween.get(o).to({ x: 555, alpha: 0 }, 100)
+                    } else {
+                        n._layer.fade.show(200);
+                        var i = n._telopContainer.bg;
+                        createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100);
+                        var o = n._telopContainer.text;
+                        createjs.Tween.get(o).to({
+                            x: 555,
+                            alpha: 0
+                        }, 100), createjs.Tween.get(n._layer.boxes).to({ alpha: 1 }, 300).call(function () {
+                            n._layer.boxes.activate(), n._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+                        }), n._layer.description.alpha = 0, 1 == t ? n._layer.description.texture = l.SALLY_JIN.getTexture(18) : 2 == t ? n._layer.description.texture = l.SALLY_JIN.getTexture(38) : 3 == t && (n._layer.description.texture = l.SALLY_JIN.getTexture(43)), createjs.Tween.get(n._layer.description).to({ alpha: 1 }, 300)
+                    }
+                }, n._onSelectFormation = function (t) {
+                    n._selected_formation = t, n._layer.boxes.deactivate(), createjs.Tween.get(n._layer.boxes).to({ alpha: 0 }, 200), createjs.Tween.get(n._layer.description).to({ alpha: 0 }, 200), n._layer.fade.hide(200, n._showText2)
+                }, n._showText2 = function () {
+                    var t = n._telopContainer.bg, e = n._telopContainer.text;
+                    e.position.set(o.default.width / 2, o.default.height), e.texture = c.MAP_COMMON.getTexture(106), createjs.Tween.get(t).to({
+                        alpha: 1,
+                        scaleY: 1
+                    }, 200).wait(950).to({
+                        alpha: 0,
+                        scaleY: 0
+                    }, 200), createjs.Tween.get(e).wait(150).to({ alpha: 1 }, 100).wait(200).to({ x: 570 }, 300).to({
+                        x: 450,
+                        alpha: 0
+                    }, 400), createjs.Tween.get(n._layer.chara).wait(950).to({
+                        x: -75,
+                        alpha: 0
+                    }, 600), createjs.Tween.get(n._view.map).wait(950).to({ alpha: 0 }, 600).call(function () {
+                        n._view.map.ship_icon.stopWave(), n._preEnd()
+                    }), createjs.Tween.get(n._view.upper).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n._view.gauge_layer).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n).wait(750).call(function () {
+                        n._view.message_box.deactivate()
+                    })
+                }, n._view = e, n._deck = i, n
+            }
+
+            return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
+                get: function () {
+                    return this._selected_formation
+                }, enumerable: !0, configurable: !0
+            }), e.prototype._start = function () {
+                this._layer = new d, this._view.universal_layer.addChild(this._layer), this._telopContainer = new f, this._view.top_layer.addChild(this._telopContainer), this._readyForFlagship()
+            }, e.prototype._readyForFlagship = function () {
+                var t = this, e = this._deck.ships[0], i = e.mst_id, n = e.isDamaged();
+                this._chara = new PIXI.Sprite;
+                var o = r.default.model.ship_graph.get(i).getMapOffset(n);
+                this._chara.position.set(-80 + o.x, -93 + o.y), this._chara.alpha = 0, this._layer.chara.addChild(this._chara), (new u.ShipLoader).add(i, n, "full").load(function () {
+                    t._chara.texture = r.default.resources.getShip(i, n, "full"), t._showTelopBG()
+                })
+            }, e.prototype._showTelopBG = function () {
+                var t = this._telopContainer.bg;
+                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(104), createjs.Tween.get(t).to({
+                    alpha: 1,
+                    scaleY: 1
+                }, 500).call(this._showText)
+            }, e.prototype._preEnd = function () {
+                this._view.universal_layer.removeChild(this._layer), this._view = null, this._deck = null, this._chara = null, this._layer = null, this._endTask()
+            }, e
+        }(s.TaskBase);
+    e.TaskFormationSelectCombined = p;
+    var d = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
+            return e._fade = new a.FadeBox(.6), e._fade.hide(0), e._chara = new PIXI.Sprite, e._boxes = new h.FormationBoxContainerCombined, e._description = new PIXI.Sprite, e._description.x = 984, e._description.y = 500, e.addChild(e._fade), e.addChild(e._chara), e.addChild(e._boxes), e.addChild(e._description), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+        return n(e, t), Object.defineProperty(e.prototype, "fade", {
             get: function () {
-                return this._enabled
+                return this._fade
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n) {
-            this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
-        }, e.prototype.activate = function () {
-            1 == this._enabled && this._btn.activate()
-        }, e.prototype.deactivate = function () {
-            this._btn.deactivate()
-        }, e.prototype.dispose = function () {
-            this._btn.dispose()
-        }, e.prototype._getTexture = function (t, e) {
-            switch (t) {
-                case 1:
-                    switch (e) {
-                        case 11:
-                            return r.SALLY_JIN.getTexture(14);
-                        case 12:
-                            return r.SALLY_JIN.getTexture(15);
-                        case 13:
-                            return r.SALLY_JIN.getTexture(16);
-                        case 14:
-                            return r.SALLY_JIN.getTexture(17)
-                    }
-                    break;
-                case 2:
-                    switch (e) {
-                        case 11:
-                            return r.SALLY_JIN.getTexture(34);
-                        case 12:
-                            return r.SALLY_JIN.getTexture(35);
-                        case 13:
-                            return r.SALLY_JIN.getTexture(36);
-                        case 14:
-                            return r.SALLY_JIN.getTexture(37)
-                    }
-                    break;
-                case 3:
-                    switch (e) {
-                        case 11:
-                            return r.SALLY_JIN.getTexture(39);
-                        case 12:
-                            return r.SALLY_JIN.getTexture(40);
-                        case 13:
-                            return r.SALLY_JIN.getTexture(41);
-                        case 14:
-                            return r.SALLY_JIN.getTexture(42)
-                    }
-            }
-            return PIXI.Texture.EMPTY
-        }, e
-    }(PIXI.Container);
-    e.FormationBoxCombined = a;
-    var _ = function (t) {
+        }), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "boxes", {
+            get: function () {
+                return this._boxes
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "description", {
+            get: function () {
+                return this._description
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container), f = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._update(!0)
-            }, e._onMouseOut = function () {
-                e._update(!1)
-            }, e._onClick = function () {
-                null != e._cb_onClick && e._cb_onClick(e._type)
-            }, e.interactive = !0, e
+            return e._bg = new _.Sprite, e._bg.anchor.set(.5), e._text = new PIXI.Sprite, e._text.anchor.set(.5), e.addChild(e._bg), e.addChild(e._text), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._type = t, this._cb_onClick = e, this._update(!1)
-        }, e.prototype.activate = function () {
-            if (1 != this.buttonMode) {
-                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
-                var t = o.InteractiveUtil.isOnMouse(this);
-                this._update(t)
-            }
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
-        }, e.prototype._update = function (t) {
-            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(19);
-                case 12:
-                    return r.SALLY_JIN.getTexture(21);
-                case 13:
-                    return r.SALLY_JIN.getTexture(23);
-                case 14:
-                    return r.SALLY_JIN.getTexture(25);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e.prototype._getTextureOn = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(20);
-                case 12:
-                    return r.SALLY_JIN.getTexture(22);
-                case 13:
-                    return r.SALLY_JIN.getTexture(24);
-                case 14:
-                    return r.SALLY_JIN.getTexture(26);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e
-    }(PIXI.Sprite)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container)
 }

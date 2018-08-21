@@ -15,28 +15,45 @@ const function824 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(59), s = i(4), a = i(13), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), n = new PIXI.Container;
-            n.position.set(50, 11);
-            var _ = new s.TextBox(19, 5523516), u = a.CreateRect.gradientLeftToRight(244, 35, .65, .7),
-                l = new r.IconWeapon;
-            return i.texture = o.COMMON_MAIN.getTexture(41), n.mask = u, n.addChild(_, u), e.addChild(i, n, l), e.iconWeapon = l, e.background = i, e.textItemName = _, e.maskItemName = u, e.containerItemName = n, e
+    var o = i(8), r = i(1), s = i(51), a = i(3), _ = i(825), u = function (t) {
+        function e(e, i, n, o, r, s, a) {
+            var _ = t.call(this, 0) || this;
+            return _._beforeIndex = n, _._slotItems = o, _._equipmentList = r, _._cbDrop = s, _._cbEnd = a, _._slotArea = [], _._delayRun = null, _._afterIndex = -1, _._onMove = function (t) {
+                var e = t.data.global;
+                _._dragSlotItem.position.set(e.x, e.y);
+                var i = -1;
+                _._slotArea.forEach(function (e, n) {
+                    var o = t.data.getLocalPosition(e), r = e.getChildByName("over");
+                    1 == e.hitArea.contains(o.x, o.y) ? (r.alpha = _._beforeIndex == n || n >= _._availSlotNumber ? 0 : 1, i = n) : r.alpha = 0
+                }), _._afterIndex = i
+            }, _._onUp = function () {
+                _._cbDrop(_._beforeIndex, _._afterIndex, _._equipmentList), _._dispose()
+            }, _._onOut = function () {
+                _._dispose()
+            }, _.interactive = !1, _._delayRun = createjs.Tween.get(null).wait(500).call(function () {
+                _._activate(e, i)
+            }), _
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this._update_(t.name, t.iconType)
-        }, e.prototype.empty = function () {
-            this._updateIconType_(0), this._updateItemName_("")
-        }, e.prototype._update_ = function (t, e) {
-            this._updateIconType_(e), this._updateItemName_(t)
-        }, e.prototype._updateItemName_ = function (t) {
-            this.textItemName.text = t
-        }, e.prototype._updateIconType_ = function (t) {
-            this.iconWeapon.update(t)
-        }, e.prototype.dispose = function () {
-            this.iconWeapon.dispose(), this.background.texture = PIXI.Texture.EMPTY, this.containerItemName.removeChildren(), this.containerItemName.mask = null, this.maskItemName.texture = PIXI.Texture.EMPTY, this.textItemName.text = "", this.iconWeapon = null, this.background = null, this.textItemName = null, this.background = null, this.containerItemName = null, this.removeChildren()
+        return n(e, t), e.prototype.isClick = function () {
+            return null == this._drag && (this._delayRun.setPaused(!0), !0)
+        }, e.prototype._activate = function (t, e) {
+            var i = this;
+            this.interactive = !0, this._availSlotNumber = this._equipmentList.length, this._afterIndex = this._beforeIndex, this._drag = new PIXI.Container, this._slotItems[this._beforeIndex].alpha = .5, this._slotItems.forEach(function (e, n) {
+                var r = new o.AreaBox(0, 16777215, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
+                r.hitArea = new PIXI.Rectangle(0, 0, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
+                var _ = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(22));
+                _.alpha = 0, _.name = "over", _.position.set(-30, 0), r.addChild(_);
+                var u = t.x + i._slotItems[n].x, l = t.y + i._slotItems[n].y;
+                r.position.set(u, l), i._slotArea.push(r), i._drag.addChild(r)
+            }), this._dragSlotItem = new _.SimpleSlotItemSlot, this._dragSlotItem.update(this._equipmentList[this._beforeIndex]), this._dragSlotItem.pivot.set(Math.round(this._dragSlotItem.width / 2), Math.round(this._dragSlotItem.height / 2)), this._dragSlotItem.position.set(e.x, e.y), this._drag.addChild(this._dragSlotItem), this.addChild(this._drag), a.SE.play("237"), this.on(r.EventType.MOUSEMOVE, this._onMove), this.on(r.EventType.MOUSEUP, this._onUp), this.on(r.EventType.MOUSEOUT, this._onOut)
+        }, e.prototype._deactivate = function () {
+            this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEUP, this._onUp), this.off(r.EventType.MOUSEOUT, this._onOut)
+        }, e.prototype._dispose = function () {
+            this._deactivate(), null != this._drag && (this._slotItems[this._beforeIndex].alpha = 1, this._drag.removeChildren(), this._slotArea.forEach(function (t) {
+                t.removeChildren(), t = null
+            }), this._slotArea = null, this.removeChildren()), this._cbEnd()
         }, e
-    }(PIXI.Container);
-    e.SimpleSlotItemSlot = _
+    }(o.AreaBox);
+    e.SlotItemDragging = u
 }

@@ -15,20 +15,23 @@ const function969 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(159), s = i(159), a = i(30), _ = function (t) {
+    var o = i(30), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
+            return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._fuelTitle.texture = a.SALLY_COMMON.getTexture(16), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(15)
-        }, e.prototype.update = function (t, e) {
-            this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
-        }, e.prototype.play = function (t, e, i) {
-            1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {
-            })) : 1 == e ? this._ammoBox.playSupply(i) : i()
+            this._bg.texture = o.SALLY_COMMON.getTexture(27), this._label.texture = o.SALLY_COMMON.getTexture(32), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
+        }, e.prototype.update = function (t) {
+            if (null == t) this.visible = !1; else {
+                var e = t.level;
+                e = Math.max(0, e), e = Math.min(999, e);
+                var i = Math.floor(e / 100), n = e % 100, r = Math.floor(n / 10), s = n % 10,
+                    a = [57, 58, 59, 60, 61, 62, 63, 64, 65, 66];
+                e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
+            }
         }, e
     }(PIXI.Container);
-    e.TempSupplyBox = _
+    e.CompBannerLevel = r
 }

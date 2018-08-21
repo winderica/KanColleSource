@@ -15,61 +15,42 @@ const function1286 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(17), s = i(4), a = i(30), _ = i(42), u = i(18), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+    var o = i(18), r = i(1), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._handle = -1, n._onClick = function () {
+                if (-1 != n._handle) {
+                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
+                    n._cb_onDoubleClick(n._no)
+                } else n._handle = setTimeout(function () {
+                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
+                }, 300)
+            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._state = 0, n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "no", {
             get: function () {
-                return this._bg
+                return this._no
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "icon", {
-            get: function () {
-                return this._icon
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._bg.texture = u.MAP_COMMON.getTexture(25)
-        }, e.prototype.update = function (t, e) {
-            void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
-        }, e.prototype._update = function (t, e) {
-            void 0 === e && (e = "");
-            var i;
+        }), e.prototype.initialize = function (t) {
+            this._no = t, this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
+        }, e.prototype.update = function (t) {
             switch (t) {
                 case 1:
-                    i = a.SALLY_COMMON.getTexture(0);
+                    this._img.texture = o.MAP_COMMON.getTexture(146);
                     break;
                 case 2:
-                    i = a.SALLY_COMMON.getTexture(2);
+                    this._img.texture = o.MAP_COMMON.getTexture(147);
                     break;
                 case 3:
-                    i = a.SALLY_COMMON.getTexture(4);
-                    break;
-                case 4:
-                    i = a.SALLY_COMMON.getTexture(8);
-                    break;
-                case 5:
-                    i = a.SALLY_COMMON.getTexture(10);
-                    break;
-                case 6:
-                    i = a.SALLY_COMMON.getTexture(12);
-                    break;
-                case 7:
-                    i = a.SALLY_COMMON.getTexture(6);
+                    this._img.texture = o.MAP_COMMON.getTexture(148);
                     break;
                 default:
-                    i = PIXI.Texture.EMPTY
+                    this._img.texture = PIXI.Texture.EMPTY
             }
-            this._icon.texture = i, this._text.text = e
-        }, e.prototype._updateForEventMap = function (t) {
-            void 0 === t && (t = "");
-            this._icon.texture = _.SALLY_EVENT.getTexture(2), this._text.text = t
         }, e
-    }(PIXI.Container);
-    e.CompUpperBar = l
+    }(PIXI.Graphics);
+    e.AirUnitAppointmentPoint = s
 }

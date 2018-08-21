@@ -15,7 +15,7 @@ const function350 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(8), s = i(41), a = i(58), _ = i(79), u = i(883), l = i(1), c = function (t) {
+    var o = i(5), r = i(8), s = i(41), a = i(58), _ = i(79), u = i(884), l = i(1), c = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._message = "", e._clickGuard = new r.AreaBox(0), e._rarityBG = new a.RarityBG, e._target = new PIXI.Sprite, e._materialCircleRollAnimation = new u.MaterialCircleRollAnimation, e._materialCircleRollAnimation.x = o.default.width / 2, e._materialCircleRollAnimation.y = o.default.height / 2, e._messageBox = new _.MessageBox, e._gearBtnHome = new s.GearBtnHome, e._gearBtnHome.position.set(1140, 660), e._gearBtnHome.initialize(), e._white = new r.AreaBox(1, 16777215), e

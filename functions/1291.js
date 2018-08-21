@@ -15,58 +15,33 @@ const function1291 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = i(18), s = function (t) {
+    var o = i(18), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
+            return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "color", {
-            get: function () {
-                return this._color
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this.update(t)
-        }, e.prototype.update = function (t) {
-            this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(126), this._startTween(), this._light.visible = !0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, this._cell.y = 0), this._cell.texture = this._getTexture(t)
+        return n(e, t), e.prototype.update = function (t) {
+            this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+        }, e.prototype.activate = function () {
+            null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, { loop: !0 }).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, { loop: !0 }).to({
+                x: .7,
+                y: .7
+            }, 900).to({
+                x: 1,
+                y: 1
+            }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, { loop: !0 }).wait(500).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, { loop: !0 }).wait(500).to({
+                x: .7,
+                y: .7
+            }, 900).to({ x: 1, y: 1 }, 400))
+        }, e.prototype.deactivate = function () {
+            this._stopTween()
         }, e.prototype.dispose = function () {
             this._stopTween()
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 300).to({ alpha: 1 }, 300))
         }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
-        }, e.prototype._getTexture = function (t) {
-            switch (t) {
-                case-1:
-                    return r.MAP_COMMON.getTexture(132);
-                case 1:
-                    return r.MAP_COMMON.getTexture(125);
-                case 2:
-                case 6:
-                    return r.MAP_COMMON.getTexture(128);
-                case 3:
-                    return r.MAP_COMMON.getTexture(130);
-                case 4:
-                    return r.MAP_COMMON.getTexture(131);
-                case 5:
-                    return r.MAP_COMMON.getTexture(120);
-                case 7:
-                    return r.MAP_COMMON.getTexture(100);
-                case 8:
-                    return r.MAP_COMMON.getTexture(119);
-                case 9:
-                    return r.MAP_COMMON.getTexture(129);
-                case 10:
-                    return r.MAP_COMMON.getTexture(95);
-                case 11:
-                    return r.MAP_COMMON.getTexture(133);
-                case 12:
-                    return r.MAP_COMMON.getTexture(134);
-                case-2:
-                    return r.MAP_COMMON.getTexture(127)
-            }
-            return PIXI.Texture.EMPTY
+            for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+            this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
         }, e
-    }(o.Container);
-    e.SpotPointImage = s
+    }(PIXI.Container);
+    e.CompShipWave = r
 }

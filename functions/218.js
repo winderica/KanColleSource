@@ -15,31 +15,25 @@ const function218 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(132), r = i(3), s = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = r.REMODEL_POWERUP.getTexture(23),
-                n = r.REMODEL_POWERUP.getTexture(24), o = r.REMODEL_POWERUP.getTexture(25),
-                s = r.REMODEL_POWERUP.getTexture(26);
-            return e.textureRemodelCategory1 = i, e.textureRemodelCategory2 = n, e.textureRemodelCategory3 = o, e.textureRemodelCategory4 = s, e
+    var o = i(0), r = i(7), s = i(10), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_get_member/ship3", i.api_id = e, i
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (this.texture = PIXI.Texture.EMPTY, t) {
-                case o.PowerUpCategory.Karyoku:
-                    this.texture = this.textureRemodelCategory1;
-                    break;
-                case o.PowerUpCategory.Raisou:
-                    this.texture = this.textureRemodelCategory2;
-                    break;
-                case o.PowerUpCategory.Taiku:
-                    this.texture = this.textureRemodelCategory3;
-                    break;
-                case o.PowerUpCategory.Soukou:
-                    this.texture = this.textureRemodelCategory4
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_shipid = this.api_id, this._post_data.api_sort_key = "1", this._post_data.spi_sort_order = "1", t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = r.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"),
+                i = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"),
+                n = r.ObjUtil.getObjectArray(this._raw_data, "api_slot_data");
+            o.default.model.deck.setData(e);
+            for (var s = 0, a = i; s < a.length; s++) {
+                var _ = a[s];
+                o.default.model.ship.updateData(_)
             }
-        }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY, this.textureRemodelCategory1 = null, this.textureRemodelCategory2 = null, this.textureRemodelCategory3 = null, this.textureRemodelCategory4 = null, this.removeChildren()
+            o.default.model.slot.setUnsetData(n), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.IconCategory = s
+    }(s.APIBase);
+    e.Ship3API = a
 }

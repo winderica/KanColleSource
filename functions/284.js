@@ -15,79 +15,59 @@ const function284 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(147), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(5), r = i(0), s = i(26), a = i(2), _ = i(285), u = i(32), l = i(14), c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._deck = r.default.model.deck.get(e), n._ships = n._deck.getShipList(), n._result = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message", {
-            get: function () {
-                return this._message
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "banner_top", {
-            get: function () {
-                return this._banner_top
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "banner_bottom", {
-            get: function () {
-                return this._banner_bottom
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "particles", {
-            get: function () {
-                return this._particles
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._bg = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(10)), this._bg.anchor.set(.5, .5), this._bg.position.set(o.default.width / 2, o.default.height / 2), this._message = 1 == t ? new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(4)) : new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(3)), this._message.anchor.set(.5, .5), this._banner_top = new a, this._banner_bottom = new a, this._particles = new _, this._particles.initialize(), this.addChild(this._bg), this.addChild(this._message), this.addChild(this._banner_top), this.addChild(this._banner_bottom), this.addChild(this._particles)
-        }, e.prototype.dispose = function () {
-            this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
+        return n(e, t), e.prototype._start = function () {
+            r.default.view.clickGuard = !0, this._loadResources()
+        }, e.prototype._loadResources = function () {
+            for (var t = this, e = new l.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
+                var o = n[i];
+                null != o && e.add(o.mstID, o.isDamaged(), "banner")
+            }
+            e.load(function () {
+                t._initCutin()
+            })
+        }, e.prototype._initCutin = function () {
+            this._cutin = new _.ExpeditionCutin, this._cutin.initialize(!1), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, o.default.height / 2), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
+        }, e.prototype._playCutin = function () {
+            var t = this;
+            r.default.view.overLayer.addChild(this._cutin);
+            var e = this._ships[0], i = e.mstID.toString();
+            r.default.sound.voice.play(i, 7), createjs.Tween.get(this._cutin.bg.scale).to({ y: 2 }, 300).wait(1500).to({ y: 0 }, 300).call(function () {
+                t._endTask()
+            }), createjs.Tween.get(this._cutin.message).wait(400).to({ x: 660 }, 400).to({ x: 525 }, 800).to({
+                x: 420,
+                alpha: 0
+            }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({ alpha: 1 }, 100).to({ x: o.default.width / 2 - this._cutin.banner_top.width / 2 }, 800, createjs.Ease.cubicInOut).to({
+                x: o.default.width - this._cutin.banner_top.width,
+                alpha: 0
+            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({ alpha: 1 }, 100).to({ x: o.default.width / 2 - this._cutin.banner_bottom.width / 2 }, 800, createjs.Ease.cubicInOut).to({
+                x: 0,
+                alpha: 0
+            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
+                t._cutin.particles.startAnim()
+            })
+        }, e.prototype._createShipContainerU = function () {
+            var t, e = this._ships[0], i = this._ships[2], n = this._ships[4];
+            t = null == i ? [e] : null == n ? [i, e] : [i, e, n];
+            for (var o = 0; o < t.length; o++) {
+                var r = t[o], a = new u.ShipBanner;
+                a.update(r, !1), a.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(a)
+            }
+        }, e.prototype._createShipContainerB = function () {
+            var t, e = this._ships[1], i = this._ships[3], n = this._ships[5], o = this._ships[6];
+            t = null == n ? null == i ? null == e ? [] : [e] : [e, i] : null == o ? [n, e, i] : [n, e, i, o];
+            for (var r = 0; r < t.length; r++) {
+                var a = t[r], _ = new u.ShipBanner;
+                _.update(a, !1), _.position.x = s.BannerSize.W * r, this._cutin.banner_bottom.addChild(_)
+            }
+        }, e.prototype._endTask = function (e) {
+            void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.ExpeditionCutin = s;
-    var a = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            for (var t = 0, e = this.children; t < e.length; t++) {
-                var i = e[t], n = i;
-                null != n && n.dispose()
-            }
-            this.removeChildren()
-        }, e
-    }(PIXI.Container), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._particles = new Array;
-            for (var t in this.XPOS) {
-                var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
-                e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
-            }
-        }, e.prototype.startAnim = function () {
-            if (null == this._tweens) {
-                this._tweens = [];
-                for (var t = 0; t < this._particles.length; t++) {
-                    var e = this._particles[t],
-                        i = createjs.Tween.get(e.scale).wait(100 * t).to({ x: 1, y: 1 }, 100).to({
-                            x: 0,
-                            y: 0
-                        }, 100);
-                    this._tweens.push(i)
-                }
-            }
-        }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._tweens; t < e.length; t++) {
-                e[t].setPaused(!0)
-            }
-            this._tweens = null, this._particles = null, this.removeChildren()
-        }, e
-    }(PIXI.Container)
+    }(a.TaskBase);
+    e.TaskExpeditionEndCutin = c
 }

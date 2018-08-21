@@ -15,141 +15,51 @@ const function258 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(2), s = i(19), a = i(8), _ = i(12), u = i(57), l = i(124), c = i(471), h = i(1),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
-            }
-
-            return n(e, t), e.prototype._start = function () {
-                this._showBG()
-            }, e.prototype._showBG = function () {
-                var t = this;
-                this._bg = new d, this._bg.initialize(), this._bg.alpha = 0, this._layer.addChild(this._bg), createjs.Tween.get(this._bg).to({ alpha: 1 }, 500).call(function () {
-                    t._initializeMapImages(), t._initializeStampImages(), t._showMaps()
-                })
-            }, e.prototype.__createMapShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._maps.length; i++) {
-                    var n = this._maps[i], o = n.x;
-                    n.x += 645;
-                    var r = createjs.Tween.get(n).wait(i * t).to({ x: o - 8, alpha: 1 }, 400).to({ x: o }, 100);
-                    e.push(r)
+    var o = i(26), r = i(27), s = i(139), a = i(122), _ = i(1348), u = i(1349), l = i(43), c = function (t) {
+        function e(e, i, n, u, l, c) {
+            var h = t.call(this, e, i, -1, u, l, c) || this;
+            h._fire = function (t, e) {
+                var i = h._scene.view.layer_content, n = t.getGlobalPos(), s = 1;
+                1 == t.friend ? n.x += o.BannerSize.W / 2 : (n.x -= o.BannerSize.W / 2, s = -1);
+                var u = new _.TaskRocketFire(i, n.x, n.y, s, 0);
+                if (0 == h._daihatsu_eff) u.start(function () {
+                    h._impact(t, e)
+                }); else {
+                    var l = new a.TaskDaihatsuEff(i, t, e, h._daihatsu_eff), c = new r.ParallelTask;
+                    c.add(u), c.add(l), c.start(function () {
+                        h._impact(t, e)
+                    })
                 }
-                return e
-            }, e.prototype.__createStampShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._stamps.length; i++) {
-                    var n = this._stamps[i],
-                        o = createjs.Tween.get(n).wait(300 + i * t).to({ scaleX: 1, scaleY: 1, alpha: 1 }, 400);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype._showMaps = function () {
-                var t = this, e = new s.TweenTask;
-                e.addTweens(this._createMapShowTweens()), e.addTweens(this._createStampShowTweens()), e.start(function () {
-                    t._showText()
-                })
-            }, e.prototype.__showText = function (t) {
-                var e = this;
-                this._texts = t, this._texts.initialize(), this._texts.text1.alpha = 0, this._texts.text2.alpha = 0, this._texts.text3.alpha = 0, this._layer.addChild(this._texts), createjs.Tween.get(this._texts.text1).wait(200).to({ alpha: 1 }, 400), createjs.Tween.get(this._texts.text2).wait(700).to({ alpha: 1 }, 450), createjs.Tween.get(this._texts.text3).wait(1300).to({ alpha: 1 }, 500).wait(500).call(function () {
-                    e._showLastStamp()
-                }), this._createParticle()
-            }, e.prototype._createParticle = function () {
-                this._particles = new c.ParticleLayer, this._particles.addParticle(1050, 440), this._particles.addParticle(1121, 392), this._particles.addParticle(1068, 263), this._particles.addParticle(230, 429), this._particles.addParticle(902, 399), this._particles.addParticle(951, 453), this._particles.addParticle(1089, 323), this._particles.addParticle(128, 383), this._particles.addParticle(207, 278), this._particles.addParticle(68, 320), this._particles.addParticle(296, 471), this._particles.addParticle(122, 272), this._particles.addParticle(93, 467), this._particles.addParticle(53, 425), this._layer.addChild(this._particles), this._particles.startAnimation()
-            }, e.prototype._showLastStamp = function () {
-                var t = this;
-                this._stamp_last = this._createStampLast();
-                var e = this._layer.getChildIndex(this._texts);
-                this._layer.addChildAt(this._stamp_last, e), createjs.Tween.get(this._stamp_last).wait(800).to({ alpha: 1 }, 200);
-                var i = new _.Sprite(this._stamp_last.texture);
-                i.anchor.set(.5), i.position.set(this._stamp_last.x, this._stamp_last.y), i.scale.set(2), i.alpha = 0, e = this._layer.getChildIndex(this._texts), this._layer.addChildAt(i, e + 1), createjs.Tween.get(i).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 800).to({ alpha: 0 }, 200).call(function () {
-                    t._layer.removeChild(i), t._waitClick()
-                })
-            }, e.prototype._waitClick = function () {
-                var t = this, e = new a.AreaBox(0);
-                e.buttonMode = !0, this._layer.addChild(e);
-                var i = new u.GearBtnNext;
-                i.position.set(1139, 561), i.initialize(), i.activate(), this._layer.addChild(i), e.once(h.EventType.CLICK, function () {
-                    i.dispose(), t._layer.removeChild(e), t._hide(i)
-                })
-            }, e.prototype._hide = function (t) {
-                for (var e = this, i = new s.TweenTask, n = 0; n < this._maps.length; n++) {
-                    var o = this._maps[n],
-                        r = createjs.Tween.get(o).wait(50 * n).to({ x: o.x - 75, alpha: 0 }, 200);
-                    i.addTween(r)
-                }
-                for (var n = 0; n < this._stamps.length; n++) {
-                    var a = this._stamps[n],
-                        _ = createjs.Tween.get(a).wait(50 * n).to({ x: a.x - 75, alpha: 0 }, 200);
-                    i.addTween(_)
-                }
-                var u = createjs.Tween.get(this._texts.text1).wait(100).to({
-                    x: this._texts.text1.x - 47,
-                    alpha: 0
-                }, 200);
-                i.addTween(u), u = createjs.Tween.get(this._texts.text2).wait(200).to({
-                    x: this._texts.text2.x - 47,
-                    alpha: 0
-                }, 200), i.addTween(u), u = createjs.Tween.get(this._texts.text3).wait(150).to({
-                    x: this._texts.text3.x - 47,
-                    alpha: 0
-                }, 200), i.addTween(u), u = createjs.Tween.get(this._stamp_last).wait(200).to({
-                    x: this._stamp_last.x - 75,
-                    alpha: 0
-                }, 200), i.addTween(u), u = createjs.Tween.get(this._particles).wait(200).to({ alpha: 0 }, 200).call(function () {
-                    e._particles.stopAnimation(), e._layer.removeChild(e._particles)
-                }), i.addTween(u), u = createjs.Tween.get(t).to({ alpha: 0 }, 500).call(function () {
-                    t.dispose(), e._layer.removeChild(t)
-                }), i.addTween(u), u = createjs.Tween.get(this._bg).wait(200).to({ alpha: 0 }, 300), i.addTween(u), i.start(function () {
-                    for (var t = 0, i = e._maps; t < i.length; t++) {
-                        var n = i[t];
-                        e._layer.removeChild(n)
-                    }
-                    for (var o = 0, r = e._stamps; o < r.length; o++) {
-                        var s = r[o];
-                        e._layer.removeChild(s)
-                    }
-                    e._layer.removeChild(e._texts), e._layer.removeChild(e._stamp_last), e._layer.removeChild(e._bg), e._endTask()
-                })
-            }, e
-        }(r.TaskBase);
-    e.TaskEventEndingBase = p;
-    var d = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+            }, h._defender = n;
+            var p = h._scene.data.isNight();
+            return h._cutin = new s.CutinAttack(h._attacker, h._slot, p, !0, !0), h
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite;
-            t.texture = l.BATTLE_RESULT_EVENT.getTexture(0), t.height = o.default.height, this.addChild(t);
-            var e = l.BATTLE_RESULT_EVENT.getTexture(3), i = new PIXI.Sprite(e);
-            i.position.set(219, 8), this.addChild(i);
-            var n = new PIXI.Sprite(e);
-            n.rotation = Math.PI, n.position.set(984, 717), this.addChild(n)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._cutin.getPreloadTask().start(function () {
+                t._completePreload()
+            })
+        }, e.prototype._completePreload = function () {
+            var t, e, i = this, n = this._attacker.friend, o = this._attacker.index, r = this._defender.index;
+            1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, r)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, r)), t.moveFront(), 0 == this._shield && e.moveFront(), this._cutin.view.once("attack", function () {
+                i._playVoice(), i._fire(t, e)
+            }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+        }, e.prototype._impact = function (t, e) {
+            var i = this, n = this._scene.view.layer_content, r = e.getGlobalPos();
+            1 == e.friend ? r.x += o.BannerSize.W / 2 : r.x -= o.BannerSize.W / 2;
+            new u.TaskRocketHit(n, r.x, r.y, 300).start(function () {
+                i._damageEffect(t, e)
+            })
+        }, e.prototype._damageEffect = function (t, e) {
+            var i = this;
+            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+            var n = e.getGlobalPos(!0);
+            this._scene.view.layer_explosion.playExplosionMiddle(n.x - o.BannerSize.W / 4 * (e.friend ? -1 : 1), n.y), createjs.Tween.get(this).wait(500).call(function () {
+                var n = i._getDamage(i._defender);
+                i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+            })
         }, e
-    }(PIXI.Container), f = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._text1 = new PIXI.Sprite, e.addChild(e._text1), e._text2 = new PIXI.Sprite, e.addChild(e._text2), e._text3 = new PIXI.Sprite, e.addChild(e._text3), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "text1", {
-            get: function () {
-                return this._text1
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text2", {
-            get: function () {
-                return this._text2
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text3", {
-            get: function () {
-                return this._text3
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(PIXI.Container);
-    e.TextsBase = f
+    }(l.PhaseAttackBase);
+    e.PhaseAttackRocket = c
 }

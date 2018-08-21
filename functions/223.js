@@ -1,71 +1,131 @@
 const function223 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = function () {
-        function t(t, e, i, n) {
-            void 0 === e && (e = 0), void 0 === i && (i = 0), void 0 === n && (n = -1), this._mem_id = 0, this._level = 0, this._mst_id = t, this._mem_id = e, this._level = i, this._sakuteki = n
+    var n = i(261), o = i(164), r = function () {
+        function t(t, e, i, o, r, s, a, _, u) {
+            if (void 0 === _ && (_ = -1), void 0 === u && (u = ""), this._medal_num = 0, this._id_second = -1, this._name_second = "", this._practice = e, this._medal_num = i, this._user_name = o, t instanceof n.DeckModel) {
+                var l = t;
+                this._id = l.mstID, this._type = l.getCombinedType(), this._name = l.name, this.updateShipList(l), this._id_second = l.getSubDeckID(), this._name_second = l.getSubDeckName()
+            } else this._id = t, this._type = r, this._name = s, this._ships = a.concat(), this._id_second = _, this._name_second = u;
+            if (0 != this._type) {
+                for (; this._ships.length < 12;) this._ships.push(null);
+                if (this._ships.length > 12) throw new Error("DeckModelReplica")
+            } else {
+                for (; this._ships.length < 6;) this._ships.push(null);
+                if (this._ships.length > 7) throw new Error("DeckModelReplica")
+            }
         }
 
-        return t.convert = function (e) {
-            return null == e ? null : new t(e.mstID, e.memID, e.level, e.sakuteki)
-        }, t.convertFromMstIDs = function (e) {
-            if (null == e) return null;
-            for (var i = new Array, n = 0, o = e; n < o.length; n++) {
-                var r = o[n];
-                r > 0 ? i.push(new t(r)) : i.push(null)
-            }
-            return i
-        }, t.converts = function (e) {
-            if (null == e) return null;
-            var i = new Array;
-            if (null != e) for (var n = 0, o = e; n < o.length; n++) {
-                var r = o[n];
-                i.push(t.convert(r))
-            }
-            return i
-        }, Object.defineProperty(t.prototype, "mst_id", {
+        return Object.defineProperty(t.prototype, "practice", {
             get: function () {
-                return this._mst_id
+                return this._practice
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "mem_id", {
+        }), Object.defineProperty(t.prototype, "id", {
             get: function () {
-                return this._mem_id
+                return this._id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "level", {
+        }), Object.defineProperty(t.prototype, "user_name", {
             get: function () {
-                return this._level
+                return this._user_name
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "name", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).name
+                return this._name
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "iconType", {
+        }), Object.defineProperty(t.prototype, "type", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).iconType
+                return this._type
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "equipType", {
+        }), Object.defineProperty(t.prototype, "medal_num", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).equipType
+                return this._medal_num
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "equipTypeSp", {
+        }), Object.defineProperty(t.prototype, "ships", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).equipTypeSp
+                return this._ships
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "sakuteki", {
+        }), Object.defineProperty(t.prototype, "ships_main", {
             get: function () {
-                return this._sakuteki >= 0 ? this._sakuteki : n.default.model.slot.getMst(this._mst_id).sakuteki
+                if (0 != this._type) return this._ships.slice(0, 6);
+                for (var t = 6; t < this._ships.length; t++) if (null == this._ships[t]) return this._ships.slice(0, t);
+                return this._ships
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "taiku", {
+        }), Object.defineProperty(t.prototype, "ships_sub", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).taiku
+                return 0 != this._type ? this._ships.slice(6) : null
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "taisen", {
+        }), Object.defineProperty(t.prototype, "formation", {
             get: function () {
-                return n.default.model.slot.getMst(this._mst_id).taisen
+                return this._formation_id
+            }, set: function (t) {
+                this._formation_id = t
             }, enumerable: !0, configurable: !0
-        }), t.prototype.clone = function () {
-            return new t(this._mst_id, this._mem_id, this._level, this._sakuteki)
+        }), Object.defineProperty(t.prototype, "id_second", {
+            get: function () {
+                return this._id_second
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name_second", {
+            get: function () {
+                return this._name_second
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isCombined = function () {
+            return 0 != this._type
+        }, t.prototype.isYugeki = function () {
+            return this._ships.length >= 7 && null != this._ships[6]
+        }, t.prototype.getCount = function () {
+            var t = 0;
+            if (null != this._ships) for (var e = 0, i = this._ships; e < i.length; e++) {
+                var n = i[e];
+                null != n && t++
+            }
+            return t
+        }, t.prototype.getCountMainDeck = function () {
+            if (null == this._ships) return 0;
+            var t = 0;
+            t = 0 == this._type ? this._ships.length : 6;
+            for (var e = 0, i = 0; i < t; i++) {
+                var n = this._ships[i];
+                null != n && (1 != n.isTaihi() && e++)
+            }
+            return e
+        }, t.prototype.getCountSubDeck = function () {
+            if (null == this._ships) return 0;
+            if (0 == this._type) return 0;
+            for (var t = 0, e = 6; e < this._ships.length; e++) {
+                var i = this._ships[e];
+                null != i && (1 != i.isTaihi() && t++)
+            }
+            return t
+        }, t.prototype.isSubmarineAll = function () {
+            if (null == this._ships) return !1;
+            for (var t = 0, e = this._ships; t < e.length; t++) {
+                var i = e[t];
+                if (null != i && 0 == i.isSubMarine()) return !1
+            }
+            return !0
+        }, t.prototype.getTotalHP = function () {
+            var t = 0;
+            if (null == this._ships) return 0;
+            for (var e = 0, i = this._ships; e < i.length; e++) {
+                var n = i[e];
+                null != n && (t += n.hp_now)
+            }
+            return t
+        }, t.prototype.updateShipList = function (t) {
+            var e = this._ships;
+            this._ships = [];
+            for (var i = t.getShipListAll(), n = 0; n < i.length; n++) {
+                var r = i[n];
+                if (null == r) this._ships.push(null); else {
+                    var s = o.ShipModelReplica.convert(!0, this.practice, n, r);
+                    if (null != e && e.length > n) {
+                        var a = e[n];
+                        null != a && s.initializeTaihi(a.isTaihi())
+                    }
+                    this._ships.push(s)
+                }
+            }
         }, t
     }();
-    e.SlotitemModelReplica = o
+    e.DeckModelReplica = r
 }

@@ -15,37 +15,29 @@ const function1149 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1150), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(47), r = i(1150), s = i(1152), a = i(1154), _ = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
+        return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+            get: function () {
+                return this._viewTop
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreInitializeTask = function (t) {
+            return new r.PreInitializeTask(this)
+        }, e.prototype.getInitializeTask = function (t) {
+            return new r.InitializeTask(this)
+        }, e.prototype.initialize = function () {
+            this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+        }, e.prototype.startTopTask = function () {
             var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
+            this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                t._topTask = null
             })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+        }, e.prototype.dispose = function () {
+            null != this._viewTop && (this.removeChild(this._viewTop), this._viewTop.dispose(), this._viewTop = null), null != this._topTask && this._topTask.cancel(), null != this._viewSub && (this.removeChild(this._viewSub), this._viewSub.dispose(), this._viewSub = null)
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(104), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+    }(o.SceneBase);
+    e.InteriorScene = _
 }

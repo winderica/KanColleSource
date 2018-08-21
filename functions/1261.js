@@ -15,33 +15,37 @@ const function1261 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(58), a = i(79), _ = i(206), u = function (t) {
+    var o = i(18), r = i(246), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
+            return e._bg = new PIXI.Sprite, e._bg.x = -11, e._bg.y = -128, e.addChild(e._bg), e._label1 = new PIXI.Sprite, e.addChild(e._label1), e._label2 = new PIXI.Sprite, e.addChild(e._label2), e._icon = new PIXI.Sprite, e._icon.anchor.x = 1, e._icon.position.set(44, -80), e.addChild(e._icon), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "particle", {
-            get: function () {
-                return this._particle
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "white", {
-            get: function () {
-                return this._white
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i) {
-            this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg = null, this._item = null, this._particle.deactivate(), this._particle = null, this._message_box.deactivate(), this._message_box = null, this._white = null
+        return n(e, t), e.prototype.initialize = function (t, e, i) {
+            switch (this._bg.texture = o.MAP_COMMON.getTexture(49), 2 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(156), this._label1.position.set(20, -117), this._label2.texture = o.MAP_COMMON.getTexture(158), this._label2.position.set(20, -41)) : 1 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(157), this._label1.position.set(24, -117), this._label2.texture = o.MAP_COMMON.getTexture(158), this._label2.position.set(20, -41)) : (this._label1.texture = o.MAP_COMMON.getTexture(159), this._label1.position.set(11, -86), this._label2.texture = PIXI.Texture.EMPTY), e) {
+                case 2:
+                    this._icon.texture = o.MAP_COMMON.getTexture(78);
+                    break;
+                case 4:
+                    this._icon.texture = o.MAP_COMMON.getTexture(79);
+                    break;
+                case 7:
+                    this._icon.texture = o.MAP_COMMON.getTexture(80);
+                    break;
+                default:
+                    this._icon.texture = PIXI.Texture.EMPTY
+            }
+            if (i > 0) {
+                var n = Math.log(i) * Math.LOG10E + 1;
+                n = Math.floor(n);
+                for (var s = i, a = 0; a < n; a++) {
+                    var _ = new r.NumericalDisplay(s % 10);
+                    _.x = 77 + n / 2 * _.width - a * _.width, _.y = -60, this.addChild(_), s = Math.floor(s / 10)
+                }
+                var u = new r.NumericalDisplay(-1);
+                u.x = 77 - n / 2 * u.width, u.y = -60, this.addChild(u)
+            }
         }, e
     }(PIXI.Container);
-    e.BonusUseItem = u
+    e.AirReconnaissanceBalloon = s
 }

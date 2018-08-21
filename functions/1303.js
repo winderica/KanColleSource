@@ -15,21 +15,40 @@ const function1303 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(24), s = function (t) {
-        function e(e, i) {
-            void 0 === e && (e = !1), void 0 === i && (i = !1);
-            var n = t.call(this) || this;
-            return n._night = e, n._combined = i, n
+    var o = i(277), r = i(1304), s = i(1314), a = i(1401), _ = i(1413), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("battle");
-            e.add("battle_main.json"), e.add("battle_explosion.json"), e.add("battle_telop.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop_sp.json")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_jin_combined.json"), e.load(function () {
-                t._endTask()
+        return n(e, t), Object.defineProperty(e.prototype, "data", {
+            get: function () {
+                return this._data
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (e) {
+            t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+        }, e.prototype.dispose = function () {
+            this._view.dispose()
+        }, e.prototype.start = function () {
+            var t = this;
+            new r.TaskInit(this).start(function () {
+                t._main()
             })
+        }, e.prototype._main = function () {
+            var t = this;
+            new s.TaskMain(this).start(function () {
+                t._end()
+            })
+        }, e.prototype._end = function () {
+            var t = this.data.model.deck_f.ships, e = this.data.model.deck_e.ships;
+            this.data.model.ship_info.add(t, e);
+            var i = (new Date).getTime();
+            this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesBattle = s
+    }(o.BattleSceneBase);
+    e.BattleScene = u
 }

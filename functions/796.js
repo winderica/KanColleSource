@@ -15,69 +15,18 @@ const function796 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(157), r = i(101), s = i(83), a = i(158), _ = i(219), u = i(4), l = i(20), c = i(128), h = i(51),
-        p = i(85), d = i(84), f = i(218), y = i(1), v = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t, i) {
-                    e.onClick(t, i)
-                };
-                var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
-                    n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)), o = new s.PagerView,
-                    r = new _.ShipSortButton, a = new Array, u = new PIXI.Container, p = new d.TitleBar;
-                p.initialize(l.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), u.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
-                for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
-                    var y = new g(f);
-                    y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
-                }
-                return e.addChild(p), p.position.set(0, -37), e._pagerView = o, e._shipSortButton = r, e.listItems = a, e.headerKansenSentaku = p, e
-            }
-
-            return n(e, t), Object.defineProperty(e.prototype, "shipSortButton", {
-                get: function () {
-                    return this._shipSortButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "pagerView", {
-                get: function () {
-                    return this._pagerView
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.clear = function () {
-                this.listItems.forEach(function (t) {
-                    return t.visible = !1
-                })
-            }, e.prototype.update = function (t, e, i, n) {
-                var o = this.listItems[t];
-                o.update(e, i, n), o.visible = !0
-            }, e.prototype.dispose = function () {
-                this._shipSortButton.dispose(), this._pagerView.dispose(), this.headerKansenSentaku.dispose(), this.listItems.forEach(function (t) {
-                    t.dispose()
-                }), this.onClick = null, this._onClick = null, this._shipSortButton = null, this._pagerView = null, this.headerKansenSentaku = null, this.listItems = null
-            }, e
-        }(PIXI.Container);
-    e.ShipList = v;
-    var g = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onMouseOver = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 1, i.textType.style.fill = i.textName.style.fill = i.textLevel.style.fill = 16777215, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onMouseOut = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 0, i.textType.style.fill = i.textName.style.fill = 5523516, i.textLevel.style.fill = i.mouseoutColor, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onClick = function () {
-                i.onClick(i.index, i.memId)
+    var o = i(5), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
             };
-            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(l.COMMON_MAIN.getTexture(15)), s = new PIXI.Container,
-                _ = new u.TextBox(18, 5523516), c = new u.TextBox(20, 5523516), h = new u.TextBox(20, 5523516),
-                p = new f.IconCategory, d = new f.IconCategory, v = new f.IconCategory, g = new f.IconCategory,
-                m = new a.ShipInDeckFlag, b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
-            return m.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.addListener(y.EventType.MOUSEOVER, i._onMouseOver), o.addListener(y.EventType.MOUSEOUT, i._onMouseOut), o.addListener(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), v.position.set(401, 0), g.position.set(446, 0), m.anchor.set(0, .5), m.position.set(-15, n), m.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, v, g, m), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = v, i.iconCategory_3 = g, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = m, i.containerTypeAndName = s, i.maskTextAndName = b, i
+            return e.beginFill(0, .5), e.drawRect(0, 103, o.default.width, o.default.height - 103), e.endFill(), e.interactive = !0, e.addListener(r.EventType.CLICK, e._onClick), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.containerTypeAndName.mask = null, this.containerTypeAndName.removeChildren(), this.maskTextAndName.texture = PIXI.Texture.EMPTY, this.removeChild(this.iconCategory_0), this.removeChild(this.iconCategory_1), this.removeChild(this.iconCategory_2), this.removeChild(this.iconCategory_3), this.removeChild(this.textType), this.removeChild(this.textName), this.removeChild(this.textLevel), this.removeChild(this.iconCategory_0), this.removeChild(this.iconCategory_1), this.removeChild(this.iconCategory_2), this.removeChild(this.iconCategory_3), this.removeChild(this.background), this.iconCategory_0.dispose(), this.iconCategory_1.dispose(), this.iconCategory_2.dispose(), this.iconCategory_3.dispose(), this.background.removeAllListeners(y.EventType.MOUSEOVER), this.background.removeAllListeners(y.EventType.MOUSEOUT), this.background.removeAllListeners(y.EventType.CLICK), this.textType.text = "", this.textName.text = "", this.textLevel.text = "", this.onClick = null, this.memId = null, this.textType = null, this.textName = null, this.textLevel = null, this.iconCategory_0 = null, this.iconCategory_1 = null, this.iconCategory_2 = null, this.iconCategory_3 = null, this.background = null, this.maskTextAndName = null, this.containerTypeAndName = null, this._onMouseOver = this._onMouseOut = this._onClick = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i) {
-            this.containerTypeAndName.cacheAsBitmap = !1, this.shipInDeckFlag.visible = !1, i && (this.shipInDeckFlag.update(i), this.shipInDeckFlag.visible = !0), this.textLevel.style.fill = this.mouseoutColor = o.ColorUtil.getLevelColor(t.level), this.memId = t.memID;
-            var n = p.RemodelUtil.genPowUpCategories(e);
-            this.textLevel.text = t.level.toString(), this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.iconCategory_0.update(n[0]), this.iconCategory_1.update(n[1]), this.iconCategory_2.update(n[2]), this.iconCategory_3.update(n[3]), this.containerTypeAndName.cacheAsBitmap = !0
+            this.onClick = this._onClick = null, this.clear(), this.removeAllListeners(r.EventType.CLICK)
         }, e
-    }(PIXI.Container)
+    }(PIXI.Graphics);
+    e.BackAreaChoiceShip = s
 }

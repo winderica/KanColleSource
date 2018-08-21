@@ -15,20 +15,26 @@ const function232 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(42), r = i(228), s = i(989), a = function (t) {
-        function e(e, i, n, o, r) {
-            return t.call(this, e, i, n, o, r) || this
+    var o = i(42), r = i(231), s = i(987), a = i(989), _ = function (t) {
+        function e(e, i) {
+            var n = t.call(this, e) || this;
+            n._onMouseOver = function (t) {
+                n._strategy_map.update(t)
+            }, n._onMouseOut = function (t) {
+            };
+            var r = o.SALLY_EVENT.getTexture(24), _ = new PIXI.Sprite(r);
+            return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
         }
 
-        return n(e, t), e.prototype._setPositions = function () {
-            1 == this._type ? (this._clear.position.set(600, 0), this._focus.x = -2, this._focus.y = -1) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-        }, e.prototype._getNoneTexture = function () {
-            return 1 == this._type ? o.SALLY_EVENT.getTexture(10) : 2 == this._type ? o.SALLY_EVENT.getTexture(10) : 3 == this._type ? o.SALLY_EVENT.getTexture(11) : 3 == this._type ? o.SALLY_EVENT.getTexture(11) : PIXI.Texture.EMPTY
-        }, e.prototype._getFocusTexture = function () {
-            return 1 == this._type ? o.SALLY_EVENT.getTexture(9) : 2 == this._type ? o.SALLY_EVENT.getTexture(32) : 3 == this._type ? o.SALLY_EVENT.getTexture(33) : 3 == this._type ? o.SALLY_EVENT.getTexture(34) : PIXI.Texture.EMPTY
-        }, e.prototype._createLock = function () {
-            return new s.EventMapThumbnailLocked(this._type)
+        return n(e, t), e.prototype.initialize = function (e) {
+            t.prototype.initialize.call(this, e);
+            var i = e[this.offset].mst_id;
+            this._strategy_map.update(i), this._airunitbtn.initialize()
+        }, e.prototype.updateAirUnitEnabled = function (e) {
+            t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
+        }, e.prototype.dispose = function () {
+            t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose()
         }, e
-    }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+    }(r.LayoutBase);
+    e.EventLayoutBase = _
 }

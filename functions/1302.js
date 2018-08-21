@@ -15,143 +15,78 @@ const function1302 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(14), _ = i(1303), u = i(77), l = i(15), c = i(1304), h = i(1305),
-        p = i(1306), d = i(1307), f = i(1308), y = i(1309), v = i(1310), g = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._flg_wait1500 = !1, i._flg_preinitialized = !1, i._scene = e, i
-            }
+    var o = i(0), r = i(18), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._now = -1, e._max = 100, e._bar = new PIXI.Graphics, e._img = new PIXI.Sprite, e._light = new PIXI.Sprite, e._tp = new a, e.addChild(e._bar), e.addChild(e._img), e.addChild(e._light), e.addChild(e._tp), e.visible = !1, e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                r.default.sound.voice.setNumOfMultiPlay(100), this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this, e = this._scene.data.model.deck_f, i = null != e && e.isCombined(),
-                    n = this._scene.data.model.map_info.isVS12(), o = i || n,
-                    r = this._scene.data.model.map_info.isNightStart();
-                new _.TaskLoadResourcesBattle(r, o).start(function () {
-                    t._showTextImage()
-                })
-            }, e.prototype._showTextImage = function () {
-                var t = this, e = l.BATTLE_MAIN.getTexture(139);
-                if (this._start_img = new PIXI.Sprite(e), this._start_img.anchor.set(.5, .5), this._start_img.x = o.default.width / 2, this._start_img.y = o.default.height / 2, this._start_img.alpha = 0, this._scene.addChild(this._start_img), createjs.Tween.get(this._start_img).to({ alpha: 1 }, 200).wait(1500).call(function () {
-                    t._flg_wait1500 = !0, t._hideTextImage()
-                }), null == this._scene.data.model.gekimetsu_data) this._connectAPI(); else {
-                    var i = this._scene.data, n = this._scene.data.model.gekimetsu_data;
-                    i.addDayRecord(n), this._initData()
-                }
-            }, e.prototype._connectAPI = function () {
-                var t, e = this, i = this._scene.data;
-                t = 1 == i.model.isPractice() ? new f.APIPracticeStart(i) : 1 == i.model.map_info.isNightStart() ? new d.APIBattleStartNight(i) : 1 == i.model.map_info.isAirBattle() ? new h.APIBattleStartAirBattle(i) : 1 == i.model.map_info.isAirRaid() ? new p.APIBattleStartAirRaid(i) : new c.APIBattleStart(this._scene.data), t.start(function () {
-                    e._initData()
-                })
-            }, e.prototype._initData = function () {
-                var t = (this._scene.data.getFirstRecord(), this._scene.data.model.deck_f.ships),
-                    e = this._scene.data.model.deck_e.ships;
-                this._scene.data.model.ship_info.add(t, e), this._loadBannerImages()
-            }, e.prototype._loadBannerImages = function () {
-                for (var t = this, e = (this._scene.data.getFirstRecord(), new a.ShipLoader), i = 0, n = this._scene.data.model.deck_f.ships; i < n.length; i++) {
-                    var o = n[i];
-                    this._loadBannerImage(e, o)
-                }
-                for (var r = 0, s = this._scene.data.model.deck_e.ships; r < s.length; r++) {
-                    var o = s[r];
-                    this._loadBannerImage(e, o)
-                }
-                e.load(function () {
-                    t._initializeView()
-                })
-            }, e.prototype._loadBannerImage = function (t, e) {
-                if (null != e) {
-                    var i = e.mst_id;
-                    i >= 0 && (t.add(i, !1, "banner"), t.add(i, !0, "banner"), t.add(i, !1, "full"), t.add(i, !0, "full"))
-                }
-            }, e.prototype._initializeView = function () {
-                var t = (this._scene.data.getFirstRecord(), this._scene.data.model.deck_f), e = t.ships_main,
-                    i = t.ships_sub, n = this._scene.data.model.deck_e, o = n.ships_main, r = n.ships_sub;
-                this._scene.view.bannerGroupLayer.initialize(e, o, i, r);
-                var s = t.isYugeki();
-                this._scene.view.raderLayer.initialize(s), this._flg_preinitialized = !0, this._hideTextImage()
-            }, e.prototype._hideTextImage = function () {
-                var t = this;
-                0 != this._flg_wait1500 && 0 != this._flg_preinitialized && (this._scene.data.model.actual_survey_time = (new Date).getTime(), createjs.Tween.get(this._start_img).to({
-                    x: o.default.width / 2 - 120,
-                    alpha: 0
-                }, 200).wait(200).call(function () {
-                    t._start_img.parent.removeChild(t._start_img), t._loadBG()
-                }))
-            }, e.prototype._loadBG = function () {
-                var t = this;
-                0 == this._scene.data.model.map_info.isNightStart() ? this._scene.bg.setDay(function () {
-                    t._shutterOpen()
-                }) : this._scene.bg.setNight(function () {
-                    t._shutterOpen()
-                })
-            }, e.prototype._shutterOpen = function () {
-                var t = this;
-                null != this._scene.data.model.gekimetsu_data && (this._scene.view.bannerGroupLayer.friends.enter(), this._scene.view.bannerGroupLayer.enemies.enter(), this._scene.view.bannerGroupLayer.friends_combined.enter(), this._scene.view.bannerGroupLayer.enemies_combined.enter()), this._scene.view.shutter.once("opened", function () {
-                    t._playBGM()
-                }), this._scene.view.shutter.open()
-            }, e.prototype._playBGM = function () {
-                var t = 0, e = this._scene.data.isNight();
-                if (1 == this._scene.data.model.isPractice()) t = e ? 2 : 1; else if (null != this._scene.data.model.gekimetsu_data) t = 70; else {
-                    var i = this._scene.data.model.map_info.area_id, n = this._scene.data.model.map_info.map_no,
-                        o = this._scene.data.model.map_info.isBoss();
-                    t = r.default.model.mst_bgm.getCombatBGM(i, n, e, o)
-                }
-                r.default.sound.bgm.playBattleBGM(t), this._bossInsert()
-            }, e.prototype._bossInsert = function () {
-                var t = this, e = v.BossConst.getBossModel(this._scene);
-                if (null != this._scene.data.model.gekimetsu_data && (e = null), null != e) {
-                    var i = this._scene.view.layer_cutin;
-                    new y.TaskBossCutin(i, e).start(function () {
-                        t._enterShips()
-                    })
-                } else {
-                    if (0 == this._scene.data.isNight()) {
-                        var n = this._scene.data.model.deck_f.ships[0], o = n.mst_id;
-                        r.default.sound.voice.play(o.toString(), 15)
-                    }
-                    this._enterShips()
-                }
-            }, e.prototype._enterShips = function () {
-                var t = this;
-                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend()) this._showRader(); else if (1 == this._scene.data.model.map_info.isNightStart()) this._showHpGauge(); else {
-                    var e = this._scene.view.bannerGroupLayer.createFriendEnterTask();
-                    e.start(function () {
-                        t._showRader()
-                    })
-                }
-            }, e.prototype._showRader = function () {
-                var t = this._scene.data.model.deck_f, e = this._scene.data.model.deck_e,
-                    i = (this._scene.data.getFirstRecord(), t.formation), n = t.type, o = t.getCountMainDeck(),
-                    r = t.getCountSubDeck();
-                this._scene.view.raderLayer.rader_f.show(i, n, o, r);
-                var s = e.formation, a = e.type;
-                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy()) {
-                    var _ = e.getCountMainDeck(), u = e.getCountSubDeck();
-                    this._scene.view.raderLayer.rader_e.show(s, a, _, u)
-                } else this._scene.view.raderLayer.rader_e.show(s, a, 0, 0);
-                this._showHpGauge()
-            }, e.prototype._showHpGauge = function () {
-                var t = this, e = this._scene.data.model.gauge_max, i = Math.min(this._scene.data.model.gauge_now, e);
-                if (0 == this._scene.data.model.map_info.isBoss()) return void this._endTask();
-                if (0 == e) return void this._endTask();
-                if (0 == i) return void this._endTask();
-                if (3 == this._scene.data.model.gauge_type) return void this._endTask();
-                if (null != this._scene.data.model.gekimetsu_data) return void this._endTask();
-                var n = this._scene.data.model.map_info.area_id, o = this._scene.data.model.map_info.map_no,
-                    s = this._scene.data.model.map_info.cell_no, a = this._scene.data.model.stage;
-                if (39 == n && 3 == o && a > 1 && 12 == s) return void this._endTask();
-                if (39 == n && 4 == o && a > 1 && 9 == s) return void this._endTask();
-                if (39 == n && 6 == o && a > 1 && 8 == s) return void this._endTask();
-                var _ = u.GaugeSetModel.createKey(n, o, a), l = r.default.resources.gauge.createLoaderHorizontal();
-                l.add(_), l.load(function () {
-                    var n = r.default.resources.gauge.getGaugeInfo(_);
-                    t._scene.view.layer_gauge.show(n, i, e, function () {
-                        t._endTask()
-                    })
-                })
-            }, e
-        }(s.TaskBase);
-    e.TaskInit = g
+        return n(e, t), Object.defineProperty(e.prototype, "now", {
+            get: function () {
+                return this._now
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "max", {
+            get: function () {
+                return this._max
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            if (null == t) return this._stopLoopTween(), this._tp.enabled = !1, void(this.visible = !1);
+            this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.clear(), this._bar.beginFill(t.barColor), this._bar.drawRect(0, 0, t.barW, t.barH), this._bar.endFill(), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startLoopTween()
+        }, e.prototype.update = function (t, e) {
+            this._now = t, this._max = e;
+            var i = this._now / this._max;
+            i = Math.max(i, 0), i = Math.min(i, 1), this._bar.scale.y = i, 1 == this._tp.enabled ? (this._tp.update(t, e), this._tp.visible = !0) : this._tp.visible = !1
+        }, e.prototype.dispose = function () {
+            this._stopLoopTween()
+        }, e.prototype._startLoopTween = function () {
+            null == this._t && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 1 }, 500).to({ alpha: 0 }, 500))
+        }, e.prototype._stopLoopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null), this._light.alpha = 0
+        }, e
+    }(PIXI.Container);
+    e.GaugeVertical = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new _, e._now.x = 30, e._max = new _, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+            get: function () {
+                return this._enabled
+            }, set: function (t) {
+                this._enabled = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._title.texture = r.MAP_COMMON.getTexture(44), this._slash.texture = r.MAP_COMMON.getTexture(43)
+        }, e.prototype.update = function (t, e) {
+            this._now.update(t), this._max.update(e)
+        }, e
+    }(PIXI.Container), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._nums = [];
+            for (var i = 0; i < 4; i++) {
+                var n = new u;
+                n.x = 8 * i, e.addChild(n), e._nums.push(n)
+            }
+            return e
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            t = Math.max(0, t), t = Math.min(9999, t);
+            for (var e = !1, i = 0; i < this._nums.length; i++) {
+                var n = Math.pow(10, this._nums.length - i - 1), o = Math.floor(t / n);
+                o > 0 || 1 == e ? (this._nums[i].update(o), e = !0) : this._nums[i].update(-1), t %= n
+            }
+        }, e
+    }(PIXI.Container), u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            t >= 0 && t <= 9 ? (this.texture = r.MAP_COMMON.getTexture(e._TEXTURES[t]), this.visible = !0) : this.visible = !1
+        }, e._TEXTURES = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42], e
+    }(PIXI.Sprite)
 }

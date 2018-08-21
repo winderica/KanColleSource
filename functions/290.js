@@ -15,21 +15,23 @@ const function290 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(104), r = function (t) {
+    var o = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e.dispose = function () {
+                e.deactivate()
+            }, e._onTimer = function () {
+                e.rotation += Math.PI / 180 * 2
+            }, e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = o.PORT_RINGMENU.getTexture(7), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        return n(e, t), e.prototype.setUp = function (t) {
+            this.texture = t, this.pivot.set(this.width / 2, this.height / 2)
         }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: 2 * Math.PI }, 24e3))
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).wait(1e3).call(this._onTimer))
         }, e.prototype.deactivate = function () {
             null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype.dispose = function () {
-            this.deactivate()
         }, e
-    }(PIXI.Container);
-    e.RingMenuBtnBgOn = r
+    }(PIXI.Sprite);
+    e.Gear = o
 }

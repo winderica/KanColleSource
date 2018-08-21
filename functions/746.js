@@ -15,37 +15,19 @@ const function746 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(159), a = function (t) {
+    var o = i(3), r = i(4), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(17)),
-                n = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(25)), a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(2)),
-                _ = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(1)), u = new r.TextBox(28, 5523516),
-                l = new r.TextBox(28, 5523516), c = new r.TextBox(16, 12467003), h = new s.FuelContainer,
-                p = new s.AmmoContainer;
-            return u.anchor.set(1, 0), l.anchor.set(1, 0), i.position.set(0, 0), n.position.set(17, 24), a.position.set(18, 83), _.position.set(159, 83), h.position.set(18, 209), p.position.set(159, 209), u.position.set(144, 166), l.position.set(285, 166), c.position.set(155, 441), c.anchor.set(.5, 0), c.visible = !1, e.addChild(i, n, a, _, l, u, c, h, p), e.textAmmo = l, e.textFuel = u, e.textAlert = c, e.fuelContainer = h, e.ammoContainer = p, e
+            var e = t.call(this) || this, i = new r.TextBox(24, 5523516), n = new r.TextBox(24, 5523516),
+                s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(21)),
+                a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(22));
+            return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.fuelContainer.dispose(), this.ammoContainer.dispose(), this.textFuel = null, this.textAmmo = null, this.textAlert = null, this.removeChildren()
-        }, e.prototype.updateFuelCount = function (t, e) {
-            var i, n = t.toString();
-            i = e ? 5523516 : 12467003, this.textFuel.style.fill = i, this.textFuel.text = n
-        }, e.prototype.updateAmmoCount = function (t, e) {
-            var i, n = t.toString();
-            i = e ? 5523516 : 12467003, this.textAmmo.style.fill = i, this.textAmmo.text = n
-        }, e.prototype.playAnimationFuel = function (t) {
-            this.fuelContainer.update(t)
-        }, e.prototype.playAnimationAmmo = function (t) {
-            this.ammoContainer.update(t)
-        }, e.prototype.playSupplyAmmo = function (t) {
-            this.ammoContainer.playSupply(t)
-        }, e.prototype.playSupplyFuel = function (t) {
-            this.fuelContainer.playSupply(t)
-        }, e.prototype.showAlert = function (t) {
-            this.textAlert.text = t, this.textAlert.visible = !0
-        }, e.prototype.hideAlert = function () {
-            this.textAlert.visible = !1
+            this.textAmmo = null, this.textFuel = null, this.removeChildren()
+        }, e.prototype.update = function (t, e) {
+            this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
         }, e
     }(PIXI.Container);
-    e.SupplyShowcaseView = a
+    e.MaterialCounterView = s
 }

@@ -15,42 +15,35 @@ const function1018 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(30), a = i(38), _ = i(371), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._activated = !1, i._target_id = -1, i._onClick = function () {
-                null != i._decision_cb && i._decision_cb(i._target_id)
-            }, i._decision_cb = e, i
+    var o = i(4), r = i(22), s = i(30), a = i(38), _ = i(370), u = i(1019), l = i(1020), c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onLoadCompleteAreaTextImage = function () {
+                1 == n._panel_inexpe.visible && (n._panel_inexpe.deck_name.y = n._areaText.y + n._areaText.height - 1)
+            }, n._panel_noexpe = new u.PanelDetailNoExpe(e), n._panel_inexpe = new l.PanelDetailInExpe(i), n
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Graphics;
-            t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
-            var e = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(45));
-            e.position.set(28, 433), this.addChild(e);
-            var i = new PIXI.Sprite(s.SALLY_COMMON.getTexture(28));
-            i.position.set(187, 430), this.addChild(i), this._fuel = new r.TextBox(21, 4999235), this._fuel.anchor.set(1, 0), this._fuel.position.set(262, 432), this.addChild(this._fuel);
-            var n = new PIXI.Sprite(s.SALLY_COMMON.getTexture(29));
-            n.position.set(270, 430), this.addChild(n), this._ammo = new r.TextBox(21, 4999235), this._ammo.anchor.set(1, 0), this._ammo.position.set(346, 432), this.addChild(this._ammo);
-            var o = new PIXI.Sprite(s.SALLY_COMMON.getTexture(45));
-            o.position.set(28, 508), this.addChild(o), this._item1 = new PIXI.Sprite, this._item1.position.set(25, 546), this.addChild(this._item1), this._item1_count = new r.TextBox(22, 4999235), this._item1_count.position.set(100, 570), this.addChild(this._item1_count), this._item2 = new PIXI.Sprite, this._item2.position.set(189, 546), this.addChild(this._item2), this._item2_count = new r.TextBox(22, 4999235), this._item2_count.position.set(265, 570), this.addChild(this._item2_count), this._btn = new _.BtnDicision, this._btn.initialize(), this._btn.position.set(45, 637), this._btn.on("dicision", this._onClick), this._btn.visible = !1, this.addChild(this._btn)
-        }, e.prototype.update = function (t) {
-            if (null == t) this._target_id = -1, this._fuel.text = "", this._ammo.text = "", this._item1.visible = !1, this._item1_count.text = "", this._item2.visible = !1, this._item2_count.text = "", this._btn.visible = !1, this._deactivate(); else {
-                this._target_id = t.mstID, this._fuel.text = this._getMaterialText(t.fuel), this._ammo.text = this._getMaterialText(t.ammo);
-                var e = t.item1_id, i = t.item1_count;
-                e > 0 && i > 0 ? (this._item1.texture = o.default.resources.getUseitem(e, 0), this._item1.visible = !0, this._item1_count.text = i > 0 ? "\xd7" + i : "") : (this._item1.visible = !1, this._item1_count.text = "");
-                var n = t.item2_id, r = t.item2_count;
-                n > 0 && r > 0 ? (this._item2.texture = o.default.resources.getUseitem(n, 0), this._item2.visible = !0, this._item2_count.text = r > 0 ? "\xd7" + r : "") : (this._item2.visible = !1, this._item2_count.text = ""), this._btn.visible = !0, this._activate()
+            var t = new PIXI.Sprite(s.SALLY_COMMON.getTexture(26));
+            t.position.set(0, 138), this.addChild(t);
+            var e = new PIXI.Sprite(s.SALLY_COMMON.getTexture(49));
+            e.position.set(0, 102), this.addChild(e);
+            var i = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(15));
+            i.position.set(24, 111), this.addChild(i);
+            var n = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(43));
+            n.position.set(28, 235), this.addChild(n);
+            var r = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(44));
+            r.position.set(28, 394), this.addChild(r), this._panel_noexpe.initialize(), this.addChild(this._panel_noexpe), this._panel_inexpe.initialize(), this._panel_inexpe.visible = !1, this.addChild(this._panel_inexpe), this._title = new o.TextBox(25, 4999235), this._title.position.set(22, 156), this.addChild(this._title), this._areaText = new _.AreaTextImage, this._areaText.position.set(27, 187), this.addChild(this._areaText), this._description = new o.TextBox(21, 4999235), this._description.style.wordWrap = !0, this._description.style.wordWrapWidth = 322, this._description.style.breakWords = !0, this._description.position.set(22, 261), this.addChild(this._description), this._time = new o.TextBox(22, 4999235), this._time.anchor.set(1, 0), this._time.position.set(343, 390), this.addChild(this._time)
+        }, e.prototype.update = function (t, e) {
+            if (null == t) this._title.text = "", this._areaText.clear(), this._description.text = "", this._time.text = "", this._panel_noexpe.visible = !0, this._panel_inexpe.visible = !1, this._panel_noexpe.update(null); else {
+                this._title.text = t.name, this._description.text = t.detail.replace(/<br\s*\/?>/g, "\n");
+                var i = t.time, n = r.MathUtil.zeroPadding(Math.floor(i / 60), 2),
+                    o = r.MathUtil.zeroPadding(i % 60, 2);
+                this._time.text = n + ":" + o + ":00", null != e ? (this._panel_noexpe.visible = !1, this._panel_inexpe.visible = !0, this._panel_noexpe.update(null), this._panel_inexpe.update(t, e)) : (this._panel_noexpe.visible = !0, this._panel_inexpe.visible = !1, this._panel_noexpe.update(t), this._panel_inexpe.update(null, null)), this._areaText.update(t.areaID, this._onLoadCompleteAreaTextImage)
             }
         }, e.prototype.dispose = function () {
-            this._deactivate(), this._btn.off("dicision", this._onClick)
-        }, e.prototype._activate = function () {
-            0 == this._activated && (this._btn.activate(), this._activated = !0)
-        }, e.prototype._deactivate = function () {
-            this._btn.deactivate(), this._activated = !1
-        }, e.prototype._getMaterialText = function (t) {
-            return t <= 0 ? "\u306a\u3057" : t <= .3 ? "\u5c11\u91cf" : "\u666e\u901a"
+            this._areaText.dispose(), this._panel_noexpe.dispose(), this._panel_inexpe.update(null, null)
         }, e
     }(PIXI.Container);
-    e.PanelDetailNoExpe = u
+    e.ContainerDetail = c
 }

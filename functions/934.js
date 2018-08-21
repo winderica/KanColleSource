@@ -18,38 +18,20 @@ const function934 = function (t, e, i) {
     var o = i(25), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e._txt = new PIXI.Sprite, e._txt.position.set(23, 23), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(11, 9), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            var e;
-            switch (t) {
-                case 1:
-                    e = 74;
-                    break;
-                case 2:
-                    e = 75;
-                    break;
-                case 3:
-                    e = 76;
-                    break;
-                case 4:
-                    e = 77;
-                    break;
-                case 5:
-                    e = 78;
-                    break;
-                case 6:
-                    e = 79;
-                    break;
-                case 7:
-                    e = 80;
-                    break;
-                default:
-                    return void(this.visible = !1)
-            }
-            this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_AIRUNIT.getTexture(64), this._txt.texture = o.SALLY_AIRUNIT.getTexture(104), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(105)
+        }, e.prototype.update = function (t) {
+            this.visible = t, 1 == t ? this._activate() : this._deactivate()
+        }, e.prototype.dispose = function () {
+            this._deactivate()
+        }, e.prototype._activate = function () {
+            null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 400))
+        }, e.prototype._deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
         }, e
-    }(PIXI.Container);
-    e.AirUnitPanelItemSkillLevelIcon = r
+    }(PIXI.Sprite);
+    e.AirUnitPanelItemRelocationLayer = r
 }

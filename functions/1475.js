@@ -23,39 +23,39 @@ const function1475 = function (t, e, i) {
         return n(e, t), e.prototype.update = function (t) {
             switch (t) {
                 case 0:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(43);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(44);
                     break;
                 case 1:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(45);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(46);
                     break;
                 case 2:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(47);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(48);
                     break;
                 case 3:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(49);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(50);
                     break;
                 case 4:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(51);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(52);
                     break;
                 case 5:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(53);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(54);
                     break;
                 case 6:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(55);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(56);
                     break;
                 case 7:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(57);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(58);
                     break;
                 case 8:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(59);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(60);
                     break;
                 case 9:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(61);
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(62);
                     break;
                 default:
                     this.texture = PIXI.Texture.EMPTY
             }
         }, e
     }(PIXI.Sprite);
-    e.ResultDialogNum = r
+    e.ResultDialogNumLight = r
 }

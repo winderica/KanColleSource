@@ -15,17 +15,32 @@ const function1423 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = i(1424), s = function (t) {
+    var o = i(0), r = i(31), s = i(193), a = i(195), _ = i(15), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._gauge_bg = new PIXI.Sprite, e._gauge = new r.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
+            return e._img = new PIXI.Sprite, e._icon = new s.BannerIcon, e._soot = new a.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-            this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47)) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)), this.updateHp(t, e)
-        }, e.prototype.updateHp = function (t, e) {
-            this._gauge.draw(t / e)
+        return n(e, t), e.prototype.initialize = function (t, e, i, n, o) {
+            this._mst_id = t, this._damaged = r.ShipUtil.isDamaged(e, i), this._taihi = n, this._icon.initialize(o), this._updateImage(), this._updateIcon(e, i)
+        }, e.prototype.update = function (t, e) {
+            var i = r.ShipUtil.isDamaged(t, e);
+            i != this._damaged && (this._damaged = i, this._updateImage()), this._updateIcon(t, e)
+        }, e.prototype._updateImage = function () {
+            -1 == this._mst_id ? this._img.texture = _.BATTLE_MAIN.getTexture(0) : -2 == this._mst_id ? this._img.texture = _.BATTLE_MAIN.getTexture(1) : -3 == this._mst_id ? this._img.texture = _.BATTLE_MAIN.getTexture(2) : this._img.texture = o.default.resources.getShip(this._mst_id, this._damaged, "banner")
+        }, e.prototype._updateIcon = function (t, e) {
+            if (0 == this._taihi) {
+                var i = r.ShipUtil.getDamageType(t, e);
+                this._icon.setDamagedIcon(i), this._soot.update(i), this._grayScale(0 == i)
+            } else this._icon.setTaihiIcon(), this._grayScale(!0)
+        }, e.prototype._grayScale = function (t) {
+            if (1 == t) {
+                if (null == this._img.filters) {
+                    var e = new PIXI.filters.ColorMatrixFilter;
+                    e.greyscale(.33), this._img.filters = [e]
+                }
+            } else this._img.filters = null
         }, e
     }(PIXI.Container);
-    e.BannerFrame = s
+    e.BannerImage = u
 }

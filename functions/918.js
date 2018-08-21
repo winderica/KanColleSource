@@ -6,21 +6,15 @@ const function918 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        return Object.defineProperty(t.prototype, "plane_type", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_usemst")
+                return n.ObjUtil.getNumber(this._o, "api_plane_type")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
+        }), Object.defineProperty(t.prototype, "result", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_getcount")
+                return n.ObjUtil.getNumber(this._o, "api_result")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "icon_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_icon_id")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getUseitemMstID = function () {
-            return 4 == this.type ? [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.icon_id] : 5 == this.type ? this.icon_id : 0
-        }, t
+        }), t
     }();
-    e.DropItemModel = o
+    e.AirReconnaissanceModel = o
 }

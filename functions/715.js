@@ -15,27 +15,40 @@ const function715 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(17), r = i(2), s = i(24), a = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(2), s = i(716), a = i(131), _ = i(20), u = i(55), l = i(312), c = i(717), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._loadPreset = function () {
+                var t = new c.PresetDeckAPI;
+                t.start(function () {
+                    var e = t.result;
+                    i.organizeScene.preInitialize(e), i._endTask()
+                })
+            }, i.organizeScene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new s.UIImageLoader("organize");
-            switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
-                case 2:
-                    e.add("organize_hokyu_dialog_xmas.json");
-                    break;
-                case 4:
-                    e.add("organize_hokyu_dialog_summer.json");
-                    break;
-                default:
-                    e.add("organize_hokyu_dialog_default.json")
-            }
-            e.load(function () {
-                t._endTask()
+            this._loadResource()
+        }, e.prototype._loadResource = function () {
+            var t = this;
+            (new s.TaskLoadResourcesOrganize).start(function () {
+                t._uploadToGPU_common()
+            })
+        }, e.prototype._uploadToGPU_common = function () {
+            var t = this;
+            o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
+                o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
+                    t._uploadToGPU_organize()
+                })
+            })
+        }, e.prototype._uploadToGPU_organize = function () {
+            var t = this;
+            o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
+                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
+                    t._loadPreset()
+                })
             })
         }, e
     }(r.TaskBase);
-    e.TaskLoadResourcesOrganize = a
+    e.PreInitializeTask = h
 }

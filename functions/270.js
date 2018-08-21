@@ -1,73 +1,84 @@
 const function270 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(22), r = i(102), s = i(525), a = function () {
-        function t() {
-            this._bgm = new _, this._se = new u, this._voice = new s.VoiceManagerHolder
-        }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-        return Object.defineProperty(t.prototype, "bgm", {
-            get: function () {
-                return this._bgm
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "se", {
-            get: function () {
-                return this._se
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice", {
-            get: function () {
-                return this._voice
-            }, enumerable: !0, configurable: !0
-        }), t
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
     }();
-    e.SoundManager = a;
-    var _ = function () {
-        function t() {
-            this._bgm_id = 0, this._bgm = null
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(0), r = i(2), s = i(145), a = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._before = e, o._after = i, o._model = n, o
         }
 
-        return Object.defineProperty(t.prototype, "bgm_id", {
+        return n(e, t), Object.defineProperty(e.prototype, "before", {
             get: function () {
-                return this._bgm_id
+                return this._before
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "playing", {
+        }), Object.defineProperty(e.prototype, "after", {
             get: function () {
-                return null != this._bgm
+                return this._after
             }, enumerable: !0, configurable: !0
-        }), t.prototype.playBattleBGM = function (t, e, i, n) {
-            void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === n && (n = null), this.play(t, e, i, "battle", n)
-        }, t.prototype.play = function (t, e, i, s, a) {
-            if (void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === s && (s = "port"), void 0 === a && (a = null), (null == this._bgm || this._bgm_id != t) && s) {
-                this.stop(), this._bgm_id = t;
-                var _ = n.default.option.vol_bgm / 100;
-                if (0 != _) {
-                    var u = o.MathUtil.zeroPadding(t, 3), l = r.SuffixUtil.create(t, "bgm_" + s), c = u + "_" + l,
-                        h = n.default.settings.path_root + "resources/bgm/" + s + "/" + c + ".mp3",
-                        p = { src: [h], onend: a };
-                    p.autoplay = !0, p.loop = e, i > 0 ? (p.volume = 0, this._bgm = new Howl(p), this._bgm.fade(0, _, i)) : (p.volume = _, this._bgm = new Howl(p))
-                }
+        }), e.prototype._start = function () {
+            o.default.view.clickGuard = !0, this._doPrefinalize()
+        }, e.prototype._doPrefinalize = function () {
+            var t = this;
+            s.TaskLoadBase.abortAll();
+            var e = o.default.view.getNowScene(), i = e.getPreFinalizeTask();
+            null != i ? i.start(function () {
+                t._fadeOn()
+            }) : this._fadeOn()
+        }, e.prototype._fadeOn = function () {
+            var t = this, e = this._getFadeBox(this._before, this._after);
+            e.visible = !0, e.show(300, function () {
+                t._doFinalize()
+            })
+        }, e.prototype._doFinalize = function () {
+            var t = this, e = o.default.view.getNowScene(), i = e.getFinalizeTask();
+            null != i ? i.start(function () {
+                t._loadBackground()
+            }) : this._loadBackground()
+        }, e.prototype._loadBackground = function () {
+            var t = this;
+            o.default.view.bg.setImage(this._after, function () {
+                t._change()
+            })
+        }, e.prototype._change = function () {
+            if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null); else {
+                var t = e.__factory__(this._after);
+                33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null))
             }
-        }, t.prototype.stop = function () {
-            null != this._bgm && (this._bgm.stop(), this._bgm = null)
-        }, t.prototype.fadeOut = function (t) {
-            if (null != this._bgm && 1 == this._bgm.playing()) {
-                var e = this._bgm.volume();
-                this._bgm.fade(e, 0, t), this._bgm = null
-            }
-        }, t.prototype.changeVolume = function (t) {
-            if (null == this._bgm) return !1;
-            this._bgm.volume(t / 100)
-        }, t
-    }(), u = function () {
-        function t() {
-        }
-
-        return t.prototype.play = function (t) {
-            if (0 != n.default.option.vol_se) {
-                var e = { src: [t] };
-                e.autoplay = !0, e.volume = n.default.option.vol_se / 100;
-                new Howl(e)
-            }
-        }, t
-    }()
+            this._doPreInitialize()
+        }, e.prototype._doPreInitialize = function () {
+            var t = this, e = o.default.view.getNowScene(), i = e.getPreInitializeTask(this._before, this._model);
+            null != i ? i.start(function () {
+                t._fadeOff()
+            }) : this._fadeOff()
+        }, e.prototype._fadeOff = function () {
+            var t = this, e = this._getFadeBox(this._before, this._after), i = 0 == this._after;
+            i && o.default.view.portMain.ringMenu.prePosition(), e.hide(300, function () {
+                e.visible = !1, t._doInitialize(), i && o.default.view.portMain.ringMenu.startAnimation()
+            })
+        }, e.prototype._doInitialize = function () {
+            var t = this, e = o.default.view.getNowScene(), i = e.getInitializeTask(this._before);
+            null != i ? i.start(function () {
+                t._preEnd()
+            }) : this._preEnd()
+        }, e.prototype._preEnd = function () {
+            o.default.view.clickGuard = !1, this._endTask()
+        }, e.prototype._getFadeBox = function (t, e) {
+            return 23 == t || 23 == e ? o.default.view.fadeLayer : 25 == t || 25 == e ? o.default.view.fadeLayer : 33 == t || 33 == e ? o.default.view.fadeLayer : 32 == t || 32 == e ? o.default.view.fadeLayer : o.default.view.portMain.fadeLayer
+        }, e
+    }(r.TaskBase);
+    e.TaskSceneChange = a
 }

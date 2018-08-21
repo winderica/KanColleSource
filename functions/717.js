@@ -1,36 +1,29 @@
 const function717 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(13), o = i(0), r = i(718), s = function () {
-        function t() {
+    var o = i(10), r = i(718), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._url = "api_get_member/preset_deck", e
         }
 
-        return Object.defineProperty(t.prototype, "maxNum", {
-            get: function () {
-                return this.api_max_num
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.setData = function (t) {
-            var e = n.ObjUtil.getObject(t, "api_deck", {}), i = t.api_max_num;
-            this.api_max_num = i, this.api_deck = e
-        }, t.prototype.updateData = function (t) {
-            var e = n.ObjUtil.getNumber(t, "api_preset_no");
-            this.api_deck[e.toString()] = t
-        }, t.prototype.getPresetDeckData = function (t) {
-            if (t > this.maxNum) return null;
-            var e = t.toString(), i = this.api_deck[e];
-            return new r.PresetModel(t, i)
-        }, t.prototype.getPresetDeckDataList = function () {
-            for (var t = new Array, e = 1; e <= this.maxNum; e++) {
-                var i = this.getPresetDeckData(e);
-                i.getRealShipCount() > 0 && t.push(i)
-            }
-            return t
-        }, t.prototype.__updateByPresetExpanded__ = function (t) {
-            if (this.maxNum + 1 != t) return void o.default.view.showError("Invalid preset_expand.");
-            this.api_deck[t.toString()] = null, this.api_max_num = t
-        }, t.prototype.__deletePresetDeckData__ = function (t) {
-            delete this.api_deck[t.toString()], this.api_deck[t.toString()] = null
-        }, t
-    }();
-    e.PresetListModel = s
+        return n(e, t), e.prototype._completedEnd = function () {
+            this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        }, e
+    }(o.APIBase);
+    e.PresetDeckAPI = s
 }

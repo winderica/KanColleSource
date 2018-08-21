@@ -1,105 +1,96 @@
 const function857 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var n = i(0), o = i(35), r = i(858), s = i(859), a = i(861), _ = i(862), u = i(863), l = i(864), c = i(866),
+        h = i(868), p = i(869), d = i(870), f = i(1), y = function () {
+            function t(t, e, i, n, y) {
+                var v = this;
+                this.hammerMotivation = !1, this.spannerMotivation = !1, this.ANIMATION_KEY_UNLOCK = {
+                    alpha: 0,
+                    y: 0
+                }, this._onClickGet = function () {
+                    v.onClickGet(v.memDockId)
+                }, this._onClickSelect = function () {
+                    v.onClickSelect(v.memDockId)
+                }, this._onClickHighSpeed = function () {
+                    v.onClickHighSpeed(v.memDockId)
+                }, this._onMouseOverHighSpeed = function () {
+                    v.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(24)
+                }, this._onMouseOutHighSpeed = function () {
+                    v.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(22)
+                }, this._onClickNoDock = function () {
+                    v.hasKey && v.focusableNoDock && v.onClickNoDock(v.memDockId)
+                }, this.great_steelFrame_bg = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(65)), this.spanner = new a.Spanner(y), this.hammer = new s.Hammer(y), this.carry = new r.Carry(y), this.kDockStateView = new d.KDockStateView, this.buttonGet = new h.GetButton, this.buttonSelect = new p.SelectButton, this.iconHighSpeedDisable = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(23)), this.buttonHighSpeed = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(22)), this.normalBuildStage = new l.NormalBuildStage, this.largeBuildStage = new c.LargeBuildStage, this.noDockView = new u.NoDockView(n), this.burner = new _.Burner(y), this.steelFrame_mask_door = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(146)), this.txt_open = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(155)), this.txt_open.alpha = 0, this.txt_open.visible = !1, this.txt_open.position.set(285, 54), this.normalBuildStage.visible = !1, this.largeBuildStage.visible = !1, this.great_steelFrame_bg.visible = !1, this.spanner.visible = !1, this.hammer.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.iconHighSpeedDisable.x = this.buttonHighSpeed.x = 531, this.kDockStateView.position.set(63, 0), this.buttonGet.position.set(345, 28), this.great_steelFrame_bg.position.set(239, 0), this.buttonSelect.position.set(345, 28), this.normalBuildStage.position.set(238, -3), this.largeBuildStage.position.set(238, -3), this.steelFrame_mask_door.x = 637, this.noDockView.position.set(6, -15), this.buttonGet.onClick = this._onClickGet, this.buttonSelect.onClick = this._onClickSelect, this.noDockView.onClick = this._onClickNoDock, this.buttonHighSpeed.on(f.EventType.CLICK, this._onClickHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOUT, this._onMouseOutHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOVER, this._onMouseOverHighSpeed), this.buttonHighSpeed.interactive = this.buttonHighSpeed.buttonMode = !0, e.addChild(this.great_steelFrame_bg, this.kDockStateView, this.noDockView), i.addChild(this.carry, this.normalBuildStage, this.largeBuildStage, this.spanner, this.hammer, this.burner, this.steelFrame_mask_door), n.addChild(this.iconHighSpeedDisable, this.buttonSelect, this.buttonGet, this.buttonHighSpeed, this.txt_open), this.completeTime = 0, this.layerBase = e, this.layerBuild = i, this.layerInteractive = n, this.syncAnimationKey = y, this.memDockId = t, this._state = 0
             }
 
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o, r = i(3), s = i(114), a = i(1);
-    !function (t) {
-        t.LEFT = 270, t.RIGHT = 705, t.BOTTOM = 95, t.DIRECTION_LEFT = 1, t.DIRECTION_RIGHT = -1
-    }(o = e.ArsenalStaffConst || (e.ArsenalStaffConst = {}));
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i.WALK = [97, 98, 99, 98], i.COMPLETION = [100, 101], i.ANIMATION_BUILD_KEY = {}, i.ANIMATION_ENTER_KEY = {}, i.JUMP_ANIMATION = { progress: 0 }, i.ANIMATION_COMPLETE_KEY = {}, i.ANIMATION_BURNER_KEY = {}, i._onClick = function () {
-                if (0 == createjs.Tween.hasActiveTweens(i.JUMP_ANIMATION)) {
-                    var t = createjs.Tween.get(i.JUMP_ANIMATION).to({ progress: 1 }, 250, createjs.Ease.quintOut).to({ progress: 0 }, 250);
-                    t.call(function () {
-                        t.removeAllEventListeners("change"), t.setPaused(!0)
-                    }).addEventListener("change", function () {
-                        i.sprite.y = -30 * i.JUMP_ANIMATION.progress
-                    })
-                }
-            }, i.sprite = new PIXI.Sprite, i.effect = new PIXI.Container, i.ase_0 = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(141)), i.ase_1 = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(141)), i.sprite.texture = r.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.interactive = !0, i.sprite.on(a.EventType.CLICK, i._onClick), i.ase_0.anchor.set(0, 1), i.ase_1.anchor.set(0, 1), i.sprite.anchor.set(.5, 1), i.effect.addChild(i.ase_0, i.ase_1), i.sprite.addChild(i.effect), i.addChild(i.sprite), i.syncAnimationKey = e, i
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.JUMP_ANIMATION), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_BURNER_KEY), this.effect.removeChildren(), this.ase_0 = null, this.ase_1 = null, this.effect = null, this.sprite = null, this.syncAnimationKey = null, this.removeChildren()
-        }, e.prototype.build = function () {
-            this.sprite.y = 0, this.__AnimationBuild__()
-        }, e.prototype.__AnimationBuild__ = function () {
-            var t = this;
-            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), this.ANIMATION_BUILD_KEY.progress = 0, this.ANIMATION_BUILD_KEY.x = o.RIGHT, this.ANIMATION_BUILD_KEY.direction = o.DIRECTION_LEFT;
-            var e = o.RIGHT - o.LEFT, i = (14 + 5 * Math.random()) / 1.5, n = i * e;
-            this.position.set(o.RIGHT, o.BOTTOM), createjs.Tween.get(this.ANIMATION_BUILD_KEY, { loop: !0 }).wait(1e3 * Math.random()).to({ x: o.LEFT }, n).to({ direction: o.DIRECTION_RIGHT }, 1e3).to({ x: o.RIGHT }, n).addEventListener("change", function () {
-                var e = t.ANIMATION_BUILD_KEY.x, i = t.ANIMATION_BUILD_KEY.direction;
-                t.x = e, t.sprite.scale.x = i
-            }), createjs.Tween.get(this.ANIMATION_BUILD_KEY, { loop: !0 }).to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
-                var e = t.ANIMATION_BUILD_KEY.progress, i = Math.round((t.WALK.length - 1) * e);
-                switch (t.sprite.texture = r.ARSENAL_MAIN.getTexture(t.WALK[i]), t.ase_0.visible = !1, t.ase_1.visible = !1, i) {
-                    case 0:
-                        t.ase_0.position.set(3, -64), t.ase_1.position.set(21, -54), t.ase_0.rotation = -6.2 / Math.PI / 180, t.ase_1.rotation = 28.5 / Math.PI / 180, t.ase_0.visible = !0, t.ase_1.visible = !0;
-                        break;
-                    case 1:
-                        t.ase_0.position.set(6.675, -47.25), t.ase_1.position.set(14.25, -59.25), t.ase_0.rotation = 1 / Math.PI / 180, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0;
-                        break;
-                    case 2:
-                        t.ase_0.position.set(8.25, -62.25), t.ase_1.position.set(20.25, -51.75), t.ase_0.rotation = 0, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0;
-                        break;
-                    case 3:
-                        t.ase_0.position.set(6.675, -47.25), t.ase_1.position.set(14.25, -59.25), t.ase_0.rotation = 1 / Math.PI / 180, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0
-                }
-            })
-        }, e.prototype.resume = function () {
-            this.sprite.y = 0, this.__AnimationBuild__()
-        }, e.prototype.complete = function () {
-            var t = this;
-            this.effect.visible = !1, this.sprite.scale.x = 1, this.sprite.y = 0, createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.get(this.ANIMATION_COMPLETE_KEY, { loop: !0 }).wait(1e3).addEventListener("change", function () {
-                var e = t.syncAnimationKey.getNumber(s.SYNC_KEY_JUMP);
-                t.sprite.y = -10 * e, t.sprite.texture = .4 < e ? r.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : r.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
-            })
-        }, e.prototype.stopOtherAnimation = function () {
-            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_BURNER_KEY)
-        }, e.prototype.useBurner = function () {
-            var t = this;
-            this.stopOtherAnimation(), this.effect.visible = !1, this.sprite.scale.x = -1, this.sprite.y = 0, this.ANIMATION_BURNER_KEY.x = this.x, this.ANIMATION_BURNER_KEY.progress = 0;
-            var e = createjs.Tween.get(this.ANIMATION_BURNER_KEY, { loop: !0 });
-            e.to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
-                var e = t.ANIMATION_BURNER_KEY.progress, i = Math.round((t.WALK.length - 1) * e), n = t.WALK[i];
-                t.sprite.texture = r.ARSENAL_MAIN.getTexture(n)
-            });
-            var i = createjs.Tween.get(this.ANIMATION_BURNER_KEY);
-            i.to({ x: 750 }, 1e3).call(function () {
-                createjs.Tween.removeTweens(t.ANIMATION_BURNER_KEY), i.removeAllEventListeners("change"), e.removeAllEventListeners("change"), i.setPaused(!0), e.setPaused(!0), t.x = 750
-            }).addEventListener("change", function () {
-                t.x = t.ANIMATION_BURNER_KEY.x
-            })
-        }, e.prototype.received = function () {
-            var t = this;
-            this.stopOtherAnimation(), this.sprite.y = 0, this.ANIMATION_BURNER_KEY.x = this.x, this.ANIMATION_BURNER_KEY.progress = 0;
-            var e = createjs.Tween.get(this.ANIMATION_BURNER_KEY);
-            e.to({ x: 750 }, 1e3).call(function () {
-                createjs.Tween.removeTweens(t.ANIMATION_BURNER_KEY), e.removeAllEventListeners("change"), i.removeAllEventListeners("change"), e.setPaused(!0), i.setPaused(!0), t.x = 750
-            }).addEventListener("change", function () {
-                t.x = t.ANIMATION_BURNER_KEY.x
-            });
-            var i = createjs.Tween.get(this.ANIMATION_BURNER_KEY, { loop: !0 });
-            i.to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
-                var e = t.ANIMATION_BURNER_KEY.progress, i = Math.round((t.WALK.length - 1) * e), n = t.WALK[i];
-                t.sprite.texture = r.ARSENAL_MAIN.getTexture(n)
-            })
-        }, e
-    }(PIXI.Container);
-    e.Carry = _
+            return Object.defineProperty(t.prototype, "state", {
+                get: function () {
+                    return this._state
+                }, enumerable: !0, configurable: !0
+            }), t.prototype.showHighSpeedButton = function (t) {
+                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1, t ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0
+            }, t.prototype.hideHighSpeedButton = function () {
+                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1
+            }, t.prototype.Build = function (t, e, i, o, r, s, a, _, u) {
+                var l = this;
+                this._state = t ? 3 : 2, this.steelFrame_mask_door.visible = !0, this.hammerMotivation = o, this.spannerMotivation = r, this.great_steelFrame_bg.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.noDockView.visible = !1, this.kDockStateView.build(a), this.kDockStateView.update(_), this.normalBuildStage.updatePhaseMax(u), this.largeBuildStage.updatePhaseMax(u), this.normalBuildStage.update(.1), this.largeBuildStage.update(.1), this.hideHighSpeedButton(), t ? (this.burner.visible = !0, this.burner.useBurner(function (t) {
+                    l.kDockStateView.updateProgress(a, _, t), l.normalBuildStage.update(t), l.largeBuildStage.update(t)
+                }, function () {
+                    l.kDockStateView.updateProgress(a, _, 1), l.burner.complete(), l.hammerMotivation && (l.hammer.visible = !0, l.hammer.x = 825, l.hammer.useBurnerd()), l.spannerMotivation && (l.spanner.visible = !0, l.spanner.x = 825, l.spanner.useBurnerd()), l._buildComplete();
+                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
+                    n.default.sound.voice.play(t.toString(), 5)
+                })) : (i ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, o && (this.hammer.visible = !0, this.hammer.build()), r && (this.spanner.visible = !0, this.spanner.build()), this.carry.build(), this.carry.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.totalRequireTime = 60 * s * 1e3, this.completeTime = a
+            }, t.prototype.changeState = function (t) {
+                this._state = t
+            }, t.prototype.Standby = function () {
+                this.__Standby__()
+            }, t.prototype.__Standby__ = function () {
+                this._state = 0, this.iconHighSpeedDisable.visible = !0, this.steelFrame_mask_door.visible = !0, this.kDockStateView.standby(), this.normalBuildStage.update(0), this.largeBuildStage.update(0), this.kDockStateView.visible = !0, this.buttonSelect.visible = !0, this.buttonGet.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !0, this.great_steelFrame_bg.visible = !1, this.noDockView.visible = !1
+            }, t.prototype.UnLockDock = function () {
+                var t = this;
+                createjs.Tween.removeTweens(this.ANIMATION_KEY_UNLOCK), this.txt_open.alpha = 0, this.txt_open.visible = !0, this.txt_open.alpha = this.ANIMATION_KEY_UNLOCK.alpha = 0, this.txt_open.y = this.ANIMATION_KEY_UNLOCK.y = 54;
+                var e = createjs.Tween.get(this.ANIMATION_KEY_UNLOCK);
+                e.to({ alpha: 1, y: -26.25 }, 500).to({ alpha: 0, y: -52 }, 400).call(function () {
+                    e.removeAllEventListeners("change"), e.setPaused(!0), t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha = 0, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y = -105
+                }).addEventListener("change", function () {
+                    t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y
+                }), e.play(null), this.noDockView.hidePop(), this.noDockView.visible = !1, this.__Standby__()
+            }, t.prototype.updateMotivation = function (t, e) {
+                this.hammerMotivation = t, this.spannerMotivation = e
+            }, t.prototype.Resume = function (t, e, i, n, o, r, s, a) {
+                this._state = 2, this.hammerMotivation = i, this.spannerMotivation = n, this.steelFrame_mask_door.visible = !0, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.normalBuildStage.updatePhaseMax(a), this.largeBuildStage.updatePhaseMax(a), i && (this.hammer.visible = !0, this.hammer.resume()), n && (this.spanner.visible = !0, this.spanner.resume()), t ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.hideHighSpeedButton(), e ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, this.kDockStateView.build(r), this.kDockStateView.update(s), this.carry.visible = !0, this.carry.resume(), this.totalRequireTime = 60 * o * 1e3, this.completeTime = r
+            }, t.prototype.Complete = function () {
+                this.hammer.visible = !1, this.spanner.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), this.__Complete__()
+            }, t.prototype.NoDock = function (t, e) {
+                this._state = -1, this.steelFrame_mask_door.visible = !1, this.noDockView.visible = !0, this.kDockStateView.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.noDockView.update(t, e), this.focusableNoDock = t, this.hasKey = e
+            }, t.prototype.Completed = function (t, e) {
+                this.steelFrame_mask_door.visible = !0, this.hammer.visible = !1, this.spanner.visible = !1, this.great_steelFrame_bg.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0, this.largeBuildStage.updatePhaseMax(t), this.largeBuildStage.update(1)) : (this.normalBuildStage.visible = !0, this.normalBuildStage.updatePhaseMax(t), this.normalBuildStage.update(1)), this.__Complete__()
+            }, t.prototype.__Complete__ = function () {
+                this._buildComplete(), this.hammer.visible && this.hammer.complete(), this.spanner.visible && this.spanner.complete(), this.carry.visible && this.carry.complete(), this.burner.visible && this.burner.complete()
+            }, t.prototype._buildComplete = function () {
+                this._state = 3, this.buttonSelect.visible = !1, this.buttonGet.visible = !0, this.kDockStateView.complete()
+            }, t.prototype.UseBanner = function (t, e) {
+                var i = this;
+                this.hammer.visible && this.hammer.useBurner(), this.spanner.visible && this.spanner.useBurner(), this.carry.visible && this.carry.useBurner(), this.burner.visible = !0, this.burner.useBurner(function (n) {
+                    i.kDockStateView.updateProgress(t, e, n), i.normalBuildStage.update(n), i.largeBuildStage.update(n)
+                }, function () {
+                    i.buttonSelect.visible = !1, i.buttonGet.visible = !0, i.burner.complete(), i.hammerMotivation && i.hammer.useBurnerd(), i.spannerMotivation && i.spanner.useBurnerd(), i.kDockStateView.complete();
+                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
+                    n.default.sound.voice.play(t.toString(), 5)
+                })
+            }, t.prototype.Receive = function () {
+                this.burner.visible && this.burner.receive()
+            }, t.prototype.Received = function () {
+                this.hammer.visible && this.hammer.received(), this.spanner.visible && this.spanner.received(), this.carry.visible && this.carry.received(), this.__Standby__()
+            }, t.prototype.onUpdateTime = function (t) {
+                this.kDockStateView.update(t);
+                var e = this.completeTime - t, i = 1 - e / this.totalRequireTime;
+                this.normalBuildStage.update(i), this.largeBuildStage.update(i)
+            }, t.prototype.updateCondition = function (t, e) {
+                this.buttonGet.updateCondition(t, e), this.buttonSelect.updateCondition(t, e)
+            }, t.prototype.dispose = function () {
+                this.normalBuildStage.dispose(), this.largeBuildStage.dispose(), this.buttonGet.dispose(), this.buttonSelect.dispose(), this.kDockStateView.dispose(), this.noDockView.dispose(), this.burner.dispose(), this.spanner.dispose(), this.hammer.dispose(), this.carry.dispose(), this.layerBase.removeChildren(), this.layerBuild.removeChildren(), this.layerInteractive.removeChildren(), this.onClickGet = null, this.onClickSelect = null, this.onClickHighSpeed = null, this.onClickNoDock = null, this.completeTime = null, this.totalRequireTime = null, this.memDockId = null, this.syncAnimationKey = null, this.great_steelFrame_bg = null, this.normalBuildStage = null, this.largeBuildStage = null, this.buttonGet = null, this.buttonSelect = null, this.buttonHighSpeed = null, this.iconHighSpeedDisable = null, this.kDockStateView = null, this.noDockView = null, this.burner = null, this.spanner = null, this.hammer = null, this.carry = null, this.txt_open = null, this.steelFrame_mask_door = null, this.layerBase = null, this.layerBuild = null, this.layerInteractive = null, this.hammerMotivation = null, this.spannerMotivation = null, this.focusableNoDock = null, this.hasKey = null, this._state = null
+            }, t
+        }();
+    e.KDockView = y
 }

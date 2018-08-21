@@ -15,65 +15,48 @@ const function1432 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(243), r = function (t) {
+    var o = i(12), r = i(431), s = i(1433), a = i(1434), _ = i(15), u = i(1435), l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._friend = e, i._points = [], i
+            return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._touch_plane = new u.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._touch_plane), i
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i) {
-            if (this._clearPoints(), e <= 0) return !1;
-            var n;
-            switch (t) {
-                case 11:
-                    n = this._get11Points(e);
-                    break;
-                case 12:
-                    n = this._get12Points(e);
-                    break;
-                case 13:
-                    n = this._get13Points(e);
-                    break;
-                case 14:
-                    n = this._get14Points(e)
-            }
-            if (null == n) return !1;
-            for (var r = 0; r < n.length; r++) {
-                var s = new o.FormationPoint, a = n[r];
-                s.position.set(a.x, a.y), s.initializeForCombinedMain(this._friend, i), s.visible = !1, this.addChild(s), this._points.push(s)
-            }
-            return !0
-        }, e.prototype.show = function (t) {
-            void 0 === t && (t = 100);
-            for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
-                var o = n[i];
-                !function (i) {
-                    e.wait(t), e.call(function () {
-                        i.visible = !0
-                    })
-                }(o)
-            }
-        }, e.prototype.dispose = function () {
-            this._clearPoints()
-        }, e.prototype._clearPoints = function () {
-            for (var t = 0, e = this._points; t < e.length; t++) {
-                var i = e[t];
-                this.removeChild(i)
-            }
-            this._points = []
-        }, e.prototype._get11Points = function (t) {
-            var e = [];
-            return t > 0 && e.push(new PIXI.Point(-24, -20)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -20)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-24, -44)), t > 5 && e.push(new PIXI.Point(-24, 26)), e
-        }, e.prototype._get12Points = function (t) {
-            var e = [];
-            return t > 0 && e.push(new PIXI.Point(-24, -21)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -21)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-63, -21)), t > 5 && e.push(new PIXI.Point(-63, 0)), e
-        }, e.prototype._get13Points = function (t) {
-            var e = [];
-            return t > 0 && e.push(new PIXI.Point(-12, -21)), t > 1 && e.push(new PIXI.Point(-12, 0)), t > 2 && e.push(new PIXI.Point(-32, -21)), t > 3 && e.push(new PIXI.Point(-32, 0)), t > 4 && e.push(new PIXI.Point(11, -21)), t > 5 && e.push(new PIXI.Point(11, 0)), e
-        }, e.prototype._get14Points = function (t) {
-            var e = [];
-            return t > 0 && e.push(new PIXI.Point(-45, -21)), t > 1 && e.push(new PIXI.Point(-45, 0)), t > 2 && e.push(new PIXI.Point(-63, -21)), t > 3 && e.push(new PIXI.Point(-63, 0)), t > 4 && e.push(new PIXI.Point(-9, -12)), t > 5 && e.push(new PIXI.Point(-27, -12)), e
+        return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
+            get: function () {
+                return this._touch_plane
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._wave1.texture = _.BATTLE_MAIN.getTexture(85), this._wave2.texture = _.BATTLE_MAIN.getTexture(85), this._bg.texture = _.BATTLE_MAIN.getTexture(84)
+        }, e.prototype.show = function (t, e, i, n) {
+            0 == e ? this._show(t, i) : this._showCombined(t, e, i, n)
+        }, e.prototype.wave = function () {
+            var t = this;
+            null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave1.scale.set(0), t._wave1.alpha = 1
+            }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
+            }))
+        }, e.prototype._show = function (t, e) {
+            var i = this, n = createjs.Tween.get(this._bg);
+            n.to({ scaleX: 1, scaleY: 1 }, 800), e <= 0 || n.call(function () {
+                var n = new r.FormationPoints(i._friend);
+                n.scale.set(.65), n.initialize(t, e), i._points.addChild(n), 1 == i._friend && (n.rotation = Math.PI), n.show()
+            })
+        }, e.prototype._showCombined = function (t, e, i, n) {
+            var o = this, r = createjs.Tween.get(this._bg);
+            r.to({ scaleX: 1, scaleY: 1 }, 800), i <= 0 || r.call(function () {
+                var r = new s.FormationPointsCombinedMain(o._friend);
+                r.initialize(t, i, e), o._points.addChild(r);
+                var _ = new a.FormationPointsCombinedSub(o._friend);
+                _.initialize(t, n), o._points.addChild(_), 0 == o._friend && (r.rotation = Math.PI, _.rotation = Math.PI), r.show(), _.show()
+            })
         }, e
     }(PIXI.Container);
-    e.FormationPointsCombinedMain = r
+    e.Rader = l
 }

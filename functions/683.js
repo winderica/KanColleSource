@@ -15,33 +15,22 @@ const function683 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(81), r = i(110), s = i(4), a = i(32), _ = i(55), u = i(318), l = function (t) {
         function e() {
-            var e = t.call(this) || this, i = o.ORGANIZE_MAIN.getTexture(31), n = o.ORGANIZE_MAIN.getTexture(32);
-            e.frameShutterLeft = new PIXI.Sprite(i), e.frameShutterRight = new PIXI.Sprite(n);
-            var r = new PIXI.Graphics, s = new PIXI.Graphics;
-            return r.beginFill(0, 1), r.moveTo(0, 15), r.lineTo(15, 0), r.lineTo(247, 0), r.lineTo(247, 157), r.lineTo(13, 157), r.lineTo(0, 142), r.lineTo(0, 15), r.endFill(), s.beginFill(0, 1), s.moveTo(0, 0), s.lineTo(232, 0), s.lineTo(247, 16), s.lineTo(247, 141), s.lineTo(231, 157), s.lineTo(0, 157), s.lineTo(0, 0), s.endFill(), s.x = s.width, e.frameShutterLeft.mask = r, e.frameShutterRight.mask = s, e.frameShutterRight.position.set(e.frameShutterRight.width, 0), e.frameShutterLeft.position.set(0, 0), e.frameShutterRight.position.set(247, 0), e.frameShutterLeft.interactive = !0, e.frameShutterRight.interactive = !0, e.addChild(e.frameShutterLeft, e.frameShutterRight, r, s), e
+            var e = t.call(this) || this, i = _.ORGANIZE_MAIN.getTexture(30);
+            e.background = new PIXI.Sprite(i);
+            e.textHp = new s.TextBox(15, "white"), e.textLv = new s.TextBox(21, "white"), e.textHougeki = new s.TextBox(15, "white"), e.textTaiku = new s.TextBox(15, "white"), e.textRaigeki = new s.TextBox(15, "white"), e.textSoukou = new s.TextBox(15, "white"), e.shipBanner = new a.ShipBanner, e.rateView = new o.StarRateView, e.hpGaugeView = new r.HpGaugeView, e.expGaugeView = new u.ExpGaugeView, e.textHp.anchor.set(1, 0), e.textHp.position.set(229, 64), e.textLv.anchor.set(1, 0), e.textLv.position.set(237, 20), e.shipBanner.position.set(244, 18), e.textHougeki.anchor.set(1, 0), e.textHougeki.position.set(117, 90), e.textRaigeki.position.set(117, 120), e.textRaigeki.anchor.set(1, 0), e.textTaiku.position.set(232, 90), e.textTaiku.anchor.set(1, 0), e.textSoukou.position.set(232, 120), e.textSoukou.anchor.set(1, 0), e.rateView.position.set(18, 63), e.hpGaugeView.position.set(132, 54), e.expGaugeView.position.set(241, 87), e.containerName = new PIXI.Container;
+            var n = new PIXI.Graphics;
+            return e.textName = new s.TextBox(35, "white"), n.beginFill(0, 0), n.drawRect(0, 0, 105, 72), n.endFill(), e.containerName.position.set(23, 18), e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.background.interactive = !0, e.addChild(e.background, e.hpGaugeView, e.expGaugeView, e.rateView, e.textHp, e.textLv, e.containerName, e.textHougeki, e.textTaiku, e.textRaigeki, e.textSoukou, e.shipBanner), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.frameShutterLeft.removeChildren(), this.frameShutterRight.removeChildren(), this.frameShutterLeft.mask = null, this.frameShutterRight.mask = null, this.frameShutterLeft = null, this.frameShutterRight = null, this.removeChildren()
-        }, e.prototype.openAnimation = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
-            this.frameShutterLeft.position.x = 0, createjs.Tween.get(this.frameShutterLeft).to({ x: -247 }, e).call(function () {
-                i.cacheAsBitmap = !0, t()
-            }), this.frameShutterRight.position.x = 247, createjs.Tween.get(this.frameShutterRight).to({ x: 494 }, e)
-        }, e.prototype.closeAnimation = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
-            this.frameShutterLeft.position.x = -247, createjs.Tween.get(this.frameShutterLeft).to({ x: 0 }, e).call(function () {
-                i.cacheAsBitmap = !0, t()
-            }), this.frameShutterRight.position.x = 494, createjs.Tween.get(this.frameShutterRight).to({ x: 247 }, e)
-        }, e.prototype.open = function () {
-            this.cacheAsBitmap = !1, this.frameShutterLeft.x = -247, this.frameShutterRight.x = 494, this.cacheAsBitmap = !0
-        }, e.prototype.close = function () {
-            this.cacheAsBitmap = !1, this.frameShutterLeft.x = 0, this.frameShutterRight.x = 247, this.cacheAsBitmap = !0
+            this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.rateView.dispose(), this.shipBanner.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.containerName = null, this.hpGaugeView = null, this.expGaugeView = null, this.rateView = null, this.shipBanner = null, this.textHp = null, this.textLv = null, this.textName = null, this.textHougeki = null, this.textTaiku = null, this.textRaigeki = null, this.textSoukou = null, this.background = null, this.removeChildren()
+        }, e.prototype._updateName_ = function (t, e) {
+            this.containerName.cacheAsBitmap = !1, this.textName.style.fill = e ? 16766947 : "white", this.textName.text = t, this.containerName.cacheAsBitmap = !0
+        }, e.prototype.update = function (t, e) {
+            this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label), this.textHougeki.text = t.karyoku.toString(), this.textTaiku.text = t.taiku.toString(), this.textRaigeki.text = t.raisou.toString(), this.textSoukou.text = t.soukou.toString(), this._updateName_(t.name, t.isMarriage()), this.textHp.text = t.hpNow + "/" + t.hpMax, this.background.interactive = !0, this.textLv.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.rateView.update(t.starNum), this.hpGaugeView.update(t.hpNow, t.hpMax), this.expGaugeView.update(t.expNowRate)
         }, e
     }(PIXI.Container);
-    e.ShipSlotShutter = r
+    e.ShipInfo = l
 }

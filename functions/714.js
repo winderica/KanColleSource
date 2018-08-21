@@ -15,40 +15,15 @@ const function714 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(715), a = i(131), _ = i(20), u = i(55), l = i(311), c = i(716), h = function (t) {
+    var o = i(11), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._loadPreset = function () {
-                var t = new c.PresetDeckAPI;
-                t.start(function () {
-                    var e = t.result;
-                    i.organizeScene.preInitialize(e), i._endTask()
-                })
-            }, i.organizeScene = e, i
+            return i.organizeSceneMain = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResource()
-        }, e.prototype._loadResource = function () {
-            var t = this;
-            (new s.TaskLoadResourcesOrganize).start(function () {
-                t._uploadToGPU_common()
-            })
-        }, e.prototype._uploadToGPU_common = function () {
-            var t = this;
-            o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
-                o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
-                    t._uploadToGPU_organize()
-                })
-            })
-        }, e.prototype._uploadToGPU_organize = function () {
-            var t = this;
-            o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
-                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
-                    t._loadPreset()
-                })
-            })
+            this.organizeSceneMain.prefinalize(), this._completedEnd()
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = h
+    }(o.TaskBase);
+    e.PreFinalizeTask = r
 }

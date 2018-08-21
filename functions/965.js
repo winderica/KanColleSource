@@ -15,25 +15,19 @@ const function965 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(361), s = i(966), a = function (t) {
-        function e(e, i, n) {
-            var r = t.call(this, n) || this;
-            return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
+    var o = i(42), r = i(360), s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i._overlay = new PIXI.Sprite, i.addChild(i._overlay), i._t = createjs.Tween.get(i._overlay, { loop: !0 }).to({ alpha: 0 }, 600).to({ alpha: 1 }, 600), i._t.setPaused(!0), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "panel", {
-            get: function () {
-                return this._panel
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i) {
-            this._panel.initialize(t, e, i)
-        }, e.prototype.activate = function () {
-            t.prototype.activate.call(this), this._panel.activate()
-        }, e.prototype.deactivate = function () {
-            t.prototype.deactivate.call(this), this._panel.deactivate()
+        return n(e, t), e.prototype.initialize = function (e) {
+            this._overlay.texture = o.SALLY_EVENT.getTexture(3), this.texture = o.SALLY_EVENT.getTexture(2), t.prototype.initialize.call(this, e)
         }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._panel.dispose()
+            t.prototype.dispose.call(this), this._t.setPaused(!1), this._t = null
+        }, e.prototype._update = function (t) {
+            1 == this.selected ? (this._t.setPaused(!0), this._overlay.alpha = 1) : 1 == t ? (this._t.setPaused(!0), this._overlay.alpha = 1) : this._t.setPaused(!1)
         }, e
-    }(r.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = a
+    }(r.AreaIconBtn);
+    e.EventAreaIconBtn = s
 }

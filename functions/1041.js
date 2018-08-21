@@ -15,26 +15,19 @@ const function1041 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(13), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._view = e, i
+    var o = i(2), r = i(24), s = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("record");
+            e.add("record_parts.json").add("record_mini.json").add("record_menu.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
     }(o.TaskBase);
-    e.PreFinalizeTask = s;
-    var a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene_dispose_delegate = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, this._endTask()
-        }, e
-    }(o.TaskBase);
-    e.FinalizeTask = a
+    e.TaskLoadResources = s
 }

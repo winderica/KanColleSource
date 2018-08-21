@@ -15,18 +15,25 @@ const function1072 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(3), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
+    var o = i(1), r = i(82), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick(i._target)
+            }, i._cb_onClick = e, i._bg = new PIXI.Graphics, i._bg.beginFill(0, 0), i._bg.drawRect(0, 0, 260, 260), i._bg.endFill(), i.addChild(i._bg), i._img = new PIXI.Sprite, i.addChild(i._img), i.scale.set(1), i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = r.ALBUM_MAIN.getTexture(91), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
-        }, e.prototype._createTextBox = function (t) {
-            var e = new o.TextBox(23, 16777215);
-            return e.y = t - 3, this.addChild(e), e
+        return n(e, t), e.prototype.update = function (t) {
+            if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, null == t) return null;
+            var e = t.mst_ids[0];
+            new r.TaskLoadSlotResource("card_t", this._img, e).start()
+        }, e.prototype.activate = function () {
+            null != this._target && 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
         }, e
-    }(PIXI.Sprite);
-    e.ShipDetailStatusBox = s
+    }(PIXI.Container);
+    e.MainItemSlot = s
 }

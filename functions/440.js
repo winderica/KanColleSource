@@ -15,8 +15,8 @@ const function440 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = (i(0), i(45)), s = i(69), a = i(27), _ = i(19), u = i(28), l = i(40), c = i(6), h = i(1326),
-        p = i(136), d = i(175), f = i(137), y = i(177), v = function (t) {
+    var o = i(5), r = (i(0), i(45)), s = i(69), a = i(27), _ = i(19), u = i(28), l = i(40), c = i(6), h = i(1328),
+        p = i(136), d = i(175), f = i(137), y = i(177), v = i(441), g = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
                 return e._showResult = function () {
@@ -58,6 +58,11 @@ const function440 = function (t, e, i) {
                 })
             }, e.prototype._antiAircraft = function () {
                 null == this._scene.data.model.gekimetsu_data && t.prototype._antiAircraft.call(this)
+            }, e.prototype._showSeikuResult = function () {
+                if (null != this._scene.data.model.gekimetsu_data) {
+                    var t = this._scene.view.layer_content;
+                    new v.TaskAirWarShowSeiku(t, this.data_.seiku).start()
+                }
             }, e.prototype._createFriendPlanes = function () {
                 for (var t = (this.data_.airunit_id, this.data_.squadrons.length), e = o.default.height / Math.max(t, 8), i = o.default.height / 2 - e * t / 2, n = [], r = 0; r < t; r++) {
                     var s = this.data_.squadrons[r], a = s.mst_id, _ = new PIXI.Point(-75, i + e * r + .5 * e);
@@ -75,5 +80,5 @@ const function440 = function (t, e, i) {
                 return r.PlaneConst.getAirUnitPlaneType()
             }, e
         }(d.TaskAircraftFlightBase);
-    e.TaskAirUnit = v
+    e.TaskAirUnit = g
 }

@@ -15,157 +15,64 @@ const function1370 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(16), a = i(21), _ = i(12), u = i(6), l = i(15), c = i(88), h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new s.FadeBox(.9, 0), e._chara = new PIXI.Container, e._layer_item1 = new p, e._layer_item2 = new d, e._layer_item3 = new f, e._layer_wave = new y, e._layer_names = new v, e._bg.hide(0), e._layer_item1.x = o.default.width / 2, e._layer_item2.x = o.default.width / 2, e._layer_item3.x = o.default.width / 2, e._layer_wave.x = o.default.width / 2, e._layer_names.x = o.default.width / 2, e.addChild(e._bg), e.addChild(e._chara), e.addChild(e._layer_item1), e.addChild(e._layer_item2), e.addChild(e._layer_item3), e.addChild(e._layer_wave), e.addChild(e._layer_names), e
+    var o = i(2), r = i(16), s = i(462), a = i(1371), _ = i(63), u = i(44), l = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._attacker = e, r._slot1 = i, r._slot2 = n, r._slot3 = o, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpRDJ, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
             get: function () {
-                return this._bg
+                return this._view
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_item1", {
-            get: function () {
-                return this._layer_item1
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_item2", {
-            get: function () {
-                return this._layer_item2
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_item3", {
-            get: function () {
-                return this._layer_item3
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_wave", {
-            get: function () {
-                return this._layer_wave
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_names", {
-            get: function () {
-                return this._layer_names
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            this._layer_item1.initialize(t, e.getSlot2Texture()), this._layer_item2.initialize(t, e.getSlot3Texture()), this._layer_item3.initialize(t, e.getSlot1Texture()), this._layer_wave.initialize(t), this._layer_names.initialize(t, e.slot_mst_id2, e.slot_mst_id3, e.slot_mst_id1)
-        }, e.prototype.dispose = function () {
-            this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.CutinCanvasSpRDJ = h;
-    var p = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._item = new _.Sprite, e._bg.anchor.set(.5), e._item.anchor.set(.5), e._bg.position.set(281, 968), e._item.position.set(333, 774), e._item.scale.set(.9), e._bg.alpha = 0, e._item.alpha = 0, e.addChild(e._bg), e.addChild(e._item);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680, .5), i.drawPolygon([new PIXI.Point(384, 0), new PIXI.Point(690, 0), new PIXI.Point(498, 720), new PIXI.Point(189, 720)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this.scale.x = t ? 1 : -1;
-            var i = t ? 5 : 4;
-            this._bg.texture = c.BATTLE_TELOP_SP.getTexture(i), this._item.texture = e
-        }, e.prototype.show = function (t) {
-            createjs.Tween.get(this._bg).wait(t).call(function () {
-                u.SE.play("105")
-            }).to({ x: 381, y: 585, alpha: 1 }, 233), createjs.Tween.get(this._item).wait(t).to({
-                x: 479,
-                y: 248,
+        }), e.prototype.preload = function (t) {
+            if (null != this._preload_task) t(); else {
+                var e = this._attacker.mst_id, i = this._attacker.isDamaged(),
+                    n = null == this._slot1 ? 0 : this._slot1.mstID,
+                    o = null == this._slot2 ? 0 : this._slot2.mstID,
+                    r = null == this._slot3 ? 0 : this._slot3.mstID;
+                this._preload_task = new s.CutinResourcesPreloadTask(e, i, !0, n, o, r), this._preload_task.start(function () {
+                    t()
+                })
+            }
+        }, e.prototype._start = function () {
+            this._ready()
+        }, e.prototype._ready = function () {
+            this._ship.texture = this._preload_task.getShipTexture();
+            var t = this._preload_task.getShipOffset();
+            this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new u.ShipFlash(this._preload_task.getShipTexture()), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._friend ? (this._canvas.chara.x = -225, this._canvas.chara.y = -87) : (this._canvas.chara.x = 483, this._canvas.chara.y = -138), this._canvas.initialize(this._friend, this._preload_task), this._anim1()
+        }, e.prototype._anim1 = function () {
+            var t = this;
+            this._canvas.bg.show(366), createjs.Tween.get(this._canvas.chara).wait(200).to({
+                x: (this._friend ? 0 : 465) - 104,
                 alpha: 1
-            }, 233).call(function () {
-                u.SE.play("109")
+            }, 366).wait(1200).call(function () {
+                t._anim2()
+            }), this._canvas.layer_item1.show(400), this._canvas.layer_item2.show(833), this._canvas.layer_item3.show(1266), this._canvas.layer_wave.show(533), this._canvas.layer_names.show(400)
+        }, e.prototype._anim2 = function () {
+            var t = this;
+            this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
+                t._shipFlash.play()
+            }).wait(200).call(function () {
+                t._anim3()
             })
-        }, e.prototype.hide = function (t) {
-            createjs.Tween.get(this._item).wait(t).to({ scaleX: 1.15, scaleY: 1.15 }, 500)
-        }, e
-    }(PIXI.Container), d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._bg.scale.x = -1, e._bg.anchor.set(.5), e._bg.position.set(30, -11), e._bg.alpha = 0, e.addChild(e._bg), e._item = new _.Sprite, e._item.anchor.set(.5), e._item.position.set(18, -174), e._item.alpha = 0, e.addChild(e._item);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680, .5), i.drawPolygon([new PIXI.Point(-120, 0), new PIXI.Point(194, 0), new PIXI.Point(384, 720), new PIXI.Point(75, 720)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this.scale.x = t ? 1 : -1;
-            var i = t ? 5 : 4;
-            this._bg.texture = c.BATTLE_TELOP_SP.getTexture(i), this._item.texture = e
-        }, e.prototype.show = function (t) {
-            createjs.Tween.get(this._bg).wait(t).call(function () {
-                u.SE.play("105")
-            }).to({ x: 194, y: 585, alpha: 1 }, 233), createjs.Tween.get(this._item).wait(t).to({
-                x: 159,
-                y: 407,
-                alpha: 1
-            }, 233).call(function () {
-                u.SE.play("109")
+        }, e.prototype._anim3 = function () {
+            var t = this;
+            this._canvas.layer_item1.hide(0), this._canvas.layer_item2.hide(0), this._canvas.layer_item3.hide(0);
+            var e = new _.IntensiveLines;
+            e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({ alpha: 1 }, 200);
+            var i = new r.FadeBox(1, 16777215);
+            i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 500).call(function () {
+                t._anim4(e, i)
             })
-        }, e.prototype.hide = function (t) {
-            createjs.Tween.get(this._item).wait(t).to({ scaleX: 1.15, scaleY: 1.15 }, 500)
-        }, e
-    }(PIXI.Container), f = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._canvas = new a.Container, e._item = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(-386, 1133), e._canvas.position.set(-267, 908), e._canvas.scale.set(1.35), e._bg.alpha = 0, e._canvas.rotation = Math.PI / 180 * 105, e._canvas.alpha = 0, e.addChild(e._bg), e._canvas.addChild(e._item), e.addChild(e._canvas);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680, .5), i.drawPolygon([new PIXI.Point(-210, 0), new PIXI.Point(98, 0), new PIXI.Point(-98, 720), new PIXI.Point(-413, 720)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this.scale.x = t ? 1 : -1;
-            var i = t ? 5 : 4;
-            this._bg.texture = c.BATTLE_TELOP_SP.getTexture(i), this._item.texture = e, this._item.x = -Math.round(this._item.width / 2), this._item.y = -Math.round(this._item.height / 2)
-        }, e.prototype.show = function (t) {
-            createjs.Tween.get(this._bg).wait(t).call(function () {
-                u.SE.play("105")
-            }).to({ x: -216, y: 585, alpha: 1 }, 233), createjs.Tween.get(this._canvas).wait(t).to({
-                x: -105,
-                y: 270,
-                alpha: 1
-            }, 233).call(function () {
-                u.SE.play("109")
+        }, e.prototype._anim4 = function (t, e) {
+            var i = this;
+            this._canvas.dispose(), createjs.Tween.get(t).to({ alpha: 0 }, 300), createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
+                t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
             })
-        }, e.prototype.hide = function (t) {
-            createjs.Tween.get(this._canvas).wait(t).to({ scaleX: 1.6, scaleY: 1.6 }, 500)
+        }, e.prototype._endTask = function () {
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, this._preload_task = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container), y = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._w1 = new _.Sprite, e._w2 = new _.Sprite, e._w3 = new _.Sprite, e._w1.anchor.set(.5), e._w2.anchor.set(.5), e._w3.anchor.set(.5), e._w1.scale.set(0), e._w2.scale.set(0), e._w3.scale.set(0), e.addChild(e._w1), e.addChild(e._w2), e.addChild(e._w3), e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.scale.x = t ? 1 : -1, this._w1.position.set(479, 141), this._w2.position.set(215, 516), this._w3.position.set(-146, 278), this._w1.texture = l.BATTLE_MAIN.getTexture(109), this._w2.texture = l.BATTLE_MAIN.getTexture(109), this._w3.texture = l.BATTLE_MAIN.getTexture(109)
-        }, e.prototype.show = function (t) {
-            createjs.Tween.get(this._w1).wait(t).to({ scaleX: 2.27, scaleY: 2.27 }, 200).to({
-                scaleX: 2.65,
-                scaleY: 2.65,
-                alpha: 0
-            }, 333), createjs.Tween.get(this._w2).wait(t + 433).to({
-                scaleX: 2.27,
-                scaleY: 2.27
-            }, 200).to({
-                scaleX: 2.65,
-                scaleY: 2.65,
-                alpha: 0
-            }, 333), createjs.Tween.get(this._w3).wait(t + 866).to({
-                scaleX: 2.27,
-                scaleY: 2.27
-            }, 200).to({ scaleX: 2.65, scaleY: 2.65, alpha: 0 }, 333)
-        }, e
-    }(PIXI.Container), v = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._name1 = new PIXI.Sprite, e._name2 = new PIXI.Sprite, e._name3 = new PIXI.Sprite, e._name1.scale.set(.76), e._name2.scale.set(.76), e._name3.scale.set(.76), e._name1.alpha = 0, e._name2.alpha = 0, e._name3.alpha = 0, e.addChild(e._name1), e.addChild(e._name2), e.addChild(e._name3), e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-            this._name1.anchor.set(t ? 1 : 0, .5), this._name2.anchor.set(t ? 1 : 0, .5), this._name3.anchor.set(t ? 1 : 0, .5), this._name1.position.set(t ? 578 : -578, 615), this._name2.position.set(t ? 578 : -578, 480), this._name3.position.set(t ? 578 : -578, 345), this._name1.texture = r.default.resources.getSlotitem(e, "btxt_flat"), this._name2.texture = r.default.resources.getSlotitem(i, "btxt_flat"), this._name3.texture = r.default.resources.getSlotitem(n, "btxt_flat")
-        }, e.prototype.show = function (t) {
-            createjs.Tween.get(this._name3).wait(t + 866).to({ alpha: 1 }, 233), createjs.Tween.get(this._name2).wait(t + 433).to({ alpha: 1 }, 233), createjs.Tween.get(this._name1).wait(t).to({ alpha: 1 }, 233)
-        }, e
-    }(PIXI.Container)
+    }(o.TaskBase);
+    e.CutinSpRDJ = l
 }

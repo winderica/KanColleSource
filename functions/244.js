@@ -15,23 +15,30 @@ const function244 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
+    var o = i(170), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e._gear.position.set(32, 45), e.addChild(e._gear), e._text = new PIXI.Sprite, e._text.x = 60, e.addChild(e._text), e
+            return null !== t && t.apply(this, arguments) || this
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(176), this._gear.texture = o.COMMON_MISC.getTexture(178)) : (this._bg.texture = o.COMMON_MISC.getTexture(177), this._gear.texture = o.COMMON_MISC.getTexture(179))
-        }, e.prototype.update = function (t) {
-            this._text.texture = t, this._text.y = Math.round(45 - this._text.height / 2)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._gear, { loop: !0 }).to({ rotation: 2 * Math.PI }, 6e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.texture = 1 == t ? o.SALLY_JIN.getTexture(13) : o.SALLY_JIN.getTexture(12)
+        }, e.prototype.initializeForCombinedMain = function (t, e) {
+            if (1 == t) switch (e) {
+                case 1:
+                    this.texture = o.SALLY_JIN.getTexture(27);
+                    break;
+                case 2:
+                    this.texture = o.SALLY_JIN.getTexture(31);
+                    break;
+                case 3:
+                    this.texture = o.SALLY_JIN.getTexture(32);
+                    break;
+                default:
+                    this.texture = PIXI.Texture.EMPTY
+            } else this.texture = o.SALLY_JIN.getTexture(29)
+        }, e.prototype.initializeForCombinedSub = function (t) {
+            this.texture = 1 == t ? o.SALLY_JIN.getTexture(28) : o.SALLY_JIN.getTexture(30)
         }, e
-    }(PIXI.Container);
-    e.PhaseTitle = r
+    }(PIXI.Sprite);
+    e.FormationPoint = r
 }

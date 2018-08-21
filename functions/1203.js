@@ -15,17 +15,42 @@ const function1203 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(24), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(47), s = i(1204), a = i(1206), _ = i(1207), u = i(1219), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._startBattleResult = function () {
+                n._result.initialize(), n.addChild(n._result), n._result.shutter.close(), n._result.once("complete", n._endBattleResult);
+                var t = n._taskMain.model;
+                n._result.start(t)
+            }, n._endBattleResult = function () {
+                n._battle.dispose(), o.default.scene.change(0)
+            }, n._battle = e, n._result = i, n._view = new u.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.UIImageLoader("prac");
-            e.add("prac_main.json"), e.load(function () {
-                t._endTask()
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "battle", {
+            get: function () {
+                return this._battle
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "result", {
+            get: function () {
+                return this._result
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.start = function () {
+            var t = this;
+            this._taskMain.start(function () {
+                t._startBattle()
             })
+        }, e.prototype._startBattle = function () {
+            this._battle.once("complete", this._startBattleResult), this._battle.start()
+        }, e.prototype.getPreInitializeTask = function (t, e) {
+            return this._model = e, this._taskMain = new _.TaskMain(this, this._model), new s.TaskInitPre(this)
+        }, e.prototype.getInitializeTask = function (t) {
+            return new a.TaskInit(this)
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesPractice = s
+    }(r.SceneBase);
+    e.PracticeScene = l
 }

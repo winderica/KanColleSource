@@ -15,22 +15,33 @@ const function1458 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(11), s = i(1459), a = function (t) {
-        function e(e, i, n, o) {
-            void 0 === o && (o = !1);
-            var r = t.call(this) || this;
-            return r._hideTelop = function () {
-                createjs.Tween.get(r._telop).to({ alpha: 0 }, 300).call(function () {
-                    r._layer.removeChild(r._telop), r._telop = null, r._endTask()
-                })
-            }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
+    var o = i(0), r = i(8), s = i(58), a = i(79), _ = i(206), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._showTelop()
-        }, e.prototype._showTelop = function () {
-            this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "particle", {
+            get: function () {
+                return this._particle
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message_box", {
+            get: function () {
+                return this._message_box
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "white", {
+            get: function () {
+                return this._white
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(i, e)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._bg = null, this._item = null, this._particle.deactivate(), this._particle = null, this._message_box.deactivate(), this._message_box = null, this._white = null
         }, e
-    }(r.TaskBase);
-    e.TaskBonusTelop = a
+    }(PIXI.Container);
+    e.BonusSlot = u
 }

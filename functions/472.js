@@ -15,60 +15,49 @@ const function472 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(165), r = i(4), s = i(36), a = function (t) {
+    var o = i(29), r = i(9), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e
+            return e._particles = [], e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "user_name", {
-            get: function () {
-                return this._user_name
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "level", {
-            get: function () {
-                return this._level
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "deck_name", {
-            get: function () {
-                return this._deck_name
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "medal", {
-            get: function () {
-                return this._medal
-            }, enumerable: !0, configurable: !0
-        }), e
+        return n(e, t), e.prototype.addParticle = function (t, e) {
+            var i = new a;
+            i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
+        }, e.prototype.startAnimation = function () {
+            for (var t = 0, e = this._particles; t < e.length; t++) {
+                e[t].startAnimation()
+            }
+        }, e.prototype.stopAnimation = function () {
+            for (var t = 0, e = this._particles; t < e.length; t++) {
+                e[t].stopAnimation()
+            }
+        }, e
     }(PIXI.Container);
-    e.DeckInfo = a;
-    var _ = function (t) {
+    e.ParticleLayer = s;
+    var a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._text = new r.TextBox(21, 16774898), e._text.x = 29, e._text.y = -1, e.addChild(e._text), e
+            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text.text
-            }, set: function (t) {
-                this._text.text = t
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = s.BATTLE_RESULT_MAIN.getTexture(68)
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
+        }, e.prototype.startAnimation = function () {
+            var t = this;
+            if (null == this._anim) {
+                var e = 2e3 * Math.random();
+                this._anim = createjs.Tween.get(this).wait(e).to({ scaleX: 1, scaleY: 1 }, 100).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 200).call(function () {
+                    t._anim = null, t.startAnimation()
+                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
+                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
+                createjs.Tween.get(this._r_canvas).wait(e).to({ rotation: i }, 300)
+            }
+        }, e.prototype.stopAnimation = function () {
+            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
         }, e
-    }(PIXI.Sprite), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._text = new r.TextBox(21, 16774898), e._text.x = 71, e._text.y = -3, e.addChild(e._text), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text.text
-            }, set: function (t) {
-                this._text.text = t
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = s.BATTLE_RESULT_MAIN.getTexture(76)
-        }, e
-    }(PIXI.Sprite)
+    }(o.Container)
 }

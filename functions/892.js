@@ -15,78 +15,119 @@ const function892 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(157), a = i(101), _ = i(158), u = i(211), l = i(4), c = i(6), h = i(20),
-        p = i(35), d = i(86), f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.ITEM_NUM = 10, e._onClick = function (t, i) {
-                    e.onClickShip(t, i)
-                };
-                var i = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(h.COMMON_MAIN.getTexture(36));
-                e.listItems = new Array, n.position.set(45, 12), e.addChild(n);
-                for (var o = 0; o < e.ITEM_NUM; o++) {
-                    var r = new y, s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(35));
-                    r.onClick = e._onClick, s.position.set(48, 46 * o + 46 + 43), r.position.set(0, 46 * o + 46), e.addChild(s, r), e.listItems.push(r)
-                }
-                return e
+    var o = i(5), r = i(0), s = i(1), a = i(49), _ = i(31), u = i(8), l = i(83), c = i(220), h = i(37), p = i(6),
+        d = i(20), f = i(35), y = i(351), v = i(86), g = i(893), m = i(894), b = i(896), w = i(353),
+        x = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._pageIndex = 0, i.animation = { progress: 0 }, i._onClickShip = function (t, e) {
+                    var n = r.default.model.ship.get(t), o = v.Util.ShipDisassemblyValidation(t);
+                    if (0 == o) return !(t == i.memShipId || i.checkedMemShipIdList.length > 0) && (i.shipDisassemblyConfirm.update(n, !1, o, [t]), i.shipDisassemblyConfirm.visibleContainer(!0), i.memShipId = t, !1);
+                    var s = i.checkedMemShipIdList.indexOf(t);
+                    s < 0 ? i.checkedMemShipIdList.push(t) : i.checkedMemShipIdList.splice(s, 1), i.shipDisassemblyChoice.toggleCheckBox(e);
+                    var a = r.default.model.deck.isInDeck(t),
+                        _ = !!a && null != r.default.model.deck.get(a[0]).expedition;
+                    i.shipDisassemblyConfirm.update(n, _, o, i.checkedMemShipIdList), i.memShipId = t
+                }, i._onChangePage = function (t) {
+                    if (i._pageIndex != t) {
+                        i.memShipId = null;
+                        var e = i._getShipsInPage(i.ships, t);
+                        i.shipDisassemblyChoice.update(e), i.shipDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemShipIdList = []
+                    }
+                }, i._onClickDisassembly = function (t, e) {
+                    var n = new b.DestroyShipAPI(t, e), s = i.shipDisassemblyConfirm.shipBanner,
+                        a = new w.DisassemblyAnimation(240, 60);
+                    a.position.set(s.x, s.y), r.default.view.clickGuard = !0, n.start(function () {
+                        var t = new PIXI.Graphics;
+                        t.beginFill(0, .2), t.drawRect(0, 0, o.default.width, o.default.height), t.endFill(), r.default.view.overLayer.addChild(t), s.parent.addChild(a);
+                        var e = function () {
+                            p.SE.play("201")
+                        };
+                        createjs.Tween.get(s).call(function () {
+                            e(), a.play(5)
+                        }).to({ alpha: .33 }, 1e3).call(e).to({ alpha: .66 }, 1e3).call(e).to({ alpha: 1 }, 1e3).call(function () {
+                            a.dispose(), t.clear(), r.default.view.overLayer.removeChild(t), s.parent.removeChild(a), s.alpha = 1;
+                            var e = r.default.model.ship.getAll();
+                            _.ShipUtil.sort(e, i.shipSortKeyType);
+                            var n = i._getPage(e.length), o = i._pageIndex;
+                            n <= i._pageIndex && (o = n - 1) < 0 && (o = 0);
+                            var u = i._getShipsInPage(e, o);
+                            i.pagerView.init(n), i.pagerView.changePage(o), i.ships = e, i._pageIndex = o, i.shipDisassemblyChoice.update(u), i.shipDisassemblyConfirm.visibleContainer(!1), i.checkedMemShipIdList = [], r.default.view.portMain.updateInfo(), r.default.view.clickGuard = !1
+                        }).play(null)
+                    })
+                }, i._onClickBackground = function () {
+                    i.onComplete()
+                }, i._onClickSort = function () {
+                    i.memShipId = null, i.checkedMemShipIdList = [], i.shipDisassemblyConfirm.visibleContainer(!1);
+                    var t;
+                    switch (i.shipSortKeyType) {
+                        case 0:
+                            t = 2;
+                            break;
+                        case 2:
+                            t = 3;
+                            break;
+                        case 3:
+                            t = 4;
+                            break;
+                        case 4:
+                            t = 0
+                    }
+                    _.ShipUtil.sort(i.ships, t);
+                    var e = i._getShipsInPage(i.ships, i._pageIndex);
+                    i.shipDisassemblyChoice.update(e), i.shipSortButton.update(t), y.ArsenalSceneMemory.shipSortKeyType = i.shipSortKeyType = t
+                }, i.mainView = e, i.list_tit_bg_0 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(60)), i.list_tit_bg_1 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(60)), i.shipSortButton = new c.ShipSortButton, i.shipSortButton.position.set(582, 7), i.shipSortButton.onClick = i._onClickSort, i.pagerView = new l.PagerView, i.pagerView.position.set(42, 529), i.pagerView.onChangePage = i._onChangePage, i.shipDisassemblyChoice = new g.ShipDisassemblyChoice, i.shipDisassemblyChoice.onClickShip = i._onClickShip, i.shipDisassemblyChoice.addChild(i.shipSortButton, i.pagerView), i.shipDisassemblyConfirm = new m.ShipDisassemblyConfirm, i.shipDisassemblyConfirm.position.set(651, -16), i.shipDisassemblyConfirm.onClickStart = i._onClickDisassembly, i.blue_txt_01 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(0)), i.blue_txt_01.anchor.set(0, .5), i.blue_txt_01.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.blue_txt_11 = new PIXI.Sprite(f.ARSENAL_MAIN.getTexture(9)), i.blue_txt_11.anchor.set(0, .5), i.blue_txt_11.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.list_tit_bg_0.position.set(0, -37), i.list_tit_bg_1.position.set(654, -37), i.list_tit_bg_0.addChild(i.blue_txt_01), i.list_tit_bg_1.addChild(i.blue_txt_11), i.addChild(i.shipDisassemblyChoice, i.shipDisassemblyConfirm, i.list_tit_bg_0, i.list_tit_bg_1), i.position.set(1200, 139);
+                return i.dialogBackground = new u.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = o.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.checkedMemShipIdList = [], i.dialogBackground.on(s.EventType.CLICK, i._onClickBackground), i
             }
 
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose(), this.listItems[t] = null;
-                this.listItems = null, this._onClick = this.onClickShip = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this.listItems.length; e++) {
-                    var i = this.listItems[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e], r = o.default.model.deck.isInDeck(n.memID),
-                            s = 0 == d.Util.ShipDisassemblyValidation(n.memID) ? 1 : 2;
-                        i.update(n.memID, n.shipTypeName, n.name, n.level, n.hpMax, n.karyoku, n.raisou, n.taiku, n.speed, n.isLocked(), n.hasLockedSlotitem(), r, s, e), i.visible = !0
-                    }
-                }
-            }, e.prototype.toggleCheckBox = function (t) {
-                this.listItems[t].toggleCheckBox()
+            return n(e, t), Object.defineProperty(e.prototype, "useShipSortKeyType", {
+                get: function () {
+                    return this.shipSortKeyType
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "pageIndex", {
+                get: function () {
+                    return this._pageIndex
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.start = function (t, e) {
+                var i = this;
+                r.default.view.clickGuard = !0;
+                var n = r.default.model.ship.getAll();
+                _.ShipUtil.sort(n, t);
+                var o = this._getShipsInPage(n, e), s = this._getPage(n.length);
+                this.pagerView.init(s), this.shipSortButton.update(t), this.shipSortKeyType = t, this._pageIndex = e, this.pagerView.changePage(e), this.ships = n, this.shipDisassemblyChoice.update(o), this.animation.progress = 0, this.x = 1200;
+                var a = function () {
+                    i.x = 1200 - 945 * i.animation.progress, i.dialogBackground.alpha = i.animation.progress
+                };
+                createjs.Tween.removeTweens(this.animation);
+                var u = createjs.Tween.get(this.animation);
+                u.call(function () {
+                    i.position.x = 1200, u.addEventListener("change", a)
+                }).to({ progress: 1 }, 200).call(function () {
+                    u.removeAllEventListeners("change"), createjs.Tween.removeTweens(u.target), i.animation.progress = 1, a(), i.dialogBackground.width = 288, r.default.view.clickGuard = !1
+                })
+            }, e.prototype.hide = function (t) {
+                var e = this;
+                h.TaskLoadShipResource.abortBy(this.shipDisassemblyConfirm.shipBanner), this.dialogBackground.width = o.default.width, r.default.view.clickGuard = !0, this.animation.progress = 0;
+                var i = function () {
+                    e.x = 255 + 945 * e.animation.progress, e.dialogBackground.alpha = 1 - e.animation.progress
+                };
+                createjs.Tween.removeTweens(this.animation);
+                var n = createjs.Tween.get(this.animation);
+                n.call(function () {
+                    n.addEventListener("change", i)
+                }).to({ progress: 1 }, 200).call(function () {
+                    n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), e.animation.progress = 1, i(), r.default.view.clickGuard = !1, t()
+                }), n.play(null)
+            }, e.prototype.dispose = function () {
+                if (this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_01), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.shipDisassemblyChoice.dispose(), this.shipDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.shipSortButton.dispose(), this.ships) for (var t = 0; t < this.ships.length; t++) this.ships[t] = null;
+                this.onComplete = null, this.ships = null, this.shipSortKeyType = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.shipDisassemblyChoice = null, this.shipDisassemblyConfirm = null, this.pagerView = null, this.shipSortButton = null, this.memShipId = null, this.checkedMemShipIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_01 = null, this.blue_txt_11 = null, this.animation = null
+            }, e.prototype._getShipsInPage = function (t, e) {
+                var i = this.shipDisassemblyChoice.ITEM_NUM;
+                return t.slice(e * i, e * i + i)
+            }, e.prototype._getPage = function (t) {
+                var e = this.shipDisassemblyChoice.ITEM_NUM;
+                return Math.ceil(t / e)
             }, e
         }(PIXI.Container);
-    e.ShipDisassemblyChoice = f;
-    var y = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick(e.memShipId, e.arrayIndex)
-            }, e._onMouseOver = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !0, e.textShipType.style.fill = e.textName.style.fill = e.textLevel.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 16777215, e.containerShipTypeAndName.cacheAsBitmap = !0
-            }, e._onMouseOut = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !1, e.textLevel.style.fill = e.mouseoutColor, e.textShipType.style.fill = e.textName.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 5523516, e.containerShipTypeAndName.cacheAsBitmap = !0
-            };
-            e.shipInDeckFlag = new _.ShipInDeckFlag, e.textShipType = new l.TextBox(18, 5523516), e.textName = new l.TextBox(20, 5523516), e.textLevel = new l.TextBox(22, 5523516), e.textTaikyu = new l.TextBox(18, 5523516), e.textKaryoku = new l.TextBox(18, 5523516), e.textRaiso = new l.TextBox(18, 5523516), e.textTaiku = new l.TextBox(18, 5523516), e.iconLockedShip = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(88)), e.iconLockedItem = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(80)), e.shipSpeedImage = new u.ShipSpeedImage, e.background = new PIXI.Sprite(h.COMMON_MAIN.getTexture(15)), e.clickArea = new PIXI.Graphics, e.containerShipTypeAndName = new PIXI.Container, e.iconCheckState = new PIXI.Sprite;
-            var i = Math.floor(22.5) + 1, n = a.CreateRect.gradientLeftToRight(240, 45, .85, .9);
-            return e.shipInDeckFlag.scale.set(.8, .8), e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 645, 45), e.clickArea.endFill(), e.clickArea.addListener(r.EventType.CLICK, e._onClick), e.clickArea.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.interactive = e.clickArea.buttonMode = !0, e.background.visible = !1, e.iconCheckState.position.set(12, 12), e.containerShipTypeAndName.position.set(79, 0), e.textShipType.anchor.set(0, 0), e.textShipType.position.set(0, Math.floor(i - e.textShipType.height / 2)), e.textName.anchor.set(0, 0), e.textName.position.set(90, Math.floor(i - e.textName.height / 2) + 0), e.textLevel.position.set(336, Math.floor(i - e.textLevel.height / 2)), e.textTaikyu.position.set(393, Math.floor(i - e.textTaikyu.height / 2)), e.textKaryoku.position.set(439, Math.floor(i - e.textKaryoku.height / 2)), e.textRaiso.position.set(486, Math.floor(i - e.textRaiso.height / 2)), e.textTaiku.position.set(531, Math.floor(i - e.textTaiku.height / 2)), e.shipSpeedImage.position.set(540, i), e.iconLockedShip.position.set(591, Math.floor(i - e.iconLockedShip.height / 2)), e.iconLockedItem.position.set(591, Math.floor(i - e.iconLockedItem.height / 2)), e.shipInDeckFlag.position.set(47, i), e.background.position.set(75, 0), e.background.scale.x = 1.05, e.textLevel.anchor.set(1, 0), e.textTaikyu.anchor.set(1, 0), e.textKaryoku.anchor.set(1, 0), e.textRaiso.anchor.set(1, 0), e.textTaiku.anchor.set(1, 0), e.shipSpeedImage.anchor.set(0, .5), e.iconLockedShip.anchor.set(0, 0), e.iconLockedItem.anchor.set(0, 0), e.shipInDeckFlag.anchor.set(0, .5), e.containerShipTypeAndName.mask = n, e.containerShipTypeAndName.addChild(e.textShipType, e.textName), e.addChild(e.background, e.iconCheckState, e.shipInDeckFlag, e.textLevel, e.containerShipTypeAndName, e.textLevel, e.textTaikyu, e.textKaryoku, e.textRaiso, e.textTaiku, e.iconLockedShip, e.iconLockedItem, e.shipSpeedImage, e.clickArea), e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.shipInDeckFlag.dispose(), this.containerShipTypeAndName.mask = null, this.containerShipTypeAndName.removeChildren(), this.shipSpeedImage.dispose(), this.clickArea.removeAllListeners(r.EventType.CLICK), this.clickArea.removeAllListeners(r.EventType.MOUSEOUT), this.clickArea.removeAllListeners(r.EventType.MOUSEOVER), this.clickArea.clear(), this.onClick = null, this.shipInDeckFlag = null, this.containerShipTypeAndName = null, this.iconLockedShip = null, this.iconLockedItem = null, this.shipSpeedImage = null, this.background = null, this.clickArea = null, this.textShipType = null, this.textName = null, this.textLevel = null, this.textTaikyu = null, this.textKaryoku = null, this.textRaiso = null, this.textTaiku = null, this.mouseoutColor = null, this.iconCheckState = null, this.checkState = null, this.arrayIndex = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n, o, r, a, _, u, l, c, h, d, f) {
-            switch (void 0 === h && (h = null), this.arrayIndex = f, this.containerShipTypeAndName.cacheAsBitmap = !1, this.memShipId = t, this.textShipType.text = e + " ", this.textName.text = i, this.textLevel.text = n.toString(), this.textTaikyu.text = o.toString(), this.textKaryoku.text = r.toString(), this.textRaiso.text = a.toString(), this.textTaiku.text = _.toString(), this.shipSpeedImage.update(u), this.textName.position.x = this.textShipType.position.x + this.textShipType.width, this.iconLockedShip.visible = !1, this.iconLockedItem.visible = !1, l ? this.iconLockedShip.visible = !0 : c && (this.iconLockedItem.visible = !0), d) {
-                case 1:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(12);
-                    break;
-                case 2:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13);
-                    break;
-                case 3:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14)
-            }
-            this.checkState = d, this.textLevel.style.fill = this.mouseoutColor = s.ColorUtil.getLevelColor(n), this.shipInDeckFlag.visible = !1, h && (this.shipInDeckFlag.update(h), this.shipInDeckFlag.visible = !0), this.containerShipTypeAndName.cacheAsBitmap = !0
-        }, e.prototype.toggleCheckBox = function () {
-            switch (c.SE.play("239"), this.checkState) {
-                case 2:
-                    this.checkState = 3, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14);
-                    break;
-                case 3:
-                    this.checkState = 2, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13)
-            }
-        }, e
-    }(PIXI.Container)
+    e.ShipDisassemblyContainer = x
 }

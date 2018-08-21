@@ -15,26 +15,42 @@ const function231 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(42), r = i(230), s = i(986), a = i(988), _ = function (t) {
-        function e(e, i) {
-            var n = t.call(this, e) || this;
-            n._onMouseOver = function (t) {
-                n._strategy_map.update(t)
-            }, n._onMouseOut = function (t) {
-            };
-            var r = o.SALLY_EVENT.getTexture(24), _ = new PIXI.Sprite(r);
-            return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
+    var o = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._offset = 0, i._offset = e, i._maps = [], i
         }
 
-        return n(e, t), e.prototype.initialize = function (e) {
-            t.prototype.initialize.call(this, e);
-            var i = e[this.offset].mst_id;
-            this._strategy_map.update(i), this._airunitbtn.initialize()
-        }, e.prototype.updateAirUnitEnabled = function (e) {
-            t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
+        return n(e, t), Object.defineProperty(e.prototype, "offset", {
+            get: function () {
+                return this._offset
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "num", {
+            get: function () {
+                return this._maps.length
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            for (var e = 0; e < this._maps.length; e++) {
+                var i = e + this._offset, n = t.length > i ? t[i] : null;
+                this._maps[e].initialize(n)
+            }
+        }, e.prototype.updateAirUnitEnabled = function (t) {
+            for (var e = 0, i = this._maps; e < i.length; e++) {
+                i[e].updateAirUnitEnabled(t)
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].deactivate()
+            }
         }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose()
+            for (var t = 0, e = this._maps; t < e.length; t++) {
+                e[t].dispose()
+            }
         }, e
-    }(r.LayoutBase);
-    e.EventLayoutBase = _
+    }(PIXI.Container);
+    e.LayoutBase = o
 }

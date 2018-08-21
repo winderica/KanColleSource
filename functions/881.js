@@ -15,50 +15,16 @@ const function881 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.animation = {};
-            var i = o.ARSENAL_ANIMATION.getTexture(2);
-            e.scatterCircles = new Array;
-            for (var n = 0; n < 40; n++) {
-                var r = new s(i);
-                e.scatterCircles.push(r), e.addChild(r)
-            }
-            return e
-        }
-
-        return n(e, t), e.prototype.play = function () {
-            var t = this;
-            createjs.Tween.removeTweens(this.animation);
-            for (var e = createjs.Tween.get(this.animation), i = 0; i < this.scatterCircles.length; i++) {
-                this.scatterCircles[i].reset()
-            }
-            e.call(function () {
-                e.removeAllEventListeners("change"), e.addEventListener("change", function () {
-                    for (var e = 0; e < t.scatterCircles.length; e++) {
-                        t.scatterCircles[e].update()
-                    }
-                })
-            }).to({}, 5e3).call(function () {
-                e.removeAllEventListeners("change")
-            }), e.play(null)
-        }, e
-    }(PIXI.Container);
-    e.ScatterCircleParticle = r;
-    var s = function (t) {
+    var o = i(10), r = i(0), s = function (t) {
         function e(e) {
-            var i = t.call(this, e) || this;
-            return i.updateCount = 0, i
+            var i = t.call(this) || this;
+            return i._url = "api_req_kousyou/open_new_dock", i.kDockId = e, i
         }
 
-        return n(e, t), e.prototype.reset = function () {
-            var t = 1.999 * Math.random() * Math.PI, e = .2 * Math.random() + .8, i = 30 * e * Math.cos(t),
-                n = 30 * e * Math.sin(t), o = 15 * (.2 * Math.random() + .8), r = -1 * (.2 * Math.random() + .8);
-            this.updateCount = 0, this.vx = i, this.vy = n, this.x = 0, this.y = 0, this.scale.x = 1, this.scale.y = 1, this.alpha = 1, this.vScale = o, this.vAlpha = r
-        }, e.prototype.update = function () {
-            this.updateCount++;
-            this.x += this.vx * Math.exp(-.05 * this.updateCount) * 1, this.y += 1 * (2 + this.vy * Math.exp(-.05 * this.updateCount)), this.scale.x += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.scale.y += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.alpha += this.vAlpha * (1 - Math.exp(-.05 * this.updateCount)) / 100 * 1
+        return n(e, t), e.prototype._completedEnd = function () {
+            var e = r.default.model.kdock.get(this.kDockId), i = r.default.model.useItem.get(49);
+            e.__open__(), i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite)
+    }(o.APIBase);
+    e.OpenNewDockAPI = s
 }

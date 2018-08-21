@@ -18,20 +18,48 @@ const function933 = function (t, e, i) {
     var o = i(25), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._txt = new PIXI.Sprite, e._txt.position.set(23, 23), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(11, 9), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
+            return e._star = new PIXI.Sprite, e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(20, 3), e.addChild(e._plus), e._num = new PIXI.Sprite, e._num.position.set(33, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(8, -3), e.addChild(e._max), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_AIRUNIT.getTexture(64), this._txt.texture = o.SALLY_AIRUNIT.getTexture(104), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(105)
+            this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = o.SALLY_AIRUNIT.getTexture(58), this._plus.texture = o.SALLY_AIRUNIT.getTexture(57), this._max.texture = o.SALLY_AIRUNIT.getTexture(56)
         }, e.prototype.update = function (t) {
-            this.visible = t, 1 == t ? this._activate() : this._deactivate()
-        }, e.prototype.dispose = function () {
-            this._deactivate()
-        }, e.prototype._activate = function () {
-            null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 400))
-        }, e.prototype._deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
+            var e;
+            switch (t) {
+                case 1:
+                    e = 47;
+                    break;
+                case 2:
+                    e = 48;
+                    break;
+                case 3:
+                    e = 49;
+                    break;
+                case 4:
+                    e = 50;
+                    break;
+                case 5:
+                    e = 51;
+                    break;
+                case 6:
+                    e = 52;
+                    break;
+                case 7:
+                    e = 53;
+                    break;
+                case 8:
+                    e = 54;
+                    break;
+                case 9:
+                    e = 55;
+                    break;
+                case 10:
+                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !0);
+                default:
+                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !1)
+            }
+            this._star.visible = !0, this._plus.visible = !0, this._num.texture = o.SALLY_AIRUNIT.getTexture(e), this._num.visible = !0, this._max.visible = !1
         }, e
-    }(PIXI.Sprite);
-    e.AirUnitPanelItemRelocationLayer = r
+    }(PIXI.Container);
+    e.AirUnitPanelItemLevelIcon = r
 }

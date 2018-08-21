@@ -15,40 +15,34 @@ const function639 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(80), r = i(5), s = i(106), a = i(1), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._ev = e, i._isInsideScene = !0, i._onNextClick = function () {
-                i._isInsideScene ? (i._isInsideScene = !1, i._nextScene()) : i._ev.emit("tutorial-next-scene")
-            }, i._onToggleNextBtn = function (t) {
-                var e = i._getEventTextureKey(t.type);
-                i._btnNext.texture = i._btnNextImage[e]
-            }, i._getEventTextureKey = function (t) {
-                return t == a.EventType.MOUSEOVER ? "hover" : "def"
-            }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(11), o.TUTORIAL_MAIN.getTexture(12)], i
+    var o = i(80), r = i(5), s = i(105), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            n._ev = i, n._titleChange = function (t, e) {
+                void 0 === e && (e = null);
+                var i = createjs.Ease.linear;
+                if (0 == t) return createjs.Tween.get(n.getChildByName("titleBar")).to({ alpha: 0 }, 200, i), !1;
+                var r = o.TUTORIAL_MAIN.getTexture(e);
+                0 == n.getChildByName("titleBar").alpha ? (n._titleMessage.texture = r, createjs.Tween.get(n.getChildByName("titleBar")).to({ alpha: 1 }, 200, i)) : createjs.Tween.get(n._titleMessage).to({ alpha: 0 }, 200, i).call(function () {
+                    n._titleMessage.texture = r
+                }).to({ alpha: 1 }, 200, i)
+            }, n._onNext = function () {
+                createjs.Tween.get(n._currentTutorialIcon, { loop: !1 }).to({ x: n._currentTutorialIcon.x + 60 }, 400, createjs.Ease.linear)
+            }, n._ev.on("tutorial-title", n._titleChange).on("tutorial-next", n._onNext);
+            var a = new PIXI.Container;
+            a.position.set(0, 50), a.alpha = 0, a.name = "titleBar";
+            var _ = new PIXI.Sprite(e.use(s.IMAGE_FILE.TITLE_BG)), u = Math.floor(_.height / 2);
+            n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), u), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, u), a.addChild(_, n._titleIcon, n._titleMessage);
+            var l = new PIXI.Container, c = new PIXI.Sprite(e.use(s.IMAGE_FILE.CRUMB));
+            return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), l.position.set(r.default.width - c.width - 12, 0), l.addChild(c, n._currentTutorialIcon), n.addChild(a, l), n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(23));
-            t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(984, 437), this._btnNextImage = {
-                def: o.TUTORIAL_MAIN.getTexture(1),
-                hover: o.TUTORIAL_MAIN.getTexture(2)
-            }, this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.alpha = 0, this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
-        }, e.prototype.start = function () {
-            var t = this;
-            createjs.Tween.get(this).to({ alpha: 1 }, 200, createjs.Ease.linear);
-            var e = 0;
-            this._miniImageTween = createjs.Tween.get(null, { loop: !0 }).wait(400).call(function () {
-                e++, t._mini.texture = t._miniImage[e % 2]
-            }), this._ev.emit("tutorial-play-voice", "tutorial", "023_a", function () {
-                t._ev.emit("tutorial-play-voice", "tutorial", "024")
-            })
-        }, e.prototype._nextScene = function () {
-            var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(17));
-            t.position.set(495, 400), t.alpha = 0, this.addChild(t), this._ev.emit("tutorial-play-voice", "tutorial", "025"), createjs.Tween.get(t).to({ alpha: 1 }, 400, createjs.Ease.linear)
+        return n(e, t), e.prototype.start = function () {
+            var t = { angle: 2 * Math.PI, duration: 8e3, ease: createjs.Ease.linear };
+            createjs.Tween.get(this._titleIcon, { loop: !0 }).to({ rotation: t.angle }, t.duration, t.ease), createjs.Tween.get(this._currentTutorialIcon, { loop: !0 }).to({ rotation: t.angle }, t.duration, t.ease)
         }, e.prototype.dispose = function () {
-            this.alpha = 0, this._btnNext.interactive = !1, this._btnNext.buttonMode = !1, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
+            createjs.Tween.removeTweens(this._titleIcon), createjs.Tween.removeTweens(this._currentTutorialIcon), this._ev.off("tutorial-title", this._titleChange).off("tutorial-next", this._onNext)
         }, e
-    }(s.SceneBase);
-    e.SceneExplain1 = _
+    }(PIXI.Container);
+    e.ViewMain = a
 }

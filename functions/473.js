@@ -15,23 +15,60 @@ const function473 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(165), r = i(4), s = i(36), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._MAX_ = 360;
-            var i = new PIXI.Graphics;
-            return e._draw(i, 0), e.mask = i, e.addChild(i), e._bar = new PIXI.Graphics, e._bar.x = -e._MAX_, e.addChild(e._bar), e
+            return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._draw(this, 16777215), this._draw(this._bar, t)
-        }, e.prototype.createTween = function (t, e, i) {
-            void 0 === i && (i = 1e3);
-            var n = Math.max(t - e, 0), o = 0 == t ? 0 : n / t, r = this._MAX_ * o;
-            return r = Math.min(this._MAX_, r), r = Math.max(0, r), createjs.Tween.get(this._bar).to({ x: -this._MAX_ + r }, i)
-        }, e.prototype._draw = function (t, e) {
-            t.beginFill(e), t.arc(8, 8, 8, Math.PI / 2, Math.PI / 2 * 3), t.arc(353, 8, 8, -Math.PI / 2, Math.PI / 2), t.endFill()
+        return n(e, t), Object.defineProperty(e.prototype, "user_name", {
+            get: function () {
+                return this._user_name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "level", {
+            get: function () {
+                return this._level
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "deck_name", {
+            get: function () {
+                return this._deck_name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "medal", {
+            get: function () {
+                return this._medal
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container);
+    e.DeckInfo = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._text = new r.TextBox(21, 16774898), e._text.x = 29, e._text.y = -1, e.addChild(e._text), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text.text
+            }, set: function (t) {
+                this._text.text = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(68)
         }, e
-    }(PIXI.Graphics);
-    e.Gauge = o
+    }(PIXI.Sprite), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._text = new r.TextBox(21, 16774898), e._text.x = 71, e._text.y = -3, e.addChild(e._text), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text.text
+            }, set: function (t) {
+                this._text.text = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(76)
+        }, e
+    }(PIXI.Sprite)
 }

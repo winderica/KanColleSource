@@ -15,43 +15,115 @@ const function673 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(56), s = i(13), a = i(4), _ = function (t) {
+    var o = i(9), r = i(0), s = i(1), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClickUpdate = function () {
-                e.onClickUpdate()
-            }, e._onKeyDown = function () {
-                var t = s.EditTextBoxUtil.text;
-                e._mirrorText.text = t;
-                var i = s.EditTextBoxUtil.validation(t, e.baseText);
-                e.__updateButton__(i, e._editable)
-            };
-            var i = o.ORGANIZE_MAIN.getTexture(27), n = o.ORGANIZE_MAIN.getTexture(57),
-                _ = o.ORGANIZE_MAIN.getTexture(58), u = o.ORGANIZE_MAIN.getTexture(59), l = new PIXI.Sprite(i);
-            return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, u), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(l.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(l.width, 1), e.addChild(l, e.editButton, e.updateButton, e._mirrorText), e
+            e._onClickDeckFlag = function (t) {
+                e.onClickDeckFlag(t)
+            }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
+            var i = new u, n = new u, s = new u, a = new u;
+            return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(181)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return s.EditTextBoxUtil.text
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.__updateButton__ = function (t, e) {
-            this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
+        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+            this.interactiveDeckFlag_1.visible = !1, this.interactiveDeckFlag_2.visible = !1, this.interactiveDeckFlag_3.visible = !1, this.interactiveDeckFlag_4.visible = !1, t && (this.interactiveDeckFlag_1.visible = !0), e && (this.interactiveDeckFlag_2.visible = !0), i && (this.interactiveDeckFlag_3.visible = !0), n && (this.interactiveDeckFlag_4.visible = !0)
+        }, e.prototype.update = function (t) {
+            switch (this.interactiveDeckFlag_1.normal(), this.interactiveDeckFlag_2.normal(), this.interactiveDeckFlag_3.normal(), this.interactiveDeckFlag_4.normal(), t) {
+                case 1:
+                    this.interactiveDeckFlag_1.hover();
+                    break;
+                case 2:
+                    this.interactiveDeckFlag_2.hover();
+                    break;
+                case 3:
+                    this.interactiveDeckFlag_3.hover();
+                    break;
+                case 4:
+                    this.interactiveDeckFlag_4.hover()
+            }
         }, e.prototype.dispose = function () {
-            this.updateButton.dispose(), this.updateButton = null, this.removeChildren()
-        }, e.prototype.reload = function (t) {
-            this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
-            var e = s.EditTextBoxUtil.validation(t, this.baseText);
-            this.__updateButton__(e, this._editable)
-        }, Object.defineProperty(e.prototype, "writable", {
-            set: function (t) {
-                s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "editable", {
-            set: function (t) {
-                this.editButton.visible = this._editable = t
-            }, enumerable: !0, configurable: !0
-        }), e
+            this.interactiveDeckFlag_1.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_2.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_3.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_4.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_1.dispose(), this.interactiveDeckFlag_2.dispose(), this.interactiveDeckFlag_3.dispose(), this.interactiveDeckFlag_4.dispose(), this.onClickDeckFlag = null, this.interactiveDeckFlag_1 = null, this.interactiveDeckFlag_2 = null, this.interactiveDeckFlag_3 = null, this.interactiveDeckFlag_4 = null, this.icon3rdUnit = null, this.removeChildren()
+        }, e
     }(PIXI.Container);
-    e.EditNameArea = _
+    e.DeckSelector = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick(e.memDeckId)
+            }, e.addListener(s.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.onClick = null, this.memDeckId = null, this._onClick = null, this.removeAllListeners(s.EventType.CLICK), this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.memDeckId = t
+        }, e.prototype.hover = function () {
+            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "on"));
+            this.texture = t
+        }, e.prototype.normal = function () {
+            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "off"));
+            this.texture = t
+        }, e
+    }(PIXI.Sprite);
+    e.InteractiveDeckFlag = _;
+    var u = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = o.COMMON_MISC.getTexture(l.getResourceId(t, "no")), this.memDeckId = t
+        }, e
+    }(PIXI.Sprite);
+    e.DisableDeckFlag = u;
+    var l;
+    !function (t) {
+        function e(t, e) {
+            switch (t) {
+                case 1:
+                    switch (e) {
+                        case"no":
+                            return 72;
+                        case"on":
+                            return 74;
+                        case"off":
+                            return 73
+                    }
+                    break;
+                case 2:
+                    switch (e) {
+                        case"no":
+                            return 75;
+                        case"on":
+                            return 77;
+                        case"off":
+                            return 76
+                    }
+                    break;
+                case 3:
+                    switch (e) {
+                        case"no":
+                            return 78;
+                        case"on":
+                            return 80;
+                        case"off":
+                            return 79
+                    }
+                    break;
+                case 4:
+                    switch (e) {
+                        case"no":
+                            return 81;
+                        case"on":
+                            return 83;
+                        case"off":
+                            return 82
+                    }
+            }
+            return -1
+        }
+
+        t.getResourceId = e
+    }(l || (l = {}))
 }

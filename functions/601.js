@@ -15,43 +15,23 @@ const function601 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(602), r = i(603), s = i(604), a = i(149), _ = function (t) {
+    var o = i(189), r = i(190), s = i(191), a = i(192), _ = i(290), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onRevampOpen = function () {
-                null != e._revamp && e._revamp.open()
-            }, e._onRevampClose = function () {
-                null != e._revamp && e._revamp.close()
-            }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
+            return e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
-        }, e.prototype.activate = function () {
-            this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
-        }, e.prototype.deactivate = function () {
-            this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
-        }, e.prototype.prePosition = function () {
-            this.x = this._presetX, this.alpha = 0
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            this._interactive(!1), createjs.Tween.get(this).wait(200).to({
-                x: this._baseX,
-                alpha: 1
-            }, 300, createjs.Ease.quadOut).call(function () {
-                t._interactive(!0)
-            })
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.changeSkin(t), this._gear.activate()
+        }, e.prototype.changeSkin = function (t) {
+            101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
+            var e = PIXI.Texture.EMPTY;
+            e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
+        }, e.prototype.update = function (t) {
+            0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
         }, e.prototype.dispose = function () {
-            this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
-        }, e.prototype.setRevampFlg = function (t) {
-            1 == t ? this._addRevampBtn() : this._removeRevampBtn()
-        }, e.prototype._addRevampBtn = function () {
-            null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
-        }, e.prototype._removeRevampBtn = function () {
-            null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
-        }, e.prototype._interactive = function (t) {
-            this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
+            this._gear.dispose()
         }, e
     }(PIXI.Container);
-    e.RingMenuLayer = _
+    e.FrameLayer = u
 }

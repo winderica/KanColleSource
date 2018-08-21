@@ -15,38 +15,24 @@ const function751 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(752), a = i(310), _ = i(209), u = i(313), l = i(312), c = i(68), h = i(128),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.phasePreInitialize = function () {
-                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
-                }, i._scene = e, i
-            }
+    var o = i(0), r = i(47), s = i(752), a = i(754), _ = i(755), u = i(69), l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this;
-                (new s.TaskLoadResourcesRemodel).start(function () {
-                    t._uploadToGPU()
-                })
-            }, e.prototype._uploadToGPU = function () {
-                var t, e = this;
-                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                        t = l.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                            t = u.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                        e.phasePreInitialize()
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
-            }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = p
+        return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+            return new s.PreInitializeTask(this)
+        }, e.prototype.getInitializeTask = function (t) {
+            return new a.InitializeTask(this)
+        }, e.prototype.getFinalizeTask = function () {
+            var t = this;
+            return new u.FuncTask(function () {
+                t.taskIdleMain.dispose(), t.taskIdleMain = null
+            })
+        }, e.prototype.start = function () {
+            var t = o.default.model.deck.get(1).getShipMemID(0);
+            this.taskIdleMain = new _.TaskIdleMain(this), this.taskIdleMain.start(1, t)
+        }, e
+    }(r.SceneBase);
+    e.RemodelScene = l
 }

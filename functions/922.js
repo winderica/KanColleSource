@@ -1,42 +1,24 @@
 const function922 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(77), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._maps = e, i
+    var n = i(13), o = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
-                var r = n[i];
-                if ((0 != r.defeat_required || 0 != r.gauge_max) && (1 != r.isCleared() && 0 != r.isOpened())) {
-                    var a = r.area_id, _ = r.map_no, u = r.getGaugeNum(), l = s.GaugeSetModel.createKey(a, _, u);
-                    null == o.default.resources.gauge.getGaugeInfo(l) && e.add(l)
-                }
-            }
-            e.count > 0 ? e.load(function () {
-                t._endTask()
-            }) : this._endTask()
-        }, e.prototype._endTask = function () {
-            this._maps = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskLoadGaugeResources = a
+        return Object.defineProperty(t.prototype, "ship_mem_id", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_supply_ship")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_given_ship")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "num_of_use", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_use_num")
+            }, enumerable: !0, configurable: !0
+        }), t
+    }();
+    e.ReplenishmentModel = o
 }

@@ -21,8 +21,8 @@ const function1144 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype._update = function (t) {
-            0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
+            this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(19) : r.ITEM_FSHOP.getTexture(20)
         }, e
     }(o.BtnBase);
-    e.ExchangeBtn = s
+    e.BackBtn = s
 }

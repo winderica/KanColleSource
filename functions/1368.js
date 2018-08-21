@@ -15,66 +15,130 @@ const function1368 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(26), s = i(6), a = i(123), _ = i(43), u = i(1369), l = function (t) {
-        function e(e, i, n, r, s, a, _, l, c) {
-            var h = t.call(this, e, i, r, _, l, c) || this;
-            return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new u.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
+    var o = i(0), r = i(69), s = i(27), a = i(28), _ = i(19), u = i(2), l = i(8), c = i(14), h = i(1),
+        p = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._model = e, o._list = e.getDisplayList(), o._bannerGroupLayer = i, o._cutinLayer = n, o
+            }
+
+            return n(e, t), e.prototype.preload = function (t) {
+                for (var e = new c.ShipLoader, i = 0, n = this._list; i < n.length; i++) {
+                    var o = n[i], r = o.ship, s = r.mst_id, a = r.isDamaged();
+                    e.add(s, a, "full")
+                }
+                for (var _ = 0, u = this._model.ships; _ < u.length; _++) {
+                    var r = u[_];
+                    if (null != r) {
+                        var l = r.mst_id, a = r.isDamaged();
+                        e.add(l, a, "banner")
+                    }
+                }
+                null == t ? e.load() : e.load(t)
+            }, e.prototype._start = function () {
+                this._charaLayer = new PIXI.Container, this._cutinLayer.addChild(this._charaLayer), this._clickLayer = new PIXI.Container, this._cutinLayer.addChild(this._clickLayer), this._showShip1()
+            }, e.prototype._showShip1 = function () {
+                var t = this, e = this._list[0].ship, i = e.mst_id, n = e.isDamaged(),
+                    r = o.default.resources.getShip(i, n, "full"), s = new PIXI.Sprite(r),
+                    a = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                s.x = -285 + a.x, s.y = -87 + a.y, s.alpha = 0, this._charaLayer.addChild(s), createjs.Tween.get(s).to({
+                    x: 165 + a.x,
+                    alpha: 1
+                }, 700, createjs.Ease.cubicOut).call(function () {
+                    t._playVoice1(s)
+                })
+            }, e.prototype._playVoice1 = function (t) {
+                var e = this, i = this._list[0].ship.mst_id, n = this._list[0].voiceID,
+                    o = new d(i.toString(), n, this._clickLayer, !0), u = new _.TweenTask;
+                u.addTweens(this._bannerGroupLayer.friends_combined.createExitTweensUpDown());
+                var l = new _.TweenTask;
+                l.addTweens(this._bannerGroupLayer.friends.createExitTweens());
+                var c = new _.TweenTask;
+                c.addTweens(this._bannerGroupLayer.ally.createEnterTweens());
+                var h = new a.SerialTask;
+                h.add(u), h.add(l), h.add(c), h.add(new r.FuncTask(function () {
+                    o.clickable = !0
+                }));
+                var p = new s.ParallelTask;
+                p.add(o), p.add(h), p.start(function () {
+                    e._list.length > 1 ? e._showShip2(t) : createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
+                    })
+                })
+            }, e.prototype._showShip2 = function (t) {
+                var e = this, i = this._list[1].ship, n = i.mst_id, r = i.isDamaged(),
+                    s = o.default.resources.getShip(n, r, "full"), a = new PIXI.Sprite(s),
+                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
+                a.x = -360 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
+                    x: 15 + _.x,
+                    alpha: 1
+                }, 600, createjs.Ease.cubicOut).call(function () {
+                    e._playVoice2(a)
+                }), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                    e._charaLayer.removeChild(t)
+                })
+            }, e.prototype._playVoice2 = function (t) {
+                var e = this, i = this._list[1].ship.mst_id, n = this._list[1].voiceID, o = this._list.length > 2,
+                    r = new d(i.toString(), n, this._clickLayer, o);
+                r.clickable = !0, r.start(function () {
+                    o ? e._showShip3(t) : createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
+                    })
+                })
+            }, e.prototype._showShip3 = function (t) {
+                var e = this, i = this._list[2].ship, n = i.mst_id, r = i.isDamaged(),
+                    s = o.default.resources.getShip(n, r, "full"), a = new PIXI.Sprite(s),
+                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
+                a.x = -435 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
+                    x: -135 + _.x,
+                    alpha: 1
+                }, 600, createjs.Ease.cubicOut).call(function () {
+                    e._playVoice3(t)
+                }), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                    e._charaLayer.removeChild(t)
+                })
+            }, e.prototype._playVoice3 = function (t) {
+                var e = this, i = this._list[2].ship.mst_id, n = this._list[2].voiceID,
+                    o = new d(i.toString(), n, this._clickLayer, !1);
+                o.clickable = !0, o.start(function () {
+                    createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._model = null, this._list = null, this._bannerGroupLayer = null, this._cutinLayer = null, null != this._charaLayer.parent && this._charaLayer.parent.removeChild(this._charaLayer), this._charaLayer = null, null != this._clickLayer.parent && this._clickLayer.parent.removeChild(this._clickLayer), this._clickLayer = null, t.prototype._endTask.call(this)
+            }, e
+        }(u.TaskBase);
+    e.PhaseAllyOpening = p;
+    var d = function (t) {
+        function e(e, i, n, r) {
+            var s = t.call(this) || this;
+            return s._clickArea = null, s._voice = null, s._onClick = function () {
+                s._stop_onClick && null != s._voice && o.default.sound.voice.stop(s._voice), s._endTask()
+            }, s._mstID = e, s._voiceID = i, s._clickLayer = n, s._stop_onClick = r, s
         }
 
-        return n(e, t), e.prototype._start = function () {
+        return n(e, t), Object.defineProperty(e.prototype, "clickable", {
+            get: function () {
+                return null != this._clickArea
+            }, set: function (t) {
+                if (t) {
+                    if (null != this._clickArea) return;
+                    this._clickArea = new l.AreaBox(0), this._clickArea.buttonMode = !0, this._clickArea.once(h.EventType.CLICK, this._onClick), null != this._clickLayer && this._clickLayer.addChild(this._clickArea)
+                } else {
+                    if (null == this._clickArea) return;
+                    null != this._clickArea.parent && this._clickArea.parent.removeChild(this._clickArea), this._clickArea.off(h.EventType.CLICK, this._onClick), this._clickArea = null
+                }
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
             var t = this;
-            this._cutin.preload(function () {
-                t._completePreload()
+            this._voice = o.default.sound.voice.play(this._mstID, this._voiceID, function () {
+                t._onEnd()
             })
-        }, e.prototype._completePreload = function () {
-            var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
-            1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-        }, e.prototype._playPicket = function (t, e) {
-            var i = this;
-            if (this._attacker.hasSlot(129, !0)) {
-                var n = new PIXI.Point;
-                n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                var o = new a.Picket;
-                o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                    i._playCutin(t, e)
-                })
-            } else this._playCutin(t, e)
-        }, e.prototype._playCutin = function (t, e) {
-            var i = this;
-            this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                i._shoot(t, e)
-            }), this._cutin.view.once("attack", function () {
-                i._playVoice()
-            })
-        }, e.prototype._shoot = function (t, e) {
-            var i = this;
-            t.moveShoot(function () {
-                i._torpedo(t, e)
-            })
-        }, e.prototype._torpedo = function (t, e) {
-            var i = this, n = t.friend ? 1 : -1, o = t.getGlobalPos(!0);
-            o.x += r.BannerSize.W / 3 * n;
-            var a = e.getGlobalPos(!0);
-            a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
-            var _ = this._scene.view.layer_torpedo;
-            _.playTorpedoAtNight(o, a, 800, function () {
-                _.playTorpedoWaterColumn(e), i._explosion(t, e)
-            })
-        }, e.prototype._explosion = function (t, e) {
-            var i = this, n = e.getGlobalPos(!0);
-            createjs.Tween.get(this).wait(300).call(function () {
-                i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
-            }).wait(350).call(function () {
-                var n = i._getDamage(i._defender);
-                i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
-            })
-        }, e.prototype._playVoice = function () {
-            if (this._attacker.friend) {
-                var t = this._attacker.mst_id, e = 17;
-                432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
-            }
-        }, e.prototype._log = function (t) {
+        }, e.prototype._onEnd = function () {
+            this._endTask()
+        }, e.prototype._endTask = function () {
+            this.clickable = !1, this._clickLayer = null, this._voice = null, t.prototype._endTask.call(this)
         }, e
-    }(_.PhaseAttackBase);
-    e.PhaseAttackSpRDJ = l
+    }(u.TaskBase)
 }

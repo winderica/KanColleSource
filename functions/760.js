@@ -15,58 +15,94 @@ const function760 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(0), s = i(4), a = i(31), _ = i(3), u = i(13), l = i(1), c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClickListItem = function (t, e) {
-                i.onClick(e)
+    var o = i(3), r = i(4), s = i(1), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.color_on = 1949120, e.color_off = 5523516, e.color_no = 16774898, e.BASE = 68, e.NUMBEROFFSET = 10, e.PADDING = 60, e.focusIndex = 0, e.hitAreaSize = 30, e._onClickPrev3 = function () {
+                var t = e.focusIndex - 3;
+                t < 0 && (t = 0), e.notifyChangeIndex(t)
+            }, e._onClickNext3 = function () {
+                var t = e.focusIndex + 3;
+                if (e.pageCount <= 3) switch (e.pageCount) {
+                    case 0:
+                    case 1:
+                        t = 0;
+                        break;
+                    case 2:
+                        t = 1;
+                        break;
+                    case 3:
+                        t = 2
+                } else e.pageCount - 1 < t && (t = e.pageCount - 1, e.pageCount <= 2 && e.pageCount++);
+                e.notifyChangeIndex(t)
+            }, e._onClickChange0 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || 2 == e.pageCount ? 0 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 3 : e.focusIndex - 1, e.notifyChangeIndex(t)
+            }, e._onClickChange1 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || e.pageCount <= 2 ? 1 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 2 : e.focusIndex, e.notifyChangeIndex(t)
+            }, e._onClickChange2 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || 2 == e.pageCount ? 2 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 1 : e.focusIndex + 1, e.notifyChangeIndex(t)
             };
-            for (var n = o.COMMON_MAIN.getTexture(35), r = new Array, s = 0; s < e; s++) {
-                var a = new h(s);
-                a.y = (a.height + 3) * s, a.onClick = i._onClickListItem, r.push(a);
-                var _ = new PIXI.Sprite(n);
-                _.position.set(0, a.y + a.height), i.addChild(_, a)
-            }
-            return i.otherShipListItems = r, i.itemCount = e, i
+            var i = new r.TextBox(24, e.color_no), n = new r.TextBox(24, e.color_no),
+                s = new r.TextBox(24, e.color_no), a = new PIXI.Sprite(o.COMMON_MAIN.getTexture(8)),
+                _ = new PIXI.Graphics, u = new PIXI.Graphics, l = new PIXI.Graphics,
+                c = new PIXI.Sprite(o.COMMON_MAIN.getTexture(7));
+            return _.beginFill(0, 0), _.drawRect(0, 0, e.hitAreaSize, e.hitAreaSize), _.endFill(), _.renderable = !1, u.beginFill(0, 0), u.drawRect(0, 0, e.hitAreaSize, e.hitAreaSize), u.endFill(), u.renderable = !1, l.beginFill(0, 0), l.drawRect(0, 0, e.hitAreaSize, e.hitAreaSize), l.endFill(), l.renderable = !1, a.position.set(20, 0), _.position.x = e.BASE, u.position.x = e.BASE + e.PADDING, l.position.x = e.BASE + 2 * e.PADDING, _.position.y = -Math.floor(_.height / 2), u.position.y = -Math.floor(u.height / 2), l.position.y = -Math.floor(l.height / 2), c.position.set(233.7, 0), a.anchor.set(0, .5), c.anchor.set(0, .5), i.anchor.set(0, 0), n.anchor.set(0, 0), s.anchor.set(0, 0), _.interactive = a.interactive = c.interactive = u.interactive = l.interactive = !0, e.addChild(a, _, u, l, c, i, n, s), e.buttonPrev_3 = a, e.textChange_0 = i, e.textChange_1 = n, e.textChange_2 = s, e.buttonNext_3 = c, e.buttonChange_0 = _, e.buttonChange_1 = u, e.buttonChange_2 = l, e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            for (var t = 0; t < this.otherShipListItems.length; t++) this.otherShipListItems[t].dispose(), this.otherShipListItems[t] = null;
-            this.otherShipListItems = null, this.onClick = this._onClickListItem = null, this.removeChildren()
-        }, e.prototype.update = function (t) {
-            for (var e = 0; e < this.itemCount; e++) {
-                var i = this.otherShipListItems[e];
-                if (i.visible = !1, e < t.length) {
-                    var n = t[e];
-                    i.update(n), i.visible = !0
-                }
+            this.buttonPrev_3.removeAllListeners(s.EventType.CLICK), this.buttonNext_3.removeAllListeners(s.EventType.CLICK), this.buttonChange_0.removeAllListeners(s.EventType.CLICK), this.buttonChange_1.removeAllListeners(s.EventType.CLICK), this.buttonChange_2.removeAllListeners(s.EventType.CLICK), this.textChange_0.text = "", this.textChange_1.text = "", this.textChange_2.text = "", this._onClickPrev3 = this._onClickNext3 = this._onClickChange0 = this._onClickChange1 = this._onClickChange2 = null, this.color_on = null, this.color_off = null, this.color_no = null, this.buttonPrev_3 = null, this.buttonChange_0 = null, this.buttonChange_1 = null, this.buttonChange_2 = null, this.buttonNext_3 = null, this.textChange_0 = null, this.textChange_1 = null, this.textChange_2 = null, this.focusIndex = null, this.pageCount = null, this.onClick = null, this.removeChildren()
+        }, e.prototype.init = function (t) {
+            switch (this.buttonPrev_3.removeAllListeners(s.EventType.CLICK), this.buttonNext_3.removeAllListeners(s.EventType.CLICK), this.buttonChange_0.removeAllListeners(s.EventType.CLICK), this.buttonChange_1.removeAllListeners(s.EventType.CLICK), this.buttonChange_2.removeAllListeners(s.EventType.CLICK), t) {
+                case 0:
+                case 1:
+                    break;
+                case 2:
+                    this.buttonPrev_3.addListener(s.EventType.CLICK, this._onClickPrev3), this.buttonChange_0.addListener(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.addListener(s.EventType.CLICK, this._onClickChange1), this.buttonNext_3.addListener(s.EventType.CLICK, this._onClickNext3);
+                    break;
+                default:
+                    this.buttonPrev_3.addListener(s.EventType.CLICK, this._onClickPrev3), this.buttonNext_3.addListener(s.EventType.CLICK, this._onClickNext3), this.buttonChange_0.addListener(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.addListener(s.EventType.CLICK, this._onClickChange1), this.buttonChange_2.addListener(s.EventType.CLICK, this._onClickChange2)
             }
+            this.pageCount = t
+        }, e.prototype.focus = function (t) {
+            if (this.focusIndex = t, this.textChange_0.style.fill = this.color_no, this.textChange_1.style.fill = this.color_no, this.textChange_2.style.fill = this.color_no, this.textChange_0.style.fontSize = 24, this.textChange_1.style.fontSize = 24, this.textChange_2.style.fontSize = 24, t < 2 || this.pageCount <= 2) {
+                switch (this.textChange_0.text = "1", this.textChange_1.text = "2", this.textChange_2.text = "3", this.pageCount) {
+                    case 0:
+                    case 1:
+                        this.textChange_0.style.fill = this.color_no, this.textChange_1.style.fill = this.color_no, this.textChange_2.style.fill = this.color_no;
+                        break;
+                    case 2:
+                        this.textChange_0.style.fill = this.color_off, this.textChange_1.style.fill = this.color_off, this.textChange_2.style.fill = this.color_no;
+                        break;
+                    default:
+                        this.textChange_0.style.fill = this.color_off, this.textChange_1.style.fill = this.color_off, this.textChange_2.style.fill = this.color_off
+                }
+                switch (t) {
+                    case 0:
+                        this.textChange_0.style.fill = this.color_on, this.textChange_0.style.fontSize = 30;
+                        break;
+                    case 1:
+                        this.textChange_1.style.fill = this.color_on, this.textChange_1.style.fontSize = 30;
+                        break;
+                    case 2:
+                        this.textChange_2.style.fill = this.color_on, this.textChange_2.style.fontSize = 30
+                }
+            } else if (this.pageCount - 3 < t) switch (this.textChange_0.text = "" + (this.pageCount - 3 + 1), this.textChange_1.text = "" + (this.pageCount - 2 + 1), this.textChange_2.text = "" + (this.pageCount - 1 + 1), this.textChange_0.style.fill = this.color_off, this.textChange_1.style.fill = this.color_off, this.textChange_2.style.fill = this.color_off, this.focusIndex) {
+                case this.pageCount - 3:
+                    this.textChange_0.style.fill = this.color_on, this.textChange_0.style.fontSize = 30;
+                    break;
+                case this.pageCount - 2:
+                    this.textChange_1.style.fill = this.color_on, this.textChange_1.style.fontSize = 30;
+                    break;
+                case this.pageCount - 1:
+                    this.textChange_2.style.fill = this.color_on, this.textChange_2.style.fontSize = 30
+            } else this.textChange_0.text = "" + (this.focusIndex - 1 + 1), this.textChange_1.text = "" + (this.focusIndex + 1), this.textChange_2.text = "" + (this.focusIndex + 1 + 1), this.textChange_0.style.fill = this.color_off, this.textChange_1.style.fill = this.color_on, this.textChange_2.style.fill = this.color_off, this.textChange_1.style.fontSize = 37;
+            this.textChange_0.position.set(this.BASE - Math.floor(this.textChange_0.width / 2) + this.NUMBEROFFSET + 0 * this.PADDING, -Math.floor(this.textChange_0.height / 2)), this.textChange_1.position.set(this.BASE - Math.floor(this.textChange_1.width / 2) + this.NUMBEROFFSET + 1 * this.PADDING, -Math.floor(this.textChange_1.height / 2)), this.textChange_2.position.set(this.BASE - Math.floor(this.textChange_2.width / 2) + this.NUMBEROFFSET + 2 * this.PADDING, -Math.floor(this.textChange_2.height / 2))
+        }, e.prototype.notifyChangeIndex = function (t) {
+            this.onClick(t)
         }, e
     }(PIXI.Container);
-    e.OtherShipList = c;
-    var h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i.index, i.memId)
-            }, i._onMouseOver = function () {
-                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !0, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 16777215, i.textContainer.cacheAsBitmap = !0
-            }, i._onMouseOut = function () {
-                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !1, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 5523516, i.textContainer.cacheAsBitmap = !0
-            };
-            var n = Math.floor(22.5) + 1, r = new PIXI.Graphics;
-            r.beginFill(0, 0), r.drawRect(0, 0, 300, 42), r.endFill();
-            var a = new PIXI.Container, c = new s.TextBox(18, 5523516), h = new s.TextBox(20, 5523516),
-                p = new s.TextBox(19, 5523516), d = new PIXI.Sprite(o.COMMON_MAIN.getTexture(15)),
-                f = u.CreateRect.gradientLeftToRight(210, 45, .88, .95),
-                y = new PIXI.Sprite(_.REMODEL_POWERUP.getTexture(27));
-            return a.mask = f, c.anchor.set(0, 0), c.position.set(6, Math.floor(n - c.height / 2)), h.anchor.set(0, 0), h.position.y = Math.floor(n - h.height / 2) + 0, p.anchor.set(1, 0), p.position.set(263, Math.floor(n - p.height / 2)), y.position.set(213, 3), d.visible = !1, y.visible = !1, a.addChild(c, h, f), r.addListener(l.EventType.MOUSEOVER, i._onMouseOver), r.addListener(l.EventType.MOUSEOUT, i._onMouseOut), r.addListener(l.EventType.CLICK, i._onClick), r.interactive = r.buttonMode = !0, i.addChild(r, d, a, p, y), i.textName = h, i.textType = c, i.textLevel = p, i.index = e, i.clickArea = r, i.focus = d, i.textContainer = a, i.icon_max = y, i
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.clickArea.removeAllListeners(l.EventType.MOUSEOVER), this.clickArea.removeAllListeners(l.EventType.MOUSEOUT), this.clickArea.removeAllListeners(l.EventType.CLICK), this.textName.text = "", this.textType.text = "", this.textLevel.text = "", this._onMouseOver = this._onMouseOut = this._onClick = null, this.onClick = null, this.clickArea = null, this.focus = null, this.textContainer = null, this.textName = null, this.textType = null, this.textLevel = null, this.index = null, this.memId = null, this.icon_max = null, this.removeChildren()
-        }, e.prototype.update = function (t) {
-            this.textContainer.cacheAsBitmap = !1, this.memId = t.memID, this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.icon_max.visible = !1, this.textLevel.visible = !1, a.ShipUtil.isMaxGradeUp(t, r.default.model.ship.getMst(t.mstID), !1) ? this.icon_max.visible = !0 : (this.textLevel.text = "Lv" + t.level, this.textLevel.visible = !0), this.textContainer.cacheAsBitmap = !0
-        }, e
-    }(PIXI.Container)
+    e.MiniPager = a
 }

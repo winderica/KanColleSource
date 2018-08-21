@@ -16,18 +16,21 @@ const function877 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(10), r = i(0), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_kousyou/createship_speedchange", n.api_kdock_id = e, n.isLarge = i, n
+        function e(e, i, n, o, r, s, a, _) {
+            var u = t.call(this) || this;
+            return u._url = "api_req_kousyou/createship", u.api_kdock_id = e, u.api_large_flag = i, u.api_item1_fuel = n, u.api_item2_ammo = o, u.api_item3_steel = r, u.api_item4_baux = s, u.api_item5_devkit = a, u.api_highspeed = _, u
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_highspeed = 1, t.prototype._connect.call(this)
+            this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_large_flag = this.api_large_flag, this._post_data.api_item1 = this.api_item1_fuel, this._post_data.api_item2 = this.api_item2_ammo, this._post_data.api_item3 = this.api_item3_steel, this._post_data.api_item4 = this.api_item4_baux, this._post_data.api_item5 = this.api_item5_devkit, this._post_data.api_highspeed = this.api_highspeed, t.prototype._connect.call(this)
         }, e.prototype._completedEnd = function () {
-            var e = r.default.model.useItem.get(2), i = r.default.model.kdock.get(this.api_kdock_id),
-                n = this.isLarge ? 10 : 1;
-            e.__setCount__(e.count - n), i.__complete__(), t.prototype._completedEnd.call(this)
+            var e = r.default.model.useItem.get(31), i = r.default.model.useItem.get(32),
+                n = r.default.model.useItem.get(33), o = r.default.model.useItem.get(34),
+                s = r.default.model.useItem.get(3), a = r.default.model.useItem.get(2);
+            e.__setCount__(e.count - this.api_item1_fuel), i.__setCount__(i.count - this.api_item2_ammo), n.__setCount__(n.count - this.api_item3_steel), o.__setCount__(o.count - this.api_item4_baux), s.__setCount__(s.count - this.api_item5_devkit);
+            var _ = 0;
+            1 == this.api_highspeed && (_ = 1 == this.api_large_flag ? 10 : 1), a.__setCount__(a.count - _), t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.CreateShipSpeedChangeAPI = s
+    e.CreateShipAPI = s
 }
