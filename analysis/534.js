@@ -70,8 +70,8 @@ const function534 = function (t, e, i) {
             }
         }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var r = i(0), s = i(7), a = i(34), _ = i(534), u = i(539), l = i(540), c = i(2), h = i(541), p = i(269),
-        d = i(544), f = i(546), y = i(547), v = i(24), g = i(549), m = i(636), b = function (t) {
+    var r = i(0), s = i(7), a = i(34), _ = i(535), u = i(540), l = i(541), c = i(2), h = i(542), p = i(270),
+        d = i(545), f = i(547), y = i(548), v = i(24), g = i(550), m = i(637), b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
@@ -155,6 +155,6 @@ const function534 = function (t, e, i) {
             }, e
         }(c.TaskBase);
     e.AppInitializeTask = b;
-    var w = i(648), x = i(731), I = i(750), T = i(825), O = i(850), P = i(900), C = i(1038), k = i(1054),
-        M = i(1084), S = i(1148), A = i(1156), j = i(1185), E = i(1201), L = i(432), N = i(1301), B = i(1438)
+    var w = i(649), x = i(732), I = i(751), T = i(826), O = i(851), P = i(901), C = i(1039), k = i(1055),
+        M = i(1085), S = i(1149), A = i(1157), j = i(1187), E = i(1203), L = i(432), N = i(1303), B = i(1439)
 }
