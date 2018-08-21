@@ -58,7 +58,7 @@ const function975 = function (t, e, i) {
             }
             var s = o.default.model.const.boko_max_ships, a = o.default.model.basic.shipMax, _ = a < s,
                 u = o.default.model.ship.num, l = o.default.model.basic.slotMax, c = o.default.model.slot.num;
-            a - u < 1 ? (this._err_txt.text = "\u8266\u5a18\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : l - c < 1 ? (this._err_txt.text = "\u88c5\u5099\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : this._shop.visible = !1
+            a - u < 1 ? (this._err_txt.text = "\u8266\u5a18\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : l - c < 4 ? (this._err_txt.text = "\u88c5\u5099\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : this._shop.visible = !1
         }, e.prototype.activate = function () {
             this._shop.activate(), this._btn.activate()
         }, e.prototype.deactivate = function () {

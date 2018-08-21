@@ -101,7 +101,7 @@ const function588 = function (t, e, i) {
         }, e.prototype.dispose = function () {
             this._slider_bgm.dispose(), this._slider_se.dispose(), this._slider_voice.dispose(), this._toggle1.dispose(), this._toggle2.dispose()
         }, e.prototype.setState = function (t) {
-            this._slider_bgm.value = this._slider_bgm.temp_value = t, this._slider_se.value = this._slider_se.temp_value = o.default.option.vol_se, this._slider_voice.value = this._slider_voice.temp_value = o.default.option.vol_voice, this._toggle1.value = o.default.option.voice_be_left, this._toggle2.value = o.default.option.voice_duty
+            this._slider_bgm.value = t, null == this._slider_bgm.temp_value && (this._slider_bgm.temp_value = t), this._slider_se.value = o.default.option.vol_se, null == this._slider_se.temp_value && (this._slider_se.temp_value = o.default.option.vol_se), this._slider_voice.value = o.default.option.vol_voice, null == this._slider_voice.temp_value && (this._slider_voice.temp_value = o.default.option.vol_voice), this._toggle1.value = o.default.option.voice_be_left, this._toggle2.value = o.default.option.voice_duty
         }, e
     }(PIXI.Container), p = function (t) {
         function e() {
@@ -158,7 +158,7 @@ const function588 = function (t, e, i) {
                 var i = t.data, n = i.getLocalPosition(e);
                 e.value = (n.x - e._MIN_XPOS) / e._dragging_range * 100, e.value > 0 && (e.temp_value = e.value)
             }, e._onMouseDown = function () {
-                1 != e._dragging && (e.temp_value = e.value, e._dragging = !0)
+                1 != e._dragging && (e.value > 0 && (e.temp_value = e.value), e._dragging = !0)
             }, e._onMouseMove = function (t) {
                 if (1 == e._dragging) {
                     var i = t.data, n = i.getLocalPosition(e);

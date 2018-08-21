@@ -48,11 +48,14 @@ const function271 = function (t, e, i) {
                 }
             }
         }, t.prototype.stop = function () {
-            null != this._bgm && (this._bgm.stop(), this._bgm = null)
+            null != this._bgm && (this._bgm.stop(), this._bgm.unload(), this._bgm = null)
         }, t.prototype.fadeOut = function (t) {
+            var e = this;
             if (null != this._bgm && 1 == this._bgm.playing()) {
-                var e = this._bgm.volume();
-                this._bgm.fade(e, 0, t), this._bgm = null
+                var i = this._bgm.volume();
+                this._bgm.fade(i, 0, t), setTimeout(function () {
+                    e._bgm.stop(), e._bgm.unload(), e._bgm = null
+                }, t)
             }
         }, t.prototype.changeVolume = function (t) {
             if (null == this._bgm) return !1;

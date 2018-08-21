@@ -34,7 +34,7 @@ const function1083 = function (t, e, i) {
                 this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
             }
         }, e.prototype._addParamData = function (t, e, i) {
-            null != t && (i <= 0 || t.push({ type: e, value: i }))
+            null != t && 0 != i && t.push({ type: e, value: i })
         }, e
     }(PIXI.Container);
     e.SlotParamsContainer = s;

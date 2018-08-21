@@ -57,7 +57,7 @@ const function555 = function (t, e, i) {
         return n(e, t), e.prototype.startAnimation = function (t, e) {
             this._shogo_type = e, null != this._shogo && this._shogo.position.set(t.x, t.y), this._NowPlaying || (this._NowPlaying = !0, this._shogo_anime_frm = 0, this._shogo = new PIXI.Sprite, this._shogo.texture = o.COMMON_SHOGO.getTexture(this._shogo_anime[this._shogo_type][this._shogo_anime_frm].texture), this._shogo.position.set(t.x, t.y), this.addChild(this._shogo), 0 != this._shogo_anime[this._shogo_type][0].time && this._animate())
         }, e.prototype.stopAnimation = function () {
-            this._NowPlaying && -1 != this._shogo_type && (this._tween.pause(null), this._NowPlaying = !1, this.removeChild(this._shogo), this._shogo = null, this._tween = null)
+            this._NowPlaying && -1 != this._shogo_type && (null != this._tween && this._tween.pause(null), this._NowPlaying = !1, this.removeChild(this._shogo), this._shogo = null, this._tween = null)
         }, e.prototype._animate = function () {
             var t = this;
             if (0 != this._NowPlaying) {
