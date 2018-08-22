@@ -15,7 +15,7 @@ const function353 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = i(3), s = i(29), a = function (t) {
+    var o = i(9), r = i(3), s = i(31), a = function (t) {
         function e(e, i) {
             void 0 === e && (e = 240), void 0 === i && (i = 60);
             var n = t.call(this) || this;

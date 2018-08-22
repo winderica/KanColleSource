@@ -15,7 +15,7 @@ const function1007 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(165), r = i(4), s = i(29), a = function (t) {
+    var o = i(167), r = i(4), s = i(31), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._name = new r.TextBox(30, 4999235), e._name.position.set(193, 129), e.addChild(e._name), e._level = new r.TextBox(26, 4999235), e._level.anchor.set(1, 0), e._level.position.set(319, 192), e.addChild(e._level), e._rank_name = new r.TextBox(19, 4999235), e._rank_name.position.set(324, 198), e.addChild(e._rank_name), e._exp = new r.TextBox(19, 4999235), e._exp.position.set(363, 235), e.addChild(e._exp), e._comment = new r.TextBox(16, 4999235), e._comment.position.set(151, 286), e.addChild(e._comment), e._friend_num = new r.TextBox(20, 4999235), e._friend_num.anchor.set(1, 0), e._friend_num.position.set(645, 344), e.addChild(e._friend_num), e._ship_num = new r.TextBox(20, 4999235), e._ship_num.anchor.set(1, 0), e._ship_num.position.set(645, 375), e.addChild(e._ship_num), e._slot_num = new r.TextBox(20, 4999235), e._slot_num.anchor.set(1, 0), e._slot_num.position.set(645, 407), e.addChild(e._slot_num), e._furniture_num = new r.TextBox(20, 4999235), e._furniture_num.anchor.set(1, 0), e._furniture_num.position.set(645, 438), e.addChild(e._furniture_num), e._rank_icon = new s.RankIcon, e._rank_icon.position.set(135, 181), e.addChild(e._rank_icon), e._medal = new o.MedalIcon, e._medal.position.set(594, 543), e.addChild(e._medal), e

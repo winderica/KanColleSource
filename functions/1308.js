@@ -15,7 +15,7 @@ const function1308 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(171), s = function (t) {
+    var o = i(10), r = i(173), s = function (t) {
         function e(e) {
             var i = t.call(this) || this, n = e.model.deck_f, o = 0 != n.type;
             return i._url = 0 == o ? "api_req_sortie/ld_airbattle" : "api_req_combined_battle/ld_airbattle", i._data = e, i

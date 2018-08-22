@@ -15,7 +15,7 @@ const function598 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(186), s = i(599), a = i(600), _ = function (t) {
+    var o = i(0), r = i(188), s = i(599), a = i(600), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new u, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e

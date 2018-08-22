@@ -15,32 +15,19 @@ const function158 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
+    var o = i(4), r = i(3), s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this, i = new PIXI.Container, n = new PIXI.Sprite(r.COMMON_MAIN.getTexture(28)),
+                s = new PIXI.Sprite(r.COMMON_MAIN.getTexture(27)), a = new o.TextBox(20, 1949120),
+                _ = new PIXI.Sprite(r.COMMON_MAIN.getTexture(29));
+            return n.width = 18, n.height = 18, s.position.set(17, 3), a.position.set(30, -3), _.position.set(8, -6), i.addChild(n, s, a), e.starLevel = i, e.text = a, e.starMax = _, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (t[0]) {
-                case 1:
-                    var e = t[1];
-                    this.texture = 0 == e ? o.COMMON_MISC.getTexture(71) : o.COMMON_MISC.getTexture(74);
-                    break;
-                case 2:
-                    this.texture = o.COMMON_MISC.getTexture(77);
-                    break;
-                case 3:
-                    this.texture = o.COMMON_MISC.getTexture(80);
-                    break;
-                case 4:
-                    this.texture = o.COMMON_MISC.getTexture(83);
-                    break;
-                default:
-                    this.texture = PIXI.Texture.EMPTY
-            }
-        }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY
+        return n(e, t), e.prototype.dispose = function () {
+            this.starLevel.removeChild(this.text), this.starLevel = null, this.text = null, this.starMax = null, this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.removeChildren(), 10 <= t ? this.addChild(this.starMax) : 0 < t && (this.addChild(this.starLevel), this.text.text = t.toString())
         }, e
-    }(PIXI.Sprite);
-    e.ShipInDeckFlag = r
+    }(PIXI.Container);
+    e.SlotItemLevel = s
 }

@@ -1,7 +1,7 @@
 const function1411 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(164), r = i(224), s = i(468), a = function () {
+    var n = i(7), o = i(166), r = i(224), s = i(468), a = function () {
         function t(t, e) {
             this._info = t, this._battle = e, this._initializeShipData()
         }

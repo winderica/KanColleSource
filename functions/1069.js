@@ -15,7 +15,7 @@ const function1069 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(201), r = i(154), s = i(1070), a = i(384), _ = i(385), u = i(387), l = function (t) {
+    var o = i(201), r = i(156), s = i(1070), a = i(384), _ = i(385), u = i(387), l = function (t) {
         function e(e, i, n) {
             var r = t.call(this) || this;
             return r._bg = new PIXI.Sprite, r._bg.position.set(147, 60), r.addChild(r._bg), r._pager = new _.PagerContainer(i), r._pager.position.set(195, 14), r.addChild(r._pager), r._content = new s.MainContainer(n), r._content.position.set(129, 68), r.addChild(r._content), r._tab_container = new u.TabBtnContainer(e), r._tab_container.position.set(0, 60), r.addChild(r._tab_container), r._mini_chara = new a.MiniChara, r._mini_chara.position.set(104, 564), r.addChild(r._mini_chara), r._back_btn = new o.BackBtn, r._back_btn.position.set(0, 659), r.addChild(r._back_btn), r

@@ -15,7 +15,7 @@ const function1050 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(377), r = i(29), s = i(1051), a = i(1052), _ = i(1), u = function (t) {
+    var o = i(377), r = i(31), s = i(1051), a = i(1052), _ = i(1), u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._btn_back = new r.BackBtn, e._btn_back.position.set(0, 653), e._btn_modeInfo = new l, e._btn_modeInfo.position.set(0, 205), e._btn_modeRanking = new l, e._btn_modeRanking.position.set(0, 261), e._isModeChanging = !1, e._disposed = !1, e

@@ -15,7 +15,7 @@ const function473 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(165), r = i(4), s = i(36), a = function (t) {
+    var o = i(167), r = i(4), s = i(36), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e

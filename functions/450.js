@@ -15,7 +15,7 @@ const function450 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(26), s = i(6), a = i(180), _ = i(180), u = i(180), l = i(180), c = i(43), h = function (t) {
+    var o = i(0), r = i(26), s = i(6), a = i(182), _ = i(182), u = i(182), l = i(182), c = i(43), h = function (t) {
         function e(e, i, n, r, s, c, h, p, d, f) {
             var y = t.call(this, e, n, s, p, d, f) || this;
             if (y._slot2 = o.default.model.slot.getMst(c), y._slot3 = o.default.model.slot.getMst(h), y._defender = r, 3 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3); else if (4 == i) y._cutin = new _.CutinDanchaku2(n, y._slot, y._slot2, y._slot3); else if (5 == i) y._cutin = new u.CutinDanchaku3(n, y._slot, y._slot2, y._slot3); else {

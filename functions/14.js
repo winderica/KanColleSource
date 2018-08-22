@@ -1,13 +1,13 @@
 const function14 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(31), r = i(22), s = i(102), a = i(76), _ = function () {
+    var n = i(0), o = i(29), r = i(22), s = i(102), a = i(76), _ = function () {
         function t() {
             null == t._queue && (t._queue = []), this._url_list = []
         }
 
         return t.getPath = function (t, e, i) {
-            "album_status" == i ? e = !1 : 1 == o.ShipUtil.isEnemy(t) && (e = !1);
+            "album_status" == i ? e = !1 : "banner_g" == i ? e = !0 : 1 == o.ShipUtil.isEnemy(t) && (e = !1);
             var _ = i + (e ? "_dmg" : ""), u = "ship_" + _, l = s.SuffixUtil.create(t, u),
                 c = r.MathUtil.zeroPadding(t, 4);
             return n.default.settings.path_root + "resources/ship/" + _ + "/" + c + "_" + l + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(c))

@@ -30,15 +30,17 @@ const function1447 = function (t, e, i) {
             }, e.prototype._loadBannerImages = function () {
                 for (var t = this, e = new _.ShipLoader, i = this._scene.data.battle_model, n = i.deck_f.ships, o = 0, r = n; o < r.length; o++) {
                     var s = r[o];
-                    null != s && e.add(s.mst_id, s.isDamaged(), "banner")
+                    this._addResourceToLoader(e, s)
                 }
                 for (var a = i.deck_e.ships, u = 0, l = a; u < l.length; u++) {
                     var s = l[u];
-                    null != s && e.add(s.mst_id, s.isDamaged(), "banner")
+                    this._addResourceToLoader(e, s)
                 }
                 e.load(function () {
                     t._showImage()
                 })
+            }, e.prototype._addResourceToLoader = function (t, e) {
+                null != e && (e.hp_now <= 0 ? t.add(e.mst_id, !0, "banner_g") : t.add(e.mst_id, e.isDamaged(), "banner"))
             }, e.prototype._showImage = function () {
                 var t = this, e = u.BATTLE_RESULT_MAIN.getTexture(73);
                 this._img = new PIXI.Sprite(e), this._img.anchor.set(.5, .5), this._img.position.set(330, 290), this._img.alpha = 0, this._scene.addChild(this._img), createjs.Tween.get(this._img).to({ alpha: 1 }, 200).call(function () {

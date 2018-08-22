@@ -15,7 +15,7 @@ const function573 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(4), s = i(188), a = i(1), _ = function (t) {
+    var o = i(5), r = i(4), s = i(190), a = i(1), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._tween = new Array(2), i._textScrollEnable = !0, i._onChibiClick = function () {

@@ -15,7 +15,7 @@ const function1367 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(12), s = i(172), a = function (t) {
+    var o = i(2), r = i(12), s = i(174), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._light = new r.Sprite, e._light.anchor.set(0, .5), e.addChild(e._light), e._animatin_task = new _(e), e

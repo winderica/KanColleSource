@@ -30,9 +30,8 @@ const function1484 = function (t, e, i) {
                 if (null == n) return;
                 var r = new o.ShipBannerClone(n.isTaihi());
                 r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
-                var s = n.mst_id, a = n.isDamaged();
-                n.hp_now, n.hp_max;
-                r.updateTexture(s, a), r.updateIcon(n.damageType), this.addChild(r)
+                var s = n.mst_id, a = n.hp_now, _ = n.hp_max;
+                r.updateTexture(s, a, _), r.updateIcon(n.damageType), this.addChild(r)
             }
         }, e.prototype.dispose = function () {
             this._resetBanners(), this._banners = null, this.removeChildren()

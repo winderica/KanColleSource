@@ -1,211 +1,79 @@
 const function175 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(45), s = i(2), a = i(6), _ = i(1329), u = i(1336), l = i(137), c = function (t) {
-        function e(e, i, n, o, r, s) {
-            var a = t.call(this) || this;
-            return a._completeflg_plane = !1, a._complete_show_damage_number = !1, a._scene = e, a._data = i, a._ships_f = n, a._ships_e = o, a._damage_cutin = r, a._aaCutin = s, a._hunshin_danmaku = [], a
+    var n = i(17), o = function () {
+        function t() {
         }
 
-        return n(e, t), e.prototype._start = function () {
-        }, e.prototype._log = function () {
-        }, e.prototype._getPlaneType = function () {
-            return r.PlaneConst.getPlaneType(!0)
-        }, e.prototype._getPlanes = function (t, e) {
-            for (var i = this._getPlaneType(), n = [], o = t.slots, r = 0, s = o; r < s.length; r++) {
-                var a = s[r];
-                if (null != a && i.indexOf(a.equipTypeSp) >= -0) {
-                    var _ = new l.Plane, u = new PIXI.Point([45, 18, -36][n.length], [18, -27, 38][n.length]);
-                    if (_.initialize(a.mst_id, t.friend, e, u), n.push(_), n.length >= 3) break
-                }
+        return t.getAttackVoiceIDs = function (t, e) {
+            var i, o = t.data.model.map_info.area_id;
+            return i = o == n.EVENT_AREA_ID ? this._getVoiceIDsAtEvent(o, t, e) : this._getVoiceIDs(o, t, e), null != i ? i.a : null
+        }, t.getDamagedVoiceIDs = function (t, e) {
+            var i, o = t.data.model.map_info.area_id;
+            return i = o == n.EVENT_AREA_ID ? this._getVoiceIDsAtEvent(o, t, e) : this._getVoiceIDs(o, t, e), null != i ? i.d : null
+        }, t.getSourGrapesVoiceID = function (t, e) {
+            if (t.data.model.map_info.area_id != n.EVENT_AREA_ID) return -1;
+            if (0 == t.data.model.map_info.isBoss()) return -1;
+            var i = (t.data.model.map_info.map_no, e.name);
+            return "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i ? 391173640 : "\u6226\u8266\u4ecf\u68f2\u59eb" == i ? 394174540 : "\u6b27\u5dde\u68f2\u59eb" == i ? 397175540 : -1
+        }, t.getLastGaspVoiceID = function (t, e) {
+            if (t.data.model.map_info.area_id != n.EVENT_AREA_ID) return -1;
+            if (0 == t.data.model.map_info.isBoss()) return -1;
+            var i = (t.data.model.map_info.map_no, e.name);
+            return "\u6f5c\u6c34\u65b0\u68f2\u59eb" == i ? 391173641 : "\u91cd\u5de1\u590f\u59eb" == i ? 35470540 : "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca" == i ? 394174840 : "\u6226\u8266\u590f\u59eb" == i ? 27605574 : "\u7a7a\u6bcd\u590f\u59eb" == i ? 29405864 : "\u6b27\u5dde\u68f2\u59eb-\u58ca" == i ? 397175840 : -1
+        }, t._getVoiceIDs = function (t, e, i) {
+            var n = e.data.model.map_info.map_no, o = i.mst_id, r = i.name;
+            if (3 == t && 5 == n) {
+                if (1587 == o || 1589 == o) return { a: [3505871, 3505872], d: [3505873] };
+                if (1588 == o || 1590 == o) return { a: [3505881, 3505882], d: [3505883] }
+            } else if (4 == t && 5 == n) {
+                if (1573 == o) return { a: [4505731], d: [4505732] };
+                if (1613 == o) return { a: [4506131], d: [4505732] }
+            } else if (6 == t && 1 == n) {
+                if ("\u7a7a\u6bcd\u68f2\u9b3c" == r) return { a: [6105851, 6105852], d: [6105853] }
+            } else if (6 == t && 4 == n) {
+                if ("\u7832\u53f0\u5c0f\u9b3c" == r) return { a: [6466520], d: [6466530] };
+                if ("\u96e2\u5cf6\u68f2\u59eb" == r) return { a: [6466820], d: [6466830] }
             }
-            return n
-        }, e.prototype._createPlanes = function (t, e) {
-            for (var i = 0, n = t; i < n.length; i++) {
-                var o = n[i], r = e[o];
-                if (null != r) {
-                    var s = this._scene.view.bannerGroupLayer.getBanner(r), a = s.getGlobalPos(!0);
-                    0 == s.entered && (a.x = s.friend ? -240 : 1440);
-                    var _ = this._getPlanes(r, a);
-                    1 == r.friend ? this._canvas.addPlanes_f(_) : this._canvas.addPlanes_e(_)
-                }
+        }, t._getVoiceIDsAtEvent = function (t, e, i) {
+            var n = (e.data.model.map_info.map_no, i.mst_id, i.name);
+            if ("PT\u5c0f\u9b3c\u7fa4" == n) return { a: [32263720], d: [32263730] };
+            if ("\u96c6\u7a4d\u5730\u590f\u59eb" == n) return { a: [33265320], d: [33265330] };
+            if ("\u6e2f\u6e7e\u590f\u59eb" == n) return { a: [35369920], d: [35369930] };
+            if ("\u6e2f\u6e7e\u590f\u59eb-\u58ca" == n) return { a: [35369920], d: [35369930] };
+            if ("\u7832\u53f0\u5c0f\u9b3c" == n) return { a: [6466520], d: [6466530] };
+            if ("\u98db\u884c\u5834\u59eb" == n) return { a: [31406312], d: [31406313] };
+            if ("\u99c6\u9010\u53e4\u59eb" == n) return { a: [34769020], d: [34769030] };
+            if ("\u99c6\u9010\u68f2\u59eb" == n) return { a: [30505972], d: [30505973] };
+            if ("\u99c6\u9010\u6c34\u9b3c" == n) return { a: [32564720], d: [32564730] };
+            if ("\u6f5c\u6c34\u65b0\u68f2\u59eb" == n) {
+                if (0 != i.index || 0 == e.data.model.map_info.isBoss()) return { a: [391173620], d: [391173630] };
+                var o = e.data.model.gauge_now;
+                return 0 == i.hp_now >= o ? { a: [391173620], d: [391173630] } : { a: [391173621], d: [391173630] }
             }
-        }, e.prototype._startAircraftFlightAnimation = function () {
-            for (var t = this, e = 0, i = this._canvas.planes_f; e < i.length; e++) {
-                var n = i[e];
-                n.startFluctuations()
-            }
-            for (var o = 0, r = this._canvas.planes_f; o < r.length; o++) {
-                var n = r[o];
-                n.startFluctuations()
-            }
-            this._canvas.play(function () {
-                for (var e = 0, i = t._canvas.planes_f; e < i.length; e++) {
-                    var n = i[e];
-                    n.stopFluctuations()
-                }
-                for (var o = 0, r = t._canvas.planes_f; o < r.length; o++) {
-                    var n = r[o];
-                    n.stopFluctuations()
-                }
-                t._completeflg_plane = !0, t._endTask()
-            })
-        }, e.prototype._fireDogFight = function () {
-            var t = this._data.plane_from_f;
-            if (null != t && 0 != t.length) {
-                var e = this._data.plane_from_e;
-                if (null != e && 0 != e.length) {
-                    var i = this._canvas.planes_f, n = this.__fireDogFight(i);
-                    i = this._canvas.planes_e;
-                    var o = this.__fireDogFight(i);
-                    (n || o) && a.SE.play("116")
-                }
-            }
-        }, e.prototype.__fireDogFight = function (t) {
-            for (var e = !1, i = 0, n = t; i < n.length; i++) {
-                var s = n[i], a = s.mst_id, _ = o.default.model.slot.getMst(a);
-                null != _ && r.PlaneConst.ATTACKABLE_TYPE.indexOf(_.equipTypeSp) >= 0 && (s.fire(), e = !0)
-            }
-            return e
-        }, e.prototype._showTaikuCutin = function () {
-            var t = this;
-            null != this._aaCutin && (createjs.Ticker.setPaused(!0), this._aaCutin.init(), this._scene.view.layer_cutin.addChild(this._aaCutin), this._aaCutin.play(function () {
-                t._scene.view.layer_cutin.removeChild(t._aaCutin), createjs.Ticker.setPaused(!1)
-            }))
-        }, e.prototype._damageAtStage1 = function () {
-            var t = this._data.plane_count_f.count, e = this._data.plane_count_f.lost_count_stage1,
-                i = this._canvas.planes_f;
-            this._planeDamage(t, e, i), t = this._data.plane_count_e.count, e = this._data.plane_count_e.lost_count_stage1, i = this._canvas.planes_e, this._planeDamage(t, e, i)
-        }, e.prototype._planeDamage = function (t, e, i) {
-            if (!(t <= 0 || e <= 0)) {
-                e = Math.min(e, t), i = i.concat();
-                for (var n = e / t, o = i.length * n; i.length > 0 && o > 0;) {
-                    var r = Math.floor(Math.random() * i.length), s = i[r];
-                    if (s.power > 0) {
-                        var a = Math.min(o, s.power);
-                        o -= a, s.power -= a, 0 == s.power ? s.crash() : s.damage()
-                    }
-                    i.splice(r, 1)
-                }
-            }
-        }, e.prototype._antiAircraft = function () {
-            var t = this._data.plane_from_e;
-            if (null != t && 0 != t.length) {
-                for (var e = [], i = 0, n = this._ships_f; i < n.length; i++) {
-                    var o = n[i], r = this._getAntiAircraftAbility(o);
-                    if (0 != r) {
-                        for (var s = this._data.stage3_f.getDamage(o.index), u = this._canvas.planes_e.concat(), l = null; u.length > 0;) {
-                            var c = Math.floor(Math.random() * u.length);
-                            if (u[c].power > 0) {
-                                l = u[c];
-                                break
-                            }
-                            u.splice(c, 1)
-                        }
-                        var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, r, l);
-                        e.push(h)
-                    }
-                }
-                if (0 == e.length) {
-                    for (var o = this._ships_f[0], s = this._data.stage3_f.getDamage(o.index), u = this._canvas.planes_e.concat(), l = null; u.length > 0;) {
-                        var c = Math.floor(Math.random() * u.length);
-                        if (u[c].power > 0) {
-                            l = u[c];
-                            break
-                        }
-                        u.splice(c, 1)
-                    }
-                    var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, 1, l);
-                    e.push(h)
-                }
-                a.SE.play("116");
-                for (var p = 0, d = e; p < d.length; p++) {
-                    var h = d[p];
-                    h.start()
-                }
-            }
-        }, e.prototype._getAntiAircraftAbility = function (t) {
-            if (null == t) return 0;
-            if (0 == t.damageType) return 0;
-            if (1 == t.isTaihi()) return 0;
-            var e = t.slots.slice();
-            e.push(t.slot_ex);
-            for (var i = [], n = [], o = [], r = 0, s = e; r < s.length; r++) {
-                var a = s[r];
-                null != a && (i.push(a.mst_id), n.push(a.equipType), o.push(a.iconType))
-            }
-            var _ = !1;
-            if (i.indexOf(274) >= 0 && this._isHunshinhouShipType(t.stype) && (_ = !0, this._hunshin_danmaku.push(t)), n.indexOf(18) >= 0) return _ ? 6 : 5;
-            if (_) return 4;
-            if (i.indexOf(51) >= 0) return 3;
-            if (o.indexOf(16) >= 0) return 2;
-            if (n.indexOf(21) >= 0) return 1;
-            for (var u = 0, l = e; u < l.length; u++) {
-                var c = l[u];
-                if (null != c && (11 == c.iconType && c.taiku > 0)) return 1
-            }
-        }, e.prototype._isHunshinhouShipType = function (t) {
-            return 6 == t || (7 == t || (10 == t || (11 == t || (16 == t || 18 == t))))
-        }, e.prototype._damageAtStage2 = function () {
-            this._showSeikuResult();
-            var t = this._data.plane_count_f.count, e = this._data.plane_count_f.lost_count_stage2,
-                i = this._canvas.planes_f;
-            this._planeDamage(t, e, i), t = this._data.plane_count_e.count, e = this._data.plane_count_e.lost_count_stage2, i = this._canvas.planes_e, this._planeDamage(t, e, i)
-        }, e.prototype._showSeikuResult = function () {
-        }, e.prototype._showBakuExplosion = function () {
-            var t = this._data.stage3_f, e = this._bakuExplosion(t);
-            t = this._data.stage3_e, 1 == (e = e || this._bakuExplosion(t)) && a.SE.play("104")
-        }, e.prototype._bakuExplosion = function (t) {
-            var e = t.beBombed(), i = t.beBombedCombined();
-            return 1 == e && (1 == t.friend ? this._scene.view.layer_explosion.playExplosions(132, 306) : this._scene.view.layer_explosion.playExplosions(1080, 417)), 1 == i && (1 == t.friend ? this._scene.view.layer_explosion.playExplosions(387, 306) : this._scene.view.layer_explosion.playExplosions(825, 417)), 1 == e || i
-        }, e.prototype._showDamage = function () {
-            for (var t = this._data.stage3_f, e = 0, i = this._ships_f; e < i.length; e++) {
-                var n = i[e];
-                this._damage(n, t)
-            }
-            t = this._data.stage3_e;
-            for (var o = 0, r = this._ships_e; o < r.length; o++) {
-                var n = r[o];
-                this._damage(n, t)
-            }
-        }, e.prototype._damage = function (t, e) {
-            if (null != t) {
-                var i = t.index, n = e.getRai(i), o = e.getBak(i), r = e.getDamage(i);
-                if (0 == n && (1 == o || r > 0)) {
-                    var s = this._scene.view.bannerGroupLayer.getBanner(t), a = e.isShield(i);
-                    if (1 == a) {
-                        var _ = this._scene.view.bannerGroupLayer.getShieldTargetBanner(s);
-                        this._scene.view.layer_damage.showShieldAtBanner(_)
-                    }
-                    s.moveAtDamage(a)
-                }
-                if (o || n || r > 0) {
-                    e.getHitType(i)
-                }
-            }
-        }, e.prototype._showDamageNumber = function () {
-            var t = this, e = this._scene, i = this._data, n = this._damage_cutin, o = this._ships_f,
-                r = this._ships_e;
-            new u.TaskAirWarDamageNumber(e, i, n, o, r, this._hunshin_danmaku).start(function () {
-                t._complete_show_damage_number = !0, t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            0 != this._completeflg_plane && 0 != this._complete_show_damage_number && (this._scene = null, this._data = null, this._ships_f = null, this._ships_e = null, this._damage_cutin = null, null != this._canvas.parent && this._canvas.parent.removeChild(this._canvas), this._canvas.dispose(), this._canvas = null, t.prototype._endTask.call(this))
-        }, e
-    }(s.TaskBase);
-    e.TaskAircraftFlightBase = c
+            return "\u91cd\u5de1\u590f\u59eb" == n ? {
+                a: [35470520],
+                d: [35470530]
+            } : "\u7a7a\u6bcd\u590f\u9b3c" == n ? {
+                a: [6105852],
+                d: [6105853]
+            } : "\u6226\u8266\u4ecf\u68f2\u59eb" == n ? {
+                a: [394174520],
+                d: [394174530]
+            } : "\u6226\u8266\u4ecf\u68f2\u59eb-\u58ca" == n ? {
+                a: [394174820],
+                d: [394174830]
+            } : "\u6226\u8266\u590f\u59eb" == n ? {
+                a: [27605572],
+                d: [27605573]
+            } : "\u7a7a\u6bcd\u590f\u59eb" == n ? {
+                a: [29405862],
+                d: [29405863]
+            } : "\u6b27\u5dde\u68f2\u59eb" == n ? {
+                a: [397175520],
+                d: [397175530]
+            } : "\u6b27\u5dde\u68f2\u59eb-\u58ca" == n ? { a: [397175820], d: [397175830] } : void 0
+        }, t
+    }();
+    e.EnemyVoiceConst = o
 }

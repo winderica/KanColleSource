@@ -63,7 +63,7 @@ const function1304 = function (t, e, i) {
             }, e.prototype._loadBannerImage = function (t, e) {
                 if (null != e) {
                     var i = e.mst_id;
-                    i >= 0 && (t.add(i, !1, "banner"), t.add(i, !0, "banner"), t.add(i, !1, "full"), t.add(i, !0, "full"))
+                    i >= 0 && (t.add(i, !1, "banner"), t.add(i, !0, "banner"), t.add(i, !0, "banner_g"), t.add(i, !1, "full"), t.add(i, !0, "full"))
                 }
             }, e.prototype._initializeView = function () {
                 var t = (this._scene.data.getFirstRecord(), this._scene.data.model.deck_f), e = t.ships_main,

@@ -15,38 +15,62 @@ const function179 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(21), s = i(250), a = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(26), r = i(2), s = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "width", {
-            get: function () {
-                for (var t = 0, e = 0, i = 0, n = this.children; i < n.length; i++) {
-                    var o = n[i], r = o;
-                    null != r && (t = Math.min(t, r.x), e = Math.max(e, r.x + r.width))
-                }
-                return e - t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "height", {
-            get: function () {
-                for (var t = 0, e = 0, i = 0, n = this.children; i < n.length; i++) {
-                    var o = n[i], r = o;
-                    null != r && (t = Math.min(t, r.y), e = Math.max(e, r.y + r.height))
-                }
-                return e - t
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            this.removeChildren();
-            var i, n, r;
-            1 == t ? 1 == e ? (i = s.BATTLE_TELOP.getTexture(6), n = s.BATTLE_TELOP.getTexture(7), r = s.BATTLE_TELOP.getTexture(8)) : (i = s.BATTLE_TELOP.getTexture(9), n = s.BATTLE_TELOP.getTexture(10), r = s.BATTLE_TELOP.getTexture(11)) : 1 == e ? (i = s.BATTLE_TELOP.getTexture(0), n = s.BATTLE_TELOP.getTexture(1), r = s.BATTLE_TELOP.getTexture(2)) : (i = s.BATTLE_TELOP.getTexture(3), n = s.BATTLE_TELOP.getTexture(4), r = s.BATTLE_TELOP.getTexture(5));
-            var a = new PIXI.Sprite(i);
-            a.width = o.default.width, a.position.set(-o.default.width / 2, -Math.round(a.height / 2)), this.addChild(a);
-            var _ = new PIXI.Sprite(n);
-            _.position.set(-o.default.width / 2 - _.width, -Math.round(_.height / 2)), this.addChild(_);
-            var u = new PIXI.Sprite(r);
-            u.position.set(o.default.width / 2, -Math.round(u.height / 2)), this.addChild(u)
+        return n(e, t), e.prototype._start = function () {
+            for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
+                var o = n[i];
+                !function (i) {
+                    if (null == i) return "continue";
+                    if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
+                        var n = Math.floor(Math.random() * e._from_planes.length), o = e._from_planes[n],
+                            r = e._scene.view.bannerGroupLayer.getBanner(i),
+                            s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e, _ = s.getDamage(i.index),
+                            u = s.isShield(i.index), l = new a(e._scene, o, r, _, u);
+                        e._tasks.push(l), l.start(function () {
+                            t._taskComplete(i, l)
+                        })
+                    }
+                }(o)
+            }
+            0 == this._tasks.length && this._endTask()
+        }, e.prototype._taskComplete = function (t, e) {
+            var i = this._tasks.indexOf(e);
+            this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
         }, e
-    }(r.Container);
-    e.TelopBG = a
+    }(r.TaskBase);
+    e.TaskAirWarTorpedo = s;
+    var a = function (t) {
+        function e(e, i, n, o, r) {
+            var s = t.call(this) || this;
+            return s._explosion = function () {
+                var t = s._shield;
+                if (1 == t) {
+                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
+                    s._scene.view.layer_damage.showShieldAtBanner(e)
+                }
+                s._to_banner.moveAtDamage(t);
+                var i = s._to_banner.getGlobalPos(!0), n = s._scene.view;
+                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
+                    s._endTask()
+                })
+            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._torpedo()
+        }, e.prototype._torpedo = function () {
+            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y), e = this._to_banner.getGlobalPos();
+            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedo(t, e, this._explosion)
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase);
+    e.TaskAirWarTorpedoOne = a
 }

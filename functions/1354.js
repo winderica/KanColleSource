@@ -15,7 +15,7 @@ const function1354 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(16), s = i(15), a = i(138), _ = i(179), u = function (t) {
+    var o = i(0), r = i(16), s = i(15), a = i(138), _ = i(181), u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new r.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._bar1 = new l, e._bar1.position.set(600, 183), e.addChild(e._bar1), e._bar2 = new l, e._bar2.position.set(600, 392), e.addChild(e._bar2), e._bar3 = new l, e._bar3.position.set(600, 600), e.addChild(e._bar3), e._plane1 = new a.Plane(.88), e.addChild(e._plane1), e

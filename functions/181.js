@@ -1,108 +1,52 @@
 const function181 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1405), r = function () {
-        function t(t) {
-            this._o = t, this._plane_count_f = new s(!0, this._stage1, this._stage2), this._plane_count_e = new s(!1, this._stage1, this._stage2);
-            var e = n.ObjUtil.getObject(t, "api_stage3");
-            e = null == e ? {} : e;
-            var i = n.ObjUtil.getObject(t, "api_stage3_combined");
-            this._stage3_f = new o.AirWarStage3Model(!0, e, i), this._stage3_e = new o.AirWarStage3Model(!1, e, i)
-        }
-
-        return Object.defineProperty(t.prototype, "plane_from_f", {
-            get: function () {
-                return this._plane_from_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "plane_from_e", {
-            get: function () {
-                return this._plane_from_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "plane_count_f", {
-            get: function () {
-                return this._plane_count_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "plane_count_e", {
-            get: function () {
-                return this._plane_count_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "stage3_f", {
-            get: function () {
-                return this._stage3_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "stage3_e", {
-            get: function () {
-                return this._stage3_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "_stage1", {
-            get: function () {
-                return n.ObjUtil.getObject(this._o, "api_stage1")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "_stage2", {
-            get: function () {
-                return n.ObjUtil.getObject(this._o, "api_stage2")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getTouchPlaneFriend = function () {
-            if (null == this._stage1) return -1;
-            var t = n.ObjUtil.getNumArray(this._stage1, "api_touch_plane");
-            return null == t || t.length < 1 ? -1 : t[0]
-        }, t.prototype.getTouchPlaneEnemy = function () {
-            if (null == this._stage1) return -1;
-            var t = n.ObjUtil.getNumArray(this._stage1, "api_touch_plane");
-            return null == t || t.length < 2 ? -1 : t[1]
-        }, t.prototype.getTaikuShipIndex = function () {
-            var t = this._stage2;
-            return null == t ? -1 : (t = n.ObjUtil.getObject(t, "api_air_fire"), null == t ? -1 : n.ObjUtil.getNumber(t, "api_idx", -1))
-        }, t.prototype.getTaikuSlotMstIDs = function () {
-            var t = this._stage2;
-            return null == t ? null : (t = n.ObjUtil.getObject(t, "api_air_fire"), null == t ? null : n.ObjUtil.getNumArray(t, "api_use_items"))
-        }, t.prototype.hasStage3Data = function () {
-            return null != this._o && this._o.hasOwnProperty("api_stage3")
-        }, t.prototype._initPlaneFrom = function () {
-            var t = n.ObjUtil.getObjectArray(this._o, "api_plane_from");
-            if (null == t) this._plane_from_f = [], this._plane_from_e = []; else {
-                t.length > 0 && (this._plane_from_f = t[0], null == this._plane_from_f && (this._plane_from_f = [])), t.length > 1 && (this._plane_from_e = t[1], null == this._plane_from_e && (this._plane_from_e = []));
-                for (var e = 0; e < this._plane_from_f.length; e++) this._plane_from_f[e]--;
-                for (var e = 0; e < this._plane_from_e.length; e++) this._plane_from_e[e]--
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-        }, t
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
     }();
-    e.AirWarDataBase = r;
-    var s = function () {
-        function t(t, e, i) {
-            this._friend = t, this._stage1 = e, this._stage2 = i
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(5), r = i(21), s = i(250), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return Object.defineProperty(t.prototype, "count", {
+        return n(e, t), Object.defineProperty(e.prototype, "width", {
             get: function () {
-                var t = this._stage1;
-                if (null == t) return 0;
-                var e = this._friend ? "api_f_count" : "api_e_count";
-                return n.ObjUtil.getNumber(t, e)
+                for (var t = 0, e = 0, i = 0, n = this.children; i < n.length; i++) {
+                    var o = n[i], r = o;
+                    null != r && (t = Math.min(t, r.x), e = Math.max(e, r.x + r.width))
+                }
+                return e - t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "lost_count_stage1", {
+        }), Object.defineProperty(e.prototype, "height", {
             get: function () {
-                var t = this._stage1;
-                if (null == t) return 0;
-                var e = this._friend ? "api_f_lostcount" : "api_e_lostcount";
-                return n.ObjUtil.getNumber(t, e)
+                for (var t = 0, e = 0, i = 0, n = this.children; i < n.length; i++) {
+                    var o = n[i], r = o;
+                    null != r && (t = Math.min(t, r.y), e = Math.max(e, r.y + r.height))
+                }
+                return e - t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count_stage1", {
-            get: function () {
-                return this.count - this.lost_count_stage1
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "lost_count_stage2", {
-            get: function () {
-                var t = this._stage2;
-                if (null == t) return 0;
-                var e = this._friend ? "api_f_lostcount" : "api_e_lostcount";
-                return n.ObjUtil.getNumber(t, e)
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count_stage2", {
-            get: function () {
-                return this.count_stage1 - this.lost_count_stage2
-            }, enumerable: !0, configurable: !0
-        }), t
-    }();
-    e.PlaneCountData = s
+        }), e.prototype.initialize = function (t, e) {
+            this.removeChildren();
+            var i, n, r;
+            1 == t ? 1 == e ? (i = s.BATTLE_TELOP.getTexture(6), n = s.BATTLE_TELOP.getTexture(7), r = s.BATTLE_TELOP.getTexture(8)) : (i = s.BATTLE_TELOP.getTexture(9), n = s.BATTLE_TELOP.getTexture(10), r = s.BATTLE_TELOP.getTexture(11)) : 1 == e ? (i = s.BATTLE_TELOP.getTexture(0), n = s.BATTLE_TELOP.getTexture(1), r = s.BATTLE_TELOP.getTexture(2)) : (i = s.BATTLE_TELOP.getTexture(3), n = s.BATTLE_TELOP.getTexture(4), r = s.BATTLE_TELOP.getTexture(5));
+            var a = new PIXI.Sprite(i);
+            a.width = o.default.width, a.position.set(-o.default.width / 2, -Math.round(a.height / 2)), this.addChild(a);
+            var _ = new PIXI.Sprite(n);
+            _.position.set(-o.default.width / 2 - _.width, -Math.round(_.height / 2)), this.addChild(_);
+            var u = new PIXI.Sprite(r);
+            u.position.set(o.default.width / 2, -Math.round(u.height / 2)), this.addChild(u)
+        }, e
+    }(r.Container);
+    e.TelopBG = a
 }

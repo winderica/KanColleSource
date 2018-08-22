@@ -15,7 +15,7 @@ const function447 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(12), s = i(250), a = i(179), _ = function (t) {
+    var o = i(0), r = i(12), s = i(250), a = i(181), _ = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._weight = 1, n._type = e, n._night = i, n._bg = new a.TelopBG, n.addChild(n._bg), n._text = new r.Sprite, n.addChild(n._text), n

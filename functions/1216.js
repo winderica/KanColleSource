@@ -15,7 +15,7 @@ const function1216 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(165), s = i(4), a = i(135), _ = i(1217), u = function (t) {
+    var o = i(0), r = i(167), s = i(4), a = i(135), _ = i(1217), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._friend = e, i._chara = new PIXI.Sprite, i.addChild(i._chara), i._bg = new PIXI.Sprite, i._bg.x = e ? 0 : 95, i._bg.y = 368, i.addChild(i._bg), i._stype_txt = new s.TextBox(21, 16774898);

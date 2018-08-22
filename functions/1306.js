@@ -15,7 +15,7 @@ const function1306 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(171), s = function (t) {
+    var o = i(10), r = i(173), s = function (t) {
         function e(e) {
             var i = t.call(this) || this, n = e.model.deck_f, o = e.model.deck_e, r = n.isCombined(), s = !1;
             if (s = null != o ? o.isCombined() : e.model.map_info.isVS12(), 0 == r) i._url = 0 == s ? "api_req_sortie/battle" : "api_req_combined_battle/ec_battle"; else {

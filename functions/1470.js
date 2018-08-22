@@ -15,7 +15,7 @@ const function1470 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(77), a = i(8), _ = i(29), u = i(1471), l = i(1), c = function (t) {
+    var o = i(0), r = i(11), s = i(77), a = i(8), _ = i(31), u = i(1471), l = i(1), c = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i

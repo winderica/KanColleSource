@@ -19,7 +19,7 @@ const function475 = function (t, e, i) {
     // In console, choose `index.php`, type `KCS.init.toString()`, then it outputs this function
     function o() {
         createjs.Ticker.timingMode = createjs.Ticker.TIMEOUT, createjs.Ticker.setFPS(60);
-        var t = { antialias: true, backgroundColor: 0 },
+        var t = { antialias: false, backgroundColor: 0 },
             e = new PIXI.Application(s.default.width, s.default.height, t);
         document.body.appendChild(e.view), e.stage.addChild(r.default.view);
         var i = n();

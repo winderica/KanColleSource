@@ -15,7 +15,7 @@ const function1154 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1155), r = i(4), s = i(29), a = i(1), _ = function (t) {
+    var o = i(1155), r = i(4), s = i(31), a = i(1), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._btn_lists = new Array(10), e._lists_str = new Array(10), e._btn_list_goNumber = new Array(5), e._btn_list_goFigure = new Array(10), e._btn_list_goFigureStr = new Array(10), e._btn_back = new s.BackBtn, e._btn_back.position.set(15, 653), e._btn_change = new u, e._btn_change.position.set(862, 645), e._btn_mess_icon = new u, e._btn_mess_icon.position.set(1101, 684), e._btn_wall = new u, e._btn_wall.position.set(10, 39), e._btn_floor = new u, e._btn_floor.position.set(10, 102), e._btn_desk = new u, e._btn_desk.position.set(10, 165), e._btn_window = new u, e._btn_window.position.set(10, 228), e._btn_object = new u, e._btn_object.position.set(10, 291), e._btn_chest = new u, e._btn_chest.position.set(10, 354), e._btn_goShop = new u, e._btn_goShop.position.set(0, 477);
