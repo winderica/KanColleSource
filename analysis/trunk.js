@@ -1,6 +1,6 @@
 /*
  * A array of functions, I separate these functions and store them in ../functions
- * In fact, it's length is 1494
+ * In fact, it's length is 1496
  */
 const functions = [];
 
