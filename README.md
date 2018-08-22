@@ -1,5 +1,7 @@
 # KanColleSource
 
+The source code of KanColle HTML5 version is written in `Typescript` and uglified by `uglifyjs-webpack-plugin`.
+
 ## Description
 
 For my own curiosity and the demand of reviewing ES5, this repo is built, trying to analyse bundled code of game *KanColle*
