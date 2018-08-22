@@ -15,7 +15,7 @@ const function1018 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(22), s = i(30), a = i(38), _ = i(370), u = i(1019), l = i(1020), c = function (t) {
+    var o = i(4), r = i(23), s = i(30), a = i(38), _ = i(370), u = i(1019), l = i(1020), c = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._onLoadCompleteAreaTextImage = function () {

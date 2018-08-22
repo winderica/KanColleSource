@@ -15,7 +15,7 @@ const function205 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(306), r = i(21), s = i(12), a = i(630), _ = i(9), u = function (t) {
+    var o = i(306), r = i(22), s = i(12), a = i(630), _ = i(9), u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg_light = new o.GetBG, e._bg_dark = new o.GetBG, e._particle = new a.BonusInsertParticle, e._card = new l, e._flash = new s.Sprite, e._flash.anchor.set(.5), e._flash.scale.set(0), e.addChild(e._bg_light), e.addChild(e._bg_dark), e.addChild(e._particle), e.addChild(e._card), e.addChild(e._flash), e

@@ -15,7 +15,7 @@ const function1293 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = i(18), s = function (t) {
+    var o = i(22), r = i(18), s = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e

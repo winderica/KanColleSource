@@ -54,7 +54,7 @@ const function428 = function (t, e, i) {
                 e._t_bg = null, e._t_compass = null, null != t && t()
             })
         }, e.prototype.dispose = function () {
-            this._stopTweens()
+            this.removeChildren(), this._stopTweens(), this._bg = null, this._compass.dispose(), this._compass = null
         }, e.prototype.showItemGetText = function (t, e) {
             this._bg.showItemGetText(t, e)
         }, e.prototype.showUzushioText = function (t, e, i) {

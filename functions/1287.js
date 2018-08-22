@@ -60,7 +60,7 @@ const function1287 = function (t, e, i) {
         }), e.prototype.initialize = function () {
             this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
         }, e.prototype.dispose = function () {
-            this._map.dispose(), this._message_box.dispose()
+            this._map.dispose(), this._message_box.dispose(), this._message_box = null
         }, e.prototype.frontOfGaugeLayer = function () {
             this.addChild(this._gauge_layer), this.addChild(this._top_layer)
         }, e

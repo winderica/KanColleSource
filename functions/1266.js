@@ -15,7 +15,7 @@ const function1266 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = i(18), s = i(1267), a = function (t) {
+    var o = i(22), r = i(18), s = i(1267), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i

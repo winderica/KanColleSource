@@ -65,7 +65,7 @@ const function1247 = function (t, e, i) {
                 }
             }
             createjs.Tween.get(t).to({ alpha: 0 }, 200).call(function () {
-                e._scene.removeChild(t), e._endTask()
+                e._scene.removeChild(t), t.dispose(), e._endTask()
             })
         }, e
     }(r.TaskBase);

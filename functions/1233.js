@@ -15,15 +15,15 @@ const function1233 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
+    var o = i(2), r = i(21), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._scene.view.dispose(), this._endTask()
+            this._scene.view.dispose(), r.UIImageLoader.clearMemoryCache("map"), this._endTask()
         }, e
     }(o.TaskBase);
-    e.TaskFinalize = r
+    e.TaskFinalize = s
 }

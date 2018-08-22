@@ -15,7 +15,7 @@ const function1333 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(21), s = i(15), a = function (t) {
+    var o = i(2), r = i(22), s = i(15), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._layer = e, i._smoke = new _, i._smoke.position.set(75, 46), i

@@ -21,7 +21,7 @@ const function534 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var r = i(0), s = i(7), a = i(34), _ = i(535), u = i(540), l = i(541), c = i(2), h = i(542), p = i(270),
-        d = i(545), f = i(547), y = i(548), v = i(24), g = i(550), m = i(637), b = function (t) {
+        d = i(545), f = i(547), y = i(548), v = i(21), g = i(550), m = i(637), b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
@@ -91,7 +91,7 @@ const function534 = function (t, e, i) {
             }, e.prototype._hidePukapuka = function () {
                 var t = this;
                 r.default.view.portMain.fadeLayer.alpha = 1, r.default.view.portMain.fadeLayer.visible = !0, r.default.view.portMain.visible = !0, createjs.Tween.get(this._pukapuka).to({ alpha: 0 }, 600).call(function () {
-                    r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null;
+                    r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null, v.UIImageLoader.clearMemoryCache("title");
                     var e = r.default.view.portMain.ringMenu;
                     e.initialize(), e.prePosition(), createjs.Tween.get(r.default.view.portMain.fadeLayer).to({ alpha: 0 }, 500).call(function () {
                         r.default.view.portMain.fadeLayer.visible = !1, e.startAnimation(), r.default.view.portMain.sideMenu.initialize()

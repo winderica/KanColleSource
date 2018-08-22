@@ -15,7 +15,7 @@ const function545 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(546), r = i(0), s = i(2), a = i(24), _ = function (t) {
+    var o = i(546), r = i(0), s = i(2), a = i(21), _ = function (t) {
         function e(e) {
             void 0 === e && (e = null);
             var i = t.call(this) || this;
@@ -24,7 +24,7 @@ const function545 = function (t, e, i) {
                 null != i._progress && i._progress(n)
             }, i._loadPhase2 = function () {
                 var t = new a.UIImageLoader("common");
-                t.add("common_icon_weapon.json"), t.add("common_itemicons.json"), t.add("common_misc.json"), t.add("common_expedition.json"), t.add("common_shutter.json"), t.add("common_event.json"), t.load(i._loadPhase3, i._onProgressPhase2)
+                t.add("common_icon_weapon.json"), t.add("common_itemicons.json"), t.add("common_misc.json"), t.add("common_expedition.json"), t.add("common_shutter.json"), t.load(i._loadPhase3, i._onProgressPhase2)
             }, i._onProgressPhase2 = function (t, e) {
                 var n = 40 + .4 * t.progress;
                 null != i._progress && i._progress(n)

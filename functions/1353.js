@@ -15,7 +15,7 @@ const function1353 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(23), a = function (t) {
+    var o = i(2), r = i(14), s = i(24), a = function (t) {
         function e(e, i, n, o, r) {
             var s = t.call(this) || this;
             return s._attacker = e, s._slot_mst_id1 = i, s._slot_mst_id2 = n, s._slot_mst_id3 = o, s._night = r, s

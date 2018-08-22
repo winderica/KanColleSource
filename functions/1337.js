@@ -3,9 +3,9 @@ const function1337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("battle_explosion_" + t)
+            return PIXI.Texture.fromFrame("common_explosion_" + t)
         }
 
         t.getTexture = e
-    }(e.BATTLE_EXPLOSION || (e.BATTLE_EXPLOSION = {}))
+    }(e.COMMON_EXPLOSION || (e.COMMON_EXPLOSION = {}))
 }

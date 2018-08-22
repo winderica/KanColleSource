@@ -1,7 +1,7 @@
 const function65 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(22), r = function () {
+    var n = i(0), o = i(23), r = function () {
         function t() {
             null == t._queue && (t._queue = []), this._url_list = []
         }

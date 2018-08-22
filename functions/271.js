@@ -1,7 +1,7 @@
 const function271 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(22), r = i(102), s = i(526), a = function () {
+    var n = i(0), o = i(23), r = i(102), s = i(526), a = function () {
         function t() {
             this._bgm = new _, this._se = new u, this._voice = new s.VoiceManagerHolder
         }

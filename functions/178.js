@@ -33,35 +33,35 @@ const function178 = function (t, e, i) {
         }, e.prototype._getTexture = function (t) {
             switch (t) {
                 case 1:
-                    return o.BATTLE_EXPLOSION.getTexture(0);
+                    return o.COMMON_EXPLOSION.getTexture(0);
                 case 2:
-                    return o.BATTLE_EXPLOSION.getTexture(7);
+                    return o.COMMON_EXPLOSION.getTexture(7);
                 case 3:
-                    return o.BATTLE_EXPLOSION.getTexture(8);
+                    return o.COMMON_EXPLOSION.getTexture(8);
                 case 4:
-                    return o.BATTLE_EXPLOSION.getTexture(9);
+                    return o.COMMON_EXPLOSION.getTexture(9);
                 case 5:
-                    return o.BATTLE_EXPLOSION.getTexture(10);
+                    return o.COMMON_EXPLOSION.getTexture(10);
                 case 6:
-                    return o.BATTLE_EXPLOSION.getTexture(11);
+                    return o.COMMON_EXPLOSION.getTexture(11);
                 case 7:
-                    return o.BATTLE_EXPLOSION.getTexture(12);
+                    return o.COMMON_EXPLOSION.getTexture(12);
                 case 8:
-                    return o.BATTLE_EXPLOSION.getTexture(13);
+                    return o.COMMON_EXPLOSION.getTexture(13);
                 case 9:
-                    return o.BATTLE_EXPLOSION.getTexture(14);
+                    return o.COMMON_EXPLOSION.getTexture(14);
                 case 10:
-                    return o.BATTLE_EXPLOSION.getTexture(1);
+                    return o.COMMON_EXPLOSION.getTexture(1);
                 case 11:
-                    return o.BATTLE_EXPLOSION.getTexture(2);
+                    return o.COMMON_EXPLOSION.getTexture(2);
                 case 12:
-                    return o.BATTLE_EXPLOSION.getTexture(3);
+                    return o.COMMON_EXPLOSION.getTexture(3);
                 case 13:
-                    return o.BATTLE_EXPLOSION.getTexture(4);
+                    return o.COMMON_EXPLOSION.getTexture(4);
                 case 14:
-                    return o.BATTLE_EXPLOSION.getTexture(5);
+                    return o.COMMON_EXPLOSION.getTexture(5);
                 case 15:
-                    return o.BATTLE_EXPLOSION.getTexture(6);
+                    return o.COMMON_EXPLOSION.getTexture(6);
                 default:
                     return PIXI.Texture.EMPTY
             }

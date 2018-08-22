@@ -15,7 +15,7 @@ const function607 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(21), s = i(12), a = i(302), _ = i(4), u = i(9), l = function (t) {
+    var o = i(1), r = i(22), s = i(12), a = i(302), _ = i(4), u = i(9), l = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-268, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e

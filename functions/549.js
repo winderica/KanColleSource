@@ -15,7 +15,7 @@ const function549 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(186), r = i(21), s = function (t) {
+    var o = i(186), r = i(22), s = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._wave1 = new a(0, 1300), e.addChild(e._wave1), e._wave2 = new a(650, 650), e.addChild(e._wave2), e._wave3 = new a(1300, 0), e.addChild(e._wave3), e._ship = new PIXI.Sprite, e._ship.y = -10, e._ship.anchor.y = 1, e.addChild(e._ship), e

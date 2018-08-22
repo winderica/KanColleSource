@@ -108,7 +108,7 @@ const function912 = function (t, e, i) {
             }, e.prototype.deactivate = function () {
                 this._layout.off("back", this._onBack), this._layout.off("next", this._onNext), this._switch.deactivate(), this._area_icons.deactivate(), this._airUnitBtn.deactivate()
             }, e.prototype.dispose = function () {
-                this._layout.dispose(), this._switch.dispose(), this._area_icons.dispose(), this._cancelArea.off(k.EventType.CLICK, this._onCancel), this._detailPanel.dispose(), this._airUnitBtn.dispose(), null != this._airunit_task && this._airunit_task.dispose()
+                this._event_sortie_condition = null, this._layout.dispose(), this._layout = null, this._switch.dispose(), this._switch = null, this._area_icons.dispose(), this._area_icons = null, this._airUnitBtn.dispose(), this._airUnitBtn = null, this._cancelArea.off(k.EventType.CLICK, this._onCancel), this._cancelArea = null, this._detailPanel.dispose(), this._detailPanel = null, null != this._deckSelectPanel && (this._deckSelectPanel.dispose(), this._deckSelectPanel = null), null != this._airunit_task && (this._airunit_task.dispose(), this._airunit_task = null), this.removeChildren()
             }, e
         }(y.ViewMainBase);
     e.ViewMain = M

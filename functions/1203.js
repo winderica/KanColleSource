@@ -23,7 +23,7 @@ const function1203 = function (t, e, i) {
                 var t = n._taskMain.model;
                 n._result.start(t)
             }, n._endBattleResult = function () {
-                n._battle.dispose(), o.default.scene.change(0)
+                n._battle.dispose(), n.removeChild(n._result), n._result.dispose(), o.default.scene.change(0)
             }, n._battle = e, n._result = i, n._view = new u.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
         }
 

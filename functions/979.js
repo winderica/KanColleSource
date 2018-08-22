@@ -32,7 +32,7 @@ const function979 = function (t, e, i) {
         }, e.prototype._activate = function () {
             null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 1 }, 1500).to({ alpha: 0 }, 800))
         }, e.prototype._deactivate = function () {
-            null != this._t && (this._t.setPaused(!1), this._t = null, this._light.alpha = 0)
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
         }, e
     }(PIXI.Container);
     e.BtnNext = a

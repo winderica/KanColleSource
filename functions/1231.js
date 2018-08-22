@@ -15,7 +15,7 @@ const function1231 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(74), a = i(22), _ = i(7), u = i(2), l = function (t) {
+    var o = i(0), r = i(17), s = i(74), a = i(23), _ = i(7), u = i(2), l = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o) for (var s = 0, a = o; s < a.length; s++) {

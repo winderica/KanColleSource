@@ -34,6 +34,7 @@ const function361 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this._cancelArea.buttonMode = !1, this._cancelArea.off(r.EventType.CLICK, this._onCancel)
         }, e.prototype.dispose = function () {
+            this.deactivate(), this.removeChildren(), this._cancelArea = null, this._cb = null
         }, e
     }(PIXI.Container);
     e.ContainerDeckSelectBase = s

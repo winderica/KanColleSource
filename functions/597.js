@@ -15,7 +15,7 @@ const function597 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(22), s = i(150), a = function (t) {
+    var o = i(4), r = i(23), s = i(150), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._timer = -1, e.dispose = function () {

@@ -32,7 +32,7 @@ const function1303 = function (t, e, i) {
         }), e.prototype.initialize = function (e) {
             t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
         }, e.prototype.dispose = function () {
-            this._view.dispose()
+            this._view.dispose(), t.prototype.dispose.call(this)
         }, e.prototype.start = function () {
             var t = this;
             new r.TaskInit(this).start(function () {

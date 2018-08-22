@@ -15,10 +15,10 @@ const function277 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(54), r = i(146), s = function (t) {
+    var o = i(21), r = i(54), s = i(146), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new r.MapBG, e.addChild(e._bg), e._content = new PIXI.Container, e._shutter2 = new o.Shutter, e.addChild(e._content), e.addChild(e._shutter2), e
+            return e._bg = new s.MapBG, e.addChild(e._bg), e._content = new PIXI.Container, e._shutter2 = new r.Shutter, e.addChild(e._content), e.addChild(e._shutter2), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "bg", {
@@ -36,8 +36,9 @@ const function277 = function (t, e, i) {
         }), e.prototype.initialize = function (t) {
             this._shutter2.initializeDark()
         }, e.prototype.dispose = function () {
+            o.UIImageLoader.clearMemoryCache("battle")
         }, e.prototype.start = function () {
         }, e
     }(PIXI.Container);
-    e.BattleSceneBase = s
+    e.BattleSceneBase = a
 }

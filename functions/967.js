@@ -51,7 +51,7 @@ const function967 = function (t, e, i) {
             }, e.prototype.deactivate = function () {
                 this._decks.deactivate(), this._arrow.deactivate(), null != this._deck_combined_frame && this._deck_combined_frame.deactivate(), this._btn.deactivate(), this._temp_supply_btn.deactivate(), this._shop.deactivate()
             }, e.prototype.dispose = function () {
-                this._banners.dispose(), this._decks.dispose(), this._rader.dispose(), this._arrow.dispose(), this._btn.dispose(), this._temp_supply_btn.dispose(), null != this._deck_combined_frame && this._deck_combined_frame.dispose()
+                this.removeChildren(), this._selected_map = null, this._cb_onGo = null, this._banners.dispose(), this._banners = null, this._decks.dispose(), this._decks = null, this._rader.dispose(), this._rader = null, this._arrow.dispose(), this._arrow = null, this._alert = null, this._btn.dispose(), this._btn = null, this._shop.deactivate(), this._shop = null, this._temp_supply_btn.dispose(), this._temp_supply_btn = null, null != this._deck_combined_frame && (this._deck_combined_frame.dispose(), this._deck_combined_frame = null)
             }, e.prototype._update = function (t) {
                 this._deck_id = t, this._decks.setSelected(t);
                 for (var e = o.default.model.deck.get(t), i = e.getShipListAll(), n = e.getShipList(), r = !0, s = 0; s < i.length; s++) {

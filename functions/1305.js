@@ -15,7 +15,7 @@ const function1305 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(24), s = function (t) {
+    var o = i(2), r = i(21), s = function (t) {
         function e(e, i) {
             void 0 === e && (e = !1), void 0 === i && (i = !1);
             var n = t.call(this) || this;
@@ -23,10 +23,15 @@ const function1305 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._load()
+            this._loadCommon()
+        }, e.prototype._loadCommon = function () {
+            var t = this, e = new r.UIImageLoader("common");
+            e.add("common_explosion.json"), e.load(function () {
+                t._load()
+            })
         }, e.prototype._load = function () {
             var t = this, e = new r.UIImageLoader("battle");
-            e.add("battle_main.json"), e.add("battle_explosion.json"), e.add("battle_telop.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop_sp.json")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_jin_combined.json"), e.load(function () {
+            e.add("battle_main.json"), e.add("battle_telop.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop_sp.json")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_jin_combined.json"), e.load(function () {
                 t._endTask()
             })
         }, e

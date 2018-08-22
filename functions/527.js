@@ -52,7 +52,7 @@ const function527 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var a = i(0), _ = i(267), u = i(22), l = i(76), c = i(528), h = function () {
+    var a = i(0), _ = i(267), u = i(23), l = i(76), c = i(528), h = function () {
         function t() {
             var t = this;
             this._num_of_simultaneous_playback = 1, this._onVoiceEnd = function (e) {

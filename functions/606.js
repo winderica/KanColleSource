@@ -23,6 +23,30 @@ const function606 = function (t, e, i) {
             }
 
             return n(e, t), e.prototype._start = function () {
+                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
+                    return /^resources\/ship\/.+/.test(t)
+                }), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i], r = PIXI.utils.TextureCache[o];
+                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
+                }
+                for (var s = t.filter(function (t) {
+                    return /^resources\/slot\/.+/.test(t)
+                }), a = 0, _ = s; a < _.length; a++) {
+                    var o = _[a], r = PIXI.utils.TextureCache[o];
+                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
+                }
+                for (var u = t.filter(function (t) {
+                    return /^resources\/map\/\d{3}\/\d{2}_.+/.test(t)
+                }), l = 0, c = u; l < c.length; l++) {
+                    var o = c[l], r = PIXI.utils.TextureCache[o];
+                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
+                }
+                for (var u = t.filter(function (t) {
+                    return /^map\d{5}_.+/.test(t)
+                }), h = 0, p = u; h < p.length; h++) {
+                    var o = p[h], r = PIXI.utils.TextureCache[o];
+                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
+                }
                 this._connectAPI()
             }, e.prototype._connectAPI = function () {
                 var t = this, e = new s.APIConnector;

@@ -15,10 +15,10 @@ const function278 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(54), r = function (t) {
+    var o = i(21), r = i(54), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._shutter = new o.Shutter, e.addChild(e._shutter), e
+            return e._shutter = new r.Shutter, e.addChild(e._shutter), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "shutter", {
@@ -29,7 +29,9 @@ const function278 = function (t, e, i) {
             this.shutter.initializeDark(), this.shutter.close(0)
         }, e.prototype.start = function (t) {
             this._model = t
+        }, e.prototype.dispose = function () {
+            o.UIImageLoader.clearMemoryCache("battle_result")
         }, e
     }(PIXI.Container);
-    e.BattleResultSceneBase = r
+    e.BattleResultSceneBase = s
 }

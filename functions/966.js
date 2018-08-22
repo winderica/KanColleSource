@@ -32,7 +32,7 @@ const function966 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             t.prototype.deactivate.call(this), this._panel.deactivate()
         }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._panel.dispose()
+            t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
         }, e
     }(r.ContainerDeckSelectBase);
     e.ContainerDeckSelect = a

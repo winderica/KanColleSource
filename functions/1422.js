@@ -15,7 +15,7 @@ const function1422 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(21), s = i(12), a = i(15), _ = i(1423), u = i(1424), l = i(1426), c = function (t) {
+    var o = i(26), r = i(22), s = i(12), a = i(15), _ = i(1423), u = i(1424), l = i(1426), c = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new u.BannerFrame, e._frame.alpha = 0, e._layer_color = new l.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e

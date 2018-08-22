@@ -15,7 +15,7 @@ const function870 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(35), r = i(4), s = i(22), a = function (t) {
+    var o = i(35), r = i(4), s = i(23), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.completeTime = 0, e.now = 0, e.timeCounter = new r.TextBox(31, 5523516), e.textBuildState = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(60));

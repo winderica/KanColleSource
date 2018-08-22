@@ -15,7 +15,7 @@ const function632 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(24), s = function (t) {
+    var o = i(2), r = i(21), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._skinID = e, i

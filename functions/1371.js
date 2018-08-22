@@ -15,7 +15,7 @@ const function1371 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(16), a = i(21), _ = i(12), u = i(6), l = i(15), c = i(88), h = function (t) {
+    var o = i(5), r = i(0), s = i(16), a = i(22), _ = i(12), u = i(6), l = i(15), c = i(88), h = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new s.FadeBox(.9, 0), e._chara = new PIXI.Container, e._layer_item1 = new p, e._layer_item2 = new d, e._layer_item3 = new f, e._layer_wave = new y, e._layer_names = new v, e._bg.hide(0), e._layer_item1.x = o.default.width / 2, e._layer_item2.x = o.default.width / 2, e._layer_item3.x = o.default.width / 2, e._layer_wave.x = o.default.width / 2, e._layer_names.x = o.default.width / 2, e.addChild(e._bg), e.addChild(e._chara), e.addChild(e._layer_item1), e.addChild(e._layer_item2), e.addChild(e._layer_item3), e.addChild(e._layer_wave), e.addChild(e._layer_names), e

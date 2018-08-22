@@ -15,7 +15,7 @@ const function349 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(8), s = i(306), a = i(21), _ = i(12), u = i(3), l = i(882), c = function (t) {
+    var o = i(5), r = i(8), s = i(306), a = i(22), _ = i(12), u = i(3), l = i(882), c = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._clickGuard = new r.AreaBox(0), i.addChild(i._clickGuard), i._bg = new s.GetBG, i._card = new a.Container;
