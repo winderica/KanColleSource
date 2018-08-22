@@ -104,7 +104,7 @@ const function534 = function (t, e, i) {
         d = i(545),
         f = i(547),
         y = i(548),
-        v = i(24),
+        v = i(21),
         g = i(550),
         m = i(637);
     /*
@@ -201,7 +201,7 @@ const function534 = function (t, e, i) {
         e.prototype._hidePukapuka = function () {
             var t = this;
             r.default.view.portMain.fadeLayer.alpha = 1, r.default.view.portMain.fadeLayer.visible = !0, r.default.view.portMain.visible = !0, createjs.Tween.get(this._pukapuka).to({ alpha: 0 }, 600).call(function () {
-                r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null;
+                r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null, v.UIImageLoader.clearMemoryCache("title");
                 var e = r.default.view.portMain.ringMenu;
                 e.initialize(), e.prePosition(), createjs.Tween.get(r.default.view.portMain.fadeLayer).to({ alpha: 0 }, 500).call(function () {
                     r.default.view.portMain.fadeLayer.visible = !1, e.startAnimation(), r.default.view.portMain.sideMenu.initialize()
