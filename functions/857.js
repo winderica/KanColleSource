@@ -63,6 +63,8 @@ const function857 = function (t, e, i) {
                 this.hammer.visible = !1, this.spanner.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), this.__Complete__()
             }, t.prototype.NoDock = function (t, e) {
                 this._state = -1, this.steelFrame_mask_door.visible = !1, this.noDockView.visible = !0, this.kDockStateView.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.noDockView.update(t, e), this.focusableNoDock = t, this.hasKey = e
+            }, t.prototype.forceComplete = function (t) {
+                t ? this.largeBuildStage.forceComplete() : this.normalBuildStage.forceComplete()
             }, t.prototype.Completed = function (t, e) {
                 this.steelFrame_mask_door.visible = !0, this.hammer.visible = !1, this.spanner.visible = !1, this.great_steelFrame_bg.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0, this.largeBuildStage.updatePhaseMax(t), this.largeBuildStage.update(1)) : (this.normalBuildStage.visible = !0, this.normalBuildStage.updatePhaseMax(t), this.normalBuildStage.update(1)), this.__Complete__()
             }, t.prototype.__Complete__ = function () {

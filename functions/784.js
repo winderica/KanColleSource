@@ -50,7 +50,7 @@ const function784 = function (t, e, i) {
                     });
                     var r = new h.PowerUpAPI(e.memShipId, n);
                     o.default.sound.voice.playAtRandom(t.mstID.toString(), [9, 10], [50, 50]), r.start(function () {
-                        e.onUpdateShip();
+                        e.powerUpEdit.shipInfoBox.update(t.shipTypeName, t.name, t.level, t.starNum), e.onUpdateShip();
                         var s, a = r.api_powerup_flag, _ = n.length;
                         s = 1 == a ? new d.PowerUpAnimationSuccess(_, e.mainView) : new p.PowerUpAnimationFailed(_, e.mainView);
                         var u = t.mstID, l = t.isDamaged(), c = o.default.model.ship_graph.get(u).getCenterOffset(l);

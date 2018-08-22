@@ -28,6 +28,8 @@ const function866 = function (t, e, i) {
                 var e = Math.floor(this.phaseMax * t);
                 0 == e && (e = 1), this.ship.update(e)
             }
+        }, e.prototype.forceComplete = function () {
+            this.ship.update(this.phaseMax)
         }, e.prototype.dispose = function () {
             this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
         }, e

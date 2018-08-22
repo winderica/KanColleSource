@@ -23,7 +23,7 @@ const function810 = function (t, e, i) {
             }, e._onNO = function () {
                 null != e._cb_onNo && e._cb_onNo()
             };
-            var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(59)),
+            var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(60)),
                 n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(2)),
                 c = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(6)),
                 h = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(18)), p = new o.TextBox(20, 16777215),

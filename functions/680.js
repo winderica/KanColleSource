@@ -23,19 +23,19 @@ const function680 = function (t, e, i) {
         return n(e, t), e.prototype.update = function (t) {
             switch (t) {
                 case 0:
-                    this.texture = o.COMMON_MAIN.getTexture(54);
+                    this.texture = o.COMMON_MAIN.getTexture(55);
                     break;
                 case 1:
-                    this.texture = o.COMMON_MAIN.getTexture(57);
+                    this.texture = o.COMMON_MAIN.getTexture(58);
                     break;
                 case 2:
-                    this.texture = o.COMMON_MAIN.getTexture(53);
+                    this.texture = o.COMMON_MAIN.getTexture(54);
                     break;
                 case 3:
-                    this.texture = o.COMMON_MAIN.getTexture(51);
+                    this.texture = o.COMMON_MAIN.getTexture(52);
                     break;
                 case 4:
-                    this.texture = o.COMMON_MAIN.getTexture(58);
+                    this.texture = o.COMMON_MAIN.getTexture(59);
                     break;
                 default:
                     this.texture = PIXI.Texture.EMPTY

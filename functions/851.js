@@ -28,7 +28,7 @@ const function851 = function (t, e, i) {
                             if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
                                 if (i.complete_time < t) {
                                     e.dockLayer.hideHighSpeedButton(i.id);
-                                    i.__complete__(), e.dockLayer.complete(i.id)
+                                    i.__complete__(), e.dockLayer.complete(i.id), e.dockLayer.forceComplete(i.id, i.isLargeBuild())
                                 } else e.dockLayer.notifyTime(i.id, t)
                             }
                         })

@@ -33,7 +33,7 @@ const function835 = function (t, e, i) {
                     I = new a.TextBox(19, 5523516), T = new a.TextBox(24, 5523516), O = new a.TextBox(24, 5523516),
                     P = new a.TextBox(15, 12467003), C = new a.TextBox(24, 5523516),
                     k = new l.DownArrowAnimationView, M = new l.DisableDownArrowAnimationView,
-                    S = new PIXI.Container, A = new PIXI.Sprite(o.COMMON_MAIN.getTexture(60));
+                    S = new PIXI.Container, A = new PIXI.Sprite(o.COMMON_MAIN.getTexture(61));
                 A.position.set(0, -34);
                 var j = new PIXI.Sprite(o.COMMON_MAIN.getTexture(1));
                 j.anchor.y = .5, j.position.set(22, 20), A.addChild(j), S.addChild(A), m.onClick = e._onClick, n.position.set(31, 31), u.position.set(15, 226), c.position.set(15, 280), p.position.set(15, 336), y.position.set(15, 390), g.position.set(178, 275), x.position.set(304, 42), v.position.set(229, 49), I.position.set(301, 151), T.position.set(318, 333), O.position.set(318, 389), P.position.set(40, 447), m.position.set(40, 477), b.position.set(61, 177), C.position.set(318, 225), w.position.set(60, 85), k.position.set(156, 441), M.position.set(156, 441), I.anchor.x = 1, x.anchor.x = 1;

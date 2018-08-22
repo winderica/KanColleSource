@@ -25,7 +25,7 @@ const function840 = function (t, e, i) {
             }, i._onClickEmptySlot = function (t) {
                 i.onClickEmptySlot(t)
             };
-            var n = new PIXI.Sprite(a.COMMON_MAIN.getTexture(60));
+            var n = new PIXI.Sprite(a.COMMON_MAIN.getTexture(61));
             n.position.set(0, 105);
             var _ = new PIXI.Sprite(a.REPAIR_MAIN.getTexture(0));
             _.anchor.y = .5, _.position.set(199, 20), n.addChild(_), i.addChild(n);

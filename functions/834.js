@@ -21,7 +21,7 @@ const function834 = function (t, e, i) {
             e._onClickListItem = function (t) {
                 e.onClickListItem(t)
             };
-            var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(60));
+            var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(61));
             i.position.set(0, -39);
             var n = new PIXI.Sprite(r.COMMON_MAIN.getTexture(0));
             n.anchor.y = .5, n.position.set(22, 20), i.addChild(n), e.addChild(i);

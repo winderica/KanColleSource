@@ -23,7 +23,7 @@ const function832 = function (t, e, i) {
             }, e._onClickYES = function () {
                 e.onClickYES()
             };
-            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(59)),
+            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(60)),
                 n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(27)),
                 _ = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(26)), l = new s.TextBox(21, 1949120),
                 c = new s.TextBox(21, 1949120), h = new s.TextBox(21, 1949120), p = new s.TextBox(21, 1949120),

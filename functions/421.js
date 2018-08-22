@@ -24,7 +24,7 @@ const function421 = function (t, e, i) {
             for (var i = 0; i < 2; i++) e._fuki2_serif[i] = new r.TextBox(21, 4999235), e._fuki2_serif[i].text = "", e._fuki2_serif[i].anchor.set(1, 0), e._fuki2_serif[i].position.set(253, 314 + 34 * i), e.addChild(e._fuki2_serif[i]);
             e._fuki3_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(19)), e._fuki3_bg.position.set(-33, 189), e.addChild(e._fuki3_bg);
             for (var i = 0; i < 6; i++) e._fuki3_serif[i] = new r.TextBox(19, 98690), e._fuki3_serif[i].scale.set(.95, 1), e.addChild(e._fuki3_serif[i]);
-            return e._fuki4_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(18)), e._fuki4_bg.position.set(-453, -30), e.addChild(e._fuki4_bg), e._fuki4_icon_type = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(14)), e._fuki4_icon_type.position.set(-444, 3), e.addChild(e._fuki4_icon_type), e._fuki4_serif[0] = new r.TextBox(22, 4999235), e._fuki4_serif[0].position.set(-426, -22), e.addChild(e._fuki4_serif[0]), e._fuki4_mask = new PIXI.Graphics, e._fuki4_mask.beginFill(16777215), e._fuki4_mask.drawRect(-400, 12, 270, 39), e.addChild(e._fuki4_mask), e._fuki4_serif[1] = new r.TextBox(22, 98690), e._fuki4_serif[1].position.set(-400, 12), e._fuki4_serif[1].mask = e._fuki4_mask, e.addChild(e._fuki4_serif[1]), e._fuki4_slot_mask = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(15)), e._fuki4_slot_mask.position.set(-261, 4), e.addChild(e._fuki4_slot_mask), e._fuki4_star = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(21)), e._fuki4_star.position.set(-429, 48), e.addChild(e._fuki4_star), e._fuki4_plus = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(20)), e._fuki4_plus.position.set(-411, 52), e.addChild(e._fuki4_plus), e._fuki4_starnum = new r.TextBox(22, 98690), e._fuki4_starnum.position.set(-397, 46), e._fuki4_starnum.text = "", e.addChild(e._fuki4_starnum), e._fuki4_starM = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(22)), e._fuki4_starM.position.set(-426, 45), e.addChild(e._fuki4_starM), e._revampLevelParticleLayer = new _.RevampLevelParticleLayer, e._revampLevelParticleLayer.position.set(-447, 27), e.addChild(e._revampLevelParticleLayer), e._setBalloon1(9), e._setBalloon2(1), e._setBalloon3(0, 0), e._setBalloon4(0), e
+            return e._fuki4_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(18)), e._fuki4_bg.position.set(-453, -30), e.addChild(e._fuki4_bg), e._fuki4_icon_type = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(14)), e._fuki4_icon_type.anchor.set(.5, .5), e._fuki4_icon_type.position.set(-417, 26), e.addChild(e._fuki4_icon_type), e._fuki4_serif[0] = new r.TextBox(22, 4999235), e._fuki4_serif[0].position.set(-426, -22), e.addChild(e._fuki4_serif[0]), e._fuki4_mask = new PIXI.Graphics, e._fuki4_mask.beginFill(16777215), e._fuki4_mask.drawRect(-400, 12, 270, 39), e.addChild(e._fuki4_mask), e._fuki4_serif[1] = new r.TextBox(22, 98690), e._fuki4_serif[1].position.set(-394, 12), e._fuki4_serif[1].mask = e._fuki4_mask, e.addChild(e._fuki4_serif[1]), e._fuki4_slot_mask = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(15)), e._fuki4_slot_mask.position.set(-261, 4), e.addChild(e._fuki4_slot_mask), e._fuki4_star = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(21)), e._fuki4_star.position.set(-429, 48), e.addChild(e._fuki4_star), e._fuki4_plus = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(20)), e._fuki4_plus.position.set(-411, 52), e.addChild(e._fuki4_plus), e._fuki4_starnum = new r.TextBox(22, 98690), e._fuki4_starnum.position.set(-397, 46), e._fuki4_starnum.text = "", e.addChild(e._fuki4_starnum), e._fuki4_starM = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(22)), e._fuki4_starM.position.set(-426, 45), e.addChild(e._fuki4_starM), e._revampLevelParticleLayer = new _.RevampLevelParticleLayer, e._revampLevelParticleLayer.position.set(-447, 27), e.addChild(e._revampLevelParticleLayer), e._setBalloon1(9), e._setBalloon2(1), e._setBalloon3(0, 0), e._setBalloon4(0), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "fuki1_serif", {
@@ -65,7 +65,42 @@ const function421 = function (t, e, i) {
         }, e.prototype._setstars = function (t) {
             0 == t ? (this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1, this._fuki4_starnum.text = "") : t < 10 ? (this._fuki4_star.visible = !0, this._fuki4_plus.visible = !0, this._fuki4_starnum.visible = !0, this._fuki4_starM.visible = !1, this._fuki4_starnum.text = t + "") : (this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !0, this._fuki4_starnum.text = "")
         }, e.prototype.SetResultBalloon = function (t, e, i) {
-            t ? (this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u6210\u529f\u3057\u307e\u3057\u305f\uff01", this._fuki4_icon_type.texture = s.COMMON_ICON_WEAPON.getTextureFromMstID(o.default.model.slot.getMst(e).iconType), this._fuki4_serif[1].text = o.default.model.slot.getMst(e).name, this._fuki4_serif[1].visible = !0, this._fuki4_icon_type.visible = !0, this._fuki4_slot_mask.visible = !0, this._setstars(i)) : (this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u5931\u6557\u3057\u307e\u3057\u305f...\u3002", this._fuki4_serif[1].visible = !1, this._fuki4_icon_type.visible = !1, this._fuki4_slot_mask.visible = !1, this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1)
+            if (t) {
+                this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u6210\u529f\u3057\u307e\u3057\u305f\uff01";
+                var n = o.default.model.slot.getMst(e).iconType;
+                switch (this._fuki4_icon_type.texture = s.COMMON_ICON_WEAPON.getTextureFromMstID(n), n) {
+                    case 4:
+                        this._fuki4_icon_type.position.y = 23;
+                        break;
+                    case 5:
+                    case 13:
+                        this._fuki4_icon_type.position.y = 25;
+                        break;
+                    case 15:
+                        this._fuki4_icon_type.position.y = 23;
+                        break;
+                    case 16:
+                        this._fuki4_icon_type.position.y = 25;
+                        break;
+                    case 23:
+                        this._fuki4_icon_type.position.y = 24;
+                        break;
+                    case 24:
+                    case 34:
+                        this._fuki4_icon_type.position.y = 27;
+                        break;
+                    case 36:
+                    case 42:
+                        this._fuki4_icon_type.position.y = 24;
+                        break;
+                    case 43:
+                        this._fuki4_icon_type.position.y = 25;
+                        break;
+                    default:
+                        this._fuki4_icon_type.position.y = 26
+                }
+                this._fuki4_serif[1].text = o.default.model.slot.getMst(e).name, this._fuki4_serif[1].visible = !0, this._fuki4_icon_type.visible = !0, this._fuki4_slot_mask.visible = !0, this._setstars(i)
+            } else this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u5931\u6557\u3057\u307e\u3057\u305f...\u3002", this._fuki4_serif[1].visible = !1, this._fuki4_icon_type.visible = !1, this._fuki4_slot_mask.visible = !1, this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1
         }, e.prototype.SetResultBalloonKira = function (t) {
             this._revampLevelParticleLayer.visible = t, t ? this._revampLevelParticleLayer.initialize() : this._revampLevelParticleLayer.dispose()
         }, e.prototype.SetBalloon = function (t, e, i) {

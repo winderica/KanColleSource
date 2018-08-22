@@ -25,19 +25,19 @@ const function212 = function (t, e, i) {
         }, e.prototype.update = function (t) {
             switch (o.ShipUtil.getSpeedType(t)) {
                 case 4:
-                    this.texture = r.COMMON_MAIN.getTexture(56);
+                    this.texture = r.COMMON_MAIN.getTexture(57);
                     break;
                 case 3:
-                    this.texture = r.COMMON_MAIN.getTexture(52);
+                    this.texture = r.COMMON_MAIN.getTexture(53);
                     break;
                 case 2:
-                    this.texture = r.COMMON_MAIN.getTexture(49);
-                    break;
-                case 1:
                     this.texture = r.COMMON_MAIN.getTexture(50);
                     break;
+                case 1:
+                    this.texture = r.COMMON_MAIN.getTexture(51);
+                    break;
                 case 0:
-                    this.texture = r.COMMON_MAIN.getTexture(55);
+                    this.texture = r.COMMON_MAIN.getTexture(56);
                     break;
                 default:
                     this.texture = PIXI.Texture.EMPTY

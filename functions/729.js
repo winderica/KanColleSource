@@ -27,7 +27,7 @@ const function729 = function (t, e, i) {
                     e.onClick()
                 };
                 var i = new PIXI.Sprite(l.COMMON_MAIN.getTexture(12)),
-                    n = new PIXI.Sprite(l.COMMON_MAIN.getTexture(60)), f = h.ORGANIZE_MAIN.getTexture(0),
+                    n = new PIXI.Sprite(l.COMMON_MAIN.getTexture(61)), f = h.ORGANIZE_MAIN.getTexture(0),
                     y = new PIXI.Sprite(f), v = new PIXI.Sprite(c.COMMON_MISC.getTexture(180));
                 v.name = "img_lv";
                 var g = new PIXI.Sprite(l.COMMON_MAIN.getTexture(21));

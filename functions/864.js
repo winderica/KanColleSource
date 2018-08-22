@@ -28,6 +28,8 @@ const function864 = function (t, e, i) {
             }
         }, e.prototype.updatePhaseMax = function (t) {
             this.phaseMax = t
+        }, e.prototype.forceComplete = function () {
+            this.ship.update(this.phaseMax)
         }, e.prototype.dispose = function () {
             this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
         }, e

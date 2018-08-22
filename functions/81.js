@@ -20,7 +20,7 @@ const function81 = function (t, e, i) {
             var e = t.call(this) || this;
             e._MAX_NUM = 5;
             for (var i = new Array(e._MAX_NUM), n = 0; n < e._MAX_NUM; n++) {
-                var r = new PIXI.Sprite(o.COMMON_MAIN.getTexture(48));
+                var r = new PIXI.Sprite(o.COMMON_MAIN.getTexture(49));
                 r.x = Math.floor(18 * n), r.visible = !1, i[n] = r, e.addChild(r)
             }
             return e.stars = i, e

@@ -182,6 +182,9 @@ const function114 = function (t, e, i) {
         }, i.prototype.received = function (t) {
             var e = t.toString();
             this.kDockViews[e].Received()
+        }, i.prototype.forceComplete = function (t, e) {
+            var i = t.toString();
+            this.kDockViews[i].forceComplete(e)
         }, i.prototype.dispose = function () {
             for (var t = 0; t < this.KDOCK_IDS.length; t++) {
                 var e = this.KDOCK_IDS[t].toString();

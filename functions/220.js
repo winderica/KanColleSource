@@ -28,19 +28,19 @@ const function220 = function (t, e, i) {
         }, e.prototype.update = function (t) {
             switch (t) {
                 case 0:
-                    this.texture = o.COMMON_MAIN.getTexture(44);
-                    break;
-                case 1:
-                    this.texture = o.COMMON_MAIN.getTexture(43);
-                    break;
-                case 4:
                     this.texture = o.COMMON_MAIN.getTexture(45);
                     break;
-                case 3:
+                case 1:
+                    this.texture = o.COMMON_MAIN.getTexture(44);
+                    break;
+                case 4:
                     this.texture = o.COMMON_MAIN.getTexture(46);
                     break;
+                case 3:
+                    this.texture = o.COMMON_MAIN.getTexture(47);
+                    break;
                 case 2:
-                    this.texture = o.COMMON_MAIN.getTexture(47)
+                    this.texture = o.COMMON_MAIN.getTexture(48)
             }
         }, e
     }(PIXI.Sprite);

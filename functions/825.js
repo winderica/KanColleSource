@@ -17,11 +17,11 @@ const function825 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(3), r = i(59), s = i(4), a = i(13), _ = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), n = new PIXI.Container;
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), n = new PIXI.Container;
             n.position.set(50, 11);
             var _ = new s.TextBox(19, 5523516), u = a.CreateRect.gradientLeftToRight(244, 35, .65, .7),
                 l = new r.IconWeapon;
-            return i.texture = o.COMMON_MAIN.getTexture(41), n.mask = u, n.addChild(_, u), e.addChild(i, n, l), e.iconWeapon = l, e.background = i, e.textItemName = _, e.maskItemName = u, e.containerItemName = n, e
+            return i.texture = o.COMMON_MAIN.getTexture(42), n.mask = u, n.addChild(_, u), e.addChild(i, n, l), e.iconWeapon = l, e.background = i, e.textItemName = _, e.maskItemName = u, e.containerItemName = n, e
         }
 
         return n(e, t), e.prototype.update = function (t) {
