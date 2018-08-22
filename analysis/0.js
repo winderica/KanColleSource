@@ -9,7 +9,7 @@ const function0 = function (t, e, i) {
         a = i(529),
         _ = i(530),
         u = i(531),
-        // l is IIFE
+        // l is class represent by IIFE
         l = function () {
             // `t` is a constructor
             function t() {
@@ -23,12 +23,14 @@ const function0 = function (t, e, i) {
                 this._sound = new s.SoundManager;
             }
 
+            // static method
             t._getInstance = function () {
                 if (!this._instance) {
                     this._instance = new t;
                 }
                 return this._instance;
             };
+            // static getters to get instance methods
             Object.defineProperty(t, "view", {
                 get: function () {
                     return t._getInstance()._view

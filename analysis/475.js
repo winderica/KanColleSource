@@ -32,9 +32,11 @@ const function475 = function (t, e, i) {
      * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
      *
      * In below case, __esModule is not writable, not configurable and not enumerable,
-     * which is different from `e.__esModule = true`
+     * which is different from `e.__esModule = true`.
+     * It is converted from module expression `export` in ES6 by Babel.
      */
     Object.defineProperty(e, "__esModule", { value: true });
     const _ = { init: o };
+    // The following expression is the same as `export default _`.
     e.default = _;
 };

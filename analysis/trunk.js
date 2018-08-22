@@ -50,7 +50,7 @@ function e(n) {
      * Every function in ../functions receive 3 parameters: `t`, `e`, `i`
      * this: o.exports
      * t: o
-     * e: o.exports
+     * e: o.exports, the same as `export` in ES6
      * i: the constructor it self
      */
     functions[n].call(o.exports, o, o.exports, e);
@@ -80,7 +80,7 @@ e.o = function (t, e) {
      * `hasOwnProperty`
      * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
      *
-     * the code below is almost the same as `t.hasOwnProperty(e)`,
+     * The code below is almost the same as `t.hasOwnProperty(e)`,
      * but it's used to get avoid of this situation:
             var foo = {
               hasOwnProperty: function() {
@@ -94,7 +94,7 @@ e.o = function (t, e) {
 e.p = "";
 e.s = 475;
 
-const fn = () => e(e.s).default; // see ./475.js, `default` is this object: `{ init: Function }`
+const fn = () => e(e.s).default; // `default` is this object exported by ./475.js: `{ init: Function }`
 
 if ("object" === typeof exports && "object" === typeof module) { // CommonJS(Node)
     module.exports = fn();
