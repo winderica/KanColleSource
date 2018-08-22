@@ -1,126 +1,87 @@
 const function1402 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1403), r = i(1404), s = i(1406), a = i(1407), _ = i(1408), u = i(1409), l = i(466),
-        c = i(467), h = function () {
-            function t(t) {
-                this._o = t
-            }
+    var n = i(223), o = i(166), r = i(224), s = i(463), a = i(1411), _ = function () {
+        function t(t) {
+            this._model = t, this._records = []
+        }
 
-            return Object.defineProperty(t.prototype, "sakuteki", {
-                get: function () {
-                    return new o.SakutekiData(this._o)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "ration", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
-                    return null == t ? [] : t
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_combined", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
-                    return null == t ? [] : t
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "stage_flag", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_stage_flag")
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_unit_jet", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_air_base_injection");
-                    return null == t ? null : new _.AirUnitJetData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war_jet", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_injection_kouku");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_unit", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_air_base_attack");
-                    if (null == t) return [];
-                    if (0 == t.hasOwnProperty("length")) return [new s.AirUnitData(t)];
-                    for (var e = [], i = 0, o = t; i < o.length; i++) {
-                        var r = o[i];
-                        e.push(new s.AirUnitData(r))
-                    }
-                    return e
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_kouku");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war2", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_kouku2");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_air", {
-                get: function () {
-                    if (1 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new l.AirSupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_hou", {
-                get: function () {
-                    if (2 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new c.SupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_rai", {
-                get: function () {
-                    if (3 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new c.SupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_taisen", {
-                get: function () {
-                    if (4 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new l.AirSupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "raigeki_opening", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_opening_atack");
-                    return null == t ? null : new a.RaigekiData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "raigeki", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_raigeki");
-                    return null == t ? null : new a.RaigekiData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki_opening", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_opening_taisen");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki1", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki1");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki2", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki2");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki3", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki3");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), t.prototype.isNightBattle = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_midnight_flag")
-            }, t
-        }();
-    e.RawDayBattleData = h
+        return Object.defineProperty(t.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.addDayRecord = function (t) {
+            var e = new s.BattleRecordDay(t);
+            this._records.push(e);
+            var i = this._model.deck_f;
+            i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+            var n = this._createDeckEnemy(this._model.deck_e, e);
+            this._model.updateDeckData(i, n)
+        }, t.prototype.addNightRecord = function (t) {
+            var e = new a.BattleRecordNight(t);
+            this._records.push(e);
+            var i = this._model.deck_f;
+            i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+            var n = this._createDeckEnemy(this._model.deck_e, e);
+            this._model.updateDeckData(i, n)
+        }, t.prototype.getFirstRecord = function () {
+            return 0 == this._records.length ? null : this._records[0]
+        }, t.prototype.getLastRecord = function () {
+            if (0 == this._records.length) return null;
+            var t = this._records.length;
+            return this._records[t - 1]
+        }, t.prototype.isNight = function () {
+            var t = this.getLastRecord();
+            return null != t && "day" != t.phase
+        }, t.prototype.isBossDamaged = function () {
+            var t = this.getFirstRecord();
+            if (null != t) return t.common.isBossDamaged()
+        }, t.prototype._createDeckFriend = function (t, e) {
+            for (var i = t.practice, o = e.common.deck_id, r = t.medal_num, s = t.user_name, a = t.type, _ = t.name, u = e.common.getTaihiShipIndexes(), l = new Array, c = 0; c < t.ships.length; c++) {
+                var h = t.ships[c];
+                if (null == h) l.push(null); else {
+                    var p = h.clone(), d = e.common.getHPNowFriend(c);
+                    i && (d = Math.max(1, d));
+                    var f = e.common.getHPMaxFriend(c);
+                    p.initializeHPInfo(d, f);
+                    var y = e.common.getParamsFriend(c);
+                    p.initializeParams(y.karyoku, y.raisou, y.taiku, y.soukou);
+                    var v = -1 != u.indexOf(c);
+                    p.initializeTaihi(v), l.push(p)
+                }
+            }
+            var g = t.id_second, m = t.name_second, b = new n.DeckModelReplica(o, i, r, s, a, _, l, g, m);
+            return b.formation = e.common.formation_id_f, b
+        }, t.prototype._createAirBase = function (t) {
+            for (var e = [], i = 0; i < 6; i++) {
+                var r = t.common.getHPMaxFriend(i);
+                if (r <= 0) break;
+                var s = -(i + 1), a = s, _ = new o.ShipModelReplica(!0, !1, i, s, a, 1, 0),
+                    u = t.common.getHPNowFriend(i);
+                _.initializeHPInfo(u, r);
+                var l = t.common.getParamsFriend(i);
+                _.initializeParams(l.karyoku, l.raisou, l.taiku, l.soukou), e.push(_)
+            }
+            var c = new n.DeckModelReplica(0, !1, 0, "", 0, "", e, 0, "");
+            return c.formation = t.common.formation_id_f, c
+        }, t.prototype._createDeckEnemy = function (t, e) {
+            for (var i = null != t && t.practice, s = null == t ? 0 : t.id, a = null == t ? 0 : t.medal_num, _ = null == t ? "" : t.user_name, u = null == t ? "" : t.name, l = [], c = e.common.isCombinedEnemy(), h = 0; h < (c ? 12 : 6); h++) {
+                var p = e.common.getMstIDEnemy(h);
+                if (p <= 0) l.push(null); else {
+                    var d = e.common.getLevelEnemy(h), f = new o.ShipModelReplica(!1, i, h, p, -h, d),
+                        y = e.common.getHPNowEnemy(h);
+                    i && (y = Math.max(1, y));
+                    var v = e.common.getHPMaxEnemy(h);
+                    f.initializeHPInfo(y, v);
+                    for (var g = e.common.getSlotMstIDsEnemy(h), m = r.SlotitemModelReplica.convertFromMstIDs(g), b = [], w = 0; w < m.length; w++) b.push(0);
+                    f.initializeSlots(m, null, b);
+                    var x = e.common.getParamsEnemy(h);
+                    f.initializeParams(x.karyoku, x.raisou, x.taiku, x.soukou), l.push(f)
+                }
+            }
+            var I;
+            return I = 0 == c ? new n.DeckModelReplica(s, i, a, _, 0, u, l) : new n.DeckModelReplica(s, i, a, _, 1, u, l, 0, ""), I.formation = e.common.formation_id_e, I
+        }, t
+    }();
+    e.BattleData = _
 }

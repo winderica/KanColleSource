@@ -15,37 +15,29 @@ const function1295 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1296), r = function (t) {
+    var o = i(5), r = i(60), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._spots = {}, e._flags = {}, e
+            return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
         }
 
-        return n(e, t), e.prototype.addSpot = function (t) {
-            this._spots[t.no] = t, this.addChild(t)
-        }, e.prototype.addFlag = function (t, e, i) {
-            var n = new o.LandingFlag;
-            n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-        }, e.prototype.getAllSpots = function () {
-            var t = [];
-            for (var e in this._spots) {
-                var i = this._spots[e];
-                t.push(i)
+        return n(e, t), e.prototype.addBGLayer = function (t, e) {
+            var i = new PIXI.Sprite(t);
+            if (null != e && e.length > 0) {
+                if (1 == this._bgDic.hasOwnProperty(e)) {
+                    var n = this._bgDic[e];
+                    null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
+                }
+                this._bgDic[e] = i
             }
-            return t
-        }, e.prototype.getSpot = function (t) {
-            var e = t.toString();
-            return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-        }, e.prototype.getFlag = function (t) {
-            var e = t.toString();
-            return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
-        }, e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t in this._spots) {
-                this._spots[t].dispose()
-            }
-            this._spots = null
+            i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
+        }, e.prototype.getBGLayer = function (t) {
+            return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
+        }, e.prototype.addLabel = function (t, e, i) {
+            null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
+            var n = new r.CenteringSprite(t);
+            n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
         }, e
     }(PIXI.Container);
-    e.MapSpotLayer = r
+    e.MapBackGround = s
 }

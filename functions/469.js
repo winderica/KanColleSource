@@ -15,7 +15,7 @@ const function469 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(6), s = i(178), a = i(1415), _ = i(1416), u = function (t) {
+    var o = i(26), r = i(6), s = i(178), a = i(1416), _ = i(1417), u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._under_layer = new PIXI.Sprite, e._over_layer = new PIXI.Sprite, e.addChild(e._under_layer), e.addChild(e._over_layer), e

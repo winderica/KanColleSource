@@ -1,60 +1,62 @@
 const function1406 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(183), s = function (t) {
-        function e(e) {
-            var i = t.call(this, e) || this;
-            return i._initPlaneFrom(), i
+    var n = i(7), o = function () {
+        function t(t, e, i) {
+            this._friend = t, this._o = {};
+            for (var n in e) {
+                var o = e[n];
+                this._o[n] = [];
+                for (var r = 0; r < o.length; r++) this._o[n].push(o[r])
+            }
+            if (null != i) for (var n in i) {
+                var o = i[n];
+                if (null != o) {
+                    0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
+                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r])
+                }
+            }
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "airunit_id", {
+        return Object.defineProperty(t.prototype, "friend", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_base_id")
+                return this._friend
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "squadrons", {
-            get: function () {
-                var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_squadron_plane");
-                if (null != e) for (var i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    t.push({
-                        mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
-                        count: o.ObjUtil.getNumber(r, "api_count")
-                    })
-                }
-                if (null != (e = o.ObjUtil.getObjectArray(this._o, "api_map_squadron_plane"))) for (var s = this.plane_from_f.map(function (t) {
-                    return t + 1
-                }), a = 0, _ = s; a < _.length; a++) {
-                    var u = _[a];
-                    if (e.hasOwnProperty(u.toString())) for (var l = e[u], c = 0, h = l; c < h.length; c++) {
-                        var p = h[c];
-                        t.push({
-                            mst_id: o.ObjUtil.getNumber(p, "api_mst_id"),
-                            count: o.ObjUtil.getNumber(p, "api_count")
-                        })
-                    }
-                }
-                return t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "seiku", {
-            get: function () {
-                var t = this._stage1;
-                return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(r.AirWarDataBase);
-    e.AirUnitData = s
+        }), t.prototype.hasDamage = function () {
+            var t = this._friend ? "api_fdam" : "api_edam";
+            return this._hasDamage(this._o, t)
+        }, t.prototype._hasDamage = function (t, e) {
+            var i = n.ObjUtil.getNumArray(t, e);
+            if (null != i) for (var o = 0, r = i; o < r.length; o++) {
+                var s = r[o];
+                if (s > 0) return !0
+            }
+            return !1
+        }, t.prototype.beBombed = function () {
+            var t = this._friend ? "api_fbak_flag" : "api_ebak_flag", e = n.ObjUtil.getNumArray(this._o, t);
+            if (null == e) return !1;
+            for (var i = Math.min(e.length, 6), o = 0; o < i; o++) if (e[o] > 0) return !0;
+            return !1
+        }, t.prototype.beBombedCombined = function () {
+            var t = this._friend ? "api_fbak_flag" : "api_ebak_flag", e = n.ObjUtil.getNumArray(this._o, t);
+            if (null == e) return !1;
+            for (var i = 6; i < e.length; i++) if (e[i] > 0) return !0;
+            return !1
+        }, t.prototype.getDamage = function (t) {
+            var e = this._friend ? "api_fdam" : "api_edam", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length <= t ? 0 : Math.floor(i[t])
+        }, t.prototype.getBak = function (t) {
+            var e = this._friend ? "api_fbak_flag" : "api_ebak_flag", i = n.ObjUtil.getNumArray(this._o, e);
+            return !(null == i || i.length <= t) && 1 == i[t]
+        }, t.prototype.getRai = function (t) {
+            var e = this._friend ? "api_frai_flag" : "api_erai_flag", i = n.ObjUtil.getNumArray(this._o, e);
+            return !(null == i || i.length <= t) && 1 == i[t]
+        }, t.prototype.getHitType = function (t) {
+            var e = this._friend ? "api_fcl_flag" : "api_ecl_flag", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length <= t ? 0 : i[t] + 1
+        }, t.prototype.isShield = function (t) {
+            return this.getDamage(t) % 1 != 0
+        }, t
+    }();
+    e.AirWarStage3Model = o
 }

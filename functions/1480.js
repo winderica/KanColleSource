@@ -15,28 +15,26 @@ const function1480 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(19), r = i(1481), s = i(1482), a = function (t) {
+    var o = i(5), r = i(4), s = i(36), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
+            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e._map_name = new r.TextBox(24, 1949120), e._map_name.anchor.set(0, 0), e._map_name.position.set(o.default.width / 2, 48), e._map_name.alpha = 0, e.addChild(e._bg), e.addChild(e._map_name), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "friend", {
-            get: function () {
-                return this._friend
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "enemy", {
-            get: function () {
-                return this._enemy
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n, o) {
-            this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
-        }, e.prototype.show = function (t) {
-            var e = new o.TweenTask;
-            e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
-                null != t && t()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
+            var e = new r.TextBox(18, 16774898);
+            e.text = "FRIEND FLEET AREA", e.position.set(-582, 300), e.rotation = -Math.PI / 2, this._bg.addChild(e);
+            var i = new r.TextBox(18, 16774898);
+            i.text = "ENEMY FLEET AREA", i.position.set(578, -234), i.rotation = Math.PI / 2, this._bg.addChild(i), this._map_name.text = t, this._map_name.position.x = o.default.width / 2 - Math.floor(this._map_name.width / 2)
+        }, e.prototype.show = function () {
+            var t = this;
+            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
+                createjs.Tween.get(t._map_name).to({ alpha: 1 }, 100).call(function () {
+                    t.emit("complete")
+                })
             })
         }, e
     }(PIXI.Container);
-    e.LayerDeckInfo = a
+    e.LayerBG = a
 }

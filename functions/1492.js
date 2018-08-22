@@ -15,36 +15,24 @@ const function1492 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(36), r = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-
-        return n(e, t), e.prototype.show = function () {
-            this.hide(), this._current = new s, this._current.y = 17, this._current.alpha = 0, this._current.activate(), this.addChild(this._current), createjs.Tween.get(this._current).to({ alpha: 1 }, 800)
-        }, e.prototype.hide = function () {
-            var t = this;
-            if (null != this._current) {
-                var e = this._current;
-                this._current = null, createjs.Tween.get(e).to({ alpha: 0 }, 600).call(function () {
-                    e.deactivate(), t.removeChild(e)
-                })
-            }
-        }, e.prototype.dispose = function () {
-            this.hide()
-        }, e
-    }(PIXI.Container);
-    e.LayerTitle = r;
-    var s = function (t) {
+    var o = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(65)), e._gear = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(66)), e._gear.anchor.set(.5), e._gear.position.set(32, 45), e._text = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(67)), e._text.position.set(60, 23), e.addChild(e._bg), e.addChild(e._gear), e.addChild(e._text), e
+            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._gear, { loop: !0 }).to({ rotation: 2 * Math.PI }, 6e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
+            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({ alpha: 1 }, i)
+        }, e.prototype.createHideTween = function (t, e) {
+            var i = this;
+            void 0 === e && (e = 0);
+            var n = createjs.Tween.get(this._img).wait(e);
+            return 1 == this._img.visible && n.to({ alpha: 0 }, t).call(function () {
+                i._img.visible = !1
+            }), n
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._img = null
         }, e
-    }(PIXI.Container)
+    }(PIXI.Container);
+    e.LayerMVP = o
 }

@@ -1,51 +1,98 @@
 const function1225 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
+    var n = i(7), o = i(1226), r = function () {
         function t(t) {
-            this._o = t
+            this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "offset", {
+        return Object.defineProperty(t.prototype, "no", {
             get: function () {
-                return this._o.hasOwnProperty("x") || this._o.hasOwnProperty("y") ? new PIXI.Point(n.ObjUtil.getNumber(this._o, "x"), n.ObjUtil.getNumber(this._o, "y")) : null
+                return n.ObjUtil.getNumber(this._o, "no")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "type", {
+        }), Object.defineProperty(t.prototype, "x", {
             get: function () {
-                switch (n.ObjUtil.getString(this._o, "type")) {
-                    case"R":
-                        return 2;
-                    case"L":
-                        return 6;
-                    case"T":
-                        return 0;
-                    case"B":
-                        return 4;
-                    case"RT":
-                    case"TR":
-                        return 1;
-                    case"RB":
-                    case"BR":
-                        return 3;
-                    case"LT":
-                    case"TL":
-                        return 7;
-                    case"LB":
-                    case"BL":
-                        return 5
-                }
-                return 1
+                return n.ObjUtil.getNumber(this._o, "x")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "beak", {
+        }), Object.defineProperty(t.prototype, "y", {
             get: function () {
-                switch (n.ObjUtil.getString(this._o, "beak")) {
-                    case"s":
-                    case"straight":
-                        return 1
+                return n.ObjUtil.getNumber(this._o, "y")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "color", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "color")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offsetDic", {
+            get: function () {
+                return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "line", {
+            get: function () {
+                if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
+                    var t = this._o.line;
+                    this._line = {
+                        x: n.ObjUtil.getNumber(t, "x"),
+                        y: n.ObjUtil.getNumber(t, "y"),
+                        r: n.ObjUtil.getNumber(t, "r"),
+                        img: n.ObjUtil.getString(t, "img")
+                    }
                 }
-                return 0
+                return this._line
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "route", {
+            get: function () {
+                if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
+                    var t = this._o.route;
+                    this._route = {
+                        x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
+                        y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
+                        r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
+                        img: n.ObjUtil.getString(t, "img")
+                    }
+                }
+                return this._route
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "landing", {
+            get: function () {
+                if (0 == this._o.hasOwnProperty("landing")) return null;
+                var t = this.landing;
+                return {
+                    x: n.ObjUtil.getNumber(t, "x"),
+                    y: n.ObjUtil.getNumber(t, "y"),
+                    type: n.ObjUtil.getNumber(t, "type")
+                }
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "branch", {
+            get: function () {
+                if (null == this._branch) {
+                    if (0 == this._o.hasOwnProperty("branch")) return null;
+                    var t = this._o.branch;
+                    this._branch = new o.BranchBalloonData(t)
+                }
+                return this._branch
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "direction", {
+            get: function () {
+                if (0 == this._o.hasOwnProperty("direction")) return 0;
+                var t = n.ObjUtil.getString(this._o, "direction");
+                return "R" == t ? 2 : "L" == t ? 1 : 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "controll_point", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "cpoint");
+                return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "replenish_confirm_offset", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "replenish");
+                return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "ration");
+                return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.BranchBalloonData = o
+    e.SpotData = r
 }

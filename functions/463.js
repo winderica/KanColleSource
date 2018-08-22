@@ -15,7 +15,7 @@ const function463 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(464), r = i(465), s = i(1402), a = function (t) {
+    var o = i(464), r = i(465), s = i(1403), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._o = e, i._raw = new s.RawDayBattleData(e), i._common = new r.BattleCommonModel(e), i

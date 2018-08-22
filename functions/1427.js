@@ -15,23 +15,38 @@ const function1427 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = function (t) {
+    var o = i(17), r = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            return e.visible = !1, e
         }
 
-        return n(e, t), e.prototype.showSanshiki = function (t, e) {
-            var i = this, n = o.BATTLE_MAIN.getTexture(137), r = new PIXI.Sprite(n);
-            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
-                i.removeChild(r)
+        return n(e, t), e.prototype.show = function (t, e) {
+            void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
+        }, e.prototype.playDamageAnimation = function () {
+            var t = this;
+            this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({ alpha: 1 }, 300).to({ alpha: 0 }, 500).call(function () {
+                t.visible = !1, t._t = null
             })
-        }, e.prototype.showDanmaku = function (t, e) {
-            var i = this, n = o.BATTLE_MAIN.getTexture(135), r = new PIXI.Sprite(n);
-            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
-                i.removeChild(r)
+        }, e.prototype.playShieldAnimation = function () {
+            var t = this;
+            this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
+            var e = { r: 255, g: 255, b: 128, a: 0 }, i = function (e) {
+                var i = e.target.target, n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
+                t._draw(n, i.a)
+            };
+            this._t = createjs.Tween.get(e, { onChange: i }).to({ a: .75 }, 233).to({
+                r: 128,
+                g: 255,
+                b: 255
+            }, 100).to({ r: 255, g: 192, b: 192 }, 100).to({ r: 255, g: 255, b: 255 }, 166).call(function () {
+                t.visible = !1, t._t = null
             })
-        }, e.prototype.dispose = function () {
+        }, e.prototype._stop = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype._draw = function (t, e) {
+            this.clear(), this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
         }, e
-    }(PIXI.Container);
-    e.BannerInfoLayer = r
+    }(PIXI.Graphics);
+    e.BannerOverlay = r
 }

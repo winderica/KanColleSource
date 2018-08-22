@@ -15,27 +15,49 @@ const function1267 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(246), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._imgs = [], e
+    var o = i(22), r = i(18), s = i(1268), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (this._imgs = [], t <= 0) {
-                var e = new o.NumericalDisplay(0);
-                this.addChild(e), this._imgs.push(e)
-            } else for (; t > 0;) {
-                var i = t % 10, e = new o.NumericalDisplay(i);
-                this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
-            }
-            var n = new o.NumericalDisplay(-1);
-            this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
-            for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
-                var _ = a[s];
-                _.x = r, r += _.width
-            }
+        return n(e, t), e
+    }(o.Container);
+    e.LandingBalloonBase = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(51), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-86, -92))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
         }, e
-    }(PIXI.Container);
-    e.NumericalDisplaySet = r
+    }(a);
+    e.LandingBalloonType1 = _;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(55), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-63, 0))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType2 = u;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(59), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-99, -12))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType3 = l
 }

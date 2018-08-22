@@ -15,18 +15,27 @@ const function1220 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i, n) {
-            void 0 === n && (n = -1);
-            var o = t.call(this) || this;
-            return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(16), r = i(146), s = i(54), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "black", {
+            get: function () {
+                return this._black
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shutter", {
+            get: function () {
+                return this._shutter
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._shutter.initializeLight()
         }, e
-    }(o.APIBase);
-    e.APIMapNext = r
+    }(PIXI.Container);
+    e.ViewMain = a
 }

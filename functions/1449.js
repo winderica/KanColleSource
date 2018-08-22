@@ -15,26 +15,25 @@ const function1449 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            void 0 === i && (i = !1);
-            var n = t.call(this) || this, o = e.battle_model.deck_f, r = e.battle_model.deck_e, s = 0 != o.type,
-                a = null != r && 0 != r.type;
-            return n._url = 0 == s && 0 == a ? "api_req_sortie/battleresult" : "api_req_combined_battle/battleresult", n._data = e, n._debug = i, n
+    var o = i(2), r = i(21), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._event = e, i
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            var e = this._data.battle_model.actual_survey_time, i = this._data.battle_model.prediction_time,
-                n = this.__AA1(e, i);
-            n >= 0 && (this._post_data.api_btime = n), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
-        }, e.prototype.__AA1 = function (t, e) {
-            var i = t, n = i, o = Math.floor(89999999 * Math.random()) + 1e7, r = Math.floor(o / 331), s = 331 * r;
-            if (i / n <= .6) return s;
-            var a = 99999999 - s, _ = Math.min(329, a);
-            return s + Math.floor(Math.random() * _) + 1
+        return n(e, t), e.prototype._start = function () {
+            this._loadCommon()
+        }, e.prototype._loadCommon = function () {
+            var t = this, e = new r.UIImageLoader("common");
+            e.add("common_explosion.json"), e.load(function () {
+                t._load()
+            })
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("battle_result");
+            e.add("battle_result_main.json"), this._event && e.add("battle_result_event.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.APIBase);
-    e.APIBattleResult = r
+    }(o.TaskBase);
+    e.TaskLoadResourcesBattleResult = s
 }

@@ -1,79 +1,48 @@
 const function1314 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(21), a = i(174), _ = i(88), u = i(1315), l = i(1316), c = i(1317), h = i(1358),
-        p = i(1394), d = i(1395), f = i(1396), y = i(1397), v = i(1398), g = i(1399), m = (i(1400), function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._log = null, i._scene = e, i
-            }
+    var n = i(0), o = function () {
+        function t(t, e, i) {
+            void 0 === e && (e = null), void 0 === i && (i = null), this._offset_x = 0, this._offset_y = 0, this._mst_id = t, this._name = i, this._stype = e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                var t = this._scene.data.getFirstRecord();
-                "day" == t.phase ? this._combatDay(t) : this._combatNight(t)
-            }, e.prototype._combatDay = function (t) {
-                var e, i = this, n = this._scene.data.model.deck_f, o = this._scene.data.model.deck_e;
-                0 == n.isCombined() ? e = 1 == o.isCombined() ? new p.PhaseDay_06vs12(this._scene, t, !1) : new c.PhaseDay(this._scene, t, !1) : e = this._createDayPhaseCombinedDeck(t);
-                e.start(function () {
-                    i._scene.shutter2.once("closed", function () {
-                        i._judgement(t)
-                    }), i._scene.shutter2.close()
-                })
-            }, e.prototype._createDayPhaseCombinedDeck = function (t) {
-                var e = this._scene.data.model.deck_f, i = this._scene.data.model.deck_e, n = i.isCombined();
-                return 2 == e.type ? 0 == n ? new v.PhaseDay_Suijo(this._scene, t, !1) : new y.PhaseDay_Suijo_vs12(this._scene, t, !1) : 0 == n ? new f.PhaseDay_Kido(this._scene, t, !1) : new d.PhaseDay_Kido_vs12(this._scene, t, !1)
-            }, e.prototype._judgement = function (t) {
-                var e = this;
-                if (t.raw.isNightBattle()) {
-                    var i = new g.TaskGoNightBattleSelect(this._scene);
-                    i.start(function () {
-                        0 == i.result ? (1 == o.default.sound.bgm.playing && o.default.sound.bgm.fadeOut(500), e._endTask()) : e._dayToNight()
-                    })
-                } else this._endTask()
-            }, e.prototype._dayToNight = function () {
-                var t, e = this;
-                t = 1 == this._scene.data.model.isPractice() ? new l.APIPracticeDayToNight(this._scene.data) : new u.APIBattleDayToNight(this._scene.data), t.start(function () {
-                    var t = 0;
-                    if (1 == e._scene.data.model.isPractice()) t = 2; else {
-                        var i = e._scene.data.model.map_info.area_id, n = e._scene.data.model.map_info.map_no,
-                            r = e._scene.data.model.map_info.isBoss();
-                        t = o.default.model.mst_bgm.getCombatBGM(i, n, !0, r)
-                    }
-                    o.default.sound.bgm.playBattleBGM(t), e._loadResource()
-                })
-            }, e.prototype._loadResource = function () {
-                var t = this, e = new s.UIImageLoader("battle");
-                e.add("battle_night.json"), e.add("battle_telop_sp.json"), e.load(function () {
-                    var e = o.default.settings.renderer;
-                    e.plugins.prepare.upload(a.BATTLE_NIGHT.getTexture(0).baseTexture, function () {
-                        e.plugins.prepare.upload(_.BATTLE_TELOP_SP.getTexture(0).baseTexture, function () {
-                            var e = t._scene.data.getLastRecord();
-                            t._combatNight(e)
-                        })
-                    })
-                })
-            }, e.prototype._combatNight = function (t) {
-                var e = this;
-                new h.PhaseNight(this._scene, t, !0).start(function () {
-                    e._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase));
-    e.TaskMain = m
+        return Object.defineProperty(t.prototype, "mst_id", {
+            get: function () {
+                return this._mst_id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "voice_id", {
+            get: function () {
+                return this._voice_id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "message", {
+            get: function () {
+                return this._message
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                if (null != this._name) return this._name;
+                var t = n.default.model.ship.getMst(this._mst_id);
+                return null == t ? "" : t.name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "stype", {
+            get: function () {
+                if (null != this._stype) return this._stype;
+                var t = n.default.model.ship.getMst(this._mst_id);
+                return null == t ? "" : t.shipTypeName
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offset_x", {
+            get: function () {
+                return this._offset_x
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offset_y", {
+            get: function () {
+                return this._offset_y
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.setMessage = function (t, e) {
+            return this._voice_id = t, this._message = e, this
+        }, t.prototype.setOffset = function (t, e) {
+            return this._offset_x = t, this._offset_y = e, this
+        }, t
+    }();
+    e.BossModel = o
 }

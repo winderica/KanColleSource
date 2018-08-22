@@ -15,42 +15,40 @@ const function1465 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(124), s = i(259), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(17), r = i(11), s = i(1466), a = i(1467), _ = i(1468), u = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._layer = e, o._area_id = i, o._map_no = n, o
         }
 
-        return n(e, t), e.prototype._initializeMapImages = function () {
-            this._maps = [];
-            for (var t = 0; t < 4; t++) {
-                var e = new PIXI.Sprite;
-                e.texture = [r.BATTLE_RESULT_EVENT.getTexture(11), r.BATTLE_RESULT_EVENT.getTexture(13), r.BATTLE_RESULT_EVENT.getTexture(15), r.BATTLE_RESULT_EVENT.getTexture(17)][t], e.x = 162 + 225 * t, e.y = 101, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
+            switch (this._map_no) {
+                case 4:
+                    var e = new s.TaskEventEnding394(this._layer);
+                    e.start(function () {
+                        t._endTask()
+                    });
+                    break;
+                case 6:
+                    var e = new a.TaskEventEnding396(this._layer);
+                    e.start(function () {
+                        t._endTask()
+                    });
+                    break;
+                case 7:
+                    var e = new _.TaskEventEnding397(this._layer);
+                    e.start(function () {
+                        t._endTask()
+                    });
+                    break;
+                default:
+                    this._endTask()
             }
-        }, e.prototype._createMapShowTweens = function () {
-            return this.__createMapShowTweens(700)
-        }, e.prototype._initializeStampImages = function () {
-            this._stamps = [];
-            for (var t = 0; t < 3; t++) {
-                var e = new o.Sprite;
-                e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT.getTexture(5), e.x = 321 + 225 * t, e.y = 254, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-            }
-        }, e.prototype._createStampShowTweens = function () {
-            return this.__createStampShowTweens(700)
-        }, e.prototype._showText = function () {
-            this.__showText(new _)
-        }, e.prototype._createStampLast = function () {
-            var t = r.BATTLE_RESULT_EVENT.getTexture(6), e = new o.Sprite(t);
-            return e.anchor.set(.5), e.position.set(1062, 329), e.alpha = 0, e
+        }, e.prototype._endTask = function () {
+            this._layer = null, t.prototype._endTask.call(this)
         }, e
-    }(s.TaskEventEndingBase);
-    e.TaskEventEnding394 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT.getTexture(36), this._text1.position.set(77, 266), this._text2.texture = r.BATTLE_RESULT_EVENT.getTexture(37), this._text2.position.set(278, 509), this._text3.texture = r.BATTLE_RESULT_EVENT.getTexture(38), this._text3.position.set(309, 582)
-        }, e
-    }(s.TextsBase)
+    }(r.TaskBase);
+    e.TaskEventEnding = u
 }

@@ -15,7 +15,7 @@ const function446 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1342), r = function (t) {
+    var o = i(1343), r = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._chara = new PIXI.Container, e._box = new o.CutinStatusBox, e.addChild(e._chara), e.addChild(e._box), e

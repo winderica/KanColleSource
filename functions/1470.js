@@ -15,51 +15,40 @@ const function1470 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(77), a = i(8), _ = i(31), u = i(1471), l = i(1), c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(17), r = i(22), s = i(30), a = i(42), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this._scene.data.getLandingData();
-            t.isLandingMap() ? this._loadResources(t) : this._endTask()
-        }, e.prototype._loadResources = function (t) {
-            var e = this, i = o.default.resources.gauge.createLoaderHorizontal(),
-                n = this._scene.data.battle_model.map_info.area_id,
-                r = this._scene.data.battle_model.map_info.map_no, a = this._scene.data.battle_model.stage,
-                _ = s.GaugeSetModel.createKey(n, r, a);
-            i.add(_);
-            var u = null;
-            1 == this._scene.data.battle_model.has_next_stage && (u = s.GaugeSetModel.createKey(n, r, a + 1), i.add(u)), i.load(function () {
-                var i = o.default.resources.gauge.getGaugeInfo(_), n = null;
-                null != u && (n = o.default.resources.gauge.getGaugeInfo(u)), e._showDialog(t, i, n)
-            })
-        }, e.prototype._showDialog = function (t, e, i) {
-            var n = this, o = new u.ResultDialog(t, e, i);
-            o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({ alpha: 1 }, 300).wait(500).call(function () {
-                o.startAnimation(function () {
-                    n._hideDialog(o)
-                })
-            })
-        }, e.prototype._hideDialog = function (t) {
-            var e = this;
-            createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
-                e._scene.view.removeChild(t), t.dispose(), e._wait()
-            })
-        }, e.prototype._wait = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(500).call(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            var e = this, i = new _.GearBtnNext;
-            i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
-            var n = new a.AreaBox(0);
-            n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
-                i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
-            })
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(2); else switch (t) {
+                case 1:
+                    this._img.texture = s.SALLY_COMMON.getTexture(0);
+                    break;
+                case 2:
+                    this._img.texture = s.SALLY_COMMON.getTexture(2);
+                    break;
+                case 3:
+                    this._img.texture = s.SALLY_COMMON.getTexture(4);
+                    break;
+                case 4:
+                    this._img.texture = s.SALLY_COMMON.getTexture(8);
+                    break;
+                case 5:
+                    this._img.texture = s.SALLY_COMMON.getTexture(10);
+                    break;
+                case 6:
+                    this._img.texture = s.SALLY_COMMON.getTexture(12);
+                    break;
+                case 7:
+                    this._img.texture = s.SALLY_COMMON.getTexture(6);
+                    break;
+                default:
+                    this._img.texture = PIXI.Texture.EMPTY
+            }
+            this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
         }, e
-    }(r.TaskBase);
-    e.PhaseTransportResult = c
+    }(r.Container);
+    e.AreaIcon = _
 }

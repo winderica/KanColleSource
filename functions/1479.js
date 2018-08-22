@@ -15,26 +15,47 @@ const function1479 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(4), s = i(36), a = function (t) {
+    var o = i(54), r = i(1480), s = i(1481), a = i(1484), _ = i(1492), u = i(1493), l = i(1494), c = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e._map_name = new r.TextBox(24, 1949120), e._map_name.anchor.set(0, 0), e._map_name.position.set(o.default.width / 2, 48), e._map_name.alpha = 0, e.addChild(e._bg), e.addChild(e._map_name), e
+            return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new u.LayerTitle, e._panel_exp = new l.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
-            var e = new r.TextBox(18, 16774898);
-            e.text = "FRIEND FLEET AREA", e.position.set(-582, 300), e.rotation = -Math.PI / 2, this._bg.addChild(e);
-            var i = new r.TextBox(18, 16774898);
-            i.text = "ENEMY FLEET AREA", i.position.set(578, -234), i.rotation = Math.PI / 2, this._bg.addChild(i), this._map_name.text = t, this._map_name.position.x = o.default.width / 2 - Math.floor(this._map_name.width / 2)
-        }, e.prototype.show = function () {
-            var t = this;
-            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
-                createjs.Tween.get(t._map_name).to({ alpha: 1 }, 100).call(function () {
-                    t.emit("complete")
-                })
-            })
+        return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
+            get: function () {
+                return this._layer_mvp
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_bg", {
+            get: function () {
+                return this._layer_bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_deck_info", {
+            get: function () {
+                return this._layer_deck_info
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_banner", {
+            get: function () {
+                return this._layer_banner
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_title", {
+            get: function () {
+                return this._layer_title
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "panel_exp", {
+            get: function () {
+                return this._panel_exp
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_cutin", {
+            get: function () {
+                return this._layer_cutin
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shutter", {
+            get: function () {
+                return this._shutter
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg = null, this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null
         }, e
     }(PIXI.Container);
-    e.LayerBG = a
+    e.ViewMain = c
 }

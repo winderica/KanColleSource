@@ -15,7 +15,7 @@ const function1203 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(1204), a = i(1206), _ = i(1207), u = i(1219), l = function (t) {
+    var o = i(0), r = i(47), s = i(1204), a = i(1205), _ = i(1207), u = i(1208), l = i(1220), c = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._startBattleResult = function () {
@@ -23,8 +23,8 @@ const function1203 = function (t, e, i) {
                 var t = n._taskMain.model;
                 n._result.start(t)
             }, n._endBattleResult = function () {
-                n._battle.dispose(), n.removeChild(n._result), n._result.dispose(), o.default.scene.change(0)
-            }, n._battle = e, n._result = i, n._view = new u.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
+                o.default.scene.change(0)
+            }, n._battle = e, n._result = i, n._view = new l.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "view", {
@@ -47,10 +47,15 @@ const function1203 = function (t, e, i) {
         }, e.prototype._startBattle = function () {
             this._battle.once("complete", this._startBattleResult), this._battle.start()
         }, e.prototype.getPreInitializeTask = function (t, e) {
-            return this._model = e, this._taskMain = new _.TaskMain(this, this._model), new s.TaskInitPre(this)
+            return this._model = e, this._taskMain = new u.TaskMain(this, this._model), new a.TaskInitPre(this)
         }, e.prototype.getInitializeTask = function (t) {
-            return new a.TaskInit(this)
+            return new _.TaskInit(this)
+        }, e.prototype.getFinalizeTask = function () {
+            var t = this;
+            return new s.TaskFinalize(function () {
+                t.removeChild(t._battle), t._battle.dispose(), t.removeChild(t._result), t._result.dispose()
+            })
         }, e
     }(r.SceneBase);
-    e.PracticeScene = l
+    e.PracticeScene = c
 }

@@ -15,38 +15,40 @@ const function1483 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(1484), s = i(1487), a = i(1489), _ = function (t) {
+    var o = i(28), r = i(19), s = i(40), a = i(36), _ = i(473), u = i(474), l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
+            return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new _.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new u.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
-            get: function () {
-                return this._banners_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_f", {
-            get: function () {
-                return this._info_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "banners_e", {
-            get: function () {
-                return this._banners_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_e", {
-            get: function () {
-                return this._info_e
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
-        }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
-            var i = this, n = o.default.width - this._banners_e.x;
-            return [createjs.Tween.get(this._banners_e).wait(e).to({ x: this._banners_e.x + n }, t).call(function () {
-                i._banners_e.dispose()
-            }), createjs.Tween.get(this._info_e).wait(e).to({ x: this._info_e.x + n }, t).call(function () {
-                i._info_e.dispose()
-            })]
+        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+            this._line.visible = !1, this._line.texture = a.BATTLE_RESULT_MAIN.getTexture(2), this._info.alpha = 0, this._info.user_name.text = t, this._info.level.initialize(), this._info.level.text = e.toString(), this._info.deck_name.initialize(), this._info.deck_name.text = i, this._gauge_label.texture = a.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(65298), this._gauge.alpha = 0, n && (this._gauge_label.visible = !1, this._gauge.visible = !1)
+        }, e.prototype.createShowTween = function () {
+            var t = this;
+            return createjs.Tween.get(this._info).call(function () {
+                t._line.visible = !0
+            }).to({ alpha: 1 }, 100)
+        }, e.prototype.createHideGaugeTweens = function (t) {
+            return [createjs.Tween.get(this._gauge_label).to({ alpha: 0 }, 200), createjs.Tween.get(this._gauge).to({ alpha: 0 }, 200), createjs.Tween.get(this._line).wait(200).to({ x: t }, 500), createjs.Tween.get(this._info).wait(200).to({ x: t }, 500)]
+        }, e.prototype.createTaskShowGauge = function (t, e, i) {
+            if (0 == this._gauge.visible) return new s.WaitTask(0);
+            var n, a = new r.TweenTask;
+            this._gauge_label.x += 15, n = createjs.Tween.get(this._gauge_label).wait(i).to({
+                x: this._gauge_label.x - 15,
+                alpha: 1
+            }, 200), a.addTween(n), this._gauge.x += 15, n = createjs.Tween.get(this._gauge).wait(i).to({
+                x: this._gauge.x - 15,
+                alpha: 1
+            }, 200), a.addTween(n);
+            var _ = new o.SerialTask;
+            _.add(a), n = this._gauge.createTween(t, e);
+            var u = new r.TweenTask;
+            return u.addTween(n), _.add(u), _
+        }, e.prototype.createShowDeckNameTween = function (t, e, i) {
+            return this._info.deck_name.text = t, createjs.Tween.get(this._info.deck_name).wait(i).to({ alpha: 1 }, e)
+        }, e.prototype.createHideDeckNameTween = function (t, e) {
+            return createjs.Tween.get(this._info.deck_name).wait(e).to({ alpha: 0 }, t)
         }, e
     }(PIXI.Container);
-    e.LayerBanner = _
+    e.DeckInfoPanelFriend = l
 }
