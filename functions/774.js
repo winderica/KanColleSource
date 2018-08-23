@@ -27,7 +27,7 @@ const function774 = function (t, e, i) {
                 var i = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(42)),
                     n = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(6)),
                     c = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(0)), h = new r.DownArrowAnimationView,
-                    p = new l.ShipBanner, d = new l.ShipBanner, f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(42)),
+                    p = new l.ShipBanner, d = new l.ShipBanner, f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(45)),
                     y = new a.IconWeapon, v = new s.TextBox(21, 3355443), g = new s.TextBox(21, 3355443),
                     m = new s.TextBox(21, 3355443), b = new s.TextBox(15, 3355443), w = new s.TextBox(21, 3355443),
                     x = new s.TextBox(15, 3355443), I = new s.TextBox(21, 3355443),

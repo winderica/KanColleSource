@@ -18,8 +18,8 @@ const function113 = function (t, e, i) {
     var o = i(3), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.texture = o.COMMON_MAIN.getTexture(24);
-            var i = o.COMMON_MAIN.getTexture(25), n = new PIXI.Sprite(i), r = new PIXI.Sprite(i);
+            e.texture = o.COMMON_MAIN.getTexture(26);
+            var i = o.COMMON_MAIN.getTexture(27), n = new PIXI.Sprite(i), r = new PIXI.Sprite(i);
             n.alpha = 0, r.alpha = 0, r.position.set(0, 15), e.addChild(n, r);
             var s = createjs.Tween.get(n).to({ alpha: 0 }).wait(250).to({ alpha: 1 }).wait(250).to({ alpha: 0 }).wait(250),
                 a = createjs.Tween.get(r).to({ alpha: 0 }).wait(250).to({ alpha: 0 }).wait(250).to({ alpha: 1 }).wait(250);
@@ -34,7 +34,7 @@ const function113 = function (t, e, i) {
     var s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.texture = o.COMMON_MAIN.getTexture(24), e
+            return e.texture = o.COMMON_MAIN.getTexture(26), e
         }
 
         return n(e, t), e

@@ -18,7 +18,7 @@ const function584 = function (t, e, i) {
     var o = i(20), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.arrow = new PIXI.Sprite(o.COMMON_MAIN.getTexture(38)), e.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(37)), e.lockIcon.x = 9, e.addChild(e.lockIcon), e.addChild(e.arrow), e
+            return e.arrow = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), e.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(40)), e.lockIcon.x = 9, e.addChild(e.lockIcon), e.addChild(e.arrow), e
         }
 
         return n(e, t), e.prototype.dispose = function () {

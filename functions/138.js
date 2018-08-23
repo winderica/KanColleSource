@@ -28,8 +28,8 @@ const function138 = function (t, e, i) {
             if (1 == r.PlaneConst.OFFSET.hasOwnProperty(t.toString())) {
                 var n = r.PlaneConst.OFFSET[t], s = _.ObjUtil.getNumber(n, "x"), u = _.ObjUtil.getNumber(n, "y"),
                     l = _.ObjUtil.getNumber(n, "r"), c = _.ObjUtil.getNumber(n, "sx", 1);
-                this._content.position.set(s, u), this._content.rotation = -l / 180 * Math.PI * (e ? 1 : -1), this._content.scale.x = this._base_scale * c * i * (e ? 1 : -1)
-            } else this._content.position.set(0, 0), this._content.rotation = 0, this._content.scale.x = this._base_scale * i * (e ? 1 : -1), this._content.scale.y = 1;
+                this._content.position.set(s, u), this._content.rotation = -l / 180 * Math.PI * (e ? 1 : -1), this._content.scale.x = this._base_scale * c * i * (e ? 1 : -1), this._content.scale.y = this._base_scale * Math.abs(c)
+            } else this._content.position.set(0, 0), this._content.rotation = 0, this._content.scale.x = this._base_scale * i * (e ? 1 : -1), this._content.scale.y = this._base_scale;
             138 == t && (this._content.scale.x *= 1.4, this._content.scale.y *= 1.4), this._baseY = this._content.y, this._rad_accel = 60 * (.05 + .05 * Math.random()) / createjs.Ticker.framerate
         }, e.prototype.activate = function () {
             var t = this;

@@ -17,8 +17,8 @@ const function318 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(20), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(19)),
-                n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(18));
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(21)),
+                n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(20));
             return i.x = 3, i.y = 3, i.scale.x = 0, e.addChild(n, i), e.bar = i, e
         }
 

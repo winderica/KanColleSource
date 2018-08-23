@@ -19,13 +19,13 @@ const function677 = function (t, e, i) {
         p = i(13), d = function (t) {
             function e() {
                 var e = t.call(this) || this, i = new PIXI.Sprite;
-                i.texture = _.COMMON_MAIN.getTexture(61), i.position.set(0, -37);
+                i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
                 var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
                 n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new l.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
                 var d = new PIXI.Sprite(u.COMMON_MISC.getTexture(180));
-                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(26));
-                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(62));
-                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(63));
+                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
+                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
+                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
                 var y = new PIXI.Sprite(_.COMMON_MAIN.getTexture(12));
                 e.containerName = new PIXI.Container, e.containerName.position.set(42, 23);
                 var v = p.CreateRect.gradientLeftToRight(185, 45, .94, .95);

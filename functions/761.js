@@ -21,11 +21,11 @@ const function761 = function (t, e, i) {
             i._onClickListItem = function (t, e) {
                 i.onClick(e)
             };
-            for (var n = o.COMMON_MAIN.getTexture(35), r = new Array, s = 0; s < e; s++) {
+            for (var n = o.COMMON_MAIN.getTexture(37), r = new Array, s = 0; s < e; s++) {
                 var a = new h(s);
-                a.y = (a.height + 3) * s, a.onClick = i._onClickListItem, r.push(a);
+                a.y = 45 * s, a.onClick = i._onClickListItem, r.push(a);
                 var _ = new PIXI.Sprite(n);
-                _.position.set(0, a.y + a.height), i.addChild(_, a)
+                _.y = 45 * s + 42, i.addChild(_, a)
             }
             return i.otherShipListItems = r, i.itemCount = e, i
         }
@@ -55,10 +55,11 @@ const function761 = function (t, e, i) {
                 i.textContainer.cacheAsBitmap = !1, i.focus.visible = !1, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 5523516, i.textContainer.cacheAsBitmap = !0
             };
             var n = Math.floor(22.5) + 1, r = new PIXI.Graphics;
-            r.beginFill(0, 0), r.drawRect(0, 0, 300, 42), r.endFill();
+            r.beginFill(0, 0), r.drawRect(0, 0, 268, 44), r.endFill();
             var a = new PIXI.Container, c = new s.TextBox(18, 5523516), h = new s.TextBox(20, 5523516),
-                p = new s.TextBox(19, 5523516), d = new PIXI.Sprite(o.COMMON_MAIN.getTexture(15)),
-                f = u.CreateRect.gradientLeftToRight(210, 45, .88, .95),
+                p = new s.TextBox(19, 5523516), d = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
+            d.width = r.width, d.height = r.height;
+            var f = u.CreateRect.gradientLeftToRight(210, 45, .88, .95),
                 y = new PIXI.Sprite(_.REMODEL_POWERUP.getTexture(27));
             return a.mask = f, c.anchor.set(0, 0), c.position.set(6, Math.floor(n - c.height / 2)), h.anchor.set(0, 0), h.position.y = Math.floor(n - h.height / 2) + 0, p.anchor.set(1, 0), p.position.set(263, Math.floor(n - p.height / 2)), y.position.set(213, 3), d.visible = !1, y.visible = !1, a.addChild(c, h, f), r.addListener(l.EventType.MOUSEOVER, i._onMouseOver), r.addListener(l.EventType.MOUSEOUT, i._onMouseOut), r.addListener(l.EventType.CLICK, i._onClick), r.interactive = r.buttonMode = !0, i.addChild(r, d, a, p, y), i.textName = h, i.textType = c, i.textLevel = p, i.index = e, i.clickArea = r, i.focus = d, i.textContainer = a, i.icon_max = y, i
         }

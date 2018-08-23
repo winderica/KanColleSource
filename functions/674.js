@@ -19,7 +19,7 @@ const function674 = function (t, e, i) {
         function e() {
             var e = t.call(this) || this;
             e._onClickUpdate = function () {
-                e.onClickUpdate()
+                e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
             }, e._onKeyDown = function () {
                 var t = s.EditTextBoxUtil.text;
                 e._mirrorText.text = t;

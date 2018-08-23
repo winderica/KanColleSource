@@ -22,7 +22,7 @@ const function84 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function (t, e) {
-            this.texture = o.COMMON_MAIN.getTexture(61), this._text.texture = t, this._text.x = e
+            this.texture = o.COMMON_MAIN.getTexture(64), this._text.texture = t, this._text.x = e
         }, e.prototype.dispose = function () {
             this.removeChildren()
         }, e

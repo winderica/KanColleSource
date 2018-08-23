@@ -17,7 +17,7 @@ const function195 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(20), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = o.COMMON_MAIN.getTexture(30), n = new PIXI.Sprite(i),
+            var e = t.call(this) || this, i = o.COMMON_MAIN.getTexture(32), n = new PIXI.Sprite(i),
                 r = new PIXI.Sprite(i), s = new PIXI.Sprite(i), a = new PIXI.Sprite(i), _ = new PIXI.Sprite(i),
                 u = new PIXI.Sprite(i);
             return e.addChild(n, r, s, a, _, u), a.scale.x = _.scale.x = u.scale.x = -1, n.anchor.set(.5, .613793103448276), r.anchor.set(.5, .613793103448276), s.anchor.set(.5, .613793103448276), a.anchor.set(.5, .613793103448276), _.anchor.set(.5, .613793103448276), u.anchor.set(.5, .613793103448276), n.alpha = r.alpha = s.alpha = 0, a.alpha = _.alpha = u.alpha = 0, e.kemuri_L_0 = n, e.kemuri_L_1 = r, e.kemuri_L_2 = s, e.kemuri_R_0 = a, e.kemuri_R_1 = _, e.kemuri_R_2 = u, e.stop(), e

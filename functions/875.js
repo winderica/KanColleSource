@@ -38,7 +38,7 @@ const function875 = function (t, e, i) {
                 r = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(18)),
                 f = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(64));
             i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, f.interactive = !0, n.position.set(532, 486), i.btn_kenzou.position.set(532, 486), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), r.position.set(60, 492), i.btn_kenzou.on(s.EventType.CLICK, i._onClickBuild);
-            var g = new PIXI.Sprite(c.COMMON_MAIN.getTexture(61));
+            var g = new PIXI.Sprite(c.COMMON_MAIN.getTexture(64));
             g.position.set(0, -37);
             var m = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(5));
             m.anchor.set(0, .5), m.position.set(22, Math.floor(g.height / 2 - 4)), i.addChild(f, i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, n, r), i._buildKitSwitch = new y(i._onChangeValue), i._buildKitSwitch.position.set(229, 427), i.addChild(i._buildKitSwitch), i._devKitSwitch = new v(i._onChangeValue), i._devKitSwitch.position.set(547, 427), i.addChild(i._devKitSwitch);

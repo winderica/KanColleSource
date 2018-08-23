@@ -39,11 +39,11 @@ const function649 = function (t, e, i) {
                         var s = o.default.model.deck.get(e.deckLayer.deckID), u = s.getCount();
                         if (1 != u || 1 != s.mstID) {
                             var l = t + e.deckLayer.shipInDeckOrigin, c = i + e.deckLayer.shipInDeckOrigin;
-                            if (!(c >= u)) {
+                            if (!(l == u - 1 && i >= t)) {
                                 var h = new a.APIConnector;
                                 if (10 == o.default.model.basic.getTutorialProgress() && h.add(new _.UpdateTutorialAPI(20)), -1 == i) return h.add(new f.ChangeAPI(!0, s.mstID, l, -1)), void e._removeShip(h, t);
                                 var p = o.default.model.ship.get(n);
-                                h.add(new f.ChangeAPI(!0, s.mstID, c, n)), r.SE.play("235"), o.default.sound.voice.play(p.mstID.toString(), 13), e._changeShipSlot(h, i)
+                                h.add(new f.ChangeAPI(!0, s.mstID, c, n)), r.SE.play("235"), o.default.sound.voice.play(p.mstID.toString(), 13), c >= u && (i = u - e.deckLayer.shipInDeckOrigin - 1), e._changeShipSlot(h, i)
                             }
                         }
                     }
@@ -66,7 +66,7 @@ const function649 = function (t, e, i) {
                                 o.default.view.overLayer.removeChild(n)
                             }) : o.default.view.overLayer.removeChild(n)
                         };
-                        e.deckLayer.ShipSlotLayer.dragAndDropAnimation(i, t, r)
+                        e.deckLayer.ShipSlotLayer.shutterAnimation(i, t, r)
                     })
                 }, e._onClickDeckFlag = function (t) {
                     if (e.deckLayer.deckID != t) switch (e.deckLayer.shipInDeckOrigin = 0, e.currentViewMode) {

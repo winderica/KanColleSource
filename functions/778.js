@@ -26,7 +26,7 @@ const function778 = function (t, e, i) {
                 };
                 var i = new PIXI.Sprite(a.COMMON_SORT.getTexture(51)), n = new _.TitleBar;
                 n.initialize(s.COMMON_MAIN.getTexture(2), 26);
-                var p = s.COMMON_MAIN.getTexture(35), d = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)),
+                var p = s.COMMON_MAIN.getTexture(37), d = new PIXI.Sprite(s.COMMON_MAIN.getTexture(13)),
                     f = new c.ListHeader, y = new o.PagerView, v = new r.SlotItemFilterView, g = new Array,
                     m = new u.ChangeListSwitch, b = new Array, w = new l.InUseMarker;
                 d.interactive = !0;

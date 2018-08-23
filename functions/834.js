@@ -21,7 +21,7 @@ const function834 = function (t, e, i) {
             e._onClickListItem = function (t) {
                 e.onClickListItem(t)
             };
-            var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(61));
+            var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(64));
             i.position.set(0, -39);
             var n = new PIXI.Sprite(r.COMMON_MAIN.getTexture(0));
             n.anchor.y = .5, n.position.set(22, 20), i.addChild(n), e.addChild(i);
@@ -63,7 +63,7 @@ const function834 = function (t, e, i) {
             }, e._onClick = function () {
                 e.onClick(e.memId)
             };
-            var i = Math.floor(22.5) + 1, n = new PIXI.Sprite, o = new PIXI.Sprite(r.COMMON_MAIN.getTexture(15)),
+            var i = Math.floor(22.5) + 1, n = new PIXI.Sprite, o = new PIXI.Sprite(r.COMMON_MAIN.getTexture(17)),
                 s = new PIXI.Sprite, u = new PIXI.Sprite, h = new a.TextBox(18, 5523516),
                 p = new a.TextBox(20, 5523516), d = new a.TextBox(20, 5523516), f = new a.TextBox(13, 5523516),
                 y = new PIXI.Container, v = new _.RepairHpGaugeView, g = new PIXI.Rectangle(0, 0, 697, 45),

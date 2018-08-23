@@ -25,27 +25,30 @@ const function85 = function (t, e, i) {
         }
 
         function l(t, e) {
-            for (var i = t[0], n = t[1], o = n.hougMax - n.hougMin, r = n.raigMax - n.raigMin, s = n.tykuMax - n.tykuMin, _ = n.soukMax - n.soukMin, u = n.luckMax - n.luckMin, l = 0, c = 0, h = 0, p = 0, d = 0, f = 0; f < e.length; f++) {
-                var y = e[f], v = y.powUp, g = y.shipTypeID, m = y.getClassType().toString();
-                l += v[0], c += v[1], h += v[2], p += v[3], d += v[4]
+            for (var i = t[0], n = t[1], o = n.hougMax - n.hougMin, r = n.raigMax - n.raigMin, s = n.tykuMax - n.tykuMin, _ = n.soukMax - n.soukMin, u = 0, l = 0, c = 0, h = 0, p = 0, d = 0; d < e.length; d++) {
+                var f = e[d], y = f.powUp;
+                u += y[0], l += y[1], c += y[2], h += y[3], p += y[4]
             }
-            for (var b = 0, w = {}, f = 0; f < e.length; f++) {
-                var x = e[f], g = x.shipTypeID, m = x.getClassType().toString();
-                if (1 == g) {
-                    var I = w[m];
-                    I || (w[m] = I = new Array), -1 == I.indexOf(x.yomi) && I.push(x.yomi), b++
+            for (var v = 0, g = {}, d = 0; d < e.length; d++) {
+                var m = e[d], b = m.shipTypeID, w = m.getClassType().toString();
+                if (1 == b) {
+                    var x = g[w];
+                    x || (g[w] = x = new Array), -1 == x.indexOf(m.yomi) && x.push(m.yomi), v++
                 }
             }
-            var T = !1;
-            for (var O in w) {
-                var I = w[O];
-                2 <= I.length && (T = !0)
+            var I = !1;
+            for (var T in g) {
+                var x = g[T];
+                2 <= x.length && (I = !0)
             }
-            var P = !1, C = !1, k = !1;
-            1 <= b && (0 < u && (P = !0), 0 < i.taisenMax && i.gradeUpTaisen < i.VAS && (k = !0)), T && i.gradeUpTaikyu < i.VHP && (C = !0), l = Math.floor(1.2 * l + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3), d = Math.floor(1.2 * d + .3);
-            var M = i.gradeUpHoug + l, S = i.gradeUpRaig + c, A = i.gradeUpTyku + h, j = i.gradeUpSouk + p,
-                E = i.gradeUpLuck + d;
-            return o <= M && (l = o - i.gradeUpHoug), r <= S && (c = r - i.gradeUpRaig), s <= A && (h = s - i.gradeUpTyku), _ <= j && (p = _ - i.gradeUpSouk), u <= E && (d = u - i.gradeUpLuck), new a.PowerUpCheckModel(l, c, h, p, d, P, C, k)
+            var O = !1;
+            I && i.gradeUpTaikyu < i.VHP && (O = !0), u = Math.floor(1.2 * u + .3), l = Math.floor(1.2 * l + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3);
+            var P = i.gradeUpHoug + u, C = i.gradeUpRaig + l, k = i.gradeUpTyku + c, M = i.gradeUpSouk + h;
+            o <= P && (u = o - i.gradeUpHoug), r <= C && (l = r - i.gradeUpRaig), s <= k && (c = s - i.gradeUpTyku), _ <= M && (h = _ - i.gradeUpSouk);
+            var S = Math.max(n.luckMax - n.luckMin - i.gradeUpLuck, 0);
+            p = Math.min(p, S);
+            var A = !1, j = !1;
+            return v >= 1 && (A = !0, j = !0, S <= 0 && (j = !1), i.gradeUpTaisen >= i.VAS ? A = !1 : i.taisenMax <= 0 && (A = !1)), new a.PowerUpCheckModel(u, l, c, h, p, j, O, A)
         }
 
         function c() {

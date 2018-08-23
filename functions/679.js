@@ -17,7 +17,7 @@ const function679 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(211), r = i(20), s = function (t) {
         function e() {
-            var e = r.COMMON_MAIN.getTexture(14);
+            var e = r.COMMON_MAIN.getTexture(15);
             return t.call(this, e) || this
         }
 

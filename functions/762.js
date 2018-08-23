@@ -24,7 +24,7 @@ const function762 = function (t, e, i) {
                 var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), r = new a.TextBox(28, 5523516),
                     w = new a.TextBox(15, 5523516), x = new _.StarRateView, I = new u.HpGaugeView,
                     T = new PIXI.Sprite(o.COMMON_MISC.getTexture(180)),
-                    O = new PIXI.Sprite(s.COMMON_MAIN.getTexture(26)), P = new l.ShipCard(!1, !1),
+                    O = new PIXI.Sprite(s.COMMON_MAIN.getTexture(28)), P = new l.ShipCard(!1, !1),
                     C = new c.ShipParameter, k = new h.SlotItemSlotBox, M = new p.KaizoButton,
                     S = new d.KindaikaButton, A = new f.ExtraSlotItemSlot, j = new y.DetachAllButton,
                     E = new v.ExtensionButton, L = new g.MarriageButton, N = new PIXI.Container;

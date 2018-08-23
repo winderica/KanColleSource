@@ -16,17 +16,18 @@ const function252 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(45), r = i(448), s = i(139), a = i(122), _ = i(449), u = i(43), l = function (t) {
-        function e(e, i, n, o, r, a, u) {
-            var l = t.call(this, e, i, o, r, a, u) || this;
-            l._onDamage = function () {
-                1 == l._shield && l._showShield(l._d_banner), l._d_banner.moveAtDamage(l._shield);
-                var t = l._getDamage(l._defender);
-                l._playExplosion(l._d_banner, t), l._playDamageEffect(l._a_banner, l._d_banner, l._defender, t, l._hit, function () {
-                    l._complete_flg_damage = !0, l._endTask()
+        function e(e, i, n, o, r, a, u, l) {
+            void 0 === l && (l = !1);
+            var c = t.call(this, e, i, o, r, a, u) || this;
+            c._onDamage = function () {
+                1 == c._shield && c._showShield(c._d_banner), c._d_banner.moveAtDamage(c._shield);
+                var t = c._getDamage(c._defender);
+                c._playExplosion(c._d_banner, t), c._playDamageEffect(c._a_banner, c._d_banner, c._defender, t, c._hit, function () {
+                    c._complete_flg_damage = !0, c._endTask()
                 })
-            }, l._complete_flg_plane = !1, l._complete_flg_damage = !1, l._defender = n;
-            var c = l._scene.data.isNight();
-            return l._cutin = new s.CutinAttack(l._attacker, l._slot, c, !1, !1), l._trio = new _.PlaneTrio(i.friend), l
+            }, c._complete_flg_plane = !1, c._complete_flg_damage = !1, c._defender = n, c._yasenkouku = l;
+            var h = c._scene.data.isNight();
+            return c._cutin = new s.CutinAttack(c._attacker, c._slot, h, !1, !1), c._trio = new _.PlaneTrio(i.friend), c
         }
 
         return n(e, t), e.prototype._start = function () {
@@ -46,7 +47,7 @@ const function252 = function (t, e, i) {
                 var r = n[i];
                 if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
                     var s = r.mst_id;
-                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 242 != s && 243 != s && 244 != s) continue;
+                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
                     var a = this._a_banner.getGlobalPos(!0);
                     this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
                 }

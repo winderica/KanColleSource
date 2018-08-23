@@ -24,7 +24,7 @@ const function862 = function (t, e, i) {
                 tx: -135,
                 ty: 0
             }, i.FPS = 60, i.ANIMATION_BUILD_KEY = {}, i.ANIMATION_COMPLETE_KEY = {}, i.ANIMATION_ENTER_KEY = {}, i.sprite = new PIXI.Sprite, i.burner_1_l = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(57)), i.kiraAnimations = new Array, i.kiras = new Array;
-            var n = o.COMMON_MAIN.getTexture(31), s = o.COMMON_MAIN.getTexture(32);
+            var n = o.COMMON_MAIN.getTexture(33), s = o.COMMON_MAIN.getTexture(34);
             i.effect = new PIXI.Container, i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.position.set(45, 0), i.sprite.anchor.set(.5, 1), i.burner_1_l.anchor.set(1, .69), i.burner_1_l.position.set(-40, -9), i.burner_1_l.scale.set(0, 0), i.effect.position.x = -45, i.effect.addChild(i.burner_1_l), i.sprite.addChild(i.effect), i.addChild(i.sprite);
             for (var a = 0; a < 5; a++) {
                 var _ = new PIXI.Sprite, u = new r.KiraAnimation(_, n, s);

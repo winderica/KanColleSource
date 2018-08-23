@@ -17,7 +17,7 @@ const function744 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(3), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(61));
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
             e.headerMainBg = i;
             var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
             return e.headerMainText = n, n.position.set(195, 11), e.addChild(i, n), e

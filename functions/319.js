@@ -21,7 +21,7 @@ const function319 = function (t, e, i) {
             var n = t.call(this) || this;
             n.maxSlot = e, n.emptyViews = [];
             for (var s = 0; s < e; s++) {
-                var a = new PIXI.Sprite(o.COMMON_MAIN.getTexture(43));
+                var a = new PIXI.Sprite(o.COMMON_MAIN.getTexture(46));
                 a.position.set(0, 47 * s), a.visible = !1, n.addChild(a), n.emptyViews.push(a)
             }
             n.normalViews = [];

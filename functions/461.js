@@ -48,7 +48,7 @@ const function461 = function (t, e, i) {
                             e._hougekiCycle()
                         })
                     } else if (1 == h) {
-                        var d = new r.PhaseAttackKansaiki(this._scene, i, n, _, u, l, c);
+                        var f = t.yasen_kubo, d = new r.PhaseAttackKansaiki(this._scene, i, n, _, u, l, c, f);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
@@ -77,9 +77,9 @@ const function461 = function (t, e, i) {
                 var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
                     o = this._getDShip(t.d_indexes[0], t.flag), r = t.getSlotitem(0), s = t.getSlotitem(1),
                     a = t.getSlotitem(2), _ = t.getDamage(0), u = t.getHitType(0), l = t.isShield(0),
-                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)),
-                    h = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l);
-                h.setOptionalEffects(c), h.start(function () {
+                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)), h = t.yasen_kubo,
+                    p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l, h);
+                p.setOptionalEffects(c), p.start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuchiku_special = function (t) {

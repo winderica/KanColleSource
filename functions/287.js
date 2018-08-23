@@ -17,7 +17,7 @@ const function287 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(288), r = i(20), s = function (t) {
         function e() {
-            for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(31), s = r.COMMON_MAIN.getTexture(32), a = new Array, _ = 0; _ < i.length; _++) {
+            for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
                 var u = new PIXI.Sprite, l = i[_];
                 u.position.x = l[0], u.position.y = l[1], u.alpha = 1;
                 var c = new o.KiraAnimation(u, n, s);

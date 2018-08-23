@@ -27,20 +27,20 @@ const function729 = function (t, e, i) {
                     e.onClick()
                 };
                 var i = new PIXI.Sprite(l.COMMON_MAIN.getTexture(12)),
-                    n = new PIXI.Sprite(l.COMMON_MAIN.getTexture(61)), f = h.ORGANIZE_MAIN.getTexture(0),
+                    n = new PIXI.Sprite(l.COMMON_MAIN.getTexture(64)), f = h.ORGANIZE_MAIN.getTexture(0),
                     y = new PIXI.Sprite(f), v = new PIXI.Sprite(c.COMMON_MISC.getTexture(180));
                 v.name = "img_lv";
-                var g = new PIXI.Sprite(l.COMMON_MAIN.getTexture(21));
+                var g = new PIXI.Sprite(l.COMMON_MAIN.getTexture(23));
                 g.name = "img_houg";
-                var m = new PIXI.Sprite(l.COMMON_MAIN.getTexture(22));
+                var m = new PIXI.Sprite(l.COMMON_MAIN.getTexture(24));
                 m.name = "img_raig";
                 var b = new PIXI.Sprite(c.COMMON_MISC.getTexture(86));
                 b.name = "img_fuel";
                 var w = new PIXI.Sprite(c.COMMON_MISC.getTexture(87));
                 w.name = "img_ammo";
-                var x = new PIXI.Sprite(l.COMMON_MAIN.getTexture(20));
+                var x = new PIXI.Sprite(l.COMMON_MAIN.getTexture(22));
                 x.name = "img_souk";
-                var I = new PIXI.Sprite(l.COMMON_MAIN.getTexture(23));
+                var I = new PIXI.Sprite(l.COMMON_MAIN.getTexture(25));
                 I.name = "img_taik", e.shipBanner = new a.ShipBanner, e.shipBanner.name = "ship", e.starRateView = new _.StarRateView, e.starRateView.name = "rate", e.textLevel = new u.TextBox(30, 5523516), e.textLevel.name = "lv", e.textHp = new u.TextBox(16, 5523516), e.textHp.name = "hp", e.hpGaugeView = new r.HpGaugeView, e.hpGaugeView.name = "gauge";
                 e.textHoug = new u.TextBox(23, 5523516), e.textHoug.name = "txt_houg", e.textRaig = new u.TextBox(23, 5523516), e.textRaig.name = "txt_raig", e.textTaiku = new u.TextBox(23, 5523516), e.textTaiku.name = "txt_taiku", e.textSoukou = new u.TextBox(23, 5523516), e.textSoukou.name = "txt_souku", e.fuelMeterView = new s.MaterialMeterView, e.fuelMeterView.name = "fuel", e.ammoMeterView = new s.MaterialMeterView, e.ammoMeterView.name = "ammo", e.slotItemSlotContainer = new p.SlotItemSlotContainer(5, !0), e.slotItemSlotContainer.name = "slot", e.changeButton = new PIXI.Sprite, e.changeButton.addListener(o.EventType.MOUSEOVER, e.onMouseOver), e.changeButton.addListener(o.EventType.MOUSEOUT, e.onMouseOut), e.changeButton.addListener(o.EventType.CLICK, e.onClickChange), y.position.set(22, 10), e.changeButton.position.set(70, 501), e.textHoug.anchor.x = 1, e.textRaig.anchor.x = 1, e.textTaiku.anchor.x = 1, e.textSoukou.anchor.x = 1, n.position.set(0, -34), i.interactive = !0, e.textName = new u.TextBox(27, 5523516), e.textName.name = "txt_name", e.containerName = new PIXI.Container, e.containerName.name = "name";
                 var T = d.CreateRect.gradientLeftToRight(180, 42, .5, .98);

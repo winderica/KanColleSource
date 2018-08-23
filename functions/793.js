@@ -23,7 +23,7 @@ const function793 = function (t, e, i) {
             }, e._onClickNO = function () {
                 e.onClickNO()
             };
-            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(60));
+            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(63));
             e.btn_no = new PIXI.Sprite(u.REMODEL_GRADEUP.getTexture(2)), e.btn_yes = new PIXI.Sprite(u.REMODEL_GRADEUP.getTexture(6));
             var n = new PIXI.Sprite(u.REMODEL_POWERUP.getTexture(0));
             e.shipBanner = new a.ShipBanner;

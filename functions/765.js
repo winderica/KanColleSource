@@ -29,17 +29,17 @@ const function765 = function (t, e, i) {
                     i.onClickDetach(i._index)
                 }, i._mouseup = function () {
                     i.onMouseUp(i._index)
-                }, i._index = e, i._background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), i._background.texture = o.COMMON_MAIN.getTexture(42);
+                }, i._index = e, i._background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), i._background.texture = o.COMMON_MAIN.getTexture(45);
                 var n = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(22)), p = new PIXI.Graphics;
                 p.renderable = !1, p.beginFill(0, 0), p.drawRect(0, 0, c.RemodelConst.DETAIL_LISTITEM.WIDTH, c.RemodelConst.DETAIL_LISTITEM.HEIGHT), p.endFill(), i._textItemName = new _.TextBox(19, 5523516), i._textItemNameMask = new PIXI.Graphics, i._textItemNameMask.beginFill(0), i._textItemNameMask.drawRect(0, 0, 240, 30), i._textItemNameMask.endFill();
-                var d = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41));
+                var d = new PIXI.Sprite(o.COMMON_MAIN.getTexture(44));
                 d.position.set(120, -2);
                 var f = new PIXI.Container;
                 f.position.set(50, 11), f.mask = i._textItemNameMask, f.addChild(i._textItemName, i._textItemNameMask, d);
                 var y = new _.TextBox(21, 5523516);
                 y.position.set(-2, 23), y.anchor.set(1, .5);
                 var v = new s.SlotItemLevel, g = new r.AirPlaneLevel,
-                    m = new PIXI.Sprite(o.COMMON_MAIN.getTexture(39)), b = new a.IconWeapon, w = new l.DetachButton;
+                    m = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), b = new a.IconWeapon, w = new l.DetachButton;
                 return w.onClick = i._onClickDetach, w.position.set(292, 15), v.position.set(247, 14), g.position.set(219, 3), m.position.set(293, 2), n.scale.x = 1, n.position.x = -30, n.alpha = 0, n.visible = !1, i.addChild(i._background, f, y, v, g, m, b, n, p, w), i.airPlaneLevel = g, i.slotItemLevel = v, i.lockIcon = m, i.iconWeapon = b, i.textTousai = y, i.detachButton = w, i.clickAreaSlot = p, i.focusItem = n, i.containerItemName = f, i.clickAreaSlot.interactive = i.clickAreaSlot.buttonMode = !0, i.clickAreaSlot.on(h.EventType.MOUSEDOWN, i._mousedown), i.clickAreaSlot.on(h.EventType.MOUSEUP, i._mouseup), i.clickAreaSlot.on(h.EventType.MOUSEOVER, i._mouseover), i.clickAreaSlot.on(h.EventType.MOUSEOUT, i._mouseout), i
             }
 
@@ -71,7 +71,7 @@ const function765 = function (t, e, i) {
     var d = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.texture = o.COMMON_MAIN.getTexture(43), e
+            return e.texture = o.COMMON_MAIN.getTexture(46), e
         }
 
         return n(e, t), e.prototype.dispose = function () {

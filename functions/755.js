@@ -112,9 +112,9 @@ const function755 = function (t, e, i) {
                     }
                     e._onClickShipDetailSlot(t)
                 }, this._onDropSlotItem = function (t, i, o) {
-                    if (t != i && !(i >= o.length || i > -1 && null == o[i])) {
+                    if (t != i && !(t < o.length - 1 && null == o[t + 1] && i > t || i >= o.length)) {
                         if (553 === n.default.model.ship.get(e.memShipId).mstID && i > -1) {
-                            var r = [2, 3], s = o[t].equipType, a = o[i].equipType;
+                            var r = [2, 3], s = o[t].equipType, a = null == o[i] ? null : o[i].equipType;
                             if (r.indexOf(s) > -1 && i >= 2) return !1;
                             if (r.indexOf(a) > -1 && t >= 2) return !1
                         }

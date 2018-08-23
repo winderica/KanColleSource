@@ -65,7 +65,7 @@ const function797 = function (t, e, i) {
             }, i._onClick = function () {
                 i.onClick(i.index, i.memId)
             };
-            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(l.COMMON_MAIN.getTexture(15)), s = new PIXI.Container,
+            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(l.COMMON_MAIN.getTexture(17)), s = new PIXI.Container,
                 _ = new u.TextBox(18, 5523516), c = new u.TextBox(20, 5523516), h = new u.TextBox(20, 5523516),
                 p = new f.IconCategory, d = new f.IconCategory, v = new f.IconCategory, g = new f.IconCategory,
                 m = new a.ShipInDeckFlag, b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);

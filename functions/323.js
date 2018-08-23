@@ -21,7 +21,7 @@ const function323 = function (t, e, i) {
                 var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite, o = new PIXI.Sprite,
                     r = new PIXI.Sprite, p = new h.BannerSmoke, f = new c.BannerKirakira, y = new a.HpGaugeView,
                     v = new u.StarRateView, g = new l.TextBox(27, 16777215), m = new l.TextBox(30, 16777215),
-                    b = new s.DeckIndexEmblem, w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(16)), x = new _.RingSmall;
+                    b = new s.DeckIndexEmblem, w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(18)), x = new _.RingSmall;
                 o.x = 12, o.y = 6, x.initialize(), x.activate(), x.position.set(215, 33), y.position.set(14, 42), v.position.set(122, 39), m.anchor.x = 1, b.position.set(15, 18), w.position.set(251, 6), m.position.set(212, 2);
                 var I = new PIXI.Graphics;
                 I.beginFill(0, 0), I.drawRect(0, 0, 105, 36), I.endFill();

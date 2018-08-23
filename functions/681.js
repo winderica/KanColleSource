@@ -21,8 +21,8 @@ const function681 = function (t, e, i) {
             var i = t.call(this) || this, n = new PIXI.Sprite, l = new _.TextBox(19, 5523516),
                 c = new PIXI.Sprite(o.default.resources.getUIImage("mask")), h = new _.TextBox(21, 5523516),
                 p = new a.SlotItemLevel, d = new PIXI.Sprite, f = new r.AirPlaneLevel,
-                y = new PIXI.Sprite(u.COMMON_MAIN.getTexture(39)), v = new s.IconWeapon;
-            n.texture = u.COMMON_MAIN.getTexture(42), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
+                y = new PIXI.Sprite(u.COMMON_MAIN.getTexture(42)), v = new s.IconWeapon;
+            n.texture = u.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
             var g = new PIXI.Container;
             return g.mask = c, g.addChild(l, c), g.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, g, h, d, p, f, y, v), i.background = n, i.textName = l, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = v, i.containerName = g, i
         }

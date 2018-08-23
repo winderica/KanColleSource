@@ -20,7 +20,7 @@ const function322 = function (t, e, i) {
             var e = t.call(this) || this;
             e.empties = new Array, e.banners = new Array;
             for (var i = 0; i < 6; i++) {
-                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17)), s = new r.LongShipBanner, a = 76 * i;
+                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(19)), s = new r.LongShipBanner, a = 76 * i;
                 n.y = a, s.y = a, e.empties.push(n), e.banners.push(s), e.addChild(n, s)
             }
             return e

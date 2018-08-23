@@ -18,7 +18,7 @@ const function653 = function (t, e, i) {
     var o = i(3), r = function (t) {
         function e() {
             var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
-            return i.position.set(195, 10), e.conBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(13)), e.titBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(61)), e.titBg.addChild(i), e.addChild(e.conBg), e.addChild(e.titBg), e
+            return i.position.set(195, 10), e.conBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(14)), e.titBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.titBg.addChild(i), e.addChild(e.conBg), e.addChild(e.titBg), e
         }
 
         return n(e, t), e.prototype.dispose = function () {

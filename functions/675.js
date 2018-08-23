@@ -65,7 +65,7 @@ const function675 = function (t, e, i) {
                 }
             }
             this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
-        }, e.prototype.dragAndDropAnimation = function (t, e, i) {
+        }, e.prototype.shutterAnimation = function (t, e, i) {
             var n = this.shipSlots[t];
             n.closeAnimation(function () {
                 e && e(), n.close();

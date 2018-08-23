@@ -114,7 +114,7 @@ const function726 = function (t, e, i) {
             }, e._onClickHeart = function () {
                 e.onClickLock(e.memShipId)
             }, e.textureLockOn = o.ORGANIZE_MAIN.getTexture(42), e.textureLockOff = o.ORGANIZE_MAIN.getTexture(41);
-            e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new l.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new u.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(15));
+            e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new l.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new u.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
             var i = new v, n = new v, r = new v;
             e.kirakira = new Array;
             var _ = Math.floor(21) + 1;
@@ -173,7 +173,7 @@ const function726 = function (t, e, i) {
     }(PIXI.Sprite), v = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.texture = o.COMMON_MAIN.getTexture(40), e._play(), e
+            return e.texture = o.COMMON_MAIN.getTexture(43), e._play(), e
         }
 
         return n(e, t), e.prototype._play = function () {

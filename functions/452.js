@@ -16,19 +16,20 @@ const function452 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(45), r = i(1353), s = i(1356), a = i(122), _ = i(448), u = i(449), l = i(43), c = function (t) {
-        function e(e, i, n, o, a, _, l, c, h) {
-            var p = t.call(this, e, i, o, l, c, h) || this;
-            p._onAttack = function () {
-                p._playVoice(), p._createPlanes()
-            }, p._onDamaged = function () {
-                1 == p._shield && p._showShield(p._d_banner), p._d_banner.moveAtDamage(p._shield);
-                var t = p._getDamage(p._defender);
-                p._playExplosion(p._d_banner, t), p._playDamageEffect(p._a_banner, p._d_banner, p._defender, t, p._hit, function () {
-                    p._complete_flg_damage = !0, p._endTask()
+        function e(e, i, n, o, a, _, l, c, h, p) {
+            void 0 === p && (p = !1);
+            var d = t.call(this, e, i, o, l, c, h) || this;
+            d._onAttack = function () {
+                d._playVoice(), d._createPlanes()
+            }, d._onDamaged = function () {
+                1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
+                var t = d._getDamage(d._defender);
+                d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
+                    d._complete_flg_damage = !0, d._endTask()
                 })
-            }, p._complete_flg_plane = !1, p._complete_flg_damage = !1, p._defender = n;
-            var d = p._scene.data.isNight(), f = p._scene.view.layer_cutin;
-            return p._cutin = 0 == d ? new r.CutinKuboDay(f, i, o, a, _) : new s.CutinKuboNight(f, i, o, a, _), p._trio = new u.PlaneTrio(i.friend), p
+            }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
+            var f = d._scene.data.isNight(), y = d._scene.view.layer_cutin;
+            return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new u.PlaneTrio(i.friend), d
         }
 
         return n(e, t), e.prototype._start = function () {
@@ -46,7 +47,7 @@ const function452 = function (t, e, i) {
                 var r = n[i];
                 if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
                     var s = r.mst_id;
-                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 242 != s && 243 != s && 244 != s) continue;
+                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
                     var a = this._a_banner.getGlobalPos(!0);
                     this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
                 }

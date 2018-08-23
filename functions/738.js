@@ -24,7 +24,7 @@ const function738 = function (t, e, i) {
             var n = new r.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT);
             n.renderable = !1, n.buttonMode = !0, n.on(o.EventType.CLICK, i._onClick);
             var c = new PIXI.Sprite;
-            c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(17);
+            c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
             var h = new s.LongShipBanner;
             h.position.x = 38;
             var p = new l.SupplyCheckBox;
