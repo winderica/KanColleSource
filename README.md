@@ -17,3 +17,31 @@ For my own curiosity and the demand of reviewing ES5, this repo is built, trying
     ├── main.js               - formatted code
     ├── raw.js                - original source code
     └── README.md
+
+## View in Google Chrome
+
+Generally, we can find the source code in `Source` or `Application` tab,
+
+but it is too large and hard for us to analyse it.
+
+Luckily, `main.js` sets a global variable `KCS`,
+
+and we can access it in console by toggling `top` to `index.php`.
+
+Type `KCS` and we will get a object: `{init: o}`(`o` is the init function),
+
+which is the only one interface `main.js` exposes.
+
+Luckily again, we can access the [[Scopes\]\] of `o` thanks to Chrome,
+
+![](assets/console.png)
+
+then we can get *EVERYTHING* recursively.
+
+It is helpful to us to analyse the mass bundled code.
+
+## Reference links
+
+[api information by 74EO](https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt)
+
+[api_start2 by Tibo442](https://github.com/Tibo442/api_start2)
