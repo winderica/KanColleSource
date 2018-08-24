@@ -10,12 +10,17 @@ For my own curiosity and the demand of reviewing ES5, this repo is built, trying
 
     KanColleSource/
     ├── analysis/             - my comments to make it easy to understand
+    ├── assets/
     ├── functions/            - chunked functions
     ├── utils/
-    │   └── chunker.js        - helper function to chunk `../main.js`
+    │   ├── chunker.js        - helper function to chunk `../main.js`
+    │   ├── detector.js       - detect version change
+    │   └── searcher.js       - search dependency relationship and generate json
     ├── .gitignore
     ├── main.js               - formatted code
     ├── raw.js                - original source code
+    ├── tree.json             - dependency tree
+    ├── package.json
     └── README.md
 
 ## View in Google Chrome
