@@ -15,7 +15,7 @@ const function886 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(115), a = i(1), _ = i(222), u = i(887), l = i(78), c = i(888), h = i(349),
+    var o = i(0), r = i(3), s = i(114), a = i(1), _ = i(222), u = i(887), l = i(78), c = i(888), h = i(349),
         p = i(889), d = i(890), f = i(351), y = i(892), v = i(897), g = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -37,17 +37,13 @@ const function886 = function (t, e, i) {
                         }, t.play(e.itemMemory.fuel, e.itemMemory.ammo, e.itemMemory.steel, e.itemMemory.bauxite)
                     }
                 }, e._onClickMenuShipDisassembly = function () {
-                    e.focusShipDisassembly(), o.default.view.clickGuard = !0;
-                    var t = new y.ShipDisassemblyContainer(e.parent);
-                    t.onComplete = function () {
-                        e._onCompletePhaseShipDisassembly(t)
-                    }, t.start(e.shipSortKeyType, 0)
+                    e.focusShipDisassembly(), o.default.view.clickGuard = !0, e.shipDisassembly && (e.shipDisassembly.dispose(), e.shipDisassembly = null), e.shipDisassembly = new y.ShipDisassemblyContainer(e.parent), e.shipDisassembly.onComplete = function () {
+                        e._onCompletePhaseShipDisassembly()
+                    }, e.shipDisassembly.start(e.shipSortKeyType, 0)
                 }, e._onClickMenuSlotDisassembly = function () {
-                    e.focusSlotDisassembly();
-                    var t = new v.SlotDisassemblyContainer(e.parent);
-                    t.onComplete = function () {
-                        e._onCompleteSlotDisassembly(t)
-                    }, t.start(0, 0)
+                    e.focusSlotDisassembly(), e.slotDisassembly && (e.slotDisassembly.dispose(), e.slotDisassembly = null), e.slotDisassembly = new v.SlotDisassemblyContainer(e.parent), e.slotDisassembly.onComplete = function () {
+                        e._onCompleteSlotDisassembly()
+                    }, e.slotDisassembly.start(0, 0)
                 };
                 var i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(95));
                 e.iconBuild = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(96));
@@ -65,7 +61,7 @@ const function886 = function (t, e, i) {
                     this._hasLimitOver = t
                 }, enumerable: !0, configurable: !0
             }), e.prototype.dispose = function () {
-                this.buttonSlotDisassembly.dispose(), this.buttonDevelop.dispose(), this.buttonShipDisassembly.dispose(), this.onUpdateCondition = null, this.iconBuild = null, this.buttonSlotDisassembly = null, this.buttonDevelop = null, this.buttonShipDisassembly = null, this.alertDevelopPopup = null, this.itemMemory = null, this.removeChildren()
+                this.buttonSlotDisassembly.dispose(), this.buttonDevelop.dispose(), this.buttonShipDisassembly.dispose(), this.shipDisassembly && this.shipDisassembly.dispose(), this.slotDisassembly && this.slotDisassembly.dispose(), this.onUpdateCondition = null, this.shipShipPageIndex = null, this.shipSortKeyType = null, this.iconBuild = null, this.buttonSlotDisassembly = null, this.buttonDevelop = null, this.buttonShipDisassembly = null, this.alertDevelopPopup = null, this.itemMemory = null, this._hasLimitOver = null, this.shipDisassembly = null, this.slotDisassembly = null, this.removeChildren()
             }, e.prototype.focusBuild = function () {
                 this.iconBuild.visible = !0, this.buttonShipDisassembly.visible = !0, this.buttonDevelop.visible = !0, this.buttonSlotDisassembly.visible = !0
             }, e.prototype.focusShipDisassembly = function () {
@@ -122,24 +118,24 @@ const function886 = function (t, e, i) {
                         })
                     })
                 })
-            }, e.prototype._onCompletePhaseShipDisassembly = function (t) {
-                var e = this;
-                this.shipSortKeyType = t.useShipSortKeyType, this.shipShipPageIndex = t.pageIndex, o.default.view.clickGuard = !0, t.hide(function () {
-                    e.focusBuild(), t.dispose();
-                    for (var i = _.ArsenalUtil.developLimit(), n = o.default.model.kdock.getAll(), r = 0; r < n.length; r++) {
-                        var s = n[r];
-                        e.onUpdateCondition(s.id, i.forShip, i.forSlot)
+            }, e.prototype._onCompletePhaseShipDisassembly = function () {
+                var t = this;
+                this.shipSortKeyType = this.shipDisassembly.useShipSortKeyType, this.shipShipPageIndex = this.shipDisassembly.pageIndex, o.default.view.clickGuard = !0, this.shipDisassembly.hide(function () {
+                    t.focusBuild();
+                    for (var e = _.ArsenalUtil.developLimit(), i = o.default.model.kdock.getAll(), n = 0; n < i.length; n++) {
+                        var r = i[n];
+                        t.onUpdateCondition(r.id, e.forShip, e.forSlot)
                     }
-                    o.default.view.clickGuard = !1, _.ArsenalUtil.playVoiceOnBuildComplete()
+                    o.default.view.clickGuard = !1, _.ArsenalUtil.playVoiceOnBuildComplete(), t.shipDisassembly.dispose(), t.shipDisassembly = null
                 })
-            }, e.prototype._onCompleteSlotDisassembly = function (t) {
-                var e = this;
-                o.default.view.clickGuard = !0, t.hide(function () {
-                    for (var i = _.ArsenalUtil.developLimit(), n = o.default.model.kdock.getAll(), r = 0; r < n.length; r++) {
-                        var s = n[r];
-                        e.onUpdateCondition(s.id, i.forShip, i.forSlot)
+            }, e.prototype._onCompleteSlotDisassembly = function () {
+                var t = this;
+                o.default.view.clickGuard = !0, this.slotDisassembly.hide(function () {
+                    for (var e = _.ArsenalUtil.developLimit(), i = o.default.model.kdock.getAll(), n = 0; n < i.length; n++) {
+                        var r = i[n];
+                        t.onUpdateCondition(r.id, e.forShip, e.forSlot)
                     }
-                    t.dispose(), o.default.view.clickGuard = !1, e.focusBuild(), _.ArsenalUtil.playVoiceOnBuildComplete()
+                    o.default.view.clickGuard = !1, t.focusBuild(), _.ArsenalUtil.playVoiceOnBuildComplete(), t.slotDisassembly.dispose(), t.slotDisassembly = null
                 })
             }, e
         }(PIXI.Container);

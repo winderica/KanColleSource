@@ -1,7 +1,7 @@
 const function560 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(23), r = i(7), s = i(75), a = i(561), _ = i(279), u = i(102), l = i(76), c = function () {
+    var n = i(0), o = i(23), r = i(7), s = i(75), a = i(561), _ = i(279), u = i(101), l = i(76), c = function () {
         function t() {
             this._animationState = 0, this._change = !1, this._baseStateName = "standard", this._currentStateName = "", this._model = new a.FurnitureAnimationModel, this._currentStateName = this._baseStateName
         }

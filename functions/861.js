@@ -15,7 +15,7 @@ const function861 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(114), s = function (t) {
+    var o = i(3), r = i(113), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i.DEFAULT_IN_X = 507, i.DEFAULT_OUT_X = 825, i.COMPLETION = [107, 108], i.WALK = [102, 103, 104], i.BUILD = [106, 105], i.ANIMATION_KEY_MOVE = {}, i.ANIMATION_KEY_BUILDING = {}, i.ANIMATION_KEY_COMPLETE = {}, i.y = 91, i.x = i.DEFAULT_OUT_X, i.sprite = new PIXI.Sprite, i.star_0 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(142)), i.star_1 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(142)), i.effect = new PIXI.Container, i.sprite.anchor.set(.5, 1), i.star_0.anchor.set(.5, .5), i.star_1.anchor.set(.5, .5), i.star_0.scale.set(0, 0), i.star_1.scale.set(0, 0), i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.effect.position.x = 46, i.effect.addChild(i.star_1, i.star_0), i.sprite.addChild(i.effect), i.addChild(i.sprite), i.syncAnimationKey = e, i

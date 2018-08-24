@@ -42,24 +42,23 @@ const function897 = function (t, e, i) {
                         i.slotDisassemblyChoice.update(n, e), i.slotDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemSlotIdList = e
                     }
                 }, i._onClickDisassembly = function (t) {
-                    var e = new y.DestroyItem2API(t), n = i.slotDisassemblyConfirm.viewIcon,
-                        s = new m.DisassemblyAnimation(162, 142);
-                    s.position.x = n.x + -.5 * n.width, s.position.y = n.y + -.5 * n.height, o.default.view.clickGuard = !0, e.start(function () {
+                    var e = new y.DestroyItem2API(t), n = i.slotDisassemblyConfirm.viewIcon;
+                    i.disassemblyAnimation = new m.DisassemblyAnimation(162, 142), i.disassemblyAnimation.position.x = n.x + -.5 * n.width, i.disassemblyAnimation.position.y = n.y + -.5 * n.height, o.default.view.clickGuard = !0, e.start(function () {
                         var t = new PIXI.Graphics;
-                        t.beginFill(0, .2), t.drawRect(0, 0, r.default.width, r.default.height), t.endFill(), o.default.view.overLayer.addChild(t), n.parent.addChild(s);
+                        t.beginFill(0, .2), t.drawRect(0, 0, r.default.width, r.default.height), t.endFill(), o.default.view.overLayer.addChild(t), n.parent.addChild(i.disassemblyAnimation);
                         var e = function () {
                             p.SE.play("202")
                         };
                         createjs.Tween.get(n).call(function () {
-                            e(), s.play(5)
+                            e(), i.disassemblyAnimation.play(5)
                         }).to({ alpha: .33 }, 1e3).call(e).to({ alpha: .66 }, 1e3).call(e).to({ alpha: 1 }, 1e3).call(function () {
-                            s.dispose(), t.clear(), o.default.view.overLayer.removeChild(t), n.parent.removeChild(s), i.slotDisassemblyConfirm.viewIcon.alpha = 1;
+                            t.clear(), o.default.view.overLayer.removeChild(t), n.parent.removeChild(i.disassemblyAnimation), i.disassemblyAnimation.dispose(), i.disassemblyAnimation = null, i.slotDisassemblyConfirm.viewIcon.alpha = 1;
                             var e = [], r = o.default.model.slot.createUnsetList(),
-                                a = i._sortAndFilter(r, i.slotItemFilterKeyType), _ = i._getPage(a.length),
-                                u = i._pageIndex;
-                            _ <= i._pageIndex && (u = _ - 1) < 0 && (u = 0);
-                            var l = i._getSlotsInPage(a, u);
-                            i.pagerView.init(_), i.pagerView.changePage(u), i.slotDisassemblyConfirm.visibleContainer(!1), o.default.view.portMain.updateInfo(), i.slotDisassemblyChoice.update(l, []), i.slots = r, i.filteredSlots = a, i.checkedMemSlotIdList = e, i._pageIndex = u, o.default.view.clickGuard = !1
+                                s = i._sortAndFilter(r, i.slotItemFilterKeyType), a = i._getPage(s.length),
+                                _ = i._pageIndex;
+                            a <= i._pageIndex && (_ = a - 1) < 0 && (_ = 0);
+                            var u = i._getSlotsInPage(s, _);
+                            i.pagerView.init(a), i.pagerView.changePage(_), i.slotDisassemblyConfirm.visibleContainer(!1), o.default.view.portMain.updateInfo(), i.slotDisassemblyChoice.update(u, []), i.slots = r, i.filteredSlots = s, i.checkedMemSlotIdList = e, i._pageIndex = _, o.default.view.clickGuard = !1
                         })
                     })
                 }, i._onClickBackground = function () {
@@ -136,7 +135,7 @@ const function897 = function (t, e, i) {
                     n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), e.animation.progress = 1, i(), t()
                 })
             }, e.prototype.dispose = function () {
-                this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_04), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.slotDisassemblyChoice.dispose(), this.slotDisassemblyConfirm.visibleContainer(!1), this.slotDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.slotItemFilterView.dispose(), this.onComplete = null, this.slots = null, this.slotItemFilterKeyType = null, this.filteredSlots = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.slotDisassemblyChoice = null, this.slotDisassemblyConfirm = null, this.pagerView = null, this.slotItemFilterView = null, this.checkedMemSlotIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_04 = null, this.blue_txt_11 = null, this.animation = null
+                this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_04), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.slotDisassemblyChoice.dispose(), this.slotDisassemblyConfirm.visibleContainer(!1), this.slotDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.slotItemFilterView.dispose(), this.disassemblyAnimation && this.disassemblyAnimation.dispose(), this.onComplete = null, this.slots = null, this.slotItemFilterKeyType = null, this.filteredSlots = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.slotDisassemblyChoice = null, this.slotDisassemblyConfirm = null, this.pagerView = null, this.slotItemFilterView = null, this.checkedMemSlotIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_04 = null, this.blue_txt_11 = null, this.animation = null, this.disassemblyAnimation = null
             }, e
         }(PIXI.Container);
     e.SlotDisassemblyContainer = b

@@ -1,7 +1,7 @@
 const function638 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(105), r = function () {
+    var n = i(0), o = i(104), r = function () {
         function t(t) {
             void 0 === t && (t = null), this.path = "img/tutorial", this.prefix = "tutorial_", this._loader = new PIXI.loaders.Loader(n.default.settings.path_root);
             for (var e = function (t) {

@@ -35,24 +35,23 @@ const function892 = function (t, e, i) {
                         i.shipDisassemblyChoice.update(e), i.shipDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemShipIdList = []
                     }
                 }, i._onClickDisassembly = function (t, e) {
-                    var n = new b.DestroyShipAPI(t, e), s = i.shipDisassemblyConfirm.shipBanner,
-                        a = new w.DisassemblyAnimation(240, 60);
-                    a.position.set(s.x, s.y), r.default.view.clickGuard = !0, n.start(function () {
+                    var n = new b.DestroyShipAPI(t, e), s = i.shipDisassemblyConfirm.shipBanner;
+                    i.disassemblyAnimation = new w.DisassemblyAnimation(240, 60), i.disassemblyAnimation.position.set(s.x, s.y), r.default.view.clickGuard = !0, n.start(function () {
                         var t = new PIXI.Graphics;
-                        t.beginFill(0, .2), t.drawRect(0, 0, o.default.width, o.default.height), t.endFill(), r.default.view.overLayer.addChild(t), s.parent.addChild(a);
+                        t.beginFill(0, .2), t.drawRect(0, 0, o.default.width, o.default.height), t.endFill(), r.default.view.overLayer.addChild(t), s.parent.addChild(i.disassemblyAnimation);
                         var e = function () {
                             p.SE.play("201")
                         };
                         createjs.Tween.get(s).call(function () {
-                            e(), a.play(5)
+                            e(), i.disassemblyAnimation.play(5)
                         }).to({ alpha: .33 }, 1e3).call(e).to({ alpha: .66 }, 1e3).call(e).to({ alpha: 1 }, 1e3).call(function () {
-                            a.dispose(), t.clear(), r.default.view.overLayer.removeChild(t), s.parent.removeChild(a), s.alpha = 1;
+                            t.clear(), r.default.view.overLayer.removeChild(t), s.parent.removeChild(i.disassemblyAnimation), i.disassemblyAnimation.dispose(), i.disassemblyAnimation = null, s.alpha = 1;
                             var e = r.default.model.ship.getAll();
                             _.ShipUtil.sort(e, i.shipSortKeyType);
                             var n = i._getPage(e.length), o = i._pageIndex;
                             n <= i._pageIndex && (o = n - 1) < 0 && (o = 0);
-                            var u = i._getShipsInPage(e, o);
-                            i.pagerView.init(n), i.pagerView.changePage(o), i.ships = e, i._pageIndex = o, i.shipDisassemblyChoice.update(u), i.shipDisassemblyConfirm.visibleContainer(!1), i.checkedMemShipIdList = [], r.default.view.portMain.updateInfo(), r.default.view.clickGuard = !1
+                            var a = i._getShipsInPage(e, o);
+                            i.pagerView.init(n), i.pagerView.changePage(o), i.ships = e, i._pageIndex = o, i.shipDisassemblyChoice.update(a), i.shipDisassemblyConfirm.visibleContainer(!1), i.checkedMemShipIdList = [], r.default.view.portMain.updateInfo(), r.default.view.clickGuard = !1
                         }).play(null)
                     })
                 }, i._onClickBackground = function () {
@@ -119,8 +118,8 @@ const function892 = function (t, e, i) {
                     n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), e.animation.progress = 1, i(), r.default.view.clickGuard = !1, t()
                 }), n.play(null)
             }, e.prototype.dispose = function () {
-                if (this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_01), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.shipDisassemblyChoice.dispose(), this.shipDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.shipSortButton.dispose(), this.ships) for (var t = 0; t < this.ships.length; t++) this.ships[t] = null;
-                this.onComplete = null, this.ships = null, this.shipSortKeyType = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.shipDisassemblyChoice = null, this.shipDisassemblyConfirm = null, this.pagerView = null, this.shipSortButton = null, this.memShipId = null, this.checkedMemShipIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_01 = null, this.blue_txt_11 = null, this.animation = null
+                if (this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_01), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.shipDisassemblyChoice.dispose(), this.shipDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.shipSortButton.dispose(), this.disassemblyAnimation && this.disassemblyAnimation.dispose(), this.ships) for (var t = 0; t < this.ships.length; t++) this.ships[t] = null;
+                this.onComplete = null, this.ships = null, this.shipSortKeyType = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.shipDisassemblyChoice = null, this.shipDisassemblyConfirm = null, this.disassemblyAnimation = null, this.pagerView = null, this.shipSortButton = null, this.memShipId = null, this.checkedMemShipIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_01 = null, this.blue_txt_11 = null, this.animation = null
             }, e.prototype._getShipsInPage = function (t, e) {
                 var i = this.shipDisassemblyChoice.ITEM_NUM;
                 return t.slice(e * i, e * i + i)

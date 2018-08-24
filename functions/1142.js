@@ -15,7 +15,7 @@ const function1142 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(108), s = i(1143), a = function (t) {
+    var o = i(4), r = i(107), s = i(1143), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._thumbnail = new s.Thumbnail, e._thumbnail.position.set(30, 31), e._name = new o.TextBox(20, 16774898), e._name.x = 283, e._name.y = 28, e.addChild(e._name), e._description = new o.TextBox(19, 16774898), e._description.x = 285, e._description.y = 87, e._description.style.breakWords = !0, e._description.style.wordWrap = !0, e._description.style.wordWrapWidth = 258, e._description.style.lineHeight = 24.7, e._price = new o.TextBox(20, 16774898), e._price.x = 292, e._price.y = 255, e._bgmFairy = new PIXI.Sprite, e._bgmFairy.x = 368, e._bgmFairy.y = 234, e._rare = new _, e._rare.x = 319, e._rare.y = 333, e._craftman = new u, e._craftman.x = 34, e._craftman.y = 343, e

@@ -51,7 +51,7 @@ const function456 = function (t, e, i) {
             }, e.prototype._createFriendPlanes = function () {
                 for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
                     var r = n[i], s = r.mem_id, a = o.default.model.ship.get(s);
-                    null != a && (7 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID && t++)
+                    null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
                 }
                 t = Math.min(6, t);
                 for (var _ = [], u = 0; u < t; u++) {

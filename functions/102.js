@@ -1,21 +1,30 @@
 const function102 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(267);
-    !function (t) {
-        function e(t) {
-            var e = 0;
-            if (null != t && "" != t) for (var i = 0; i < t.length; i++) e += t.charCodeAt(i);
-            return e
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e) {
+            void 0 === e && (e = !1);
+            var i = t.call(this) || this;
+            return i._url = "api_get_member/useitem", i._debug = e, i
         }
 
-        function i(e, i) {
-            var o = e.toString().match(/\d+/);
-            if (null == o || 0 == o.length) return "";
-            var r = parseInt(o[0]), s = t.createKey(i), a = null == i || 0 == i.length ? 1 : i.length;
-            return (17 * (r + 7) * n.resource[(s + r * a) % 100] % 8973 + 1e3).toString()
-        }
-
-        t.createKey = e, t.create = i
-    }(e.SuffixUtil || (e.SuffixUtil = {}))
+        return n(e, t), e.prototype._completedEnd = function () {
+            o.default.model.useItem.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
+        }, e
+    }(r.APIBase);
+    e.UseItemAPI = s
 }

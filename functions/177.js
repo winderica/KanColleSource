@@ -168,7 +168,7 @@ const function177 = function (t, e, i) {
         }, e.prototype._showSeikuResult = function () {
         }, e.prototype._showBakuExplosion = function () {
             var t = this._data.stage3_f, e = this._bakuExplosion(t);
-            t = this._data.stage3_e, 1 == (e = e || this._bakuExplosion(t)) && a.SE.play("104")
+            t = this._data.stage3_e, 1 == (e = this._bakuExplosion(t) || e) && a.SE.play("104")
         }, e.prototype._bakuExplosion = function (t) {
             var e = t.beBombed(), i = t.beBombedCombined();
             return 1 == e && (1 == t.friend ? this._scene.view.layer_explosion.playExplosions(132, 306) : this._scene.view.layer_explosion.playExplosions(1080, 417)), 1 == i && (1 == t.friend ? this._scene.view.layer_explosion.playExplosions(387, 306) : this._scene.view.layer_explosion.playExplosions(825, 417)), 1 == e || i

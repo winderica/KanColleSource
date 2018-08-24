@@ -15,7 +15,7 @@ const function646 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(80), r = i(5), s = i(105), a = i(106), _ = i(647), u = i(1), l = function (t) {
+    var o = i(80), r = i(5), s = i(104), a = i(105), _ = i(647), u = i(1), l = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             n._ImageManager = e, n._ev = i, n._current = 0, n._prefix = "chara", n._suffix = {

@@ -15,7 +15,7 @@ const function1213 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(125), r = i(172), s = i(431), a = i(1), _ = function (t) {
+    var o = i(124), r = i(172), s = i(431), a = i(1), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._enabled = !1, i._bg = new PIXI.Sprite, i._points = new s.FormationPoints(e), i._btn = new u, i._btn.position.set(15, 161), i._points.position.set(90, 84), i._points.scale.set(.6), i._points.rotation = Math.PI / 2, i.addChild(i._bg), i.addChild(i._points), i.addChild(i._btn), i

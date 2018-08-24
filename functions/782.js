@@ -15,8 +15,8 @@ const function782 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(140), s = i(101), a = i(50), _ = i(157), u = i(59), l = i(160), c = i(158), h = i(4),
-        p = i(20), d = i(68), f = i(1), y = function (t) {
+    var o = i(0), r = i(140), s = i(50), a = i(157), _ = i(59), u = i(160), l = i(158), c = i(4), h = i(20),
+        p = i(68), d = i(1), f = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i._onClick = function (t, e) {
@@ -24,7 +24,7 @@ const function782 = function (t, e, i) {
                 }, i._onClickLock = function (t, e) {
                     i.onClickLock(t, e)
                 };
-                var n = new g(e), o = new m(e), r = new b(e);
+                var n = new v(e), o = new g(e), r = new m(e);
                 return n.onClick = i._onClick, o.onClick = i._onClick, o.onClickLock = i._onClickLock, r.onClickLock = i._onClickLock, i.listItemInUse = n, i.listItemDefault = o, i.listItemExtra = r, i
             }
 
@@ -34,8 +34,8 @@ const function782 = function (t, e, i) {
                 this.onClick = this._onClick = null, this.onClickLock = this._onClickLock = null, this.listItemInUse.dispose(), this.listItemDefault.dispose(), this.listItemExtra.dispose(), this.listItemInUse = null, this.listItemDefault = null, this.listItemExtra = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ListItem = y;
-    var v, g = function (t) {
+    e.ListItem = f;
+    var y, v = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._onClick = function () {
@@ -45,12 +45,12 @@ const function782 = function (t, e, i) {
             }, i._onMouseOut = function (t) {
                 i.mouseout()
             }, i.center = 23, i.index = e;
-            var n = new u.IconWeapon, o = new PIXI.Sprite(p.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
-                s = new PIXI.Container, a = new h.TextBox(21, 5523516), l = new PIXI.Graphics;
-            l.beginFill(0, 0), l.drawRect(0, 0, 245, 45), l.endFill(), s.mask = l, s.addChild(a, l), i.maskName = new PIXI.Sprite(p.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172;
-            var d = new c.SlotItemLevel, y = new _.AirPlaneLevel, v = Math.floor(i.center - a.height / 2),
-                g = new h.TextBox(15, 5523516), m = new x;
-            return n.position.x = -6, r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(f.EventType.CLICK, i._onClick), r.addListener(f.EventType.MOUSEOVER, i._onMouseOver), r.addListener(f.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0, m.position.set(306, 0), y.position.set(232, 3), d.position.set(260, 13), s.position.set(42, v), o.width += 135, o.position.x = 36, o.visible = !1, i.containerName = s, i.textName = a, i.shipSummary = m, i.iconWeapon = n, i.focus = o, i.clickArea = r, i.slotItemLevel = d, i.airPlaneLevel = y, i.addChild(r, o, n, s, i.maskName, g, m, d, y), i
+            var n = new _.IconWeapon, o = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
+                s = new PIXI.Container, u = new c.TextBox(21, 5523516), p = new PIXI.Graphics;
+            p.beginFill(0, 0), p.drawRect(0, 0, 245, 45), p.endFill(), s.mask = p, s.addChild(u, p), i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172;
+            var f = new l.SlotItemLevel, y = new a.AirPlaneLevel, v = Math.floor(i.center - u.height / 2),
+                g = new c.TextBox(15, 5523516), m = new w;
+            return n.position.x = -6, r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(d.EventType.CLICK, i._onClick), r.addListener(d.EventType.MOUSEOVER, i._onMouseOver), r.addListener(d.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0, m.position.set(306, 0), y.position.set(232, 3), f.position.set(260, 13), s.position.set(42, v), o.width += 135, o.position.x = 36, o.visible = !1, i.containerName = s, i.textName = u, i.shipSummary = m, i.iconWeapon = n, i.focus = o, i.clickArea = r, i.slotItemLevel = f, i.airPlaneLevel = y, i.addChild(r, o, n, s, i.maskName, g, m, f, y), i
         }
 
         return n(e, t), e.prototype.update = function (t, e, i, n) {
@@ -65,13 +65,13 @@ const function782 = function (t, e, i) {
         }, e.prototype._updateInteractive_ = function (t) {
             this.clickArea.interactive = !0, t && (this.clickArea.interactive = !1)
         }, e.prototype.mouseover = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.maskName.texture = p.COMMON_MAIN.getTexture(16), this.textName.style.fill = 16774898, this.shipSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textName.style.fill = 16774898, this.shipSummary.mouseover(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.mouseout = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = p.COMMON_MAIN.getTexture(38), this.textName.style.fill = 5523516, this.shipSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this.textName.style.fill = 5523516, this.shipSummary.mouseout(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
             this.iconWeapon.dispose(), this.shipSummary.dispose(), this.slotItemLevel.dispose(), this.airPlaneLevel.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.textName.text = "", this.focus.texture = PIXI.Texture.EMPTY, this.clickArea.clear(), this.index = null, this.memSlotItemId = null, this._onClick = this.onClick = null, this._onMouseOver = this.mouseover = null, this._onMouseOut = this.mouseout = null, this.iconWeapon = null, this.shipSummary = null, this.textName = null, this.containerName = null, this.maskName = null, this.focus = null, this.clickArea = null, this.slotItemLevel = null, this.airPlaneLevel = null, this.removeChildren()
         }, e
-    }(PIXI.Container), m = function (t) {
+    }(PIXI.Container), g = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._onClick = function () {
@@ -83,22 +83,24 @@ const function782 = function (t, e, i) {
             }, i._onMouseOut = function (t) {
                 t.target != i.clickArea && t.target != i.lockIcon && i.mouseout()
             }, i.center = 23, i.index = e;
-            var n = new u.IconWeapon, o = new PIXI.Sprite(p.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
-                s = new h.TextBox(15, 5523516), a = new I(5523516), l = new T;
-            i.maskName = new PIXI.Sprite(p.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172;
-            var d = new c.SlotItemLevel, y = new _.AirPlaneLevel;
-            y.position.set(232, 3), d.position.set(260, 13), r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(f.EventType.CLICK, i._onClick), r.addListener(f.EventType.MOUSEOVER, i._onMouseOver), r.addListener(f.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0;
-            var v = new PIXI.Container, g = new h.TextBox(21, 5523516), m = new PIXI.Graphics;
-            m.beginFill(0, 0), m.drawRect(0, 0, 245, 45), m.endFill();
-            var b = Math.floor(i.center - g.height / 2);
-            return v.mask = m, v.position.set(42, b), v.addChild(g, m), l.onClick = i._onClickLock, l.onMouseOut = i._onMouseOut, l.onMouseOver = i._onMouseOver, l.position.x = 603, o.width += 135, o.position.x = 36, o.visible = !1, n.position.x = -6, i.itemSummary = a, i.textRare = s, i.iconWeapon = n, i.lockIcon = l, i.focus = o, i.clickArea = r, i.slotItemLevel = d, i.airPlaneLevel = y, i.containerName = v, i.textName = g, i.addChild(r, o, n, v, i.maskName, s, a, l, d, y), i
+            var n = new _.IconWeapon, o = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
+                s = new c.TextBox(15, 5523516);
+            i.itemSummary = new x(5523516), i.itemSummary.position.set(395, 0);
+            var u = new I;
+            i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172;
+            var p = new l.SlotItemLevel, f = new a.AirPlaneLevel;
+            f.position.set(232, 3), p.position.set(260, 13), r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(d.EventType.CLICK, i._onClick), r.addListener(d.EventType.MOUSEOVER, i._onMouseOver), r.addListener(d.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0;
+            var y = new PIXI.Container, v = new c.TextBox(21, 5523516), g = new PIXI.Graphics;
+            g.beginFill(0, 0), g.drawRect(0, 0, 245, 45), g.endFill();
+            var m = Math.floor(i.center - v.height / 2);
+            return y.mask = g, y.position.set(42, m), y.addChild(v, g), u.onClick = i._onClickLock, u.onMouseOut = i._onMouseOut, u.onMouseOver = i._onMouseOver, u.position.x = 603, o.width += 135, o.position.x = 36, o.visible = !1, n.position.x = -6, i.textRare = s, i.iconWeapon = n, i.lockIcon = u, i.focus = o, i.clickArea = r, i.slotItemLevel = p, i.airPlaneLevel = f, i.containerName = y, i.textName = v, i.addChild(r, o, n, y, i.maskName, s, i.itemSummary, u, p, f), i
         }
 
         return n(e, t), e.prototype.update = function (t) {
             var e = t.isLocked(), i = o.default.model.slot.getMst(t.mstID).rarity;
             this.iconWeapon.update(t.iconType), this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.containerName.cacheAsBitmap = !0, this._updateTextRare_(i), this._updateItemSummary_(t), this._updateLock_(e), this._updateSkillLevel_(t.skillLevel), this._updateLevel_(t.level), this.memSlotItemId = t.memID, this.locked = e, this.mouseout()
         }, e.prototype._updateItemSummary_ = function (t) {
-            this.itemSummary.update(t), this.itemSummary.position.set(395, Math.floor(this.center - this.itemSummary.height / 2))
+            this.itemSummary.update(t)
         }, e.prototype._updateTextRare_ = function (t) {
             var e = r.SlotConst.SLOTITEM_RARITY_NAMES[t];
             this.textRare.text = e;
@@ -112,13 +114,13 @@ const function782 = function (t, e, i) {
         }, e.prototype._updateLock_ = function (t) {
             this.lockIcon.alpha = t ? 1 : 0, this.lockIcon.update(t)
         }, e.prototype.mouseover = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = p.COMMON_MAIN.getTexture(16), this.textRare.style.fill = this.textName.style.fill = 16777215, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textRare.style.fill = this.textName.style.fill = 16777215, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.mouseout = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = p.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 5523516, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 5523516, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            this.iconWeapon.dispose(), this.itemSummary.dispose(), this.slotItemLevel.dispose(), this.airPlaneLevel.dispose(), this.textRare.text = "", this.lockIcon.dispose(), this.focus.texture = PIXI.Texture.EMPTY, this.clickArea.clear(), this.clickArea.removeAllListeners(f.EventType.CLICK), this.clickArea.removeAllListeners(f.EventType.MOUSEOVER), this.clickArea.removeAllListeners(f.EventType.MOUSEOUT), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.text = "", this.maskName.texture = PIXI.Texture.EMPTY, this.index = null, this.locked = null, this.memSlotItemId = null, this._onClick = this.onClick = null, this._onClickLock = this.onClickLock = null, this._onMouseOver = this.mouseover = null, this._onMouseOut = this.mouseout = null, this.iconWeapon = null, this.itemSummary = null, this.textName = null, this.textRare = null, this.lockIcon = null, this.focus = null, this.clickArea = null, this.slotItemLevel = null, this.airPlaneLevel = null, this.maskName = null, this.containerName = null, this.removeChildren()
+            this.iconWeapon.dispose(), this.itemSummary.dispose(), this.slotItemLevel.dispose(), this.airPlaneLevel.dispose(), this.textRare.text = "", this.lockIcon.dispose(), this.focus.texture = PIXI.Texture.EMPTY, this.clickArea.clear(), this.clickArea.removeAllListeners(d.EventType.CLICK), this.clickArea.removeAllListeners(d.EventType.MOUSEOVER), this.clickArea.removeAllListeners(d.EventType.MOUSEOUT), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.text = "", this.maskName.texture = PIXI.Texture.EMPTY, this.index = null, this.locked = null, this.memSlotItemId = null, this._onClick = this.onClick = null, this._onClickLock = this.onClickLock = null, this._onMouseOver = this.mouseover = null, this._onMouseOut = this.mouseout = null, this.iconWeapon = null, this.itemSummary = null, this.textName = null, this.textRare = null, this.lockIcon = null, this.focus = null, this.clickArea = null, this.slotItemLevel = null, this.airPlaneLevel = null, this.maskName = null, this.containerName = null, this.removeChildren()
         }, e
-    }(PIXI.Container), b = function (t) {
+    }(PIXI.Container), m = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._onClickLock = function () {
@@ -128,21 +130,22 @@ const function782 = function (t, e, i) {
             }, i._onMouseOut = function (t) {
                 t.target != i.clickArea && t.target != i.lockIcon && i.mouseout()
             }, i.center = 23, i.index = e;
-            var n = new u.IconWeapon, o = new PIXI.Sprite(p.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
-                s = new h.TextBox(15, 10263708), a = new I(10263708), l = new T, d = new c.SlotItemLevel,
-                y = new _.AirPlaneLevel;
-            y.position.set(232, 3), d.position.set(260, 13), n.position.x = -6, r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(f.EventType.MOUSEOVER, i._onMouseOver), r.addListener(f.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0;
-            var v = new PIXI.Container, g = new h.TextBox(21, 10263708), m = new PIXI.Graphics;
-            m.beginFill(0, 0), m.drawRect(0, 0, 245, 45), m.endFill();
-            var b = Math.floor(i.center - g.height / 2);
-            return i.maskName = new PIXI.Sprite(p.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, v.mask = m, v.addChild(g, m), v.position.set(42, b), l.onClick = i._onClickLock, l.onMouseOut = i._onMouseOut, l.onMouseOver = i._onMouseOver, l.position.x = 603, o.width += 135, o.position.x = 36, o.visible = !1, i.containerName = v, i.textName = g, i.itemSummary = a, i.textRare = s, i.iconWeapon = n, i.lockIcon = l, i.focus = o, i.clickArea = r, i.slotItemLevel = d, i.airPlaneLevel = y, i.addChild(r, o, n, v, i.maskName, s, a, l, d, y), i
+            var n = new _.IconWeapon, o = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), r = new PIXI.Graphics,
+                s = new c.TextBox(15, 10263708);
+            i.itemSummary = new x(10263708);
+            var u = new I, p = new l.SlotItemLevel, f = new a.AirPlaneLevel;
+            i.itemSummary.position.set(395, 0), f.position.set(232, 3), p.position.set(260, 13), n.position.x = -6, r.beginFill(0, 0), r.drawRect(0, 0, o.width + 180, o.height), r.endFill(), r.addListener(d.EventType.MOUSEOVER, i._onMouseOver), r.addListener(d.EventType.MOUSEOUT, i._onMouseOut), r.renderable = !1, r.interactive = r.buttonMode = !0;
+            var y = new PIXI.Container, v = new c.TextBox(21, 10263708), g = new PIXI.Graphics;
+            g.beginFill(0, 0), g.drawRect(0, 0, 245, 45), g.endFill();
+            var m = Math.floor(i.center - v.height / 2);
+            return i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, y.mask = g, y.addChild(v, g), y.position.set(42, m), u.onClick = i._onClickLock, u.onMouseOut = i._onMouseOut, u.onMouseOver = i._onMouseOver, u.position.x = 603, o.width += 135, o.position.x = 36, o.visible = !1, i.containerName = y, i.textName = v, i.textRare = s, i.iconWeapon = n, i.lockIcon = u, i.focus = o, i.clickArea = r, i.slotItemLevel = p, i.airPlaneLevel = f, i.addChild(r, o, n, y, i.maskName, s, i.itemSummary, u, p, f), i
         }
 
         return n(e, t), e.prototype.update = function (t) {
             var e = t.isLocked(), i = o.default.model.slot.getMst(t.mstID).rarity;
             this.iconWeapon.update(t.iconType), this.textName.text = t.name, this._updateTextRare_(i), this._updateItemSummary_(t), this._updateLock_(e), this._updateSkillLevel_(t.skillLevel), this._updateLevel_(t.level), this.memSlotItemId = t.memID, this.locked = e, this.mouseout()
         }, e.prototype._updateItemSummary_ = function (t) {
-            this.itemSummary.update(t), this.itemSummary.position.set(395, Math.floor(this.center - this.itemSummary.height / 2))
+            this.itemSummary.update(t)
         }, e.prototype._updateTextRare_ = function (t) {
             var e = r.SlotConst.SLOTITEM_RARITY_NAMES[t];
             this.textRare.text = e;
@@ -156,21 +159,21 @@ const function782 = function (t, e, i) {
         }, e.prototype._updateLock_ = function (t) {
             this.lockIcon.alpha = t ? 1 : 0, this.lockIcon.update(t)
         }, e.prototype.mouseover = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = p.COMMON_MAIN.getTexture(16), this.textName.style.fill = this.textRare.style.fill = 16774898, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textName.style.fill = this.textRare.style.fill = 16774898, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.mouseout = function () {
-            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = p.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 10263708, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 10263708, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
             this.iconWeapon.dispose(), this.itemSummary.dispose(), this.textName.text = "", this.textRare.text = "", this.lockIcon.dispose(), this.focus.texture = PIXI.Texture.EMPTY, this.containerName.mask = null, this.containerName.removeChildren(), this.maskName.texture = PIXI.Texture.EMPTY, this.clickArea.clear(), this.index = null, this.locked = null, this.memSlotItemId = null, this._onClickLock = this.onClickLock = null, this._onMouseOver = this.mouseover = null, this._onMouseOut = this.mouseout = null, this.iconWeapon = null, this.itemSummary = null, this.containerName = null, this.textName = null, this.maskName = null, this.textRare = null, this.lockIcon = null, this.focus = null, this.clickArea = null, this.removeChildren()
         }, e
     }(PIXI.Container);
     !function (t) {
         t[t.NONE = 0] = "NONE", t[t.TAN = 1] = "TAN", t[t.CHU = 2] = "CHU", t[t.CHO = 3] = "CHO", t[t.CHOCHO = 4] = "CHOCHO"
-    }(v || (v = {}));
-    var w = function (t) {
+    }(y || (y = {}));
+    var b = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.center = 22;
-            var i = new h.TextBox(21, 5523516), n = new h.TextBox(18, 5523516);
+            var i = new c.TextBox(21, 5523516), n = new c.TextBox(18, 5523516);
             return i.position.y = e.center - Math.floor(i.height / 2), n.position.y = i.position.y + (i.height - n.height), e.addChild(i, n), e.textName = i, e.textLevel = n, e
         }
 
@@ -184,25 +187,24 @@ const function782 = function (t, e, i) {
         }, e.prototype.mouseout = function () {
             this.cacheAsBitmap = !1, this.textName.style.fill = this.textLevel.style.fill = this.defaultTextColor, this.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            this.textName.text = "", this.textLevel.text = "", this.textName = null, this.textLevel = null, this.removeChildren()
+            this.textName = null, this.textLevel = null, this.removeChildren()
         }, e
-    }(PIXI.Container), x = function (t) {
+    }(PIXI.Container), w = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.center = 23;
-            var i = new l.ShipInDeckFlag, n = new h.TextBox(18, 5523516), r = new w,
-                s = new PIXI.Sprite(o.default.resources.getUIImage("mask"));
-            return s.scale.x = -1.8, s.anchor.x = 1, s.x = 0, r.mask = s, r.addChild(s), i.position.x = 188, i.scale.set(.75, .75), n.position.x = 225, n.position.y = e.center - Math.floor(n.height / 2), e.addChild(r, i, n), e.textNameAndLevel = r, e.shipInDeckFlag = i, e.textStatus = n, e.maskTextNameAndLevel = s, e
+            e.center = 23, e.shipInDeckFlag = new u.ShipInDeckFlag, e.textStatus = new c.TextBox(18, 5523516), e.textNameAndLevel = new b, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskName.position.x = 80;
+            var i = new PIXI.Graphics;
+            return i.beginFill(0, 0), i.drawRect(0, 0, 170, 45), i.endFill(), e.textNameAndLevel.mask = i, e.textNameAndLevel.addChild(i), e.shipInDeckFlag.position.x = 188, e.shipInDeckFlag.scale.set(.75, .75), e.textStatus.position.x = 225, e.textStatus.position.y = e.center - Math.floor(e.textStatus.height / 2), e.addChild(e.textNameAndLevel, e.maskName, e.shipInDeckFlag, e.textStatus), e
         }
 
         return n(e, t), e.prototype.update = function (t, e, i, n, o) {
             this.textNameAndLevel.update(t, e, n), this._updateDeck_(i), this._updateState_(o, n), this._updateTextColor_(o, n), this.mouseout()
         }, e.prototype.mouseover = function () {
-            this.cacheAsBitmap = !1, this.textNameAndLevel.mouseover(), this.textStatus.style.fill = 16777215, this.cacheAsBitmap = !0
+            this.textNameAndLevel.cacheAsBitmap = !1, this.textNameAndLevel.mouseover(), this.textStatus.style.fill = 16777215, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textNameAndLevel.cacheAsBitmap = !0
         }, e.prototype.mouseout = function () {
-            this.cacheAsBitmap = !1, this.textNameAndLevel.mouseout(), this.textStatus.style.fill = this.stateColor, this.cacheAsBitmap = !0
+            this.textNameAndLevel.cacheAsBitmap = !1, this.textNameAndLevel.mouseout(), this.textStatus.style.fill = this.stateColor, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this.textNameAndLevel.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            this.maskTextNameAndLevel.texture = PIXI.Texture.EMPTY, this.textNameAndLevel.removeChildren(), this.textStatus.text = "", this.shipInDeckFlag.dispose(), this.textNameAndLevel.dispose(), this.repair = null, this.expedition = null, this.defaultTextColor = null, this.stateColor = null, this.maskTextNameAndLevel = null, this.textStatus.text = null, this.shipInDeckFlag = null, this.textNameAndLevel = null, this.removeChildren()
+            this.textNameAndLevel.removeChildren(), this.shipInDeckFlag.dispose(), this.textNameAndLevel.dispose(), this.repair = null, this.expedition = null, this.defaultTextColor = null, this.stateColor = null, this.textStatus.text = null, this.shipInDeckFlag = null, this.textNameAndLevel = null, this.maskName = null, this.removeChildren()
         }, e.prototype._updateDeck_ = function (t) {
             this.shipInDeckFlag.visible = !1, t && (this.shipInDeckFlag.update(t), this.shipInDeckFlag.position.y = Math.floor(this.center - this.shipInDeckFlag.height / 2), this.shipInDeckFlag.visible = !0)
         }, e.prototype._updateTextColor_ = function (t, e) {
@@ -211,70 +213,69 @@ const function782 = function (t, e, i) {
         }, e.prototype._updateState_ = function (t, e) {
             this.textStatus.text = "", this.textStatus.visible = !1, t ? (this.textStatus.text = "\u5165\u6e20\u4e2d", this.textStatus.visible = !0) : e && (this.textStatus.text = "\u9060\u5f81\u4e2d", this.textStatus.visible = !0)
         }, e
-    }(PIXI.Container), I = function (t) {
+    }(PIXI.Container), x = function (t) {
         function e(e) {
-            var i = t.call(this) || this, n = new h.TextBox(15, e), o = new h.TextBox(15, e),
-                r = new h.TextBox(15, e);
-            n.text = "\u5c04\u7a0b ", o.visible = !1, n.visible = !1, r.visible = !1, i.labelShatei = n, i.textShatei = o, i.textOtherSpec = r, i.addChild(n, o, r), i.defaultColor = e;
-            var a = s.CreateRect.gradientLeftToRight(250, 45, .8, .9);
-            return i.mask = a, i.addChild(a), i
+            var i = t.call(this) || this;
+            i.defaultColor = e, i.labelShatei = new c.TextBox(15, e), i.textShatei = new c.TextBox(15, e), i.textOtherSpec = new c.TextBox(15, e), i.paraLayer = new PIXI.Container;
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), i.paraLayer.mask = n, i.labelShatei.text = "\u5c04\u7a0b ", i.textShatei.visible = !1, i.labelShatei.visible = !1, i.textOtherSpec.visible = !1, i.paraLayer.addChild(i.labelShatei, i.textShatei, i.textOtherSpec), i.maskPara = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskPara.position.x = 160, i.paraLayer.position.y = Math.floor(i.maskPara.height / 2 - i.labelShatei.height / 2), i.addChild(i.paraLayer, i.maskPara), i
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this.cacheAsBitmap = !1, this.labelShatei.visible = !1, this.textShatei.visible = !1, this.textOtherSpec.visible = !1;
-            var e = a.SlotUtil.genSummaryText(t, "+", "/", !1);
+        return n(e, t), e.prototype.dispose = function () {
+            this.paraLayer.removeChildren(), this.colorMouseOverShatei = null, this.defaultColor = null, this.labelShatei = null, this.textShatei = null, this.textOtherSpec = null, this.maskPara = null, this.paraLayer = null, this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.paraLayer.cacheAsBitmap = !1, this.labelShatei.visible = !1, this.textShatei.visible = !1, this.textOtherSpec.visible = !1;
+            var e = s.SlotUtil.genSummaryText(t, "+", "/", !1);
             this.textOtherSpec.visible = !0;
             var i = this.lengthToShatei(t.range);
-            if (i == v.NONE) this.textOtherSpec.text = e, this.textOtherSpec.x = 0; else {
+            if (i == y.NONE) this.textOtherSpec.text = e, this.textOtherSpec.x = 0; else {
                 this.textOtherSpec.text = "/" + e;
                 var n = this.shateiToString(i), o = this.shateiToColor(i);
                 this.textShatei.text = n, this.colorMouseOverShatei = this.textShatei.style.fill = o, this.labelShatei.x = 0, this.textShatei.x = this.labelShatei.x + this.labelShatei.width, this.textOtherSpec.x = this.textShatei.x + this.textShatei.width, this.labelShatei.visible = !0, this.textShatei.visible = !0
             }
-            this.cacheAsBitmap = !0
+            this.paraLayer.cacheAsBitmap = !0
         }, e.prototype.mouseover = function () {
-            this.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.textShatei.style.fill = this.labelShatei.style.fill = 16777215, this.cacheAsBitmap = !0
+            this.paraLayer.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.textShatei.style.fill = this.labelShatei.style.fill = 16777215, this.maskPara.texture = h.COMMON_MAIN.getTexture(16), this.paraLayer.cacheAsBitmap = !0
         }, e.prototype.mouseout = function () {
-            this.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.labelShatei.style.fill = this.defaultColor, this.textShatei.style.fill = this.colorMouseOverShatei, this.cacheAsBitmap = !0
+            this.paraLayer.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.labelShatei.style.fill = this.defaultColor, this.textShatei.style.fill = this.colorMouseOverShatei, this.maskPara.texture = h.COMMON_MAIN.getTexture(38), this.paraLayer.cacheAsBitmap = !0
         }, e.prototype.lengthToShatei = function (t) {
             switch (t) {
                 case 1:
-                    return v.TAN;
+                    return y.TAN;
                 case 2:
-                    return v.CHU;
+                    return y.CHU;
                 case 3:
-                    return v.CHO;
+                    return y.CHO;
                 case 4:
-                    return v.CHOCHO
+                    return y.CHOCHO
             }
-            return v.NONE
+            return y.NONE
         }, e.prototype.shateiToString = function (t) {
             switch (t) {
-                case v.TAN:
+                case y.TAN:
                     return "\u77ed";
-                case v.CHU:
+                case y.CHU:
                     return "\u4e2d";
-                case v.CHO:
+                case y.CHO:
                     return "\u9577";
-                case v.CHOCHO:
+                case y.CHOCHO:
                     return "\u8d85\u9577"
             }
             throw new Error("un supported")
         }, e.prototype.shateiToColor = function (t) {
             switch (t) {
-                case v.TAN:
+                case y.TAN:
                     return 33023;
-                case v.CHU:
+                case y.CHU:
                     return 4246528;
-                case v.CHO:
+                case y.CHO:
                     return 16744448;
-                case v.CHOCHO:
+                case y.CHOCHO:
                     return 16711680
             }
             throw new Error("un supported")
-        }, e.prototype.dispose = function () {
-            this.labelShatei.text = "", this.textShatei.text = "", this.textOtherSpec.text = "", this.colorMouseOverShatei = null, this.labelShatei.text = null, this.textShatei.text = null, this.textOtherSpec.text = null, this.removeChildren()
         }, e
-    }(PIXI.Container), T = function (t) {
+    }(PIXI.Container), I = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._onClick = function () {
@@ -284,14 +285,14 @@ const function782 = function (t, e, i) {
             }, e._onMouseOut = function (t) {
                 e.onMouseOut(t)
             };
-            var i = d.REMODEL_MAIN.getTexture(41), n = d.REMODEL_MAIN.getTexture(40);
-            return e.interactive = e.buttonMode = !0, e.addListener(f.EventType.CLICK, e._onClick), e.addListener(f.EventType.MOUSEOVER, e._onMouseOver), e.addListener(f.EventType.MOUSEOUT, e._onMouseOut), e.textureLockOn = i, e.textureLockOff = n, e
+            var i = p.REMODEL_MAIN.getTexture(41), n = p.REMODEL_MAIN.getTexture(40);
+            return e.interactive = e.buttonMode = !0, e.addListener(d.EventType.CLICK, e._onClick), e.addListener(d.EventType.MOUSEOVER, e._onMouseOver), e.addListener(d.EventType.MOUSEOUT, e._onMouseOut), e.textureLockOn = i, e.textureLockOff = n, e
         }
 
         return n(e, t), e.prototype.update = function (t) {
             this.texture = this.textureLockOff, t && (this.texture = this.textureLockOn)
         }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY, this.removeAllListeners(f.EventType.CLICK), this.removeAllListeners(f.EventType.MOUSEOVER), this.removeAllListeners(f.EventType.MOUSEOUT), this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.textureLockOff = null, this.textureLockOn = null, this.interactive = this.buttonMode = !1
+            this.texture = PIXI.Texture.EMPTY, this.removeAllListeners(d.EventType.CLICK), this.removeAllListeners(d.EventType.MOUSEOVER), this.removeAllListeners(d.EventType.MOUSEOUT), this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.textureLockOff = null, this.textureLockOn = null, this.interactive = this.buttonMode = !1
         }, e
     }(PIXI.Sprite)
 }

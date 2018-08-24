@@ -15,7 +15,7 @@ const function695 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(55), r = i(107), s = i(56), a = function (t) {
+    var o = i(55), r = i(106), s = i(56), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._onClickMamiya = function () {
