@@ -66,7 +66,7 @@ const function476 = function (t, e, i) {
             this._expedition = new _.ExpeditionModelHolderEdit;
             // 課金 items
             this._payitem = new y.PayItemModelHolderEdit;
-            // equipable equipments of ships
+            // equippable equipments of ships
             this._equip = new a.EquipModelHolder;
         }
 

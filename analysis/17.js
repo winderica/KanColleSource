@@ -1,5 +1,5 @@
 /*
- * the function called by `480.js`
+ * util
  * General info
  */
 const function17 = function (t, e, i) {

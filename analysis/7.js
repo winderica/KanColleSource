@@ -1,5 +1,5 @@
 /*
- * helper function
+ * util
  * getter
  */
 const function7 = function (t, e, i) {
