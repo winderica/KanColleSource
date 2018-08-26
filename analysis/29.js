@@ -51,51 +51,100 @@ const function29 = function (t, e, i) {
         function a(t, e) {
             null != t && t.sort(function (t, i) {
                 if (0 == e)
-
                     /*
+                     * sort by level (reverse)
+                     * level: low to high
+                     * sortNo: high to low
+                     *      (BB > CV > CVL > AUX > CA(including 改二航) > CL > DD > DE > SS > LHA > GR > IT > US > UK > FR > RU)
+                     * memID: high to low
+                     */
+                    return t.level > i.level ? 1 : t.level < i.level ? -1 : t.sortNo < i.sortNo ? 1 : t.sortNo > i.sortNo ? -1 : t.memID < i.memID ? 1 : t.memID > i.memID ? -1 : 0;
+                if (1 == e)
+                    /*
+                     * sort by level
                      * level: high to low
                      * sortNo: low to high
-                     *      (BB > CV > CVL > AUX > CA(including 改二航) > CL > DD > DE > SS > LHA > GR > IT > US > UK > FR > RU)
-                     *      (last number: 1-未改造 2-改 3-乙/丁改 6-改二 7-改二甲/乙/丁 9-改三(Bismarck))
+                     * memID: low to high
                      */
-                    return t.level > i.level
-                        ? 1
-                        : t.level < i.level
-                            ? -1
-                            : t.sortNo < i.sortNo
-                                ? 1
-                                : t.sortNo > i.sortNo
-                                    ? -1
-                                    : t.memID < i.memID
-                                        ? 1
-                                        : t.memID > i.memID
-                                            ? -1
-                                            : 0;
-                if (1 == e) return t.level < i.level ? 1 : t.level > i.level ? -1 : t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0;
-                if (2 == e) return t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.level < i.level ? 1 : t.level > i.level ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0;
-                if (3 == e) return t.memID < i.memID ? 1 : t.memID > i.memID ? -1 : 0;
+                    return t.level < i.level ? 1 : t.level > i.level ? -1 : t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0;
+                if (2 == e)
+                    /*
+                     * sort by type
+                     * sortNo: low to high
+                     * level: high to low
+                     * memID: low to high
+                     */
+                    return t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.level < i.level ? 1 : t.level > i.level ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0;
+                if (3 == e)
+                    /*
+                     * sort by new
+                     * memID: high to low
+                     */
+                    return t.memID < i.memID ? 1 : t.memID > i.memID ? -1 : 0;
                 if (4 == e) {
                     var n = t.hpNow / t.hpMax, o = i.hpNow / i.hpMax;
+                    /*
+                     * sort by damage
+                     * leftHpPercentage: low to high
+                     * sortNo: low to high
+                     * memID: low to high
+                     */
                     return n > o ? 1 : n < o ? -1 : t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0
                 }
                 return 0
             })
         }
 
+        // filter ships that can be dismantled(解体)
         function _(t, e, i) {
             return null == t ? null : t.filter(function (t, n, o) {
                 return (1 != e || 1 != t.isLocked() && 1 != t.hasLockedSlotitem()) && !(null != i && i.indexOf(t.memID) >= 0)
             })
         }
 
+        // new feature in 2.0: filter by ship type(general)
         function u(t, e) {
             for (var i = [], n = 0, o = e; n < o.length; n++) {
                 var r = o[n];
-                0 == r ? (i.push(8), i.push(9), i.push(10), i.push(12)) : 1 == r ? (i.push(7), i.push(11), i.push(18)) : 2 == r ? (i.push(5), i.push(6)) : 3 == r ? (i.push(3), i.push(4), i.push(21)) : 4 == r ? i.push(2) : 5 == r ? i.push(1) : 6 == r ? (i.push(13), i.push(14)) : 7 == r && (i.push(15), i.push(16), i.push(17), i.push(19), i.push(20), i.push(22))
+                switch (r) {
+                    case 0:
+                        // 巡洋戦艦 戦艦 航空戦艦 超弩級戦艦
+                        i.push(8), i.push(9), i.push(10), i.push(12);
+                        break;
+                    case 1:
+                        // 軽空母 正規空母 装甲空母
+                        i.push(7), i.push(11), i.push(18);
+                        break;
+                    case 2:
+                        // 重巡洋艦 航空巡洋艦
+                        i.push(5), i.push(6);
+                        break;
+                    case 3:
+                        // 軽巡洋艦 重雷装巡洋艦 練習巡洋艦
+                        i.push(3), i.push(4), i.push(21);
+                        break;
+                    case 4:
+                        // 駆逐艦
+                        i.push(2);
+                        break;
+                    case 5:
+                        // 海防艦
+                        i.push(1);
+                        break;
+                    case 6:
+                        // 潜水艦 潜水空母
+                        i.push(13), i.push(14);
+                        break;
+                    case 7:
+                        // 補給艦(敵のほう) 水上機母艦 揚陸艦 工作艦 潜水母艦 補給艦(味方のほう)
+                        i.push(15), i.push(16), i.push(17), i.push(19), i.push(20), i.push(22);
+                        break;
+                }
             }
             return l(t, i)
         }
 
+        // filter by built-in ship type(`api_mst_ship.api_stype`)
         function l(t, e) {
             return null == t ? null : t.filter(function (t, i, n) {
                 var o = t.shipTypeID;
@@ -103,6 +152,7 @@ const function29 = function (t, e, i) {
             })
         }
 
+        // get member ids(`api_mst_ship.api_id`) of ships in all fleets
         function c() {
             for (var t = [], e = n.default.model.deck.getAll(), i = 0, o = e; i < o.length; i++) {
                 var r = o[i], s = r.getShipMemIDList();
@@ -111,6 +161,7 @@ const function29 = function (t, e, i) {
             return t
         }
 
+        // get member ids(`api_mst_ship.api_id`) of ships in all fleets in expedition
         function h() {
             for (var t = new Array, e = n.default.model.deck.getAll(), i = 0, o = e; i < o.length; i++) {
                 var r = o[i];
@@ -122,6 +173,7 @@ const function29 = function (t, e, i) {
             return t
         }
 
+        // is fully-modernized(改修カンスト)
         function p(t, e, i) {
             var n = t.karyoku - (e.hougMin + t.gradeUpHoug), o = t.raisou - (e.raigMin + t.gradeUpRaig),
                 r = t.taiku - (e.tykuMin + t.gradeUpTyku), s = t.soukou - (e.soukMin + t.gradeUpSouk),
