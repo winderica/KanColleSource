@@ -1,5 +1,5 @@
 /*
- * the function called by `13.js`
+ * the function called by `13.js`, `500.js`
  * map util
  */
 const function74 = function (t, e, i) {
