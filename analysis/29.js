@@ -1,5 +1,5 @@
 /*
- * the function called by `13.js`
+ * the function called by `13.js`, `511.js`
  * ship util
  */
 const function29 = function (t, e, i) {
@@ -36,7 +36,7 @@ const function29 = function (t, e, i) {
             return i <= 0 ? 0 : i <= 25 ? 25 : i <= 50 ? 50 : i <= 75 ? 75 : 100
         }
 
-        // 撃沈小破中破大破
+        // 撃沈中破大破
         function r(t, e) {
             var i = o(t, e);
             return 50 == i || 25 == i || 0 == i
