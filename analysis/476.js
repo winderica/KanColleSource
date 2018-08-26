@@ -26,7 +26,7 @@ const function476 = function (t, e, i) {
     // class represent by IIFE
     const T = function () {
         function t() {
-            // max ships, max quests and so on
+            // constants
             this._const = new v.ServerConstModelEdit;
             // Admiral information
             this._basic = new o.BasicModelEdit;
