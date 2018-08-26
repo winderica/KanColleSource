@@ -30,7 +30,7 @@ const function476 = function (t, e, i) {
             this._const = new v.ServerConstModelEdit;
             // Admiral information
             this._basic = new o.BasicModelEdit;
-            // ?
+            // 褒賞(戦果、プレゼントなど)
             this._incentive = new c.IncentiveModelHolderEdit;
             // news feed (母港の下方の「表示」)
             this._log = new p.LogModelHolder;
