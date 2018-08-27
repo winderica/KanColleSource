@@ -1,6 +1,6 @@
 /*
  * the function called by `504.js`
- * 入渠ドック
+ * 入渠ドック (api_get_member/ndock)
  */
 const function505 = function (t, e, i) {
     "use strict";

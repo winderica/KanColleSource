@@ -1,6 +1,6 @@
 /*
  * the function called by `481.js`
- * 母港BGM
+ * 母港BGM (api_start2.api_mst_bgm)
  */
 const function483 = function (t, e, i) {
     "use strict";

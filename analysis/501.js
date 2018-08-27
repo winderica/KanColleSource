@@ -1,6 +1,6 @@
 /*
  * the function called by `498.js`
- * map - 出撃海域カテゴリ(鎮守府海域, 南西諸島海域, etc.)
+ * map - 出撃海域カテゴリ(鎮守府海域, 南西諸島海域, etc.) (api_start2.api_mst_maparea)
  */
 const function501 = function (t, e, i) {
     "use strict";

@@ -1,6 +1,6 @@
 /*
  * the function called by `476.js`
- * 課金アイテム
+ * 課金アイテム (api_start2.api_mst_item_shop)
  */
 const function506 = function (t, e, i) {
     "use strict";

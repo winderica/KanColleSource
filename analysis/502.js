@@ -1,6 +1,6 @@
 /*
  * the function called by `498.js`
- * map
+ * map (api_get_member/mapinfo.api_map_info)
  */
 const function502 = function (t, e, i) {
     "use strict";
@@ -160,7 +160,7 @@ const function502 = function (t, e, i) {
                 }, enumerable: !0, configurable: !0
             });
             // イベント海域のみ存在
-            Object.defineProperty(t.prototype, "_evene_data", {
+            Object.defineProperty(t.prototype, "_evene_data", { // typo
                 get: function () {
                     return s.ObjUtil.getObject(this._o, "api_eventmap")
                 }, enumerable: !0, configurable: !0

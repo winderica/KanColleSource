@@ -1,6 +1,6 @@
 /*
  * the function called by `509.js`
- * file name of ship's graph and voice
+ * file name of ship's graph and voice (api_start2.api_mst_shipgraph)
  */
 const function510 = function (t, e, i) {
     "use strict";

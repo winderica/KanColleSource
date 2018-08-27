@@ -1,6 +1,6 @@
 /*
  * the function called by `493.js`
- * furniture data
+ * furniture data (api_start2.api_mst_furniture)
  */
 const function494 = function (t, e, i) {
     "use strict";
@@ -109,6 +109,7 @@ const function494 = function (t, e, i) {
             var t = .1 * (this.price - 1e5);
             return t = Math.max(t, 0), Math.floor(t)
         };
+        // get version
         Object.defineProperty(t.prototype, "getVersion", {
             get: function () {
                 return this._o.api_version

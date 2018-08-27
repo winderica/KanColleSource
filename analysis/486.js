@@ -25,16 +25,19 @@ const function486 = function (t, e, i) {
             this._a = t
         }
 
+        // 遠征状況	[0]={0=未出撃, 1=遠征中, 2=遠征帰投, 3=強制帰投中}
         Object.defineProperty(t.prototype, "state", {
             get: function () {
                 return null != this._a && this._a.length > 0 ? this._a[0] : 0
             }, enumerable: !0, configurable: !0
         });
+        // 遠征先ID
         Object.defineProperty(t.prototype, "expedition_id", {
             get: function () {
                 return null != this._a && this._a.length > 1 ? this._a[1] : -1
             }, enumerable: !0, configurable: !0
         });
+        // 帰投時間
         Object.defineProperty(t.prototype, "complete_unixtime", {
             get: function () {
                 return null != this._a && this._a.length > 2 ? this._a[2] : -1
@@ -50,17 +53,21 @@ const function486 = function (t, e, i) {
         }
 
         n(e, t);
+        // update expedition info
         e.prototype.__update__ = function (t) {
             this._a = t
         };
+        // update expedition state
         e.prototype.__update_state__ = function (t) {
             for (null == this._a && (this._a = []); this._a.length <= 0;) this._a.push(0);
             this._a[0] = t
         };
+        // update expedition id
         e.prototype.__update_id__ = function (t) {
             for (null == this._a && (this._a = []); this._a.length <= 1;) this._a.push(0);
             this._a[1] = t
         };
+        // update expedition time
         e.prototype.__update_time__ = function (t) {
             for (null == this._a && (this._a = []); this._a.length <= 2;) this._a.push(0);
             this._a[2] = t

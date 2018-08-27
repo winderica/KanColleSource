@@ -1,6 +1,6 @@
 /*
  * the function called by `484.js`
- * deck
+ * deck (api_get_member/deck)
  */
 const function261 = function (t, e, i) {
     "use strict";
@@ -49,32 +49,39 @@ const function261 = function (t, e, i) {
                     return r.ObjUtil.getString(this._o, "api_name_id")
                 }, enumerable: !0, configurable: !0
             });
+            // 更新艦隊名
             t.prototype.__updateName__ = function (t, e) {
                 this._o.api_name = t, this._o.api_name_id = e
             };
+            // expedition information (null if not in expedition)
             Object.defineProperty(t.prototype, "expedition", {
                 get: function () {
                     return this._expedition
                 }, enumerable: !0, configurable: !0
             });
+            // number of ships in sortie
             t.prototype.getCount = function () {
                 return this._getShipMemIDArray().filter(function (t, e, i) {
                     return t >= 0
                 }).length
             };
+            // get ship (mem) id in position `t`
             t.prototype.getShipMemID = function (t) {
                 var e = this._getShipMemIDArray();
                 return null != e && e.length > t ? e[t] : -1
             };
+            // filter out empty positions
             t.prototype.getShipMemIDList = function () {
                 return this._getShipMemIDArray().concat().filter(function (t, e, i) {
                     return t > 0
                 })
             };
+            // get ship data in position `t`
             t.prototype.getShipModel = function (t) {
                 var e = this.getShipMemID(t);
                 return e > 0 ? o.default.model.ship.get(e) : null
             };
+            // all ships in fleet
             t.prototype.getShipList = function () {
                 var t = [], e = this._getShipMemIDArray();
                 if (null == e) return t;
@@ -84,6 +91,7 @@ const function261 = function (t, e, i) {
                 }
                 return t
             };
+            // all ships in sortie
             t.prototype.getShipListAll = function () {
                 var t = o.default.model.deck.combined;
                 if (0 == t.isCombined()) return this.getShipList();
@@ -98,21 +106,27 @@ const function261 = function (t, e, i) {
                 }
                 return e
             };
+            // is 編成中
             t.prototype.isInDeck = function (t) {
                 return this._getShipMemIDArray().indexOf(t)
             };
+            // 0=解隊, 1=機動部隊, 2=水上部隊, 3=輸送部隊
             t.prototype.getCombinedType = function () {
                 return this.isCombined_Main() || this.isCombined_Sub() ? o.default.model.deck.combined.type : 0
             };
+            // 連合艦隊 第1艦隊
             t.prototype.isCombined_Main = function () {
                 return o.default.model.deck.combined.deck_id_main == this.mstID
             };
+            // 連合艦隊 第2艦隊
             t.prototype.isCombined_Sub = function () {
                 return o.default.model.deck.combined.deck_id_sub == this.mstID
             };
+            // get 連合艦隊 第2艦隊 id
             t.prototype.getSubDeckID = function () {
                 return 1 == this.isCombined_Main() ? o.default.model.deck.combined.deck_id_sub : -1
             };
+            // get 連合艦隊 第2艦隊名
             t.prototype.getSubDeckName = function () {
                 if (1 == this.isCombined_Main()) {
                     var t = o.default.model.deck.combined.deck_id_sub, e = o.default.model.deck.get(t);
@@ -120,6 +134,7 @@ const function261 = function (t, e, i) {
                 }
                 return ""
             };
+            // array of 所属艦船ID　基本的には[6] ('17 秋イベントでは第三艦隊のみ[7]) 空きは-1
             t.prototype._getShipMemIDArray = function () {
                 return r.ObjUtil.getNumArray(this._o, "api_ship")
             };
@@ -133,9 +148,11 @@ const function261 = function (t, e, i) {
         }
 
         n(e, t);
+        // 更新艦隊名
         e.prototype.updateName = function (t, e) {
             this.__updateName__(t, e)
         };
+        // 変更
         e.prototype.__change__ = function (t, e, i) {
             void 0 === i && (i = !1);
             var n = this._getShipMemIDArray(), r = o.default.model.ship.get(e),
@@ -152,11 +169,13 @@ const function261 = function (t, e, i) {
                 return t <= 0 && e > 0 ? 1 : 0
             })
         };
+        // 解除
         e.prototype.__remove__ = function (t, e) {
             void 0 === e && (e = !1);
             var i = this._getShipMemIDArray(), n = i.length;
             for (i.splice(t, 1); i.length < n;) i.push(-1)
         };
+        // 随伴艦一括解除
         e.prototype.__removeAll__ = function (t) {
             void 0 === t && (t = !1);
             for (var e = this._getShipMemIDArray(), i = 1; i < e.length; i++) e[i] = -1

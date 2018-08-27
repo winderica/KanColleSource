@@ -1,6 +1,6 @@
 /*
  * the function called by `498.js`
- * log
+ * log (api_port/port.api_log)
  */
 const function499 = function (t, e, i) {
     "use strict";

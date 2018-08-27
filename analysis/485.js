@@ -30,16 +30,19 @@ const function485 = function (t, e, i) {
                 return this._type
             }, enumerable: !0, configurable: !0
         });
+        // 連合艦隊 第1艦隊 id
         Object.defineProperty(t.prototype, "deck_id_main", {
             get: function () {
                 return 1 == this.isCombined() ? 1 : 0
             }, enumerable: !0, configurable: !0
         });
+        // 連合艦隊 第2艦隊 id
         Object.defineProperty(t.prototype, "deck_id_sub", {
             get: function () {
                 return 1 == this.isCombined() ? 2 : 0
             }, enumerable: !0, configurable: !0
         });
+        // is combined
         t.prototype.isCombined = function () {
             return 1 == this._type || 2 == this._type || 3 == this._type
         };
@@ -53,6 +56,7 @@ const function485 = function (t, e, i) {
         }
 
         n(e, t);
+        // update combined fleet type
         e.prototype.__update__ = function (t) {
             this._type = t
         };

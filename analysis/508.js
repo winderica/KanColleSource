@@ -1,6 +1,6 @@
 /*
  * the function called by `476.js`
- * constants
+ * constants (api_start2.api_mst_const)
  */
 const function508 = function (t, e, i) {
     "use strict";

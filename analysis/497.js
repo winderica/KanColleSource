@@ -1,6 +1,6 @@
 /*
  * the function called by `496.js`
- * construction(建造)
+ * construction(建造) (api_get_member/kdock)
  */
 const function497 = function (t, e, i) {
     "use strict";

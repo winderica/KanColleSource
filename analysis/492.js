@@ -1,6 +1,6 @@
 /*
  * the function called by `491.js`
- * movable furniture
+ * movable furniture (api_start2.api_mst_furnituregraph)
  */
 const function492 = function (t, e, i) {
     "use strict";

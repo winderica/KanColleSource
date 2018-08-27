@@ -1,6 +1,6 @@
 /*
  * the function called by `506.js`
- * 課金アイテム
+ * 課金アイテム (api_start2.api_mst_payitem)
  */
 const function507 = function (t, e, i) {
     "use strict";

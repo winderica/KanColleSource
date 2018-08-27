@@ -70,6 +70,7 @@ const function476 = function (t, e, i) {
             this._equip = new a.EquipModelHolder;
         }
 
+        // getters
         Object.defineProperty(t.prototype, "const", {
             get: function () {
                 return this._const

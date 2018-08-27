@@ -1,6 +1,6 @@
 /*
  * the function called by `481.js`
- * 海域BGM
+ * 海域BGM (api_start2.api_mst_mapbgm)
  */
 const function482 = function (t, e, i) {
     "use strict";

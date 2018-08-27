@@ -1,6 +1,6 @@
 /*
  * the function called by `489.js`
- * expedition
+ * expedition (api_start2.api_mst_mission)
  */
 const function490 = function (t, e, i) {
     "use strict";

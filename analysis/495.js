@@ -1,6 +1,6 @@
 /*
  * the function called by `476.js`
- * incentive
+ * incentive (api_req_member/get_incentive)
  */
 const function495 = function (t, e, i) {
     "use strict";

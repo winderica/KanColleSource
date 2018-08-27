@@ -1,6 +1,6 @@
 /*
  * the function called by `498.js`
- * map
+ * map (api_start2.api_mst_mapinfo)
  */
 const function503 = function (t, e, i) {
     "use strict";
