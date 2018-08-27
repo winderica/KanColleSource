@@ -46,7 +46,7 @@ const function512 = function (t, e, i) {
                 return o.ObjUtil.getNumber(this._o, "api_stype", -1)
             }, enumerable: !0, configurable: !0
         });
-        // カテゴリID(艦船のstypeに対応)
+        // 艦種名
         Object.defineProperty(t.prototype, "shipTypeName", {
             get: function () {
                 if (553 == this.mstID) return "改装航空戦艦";
