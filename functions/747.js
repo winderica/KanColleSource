@@ -26,7 +26,7 @@ const function747 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.fuelContainer.dispose(), this.ammoContainer.dispose(), this.textFuel = null, this.textAmmo = null, this.textAlert = null, this.removeChildren()
+            this.fuelContainer.dispose(), this.fuelContainer = null, this.ammoContainer.dispose(), this.ammoContainer = null, this.textFuel = null, this.textAmmo = null, this.textAlert = null, this.removeChildren()
         }, e.prototype.updateFuelCount = function (t, e) {
             var i, n = t.toString();
             i = e ? 5523516 : 12467003, this.textFuel.style.fill = i, this.textFuel.text = n

@@ -41,7 +41,7 @@ const function737 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this.removeChildren()
+            this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
         }, e.prototype.updateClickable = function (t) {
             this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
         }, e

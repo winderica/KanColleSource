@@ -46,7 +46,7 @@ const function738 = function (t, e, i) {
         }, e.prototype.empty = function () {
             this.memShipId = null, this.removeChildren(), this.addChild(this.emptyBackground)
         }, e.prototype.dispose = function () {
-            this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.onClick = this._onClick = null
+            this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.emptyBackground = null, this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.longShipBanner.dispose(), this.longShipBanner = null, this.focusFrame = null, this.onClick = this._onClick = null
         }, e
     }(PIXI.Container);
     e.DeckSupplyBanner = c

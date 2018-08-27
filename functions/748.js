@@ -46,7 +46,7 @@ const function748 = function (t, e, i) {
         return n(e, t), e.prototype.clone = function () {
             return new e(this._materialName)
         }, e.prototype.dispose = function () {
-            this._material.texture = PIXI.Texture.EMPTY, this._dust.texture = PIXI.Texture.EMPTY, this._material = null, this._dust.texture = null, this.removeChildren()
+            this.stop(), this._material = null, this._dust = null, this.removeChildren()
         }, e.prototype.stop = function () {
             createjs.Tween.removeTweens(this._material), createjs.Tween.removeTweens(this._dust)
         }, e.prototype.playAdd = function () {

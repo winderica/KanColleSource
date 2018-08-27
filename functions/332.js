@@ -35,7 +35,7 @@ const function332 = function (t, e, i) {
                     this.texture = PIXI.Texture.EMPTY
             }
         }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY, this.memShipId = null
+            this.memShipId = null
         }, e
     }(PIXI.Sprite);
     e.SupplyCheckBox = r

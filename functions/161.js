@@ -41,7 +41,7 @@ const function161 = function (t, e, i) {
                     n && createjs.Tween.removeTweens(n.target), o && o.dispose(), this._lastTweens[i] = null, this._materials[i] = null
                 }
             }
-            this._materialContainer.removeChildren(), this._floor.dispose(), this._materialKeys = null, this._nowLevel = null, this._lastTweens = null, this._materials = null, this._materialContainer = null, this._floor = null, this._materialKeys = null, this._nowLevel = null, this.PLACE_INFOS = null, this.MATERIAL_COUNT = null, this.MAGIC_NUMBER = null, this.removeChildren()
+            this._materialContainer.removeChildren(), this._floor.dispose(), this._materialKeys = null, this._nowLevel = null, this._lastTweens = null, this._materials = null, this._materialContainer = null, this._mask = null, this._floor = null, this._materialKeys = null, this._nowLevel = null, this.PLACE_INFOS = null, this.MATERIAL_COUNT = null, this.MAGIC_NUMBER = null, this.removeChildren()
         }, e.prototype.update = function (t) {
             var e = 3 * Math.ceil(t / this.MAGIC_NUMBER);
             e = Math.min(this.MATERIAL_COUNT, e);

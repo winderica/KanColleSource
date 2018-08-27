@@ -51,7 +51,7 @@ const function741 = function (t, e, i) {
         }, e.prototype.empty = function () {
             this.memShipId = null, this.removeChildren(), this.addChild(this.line)
         }, e.prototype.dispose = function () {
-            this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea.off(o.EventType.MOUSEOVER, this._onMouseOver), this.clickArea.off(o.EventType.MOUSEOUT, this._onMouseOut), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.onClick = this._onClick = null
+            this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.line = null, this.textType = null, this.typeAndNameContainer.removeChildren(), this.typeAndNameContainer = null, this.labelLevel = null, this.textLevel = null, this.maskTypeAndName = null, this.focus = null, this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea.off(o.EventType.MOUSEOVER, this._onMouseOver), this.clickArea.off(o.EventType.MOUSEOUT, this._onMouseOut), this.clickArea = null, this.line = null, this.textType = null, this.textName = null, this.labelLevel = null, this.textLevel = null, this.maskTypeAndName = null, this.focus = null, this.materialView.dispose(), this.materialView = null, this.onClick = this._onClick = null
         }, e
     }(PIXI.Container);
     e.OtherSupplyListItem = c

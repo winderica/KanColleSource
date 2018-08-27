@@ -37,7 +37,7 @@ const function742 = function (t, e, i) {
                     this.background.texture = o.SUPPLY_MAIN.getTexture(13), this.checkState.texture = o.SUPPLY_MAIN.getTexture(16), this.checkState.interactive = !0
             }
         }, e.prototype.dispose = function () {
-            this.background = null, this.checkState = null, this.onClick = null, this.removeChildren()
+            this.background = null, this.checkState.removeListener(r.EventType.CLICK, this._onClick), this.checkState = null, this.onClick = null, this.removeChildren()
         }, e
     }(PIXI.Container);
     e.SupplySelectAllButton = s
