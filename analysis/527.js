@@ -6,9 +6,10 @@ const function527 = function (t, e, i) {
     "use strict";
 
     const a = i(0), _ = i(267), u = i(23), l = i(76), c = i(528);
+
     /*
      * get voice file path
-     * `t`: voice type?
+     * `t`: voice type | ship id?
      * `e`: voice id?
      */
     function n(t, e) {
@@ -20,6 +21,7 @@ const function527 = function (t, e, i) {
             }
             return a.default.settings.path_root + "resources/voice/" + t + "/" + e + ".mp3"
         }
+        // /kcs/sound
         var o = a.default.settings.voice_root;
         null == o && (o = a.default.settings.path_root + "resources/voice");
         var r = t, s = e;
@@ -68,7 +70,11 @@ const function527 = function (t, e, i) {
         return o + "/kc" + r + "/" + s + ".mp3"
     }
 
-    // get version
+    /*
+     * get version
+     * `t`: voice type | ship id?
+     * `e`: voice id?
+     */
     function o(t, e) {
         var i = parseInt(t, 10);
         if (1 == isNaN(i)) return "1";
@@ -77,7 +83,11 @@ const function527 = function (t, e, i) {
         return l.VersionUtil.get(3, i, n)
     }
 
-    // concat file path with version
+    /*
+     * concat file path with version
+     * `t`: voice type | ship id?
+     * `e`: voice id?
+     */
     function r(t, e) {
         var i = n(t, e);
         if (null == i) return null;
@@ -105,15 +115,25 @@ const function527 = function (t, e, i) {
     var h = function () {
         function t() {
             var t = this;
-            this._num_of_simultaneous_playback = 1, this._onVoiceEnd = function (e) {
+            this._num_of_simultaneous_playback = 1;
+            this._onVoiceEnd = function (e) {
                 var i = t._voices.indexOf(e);
                 if (-1 != i) {
-                    var n = t._voices.splice(i, 1), o = n[0], r = o.cb_onEnd;
-                    o.dispose(), null != r && r()
+                    // remove `e`
+                    var n = t._voices.splice(i, 1);
+                    o = n[0];
+                    r = o.cb_onEnd;
+                    // disable voice
+                    o.dispose();
+                    // execute callback
+                    null != r && r()
                 }
-            }, this._voices = []
+            };
+            // array of object `p`
+            this._voices = []
         }
 
+        // count of musics played simultaneously
         Object.defineProperty(t.prototype, "num_of_simultaneous_playback", {
             get: function () {
                 return this._num_of_simultaneous_playback
@@ -121,34 +141,75 @@ const function527 = function (t, e, i) {
                 this._num_of_simultaneous_playback = t
             }, enumerable: !0, configurable: !0
         });
+        /*
+         * preload voice
+         * `t`: voice type | ship id?
+         * `e`: voice id?
+         */
         t.prototype.preload = function (t, e) {
+            // voice volume isn't 0
             if (0 != a.default.option.vol_voice) {
+                // get url
                 var i = r(t, e.toString());
                 if (null != i) {
                     var n = { src: [i] };
-                    n.autoplay = !1, n.volume = 0;
+                    n.autoplay = false;
+                    n.volume = 0;
                     new Howl(n)
                 }
             }
         };
+        /*
+         * add voice to playing list and play it
+         * `t`: voice type | ship id?
+         * `e`: voice id?
+         * `i`: callback on end?
+         */
         t.prototype.play = function (t, e, i) {
-            if (void 0 === i && (i = null), null == r(t, e.toString())) return null;
+            undefined === i && (i = null);
+            // get url
+            if (null == r(t, e.toString()))
+                return null;
             if (this._voices.length >= this._num_of_simultaneous_playback) {
+                // remove the first item and return it
                 var n = this._voices.shift();
-                n.dispose(), n = null
+                // disable it
+                n.dispose();
+                n = null
             }
             var o = new p(this._onVoiceEnd, i);
-            return this._voices.push(o), o.play(t, e), o
+            // add to playing list
+            this._voices.push(o);
+            // play it
+            o.play(t, e);
+            return o
         };
+        /*
+         * play randomly
+         * `t`: voice type | ship id?
+         * `e`: array of voice id?
+         * `i`: possibilities of each voice (max is 100)
+         * `n`: callback on end?
+         */
         t.prototype.playAtRandom = function (t, e, i, n) {
             void 0 === n && (n = null);
-            for (var o = 0, r = 0; r < i.length; r++) o += i[r];
-            for (var s = 0, a = Math.random() * o, r = 0; r < i.length; r++) if (s += i[r], a <= s) return this.play(t, e[r], n)
+            // `o` is sum of `i`
+            for (var o = 0, r = 0; r < i.length; r++)
+                o += i[r];
+            for (var s = 0, a = Math.random() * o, r = 0; r < i.length; r++) {
+                s += i[r];
+                // closest smaller value to Math.random() * o
+                if (a <= s)
+                    return this.play(t, e[r], n)
+            }
+
         };
+        // stop one voice
         t.prototype.stop = function (t) {
             var e = t, i = this._voices.indexOf(e);
             return -1 != i && (this._voices.splice(i, 1), e.dispose(), !0)
         };
+        // stop all
         t.prototype.stopAll = function () {
             for (var t = 0, e = this._voices; t < e.length; t++) {
                 e[t].dispose()
@@ -165,29 +226,51 @@ const function527 = function (t, e, i) {
         function e(e, i) {
             void 0 === i && (i = null);
             var n = t.call(this) || this;
-            return n._onLoad = function () {
+            n._onLoad = function () {
                 null != n._howl && n._howl.play()
-            }, n._onLoadError = function (t, e) {
+            };
+            n._onLoadError = function (t, e) {
                 n._cb_onEndToManager(n)
-            }, n._onEnd = function (t) {
+            };
+            n._onEnd = function (t) {
                 n._cb_onEndToManager(n)
-            }, n._cb_onEndToManager = e, n._cb_onEnd = i, n
+            };
+            n._cb_onEndToManager = e;
+            n._cb_onEnd = i;
+            return n
         }
 
         s(e, t);
+        // getter of callback function
         Object.defineProperty(e.prototype, "cb_onEnd", {
             get: function () {
                 return this._cb_onEnd
             }, enumerable: !0, configurable: !0
         });
+        // play
         e.prototype.play = function (t, e) {
-            if (this._mst_id = t, this._voice_id = e.toString(), 0 == a.default.option.vol_voice) return void this._cb_onEndToManager(this);
+            this._mst_id = t;
+            this._voice_id = e.toString();
+            // voice volume is 0
+            if (0 == a.default.option.vol_voice)
+                // disable it and return undefined
+                return void this._cb_onEndToManager(this);
             this._url = r(this._mst_id, this._voice_id);
+            // Howl config
             var i = { src: [this._url] };
-            i.autoplay = !1, i.volume = a.default.option.vol_voice / 100, i.onload = this._onLoad, i.onloaderror = this._onLoadError, i.onend = this._onEnd, this._howl = new Howl(i)
+            i.autoplay = false;
+            i.volume = a.default.option.vol_voice / 100;
+            i.onload = this._onLoad; // function fires when the sound is loaded.
+            i.onloaderror = this._onLoadError; // fires when the sound is unable to load.
+            i.onend = this._onEnd; // fires when the sound finishes playing (if it is looping, it'll fire at the end of each loop).
+            this._howl = new Howl(i)
         };
+        // disable
         e.prototype.dispose = function () {
-            null != this._howl && (this._howl.stop(), this._howl.unload()), this._howl = null, this._cb_onEndToManager = null, this._cb_onEnd = null
+            null != this._howl && (this._howl.stop(), this._howl.unload());
+            this._howl = null;
+            this._cb_onEndToManager = null;
+            this._cb_onEnd = null;
         };
         return e
     }(c.VoiceModel)
