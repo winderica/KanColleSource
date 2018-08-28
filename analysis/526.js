@@ -19,19 +19,23 @@ const function526 = function (t, e, i) {
             t.prototype.setNumOfMultiPlay = function (t) {
                 this._manager.num_of_simultaneous_playback = t
             };
+            // preload
             t.prototype.preload = function (t, e) {
                 this._manager.preload(t, e)
             };
+            // play
             t.prototype.play = function (t, e, i, o) {
                 void 0 === i && (i = null), void 0 === o && (o = null);
                 var r = this._getManager(o);
                 return null == r && (r = new n.VoiceManager, this._additional_managers[o] = r), r.play(t, e, i)
             };
+            // play randomly
             t.prototype.playAtRandom = function (t, e, i, o, r) {
                 void 0 === o && (o = null), void 0 === r && (r = null);
                 var s = this._getManager(r);
                 return null == s && (s = new n.VoiceManager, this._additional_managers[r] = s), s.playAtRandom(t, e, i, o)
             };
+            // stop
             t.prototype.stop = function (t) {
                 if (1 == this._manager.stop(t)) return !0;
                 for (var e in this._additional_managers) {
