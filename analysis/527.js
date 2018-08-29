@@ -26,7 +26,7 @@ const function527 = function (t, e, i) {
         null == o && (o = a.default.settings.path_root + "resources/voice");
         var r = t, s = e;
         /*
-         * 9997: ?
+         * 9997: 決戦ボイス
          * 9998: 深海棲艦ボイス
          * 9999: 各機能ボイス
          */

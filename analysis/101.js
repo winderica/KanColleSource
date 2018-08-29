@@ -1,6 +1,6 @@
 /*
- * the function called by `271.js`
- * add suffix
+ * util
+ * suffix util
  */
 const function101 = function (t, e, i) {
     "use strict";

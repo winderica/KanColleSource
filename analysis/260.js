@@ -1,5 +1,5 @@
 /*
- * the function called by `17.js`
+ * the function called by `17.js`, `24.js`
  * equipment figure replace (when cut-in)
  */
 const function260 = function (t, e, i) {
