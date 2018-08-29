@@ -6,7 +6,7 @@ const searcher = index => {
     try {
         const res = fs.readFileSync(`../functions/${index}.js`);
         // In bundled code, 1000 is 1e3
-        const imports = res.toString().match(/i\(\d+\)|i\(1e3\)/g);
+        const imports = [...new Set(res.toString().match(/i\(\d+\)|i\(1e3\)/g))];
         const tree = { [index]: null };
         if (searched[index]) {
             return tree;
