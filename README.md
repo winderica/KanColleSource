@@ -1,6 +1,6 @@
 # KanColleSource
 
-The source code of KanColle HTML5 version is written in `Typescript` and uglified by `uglifyjs-webpack-plugin`.
+The source code of KanColle HTML5 version is written in `Typescript` and bundled by `webpack`.
 
 ## Description
 

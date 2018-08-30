@@ -105,3 +105,40 @@ if ("object" === typeof exports && "object" === typeof module) { // CommonJS(Nod
 } else {
     this.KCS = fn();
 }
+
+// below is example code bundled by webpack
+
+(function (modules) {
+    var installedModules = {};
+
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) {
+            return installedModules[moduleId].exports;
+        }
+
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: false,
+            exports: {}
+        };
+
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        module.l = true;
+        return module.exports;
+    }
+
+    __webpack_require__.p = "";
+
+    return __webpack_require__(__webpack_require__.s = 0);
+})([
+    (function (module, exports, __webpack_require__) {
+        const example = __webpack_require__(1);
+        example();
+    }),
+    (function (module, exports) {
+        function example() {
+            console.log('example');
+        }
+        module.exports = example;
+    })
+]);
