@@ -1,17 +1,21 @@
 /*
- * the function called by `13.js`
+ * the function called by `13.js`, `529.js`
  * cookie util
  */
 const function262 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
+        t.getItem = e, t.setItem = i, t.hasItem = n
+
+        // getter
         function e(e) {
             return e && t.hasItem(e)
                 ? decodeURI(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + encodeURI(e).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"))
                 : null
         }
 
+        // setter
         function i(t, e, i, n, o, r) {
             if (t && !/^(?:expires|max\-age|path|domain|secure)$/i.test(t)) {
                 var s = "";
@@ -29,10 +33,10 @@ const function262 = function (t, e, i) {
             }
         }
 
+        // has
         function n(t) {
             return new RegExp("(?:^|;\\s*)" + encodeURI(t).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=").test(document.cookie)
         }
 
-        t.getItem = e, t.setItem = i, t.hasItem = n
     }(e.CookieUtil || (e.CookieUtil = {}))
 }
