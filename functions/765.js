@@ -24,7 +24,7 @@ const function765 = function (t, e, i) {
                 }, i._mouseover = function () {
                     i.focusItem.alpha = 1
                 }, i._mouseout = function () {
-                    i.focusItem.alpha = 0
+                    i.focusItem.alpha = 0, i.onMouseOut()
                 }, i._onClickDetach = function () {
                     i.onClickDetach(i._index)
                 }, i._mouseup = function () {
@@ -64,7 +64,7 @@ const function765 = function (t, e, i) {
             }, e.prototype._updateAirPlane_ = function (t, e, i) {
                 this.textTousai.visible = !1, this.airPlaneLevel.visible = !1, t && (this.textTousai.text = "" + e, this.airPlaneLevel.update(i), this.textTousai.visible = !0, this.airPlaneLevel.visible = !0)
             }, e.prototype.dispose = function () {
-                this._background = null, this.clickAreaSlot.off(h.EventType.MOUSEDOWN, this._mousedown), this.clickAreaSlot.off(h.EventType.MOUSEOVER, this._mouseover), this.clickAreaSlot.off(h.EventType.MOUSEOUT, this._mouseout), this.clickAreaSlot.off(h.EventType.MOUSEUP, this._mouseup), this.clickAreaSlot.clear(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.containerItemName.mask = null, this.containerItemName.removeChildren(), this.containerItemName = null, this.textTousai.text = "", this._onClickDetach = null, this.mousedown = this._mousedown = null, this._mouseover = null, this._mouseout = null, this.lockIcon.texture = PIXI.Texture.EMPTY, this.airPlaneLevel = null, this.slotItemLevel = null, this.iconWeapon = null, this.lockIcon = null, this._textItemName = null, this.textTousai = null, this.mousedown = null, this._mousedown = null, this._mouseover = null, this._mouseout = null, this.clickAreaSlot = null, this.removeChildren()
+                this._background = null, this.clickAreaSlot.off(h.EventType.MOUSEDOWN, this._mousedown), this.clickAreaSlot.off(h.EventType.MOUSEOVER, this._mouseover), this.clickAreaSlot.off(h.EventType.MOUSEOUT, this._mouseout), this.clickAreaSlot.off(h.EventType.MOUSEUP, this._mouseup), this.clickAreaSlot.clear(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.containerItemName.mask = null, this.containerItemName.removeChildren(), this.containerItemName = null, this.textTousai.text = "", this._onClickDetach = null, this.mousedown = this._mousedown = null, this._mouseover = null, this._mouseout = null, this.lockIcon.texture = PIXI.Texture.EMPTY, this.airPlaneLevel = null, this.slotItemLevel = null, this.iconWeapon = null, this.lockIcon = null, this._textItemName = null, this.textTousai = null, this.clickAreaSlot = null, this.onMouseOut = null, this.removeChildren()
             }, e
         }(PIXI.Container);
     e.SlotItemSlot = p;

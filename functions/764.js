@@ -24,10 +24,12 @@ const function764 = function (t, e, i) {
                 e.onClickDetach(t)
             }, e._onMouseUp = function (t) {
                 e.onMouseUp(t)
+            }, e._onMouseOut = function () {
+                e.onMouseOut()
             };
             for (var i = new Array, n = new Array, s = 0; s < 5; s++) {
                 var a = new o.SlotItemSlot(s);
-                a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp;
+                a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
                 var _ = new o.ClearSlotItemSlot;
                 _.y = a.y = r.RemodelConst.DETAIL_LISTITEM.HEIGHT * s + 6, i.push(a), n.push(_), e.addChild(_, a)
             }
@@ -49,7 +51,7 @@ const function764 = function (t, e, i) {
         }, e.prototype.dispose = function () {
             for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
             for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].dispose(), this._clearSlotItemSlots[t] = null;
-            this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = this._onClickDetach = null, this.mousedown = this._mousedown = null, this.removeChildren()
+            this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = this._onClickDetach = null, this.mousedown = this._mousedown = null, this.onMouseOut = this._onMouseOut = null, this.removeChildren()
         }, e
     }(PIXI.Container);
     e.SlotItemSlotBox = s

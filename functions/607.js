@@ -18,7 +18,7 @@ const function607 = function (t, e, i) {
     var o = i(1), r = i(22), s = i(12), a = i(302), _ = i(4), u = i(9), l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-268, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
+            return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-310, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "bg", {
@@ -72,7 +72,7 @@ const function607 = function (t, e, i) {
     var h = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.beginFill(0, .7), e.drawRect(0, 0, 537, 76), e.endFill(), e._texts = [], e.visible = !1, e
+            return e.beginFill(0, .7), e.drawRect(0, 0, 621, 76), e.endFill(), e._texts = [], e.visible = !1, e
         }
 
         return n(e, t), e.prototype.update = function (t) {
@@ -83,7 +83,7 @@ const function607 = function (t, e, i) {
             if (this._texts = [], null == t) return void(this.visible = !1);
             for (var o = t.split("\n"), r = 9, s = 0; s < o.length; s++) {
                 var n = new _.TextBox(21, 16777215);
-                n.text = o[s], n.x = 268 - n.width / 2, n.y = r, this.addChild(n), this._texts.push(n), r += n.height
+                n.text = o[s], n.x = 310 - n.width / 2, n.y = r, this.addChild(n), this._texts.push(n), r += n.height
             }
             this.visible = !0
         }, e

@@ -27,16 +27,22 @@ const function824 = function (t, e, i) {
                     1 == e.hitArea.contains(o.x, o.y) ? (r.alpha = _._beforeIndex == n || n >= _._availSlotNumber ? 0 : 1, i = n) : r.alpha = 0
                 }), _._afterIndex = i
             }, _._onUp = function () {
-                _._cbDrop(_._beforeIndex, _._afterIndex, _._equipmentList), _._dispose()
+                _._cbDrop(_._beforeIndex, _._afterIndex, _._equipmentList), _._cbEnd()
             }, _._onOut = function () {
-                _._dispose()
+                _._cbEnd()
             }, _.interactive = !1, _._delayRun = createjs.Tween.get(null).wait(500).call(function () {
                 _._activate(e, i)
             }), _
         }
 
-        return n(e, t), e.prototype.isClick = function () {
-            return null == this._drag && (this._delayRun.setPaused(!0), !0)
+        return n(e, t), e.prototype.inDraggingEventWaiting = function () {
+            return null == this._drag
+        }, e.prototype.cancel = function () {
+            this._delayRun.setPaused(!0), this._cbEnd()
+        }, e.prototype.dispose = function () {
+            this._deactivate(), null != this._drag && (this._slotItems[this._beforeIndex].alpha = 1, this._drag.removeChildren(), this._slotArea.forEach(function (t) {
+                t.removeChildren()
+            }), this._slotArea = null, this.removeChildren())
         }, e.prototype._activate = function (t, e) {
             var i = this;
             this.interactive = !0, this._availSlotNumber = this._equipmentList.length, this._afterIndex = this._beforeIndex, this._drag = new PIXI.Container, this._slotItems[this._beforeIndex].alpha = .5, this._slotItems.forEach(function (e, n) {
@@ -49,10 +55,6 @@ const function824 = function (t, e, i) {
             }), this._dragSlotItem = new _.SimpleSlotItemSlot, this._dragSlotItem.update(this._equipmentList[this._beforeIndex]), this._dragSlotItem.pivot.set(Math.round(this._dragSlotItem.width / 2), Math.round(this._dragSlotItem.height / 2)), this._dragSlotItem.position.set(e.x, e.y), this._drag.addChild(this._dragSlotItem), this.addChild(this._drag), a.SE.play("237"), this.on(r.EventType.MOUSEMOVE, this._onMove), this.on(r.EventType.MOUSEUP, this._onUp), this.on(r.EventType.MOUSEOUT, this._onOut)
         }, e.prototype._deactivate = function () {
             this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEUP, this._onUp), this.off(r.EventType.MOUSEOUT, this._onOut)
-        }, e.prototype._dispose = function () {
-            this._deactivate(), null != this._drag && (this._slotItems[this._beforeIndex].alpha = 1, this._drag.removeChildren(), this._slotArea.forEach(function (t) {
-                t.removeChildren(), t = null
-            }), this._slotArea = null, this.removeChildren()), this._cbEnd()
         }, e
     }(o.AreaBox);
     e.SlotItemDragging = u
