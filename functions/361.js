@@ -15,27 +15,24 @@ const function361 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(16), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onGo = function (t, e) {
-                void 0 === t && (t = 0), null != i._cb && i._cb(t, e)
-            }, i._onCancel = function () {
-                null != i._cb && 1 == i._cancelArea.buttonMode && i._cb(0, -1)
-            }, i._cb = e, i._cancelArea = new o.FadeBox(.2), i._cancelArea.hide(0), i._cancelArea.interactive = !0, i.addChild(i._cancelArea), i
+    var o = i(0), r = i(32), s = i(970), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "cancelArea", {
-            get: function () {
-                return this._cancelArea
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.activate = function () {
-            this._cancelArea.buttonMode = !0, this._cancelArea.on(r.EventType.CLICK, this._onCancel)
-        }, e.prototype.deactivate = function () {
-            this._cancelArea.buttonMode = !1, this._cancelArea.off(r.EventType.CLICK, this._onCancel)
+        return n(e, t), e.prototype.initialize = function () {
+            this._banner = new r.ShipBanner, this._alert = new s.CompLackAlerts, this._alert.initialize(), this._alert.position.set(188, 53), this.addChild(this._banner), this.addChild(this._alert)
+        }, e.prototype.update = function (t, e) {
+            if (null == t) this.visible = !1; else {
+                var i = !1, n = o.default.model.deck.isInDeck(t.memID);
+                if (null != n) {
+                    null != o.default.model.deck.get(n[0]).expedition && (i = !0)
+                }
+                this._banner.update(t, i), this._banner.updatePlate(t.label), e && this._banner.updateLockSlot(t), this._alert.update(t), this.visible = !0
+            }
         }, e.prototype.dispose = function () {
-            this.deactivate(), this.removeChildren(), this._cancelArea = null, this._cb = null
+            this._banner.dispose()
         }, e
     }(PIXI.Container);
-    e.ContainerDeckSelectBase = s
+    e.CompBannerAndLack = a
 }

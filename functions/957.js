@@ -15,18 +15,33 @@ const function957 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
+    var o = i(12), r = i(42), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._board = new a, e._board.position.set(732, 366), e._chara = new PIXI.Sprite, e._chara.position.set(14, 74), e.addChild(e._board), e.addChild(e._chara), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = this._raw_data, i = this._model.gauge_max;
-            null != e && 1 == e.hasOwnProperty("api_max_maphp") && (i = e.api_max_maphp), this._model.changeOperation(this._selected, i), t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "board", {
+            get: function () {
+                return this._board
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(22)
         }, e
-    }(o.APIBase);
-    e.APIOperationChange = r
+    }(PIXI.Container);
+    e.IntroAlertDialog = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(29)
+        }, e
+    }(o.Sprite)
 }

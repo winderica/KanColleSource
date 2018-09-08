@@ -1,33 +1,35 @@
 const function507 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
-        function t(t) {
-            this._o = t
+    var n = i(508), o = function () {
+        function t() {
         }
 
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return n.ObjUtil.getString(this._o, "api_name")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
-            get: function () {
-                return n.ObjUtil.getString(this._o, "api_description")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "price", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_price")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "description_at_shop", {
-            get: function () {
-                var t = "api_shop_description";
-                return 1 == this._o.hasOwnProperty(t) ? this._o[t] : this.description
-            }, enumerable: !0, configurable: !0
-        }), t
+        return t.prototype.setData = function (t) {
+            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], o = new n.NDockModelEdit(i), r = o.mstID;
+                if (r > 0) {
+                    var s = r.toString();
+                    this._map[s] = o
+                }
+            }
+        }, t.prototype.get = function (t) {
+            var e = t.toString();
+            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
+        }, t.prototype.getAll = function () {
+            var t = new Array;
+            for (var e in this._map) {
+                var i = this._map[e];
+                t.push(i)
+            }
+            return t
+        }, t.prototype.getShipMemIDs = function () {
+            for (var t = [], e = this.getAll(), i = 0, n = e; i < n.length; i++) {
+                var o = n[i];
+                o.shipMemID > 0 && t.push(o.shipMemID)
+            }
+            return t
+        }, t
     }();
-    e.PayItemModel = o
+    e.NDockModelHolder = o
 }

@@ -15,26 +15,38 @@ const function1480 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(4), s = i(36), a = function (t) {
+    var o = i(229), r = i(22), s = i(27), a = i(1481), _ = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e._map_name = new r.TextBox(24, 1949120), e._map_name.anchor.set(0, 0), e._map_name.position.set(o.default.width / 2, 48), e._map_name.alpha = 0, e.addChild(e._bg), e.addChild(e._map_name), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
-            var e = new r.TextBox(18, 16774898);
-            e.text = "FRIEND FLEET AREA", e.position.set(-582, 300), e.rotation = -Math.PI / 2, this._bg.addChild(e);
-            var i = new r.TextBox(18, 16774898);
-            i.text = "ENEMY FLEET AREA", i.position.set(578, -234), i.rotation = Math.PI / 2, this._bg.addChild(i), this._map_name.text = t, this._map_name.position.x = o.default.width / 2 - Math.floor(this._map_name.width / 2)
-        }, e.prototype.show = function () {
-            var t = this;
-            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
-                createjs.Tween.get(t._map_name).to({ alpha: 1 }, 100).call(function () {
-                    t.emit("complete")
-                })
+        return n(e, t), e.prototype.initialize = function (t, e, i) {
+            this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
+        }, e.prototype.update = function (t, e) {
+            if (null == this._gauge) return null;
+            this._gauge.update(t, e)
+        }, e.prototype.explode = function (t) {
+            var e = this, i = new s.ParallelTask, n = new a.TaskExplosion(this, 107, 20);
+            i.add(n);
+            var o = new a.TaskExplosion(this, 209, 57, 250);
+            i.add(o);
+            var r = new a.TaskExplosion(this, 309, 24, 450);
+            i.add(r), i.start(function () {
+                null != t && t()
+            }), createjs.Tween.get(this._gauge).wait(200).to({ alpha: 0 }, 400).call(function () {
+                e.removeChild(e._gauge), e._gauge = null
+            })
+        }, e.prototype.changeNextGauge = function (t, e) {
+            null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
+            var i = new r.Container;
+            i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
+                null != e && e()
             })
         }, e
     }(PIXI.Container);
-    e.LayerBG = a
+    e.ResultDialogGauge = _
 }

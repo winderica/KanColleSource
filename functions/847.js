@@ -15,25 +15,18 @@ const function847 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(0), r = i(69), s = i(9), a = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e._onMouseOver = function () {
-                e.buttonCardSelect.alpha = 1
-            }, e._onMouseOut = function () {
-                e.buttonCardSelect.alpha = 0
-            }, e._onClick = function () {
-                e.onClick(e.memDockId)
-            };
-            var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(10)), n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(1));
-            return n.position.set(60, 30), n.addListener(r.EventType.MOUSEOVER, e._onMouseOver), n.addListener(r.EventType.MOUSEOUT, e._onMouseOut), n.addListener(r.EventType.CLICK, e._onClick), n.interactive = n.buttonMode = !0, n.alpha = 0, e.addChild(i, n), e.buttonCardSelect = n, e.background = i, e
+            var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite(s.COMMON_MISC.getTexture(108)),
+                o = new r.RingSmall;
+            return o.position.set(207, 28), o.initialize(), o.activate(), n.anchor.x = 1, n.x = n.width, e.addChild(i, n, o), e.shipBanner = i, e.ring = o, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this.memDockId = t
+        return n(e, t), e.prototype.update = function (t, e, i) {
+            this.shipBanner.texture = o.default.resources.getShip(t, e, "banner"), this.ring.visible = !1, i && (this.ring.visible = !0)
         }, e.prototype.dispose = function () {
-            this.onClick = null, this.background.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.texture = PIXI.Texture.EMPTY, this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOVER), this.buttonCardSelect.removeAllListeners(r.EventType.MOUSEOUT), this.buttonCardSelect.removeAllListeners(r.EventType.CLICK), this.background = null, this.buttonCardSelect = null, this.removeChildren()
+            this.removeChild(this.shipBanner), this.shipBanner.texture = PIXI.Texture.EMPTY, this.ring.deactivate(), this.ring.dispose(), this.ring = null, this.shipBanner = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.EmptyDock = s
+    e.RepairShipBanner = a
 }

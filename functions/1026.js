@@ -1,48 +1,36 @@
 const function1026 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(144), r = i(38), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._drums = [];
-            for (var i = 0; i < 4; i++) {
-                var n = new PIXI.Sprite;
-                n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
-            }
-            return e
+    var n = i(0), o = function () {
+        function t() {
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.update(0);
-            for (var t = 0, e = this._drums; t < e.length; t++) {
-                e[t].texture = r.SALLY_EXPEDITION.getTexture(34)
+        return t.prototype.check = function (t, e) {
+            var i = n.default.model.expedition.get(t);
+            if (null == i || null == e) return { result: !1, reason: 0 };
+            var o = e.getCount();
+            if (0 == o) return { result: !1, reason: 31 };
+            if (o > 6) return { result: !1, reason: 36 };
+            if (e.isCombined_Main() || e.isCombined_Sub()) return { result: !1, reason: 22 };
+            var r = e.getShipList(), s = i.isSupport();
+            if (s) {
+                for (var a = 0, _ = 0, u = r; _ < u.length; _++) {
+                    var l = u[_];
+                    null != l && (2 == l.shipTypeID && a++)
+                }
+                if (a < 2) return { result: !1, reason: 13 }
             }
-        }, e.prototype.update = function (t) {
-            t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
-        }, e.prototype._updateFromShipModel = function (t) {
-            for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
-                var r = o[n];
-                null != r && (75 == r.mstID && e++)
+            if (null != e.expedition) return { result: !1, reason: 30 };
+            for (var c = n.default.model.ndock.getShipMemIDs(), h = !1, p = !1, d = !0, f = 0, y = r; f < y.length; f++) {
+                var l = y[f];
+                null != l && (c.indexOf(l.memID) >= 0 && (h = !0), (l.fuelNow <= 0 || l.ammoNow <= 0) && (p = !0), (l.fuelNow < l.fuelMax || l.ammoNow < l.ammoMax) && (d = !1))
             }
-            var s = t.getSlotitemEx();
-            null != s && 75 == s.mstID && e++, this._update(e)
-        }, e.prototype._update = function (t) {
-            for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
-        }, e
-    }(PIXI.Container);
-    e.CompDrumCount = s
+            if (h) return { result: !1, reason: 1 };
+            if (s && 0 == d) return { result: !1, reason: 14 };
+            if (p) return { result: !1, reason: 2 };
+            var v = r[0].getDamageType();
+            return 25 == v || 0 == v ? { result: !1, reason: 3 } : { result: !0, reason: 0 }
+        }, t
+    }();
+    e.ExpeditionCondition = o
 }

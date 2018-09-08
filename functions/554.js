@@ -15,32 +15,42 @@ const function554 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
+    var o = i(47), r = i(16), s = i(555), a = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._initialized = !1, e._furniture_layer = new s.FurnitureView, e.addChild(e._furniture_layer), e._contentLayer = new PIXI.Container, e.addChild(e._contentLayer), e._fadeLayer = new r.FadeBox(1), e._fadeLayer.hide(), e._fadeLayer.visible = !1, e.addChild(e._fadeLayer), e._overLayer = new PIXI.Graphics, e.addChild(e._overLayer), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.removeChildren();
-            var e;
-            switch (t.type) {
-                case 1:
-                    e = o.COMMON_MISC.getTexture(117);
-                    break;
-                case 2:
-                    e = o.COMMON_MISC.getTexture(118);
-                    break;
-                case 3:
-                    e = o.COMMON_MISC.getTexture(119);
-                    break;
-                default:
-                    e = PIXI.Texture.EMPTY
-            }
-            var i = new PIXI.Sprite(e);
-            i.x = t.pos.x, i.y = t.pos.y, this.addChild(i)
-        }, e.prototype.finalize = function () {
-            this.removeChildren()
+        return n(e, t), Object.defineProperty(e.prototype, "furnitureLayer", {
+            get: function () {
+                return this._furniture_layer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "fadeLayer", {
+            get: function () {
+                return this._fadeLayer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "overLayer", {
+            get: function () {
+                return this._overLayer
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.isInitialized = function () {
+            return this._initialized
+        }, e.prototype.initialize = function () {
+            1 != this._initialized && (this._initialized = !0, this.showPortUI(!0))
+        }, e.prototype.update = function (t) {
+            this._furniture_layer.visible = 0 == t || 25 == t
+        }, e.prototype.activate = function (t, e) {
+            this._furniture_layer.activate()
+        }, e.prototype.deactivate = function () {
+            this._furniture_layer.deactivate()
+        }, e.prototype.dispose = function () {
+        }, e.prototype.showPortUI = function (t) {
+            this._overLayer.visible = !0
+        }, e.prototype.getContent = function () {
+            return this._contentLayer.children.length > 0 ? this._contentLayer.getChildAt(0) : null
+        }, e.prototype.setContent = function (t) {
+            this._contentLayer.removeChildren(), null != t && this._contentLayer.addChild(t)
         }, e
-    }(PIXI.Container);
-    e.Kaikyo = r
+    }(o.SceneBase);
+    e.MainView = a
 }

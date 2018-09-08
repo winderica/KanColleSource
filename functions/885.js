@@ -18,16 +18,47 @@ const function885 = function (t, e, i) {
     var o = i(3), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.bg_0 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_1 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_0.position.set(0, 102), e.bg_1.position.set(529, 102);
-            var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(8));
-            i.anchor.set(0, .5), i.position.set(198, e.bg_0.height / 2 - 4);
-            var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(4));
-            return n.anchor.set(0, .5), n.position.set(19, e.bg_0.height / 2 - 4), e.bg_0.addChild(i), e.bg_1.addChild(n), e.addChild(e.bg_0), e.addChild(e.bg_1), e
+            e.animation = {};
+            var i = o.ARSENAL_ANIMATION.getTexture(2);
+            e.scatterCircles = new Array;
+            for (var n = 0; n < 40; n++) {
+                var r = new s(i);
+                e.scatterCircles.push(r), e.addChild(r)
+            }
+            return e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.bg_0.removeChildren(), this.bg_1.removeChildren(), this.removeChildren(), this.bg_0 = null, this.bg_1 = null
+        return n(e, t), e.prototype.play = function () {
+            var t = this;
+            createjs.Tween.removeTweens(this.animation);
+            for (var e = createjs.Tween.get(this.animation), i = 0; i < this.scatterCircles.length; i++) {
+                this.scatterCircles[i].reset()
+            }
+            e.call(function () {
+                e.removeAllEventListeners("change"), e.addEventListener("change", function () {
+                    for (var e = 0; e < t.scatterCircles.length; e++) {
+                        t.scatterCircles[e].update()
+                    }
+                })
+            }).to({}, 5e3).call(function () {
+                e.removeAllEventListeners("change")
+            }), e.play(null)
         }, e
     }(PIXI.Container);
-    e.TopBarLayer = r
+    e.ScatterCircleParticle = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i.updateCount = 0, i
+        }
+
+        return n(e, t), e.prototype.reset = function () {
+            var t = 1.999 * Math.random() * Math.PI, e = .2 * Math.random() + .8, i = 30 * e * Math.cos(t),
+                n = 30 * e * Math.sin(t), o = 15 * (.2 * Math.random() + .8), r = -1 * (.2 * Math.random() + .8);
+            this.updateCount = 0, this.vx = i, this.vy = n, this.x = 0, this.y = 0, this.scale.x = 1, this.scale.y = 1, this.alpha = 1, this.vScale = o, this.vAlpha = r
+        }, e.prototype.update = function () {
+            this.updateCount++;
+            this.x += this.vx * Math.exp(-.05 * this.updateCount) * 1, this.y += 1 * (2 + this.vy * Math.exp(-.05 * this.updateCount)), this.scale.x += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.scale.y += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.alpha += this.vAlpha * (1 - Math.exp(-.05 * this.updateCount)) / 100 * 1
+        }, e
+    }(PIXI.Sprite)
 }

@@ -15,43 +15,51 @@ const function496 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(497), r = function () {
+    var o = i(497), r = i(7), s = function () {
         function t() {
-            this._dic = {}
         }
 
-        return t.prototype.get = function (t) {
+        return t.prototype.getData = function (t) {
             var e = t.toString();
-            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getAll = function () {
-            var t = new Array;
-            for (var e in this._dic) {
-                var i = this._dic[e];
-                t.push(i)
+            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
+        }, t.prototype.getOwnList = function (t) {
+            var e = [];
+            for (var i in this._map) {
+                var n = this._map[i];
+                n.type == t && 1 == n.has() && e.push(n)
             }
-            return t.sort(function (t, e) {
-                return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
-            }), t
+            return e
+        }, t.prototype.getOnSaleList = function (t) {
+            var e = [];
+            for (var i in this._map) {
+                var n = this._map[i];
+                n.type == t && 1 == n.isOnSale() && e.push(n)
+            }
+            return e.sort(function (t, e) {
+                return t.no > e.no ? 1 : t.no < e.no ? -1 : 0
+            }), e
+        }, t.prototype.isActive = function (t) {
+            var e = this.getData(t);
+            return null != e && e.isActive()
         }, t
     }();
-    e.KDockModelHolder = r;
-    var s = function (t) {
+    e.FurnitureModelHolder = s;
+    var a = function (t) {
         function e() {
             return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.__setData__ = function (t) {
-            if (null != t) {
-                this._dic = {};
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e], r = new o.KDockModelEdit(n), s = r.id;
-                    if (s > 0) {
-                        var a = s.toString();
-                        this._dic[a] = r
-                    }
-                }
+        return n(e, t), e.prototype.setMstData = function (t) {
+            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new o.FurnitureModelEdit(i), r = n.mstID;
+                this._map[r] = n
+            }
+        }, e.prototype.setMemData = function (t) {
+            if (null != this._map) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e], o = r.ObjUtil.getNumber(n, "api_id"), s = this.getData(o);
+                null != s && s.updateHasFlag(!0)
             }
         }, e
-    }(r);
-    e.KDockModelHolderEdit = s
+    }(s);
+    e.FurnitureModelHolderEdit = a
 }

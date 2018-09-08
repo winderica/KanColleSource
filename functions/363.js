@@ -15,24 +15,24 @@ const function363 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(32), s = i(968), a = function (t) {
+    var o = i(18), r = i(17), s = i(29), a = function (t) {
         function e() {
             return t.call(this) || this
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._banner = new r.ShipBanner, this._alert = new s.CompLackAlerts, this._alert.initialize(), this._alert.position.set(188, 53), this.addChild(this._banner), this.addChild(this._alert)
-        }, e.prototype.update = function (t, e) {
-            if (null == t) this.visible = !1; else {
-                var i = !1, n = o.default.model.deck.isInDeck(t.memID);
-                if (null != n) {
-                    null != o.default.model.deck.get(n[0]).expedition && (i = !0)
-                }
-                this._banner.update(t, i), this._banner.updatePlate(t.label), e && this._banner.updateLockSlot(t), this._alert.update(t), this.visible = !0
-            }
-        }, e.prototype.dispose = function () {
-            this._banner.dispose()
+            this.alpha = 0, this.visible = !1
+        }, e.prototype.update = function (t) {
+            var e = this;
+            if (0 == t) return this.texture = PIXI.Texture.EMPTY, void(this.visible = !1);
+            this.texture = s.SALLY_COMMON.getTexture(0), this.visible = !0, this._type = t;
+            var i = new r.UIImageLoader("sally"), n = "sally_alert_alert_" + t;
+            i.add("alert/alert_" + t + ".png?" + o.START_TIME, n), i.load(function () {
+                e._type == t && (e.texture = PIXI.Texture.fromFrame(n))
+            })
+        }, e.prototype.activate = function () {
+            0 == this.alpha && createjs.Tween.get(this).to({ alpha: 1 }, 300)
         }, e
-    }(PIXI.Container);
-    e.CompBannerAndLack = a
+    }(PIXI.Sprite);
+    e.AlertBalloon = a
 }

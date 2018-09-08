@@ -15,86 +15,39 @@ const function1070 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(13), s = i(3), a = i(39), _ = i(39), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._bg = new PIXI.Sprite, i.addChild(i._bg), i._labels = [], i._items_ship = [], i._items_slot = [];
-            for (var n = 0; n < 10; n++) {
-                var r = new o.TextBox(28, 4999235);
-                r.x = 156 + n % 5 * 180, r.y = 44 + 287 * Math.floor(n / 5), r.text = "000", i.addChild(r), i._labels.push(r);
-                var s = new a.MainItemShip(e);
-                s.x = 120 + n % 5 * 179, s.y = 78 + 288 * Math.floor(n / 5), i._items_ship.push(s);
-                var u = new _.MainItemSlot(e);
-                u.x = 120 + n % 5 * 179, u.y = 93 + 318 * Math.floor(n / 5), i._items_slot.push(u)
-            }
-            return i
+    var o = i(2), r = i(14), s = i(383), a = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._onClose = function () {
+                r._panel.deactivate(), r._hideFade()
+            }, r._layer = e, r._model = i, r._option = n, r._mainView = o, r
         }
 
-        return n(e, t), e.prototype.update = function (t, e, i) {
-            if (this._updateLabels(t, e), 1 == t) this._removeSlotItems(), this._bg.texture = s.ALBUM_MAIN.getTexture(17), this._updateShipItem(i), this._addShipItem(); else {
-                if (2 != t) return this._removeShipItems(), this._removeSlotItems(), this._bg.texture = PIXI.Texture.EMPTY, null;
-                this._removeShipItems(), this._bg.texture = s.ALBUM_MAIN.getTexture(40), this._updateSlotItem(i), this._addSlotItem()
+        return n(e, t), e.prototype._start = function () {
+            this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+        }, e.prototype._loadImages = function () {
+            var t = this, e = this._model.mst_ids, i = new r.ShipLoader;
+            i.add(e[0], !1, "album_status");
+            for (var n = 0, o = e; n < o.length; n++) {
+                var s = o[n], a = i.getSpecificAlbumImageLoadList(s);
+                1 == i.needCard(a) && i.add(s, !1, "card"), 1 == i.needCharaFull(a) && i.add(s, !1, "character_full"), 1 == i.needCharaUp(a) && i.add(s, !1, "character_up"), 1 == this._model.hasTaiha(s) && null == a && (i.add(s, !0, "character_full"), i.add(s, !0, "character_up"))
             }
-        }, e.prototype.activate = function () {
-            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
-                var i = e[t];
-                null != i.parent && i.activate()
-            }
-            if (null != this._items_slot) for (var n = 0, o = this._items_slot; n < o.length; n++) {
-                var i = o[n];
-                null != i.parent && i.activate()
-            }
-        }, e.prototype.deactivate = function () {
-            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
-                var i = e[t];
-                i.deactivate()
-            }
-            if (null != this._items_slot) for (var n = 0, o = this._items_slot; n < o.length; n++) {
-                var i = o[n];
-                i.deactivate()
-            }
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._updateLabels = function (t, e) {
-            for (var i = 0; i < this._labels.length; i++) {
-                var n = this._labels[i], o = r.MathUtil.zeroPadding(e + 1 + i, 3);
-                1 == t ? (n.x = 156 + i % 5 * 178, n.y = 44 + 287 * Math.floor(i / 5), n.text = o) : 2 == t ? (n.x = 153 + i % 5 * 178, n.y = 57 + 318 * Math.floor(i / 5), n.text = o) : n.text = ""
-            }
-        }, e.prototype._addShipItem = function () {
-            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
-                var i = e[t];
-                this.addChild(i)
-            }
-        }, e.prototype._updateShipItem = function (t) {
-            if (null == this._items_ship) return null;
-            if (null == t) return null;
-            for (var e = t, i = Math.min(this._items_ship.length, e.length), n = 0; n < i; n++) {
-                var o = this._items_ship[n], r = e[n];
-                o.update(r)
-            }
-        }, e.prototype._removeShipItems = function () {
-            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
-                var i = e[t];
-                null != i.parent && i.parent.removeChild(i)
-            }
-        }, e.prototype._addSlotItem = function () {
-            if (null != this._items_slot) for (var t = 0, e = this._items_slot; t < e.length; t++) {
-                var i = e[t];
-                this.addChild(i)
-            }
-        }, e.prototype._updateSlotItem = function (t) {
-            if (null == this._items_slot) return null;
-            if (null == t) return null;
-            for (var e = t, i = Math.min(this._items_slot.length, e.length), n = 0; n < i; n++) {
-                var o = this._items_slot[n], r = e[n];
-                o.update(r)
-            }
-        }, e.prototype._removeSlotItems = function () {
-            if (null != this._items_slot) for (var t = 0, e = this._items_slot; t < e.length; t++) {
-                var i = e[t];
-                null != i.parent && i.parent.removeChild(i)
-            }
+            i.load(function () {
+                t._showPanel()
+            })
+        }, e.prototype._showPanel = function () {
+            var t = this, e = new s.ShipDetailPanel(this._onClose);
+            this._panel = e, e.initialize(this._model, this._option), e.alpha = 0, this._layer.addChild(e), e.preactivate(), createjs.Tween.get(e).to({ alpha: 1 }, 500).call(function () {
+                e.activate(), t._mainView.visible = !1
+            })
+        }, e.prototype._hideFade = function () {
+            var t = this;
+            this._mainView.visible = !0, createjs.Tween.get(this._panel).to({ alpha: 0 }, 300), this._layer.hide(500, function () {
+                t._layer.visible = !1, t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._model = null, this._option = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.MainContainer = u
+    }(o.TaskBase);
+    e.TaskShowShipDetail = a
 }

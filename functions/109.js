@@ -15,38 +15,61 @@ const function109 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(29), s = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common"),
-                n = new PIXI.Sprite(i);
-            i = o.default.resources.getUIImage("hpgauge/hp_s_bg2.png", "common");
-            var r = new PIXI.Sprite(i), s = new PIXI.Sprite, a = new PIXI.Graphics, _ = new PIXI.Graphics;
-            i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common");
-            var u = new PIXI.Sprite(i);
-            s.position.set(-34, -27), s.texture = o.default.resources.getUIImage("hpgauge/hp_s_red_light.png", "common"), s.visible = !1, a.beginFill(16777215), a.drawRect(0, 0, 98, 11), a.endFill();
-            var l = new PIXI.Container;
-            l.mask = n, l.addChild(a, n), l.cacheAsBitmap = !0;
-            var c = new PIXI.Container;
-            return c.mask = u, c.addChild(_, u), e.addChild(l, s, c, r), e.spriteRedLight = s, e.graphicsGauge = _, e.containerGaugeBackground = l, e.containerGauge = c, e
+    var o = i(9), r = i(1), s = function (t) {
+        function e(e) {
+            void 0 === e && (e = !1);
+            var i = t.call(this) || this;
+            return i._btm = !1, i._onClick = function () {
+                null != i._cb_onClick && (i._cb_onClick(), i._mouseTimer = setInterval(function () {
+                    if (0 == i.visible) return clearInterval(i._mouseTimer), !1;
+                    i._cb_onClick()
+                }, 300))
+            }, i._onMouseUp = function () {
+                clearInterval(i._mouseTimer)
+            }, i._btm = e, i._canvas = new PIXI.Sprite, i.addChild(i._canvas), 0 == i._btm ? i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(1)) : i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(0)), i._img.interactive = !0, i._img.x = -Math.round(i._img.width / 2), i._img.y = -Math.round(i._img.height / 2), i._canvas.addChild(i._img), i
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
-            var i = t / e * 100;
-            i <= 0 ? i = 0 : 100 <= i && (i = 100), this.updateGauge(i);
-            var n = r.ShipUtil.getDamageType(t, e), o = 25 == n, s = 50 == n;
-            this.updateTaihaLamp(o || s)
-        }, e.prototype.updateTaihaLamp = function (t) {
-            if (createjs.Tween.removeTweens(this.spriteRedLight), t) {
-                this.spriteRedLight.visible = !0, this.spriteRedLight.alpha = 0;
-                var e = createjs.Tween.get(this.spriteRedLight).to({ alpha: .7 }, 1e3).to({ alpha: 0 }, 1e3);
-                e.loop = !0, e.play(null)
-            } else this.spriteRedLight.visible = !1, this.spriteRedLight.alpha = 0
-        }, e.prototype.updateGauge = function (t) {
-            var e = 0;
-            t < 33.3 ? (e = 255 << 16, e += t / 33.3 * 128 << 8) : t < 66.6 ? (e = 255 << 16, e += 32768, e += (t - 33.3) / 33.3 * 128 << 8) : (e = 255 - (t - 66.6) / 33.3 * 255 << 16, e += 65280), this.containerGauge.cacheAsBitmap = !1, this.graphicsGauge.clear(), this.graphicsGauge.beginFill(e), this.graphicsGauge.drawRect(0, 0, t / 100 * 98, 11), this.graphicsGauge.endFill(), this.containerGauge.cacheAsBitmap = !0
+        return n(e, t), e.prototype.initialize = function (t) {
+            void 0 === t && (t = null), this._cb_onClick = t
+        }, e.prototype.activate = function () {
+            this._img.buttonMode = !0, null == this._tween && (this._img.on(r.EventType.MOUSEUP, this._onMouseUp), this._img.on(r.EventType.MOUSEDOWN, this._onClick), this._tween = createjs.Tween.get(this._canvas), this._tween.loop = !0, 0 == this._btm ? this._tween.to({ y: -11 }, 350, createjs.Ease.cubicOut) : this._tween.to({ y: 11 }, 350, createjs.Ease.cubicOut), this._tween.to({ y: 0 }, 350, createjs.Ease.quadIn))
+        }, e.prototype.deactivate = function () {
+            this._img.buttonMode = !1, this._canvas.y = 0, null != this._tween && (this._img.off(r.EventType.MOUSEUP, this._onMouseUp), this._img.off(r.EventType.MOUSEDOWN, this._onClick), this._tween.setPaused(!0), this._tween = null)
         }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this.spriteRedLight), this.containerGauge.mask = null, this.containerGauge.removeChildren(), this.containerGauge = null, this.containerGaugeBackground.mask = null, this.containerGaugeBackground.removeChildren(), this.containerGaugeBackground = null, this.removeChildren()
+            this.deactivate(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this.removeChildren(), this._cb_onClick = null
+        }, e.prototype.resetInterval = function () {
+            null != this._mouseTimer && clearInterval(this._mouseTimer)
         }, e
     }(PIXI.Container);
-    e.HpGaugeView = s
+    e.ArrowButton = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
+            };
+            var i = o.COMMON_MISC.getTexture(1), n = new PIXI.Sprite(i), s = createjs.Tween.get(n);
+            return s.loop = !0, s.to({ y: 0 }).to({ y: -11 }, 350, createjs.Ease.cubicOut).to({ y: 0 }, 350, createjs.Ease.quadIn), n.interactive = n.buttonMode = !0, n.addListener(r.EventType.CLICK, e._onClick), e.addChild(n), e.spriteArrowTopS = n, e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.spriteArrowTopS), this.spriteArrowTopS.removeAllListeners(r.EventType.CLICK), this.spriteArrowTopS.texture = PIXI.Texture.EMPTY, this.spriteArrowTopS = null, this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.ArrowTopButton = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
+            };
+            var i = o.COMMON_MISC.getTexture(0), n = new PIXI.Sprite(i), s = createjs.Tween.get(n);
+            return s.loop = !0, n.interactive = n.buttonMode = !0, s.to({ y: 0 }).to({ y: 11 }, 350, createjs.Ease.cubicOut).to({ y: 0 }, 350, createjs.Ease.quadIn), n.addListener(r.EventType.CLICK, e._onClick), e.addChild(n), e.spriteArrowBtmS = n, e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.spriteArrowBtmS), this.spriteArrowBtmS.removeAllListeners(r.EventType.CLICK), this.spriteArrowBtmS.texture = PIXI.Texture.EMPTY, this.spriteArrowBtmS = null, this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.ArrowBottomButton = _
 }

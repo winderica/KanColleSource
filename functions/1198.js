@@ -1,9 +1,31 @@
 const function1198 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(11), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
+        }
 
-    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1199)), n(i(1200)), n(i(421)), n(i(420)), n(i(1201)), n(i(1202)), n(i(423)), n(i(424)), n(i(422)), n(i(425)), n(i(426))
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+        }, e
+    }(o.APIBase);
+    e.RevampSlotlistAPI = r
 }

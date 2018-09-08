@@ -15,7 +15,7 @@ const function399 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(4), a = i(3), _ = i(169), u = function (t) {
+    var o = i(0), r = i(1), s = i(4), a = i(3), _ = i(168), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._mst_id = -1, i._onMouseOver = function () {
@@ -66,6 +66,8 @@ const function399 = function (t, e, i) {
             t = Math.max(t, 0), t = Math.min(t, this._max), this._text.text = t.toString();
             var e;
             t < 100 ? (e = 27, this._bg.position.set(36, 36), this._text.position.set(54 - Math.floor(this._text.width / 2), 42)) : t < 1e3 ? (e = 28, this._bg.position.set(25, 39), this._text.position.set(49 - Math.floor(this._text.width / 2), 42)) : (e = 29, this._bg.position.set(12, 40), this._text.position.set(43 - Math.floor(this._text.width / 2), 40)), this._bg.texture = a.ITEM_ILIST.getTexture(e)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._bg = null, this._text = null
         }, e
     }(PIXI.Container)
 }

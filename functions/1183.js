@@ -15,15 +15,19 @@ const function1183 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_quest/start", i._duty_id = e, i
+    var o = i(0), r = i(3), s = i(169), a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype._initialize = function () {
+            this._icon.texture = r.DUTY_COMMON.getTexture(25);
+            var t = new PIXI.Graphics;
+            t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+            var e = this._candidate.mst_id, i = o.default.resources.getUseitem(e, 1), n = new PIXI.Sprite(i),
+                s = Math.min(195 / n.width, 195 / n.height);
+            n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
         }, e
-    }(o.APIBase);
-    e.DutyStartAPI = r
+    }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogUseitemBtn = a
 }

@@ -15,7 +15,7 @@ const function428 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(134), s = i(1212), a = i(429), _ = function (t) {
+    var o = i(4), r = i(132), s = i(1214), a = i(429), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new u, e._bg.position.set(0, 633), e._bg.alpha = 0, e._compass = new s.CompCompass, e._compass.position.set(54, 766), e._compass.alpha = 0, e.addChild(e._bg), e.addChild(e._compass), e
@@ -67,7 +67,7 @@ const function428 = function (t, e, i) {
     var u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._icon = new a.CompDropItemIcon, e._icon.position.set(416, 23), e._icon.visible = !1, e._text = new o.TextBox(30, 16777215), e._text.position.set(414, 23), e._text.style.wordWrap = !0, e._text.style.breakWords = !0, e._text.style.wordWrapWidth = 645, e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+            return e._bg = new PIXI.Sprite, e._icon = new a.CompDropItemIcon, e._icon.position.set(416, 23), e._icon.visible = !1, e._text = new o.TextBox(30, 16777215), e._text.position.set(414, 23), e._text.style.wordWrap = !1, e._text.style.breakWords = !1, e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "text", {

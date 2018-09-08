@@ -15,32 +15,37 @@ const function1298 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(1299), r = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._spots = {}, e._flags = {}, e
         }
 
-        return n(e, t), e.prototype.isDisplaying = function () {
-            return null != this._enemy
-        }, e.prototype.show = function (t, e) {
-            void 0 === e && (e = null), null != this._enemy && this.hide(), this._enemy = t;
-            var i = t.y;
-            t.y += 30, t.alpha = 0, this.addChild(t), t.startAnimation();
-            var n = createjs.Tween.get(t);
-            n.to({ y: i, alpha: 1 }, 500), n.wait(600), null != e && n.call(e)
-        }, e.prototype.hide = function (t) {
-            var e = this;
-            if (void 0 === t && (t = null), null == this._enemy) null != t && t(); else {
-                var i = this._enemy;
-                this._enemy = null;
-                var n = createjs.Tween.get(i);
-                n.to({ y: i.y + 30, alpha: 0 }, 1e3), n.call(function () {
-                    e.removeChild(i), i.stopAnimation(), null != t && t()
-                })
+        return n(e, t), e.prototype.addSpot = function (t) {
+            this._spots[t.no] = t, this.addChild(t)
+        }, e.prototype.addFlag = function (t, e, i) {
+            var n = new o.LandingFlag;
+            n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
+        }, e.prototype.getAllSpots = function () {
+            var t = [];
+            for (var e in this._spots) {
+                var i = this._spots[e];
+                t.push(i)
             }
+            return t
+        }, e.prototype.getSpot = function (t) {
+            var e = t.toString();
+            return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
+        }, e.prototype.getFlag = function (t) {
+            var e = t.toString();
+            return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._enemy && this._enemy.dispose(), this._enemy = null
+            this.removeChildren();
+            for (var t in this._spots) {
+                this._spots[t].dispose()
+            }
+            this._spots = null
         }, e
     }(PIXI.Container);
-    e.MapEnemyLayer = o
+    e.MapSpotLayer = r
 }

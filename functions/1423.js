@@ -15,45 +15,45 @@ const function1423 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(22), s = i(12), a = i(15), _ = i(1424), u = i(1425), l = i(1427), c = function (t) {
+    var o = i(12), r = i(15), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new u.BannerFrame, e._frame.alpha = 0, e._layer_color = new l.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e
+            return t.call(this) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "img", {
-            get: function () {
-                return this._img
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "flagship_mark", {
-            get: function () {
-                return this._flagship_mark
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "frame", {
-            get: function () {
-                return this._frame
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_color", {
-            get: function () {
-                return this._layer_color
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_over", {
-            get: function () {
-                return this._layer_over
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n, o, r, s, _) {
-            this._img.initialize(t, e, i, s, _), 1 == r && (1 == o ? this._img.x += 7 : this._img.x -= 78), 0 == n && (this._flagship_mark.texture = a.BATTLE_MAIN.getTexture(48), 0 == o && 1 == r && (this._flagship_mark.alpha = .5, this._flagship_mark.x = 135)), this._frame.initialize(e, i, n, o)
-        }, e.prototype.updateHp = function (t, e) {
-            this._img.update(t, e), this._frame.updateHp(t, e)
-        }, e.prototype.waveOver = function (t) {
-            var e = this, i = new s.Sprite(a.BATTLE_MAIN.getTexture(85));
-            i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
-                scaleX: .75,
-                scaleY: .75
-            }, 400).to({ alpha: 0, scaleX: 1, scaleY: 1 }, 200).call(function () {
-                e._layer_over.removeChild(i)
+        return n(e, t), e.prototype.show = function () {
+            var t = this, e = r.BATTLE_MAIN.getTexture(110);
+            this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, { loop: !0 }).to({
+                x: 5,
+                y: -7,
+                scaleX: .14,
+                scaleY: .14
+            }, 200).to({ x: 7, y: -15, scaleX: .25, scaleY: .25 }, 200).to({
+                x: 12,
+                y: -21,
+                scaleX: .35,
+                scaleY: .35
+            }, 200).to({ x: 14, y: -29, scaleX: .46, scaleY: .46 }, 200).to({
+                x: 15,
+                y: -36,
+                scaleX: .57,
+                scaleY: .57
+            }, 200).to({ x: 17, y: -42, scaleX: .68, scaleY: .68 }, 200).to({
+                x: 17,
+                y: -50,
+                scaleX: .78,
+                scaleY: .78
+            }, 200).to({ x: 21, y: -57, scaleX: .89, scaleY: .89 }, 200).to({
+                x: 24,
+                y: -65,
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 0
+            }, 200).call(function () {
+                t._content.scale.set(0), t._content.alpha = 1, t._content.position.set(0, 0)
             })
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(r.Container);
-    e.BannerContent = c
+    }(PIXI.Container);
+    e.BannerBabble = s
 }

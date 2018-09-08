@@ -15,26 +15,44 @@ const function767 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(768), r = i(52), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick()
-            }, e._onMouseOver = function () {
-                e.texture = e.BTN_INTENSIFY_ON
+            e._mousedown = function (t, i) {
+                e.mousedown(t, i)
+            }, e._onClickDetach = function (t) {
+                e.onClickDetach(t)
+            }, e._onMouseUp = function (t) {
+                e.onMouseUp(t)
             }, e._onMouseOut = function () {
-                e.texture = e.BTN_INTENSIFY_OFF
+                e.onMouseOut()
             };
-            var i = o.REMODEL_MAIN.getTexture(5), n = o.REMODEL_MAIN.getTexture(4),
-                s = o.REMODEL_MAIN.getTexture(3);
-            return e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.BTN_INTENSIFY_ON = i, e.BTN_INTENSIFY_OFF = n, e.BTN_INTENSIFY_NONE = s, e.interactive = e.buttonMode = !0, e
+            for (var i = new Array, n = new Array, s = 0; s < 5; s++) {
+                var a = new o.SlotItemSlot(s);
+                a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
+                var _ = new o.ClearSlotItemSlot;
+                _.y = a.y = r.RemodelConst.DETAIL_LISTITEM.HEIGHT * s + 6, i.push(a), n.push(_), e.addChild(_, a)
+            }
+            return e._slotItemSlots = i, e._clearSlotItemSlots = n, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this.texture = this.BTN_INTENSIFY_NONE, this.interactive = this.buttonMode = !1, t && (this.texture = this.BTN_INTENSIFY_OFF, this.interactive = this.buttonMode = !0)
+        return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
+            get: function () {
+                return this._slotItemSlots
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.clean = function () {
+            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
+            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
+        }, e.prototype.update = function (t, e, i, n, o) {
+            var r = this._slotItemSlots[t], s = this._clearSlotItemSlots[t];
+            r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
+        }, e.prototype.hide = function (t) {
+            for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
         }, e.prototype.dispose = function () {
-            this.removeAllListeners(r.EventType.CLICK), this.removeAllListeners(r.EventType.MOUSEOVER), this.removeAllListeners(r.EventType.MOUSEOUT), this.interactive = this.buttonMode = !1, this.onClick = this._onClick = null, this._onMouseOver = null, this._onMouseOut = null, this.texture = PIXI.Texture.EMPTY, this.BTN_INTENSIFY_ON = null, this.BTN_INTENSIFY_OFF = null, this.BTN_INTENSIFY_NONE = null, this.removeChildren()
+            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
+            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].dispose(), this._clearSlotItemSlots[t] = null;
+            this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = this._onClickDetach = null, this.mousedown = this._mousedown = null, this.onMouseOut = this._onMouseOut = null, this.removeChildren()
         }, e
-    }(PIXI.Sprite);
-    e.KindaikaButton = s
+    }(PIXI.Container);
+    e.SlotItemSlotBox = s
 }

@@ -15,23 +15,18 @@ const function855 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(49), s = i(8), a = i(856), _ = function (t) {
+    var o = i(11), r = i(0), s = function (t) {
         function e() {
-            var e = t.call(this, .9) || this;
-            return e.alpha = 0, e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.show = function (t, e, i) {
-            this.removeChildren(), this.highSpeedConfirmView = new a.HighSpeedConfirmView(i), this.highSpeedConfirmView.update(t, e), this.highSpeedConfirmView.position.set(91, 70), this.addChild(this.highSpeedConfirmView), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({ alpha: 1 }, r.UISettings.DIALOG_FADETIME).call(function () {
-                o.default.view.clickGuard = !1
-            })
-        }, e.prototype.hide = function (t) {
-            createjs.Tween.get(this).to({ alpha: 0 }, r.UISettings.DIALOG_FADETIME).call(function () {
-                t()
-            })
-        }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this), this.removeChildren(), this.highSpeedConfirmView.dispose(), this.highSpeedConfirmView = null
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            r.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
         }, e
-    }(s.AreaBox);
-    e.HighSpeedConfirmContainer = _
+    }(o.TaskBase);
+    e.InitializeTask = s
 }

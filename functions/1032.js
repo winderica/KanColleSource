@@ -17,16 +17,15 @@ const function1032 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(38), r = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
         }, e.prototype.update = function (t) {
-            this.visible = !0, 1 == t ? this._setTexture(29) : 2 == t ? this._setTexture(28) : 3 == t ? this._setTexture(27) : 4 == t ? this._setTexture(26) : 5 == t ? this._setTexture(25) : 6 == t ? this._setTexture(30) : t > 6 ? this._setTexture(30) : this.visible = !1
-        }, e.prototype.dispose = function () {
-        }, e.prototype._setTexture = function (t) {
-            this.texture = o.SALLY_EXPEDITION.getTexture(t)
+            this._beek.x = t - 16, this._beek.visible = !0
         }, e
     }(PIXI.Sprite);
-    e.ExpeditionDifficulty = r
+    e.ExpeditionListFrame = r
 }

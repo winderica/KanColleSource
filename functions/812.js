@@ -15,19 +15,25 @@ const function812 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(0));
-            e.addChild(i);
-            var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(1));
-            e.addChild(n);
-            var r = new PIXI.Graphics;
-            return r.beginFill(16711935, .5), r.drawRect(-i.width / 2, -i.height / 2, i.width, i.height), r.endFill(), r.position.set(i.width / 2, i.height / 2), e.addChild(r), e.mask = r, e
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = e._textureOn
+            }, e._onMouseOut = function () {
+                e.texture = e._textureOff
+            }, e._onClick = function () {
+                null != e._cb_onClick && e._cb_onClick()
+            }, e._textureNone = o.REMODEL_GRADEUP.getTexture(3), e._textureOff = o.REMODEL_GRADEUP.getTexture(4), e._textureOn = o.REMODEL_GRADEUP.getTexture(5), e.texture = e._textureNone, e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.mask = null
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._cb_onClick = t
+        }, e.prototype.update = function (t) {
+            1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
+        }, e.prototype.dispose = function () {
+            this._textureNone = null, this._textureOff = null, this._textureOn = null, this.removeListener(r.EventType.CLICK, this._onClick), this.removeListener(r.EventType.MOUSEOVER, this._onMouseOver), this.removeListener(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.CutinBar = r
+    }(PIXI.Sprite);
+    e.KaizoStartButton = s
 }

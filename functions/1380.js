@@ -15,7 +15,7 @@ const function1380 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(16), a = i(14), _ = i(24), u = i(1381), l = i(63), c = i(44), h = function (t) {
+    var o = i(0), r = i(2), s = i(16), a = i(14), _ = i(24), u = i(1381), l = i(64), c = i(44), h = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._view = new PIXI.Container, e

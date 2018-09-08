@@ -15,7 +15,7 @@ const function1343 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(59), s = i(67), a = i(23), _ = i(15), u = function (t) {
+    var o = i(4), r = i(60), s = i(69), a = i(23), _ = i(15), u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gauge = new c, e.addChild(e._gauge), e._ship_name = new l(46, 16774898), e.addChild(e._ship_name), e._level = new o.TextBox(32, 16774898), e.addChild(e._level), e._karyoku = new o.TextBox(24, 16774898), e._raisou = new o.TextBox(24, 16774898), e._taiku = new o.TextBox(24, 16774898), e._soukou = new o.TextBox(24, 16774898), e.addChild(e._karyoku), e.addChild(e._raisou), e.addChild(e._taiku), e.addChild(e._soukou), e._ring = new s.RingSmall, e._ring.visible = !1, e.addChild(e._ring), e._slotIcons = [], e

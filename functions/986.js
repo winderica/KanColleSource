@@ -15,13 +15,16 @@ const function986 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(232), r = i(233), s = function (t) {
+    var o = i(228), r = i(230), s = function (t) {
         function e(e, i, n) {
-            var o = t.call(this, e, n) || this, s = new r.EventMapThumbnail(1, i, n, o._onMouseOver, o._onMouseOut);
-            return s.position.set(501, 207), o.addChild(s), o._maps.push(s), o
+            for (var r = t.call(this, e) || this, s = 0; s < 4; s++) {
+                var a = new o.MapThumbnail(4, i, n, null, null), _ = s % 2 == 0 ? 188 : 689, u = s < 2 ? 207 : 422;
+                a.position.set(_, u), r.addChild(a), r._maps.push(a)
+            }
+            return r
         }
 
         return n(e, t), e
-    }(o.EventLayoutBase);
-    e.LayoutEventMap1 = s
+    }(r.LayoutBase);
+    e.LayoutMap4 = s
 }

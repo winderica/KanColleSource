@@ -89,13 +89,15 @@ const function689 = function (t, e, i) {
     var u = function (t) {
         function e() {
             var e = t.call(this) || this, i = new PIXI.Sprite(o.ORGANIZE_RENGO.getTexture(16));
-            return e.message = new r.TextBox(18, 16777215), e.message.position.set(1.05, 4), e.addChild(i, e.message), e
+            e.addChild(i), e._message = new r.TextBox(18, 16777215), e._message.position.set(1, 4), e.addChild(e._message);
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, .5), n.drawRect(0, 0, 328, 75), n.endFill(), e.addChild(n), e.mask = n, e
         }
 
         return n(e, t), e.prototype.update = function (t) {
-            this.message.text = t
+            this.cacheAsBitmap = !1, this._message.text = t, this.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            this.removeChild(this.message), this.message = null
+            this.removeChildren()
         }, e
     }(PIXI.Container);
     e.RengoErrorMessageView = u

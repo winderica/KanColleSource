@@ -15,23 +15,23 @@ const function57 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e.addChild(e._gear), e._btn = new PIXI.Sprite, e._btn.anchor.set(.5), e.addChild(e._btn), e
+    var o = i(1), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onClick = function () {
+                n.onClick()
+            }, n._onMouseOut = function (t) {
+                n.onMouseOut && n.onMouseOut(t), n.texture = n.textureDefault
+            }, n._onMouseOver = function (t) {
+                n.onMouseOver && n.onMouseOver(t), n.texture = n.textureHover
+            }, n.textureDefault = e, n.textureHover = i, n.texture = n.textureDefault, n.addListener(o.EventType.CLICK, n._onClick), n.addListener(o.EventType.MOUSEOVER, n._onMouseOver), n.addListener(o.EventType.MOUSEOUT, n._onMouseOut), n.interactive = n.buttonMode = !0, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._gear.texture = o.COMMON_MISC.getTexture(25), this._btn.texture = this._getContentTexture()
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._gear, { loop: !0 }).to({ rotation: 2 * Math.PI }, 6e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        return n(e, t), e.prototype.reset = function () {
+            this.texture = this.textureDefault
         }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._getContentTexture = function () {
-            return o.COMMON_MISC.getTexture(24)
+            this.removeAllListeners(o.EventType.CLICK), this.removeAllListeners(o.EventType.MOUSEOVER), this.removeAllListeners(o.EventType.MOUSEOUT), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textureDefault = null, this.textureHover = null, this._onClick = this._onMouseOver = this._onMouseOut = null, this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.GearBtnNext = r
+    }(PIXI.Sprite);
+    e.SimpleButton = r
 }

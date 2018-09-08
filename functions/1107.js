@@ -15,7 +15,7 @@ const function1107 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(116), s = i(33), a = i(117), _ = i(1108), u = function (t) {
+    var o = i(0), r = i(115), s = i(33), a = i(116), _ = i(1108), u = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._onResult = function (t) {
@@ -27,7 +27,7 @@ const function1107 = function (t, e, i) {
             this._showDialog()
         }, e.prototype._showDialog = function () {
             var t = this;
-            this._dialog = new _.MedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({ alpha: 1 }, 150).call(function () {
+            this._dialog = new _.FBoxUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({ alpha: 1 }, 150).call(function () {
                 t._dialog.activate()
             })
         }, e.prototype._connectAPI = function (t) {
@@ -56,5 +56,5 @@ const function1107 = function (t, e, i) {
             this._layer = null, this._target = null, t.prototype._endTask.call(this)
         }, e
     }(s.TaskWithResult);
-    e.TaskUseMedal = u
+    e.TaskUseFurnitureBox = u
 }

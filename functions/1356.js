@@ -15,7 +15,7 @@ const function1356 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(19), a = i(6), _ = i(44), u = i(453), l = i(1357), c = i(63), h = function (t) {
+    var o = i(0), r = i(8), s = i(19), a = i(6), _ = i(44), u = i(454), l = i(1357), c = i(64), h = function (t) {
         function e(e, i, n, o, r) {
             var s = t.call(this, i, n, o, r, !0) || this;
             return s._layer = e, s._friend = s._attacker.friend, s

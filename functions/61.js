@@ -15,30 +15,19 @@ const function61 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._entered = !1, n._showed_telop = !1, n._scene = e, n._record = i, n
+    var o = i(22), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._img = new PIXI.Sprite, i.addChild(i._img), i.texture = e, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() ? this._endTask() : this._enterEnemies()
-        }, e.prototype._enterEnemies = function () {
-            var t = this;
-            this._scene.view.layer_info2.once("complete", function () {
-                t._showed_telop = !0, t._preEnd()
-            }), this._scene.view.layer_info2.showCenter(5), this._scene.view.bannerGroupLayer.createEnemyEnterTask().start(function () {
-                t._entered = !0, t._preEnd()
-            });
-            var e = this._scene.data.model.deck_e, i = e.formation, n = e.type, o = e.getCountMainDeck(),
-                r = e.getCountSubDeck();
-            this._scene.view.raderLayer.rader_e.show(i, n, o, r)
-        }, e.prototype._preEnd = function () {
-            var t = this;
-            0 != this._entered && 0 != this._showed_telop && setTimeout(function () {
-                t._endTask()
-            }, 200)
-        }, e
-    }(o.TaskBase);
-    e.PhaseEnemyEnter = r
+        return n(e, t), Object.defineProperty(e.prototype, "texture", {
+            get: function () {
+                return this._img.texture
+            }, set: function (t) {
+                null == t ? (this._img.texture = PIXI.Texture.EMPTY, this._img.position.set(0)) : (this._img.texture = t, this._img.x = -Math.round(t.width / 2), this._img.y = -Math.round(t.height / 2))
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(o.Container);
+    e.CenteringSprite = r
 }

@@ -1,30 +1,33 @@
 const function74 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(23);
-    !function (t) {
-        function e(t, e) {
-            return 10 * t + e
-        }
-
-        function i(t) {
-            return Math.floor(t / 10)
-        }
-
-        function o(t) {
-            return t % 10
-        }
-
-        function r(t, e) {
-            void 0 === e && (e = 0);
-            var r = t;
-            if (e <= 0) {
-                var s = t;
-                r = i(s), e = o(s)
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-            return n.MathUtil.zeroPadding(r, 3).toString() + n.MathUtil.zeroPadding(e, 2).toString()
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(2), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._night = i, n
         }
 
-        t.toMapID = e, t.toAreaID = i, t.toMapNo = o, t.toResKey = r
-    }(e.MapUtil || (e.MapUtil = {}))
+        return n(e, t), Object.defineProperty(e.prototype, "scene", {
+            get: function () {
+                return this._scene
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.isNight = function () {
+            return this._night
+        }, e
+    }(o.TaskBase);
+    e.PhaseCombatBase = r
 }

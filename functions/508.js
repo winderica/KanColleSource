@@ -16,35 +16,41 @@ const function508 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(7), r = function () {
-        function t() {
+        function t(t) {
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "boko_max_ships", {
+        return Object.defineProperty(t.prototype, "mstID", {
             get: function () {
-                var t = o.ObjUtil.getObject(this._o, "api_boko_max_ships");
-                return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                return o.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "quest_max", {
+        }), Object.defineProperty(t.prototype, "state", {
             get: function () {
-                var t = o.ObjUtil.getObject(this._o, "api_parallel_quest_max");
-                return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                return o.ObjUtil.getNumber(this._o, "api_state", -1)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_server", {
+        }), Object.defineProperty(t.prototype, "shipMemID", {
             get: function () {
-                var t = o.ObjUtil.getObject(this._o, "api_voice_server_addr");
-                return null == t ? "" : o.ObjUtil.getString(t, "api_string_value")
+                return o.ObjUtil.getNumber(this._o, "api_ship_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "completeTime", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_complete_time")
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.ServerConstModel = r;
+    e.NDockModel = r;
     var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
+        return n(e, t), e.prototype.__updateState__ = function (t) {
+            this._o.api_state = t
+        }, e.prototype.__updateShipId__ = function (t) {
+            this._o.api_ship_id = t
+        }, e.prototype.__updateCompleteTime__ = function (t) {
+            this._o.api_complete_time = t
         }, e
     }(r);
-    e.ServerConstModelEdit = s
+    e.NDockModelEdit = s
 }

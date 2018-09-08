@@ -15,38 +15,48 @@ const function254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(6), r = i(139), s = i(121), a = i(43), _ = function (t) {
-        function e(e, i, n, o, s, a, _) {
-            var u = t.call(this, e, i, o, s, a, _) || this;
-            u._defender = n;
-            var l = u._scene.data.isNight();
-            return u._cutin = new r.CutinAttack(u._attacker, u._slot, l, !1, !0), u
+    var o = i(2), r = i(14), s = i(24), a = i(447), _ = i(448), u = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
+            var s = Math.floor(3 * Math.random());
+            r._telop1 = new _.CutinTelop(s, o);
+            var u = Math.floor(3 * Math.random());
+            return r._telop2 = new _.CutinTelop(u, o), r._preload_task = new l(e, i, n), r
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreloadTask = function () {
+            return this._preload_task
+        }, e.prototype._endTask = function () {
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.CutinDouble = u;
+    var l = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._attacker = e, o._slot1 = i, o._slot2 = n, o
         }
 
         return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                t._loadSlotTextImage()
+            })
+        }, e.prototype._loadSlotTextImage = function () {
             var t = this;
-            this._cutin.getPreloadTask().start(function () {
-                t._completePreload()
-            })
-        }, e.prototype._completePreload = function () {
-            var t = this, e = this._attacker.friend, i = this._attacker.index, n = this._defender.index;
-            1 == e ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, n)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, n)), this._cutin.view.once("attack", function () {
-                t._playVoice(), t._attack()
-            }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-        }, e.prototype._attack = function () {
-            var t = this, e = this._scene.view.layer_content, i = this._a_banner, n = this._d_banner;
-            new s.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start(), this._a_banner.moveShoot(function () {
-                o.SE.play("112");
-                var e = t._a_banner.getGlobalPos(!0), i = t._d_banner.getGlobalPos(!0);
-                t._scene.view.layer_torpedo.playTorpedo(e, i, 1900, function () {
-                    t._damageEffect(t._a_banner, t._d_banner)
+            if (null == this._slot1 && null == this._slot2) this._endTask(); else {
+                var e = new s.SlotLoader;
+                null != this._slot1 && e.add(this._slot1.mstID, "btxt_flat"), null != this._slot2 && e.add(this._slot2.mstID, "btxt_flat"), e.load(function () {
+                    t._endTask()
                 })
-            })
-        }, e.prototype._damageEffect = function (t, e) {
-            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-            var i = this._getDamage(this._defender);
-            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+            }
         }, e
-    }(a.PhaseAttackBase);
-    e.PhaseAttackRaigeki = _
+    }(o.TaskBase)
 }

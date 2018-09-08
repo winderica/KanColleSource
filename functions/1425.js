@@ -15,17 +15,44 @@ const function1425 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = i(1426), s = function (t) {
+    var o = i(0), r = i(30), s = i(146), a = i(147), _ = i(15), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._gauge_bg = new PIXI.Sprite, e._gauge = new r.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
+            return e._img = new PIXI.Sprite, e._icon = new s.BannerIcon, e._soot = new a.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-            this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47)) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)), this.updateHp(t, e)
-        }, e.prototype.updateHp = function (t, e) {
-            this._gauge.draw(t / e)
+        return n(e, t), e.prototype.initialize = function (t, e, i, n, o) {
+            this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._updateImage(), this._updateIcon(e, i)
+        }, e.prototype.update = function (t, e) {
+            this._updateState(t, e), this._updateImage(), this._updateIcon(t, e)
+        }, e.prototype._updateState = function (t, e) {
+            t <= 0 ? this._damaged = 2 : r.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
+        }, e.prototype._updateImage = function () {
+            if (this._mst_id < 0) switch (this._mst_id) {
+                case-1:
+                    this._img.texture = _.BATTLE_MAIN.getTexture(0);
+                    break;
+                case-2:
+                    this._img.texture = _.BATTLE_MAIN.getTexture(1);
+                    break;
+                case-3:
+                    this._img.texture = _.BATTLE_MAIN.getTexture(2)
+            } else switch (this._damaged) {
+                case 0:
+                    this._img.texture = o.default.resources.getShip(this._mst_id, !1, "banner");
+                    break;
+                case 1:
+                    this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner");
+                    break;
+                case 2:
+                    this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner_g")
+            }
+        }, e.prototype._updateIcon = function (t, e) {
+            if (0 == this._taihi) {
+                var i = r.ShipUtil.getDamageType(t, e);
+                this._icon.setDamagedIcon(i), this._soot.update(i)
+            } else this._icon.setTaihiIcon()
         }, e
     }(PIXI.Container);
-    e.BannerFrame = s
+    e.BannerImage = u
 }

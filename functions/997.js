@@ -15,32 +15,16 @@ const function997 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(30), r = i(53), s = i(225), a = i(226), _ = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._switch = new a.CompSwitchBtns(1, e, i), n._switch.position.set(807, 171), n
+    var o = i(11), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_get_member/sortie_conditions", i._model = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(25));
-            t.position.set(144, 168);
-            var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(49));
-            e.position.set(0, 102);
-            var i = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(0));
-            i.position.set(198, 112);
-            var n = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(31));
-            n.position.set(207, 177);
-            var s = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(15));
-            s.position.set(196, 228);
-            var a = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(27));
-            a.position.set(196, 228), this._switch.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(s), this.addChild(a), this.addChild(this._switch)
-        }, e.prototype.activate = function () {
-            this._switch.activate()
-        }, e.prototype.deactivate = function () {
-            this._switch.deactivate()
-        }, e.prototype.dispose = function () {
-            this._switch.dispose()
+        return n(e, t), e.prototype._completedEnd = function () {
+            var e = this._raw_data;
+            this._model.update(e), this._model = null, t.prototype._completedEnd.call(this)
         }, e
-    }(s.ViewMainBase);
-    e.ViewMainBase = _
+    }(o.APIBase);
+    e.APIEventSortieCondition = r
 }

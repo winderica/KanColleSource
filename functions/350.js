@@ -15,39 +15,28 @@ const function350 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(8), s = i(41), a = i(58), _ = i(79), u = i(884), l = i(1), c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._message = "", e._clickGuard = new r.AreaBox(0), e._rarityBG = new a.RarityBG, e._target = new PIXI.Sprite, e._materialCircleRollAnimation = new u.MaterialCircleRollAnimation, e._materialCircleRollAnimation.x = o.default.width / 2, e._materialCircleRollAnimation.y = o.default.height / 2, e._messageBox = new _.MessageBox, e._gearBtnHome = new s.GearBtnHome, e._gearBtnHome.position.set(1140, 660), e._gearBtnHome.initialize(), e._white = new r.AreaBox(1, 16777215), e
+    var o = i(0), r = i(2), s = i(67), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._maps = e, i
         }
 
-        return n(e, t), e.prototype.play = function (t, e) {
-            this._cb_onWhiteOut = t, this._cb_onComplete = e, this.addChild(this._clickGuard), this.addChild(this._rarityBG), this.addChild(this._target), this.addChild(this._materialCircleRollAnimation), this._01_whiteOut()
-        }, e.prototype._01_whiteOut = function () {
-            var t = this;
-            this._materialCircleRollAnimation.play(), this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 0 }, 500).call(function () {
-                t.removeChild(t._white), t._02_showMessageBox()
-            })
-        }, e.prototype._02_showMessageBox = function () {
-            var t = this;
-            this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({ y: 480 }, 300, createjs.Ease.cubicOut).call(function () {
-                t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), t._messageBox.activate(), t._03_waitClick()
-            })
-        }, e.prototype._03_waitClick = function () {
-            var t = this, e = new r.AreaBox(0);
-            e.buttonMode = !0, this.addChild(e), e.once(l.EventType.CLICK, function () {
-                t._04_whiteInOut()
-            })
-        }, e.prototype._04_whiteInOut = function () {
-            var t = this;
-            this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 100).call(function () {
-                t.removeChild(t._rarityBG), t.removeChild(t._target), t.removeChild(t._materialCircleRollAnimation), t.removeChild(t._messageBox), t._messageBox.deactivate(), t.removeChild(t._gearBtnHome), t._gearBtnHome.deactivate(), null != t._cb_onWhiteOut && t._cb_onWhiteOut()
-            }).to({ alpha: 0 }, 500).call(function () {
-                t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
-            })
-        }, e.prototype.dispose = function () {
-            this._cb_onWhiteOut = null, this._cb_onComplete = null, this.removeChildren(), this._clickGuard = null, this._rarityBG.dispose(), this._rarityBG = null, this._target = null, this._materialCircleRollAnimation.dispose(), this._materialCircleRollAnimation = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome.dispose(), this._gearBtnHome = null, this._white = null
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
+                var r = n[i];
+                if ((0 != r.defeat_required || 0 != r.gauge_max) && (1 != r.isCleared() && 0 != r.isOpened())) {
+                    var a = r.area_id, _ = r.map_no, u = r.getGaugeNum(), l = s.GaugeSetModel.createKey(a, _, u);
+                    e.add(l)
+                }
+            }
+            e.count > 0 ? e.load(function () {
+                t._endTask()
+            }) : this._endTask()
+        }, e.prototype._endTask = function () {
+            this._maps = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.RewardAnimation = c
+    }(r.TaskBase);
+    e.TaskLoadGaugeResources = a
 }

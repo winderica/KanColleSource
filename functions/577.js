@@ -15,36 +15,24 @@ const function577 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(193), s = i(194), a = i(281), _ = i(282), u = function (t) {
+    var o = i(578), r = i(277), s = i(580), a = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._background.texture = r.PORT_SKIN_3.getTexture(0), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.changeSkin(t)
+        }, e.prototype.changeSkin = function (t) {
+            if (null != this._content) {
+                if (this._skinID == t) return;
+                this._content.dispose(), this.removeChild(this._content), this._content = null
+            }
+            this._skinID = t, 101 == t || 102 == t ? this._content = new o.CircleContentSkin1 : 201 == t && (this._content = new r.CircleContentSkin2), 301 == t && (this._content = new s.CircleContentSkin3), 311 == t && (this._content = new s.CircleContentSkin3k), this._content.initialize(), this.addChild(this._content)
+        }, e.prototype.dispose = function () {
+            null != this._content && (this._content.dispose(), this.removeChild(this._content), this._content = null)
+        }, e.prototype.startMoveAnimation = function (t) {
+            null != this._content && this._content.startMoveAnimation(t)
         }, e
-    }(a.CircleContentSkin2);
-    e.CircleContentSkin3 = u;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._background = new PIXI.Sprite, e.addChild(e._background), e._content = new c, e.addChild(e._content), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._background.texture = s.PORT_SKIN_3K.getTexture(2), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
-        }, e
-    }(u);
-    e.CircleContentSkin3k = l;
-    var c = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype._getTexture = function (t) {
-            return 11 == t ? s.PORT_SKIN_3K.getTexture(7) : 12 == t ? s.PORT_SKIN_3K.getTexture(9) : 13 == t ? s.PORT_SKIN_3K.getTexture(11) : 14 == t ? s.PORT_SKIN_3K.getTexture(15) : 15 == t ? s.PORT_SKIN_3K.getTexture(13) : 31 == t ? s.PORT_SKIN_3K.getTexture(0) : 16 == t ? s.PORT_SKIN_3K.getTexture(17) : s.PORT_SKIN_3K.getTexture(4)
-        }, e.prototype._getTextureOver = function (t) {
-            return 11 == t ? s.PORT_SKIN_3K.getTexture(8) : 12 == t ? s.PORT_SKIN_3K.getTexture(10) : 13 == t ? s.PORT_SKIN_3K.getTexture(12) : 14 == t ? s.PORT_SKIN_3K.getTexture(16) : 15 == t ? s.PORT_SKIN_3K.getTexture(14) : 31 == t ? s.PORT_SKIN_3K.getTexture(1) : 16 == t ? s.PORT_SKIN_3K.getTexture(18) : s.PORT_SKIN_3K.getTexture(5)
-        }, e
-    }(_.CircleContentWithSwitching)
+    }(PIXI.Container);
+    e.Circle = a
 }

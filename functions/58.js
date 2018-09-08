@@ -15,39 +15,23 @@ const function58 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = function (t) {
+    var o = i(9), r = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e.addChild(e._gear), e._btn = new PIXI.Sprite, e._btn.anchor.set(.5), e.addChild(e._btn), e
         }
 
-        return n(e, t), e.prototype.initiailzeForShip = function (t, e) {
-            var i = this._getFilenameForShip(t);
-            this._load(i, e)
-        }, e.prototype.initiailzeForSlotitem = function (t, e) {
-            var i = this._getFilenameForSlotitem(t);
-            this._load(i, e)
-        }, e.prototype.initiailzeForUseitem = function (t) {
-            this._load("c1", t)
+        return n(e, t), e.prototype.initialize = function () {
+            this._gear.texture = o.COMMON_MISC.getTexture(25), this._btn.texture = this._getContentTexture()
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._gear, { loop: !0 }).to({ rotation: 2 * Math.PI }, 6e3))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e.prototype.dispose = function () {
-            this._loader = null
-        }, e.prototype.clone = function () {
-            var t = new e;
-            return t.texture = this.texture, t
-        }, e.prototype._getFilenameForShip = function (t) {
-            return t <= 1 ? "c1" : 2 == t ? "c2" : 3 == t ? "c3" : 4 == t ? "r1" : 5 == t ? "r2" : 6 == t ? "sr1" : 7 == t ? "sr2" : t >= 8 ? "sr3" : ""
-        }, e.prototype._getFilenameForSlotitem = function (t) {
-            return t <= 0 ? "item_c1" : 1 == t ? "item_r1" : 2 == t ? "sr1" : 3 == t ? "sr1" : 4 == t ? "sr1" : t >= 5 ? "sr2" : ""
-        }, e.prototype._load = function (t, e) {
-            var i = this, n = o.default.settings.path_root + "img/common/ship_bg/screen/" + t + ".png";
-            if (null != PIXI.utils.TextureCache[n] && (this.texture = PIXI.utils.TextureCache[n], null != e)) return void e();
-            this._loader = new PIXI.loaders.Loader, this._loader.add(n), this._loader.load(function (t) {
-                if (i._loader == t) {
-                    i._loader = null;
-                    var o = t.resources[n];
-                    i.texture = o.texture, null != e && e()
-                }
-            })
+            this.deactivate()
+        }, e.prototype._getContentTexture = function () {
+            return o.COMMON_MISC.getTexture(24)
         }, e
-    }(PIXI.Sprite);
-    e.RarityBG = r
+    }(PIXI.Container);
+    e.GearBtnNext = r
 }

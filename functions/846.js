@@ -15,40 +15,25 @@ const function846 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(345), r = i(3), s = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._materialList = {
-                fuel: r.REPAIR_MAIN.getTexture(26),
-                steel: r.REPAIR_MAIN.getTexture(27),
-                bucket: r.REPAIR_MAIN.getTexture(28)
-            }, e._wire = new o.Wire, e._wire.rotation = Math.PI / 180 * 90, e.WIRE_WIDTH = e._wire.width;
-            var i = new PIXI.Sprite(r.REPAIR_MAIN.getTexture(13));
-            return e._material = new PIXI.Sprite, e._handContainer = new PIXI.Container, e._handContainer.position.set(-Math.floor(i.width / 2 + e._wire.height / 2), e.WIRE_WIDTH), e.initialize(), e._handContainer.addChild(i, e._material), e.addChild(e._wire, e._handContainer), e
+            return e._onClick = function () {
+                e.onClick()
+            }, e._onMouseOver = function () {
+                e.texture = o.REPAIR_MAIN.getTexture(4)
+            }, e._onMouseOut = function () {
+                e.texture = o.REPAIR_MAIN.getTexture(2)
+            }, e.texture = o.REPAIR_MAIN.getTexture(2), e.on(r.EventType.CLICK, e._onClick).on(r.EventType.MOUSEOVER, e._onMouseOver).on(r.EventType.MOUSEOUT, e._onMouseOut), e.buttonMode = !0, e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.randomMaterial(), this.update(.3)
-        }, e.prototype.randomMaterial = function () {
-            var t = 50 < 100 * Math.random();
-            this._material.texture = t ? this._materialList.fuel : this._materialList.steel, this._material.position.set(-7, 3), this._material.visible = !0
-        }, e.prototype.bucketMaterial = function () {
-            this._material.texture = this._materialList.bucket, this._material.position.set(-18, 0), this._material.visible = !0
-        }, e.prototype.hideMaterial = function () {
-            this._material.texture = PIXI.Texture.EMPTY, this._material.visible = !1
-        }, e.prototype.update = function (t) {
-            var e = this.WIRE_WIDTH * (1 - t);
-            this._wire.width = e, this._handContainer.y = e - 3
-        }, Object.defineProperty(e.prototype, "obj", {
-            get: function () {
-                return { wire: this._wire, container: this._handContainer }
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.getPosition = function (t) {
-            var e = this.WIRE_WIDTH * (1 - t);
-            return { wire: { width: e }, container: { y: e - 3 } }
+        return n(e, t), e.prototype.active = function () {
+            this.texture = o.REPAIR_MAIN.getTexture(2), this.interactive = !0
+        }, e.prototype.disable = function () {
+            this.texture = o.REPAIR_MAIN.getTexture(3), this.interactive = !1
         }, e.prototype.dispose = function () {
-            this._wire.dispose(), this._handContainer.removeChildren(), this._wire = null, this._handContainer = null, this._material = null, this.removeChildren()
+            this.onClick = null, this.off(r.EventType.CLICK, this._onClick).off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOut), this.texture = PIXI.Texture.EMPTY, this.interactive = this.buttonMode = !1
         }, e
-    }(PIXI.Container);
-    e.WireHand = s
+    }(PIXI.Sprite);
+    e.UseItemButton = s
 }

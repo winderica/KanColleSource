@@ -15,117 +15,39 @@ const function1254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(16), _ = i(12), u = i(14), l = i(18), c = i(430), h = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._selected_formation = 1, n._showText = function () {
-                var t = n._telopContainer.text;
-                t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = l.MAP_COMMON.getTexture(107), createjs.Tween.get(t).to({
-                    x: 630,
-                    alpha: 1
-                }, 500).to({ x: 585 }, 500).call(n._formationSelect), createjs.Tween.get(n._chara).to({ alpha: 1 }, 500);
-                var e = n._view.shutter;
-                e.alpha = 0, e.close(0), createjs.Tween.get(e).to({ alpha: 1 }, 400)
-            }, n._formationSelect = function () {
-                var t = n._deck.getCount(), e = Math.max(6, t);
-                if (n._layer.boxes.initialize(t, n._onSelectFormation, e), n._layer.boxes.alpha = 0, n._layer.boxes.count <= 1) {
-                    var i = n._telopContainer.bg;
-                    createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100).call(n._showText2);
-                    var o = n._telopContainer.text;
-                    createjs.Tween.get(o).to({ x: 555, alpha: 0 }, 100)
-                } else {
-                    n._layer.fade.show(200);
-                    var i = n._telopContainer.bg;
-                    createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100);
-                    var o = n._telopContainer.text;
-                    createjs.Tween.get(o).to({
-                        x: 555,
-                        alpha: 0
-                    }, 100), createjs.Tween.get(n._layer.boxes).to({ alpha: 1 }, 300).call(function () {
-                        n._layer.boxes.activate(), n._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
-                    })
-                }
-            }, n._onSelectFormation = function (t) {
-                n._selected_formation = t, n._layer.boxes.deactivate(), createjs.Tween.get(n._layer.boxes).to({ alpha: 0 }, 200), n._layer.fade.hide(200, n._showText2)
-            }, n._showText2 = function () {
-                var t = n._telopContainer.bg, e = n._telopContainer.text;
-                e.position.set(o.default.width / 2, o.default.height / 2), e.texture = l.MAP_COMMON.getTexture(106), createjs.Tween.get(t).to({
-                    alpha: 1,
-                    scaleY: 1
-                }, 200).wait(950).to({
-                    alpha: 0,
-                    scaleY: 0
-                }, 200), createjs.Tween.get(e).wait(150).to({ alpha: 1 }, 100).wait(200).to({ x: 570 }, 300).to({
-                    x: 450,
-                    alpha: 0
-                }, 400), createjs.Tween.get(n._layer.chara).wait(950).to({
-                    x: -75,
-                    alpha: 0
-                }, 600), createjs.Tween.get(n._view.map).wait(950).to({ alpha: 0 }, 600).call(function () {
-                    n._view.map.ship_icon.stopWave(), n._preEnd()
-                }), createjs.Tween.get(n._view.upper).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n._view.gauge_layer).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n).wait(750).call(function () {
-                    n._view.message_box.deactivate()
+    var o = i(2), r = i(14), s = i(433), a = i(1255), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._onTaihi = function () {
+                r._view.deactivate();
+                var t = r._model.map_info.area_id, e = r._model.map_info.map_no, i = r._model.map_info.cell_no;
+                new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
+                    r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
                 })
-            }, n._view = e, n._deck = i, n
+            }, r._onTaihiSezu = function () {
+                r._view.deactivate(), r._hideView()
+            }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
-            get: function () {
-                return this._selected_formation
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._layer = new p, this._view.universal_layer.addChild(this._layer), this._telopContainer = new d, this._view.top_layer.addChild(this._telopContainer), this._readyForFlagship()
-        }, e.prototype._readyForFlagship = function () {
-            var t = this, e = this._deck.ships[0], i = e.mst_id, n = e.isDamaged();
-            this._chara = new PIXI.Sprite;
-            var o = r.default.model.ship_graph.get(i).getMapOffset(n);
-            this._chara.position.set(-80 + o.x, -93 + o.y), this._chara.alpha = 0, this._layer.chara.addChild(this._chara), (new u.ShipLoader).add(i, n, "full").load(function () {
-                t._chara.texture = r.default.resources.getShip(i, n, "full"), t._showTelopBG()
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipResources()
+        }, e.prototype._loadShipResources = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
+                t._show()
             })
-        }, e.prototype._showTelopBG = function () {
-            var t = this._telopContainer.bg;
-            t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = l.MAP_COMMON.getTexture(104), createjs.Tween.get(t).to({
-                alpha: 1,
-                scaleY: 1
-            }, 500).call(this._showText)
-        }, e.prototype._preEnd = function () {
-            this._view.universal_layer.removeChild(this._layer), this._view = null, this._deck = null, this._chara = null, this._layer = null, this._endTask()
+        }, e.prototype._show = function () {
+            this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+            var t = this._target, e = this._towing;
+            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
         }, e
-    }(s.TaskBase);
-    e.TaskFormationSelect = h;
-    var p = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._fade = new a.FadeBox(.6), e._fade.hide(0), e._chara = new PIXI.Sprite, e._boxes = new c.FormationBoxContainer, e.addChild(e._fade), e.addChild(e._chara), e.addChild(e._boxes), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "fade", {
-            get: function () {
-                return this._fade
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "boxes", {
-            get: function () {
-                return this._boxes
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(PIXI.Container), d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new _.Sprite, e._bg.anchor.set(.5), e._text = new PIXI.Sprite, e._text.anchor.set(.5), e.addChild(e._bg), e.addChild(e._text), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(PIXI.Container)
+    }(o.TaskBase);
+    e.EscapeGoeiTask = _
 }

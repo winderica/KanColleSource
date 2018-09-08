@@ -22,7 +22,7 @@ const function1336 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype._start = function () {
-            5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
+            null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
         }, e.prototype._animSanshiki = function () {
             var t = this, e = new _(5);
             e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({

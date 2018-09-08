@@ -15,46 +15,78 @@ const function481 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(482), r = i(483), s = function () {
-        function t() {
+    var o = i(7), r = i(482), s = function () {
+        function t(t) {
+            this.name_tmp = null, this._state_tmp = -1, this._o = t, this._squadrons = [];
+            for (var e = o.ObjUtil.getObjectArray(t, "api_plane_info"), i = 0, n = e; i < n.length; i++) {
+                var s = n[i], a = new r.AirUnitSquadronModelEdit(s);
+                this._squadrons.push(a)
+            }
         }
 
-        return t.prototype.getMst = function (t) {
-            return null == this._dic ? null : 0 == this._dic.hasOwnProperty(t.toString()) ? null : this._dic[t]
-        }, t.prototype.getMapBGM = function (t, e) {
-            var i = this._getMapBGMData(t, e);
-            return null == i ? 0 : i.mapBGMID
-        }, t.prototype.getCombatBGM = function (t, e, i, n) {
-            var o = this._getMapBGMData(t, e);
-            return null == o ? i ? 2 : 1 : o.getBGM(i, n)
-        }, t.prototype.isSameBGM = function (t, e, i) {
-            var n = this._getMapBGMData(t, e);
-            return null != n && n.getDayBGM(i) == n.getNightBGM(i)
-        }, t.prototype._getMapBGMData = function (t, e) {
-            var i = t.toString() + e.toString();
-            return 1 == this._dic_battle.hasOwnProperty(i) ? this._dic_battle[i] : null
+        return Object.defineProperty(t.prototype, "area_id", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_area_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_rid")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name_raw", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_name")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return null != this.name_tmp ? this.name_tmp : this.name_raw
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "state_tmp", {
+            get: function () {
+                return this._state_tmp
+            }, set: function (t) {
+                this._state_tmp = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "state_raw", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_action_kind")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "airUnitState", {
+            get: function () {
+                return -1 != this._state_tmp ? this._state_tmp : this.state_raw
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "distance", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_distance")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "squadrons", {
+            get: function () {
+                return this._squadrons
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.updateStateFromTemporaryInfo = function () {
+            return -1 != this.state_tmp && (this.state_tmp != this.state_raw && (this._o.api_action_kind = this._state_tmp, this._state_tmp = -1, !0))
+        }, t.prototype.updateNameFromTemporaryInfo = function () {
+            return null != this.name_tmp && (this.name_tmp != this.name_raw && (this._o.api_name = this.name_tmp, this.name_tmp = null, !0))
+        }, t.prototype.hasActiveSquadron = function () {
+            if (null == this._squadrons) return !1;
+            for (var t = 0, e = this._squadrons; t < e.length; t++) {
+                var i = e[t];
+                if (1 == i.state && !(i.mem_id <= 0 || i.count <= 0)) return !0
+            }
+            return !1
         }, t
     }();
-    e.BGMMstModelHolder = s;
+    e.AirUnitModel = s;
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.setMstBGMData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = new r.BGMMstModel(t[e]), n = i.mstID;
-                n > 0 && (this._dic[n] = i)
-            }
-        }, e.prototype.setMapBGMData = function (t) {
-            if (this._dic_battle = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.BattleBGMMstModel(i), r = n.mapID;
-                if (r > 0) {
-                    var s = r.toString();
-                    this._dic_battle[s] = n
-                }
+        return n(e, t), e.prototype.updateSquadronData = function (t, e) {
+            if (e >= 0 && (this._o.api_distance = e), null != t) for (var i = 0, n = t; i < n.length; i++) for (var r = n[i], s = o.ObjUtil.getNumber(r, "api_squadron_id"), a = 0, _ = this.squadrons; a < _.length; a++) {
+                var u = _[a];
+                u.id == s && u.update(r)
             }
         }, e
     }(s);
-    e.BGMMstModelHolderEdit = a
+    e.AirUnitModelEdit = a
 }

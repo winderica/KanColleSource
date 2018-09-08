@@ -15,60 +15,23 @@ const function477 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(478), s = function () {
-        function t() {
-            this._dic = {}
-        }
-
-        return t.prototype.getAirUnitList = function (t) {
-            return null == this._dic ? [] : null == this._dic[t] ? [] : this._dic[t]
-        }, t.prototype.getAirUnit = function (t, e) {
-            var i = this.getAirUnitList(t);
-            if (null == i) return null;
-            for (var n = 0, o = i; n < o.length; n++) {
-                var r = o[n];
-                if (r.id == e) return r
-            }
-            return null
-        }, t.prototype.getReadyAirUnitList = function (t) {
-            for (var e = [], i = this.getAirUnitList(t), n = 0, o = i; n < o.length; n++) {
-                var r = o[n];
-                1 == r.airUnitState && (0 != r.hasActiveSquadron() && e.push(r))
-            }
-            return e
-        }, t
-    }();
-    e.AirUnitModelHolder = s;
-    var a = function (t) {
+    var o = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            e._MAX_ = 360;
+            var i = new PIXI.Graphics;
+            return e._draw(i, 0), e.mask = i, e.addChild(i), e._bar = new PIXI.Graphics, e._bar.x = -e._MAX_, e.addChild(e._bar), e
         }
 
-        return n(e, t), e.prototype.setData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = new r.AirUnitModelEdit(n), s = o.area_id;
-                null == this._dic[s] && (this._dic[s] = new Array), this._dic[s].push(o)
-            }
-        }, e.prototype.addData = function (t) {
-            if (null != this._dic) {
-                var e = new r.AirUnitModelEdit(t), i = e.area_id;
-                null == this._dic[i] && (this._dic[i] = new Array), this._dic[i].push(e)
-            }
-        }, e.prototype.updateData = function (t, e, i, n, r) {
-            var s = this.getAirUnit(t, e), a = s.squadrons[i], _ = a.state, u = a.mem_id;
-            s.updateSquadronData(n, r);
-            var l = s.squadrons[i];
-            if (1 == l.state && o.default.model.slot.deleteUnsetData(l.mem_id), 1 == _) {
-                for (var c = !1, h = 0, p = s.squadrons; h < p.length; h++) {
-                    var d = p[h];
-                    if (1 == d.state && d.mem_id == u) {
-                        c = !0;
-                        break
-                    }
-                }
-                0 == c && o.default.model.slot.addAirUnitRelocation(u)
-            }
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._draw(this, 16777215), this._draw(this._bar, t)
+        }, e.prototype.createTween = function (t, e, i) {
+            void 0 === i && (i = 1e3);
+            var n = Math.max(t - e, 0), o = 0 == t ? 0 : n / t, r = this._MAX_ * o;
+            return r = Math.min(this._MAX_, r), r = Math.max(0, r), createjs.Tween.get(this._bar).to({ x: -this._MAX_ + r }, i)
+        }, e.prototype._draw = function (t, e) {
+            t.beginFill(e), t.arc(8, 8, 8, Math.PI / 2, Math.PI / 2 * 3), t.arc(353, 8, 8, -Math.PI / 2, Math.PI / 2), t.endFill()
         }, e
-    }(s);
-    e.AirUnitModelHolderEdit = a
+    }(PIXI.Graphics);
+    e.Gauge = o
 }

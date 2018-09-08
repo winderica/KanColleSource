@@ -18,48 +18,22 @@ const function938 = function (t, e, i) {
     var o = i(25), r = i(1), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._activated = !1, i._selected = !1, i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick(i._airunit_id)
-            }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i._label.position.set(8, 11), i.addChild(i._label), i.interactive = !0, i
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i._img_light = new PIXI.Sprite, i._img_light.alpha = 0, i.addChild(i._img_light), i._img = new PIXI.Sprite, i._img.position.set(12, 12), i.addChild(i._img), i.interactive = !0, i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "selected", {
-            get: function () {
-                return this._selected
-            }, set: function (t) {
-                this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), 1 == this.visible && this.update())
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "airunit_id", {
-            get: function () {
-                return this._airunit_id
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            if (this._airunit_id = t, t > e) return void(this.visible = !1);
-            if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(95); else switch (t) {
-                case 1:
-                    this._label.texture = o.SALLY_AIRUNIT.getTexture(96);
-                    break;
-                case 2:
-                    this._label.texture = o.SALLY_AIRUNIT.getTexture(97);
-                    break;
-                case 3:
-                    this._label.texture = o.SALLY_AIRUNIT.getTexture(98);
-                    break;
-                default:
-                    this._label.texture = PIXI.Texture.EMPTY
-            }
-            this.update(), this.visible = !0
-        }, e.prototype.update = function () {
-            1 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(101) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(100)
-        }, e.prototype.activate = function () {
-            this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this._deactivate()
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = o.SALLY_AIRUNIT.getTexture(19), this._img_light.texture = o.SALLY_AIRUNIT.getTexture(22), this.update(!1)
+        }, e.prototype.update = function (t) {
+            this.visible = t, 1 == t ? this._activate() : this._deactivate()
         }, e.prototype.dispose = function () {
-            this._deactivate(), this._cb_onClick = null
+            this._deactivate()
+        }, e.prototype._activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), null == this._t && (this._img_light.alpha = 0, this._t = createjs.Tween.get(this._img_light, { loop: !0 }).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3)))
         }, e.prototype._deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null, this._img_light.alpha = 0)
         }, e
     }(PIXI.Container);
-    e.AirUnitPanelTab = s
+    e.AirUnitPanelItemSupplyButton = s
 }

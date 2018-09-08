@@ -1,60 +1,63 @@
 const function802 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(37), s = i(34), a = i(164), _ = i(127), u = i(8), l = i(3), c = i(85), h = i(803),
-        p = i(218), d = i(804), f = i(805), y = i(810), v = i(811), g = i(49), m = function () {
-            function t(t) {
-                var e = this;
-                this._onCancel = function () {
-                    e._clickGuard = new u.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard);
-                    var t = g.UISettings.DIALOG_FADETIME;
-                    e._kaizoDetailBG.width = n.default.width, createjs.Tween.get(e._kaizoDetailBG).to({ alpha: 0 }, t), createjs.Tween.get(e._kaizoDetail).to({ x: n.default.width }, t).call(function () {
-                        r.TaskLoadShipResource.abortBy(e._kaizoDetail), e._container.removeChild(e._kaizoDetailBG), e._container.removeChild(e._kaizoDetail), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, null != e._cb_onComplete && e._cb_onComplete()
-                    })
-                }, this._onStart = function () {
-                    var t = g.UISettings.DIALOG_FADETIME;
-                    e._kaizoConfirmBG = new u.AreaBox(1), e._kaizoConfirmBG.alpha = 0, e._kaizoConfirm = new y.KaizoConfirm, e._kaizoConfirm.activate(e._onConfirmYES, e._onConfirmNo);
-                    var i = o.default.model.ship.get(e._ship_memid),
-                        n = o.default.model.ship_upgrade.getRequires(i.mstID);
-                    e._kaizoConfirm.update(i, n.ammo, n.steel), e._kaizoConfirm.alpha = 0, o.default.view.overLayer.addChild(e._kaizoConfirmBG), o.default.view.overLayer.addChild(e._kaizoConfirm), e._clickGuard = new u.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), l.SE.play("106"), createjs.Tween.get(e._kaizoConfirmBG).to({ alpha: 1 }, t), createjs.Tween.get(e._kaizoConfirm).to({ alpha: 1 }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e._clickGuard), e._container.visible = !1, e._clickGuard = null
-                    })
-                }, this._onConfirmNo = function () {
-                    var t = g.UISettings.DIALOG_FADETIME;
-                    e._container.visible = !0, e._clickGuard = new u.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), createjs.Tween.get(e._kaizoConfirmBG).to({ alpha: 0 }, t), createjs.Tween.get(e._kaizoConfirm).to({ alpha: 0 }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e._kaizoConfirmBG), o.default.view.overLayer.removeChild(e._kaizoConfirm), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
-                    })
-                }, this._onConfirmYES = function () {
-                    e._clickGuard = new u.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), l.SE.play("215"), (new s.APIConnector).add(new h.RemodelingAPI(e._ship_memid)).add(new p.Ship3API(e._ship_memid)).add(new a.MaterialAPI).add(new _.UserSlotItemAPI).start(e._onCompleteAPI)
-                }, this._onCompleteAPI = function () {
-                    var t = new v.KaizoAnimationMain, i = o.default.model.ship.get(e._ship_memid), n = i.mstID,
-                        r = i.isDamaged(), s = o.default.model.ship_graph.get(n).getCenterOffset(r);
-                    t.preload(n, r, s, function () {
-                        e._onCompleteResources(t)
-                    })
-                }, this._container = t
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
 
-            return t.prototype.start = function (t, e, i) {
-                var r = this;
-                if (null == this._kaizoDetail) {
-                    this._ship_memid = t, this._cb_onUpdateShip = e, this._cb_onComplete = i, this._kaizoDetailBG = new u.AreaBox(.5), this._kaizoDetailBG.alpha = 0, this._container.addChild(this._kaizoDetailBG), this._kaizoDetail = new f.KaizoDetail;
-                    var s = o.default.model.ship.get(t), a = o.default.model.ship_upgrade.getRequires(s.mstID),
-                        _ = new d.KaizoValidateModel(a), l = c.RemodelUtil.canKaizo(s.mstID, s.level), h = !0;
-                    o.default.model.basic.slotMax - o.default.model.slot.num < 4 && (h = !1), this._kaizoDetail.update(s, _, l, h), this._kaizoDetail.position.set(n.default.width, 143), this._kaizoDetail.activate(this._onStart, this._onCancel), this._container.addChild(this._kaizoDetail), this._clickGuard = new u.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard);
-                    var p = g.UISettings.DIALOG_FADETIME;
-                    createjs.Tween.get(this._kaizoDetailBG).to({ alpha: 1 }, p), createjs.Tween.get(this._kaizoDetail).to({ x: 204 }, p).call(function () {
-                        r._kaizoDetailBG.width = 240, o.default.view.overLayer.removeChild(r._clickGuard), r._clickGuard = null
-                    })
-                }
-            }, t.prototype._onCompleteResources = function (t) {
-                var e = this;
-                null != this._cb_onUpdateShip && this._cb_onUpdateShip(), this._container.removeChild(this._kaizoDetailBG), this._container.removeChild(this._kaizoDetail), o.default.view.overLayer.removeChild(this._kaizoConfirmBG), o.default.view.overLayer.removeChild(this._kaizoConfirm), o.default.view.overLayer.addChild(t), t.play(function () {
-                    o.default.view.portMain.updateInfo(), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, o.default.view.overLayer.removeChild(t), t.dispose(), e._container.visible = !0, null != e._cb_onComplete && e._cb_onComplete()
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(336), r = i(19), s = i(8), a = i(337), _ = i(41), u = i(79), l = i(6), c = i(3), h = i(338), p = i(1),
+        d = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new u.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
+            }
+
+            return n(e, t), e.prototype._03_link = function () {
+                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 400).call(function () {
+                    t.removeChild(t._background), t.removeChild(t._ship)
+                }).to({ alpha: 0 }, 500).call(function () {
+                    t.removeChild(t._white), t._05_showFailedPenguin()
                 })
-            }, t.prototype.dispose = function () {
-                this._container = null, this._kaizoDetailBG = null, this._kaizoDetail.deactivate(), this._kaizoDetail.dispose(), this._kaizoDetail = null, null != this._kaizoConfirm && (this._kaizoConfirm.dispose(), this._kaizoConfirm = null), this._cb_onUpdateShip = null, this._cb_onComplete = null, this._clickGuard = null
-            }, t
-        }();
-    e.TaskKaizo = m
+            }, e.prototype._05_showFailedPenguin = function () {
+                var t, e = this, i = new r.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({ alpha: 1 }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({ alpha: 1 }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
+                })
+            }, e.prototype._06_typeMessage = function () {
+                var t = this;
+                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({ y: 480 }, 500, createjs.Ease.quadOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), l.SE.play("247"), t._messageBox.activate(function () {
+                        t._07_waitClick()
+                    })
+                })
+            }, e.prototype._07_waitClick = function () {
+                var t = this, e = new s.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
+                    t.removeChild(e), t._08_whiteInOut()
+                })
+            }, e.prototype._08_whiteInOut = function () {
+                var t = this;
+                this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 500).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({ alpha: 0 }, 500).call(function () {
+                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    })
+                })
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
+            }, e
+        }(h.PowerUpAnimation);
+    e.PowerUpAnimationFailed = d
 }

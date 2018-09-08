@@ -15,7 +15,7 @@ const function1335 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(60), s = i(15), a = function (t) {
+    var o = i(2), r = i(61), s = i(15), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i

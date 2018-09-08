@@ -1,34 +1,42 @@
 const function828 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(49), r = function () {
-        function t(t, e, i) {
-            var n = this;
-            this._onClickYES = function () {
-                n.onComplete(!0)
-            }, this._onClickNO = function () {
-                n.onComplete(!1)
-            }, i.interactive = !0, i.alpha = 0, e.alpha = 0, e.x = Math.floor(600 - e.width / 2), e.y = Math.floor(360 - e.height / 2 + 27), t.addChild(i, e), e.onClickYES = this._onClickYES, e.onClickNO = this._onClickNO, this.mainView = t, this.useHiSpeedRepairConfirmView = e, this.background = i
+    var o = i(3), r = i(60), s = i(4), a = i(13), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), n = new PIXI.Container;
+            n.position.set(50, 11);
+            var _ = new s.TextBox(19, 5523516), u = a.CreateRect.gradientLeftToRight(244, 35, .65, .7),
+                l = new r.IconWeapon;
+            return i.texture = o.COMMON_MAIN.getTexture(45), n.mask = u, n.addChild(_, u), e.addChild(i, n, l), e.iconWeapon = l, e.background = i, e.textItemName = _, e.maskItemName = u, e.containerItemName = n, e
         }
 
-        return t.prototype.start = function (t) {
-            n.default.view.clickGuard = !0;
-            var e = n.default.model.ndock.get(t), i = n.default.model.ship.get(e.shipMemID),
-                r = n.default.model.useItem.get(1).count;
-            this.useHiSpeedRepairConfirmView.update(i, r);
-            var s = o.UISettings.DIALOG_FADETIME, a = { alpha: 1 };
-            createjs.Tween.get(this.background).to(a, s), createjs.Tween.get(this.useHiSpeedRepairConfirmView).to(a, s).call(function () {
-                n.default.view.clickGuard = !1
-            })
-        }, t.prototype.hide = function (t) {
-            n.default.view.clickGuard = !0;
-            var e = o.UISettings.DIALOG_FADETIME, i = { alpha: 0 };
-            createjs.Tween.get(this.background).to(i, e), createjs.Tween.get(this.useHiSpeedRepairConfirmView).to(i, e).call(function () {
-                n.default.view.clickGuard = !1, t()
-            })
-        }, t.prototype.dispose = function () {
-            this.mainView.removeChild(this.background), this.mainView.removeChild(this.useHiSpeedRepairConfirmView), this.onComplete = null, this.mainView = null, this.useHiSpeedRepairConfirmView = null, this.background = null
-        }, t
-    }();
-    e.PhaseHiSpeedRepairConfirm = r
+        return n(e, t), e.prototype.update = function (t) {
+            this._update_(t.name, t.iconType)
+        }, e.prototype.empty = function () {
+            this._updateIconType_(0), this._updateItemName_("")
+        }, e.prototype._update_ = function (t, e) {
+            this._updateIconType_(e), this._updateItemName_(t)
+        }, e.prototype._updateItemName_ = function (t) {
+            this.textItemName.text = t
+        }, e.prototype._updateIconType_ = function (t) {
+            this.iconWeapon.update(t)
+        }, e.prototype.dispose = function () {
+            this.iconWeapon.dispose(), this.background.texture = PIXI.Texture.EMPTY, this.containerItemName.removeChildren(), this.containerItemName.mask = null, this.maskItemName.texture = PIXI.Texture.EMPTY, this.textItemName.text = "", this.iconWeapon = null, this.background = null, this.textItemName = null, this.background = null, this.containerItemName = null, this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.SimpleSlotItemSlot = _
 }

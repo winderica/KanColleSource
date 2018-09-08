@@ -15,26 +15,19 @@ const function583 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(11), s = function (t) {
+        function e(e, i, n) {
+            void 0 === n && (n = !1);
+            var o = t.call(this) || this;
+            return o._url = "api_req_mission/result", o._deck_id = e, o._result_model = i, o._debug = n, o
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (this.clear(), t < 20) {
-                var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(36)),
-                    i = new PIXI.Sprite(o.COMMON_MISC.getTexture(113));
-                i.x = Math.floor(e.width - i.width / 2 - 3), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-            } else if (t < 30) {
-                var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(35)),
-                    i = new PIXI.Sprite(o.COMMON_MISC.getTexture(112));
-                i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-            }
-        }, e.prototype.clear = function () {
-            this.removeChildren()
-        }, e.prototype.dispose = function () {
-            this.clear()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = o.default.model.deck.get(this._deck_id), i = e.expedition.expedition_id;
+            this._result_model.setData(this._raw_data, i), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.BannerTired = r
+    }(r.APIBase);
+    e.ExpeditionResultAPI = s
 }

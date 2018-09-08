@@ -15,7 +15,7 @@ const function1369 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(69), s = i(27), a = i(28), _ = i(19), u = i(2), l = i(8), c = i(14), h = i(1),
+    var o = i(0), r = i(71), s = i(27), a = i(28), _ = i(19), u = i(2), l = i(8), c = i(14), h = i(1),
         p = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
@@ -31,7 +31,7 @@ const function1369 = function (t, e, i) {
                     var r = u[_];
                     if (null != r) {
                         var l = r.mst_id, a = r.isDamaged();
-                        e.add(l, a, "banner")
+                        e.add(l, a, "banner"), 0 == a && e.add(l, !0, "banner")
                     }
                 }
                 null == t ? e.load() : e.load(t)

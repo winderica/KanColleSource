@@ -15,40 +15,47 @@ const function1483 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(28), r = i(19), s = i(40), a = i(36), _ = i(473), u = i(474), l = function (t) {
+    var o = i(36), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new _.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new u.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-            this._line.visible = !1, this._line.texture = a.BATTLE_RESULT_MAIN.getTexture(2), this._info.alpha = 0, this._info.user_name.text = t, this._info.level.initialize(), this._info.level.text = e.toString(), this._info.deck_name.initialize(), this._info.deck_name.text = i, this._gauge_label.texture = a.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(65298), this._gauge.alpha = 0, n && (this._gauge_label.visible = !1, this._gauge.visible = !1)
-        }, e.prototype.createShowTween = function () {
-            var t = this;
-            return createjs.Tween.get(this._info).call(function () {
-                t._line.visible = !0
-            }).to({ alpha: 1 }, 100)
-        }, e.prototype.createHideGaugeTweens = function (t) {
-            return [createjs.Tween.get(this._gauge_label).to({ alpha: 0 }, 200), createjs.Tween.get(this._gauge).to({ alpha: 0 }, 200), createjs.Tween.get(this._line).wait(200).to({ x: t }, 500), createjs.Tween.get(this._info).wait(200).to({ x: t }, 500)]
-        }, e.prototype.createTaskShowGauge = function (t, e, i) {
-            if (0 == this._gauge.visible) return new s.WaitTask(0);
-            var n, a = new r.TweenTask;
-            this._gauge_label.x += 15, n = createjs.Tween.get(this._gauge_label).wait(i).to({
-                x: this._gauge_label.x - 15,
-                alpha: 1
-            }, 200), a.addTween(n), this._gauge.x += 15, n = createjs.Tween.get(this._gauge).wait(i).to({
-                x: this._gauge.x - 15,
-                alpha: 1
-            }, 200), a.addTween(n);
-            var _ = new o.SerialTask;
-            _.add(a), n = this._gauge.createTween(t, e);
-            var u = new r.TweenTask;
-            return u.addTween(n), _.add(u), _
-        }, e.prototype.createShowDeckNameTween = function (t, e, i) {
-            return this._info.deck_name.text = t, createjs.Tween.get(this._info.deck_name).wait(i).to({ alpha: 1 }, e)
-        }, e.prototype.createHideDeckNameTween = function (t, e) {
-            return createjs.Tween.get(this._info.deck_name).wait(e).to({ alpha: 0 }, t)
+        return n(e, t), e.prototype.update = function (t) {
+            switch (t) {
+                case 0:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(44);
+                    break;
+                case 1:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(46);
+                    break;
+                case 2:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(48);
+                    break;
+                case 3:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(50);
+                    break;
+                case 4:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(52);
+                    break;
+                case 5:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(54);
+                    break;
+                case 6:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(56);
+                    break;
+                case 7:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(58);
+                    break;
+                case 8:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(60);
+                    break;
+                case 9:
+                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(62);
+                    break;
+                default:
+                    this.texture = PIXI.Texture.EMPTY
+            }
         }, e
-    }(PIXI.Container);
-    e.DeckInfoPanelFriend = l
+    }(PIXI.Sprite);
+    e.ResultDialogNumLight = r
 }

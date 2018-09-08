@@ -16,15 +16,18 @@ const function881 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(10), r = i(0), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_kousyou/open_new_dock", i.kDockId = e, i
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_kousyou/createship_speedchange", n.api_kdock_id = e, n.isLarge = i, n
         }
 
-        return n(e, t), e.prototype._completedEnd = function () {
-            var e = r.default.model.kdock.get(this.kDockId), i = r.default.model.useItem.get(49);
-            e.__open__(), i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_highspeed = 1, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = r.default.model.useItem.get(2), i = r.default.model.kdock.get(this.api_kdock_id),
+                n = this.isLarge ? 10 : 1;
+            e.__setCount__(e.count - n), i.__complete__(), t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.OpenNewDockAPI = s
+    e.CreateShipSpeedChangeAPI = s
 }

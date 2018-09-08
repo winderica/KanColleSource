@@ -15,64 +15,33 @@ const function1266 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(19), s = i(1267), a = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._layer = e, s._ship_pos = i, s._drum_num = n, s._daihatsu_num = o, s._direction = r, s
+    var o = i(0), r = i(8), s = i(59), a = i(79), _ = i(205), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._balloon1 = this._createBalloon(this._direction, 1), this._balloon1.initialize(), this._drum_num > 0 && (this._balloon2 = this._createBalloon(this._direction, 2), this._balloon2.initialize(), this._balloon2.update(this._drum_num)), this._daihatsu_num > 0 && (this._balloon3 = this._createBalloon(this._direction, 3), this._balloon3.initialize(), this._balloon3.update(this._daihatsu_num)), this._showBalloons()
-        }, e.prototype._createBalloon = function (t, e) {
-            return 0 == t ? new s.LandingBalloonType1(e) : 1 == t ? new s.LandingBalloonType2(e) : 2 == t ? new s.LandingBalloonType3(e) : null
-        }, e.prototype._showBalloons = function () {
-            var t = this, e = new r.TweenTask;
-            0 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 48, -18)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 0, -42)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -51, -18))) : 1 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 50, -9)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 44, 8)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -15, 8))) : 2 == this._direction && (e.addTween(this._createShowTween(this._balloon1, -14, -21)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, -33, -17)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -24, 8))), e.start(function () {
-                t._wait()
-            })
-        }, e.prototype._wait = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(250).call(function () {
-                t._scaling()
-            })
-        }, e.prototype._scaling = function () {
-            var t = this, e = new r.TweenTask;
-            e.addTween(this._createScalingTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createScalingTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createScalingTween(this._balloon3)), e.start(function () {
-                t._wait2()
-            })
-        }, e.prototype._wait2 = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(2e3).call(function () {
-                t._hideBalloons()
-            })
-        }, e.prototype._hideBalloons = function () {
-            var t = this, e = new r.TweenTask;
-            e.addTween(this._createHideTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createHideTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createHideTween(this._balloon3)), e.start(function () {
-                t._endTask()
-            })
-        }, e.prototype._createShowTween = function (t, e, i) {
-            var n = this;
-            return t.x = this._ship_pos.x + e, t.y = this._ship_pos.y + i + 23, t.alpha = 0, createjs.Tween.get(t).call(function () {
-                n._layer.addChild(t)
-            }).to({ y: this._ship_pos.y + i, alpha: 1 }, 100, createjs.Ease.sineOut)
-        }, e.prototype._createScalingTween = function (t) {
-            var e = t.y;
-            return createjs.Tween.get(t).to({
-                y: e - 5,
-                scaleX: 1.2,
-                scaleY: 1.2
-            }, 150, createjs.Ease.sineOut).to({ y: e, scaleX: 1, scaleY: 1 }, 300, createjs.Ease.sineOut)
-        }, e.prototype._createHideTween = function (t) {
-            var e = this;
-            return createjs.Tween.get(t).to({
-                y: t.y + 23,
-                alpha: 0
-            }, 100, createjs.Ease.sineOut).call(function () {
-                e._layer.removeChild(t)
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._ship_pos = null, this._balloon1 = null, this._balloon2 = null, this._balloon3 = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "particle", {
+            get: function () {
+                return this._particle
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message_box", {
+            get: function () {
+                return this._message_box
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "white", {
+            get: function () {
+                return this._white
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._bg = null, this._item = null, this._particle.deactivate(), this._particle = null, this._message_box.deactivate(), this._message_box = null, this._white = null
         }, e
-    }(o.TaskBase);
-    e.TaskLandingBalloon = a
+    }(PIXI.Container);
+    e.BonusUseItem = u
 }

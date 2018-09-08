@@ -15,50 +15,40 @@ const function1490 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1491), r = function (t) {
+    var o = i(28), r = i(19), s = i(40), a = i(36), _ = i(476), u = i(477), l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._items = new Array, e
+            return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new _.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new u.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._resetItems();
-            var e = 0;
-            e = 7 == t.length ? 0 : 68;
-            for (var i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null != n) {
-                    var r = new o.BannerInfoEnemy;
-                    r.alpha = 0, r.y = e + 68 * i, this._items.push(r);
-                    var s = n.name, a = 0;
-                    "elite" == n.yomi ? a = 1 : "flagship" == n.yomi && (a = 2), r.initialize(s, a), this.addChild(r)
-                }
-            }
-        }, e.prototype.dispose = function () {
-            this._resetItems(), this.removeChildren(), this._items = null
-        }, e.prototype.createShowTweens = function (t) {
-            for (var e = [], i = 0; i < this._items.length; i++) {
-                var n = this._items[i];
-                n.x += 15;
-                var o = createjs.Tween.get(n).wait(t + 100 * i).to({ x: n.x - 15, alpha: 1 }, 300);
-                e.push(o)
-            }
-            return e
-        }, e.prototype.createHideTweens = function (t) {
-            for (var e = [], i = 0; i < this._items.length; i++) {
-                var n = this._items[i], o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
-                    x: n.x + 15,
-                    alpha: 0
-                }, 300);
-                e.push(o)
-            }
-            return e
-        }, e.prototype._resetItems = function () {
-            for (null == this._items && (this._items = []); this._items.length > 0;) {
-                var t = this._items.pop();
-                null != t.parent && t.parent.removeChild(t), t.dispose()
-            }
+        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+            this._line.visible = !1, this._line.texture = a.BATTLE_RESULT_MAIN.getTexture(2), this._info.alpha = 0, this._info.user_name.text = t, this._info.level.initialize(), this._info.level.text = e.toString(), this._info.deck_name.initialize(), this._info.deck_name.text = i, this._gauge_label.texture = a.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(65298), this._gauge.alpha = 0, n && (this._gauge_label.visible = !1, this._gauge.visible = !1)
+        }, e.prototype.createShowTween = function () {
+            var t = this;
+            return createjs.Tween.get(this._info).call(function () {
+                t._line.visible = !0
+            }).to({ alpha: 1 }, 100)
+        }, e.prototype.createHideGaugeTweens = function (t) {
+            return [createjs.Tween.get(this._gauge_label).to({ alpha: 0 }, 200), createjs.Tween.get(this._gauge).to({ alpha: 0 }, 200), createjs.Tween.get(this._line).wait(200).to({ x: t }, 500), createjs.Tween.get(this._info).wait(200).to({ x: t }, 500)]
+        }, e.prototype.createTaskShowGauge = function (t, e, i) {
+            if (0 == this._gauge.visible) return new s.WaitTask(0);
+            var n, a = new r.TweenTask;
+            this._gauge_label.x += 15, n = createjs.Tween.get(this._gauge_label).wait(i).to({
+                x: this._gauge_label.x - 15,
+                alpha: 1
+            }, 200), a.addTween(n), this._gauge.x += 15, n = createjs.Tween.get(this._gauge).wait(i).to({
+                x: this._gauge.x - 15,
+                alpha: 1
+            }, 200), a.addTween(n);
+            var _ = new o.SerialTask;
+            _.add(a), n = this._gauge.createTween(t, e);
+            var u = new r.TweenTask;
+            return u.addTween(n), _.add(u), _
+        }, e.prototype.createShowDeckNameTween = function (t, e, i) {
+            return this._info.deck_name.text = t, createjs.Tween.get(this._info.deck_name).wait(i).to({ alpha: 1 }, e)
+        }, e.prototype.createHideDeckNameTween = function (t, e) {
+            return createjs.Tween.get(this._info.deck_name).wait(e).to({ alpha: 0 }, t)
         }, e
     }(PIXI.Container);
-    e.BannerInfoEnemyCanvas = r
+    e.DeckInfoPanelFriend = l
 }

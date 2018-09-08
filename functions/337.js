@@ -15,18 +15,25 @@ const function337 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(13), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._light = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(3)), e._light.position.set(600, 195), e._light.anchor.set(.5, .5), e.addChild(e._light), e._light_place = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(4)), e._light_place.position.set(600, 360), e._light_place.anchor.set(.5, .5), e.addChild(e._light_place);
+            var i = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(2));
+            return i.position.set(509, 276), e.addChild(i), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
-            o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "light", {
+            get: function () {
+                return this._light
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "light_place", {
+            get: function () {
+                return this._light_place
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._light = null, this._light_place = null
         }, e
-    }(r.APIBase);
-    e.SlotItemLockAPI = a
+    }(PIXI.Container);
+    e.FailedPenguin = r
 }

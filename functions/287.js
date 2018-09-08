@@ -15,30 +15,21 @@ const function287 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(288), r = i(20), s = function (t) {
+    var o = i(103), r = function (t) {
         function e() {
-            for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
-                var u = new PIXI.Sprite, l = i[_];
-                u.position.x = l[0], u.position.y = l[1], u.alpha = 1;
-                var c = new o.KiraAnimation(u, n, s);
-                a.push(c), e.addChild(u)
-            }
-            return e.kiraAnimations = a, e.visible = !1, e
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype.play = function () {
-            this.visible = !0;
-            for (var t = 0; t < this.kiraAnimations.length; t++) {
-                var e = Math.floor(3 * Math.random());
-                this.kiraAnimations[t].play(e)
-            }
-        }, e.prototype.stop = function () {
-            this.visible = !1;
-            for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].stop()
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = o.PORT_RINGMENU.getTexture(7), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: 2 * Math.PI }, 24e3))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e.prototype.dispose = function () {
-            for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].dispose(), this.kiraAnimations[t] = null;
-            this.kiraAnimations = null, this.removeChildren()
+            this.deactivate()
         }, e
     }(PIXI.Container);
-    e.BaseKirakira = s
+    e.RingMenuBtnBgOn = r
 }

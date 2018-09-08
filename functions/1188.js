@@ -15,41 +15,25 @@ const function1188 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(1189), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(11), r = i(6), s = i(238), a = i(170), _ = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._model = e, n._holder = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
             var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
+            r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
+                t._update()
             })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+        }, e.prototype._update = function () {
+            var t = this, e = this._holder.selected_page_no, i = this._holder.selected_type;
+            new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._model = null, this._holder = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            var t = this._getBGMID();
-            o.default.sound.bgm.play(t), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e.prototype._getBGMID = function () {
-            var t = o.default.model.deck.get(1).getShipModel(1);
-            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+    }(o.TaskBase);
+    e.TaskExecutedDutySelect = _
 }

@@ -15,41 +15,78 @@ const function943 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(25), r = i(1), s = function (t) {
+    var o = i(4), r = i(25), s = i(1), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
-                i._update(!0)
-            }, i._onMouseOut = function () {
-                i._update(!1)
-            }, i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick(i._category)
-            }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i.addChild(i._label), i.interactive = !0, i
+            i._onPrev5 = function () {
+                var t = Math.max(i._page_now - 5, 1);
+                i._onChange(t)
+            }, i._onNext5 = function () {
+                var t = Math.min(i._page_now + 5, i._page_max);
+                i._onChange(t)
+            }, i._onChange = function (t) {
+                null != i._cb_onChangePage && i._cb_onChangePage(t)
+            }, i._cb_onChangePage = e, i._pages = [];
+            for (var n = 0; n < 5; n++) {
+                var o = new _(i._onChange);
+                o.x = 33 + 51 * n, i.addChild(o), i._pages.push(o)
+            }
+            return i._prev = new u(i._onPrev5), i._prev.position.set(0, 8), i.addChild(i._prev), i._next = new u(i._onNext5), i._next.position.set(290, 8), i.addChild(i._next), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "category", {
-            get: function () {
-                return this._category
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "selected", {
-            get: function () {
-                return this._selected
-            }, set: function (t) {
-                this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), this._update(!1))
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._category = t, this._update(!1), 0 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(86), this._label.position.set(11, 12)) : 1 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(87), this._label.position.set(15, 9)) : 2 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(88), this._label.position.set(15, 15)) : 3 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(89), this._label.position.set(15, 15)) : 4 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(90), this._label.position.set(15, 14)) : this._label.texture = PIXI.Texture.EMPTY
-        }, e.prototype.activate = function () {
-            this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this._deactivate()
+        return n(e, t), e.prototype.initialize = function () {
+            for (var t = 0, e = this._pages; t < e.length; t++) {
+                e[t].initialize()
+            }
+            this._prev.initialize(r.SALLY_AIRUNIT.getTexture(28)), this._next.initialize(r.SALLY_AIRUNIT.getTexture(27))
+        }, e.prototype.update = function (t, e) {
+            this._page_now = t, this._page_max = e;
+            var i = Math.min(t - 2, e - 4);
+            i = Math.max(i, 1);
+            for (var n = 0; n < 5; n++) {
+                var o = this._pages[n], r = i + n;
+                o.enabled = r <= e, o.selected = r == t, o.update(r)
+            }
+            this._prev.buttonMode = t > 1, this._next.buttonMode = t < e
         }, e.prototype.dispose = function () {
-            this._deactivate(), this._cb_onClick = null
-        }, e.prototype._update = function (t) {
-            0 == t && 0 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(92) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(91)
-        }, e.prototype._deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            for (var t = 0, e = this._pages; t < e.length; t++) {
+                e[t].dispose()
+            }
+            this._prev.dispose(), this._next.dispose(), this._cb_onChangePage = null
         }, e
     }(PIXI.Container);
-    e.AirUnitListTab = s
+    e.AirUnitListPager = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._page_no = 0, i.enabled = !0, i.selected = !1, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick(i._page_no)
+            }, i._cb_onClick = e, i.interactive = !0, i.hitArea = new PIXI.Rectangle(0, 0, 51, 36), i
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._text = new o.TextBox(24, 1949120), this.addChild(this._text)
+        }, e.prototype.update = function (t) {
+            this._page_no = t, this._text.text = this._page_no.toString(), 0 == this.enabled ? (this._text.style.fontSize = 30, this._text.style.fill = 16774898, this._text.y = 3, this.deactivate()) : 1 == this.selected ? (this._text.style.fontSize = 36, this._text.style.fill = 1949120, this._text.y = 0, this.deactivate()) : (this._text.style.fontSize = 30, this._text.style.fill = 4999235, this._text.y = 3, this.activate()), this._text.x = 26 - Math.round(this._text.width / 2)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
+        }, e
+    }(PIXI.Container), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
+            }, i._cb_onClick = e, i.interactive = !0, i
+        }
+
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = t, this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.off(s.EventType.CLICK, this._onClick), this._cb_onClick = null
+        }, e
+    }(PIXI.Sprite)
 }

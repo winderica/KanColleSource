@@ -15,15 +15,33 @@ const function584 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(20), r = function (t) {
+    var o = i(585), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e.arrow = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), e.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(40)), e.lockIcon.x = 9, e.addChild(e.lockIcon), e.addChild(e.arrow), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.lockIcon = null, this.arrow = null
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = this._getTexture(t), this.visible = this.texture != PIXI.Texture.EMPTY
+        }, e.prototype.clear = function () {
+            this.update(-1)
+        }, e.prototype._getTexture = function (t) {
+            switch (t) {
+                case 1:
+                    return o.COMMON_EVENT.getTexture(0);
+                case 2:
+                    return o.COMMON_EVENT.getTexture(1);
+                case 3:
+                    return o.COMMON_EVENT.getTexture(2);
+                case 4:
+                    return o.COMMON_EVENT.getTexture(3);
+                case 5:
+                    return o.COMMON_EVENT.getTexture(4);
+                case 6:
+                    return o.COMMON_EVENT.getTexture(5);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
         }, e
-    }(PIXI.Container);
-    e.BannerLockSlot = r
+    }(PIXI.Sprite);
+    e.BannerPlate = r
 }

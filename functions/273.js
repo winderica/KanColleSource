@@ -1,40 +1,44 @@
-const function273 = function (t, e) {
-    e.arrayToObject = function (t) {
-        for (var e = {}, i = 0, n = t.length; i < n; ++i) void 0 !== t[i] && (e[i] = t[i]);
-        return e
-    }, e.merge = function (t, i) {
-        if (!i) return t;
-        if ("object" != typeof i) return t.push(i), t;
-        if ("object" != typeof t) return t = [t].concat(i);
-        Array.isArray(t) && !Array.isArray(i) && (t = e.arrayToObject(t));
-        for (var n = Object.keys(i), o = 0, r = n.length; o < r; ++o) {
-            var s = n[o], a = i[s];
-            t[s] ? t[s] = e.merge(t[s], a) : t[s] = a
+const function273 = function (t, e, i) {
+    "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-        return t
-    }, e.decode = function (t) {
-        try {
-            return decodeURIComponent(t.replace(/\+/g, " "))
-        } catch (e) {
-            return t
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(17), r = i(51), s = i(144), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new s.MapBG, e.addChild(e._bg), e._content = new PIXI.Container, e._shutter2 = new r.Shutter, e.addChild(e._content), e.addChild(e._shutter2), e
         }
-    }, e.compact = function (t, i) {
-        if ("object" != typeof t || null === t) return t;
-        i = i || [];
-        var n = i.indexOf(t);
-        if (-1 !== n) return i[n];
-        if (i.push(t), Array.isArray(t)) {
-            for (var o = [], r = 0, s = t.length; r < s; ++r) void 0 !== t[r] && o.push(t[r]);
-            return o
-        }
-        for (var a = Object.keys(t), r = 0, _ = a.length; r < _; ++r) {
-            var u = a[r];
-            t[u] = e.compact(t[u], i)
-        }
-        return t
-    }, e.isRegExp = function (t) {
-        return "[object RegExp]" === Object.prototype.toString.call(t)
-    }, e.isBuffer = function (t) {
-        return null !== t && void 0 !== t && !!(t.constructor && t.constructor.isBuffer && t.constructor.isBuffer(t))
-    }
+
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "content", {
+            get: function () {
+                return this._content
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shutter2", {
+            get: function () {
+                return this._shutter2
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._shutter2.initializeDark()
+        }, e.prototype.dispose = function () {
+            o.UIImageLoader.clearMemoryCache("battle")
+        }, e.prototype.start = function () {
+        }, e
+    }(PIXI.Container);
+    e.BattleSceneBase = a
 }

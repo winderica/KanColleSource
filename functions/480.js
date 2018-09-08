@@ -15,105 +15,60 @@ const function480 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(17), r = i(7), s = function () {
+    var o = i(0), r = i(481), s = function () {
         function t() {
-            this._skinID = 101
+            this._dic = {}
         }
 
-        return Object.defineProperty(t.prototype, "member_id", {
-            get: function () {
-                return this._o.api_member_id
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "firstFlag", {
-            get: function () {
-                return 1 != this._o.api_firstflag
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "nickName", {
-            get: function () {
-                return r.ObjUtil.getString(this._o, "api_nickname")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "level", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_level")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "rank", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_rank")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "rankName", {
-            get: function () {
-                var t = o.RANK_NAME, e = this.rank;
-                return e > 0 && e < t.length ? t[e] : t[0]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "port_bgm_id", {
-            get: function () {
-                return this._port_bgm_id
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "medal_num", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_medals")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "shipMax", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_max_chara")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "slotMax", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_max_slotitem") + 3
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getTutorialProgress = function () {
-            return r.ObjUtil.getNumber(this._o, "api_tutorial_progress")
-        }, t.prototype.getPortFurnitureMstID = function (t) {
-            return this._o.api_furniture[t]
-        }, t.prototype.getDutyExecutableCount = function () {
-            return this._duty_executable_count
-        }, t.prototype.getComment = function () {
-            return r.ObjUtil.getString(this._o, "api_comment")
-        }, t.prototype.isLargeBuild = function () {
-            return 1 == r.ObjUtil.getNumber(this._o, "api_large_dock")
-        }, t.prototype.getExtraSupplyExpedition = function () {
-            return null != this._extra_supply && (!(this._extra_supply.length < 1) && 1 == this._extra_supply[0])
-        }, t.prototype.getExtraSupplySortie = function () {
-            return null != this._extra_supply && (!(this._extra_supply.length < 2) && 1 == this._extra_supply[1])
-        }, t.prototype.getFilterStatusOrganizeList = function () {
-            return this._filter_status_olist
-        }, t.prototype.isJapaneseOrganizeList = function () {
-            return this._japanese_olist
-        }, t.prototype.getDestroyShipSlotType = function () {
-            return this._destroy_ship_slot_type
-        }, t.prototype.getUISkinID = function () {
-            return this._skinID
+        return t.prototype.getAirUnitList = function (t) {
+            return null == this._dic ? [] : null == this._dic[t] ? [] : this._dic[t]
+        }, t.prototype.getAirUnit = function (t, e) {
+            var i = this.getAirUnitList(t);
+            if (null == i) return null;
+            for (var n = 0, o = i; n < o.length; n++) {
+                var r = o[n];
+                if (r.id == e) return r
+            }
+            return null
+        }, t.prototype.getReadyAirUnitList = function (t) {
+            for (var e = [], i = this.getAirUnitList(t), n = 0, o = i; n < o.length; n++) {
+                var r = o[n];
+                1 == r.airUnitState && (0 != r.hasActiveSquadron() && e.push(r))
+            }
+            return e
         }, t
     }();
-    e.BasicModel = s;
+    e.AirUnitModelHolder = s;
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.setUserData = function (t) {
-            this._o = t
-        }, e.prototype.updateTutorialProgress = function (t) {
-            null != this._o && (this._o.api_tutorial_progress = t)
-        }, e.prototype.updatePortFurnitureMstID = function (t, e) {
-            null != this._o && (this._o.api_furniture[t] = e)
-        }, e.prototype.setPortBGMID = function (t) {
-            this._port_bgm_id = t
-        }, e.prototype.setDutyExcutableCount = function (t) {
-            this._duty_executable_count = t
-        }, e.prototype.getCoinCount = function () {
-            return r.ObjUtil.getNumber(this._o, "api_fcoin")
-        }, e.prototype.setCoinCount = function (t) {
-            null != this._o && (this._o.api_fcoin = t)
-        }, e.prototype.setExtraSupplyFlag = function (t) {
-            this._extra_supply = t
-        }, e.prototype.updateOrganizeListSetting = function (t, e) {
-            this._filter_status_olist = t, this._japanese_olist = e
-        }, e.prototype.setDestroyShipSlotType = function (t) {
-            this._destroy_ship_slot_type = t
-        }, e.prototype.setUISkinID = function (t) {
-            this._skinID = t
+        return n(e, t), e.prototype.setData = function (t) {
+            if (this._dic = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e], o = new r.AirUnitModelEdit(n), s = o.area_id;
+                null == this._dic[s] && (this._dic[s] = new Array), this._dic[s].push(o)
+            }
+        }, e.prototype.addData = function (t) {
+            if (null != this._dic) {
+                var e = new r.AirUnitModelEdit(t), i = e.area_id;
+                null == this._dic[i] && (this._dic[i] = new Array), this._dic[i].push(e)
+            }
+        }, e.prototype.updateData = function (t, e, i, n, r) {
+            var s = this.getAirUnit(t, e), a = s.squadrons[i], _ = a.state, u = a.mem_id;
+            s.updateSquadronData(n, r);
+            var l = s.squadrons[i];
+            if (1 == l.state && o.default.model.slot.deleteUnsetData(l.mem_id), 1 == _) {
+                for (var c = !1, h = 0, p = s.squadrons; h < p.length; h++) {
+                    var d = p[h];
+                    if (1 == d.state && d.mem_id == u) {
+                        c = !0;
+                        break
+                    }
+                }
+                0 == c && o.default.model.slot.addAirUnitRelocation(u)
+            }
         }, e
     }(s);
-    e.BasicModelEdit = a
+    e.AirUnitModelHolderEdit = a
 }

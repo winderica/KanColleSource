@@ -15,8 +15,8 @@ const function96 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(61), a = i(251), _ = i(252), u = i(253), l = i(254), c = i(450), h = i(256),
-        p = i(258), d = function (t) {
+    var o = i(0), r = i(2), s = i(62), a = i(248), _ = i(249), u = i(250), l = i(251), c = i(451), h = i(253),
+        p = i(255), d = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -120,11 +120,11 @@ const function96 = function (t, e, i) {
                 return !1
             }, e.prototype._getDaihatsuEffectType = function (t, e) {
                 var i = e.name;
-                if (t.hasSlot(193) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i)) return 2;
-                if (t.hasSlot(166) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i)) return 3;
+                if (t.hasSlot(193) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i)) return 2;
+                if (t.hasSlot(166) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i)) return 3;
                 if (t.hasSlot(167)) if (t.isSubMarine()) {
                     if (e.isGround()) return 4
-                } else if ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i) return 4;
+                } else if ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i) return 4;
                 return 0
             }, e.prototype._log = function (t, e, i, n, o) {
             }, e.prototype._getIndex = function (t) {

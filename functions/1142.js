@@ -15,52 +15,73 @@ const function1142 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(107), s = i(1143), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._thumbnail = new s.Thumbnail, e._thumbnail.position.set(30, 31), e._name = new o.TextBox(20, 16774898), e._name.x = 283, e._name.y = 28, e.addChild(e._name), e._description = new o.TextBox(19, 16774898), e._description.x = 285, e._description.y = 87, e._description.style.breakWords = !0, e._description.style.wordWrap = !0, e._description.style.wordWrapWidth = 258, e._description.style.lineHeight = 24.7, e._price = new o.TextBox(20, 16774898), e._price.x = 292, e._price.y = 255, e._bgmFairy = new PIXI.Sprite, e._bgmFairy.x = 368, e._bgmFairy.y = 234, e._rare = new _, e._rare.x = 319, e._rare.y = 333, e._craftman = new u, e._craftman.x = 34, e._craftman.y = 343, e
+    var o = i(0), r = i(6), s = i(106), a = i(1143), _ = i(1144), u = i(1146), l = i(1147), c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onSelect = function (t) {
+                r.SE.play("239"), n._now_selected = t;
+                var e = o.default.model.useItem.getCount(52);
+                n._detail.update(t, e), n._exchange_btn.enabled = n._getExchangeBtnEnabled(t, e)
+            }, n._onBack = function () {
+                n._now_selected = null, null != n._cb_onBack && n._cb_onBack()
+            }, n._onExchange = function () {
+                null != n._cb_onExchange && n._cb_onExchange(n._now_selected)
+            }, n._cb_onBack = e, n._cb_onExchange = i, n._header = new h, n._header.position.set(648, 147), n.addChild(n._header), n._list = new a.FShopListPanel(n._onSelect), n._list.position.set(187, 183), n.addChild(n._list), n._detail = new _.FShopDetailPanel, n._detail.position.set(643, 213), n.addChild(n._detail), n._back_btn = new u.BackBtn, n._back_btn.position.set(202, 654), n.addChild(n._back_btn), n._exchange_btn = new l.ExchangeBtn, n._exchange_btn.position.set(666, 643), n.addChild(n._exchange_btn), n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(56);
-            var t = r.ITEM_FSHOP.getTexture(10), e = new PIXI.Sprite(t);
-            e.x = 282, e.y = 61, this.addChild(e), t = r.ITEM_FSHOP.getTexture(12), e = new PIXI.Sprite(t), e.x = 282, e.y = 222, this.addChild(e), t = r.ITEM_FSHOP.getTexture(11), e = new PIXI.Sprite(t), e.x = 282, e.y = 304, this.addChild(e), this._thumbnail.initialize(), this.addChild(this._thumbnail), this.addChild(this._description), this.addChild(this._price), this._bgmFairy.texture = r.ITEM_FSHOP.getTexture(13), this.addChild(this._bgmFairy), this._rare.initialize(), this.addChild(this._rare), this._craftman.initialize(), this._craftman.visible = !1, this.addChild(this._craftman)
-        }, e.prototype.update = function (t, e) {
-            null == t ? (this._thumbnail.clean(), this._name.text = "", this._description.text = "", this._price.text = "", this._bgmFairy.visible = !1, this._rare.update(0), this._craftman.visible = !1) : (this._thumbnail.updateFromModel(t), this._name.text = t.name, this._description.text = t.description.replace(/<br>/g, "\n"), this._price.text = t.price.toString(), this._bgmFairy.visible = t.seasonID > 0, this._rare.update(t.rarity), 1 == t.isNeedCraftsman() ? (this._craftman.update(e), this._craftman.visible = !0) : this._craftman.visible = !1)
-        }, e
-    }(PIXI.Sprite);
-    e.FShopDetailPanel = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._stars = [];
-            for (var i = 0; i < 7; i++) {
-                var n = new PIXI.Sprite;
-                n.x = 30 * i, n.visible = !1, e.addChild(n), e._stars.push(n)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._type = t, this._list.initialize(), this._detail.initialize(), this._back_btn.initialize(this._onBack), this._exchange_btn.initialize(this._onExchange), this.update()
+        }, e.prototype.update = function () {
+            this._header.update(this._type);
+            var t = o.default.model.furniture.getOnSaleList(this._type);
+            this._list.update(t), this._detail.update(null, 0), this._exchange_btn.enabled = !1
+        }, e.prototype.activate = function () {
+            this._list.activate(), this._back_btn.activate(), this._exchange_btn.activate()
+        }, e.prototype.deactivate = function () {
+            this._list.deactivate(), this._back_btn.deactivate(), this._exchange_btn.deactivate()
+        }, e.prototype.dispose = function () {
+            this._list.dispose(), this._back_btn.dispose(), this._exchange_btn.dispose(), this._cb_onBack = null, this._cb_onExchange = null
+        }, e.prototype._getExchangeBtnEnabled = function (t, e) {
+            if (1 == t.has()) return !1;
+            var i = o.default.model.useItem.getCount(44);
+            if (i < t.price) {
+                if (1 != t.isHighGrade()) return !1;
+                if (i < t.getDiscountPrice() || e < 1) return !1
             }
-            return e
+            return !(1 == t.isNeedCraftsman() && e < 1)
+        }, e
+    }(PIXI.Container);
+    e.FShopListView = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(53);
-            for (var t = 0, e = this._stars; t < e.length; t++) {
-                e[t].texture = r.ITEM_FSHOP.getTexture(15)
+        return n(e, t), e.prototype.update = function (t) {
+            var e;
+            switch (t) {
+                case 0:
+                    e = 45;
+                    break;
+                case 1:
+                    e = 46;
+                    break;
+                case 2:
+                    e = 47;
+                    break;
+                case 3:
+                    e = 48;
+                    break;
+                case 4:
+                    e = 49;
+                    break;
+                case 5:
+                    e = 50;
+                    break;
+                default:
+                    return void(this.texture = PIXI.Texture.EMPTY)
             }
-        }, e.prototype.update = function (t) {
-            for (var e = 0; e < this._stars.length; e++) {
-                this._stars[e].visible = e < t
-            }
+            this.texture = s.ITEM_FSHOP.getTexture(e)
         }, e
-    }(PIXI.Sprite), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._icon = new PIXI.Sprite, e._icon.x = 1, e.addChild(e._icon), e._arrow = new PIXI.Sprite, e._arrow.x = 88, e._arrow.y = 7, e.addChild(e._arrow), e._from = new o.TextBox(19, 16774898), e._from.anchor.x = 1, e._from.x = 79, e.addChild(e._from), e._to = new o.TextBox(19, 16774898), e._to.x = 120, e.addChild(e._to), e._comment = new o.TextBox(17, 16774898), e._comment.y = 27, e._comment.text = "\u7279\u6ce8\u5bb6\u5177\u8077\u4eba\u306e\u5354\u529b\u304c\u5fc5\u8981\u3068\u306a\u308a\u307e\u3059\u3002", e.addChild(e._comment), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._icon.texture = r.ITEM_FSHOP.getTexture(8), this._arrow.texture = r.ITEM_FSHOP.getTexture(0)
-        }, e.prototype.update = function (t) {
-            this._from.text = t.toString(), t > 0 ? (this._to.style.fill = 16774898, this._to.text = (t - 1).toString()) : (this._to.style.fill = 15859712, this._to.text = "0")
-        }, e
-    }(PIXI.Container)
+    }(PIXI.Sprite)
 }

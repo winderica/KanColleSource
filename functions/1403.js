@@ -1,126 +1,52 @@
 const function1403 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1404), r = i(1405), s = i(1407), a = i(1408), _ = i(1409), u = i(1410), l = i(466),
-        c = i(467), h = function () {
-            function t(t) {
-                this._o = t
-            }
+    var n = i(0), o = function () {
+        function t(t, e, i, n) {
+            void 0 === i && (i = null), void 0 === n && (n = null), this._offset_x = 0, this._offset_y = 0, this._type = t, this._mst_id = e, this._name = n, this._stype = i
+        }
 
-            return Object.defineProperty(t.prototype, "sakuteki", {
-                get: function () {
-                    return new o.SakutekiData(this._o)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "ration", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
-                    return null == t ? [] : t
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_combined", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
-                    return null == t ? [] : t
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "stage_flag", {
-                get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_stage_flag")
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_unit_jet", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_air_base_injection");
-                    return null == t ? null : new _.AirUnitJetData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war_jet", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_injection_kouku");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_unit", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_air_base_attack");
-                    if (null == t) return [];
-                    if (0 == t.hasOwnProperty("length")) return [new s.AirUnitData(t)];
-                    for (var e = [], i = 0, o = t; i < o.length; i++) {
-                        var r = o[i];
-                        e.push(new s.AirUnitData(r))
-                    }
-                    return e
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_kouku");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "air_war2", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_kouku2");
-                    return null == t ? null : new r.AirWarData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_air", {
-                get: function () {
-                    if (1 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new l.AirSupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_hou", {
-                get: function () {
-                    if (2 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new c.SupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_rai", {
-                get: function () {
-                    if (3 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new c.SupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "support_taisen", {
-                get: function () {
-                    if (4 != n.ObjUtil.getNumber(this._o, "api_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new l.AirSupportData(e)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "raigeki_opening", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_opening_atack");
-                    return null == t ? null : new a.RaigekiData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "raigeki", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_raigeki");
-                    return null == t ? null : new a.RaigekiData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki_opening", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_opening_taisen");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki1", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki1");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki2", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki2");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki3", {
-                get: function () {
-                    var t = n.ObjUtil.getObjectArray(this._o, "api_hougeki3");
-                    return null == t ? null : new u.HougekiListData(t)
-                }, enumerable: !0, configurable: !0
-            }), t.prototype.isNightBattle = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_midnight_flag")
-            }, t
-        }();
-    e.RawDayBattleData = h
+        return Object.defineProperty(t.prototype, "type", {
+            get: function () {
+                return this._type
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "mst_id", {
+            get: function () {
+                return this._mst_id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "voice_id", {
+            get: function () {
+                return this._voice_id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "message", {
+            get: function () {
+                return this._message
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                if (null != this._name) return this._name;
+                var t = n.default.model.ship.getMst(this._mst_id);
+                return null == t ? "" : t.name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "stype", {
+            get: function () {
+                if (null != this._stype) return this._stype;
+                var t = n.default.model.ship.getMst(this._mst_id);
+                return null == t ? "" : t.shipTypeName
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offset_x", {
+            get: function () {
+                return this._offset_x
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offset_y", {
+            get: function () {
+                return this._offset_y
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.setMessage = function (t, e) {
+            return this._voice_id = t, this._message = e, this
+        }, t.prototype.setOffset = function (t, e) {
+            return this._offset_x = t, this._offset_y = e, this
+        }, t
+    }();
+    e.BossModel = o
 }

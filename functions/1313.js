@@ -1,24 +1,33 @@
 const function1313 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(17), o = i(1314), r = function () {
-        function t() {
+    var o = i(10), r = i(172), s = function (t) {
+        function e(e, i) {
+            void 0 === i && (i = !1);
+            var n = t.call(this) || this;
+            return n._url = "api_req_practice/battle", n._data = e, n._debug = i, n
         }
 
-        return t.getBossModel = function (t) {
-            var e = t.data.model.map_info.area_id;
-            return e == n.EVENT_AREA_ID ? this._getEventBossModel(e, t) : this._getBossModel(e, t)
-        }, t._getBossModel = function (t, e) {
-            var i = e.data.model.map_info.map_no, n = e.data.model.map_info.isBoss();
-            if (6 == t && 4 == i && 1 == n) {
-                var r = e.data.model.deck_e.ships[0], s = r.name;
-                if ("\u96e2\u5cf6\u68f2\u59eb" == s) return new o.BossModel(r.mst_id, "\u96e2\u5cf6\u57fa\u5730").setMessage("6466810", "\u30b3\u30b3\u30de\u30c7\u2026\u2026\u3002\u30af\u30eb\u30c8\u30ef\u2026\u2026\u30cd\u2026\u2026\u2026\u2026\u3002").setOffset(165, 0)
-            }
-        }, t._getEventBossModel = function (t, e) {
-            var i = (e.data.model.map_info.map_no, e.data.model.map_info.isBoss(), e.data.model.deck_e.ships[0]);
-            i.mst_id, i.name, e.data.model.gauge_now, i.hp_now;
-            return null
-        }, t
-    }();
-    e.BossConst = r
+        return n(e, t), e.prototype._connect = function () {
+            var e = this._data.model.deck_f, i = this._data.model.deck_e;
+            this._post_data.api_deck_id = e.id, this._post_data.api_formation_id = e.formation, this._post_data.api_enemy_id = i.id, 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+        }, e
+    }(o.APIBase);
+    e.APIPracticeStart = s
 }

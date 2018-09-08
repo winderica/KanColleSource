@@ -15,18 +15,20 @@ const function906 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(7), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._url = "api_get_member/mapinfo", e
+    var o = i(2), r = i(17), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._event = e, i
         }
 
-        return n(e, t), e.prototype._completedEnd = function () {
-            var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
-            o.default.model.map.setMapMem(e);
-            var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
-            o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("sally");
+            e.add("sally_common.json"), e.add("sally_top.json"), e.add("sally_sortie.json"), e.add("sally_practice.json"), e.add("sally_expedition.json"), e.add("sally_airunit.json"), e.add("sally_jin.json"), e.add("sally_map_parts.json"), this._event && (e.add("sally_event.json"), e.add("sally_strategymap.json")), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(r.APIBase);
-    e.MapInfoAPI = a
+    }(o.TaskBase);
+    e.TaskLoadResourcesSally = s
 }

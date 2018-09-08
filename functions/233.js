@@ -15,20 +15,15 @@ const function233 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(42), r = i(229), s = i(990), a = function (t) {
-        function e(e, i, n, o, r) {
-            return t.call(this, e, i, n, o, r) || this
+    var o = i(10), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_get_member/payitem", i._modelManager = e, i
         }
 
-        return n(e, t), e.prototype._setPositions = function () {
-            1 == this._type ? (this._clear.position.set(600, 0), this._focus.x = -2, this._focus.y = -1) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-        }, e.prototype._getNoneTexture = function () {
-            return 1 == this._type ? o.SALLY_EVENT.getTexture(10) : 2 == this._type ? o.SALLY_EVENT.getTexture(10) : 3 == this._type ? o.SALLY_EVENT.getTexture(11) : 3 == this._type ? o.SALLY_EVENT.getTexture(11) : PIXI.Texture.EMPTY
-        }, e.prototype._getFocusTexture = function () {
-            return 1 == this._type ? o.SALLY_EVENT.getTexture(9) : 2 == this._type ? o.SALLY_EVENT.getTexture(32) : 3 == this._type ? o.SALLY_EVENT.getTexture(33) : 3 == this._type ? o.SALLY_EVENT.getTexture(34) : PIXI.Texture.EMPTY
-        }, e.prototype._createLock = function () {
-            return new s.EventMapThumbnailLocked(this._type)
+        return n(e, t), e.prototype._completedEnd = function () {
+            this._modelManager.setData(this._raw_data), this._modelManager = null, t.prototype._completedEnd.call(this)
         }, e
-    }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+    }(o.APIBase);
+    e.PayItemAPI = r
 }

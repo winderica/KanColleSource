@@ -15,24 +15,52 @@ const function1492 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(1493), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+            return e._banners = [], e
         }
 
-        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
-            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({ alpha: 1 }, i)
-        }, e.prototype.createHideTween = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 0);
-            var n = createjs.Tween.get(this._img).wait(e);
-            return 1 == this._img.visible && n.to({ alpha: 0 }, t).call(function () {
-                i._img.visible = !1
-            }), n
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._resetBanners();
+            var e = 0;
+            e = 7 == t.length ? 0 : 68;
+            for (var i = 0; i < t.length; i++) {
+                var n = t[i];
+                if (null == n) return;
+                var r = new o.ShipBannerClone(n.isTaihi());
+                r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
+                var s = n.mst_id, a = n.hp_now, _ = n.hp_max;
+                r.updateTexture(s, a, _), r.updateIcon(n.damageType), this.addChild(r)
+            }
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img = null
+            this._resetBanners(), this._banners = null, this.removeChildren()
+        }, e.prototype.createShowTweens = function (t) {
+            for (var e = [], i = 0; i < this._banners.length; i++) {
+                var n = this._banners[i];
+                n.y += 30;
+                var o = createjs.Tween.get(n).wait(t + 50 * i).to({ y: n.y - 30, alpha: 1 }, 150);
+                e.push(o)
+            }
+            return e
+        }, e.prototype.createHideTweens = function (t) {
+            for (var e = [], i = 0; i < this._banners.length; i++) {
+                var n = this._banners[i],
+                    o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
+                        y: n.y + 30,
+                        alpha: 0
+                    }, 200);
+                e.push(o)
+            }
+            return e
+        }, e.prototype.getBanner = function (t) {
+            return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
+        }, e.prototype._resetBanners = function () {
+            for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
+                var t = this._banners.pop();
+                null != t.parent && t.parent.removeChild(t), t.dispose()
+            }
         }, e
     }(PIXI.Container);
-    e.LayerMVP = o
+    e.BannerSet = r
 }

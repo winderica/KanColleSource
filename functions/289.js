@@ -15,21 +15,22 @@ const function289 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = function (t) {
+    var o = i(103), r = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._check()
-        }, e.prototype._check = function () {
-            var t = o.default.model.deck.getAll();
-            t = t.filter(function (t, e, i) {
-                return null != t.expedition && 2 == t.expedition.state
-            });
-            var e = o.default.view.portMain.expedition_alert;
-            t.length > 0 ? (e.initialize(t[0].mstID), e.activate(), e.visible = !0) : (e.deactive(), e.visible = !1), this._endTask()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype._getTexture = function (t) {
+            var e;
+            if (11 == t) e = 15; else if (12 == t) e = 29; else if (13 == t) e = 17; else if (14 == t) e = 19; else if (15 == t) e = 5; else {
+                if (31 != t) return PIXI.Texture.EMPTY;
+                e = 21
+            }
+            return o.PORT_RINGMENU.getTexture(e)
         }, e
-    }(r.TaskBase);
-    e.TaskExpeditionAlertUpdate = s
+    }(PIXI.Container);
+    e.RingMenuBtnImg = r
 }

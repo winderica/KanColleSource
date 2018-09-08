@@ -1,49 +1,47 @@
 const function506 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(507), s = function () {
-        function t() {
-            this._dic = {}
+    var n = i(7), o = i(261), r = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return t.prototype.getData = function (t) {
-            var e = t.toString();
-            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getOrder = function (t) {
-            return null == this._orders ? [] : this._orders.length <= t ? [] : this._orders[t]
+        return Object.defineProperty(t.prototype, "mst_id", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "area_id", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_maparea_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "map_no", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_no")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return n.ObjUtil.getString(this._o, "api_name")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "operation_name", {
+            get: function () {
+                return n.ObjUtil.getString(this._o, "api_opetext")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "operation_detail", {
+            get: function () {
+                return n.ObjUtil.getString(this._o, "api_infotext")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "item_ids", {
+            get: function () {
+                return n.ObjUtil.getNumArray(this._o, "api_item")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "defeat_required", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_required_defeat_count")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getAllowedDeckType = function () {
+            var t = new o.AllowedDeckTypeModel, e = n.ObjUtil.getNumArray(this._o, "api_sally_flag");
+            return null != e && (e.length > 0 && (t.normal = e[0]), e.length > 1 && (t.rengo = e[1]), e.length > 2 && (t.yugeki = e[2])), t
         }, t
     }();
-    e.PayItemModelHolder = s;
-    var a = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-
-        return n(e, t), e.prototype.setData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new r.PayItemModel(i), o = n.id;
-                o > 0 && (this._dic[o] = n)
-            }
-        }, e.prototype.setOrders = function (t) {
-            if (this._orders = [], null != t) {
-                var e = o.ObjUtil.getNumArray(t, "api_cabinet_1");
-                null == e ? this._orders.push([]) : this._orders.push(e), e = o.ObjUtil.getNumArray(t, "api_cabinet_2"), null == e ? this._orders.push([]) : this._orders.push(e)
-            }
-        }, e
-    }(s);
-    e.PayItemModelHolderEdit = a
+    e.MapMstModel = r
 }

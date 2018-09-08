@@ -15,20 +15,21 @@ const function1006 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(53), r = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(195), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._deck_f = e, n._deck_e = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_PRACTICE.getTexture(28);
-            var t = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(29));
-            t.position.set(40, 57), this.addChild(t);
-            var e = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(30));
-            e.position.set(102, 64), this.addChild(e);
-            var i = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(32));
-            i.position.set(132, 64), this.addChild(i)
-        }, e
-    }(PIXI.Sprite);
-    e.UserinfoPanelBG = r
+        return n(e, t), Object.defineProperty(e.prototype, "deck_f", {
+            get: function () {
+                return this._deck_f
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "deck_e", {
+            get: function () {
+                return this._deck_e
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(o.SceneModel);
+    e.PracticeSceneModel = r
 }

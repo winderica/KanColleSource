@@ -15,20 +15,28 @@ const function632 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(21), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._skinID = e, i
+    var o = i(9), r = i(48), s = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("port");
-            e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
-                t._endTask()
-            })
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._createContent = function () {
+            this._panel = new PIXI.Container;
+            var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
+            t.position.set(-267, -138), this._panel.addChild(t);
+            var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
+            e.position.set(-45, -12), this._panel.addChild(e);
+            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
+            i.position.set(-67, 102), this._panel.addChild(i);
+            var n = new PIXI.Sprite;
+            350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
+        }, e.prototype._removeContent = function () {
+            this._dialog.container.removeChild(this._panel), this._panel = null
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResources = s
+    }(r.TaskRewardDialogBase);
+    e.TaskRewardDialogWarResult = s
 }

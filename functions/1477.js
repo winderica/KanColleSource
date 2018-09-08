@@ -15,47 +15,40 @@ const function1477 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(36), r = function (t) {
+    var o = i(18), r = i(22), s = i(29), a = i(42), _ = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (t) {
-                case 0:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(43);
-                    break;
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0); else switch (t) {
                 case 1:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(45);
+                    this._img.texture = s.SALLY_COMMON.getTexture(1);
                     break;
                 case 2:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(47);
+                    this._img.texture = s.SALLY_COMMON.getTexture(3);
                     break;
                 case 3:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(49);
+                    this._img.texture = s.SALLY_COMMON.getTexture(5);
                     break;
                 case 4:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(51);
+                    this._img.texture = s.SALLY_COMMON.getTexture(9);
                     break;
                 case 5:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(53);
+                    this._img.texture = s.SALLY_COMMON.getTexture(11);
                     break;
                 case 6:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(55);
+                    this._img.texture = s.SALLY_COMMON.getTexture(13);
                     break;
                 case 7:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(57);
-                    break;
-                case 8:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(59);
-                    break;
-                case 9:
-                    this.texture = o.BATTLE_RESULT_MAIN.getTexture(61);
+                    this._img.texture = s.SALLY_COMMON.getTexture(7);
                     break;
                 default:
-                    this.texture = PIXI.Texture.EMPTY
+                    this._img.texture = PIXI.Texture.EMPTY
             }
+            this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
         }, e
-    }(PIXI.Sprite);
-    e.ResultDialogNum = r
+    }(r.Container);
+    e.AreaIcon = _
 }

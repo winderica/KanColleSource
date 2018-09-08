@@ -15,23 +15,71 @@ const function998 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(999), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._enabled = !1, i._btn1 = new r.BtnMatchingSelect(e), i._btn2 = new r.BtnMatchingSelect(e), i._btn3 = new r.BtnMatchingSelect(e), i._txt1 = new o.TextBox(19, 4999235), i._txt = new o.TextBox(15, 4999235), i
+    var o = i(37), r = i(999), s = i(1e3), a = i(1002), _ = i(1016), u = i(1017), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this, e, i) || this;
+            n._timer_id = 0, n._onChangeMatching = function (t) {
+                new u.TaskChangeMatching(t, n).start()
+            }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
+            for (var o = 0; o < 5; o++) {
+                var r = new a.CompRivalDeck;
+                r.position.set(211, 267 + 82 * o), n._rivals.push(r)
+            }
+            return n._matching_btns = new s.CompMatchingSelectBtns(n._onChangeMatching), n._matching_btns.position.set(460, 669), n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._btn1.initialize(0), this._btn2.initialize(1), this._btn3.initialize(2), this._txt1.text = "\u3088\u308a\u6b21\u56de\u6f14\u7fd2\u5019\u88dc\u3092\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u3002", this._txt1.position.set(141, 7), this.addChild(this._btn1), this.addChild(this._btn2), this.addChild(this._btn3), this.addChild(this._txt1), this.addChild(this._txt)
-        }, e.prototype.update = function (t, e) {
-            this._enabled = t, 1 == t ? (this._btn1.position.set(0, 0), this._btn2.position.set(150, 0), this._btn3.position.set(300, 0), this._txt1.visible = !1, this._txt.position.set(445, 9), 0 == e ? (this._btn1.setSelected(!0), this._btn2.setSelected(!1), this._btn3.setSelected(!1)) : 1 == e ? (this._btn1.setSelected(!1), this._btn2.setSelected(!0), this._btn3.setSelected(!1)) : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!0)), this._txt.text = "\u6f14\u7fd2\u76f8\u624b\u306f\u4e00\u65e5\u4e8c\u56de\u66f4\u65b0\u3055\u308c\u307e\u3059\u3002") : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!1), this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate(), this._btn1.visible = !1, this._btn2.visible = !1, this._btn3.visible = !1, 0 == e ? (this._btn1.visible = !0, this._btn1.position.set(0, 0)) : 1 == e ? (this._btn2.visible = !0, this._btn2.position.set(0, 0)) : (this._btn3.visible = !0, this._btn3.position.set(0, 0)), this._txt1.visible = !0, this._txt.position.set(490, 10), this._txt.text = "\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u5909\u66f4\u53ef\u80fd\u3067\u3059\u3002")
+        return n(e, t), Object.defineProperty(e.prototype, "rivals", {
+            get: function () {
+                return this._rivals
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "matching_btns", {
+            get: function () {
+                return this._matching_btns
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            t.prototype.initialize.call(this), this._sub_title.initialize(), this.addChild(this._sub_title);
+            for (var e = 0, i = this._rivals; e < i.length; e++) {
+                var n = i[e];
+                n.initialize(), this.addChild(n)
+            }
+            this._matching_btns.initialize(), this.addChild(this._matching_btns)
+        }, e.prototype.update = function (t) {
+            o.TaskLoadShipResource.abortBy(this), this._sub_title.update(t.matching_type);
+            for (var e = t.rivals, i = 0; i < this._rivals.length; i++) {
+                var n = this._rivals[i];
+                e.length <= i ? n.visible = !1 : (n.update(e[i]), n.visible = !0)
+            }
+            this._selected_matching_type = t.matching_type_next;
+            var r = t.remain_time;
+            this._startTimer(1e3 * r), this._matching_btns.update(r > 0, t.matching_type_next)
+        }, e.prototype.updateMatchingState = function (t, e) {
+            this._selected_matching_type = e, this._matching_btns.update(t, e), this._matching_btns.activate()
         }, e.prototype.activate = function () {
-            1 == this._enabled && (this._btn1.activate(), this._btn2.activate(), this._btn3.activate())
+            t.prototype.activate.call(this);
+            for (var e = 0, i = this.rivals; e < i.length; e++) {
+                i[e].activate()
+            }
+            this._matching_btns.activate()
         }, e.prototype.deactivate = function () {
-            this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate()
+            t.prototype.deactivate.call(this);
+            for (var e = 0, i = this.rivals; e < i.length; e++) {
+                i[e].deactivate()
+            }
+            this._matching_btns.deactivate(), o.TaskLoadShipResource.abortBy(this)
         }, e.prototype.dispose = function () {
-            this._btn1.dispose(), this._btn2.dispose(), this._btn3.dispose()
+            t.prototype.dispose.call(this);
+            for (var e = 0, i = this.rivals; e < i.length; e++) {
+                i[e].dispose()
+            }
+            this._matching_btns.dispose(), this._stopTimer()
+        }, e.prototype._startTimer = function (t) {
+            var e = this;
+            this._stopTimer(), t > 0 && (this._timer_id = setTimeout(function () {
+                e.updateMatchingState(!1, e._selected_matching_type), e._timer_id = 0
+            }, t))
+        }, e.prototype._stopTimer = function () {
+            this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
         }, e
-    }(PIXI.Container);
-    e.CompMatchingSelectBtns = s
+    }(r.ViewMainBase);
+    e.ViewMain = l
 }

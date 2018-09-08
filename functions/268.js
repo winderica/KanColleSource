@@ -15,86 +15,34 @@ const function268 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(2), a = i(77), _ = i(7), u = i(28), l = function () {
-        function t(t, e) {
+    var o = i(5), r = i(8), s = function (t) {
+        function e() {
+            for (var e = t.call(this, 0, 0, o.default.width, o.default.height) || this, i = 0; i < 20; i++) {
+                var n = 4.5 * i;
+                e.beginFill(0, .8 * Math.cos(n * Math.PI / 180)), e.drawRect(0, o.default.height - 3 * i, o.default.width, 3), e.endFill()
+            }
+            return e._arc = PIXI.Sprite.fromImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA1ElEQVQ4jaWUzRGCMBBGv8x4xw60Ay3BDrQDSqEFO4gl2IF0gFagHUQreB5EHcku4PBu7LBvfxKQOgALIAKJnAYouzkZQGUkWzTAaqrkzdWSlH9KUtYRr51Mk7SiOFnSijyuQNEZ35b0iPzKDjMnfg4hXIyihaS18f7dE82d+EbS0YjXfTv6ucFAwesiWsSZpJukpVHlAMwlndvnvTPWp6Oqp6sxJKAYankM3xUAK+yvfYiYDdnK/umscvb1OZnTgCBh/JOCI9xK2hmnWUvahxAe3ZwnVxLPxY8eTuoAAAAASUVORK5CYII="), e._arc.anchor.set(.5, .5), e._arc.x = o.default.width - 23, e._arc.y = o.default.height - 23, e._arc.scale.set(1.5), e._arc.alpha = .8, e.addChild(e._arc), e
+        }
+
+        return n(e, t), e.prototype.show = function (t, e) {
             var i = this;
-            this._onImageLoadComplete = function (t, e) {
-                null != t && i._cb_onLoadCompleteResources(t.resources), null != i._cb_onTaskComplete && i._cb_onTaskComplete(), i._cb_onLoadCompleteInfo = null, i._cb_onLoadCompleteResources = null, i._cb_onTaskComplete = null, i._keys = null
-            }, this._cb_onLoadCompleteInfo = t, this._cb_onLoadCompleteResources = e, this._keys = []
-        }
-
-        return Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return this._keys.length
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.add = function (t) {
-            return -1 == this._keys.indexOf(t) && this._keys.push(t), this
-        }, t.prototype.load = function (t) {
-            var e = this;
-            void 0 === t && (t = null), this._cb_onTaskComplete = t;
-            for (var i = {}, n = new u.SerialTask, o = 0, r = this._keys; o < r.length; o++) {
-                var s = r[o];
-                n.add(new p(s, i))
-            }
-            n.start(function () {
-                e._onInfoLoadComplete(i)
+            void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), this._setVisiblity(!0), t <= 0 ? (this.alpha = 1, null != e && e()) : this._tween = createjs.Tween.get(this).to({ alpha: 1 }, t).call(function () {
+                i._tween = null, null != e && e()
             })
-        }, t
-    }();
-    e.GaugeLoader = l;
-    var c = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
-            var e = new PIXI.loaders.Loader(o.default.settings.path_root), i = [];
-            for (var n in t) {
-                var s = t[n];
-                this._cb_onLoadCompleteInfo(n, s);
-                var a = s.image_path;
-                -1 == i.indexOf(a) && (i.push(a), e.add(a, "resources/gauge/" + a + ".png?" + r.START_TIME)), a = s.image_light_path, -1 == i.indexOf(a) && (i.push(a), e.add(a, "resources/gauge/" + a + ".png?" + r.START_TIME))
-            }
-            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
+        }, e.prototype.hide = function (t, e) {
+            var i = this;
+            void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), t <= 0 ? (this.alpha = 0, this._setVisiblity(!1), null != e && e()) : this._tween = createjs.Tween.get(this).to({ alpha: 0 }, t).call(function () {
+                i._setVisiblity(!1), i._tween = null, null != e && e()
+            })
+        }, e.prototype._setVisiblity = function (t) {
+            this.visible = t, 1 == t ? this._startArcTween() : this._stopArcTween()
+        }, e.prototype._startArcTween = function () {
+            null == this._tween_arc && (this._arc.rotation = 0, this._tween_arc = createjs.Tween.get(this._arc, { loop: !0 }).to({ rotation: 2 * Math.PI }, 1200))
+        }, e.prototype._stopArcTween = function () {
+            null != this._tween_arc && (this._tween_arc.setPaused(!0), this._tween_arc = null)
+        }, e.prototype._stopTween = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
         }, e
-    }(l);
-    e.HorizontalGaugeLoader = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
-            var e = new PIXI.loaders.Loader(o.default.settings.path_root), i = [];
-            for (var n in t) {
-                var s = t[n];
-                this._cb_onLoadCompleteInfo(n, s);
-                var a = s.vertical;
-                if (null != a) {
-                    var _ = a.image_path;
-                    -1 == i.indexOf(_) && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png?" + r.START_TIME)), _ = s.vertical.image_light_path, -1 == i.indexOf(_) && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png?" + r.START_TIME))
-                }
-            }
-            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
-        }, e
-    }(l);
-    e.VerticalGaugeLoader = h;
-    var p = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onLoadComplete = function (t) {
-                if (200 == _.ObjUtil.getNumber(t, "status")) {
-                    var e = _.ObjUtil.getObject(t, "data");
-                    null != e && (n._dic[n._key] = new a.GaugeSetModel(e)), n._endTask()
-                } else n._failedEnd()
-            }, n._onLoadFailed = function (t) {
-                n._failedEnd()
-            }, n._key = e, n._dic = i, n
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = o.default.settings.path_root + "resources/gauge/" + this._key + ".json?" + r.START_TIME;
-            axios.get(t).then(this._onLoadComplete).catch(this._onLoadFailed)
-        }, e
-    }(s.TaskBase)
+    }(r.AreaBox);
+    e.LoadingBox = s
 }

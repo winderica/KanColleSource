@@ -15,117 +15,41 @@ const function461 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(251), r = i(252), s = i(253), a = i(254), _ = i(1370), u = i(1373), l = i(256), c = i(1376),
-        h = i(1379), p = i(1382), d = i(1385), f = i(452), y = i(258), v = i(1388), g = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._current_index = 0, r._scene = e, r._data = i, r._ships_f = n, r._ships_e = o, r
-            }
+    var o = i(27), r = i(2), s = i(1363), a = i(1367), _ = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._record = i, n
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                null == this._data || null == this._data.list || 0 == this._data.list.length ? this._endTask() : this._hougekiCycle()
-            }, e.prototype._hougekiCycle = function () {
-                if (this._current_index < this._data.list.length) {
-                    var t = this._data.list[this._current_index];
-                    this._current_index++, this._hougeki(t)
-                } else this._endTask()
-            }, e.prototype._hougeki = function (t) {
-                var e = t.type;
-                0 == e ? this._normal(t) : 1 == e ? this._double(t) : 6 == e ? this._kuboCI(t) : 7 == e ? this._kuchiku_special(t) : 8 == e ? this._kuchiku_special(t) : this._special(t)
-            }, e.prototype._normal = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
-                if (null != i && null != n) {
-                    var _ = t.getSlotitem(0), u = t.getDamage(0), l = t.getHitType(0), c = t.isShield(0),
-                        h = this._getNormalAttackType(i, n, _, t.yasen_kubo), p = this._getDaihatsuEffectType(i, n);
-                    if (1 == this._hasRocketEffect(i, n)) {
-                        var d = new y.PhaseAttackRocket(this._scene, i, n, u, l, c);
-                        d.setOptionalEffects(p), d.start(function () {
-                            e._hougekiCycle()
-                        })
-                    } else if (0 == h) {
-                        var d = new o.PhaseAttackNormal(this._scene, i, n, _, u, l, c);
-                        d.setOptionalEffects(p), d.start(function () {
-                            e._hougekiCycle()
-                        })
-                    } else if (1 == h) {
-                        var f = t.yasen_kubo, d = new r.PhaseAttackKansaiki(this._scene, i, n, _, u, l, c, f);
-                        d.setOptionalEffects(p), d.start(function () {
-                            e._hougekiCycle()
-                        })
-                    } else if (2 == h) {
-                        var d = new s.PhaseAttackBakurai(this._scene, i, n, _, u, l, c);
-                        d.setOptionalEffects(p), d.start(function () {
-                            e._hougekiCycle()
-                        })
-                    } else {
-                        if (3 != h) throw new Error;
-                        var d = new a.PhaseAttackRaigeki(this._scene, i, n, _, u, l, c);
-                        d.setOptionalEffects(p), d.start(function () {
-                            e._hougekiCycle()
-                        })
-                    }
+        return n(e, t), e.prototype._start = function () {
+            this._showLight()
+        }, e.prototype._showLight = function () {
+            var t = this, e = this._scene.view.layer_cutin, i = this._getFlareBanner_f(),
+                n = this._getFlareBanner_e(), o = this._createSearchLightTask();
+            new s.TaskFlareEffect(e, i, n, o).start(function () {
+                t._endTask()
+            })
+        }, e.prototype._createSearchLightTask = function () {
+            var t = this._getShips_f(), e = this._getSearchLightAnimationTask(t), i = this._getShips_e(),
+                n = this._getSearchLightAnimationTask(i), r = new o.ParallelTask;
+            return r.add(e), r.add(n), r
+        }, e.prototype._getSearchLightAnimationTask = function (t) {
+            for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e];
+                if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(42))) {
+                    var o = this._scene.view.bannerGroupLayer.getBanner(n);
+                    return new a.TaskSearchLightAnimation(o, !0)
                 }
-            }, e.prototype._double = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = this._getDShip(t.d_indexes[1], t.flag), r = t.getSlotitem(0), s = t.getDamage(0),
-                    a = t.getHitType(0), _ = t.isShield(0), u = t.getSlotitem(1), c = t.getDamage(1),
-                    h = t.getHitType(1), p = t.isShield(1);
-                new l.PhaseAttackDouble(this._scene, i, n, r, s, a, _, o, u, c, h, p).start(function () {
-                    e._hougekiCycle()
-                })
-            }, e.prototype._kuboCI = function (t) {
-                var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
-                    o = this._getDShip(t.d_indexes[0], t.flag), r = t.getSlotitem(0), s = t.getSlotitem(1),
-                    a = t.getSlotitem(2), _ = t.getDamage(0), u = t.getHitType(0), l = t.isShield(0),
-                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)), h = t.yasen_kubo,
-                    p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l, h);
-                p.setOptionalEffects(c), p.start(function () {
-                    e._hougekiCycle()
-                })
-            }, e.prototype._kuchiku_special = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = t.getSlotitem(0), r = t.getSlotitem(1), s = t.getSlotitem(2), a = t.getDamage(0),
-                    l = t.getHitType(0), c = t.isShield(0), h = t.type;
-                if (7 == h) {
-                    var p = new u.PhaseAttackSpSRD(this._scene, i, n, o, r, s, a, l, c);
-                    p.start(function () {
-                        e._hougekiCycle()
-                    })
-                } else {
-                    if (8 != h) throw new Error;
-                    var p = new _.PhaseAttackSpRDJ(this._scene, i, n, o, r, s, a, l, c);
-                    p.start(function () {
-                        e._hougekiCycle()
-                    })
+            }
+            for (var r = 0, s = t; r < s.length; r++) {
+                var n = s[r];
+                if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(29))) {
+                    var o = this._scene.view.bannerGroupLayer.getBanner(n);
+                    return new a.TaskSearchLightAnimation(o, !1)
                 }
-            }, e.prototype._special = function (t) {
-                var e, i = this, n = this._getAShip(t.a_index, t.flag), o = this._getDShip(t.d_indexes[0], t.flag),
-                    r = t.getSlotitem(0), s = t.getSlotitem(1), a = t.getSlotitem(2), _ = t.getHitType(0),
-                    u = t.isShield(0), l = t.type;
-                if (2 == l) {
-                    var f = t.getDamage(0) + t.getDamage(1);
-                    e = new c.PhaseAttackSpSR(this._scene, t.type, n, o, r, s, f, _, u)
-                } else if (3 == l) {
-                    var f = t.getDamage(0) + t.getDamage(1);
-                    e = new h.PhaseAttackSpRR(this._scene, t.type, n, o, r, s, f, _, u)
-                } else if (4 == l) {
-                    var f = t.getDamage(0);
-                    e = new p.PhaseAttackSpSSF(this._scene, t.type, n, o, r, s, a, f, _, u)
-                } else if (5 == l) {
-                    var f = t.getDamage(0);
-                    e = new d.PhaseAttackSpSSS(this._scene, t.type, n, o, r, s, a, f, _, u)
-                }
-                if (null == e) throw new Error;
-                e.preload(function () {
-                    e.start(function () {
-                        i._hougekiCycle()
-                    })
-                })
-            }, e.prototype._getAShip = function (t, e) {
-                return 0 == e ? this._ships_f[t] : this._ships_e[t]
-            }, e.prototype._getDShip = function (t, e) {
-                return 0 == e ? this._ships_e[t] : this._ships_f[t]
-            }, e
-        }(v.PhaseHougekiBase);
-    e.PhaseHougeki = g
+            }
+            return null
+        }, e
+    }(r.TaskBase);
+    e.PhaseLightingBase = _
 }

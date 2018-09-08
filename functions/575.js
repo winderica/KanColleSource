@@ -15,44 +15,25 @@ const function575 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(191), a = i(280), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function () {
-                0 == o.default.scene.now ? o.default.view.portMain.showPortUI(!1) : o.default.scene.change(0)
-            }, e._circle = new PIXI.Sprite, e.addChild(e._circle), e._content = new u, e.addChild(e._content), e._light = new PIXI.Sprite, e._light.position.set(-23, -32), e._light.alpha = .6, e.addChild(e._light), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
+    var o = i(0), r = i(4), s = i(189), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._coin = o.default.model.useItem.getCount(44), i._furnitureJukeBoxBGMLineModel = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._circle.texture = s.PORT_SKIN_1.getTexture(1), this._circle.position.set(-40, -46), this._content.position.set(63, 58), this._light.texture = s.PORT_SKIN_1.getTexture(8), this._content.initialize(), this._hit_area.interactive = this._hit_area.buttonMode = !0, this._hit_area.on(r.EventType.CLICK, this._onClick), this._startAnimation()
-        }, e.prototype.dispose = function () {
-            this._hit_area.interactive = this._hit_area.buttonMode = !1, this._hit_area.off(r.EventType.CLICK, this._onClick), this._content.dispose(), this._stopAnimation(), this._content_tween = null, this._light_tween = null
-        }, e.prototype.startMoveAnimation = function (t) {
-            this._content.startAnimation(t)
-        }, e.prototype._startAnimation = function () {
-            null == this._content_tween ? this._content_tween = createjs.Tween.get(this._content, { loop: !0 }).to({ rotation: 2 * Math.PI }, 3e4) : this._content_tween.play(null), null == this._light_tween ? this._light_tween = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 1e3, createjs.Ease.getPowIn(4)).to({ alpha: .6 }, 1e3, createjs.Ease.getPowOut(4)) : this._light_tween.play(null)
-        }, e.prototype._stopAnimation = function () {
-            null != this._content_tween && this._content_tween.setPaused(!0), null != this._light_tween && this._light_tween.setPaused(!0)
+        return n(e, t), Object.defineProperty(e.prototype, "btn_kagu", {
+            get: function () {
+                return this._btn_kagu
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_back3", {
+            get: function () {
+                return this._btn_back3
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.init = function () {
+            this._pop_jukeboxbg2 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(18)), this._pop_jukeboxbg2.position.set(301, 232), this.addChild(this._pop_jukeboxbg2), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._jukebox_icon_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(10)), this._jukebox_icon_bgm.position.set(469, 305), this.addChild(this._jukebox_icon_bgm)), this._bgm_name = new r.TextBox(17, 4473924), this._bgm_name.position.set(658, 301), this._bgm_name.text = this._furnitureJukeBoxBGMLineModel.api_name + "", this.addChild(this._bgm_name), this._bgm_coin_price = new r.TextBox(17, 4473924), this._bgm_coin_price.position.set(746, 340), this._bgm_coin_price.anchor.set(1, 0), this._bgm_coin_price.text = this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_price), this._bgm_coin_now = new r.TextBox(17, 4473924), this._bgm_coin_now.position.set(746, 379), this._bgm_coin_now.anchor.set(1, 0), this._bgm_coin_now.text = this._coin + "", this.addChild(this._bgm_coin_now), this._coin < this._furnitureJukeBoxBGMLineModel.api_use_coin ? (this._bgm_coin_now.style.fill = 14483456, this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(3)), this._btn_kagu.interactive = !1) : (this._arrow_mini = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(0)), this._arrow_mini.position.set(751, 385), this.addChild(this._arrow_mini), this._bgm_coin_after = new r.TextBox(17, 4473924), this._bgm_coin_after.position.set(836, 379), this._bgm_coin_after.anchor.set(1, 0), this._bgm_coin_after.text = this._coin - this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_after), this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(2)), this._btn_kagu.interactive = this._btn_kagu.buttonMode = !0), this._btn_kagu.position.set(370, 412), this.addChild(this._btn_kagu), this._btn_back3 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(1)), this._btn_back3.interactive = this._btn_back3.buttonMode = !0, this._btn_back3.position.set(689, 412), this.addChild(this._btn_back3)
+        }, e.prototype.discard = function () {
+            this.removeChildren(0, this.children.length)
         }, e
-    }(a.CircleContent);
-    e.CircleContentSkin1 = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._content1 = new PIXI.Sprite, e.addChild(e._content1), e._content2 = new PIXI.Sprite, e.addChild(e._content2), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._content1.texture = this._getTexture(0), this._content2.visible = !0, this.pivot.set(Math.round(this._content1.width / 2), Math.round(this._content1.height / 2))
-        }, e.prototype.dispose = function () {
-            null != this._tween && this._tween.setPaused(!0), this._tween = null
-        }, e.prototype.startAnimation = function (t) {
-            var e = this;
-            null != this._tween && (this._tween.setPaused(!0), this._tween = null), this._content2.texture = this._content1.texture, this._content2.alpha = 1, this._content2.visible = !0, this._content1.texture = this._getTexture(t), this._tween = createjs.Tween.get(this._content2).to({ alpha: 0 }, 600).call(function () {
-                e._content2.visible = !1
-            })
-        }, e.prototype._getTexture = function (t) {
-            return 11 == t ? s.PORT_SKIN_1.getTexture(4) : 12 == t ? s.PORT_SKIN_1.getTexture(5) : 13 == t ? s.PORT_SKIN_1.getTexture(6) : 14 == t ? s.PORT_SKIN_1.getTexture(9) : 15 == t ? s.PORT_SKIN_1.getTexture(7) : 31 == t ? s.PORT_SKIN_1.getTexture(0) : 16 == t ? s.PORT_SKIN_1.getTexture(10) : s.PORT_SKIN_1.getTexture(3)
-        }, e
-    }(PIXI.Container)
+    }(PIXI.Container);
+    e.JukeBoxConfirm = a
 }

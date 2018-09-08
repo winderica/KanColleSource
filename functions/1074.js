@@ -15,31 +15,25 @@ const function1074 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
+    var o = i(1), r = i(82), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick(i._target)
+            }, i._cb_onClick = e, i._bg = new PIXI.Graphics, i._bg.beginFill(0, 0), i._bg.drawRect(0, 0, 260, 260), i._bg.endFill(), i.addChild(i._bg), i._img = new PIXI.Sprite, i.addChild(i._img), i.scale.set(1), i.interactive = !0, i
         }
 
         return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY; else {
-                this._n100.update(Math.floor(t / 100));
-                var e = t % 100;
-                this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
-            }
+            if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, null == t) return null;
+            var e = t.mst_ids[0];
+            new r.TaskLoadSlotResource("card_t", this._img, e).start()
+        }, e.prototype.activate = function () {
+            null != this._target && 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
         }, e
     }(PIXI.Container);
-    e.DetailPanelNumbers = r;
-    var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY; else {
-                var e = [94, 95, 96, 97, 98, 99, 100, 101, 102, 103][t];
-                this.texture = o.ALBUM_MAIN.getTexture(e)
-            }
-        }, e
-    }(PIXI.Sprite)
+    e.MainItemSlot = s
 }

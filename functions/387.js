@@ -15,7 +15,7 @@ const function387 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(156), r = i(388), s = function (t) {
+    var o = i(154), r = i(388), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i.TABMAX_SHIP = 6, i.TABMAX_SLOT = 5, i._ship_tabs = [];

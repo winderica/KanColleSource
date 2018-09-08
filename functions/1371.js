@@ -15,7 +15,7 @@ const function1371 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(16), s = i(462), a = i(1372), _ = i(63), u = i(44), l = function (t) {
+    var o = i(2), r = i(16), s = i(463), a = i(1372), _ = i(64), u = i(44), l = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             return r._attacker = e, r._slot1 = i, r._slot2 = n, r._slot3 = o, r._friend = r._attacker.friend, r._canvas = new a.CutinCanvasSpRDJ, r._view = new PIXI.Container, r.view.addChild(r._canvas), r._ship = new PIXI.Sprite, r

@@ -15,27 +15,26 @@ const function371 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(30), r = i(1), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e.texture = o.SALLY_COMMON.getTexture(18)
-            }, e._onMouseOut = function () {
-                e.texture = o.SALLY_COMMON.getTexture(17)
-            }, e._onClick = function () {
-                e.emit("dicision")
-            }, e.interactive = !0, e
+    var o = i(42), r = i(230), s = i(988), a = i(991), _ = i(357), u = function (t) {
+        function e(e, i) {
+            var n = t.call(this, e) || this;
+            n._onMouseOver = function (t) {
+                n._strategy_map.update(t)
+            }, n._onMouseOut = function (t) {
+            };
+            var r = o.SALLY_EVENT.getTexture(4), _ = new PIXI.Sprite(r);
+            return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_COMMON.getTexture(17)
-        }, e.prototype.activate = function () {
-            0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype._setTextture = function (t) {
-            this.texture = t
+        return n(e, t), e.prototype.initialize = function (e) {
+            t.prototype.initialize.call(this, e);
+            var i = e[this.offset].mst_id;
+            this._strategy_map.update(i), this._airunitbtn.initialize()
+        }, e.prototype.updateAirUnitEnabled = function (e) {
+            t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
+        }, e.prototype.dispose = function () {
+            t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
         }, e
-    }(PIXI.Sprite);
-    e.BtnDicision = s
+    }(r.LayoutBase);
+    e.EventLayoutBase = u
 }

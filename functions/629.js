@@ -15,7 +15,7 @@ const function629 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = i(48), s = function (t) {
+    var o = i(0), r = i(14), s = i(48), a = function (t) {
         function e(e, i) {
             return t.call(this, e, i) || this
         }
@@ -25,18 +25,14 @@ const function629 = function (t, e, i) {
                 return this._model
             }, enumerable: !0, configurable: !0
         }), e.prototype._createContent = function () {
-            this._panel = new PIXI.Container;
-            var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
-            t.position.set(-267, -138), this._panel.addChild(t);
-            var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
-            e.position.set(-45, -12), this._panel.addChild(e);
-            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
-            i.position.set(-67, 102), this._panel.addChild(i);
-            var n = new PIXI.Sprite;
-            350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
+            var t = this, e = this.model.mst_id, i = new r.ShipLoader;
+            i.add(e, !1, "card"), i.load(function () {
+                var i = o.default.resources.getShip(e, !1, "card");
+                t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+            })
         }, e.prototype._removeContent = function () {
-            this._dialog.container.removeChild(this._panel), this._panel = null
+            this._dialog.container.removeChild(this._card), this._card = null
         }, e
-    }(r.TaskRewardDialogBase);
-    e.TaskRewardDialogWarResult = s
+    }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogShip = a
 }

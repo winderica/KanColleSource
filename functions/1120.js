@@ -15,46 +15,23 @@ const function1120 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(116), s = i(33), a = i(117), _ = i(1121), u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onResult = function (t) {
-                n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-            }, n._layer = e, n._target = i, n
+    var o = i(4), r = i(3), s = i(33), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._message = new o.TextBox(18, 4999235), i._message.position.set(176, 47), i.addChild(i._message), i._message1 = new o.TextBox(18, 4999235), i._message1.position.set(237, 92), i.addChild(i._message1), i._message2 = new o.TextBox(18, 4999235), i._message2.position.set(399, 92), i.addChild(i._message2), i._message3 = new o.TextBox(18, 4999235), i._message3.position.set(237, 122), i.addChild(i._message3), i._message4 = new o.TextBox(18, 4999235), i._message4.position.set(399, 122), i.addChild(i._message4), i._message5 = new o.TextBox(18, 4999235), i._message5.position.set(323, 161), i.addChild(i._message5), i._btn_yes = new s.BtnBase(0, e), i._btn_yes.position.set(191, 219), i.addChild(i._btn_yes), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(399, 219), i.addChild(i._btn_back), i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._showDialog()
-        }, e.prototype._showDialog = function () {
-            var t = this;
-            this._dialog = new _.HishimochiUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({ alpha: 1 }, 150).call(function () {
-                t._dialog.activate()
-            })
-        }, e.prototype._connectAPI = function () {
-            var t = this, e = this._target.mstID, i = this._seleced_use_type,
-                n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)), s = n.result;
-            n.start(function () {
-                1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
-            })
-        }, e.prototype._hideDialog = function (t) {
-            var e = this;
-            createjs.Tween.get(this._dialog).to({ alpha: 0 }, 150).call(function () {
-                e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-            })
-        }, e.prototype._confirm = function () {
-            var t = this, e = this._target.mstID, i = this._seleced_use_type, n = this._layer,
-                o = new a.TaskItemOverflowConfirm(n);
-            o.start(function () {
-                if (1 == o.result) {
-                    var n = new r.UseItemUseAPI(e, !0, i), s = n.result;
-                    n.start(function () {
-                        t._result = s, t._endTask()
-                    })
-                } else t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._target = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = r.ITEM_ILIST_MEDAL_KOU.getTexture(2), this._message.text = "\u7532\u7a2e\u52f2\u7ae0\u306f\u3001\u4e0b\u8a18\u306e\u7269\u8cc7\u3068\u4ea4\u63db\u3059\u308b\u3053\u3068\u3082\u53ef\u80fd\u3067\u3059\u3002", this._message1.text = "\u71c3\u6599\xd710,000", this._message2.text = "\u6539\u4fee\u8cc7\u6750\xd710", this._message3.text = "\u958b\u767a\u8cc7\u6e90\xd710", this._message4.text = "\u5bb6\u5177\u7bb1(\u5927)\xd710", this._message5.text = "\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f";
+            var e = r.ITEM_ILIST_MEDAL_KOU.getTexture(1);
+            this._btn_yes.initialize(e), e = r.ITEM_ILIST_MEDAL_KOU.getTexture(0), this._btn_back.initialize(e)
+        }, e.prototype.activate = function () {
+            this._btn_yes.activate(), this._btn_back.activate()
+        }, e.prototype.deactivate = function () {
+            this._btn_yes.deactivate(), this._btn_back.deactivate()
+        }, e.prototype.dispose = function () {
+            this._btn_yes.dispose(), this._btn_back.dispose()
         }, e
-    }(s.TaskWithResult);
-    e.TaskUseHishimochi = u
+    }(PIXI.Sprite);
+    e.TopView = a
 }

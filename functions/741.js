@@ -15,44 +15,39 @@ const function741 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(125), s = i(8), a = i(4), _ = i(155), u = i(331), l = i(332), c = function (t) {
+    var o = i(1), r = i(8), s = i(319), a = i(21), _ = i(153), u = i(327), l = i(328), c = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            i.ITEM_WIDTH = 711, i.ITEM_HEIGHT = 42, i._onClick = function () {
+            i.ITEM_WIDTH = 765, i.ITEM_HEIGHT = 77, i._onClick = function () {
                 i.onClick(i.index, i.memShipId)
-            }, i._onMouseOut = function () {
-                i.focus.visible = !1, i.typeAndNameContainer.cacheAsBitmap = !1, i.labelLevel.style.fill = i.textLevel.style.fill = i.textType.style.fill = i.textName.style.fill = 5523516, i.typeAndNameContainer.cacheAsBitmap = !0
-            }, i._onMouseOver = function () {
-                i.focus.visible = !0, i.typeAndNameContainer.cacheAsBitmap = !1, i.labelLevel.style.fill = i.textLevel.style.fill = i.textType.style.fill = i.textName.style.fill = 16774898, i.typeAndNameContainer.cacheAsBitmap = !0
             };
-            var n = Math.floor(22) + 2, c = new a.TextBox(18, 5523516), h = new a.TextBox(20, 5523516),
-                p = new PIXI.Container, d = new a.TextBox(21, 5523516), f = new a.TextBox(21, 5523516),
-                y = r.CreateRect.gradientLeftToRight(310, 44, .7, .9),
-                v = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(18));
-            v.scale.x = 1.45, v.visible = !1, f.anchor.set(1, 0), f.position.set(417, Math.floor(n - f.height / 2) + 0), c.anchor.set(0, 0), c.position.set(0, Math.floor(n - c.height / 2)), h.anchor.set(0, 0), h.position.set(65, Math.floor(n - h.height / 2) + 0), p.position.set(53, 0), d.anchor.set(0, 0), d.position.set(351, Math.floor(n - d.height / 2) + 0), d.text = "Lv", p.mask = y, p.addChild(c, h, y);
-            var g = new l.SupplyCheckBox;
-            g.position.set(11, 11);
-            var m = new PIXI.Graphics;
-            m.lineStyle(1, 13945534, 1), m.moveTo(30, 45), m.lineTo(713, 44), m.endFill(), i.line = m;
-            var b = new u.MaterialViewS;
-            return b.position.set(446, 11), i.supplyCheckBox = g, i.index = e, i.materialView = b, i.clickArea = new s.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT), i.clickArea.renderable = !1, i.clickArea.buttonMode = !0, i.clickArea.on(o.EventType.CLICK, i._onClick), i.clickArea.on(o.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(o.EventType.MOUSEOUT, i._onMouseOut), i.textType = c, i.textName = h, i.typeAndNameContainer = p, i.labelLevel = d, i.textLevel = f, i.maskTypeAndName = y, i.focus = v, i
+            var n = new r.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT);
+            n.renderable = !1, n.buttonMode = !0, n.on(o.EventType.CLICK, i._onClick);
+            var c = new PIXI.Sprite;
+            c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
+            var h = new s.LongShipBanner;
+            h.position.x = 38;
+            var p = new l.SupplyCheckBox;
+            p.position.set(0, 24);
+            var d = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(20));
+            d.position.x = 33, d.position.y = -5;
+            var f = new u.MaterialView;
+            return f.position.set(517, 6), i.emptyBackground = c, i.supplyCheckBox = p, i.longShipBanner = h, i.clickArea = n, i.focusFrame = d, i.index = e, i.materialView = f, i
         }
 
-        return n(e, t), e.prototype.update = function (t, e, i) {
-            this.removeChildren(), this.addChild(this.focus, this.line, this.typeAndNameContainer, this.labelLevel, this.textLevel, this.supplyCheckBox, this.materialView), i && this.addChild(this.clickArea), this.typeAndNameContainer.cacheAsBitmap = !1, this.textType.text = e.shipTypeName + " ", this.textName.text = e.name, this.textName.x = this.textType.x + this.textType.width, this.typeAndNameContainer.cacheAsBitmap = !0, this.textLevel.text = e.level.toString(), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax);
-            e.fuelMax, e.fuelNow, e.ammoMax, e.ammoNow;
-            this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
+        return n(e, t), e.prototype.update = function (t, e, i, n) {
+            this.removeChildren(), this.addChild(this.longShipBanner, this.supplyCheckBox, this.materialView, this.focusFrame), n && this.addChild(this.clickArea), this.longShipBanner.update(t, e, i), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
         }, e.prototype.checkOn = function () {
-            this.supplyCheckBox.update(3)
+            this.supplyCheckBox.update(3), this.focusFrame.visible = !0
         }, e.prototype.checkDisable = function () {
-            this.supplyCheckBox.update(1)
+            this.supplyCheckBox.update(1), this.focusFrame.visible = !1
         }, e.prototype.checkOff = function () {
-            this.supplyCheckBox.update(2)
+            this.supplyCheckBox.update(2), this.focusFrame.visible = !1
         }, e.prototype.empty = function () {
-            this.memShipId = null, this.removeChildren(), this.addChild(this.line)
+            this.memShipId = null, this.removeChildren(), this.addChild(this.emptyBackground)
         }, e.prototype.dispose = function () {
-            this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.line = null, this.textType = null, this.typeAndNameContainer.removeChildren(), this.typeAndNameContainer = null, this.labelLevel = null, this.textLevel = null, this.maskTypeAndName = null, this.focus = null, this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea.off(o.EventType.MOUSEOVER, this._onMouseOver), this.clickArea.off(o.EventType.MOUSEOUT, this._onMouseOut), this.clickArea = null, this.line = null, this.textType = null, this.textName = null, this.labelLevel = null, this.textLevel = null, this.maskTypeAndName = null, this.focus = null, this.materialView.dispose(), this.materialView = null, this.onClick = this._onClick = null
+            this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.emptyBackground = null, this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.longShipBanner.dispose(), this.longShipBanner = null, this.focusFrame = null, this.onClick = this._onClick = null
         }, e
     }(PIXI.Container);
-    e.OtherSupplyListItem = c
+    e.DeckSupplyBanner = c
 }

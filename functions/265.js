@@ -1,12 +1,15 @@
 const function265 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = function () {
-        function t() {
-            this.normal = 0, this.rengo = 0, this.yugeki = 0
+    !function (t) {
+        function e(t) {
+            try {
+                return PIXI.Texture.fromFrame("common_itemicons_id_" + t)
+            } catch (t) {
+                return PIXI.Texture.EMPTY
+            }
         }
 
-        return t
-    }();
-    e.AllowedDeckTypeModel = n
+        t.getTextureFromMstID = e
+    }(e.COMMON_ITEMICONS || (e.COMMON_ITEMICONS = {}))
 }

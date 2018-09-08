@@ -1,60 +1,88 @@
 const function275 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(274), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._particle = new Array;
-            for (var i = [51, 257, 44, 8, 168, 53, 158, 113, 275, 194, 251, 0, 197], n = [51, 30, 87, 222, 213, 129, 122, 222, 216, 0, 194, 149, 84], o = 0; o < i.length; o++) {
-                var r = new s;
-                r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
-            }
-            return e
+    var n = i(5), o = i(0), r = i(7), s = function () {
+        function t() {
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            for (var t = 0, e = this._particle; t < e.length; t++) {
-                var i = e[t];
-                i.initialize(), i.startAnim()
+        return t.isAreaHit = function (t, e, i) {
+            if (null == t) return !1;
+            if (e.x < 0 || e.y < 0 || e.x > n.default.width || e.y > n.default.height) return !1;
+            if (e.x < i.x || i.x + i.width < e.x || e.y < i.y || i.y + i.height < e.y) return !1;
+            var o = Math.floor(e.x) - i.x, r = Math.floor(e.y) - i.y, s = 4 * (o + i.width * r);
+            return !(s + 3 >= t.length) && t[s + 3] > 0
+        }, t.getCounterBarTextureName = function (t, e, i) {
+            for (var n = 0, r = 0, s = t.shipid; r < s.length; r++) {
+                var a = s[r];
+                if (a.list.indexOf(e) >= 0) {
+                    n = a.group;
+                    break
+                }
             }
-        }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._particle; t < e.length; t++) {
-                e[t].stopAnim()
+            if (0 == n) for (var _ = o.default.model.ship.getMst(e), u = null == _ ? "" : _.yomi, l = 0, c = t.shipyomi; l < c.length; l++) {
+                var a = c[l];
+                if (a.list.indexOf(u) >= 0) {
+                    n = a.group;
+                    break
+                }
             }
-        }, e
-    }(PIXI.Container);
-    e.KiraLayer = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.TITLE_MAIN.getTexture(2)
-        }, e.prototype.startAnim = function () {
-            this._anim()
-        }, e.prototype.stopAnim = function () {
-            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this).wait(1e3 * Math.random() + 1e3).to({ alpha: 1 }, 150).to({ alpha: 0 }, 150).call(function () {
-                t._tween = null, t._anim()
-            })
-        }, e
-    }(PIXI.Sprite)
+            for (var h, p = 0, d = t.timetable; p < d.length; p++) {
+                var a = d[p];
+                if (!(parseInt(a.time.replace(/\//g, "").replace(/ /g, "").replace(/:/g, "")) <= i)) break;
+                h = a.list[n] - 1e3
+            }
+            return 1 == h ? "" : "f230_c052_counterBar_" + h + ".png"
+        }, t.getDressingRoomTextureName = function (t, e) {
+            for (var i = 1, n = o.default.model.ship.getMst(e), r = null == n ? "" : n.yomi, s = 0, a = t.shipyomi; s < a.length; s++) {
+                var _ = a[s];
+                if (_.list.indexOf(r) >= 0) {
+                    i = _.fileno;
+                    break
+                }
+            }
+            if (1 == i) for (var u = null == n ? 0 : n.getClassType(), l = 0, c = t.shipclass; l < c.length; l++) {
+                var _ = c[l];
+                if (_.list.indexOf(u) >= 0) {
+                    i = _.fileno;
+                    break
+                }
+            }
+            if (1 == i) for (var h = null == n ? 0 : n.shipTypeID, p = 0, d = t.shiptype; p < d.length; p++) {
+                var _ = d[p];
+                if (_.list.indexOf(h) >= 0) {
+                    i = _.fileno;
+                    break
+                }
+            }
+            return "f239_e052_dressingroom_C_" + i + ".png"
+        }, t.getSecretaryDeskTextureName = function (t, e) {
+            var i = o.default.model.ship.getMst(e);
+            if (null == i) return "";
+            for (var n = i.getClassType(), r = 1, s = 0, a = t.shipclass; s < a.length; s++) {
+                var _ = a[s];
+                if (_.list.indexOf(n) >= 0) {
+                    r = _.fileno;
+                    break
+                }
+            }
+            return "f171_f103_secretary1_B" + r + ".png"
+        }, t.getUmbrellarackTextures = function (t, e) {
+            for (var i = o.default.model.ship.getMst(e), n = null == i ? "" : i.yomi, s = 3, a = null == i ? 0 : i.shipTypeID, _ = 0, u = t.shiptype; _ < u.length; _++) {
+                var l = u[_];
+                if (l.list.indexOf(a) >= 0) {
+                    s = l.fileno;
+                    break
+                }
+            }
+            for (var c, h, p = "f385_e07" + (s - 1) + "_umbrellarack", d = 0, f = t.shipyomi; d < f.length; d++) {
+                var l = f[d];
+                if (c = l.list.indexOf(n) + 1, s == l.fileno && (h = l.list.length), c > 0) break
+            }
+            var y = r.ObjUtil.getObjectArray(t.standard, "data"), v = [];
+            v.push(p + "_" + s + "_A.png");
+            for (var g = 1; g < y.length && !(g > h); g++) v.push(p + "_" + s + "_B" + g + ".png");
+            return v
+        }, t
+    }();
+    e.FurnitureUtil = s
 }

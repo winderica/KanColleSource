@@ -15,26 +15,33 @@ const function1071 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(67), s = i(37), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick(i._target)
-            }, i._cb_onClick = e, i._bg = new PIXI.Graphics, i._bg.beginFill(0, 0), i._bg.drawRect(0, 0, 327, 450), i._bg.endFill(), i._bg.scale.set(.5), i.addChild(i._bg), i._img = new PIXI.Sprite, i._img.scale.set(.5), i.addChild(i._img), i._ring = new r.RingMiddle, i._ring.position.set(114, 175), i._ring.visible = !1, i.addChild(i._ring), i.interactive = !0, i
+    var o = i(200), r = i(154), s = i(1072), a = i(384), _ = i(385), u = i(387), l = function (t) {
+        function e(e, i, n) {
+            var r = t.call(this) || this;
+            return r._bg = new PIXI.Sprite, r._bg.position.set(147, 60), r.addChild(r._bg), r._pager = new _.PagerContainer(i), r._pager.position.set(195, 14), r.addChild(r._pager), r._content = new s.MainContainer(n), r._content.position.set(129, 68), r.addChild(r._content), r._tab_container = new u.TabBtnContainer(e), r._tab_container.position.set(0, 60), r.addChild(r._tab_container), r._mini_chara = new a.MiniChara, r._mini_chara.position.set(104, 564), r.addChild(r._mini_chara), r._back_btn = new o.BackBtn, r._back_btn.position.set(0, 659), r.addChild(r._back_btn), r
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, this._ring.visible = !1, null != t) {
-                var e = t.mst_ids[0];
-                this._ring.initialize(), this._ring.visible = t.hasMarriage(), this._ring.deactivate(), 1 == this._ring.visible && this._ring.activate(), new s.TaskLoadShipResource("card", this._img, e, !1).start()
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "pager", {
+            get: function () {
+                return this._pager
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "content", {
+            get: function () {
+                return this._content
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "tab_container", {
+            get: function () {
+                return this._tab_container
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._bg.texture = r.ALBUM_MAIN.getTexture(15), this._pager.initialize(), this._tab_container.initialize(), this._pager.update(0, 0), this._content.update(1, 0, null), this._tab_container.update(1, 0), this._mini_chara.initialize(), this._back_btn.initialize(t)
         }, e.prototype.activate = function () {
-            null != this._target && 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick), this._ring.activate())
+            this._pager.activate(), this._content.activate(), this._tab_container.activate(), this._mini_chara.activate(), this._back_btn.activate()
         }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick), this._ring.deactivate()
+            this._pager.deactivate(), this._content.deactivate(), this._tab_container.deactivate(), this._mini_chara.deactivate(), this._back_btn.deactivate()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._ring.dispose(), this._cb_onClick = null
+            this._pager.dispose(), this._content.dispose(), this._tab_container.dispose(), this._mini_chara.dispose(), this._back_btn.dispose()
         }, e
     }(PIXI.Container);
-    e.MainItemShip = a
+    e.MainView = l
 }

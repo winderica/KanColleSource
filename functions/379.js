@@ -15,10 +15,10 @@ const function379 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(13), r = i(235), s = function (t) {
+    var o = i(13), r = i(232), s = function (t) {
         function e(e) {
             var i = t.call(this, e) || this;
-            i._list = new Array(10), i._isLoaded = !1;
+            i._list = [], i._isLoaded = !1;
             for (var n = 0; n < 10; n++) i._list[n] = new a;
             return i
         }
@@ -54,13 +54,14 @@ const function379 = function (t, e, i) {
             for (var _ = n; _ < n; _++) this._list[n].isLoaded = !1;
             i = null, this._isLoaded = !0, 0 == e && this._disp_page > 0 && this.SetAll(t, this._disp_page)
         }, e.prototype.remove_list = function () {
-            delete this._list
+            for (var t = 0; t < this._list.length; t++) this._list[t].dispose();
+            this._list = null
         }, e
     }(r.RecordModelBase);
     e.RecordRankingModel = s;
     var a = function () {
         function t() {
-            this._score = new Array(3), this._isLoaded = !1
+            this._score = [], this._isLoaded = !1
         }
 
         return Object.defineProperty(t.prototype, "isLoaded", {
@@ -111,7 +112,9 @@ const function379 = function (t, e, i) {
             }, set: function (t) {
                 this._score = t
             }, enumerable: !0, configurable: !0
-        }), t
+        }), t.prototype.dispose = function () {
+            this._score = null
+        }, t
     }();
     e.RecordRankingLineModel = a
 }

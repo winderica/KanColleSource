@@ -15,28 +15,26 @@ const function856 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(4), s = i(20), a = i(35), _ = function (t) {
+    var o = i(0), r = i(2), s = i(857), a = i(3), _ = i(3), u = i(3), l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            i._onClickYes = function () {
-                i._cb_onComplete(!0)
-            }, i._onClickNo = function () {
-                i._cb_onComplete(!1)
-            }, i._cb_onComplete = e;
-            var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
-                _ = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(83)),
-                u = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(3)), l = new r.TextBox(21, 16777215),
-                c = new r.TextBox(21, 1949120);
-            i.beforeCount = new r.TextBox(22, 16777215), i.afterCount = new r.TextBox(22, 16777215);
-            var h = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(0));
-            return c.text = "\u9ad8\u901f\u5efa\u9020", l.text = "\u4f7f\u7528\u3059\u308b", i.beforeCount.anchor.x = 1, i.beforeCount.position.set(630, 217), i.afterCount.position.set(664, 217), c.position.set(307, 166), l.position.set(513, 166), h.position.set(730, 297), u.position.set(432, -43), _.position.set(498, 210), h.position.set(639, 226), i.addChild(n, u), i._btn_yes = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(44)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(540, 484), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(36)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(273, 484), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i.addChild(i._btn_no), i.addChild(i.beforeCount, i.afterCount, h, _, c, l), i
+            return i._uploadTexture = function () {
+                o.default.settings.renderer.plugins.prepare.upload(u.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(_.ARSENAL_MAIN.getTexture(0).baseTexture, function () {
+                        o.default.settings.renderer.plugins.prepare.upload(a.COMMON_SORT.getTexture(0).baseTexture, function () {
+                            i.arsenalScene.start(), i.arsenalScene = null, i._endTask()
+                        })
+                    })
+                })
+            }, i.arsenalScene = e, i
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this._cb_onComplete = null, this.beforeCount = null, this.afterCount = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this.beforeCount.text = t.toString(), this.afterCount.text = e.toString()
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            (new s.TaskLoadResourcesArsenal).start(function () {
+                t._uploadTexture()
+            })
         }, e
-    }(PIXI.Container);
-    e.HighSpeedConfirmView = _
+    }(r.TaskBase);
+    e.PreInitializeTask = l
 }

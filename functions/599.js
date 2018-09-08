@@ -1,29 +1,45 @@
 const function599 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = function () {
-        function t() {
-            this.INTERVAL = 3e5, this._enabled_029 = !1, this._enabled_129 = !1, this._enabled_byTimeSignal = !0, this._timer_handle = -1
+    var o = i(0), r = i(1), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._timer = -1, n._flg = !0, n.dispose = function () {
+                n._stopAnimation(), n.interactive = n.buttonMode = !1, n.off(r.EventType.MOUSEOVER, n._onOver), n.off(r.EventType.MOUSEOUT, n._onOut), n.off(r.EventType.CLICK, n._onClick)
+            }, n._startAnimation = function () {
+                null != n._texture_light && n._timer < 0 && (n._timer = setInterval(n._onTimer, 1500))
+            }, n._stopAnimation = function () {
+                n._timer >= 0 && (clearInterval(n._timer), n._timer = -1)
+            }, n._onOver = function () {
+                n._stopAnimation(), n.texture = n._texture_on
+            }, n._onOut = function () {
+                n.texture = n._texture_normal, n._startAnimation()
+            }, n._onTimer = function () {
+                1 == n._flg ? n.texture = n._texture_light : n.texture = n._texture_normal, n._flg = !n._flg
+            }, n._onClick = function () {
+                o.default.scene.change(n._type, n._model)
+            }, n._type = e, n._model = i, n
         }
 
-        return Object.defineProperty(t.prototype, "enabled_byTimeSignal", {
-            set: function (t) {
-                this._enabled_byTimeSignal = t
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.initialize = function (t, e) {
-            this._mst_id = t, this._tired = e;
-            var i = n.default.model.ship.getMst(this._mst_id);
-            null == i ? this._enabled_029 = this._enabled_129 = !1 : (this._enabled_029 = i.availableBeLeftVoice, this._enabled_129 = i.availableBeLeftVoices), this.reset()
-        }, t.prototype.stop = function () {
-            -1 != this._timer_handle && (clearInterval(this._timer_handle), this._timer_handle = -1)
-        }, t.prototype.reset = function () {
-            var t = this;
-            this.stop(), 0 == this._enabled_029 && 0 == this._enabled_129 || (this._timer_handle = setInterval(function () {
-                t._play()
-            }, this.INTERVAL))
-        }, t.prototype._play = function () {
-            1 == n.default.option.voice_be_left && this._enabled_byTimeSignal && (1 == this._enabled_129 && this._tired >= 50 ? n.default.sound.voice.play(this._mst_id.toString(), 129) : 1 == this._enabled_029 && n.default.sound.voice.play(this._mst_id.toString(), 29))
-        }, t
-    }();
-    e.BeLeftVoiceTimer = o
+        return n(e, t), e.prototype.setUp = function (t, e, i) {
+            this._texture_normal = t, this._texture_on = e, this._texture_light = i, this._onOut()
+        }, e.prototype.initialize = function (t, e, i) {
+            this.setUp(t, e, i), this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onOver), this.on(r.EventType.MOUSEOUT, this._onOut), 22 != this._type && this.on(r.EventType.CLICK, this._onClick)
+        }, e
+    }(PIXI.Sprite);
+    e.UpperBtn = s
 }

@@ -15,39 +15,59 @@ const function1250 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(433), a = i(1251), _ = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._onTaihi = function () {
-                o._view.deactivate();
-                var t = o._model.map_info.area_id, e = o._model.map_info.map_no, i = o._model.map_info.cell_no;
-                new s.GobackPortAPI(t, e, i, o._target.mem_id, -1).start(function () {
-                    o._target.initializeTaihi(!0), o._hideView()
-                })
-            }, o._onTaihiSezu = function () {
-                o._view.deactivate(), o._hideView()
-            }, o._scene = e, o._model = i, o._target = n, o
+    var o = i(0), r = i(2), s = i(1251), a = i(1256), _ = i(1257), u = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._selectFormation = function () {
+                if (0 == r._model.deck_f.type) {
+                    var t = new a.TaskFormationSelect(r._scene.view, r._model.deck_f);
+                    t.start(function () {
+                        r._fadeoutBGM(t.selected_formation)
+                    })
+                } else {
+                    var e = new _.TaskFormationSelectCombined(r._scene.view, r._model.deck_f);
+                    e.start(function () {
+                        r._fadeoutBGM(e.selected_formation)
+                    })
+                }
+            }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadShipResources()
-        }, e.prototype._loadShipResources = function () {
-            var t = this, e = new r.ShipLoader;
-            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.load(function () {
-                t._show()
+            this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
+        }, e.prototype._fadeoutBGM = function (t) {
+            var e = this;
+            1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                e._startBattle(t)
+            })) : this._startBattle(t)
+        }, e.prototype._startBattle = function (t) {
+            var e = this;
+            this._model.deck_f.formation = t;
+            var i = new this._battle_cls;
+            i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
+                e._startBattleResult(i, e._model)
+            }), i.start()
+        }, e.prototype._startBattleResult = function (t, e) {
+            var i = this, n = new this._battle_result_cls;
+            n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
+                i._selectTaihi(n)
+            }), n.start(e)
+        }, e.prototype._selectTaihi = function (t) {
+            var e = this;
+            new s.EscapeTask(this._scene, this._model).start(function () {
+                e._completeBattleResult(t)
             })
-        }, e.prototype._show = function () {
-            this._view = new a.EscapeTankanView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-            var t = this._target;
-            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
-        }, e.prototype._hideView = function () {
-            var t = this;
-            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
-                t._endTask()
+        }, e.prototype._completeBattleResult = function (t) {
+            for (var e = this, i = this._model.deck_f.ships, n = 0; n < i.length; n++) {
+                var o = i[n];
+                if (null != o) {
+                    this._scene.model.deck_f.ships[n].initializeTaihi(o.isTaihi())
+                }
+            }
+            createjs.Tween.get(t).to({ alpha: 0 }, 200).call(function () {
+                e._scene.removeChild(t), t.dispose(), e._endTask()
             })
-        }, e.prototype._endTask = function () {
-            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.EscapeTankanTask = _
+    }(r.TaskBase);
+    e.CellTaskBattle = u
 }

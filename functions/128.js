@@ -3,9 +3,9 @@ const function128 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("remodel_powerup_" + t)
+            return PIXI.Texture.fromFrame("item_ishop_" + t)
         }
 
         t.getTexture = e
-    }(e.REMODEL_POWERUP || (e.REMODEL_POWERUP = {}))
+    }(e.ITEM_ISHOP || (e.ITEM_ISHOP = {}))
 }

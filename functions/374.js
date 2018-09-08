@@ -15,7 +15,7 @@ const function374 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(30), r = i(1), s = function (t) {
+    var o = i(29), r = i(1), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._onClick = function () {
@@ -24,7 +24,7 @@ const function374 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_COMMON.getTexture(24)
+            this.texture = o.SALLY_COMMON.getTexture(25)
         }, e.prototype.activate = function () {
             1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {

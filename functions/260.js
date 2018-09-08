@@ -1,49 +1,14 @@
 const function260 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.ITEMUP_REPLACE = {
-        516: 516,
-        517: 517,
-        518: 518,
-        519: 516,
-        520: 517,
-        521: 518,
-        522: 516,
-        523: 516,
-        524: 517,
-        525: 518,
-        526: 518,
-        546: 518,
-        547: 547,
-        548: 548,
-        549: 549,
-        550: 3,
-        551: 128,
-        552: 76,
-        553: 3,
-        554: 554,
-        555: 555,
-        556: 556,
-        557: 557,
-        558: 558,
-        561: 561,
-        562: 562,
-        563: 162,
-        564: 549,
-        565: 79,
-        566: 547,
-        568: 161,
-        567: 13,
-        571: 571,
-        572: 572,
-        573: 573,
-        574: 574,
-        575: 574,
-        576: 231,
-        577: 245,
-        578: 190,
-        579: 7,
-        580: 58,
-        584: 7,
-        585: 161
+
+    function n(t, e, i) {
+        var n = (new Date).getTime(), r = Math.floor(n / 1e3);
+        e = Math.round(e) % 1e3 + 1e3, i = Math.round(i) % 1e3 + 1e3;
+        var s = 1e4 * e + i;
+        return s *= o.PORT_API_SEED[t % 10], r.toString() + s.toString()
     }
+
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(18);
+    e.__create_serial_id__ = n
 }

@@ -17,60 +17,78 @@ const function497 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(7), r = function () {
         function t(t) {
-            this._o = t
+            this._hasFlag = !1, this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "id", {
+        return Object.defineProperty(t.prototype, "mstID", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_id")
+                return this._o.api_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "state", {
+        }), Object.defineProperty(t.prototype, "no", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_state", -1)
+                return this._o.api_no
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ship_mst_id", {
+        }), Object.defineProperty(t.prototype, "type", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_created_ship_id", 0)
+                return this._o.api_type
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "complete_time", {
+        }), Object.defineProperty(t.prototype, "name", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_complete_time", 0)
+                return this._o.api_title
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "fuel", {
+        }), Object.defineProperty(t.prototype, "outside", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_item1", 0)
+                return this._o.hasOwnProperty("api_outside_id") ? this._o.api_outside_id : 4
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ammo", {
+        }), Object.defineProperty(t.prototype, "description", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_item2", 0)
+                return this._o.api_description
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "steel", {
+        }), Object.defineProperty(t.prototype, "price", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_item3", 0)
+                return o.ObjUtil.getNumber(this._o, "api_price")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "baux", {
+        }), Object.defineProperty(t.prototype, "rarity", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_item4", 0)
+                return o.ObjUtil.getNumber(this._o, "api_rarity")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "dev_kit", {
+        }), Object.defineProperty(t.prototype, "seasonID", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_item5", 0)
+                return o.ObjUtil.getNumber(this._o, "api_season")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isLargeBuild = function () {
-            return (2 == this.state || 3 == this.state) && this.fuel >= 1e3
-        }, t
+        }), Object.defineProperty(t.prototype, "version", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_version", "1")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.has = function () {
+            return this._hasFlag
+        }, t.prototype.isOnSale = function () {
+            return 1 == o.ObjUtil.getNumber(this._o, "api_saleflg")
+        }, t.prototype.isNeedCraftsman = function () {
+            return this.price >= 2e3 && this.price < 2e4
+        }, t.prototype.isHighGrade = function () {
+            return this.price >= 1e5
+        }, t.prototype.isActive = function () {
+            return 1 == this._o.api_active_flag
+        }, t.prototype.getDiscountPrice = function () {
+            if (0 == this.isHighGrade()) return this.price;
+            var t = .1 * (this.price - 1e5);
+            return t = Math.max(t, 0), Math.floor(t)
+        }, Object.defineProperty(t.prototype, "getVersion", {
+            get: function () {
+                return this._o.api_version
+            }, enumerable: !0, configurable: !0
+        }), t
     }();
-    e.KDockModel = r;
+    e.FurnitureModel = r;
     var s = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.__open__ = function () {
-            -1 == this.state && (this._o.api_state = 0)
-        }, e.prototype.__complete__ = function (t) {
-            void 0 === t && (t = !1), (t || 2 == this.state) && (this._o.api_state = 3, this._o.api_complete_time = 0, this._o.api_complete_time_str = "")
+        return n(e, t), e.prototype.updateHasFlag = function (t) {
+            this._hasFlag = t
         }, e
     }(r);
-    e.KDockModelEdit = s
+    e.FurnitureModelEdit = s
 }

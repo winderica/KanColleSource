@@ -15,23 +15,65 @@ const function601 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(191), r = i(192), s = i(193), a = i(194), _ = i(290), u = function (t) {
+    var o = i(0), r = i(187), s = i(602), a = i(603), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
+            return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new u, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.changeSkin(t), this._gear.activate()
-        }, e.prototype.changeSkin = function (t) {
-            101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
-            var e = PIXI.Texture.EMPTY;
-            e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
-        }, e.prototype.update = function (t) {
-            0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
-        }, e.prototype.dispose = function () {
-            this._gear.dispose()
+        return n(e, t), Object.defineProperty(e.prototype, "marriageEff", {
+            get: function () {
+                return this._marrigaeEff
+            }, set: function (t) {
+                this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._touch_count = 0, this._ship_mst_id = t;
+            var n = o.default.resources.getShip(t, e, "full");
+            this._chara.texture = n;
+            var r = new PIXI.Sprite(n);
+            this._hit_area_map = o.default.settings.renderer.extract.pixels(r), this._container.position.set(491, -88);
+            var s = this._chara.width / 2, a = this._chara.height / 2,
+                _ = o.default.model.ship_graph.get(t).getPortOffset(e);
+            this._chara.position.set(-s + _.x, -a + _.y), this._container.positionSet(491 + s, -88 + a), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
+        }, e.prototype.activate = function () {
+            null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, { loop: !0 }).to({ anim_value: Math.PI }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
+        }, e.prototype.deactivate = function () {
+            null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
+        }, e.prototype.onMouseMove = function (t) {
+            var e = t.getLocalPosition(this._chara);
+            return this._isCharaHit(e)
+        }, e.prototype.onClick = function (t) {
+            var e = t.getLocalPosition(this._chara), i = this._isCharaHit(e);
+            return 1 == i && this._onClick(), i
+        }, e.prototype._showMarriageEff = function () {
+            var t = new PIXI.Rectangle(600, 0, 600, 720);
+            this._ship_is_marriage = !0, this._sakura.startAnimation(t)
+        }, e.prototype._hideMarriageEff = function () {
+            this._ship_is_marriage = !1, this._sakura.stopAnimation()
+        }, e.prototype._isCharaHit = function (t, e) {
+            if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
+            var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
+            return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
+        }, e.prototype._onClick = function () {
+            this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
         }, e
     }(PIXI.Container);
-    e.FrameLayer = u
+    e.FlagShipLayer = _;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
+            get: function () {
+                return 0
+            }, set: function (t) {
+                var e = Math.sin(t), i = 1 + .012 * (.5 + .5 * e);
+                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.positionSet = function (t, e) {
+            this.position.set(t, e), this._base_y = e
+        }, e
+    }(PIXI.Container)
 }

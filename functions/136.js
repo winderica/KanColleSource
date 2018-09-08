@@ -15,69 +15,33 @@ const function136 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(0), r = i(45), s = i(22), a = i(50), _ = i(7), u = function (t) {
         function e(e) {
+            void 0 === e && (e = 1);
             var i = t.call(this) || this;
-            return i._air_raid = !1, i._air_raid = e, i._planes_f = new Array, i._planes_e = new Array, i._now_animation = new Array, i
+            return i._rad = 0, i._direction = !0, i._threshold = 0, i._base_scale = e, i._content = new PIXI.Sprite, i._content.scale.set(e), i._content.anchor.set(.5), i.addChild(i._content), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "planes_f", {
-            get: function () {
-                return this._planes_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "planes_e", {
-            get: function () {
-                return this._planes_e
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.addPlanes_f = function (t) {
-            for (var e = t.concat().sort(function (t, e) {
-                return t.y < e.y ? -1 : t.y > e.y ? 1 : 0
-            }), i = 0, n = e; i < n.length; i++) {
-                var o = n[i];
-                this.addChild(o), this._planes_f.push(o)
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._content.texture = o.default.resources.getSlotitem(t, "item_up");
+            var i = a.SlotUtil.isEnemyItem(t) ? -1 : 1;
+            if (1 == r.PlaneConst.OFFSET.hasOwnProperty(t.toString())) {
+                var n = r.PlaneConst.OFFSET[t], s = _.ObjUtil.getNumber(n, "x"), u = _.ObjUtil.getNumber(n, "y"),
+                    l = _.ObjUtil.getNumber(n, "r"), c = _.ObjUtil.getNumber(n, "sx", 1);
+                this._content.position.set(s, u), this._content.rotation = -l / 180 * Math.PI * (e ? 1 : -1), this._content.scale.x = this._base_scale * c * i * (e ? 1 : -1), this._content.scale.y = this._base_scale * Math.abs(c)
+            } else this._content.position.set(0, 0), this._content.rotation = 0, this._content.scale.x = this._base_scale * i * (e ? 1 : -1), this._content.scale.y = this._base_scale;
+            138 == t && (this._content.scale.x *= 1.4, this._content.scale.y *= 1.4), this._baseY = this._content.y, this._rad_accel = 60 * (.05 + .05 * Math.random()) / createjs.Ticker.framerate
+        }, e.prototype.activate = function () {
+            var t = this;
+            if (null == this._t) {
+                var e = createjs.Ticker.framerate, i = function () {
+                    t._rad += t._rad_accel, t._content.y = t._baseY + 900 / e * Math.sin(t._rad), t._threshold += 1 / e, t._threshold > 1 / 30 && (t._threshold = 0, t._direction = !t._direction, t._content.y += t._direction ? 1 : -1)
+                };
+                this._t = createjs.Tween.get(this, { loop: !0, onChange: i })
             }
-        }, e.prototype.addPlanes_e = function (t) {
-            for (var e = t.concat().sort(function (t, e) {
-                return t.y < e.y ? -1 : t.y > e.y ? 1 : 0
-            }), i = 0, n = e; i < n.length; i++) {
-                var o = n[i];
-                this.addChild(o), this._planes_e.push(o)
-            }
-        }, e.prototype.play = function (t) {
-            var e = this;
-            if (0 == this._planes_f.length && 0 == this._planes_e.length) return void t();
-            for (var i = this, n = 0, o = this._planes_f; n < o.length; n++) {
-                var r = o[n];
-                !function (n) {
-                    var o = new PIXI.Point(1500, n.y - 555);
-                    1 == i._air_raid && (o.x += -570, o.y += -450), n.play(o, 3700), i._now_animation.push(n), n.once("complete", function () {
-                        var i = e._now_animation.indexOf(n);
-                        e._now_animation.splice(i, 1), 0 == e._now_animation.length && t()
-                    })
-                }(r)
-            }
-            for (var s = this, a = 0, _ = this._planes_e; a < _.length; a++) {
-                var r = _[a];
-                !function (i) {
-                    var n = new PIXI.Point(-173, i.y - 1005);
-                    i.play(n, 3700), s._now_animation.push(i), i.once("complete", function () {
-                        var n = e._now_animation.indexOf(i);
-                        e._now_animation.splice(n, 1), 0 == e._now_animation.length && t()
-                    })
-                }(r)
-            }
-        }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._planes_f; t < e.length; t++) {
-                var i = e[t];
-                i.dispose()
-            }
-            this._planes_f = null;
-            for (var n = 0, o = this._planes_e; n < o.length; n++) {
-                var i = o[n];
-                i.dispose()
-            }
-            this._planes_e = null
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(PIXI.Container);
-    e.AirWarCanvas = o
+    }(s.Container);
+    e.Plane = u
 }

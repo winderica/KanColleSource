@@ -15,27 +15,75 @@ const function1175 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClickYes = function () {
-                null != i._cb_onClick && i._cb_onClick(!0)
-            }, i._onClickNo = function () {
-                null != i._cb_onClick && i._cb_onClick(!1)
-            }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+    var o = i(28), r = i(76), s = i(14), a = i(24), _ = i(66), u = i(2), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._task = new o.SerialTask, e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = o.DUTY_COMMON.getTexture(1);
-            var e = new PIXI.Sprite(t), i = Math.min(135 / e.width, 135 / e.height);
-            e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = o.DUTY_COMMON.getTexture(3), this._btn_no.texture = o.DUTY_COMMON.getTexture(2)
-        }, e.prototype.activate = function () {
-            1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(r.EventType.CLICK, this._onClickNo))
-        }, e.prototype.deactivate = function () {
-            this._btn_yes.buttonMode = !1, this._btn_yes.off(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(r.EventType.CLICK, this._onClickNo)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onClick = null
+        return n(e, t), e.prototype.addShip = function (t) {
+            this._task.add(new c(t))
+        }, e.prototype.addSlotitem = function (t) {
+            this._task.add(new h(t))
+        }, e.prototype.addUseitem = function (t) {
+            this._task.add(new p(t))
+        }, e.prototype.addFurniture = function (t) {
+            this._task.add(new d(t))
+        }, e.prototype._start = function () {
+            var t = this;
+            this._task.start(function () {
+                t._endTask()
+            })
         }, e
-    }(PIXI.Sprite);
-    e.RewardSelectConfirm = s
+    }(u.TaskBase);
+    e.TaskLoadResources = l;
+    var c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new s.ShipLoader;
+            e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new a.SlotLoader;
+            e.add(this._mst_id, "card"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), p = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new _.UseitemLoader;
+            e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), d = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new r.FurnitureLoader;
+            e.add(this._mst_id, "reward"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase)
 }

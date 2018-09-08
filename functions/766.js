@@ -15,26 +15,19 @@ const function766 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(210), r = i(21), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick()
-            }, e._onMouseOver = function () {
-                e.texture = e.BTN_REMODEL_ON
-            }, e._onMouseOut = function () {
-                e.texture = e.BTN_REMODEL_OFF
-            }, e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut);
-            var i = o.REMODEL_MAIN.getTexture(8), n = o.REMODEL_MAIN.getTexture(9),
-                s = o.REMODEL_MAIN.getTexture(7);
-            return e.BTN_REMODEL_NONE = s, e.BTN_REMODEL_OFF = i, e.BTN_REMODEL_ON = n, e
+            var e = r.COMMON_MAIN.getTexture(15);
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeAllListeners(r.EventType.CLICK), this.removeAllListeners(r.EventType.MOUSEOVER), this.removeAllListeners(r.EventType.MOUSEOUT), this.texture = PIXI.Texture.EMPTY, this.BTN_REMODEL_ON = null, this.BTN_REMODEL_OFF = null, this.BTN_REMODEL_NONE = null, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.removeChildren()
-        }, e.prototype.update = function (t) {
-            this.texture = this.BTN_REMODEL_NONE, this.interactive = this.buttonMode = !1, t && (this.texture = this.BTN_REMODEL_OFF, this.interactive = this.buttonMode = !0)
+        return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+            this._update_(t, e, i, n, o, r, s, a, _, u, l, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+        }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+            this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + u, this._textSakuteki.text = "" + l, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
+        }, e.prototype._alignment = function () {
+            this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
         }, e
-    }(PIXI.Sprite);
-    e.KaizoButton = s
+    }(o.ShipParameterViewBase);
+    e.ShipParameter = s
 }

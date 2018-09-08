@@ -15,34 +15,41 @@ const function1133 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(1134), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._result = !1, e._api = null, e._retry_count = 0, e
+    var o = i(0), r = i(4), s = i(128), a = i(87), _ = i(403), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOn = function (t, e) {
+                i._description.text = e.replace(/<br>/g, "\n")
+            }, i._onMouseOff = function () {
+                i._description.text = ""
+            }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(19, 16777215), i._description.position.set(219, 219), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 744, i.addChild(i._description), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(500).call(function () {
-                t._check()
-            })
-        }, e.prototype._check = function () {
-            var t = this;
-            this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                t._checked()
-            })
-        }, e.prototype._checked = function () {
-            var t = this;
-            2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                t._check()
-            })
-        }, e.prototype._endTask = function () {
-            this._api = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+            var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(26));
+            t.position.set(172, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(30)), t.position.set(202, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(19)), t.position.set(202, 202), this._bg_layer.addChild(t), this._icons = [];
+            for (var e = 0; e < 14; e++) {
+                var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
+                i.x = 234 + 118 * Math.floor(e / 2), i.y = 288 + (0 == Math.floor(e % 2) ? 0 : 181), i.initialize(3), this.addChild(i), this._icons.push(i)
+            }
+        }, e.prototype.update = function () {
+            for (var t = o.default.model.payitem.getOrder(1), e = 0; e < this._icons.length; e++) {
+                var i = this._icons[e], n = t[e], r = o.default.model.payitem.getData(n);
+                i.update(r)
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].deactivate()
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].dispose()
+            }
         }, e
-    }(o.TaskBase);
-    e.TaskPayCheck = s
+    }(a.ViewBase);
+    e.SpecialItemShopMain = u
 }

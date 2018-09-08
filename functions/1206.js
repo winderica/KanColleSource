@@ -15,17 +15,17 @@ const function1206 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(21), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(2), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._callback = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.UIImageLoader("prac");
-            e.add("prac_main.json"), e.load(function () {
-                t._endTask()
-            })
+            this._callback && this._callback(), this._endTask()
+        }, e.prototype._endTask = function () {
+            this._callback = null, t.prototype._endTask.call(this)
         }, e
     }(o.TaskBase);
-    e.TaskLoadResourcesPractice = s
+    e.TaskFinalize = r
 }

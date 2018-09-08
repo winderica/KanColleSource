@@ -15,28 +15,19 @@ const function790 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(3), r = i(3), s = i(84), a = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e._onMouseOver = function () {
-                e.texture = e.textureBtnStartIntensifyOn
-            }, e._onMouseOut = function () {
-                e.texture = e.textureBtnStartIntensifyOff
-            }, e._onClick = function () {
-                e.onClick()
-            };
-            var i = o.REMODEL_POWERUP.getTexture(6), n = o.REMODEL_POWERUP.getTexture(8),
-                s = o.REMODEL_POWERUP.getTexture(7);
-            return e.textureBtnStartIntensifyNone = i, e.textureBtnStartIntensifyOn = n, e.textureBtnStartIntensifyOff = s, e.texture = i, e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.addListener(r.EventType.CLICK, e._onClick), e
+            var e = t.call(this) || this, i = new s.TitleBar;
+            i.initialize(o.COMMON_MAIN.getTexture(1), 35);
+            var n = new s.TitleBar;
+            n.initialize(r.REMODEL_POWERUP.getTexture(3), 26), n.position.set(536, 0);
+            var a = new s.TitleBar;
+            return a.initialize(r.REMODEL_POWERUP.getTexture(2), 26), a.position.set(806, 0), e.addChild(i, n, a), e.headerKansenStatus = i, e.headerSelectKyouka = n, e.headerKyoukaList = a, e.cacheAsBitmap = !0, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this._updateClickable_(t)
-        }, e.prototype._updateClickable_ = function (t) {
-            this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
-        }, e.prototype.dispose = function () {
-            this.removeAllListeners(r.EventType.MOUSEOVER), this.removeAllListeners(r.EventType.MOUSEOUT), this.removeAllListeners(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this._onMouseOver = this._onMouseOut = this._onClick = null, this.interactive = this.buttonMode = !1, this.texture = PIXI.Texture.EMPTY, this.removeChildren()
+        return n(e, t), e.prototype.dispose = function () {
+            this.headerKansenStatus.dispose(), this.headerKyoukaList.dispose(), this.headerSelectKyouka.dispose(), this.headerKansenStatus = null, this.headerKyoukaList = null, this.headerSelectKyouka = null, this.removeChildren()
         }, e
-    }(PIXI.Sprite);
-    e.StartButton = s
+    }(PIXI.Container);
+    e.PowerUpHeader = a
 }

@@ -1,50 +1,37 @@
 const function485 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function () {
-        function t() {
-            this._type = 0
+    var n = i(7), o = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        return Object.defineProperty(t.prototype, "mapID", {
             get: function () {
-                return this._type
+                return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_main", {
+        }), Object.defineProperty(t.prototype, "areaID", {
             get: function () {
-                return 1 == this.isCombined() ? 1 : 0
+                return n.ObjUtil.getNumber(this._o, "api_maparea_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_sub", {
+        }), Object.defineProperty(t.prototype, "mapNo", {
             get: function () {
-                return 1 == this.isCombined() ? 2 : 0
+                return n.ObjUtil.getNumber(this._o, "api_no")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isCombined = function () {
-            return 1 == this._type || 2 == this._type || 3 == this._type
+        }), Object.defineProperty(t.prototype, "mapBGMID", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_moving_bgm")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getBGM = function (t, e) {
+            var i;
+            i = 0 == e ? n.ObjUtil.getNumArray(this._o, "api_map_bgm") : n.ObjUtil.getNumArray(this._o, "api_boss_bgm");
+            var o = t ? 1 : 0;
+            return null == i || i.length <= o ? t ? 2 : 1 : i[o]
+        }, t.prototype.getDayBGM = function (t) {
+            return this.getBGM(!1, t)
+        }, t.prototype.getNightBGM = function (t) {
+            return this.getBGM(!0, t)
         }, t
     }();
-    e.DeckCombinedModel = o;
-    var r = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-
-        return n(e, t), e.prototype.__update__ = function (t) {
-            this._type = t
-        }, e
-    }(o);
-    e.DeckCombinedModelEdit = r
+    e.BattleBGMMstModel = o
 }

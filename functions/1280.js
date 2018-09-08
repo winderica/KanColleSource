@@ -15,49 +15,55 @@ const function1280 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(6), s = i(1281), a = i(1282), _ = i(1286), u = function (t) {
-        function e(e, i, n, o, s, a) {
-            var _ = t.call(this) || this;
-            return _._selected_spot_no_1 = null, _._selected_spot_no_2 = null, _._selected_spot_no_3 = null, _._onChange = function () {
-                _._point_layer.update(), 2 == _._selected_spot_no.length ? (_._panel.title.complete = !0, _._panel.cancel_btn.visible = !0) : 1 == _._selected_spot_no.length ? (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !0) : (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !1)
-            }, _._onFixed = function () {
-                switch (_._current_target.id) {
-                    case 1:
-                        _._selected_spot_no_1 = _._selected_spot_no.concat();
-                        break;
-                    case 2:
-                        _._selected_spot_no_2 = _._selected_spot_no.concat();
-                        break;
-                    case 3:
-                        _._selected_spot_no_3 = _._selected_spot_no.concat()
-                }
-                r.SE.play("227");
-                var t = _._airunits.indexOf(_._current_target);
-                t == _._airunits.length - 1 ? _._endTask() : (_._current_target = _._airunits[t + 1], _._onCancel(), _._panel.update(_._current_target.id), _._initializePoints())
-            }, _._onCancel = function () {
-                for (; _._selected_spot_no.length > 0;) _._selected_spot_no.pop();
-                _._point_layer.update(), _._panel.title.complete = !1, _._panel.cancel_btn.visible = !1
-            }, _._layer = e, _._area_id = i, _._airunits_all = n, _._airunits = o, _._model = s, _._map = a, _
+    var o = i(5), r = i(2), s = i(12), a = i(8), _ = i(20), u = i(1281), l = i(1), c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._shutter = e, n._item_ids = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
             var t = this;
-            this._current_target = this._airunits[0], this._selected_spot_no = [], this._point_layer = new _.AirUnitAppointmentLayer(this._selected_spot_no, this._onChange), this._layer.addChild(this._point_layer), this._panel = new a.AirUnitPanelSet(this._onFixed, this._onCancel), this._panel.x = -375, this._layer.addChild(this._panel);
-            var e = this._area_id;
-            this._panel.initialize(e, this._airunits_all), this._panel.update(this._current_target.id), createjs.Tween.get(this._panel).to({ x: 0 }, 300, createjs.Ease.quadOut).call(function () {
-                t._panel.activate(), t._initializePoints()
+            this._view = new u.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+            var e = _.MAP_COMMON.getTexture(105);
+            this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({ scaleY: 1 }, 300).call(function () {
+                t._showMessage()
             })
-        }, e.prototype._initializePoints = function () {
-            var t = this._current_target.distance, e = this._model.sortie, i = this._map.spotLayer.getAllSpots();
-            this._point_layer.initialize(t, i, e)
-        }, e.prototype._endTask = function () {
-            var e = this;
-            this._layer.removeChild(this._point_layer), this._point_layer.dispose(), this._panel.deactivate(), createjs.Tween.get(this._panel).to({ x: -450 }, 300, createjs.Ease.quadOut).call(function () {
-                e._layer.removeChild(e._panel), e._panel.dispose(), new s.AirUnitGoAPI(e._selected_spot_no_1, e._selected_spot_no_2, e._selected_spot_no_3).start(function () {
-                    t.prototype._endTask.call(e)
+        }, e.prototype._showMessage = function () {
+            var t = this, e = _.MAP_COMMON.getTexture(108);
+            this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                x: o.default.width / 2 + 180,
+                alpha: 1
+            }, 300).to({ x: o.default.width / 2 }, 400).to({
+                x: o.default.width / 2 - 60,
+                alpha: 0
+            }, 400).call(function () {
+                t._shutter.removeChild(t._telopText), t._closeTelop()
+            })
+        }, e.prototype._closeTelop = function () {
+            var t = this;
+            createjs.Tween.get(this._telopBG).to({ scaleY: 0 }, 300).call(function () {
+                t._shutter.removeChild(t._telopBG)
+            }), createjs.Tween.get(this._view).to({ alpha: 1 }, 200).call(function () {
+                t._showContent()
+            })
+        }, e.prototype._showContent = function () {
+            var t = this;
+            this._shutter.close(), this._shutter.once("closed", function () {
+                createjs.Tween.get(t._view.content).to({ alpha: 1 }, 200).call(function () {
+                    t._waitClick()
                 })
             })
+        }, e.prototype._waitClick = function () {
+            var t = this, e = new a.AreaBox(0);
+            e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(l.EventType.CLICK, function () {
+                t._shutter.removeChild(e), t._hideView()
+            })
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 200).call(function () {
+                t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
+            })
         }, e
-    }(o.TaskBase);
-    e.TaskAirUnitAppointment = u
+    }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

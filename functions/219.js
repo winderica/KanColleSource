@@ -15,31 +15,34 @@ const function219 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(132), r = i(3), s = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = r.REMODEL_POWERUP.getTexture(23),
-                n = r.REMODEL_POWERUP.getTexture(24), o = r.REMODEL_POWERUP.getTexture(25),
-                s = r.REMODEL_POWERUP.getTexture(26);
-            return e.textureRemodelCategory1 = i, e.textureRemodelCategory2 = n, e.textureRemodelCategory3 = o, e.textureRemodelCategory4 = s, e
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick()
+            }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (this.texture = PIXI.Texture.EMPTY, t) {
-                case o.PowerUpCategory.Karyoku:
-                    this.texture = this.textureRemodelCategory1;
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeAllListeners(r.EventType.CLICK), this.texture = PIXI.Texture.EMPTY, this.onClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 0:
+                    this.texture = o.COMMON_MAIN.getTexture(48);
                     break;
-                case o.PowerUpCategory.Raisou:
-                    this.texture = this.textureRemodelCategory2;
+                case 1:
+                    this.texture = o.COMMON_MAIN.getTexture(47);
                     break;
-                case o.PowerUpCategory.Taiku:
-                    this.texture = this.textureRemodelCategory3;
+                case 4:
+                    this.texture = o.COMMON_MAIN.getTexture(49);
                     break;
-                case o.PowerUpCategory.Soukou:
-                    this.texture = this.textureRemodelCategory4
+                case 3:
+                    this.texture = o.COMMON_MAIN.getTexture(50);
+                    break;
+                case 2:
+                    this.texture = o.COMMON_MAIN.getTexture(51)
             }
-        }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY, this.textureRemodelCategory1 = null, this.textureRemodelCategory2 = null, this.textureRemodelCategory3 = null, this.textureRemodelCategory4 = null, this.removeChildren()
         }, e
     }(PIXI.Sprite);
-    e.IconCategory = s
+    e.ShipSortButton = s
 }

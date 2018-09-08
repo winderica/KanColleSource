@@ -15,57 +15,39 @@ const function1251 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(32), a = i(245), _ = i(29), u = i(18), l = i(434), c = function (t) {
+    var o = i(2), r = i(1252), s = i(1254), a = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._onClickTaihi = function () {
-                null != n._cb_onYes && n._cb_onYes()
-            }, n._onClickTaihiSezu = function () {
-                null != n._cb_onNo && n._cb_onNo()
-            }, n._cb_onYes = e, n._cb_onNo = i, n._taihi = new h(n._onClickTaihi), n._taihi.position.set(438, 563), n.addChild(n._taihi), n._taihisezu = new p(n._onClickTaihiSezu), n._taihisezu.position.set(771, 563), n.addChild(n._taihisezu), n._ship_target = new s.ShipBanner, n._ship_target.position.set(344, 255), n.addChild(n._ship_target), n._txt1 = new PIXI.Sprite, n._txt1.position.set(584, 258), n.addChild(n._txt1), n._txt2 = new PIXI.Sprite, n._txt2.position.set(266, 347), n.addChild(n._txt2), n._ship_name = new r.TextBox(27, 16777215), n._ship_name.y = 258, n.addChild(n._ship_name), n._ship_level = new r.TextBox(18, 16777215), n._ship_level.y = 258, n.addChild(n._ship_level), n._ship_hp = new r.TextBox(18, 16777215), n._ship_hp.y = 291, n.addChild(n._ship_hp), n._title = new a.PhaseTitle, n._title.y = 17, n.addChild(n._title), n
+            return n._scene = e, n._model = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._taihi.initialize(), this._taihisezu.initialize(), this._txt1.texture = u.MAP_COMMON.getTexture(142), this._txt2.texture = u.MAP_COMMON.getTexture(145), this._title.initialize(!1), this._title.update(u.MAP_COMMON.getTexture(103)), this._title.activate()
-        }, e.prototype.updateTargetShipBanner = function (t, e, i, n, r) {
-            var s = "", a = o.default.model.ship.getMst(t);
-            null != a && (s = a.name);
-            var u = _.ShipUtil.isDamaged(n, r), l = _.ShipUtil.getDamageType(n, r);
-            this._ship_target.updateImage(t, u);
-            if (this._ship_target.updateIcon(!1, !1, l), this._ship_target.updateRing(i), this._ship_name.text = s, this._ship_name.x = 240 - this._ship_name.width, this._ship_name.x < 30) {
-                this._ship_name.x = 30;
-                var c = new PIXI.Graphics;
-                c.beginFill(16711680, .5), c.drawRect(0, 0, 210, 33), c.endFill(), this._ship_name.addChild(c), this._ship_name.mask = c
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
+            var e = this._model.escape, i = e.getTargetShipIndexes(), n = e.getTowingShipIndexes(), o = null;
+            if (i.length > 0) {
+                var a = i[0];
+                o = this._model.deck_f.ships[a]
             }
-            this._ship_level.text = "Lv " + e, this._ship_level.x = 338 - this._ship_level.width, this._ship_hp.text = n + "/" + r, this._ship_hp.x = 338 - this._ship_hp.width
-        }, e.prototype.activate = function () {
-            this._taihi.activate(), this._taihisezu.activate()
-        }, e.prototype.deactivate = function () {
-            this._taihi.deactivate(), this._taihisezu.deactivate()
-        }, e.prototype.dispose = function () {
-            this._taihi.dispose(), this._taihisezu.dispose(), this._title.dispose(), this._cb_onYes = null, this._cb_onNo = null
+            var _ = null;
+            if (n.length > 0) {
+                var u = n[0];
+                _ = this._model.deck_f.ships[u]
+            }
+            if (null != o) if (null != _) {
+                var l = new s.EscapeGoeiTask(this._scene, this._model, o, _);
+                l.start(function () {
+                    t._endTask()
+                })
+            } else {
+                var l = new r.EscapeTankanTask(this._scene, this._model, o);
+                l.start(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.EscapeTankanView = c;
-    var h = function (t) {
-        function e(e) {
-            return t.call(this, !1, e) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._initialize(0)
-        }, e.prototype._setTexture = function (t) {
-            this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(14) : u.MAP_COMMON.getTexture(13), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
-        }, e
-    }(l.WaveBtnBase), p = function (t) {
-        function e(e) {
-            return t.call(this, !0, e) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._initialize(-3)
-        }, e.prototype._setTexture = function (t) {
-            this._btn.texture = 1 == t ? u.MAP_COMMON.getTexture(12) : u.MAP_COMMON.getTexture(11), this._btn.x = -Math.round(this._btn.width / 2), this._btn.y = -Math.round(this._btn.height / 2)
-        }, e
-    }(l.WaveBtnBase)
+    }(o.TaskBase);
+    e.EscapeTask = a
 }

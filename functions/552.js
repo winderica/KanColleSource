@@ -15,63 +15,50 @@ const function552 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(276), r = i(23), s = i(188), a = i(553), _ = i(554), u = i(555), l = i(557), c = i(567),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._animationFlg = !1, e._timeChkCount = 0, e.current_bgm_furniture = null, e.animate = function () {
-                    if (e._animationFlg) {
-                        if (e._timeChkCount == o.FurnitureConst.TIME_CHK_COUNT_MAX) {
-                            e._timeChkCount = 0;
-                            var t = new Date, i = r.MathUtil.zeroPadding(t.getHours(), 2),
-                                n = r.MathUtil.zeroPadding(t.getMinutes(), 2),
-                                s = r.MathUtil.zeroPadding(t.getSeconds(), 2);
-                            e._Floor.timeCheck(i, n, s), e._Wall.timeCheck(i, n, s), e._Window.timeCheck(i, n, s), e._Object.timeCheck(i, n, s), e._Chest.timeCheck(i, n, s), e._Desk.timeCheck(i, n, s)
-                        }
-                        e._timeChkCount++, requestAnimationFrame(e.animate), e._Floor.animate(), e._Wall.animate(), e._Window.animate(), e._Object.animate(), e._Chest.animate(), e._Desk.animate()
-                    } else e._kaikyo.finalize(), e._shogo.stopAnimation(), e._Floor.restart(), e._Wall.restart(), e._Window.restart(), e._Object.restart(), e._Chest.restart(), e._Desk.restart()
-                }, e._Floor = new l.Furniture(0), e._Wall = new l.Furniture(1), e._Window = new l.Furniture(2), e._Object = new l.Furniture(3), e._Chest = new l.Furniture(4), e._Desk = new l.Furniture(5), e._outside = new a.FurnitureOutside, e._outside.x = 294, e._sakura = new s.Sakura, e._isSakura = !1, e.addChild(e._Floor), e.addChild(e._Wall), e.addChild(e._outside), e.addChild(e._Window), e.addChild(e._Object), e.addChild(e._sakura), e.addChild(e._Chest), e.addChild(e._Desk), e._kaikyo = new _.Kaikyo, e.addChild(e._kaikyo), e._shogo = new u.Shogo, e.addChild(e._shogo), e
-            }
+    var o = i(185), r = i(22), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._wave1 = new a(0, 1300), e.addChild(e._wave1), e._wave2 = new a(650, 650), e.addChild(e._wave2), e._wave3 = new a(1300, 0), e.addChild(e._wave3), e._ship = new PIXI.Sprite, e._ship.y = -10, e._ship.anchor.y = 1, e.addChild(e._ship), e
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "outside", {
-                get: function () {
-                    return this._outside
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.activate = function () {
-                this.animationFlag = !0
-            }, e.prototype.deactivate = function () {
-                this.animationFlag = !1
-            }, Object.defineProperty(e.prototype, "animationFlag", {
-                set: function (t) {
-                    this._animationFlg != t && (this._animationFlg = t, t && (this._Floor.restart(), this._Wall.restart(), this._Window.restart(), this._Object.restart(), this._Chest.restart(), this._Desk.restart(), this.animate()))
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.updateAll = function (t) {
-                if (this._isSakura = !1, this._Floor.update(t[0]), this._Wall.update(t[1]), this._Window.update(t[2]), this._Object.update(t[3]), this._Chest.update(t[4], this._kaikyo, this._shogo), this._Desk.update(t[5]), this._outside.update(), 235 == t[3] && (this._isSakura = !0), this._isSakura) {
-                    var e = new PIXI.Rectangle(-600, -240, 600, 1200);
-                    this._sakura.startAnimation(e, 4)
-                } else this._sakura.stopAnimation(4)
-            }, e.prototype.onMouseMove = function (t) {
-                var e = t.getLocalPosition(this), i = !1;
-                return i = i || this._Floor.isHit(e), i = i || this._Wall.isHit(e), i = i || this._Window.isHit(e), i = i || this._Object.isHit(e), i = i || this._Chest.isHit(e), i = i || this._Desk.isHit(e)
-            }, e.prototype.onClick = function (t) {
-                for (var e = t.getLocalPosition(this), i = 0, n = this._getFurnitures(); i < n.length; i++) {
-                    var o = n[i];
-                    if (o.isHit(e)) {
-                        if (o.isJukeBox()) {
-                            new c.JukeBoxTask(o.id).JukeStart();
-                            break
-                        }
-                        return o.isRadio() ? (this.current_bgm_furniture = o, this.stopGramophone()) : o.isGramo() && (this.current_bgm_furniture = o), o.clickAction(), !0
-                    }
-                }
-                return !1
-            }, e.prototype.stopGramophone = function () {
-                this._getFurnitures().forEach(function (t, e, i) {
-                    t.isGramo() && t.stopGramophone()
-                })
-            }, e.prototype._getFurnitures = function () {
-                return [this._Desk, this._Chest, this._Object, this._Window, this._Wall, this._Floor]
-            }, e
-        }(PIXI.Container);
-    e.FurnitureView = h
+        return n(e, t), e.prototype.initialize = function () {
+            this._wave1.initialize(), this._wave2.initialize(), this._wave3.initialize(), this._ship.texture = o.TITLE_MAIN.getTexture(1), this._ship.x = -Math.round(this._ship.width / 2)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._wave1.activate(), this._wave2.activate(), this._wave3.activate(), this._t = createjs.Tween.get(this._ship, { loop: !0 }).to({ y: -18 }, 800, createjs.Ease.circOut).to({ y: -10 }, 800, createjs.Ease.circIn))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._wave1.deactivate(), this._wave2.deactivate(), this._wave3.deactivate(), this._t.setPaused(!0), this._t = null, this._ship.y = -10)
+        }, e.prototype.dispose = function () {
+            this._wave1.dispose(), this._wave2.dispose(), this._wave3.dispose(), this.deactivate()
+        }, e
+    }(PIXI.Container);
+    e.Pukapuka = s;
+    var a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._waittime1 = e, n._waittime2 = i, n._img = new PIXI.Sprite, n.addChild(n._img), n
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._init(), this._img.texture = o.TITLE_MAIN.getTexture(0), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).wait(this._waittime1).to({
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 500).to({ scaleX: 1.5, scaleY: 1.5 }, 1e3).to({
+                scaleX: 1.7,
+                scaleY: 1.7,
+                alpha: 0
+            }, 500).call(function () {
+                t._init()
+            }).wait(this._waittime2))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._init())
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._init = function () {
+            this.alpha = 0, this.scale.set(.5)
+        }, e
+    }(r.Container)
 }

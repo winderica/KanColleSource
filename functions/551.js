@@ -15,42 +15,21 @@ const function551 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(47), r = i(16), s = i(552), a = function (t) {
+    var o = i(8), r = i(552), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._initialized = !1, e._furniture_layer = new s.FurnitureView, e.addChild(e._furniture_layer), e._contentLayer = new PIXI.Container, e.addChild(e._contentLayer), e._fadeLayer = new r.FadeBox(1), e._fadeLayer.hide(), e._fadeLayer.visible = !1, e.addChild(e._fadeLayer), e._overLayer = new PIXI.Graphics, e.addChild(e._overLayer), e
+            var e = t.call(this, 1, 0) || this;
+            return e._pukapuka = new r.Pukapuka, e._pukapuka.position.set(600, 360), e.addChild(e._pukapuka), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "furnitureLayer", {
-            get: function () {
-                return this._furniture_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "fadeLayer", {
-            get: function () {
-                return this._fadeLayer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "overLayer", {
-            get: function () {
-                return this._overLayer
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.isInitialized = function () {
-            return this._initialized
-        }, e.prototype.initialize = function () {
-            1 != this._initialized && (this._initialized = !0, this.showPortUI(!0))
-        }, e.prototype.update = function (t) {
-            this._furniture_layer.visible = 0 == t || 25 == t
-        }, e.prototype.activate = function (t, e) {
-            this._furniture_layer.activate()
+        return n(e, t), e.prototype.initialize = function () {
+            this._pukapuka.initialize()
+        }, e.prototype.activate = function () {
+            this._pukapuka.activate()
         }, e.prototype.deactivate = function () {
-            this._furniture_layer.deactivate()
+            this._pukapuka.deactivate()
         }, e.prototype.dispose = function () {
-        }, e.prototype.showPortUI = function (t) {
-            this._overLayer.visible = !0
-        }, e.prototype.getContent = function () {
-            return this._contentLayer.children.length > 0 ? this._contentLayer.getChildAt(0) : null
-        }, e.prototype.setContent = function (t) {
-            this._contentLayer.removeChildren(), null != t && this._contentLayer.addChild(t)
+            this._pukapuka.dispose()
         }, e
-    }(o.SceneBase);
-    e.MainView = a
+    }(o.AreaBox);
+    e.PukapukaLayer = s
 }

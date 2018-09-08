@@ -15,41 +15,42 @@ const function91 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(175), a = i(1321), _ = i(1325), u = function (t) {
+    var o = i(0), r = i(2), s = i(174), a = i(1321), _ = i(1325), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
         }
 
-        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n, o) {
+        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n) {
             if (0 != this._scene.view.layer_gauge.hasGauge() && 1 != t && 0 == e && i != n) {
-                var r = this._scene.view.layer_gauge, s = r.now, a = this._scene.data.model.gauge_type;
+                var o = this._scene.view.layer_gauge, r = o.now, s = Math.max(i - n, 0),
+                    a = this._scene.data.model.gauge_type;
                 if (2 == a) {
-                    var _ = Math.max(0, s - o);
-                    r.update(_)
-                } else 1 == a && s > 0 && o >= i && r.update(s - 1);
-                0 == r.now && 0 == n && r.explode()
+                    var _ = Math.max(0, r - s);
+                    o.update(_)
+                } else 1 == a && r > 0 && s > 0 && o.update(r - 1);
+                0 == o.now && 0 == n && o.explode()
             }
         }, e.prototype.causeDamage = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
+                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
             }
         }, e.prototype.causeDoubleDamage1st = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
+                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
             }
         }, e.prototype.causeDoubleDamage2nd = function (t, e) {
             if (null != t) {
                 var i = t.hp_now;
-                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now, e)
+                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
             }
         }, e.prototype._registerDamageEvents = function (t, e) {
             if (0 != t.friend) {
                 if (!(t.mst_id < 0)) {
                     var i = t.damageType_before, n = t.damageType;
-                    i != n && (75 == n && 100 == i ? 1 == t.friend && o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : 50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t))
+                    if (i != n) return 75 == n && 100 == i ? void o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : void(0 == t.type && (50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t)))
                 }
             } else if (t.hp_now > 0 && e > 0) {
                 var r = s.EnemyVoiceConst.getDamagedVoiceIDs(this._scene, t);

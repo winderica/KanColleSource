@@ -15,17 +15,26 @@ const function1308 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(173), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this, n = e.model.deck_f, o = 0 != n.type;
-            return i._url = 0 == o ? "api_req_sortie/airbattle" : "api_req_combined_battle/airbattle", i._data = e, i
+    var o = i(2), r = i(17), s = function (t) {
+        function e(e, i) {
+            void 0 === e && (e = !1), void 0 === i && (i = !1);
+            var n = t.call(this) || this;
+            return n._night = e, n._combined = i, n
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._loadCommon()
+        }, e.prototype._loadCommon = function () {
+            var t = this, e = new r.UIImageLoader("common");
+            e.add("common_explosion.json"), e.load(function () {
+                t._load()
+            })
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("battle");
+            e.add("battle_main.json"), e.add("battle_telop.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop_sp.json")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_jin_combined.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.APIBase);
-    e.APIBattleStartAirBattle = s
+    }(o.TaskBase);
+    e.TaskLoadResourcesBattle = s
 }

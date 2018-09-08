@@ -15,97 +15,37 @@ const function606 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(34), a = i(283), _ = i(127), u = i(152), l = i(102), c = i(197), h = i(14),
-        p = i(198), d = i(632), f = i(289), y = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
-            }
+    var o = i(0), r = i(6), s = i(287), a = i(288), _ = i(289), u = i(290), l = i(149), c = i(1), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mouse_down = !1, i._cb_onRelateOpen = null, i._cb_onRelateClose = null, i._onMouseOver = function () {
+                i._mouse_down = !1, i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._showWaves(), i._description.show(), null != i._cb_onRelateOpen && i._cb_onRelateOpen()
+            }, i._onMouseOut = function () {
+                i._mouse_down = !1, i._bg_on.visible = !1, i._bg_on.deactivate(), i._img.visible = !0, i._img_on.visible = !1, i._setScale(1), i._hideWaves(), i._description.hide(), null != i._cb_onRelateClose && i._cb_onRelateClose()
+            }, i._onMouseDown = function () {
+                i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
+            }, i._onMouseUp = function () {
+                i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
+            }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new u.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new l.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
-                    return /^resources\/ship\/.+/.test(t)
-                }), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var s = t.filter(function (t) {
-                    return /^resources\/slot\/.+/.test(t)
-                }), a = 0, _ = s; a < _.length; a++) {
-                    var o = _[a], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var u = t.filter(function (t) {
-                    return /^resources\/map\/\d{3}\/\d{2}_.+/.test(t)
-                }), l = 0, c = u; l < c.length; l++) {
-                    var o = c[l], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var u = t.filter(function (t) {
-                    return /^map\d{5}_.+/.test(t)
-                }), h = 0, p = u; h < p.length; h++) {
-                    var o = p[h], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this, e = new s.APIConnector;
-                e.add(new a.PortAPI), 33 == this._pre_scene ? (e.add(new _.UserSlotItemAPI), e.add(new u.UnsetSlotAPI), e.add(new l.UseItemAPI)) : 32 == this._pre_scene && e.add(new _.UserSlotItemAPI), e.start(function () {
-                    t._loadPortResources()
-                })
-            }, e.prototype._loadPortResources = function () {
-                var t = this, e = o.default.model.basic.getUISkinID();
-                new d.TaskLoadResources(e).start(function () {
-                    t._loadFurnitureResources()
-                })
-            }, e.prototype._loadFurnitureResources = function () {
-                var t = this, e = new c.FurnitureLoadTask(!0);
-                e.floor_id = o.default.model.basic.getPortFurnitureMstID(0), e.wall_id = o.default.model.basic.getPortFurnitureMstID(1), e.window_id = o.default.model.basic.getPortFurnitureMstID(2), e.object_id = o.default.model.basic.getPortFurnitureMstID(3), e.desk_id = o.default.model.basic.getPortFurnitureMstID(5), e.chest_id = o.default.model.basic.getPortFurnitureMstID(4), e.start(function () {
-                    var e = o.default.view.portMain;
-                    0 == e.isInitialized() && e.initialize(), t._loadFlagShipResource()
-                })
-            }, e.prototype._loadFlagShipResource = function () {
-                var t = this, e = o.default.model.deck.get(1).getShipModel(0);
-                if (null != e) {
-                    var i = e.mstID, n = e.isDamaged();
-                    if (1 == o.default.resources.isLoadedShip(i, n, "full")) {
-                        var r = e.tired;
-                        o.default.view.portMain.flagShip.initialize(i, n, r), this._preInitPortView(e)
-                    } else {
-                        var s = new h.ShipLoader;
-                        s.add(i, n, "full"), s.load(function () {
-                            var r = e.tired;
-                            o.default.view.portMain.flagShip.initialize(i, n, r), t._preInitPortView(e)
-                        })
-                    }
-                } else this._preInitPortView(e)
-            }, e.prototype._preInitPortView = function (t) {
-                var e = o.default.view.portMain;
-                if (0 == e.isInitialized()) {
-                    var i = o.default.model.basic.getUISkinID();
-                    e.initializeNext(i)
-                } else e.showPortUI(!0);
-                this._initPortView(e, t)
-            }, e.prototype._initPortView = function (t, e) {
-                var i = e.isMarriage();
-                t.activate(e.mstID, i), o.default.view.portMain.updateUserInfo({
-                    userName: o.default.model.basic.nickName,
-                    userLevel: o.default.model.basic.level,
-                    userRank: "[" + o.default.model.basic.rankName + "]",
-                    fleetNum: o.default.model.deck.num
-                }), o.default.view.portMain.updateInfo(), this._showExpeditionResult()
-            }, e.prototype._showExpeditionResult = function () {
-                var t = this;
-                (new f.TaskExpeditionAlertUpdate).start(function () {
-                    t._loginBonus()
-                })
-            }, e.prototype._loginBonus = function () {
-                if (1 == o.default.model.incentive.hasIncentive()) {
-                    var t = o.default.view.overLayer, e = o.default.model.incentive.getRewards();
-                    new p.TaskReward(t, e).start(), o.default.model.incentive.clearData()
-                }
-                this._endTask()
-            }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = y
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()
+        }, e.prototype.activate = function () {
+            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
+        }, e.prototype.deactivate = function () {
+            this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
+        }, e.prototype.interactiveApply = function (t) {
+            this._hit_area.interactive = t
+        }, e.prototype.dispose = function () {
+            this._cb_onRelateOpen = null, this._cb_onRelateClose = null, this.deactivate(), this._hideWaves(), this._bg_on.dispose()
+        }, e.prototype._showWaves = function () {
+            null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
+        }, e.prototype._hideWaves = function () {
+            null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
+        }, e.prototype._setScale = function (t) {
+            this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+        }, e
+    }(PIXI.Container);
+    e.RingMenuBtn = h
 }

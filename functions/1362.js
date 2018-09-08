@@ -15,7 +15,7 @@ const function1362 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(460), r = function (t) {
+    var o = i(461), r = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this, e, i) || this;
             return r._model = n, r._bannerGroup = o, r
@@ -29,7 +29,7 @@ const function1362 = function (t, e, i) {
             var t = this._model.getFlareIndex_f();
             return this._bannerGroup.getBanner(t)
         }, e.prototype._getFlareBanner_e = function () {
-            var t = this._model.getFlareIndex_f();
+            var t = this._model.getFlareIndex_e();
             return this._scene.view.bannerGroupLayer.getBanner(!1, t)
         }, e
     }(o.PhaseLightingBase);

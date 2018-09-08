@@ -1,29 +1,20 @@
 const function541 = function (t, e, i) {
-    "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+    var n = i(269), o = { delimiter: "&" };
+    o.stringify = function (t, e) {
+        if (n.isBuffer(t) ? t = t.toString() : t instanceof Date ? t = t.toISOString() : null === t && (t = ""), "string" == typeof t || "number" == typeof t || "boolean" == typeof t) return [encodeURIComponent(e) + "=" + encodeURIComponent(t)];
+        var i = [];
+        if (void 0 === t) return i;
+        for (var r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
+            var _ = r[s];
+            i = i.concat(o.stringify(t[_], e + "[" + _ + "]"))
         }
-    }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._url = "api_req_member/get_incentive", e
+        return i
+    }, t.exports = function (t, e) {
+        e = e || {};
+        for (var i = void 0 === e.delimiter ? o.delimiter : e.delimiter, n = [], r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
+            var _ = r[s];
+            n = n.concat(o.stringify(t[_], _))
         }
-
-        return n(e, t), e.prototype._completedEnd = function () {
-            o.default.model.incentive.setData(this._raw_data), t.prototype._completedEnd.call(this)
-        }, e
-    }(r.APIBase);
-    e.GetIncentiveAPI = s
+        return n.join(i)
+    }
 }

@@ -15,15 +15,24 @@ const function1184 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_quest/stop", i._duty_id = e, i
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.alpha = 0, e.visible = !1, e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.DUTY_COMMON.getTexture(56)
+        }, e.prototype.show = function () {
+            var t = this;
+            this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({ alpha: 1 }, 300).wait(2e3).to({ alpha: 0 }, 300).call(function () {
+                t.visible = !1
+            })
+        }, e.prototype.hide = function () {
+            this._stopTween(), this.alpha = 0, this.visible = !1
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(o.APIBase);
-    e.DutyCancelAPI = r
+    }(PIXI.Sprite);
+    e.RewardSelectDialogFurnitureAlert = r
 }

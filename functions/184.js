@@ -16,10 +16,10 @@ const function184 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(0), r = i(46), s = function (t) {
-        function e(e, i, n) {
-            void 0 === i && (i = null), void 0 === n && (n = null);
-            var o = t.call(this) || this;
-            return o._mst_id = e, o._name = i, o._message = n, o
+        function e(e, i) {
+            void 0 === i && (i = null);
+            var n = t.call(this) || this;
+            return n._mst_id = e, n._message = i, n
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
@@ -28,11 +28,10 @@ const function184 = function (t, e, i) {
             }, enumerable: !0, configurable: !0
         }), Object.defineProperty(e.prototype, "name", {
             get: function () {
-                if (null != this._name && this._name.length > 0) return this._name;
-                var t = o.default.model.furniture.getData(this._mst_id);
+                var t = o.default.model.ship.get(this._mst_id);
                 return null == t ? "" : t.name
             }, enumerable: !0, configurable: !0
         }), e
     }(r.RewardModel);
-    e.RewardModelFurniture = s
+    e.RewardModelShip = s
 }

@@ -15,25 +15,38 @@ const function1219 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(135), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
+    var o = i(0), r = i(166), s = i(4), a = i(133), _ = i(1220), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._friend = e, i._chara = new PIXI.Sprite, i.addChild(i._chara), i._bg = new PIXI.Sprite, i._bg.x = e ? 0 : 95, i._bg.y = 368, i.addChild(i._bg), i._stype_txt = new s.TextBox(21, 16774898);
+            var n = new PIXI.Graphics;
+            return n.beginFill(0).drawRect(0, 0, 126, 27).endFill(), i._stype_txt.addChild(n), i._stype_txt.mask = n, i._stype_txt.x = e ? 6 : 168, i._stype_txt.y = 476, i.addChild(i._stype_txt), i._name_txt = new s.TextBox(39, 16774898), n = new PIXI.Graphics, n.beginFill(0).drawRect(0, 0, 204, 45).endFill(), i._name_txt.addChild(n), i._name_txt.mask = n, i._name_txt.x = e ? 143 : 303, i._name_txt.y = 465, i.addChild(i._name_txt), i._lvlabel_txt = new s.TextBox(27, 16774898), i._lvlabel_txt.text = "Lv", i._lvlabel_txt.x = e ? 351 : 512, i._lvlabel_txt.y = 474, i.addChild(i._lvlabel_txt), i._lv_txt = new s.TextBox(28, 16774898), i._lv_txt.x = e ? 383 : 543, i._lv_txt.y = 473, i.addChild(i._lv_txt), i._elementLayer = new PIXI.Container, i.addChild(i._elementLayer), i._medal = new r.MedalIcon, i._medal.alpha = 0, i._medal.x = e ? 440 : 108, i._medal.y = 533, i.addChild(i._medal), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "medal", {
             get: function () {
-                return this._bg
+                return this._medal
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
+        }), Object.defineProperty(e.prototype, "elements", {
             get: function () {
-                return this._text
+                return this._elements
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
-        }, e.prototype.update = function (t) {
-            this._text.text = t
+        }), e.prototype.initialize = function (t, e) {
+            this._friend ? this._bg.texture = a.PRAC_MAIN.getTexture(1) : this._bg.texture = a.PRAC_MAIN.getTexture(0);
+            var i = t[0], n = i.mst_id, r = i.isDamaged(), s = o.default.model.ship_graph.get(n),
+                _ = null == s ? new PIXI.Point : s.getLeftOffset(r);
+            this._friend || (_.x += 90), this._chara.position.set(_.x - 150, _.y - 60), this._chara.texture = o.default.resources.getShip(n, r, "full"), this._stype_txt.text = i.stype_name, this._name_txt.text = i.name, this._lv_txt.text = i.level.toString(), this._initializeElements(t), e > 0 && (this._medal.initialize(), this._medal.update(e, 9466926))
+        }, e.prototype._initializeElements = function (t) {
+            this._elements = [];
+            for (var e = 1; e < t.length; e++) {
+                var i = t[e];
+                if (null == i) return;
+                var n = new _.ShipElement;
+                n.alpha = 0, n.x = this._friend ? -101 : 273, n.y = 530 + 38 * (e - 1);
+                var o = i.stype_name, r = i.name, s = i.level;
+                n.update(o, r, s), this._elements.push(n), this._elementLayer.addChild(n)
+            }
         }, e
     }(PIXI.Container);
-    e.PracticeTitleBar = s
+    e.Content = u
 }

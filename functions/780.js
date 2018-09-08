@@ -15,18 +15,31 @@ const function780 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)),
-                n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16));
-            i.position.set(-14, -14), i.alpha = 0, e.addChild(i, n), e.btnSoubi3 = n, e.btnSoubi3Light = i;
-            var r = createjs.Tween.get(i).to({ alpha: 0 }).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3);
-            return r.loop = !0, r.play(null), e
+    var o = i(5), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._duration = 150;
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, .5), n.drawRect(0, 0, o.default.width, o.default.height), n.endFill(), i._container = e, i._container.alpha = 0, i.interactive = !0, i.alpha = 0, i.addChild(n, i._container), i
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this), this.btnSoubi3.texture = PIXI.Texture.EMPTY, this.btnSoubi3Light.texture = PIXI.Texture.EMPTY, this.btnSoubi3 = null, this.btnSoubi3Light = null, this.removeChildren()
+        return n(e, t), e.prototype.show = function (t) {
+            var e = this;
+            void 0 === t && (t = null), createjs.Tween.get(this).to({ alpha: 1 }, 1.2 * this._duration).call(function () {
+                createjs.Tween.get(e._container).to({ alpha: 1 }, .5 * e._duration).call(function () {
+                    null !== t && t()
+                })
+            })
+        }, e.prototype.hide = function (t) {
+            var e = this;
+            void 0 === t && (t = null), createjs.Tween.get(this._container).to({ alpha: 0 }, this._duration).call(function () {
+                createjs.Tween.get(e).to({ alpha: 0 }, 1.2 * e._duration).call(function () {
+                    null !== t && t()
+                })
+            })
+        }, e.prototype.dispose = function () {
+            this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.InUseMarker = r
+    e.SlotInShipChangeConfirm = r
 }

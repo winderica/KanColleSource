@@ -15,187 +15,131 @@ const function649 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(47), a = i(34), _ = i(66), u = i(106), l = i(653), c = i(670), h = i(701),
-        p = i(702), d = i(709), f = i(214), y = i(713), v = i(714), g = i(715), m = i(720), b = i(722), w = i(723),
-        x = i(730), I = i(731), T = i(8), O = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e.currentViewMode = null, e._onClickBreakDeck = function () {
-                    var t = function () {
-                        e.deckLayer.update(), u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                            o.default.view.clickGuard = !1
-                        }) : o.default.view.clickGuard = !1
-                    };
-                    e.deckLayer.onBreakDeck(e.deckLayer.deckID, t)
-                }, e._onDragging = function (t, i) {
-                    var n = new I.ShipDragging(t, i, e.deckLayer.shipSlotDisplayLength, e._inDragging, e._onDrop, function () {
-                        o.default.view.overLayer.removeChild(n)
-                    });
-                    o.default.view.overLayer.addChild(n)
-                }, e._inDragging = function (t) {
-                    t ? (e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1) : (e.presetButtonLayer.show(), e.deckLayer.EditNameArea.writable = !0)
-                }, e._onDrop = function (t, i, n) {
-                    if (t != i) {
-                        var s = o.default.model.deck.get(e.deckLayer.deckID), u = s.getCount();
-                        if (1 != u || 1 != s.mstID) {
-                            var l = t + e.deckLayer.shipInDeckOrigin, c = i + e.deckLayer.shipInDeckOrigin;
-                            if (!(l == u - 1 && i >= t)) {
-                                var h = new a.APIConnector;
-                                if (10 == o.default.model.basic.getTutorialProgress() && h.add(new _.UpdateTutorialAPI(20)), -1 == i) return h.add(new f.ChangeAPI(!0, s.mstID, l, -1)), void e._removeShip(h, t);
-                                var p = o.default.model.ship.get(n);
-                                h.add(new f.ChangeAPI(!0, s.mstID, c, n)), r.SE.play("235"), o.default.sound.voice.play(p.mstID.toString(), 13), c >= u && (i = u - e.deckLayer.shipInDeckOrigin - 1), e._changeShipSlot(h, i)
-                            }
-                        }
-                    }
-                }, e._removeShip = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        e.deckLayer.ShipSlotLayer.ShipSlots[i].closeAnimation(function () {
-                            e.deckLayer.update(), u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.overLayer.removeChild(n)
-                            }) : o.default.view.overLayer.removeChild(n)
-                        })
-                    })
-                }, e._changeShipSlot = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        var t = function () {
-                            return e.deckLayer.update()
-                        }, r = function () {
-                            u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.overLayer.removeChild(n)
-                            }) : o.default.view.overLayer.removeChild(n)
-                        };
-                        e.deckLayer.ShipSlotLayer.shutterAnimation(i, t, r)
-                    })
-                }, e._onClickDeckFlag = function (t) {
-                    if (e.deckLayer.deckID != t) switch (e.deckLayer.shipInDeckOrigin = 0, e.currentViewMode) {
-                        case 0:
-                            e.deckLayer.updateDeck(t);
-                            break;
-                        case 1:
-                            e.deckLayer.updateDeckSelector(t), e.presetEditLayer.update(t);
-                            break;
-                        case 2:
-                            e.deckLayer.updateDeckSelector(t), e.presetExpansionLayer.update(t)
-                    }
-                }, e._onClickShipChange = function (t, i) {
-                    e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1;
-                    var n = o.default.model.deck.get(e.deckLayer.deckID), s = (n.getShipModel(i), n.getCount());
-                    e.taskChangeShip = new w.TaskChangeShip(e), e.taskChangeShip.onUpdateDeck = function () {
-                        o.default.view.clickGuard = !0;
-                        var n = o.default.model.deck.get(e.deckLayer.deckID), a = n.getShipModel(i), _ = n.getCount(),
-                            l = e.deckLayer.ShipSlotLayer.ShipSlots[t];
-                        _ < s ? l.closeAnimation(function () {
-                            e.deckLayer.update(), u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        }) : (r.SE.play("235"), o.default.sound.voice.play(a.mstID.toString(), 13), s < _ ? (e.deckLayer.update(), l.close(), l.openAnimation(function () {
-                            u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        })) : l.closeAnimation(function () {
-                            e.deckLayer.update(), l.close(), l.openAnimation(function () {
-                                u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.clickGuard = !1
-                                }) : o.default.view.clickGuard = !1
-                            })
-                        }))
-                    }, e.taskChangeShip.onComplete = function () {
-                        e.presetButtonLayer.show(), e.taskChangeShip.dispose(), e.taskChangeShip = null, e.deckLayer.EditNameArea.writable = !0
-                    }, e.taskChangeShip.start(e.deckLayer.deckID, i)
-                }, e._onClickShipDetail = function (t) {
-                    e.deckLayer.EditNameArea.writable = !1, e.presetButtonLayer.hide(), e.deckLayer.ShipSlotLayer.onShipDetail(t, e, function () {
-                        e.deckLayer.EditNameArea.writable = !0, e.presetButtonLayer.show()
-                    })
-                }, e._onClickPresetChange = function (t) {
-                    if (e.currentViewMode != t) {
-                        switch (e.currentViewMode) {
-                            case 1:
-                                e.presetEditLayer.hide();
-                                break;
-                            case 2:
-                                e.presetExpansionLayer.hide()
-                        }
-                        switch (t) {
-                            case 1:
-                                e._changeMode(1);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetEditLayer.show(e.deckLayer.deckID, e.presetList);
-                                break;
-                            case 2:
-                                e._changeMode(2);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetExpansionLayer.show(e.deckLayer.deckID, e.presetList)
-                        }
-                    }
-                }, e._onClickPresetBack = function () {
-                    e._changeMode(0), e.deckLayer.update()
-                }, e._onClickExpand = function (t) {
-                    o.default.view.clickGuard = !0;
-                    var i = new y.PresetSelectAPI(t, e.deckLayer.deckID);
-                    r.SE.play("240"), i.start(function () {
-                        for (var i = o.default.model.deck.get(e.deckLayer.deckID).getShipList(), n = new Array, s = 0; s < e.deckLayer.ShipSlotLayer.ShipSlots.length; s++) {
-                            i[s + e.deckLayer.shipInDeckOrigin] && n.push(s)
-                        }
-                        u.OrganizeConst.COMBINABLE && o.default.model.deck.isCombined(), r.SE.play("235"), e.presetExpansionLayer.hide(), e.presetList.getPresetDeckData(t).__deleteLostShips__(), e._changeMode(0), e.deckLayer.update();
-                        for (var a = function () {
-                        }, _ = function () {
-                            u.OrganizeConst.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        }, s = 0; s < e.deckLayer.ShipSlotLayer.ShipSlots.length; s++) {
-                            var l = e.deckLayer.ShipSlotLayer.ShipSlots[s];
-                            l.close()
-                        }
-                        if (0 < n.length) {
-                            for (var s = 0; s < n.length; s++) {
-                                var c = a;
-                                n.indexOf(s) == n.length - 1 && (c = _);
-                                var l = e.deckLayer.ShipSlotLayer.ShipSlots[s];
-                                l.openAnimation(c)
-                            }
-                            o.default.sound.voice.play(o.default.model.deck.get(e.deckLayer.deckID).getShipList()[0].mstID.toString(), 13)
-                        } else _()
-                    })
-                }, e
-            }
-
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new g.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new b.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new v.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new m.FinalizeTask(this)
-            }, e.prototype.preInitialize = function (t) {
-                this.presetList = t, this.backgroundLayer = new l.BackgroundLayer, this.backgroundLayer.init(), this.addChild(this.backgroundLayer), this.deckLayer = new c.DeckLayer(this._onClickDeckFlag), this.deckLayer.init(this._onClickBreakDeck), this.deckLayer.ShipSlotLayer.init(this._onDragging, this._onClickShipChange, this._onClickShipDetail), this.addChild(this.deckLayer), this.deckLayer.updateDeck(1), this.presetExpansionLayer = new d.PresetExpansionLayer(this._onClickPresetBack, this._onClickExpand), this.presetExpansionLayer.hide(), this.addChild(this.presetExpansionLayer), this.presetEditLayer = new p.PresetEditLayer(this._onClickPresetBack), this.presetEditLayer.hide(), this.addChild(this.presetEditLayer), this.presetButtonLayer = new h.PresetButtonLayer, this.presetButtonLayer.position.set(66, 514), this.presetButtonLayer.onClick = this._onClickPresetChange, this.presetButtonLayer.hide(), o.default.view.overLayer.addChild(this.presetButtonLayer), this._changeMode(0)
-            }, e.prototype.initialize = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), this.presetButtonLayer.show(), this.deckLayer.EditNameArea.writable = !0
-            }, e.prototype.prefinalize = function () {
-                this.presetButtonLayer.hide(), this.deckLayer.EditNameArea.writable = !1
-            }, e.prototype.finalize = function () {
-                this.taskChangeShip && this.taskChangeShip.dispose(), this.taskChangeShip = null, this.presetEditLayer.dispose(), this.presetEditLayer = null, this.presetExpansionLayer.dispose(), this.presetExpansionLayer = null, this.deckLayer.dispose(), this.deckLayer = null, this.presetButtonLayer.dispose(), this.presetButtonLayer = null, this.backgroundLayer.dispose(), this.backgroundLayer = null, this.presetList = null, this.currentViewMode = null, this.removeChildren()
-            }, e.prototype._changeMode = function (t) {
-                switch (this.deckLayer.hide(), this.deckLayer.show(t), this.presetButtonLayer.update(t), t) {
-                    case 0:
-                        this.deckLayer.EditNameArea.writable = !0, this.deckLayer.EditNameArea.editable = !0;
-                        break;
-                    case 1:
-                    case 2:
-                        this.deckLayer.EditNameArea.editable = !1, this.deckLayer.EditNameArea.writable = !1
+    var o = i(80), r = i(5), s = i(104), a = i(105), _ = i(650), u = i(1), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            n._ImageManager = e, n._ev = i, n._current = 0, n._prefix = "chara", n._suffix = {
+                full: "full",
+                bg: "bg",
+                txt: "txt"
+            }, n._charaMoveX = 100, n._chara = [s.CHARA.FUBUKI, s.CHARA.MURAKUMO, s.CHARA.SAZANAMI, s.CHARA.INADUMA, s.CHARA.SAMIDARE], n._charaPosition = {}, n._create = function () {
+                for (var t = 0, e = n._chara.length; t < e; t++) {
+                    var i = n._chara[t], o = n._prefix + "_" + i, s = new PIXI.Container;
+                    s.visible = !1;
+                    var a = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.full)), _ = n._charaPosition[i];
+                    a.name = n._suffix.full, a.position.set(_.x + n._charaMoveX, _.y), a.alpha = 0;
+                    var u = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.bg));
+                    u.name = n._suffix.bg, u.anchor.set(.5, 0), u.position.set(r.default.width / 2, 100), u.alpha = 0;
+                    var l = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.txt));
+                    l.name = n._suffix.txt, l.position.set(110, 120), l.alpha = 0, s.addChild(u, a, l), n._charaContainer.addChild(s)
                 }
-                this.currentViewMode = t
-            }, e.prototype._asyncCheckCombineStateAndRepair = function (t) {
-                var e = this, i = new x.TaskCheckCombineStateAndRepair(o.default.view.overLayer);
-                i.onBroken = function () {
-                    e.deckLayer.update()
-                }, i.onComplete = function () {
-                    i.dispose(), t()
-                }, i.start()
-            }, e
-        }(s.SceneBase);
-    e.OrganizeScene = O
+                n._ev.emit("tutorial-scene-start")
+            }, n._getEventTextureKey = function (t) {
+                return t == u.EventType.MOUSEOVER ? "hover" : "def"
+            }, n._onToggleSubmitBtn = function (t) {
+                var e = n._getEventTextureKey(t.type);
+                n._btnSubmit.texture = n._btn.submit[e]
+            }, n._onTogglePrevBtn = function (t) {
+                var e = n._getEventTextureKey(t.type);
+                n._btnPrev.texture = n._btn.prev[e]
+            }, n._onToggleNextBtn = function (t) {
+                var e = n._getEventTextureKey(t.type);
+                n._btnNext.texture = n._btn.next[e]
+            }, n._onNextChara = function () {
+                var t = n._current + 1;
+                t >= n._chara.length && (t = 0), n._currentHide(n._current, t)
+            }, n._onPrevChara = function () {
+                var t = n._current - 1;
+                t < 0 && (t = n._chara.length - 1), n._currentHide(n._current, t)
+            }, n._onSubmit = function () {
+                n._btnSubmit.interactive = !1, n._btnSubmit.off(u.EventType.CLICK, n._onSubmit), n._messageContainer = new _.SceneSelectShipView(n._ImageManager, n._ev);
+                var t = n._chara[n._current], e = n._charaContainer.getChildAt(n._current),
+                    i = e.getChildByName(n._suffix.full), o = n._charaPosition[t];
+                n._ev.emit("tutorial-save-ship", t);
+                var r = createjs.Ease.linear;
+                createjs.Tween.get(i).wait(50).to({ x: o.move.x }, 250, r).wait(200).call(function () {
+                    n._ev.emit("tutorial-title", !1), n._ev.emit("tutorial-next"), n._messageContainer.start()
+                }).to({ y: o.move.y }, 250, r), n._selectedDispose(e), n.addChild(n._messageContainer)
+            };
+            for (var a = n._ImageManager.charaImagesList(), l = 0, c = a.length; l < c; l++) {
+                var h = a[l];
+                n._ImageManager.add(h[0], h[1])
+            }
+            return n._charaPosition[s.CHARA.FUBUKI] = {
+                x: 476,
+                y: 16,
+                move: { x: 216, y: -50 }
+            }, n._charaPosition[s.CHARA.MURAKUMO] = {
+                x: 247,
+                y: -70,
+                move: { x: -14, y: -139 }
+            }, n._charaPosition[s.CHARA.SAZANAMI] = {
+                x: 467,
+                y: 17,
+                move: { x: 210, y: -49 }
+            }, n._charaPosition[s.CHARA.INADUMA] = {
+                x: 572,
+                y: 55,
+                move: { x: 314, y: -16 }
+            }, n._charaPosition[s.CHARA.SAMIDARE] = {
+                x: 499,
+                y: 80,
+                move: { x: 240, y: 10 }
+            }, n._btn = {
+                prev: { def: o.TUTORIAL_MAIN.getTexture(7), hover: o.TUTORIAL_MAIN.getTexture(8) },
+                next: { def: o.TUTORIAL_MAIN.getTexture(1), hover: o.TUTORIAL_MAIN.getTexture(2) },
+                submit: { def: o.TUTORIAL_MAIN.getTexture(5), hover: o.TUTORIAL_MAIN.getTexture(6) }
+            }, n.alpha = 0, n
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._charaContainer = new PIXI.Container;
+            var t = new PIXI.Container;
+            t.position.set(0, 600), this._btnSubmit = new PIXI.Sprite(this._btn.submit.def), this._btnSubmit.name = "submit", this._btnSubmit.anchor.set(.5, 0), this._btnSubmit.position.set(r.default.width / 2, 0), this._btnSubmit.interactive = !0, this._btnSubmit.buttonMode = !0, this._btnSubmit.on(u.EventType.CLICK, this._onSubmit).on(u.EventType.MOUSEOVER, this._onToggleSubmitBtn).on(u.EventType.MOUSEOUT, this._onToggleSubmitBtn);
+            var e = Math.floor(this._btnSubmit.width / 2), i = Math.floor(this._btnSubmit.height / 2),
+                n = this._btnSubmit.x;
+            this._btnPrev = new PIXI.Sprite(this._btn.prev.def), this._btnPrev.anchor.set(1, .5), this._btnPrev.position.set(n - e - 20, i), this._btnPrev.interactive = !0, this._btnPrev.buttonMode = !0, this._btnPrev.on(u.EventType.CLICK, this._onPrevChara).on(u.EventType.MOUSEOVER, this._onTogglePrevBtn).on(u.EventType.MOUSEOUT, this._onTogglePrevBtn), this._btnNext = new PIXI.Sprite(this._btn.next.def), this._btnNext.anchor.set(0, .5), this._btnNext.position.set(n + e + 20, i), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(u.EventType.CLICK, this._onNextChara).on(u.EventType.MOUSEOVER, this._onToggleNextBtn).on(u.EventType.MOUSEOUT, this._onToggleNextBtn), t.addChild(this._btnPrev, this._btnNext, this._btnSubmit), this.addChild(this._charaContainer, t), this._ImageManager.load(this._create)
+        }, e.prototype.start = function () {
+            this.alpha = 1, this._ev.emit("tutorial-title", !0, 22), this._nextShow(0)
+        }, e.prototype._currentHide = function (t, e) {
+            var i = this;
+            this._btnNext.interactive = !1, this._btnPrev.interactive = !1, this._btnSubmit.interactive = !1;
+            var n = this._charaContainer.getChildAt(t), o = n.getChildByName(this._suffix.bg),
+                r = n.getChildByName(this._suffix.txt), s = n.getChildByName(this._suffix.full),
+                a = createjs.Ease.linear;
+            createjs.Tween.get(o).to({ alpha: 0 }, 100, a), createjs.Tween.get(r).to({ alpha: 0 }, 100, a), createjs.Tween.get(s).to({
+                x: s.x + this._charaMoveX,
+                alpha: 0
+            }, 150, a).call(function () {
+                n.visible = !1, i._nextShow(e)
+            })
+        }, e.prototype._nextShow = function (t) {
+            var e = this, i = this._chara[t], n = parseInt(i, 10), o = this._charaContainer.getChildAt(t);
+            o.visible = !0;
+            var r = o.getChildByName(this._suffix.bg), s = o.getChildByName(this._suffix.txt),
+                a = o.getChildByName(this._suffix.full), _ = this._charaPosition[i], u = createjs.Ease.linear;
+            createjs.Tween.get(r).to({ alpha: 1 }, 100, u), createjs.Tween.get(s).to({ alpha: 1 }, 100, u), createjs.Tween.get(a).wait(150).to({
+                alpha: 1,
+                x: _.x
+            }, 150, u).call(function () {
+                e._btnNext.interactive = !0, e._btnPrev.interactive = !0, e._btnSubmit.interactive = !0, e._ev.emit("tutorial-play-voice", n.toString(), 13)
+            }), this._current = t
+        }, e.prototype._selectedDispose = function (t) {
+            var e = this, i = t.getChildByName(this._suffix.bg), n = t.getChildByName(this._suffix.txt),
+                o = createjs.Ease.linear;
+            createjs.Tween.get(i).to({ alpha: 0 }, 100, o), createjs.Tween.get(n).to({ alpha: 0 }, 100, o), createjs.Tween.get(this._btnSubmit).to({ alpha: 0 }, 100, o).call(function () {
+                e._btnSubmit.interactive = !1, e._btnSubmit.buttonMode = !1, e._btnSubmit.off(u.EventType.CLICK, e._onSubmit), e._btnSubmit.off(u.EventType.MOUSEOVER, e._onToggleSubmitBtn), e._btnSubmit.off(u.EventType.MOUSEOUT, e._onToggleSubmitBtn), e._btnSubmit = null
+            }), createjs.Tween.get(this._btnPrev).to({ alpha: 0 }, 100, o).call(function () {
+                e._btnPrev.interactive = !1, e._btnPrev.buttonMode = !1, e._btnPrev.off(u.EventType.CLICK, e._onPrevChara), e._btnPrev.off(u.EventType.MOUSEOVER, e._onTogglePrevBtn), e._btnPrev.off(u.EventType.MOUSEOUT, e._onTogglePrevBtn), e._btnPrev = null
+            }), createjs.Tween.get(this._btnNext).to({ alpha: 0 }, 100, o).call(function () {
+                e._btnNext.interactive = !1, e._btnNext.buttonMode = !1, e._btnNext.off(u.EventType.CLICK, e._onNextChara), e._btnNext.off(u.EventType.MOUSEOVER, e._onToggleNextBtn), e._btnNext.off(u.EventType.MOUSEOUT, e._onToggleNextBtn), e._btnNext = null
+            })
+        }, e.prototype.dispose = function () {
+            var t = this;
+            createjs.Tween.get(this).to({ alpha: 0 }, 100, createjs.Ease.linear).call(function () {
+                t._ev.emit("tutorial-remove-scene")
+            }), this._messageContainer.dispose()
+        }, e
+    }(a.SceneBase);
+    e.SceneSelectShip = l
 }

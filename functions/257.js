@@ -15,48 +15,118 @@ const function257 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(24), a = i(446), _ = i(447), u = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
-            var s = Math.floor(3 * Math.random());
-            r._telop1 = new _.CutinTelop(s, o);
-            var u = Math.floor(3 * Math.random());
-            return r._telop2 = new _.CutinTelop(u, o), r._preload_task = new l(e, i, n), r
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "view", {
-            get: function () {
-                return this._view
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.getPreloadTask = function () {
-            return this._preload_task
-        }, e.prototype._endTask = function () {
-            this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.CutinDouble = u;
-    var l = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._attacker = e, o._slot1 = i, o._slot2 = n, o
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipImage()
-        }, e.prototype._loadShipImage = function () {
-            var t = this, e = new r.ShipLoader;
-            e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
-                t._loadSlotTextImage()
-            })
-        }, e.prototype._loadSlotTextImage = function () {
-            var t = this;
-            if (null == this._slot1 && null == this._slot2) this._endTask(); else {
-                var e = new s.SlotLoader;
-                null != this._slot1 && e.add(this._slot1.mstID, "btxt_flat"), null != this._slot2 && e.add(this._slot2.mstID, "btxt_flat"), e.load(function () {
-                    t._endTask()
-                })
+    var o = i(0), r = i(7), s = i(489), a = function () {
+        function t(t) {
+            if (this._o = t, this._expedition = null, null != this._o) {
+                var e = r.ObjUtil.getNumArray(this._o, "api_mission"), i = new s.DeckExpeditionModelEdit(e);
+                i.expedition_id > 0 && (this._expedition = i)
             }
+        }
+
+        return Object.defineProperty(t.prototype, "mstID", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return r.ObjUtil.getString(this._o, "api_name")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "nameID", {
+            get: function () {
+                return r.ObjUtil.getString(this._o, "api_name_id")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.__updateName__ = function (t, e) {
+            this._o.api_name = t, this._o.api_name_id = e
+        }, Object.defineProperty(t.prototype, "expedition", {
+            get: function () {
+                return this._expedition
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getCount = function () {
+            return this._getShipMemIDArray().filter(function (t, e, i) {
+                return t >= 0
+            }).length
+        }, t.prototype.getShipMemID = function (t) {
+            var e = this._getShipMemIDArray();
+            return null != e && e.length > t ? e[t] : -1
+        }, t.prototype.getShipMemIDList = function () {
+            return this._getShipMemIDArray().concat().filter(function (t, e, i) {
+                return t > 0
+            })
+        }, t.prototype.getShipModel = function (t) {
+            var e = this.getShipMemID(t);
+            return e > 0 ? o.default.model.ship.get(e) : null
+        }, t.prototype.getShipList = function () {
+            var t = [], e = this._getShipMemIDArray();
+            if (null == e) return t;
+            for (var i = 0; i < e.length; i++) {
+                var n = e[i], r = o.default.model.ship.get(n);
+                t.push(r)
+            }
+            return t
+        }, t.prototype.getShipListAll = function () {
+            var t = o.default.model.deck.combined;
+            if (0 == t.isCombined()) return this.getShipList();
+            if (t.deck_id_main != this.mstID && t.deck_id_sub != this.mstID) return this.getShipList();
+            for (var e = [], i = o.default.model.deck.get(t.deck_id_main), n = i.getShipList(), r = 0, s = n; r < s.length; r++) {
+                var a = s[r];
+                e.push(a)
+            }
+            for (var _ = o.default.model.deck.get(t.deck_id_sub), u = _.getShipList(), l = 0, c = u; l < c.length; l++) {
+                var a = c[l];
+                e.push(a)
+            }
+            return e
+        }, t.prototype.isInDeck = function (t) {
+            return this._getShipMemIDArray().indexOf(t)
+        }, t.prototype.getCombinedType = function () {
+            return this.isCombined_Main() || this.isCombined_Sub() ? o.default.model.deck.combined.type : 0
+        }, t.prototype.isCombined_Main = function () {
+            return o.default.model.deck.combined.deck_id_main == this.mstID
+        }, t.prototype.isCombined_Sub = function () {
+            return o.default.model.deck.combined.deck_id_sub == this.mstID
+        }, t.prototype.getSubDeckID = function () {
+            return 1 == this.isCombined_Main() ? o.default.model.deck.combined.deck_id_sub : -1
+        }, t.prototype.getSubDeckName = function () {
+            if (1 == this.isCombined_Main()) {
+                var t = o.default.model.deck.combined.deck_id_sub, e = o.default.model.deck.get(t);
+                return null == e ? "" : e.name
+            }
+            return ""
+        }, t.prototype._getShipMemIDArray = function () {
+            return r.ObjUtil.getNumArray(this._o, "api_ship")
+        }, t
+    }();
+    e.DeckModel = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.updateName = function (t, e) {
+            this.__updateName__(t, e)
+        }, e.prototype.__change__ = function (t, e, i) {
+            void 0 === i && (i = !1);
+            var n = this._getShipMemIDArray(), r = o.default.model.ship.get(e),
+                s = o.default.model.deck.isInDeck(r.memID), a = null;
+            if (null != s) {
+                a = o.default.model.deck.get(s[0])._getShipMemIDArray()
+            }
+            if (null != s) {
+                var _ = n[t];
+                s[1];
+                -1 == _ ? (a.splice(s[1], 1), a.push(-1)) : a[s[1]] = _
+            }
+            n[t] = r.memID, n.sort(function (t, e) {
+                return t <= 0 && e > 0 ? 1 : 0
+            })
+        }, e.prototype.__remove__ = function (t, e) {
+            void 0 === e && (e = !1);
+            var i = this._getShipMemIDArray(), n = i.length;
+            for (i.splice(t, 1); i.length < n;) i.push(-1)
+        }, e.prototype.__removeAll__ = function (t) {
+            void 0 === t && (t = !1);
+            for (var e = this._getShipMemIDArray(), i = 1; i < e.length; i++) e[i] = -1
         }, e
-    }(o.TaskBase)
+    }(a);
+    e.DeckModelEdit = _
 }

@@ -15,19 +15,38 @@ const function248 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(91), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._record = i, n._damage_cutin = new r.PhaseDamageCutin(e), n
+    var o = i(6), r = i(137), s = i(120), a = i(43), _ = function (t) {
+        function e(e, i, n, o, s, a, _) {
+            var u = t.call(this, e, i, o, s, a, _) || this;
+            u._defender = n;
+            var l = u._scene.data.isNight();
+            return u._cutin = new r.CutinAttack(u._attacker, u._slot, l, !0, !0), u
         }
 
         return n(e, t), e.prototype._start = function () {
-        }, e.prototype._endTask = function () {
-            var e = this;
-            this._damage_cutin.start(function () {
-                e._aaCutin = null, t.prototype._endTask.call(e)
+            var t = this;
+            this._cutin.getPreloadTask().start(function () {
+                t._completePreload()
             })
+        }, e.prototype._completePreload = function () {
+            var t, e, i = this, n = this._attacker.friend, o = this._attacker.index, r = this._defender.index;
+            1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, r)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, r)), t.moveFront(), 0 == this._shield && e.moveFront(), this._cutin.view.once("attack", function () {
+                i._playVoice(), i._attack(t, e)
+            }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+        }, e.prototype._attack = function (t, e) {
+            var i = this, n = this._scene.view.layer_content;
+            new s.TaskDaihatsuEff(n, t, e, this._daihatsu_eff).start();
+            var r = 0;
+            0 != this._daihatsu_eff && (r = 1300), createjs.Tween.get(null).wait(r).call(function () {
+                o.SE.play("102"), t.attack(function () {
+                    i._damageEffect(t, e)
+                })
+            })
+        }, e.prototype._damageEffect = function (t, e) {
+            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+            var i = this._getDamage(this._defender);
+            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
         }, e
-    }(o.TaskBase);
-    e.PhaseAirBase = s
+    }(a.PhaseAttackBase);
+    e.PhaseAttackNormal = _
 }

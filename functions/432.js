@@ -15,14 +15,14 @@ const function432 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(141), s = i(47), a = i(54), _ = i(1221), u = i(1222), l = i(1223), c = i(1228), h = i(1229),
-        p = i(1231), d = i(1234), f = i(1235), y = i(1272), v = i(1273), g = i(1274), m = i(1276), b = i(1278),
-        w = i(436), x = i(1280), I = i(1288), T = function (t) {
+    var o = i(0), r = i(139), s = i(47), a = i(51), _ = i(1223), u = i(1224), l = i(1225), c = i(1230), h = i(1231),
+        p = i(1233), d = i(1236), f = i(1237), y = i(1274), v = i(1275), g = i(1276), m = i(1278), b = i(1280),
+        w = i(436), x = i(1282), I = i(438), T = i(1290), O = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._startScene = function () {
                     n._appointAirUnit()
-                }, n._battle_cls = e, n._battle_result_cls = i, n._view = new I.ViewMain, n.addChild(n._view), n._resInfo = new l.MapResourceInfo, n._user_select = new c.UserSelectModel, n
+                }, n._battle_cls = e, n._battle_result_cls = i, n._view = new T.ViewMain, n.addChild(n._view), n._resInfo = new l.MapResourceInfo, n._user_select = new c.UserSelectModel, n
             }
 
             return n(e, t), Object.defineProperty(e.prototype, "model", {
@@ -64,11 +64,56 @@ const function432 = function (t, e, i) {
                 this._model.sortie.getNextCell();
                 39 == i && 1 == n || this._afterMove(t, e)
             }, e.prototype._afterMove = function (t, e) {
-                var i = this._model.sortie.getNextCell();
-                if (1 == i.isDeadEnd()) {
-                    var n = this._model.sortie.area_id, o = this._model.sortie.map_no, r = null == t ? 0 : t.m1;
-                    39 == n && 2 == o && 1 == r || 39 == n && 3 == o && 1 == r || this._endScene(i)
-                } else null != t ? this._preNextAfterBattle(i, t) : this._preNext(i, e)
+                var i = this, n = this._model.sortie.getNextCell();
+                if (1 == n.isDeadEnd()) {
+                    var o = this._model.sortie.area_id, r = this._model.sortie.map_no, s = null == t ? 0 : t.m1;
+                    if (42 == o && 2 == r && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 3 == r && 1 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 3 == r && 2 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !1, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 4 == r && 1 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 4 == r && 2 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 4 == r && 3 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 5 == r && 1 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 5 == r && 2 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else if (42 == o && 5 == r && 2 == this._model.sortie.map.getGaugeNum() && 2 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !1, !0, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
+                    } else this._endScene(n)
+                } else null != t ? this._preNextAfterBattle(n, t) : this._preNext(n, e)
             }, e.prototype._preNextAfterBattle = function (t, e) {
                 var i = this, n = e.deck_f.ships[0];
                 if (25 == n.damageType || 0 == n.damageType) {
@@ -83,13 +128,18 @@ const function432 = function (t, e, i) {
             }, e.prototype._selectGoAhead = function (t, e) {
                 var i = this, n = new y.TaskMarchRetreatSelect(this._view);
                 n.start(function () {
-                    if (0 == n.result) i._endScene(t); else {
-                        var e = i._model.sortie.area_id, s = i._model.sortie.map_no, a = r.MapConst.getMapBGMID(e, s);
-                        1 == a.battle_bgm ? o.default.sound.bgm.playBattleBGM(a.id) : o.default.sound.bgm.play(a.id);
-                        var _ = i._model.deck_f, l = [_.id];
-                        0 != _.type && l.push(_.id_second);
-                        var c = i._model.sortie.getNextCell().no;
-                        new u.APIShipDeck(l, e, s, c).start(function () {
+                    if (0 == n.result) {
+                        var s = i._model.sortie.area_id, a = i._model.sortie.map_no, _ = null == e ? 0 : e.m1;
+                        42 == s && 5 == a && 3 == i._model.sortie.map.getGaugeNum() && 1 == _ ? new I.EventTaskCellOpen(i._model.sortie.map_id, i._resInfo, i._view, i._model.sortie.map.getGaugeNum(), !0, !1, !0, !1).start(function () {
+                            i._endScene(t)
+                        }) : i._endScene(t)
+                    } else {
+                        var s = i._model.sortie.area_id, a = i._model.sortie.map_no, l = r.MapConst.getMapBGMID(s, a);
+                        1 == l.battle_bgm ? o.default.sound.bgm.playBattleBGM(l.id) : o.default.sound.bgm.play(l.id);
+                        var c = i._model.deck_f, h = [c.id];
+                        0 != c.type && h.push(c.id_second);
+                        var p = i._model.sortie.getNextCell().no;
+                        new u.APIShipDeck(h, s, a, p).start(function () {
                             var e = i._model.deck_f.id, n = o.default.model.deck.get(e);
                             i._model.deck_f.updateShipList(n), i._preNext(t)
                         })
@@ -98,18 +148,22 @@ const function432 = function (t, e, i) {
             }, e.prototype._selectTaihaShingun = function (t, e, i, n) {
                 var s = this, a = new v.TaskTaihaShingunSelect(this._view, i, n);
                 a.start(function () {
-                    var e = a.result;
-                    if (0 == e) s._endScene(t); else {
-                        var i = s._model.sortie.area_id, n = s._model.sortie.map_no, _ = r.MapConst.getMapBGMID(i, n);
-                        1 == _.battle_bgm ? o.default.sound.bgm.playBattleBGM(_.id) : o.default.sound.bgm.play(_.id);
-                        var l = s._model.deck_f, c = [l.id];
-                        0 != l.type && c.push(l.id_second);
-                        var h = s._model.sortie.getNextCell().no;
-                        new u.APIShipDeck(c, i, n, h).start(function () {
-                            var i = s._model.deck_f.id, n = o.default.model.deck.get(i);
-                            s._model.deck_f.updateShipList(n);
-                            s._model.deck_f.ships[0].useRepairItem();
-                            s._preNext(t, e)
+                    var i = a.result;
+                    if (0 == i) s._endScene(t); else {
+                        var n = s._model.sortie.area_id, _ = s._model.sortie.map_no, l = r.MapConst.getMapBGMID(n, _);
+                        1 == l.battle_bgm ? o.default.sound.bgm.playBattleBGM(l.id) : o.default.sound.bgm.play(l.id);
+                        var c = s._model.deck_f, h = [c.id];
+                        0 != c.type && h.push(c.id_second);
+                        var p = s._model.sortie.getNextCell().no;
+                        new u.APIShipDeck(h, n, _, p).start(function () {
+                            var r = s._model.deck_f.id, a = o.default.model.deck.get(r);
+                            s._model.deck_f.updateShipList(a);
+                            var u = (s._model.deck_f.ships[0].useRepairItem(), null == e ? 0 : e.m1);
+                            if (42 == n && 5 == _ && 3 == s._model.sortie.map.getGaugeNum() && 1 == u) {
+                                new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !1).start(function () {
+                                    s._preNext(t, i)
+                                })
+                            } else s._preNext(t, i)
                         })
                     }
                 })
@@ -165,5 +219,5 @@ const function432 = function (t, e, i) {
                 return new d.TaskFinalize(this)
             }, e
         }(s.SceneBase);
-    e.MapScene = T
+    e.MapScene = O
 }

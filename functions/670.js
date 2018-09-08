@@ -15,8 +15,8 @@ const function670 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(154), s = i(108), a = i(34), _ = i(66), u = i(6), l = i(106), c = i(671), h = i(672),
-        p = i(673), d = i(674), f = i(675), y = i(685), v = i(214), g = i(215), m = i(687), b = i(688), w = i(692),
+    var o = i(0), r = i(18), s = i(152), a = i(107), _ = i(34), u = i(68), l = i(6), c = i(671), h = i(672),
+        p = i(673), d = i(674), f = i(675), y = i(685), v = i(213), g = i(214), m = i(687), b = i(688), w = i(692),
         x = i(693), I = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -37,9 +37,9 @@ const function670 = function (t, e, i) {
                     }, n.onComplete = function () {
                         n.dispose(), i.editNameArea.writable = !0
                     }, n.start(i.deckID)
-                }, i.editNameArea = new d.EditNameArea, i.editNameArea.writable = !1, i.editNameArea.onClickUpdate = i._onClickChangeDeckName, i.deckSelector = new p.DeckSelector, i.deckSelector.onClickDeckFlag = e, i.sweetsButton = new y.SweetsButton, i.breakDeckView = new h.BreakDeckView, i.shipSlotLayer = new f.ShipSlotLayer, i.addChild(i.deckSelector), l.OrganizeConst.COMBINABLE && (i.combineGuideView = new c.CombineGuideView(function (t) {
+                }, i.editNameArea = new d.EditNameArea, i.editNameArea.writable = !1, i.editNameArea.onClickUpdate = i._onClickChangeDeckName, i.deckSelector = new p.DeckSelector, i.deckSelector.onClickDeckFlag = e, i.sweetsButton = new y.SweetsButton, i.breakDeckView = new h.BreakDeckView, i.shipSlotLayer = new f.ShipSlotLayer, i.addChild(i.deckSelector), r.COMBINABLE && (i.combineGuideView = new c.CombineGuideView(function (t) {
                     i.onDragAndDropCombineTrigger(t)
-                }), i.breakCombineView = new s.CombinedView(!0), i.breakCombineView.onClick = i.onClickBreakCombined, i.breakCombineView.activate(), i.addChild(i.combineGuideView), i.addChild(i.breakCombineView)), i.addChild(i.editNameArea), i.addChild(i.shipSlotLayer), i.addChild(i.breakDeckView), i.addChild(i.sweetsButton), i.addChild(i.shipSlotLayer.ArrowTopButton), i.addChild(i.shipSlotLayer.ArrowBottomButton), i
+                }), i.breakCombineView = new a.CombinedView(!0), i.breakCombineView.onClick = i.onClickBreakCombined, i.breakCombineView.activate(), i.addChild(i.combineGuideView), i.addChild(i.breakCombineView)), i.addChild(i.editNameArea), i.addChild(i.shipSlotLayer), i.addChild(i.breakDeckView), i.addChild(i.sweetsButton), i.addChild(i.shipSlotLayer.ArrowTopButton), i.addChild(i.shipSlotLayer.ArrowBottomButton), i
             }
 
             return n(e, t), Object.defineProperty(e.prototype, "deckID", {
@@ -78,33 +78,33 @@ const function670 = function (t, e, i) {
                     return this.combineGuideView
                 }, enumerable: !0, configurable: !0
             }), e.prototype.dispose = function () {
-                this.deckSelector.dispose(), this.deckSelector = null, this.editNameArea.dispose(), this.editNameArea = null, this.sweetsButton.dispose(), this.sweetsButton = null, this.shipSlotLayer.dispose(), this.shipSlotLayer = null, this.breakDeckView.dispose(), this.breakDeckView = null, l.OrganizeConst.COMBINABLE && (this.combineGuideView.dispose(), this.combineGuideView = null, this.breakCombineView.dispose(), this.breakCombineView = null), this.removeChildren()
+                this.deckSelector.dispose(), this.deckSelector = null, this.editNameArea.dispose(), this.editNameArea = null, this.sweetsButton.dispose(), this.sweetsButton = null, this.shipSlotLayer.dispose(), this.shipSlotLayer = null, this.breakDeckView.dispose(), this.breakDeckView = null, r.COMBINABLE && (this.combineGuideView.dispose(), this.combineGuideView = null, this.breakCombineView.dispose(), this.breakCombineView = null), this.removeChildren()
             }, e.prototype.init = function (t) {
                 this.editNameArea.position.set(694, 150), this.sweetsButton.position.set(465, 157), this.breakDeckView.position.set(570, 162), this.sweetsButton.onClick = this._onClickMamiyaIrako, this.breakDeckView.onClick = t;
                 var e = o.default.model.deck.getAll();
-                this.deckSelector.initialize(0 < e.length, 1 < e.length, 2 < e.length, 3 < e.length), this.deckSelector.position.set(177, 165), l.OrganizeConst.COMBINABLE && (this.combineGuideView.position.set(222, 165), this.breakCombineView.position.set(170, 155)), this.shipSlotLayer.initArrow(this._onClickArrow)
+                this.deckSelector.initialize(0 < e.length, 1 < e.length, 2 < e.length, 3 < e.length), this.deckSelector.position.set(177, 165), r.COMBINABLE && (this.combineGuideView.position.set(222, 165), this.breakCombineView.position.set(170, 155)), this.shipSlotLayer.initArrow(this._onClickArrow)
             }, e.prototype.show = function (t) {
                 switch (this.visible = !0, t) {
                     case 0:
-                        if (this.shipSlotLayer.show(), this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !0, this.updateMamiyaIrako(this._deckID), l.OrganizeConst.COMBINABLE) {
+                        if (this.shipSlotLayer.show(), this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !0, this.updateMamiyaIrako(this._deckID), r.COMBINABLE) {
                             var e = o.default.model.deck.isCombined();
                             e && (this.breakCombineView.visible = !0, this.breakCombineView.interactiveChildren = !0)
                         }
                         break;
                     case 1:
                     case 2:
-                        if (l.OrganizeConst.COMBINABLE) {
+                        if (r.COMBINABLE) {
                             var e = o.default.model.deck.isCombined();
                             e && (this.breakCombineView.visible = !0, this.breakCombineView.interactiveChildren = !1)
                         }
                 }
             }, e.prototype.hide = function () {
-                this.visible = !1, this.shipSlotLayer.hide(), this.sweetsButton.visible = !1, this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !1, l.OrganizeConst.COMBINABLE && (this.combineGuideView.visible = !1, this.breakCombineView.visible = !1)
+                this.visible = !1, this.shipSlotLayer.hide(), this.sweetsButton.visible = !1, this.shipSlotLayer.ArrowTopButton.visible = !1, this.shipSlotLayer.ArrowBottomButton.visible = !1, this.breakDeckView.visible = !1, r.COMBINABLE && (this.combineGuideView.visible = !1, this.breakCombineView.visible = !1)
             }, e.prototype.updateDeck = function (t) {
                 this._deckID = t, this.update()
             }, e.prototype.update = function () {
                 var t = o.default.model.deck.get(this._deckID), e = null != t.expedition, i = t.getCount();
-                this.deckSelector.update(this._deckID), this.shipSlotLayer.update(this._deckID, this._shipInDeckOrigin), this.updateMamiyaIrako(this._deckID), this.updateDeckBreakView(i, e), l.OrganizeConst.COMBINABLE && this.updateCombineGuide(this._deckID), this.EditNameArea.reload(t.name)
+                this.deckSelector.update(this._deckID), this.shipSlotLayer.update(this._deckID, this._shipInDeckOrigin), this.updateMamiyaIrako(this._deckID), this.updateDeckBreakView(i, e), r.COMBINABLE && this.updateCombineGuide(this._deckID), this.EditNameArea.reload(t.name)
             }, e.prototype.updateMamiyaIrako = function (t) {
                 var e = o.default.model.deck.get(t), i = e.getCount(), n = o.default.model.useItem.get(54).count,
                     r = o.default.model.useItem.get(59).count, s = n + r;
@@ -131,25 +131,25 @@ const function670 = function (t, e, i) {
             }, e.prototype.changeDeckName = function (t) {
                 var e = this;
                 o.default.view.clickGuard = !0, this.editNameArea.writable = !1;
-                var i = this.editNameArea.text, n = "http://" + o.default.settings.osapi_root, s = function (r) {
-                    if (window.removeEventListener("message", s), r.origin == n) {
-                        var a = r.data;
+                var i = this.editNameArea.text, n = "http://" + o.default.settings.osapi_root, r = function (s) {
+                    if (window.removeEventListener("message", r), s.origin == n) {
+                        var a = s.data;
                         new m.UpdateDeckNameAPI(t, i, a).start(function () {
-                            o.default.model.deck.get(t).updateName(i, a), u.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
+                            o.default.model.deck.get(t).updateName(i, a), l.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
                         })
                     }
                 };
-                window.addEventListener("message", s);
+                window.addEventListener("message", r);
                 try {
-                    window.parent.postMessage(r.PostMessageType.DECK_NAME + "\t" + i, n)
+                    window.parent.postMessage(s.PostMessageType.DECK_NAME + "\t" + i, n)
                 } catch (t) {
                     this.editNameArea.writable = !0, o.default.view.clickGuard = !1
                 }
             }, e.prototype.onBreakDeck = function (t, e) {
                 var i = this, n = o.default.model.deck.get(t).getShipList();
                 o.default.view.clickGuard = !0;
-                var r = new a.APIConnector;
-                r.add(new v.ChangeAPI(!1, t, 0, -2)), 10 == o.default.model.basic.getTutorialProgress() && r.add(new _.UpdateTutorialAPI(20)), r.start(function () {
+                var r = new _.APIConnector;
+                r.add(new v.ChangeAPI(!1, t, 0, -2)), 10 == o.default.model.basic.getTutorialProgress() && r.add(new u.UpdateTutorialAPI(20)), r.start(function () {
                     for (var r = o.default.model.deck.get(t).getShipList(), s = Array(), a = 0; a < i.shipSlotLayer.ShipSlots.length; a++) {
                         var _ = a + i._shipInDeckOrigin;
                         null != n[_] && null == r[_] && s.push(a)

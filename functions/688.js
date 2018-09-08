@@ -1,7 +1,7 @@
 const function688 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(49), r = i(8), s = i(321), a = i(689), _ = i(690), u = i(691), l = i(215), c = function () {
+    var n = i(0), o = i(49), r = i(8), s = i(314), a = i(689), _ = i(690), u = i(691), l = i(214), c = function () {
         function t(t) {
             this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new u.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
         }

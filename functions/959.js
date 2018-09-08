@@ -15,25 +15,23 @@ const function959 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(42), s = i(960), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+    var o = i(10), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "selectView", {
-            get: function () {
-                return this._createSelectView(), this._selectView
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this.texture = r.SALLY_EVENT.getTexture(12), 411 == t ? (this._content.position.set(-321, -222), this._content.texture = r.SALLY_EVENT.getTexture(36)) : 412 == t ? (this._content.position.set(-333, -231), this._content.texture = r.SALLY_EVENT.getTexture(37)) : 413 == t ? (this._content.position.set(-341, -231), this._content.texture = r.SALLY_EVENT.getTexture(38)) : 414 == t ? (this._content.position.set(-326, -225), this._content.texture = r.SALLY_EVENT.getTexture(39)) : 415 == t ? (this._content.position.set(-323, -227), this._content.texture = r.SALLY_EVENT.getTexture(40)) : 416 == t ? (this._content.position.set(-353, -231), this._content.texture = r.SALLY_EVENT.getTexture(0)) : 417 == t ? (this._content.position.set(-321, -221), this._content.texture = r.SALLY_EVENT.getTexture(1)) : this._content.texture = PIXI.Texture.EMPTY
-        }, e.prototype.showSelectView = function () {
-            return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
-        }, e.prototype.dispose = function () {
-            null != this._selectView && this._selectView.dispose()
-        }, e.prototype._createSelectView = function () {
-            null == this._selectView && (this._selectView = new s.OperationSelectView)
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = this._model.getGaugeNum(), i = this._model.gauge_type, n = this._model.gauge_max,
+                o = this._model.gauge_now, r = this._raw_data;
+            if (null != r && r.hasOwnProperty("api_maphp")) {
+                var s = r.api_maphp;
+                s.hasOwnProperty("api_gauge_num") && (e = s.api_gauge_num), s.hasOwnProperty("api_gauge_type") && (i = s.api_gauge_type), 1 == s.hasOwnProperty("api_max_maphp") && (n = s.api_max_maphp), 1 == s.hasOwnProperty("api_now_maphp") && (o = s.api_now_maphp)
+            }
+            this._model.changeOperation(this._selected, e, i, n, o), t.prototype._completedEnd.call(this)
         }, e
-    }(o.Sprite);
-    e.MapIntroBoard = a
+    }(o.APIBase);
+    e.APIOperationChange = r
 }

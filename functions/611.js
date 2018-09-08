@@ -15,37 +15,36 @@ const function611 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = i(8), s = i(31), a = i(31), _ = i(304), u = i(202), l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(0), r = i(299), s = i(614), a = i(48), _ = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), e.prototype._initBG = function () {
-            var t = this;
-            this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
-                t._animation()
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._createContent = function () {
+            this._showDialog()
+        }, e.prototype._showContent = function () {
+            var t = this, e = new r.ModelChangeModelEdit;
+            e.setItemFrom(73, !0), e.setItemTobe(-1);
+            var i = this.model.message1, n = this.model.message2;
+            e.setMessage(i, n), e.addMeltInto([{ id: 31, type: 6 }], 1, 1), e.addMeltInto([{
+                id: 34,
+                type: 6
+            }], 2, 1);
+            var a = o.default.view.overLayer;
+            new s.AirunitBaseOpenTask(a, e).start(function () {
+                t._showContentComplete()
             })
-        }, e.prototype._createItemTobe = function (t, e) {
-            var i = o.COMMON_MISC.getTexture(49), n = new u.CenteringSprite(i);
-            return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
-        }, e.prototype._change = function () {
-            var e = this;
-            t.prototype._change.call(this);
-            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
-            i.x = -i.width / 2, i.y = -i.height / 2;
-            var n = new a.Container;
-            n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
-                scaleX: 3.3,
-                scaleY: 3.3,
-                alpha: 1
-            }, 350).to({ scaleX: 5, scaleY: 5 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
-                e._layer.removeChild(n)
-            });
-            var s = new r.AreaBox(1, 16777215);
-            s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({ alpha: 1 }, 500).wait(600).to({ alpha: 0 }, 300).call(function () {
-                e._layer.removeChild(s)
-            })
+        }, e.prototype._showDialog = function () {
+            this._showContent()
+        }, e.prototype._removeContent = function () {
+        }, e.prototype._showContentComplete = function () {
+            var t = o.default.model.useItem.get(73);
+            t.__setCount__(t.count - 1), this._removeContent(), this._endTask()
         }, e
-    }(_.ModelChangeTask);
-    e.AirunitBaseOpenTask = l
+    }(a.TaskRewardDialogBase);
+    e.TaskRewardDialogAirUnit = _
 }

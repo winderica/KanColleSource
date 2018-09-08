@@ -15,12 +15,22 @@ const function207 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e) {
+            void 0 === e && (e = 0);
+            var i = t.call(this) || this;
+            return i._mem_id = 0, i._mem_id = e, i._url = "api_get_member/ship2", i
         }
 
-        return n(e, t), e
-    }(o.TaskBase);
-    e.TaskBonusBase = r
+        return n(e, t), e.prototype._connect = function () {
+            this._mem_id > 0 && (this._post_data.api_shipid = this._mem_id), this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            if (this._mem_id > 0) {
+                var e = this._raw_data, i = e[0];
+                o.default.model.ship.updateData(i)
+            } else o.default.model.ship.setData(this._raw_data);
+            t.prototype._completedEnd.call(this)
+        }, e
+    }(r.APIBase);
+    e.UserShipAPI = s
 }

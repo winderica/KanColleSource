@@ -1,60 +1,60 @@
 const function484 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(485), o = i(261), r = i(7), s = function () {
+    var o = i(485), r = i(486), s = function () {
         function t() {
-            this._exist3rdUnit = !1, this._combined = new n.DeckCombinedModelEdit
         }
 
-        return Object.defineProperty(t.prototype, "num", {
-            get: function () {
-                var t = 0;
-                for (var e in this._map) t++;
-                return t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "combined", {
-            get: function () {
-                return this._combined
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "exist3rdUnit", {
-            get: function () {
-                return this._exist3rdUnit
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.setData = function (t) {
-            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = r.ObjUtil.getNumber(i, "api_id");
-                if (n > 0) {
-                    var s = n.toString(), a = new o.DeckModelEdit(i);
-                    this._map[s] = a, 2 === e && (this._exist3rdUnit = i.api_ship.length >= 7)
-                }
-            }
-        }, t.prototype.updateData = function (t) {
-            if (null != this._map && null != t) {
-                var e = new o.DeckModelEdit(t);
-                if (!(e.mstID <= 0)) {
-                    var i = e.mstID.toString();
-                    1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e
-                }
-            }
-        }, t.prototype.get = function (t) {
-            var e = t.toString();
-            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.getAll = function () {
-            var t, e = [];
-            return null != (t = this.get(1)) && e.push(t), null != (t = this.get(2)) && e.push(t), null != (t = this.get(3)) && e.push(t), null != (t = this.get(4)) && e.push(t), e
-        }, t.prototype.getIDs = function () {
-            return this.getAll().map(function (t, e, i) {
-                return t.mstID
-            })
-        }, t.prototype.isInDeck = function (t) {
-            for (var e = this.getAll(), i = 0, n = e; i < n.length; i++) {
-                var o = n[i], r = o.isInDeck(t);
-                if (-1 != r) return [o.mstID, r]
-            }
-            return null
-        }, t.prototype.isCombined = function () {
-            return this._combined.isCombined()
+        return t.prototype.getMst = function (t) {
+            return null == this._dic ? null : 0 == this._dic.hasOwnProperty(t.toString()) ? null : this._dic[t]
+        }, t.prototype.getMapBGM = function (t, e) {
+            var i = this._getMapBGMData(t, e);
+            return null == i ? 0 : i.mapBGMID
+        }, t.prototype.getCombatBGM = function (t, e, i, n) {
+            var o = this._getMapBGMData(t, e);
+            return null == o ? i ? 2 : 1 : o.getBGM(i, n)
+        }, t.prototype.isSameBGM = function (t, e, i) {
+            var n = this._getMapBGMData(t, e);
+            return null != n && n.getDayBGM(i) == n.getNightBGM(i)
+        }, t.prototype._getMapBGMData = function (t, e) {
+            var i = t.toString() + e.toString();
+            return 1 == this._dic_battle.hasOwnProperty(i) ? this._dic_battle[i] : null
         }, t
     }();
-    e.DeckModelHolder = s
+    e.BGMMstModelHolder = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.setMstBGMData = function (t) {
+            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = new r.BGMMstModel(t[e]), n = i.mstID;
+                n > 0 && (this._dic[n] = i)
+            }
+        }, e.prototype.setMapBGMData = function (t) {
+            if (this._dic_battle = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new o.BattleBGMMstModel(i), r = n.mapID;
+                if (r > 0) {
+                    var s = r.toString();
+                    this._dic_battle[s] = n
+                }
+            }
+        }, e
+    }(s);
+    e.BGMMstModelHolderEdit = a
 }

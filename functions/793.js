@@ -15,37 +15,28 @@ const function793 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(0), s = i(4), a = i(32), _ = i(132), u = i(3), l = i(794), c = i(1), h = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClickYES = function () {
-                e.onClickYES()
-            }, e._onClickNO = function () {
-                e.onClickNO()
+            e._onMouseOver = function () {
+                e.texture = e.textureBtnStartIntensifyOn
+            }, e._onMouseOut = function () {
+                e.texture = e.textureBtnStartIntensifyOff
+            }, e._onClick = function () {
+                e.onClick()
             };
-            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(63));
-            e.btn_no = new PIXI.Sprite(u.REMODEL_GRADEUP.getTexture(2)), e.btn_yes = new PIXI.Sprite(u.REMODEL_GRADEUP.getTexture(6));
-            var n = new PIXI.Sprite(u.REMODEL_POWERUP.getTexture(0));
-            e.shipBanner = new a.ShipBanner;
-            var _ = new s.TextBox(19, 1949120), h = new s.TextBox(19, 1949120), p = new s.TextBox(19, 1949120);
-            e.containerName = new PIXI.Container, e.containerNames = new PIXI.Container;
-            var d = new PIXI.Sprite(r.default.resources.getUIImage("mask")),
-                f = new PIXI.Sprite(r.default.resources.getUIImage("mask"));
-            return d.scale.set(-2.8, 3.5), d.anchor.x = 1, f.scale.set(-2.8, 3.5), f.anchor.x = 1, e.textName = new s.TextBox(19, 16777215), e.textNames = new s.TextBox(19, 16777215), e.iconCategories = new l.IconCategories, _.text = "\u5f37\u5316\u3059\u308b\u8266\u8239", h.text = "\u5408\u6210\u7d20\u6750\u306e\u8266\u8239", p.text = "\u5f37\u5316\u9805\u76ee", _.position.set(414, 201), h.position.set(414, 309), p.position.set(414, 483), e.containerName.addChild(e.textName, d), e.containerName.mask = d, e.containerName.position.set(617, 201), e.containerNames.addChild(e.textNames, f), e.containerNames.mask = f, e.containerNames.position.set(617, 309), e.iconCategories.position.set(617, 473), e.shipBanner.position.set(623, 234), i.position.set(86, 60), n.position.set(516, 20), e.btn_no.position.set(377, 588), e.btn_yes.position.set(639, 588), e.btn_yes.interactive = e.btn_yes.buttonMode = !0, e.btn_no.interactive = e.btn_no.buttonMode = !0, e.btn_yes.on(c.EventType.CLICK, e._onClickYES), e.btn_no.on(c.EventType.CLICK, e._onClickNO), e.addChild(i, n, e.btn_no, e.btn_yes, e.shipBanner, _, h, p, e.containerName, e.containerNames, e.iconCategories), e
+            var i = o.REMODEL_POWERUP.getTexture(6), n = o.REMODEL_POWERUP.getTexture(8),
+                s = o.REMODEL_POWERUP.getTexture(7);
+            return e.textureBtnStartIntensifyNone = i, e.textureBtnStartIntensifyOn = n, e.textureBtnStartIntensifyOff = s, e.texture = i, e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.addListener(r.EventType.CLICK, e._onClick), e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.containerName.removeChildren(), this.containerNames.removeChildren(), this.containerName.mask = null, this.containerNames.mask = null, this.shipBanner.dispose(), this.iconCategories.dispose(), this.btn_yes.off(c.EventType.CLICK), this.btn_no.off(c.EventType.CLICK), this.onClickYES = this._onClickYES = null, this.onClickNO = this._onClickNO = null, this.iconCategories = null, this.textName = null, this.textNames = null, this.shipBanner = null, this.btn_yes = null, this.containerName = null, this.containerNames = null, this.btn_no = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i) {
-            this.containerName.cacheAsBitmap = !1, this.containerNames.cacheAsBitmap = !1;
-            for (var n = "", o = 0; o < e.length; o++) {
-                var r = e[o];
-                r.mstID;
-                n += r.shipTypeName + " \u300c" + r.name + "\u300d\n"
-            }
-            var s = {};
-            s[_.PowerUpCategory.Karyoku] = i.karyoku, s[_.PowerUpCategory.Raisou] = i.raiso, s[_.PowerUpCategory.Taiku] = i.taiku, s[_.PowerUpCategory.Soukou] = i.souko, this.iconCategories.update(s), this.textNames.text = n, this.textName.text = t.shipTypeName + " \u300c" + t.name + "\u300d", this.shipBanner.update(t, !1), this.containerName.cacheAsBitmap = !0, this.containerNames.cacheAsBitmap = !0
+        return n(e, t), e.prototype.update = function (t) {
+            this._updateClickable_(t)
+        }, e.prototype._updateClickable_ = function (t) {
+            this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
+        }, e.prototype.dispose = function () {
+            this.removeAllListeners(r.EventType.MOUSEOVER), this.removeAllListeners(r.EventType.MOUSEOUT), this.removeAllListeners(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this._onMouseOver = this._onMouseOut = this._onClick = null, this.interactive = this.buttonMode = !1, this.texture = PIXI.Texture.EMPTY, this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.PowerUpStartConfirm = h
+    }(PIXI.Sprite);
+    e.StartButton = s
 }

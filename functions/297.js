@@ -18,14 +18,14 @@ const function297 = function (t, e, i) {
     var o = i(46), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._flag = e, i
+            return i._value = e, i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "flag", {
+        return n(e, t), Object.defineProperty(e.prototype, "value", {
             get: function () {
-                return this._flag
+                return this._value
             }, enumerable: !0, configurable: !0
         }), e
     }(o.RewardModel);
-    e.RewardModelExtraSupply = r
+    e.RewardModelWarResult = r
 }

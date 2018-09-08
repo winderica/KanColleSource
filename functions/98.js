@@ -15,8 +15,8 @@ const function98 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(61), a = i(251), _ = i(252), u = i(253), l = i(254), c = i(256), h = i(450),
-        p = i(452), d = i(258), f = function (t) {
+    var o = i(0), r = i(2), s = i(62), a = i(248), _ = i(249), u = i(250), l = i(251), c = i(253), h = i(451),
+        p = i(453), d = i(255), f = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -128,7 +128,7 @@ const function98 = function (t, e, i) {
                 return !1
             }, e.prototype._getDaihatsuEffectType = function (t, e) {
                 if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
-                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca"];
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca"];
                 if (1 == t.hasSlot(167)) {
                     if (1 == t.isSubMarine()) {
                         if (1 == e.isGround()) return 4

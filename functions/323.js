@@ -15,95 +15,131 @@ const function323 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(29), s = i(213), a = i(109), _ = i(67), u = i(81), l = i(4), c = i(286), h = i(195),
-        p = i(37), d = i(20), f = i(9), y = function (t) {
-            function e() {
-                var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite, o = new PIXI.Sprite,
-                    r = new PIXI.Sprite, p = new h.BannerSmoke, f = new c.BannerKirakira, y = new a.HpGaugeView,
-                    v = new u.StarRateView, g = new l.TextBox(27, 16777215), m = new l.TextBox(30, 16777215),
-                    b = new s.DeckIndexEmblem, w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(18)), x = new _.RingSmall;
-                o.x = 12, o.y = 6, x.initialize(), x.activate(), x.position.set(215, 33), y.position.set(14, 42), v.position.set(122, 39), m.anchor.x = 1, b.position.set(15, 18), w.position.set(251, 6), m.position.set(212, 2);
-                var I = new PIXI.Graphics;
-                I.beginFill(0, 0), I.drawRect(0, 0, 105, 36), I.endFill();
-                var T = new PIXI.Container;
-                T.position.set(9, 5), T.mask = I, T.addChild(g, I), w.addChild(T, m, y, v), p.visible = !1;
-                var O = new PIXI.Container;
-                return O.width = 240, O.height = 60, O.addChild(p, f), e.addChild(i, o, n, O, w, r, b, x), e.shipBanner = i, e.burned = n, e.state = o, e.tired = r, e.smoke = p, e.textLevel = m, e.textName = g, e.starRateView = v, e.hpGaugeView = y, e.kirakira = f, e.ring = x, e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e.containerName = T, e.containerEffect = O, e.deckIndexEmblem = b, e
+    var o, r = i(0), s = i(3), a = i(4);
+    !function (t) {
+        t[t.Top = 0] = "Top", t[t.Bottom = 1] = "Bottom"
+    }(o = e.Direction || (e.Direction = {}));
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.balloon = new PIXI.Sprite, e.shipInfos = new Array;
+            var i = new u, n = new u, o = new u, r = new u, a = new u, _ = new u;
+            e.container = new PIXI.Container, i.position.set(0, 0), n.position.set(190, 0), o.position.set(0, 43), r.position.set(190, 43), a.position.set(0, 85), _.position.set(190, 85);
+            var l = s.ORGANIZE_MAIN.getTexture(34);
+            e.balloon.texture = l, e.shipInfos.push(i, n, o, r, a, _);
+            for (var c = 0; c < e.shipInfos.length; c++) {
+                var h = e.shipInfos[c];
+                e.container.addChild(h)
             }
+            return e.addChild(e.balloon, e.container), e
+        }
 
-            return n(e, t), e.prototype.dispose = function () {
-                this.containerName.removeChildren(), this.containerEffect.removeChildren(), this.removeChild(this.shipBanner), this.removeChild(this.burned), this.removeChild(this.state), this.removeChild(this.tired), this.removeChild(this.smoke), this.removeChild(this.kirakira), this.removeChild(this.ring), this.smoke.dispose(), this.kirakira.dispose(), this.ring.dispose(), this.shipBanner.texture = PIXI.Texture.EMPTY, this.containerName.mask = null, this.containerName = null, this.containerEffect = null, this.shipBanner = null, this.burned = null, this.state = null, this.tired = null, this.smoke = null, this.kirakira = null, this.ring = null, this.removeChildren()
-            }, e.prototype._updateName_ = function (t, e) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t;
-                var i = 16777215;
-                e && (i = 16766947), this.textName.style.fill = i, this.containerName.cacheAsBitmap = !0
-            }, e.prototype._updateRing_ = function (t) {
-                this.ring.visible = !1, t && (this.ring.visible = !0)
-            }, e.prototype.update = function (t, e, i) {
-                var n = e.isRepair(), o = r.ShipUtil.getDamageType(e.hpNow, e.hpMax), s = e.isMarriage();
-                this.hpGaugeView.update(e.hpNow, e.hpMax), this.starRateView.update(e.starNum), this.textLevel.text = e.level.toString(), this._updateTexture_(e.mstID, e.isDamaged()), this._updateName_(e.name, s), this._updateRing_(s), this._updateStatus_(n, i, o), this._updateBurned_(o), this._updateTired_(e.tired), this.deckIndexEmblem.update(t)
-            }, e.prototype._updateStatus_ = function (t, e, i) {
-                if (this.smoke.stop(), t) this.updateState(5); else if (e) this.updateState(4); else switch (this.smoke.play(i), i) {
-                    case 75:
-                        this.updateState(1);
-                        break;
-                    case 50:
-                        this.updateState(2);
-                        break;
-                    case 25:
-                        this.updateState(3);
-                        break;
-                    default:
-                        this.updateState(0)
-                }
-            }, e.prototype._updateTexture_ = function (t, e) {
-                p.TaskLoadShipResource.abortBy(this.shipBanner), 1 == o.default.resources.isLoadedShip(t, e, "supply_character") ? this.shipBanner.texture = o.default.resources.getShip(t, e, "supply_character") : (this.shipBanner.texture = PIXI.Texture.EMPTY, new p.TaskLoadShipResource("supply_character", this.shipBanner, t, e).start())
-            }, e.prototype._updateBurned_ = function (t) {
-                switch (t) {
-                    case 75:
-                        this.burned.texture = f.COMMON_MISC.getTexture(97);
-                        break;
-                    case 50:
-                        this.burned.texture = f.COMMON_MISC.getTexture(96);
-                        break;
-                    case 25:
-                        this.burned.texture = f.COMMON_MISC.getTexture(98);
-                        break;
-                    default:
-                        this.burned.texture = PIXI.Texture.EMPTY
-                }
-            }, e.prototype.updateState = function (t) {
-                switch (t) {
-                    case 0:
-                        this.state.texture = PIXI.Texture.EMPTY;
-                        break;
-                    case 1:
-                        this.state.texture = f.COMMON_MISC.getTexture(105);
-                        break;
-                    case 2:
-                        this.state.texture = f.COMMON_MISC.getTexture(99);
-                        break;
-                    case 3:
-                        this.state.texture = f.COMMON_MISC.getTexture(109);
-                        break;
-                    case 4:
-                        this.state.texture = f.COMMON_MISC.getTexture(100);
-                        break;
-                    case 5:
-                        this.state.texture = f.COMMON_MISC.getTexture(108)
-                }
-            }, e.prototype._updateTired_ = function (t) {
-                if (this.tired.removeChildren(), t < 20) {
-                    var e = new PIXI.Sprite(f.COMMON_MISC.getTexture(36)),
-                        i = new PIXI.Sprite(f.COMMON_MISC.getTexture(113));
-                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width + 11, e.y = 5, e.addChild(i), this.tired.addChild(e)
-                } else if (t < 30) {
-                    var e = new PIXI.Sprite(f.COMMON_MISC.getTexture(35)),
-                        i = new PIXI.Sprite(f.COMMON_MISC.getTexture(112));
-                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width + 11, e.y = 5, e.addChild(i), this.tired.addChild(e)
-                }
-                t >= 50 ? this.kirakira.play() : this.kirakira.stop()
-            }, e
-        }(PIXI.Container);
-    e.LongShipBanner = y
+        return n(e, t), e.prototype.dispose = function () {
+            for (var t = 0; t < this.shipInfos.length; t++) this.shipInfos[t].dispose(), this.shipInfos[t] = null;
+            this.shipInfos = null, this.balloon = null, this.container = null, this.removeChildren()
+        }, e.prototype.update = function (t, e, i) {
+            for (var n = i.getShipCount(), a = 0; a < 6; a++) {
+                var _ = this.shipInfos[a];
+                if (a < n) {
+                    if (i.isLostShip(a)) _.updateLost(); else {
+                        var u = i.ships[a], l = r.default.model.ship.getMst(u.mstID).getClassType(),
+                            c = 0 == i.isOtherDeckShip(a, t);
+                        _.update(u.name, l, u.shipTypeID, c)
+                    }
+                } else _.updateUnSet()
+            }
+            switch (e) {
+                case o.Bottom:
+                    var h = s.ORGANIZE_MAIN.getTexture(34);
+                    this.balloon.texture = h, this.container.position.set(3, 6);
+                    break;
+                case o.Top:
+                    var p = s.ORGANIZE_MAIN.getTexture(35);
+                    this.balloon.texture = p, this.container.position.set(4, 16)
+            }
+        }, e.prototype.getFinePosition = function (t) {
+            switch (t) {
+                case o.Bottom:
+                    return new PIXI.Point(-192, -157);
+                case o.Top:
+                    return new PIXI.Point(-192, -3)
+            }
+            return new PIXI.Point
+        }, e
+    }(PIXI.Container);
+    e.PresetPreviewBalloon = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = r.default.resources.getUIImage("mask"), n = new PIXI.Sprite(i);
+            return e.shipShadow = new PIXI.Sprite, e.containerName = new PIXI.Container, e.textName = new a.TextBox(18, 5523516), e.shipShadow.position.set(0, 10), e.containerName.position.set(69, 10), n.anchor.set(1, 0), n.scale.x = -1, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.addChild(e.shipShadow, e.containerName), e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.containerName.removeChildren(), this.shipShadow.texture = PIXI.Texture.EMPTY, this.containerName.mask = null, this.containerName = null, this.textName = null, this.shipShadow = null, this.removeChildren()
+        }, e.prototype.update = function (t, e, i, n) {
+            this.containerName.cacheAsBitmap = !1, this.textName.text = t;
+            var o = this.getShadowTextureName(e, i), r = s.ORGANIZE_SHIP.getTexture(o);
+            this.shipShadow.texture = r, this.shipShadow.alpha = 1, this.textName.alpha = 1, this.shipShadow.position.set(0, 10), this.shipShadow.alpha = .5, this.textName.alpha = .5, n && (this.shipShadow.alpha = 1, this.textName.alpha = 1), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.updateLost = function () {
+            this.containerName.cacheAsBitmap = !1, this.textName.text = "\u9664\u7c4d\u8266", this.shipShadow.position.set(8, 8);
+            var t = s.ORGANIZE_SHIP.getTexture(0);
+            this.shipShadow.texture = t, this.shipShadow.alpha = .5, this.textName.alpha = .5, this.containerName.cacheAsBitmap = !0
+        }, e.prototype.updateUnSet = function () {
+            this.containerName.cacheAsBitmap = !1, this.textName.alpha = 0, this.shipShadow.alpha = 0, this.containerName.cacheAsBitmap = !0
+        }, e.prototype.getShadowTextureName = function (t, e) {
+            switch (t) {
+                case 37:
+                    return 11;
+                case 41:
+                    return 13;
+                case 52:
+                    return 14
+            }
+            switch (e) {
+                case 1:
+                    return 15;
+                case 2:
+                    return 1;
+                case 3:
+                    return 12;
+                case 4:
+                    return 17;
+                case 5:
+                    return 16;
+                case 6:
+                    return 18;
+                case 7:
+                    return 21;
+                case 8:
+                case 9:
+                    return 19;
+                case 10:
+                    return 20;
+                case 11:
+                    return 22;
+                case 12:
+                    return 19;
+                case 13:
+                    return 2;
+                case 14:
+                    return 3;
+                case 15:
+                    return 10;
+                case 16:
+                    return 4;
+                case 17:
+                    return 8;
+                case 18:
+                    return 6;
+                case 19:
+                    return 7;
+                case 20:
+                    return 5;
+                case 21:
+                    return 9;
+                case 22:
+                    return 10
+            }
+        }, e
+    }(PIXI.Container)
 }

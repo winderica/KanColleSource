@@ -15,19 +15,34 @@ const function1135 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(13), s = function (t) {
+    var o = i(11), r = i(1136), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._result = -1, e._url = "api_dmm_payment/paycheck", e
+            return e._result = !1, e._api = null, e._retry_count = 0, e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "result", {
             get: function () {
                 return this._result
             }, enumerable: !0, configurable: !0
-        }), e.prototype._completedEnd = function () {
-            this._result = r.ObjUtil.getNumber(this._raw_data, "api_check_value", -1), t.prototype._completedEnd.call(this)
+        }), e.prototype._start = function () {
+            var t = this;
+            createjs.Tween.get(null).wait(500).call(function () {
+                t._check()
+            })
+        }, e.prototype._check = function () {
+            var t = this;
+            this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
+                t._checked()
+            })
+        }, e.prototype._checked = function () {
+            var t = this;
+            2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
+                t._check()
+            })
+        }, e.prototype._endTask = function () {
+            this._api = null, t.prototype._endTask.call(this)
         }, e
-    }(o.APIBase);
-    e.PayCheckAPI = s
+    }(o.TaskBase);
+    e.TaskPayCheck = s
 }

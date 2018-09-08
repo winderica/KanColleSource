@@ -15,52 +15,19 @@ const function1485 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1486), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._banners = [], e
+    var o = i(0), r = i(11), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._resetBanners();
-            var e = 0;
-            e = 7 == t.length ? 0 : 68;
-            for (var i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null == n) return;
-                var r = new o.ShipBannerClone(n.isTaihi());
-                r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
-                var s = n.mst_id, a = n.hp_now, _ = n.hp_max;
-                r.updateTexture(s, a, _), r.updateIcon(n.damageType), this.addChild(r)
-            }
-        }, e.prototype.dispose = function () {
-            this._resetBanners(), this._banners = null, this.removeChildren()
-        }, e.prototype.createShowTweens = function (t) {
-            for (var e = [], i = 0; i < this._banners.length; i++) {
-                var n = this._banners[i];
-                n.y += 30;
-                var o = createjs.Tween.get(n).wait(t + 50 * i).to({ y: n.y - 30, alpha: 1 }, 150);
-                e.push(o)
-            }
-            return e
-        }, e.prototype.createHideTweens = function (t) {
-            for (var e = [], i = 0; i < this._banners.length; i++) {
-                var n = this._banners[i],
-                    o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
-                        y: n.y + 30,
-                        alpha: 0
-                    }, 200);
-                e.push(o)
-            }
-            return e
-        }, e.prototype.getBanner = function (t) {
-            return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
-        }, e.prototype._resetBanners = function () {
-            for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
-                var t = this._banners.pop();
-                null != t.parent && t.parent.removeChild(t), t.dispose()
-            }
+        return n(e, t), e.prototype._start = function () {
+            this._disposeView()
+        }, e.prototype._disposeView = function () {
+            this._connectAPI()
+        }, e.prototype._connectAPI = function () {
+            o.default.sound.voice.stopAll(), o.default.sound.voice.setNumOfMultiPlay(1), this._endTask()
         }, e
-    }(PIXI.Container);
-    e.BannerSet = r
+    }(r.TaskBase);
+    e.TaskEnd = s
 }

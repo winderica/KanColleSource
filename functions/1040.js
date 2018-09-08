@@ -15,37 +15,20 @@ const function1040 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1041), a = i(13), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(0), r = i(10), s = i(7), a = function (t) {
+        function e(e, i) {
+            void 0 === i && (i = !1);
+            var n = t.call(this) || this;
+            return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
-            })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = o.default.model.deck.get(this._deck_id).expedition,
+                i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
+            null == i || e.__update__(i), t.prototype._completedEnd.call(this)
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = _;
-    var u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(102), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = u
+    }(r.APIBase);
+    e.ExpeditionCancelAPI = a
 }

@@ -1,7 +1,7 @@
 const function1402 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(223), o = i(166), r = i(224), s = i(463), a = i(1411), _ = function () {
+    var n = i(222), o = i(165), r = i(223), s = i(464), a = i(1412), _ = function () {
         function t(t) {
             this._model = t, this._records = []
         }
@@ -56,7 +56,7 @@ const function1402 = function (t, e, i) {
             for (var e = [], i = 0; i < 6; i++) {
                 var r = t.common.getHPMaxFriend(i);
                 if (r <= 0) break;
-                var s = -(i + 1), a = s, _ = new o.ShipModelReplica(!0, !1, i, s, a, 1, 0),
+                var s = -(i + 1), a = s, _ = new o.ShipModelReplica(0, !1, i, s, a, 1, 0),
                     u = t.common.getHPNowFriend(i);
                 _.initializeHPInfo(u, r);
                 var l = t.common.getParamsFriend(i);
@@ -68,7 +68,7 @@ const function1402 = function (t, e, i) {
             for (var i = null != t && t.practice, s = null == t ? 0 : t.id, a = null == t ? 0 : t.medal_num, _ = null == t ? "" : t.user_name, u = null == t ? "" : t.name, l = [], c = e.common.isCombinedEnemy(), h = 0; h < (c ? 12 : 6); h++) {
                 var p = e.common.getMstIDEnemy(h);
                 if (p <= 0) l.push(null); else {
-                    var d = e.common.getLevelEnemy(h), f = new o.ShipModelReplica(!1, i, h, p, -h, d),
+                    var d = e.common.getLevelEnemy(h), f = new o.ShipModelReplica(1, i, h, p, -h, d),
                         y = e.common.getHPNowEnemy(h);
                     i && (y = Math.max(1, y));
                     var v = e.common.getHPMaxEnemy(h);

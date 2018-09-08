@@ -15,15 +15,23 @@ const function335 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_kaisou/slotset_ex", n.api_id = e, n.api_item_id = i, n
+    var o = i(3), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = e._textureOn
+            }, e._onMouseOut = function () {
+                e.texture = e._textureOff
+            }, e._onClick = function () {
+                null != e._cb_onClick && e._cb_onClick()
+            }, e._textureOff = o.REMODEL_MAIN.getTexture(1), e._textureOn = o.REMODEL_MAIN.getTexture(2), e.texture = e._textureOff, e.interactive = e.buttonMode = !0, e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._cb_onClick = t
+        }, e.prototype.dispose = function () {
+            this._textureOff = null, this._textureOn = null, this.removeListener(r.EventType.CLICK, this._onClick), this.removeListener(r.EventType.MOUSEOVER, this._onMouseOver), this.removeListener(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
         }, e
-    }(o.APIBase);
-    e.SlotSetExAPI = r
+    }(PIXI.Sprite);
+    e.CancelButton = s
 }

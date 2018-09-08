@@ -15,15 +15,25 @@ const function636 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
+    var o = i(0), r = i(2), s = i(637), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._view = e, i
+            return i._pre_scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._view.deactivate(), this._endTask()
+            this._playVoice()
+        }, e.prototype._playVoice = function () {
+            var t = o.default.model.deck.get(1), e = t.getShipModel(0), i = e.mstID.toString();
+            if (33 == this._pre_scene || 32 == this._pre_scene) o.default.sound.voice.play(i, 7); else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26); else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1); else {
+                var n = Math.random();
+                n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
+            }
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            var t = o.default.model.basic.port_bgm_id;
+            o.default.sound.bgm.play(t), (new s.TaskCombinedAlert).start(), this._endTask()
         }, e
-    }(o.TaskBase);
-    e.FinalizeTask = r
+    }(r.TaskBase);
+    e.InitializeTask = a
 }

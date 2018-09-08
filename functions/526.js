@@ -1,38 +1,29 @@
 const function526 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(527), o = function () {
+    var n = i(264), o = i(264), r = function () {
         function t() {
-            this._manager = new n.VoiceManager, this._additional_managers = {}
+            var t = this;
+            this._onLoadCompleteInfo = function (e, i) {
+                t._info_dic[e] = i
+            }, this._onLoadCompleteResources = function (e) {
+                for (var i in e) 0 == t._dic.hasOwnProperty(i) && (t._dic[i] = e[i])
+            }, this._info_dic = {}, this._dic = {}
         }
 
-        return t.prototype.getNumOfMultiPlay = function () {
-            return this._manager.num_of_simultaneous_playback
-        }, t.prototype.setNumOfMultiPlay = function (t) {
-            this._manager.num_of_simultaneous_playback = t
-        }, t.prototype.preload = function (t, e) {
-            this._manager.preload(t, e)
-        }, t.prototype.play = function (t, e, i, o) {
-            void 0 === i && (i = null), void 0 === o && (o = null);
-            var r = this._getManager(o);
-            return null == r && (r = new n.VoiceManager, this._additional_managers[o] = r), r.play(t, e, i)
-        }, t.prototype.playAtRandom = function (t, e, i, o, r) {
-            void 0 === o && (o = null), void 0 === r && (r = null);
-            var s = this._getManager(r);
-            return null == s && (s = new n.VoiceManager, this._additional_managers[r] = s), s.playAtRandom(t, e, i, o)
-        }, t.prototype.stop = function (t) {
-            if (1 == this._manager.stop(t)) return !0;
-            for (var e in this._additional_managers) {
-                if (1 == this._additional_managers[e].stop(t)) return !0
+        return t.prototype.createLoaderHorizontal = function () {
+            return new n.HorizontalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+        }, t.prototype.createLoaderVertical = function () {
+            return new o.VerticalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+        }, t.prototype.getGaugeInfo = function (t) {
+            return 1 == this._info_dic.hasOwnProperty(t) ? this._info_dic[t] : null
+        }, t.prototype.getTexture = function (t) {
+            if (1 == this._dic.hasOwnProperty(t)) {
+                var e = this._dic[t];
+                if (null != e && null != e.texture && void 0 != e.texture) return e.texture
             }
-            return !1
-        }, t.prototype.stopAll = function (t) {
-            void 0 === t && (t = null);
-            var e = this._getManager(t);
-            null != e && e.stopAll()
-        }, t.prototype._getManager = function (t) {
-            return null == t ? this._manager : 1 == this._additional_managers.hasOwnProperty(t) ? this._additional_managers[t] : null
+            return PIXI.Texture.EMPTY
         }, t
     }();
-    e.VoiceManagerHolder = o
+    e.GaugeRManager = r
 }

@@ -15,55 +15,43 @@ const function489 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(490), r = i(13), s = function () {
-        function t() {
+    var o = function () {
+        function t(t) {
+            this._a = t
         }
 
-        return t.prototype.get = function (t) {
-            return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
-        }, t.prototype.getInArea = function (t, e) {
-            var i = [];
-            for (var n in this._map) {
-                var o = this._map[n];
-                o.areaID == t && (1 == e && -1 == o.state || i.push(o))
-            }
-            return i.sort(function (t, e) {
-                return t.mstID - e.mstID
-            }), i
-        }, t.prototype.getserialID = function () {
-            return this._serial_id
-        }, Object.defineProperty(t.prototype, "serial_id", {
-            set: function (t) {
-                this._serial_id = t
+        return Object.defineProperty(t.prototype, "state", {
+            get: function () {
+                return null != this._a && this._a.length > 0 ? this._a[0] : 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "expedition_id", {
+            get: function () {
+                return null != this._a && this._a.length > 1 ? this._a[1] : -1
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "complete_unixtime", {
+            get: function () {
+                return null != this._a && this._a.length > 2 ? this._a[2] : -1
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.ExpeditionModelHolder = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    e.DeckExpeditionModel = o;
+    var r = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.setMstData = function (t) {
-            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.ExpeditionModelEdit(i), r = n.mstID;
-                if (r > 0) {
-                    var s = r.toString();
-                    this._map[s] = n
-                }
-            }
-        }, e.prototype.setData = function (t) {
-            if (null != this._map && null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.ObjUtil.getNumber(n, "api_mission_id");
-                if (o > 0) {
-                    var s = this.get(o);
-                    if (null != s) {
-                        var a = r.ObjUtil.getNumber(n, "api_state"), _ = a;
-                        s.__setState__(_)
-                    }
-                }
-            }
+        return n(e, t), e.prototype.__update__ = function (t) {
+            this._a = t
+        }, e.prototype.__update_state__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 0;) this._a.push(0);
+            this._a[0] = t
+        }, e.prototype.__update_id__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 1;) this._a.push(0);
+            this._a[1] = t
+        }, e.prototype.__update_time__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 2;) this._a.push(0);
+            this._a[2] = t
         }, e
-    }(s);
-    e.ExpeditionModelHolderEdit = a
+    }(o);
+    e.DeckExpeditionModelEdit = r
 }

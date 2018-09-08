@@ -35,12 +35,11 @@ const function685 = function (t, e, i) {
         return n(e, t), e.prototype.dispose = function () {
             this.tween && (this.tween.setPaused(!0), createjs.Tween.removeTweens(this.tween.target)), this.hokyuLight.removeAllListeners(a.EventType.CLICK), this.hokyuLight.removeAllListeners(a.EventType.MOUSEOVER), this.hokyuLight.removeAllListeners(a.EventType.MOUSEOUT), this.hokyuNormal.removeAllListeners(a.EventType.CLICK), this._onClick = this._onMouseOut_Light = this._onMouseOver_Light = null, this.crossCharacter.dispose(), this.onClick = null, this.textureDefault = null, this.textureHover = null, this.textCount = null, this.animation = null, this.tween = null, this.hokyuLight = null, this.hokyuNormal = null, this.hokyuNone = null, this.hokyuDisable = null, this.crossCharacter = null, this.removeChildren()
         }, e.prototype.update = function (t, e, i, n) {
-            void 0 === i && (i = 0), this.hokyuNone.visible = !1, this.hokyuLight.visible = !1, this.hokyuNormal.visible = !1, this.textCount.visible = !1, this.hokyuDisable.visible = !1, this.crossCharacter.visible = !1, this.crossCharacter;
+            void 0 === i && (i = 0), this.hokyuNone.visible = !1, this.hokyuLight.visible = !1, this.hokyuNormal.visible = !1, this.textCount.visible = !1, this.hokyuDisable.visible = !1, this.crossCharacter.visible = !1;
             var o = t + e;
             if (0 < o) {
                 if (this.crossCharacter.visible = !0, this.textCount.text = o.toString(), this.textCount.visible = !0, 0 < i) {
-                    var r = 0 < t;
-                    if (n && r) return void(this.hokyuLight.visible = !0);
+                    if (n) return void(this.hokyuLight.visible = !0);
                     if (0 < e) return void(this.hokyuNormal.visible = !0)
                 }
                 return void(this.hokyuDisable.visible = !0)
