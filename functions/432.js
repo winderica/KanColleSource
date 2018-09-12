@@ -57,7 +57,10 @@ const function432 = function (t, e, i) {
             }, e.prototype._next = function (t) {
                 var e = this, i = new f.TaskNextSpot(this, this._model, t, this._battle_cls, this._battle_result_cls);
                 i.start(function () {
-                    e._gimmick(i.battle_model, t)
+                    if (i.cell_open) {
+                        var n = e._model.sortie.getNextCell();
+                        e._endScene(n)
+                    } else e._gimmick(i.battle_model, t)
                 })
             }, e.prototype._gimmick = function (t, e) {
                 var i = this._model.sortie.area_id, n = this._model.sortie.map_no;
@@ -112,8 +115,13 @@ const function432 = function (t, e, i) {
                         a.start(function () {
                             i._endScene(n)
                         })
+                    } else if (42 == o && 5 == r && 3 == this._model.sortie.map.getGaugeNum() && 1 == s) {
+                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
+                        a.start(function () {
+                            i._endScene(n)
+                        })
                     } else this._endScene(n)
-                } else null != t ? this._preNextAfterBattle(n, t) : this._preNext(n, e)
+                } else null != t ? this._preNextAfterBattle(n, t) : this._preNext(n, t, e)
             }, e.prototype._preNextAfterBattle = function (t, e) {
                 var i = this, n = e.deck_f.ships[0];
                 if (25 == n.damageType || 0 == n.damageType) {
@@ -126,74 +134,84 @@ const function432 = function (t, e, i) {
                     }
                 } else this._selectGoAhead(t, e)
             }, e.prototype._selectGoAhead = function (t, e) {
-                var i = this, n = new y.TaskMarchRetreatSelect(this._view);
-                n.start(function () {
-                    if (0 == n.result) {
-                        var s = i._model.sortie.area_id, a = i._model.sortie.map_no, _ = null == e ? 0 : e.m1;
-                        42 == s && 5 == a && 3 == i._model.sortie.map.getGaugeNum() && 1 == _ ? new I.EventTaskCellOpen(i._model.sortie.map_id, i._resInfo, i._view, i._model.sortie.map.getGaugeNum(), !0, !1, !0, !1).start(function () {
-                            i._endScene(t)
-                        }) : i._endScene(t)
-                    } else {
-                        var s = i._model.sortie.area_id, a = i._model.sortie.map_no, l = r.MapConst.getMapBGMID(s, a);
-                        1 == l.battle_bgm ? o.default.sound.bgm.playBattleBGM(l.id) : o.default.sound.bgm.play(l.id);
-                        var c = i._model.deck_f, h = [c.id];
-                        0 != c.type && h.push(c.id_second);
-                        var p = i._model.sortie.getNextCell().no;
-                        new u.APIShipDeck(h, s, a, p).start(function () {
-                            var e = i._model.deck_f.id, n = o.default.model.deck.get(e);
-                            i._model.deck_f.updateShipList(n), i._preNext(t)
-                        })
-                    }
-                })
+                var i = this, n = this._model.sortie.area_id, s = this._model.sortie.map_no, a = null == e ? 0 : e.m1;
+                if (42 == n && 5 == s && 3 == this._model.sortie.map.getGaugeNum() && 1 == a) {
+                    new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0).start(function () {
+                        i._endScene(t)
+                    })
+                } else {
+                    var _ = new y.TaskMarchRetreatSelect(this._view);
+                    _.start(function () {
+                        if (0 == _.result) i._endScene(t); else {
+                            var n = i._model.sortie.area_id, s = i._model.sortie.map_no,
+                                a = r.MapConst.getMapBGMID(n, s);
+                            1 == a.battle_bgm ? o.default.sound.bgm.playBattleBGM(a.id) : o.default.sound.bgm.play(a.id);
+                            var l = i._model.deck_f, c = [l.id];
+                            0 != l.type && c.push(l.id_second);
+                            var h = i._model.sortie.getNextCell().no;
+                            new u.APIShipDeck(c, n, s, h).start(function () {
+                                var n = i._model.deck_f.id, r = o.default.model.deck.get(n);
+                                i._model.deck_f.updateShipList(r), i._preNext(t, e)
+                            })
+                        }
+                    })
+                }
             }, e.prototype._selectTaihaShingun = function (t, e, i, n) {
                 var s = this, a = new v.TaskTaihaShingunSelect(this._view, i, n);
                 a.start(function () {
                     var i = a.result;
-                    if (0 == i) s._endScene(t); else {
-                        var n = s._model.sortie.area_id, _ = s._model.sortie.map_no, l = r.MapConst.getMapBGMID(n, _);
-                        1 == l.battle_bgm ? o.default.sound.bgm.playBattleBGM(l.id) : o.default.sound.bgm.play(l.id);
-                        var c = s._model.deck_f, h = [c.id];
-                        0 != c.type && h.push(c.id_second);
-                        var p = s._model.sortie.getNextCell().no;
-                        new u.APIShipDeck(h, n, _, p).start(function () {
-                            var r = s._model.deck_f.id, a = o.default.model.deck.get(r);
-                            s._model.deck_f.updateShipList(a);
-                            var u = (s._model.deck_f.ships[0].useRepairItem(), null == e ? 0 : e.m1);
-                            if (42 == n && 5 == _ && 3 == s._model.sortie.map.getGaugeNum() && 1 == u) {
-                                new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !1).start(function () {
-                                    s._preNext(t, i)
-                                })
-                            } else s._preNext(t, i)
+                    if (0 == i) {
+                        var n = s._model.sortie.area_id, _ = s._model.sortie.map_no, l = null == e ? 0 : e.m1;
+                        if (42 == n && 5 == _ && 3 == s._model.sortie.map.getGaugeNum() && 1 == l) {
+                            new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !0).start(function () {
+                                s._endScene(t)
+                            })
+                        } else s._endScene(t);
+                        s._endScene(t)
+                    } else {
+                        var n = s._model.sortie.area_id, _ = s._model.sortie.map_no, c = r.MapConst.getMapBGMID(n, _);
+                        1 == c.battle_bgm ? o.default.sound.bgm.playBattleBGM(c.id) : o.default.sound.bgm.play(c.id);
+                        var h = s._model.deck_f, p = [h.id];
+                        0 != h.type && p.push(h.id_second);
+                        var d = s._model.sortie.getNextCell().no;
+                        new u.APIShipDeck(p, n, _, d).start(function () {
+                            var n = s._model.deck_f.id, r = o.default.model.deck.get(n);
+                            s._model.deck_f.updateShipList(r);
+                            s._model.deck_f.ships[0].useRepairItem();
+                            s._preNext(t, e, i)
                         })
                     }
                 })
-            }, e.prototype._preNext = function (t, e) {
-                var i = this;
-                if (void 0 === e && (e = 0), 1 == t.isJunction()) {
+            }, e.prototype._preNext = function (t, e, i) {
+                var n = this;
+                if (void 0 === i && (i = 0), 1 == t.isJunction()) {
                     t.getSelectableRoutes();
-                    createjs.Tween.get(this._view.shutter).to({ alpha: 0 }, 200), createjs.Tween.get(this._view.map).to({ alpha: 1 }, 200), createjs.Tween.get(this._view.upper).to({ alpha: 1 }, 200), createjs.Tween.get(this._view.gauge_layer).to({ alpha: 1 }, 200), this._view.message_box.text = "", this._view.message_box.activate(function () {
-                        i._view.map.enemy_layer.hide(function () {
-                            i._view.map.plane_layer.hideAll();
-                            var t = new g.TaskBranchRoute(i, i._model);
-                            t.start(function () {
-                                var n = t.selected_no;
-                                new _.APIMapNext(i._model.sortie, e, n).start(function () {
-                                    i._next(e)
-                                })
+                    this._viewNext(e, i, function () {
+                        n._view.map.plane_layer.hideAll();
+                        var t = new g.TaskBranchRoute(n, n._model);
+                        t.start(function () {
+                            var e = t.selected_no;
+                            new _.APIMapNext(n._model.sortie, i, e).start(function () {
+                                n._next(i)
                             })
                         })
                     })
                 } else {
-                    new _.APIMapNext(this._model.sortie, e).start(function () {
-                        createjs.Tween.get(i._view.shutter).to({ alpha: 0 }, 200), createjs.Tween.get(i._view.map).to({ alpha: 1 }, 200), createjs.Tween.get(i._view.upper).to({ alpha: 1 }, 200), createjs.Tween.get(i._view.gauge_layer).to({ alpha: 1 }, 200), i._view.message_box.text = "", i._view.message_box.activate(function () {
-                            i._view.map.enemy_layer.hide(function () {
-                                i._view.map.plane_layer.hideAll(function () {
-                                    i._next(e)
-                                })
+                    new _.APIMapNext(this._model.sortie, i).start(function () {
+                        n._viewNext(e, i, function () {
+                            n._view.map.plane_layer.hideAll(function () {
+                                n._next(i)
                             })
                         })
                     })
                 }
+            }, e.prototype._viewNext = function (t, e, i) {
+                var n = this;
+                createjs.Tween.get(this._view.shutter).to({ alpha: 0 }, 200), createjs.Tween.get(this._view.map).to({ alpha: 1 }, 200), createjs.Tween.get(this._view.upper).to({ alpha: 1 }, 200), createjs.Tween.get(this._view.gauge_layer).to({ alpha: 1 }, 200), this._view.message_box.text = "", this._view.message_box.activate(function () {
+                    n._view.map.enemy_layer.hide(function () {
+                        i()
+                    })
+                })
             }, e.prototype._endScene = function (t) {
                 var e = this, i = this._model.sortie.area_id, n = this._model.sortie.map_no, r = t.no;
                 39 != i || 1 != n || 13 != r && 18 != r ? 4 == t.event_id || 5 == t.event_id ? o.default.scene.change(0) : 8 == t.event_id ? o.default.scene.change(0) : (this._view.message_box.deactivate(), createjs.Tween.get(this._view.gauge_layer).to({ alpha: 0 }, 300).call(function () {

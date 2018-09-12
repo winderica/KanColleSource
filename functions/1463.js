@@ -71,7 +71,7 @@ const function1463 = function (t, e, i) {
                 })
             } else {
                 if (1 != i.isSlotitem()) throw new Error("TaskEventBonus");
-                var n = this._canvas, r = i.mst_id, c = new a.TaskBonusSlot(n, r, i.count, !1, t);
+                var n = this._canvas, r = i.mst_id, c = new a.TaskBonusSlot(n, r, i.count, i.level, !1, t);
                 c.start(function () {
                     e._bonus(c)
                 })

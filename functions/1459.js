@@ -41,7 +41,7 @@ const function1459 = function (t, e, i) {
                 this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
                 var n = this._scene.view.layer_cutin, r = i.mst_id;
                 new u.TaskBonusTelop(n, 2, r).start(function () {
-                    var i = new a.TaskBonusSlot(n, r, 1, !1, t);
+                    var i = new a.TaskBonusSlot(n, r, 1, 1, !1, t);
                     i.start(function () {
                         e._shipBonus(i)
                     })

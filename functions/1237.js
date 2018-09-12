@@ -15,17 +15,21 @@ const function1237 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(240), a = i(27), _ = i(1238), u = i(1239), l = i(1240), c = i(1241), h = i(1243),
-        p = i(1245), d = i(1246), f = i(1250), y = i(1260), v = i(1261), g = i(1262), m = i(1263), b = i(1265),
-        w = i(1267), x = i(1271), I = i(438), T = function (t) {
+    var o = i(0), r = i(2), s = i(240), a = i(27), _ = i(13), u = i(1238), l = i(1239), c = i(1240), h = i(1241),
+        p = i(1243), d = i(1245), f = i(1246), y = i(1250), v = i(1260), g = i(1261), m = i(1262), b = i(1263),
+        w = i(1265), x = i(1267), I = i(1271), T = i(438), O = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
-                return s._scene = e, s._model = i, s._repair_item = n, s._battle_cls = o, s._battle_result_cls = r, s
+                return s._scene = e, s._model = i, s._repair_item = n, s._battle_cls = o, s._battle_result_cls = r, s._cell_open = !1, s
             }
 
             return n(e, t), Object.defineProperty(e.prototype, "battle_model", {
                 get: function () {
                     return this._battle_model
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "cell_open", {
+                get: function () {
+                    return this._cell_open
                 }, enumerable: !0, configurable: !0
             }), e.prototype._start = function () {
                 this._next = this._model.sortie.getNextCell(), this._init()
@@ -36,7 +40,7 @@ const function1237 = function (t, e, i) {
                     n = this._scene.view.map.spotLayer.getSpot(this._next.no), o = new PIXI.Point(n.x, n.y);
                 if (1 == this._next.hasCompass()) {
                     this._scene.view.message_box.text = "\u3069\u3053\u306b\u9032\u3080\uff1f";
-                    var r = new h.AnimCompass;
+                    var r = new p.AnimCompass;
                     this._scene.view.addChild(r), r.initialize(this._next.rashin_id), r.Play(i, o, function () {
                         r.Dispose(), t._scene.view.removeChild(r), t._scene.view.message_box.text = "", t._turn(o)
                     })
@@ -53,7 +57,7 @@ const function1237 = function (t, e, i) {
                     var e = this._scene.view.map.ship_icon, i = new PIXI.Point(0, 0),
                         n = this._scene.view.map.spotLayer.getSpot(this._next.no),
                         o = new PIXI.Point(n.x - e.x, n.y - e.y);
-                    new u.AnimPlane(e, i, o).start(function () {
+                    new l.AnimPlane(e, i, o).start(function () {
                         t._balloon()
                     })
                 } else this._balloon()
@@ -64,35 +68,37 @@ const function1237 = function (t, e, i) {
                     o.default.sound.voice.play(i.toString(), 26);
                     var n = this._scene.view.map.ship_icon, r = this._next.balloonID, s = 1;
                     1 == n.direction && (s = 7);
-                    var _ = this._model.sortie.map_id, u = this._next.no, h = null;
-                    if (423 == _) if (11 == u) s = 1; else if (13 == u || 21 == u) s = 7; else if (25 == u) {
-                        var p = this._scene.model.sortie.map.getGaugeNum();
-                        2 == p ? s = 1 : 3 == p && (h = new PIXI.Point(21, 0))
-                    }
+                    var _ = this._model.sortie.map_id, u = this._next.no, l = null;
+                    if (423 == _) {
+                        if (11 == u) s = 1; else if (13 == u || 21 == u) s = 7; else if (25 == u) {
+                            var p = this._scene.model.sortie.map.getGaugeNum();
+                            2 == p ? s = 1 : 3 == p && (l = new PIXI.Point(21, 0))
+                        }
+                    } else 425 == _ && (35 != u && 40 != u || (s = 2));
                     var d = new a.ParallelTask;
-                    d.add(new c.AnimShowMapEnemy(this._scene, this._model, 500)), d.add(new l.AnimBalloon(n, r, s, h)), d.start(function () {
+                    d.add(new h.AnimShowMapEnemy(this._scene, this._model, 500)), d.add(new c.AnimBalloon(n, r, s, l)), d.start(function () {
                         t._underwayReplenishment()
                     })
                 }
             }, e.prototype._underwayReplenishment = function () {
                 var t = this;
-                new d.TaskConfirmReplenishment(this._scene, this._model).start(function () {
+                new f.TaskConfirmReplenishment(this._scene, this._model).start(function () {
                     t._ration()
                 })
             }, e.prototype._ration = function () {
                 var t = this;
-                new p.TaskConfirmRation(this._scene, this._model).start(function () {
+                new d.TaskConfirmRation(this._scene, this._model).start(function () {
                     t._move()
                 })
             }, e.prototype._move = function () {
                 var t = this;
-                new _.AnimShipMove(this._scene, this._model).start(function () {
+                new u.AnimShipMove(this._scene, this._model).start(function () {
                     t._showEnemy()
                 })
             }, e.prototype._showEnemy = function () {
                 var t = this;
                 if (1 == this._scene.view.map.enemy_layer.isDisplaying()) this._gimmick(); else {
-                    new c.AnimShowMapEnemy(this._scene, this._model).start(function () {
+                    new h.AnimShowMapEnemy(this._scene, this._model).start(function () {
                         t._gimmick()
                     })
                 }
@@ -101,23 +107,20 @@ const function1237 = function (t, e, i) {
             }, e.prototype._AirRaidBattle = function () {
                 var t = this, e = this._scene.model.sortie.area_id, i = this._scene.model.sortie.map_no,
                     n = this._scene.model.sortie.getNextCell(), r = n.getAirraidDataObject(), s = n.hasBokuAirUnit(),
-                    a = this._scene.resInfo, _ = this._scene.view.map.plane_layer, u = o.default.view.overLayer,
-                    l = this._scene, c = this._scene.view.map.airbaseLayer;
-                new x.AirRaidTask(e, i, r, s, a, _, u, l, c, this._battle_cls).start(function () {
-                    var n = r;
-                    if (null != n && null != n.m1) if (42 == e && 5 == i && 3 == t._model.sortie.map.getGaugeNum() && 1 == n.m1) {
-                        var o = new I.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1);
-                        o.start(function () {
-                            t._gimmickAfterAirraid()
-                        })
-                    } else t._gimmickAfterAirraid(); else t._gimmickAfterAirraid()
+                    a = this._scene.resInfo, u = this._scene.view.map.plane_layer, l = o.default.view.overLayer,
+                    c = this._scene, h = this._scene.view.map.airbaseLayer;
+                new I.AirRaidTask(e, i, r, s, a, u, l, c, h, this._battle_cls).start(function () {
+                    var n = _.ObjUtil.getNumber(r, "api_m1");
+                    42 == e && 5 == i && 3 == t._model.sortie.map.getGaugeNum() && 1 == n ? (t._cell_open = !0, new T.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1).start(function () {
+                        t._endTask()
+                    })) : t._gimmickAfterAirraid()
                 })
             }, e.prototype._gimmickAfterAirraid = function () {
                 this._cellEvent()
             }, e.prototype._cellEvent = function () {
                 var t, e = this, i = this._model.sortie.area_id, n = this._model.sortie.map_no, o = this._next.no,
                     r = this._next.event_id;
-                39 != i || 1 != n || 13 != o && 18 != o ? 2 == r ? t = new v.CellTaskItem(this._scene, this._model) : 3 == r ? t = new y.CellTaskHappening(this._scene, this._model) : 4 == r ? t = this._createCellTaskBattle(!1) : 5 == r ? t = this._createCellTaskBattle(!0) : 6 == r ? t = new g.CellTaskFancy(this._scene, this._model) : 7 == r ? t = new m.CellTaskAirReconnaissance(this._scene, this._model) : 8 == r ? t = new b.CellTaskAnchor(this._scene, this._model) : 9 == r && (t = new w.CellTaskLanding(this._scene, this._model)) : t = new v.CellTaskItem(this._scene, this._model), null != t ? t.start(function () {
+                39 != i || 1 != n || 13 != o && 18 != o ? 2 == r ? t = new g.CellTaskItem(this._scene, this._model) : 3 == r ? t = new v.CellTaskHappening(this._scene, this._model) : 4 == r ? t = this._createCellTaskBattle(!1) : 5 == r ? t = this._createCellTaskBattle(!0) : 6 == r ? t = new m.CellTaskFancy(this._scene, this._model) : 7 == r ? t = new b.CellTaskAirReconnaissance(this._scene, this._model) : 8 == r ? t = new w.CellTaskAnchor(this._scene, this._model) : 9 == r && (t = new x.CellTaskLanding(this._scene, this._model)) : t = new g.CellTaskItem(this._scene, this._model), null != t ? t.start(function () {
                     e._endTask()
                 }) : this._endTask()
             }, e.prototype._createCellTaskBattle = function (t) {
@@ -137,8 +140,8 @@ const function1237 = function (t, e, i) {
                         c = (this._model.sortie.getGaugeKey(), 1), h = this._model.sortie.map.getGaugeNum();
                     this._battle_model.setMapGaugeInfo(l, u, c, h)
                 }
-                return new f.CellTaskBattle(this._scene, this._battle_model, this._battle_cls, this._battle_result_cls)
+                return new y.CellTaskBattle(this._scene, this._battle_model, this._battle_cls, this._battle_result_cls)
             }, e
         }(r.TaskBase);
-    e.TaskNextSpot = T
+    e.TaskNextSpot = O
 }

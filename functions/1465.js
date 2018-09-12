@@ -124,13 +124,13 @@ const function1465 = function (t, e, i) {
                     var o = new b.UIImageLoader("battle_result");
                     o.add("battle_result_event_e4_" + e + ".json"), o.load(function () {
                         n._img1.texture = v.BATTLE_RESULT_EVENT_E4_MTEXIPTEABHJBKAX.getTexture(0), n._img2.texture = v.BATTLE_RESULT_EVENT_E4_MTEXIPTEABHJBKAX.getTexture(1), i()
-                    }), this._img1.position.set(-507, -149), this._img2.position.set(-513, 24);
+                    }), this._img1.position.set(-427, -136), this._img2.position.set(-385, -47);
                     break;
                 case 425:
                     var o = new b.UIImageLoader("battle_result");
                     o.add("battle_result_event_e5_" + e + ".json"), o.load(function () {
                         n._img1.texture = g.BATTLE_RESULT_EVENT_E5_JGKFZTHFKFJACRCM.getTexture(0), n._img2.texture = g.BATTLE_RESULT_EVENT_E5_JGKFZTHFKFJACRCM.getTexture(1), i()
-                    }), this._img1.position.set(-555, -110), this._img2.position.set(-366, -15);
+                    }), this._img1.position.set(-389, -167), this._img2.position.set(-462, -6);
                     break;
                 default:
                     this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY, i()

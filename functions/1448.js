@@ -10,6 +10,10 @@ const function1448 = function (t, e, i) {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_slot_level")
+            }, enumerable: !0, configurable: !0
         }), Object.defineProperty(t.prototype, "count", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_value")

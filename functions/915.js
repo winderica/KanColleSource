@@ -106,7 +106,7 @@ const function915 = function (t, e, i) {
             }, e.prototype.activate = function () {
                 this._layout.off("back", this._onBack), this._layout.off("next", this._onNext), this._switch.activate(), this._area_icons.activate(), this._layout.on("back", this._onBack), this._layout.on("next", this._onNext), this._airUnitBtn.activate()
             }, e.prototype.deactivate = function () {
-                this._layout.off("back", this._onBack), this._layout.off("next", this._onNext), this._switch.deactivate(), this._area_icons.deactivate(), this._airUnitBtn.deactivate()
+                this._layout.off("back", this._onBack), this._layout.off("next", this._onNext), this._layout.deactivate(), this._switch.deactivate(), this._area_icons.deactivate(), this._airUnitBtn.deactivate()
             }, e.prototype.dispose = function () {
                 this._event_sortie_condition = null, this._layout.dispose(), this._layout = null, this._switch.dispose(), this._switch = null, this._area_icons.dispose(), this._area_icons = null, this._airUnitBtn.dispose(), this._airUnitBtn = null, this._cancelArea.off(k.EventType.CLICK, this._onCancel), this._cancelArea = null, this._detailPanel.dispose(), this._detailPanel = null, null != this._deckSelectPanel && (this._deckSelectPanel.dispose(), this._deckSelectPanel = null), null != this._airunit_task && (this._airunit_task.dispose(), this._airunit_task = null), this.removeChildren()
             }, e

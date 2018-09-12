@@ -48,7 +48,7 @@ const function267 = function (t, e, i) {
                 }
             }
         }, t.prototype.stop = function () {
-            null != this._bgm && (this._bgm.stop(), this._bgm.unload(), this._bgm = null, this._bgm_id = null)
+            null != this._bgm && (this._bgm.stop(), this._bgm.unload(), this._bgm = null)
         }, t.prototype.fadeOut = function (t) {
             var e = this;
             if (null != this._bgm && 1 == this._bgm.playing()) {
@@ -56,7 +56,7 @@ const function267 = function (t, e, i) {
                 this._bgm.fade(i, 0, t);
                 var n = this._bgm;
                 setTimeout(function () {
-                    n.stop(), n.unload(), n == e._bgm && (e._bgm = null, e._bgm_id = null)
+                    n.stop(), n.unload(), n == e._bgm && (e._bgm = null)
                 }, t)
             }
         }, t.prototype.changeVolume = function (t) {

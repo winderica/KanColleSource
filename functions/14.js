@@ -6,11 +6,21 @@ const function14 = function (t, e, i) {
             null == t._queue && (t._queue = []), this._url_list = []
         }
 
-        return t.getPath = function (t, e, i) {
-            "album_status" == i ? e = !1 : "banner_g" == i ? e = !0 : 1 == o.ShipUtil.isEnemy(t) && (e = !1);
-            var _ = i + (e ? "_dmg" : ""), u = "ship_" + _, l = s.SuffixUtil.create(t, u),
-                c = r.MathUtil.zeroPadding(t, 4);
-            return n.default.settings.path_root + "resources/ship/" + _ + "/" + c + "_" + l + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(c))
+        return t.hSuffix = function (e, i) {
+            if (null == t.hasai || e != t.hasai) return "";
+            switch (i) {
+                case"banner":
+                case"banner_g":
+                case"full":
+                    return "_d";
+                default:
+                    return ""
+            }
+        }, t.getPath = function (e, i, _) {
+            "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
+            var u = _ + (i ? "_dmg" : ""), l = "ship_" + u, c = s.SuffixUtil.create(e, l),
+                h = r.MathUtil.zeroPadding(e, 4);
+            return n.default.settings.path_root + "resources/ship/" + u + "/" + (h + t.hSuffix(e, _)) + "_" + c + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
         }, t.prototype.add = function (e, i, n) {
             var o = t.getPath(e, i, n);
             return this._url_list.push(o), this
@@ -78,7 +88,7 @@ const function14 = function (t, e, i) {
         }, t.prototype._onLoadComplete = function () {
             if (this._cb_onComplete(), this._cb_onComplete = null, t._queue.shift() != this) throw new Error("ShipLoader Error");
             t._queue.length > 0 && t._queue[0]._load()
-        }, t
+        }, t.hasai = null, t
     }();
     e.ShipLoader = _
 }

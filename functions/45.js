@@ -139,7 +139,8 @@ const function45 = function (t, e, i) {
             271: { r: -15, sx: -1 },
             302: { r: 5 },
             304: { r: 8 },
-            305: { r: 10, sx: -1 }
+            305: { r: 10, sx: -1 },
+            306: { y: -5, r: 10, sx: -1 }
         }, t
     }();
     e.PlaneConst = n

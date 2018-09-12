@@ -37,8 +37,8 @@ const function1460 = function (t, e, i) {
             get: function () {
                 return this._white
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i) {
-            this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(i, e)
+        }), e.prototype.initialize = function (t, e, i, n) {
+            this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(n, e, i)
         }, e.prototype.dispose = function () {
             this.removeChildren(), this._bg = null, this._item = null, this._particle.deactivate(), this._particle = null, this._message_box.deactivate(), this._message_box = null, this._white = null
         }, e

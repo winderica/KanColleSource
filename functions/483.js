@@ -83,6 +83,8 @@ const function483 = function (t, e, i) {
             return this._destroy_ship_slot_type
         }, t.prototype.getUISkinID = function () {
             return this._skinID
+        }, t.prototype.getMFlag2 = function () {
+            return null != this._event_data && (0 != this._event_data.hasOwnProperty("api_m_flag2") && 1 == this._event_data.api_m_flag2)
         }, t
     }();
     e.BasicModel = s;
@@ -113,6 +115,8 @@ const function483 = function (t, e, i) {
             this._destroy_ship_slot_type = t
         }, e.prototype.setUISkinID = function (t) {
             this._skinID = t
+        }, e.prototype.setEventData = function (t) {
+            this._event_data = t
         }, e
     }(s);
     e.BasicModelEdit = a

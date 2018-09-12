@@ -17,40 +17,40 @@ const function472 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(5), r = i(0), s = i(1), a = i(65), _ = i(8), u = i(41), l = i(24), c = i(204), h = i(1460),
         p = i(206), d = function (t) {
-            function e(e, i, n, l, c) {
-                void 0 === c && (c = null);
-                var h = t.call(this) || this;
-                return h._moveCard = function () {
-                    null != h._pre_task && (h._pre_task.dispose(), h._pre_task = null), h._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
-                    var t = new PIXI.Point(h._insert.card.x, h._insert.card.y),
+            function e(e, i, n, l, c, h) {
+                void 0 === h && (h = null);
+                var p = t.call(this) || this;
+                return p._moveCard = function () {
+                    null != p._pre_task && (p._pre_task.dispose(), p._pre_task = null), p._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
+                    var t = new PIXI.Point(p._insert.card.x, p._insert.card.y),
                         e = new PIXI.Point(o.default.width / 2, o.default.height / 2),
                         i = new PIXI.Point(t.x + 300, t.y), n = new PIXI.Point(e.x + 150, e.y + 150);
-                    a.TweenUtil.create3BezierTween(h._insert.card, t, i, n, e, 700), createjs.Tween.get(h._insert.card).to({
+                    a.TweenUtil.create3BezierTween(p._insert.card, t, i, n, e, 700), createjs.Tween.get(p._insert.card).to({
                         scaleX: .86,
                         scaleY: .86,
                         rotation: 4 * Math.PI
                     }, 700).to({ scaleX: 1, scaleY: 1 }, 133).wait(700).call(function () {
-                        h._insert.particle.activate()
-                    }).wait(1e3).call(h._flash)
-                }, h._flash = function () {
-                    var t = r.default.model.slot.getMst(h._mst_id);
-                    h._bonus.alpha = 1, h._bonus.initialize(t.mstID, h._count, t.name), createjs.Tween.get(h._insert.card).to({ alpha: 0 }, 800), createjs.Tween.get(h._insert.bg_dark).to({ alpha: 0 }, 800), createjs.Tween.get(h._insert.flash).to({
+                        p._insert.particle.activate()
+                    }).wait(1e3).call(p._flash)
+                }, p._flash = function () {
+                    var t = r.default.model.slot.getMst(p._mst_id);
+                    p._bonus.alpha = 1, p._bonus.initialize(t.mstID, p._count, p._level, t.name), createjs.Tween.get(p._insert.card).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.bg_dark).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.flash).to({
                         scaleX: 3.5,
                         scaleY: 3.5
-                    }, 800), createjs.Tween.get(h._insert).wait(800).to({ alpha: 0 }, 200).call(function () {
-                        h._layer.removeChild(h._insert), h._insert.dispose(), h._insert = null, h._showBonus()
+                    }, 800), createjs.Tween.get(p._insert).wait(800).to({ alpha: 0 }, 200).call(function () {
+                        p._layer.removeChild(p._insert), p._insert.dispose(), p._insert = null, p._showBonus()
                     })
-                }, h._showMessageBox = function () {
-                    createjs.Tween.get(h._bonus.message_box).to({ y: 480 }, 300).call(h._waitClick)
-                }, h._waitClick = function () {
-                    h._bonus.message_box.activate();
+                }, p._showMessageBox = function () {
+                    createjs.Tween.get(p._bonus.message_box).to({ y: 480 }, 300).call(p._waitClick)
+                }, p._waitClick = function () {
+                    p._bonus.message_box.activate();
                     var t = new u.GearBtnHome;
-                    t.position.set(1140, 660), t.initialize(), t.activate(), h._bonus.addChild(t);
+                    t.position.set(1140, 660), t.initialize(), t.activate(), p._bonus.addChild(t);
                     var e = new _.AreaBox(0);
-                    e.interactive = !0, e.buttonMode = !0, h._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
-                        h._bonus.removeChild(e), h._finalize(t)
+                    e.interactive = !0, e.buttonMode = !0, p._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
+                        p._bonus.removeChild(e), p._finalize(t)
                     })
-                }, h._layer = e, h._mst_id = i, h._count = n, h._pre_task = c, h._play_bgm = l, h
+                }, p._layer = e, p._mst_id = i, p._count = n, p._level = l, p._pre_task = h, p._play_bgm = c, p
             }
 
             return n(e, t), e.prototype._start = function () {

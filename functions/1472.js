@@ -49,8 +49,8 @@ const function1472 = function (t, e, i) {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            void 0 === t && (t = !1), this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(5), this._text1.position.set(126, 271), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(6), this._text2.position.set(298, 516), 0 == t ? (this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(7), this._text3.position.set(288, 578)) : (this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(8), this._text3.position.set(326, 578))
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(5), this._text1.position.set(126, 271), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(6), this._text2.position.set(298, 516), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(8), this._text3.position.set(326, 578)
         }, e
     }(s.TextsBase)
 }

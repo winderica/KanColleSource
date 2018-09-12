@@ -40,7 +40,11 @@ const function1276 = function (t, e, i) {
             this._scene.view.message_box.text = "\u8266\u968a\u306e\u91dd\u8def\u3092\u9078\u629e\u3067\u304d\u307e\u3059\u3002\n\u63d0\u7763\u3001\u3069\u3061\u3089\u306e\u91dd\u8def\u3092\u3068\u3089\u308c\u307e\u3059\u304b\uff1f", this._showHukidashi()
         }, e.prototype._showHukidashi = function () {
             var t = this, e = this._model.sortie.getNextCell(), i = this._scene.resInfo.getBranchOption(e.no);
-            this._balloon = new u.BranchBalloon, null == i ? this._balloon.initialize(1, 0) : this._balloon.initialize(i.type, i.beak, i.offset), this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
+            if (this._balloon = new u.BranchBalloon, null == i) {
+                var n = this._model.sortie.map_id, o = e.no, r = 1;
+                425 == n && 6 == o && (r = 2), this._balloon.initialize(r, 0)
+            } else this._balloon.initialize(i.type, i.beak, i.offset);
+            this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
                 t._showWaves()
             })
         }, e.prototype._showWaves = function () {

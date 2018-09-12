@@ -29,8 +29,8 @@ const function79 = function (t, e, i) {
         }, e.prototype.initializeForShip = function (t, e, i) {
             for (this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = t, this._ship_name.text = e, this._ship_name.width > 216 && e.length > 10 && (this._ship_name.text = this._ship_name.text.replace(" ", "\n")); this._ship_name.width > 216;) this._ship_name.style.fontSize = this._ship_name.style.fontSize - 1;
             this._stype_name.position.x = 21 + Math.floor(95.5 - this._stype_name.width / 2), this._ship_name.position.x = 8 + Math.floor(108 - this._ship_name.width / 2), this._text.text = "", this._message = i.replace(/<br\s*>/g, "\n").replace(/\u2019/g, "'"), null != this._get_icon && this._get_icon.initialize()
-        }, e.prototype.initializeForSlot = function (t, e) {
-            this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = "", this._ship_name.text = "", this._text.text = "", this._message = t + "\u3092", e > 1 && (this._message += e + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
+        }, e.prototype.initializeForSlot = function (t, e, i) {
+            this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = "", this._ship_name.text = "", this._text.text = "", this._message = t + (i > 0 ? "(\u2605+" + i + ")" : "") + "\u3092", e > 1 && (this._message += e + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
         }, e.prototype.initializeForUseitem = function (t, e) {
             this.texture = s.COMMON_MISC.getTexture(120), this._stype_name.text = "", this._ship_name.text = "", this._text.text = "", this._message = t + "\u3092", e > 1 && (this._message += e + "\u500b"), this._message += "\u624b\u306b\u5165\u308c\u307e\u3057\u305f\u3002", null != this._get_icon && this._get_icon.initialize()
         }, e.prototype.initializeForFood = function (t) {

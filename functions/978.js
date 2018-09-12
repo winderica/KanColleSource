@@ -35,6 +35,8 @@ const function978 = function (t, e, i) {
             }, e.prototype.update = function (t, e, i) {
                 var n = o.default.model.map.getMapMems(t);
                 t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
+            }, e.prototype.deactivate = function () {
+                this._content.deactivate()
             }, e.prototype.dispose = function () {
                 this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
             }, e.prototype._updateNormalArea = function (t, e, i) {
