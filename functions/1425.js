@@ -37,16 +37,7 @@ const function1425 = function (t, e, i) {
                     break;
                 case-3:
                     this._img.texture = _.BATTLE_MAIN.getTexture(2)
-            } else switch (this._damaged) {
-                case 0:
-                    this._img.texture = o.default.resources.getShip(this._mst_id, !1, "banner");
-                    break;
-                case 1:
-                    this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner");
-                    break;
-                case 2:
-                    this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner_g")
-            }
+            } else 2 == this._damaged || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner_g") : 0 == this._damaged ? this._img.texture = o.default.resources.getShip(this._mst_id, !1, "banner") : 1 == this._damaged && (this._img.texture = o.default.resources.getShip(this._mst_id, !0, "banner"))
         }, e.prototype._updateIcon = function (t, e) {
             if (0 == this._taihi) {
                 var i = r.ShipUtil.getDamageType(t, e);

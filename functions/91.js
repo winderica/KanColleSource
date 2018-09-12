@@ -28,7 +28,7 @@ const function91 = function (t, e, i) {
                 if (2 == a) {
                     var _ = Math.max(0, r - s);
                     o.update(_)
-                } else 1 == a && r > 0 && s > 0 && o.update(r - 1);
+                } else 1 == a && r > 0 && s > 0 && 0 == n && o.update(r - 1);
                 0 == o.now && 0 == n && o.explode()
             }
         }, e.prototype.causeDamage = function (t, e) {

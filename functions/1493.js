@@ -24,7 +24,7 @@ const function1493 = function (t, e, i) {
         return n(e, t), e.prototype.dispose = function () {
             this.removeChildren(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this._icon = null, this._soot = null, this._smoke.dispose(), this._smoke = null, null != this._coin && (this._coin.dispose(), this._coin = null)
         }, e.prototype.updateTexture = function (t, e, i) {
-            e <= 0 ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
+            e <= 0 || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
         }, e.prototype.updateIcon = function (t) {
             this._smoke.stop(), this._smoke.play(t), 0 == this._taihi ? (this._soot.update(t), this._icon.setDamagedIcon(t)) : (this._soot.clear(), this._icon.setTaihiIcon())
         }, e.prototype.createShowMVPCoinTween = function () {
