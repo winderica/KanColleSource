@@ -15,47 +15,27 @@ const function1205 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(1206), a = i(1207), _ = i(1209), u = i(1210), l = i(1222), c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._startBattleResult = function () {
-                n._result.initialize(), n.addChild(n._result), n._result.shutter.close(), n._result.once("complete", n._endBattleResult);
-                var t = n._taskMain.model;
-                n._result.start(t)
-            }, n._endBattleResult = function () {
-                o.default.scene.change(0)
-            }, n._battle = e, n._result = i, n._view = new l.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
+    var o = i(417), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = o.REVAMP_BOX.getTexture(9)
+            }, e._onMouseOut = function () {
+                e.texture = o.REVAMP_BOX.getTexture(9)
+            }, e._onClick = function () {
+                e.emit("dicision")
+            }, e.interactive = !0, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "view", {
-            get: function () {
-                return this._view
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "battle", {
-            get: function () {
-                return this._battle
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.start = function () {
-            var t = this;
-            this._taskMain.start(function () {
-                t._startBattle()
-            })
-        }, e.prototype._startBattle = function () {
-            this._battle.once("complete", this._startBattleResult), this._battle.start()
-        }, e.prototype.getPreInitializeTask = function (t, e) {
-            return this._model = e, this._taskMain = new u.TaskMain(this, this._model), new a.TaskInitPre(this)
-        }, e.prototype.getInitializeTask = function (t) {
-            return new _.TaskInit(this)
-        }, e.prototype.getFinalizeTask = function () {
-            var t = this;
-            return new s.TaskFinalize(function () {
-                t.removeChild(t._battle), t._battle.dispose(), t.removeChild(t._result), t._result.dispose()
-            })
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.REVAMP_BOX.getTexture(9)
+        }, e.prototype.activate = function () {
+            0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype._setTextture = function (t) {
+            this.texture = t
         }, e
-    }(r.SceneBase);
-    e.PracticeScene = c
+    }(PIXI.Sprite);
+    e.BtnDicision = s
 }

@@ -1,9 +1,7 @@
 const function131 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
-
-    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1065)), n(i(1066)), n(i(1067)), n(i(382)), n(i(1068)), n(i(1069)), n(i(1070)), n(i(392)), n(i(1086))
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    !function (t) {
+        t[t.EMPTY = 0] = "EMPTY", t[t.Karyoku = 1] = "Karyoku", t[t.Raisou = 2] = "Raisou", t[t.Taiku = 3] = "Taiku", t[t.Soukou = 4] = "Soukou", t[t.Lucky = 5] = "Lucky"
+    }(e.PowerUpCategory || (e.PowerUpCategory = {}))
 }

@@ -1,32 +1,37 @@
 const function78 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(195), r = function (t) {
-        function e(e) {
-            void 0 === e && (e = 1);
-            var i = t.call(this) || this;
-            return i._subtype = e, i
+    var n = i(0);
+    !function (t) {
+        function e(t, e, i) {
+            void 0 === i && (i = 1);
+            var o = "1";
+            switch (t) {
+                case 0:
+                    var r = n.default.model.ship_graph.get(e);
+                    null != r && (o = r.version);
+                    break;
+                case 1:
+                    var s = n.default.model.slot.getMst(e);
+                    null != s && (o = s.version);
+                    break;
+                case 3:
+                    var r = n.default.model.ship_graph.get(e);
+                    null != r && (o = 2 == i || 3 == i ? r.version_voice_boko : r.version_voice);
+                    break;
+                case 2:
+                    var a = n.default.model.furniture.getData(e);
+                    null != a && (o = a.version)
+            }
+            return o
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "subtype", {
-            get: function () {
-                return this._subtype
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(o.SceneModel);
-    e.ItemSceneModel = r
+        function i(e, i, n) {
+            void 0 === n && (n = 1);
+            var o = t.get(e, i, n);
+            return "1" != o ? "?version=" + o : ""
+        }
+
+        t.get = e, t.getResourceVersion = i
+    }(e.VersionUtil || (e.VersionUtil = {}))
 }

@@ -15,62 +15,52 @@ const function1496 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(6), s = i(36), a = function (t) {
+    var o = i(1497), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._name_and_level = new _, e._up_to_the_next_level = new u, e._up_to_the_next_level.position.set(0, 30), e.addChild(e._name_and_level), e.addChild(e._up_to_the_next_level), e
+            return e._banners = [], e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "name_and_level", {
-            get: function () {
-                return this._name_and_level
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "up_to_the_next_level", {
-            get: function () {
-                return this._up_to_the_next_level
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._name_and_level.dispose(), this._name_and_level = null, this._up_to_the_next_level.dispose(), this._up_to_the_next_level = null
-        }, e.prototype.levelup = function () {
-            this._name_and_level.levelup(), this._up_to_the_next_level.levelup()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._resetBanners();
+            var e = 0;
+            e = 7 == t.length ? 0 : 68;
+            for (var i = 0; i < t.length; i++) {
+                var n = t[i];
+                if (null == n) return;
+                var r = new o.ShipBannerClone(n.isTaihi());
+                r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
+                var s = n.mst_id, a = n.hp_now, _ = n.hp_max;
+                r.updateTexture(s, a, _), r.updateIcon(n.damageType), this.addChild(r)
+            }
+        }, e.prototype.dispose = function () {
+            this._resetBanners(), this._banners = null, this.removeChildren()
+        }, e.prototype.createShowTweens = function (t) {
+            for (var e = [], i = 0; i < this._banners.length; i++) {
+                var n = this._banners[i];
+                n.y += 30;
+                var o = createjs.Tween.get(n).wait(t + 50 * i).to({ y: n.y - 30, alpha: 1 }, 150);
+                e.push(o)
+            }
+            return e
+        }, e.prototype.createHideTweens = function (t) {
+            for (var e = [], i = 0; i < this._banners.length; i++) {
+                var n = this._banners[i],
+                    o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
+                        y: n.y + 30,
+                        alpha: 0
+                    }, 200);
+                e.push(o)
+            }
+            return e
+        }, e.prototype.getBanner = function (t) {
+            return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
+        }, e.prototype._resetBanners = function () {
+            for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
+                var t = this._banners.pop();
+                null != t.parent && t.parent.removeChild(t), t.dispose()
+            }
         }, e
     }(PIXI.Container);
-    e.BannerInfoFriend = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._level_label = new PIXI.Sprite, e._level_label.position.set(131, 3), e._level = new o.TextBox(16, 16774898), e._level.anchor.set(1, 0), e._level.position.set(200, 5), e.addChild(e._name), e.addChild(e._level_label), e.addChild(e._level), e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._level_label.texture = s.BATTLE_RESULT_MAIN.getTexture(68), this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 126, this._name.height), this._name_mask.endFill(), this._level.text = e.toString(), this._now_level = e
-        }, e.prototype.levelup = function () {
-            this._now_level++, this._level.text = this._now_level.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._name = null, this._name_mask = null, this._level_label = null, this._level = null
-        }, e
-    }(PIXI.Container), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._next_label = new PIXI.Sprite, e._next_label.position.set(0, 6), e._next = new o.TextBox(16, 16777215), e._next.anchor.set(1, 0), e._next.position.set(200, 5), e._next.alpha = 0, e.addChild(e._next_label), e.addChild(e._next), e
-        }
-
-        return n(e, t), e.prototype.showExpText = function () {
-            createjs.Tween.get(this._next).wait(10).to({ alpha: 1 }, 0)
-        }, e.prototype.initialize = function (t) {
-            this._next_label.texture = s.BATTLE_RESULT_MAIN.getTexture(78), this.update(t)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._next_label = null, this._next = null
-        }, e.prototype.update = function (t) {
-            this._next.text = t < 0 ? "" : Math.floor(t).toString()
-        }, e.prototype.levelup = function () {
-            var t = this, e = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(9));
-            e.anchor.set(.5), e.position.set(147, 18), e.alpha = 0, r.SE.play("221"), this.addChild(e), createjs.Tween.get(e).to({
-                y: -6,
-                alpha: 1
-            }, 200).to({ y: 18 }, 0).to({ y: -6, alpha: 1 }, 200).to({ alpha: 0 }, 700).call(function () {
-                t.removeChild(e)
-            })
-        }, e
-    }(PIXI.Container)
+    e.BannerSet = r
 }

@@ -15,16 +15,20 @@ const function993 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(371), r = i(372), s = function (t) {
-        function e(e, i, n) {
-            for (var o = t.call(this, e, n) || this, s = 0; s < 3; s++) {
-                var a = new r.EventMapThumbnail(3, i, n, o._onMouseOver, o._onMouseOut), _ = 207 + 144 * s;
-                a.position.set(501, _), o.addChild(a), o._maps.push(a)
-            }
-            return o
+    var o = i(41), r = i(370), s = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e
-    }(o.EventLayoutBase);
-    e.LayoutEventMap3 = s
+        return n(e, t), e.prototype._getBlackTexture = function () {
+            switch (this._type) {
+                case 3:
+                    return o.SALLY_EVENT.getTexture(24)
+            }
+            return PIXI.Texture.EMPTY
+        }, e.prototype._setPositions = function () {
+            1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
+        }, e
+    }(r.MapThumbnailLocked);
+    e.EventMapThumbnailLocked = s
 }

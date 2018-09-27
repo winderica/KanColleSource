@@ -15,23 +15,35 @@ const function774 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(70), r = i(1), s = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onClick = function () {
+            e._onClick = function () {
                 e.onClick()
             }, e._onMouseOver = function () {
-                e.marriagePopUp.visible = !0
+                e.extensionPopUp.alpha = 1
             }, e._onMouseOut = function () {
-                e.marriagePopUp.visible = !1
-            }, e.level99Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(39)), e.addChild(e.level99Light), e.play(), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 119, 75), e.clickArea.endFill(), e.clickArea.addListener(r.EventType.CLICK, e._onClick), e.clickArea.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.renderable = !1, e.clickArea.interactive = !0, e.clickArea.buttonMode = !0, e.addChild(e.clickArea), e.marriagePopUp = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(34)), e.marriagePopUp.position.set(-105, 48), e.marriagePopUp.visible = !1, e.addChild(e.marriagePopUp), e
+                e.extensionPopUp.alpha = 0
+            };
+            var i = new PIXI.Graphics;
+            i.beginFill(0, 0), i.drawRect(0, 0, 330, 180), i.endFill();
+            var n = new a;
+            return n.alpha = 0, n.position.set(113, 0), i.addListener(r.EventType.MOUSEOVER, e._onMouseOver), i.addListener(r.EventType.MOUSEOUT, e._onMouseOut), i.addListener(r.EventType.CLICK, e._onClick), i.renderable = !1, i.interactive = i.buttonMode = !0, e.addChild(i, n), e.extensionPopUp = n, e.clickArea = i, e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.clickArea.removeAllListeners(r.EventType.CLICK), this.clickArea.removeAllListeners(r.EventType.MOUSEOVER), this.clickArea.removeAllListeners(r.EventType.MOUSEOUT), this.clickArea.clear(), this.clickArea.interactive = this.clickArea.buttonMode = !1, null != this._loopTween && (this._loopTween.setPaused(!0), this._loopTween = null), this.marriagePopUp = null, this.onClick = this._onClick = null, this._onMouseOver = null, this._onMouseOut = null, this.level99Light = null, this.clickArea = null, this.removeChildren()
-        }, e.prototype.play = function () {
-            null == this._loopTween && (this._loopTween = createjs.Tween.get(this.level99Light).to({ alpha: 0 }, 0).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3), this._loopTween.loop = !0)
+            this.extensionPopUp.dispose(), this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.extensionPopUp = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.MarriageButton = s
+    e.ExtensionButton = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.texture = o.REMODEL_MAIN.getTexture(36), e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.texture = PIXI.Texture.EMPTY
+        }, e
+    }(PIXI.Sprite)
 }

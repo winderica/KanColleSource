@@ -15,8 +15,8 @@ const function119 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(26), a = i(45), _ = i(2), u = i(7), l = i(19), c = i(16), h = i(24), p = i(6),
-        d = i(15), f = i(1320), y = function (t) {
+    var o = i(5), r = i(0), s = i(24), a = i(45), _ = i(2), u = i(7), l = i(19), c = i(16), h = i(25), p = i(6),
+        d = i(15), f = i(1321), y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n
@@ -84,7 +84,7 @@ const function119 = function (t, e, i) {
                     })
                 }
             }, e.prototype._flyPlane = function (t) {
-                var e = this, i = new PIXI.Sprite(d.BATTLE_MAIN.getTexture(86));
+                var e = this, i = new PIXI.Sprite(d.BATTLE_MAIN.getTexture(89));
                 i.anchor.set(.5), i.rotation = -Math.PI / 3, i.scale.set(0), i.position.set(o.default.width / 2, o.default.height / 2);
                 var n = new c.FadeBox(.5);
                 n.hide(0), t.position.set(-99, 789), this._scene.view.layer_title.addChild(i, n, t), createjs.Tween.get(i.scale).to({

@@ -15,46 +15,50 @@ const function1323 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(12), s = i(175), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._ready2 = function () {
-                i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
-            }, i._layer = e, i
+    var o = i(5), r = i(0), s = i(175), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.count = 50, e.col = 16777215, e._updateMask = function (t) {
+                e._circleMask.clear(), e._circleMask.beginFill(e.col);
+                for (var i = 0; i < e.count; i++) e._circle_list[i].radius = e.rndScale[i] * t.target.target.val, e._circleMask.drawShape(e._circle_list[i]);
+                e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !0)
+            }, e._bg = new PIXI.Sprite, e._bg.alpha = 0, e._layer_effect = new PIXI.Container, e._card_bg = new PIXI.Sprite, e._card_bg.anchor.set(.5), e._card_bg.alpha = 1, e._layer_ship = new PIXI.Container, e._grad = new PIXI.Sprite, e._layer_text = new PIXI.Container, e._layer_mask = new PIXI.Container, e._layer_mask.alpha = 0, e._renderTex = PIXI.RenderTexture.create(327, 450), e._renderSprite = new PIXI.Sprite(e._renderTex), e._renderSprite.anchor.set(.5), e._card_bg.mask = e._renderSprite, e._layer_mask.addChild(e._card_bg), e._layer_mask.addChild(e._renderSprite), e.rndPos = [], e.rndScale = [];
+            for (var i = 0; i < e.count; i++) e.rndPos.push(new PIXI.Point(Math.floor(327 * Math.random()), Math.floor(450 * Math.random()))), e.rndScale.push(100 * Math.floor(2 * Math.random()));
+            e.addChild(e._bg), e.addChild(e._layer_effect), e.addChild(e._layer_mask), e.addChild(e._layer_ship), e.addChild(e._grad), e.addChild(e._layer_text), e._circle_list = [];
+            for (var i = 0; i < e.count; i++) e._circle_list.push(new PIXI.Circle(e.rndPos[i].x, e.rndPos[i].y, e.rndScale[i]));
+            return e._circleMask = new PIXI.Graphics, e._circleMask.beginFill(e.col), e._circleMask.drawRect(0, 0, 327, 450), e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !1), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._ready()
-        }, e.prototype._ready = function () {
-            this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
-        }, e.prototype._showText = function () {
-            this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
-                y: 300,
-                scaleX: 1,
-                scaleY: 1,
-                alpha: 1
-            }, 300), createjs.Tween.get(this._blue_lost).to({
-                y: 420,
-                scaleX: 1,
-                scaleY: 1,
-                alpha: 1
-            }, 300).wait(500).call(this._ready2)
-        }, e.prototype._hideText = function () {
-            var t = this;
-            this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({ alpha: 1 }, 500).call(function () {
-                t._layer.removeChild(t._blue)
-            }).wait(500).to({ alpha: 0 }, 300).call(function () {
-                t._layer.removeChild(t._gray)
-            }), createjs.Tween.get(this._gray_lost).to({ alpha: 1 }, 500).call(function () {
-                t._layer.removeChild(t._blue_lost)
-            }).wait(500).to({ alpha: 0 }, 300).call(function () {
-                t._layer.removeChild(t._gray_lost)
-            }).wait(500).call(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_effect", {
+            get: function () {
+                return this._layer_effect
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "card_bg", {
+            get: function () {
+                return this._card_bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_ship", {
+            get: function () {
+                return this._layer_ship
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_text", {
+            get: function () {
+                return this._layer_text
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_mask", {
+            get: function () {
+                return this._layer_mask
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._bg.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(0), this._grad.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(1), this._grad.y = o.default.height - this._grad.height
+        }, e.prototype.playMask = function () {
+            var t = { val: 1 };
+            createjs.Tween.get(t, { onChange: this._updateMask }).to({ val: 0 }, 1800)
         }, e
-    }(o.TaskBase);
-    e.TaskGouchinCutinText = a
+    }(PIXI.Container);
+    e.GouchinCutinView = a
 }

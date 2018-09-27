@@ -15,26 +15,18 @@ const function856 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(857), a = i(3), _ = i(3), u = i(3), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._uploadTexture = function () {
-                o.default.settings.renderer.plugins.prepare.upload(u.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(_.ARSENAL_MAIN.getTexture(0).baseTexture, function () {
-                        o.default.settings.renderer.plugins.prepare.upload(a.COMMON_SORT.getTexture(0).baseTexture, function () {
-                            i.arsenalScene.start(), i.arsenalScene = null, i._endTask()
-                        })
-                    })
-                })
-            }, i.arsenalScene = e, i
+    var o = i(11), r = i(0), s = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this;
-            (new s.TaskLoadResourcesArsenal).start(function () {
-                t._uploadTexture()
-            })
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            r.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = l
+    }(o.TaskBase);
+    e.InitializeTask = s
 }

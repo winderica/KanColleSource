@@ -36,6 +36,9 @@ const function416 = function (t, e, i) {
             }, enumerable: !0, configurable: !0
         }), t.prototype.isSuccess = function () {
             return 1 == n.ObjUtil.getNumber(this._o, "api_remodel_flag")
+        }, t.prototype.isChanged = function () {
+            var t = n.ObjUtil.getNumArray(this._o, "api_remodel_id");
+            return t[0] != t[1]
         }, t.prototype.getItemObject = function () {
             return n.ObjUtil.getObject(this._o, "api_after_slot")
         }, t

@@ -15,46 +15,35 @@ const function1107 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(115), s = i(33), a = i(116), _ = i(1108), u = function (t) {
+    var o = i(1), r = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._onResult = function (t) {
-                n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
-            }, n._layer = e, n._target = i, n
+            return n._activated = !1, n._enabled = !0, n._onClick = function () {
+                null != n._cb_onClick && n._cb_onClick(n._target)
+            }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._showDialog()
-        }, e.prototype._showDialog = function () {
-            var t = this;
-            this._dialog = new _.FBoxUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({ alpha: 1 }, 150).call(function () {
-                t._dialog.activate()
-            })
-        }, e.prototype._connectAPI = function (t) {
-            var e = this, i = this._target.mstID, n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
-                s = n.result;
-            n.start(function () {
-                1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
-            })
-        }, e.prototype._hideDialog = function (t) {
-            var e = this;
-            createjs.Tween.get(this._dialog).to({ alpha: 0 }, 150).call(function () {
-                e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-            })
-        }, e.prototype._confirm = function () {
-            var t = this, e = this._target.mstID, i = this._selected_exchange_type, n = this._layer,
-                o = new a.TaskItemOverflowConfirm(n);
-            o.start(function () {
-                if (1 == o.result) {
-                    var n = new r.UseItemUseAPI(e, !0, i), s = n.result;
-                    n.start(function () {
-                        t._result = s, t._endTask()
-                    })
-                } else t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._target = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+            get: function () {
+                return this._enabled
+            }, set: function (t) {
+                this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e) {
+            void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
+        }, e.prototype.activate = function () {
+            1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
+        }, e.prototype.deactivate = function () {
+            this._activated = !1, this._deactivate()
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
+        }, e.prototype._update = function () {
+            0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
+        }, e.prototype._activate = function () {
+            this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
+        }, e.prototype._deactivate = function () {
+            this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
         }, e
-    }(s.TaskWithResult);
-    e.TaskUseFurnitureBox = u
+    }(PIXI.Sprite);
+    e.BtnBase = r
 }

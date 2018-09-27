@@ -15,97 +15,138 @@ const function609 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(34), a = i(279), _ = i(125), u = i(150), l = i(102), c = i(196), h = i(14),
-        p = i(197), d = i(635), f = i(285), y = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
-            }
+    var o = i(0), r = i(6), s = i(103), a = i(150), _ = i(1), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._down_flg = !1, e._onMouseOver = function () {
+                e._off.visible = !1, e._on.visible = !0, e._on.activate(), null == e._waves.parent && (e.addChild(e._waves), e._waves.startAnimation()), e._showDescription(), e._down_flg = !1
+            }, e._onMouseOut = function () {
+                e._off.visible = !0, e._on.visible = !1, e._on.deactivate(), null != e._waves.parent && (e.removeChild(e._waves), e._waves.stopAnimation()), e._on.scale.set(1, 1), e._hideDescription(), e._down_flg = !1
+            }, e._onMouseDown = function () {
+                e._off.visible = !1, e._on.visible = !0, e._on.deactivate(), null != e._waves.parent && (e.removeChild(e._waves), e._waves.stopAnimation()), e._on.scale.set(.9, .9), e._hideDescription(), e._down_flg = !0
+            }, e._onMouseUp = function () {
+                e._off.visible = !1, e._on.visible = !0, e._on.activate(), null == e._waves.parent && (e.addChild(e._waves), e._waves.startAnimation()), e._on.scale.set(1, 1), e._showDescription(), 1 == e._down_flg && 1 == o.default.scene.change(16) && r.SE.play("246"), e._down_flg = !1
+            }, e._off = new l, e.addChild(e._off), e._on = new c, e._on.visible = !1, e.addChild(e._on), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 102), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e._waves = new a.RingMenuWaves, e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
-                    return /^resources\/ship\/.+/.test(t)
-                }), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var s = t.filter(function (t) {
-                    return /^resources\/slot\/.+/.test(t)
-                }), a = 0, _ = s; a < _.length; a++) {
-                    var o = _[a], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var u = t.filter(function (t) {
-                    return /^resources\/map\/\d{3}\/\d{2}_.+/.test(t)
-                }), l = 0, c = u; l < c.length; l++) {
-                    var o = c[l], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var u = t.filter(function (t) {
-                    return /^map\d{5}_.+/.test(t)
-                }), h = 0, p = u; h < p.length; h++) {
-                    var o = p[h], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this, e = new s.APIConnector;
-                e.add(new a.PortAPI), 33 == this._pre_scene ? (e.add(new _.UserSlotItemAPI), e.add(new u.UnsetSlotAPI), e.add(new l.UseItemAPI)) : 32 == this._pre_scene && e.add(new _.UserSlotItemAPI), e.start(function () {
-                    t._loadPortResources()
-                })
-            }, e.prototype._loadPortResources = function () {
-                var t = this, e = o.default.model.basic.getUISkinID();
-                new d.TaskLoadResources(e).start(function () {
-                    t._loadFurnitureResources()
-                })
-            }, e.prototype._loadFurnitureResources = function () {
-                var t = this, e = new c.FurnitureLoadTask(!0);
-                e.floor_id = o.default.model.basic.getPortFurnitureMstID(0), e.wall_id = o.default.model.basic.getPortFurnitureMstID(1), e.window_id = o.default.model.basic.getPortFurnitureMstID(2), e.object_id = o.default.model.basic.getPortFurnitureMstID(3), e.desk_id = o.default.model.basic.getPortFurnitureMstID(5), e.chest_id = o.default.model.basic.getPortFurnitureMstID(4), e.start(function () {
-                    var e = o.default.view.portMain;
-                    0 == e.isInitialized() && e.initialize(), t._loadFlagShipResource()
-                })
-            }, e.prototype._loadFlagShipResource = function () {
-                var t = this, e = o.default.model.deck.get(1).getShipModel(0);
-                if (null != e) {
-                    var i = e.mstID, n = e.isDamaged();
-                    if (1 == o.default.resources.isLoadedShip(i, n, "full")) {
-                        var r = e.tired;
-                        o.default.view.portMain.flagShip.initialize(i, n, r), this._preInitPortView(e)
-                    } else {
-                        var s = new h.ShipLoader;
-                        s.add(i, n, "full"), s.load(function () {
-                            var r = e.tired;
-                            o.default.view.portMain.flagShip.initialize(i, n, r), t._preInitPortView(e)
-                        })
-                    }
-                } else this._preInitPortView(e)
-            }, e.prototype._preInitPortView = function (t) {
-                var e = o.default.view.portMain;
-                if (0 == e.isInitialized()) {
-                    var i = o.default.model.basic.getUISkinID();
-                    e.initializeNext(i)
-                } else e.showPortUI(!0);
-                this._initPortView(e, t)
-            }, e.prototype._initPortView = function (t, e) {
-                var i = e.isMarriage();
-                t.activate(e.mstID, i), o.default.view.portMain.updateUserInfo({
-                    userName: o.default.model.basic.nickName,
-                    userLevel: o.default.model.basic.level,
-                    userRank: "[" + o.default.model.basic.rankName + "]",
-                    fleetNum: o.default.model.deck.num
-                }), o.default.view.portMain.updateInfo(), this._showExpeditionResult()
-            }, e.prototype._showExpeditionResult = function () {
-                var t = this;
-                (new f.TaskExpeditionAlertUpdate).start(function () {
-                    t._loginBonus()
-                })
-            }, e.prototype._loginBonus = function () {
-                if (1 == o.default.model.incentive.hasIncentive()) {
-                    var t = o.default.view.overLayer, e = o.default.model.incentive.getRewards();
-                    new p.TaskReward(t, e).start(), o.default.model.incentive.clearData()
-                }
-                this._endTask()
-            }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = y
+        return n(e, t), e.prototype.initialize = function () {
+            this._off.initialize(), this._on.initialize(), this._waves.initialize()
+        }, e.prototype.activate = function () {
+            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(_.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(_.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(_.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(_.EventType.MOUSEUP, this._onMouseUp))
+        }, e.prototype.deactivate = function () {
+            this._hit_area.buttonMode = !1, this._hit_area.off(_.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(_.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(_.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(_.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._on.dispose(), this._hideDescription()
+        }, e.prototype._showDescription = function () {
+            var t = this;
+            null == this._description && (this._description = new PIXI.Sprite(s.PORT_RINGMENU.getTexture(13))), null == this._description.parent && (this._description.position.set(5, -23), this._description.alpha = 0, this.addChild(this._description), this._description_tween = createjs.Tween.get(this._description).wait(400).to({
+                x: 35,
+                alpha: 1
+            }, 100).call(function () {
+                t._description_tween = null
+            }))
+        }, e.prototype._hideDescription = function () {
+            null != this._description_tween && (this._description_tween.setPaused(!0), this._description_tween = null), null != this._description && null != this._description.parent && this.removeChild(this._description)
+        }, e
+    }(PIXI.Container);
+    e.RingMenuBtnSally = u;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._left = new PIXI.Sprite, e._left.position.set(-125, 2), e.addChild(e._left), e._right = new PIXI.Sprite, e._right.position.set(-50, 2), e.addChild(e._right), e._gear = new PIXI.Sprite, e._gear.position.set(-102, -101), e.addChild(e._gear), e._ship = new PIXI.Sprite, e._ship.position.set(-102, -86), e.addChild(e._ship), e._text = new PIXI.Sprite, e._text.position.set(-69, -18), e.addChild(e._text), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._left.texture = s.PORT_RINGMENU.getTexture(4), this._right.texture = s.PORT_RINGMENU.getTexture(3), this._gear.texture = s.PORT_RINGMENU.getTexture(0), this._ship.texture = s.PORT_RINGMENU.getTexture(2), this._text.texture = s.PORT_RINGMENU.getTexture(1)
+        }, e
+    }(PIXI.Container), c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._gear = new h, e.addChild(e._gear), e._right = new p, e.addChild(e._right), e._left = new d, e.addChild(e._left), e._bg = new PIXI.Sprite, e.addChild(e._bg), e._ship = new f, e.addChild(e._ship), e._text = new PIXI.Sprite, e.addChild(e._text), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._gear.initialize(), this._right.initialize(), this._left.initialize(), this._bg.texture = s.PORT_RINGMENU.getTexture(23), this._bg.x = Math.round(-this._bg.width / 2), this._bg.y = Math.round(-this._bg.height / 2), this._ship.initialize(), this._text.texture = s.PORT_RINGMENU.getTexture(28), this._text.position.set(-68, -18)
+        }, e.prototype.activate = function () {
+            this._gear.activate(), this._right.activate(), this._left.activate(), this._ship.activate()
+        }, e.prototype.deactivate = function () {
+            this._gear.deactivate(), this._right.deactivate(), this._left.deactivate(), this._ship.deactivate()
+        }, e.prototype.dispose = function () {
+            this._gear.dispose(), this._right.dispose(), this._left.dispose(), this._ship.dispose()
+        }, e
+    }(PIXI.Container), h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = s.PORT_RINGMENU.getTexture(24), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: 2 * Math.PI }, 24e3), this._t.setPaused(!0)
+        }, e.prototype.activate = function () {
+            this._t.setPaused(!1)
+        }, e.prototype.deactivate = function () {
+            this._t.setPaused(!0)
+        }, e.prototype.dispose = function () {
+            this._t.setPaused(!0), this._t = null, this.rotation = 0
+        }, e
+    }(PIXI.Container), p = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = s.PORT_RINGMENU.getTexture(26), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(38, 45), this.rotation = 0
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: Math.PI / 36 }, 700).to({
+                x: 62,
+                y: 48
+            }, 800).to({ x: 66, y: 42, rotation: 0 }, 500).to({
+                x: 62,
+                y: 38,
+                rotation: -Math.PI / 60
+            }, 400).to({ x: 38, y: 45, rotation: 0 }, 1600))
+        }, e.prototype.deactivate = function () {
+            this.position.set(38, 45), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e
+    }(PIXI.Container), d = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = s.PORT_RINGMENU.getTexture(25), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(-38, 45), this.rotation = 0
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: -Math.PI / 36 }, 500).to({
+                x: -59,
+                y: 48
+            }, 800).to({ x: -63, y: 45, rotation: 0 }, 500).to({
+                x: -60,
+                y: 42,
+                rotation: Math.PI / 60
+            }, 400).to({ x: -38, y: 45, rotation: 0 }, 1800))
+        }, e.prototype.deactivate = function () {
+            this.position.set(-38, 45), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e
+    }(PIXI.Container), f = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = s.PORT_RINGMENU.getTexture(27), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.position.set(6, -38), this.rotation = 0
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ rotation: Math.PI / 60 }, 1e3).to({ rotation: 0 }, 1e3).to({ rotation: -Math.PI / 60 }, 1e3).to({ rotation: 0 }, 1e3))
+        }, e.prototype.deactivate = function () {
+            this.position.set(6, -38), this.rotation = 0, null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e
+    }(PIXI.Container)
 }

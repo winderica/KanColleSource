@@ -15,7 +15,7 @@ const function257 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(7), s = i(489), a = function () {
+    var o = i(0), r = i(7), s = i(490), a = function () {
         function t(t) {
             if (this._o = t, this._expedition = null, null != this._o) {
                 var e = r.ObjUtil.getNumArray(this._o, "api_mission"), i = new s.DeckExpeditionModelEdit(e);
@@ -116,9 +116,10 @@ const function257 = function (t, e, i) {
                 s[1];
                 -1 == _ ? (a.splice(s[1], 1), a.push(-1)) : a[s[1]] = _
             }
-            n[t] = r.memID, n.sort(function (t, e) {
-                return t <= 0 && e > 0 ? 1 : 0
-            })
+            n[t] = r.memID;
+            for (var u = n.filter(function (t) {
+                return t > 0
+            }), l = 0; l < n.length; l++) l >= u.length ? n[l] = -1 : n[l] = u[l]
         }, e.prototype.__remove__ = function (t, e) {
             void 0 === e && (e = !1);
             var i = this._getShipMemIDArray(), n = i.length;

@@ -15,62 +15,102 @@ const function1459 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(203), a = i(472), _ = i(244), u = i(1461), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
+    var o = i(0), r = i(1), s = i(2), a = i(28), _ = i(19), u = i(39), l = i(8), c = i(58), h = i(14), p = i(1460),
+        d = i(1461), f = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            this._useitemBonus()
-        }, e.prototype._useitemBonus = function () {
-            var t = this, e = this._scene.data.getBonusUseitem();
-            if (null != e) {
-                this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                var i = this._scene.view.layer_cutin, n = e.mst_id;
-                new u.TaskBonusTelop(i, 6, n).start(function () {
-                    var e = new _.TaskBonusUseItem(i, n, 1, !1);
-                    e.start(function () {
-                        t._slotitemBonus(e)
+            return n(e, t), e.prototype._start = function () {
+                this._loadMVPImage()
+            }, e.prototype._loadMVPImage = function () {
+                var t = this, e = this._scene.data.battle_model.deck_f.ships, i = null, n = null,
+                    o = this._scene.data.getMvpIndex(!1);
+                if (o >= 0 && o < e.length && (i = e[o]), o = this._scene.data.getMvpIndex(!0), o >= 0 && o + 6 < e.length && (n = e[o + 6]), null == i && null == n) this._initMove(); else {
+                    var r = new h.ShipLoader;
+                    null != i && r.add(i.mst_id, i.isDamaged(), "full"), null != n && r.add(n.mst_id, n.isDamaged(), "full"), r.load(function () {
+                        t._showMVP(i)
                     })
+                }
+            }, e.prototype._showMVP = function (t) {
+                var e = this;
+                this._scene.view.layer_banner.banners_f.getBanner(t.index).createShowMVPCoinTween();
+                var i = t.mst_id, n = t.isDamaged(), r = o.default.resources.getShip(i, n, "full"),
+                    s = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                this._scene.view.layer_mvp.createShowTween(r, s, 500).call(function () {
+                    e._playVoice(i)
+                }), this._initMove()
+            }, e.prototype._playVoice = function (t) {
+                var e = this._scene.data.battle_result_rank;
+                "S" != e && "A" != e && "B" != e || o.default.sound.voice.play(t.toString(), 23)
+            }, e.prototype._initMove = function () {
+                var t = this;
+                this._scene.view.layer_deck_info.friend.createHideGaugeTweens(-54), createjs.Tween.get(this._scene.view.layer_banner.info_f).wait(200).to({ x: 87 }, 500), createjs.Tween.get(this._scene.view.layer_banner.banners_f).wait(200).to({ x: 294 }, 500).call(function () {
+                    t._showPanel()
                 })
-            } else this._slotitemBonus(null)
-        }, e.prototype._slotitemBonus = function (t) {
-            var e = this, i = this._scene.data.getBonusSlot();
-            if (null != i) {
-                this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                var n = this._scene.view.layer_cutin, r = i.mst_id;
-                new u.TaskBonusTelop(n, 2, r).start(function () {
-                    var i = new a.TaskBonusSlot(n, r, 1, 1, !1, t);
-                    i.start(function () {
-                        e._shipBonus(i)
-                    })
+            }, e.prototype._showPanel = function () {
+                var t = this, e = this._scene.data.base_exp, i = this._scene.data.getShipExp(!1),
+                    n = this._scene.data.battle_model.isPractice(), o = this._scene.data.battle_model.deck_f.isYugeki(),
+                    r = this._scene.view.panel_exp;
+                r.initialize(e, i, n, o), r.alpha = 0, r.visible = !0, createjs.Tween.get(r).to({
+                    x: 591,
+                    alpha: 1
+                }, 300).call(function () {
+                    t._showLevelup()
                 })
-            } else this._shipBonus(t)
-        }, e.prototype._shipBonus = function (t) {
-            var e = this, i = this._scene.data.getBonusShip();
-            if (null != i) {
-                this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                var n = this._scene.view.layer_cutin, r = i.mst_id,
-                    a = this._scene.data.battle_model.map_info.area_id,
-                    _ = this._scene.data.battle_model.map_info.map_no, l = 1 == a && (1 == _ || 2 == _ || 3 == _);
-                new u.TaskBonusTelop(n, 3, r, l).start(function () {
-                    var i = new s.TaskBonusShip(n, r, !1, t);
-                    i.start(function () {
-                        e._closeShutter(i)
-                    })
+            }, e.prototype._showLevelup = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !1).start(function () {
+                    t._showExtraReward()
                 })
-            } else this._closeShutter(null)
-        }, e.prototype._closeShutter = function (t) {
-            var e = this;
-            this._play_bgm && o.default.sound.bgm.fadeOut(1200);
-            var i = this._scene.view.shutter;
-            i.close(), i.once("closed", function () {
-                null != t && t.dispose(), e._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._play_bgm = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskNormalBonus = l
+            }, e.prototype._showExtraReward = function () {
+                var t = this, e = new a.SerialTask;
+                e.add(new d.TaskShowExtraResults(this._scene)), e.add(new u.WaitTask(500)), e.start(function () {
+                    1 == t._scene.data.battle_model.deck_f.isCombined() ? t._showNextGearButton() : t._endTask()
+                })
+            }, e.prototype._showNextGearButton = function () {
+                var t = this, e = new c.GearBtnNext;
+                e.position.set(1130, 648), e.initialize(), e.activate(), this._scene.view.addChild(e);
+                var i = new l.AreaBox(0);
+                i.buttonMode = !0, this._scene.view.addChild(i), i.once(r.EventType.CLICK, function () {
+                    e.deactivate(), t._scene.view.removeChild(e), t._scene.view.removeChild(i), t._hideMainDeckBanners()
+                })
+            }, e.prototype._hideMainDeckBanners = function () {
+                var t = this, e = new _.TweenTask, i = this._scene.view.layer_banner.banners_f.createHideTweens(0),
+                    n = i.length;
+                e.addTweens(i), i = this._scene.view.layer_banner.info_f.createHideTweens(0), e.addTweens(i);
+                var o = 100 * (n - 1) + 200;
+                i = this._scene.view.panel_exp.createHideShipExpTweens(300, o - 300), e.addTweens(i), e.addTween(this._scene.view.layer_mvp.createHideTween(300, o - 300)), e.addTween(this._scene.view.layer_deck_info.friend.createHideDeckNameTween(o - 200, 200)), e.start(function () {
+                    t._showSubDeckBanners()
+                })
+            }, e.prototype._showSubDeckBanners = function () {
+                var t = this, e = new _.TweenTask, i = this._scene.data.battle_model.deck_f.ships_sub;
+                this._scene.view.layer_banner.banners_f.initialize(i), this._scene.view.layer_banner.info_f.initialize(i);
+                var n = this._scene.view.layer_banner.banners_f.createShowTweens(0), r = n.length;
+                e.addTweens(n), n = this._scene.view.layer_banner.info_f.createShowTweens(0), e.addTweens(n);
+                var s = 100 * (r - 1) + 200, a = this._scene.data.getShipExp(!0);
+                n = this._scene.view.panel_exp.createShowShipExpTweens(a, 300, s - 300), e.addTweens(n);
+                var u = this._scene.data.getMvpIndex(!0);
+                if (u >= 0) {
+                    var l = i[u], c = l.mst_id, h = l.isDamaged(), p = o.default.resources.getShip(c, h, "full"),
+                        d = o.default.model.ship_graph.get(c).getBattleOffset(h);
+                    e.addTween(this._scene.view.layer_mvp.createShowTween(p, d, 300, s - 300).call(function () {
+                        t._playVoice(c)
+                    }));
+                    var f = this._scene.view.layer_banner.banners_f.getBanner(u);
+                    e.addTween(f.createShowMVPCoinTween())
+                }
+                var y = this._scene.data.deck_name_f2;
+                e.addTween(this._scene.view.layer_deck_info.friend.createShowDeckNameTween(y, s - 200, 200)), e.start(function () {
+                    t._showLevelupCombined()
+                })
+            }, e.prototype._showLevelupCombined = function () {
+                var t = this;
+                new p.TaskShowLevelup(this._scene, !0).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(s.TaskBase);
+    e.TaskExp = f
 }

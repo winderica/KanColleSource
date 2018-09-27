@@ -15,49 +15,34 @@ const function802 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(336), r = i(19), s = i(8), a = i(337), _ = i(41), u = i(79), l = i(6), c = i(3), h = i(338), p = i(1),
-        d = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new u.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
-            }
+    var o = i(0), r = i(10), s = i(143), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
+        }
 
-            return n(e, t), e.prototype._03_link = function () {
-                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
-            }, e.prototype._04_whiteInOut = function () {
-                var t = this;
-                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 400).call(function () {
-                    t.removeChild(t._background), t.removeChild(t._ship)
-                }).to({ alpha: 0 }, 500).call(function () {
-                    t.removeChild(t._white), t._05_showFailedPenguin()
-                })
-            }, e.prototype._05_showFailedPenguin = function () {
-                var t, e = this, i = new r.TweenTask;
-                t = createjs.Tween.get(this._penguin.light).to({ alpha: 1 }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({ alpha: 1 }, 300), i.addTween(t), i.start(function () {
-                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
-                })
-            }, e.prototype._06_typeMessage = function () {
-                var t = this;
-                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({ y: 480 }, 500, createjs.Ease.quadOut).call(function () {
-                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), l.SE.play("247"), t._messageBox.activate(function () {
-                        t._07_waitClick()
-                    })
-                })
-            }, e.prototype._07_waitClick = function () {
-                var t = this, e = new s.AreaBox(0);
-                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
-                    t.removeChild(e), t._08_whiteInOut()
-                })
-            }, e.prototype._08_whiteInOut = function () {
-                var t = this;
-                this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 500).call(function () {
-                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({ alpha: 0 }, 500).call(function () {
-                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
-                    })
-                })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
-            }, e
-        }(h.PowerUpAnimation);
-    e.PowerUpAnimationFailed = d
+        return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
+            get: function () {
+                return 1 == this._raw_data.api_powerup_flag
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "api_ship", {
+            get: function () {
+                return this._raw_data.api_ship
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "api_deck", {
+            get: function () {
+                return this._raw_data.api_deck
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            for (var e = 0; e < this.api_id_items.length; e++) {
+                var i = this.api_id_items[e];
+                o.default.model.ship.delete(i, !1)
+            }
+            var n = new s.ShipModelEdit(this.api_ship);
+            o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
+        }, e
+    }(r.APIBase);
+    e.PowerUpAPI = a
 }

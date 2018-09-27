@@ -15,131 +15,96 @@ const function1400 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(122), s = i(2), a = i(12), _ = i(6), u = i(15), l = i(1), c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._result = !1, i._onSelect = function (t) {
-                _.SE.play("106"), i._result = t, i._hide()
-            }, i._scene = e, i
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._layer = new h(this._onSelect), this._layer.position.set(o.default.width / 2, o.default.height / 2), this._layer.alpha = 0, this._scene.addChild(this._layer), this._scene.view.layer_title.show(7, this._scene), this._showBtns()
-        }, e.prototype._showBtns = function () {
-            var t = this;
-            this._layer.initialize(), createjs.Tween.get(this._layer).to({ alpha: 1 }, 300).call(function () {
-                t._layer.activate()
-            })
-        }, e.prototype._hide = function () {
-            var t = this;
-            this._layer.deactivate(), this._scene.view.layer_title.hide(), createjs.Tween.get(this._layer.btn_not_night).to({ x: -o.default.width / 2 }, 500), createjs.Tween.get(this._layer.btn_go_night).to({ x: o.default.width / 2 }, 500).call(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene.removeChild(this._layer), this._layer.dispose(), this._scene = null, this._layer = null, t.prototype._endTask.call(this)
-        }, e
-    }(s.TaskBase);
-    e.TaskGoNightBattleSelect = c;
-    var h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._btn_not_night = new f(e), i._btn_not_night.position.set(-162, 0), i._btn_go_night = new y(e), i._btn_go_night.position.set(162, 0), i.addChild(i._btn_not_night), i.addChild(i._btn_go_night), i
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "btn_not_night", {
-            get: function () {
-                return this._btn_not_night
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "btn_go_night", {
-            get: function () {
-                return this._btn_go_night
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._btn_not_night.initialize(), this._btn_go_night.initialize()
-        }, e.prototype.activate = function () {
-            this._btn_not_night.activate(), this._btn_go_night.activate()
-        }, e.prototype.deactivate = function () {
-            this._btn_not_night.deactivate(), this._btn_go_night.deactivate()
-        }, e.prototype.dispose = function () {
-            this._btn_not_night.dispose(), this._btn_go_night.dispose()
-        }, e
-    }(PIXI.Container), p = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onMouseOver = function () {
-                n._setTexture(!0), n._wave.start()
-            }, n._onMouseOut = function () {
-                n._setTexture(!1), n._wave.stop()
-            }, n._onClick = function () {
-                0 != n.buttonMode && null != n._cb_onClick && n._cb_onClick(n._value)
-            }, n._value = e, n._cb_onClick = i, n._wave = new d, n._btn = new PIXI.Sprite, n.interactive = !0, n.addChild(n._wave), n.addChild(n._btn), n
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            var t = [new PIXI.Point(-21, -71), new PIXI.Point(78, -60), new PIXI.Point(96, 14), new PIXI.Point(17, 77), new PIXI.Point(-81, 65), new PIXI.Point(-99, -8)];
-            this.hitArea = new PIXI.Polygon(t), this._wave.initialize(), this._setTexture(!1)
-        }, e.prototype._drawHitArea = function (t) {
-            if (null != t) {
-                var e = new PIXI.Graphics;
-                e.beginFill(65280, .3), e.moveTo(t[0].x, t[0].y);
-                for (var i = 1; i < t.length; i++) e.lineTo(t[i].x, t[i].y);
-                e.endFill(), this.addChildAt(e, 0)
+    var o = i(74), r = i(90), s = i(93), a = i(91), _ = i(63), u = i(94), l = i(92), c = i(99), h = i(97),
+        p = i(96), d = i(98), f = i(95), y = i(76), v = i(119), g = i(100), m = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(l.EventType.MOUSEOVER, this._onMouseOver), this.on(l.EventType.MOUSEOUT, this._onMouseOut), this.on(l.EventType.CLICK, this._onClick), 1 == r.InteractiveUtil.isOnMouse(this) && this._onMouseOver())
-        }, e.prototype.deactivate = function () {
-            this.off(l.EventType.MOUSEOVER, this._onMouseOver), this.off(l.EventType.MOUSEOUT, this._onMouseOut), this.off(l.EventType.CLICK, this._onClick), this.buttonMode = !1
-        }, e.prototype.dispose = function () {
-            this._wave.dispose(), this.deactivate(), this._cb_onClick = null
-        }, e
-    }(PIXI.Container), d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._wave1 = new a.Sprite, e._wave1.anchor.set(.5), e._initWave(e._wave1), e._wave2 = new a.Sprite, e._wave2.anchor.set(.5), e._initWave(e._wave2), e._wave_tweens = new Array(2), e.addChild(e._wave1), e.addChild(e._wave2), e
-        }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._wave1.texture = u.BATTLE_MAIN.getTexture(3), this._wave2.texture = u.BATTLE_MAIN.getTexture(3)
-        }, e.prototype.dispose = function () {
-            this.stop()
-        }, e.prototype._initWave = function (t) {
-            t.scale.set(0), t.alpha = 0
-        }, e.prototype.start = function () {
-            this.stop(), this._wave_tweens[0] = createjs.Tween.get(this._wave1, { loop: !0 }).to({
-                alpha: 1,
-                scaleX: .4,
-                scaleY: .4
-            }, 400).to({ alpha: 0, scaleX: 1, scaleY: 1 }, 400).to({
-                scaleX: 0,
-                scaleY: 0
-            }, 0).wait(200), this._wave_tweens[1] = createjs.Tween.get(this._wave2, { loop: !0 }).wait(200).to({
-                alpha: 1,
-                scaleX: .4,
-                scaleY: .4
-            }, 400).to({ alpha: 0, scaleX: 1, scaleY: 1 }, 400).to({ scaleX: 0, scaleY: 0 }, 0)
-        }, e.prototype.stop = function () {
-            for (var t = 0; t < this._wave_tweens.length; t++) null != this._wave_tweens[t] && (this._wave_tweens[t].setPaused(!0), this._wave_tweens[t] = null);
-            this._initWave(this._wave1), this._initWave(this._wave2)
-        }, e
-    }(PIXI.Container), f = function (t) {
-        function e(e) {
-            return t.call(this, !1, e) || this
-        }
-
-        return n(e, t), e.prototype._setTexture = function (t) {
-            1 == t ? (this._btn.texture = u.BATTLE_MAIN.getTexture(5), this._btn.position.set(-128, -105)) : (this._btn.texture = u.BATTLE_MAIN.getTexture(4), this._btn.position.set(-99, -78))
-        }, e
-    }(p), y = function (t) {
-        function e(e) {
-            return t.call(this, !0, e) || this
-        }
-
-        return n(e, t), e.prototype._setTexture = function (t) {
-            1 == t ? (this._btn.texture = u.BATTLE_MAIN.getTexture(7), this._btn.position.set(-129, -105)) : (this._btn.texture = u.BATTLE_MAIN.getTexture(6), this._btn.position.set(-101, -78))
-        }, e
-    }(p)
+            return n(e, t), e.prototype._start = function () {
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new v.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new l.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new s.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new _.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new g.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new p.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new f.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new h.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new u.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new c.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(o.PhaseCombatBase);
+    e.PhaseDay_Kido = m
 }

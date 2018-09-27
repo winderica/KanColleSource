@@ -40,7 +40,7 @@ const function386 = function (t, e, i) {
         }, e.prototype.dispose = function () {
             this.deactivate(), this._cb_onChange = null
         }, e.prototype._setBGTexture = function () {
-            0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(92), this._dash.texture = o.ALBUM_MAIN.getTexture(18)) : (this.texture = o.ALBUM_MAIN.getTexture(93), this._dash.texture = o.ALBUM_MAIN.getTexture(19))
+            0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(95), this._dash.texture = o.ALBUM_MAIN.getTexture(22)) : (this.texture = o.ALBUM_MAIN.getTexture(96), this._dash.texture = o.ALBUM_MAIN.getTexture(23))
         }, e.prototype._activate = function () {
             1 != this._selected && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
         }, e.prototype._deactivate = function () {
@@ -69,7 +69,7 @@ const function386 = function (t, e, i) {
         return n(e, t), e.prototype.update = function (t, e) {
             if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY; else {
                 var i = void 0;
-                i = 0 == e ? [41, 43, 45, 47, 49, 51, 53, 55, 57, 59][t] : [42, 44, 46, 48, 50, 52, 54, 56, 58, 60][t], this.texture = o.ALBUM_MAIN.getTexture(i)
+                i = 0 == e ? [44, 46, 48, 50, 52, 54, 56, 58, 60, 62][t] : [45, 47, 49, 51, 53, 55, 57, 59, 61, 63][t], this.texture = o.ALBUM_MAIN.getTexture(i)
             }
         }, e
     }(PIXI.Sprite)

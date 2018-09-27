@@ -15,46 +15,50 @@ const function1482 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1483), r = i(1484), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._value = 0, e._lights = [], e._nums = [];
-            for (var i = 0; i < 4; i++) {
-                var n = new o.ResultDialogNumLight;
-                n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
-            }
-            for (var i = 0; i < 4; i++) {
-                var s = new r.ResultDialogNum;
-                s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
-            }
-            return e
+    var o = i(0), r = i(11), s = i(67), a = i(8), _ = i(31), u = i(1483), l = i(1), c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), e.prototype.setValue = function (t) {
-            this._value = Math.min(t, 9999);
-            for (var e = this._value, i = 0; i < this._nums.length; i++) {
-                var n = this._nums[i], o = this._lights[i], r = e % 10;
-                n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
-            }
-        }, e.prototype.startLightAnimation = function () {
-            this.stopLightAnimation(), this._light_tweens = [];
-            for (var t = 0; t < this._lights.length; t++) {
-                var e = this._nums[t], i = this._lights[t];
-                if (0 == e.visible) i.visible = !1; else {
-                    i.alpha = 0, i.visible = !0;
-                    var n = createjs.Tween.get(i, { loop: !0 }).to({ alpha: 1 }, 500).wait(500).to({ alpha: 0 }, 500).wait(500);
-                    this._light_tweens.push(n)
-                }
-            }
-        }, e.prototype.stopLightAnimation = function () {
-            if (null != this._light_tweens) {
-                for (var t = 0, e = this._light_tweens; t < e.length; t++) {
-                    var i = e[t];
-                    i.setPaused(!0), i = null
-                }
-                this._light_tweens = null
-            }
+        return n(e, t), e.prototype._start = function () {
+            var t = this._scene.data.getLandingData();
+            t.isLandingMap() ? this._loadResources(t) : this._endTask()
+        }, e.prototype._loadResources = function (t) {
+            var e = this, i = o.default.resources.gauge.createLoaderHorizontal(),
+                n = this._scene.data.battle_model.map_info.area_id,
+                r = this._scene.data.battle_model.map_info.map_no, a = this._scene.data.battle_model.stage,
+                _ = s.GaugeSetModel.createKey(n, r, a);
+            i.add(_);
+            i.load(function () {
+                var i = o.default.resources.gauge.getGaugeInfo(_), n = null;
+                e._showDialog(t, i, n)
+            })
+        }, e.prototype._showDialog = function (t, e, i) {
+            var n = this, o = new u.ResultDialog(t, e, i);
+            o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({ alpha: 1 }, 300).wait(500).call(function () {
+                o.startAnimation(function () {
+                    n._hideDialog(o)
+                })
+            })
+        }, e.prototype._hideDialog = function (t) {
+            var e = this;
+            createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                e._scene.view.removeChild(t), t.dispose(), e._wait()
+            })
+        }, e.prototype._wait = function () {
+            var t = this;
+            createjs.Tween.get(null).wait(500).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            var e = this, i = new _.GearBtnNext;
+            i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
+            var n = new a.AreaBox(0);
+            n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
+                i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
+            })
         }, e
-    }(PIXI.Container);
-    e.ResultDialogNumSet = s
+    }(r.TaskBase);
+    e.PhaseTransportResult = c
 }

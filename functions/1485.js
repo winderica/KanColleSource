@@ -15,19 +15,26 @@ const function1485 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(2), r = i(6), s = i(177), a = function (t) {
+        function e(e, i, n, o) {
+            void 0 === o && (o = 0);
+            var r = t.call(this) || this;
+            return r._layer = e, r._x = i, r._y = n, r._delay = o, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._disposeView()
-        }, e.prototype._disposeView = function () {
-            this._connectAPI()
-        }, e.prototype._connectAPI = function () {
-            o.default.sound.voice.stopAll(), o.default.sound.voice.setNumOfMultiPlay(1), this._endTask()
+            this._wait()
+        }, e.prototype._wait = function () {
+            var t = this;
+            this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
+                t._explode()
+            }) : this._explode()
+        }, e.prototype._explode = function () {
+            var t = this, e = new s.Explosion;
+            e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
+                t._layer.removeChild(e), t._endTask()
+            })
         }, e
-    }(r.TaskBase);
-    e.TaskEnd = s
+    }(o.TaskBase);
+    e.TaskExplosion = a
 }

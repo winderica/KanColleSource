@@ -33,9 +33,9 @@ const function384 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.ALBUM_MAIN.getTexture(108), this._shadow.texture = r.ALBUM_MAIN.getTexture(107), this._frown.texture = r.ALBUM_MAIN.getTexture(105);
-            var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(106));
-            t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(104), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
+            this.texture = r.ALBUM_MAIN.getTexture(111), this._shadow.texture = r.ALBUM_MAIN.getTexture(110), this._frown.texture = r.ALBUM_MAIN.getTexture(108);
+            var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(109));
+            t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(107), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
         }, e.prototype.activate = function () {
             this._startWait()
         }, e.prototype.deactivate = function () {

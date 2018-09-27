@@ -15,35 +15,29 @@ const function638 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(8), r = i(148), s = i(1), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                0 != i._btn.buttonMode && null != i._cb && i._cb()
-            }, i._cb = e, i._layer = new o.AreaBox(.2), i._bg = new PIXI.Sprite, i._btn = new PIXI.Sprite, i.addChild(i._layer), i.addChild(i._bg), i.addChild(i._btn), i
+    var o = i(0), r = i(2), s = i(639), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e._view.deactivate(), e._hideDialog()
+            }, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "layer", {
-            get: function () {
-                return this._layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "btn", {
-            get: function () {
-                return this._btn
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._bg.texture = r.PORT_MAIN.getTexture(18), this._bg.position.set(340, 273), this._btn.texture = r.PORT_MAIN.getTexture(1), this._btn.position.set(517, 450), this._btn.interactive = !0
-        }, e.prototype.activate = function () {
-            0 == this._btn.buttonMode && (this._btn.buttonMode = !0, this._btn.on(s.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._btn.buttonMode = !1, this._btn.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb = null
+        return n(e, t), e.prototype._start = function () {
+            -1 != o.default.model.deck.combined.type ? this._endTask() : this._breakCombined()
+        }, e.prototype._breakCombined = function () {
+            o.default.model.deck.combined.__update__(0), this._showDialog()
+        }, e.prototype._showDialog = function () {
+            var t = this, e = o.default.view.overLayer;
+            this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({ alpha: 1 }, 300), createjs.Tween.get(this._view.btn).wait(100).to({ alpha: 1 }, 300).call(function () {
+                t._view.activate()
+            })
+        }, e.prototype._hideDialog = function () {
+            var t = this;
+            createjs.Tween.get(this._view.btn).to({ alpha: 0 }, 300), createjs.Tween.get(this._view.bg).wait(100).to({ alpha: 0 }, 300).call(function () {
+                t._view.parent.removeChild(t._view), t._endTask()
+            })
         }, e
-    }(PIXI.Container);
-    e.CompCombinedAlert = a
+    }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

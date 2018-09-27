@@ -15,17 +15,27 @@ const function724 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
+    var o = i(0), r = i(2), s = i(215), a = i(725), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_language_type = this._japanese ? 0 : 1;
-            for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
-            t.prototype._connect.call(this)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (this._scene.finalize(), this._isChangeListStatus()) {
+                var e = s.OrganizeSceneMemory.filterStatus, i = s.OrganizeSceneMemory.japanese;
+                new a.UpdateListStatusAPI(e, i).start(function () {
+                    o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._isChangeListStatus = function () {
+            if (o.default.model.basic.isJapaneseOrganizeList() != s.OrganizeSceneMemory.japanese) return !0;
+            var t = o.default.model.basic.getFilterStatusOrganizeList(), e = s.OrganizeSceneMemory.filterStatus;
+            if (t.length != e.length) return !0;
+            for (var i = 0; i < t.length; i++) if (t[i] != e[i]) return !0;
+            return !1
         }, e
-    }(o.APIBase);
-    e.UpdateListStatusAPI = r
+    }(r.TaskBase);
+    e.FinalizeTask = _
 }

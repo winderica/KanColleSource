@@ -15,7 +15,7 @@ const function428 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(132), s = i(1214), a = i(429), _ = function (t) {
+    var o = i(4), r = i(133), s = i(1215), a = i(429), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new u, e._bg.position.set(0, 633), e._bg.alpha = 0, e._compass = new s.CompCompass, e._compass.position.set(54, 766), e._compass.alpha = 0, e.addChild(e._bg), e.addChild(e._compass), e

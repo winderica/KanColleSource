@@ -76,9 +76,9 @@ const function387 = function (t, e, i) {
                 i.dispose()
             }
         }, e.prototype._getBtnTextureNo = function (t, e) {
-            return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [71, 73, 75, 77, 79, 81][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [61, 63, 65, 67, 69][e] : -1
+            return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [74, 76, 78, 80, 82, 84][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [64, 66, 68, 70, 72][e] : -1
         }, e.prototype._getBtnOnTextureNo = function (t, e) {
-            return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [72, 74, 76, 78, 80, 82][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [62, 64, 66, 68, 70][e] : -1
+            return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [75, 77, 79, 81, 83, 85][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [65, 67, 69, 71, 73][e] : -1
         }, e.prototype._initializeTabBtns = function (t) {
             for (var e = 0, i = t; e < i.length; e++) {
                 var n = i[e], r = n.state, s = n.no, a = this._getBtnTextureNo(r, s),

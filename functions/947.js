@@ -15,41 +15,23 @@ const function947 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(25), r = function (t) {
+    var o = i(26), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e.texture = PIXI.Texture.EMPTY, e
+            return e._txt = new PIXI.Sprite, e._txt.position.set(479, 12), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(467, -2), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (t) {
-                case 1:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(67);
-                    break;
-                case 2:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(68);
-                    break;
-                case 3:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(69);
-                    break;
-                case 4:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(70);
-                    break;
-                case 5:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(71);
-                    break;
-                case 6:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(72);
-                    break;
-                case 7:
-                    this.texture = o.SALLY_AIRUNIT.getTexture(73);
-                    break;
-                default:
-                    this.texture = PIXI.Texture.EMPTY
-            }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_AIRUNIT.getTexture(60), this._txt.texture = o.SALLY_AIRUNIT.getTexture(104), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(105)
+        }, e.prototype.update = function (t) {
+            this.visible = t, 1 == t ? this._activate() : this._deactivate()
         }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY
+            this._deactivate()
+        }, e.prototype._activate = function () {
+            null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 400))
+        }, e.prototype._deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
         }, e
     }(PIXI.Sprite);
-    e.AirPlaneSkillLevel = r
+    e.AirUnitListItemRelocationLayer = r
 }

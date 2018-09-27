@@ -15,68 +15,42 @@ const function456 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(27), s = i(6), a = i(15), _ = i(91), u = function (t) {
+    var o = i(2), r = i(27), s = i(6), a = i(15), _ = i(75), u = function (t) {
         function e(e, i, n) {
             var o = t.call(this) || this;
-            return o.DELAYS = [0, 250, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
+            return o.DELAYS = [0, 266, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
         }
 
         return n(e, t), e.prototype._start = function () {
-            for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = [], o = this._ships_e, a = 0; a < o.length; a++) {
-                var _ = o[a];
-                if (null != _ && !(_.hp_now <= 0)) {
-                    var u = this._scene.view.bannerGroupLayer.getBanner(_);
-                    if (null != u) {
-                        var d = new l;
-                        d.initialize(), d.x = 180 - 24 * a, d.y = -90;
-                        var f = u.getGlobalPos(), y = new c(e, d, f, this.DELAYS[a]);
-                        i.add(y);
-                        var v = new h(this._scene, this._data, this._damage_cutin, _, 1500);
-                        if (i.add(v), 1 == this._data.isShield(a)) {
-                            var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(u);
-                            -1 == n.indexOf(g) && n.push(g)
-                        }
+            for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = 0; n < 6; n++) {
+                var o = new PIXI.Point(180 - 24 * n, -60), a = (18 + 3 * n) / 180 * Math.PI,
+                    _ = new h(e, o, a, this.DELAYS[n]);
+                i.add(_)
+            }
+            for (var u = [], p = this._ships_e, n = 0; n < p.length; n++) {
+                var d = p[n];
+                if (null != d && !(d.hp_now <= 0)) {
+                    var f = new l(this._scene, this._data, this._damage_cutin, d, 1e3);
+                    if (i.add(f), 1 == this._data.isShield(n)) {
+                        var y = this._scene.view.bannerGroupLayer.getBanner(d),
+                            v = this._scene.view.bannerGroupLayer.getShieldTargetBanner(y);
+                        -1 == u.indexOf(v) && u.push(v)
                     }
                 }
             }
-            for (var m = 0, b = n; m < b.length; m++) {
-                var w = b[m];
-                i.add(new p(this._scene, w, 1500))
+            for (var g = 0, m = u; g < m.length; g++) {
+                var b = m[g];
+                i.add(new c(this._scene, b, 1e3))
             }
-            s.SE.play("112"), i.start(function () {
+            s.SE.play("101"), i.start(function () {
                 t._endTask()
             })
         }, e.prototype._endTask = function () {
             this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
         }, e
     }(o.TaskBase);
-    e.PhaseSupportRai = u;
+    e.PhaseSupportHou = u;
     var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.x = 1, e.anchor.y = .5, e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = a.BATTLE_MAIN.getTexture(50)
-        }, e
-    }(PIXI.Sprite), c = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._layer = e, r._torpedo = i, r._target = n, r._delay = o, r
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._target.x - this._torpedo.x, i = this._target.y - this._torpedo.y;
-            this._torpedo.rotation = Math.atan2(i, e), createjs.Tween.get(this._torpedo).wait(this._delay).call(function () {
-                t._layer.addChild(t._torpedo)
-            }).to({ x: this._target.x, y: this._target.y }, 1400).call(function () {
-                t._layer.removeChild(t._torpedo), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._torpedo = null, this._target = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase), h = function (t) {
         function e(e, i, n, o, r) {
             void 0 === r && (r = 0);
             var s = t.call(this) || this;
@@ -98,7 +72,7 @@ const function456 = function (t, e, i) {
         }, e.prototype._endTask = function () {
             this._scene = null, this._data = null, this._damage_cutin = null, this._defender = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase), p = function (t) {
+    }(o.TaskBase), c = function (t) {
         function e(e, i, n) {
             void 0 === n && (n = 0);
             var o = t.call(this) || this;
@@ -112,5 +86,33 @@ const function456 = function (t, e, i) {
         }, e.prototype._endTask = function () {
             this._scene = null, this._target = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase)
+    }(o.TaskBase), h = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r.__start = function () {
+                r._layer.addChild(r._canvas), r._canvas.rotation = r._rotate, r._createBulletTween(0, 0, 0, 318, -2, 441, -2), r._createBulletTween(0, -3, 100, 318, -6, 441, -8), r._createBulletTween(0, 2, 200, 326, 0, 452, -2), r._createBulletTween(0, -6, 233, 333, 0, 462, 3), r._createBulletTween(0, 0, 300, 333, -5, 500, -6), r._createBulletTween(0, 3, 400, 302, -5, 452, -8), r._createBulletTween(0, 2, 433, 327, 5, 491, 6).call(function () {
+                    r._layer.removeChild(r._canvas), r._endTask()
+                })
+            }, r._canvas = new PIXI.Container, r._layer = e, r._pos = i, r._rotate = n, r._delay = o, r
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+        }, e.prototype._createBulletTween = function (t, e, i, n, o, r, s) {
+            var a = new p;
+            return a.position.set(this._pos.x + t, this._pos.y + e), a.scale.set(.36), a.initialize(), this._canvas.addChild(a), createjs.Tween.get(a).wait(i).to({
+                x: this._pos.x + n,
+                y: this._pos.y + o
+            }, 500).to({ x: this._pos.x + r, y: this._pos.y + s, alpha: 0 }, 200)
+        }, e
+    }(o.TaskBase), p = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e._img.x = -27, e._img.y = -15, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = a.BATTLE_MAIN.getTexture(41)
+        }, e
+    }(PIXI.Container)
 }

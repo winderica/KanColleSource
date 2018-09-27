@@ -15,59 +15,23 @@ const function960 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(42), r = i(961), s = i(1), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._board = new r.MapIntroBoard, e._board.position.set(522, 369), e._chara = new PIXI.Sprite, e._chara.position.set(822, 36), e._operation = new _, e._operation.position.set(363, 51), e._change_btn = new u, e._change_btn.position.set(648, 69), e.addChild(e._board), e.addChild(e._chara), e.addChild(e._operation), e.addChild(e._change_btn), e
+    var o = i(10), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "board", {
-            get: function () {
-                return this._board
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "operation", {
-            get: function () {
-                return this._operation
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "change_btn", {
-            get: function () {
-                return this._change_btn
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            this._board.initialize(t), this._chara.texture = o.SALLY_EVENT.getTexture(21), this._type = e, this._operation.update(e), this._change_btn.initialize()
-        }, e.prototype.dispose = function () {
-            this._board.dispose(), this._change_btn.dispose()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = this._model.getGaugeNum(), i = this._model.gauge_type, n = this._model.gauge_max,
+                o = this._model.gauge_now, r = this._raw_data;
+            if (null != r && r.hasOwnProperty("api_maphp")) {
+                var s = r.api_maphp;
+                s.hasOwnProperty("api_gauge_num") && (e = s.api_gauge_num), s.hasOwnProperty("api_gauge_type") && (i = s.api_gauge_type), 1 == s.hasOwnProperty("api_max_maphp") && (n = s.api_max_maphp), 1 == s.hasOwnProperty("api_now_maphp") && (o = s.api_now_maphp)
+            }
+            this._model.changeOperation(this._selected, e, i, n, o), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.MapIntroDialog = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            this.texture = 1 == t ? o.SALLY_EVENT.getTexture(20) : 2 == t ? o.SALLY_EVENT.getTexture(17) : 3 == t ? o.SALLY_EVENT.getTexture(19) : 4 == t ? o.SALLY_EVENT.getTexture(18) : PIXI.Texture.EMPTY
-        }, e
-    }(PIXI.Sprite), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function (t) {
-                t.stopPropagation(), null != e._cb_onClick && e._cb_onClick()
-            }, e.interactive = !0, e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_EVENT.getTexture(14)
-        }, e.prototype.activate = function (t) {
-            this._cb_onClick = t, this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick)
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this._cb_onClick = null, this.deactivate()
-        }, e
-    }(PIXI.Sprite)
+    }(o.APIBase);
+    e.APIOperationChange = r
 }

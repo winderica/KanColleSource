@@ -15,14 +15,14 @@ const function1379 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(26), s = i(6), a = i(1380), _ = i(121), u = i(43), l = function (t) {
+    var o = i(0), r = i(24), s = i(6), a = i(1380), _ = i(121), u = i(43), l = function (t) {
         function e(e, i, n, r, s, a, _, u, l) {
             var c = t.call(this, e, n, s, _, u, l) || this;
             return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
         }
 
         return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
+            this._cutin = new a.CutinSpSR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
         }, e.prototype._start = function () {
             var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
             1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
@@ -73,5 +73,5 @@ const function1379 = function (t, e, i) {
         }, e.prototype._log = function (t) {
         }, e
     }(u.PhaseAttackBase);
-    e.PhaseAttackSpRR = l
+    e.PhaseAttackSpSR = l
 }

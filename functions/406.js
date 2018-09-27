@@ -2,7 +2,7 @@ const function406 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
     var n = i(7), o = i(291), r = i(292), s = i(293), a = i(183), _ = i(294), u = i(295), l = i(296), c = i(198),
-        h = i(184), p = i(141), d = i(124), f = i(297), y = function () {
+        h = i(184), p = i(142), d = i(124), f = i(297), y = function () {
             function t(t) {
                 this._duty_id = t, this._dic = {}, this._rewards = []
             }

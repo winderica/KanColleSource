@@ -1,31 +1,33 @@
 const function468 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
-        function t(t) {
-            this._o = t
+    var o = i(7), r = i(182), s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i._initPlaneFrom(), i
         }
 
-        return Object.defineProperty(t.prototype, "deck_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_deck_id")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getShipList = function () {
-            for (var t = n.ObjUtil.getNumArray(this._o, "api_ship_id"), e = n.ObjUtil.getNumArray(this._o, "api_undressing_flag"), i = [], o = 0; o < t.length; o++) i.push({
-                mem_id: t[o],
-                damaged: 1 == e[o]
+        return n(e, t), e.prototype.getShipList = function () {
+            for (var t = o.ObjUtil.getNumArray(this._o, "api_ship_id"), e = o.ObjUtil.getNumArray(this._o, "api_undressing_flag"), i = [], n = 0; n < t.length; n++) i.push({
+                mem_id: t[n],
+                damaged: 1 == e[n]
             });
             return i
-        }, t.prototype.getDamage = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-            return null != e && e.length > t ? Math.floor(e[t]) : 0
-        }, t.prototype.getHitType = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_cl_list");
-            return null == e ? 0 : e.length <= t ? 0 : 1 == e[t] ? 2 : 1
-        }, t.prototype.isShield = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-            return null != e && (!(e.length <= t) && e[t] % 1 != 0)
-        }, t
-    }();
-    e.SupportData = o
+        }, e
+    }(r.AirWarDataBase);
+    e.AirSupportData = s
 }

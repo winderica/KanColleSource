@@ -2,37 +2,28 @@ const function603 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
     var n = i(0), o = function () {
-        function t(t) {
-            var e = this;
-            this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
-                e._timerBeLeftVoice.enabled_byTimeSignal = !0
-            }, this._timerBeLeftVoice = t
+        function t() {
+            this.INTERVAL = 3e5, this._enabled_029 = !1, this._enabled_129 = !1, this._enabled_byTimeSignal = !0, this._timer_handle = -1
         }
 
-        return t.prototype.initialize = function (t) {
-            this._mst_id = t;
-            var e = n.default.model.ship.getMst(this._mst_id);
-            this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
+        return Object.defineProperty(t.prototype, "enabled_byTimeSignal", {
+            set: function (t) {
+                this._enabled_byTimeSignal = t
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.initialize = function (t, e) {
+            this._mst_id = t, this._tired = e;
+            var i = n.default.model.ship.getMst(this._mst_id);
+            null == i ? this._enabled_029 = this._enabled_129 = !1 : (this._enabled_029 = i.availableBeLeftVoice, this._enabled_129 = i.availableBeLeftVoices), this.reset()
         }, t.prototype.stop = function () {
-            -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
+            -1 != this._timer_handle && (clearInterval(this._timer_handle), this._timer_handle = -1)
         }, t.prototype.reset = function () {
             var t = this;
-            if (this.stop(), 0 != this._enabled_timeSignal) {
-                var e = new Date, i = e.getMinutes(), n = e.getSeconds();
-                this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
-                    t._play()
-                }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
-                    t._preload()
-                }, 1e3 * this._Preload_sec)
-            }
-        }, t.prototype._preload = function () {
-            n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
+            this.stop(), 0 == this._enabled_029 && 0 == this._enabled_129 || (this._timer_handle = setInterval(function () {
+                t._play()
+            }, this.INTERVAL))
         }, t.prototype._play = function () {
-            var t = this;
-            1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
-                t.reset()
-            }, 61e3))
+            1 == n.default.option.voice_be_left && this._enabled_byTimeSignal && (1 == this._enabled_129 && this._tired >= 50 ? n.default.sound.voice.play(this._mst_id.toString(), 129) : 1 == this._enabled_029 && n.default.sound.voice.play(this._mst_id.toString(), 29))
         }, t
     }();
-    e.TimeSignal = o
+    e.BeLeftVoiceTimer = o
 }

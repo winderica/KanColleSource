@@ -15,7 +15,7 @@ const function351 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(18), a = i(24), _ = i(23), u = i(25), l = function (t) {
+    var o = i(0), r = i(2), s = i(18), a = i(25), _ = i(23), u = i(26), l = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._setTexture = function (t) {

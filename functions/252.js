@@ -22,7 +22,7 @@ const function252 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._wave1.texture = r.BATTLE_MAIN.getTexture(109), this._wave2.texture = r.BATTLE_MAIN.getTexture(109)
+            this._wave1.texture = r.BATTLE_MAIN.getTexture(112), this._wave2.texture = r.BATTLE_MAIN.getTexture(112)
         }, e.prototype.play = function () {
             var t = this;
             createjs.Tween.get(this._wave1).to({ scaleX: 1.83, scaleY: 1.83 }, 233).to({

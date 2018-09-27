@@ -15,53 +15,61 @@ const function1287 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(140), s = i(25), a = i(354), _ = i(351), u = i(355), l = i(352), c = i(353),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._base.hitArea = new PIXI.Rectangle(0, 0, 0, 0), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new u.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new l.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
-            }
+    var o = i(5), r = i(18), s = i(4), a = i(29), _ = i(41), u = i(20), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
-                get: function () {
-                    return this._selected_airunit_id
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(7), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
-                }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, u = !1, l = 0; l < this._items.length; l++) {
-                        var c = l < a.length ? a[l] : null;
-                        this._items[l].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), u = u || c.count < c.countMax
-                    }
-                    this._banner.update(t, _), this._supply_btn.update(u)
-                }
-            }, e.prototype.dispose = function () {
-                this._tabs.dispose(), this._banner.dispose(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e
-        }(PIXI.Container);
-    e.AirUnitPanel = h
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "icon", {
+            get: function () {
+                return this._icon
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._bg.texture = u.MAP_COMMON.getTexture(25)
+        }, e.prototype.update = function (t, e) {
+            void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+        }, e.prototype._update = function (t, e) {
+            void 0 === e && (e = "");
+            var i;
+            switch (t) {
+                case 1:
+                    i = a.SALLY_COMMON.getTexture(1);
+                    break;
+                case 2:
+                    i = a.SALLY_COMMON.getTexture(3);
+                    break;
+                case 3:
+                    i = a.SALLY_COMMON.getTexture(5);
+                    break;
+                case 4:
+                    i = a.SALLY_COMMON.getTexture(9);
+                    break;
+                case 5:
+                    i = a.SALLY_COMMON.getTexture(11);
+                    break;
+                case 6:
+                    i = a.SALLY_COMMON.getTexture(13);
+                    break;
+                case 7:
+                    i = a.SALLY_COMMON.getTexture(7);
+                    break;
+                default:
+                    i = PIXI.Texture.EMPTY
+            }
+            this._icon.texture = i, this._text.text = e
+        }, e.prototype._updateForEventMap = function (t) {
+            void 0 === t && (t = "");
+            this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
+        }, e
+    }(PIXI.Container);
+    e.CompUpperBar = l
 }

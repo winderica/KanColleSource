@@ -15,50 +15,28 @@ const function633 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(9), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onChange = function () {
-                for (var t = 0, i = e.children; t < i.length; t++) {
-                    i[t].update()
-                }
-            };
-            for (var i = 0; i < 30; i++) {
-                var n = new a;
-                e.addChild(n)
-            }
-            return e.visible = !1, e
+    var o = i(9), r = i(48), s = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(null, {
-                loop: !0,
-                onChange: this._onChange
-            }), this.visible = !0)
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this.removeChildren()
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._createContent = function () {
+            this._panel = new PIXI.Container;
+            var t = new PIXI.Sprite(o.COMMON_MISC.getTexture(165));
+            t.position.set(-267, -138), this._panel.addChild(t);
+            var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(164));
+            e.position.set(-45, -12), this._panel.addChild(e);
+            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(166));
+            i.position.set(-67, 102), this._panel.addChild(i);
+            var n = new PIXI.Sprite;
+            350 == this.model.value ? (n.texture = o.COMMON_MISC.getTexture(167), n.position.set(-10, 99)) : 200 == this.model.value && (n.texture = o.COMMON_MISC.getTexture(168), n.position.set(-12, 99)), this._panel.addChild(n), this._dialog.container.addChild(this._panel), this._showDialog()
+        }, e.prototype._removeContent = function () {
+            this._dialog.container.removeChild(this._panel), this._panel = null
         }, e
-    }(PIXI.Container);
-    e.BonusInsertParticle = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
-        }
-
-        return n(e, t), e.prototype.update = function () {
-            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
-            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
-            var t = 60 / createjs.Ticker.framerate;
-            this._vx *= 1 + .01 * t, this._vy += .01 * t
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
-            var e = 50 / 180 * Math.PI * t;
-            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
-        }, e
-    }(PIXI.Sprite)
+    }(r.TaskRewardDialogBase);
+    e.TaskRewardDialogWarResult = s
 }

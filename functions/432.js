@@ -15,9 +15,9 @@ const function432 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(139), s = i(47), a = i(51), _ = i(1223), u = i(1224), l = i(1225), c = i(1230), h = i(1231),
-        p = i(1233), d = i(1236), f = i(1237), y = i(1274), v = i(1275), g = i(1276), m = i(1278), b = i(1280),
-        w = i(436), x = i(1282), I = i(438), T = i(1290), O = function (t) {
+    var o = i(0), r = i(140), s = i(47), a = i(51), _ = i(1224), u = i(1225), l = i(1226), c = i(1231), h = i(1232),
+        p = i(1234), d = i(1237), f = i(1238), y = i(1270), v = i(1271), g = i(1272), m = i(1274), b = i(1276),
+        w = i(434), x = i(1278), I = i(436), T = i(1286), O = i(1302), P = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._startScene = function () {
@@ -60,12 +60,8 @@ const function432 = function (t, e, i) {
                     if (i.cell_open) {
                         var n = e._model.sortie.getNextCell();
                         e._endScene(n)
-                    } else e._gimmick(i.battle_model, t)
+                    } else e._afterMove(i.battle_model, t)
                 })
-            }, e.prototype._gimmick = function (t, e) {
-                var i = this._model.sortie.area_id, n = this._model.sortie.map_no;
-                this._model.sortie.getNextCell();
-                39 == i && 1 == n || this._afterMove(t, e)
             }, e.prototype._afterMove = function (t, e) {
                 var i = this, n = this._model.sortie.getNextCell();
                 if (1 == n.isDeadEnd()) {
@@ -123,16 +119,21 @@ const function432 = function (t, e, i) {
                     } else this._endScene(n)
                 } else null != t ? this._preNextAfterBattle(n, t) : this._preNext(n, t, e)
             }, e.prototype._preNextAfterBattle = function (t, e) {
-                var i = this, n = e.deck_f.ships[0];
-                if (25 == n.damageType || 0 == n.damageType) {
-                    var o = n.hasYouin(), r = n.hasMegami();
-                    if (1 == o || 1 == r) this._selectTaihaShingun(t, e, o, r); else {
-                        var s = e.deck_f.name;
-                        new m.TaskFlagShipDamaged(this._view, s, n.mst_id).start(function () {
-                            i._endScene(t)
-                        })
+                var i = this, n = e.deck_f.ships[0], o = 25 == n.damageType || 0 == n.damageType, r = n.hasYouin(),
+                    s = n.hasMegami();
+                if (1 == o && 0 == r && 0 == s) {
+                    var a = e.deck_f.name;
+                    return void new m.TaskFlagShipDamaged(this._view, a, n.mst_id).start(function () {
+                        i._endScene(t)
+                    })
+                }
+                new O.EscapeTask(this, e).start(function () {
+                    for (var n = e.deck_f.ships, a = 0; a < n.length; a++) {
+                        var _ = n[a];
+                        null != _ && i.model.deck_f.ships[a].initializeTaihi(_.isTaihi())
                     }
-                } else this._selectGoAhead(t, e)
+                    1 != o || 1 != r && 1 != s ? i._selectGoAhead(t, e) : i._selectTaihaShingun(t, e, r, s)
+                })
             }, e.prototype._selectGoAhead = function (t, e) {
                 var i = this, n = this._model.sortie.area_id, s = this._model.sortie.map_no, a = null == e ? 0 : e.m1;
                 if (42 == n && 5 == s && 3 == this._model.sortie.map.getGaugeNum() && 1 == a) {
@@ -176,8 +177,7 @@ const function432 = function (t, e, i) {
                         var d = s._model.sortie.getNextCell().no;
                         new u.APIShipDeck(p, n, _, d).start(function () {
                             var n = s._model.deck_f.id, r = o.default.model.deck.get(n);
-                            s._model.deck_f.updateShipList(r);
-                            s._model.deck_f.ships[0].useRepairItem();
+                            s._model.deck_f.updateShipList(r), s._model.deck_f.ships[0].selectRepairItem(i);
                             s._preNext(t, e, i)
                         })
                     }
@@ -237,5 +237,5 @@ const function432 = function (t, e, i) {
                 return new d.TaskFinalize(this)
             }, e
         }(s.SceneBase);
-    e.MapScene = O
+    e.MapScene = P
 }

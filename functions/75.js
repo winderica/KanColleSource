@@ -15,112 +15,90 @@ const function75 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(62), a = i(1342), _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(0), r = i(2), s = i(174), a = i(1322), _ = i(1326), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
         }
 
-        return n(e, t), e.prototype._start = function () {
+        return n(e, t), e.prototype._notifyGauge = function (t, e, i, n) {
+            if (0 != this._scene.view.layer_gauge.hasGauge() && 1 != t && 0 == e && i != n) {
+                var o = this._scene.view.layer_gauge, r = o.now, s = Math.max(i - n, 0),
+                    a = this._scene.data.model.gauge_type;
+                if (2 == a) {
+                    var _ = Math.max(0, r - s);
+                    o.update(_)
+                } else 1 == a && r > 0 && s > 0 && 0 == n && o.update(r - 1);
+                0 == o.now && 0 == n && o.explode()
+            }
+        }, e.prototype.causeDamage = function (t, e) {
+            if (null != t) {
+                var i = t.hp_now;
+                t.causeDamage(e), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
+            }
+        }, e.prototype.causeDoubleDamage1st = function (t, e) {
+            if (null != t) {
+                var i = t.hp_now;
+                t.causeDamage(e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
+            }
+        }, e.prototype.causeDoubleDamage2nd = function (t, e) {
+            if (null != t) {
+                var i = t.hp_now;
+                t.causeDamage(e, !1), this._registerDamageEvents(t, e), this._notifyGauge(t.friend, t.index, i, t.hp_now)
+            }
+        }, e.prototype._registerDamageEvents = function (t, e) {
+            if (0 != t.friend) {
+                if (!(t.mst_id < 0)) {
+                    var i = t.damageType_before, n = t.damageType;
+                    if (i != n) return 75 == n && 100 == i ? void o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : void(0 == t.type && (50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t)))
+                }
+            } else if (t.hp_now > 0 && e > 0) {
+                var r = s.EnemyVoiceConst.getDamagedVoiceIDs(this._scene, t);
+                if (null != r && r.length > 0) {
+                    var a = r[Math.floor(Math.random() * r.length)];
+                    o.default.sound.voice.play("9998", a)
+                }
+            }
+        }, e.prototype._start = function () {
             var t = this;
-            if (this._data = this._record.raw.raigeki, null == this._data) this._endTask(); else {
-                new s.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    t._scene.view.layer_title.show(6), t._showTelop()
+            1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
+                t._start()
+            }) : this._gouchinCutin()
+        }, e.prototype._gouchinCutin = function () {
+            var t = this;
+            if (this._gouchin_ships.length > 0) {
+                this._clearChuhaList(), this._clearTaihaList();
+                var e = this._gouchin_ships.shift(), i = e.useRepairItem(), n = this._scene.view.layer_cutin,
+                    o = function () {
+                        t._scene.view.bannerGroupLayer.getBanner(e).updateHp(e.hp_now)
+                    };
+                new a.TaskGouchinCutin(n, e.mst_id, i, o).start(function () {
+                    t._gouchinCutin()
                 })
+            } else this._damageCutin()
+        }, e.prototype._damageCutin = function () {
+            for (var t = this, e = this._scene.view.layer_cutin, i = this._taiha_ships.length > 0, n = this._scene.data.isNight(), o = [], r = 0, s = this._taiha_ships; r < s.length; r++) {
+                var a = s[r];
+                o.push(a.mst_id)
             }
-        }, e.prototype._showTelop = function () {
-            var t = this;
-            this._scene.view.layer_info2.once("complete", function () {
-                t._ready()
-            }), this._scene.view.layer_info2.showCenter(6)
-        }, e.prototype._ready = function () {
-            for (var t = this._createAttackData_f(), e = this._createAttackData_e(), i = null, n = new Array, r = 0, s = t; r < s.length; r++) {
-                var a = s[r], _ = a.attacker.index;
-                (null == i || i.index > _) && (i = a.attacker);
-                var u = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
-                n.push(u)
+            this._taiha_ships = Array();
+            for (var u = 0, l = this._chuha_ships; u < l.length; u++) {
+                var a = l[u];
+                o.push(a.mst_id)
             }
-            for (var l = 0, c = e; l < c.length; l++) {
-                var a = c[l], u = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
-                n.push(u)
-            }
-            if (null != i) {
-                var h = i.mst_id.toString();
-                o.default.sound.voice.playAtRandom(h, [15, 16], [50, 50])
-            }
-            this._move(n, t, e)
-        }, e.prototype._move = function (t, e, i) {
-            for (var n = this, o = 0; o < t.length; o++) {
-                var r = t[o];
-                0 == o ? r.moveShoot(function () {
-                    n._shoot(e, i)
-                }) : r.moveShoot()
-            }
-            0 == t.length && this._endTask()
-        }, e.prototype._shoot = function (t, e) {
-            var i = this;
-            r.SE.play("112");
-            for (var n = 0, o = t; n < o.length; n++) {
-                var s = o[n];
-                this._shootBase(s, 1900, null)
-            }
-            for (var a = 0, _ = e; a < _.length; a++) {
-                var s = _[a];
-                this._shootBase(s, 1900, null)
-            }
-            createjs.Tween.get(null).wait(1900).call(function () {
-                i._damageEffect(t, e)
-            })
-        }, e.prototype._damageEffect = function (t, e) {
-            for (var i = this, n = {}, o = 0, r = e; o < r.length; o++) {
-                var s = r[o], a = s.defender.index;
-                if (null == n[a]) n[a] = { damage: s.damage, hit: s.hit, shield: s.shield }; else {
-                    var _ = n[a];
-                    _.damage += s.damage, 2 == _.hit || 2 == s.hit ? _.hit = 2 : 1 == _.hit || 1 == s.hit ? _.hit = 1 : _.hit = 0
-                }
-            }
-            for (var u = {}, l = 0, c = t; l < c.length; l++) {
-                var s = c[l], a = s.defender.index;
-                if (null == u[a]) u[a] = { damage: s.damage, hit: s.hit, shield: s.shield }; else {
-                    var _ = u[a];
-                    _.damage += s.damage, 2 == _.hit || 2 == s.hit ? _.hit = 2 : 1 == _.hit || 1 == s.hit ? _.hit = 1 : _.hit = 0
-                }
-            }
-            for (var h = 0, p = this._scene.data.model.deck_f.ships; h < p.length; h++) {
-                var d = p[h];
-                if (null != d) {
-                    var _ = n[d.index];
-                    null != _ && this._damageBase(d, _)
-                }
-            }
-            if (1 == this._data.hasShield_f()) {
-                var f = this._scene.view.bannerGroupLayer.getBanner(!0, 0);
-                this._scene.view.layer_damage.showShieldAtBanner(f)
-            }
-            for (var y = 0, v = this._scene.data.model.deck_e.ships; y < v.length; y++) {
-                var d = v[y];
-                if (null != d) {
-                    var _ = u[d.index];
-                    null != _ && this._damageBase(d, _)
-                }
-            }
-            if (1 == this._data.hasShield_e()) {
-                var f = this._scene.view.bannerGroupLayer.getBanner(!1, 0);
-                this._scene.view.layer_damage.showShieldAtBanner(f)
-            }
-            createjs.Tween.get(null).wait(500).call(function () {
-                i._showDamageNumber(n, u)
-            })
-        }, e.prototype._showDamageNumber = function (t, e) {
-            var i = this;
-            this._showDamageBase(this._scene.data.model.deck_f.ships, t), this._showDamageBase(this._scene.data.model.deck_e.ships, e), createjs.Tween.get(null).wait(400).call(function () {
-                i._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            var e = this;
-            this._scene.view.layer_title.hide(), this._damage_cutin.start(function () {
-                t.prototype._endTask.call(e)
-            })
+            if (this._clearTaihaList(), this._clearTaihaList(), o.length > 0) {
+                new _.TaskDamageCutin(e, i, n, o).start(function () {
+                    t._endCutin()
+                })
+            } else this._endCutin()
+        }, e.prototype._endCutin = function () {
+            this._endTask()
+        }, e.prototype._clearTaihaList = function () {
+            null != this._taiha_ships && this._taiha_ships.length > 0 && (this._taiha_ships = new Array)
+        }, e.prototype._clearChuhaList = function () {
+            null != this._chuha_ships && this._chuha_ships.length > 0 && (this._chuha_ships = new Array)
+        }, e.prototype._log = function (t, e) {
         }, e
-    }(a.PhaseRaigekiBase);
-    e.PhaseRaigeki = _
+    }(r.TaskBase);
+    e.PhaseDamageCutin = u
 }

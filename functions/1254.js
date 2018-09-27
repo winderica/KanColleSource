@@ -15,39 +15,37 @@ const function1254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(433), a = i(1255), _ = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._onTaihi = function () {
-                r._view.deactivate();
-                var t = r._model.map_info.area_id, e = r._model.map_info.map_no, i = r._model.map_info.cell_no;
-                new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
-                    r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
-                })
-            }, r._onTaihiSezu = function () {
-                r._view.deactivate(), r._hideView()
-            }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
+    var o = i(1255), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._count = 0, e._boxes = [], e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipResources()
-        }, e.prototype._loadShipResources = function () {
-            var t = this, e = new r.ShipLoader;
-            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
-                t._show()
-            })
-        }, e.prototype._show = function () {
-            this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-            var t = this._target, e = this._towing;
-            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
-        }, e.prototype._hideView = function () {
-            var t = this;
-            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "count", {
+            get: function () {
+                return this._count
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._count = 0;
+            for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                var s = new o.FormationBoxCombined, a = [626, 873, 626, 873][r], _ = [96, 96, 302, 302][r];
+                s.position.set(a, _);
+                var u = n[r];
+                s.initialize(t, u, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._boxes; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._boxes; t < e.length; t++) {
+                e[t].deactivate()
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._boxes; t < e.length; t++) {
+                e[t].dispose()
+            }
         }, e
-    }(o.TaskBase);
-    e.EscapeGoeiTask = _
+    }(PIXI.Container);
+    e.FormationBoxContainerCombined = r
 }

@@ -15,101 +15,53 @@ const function1393 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(74), r = i(1394), s = i(90), a = i(92), _ = i(93), u = i(63), l = i(100), c = i(96), h = i(95),
-        p = i(97), d = i(94), f = i(98), y = i(75), v = i(99), g = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, !1) || this;
-                return n._record = i, n
-            }
+    var o = i(27), r = i(19), s = i(2), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._record = i, n
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this.scene.bg.setDay(function () {
-                    t._shutterOpen()
-                })
-            }, e.prototype._shutterOpen = function () {
-                var t = this, e = this.scene.view;
-                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
-                    e.shutter.once("opened", function () {
-                        t._moveBanner()
-                    }), e.shutter.open()
-                })
-            }, e.prototype._moveBanner = function () {
-                var t = this;
-                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
-                    t._jetAirUnit()
-                })
-            }, e.prototype._jetAirUnit = function () {
-                var t = this;
-                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
-                    t._jetAirWar()
-                })
-            }, e.prototype._jetAirWar = function () {
-                var t = this;
-                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
-                    t._airUnit()
-                })
-            }, e.prototype._airUnit = function () {
-                var t = this;
-                new _.PhaseAirUnit(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new l.PhaseSupport(this.scene, this._record).start(function () {
-                    t._airWar()
-                })
-            }, e.prototype._airWar = function () {
-                var t = this;
-                new u.PhaseAirWar(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._openingAttack = function () {
-                var t = this;
-                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
-                    t._openingTorpedo()
-                })
-            }, e.prototype._openingTorpedo = function () {
-                var t = this;
-                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
-                    t._formation()
-                })
-            }, e.prototype._formation = function () {
-                var t = this;
-                new p.PhaseFormation(this.scene, this._record).start(function () {
-                    t._airWar2()
-                })
-            }, e.prototype._airWar2 = function () {
-                var t = this;
-                new d.PhaseAirWar2(this.scene, this._record).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
-                    t._torpedo()
-                })
-            }, e.prototype._torpedo = function () {
-                var t = this;
-                new y.PhaseRaigeki(this.scene, this._record).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new v.PhaseEnding(this.scene, this._record).start(function () {
+        return n(e, t), e.prototype._start = function () {
+            this._enterBanners()
+        }, e.prototype._enterBanners = function () {
+            var t = this;
+            if (1 == this._scene.data.model.map_info.isNightStart()) {
+                var e = this._scene.view.bannerGroupLayer, i = new o.ParallelTask;
+                i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
                     t._endTask()
-                })
-            }, e
-        }(o.PhaseCombatBase);
-    e.PhaseDayFromNight = g
+                });
+                var n = this._scene.data.model.deck_f, s = n.formation, a = n.type, _ = n.getCountMainDeck(),
+                    u = n.getCountSubDeck();
+                this._scene.view.raderLayer.rader_f.show(s, a, _, u);
+                var l = this._scene.data.model.deck_e, c = l.formation, h = l.type, p = l.getCountMainDeck(),
+                    d = l.getCountSubDeck();
+                return void this._scene.view.raderLayer.rader_e.show(c, h, p, d)
+            }
+            var f = new r.TweenTask;
+            if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
+                var y = this._record.common.getActiveDeckFriend();
+                if (1 == y) {
+                    var v = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
+                    f.addTweens(v)
+                } else if (2 == y) {
+                    var v = this._scene.view.bannerGroupLayer.friends.createExitTweens();
+                    f.addTweens(v), v = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), f.addTweens(v)
+                }
+            }
+            if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
+                var y = this._record.common.getActiveDeckEnemy();
+                if (1 == y) {
+                    var v = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
+                    f.addTweens(v)
+                } else if (2 == y) {
+                    var v = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
+                    f.addTweens(v), v = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), f.addTweens(v)
+                }
+            }
+            f.start(function () {
+                t._endTask()
+            })
+        }, e
+    }(s.TaskBase);
+    e.PhaseMoveShips = a
 }

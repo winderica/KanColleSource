@@ -15,83 +15,91 @@ const function862 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(35), r = i(112), s = i(863), a = function (t) {
+    var o, r = i(3), s = i(112), a = i(1);
+    !function (t) {
+        t.LEFT = 270, t.RIGHT = 705, t.BOTTOM = 95, t.DIRECTION_LEFT = 1, t.DIRECTION_RIGHT = -1
+    }(o = e.ArsenalStaffConst || (e.ArsenalStaffConst = {}));
+    var _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i.DEFAULT_IN_X = 288, i.DEFAULT_OUT_X = 825, i.BUILD = [113, 112], i.WALK = [109, 110, 111, 110], i.COMPLETION = [114, 115], i.STAR_CENTER_OFFSET = {
-                x: -30,
-                y: -30
-            }, i.ANIMATION_KEY_WALK = {}, i.ANIMATION_KEY_TURN = {}, i.ANIMATION_KEY_COMPLETE = {}, i.ANIMATION_KEY_BUILDING = {}, i.y = 91, i.x = i.DEFAULT_OUT_X, i.sprite = new PIXI.Sprite, i.sparkParticle = new s.GreenStarParticle, i.sprite.anchor.set(.5, 1), i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sparkParticle.position.set(i.STAR_CENTER_OFFSET.x, i.STAR_CENTER_OFFSET.y), i.sprite.addChild(i.sparkParticle), i.addChild(i.sprite), i.syncAnimationKey = e, i
+            return i.WALK = [97, 98, 99, 98], i.COMPLETION = [100, 101], i.ANIMATION_BUILD_KEY = {}, i.ANIMATION_ENTER_KEY = {}, i.JUMP_ANIMATION = { progress: 0 }, i.ANIMATION_COMPLETE_KEY = {}, i.ANIMATION_BURNER_KEY = {}, i._onClick = function () {
+                if (0 == createjs.Tween.hasActiveTweens(i.JUMP_ANIMATION)) {
+                    var t = createjs.Tween.get(i.JUMP_ANIMATION).to({ progress: 1 }, 250, createjs.Ease.quintOut).to({ progress: 0 }, 250);
+                    t.call(function () {
+                        t.removeAllEventListeners("change"), t.setPaused(!0)
+                    }).addEventListener("change", function () {
+                        i.sprite.y = -30 * i.JUMP_ANIMATION.progress
+                    })
+                }
+            }, i.sprite = new PIXI.Sprite, i.effect = new PIXI.Container, i.ase_0 = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(141)), i.ase_1 = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(141)), i.sprite.texture = r.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.interactive = !0, i.sprite.on(a.EventType.CLICK, i._onClick), i.ase_0.anchor.set(0, 1), i.ase_1.anchor.set(0, 1), i.sprite.anchor.set(.5, 1), i.effect.addChild(i.ase_0, i.ase_1), i.sprite.addChild(i.effect), i.addChild(i.sprite), i.syncAnimationKey = e, i
         }
 
-        return n(e, t), e.prototype.build = function () {
+        return n(e, t), e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.JUMP_ANIMATION), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_BURNER_KEY), this.effect.removeChildren(), this.ase_0 = null, this.ase_1 = null, this.effect = null, this.sprite = null, this.syncAnimationKey = null, this.removeChildren()
+        }, e.prototype.build = function () {
+            this.sprite.y = 0, this.__AnimationBuild__()
+        }, e.prototype.__AnimationBuild__ = function () {
             var t = this;
-            this.stopAllTween(), this.sparkParticle.updateAlpha(0), this.sparkParticle.updateStarPosition(), this.sparkParticle.visible = !0, this.sprite.scale.x = 1, this.__AnimationWalk__(this.x, this.DEFAULT_IN_X, 2500, function () {
-                t.stopAllTween(), t.__AnimationTurn__(-1, 500, function () {
-                    t.stopAllTween(), t.__AnimationBuilding__()
-                })
+            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), this.ANIMATION_BUILD_KEY.progress = 0, this.ANIMATION_BUILD_KEY.x = o.RIGHT, this.ANIMATION_BUILD_KEY.direction = o.DIRECTION_LEFT;
+            var e = o.RIGHT - o.LEFT, i = (14 + 5 * Math.random()) / 1.5, n = i * e;
+            this.position.set(o.RIGHT, o.BOTTOM), createjs.Tween.get(this.ANIMATION_BUILD_KEY, { loop: !0 }).wait(1e3 * Math.random()).to({ x: o.LEFT }, n).to({ direction: o.DIRECTION_RIGHT }, 1e3).to({ x: o.RIGHT }, n).addEventListener("change", function () {
+                var e = t.ANIMATION_BUILD_KEY.x, i = t.ANIMATION_BUILD_KEY.direction;
+                t.x = e, t.sprite.scale.x = i
+            }), createjs.Tween.get(this.ANIMATION_BUILD_KEY, { loop: !0 }).to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
+                var e = t.ANIMATION_BUILD_KEY.progress, i = Math.round((t.WALK.length - 1) * e);
+                switch (t.sprite.texture = r.ARSENAL_MAIN.getTexture(t.WALK[i]), t.ase_0.visible = !1, t.ase_1.visible = !1, i) {
+                    case 0:
+                        t.ase_0.position.set(3, -64), t.ase_1.position.set(21, -54), t.ase_0.rotation = -6.2 / Math.PI / 180, t.ase_1.rotation = 28.5 / Math.PI / 180, t.ase_0.visible = !0, t.ase_1.visible = !0;
+                        break;
+                    case 1:
+                        t.ase_0.position.set(6.675, -47.25), t.ase_1.position.set(14.25, -59.25), t.ase_0.rotation = 1 / Math.PI / 180, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0;
+                        break;
+                    case 2:
+                        t.ase_0.position.set(8.25, -62.25), t.ase_1.position.set(20.25, -51.75), t.ase_0.rotation = 0, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0;
+                        break;
+                    case 3:
+                        t.ase_0.position.set(6.675, -47.25), t.ase_1.position.set(14.25, -59.25), t.ase_0.rotation = 1 / Math.PI / 180, t.ase_1.rotation = 0, t.ase_0.visible = !0, t.ase_1.visible = !0
+                }
             })
         }, e.prototype.resume = function () {
-            this.stopAllTween(), this.x = 288, this.sprite.scale.x = -1, this.sprite.y = 0, this.__AnimationBuilding__()
-        }, e.prototype.useBurner = function () {
-            this.stopAllTween(), this.sparkParticle.visible = !1, this.sparkParticle.updateAlpha(0), this.sprite.scale.x = -1, this.sprite.y = 0, this.__AnimationWalk__(this.x, this.DEFAULT_OUT_X, 1e3, function () {
-            })
-        }, e.prototype.useBurnerd = function () {
+            this.sprite.y = 0, this.__AnimationBuild__()
+        }, e.prototype.complete = function () {
             var t = this;
-            this.stopAllTween(), this.sprite.scale.x = 1, this.__AnimationWalk__(this.x, this.DEFAULT_IN_X, 1e3, function () {
-                t.sprite.scale.x = 1, t.sparkParticle.visible = !1, t.sparkParticle.updateAlpha(0), t.stopAllTween(), t.__AnimationComplete__()
+            this.effect.visible = !1, this.sprite.scale.x = 1, this.sprite.y = 0, createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.get(this.ANIMATION_COMPLETE_KEY, { loop: !0 }).wait(1e3).addEventListener("change", function () {
+                var e = t.syncAnimationKey.getNumber(s.SYNC_KEY_JUMP);
+                t.sprite.y = -10 * e, t.sprite.texture = .4 < e ? r.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : r.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
+            })
+        }, e.prototype.stopOtherAnimation = function () {
+            createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_BURNER_KEY)
+        }, e.prototype.useBurner = function () {
+            var t = this;
+            this.stopOtherAnimation(), this.effect.visible = !1, this.sprite.scale.x = -1, this.sprite.y = 0, this.ANIMATION_BURNER_KEY.x = this.x, this.ANIMATION_BURNER_KEY.progress = 0;
+            var e = createjs.Tween.get(this.ANIMATION_BURNER_KEY, { loop: !0 });
+            e.to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
+                var e = t.ANIMATION_BURNER_KEY.progress, i = Math.round((t.WALK.length - 1) * e), n = t.WALK[i];
+                t.sprite.texture = r.ARSENAL_MAIN.getTexture(n)
+            });
+            var i = createjs.Tween.get(this.ANIMATION_BURNER_KEY);
+            i.to({ x: 750 }, 1e3).call(function () {
+                createjs.Tween.removeTweens(t.ANIMATION_BURNER_KEY), i.removeAllEventListeners("change"), e.removeAllEventListeners("change"), i.setPaused(!0), e.setPaused(!0), t.x = 750
+            }).addEventListener("change", function () {
+                t.x = t.ANIMATION_BURNER_KEY.x
             })
         }, e.prototype.received = function () {
-            this.stopAllTween(), this.sprite.y = 0, this.sprite.scale.x = -1, this.__AnimationWalk__(this.x, this.DEFAULT_OUT_X, 1e3, function () {
-            })
-        }, e.prototype.complete = function () {
-            this.stopAllTween(), this.x = this.DEFAULT_IN_X, this.sprite.scale.x = 1, this.sprite.y = 0, this.sparkParticle.visible = !1, this.sparkParticle.updateAlpha(0), this.__AnimationComplete__()
-        }, e.prototype.stopAllTween = function () {
-            createjs.Tween.removeTweens(this.ANIMATION_KEY_WALK), createjs.Tween.removeTweens(this.ANIMATION_KEY_BUILDING), createjs.Tween.removeTweens(this.ANIMATION_KEY_COMPLETE), createjs.Tween.removeTweens(this.ANIMATION_KEY_TURN)
-        }, e.prototype.__AnimationWalk__ = function (t, e, i, n) {
-            var r = this;
-            this.ANIMATION_KEY_WALK.x = this.x = t, this.ANIMATION_KEY_WALK.progress = 0, this.ANIMATION_KEY_WALK.walk = 0;
-            var s = createjs.Tween.get(this.ANIMATION_KEY_WALK, { loop: !0 });
-            s.to({ walk: 0 }).to({ walk: 1 }, 225).to({ walk: 0 }, 225).addEventListener("change", function () {
-                var t = r.ANIMATION_KEY_WALK.walk, e = Math.round((r.WALK.length - 1) * t);
-                r.sprite.texture = o.ARSENAL_MAIN.getTexture(r.WALK[e])
+            var t = this;
+            this.stopOtherAnimation(), this.sprite.y = 0, this.ANIMATION_BURNER_KEY.x = this.x, this.ANIMATION_BURNER_KEY.progress = 0;
+            var e = createjs.Tween.get(this.ANIMATION_BURNER_KEY);
+            e.to({ x: 750 }, 1e3).call(function () {
+                createjs.Tween.removeTweens(t.ANIMATION_BURNER_KEY), e.removeAllEventListeners("change"), i.removeAllEventListeners("change"), e.setPaused(!0), i.setPaused(!0), t.x = 750
+            }).addEventListener("change", function () {
+                t.x = t.ANIMATION_BURNER_KEY.x
             });
-            var a = createjs.Tween.get(this.ANIMATION_KEY_WALK);
-            a.to({ x: e, progress: 1 }, i).call(function () {
-                createjs.Tween.removeTweens(r.ANIMATION_KEY_WALK), a.removeAllEventListeners("change"), s.removeAllEventListeners("change"), a.setPaused(!0), s.setPaused(!0), r.x = e, n()
-            }).addEventListener("change", function () {
-                var t = r.ANIMATION_KEY_WALK.progress, e = Math.round((r.WALK.length - 1) * t);
-                r.x = r.ANIMATION_KEY_WALK.x, r.sprite.texture = o.ARSENAL_MAIN.getTexture(r.WALK[e])
+            var i = createjs.Tween.get(this.ANIMATION_BURNER_KEY, { loop: !0 });
+            i.to({ progress: 0 }).to({ progress: 1 }, 250).to({ progress: 0 }, 250).addEventListener("change", function () {
+                var e = t.ANIMATION_BURNER_KEY.progress, i = Math.round((t.WALK.length - 1) * e), n = t.WALK[i];
+                t.sprite.texture = r.ARSENAL_MAIN.getTexture(n)
             })
-        }, e.prototype.__AnimationTurn__ = function (t, e, i) {
-            var n = this;
-            this.ANIMATION_KEY_TURN.direction = this.sprite.scale.x, createjs.Tween.removeTweens(this.ANIMATION_KEY_TURN);
-            var o = createjs.Tween.get(this.ANIMATION_KEY_TURN);
-            o.to({ direction: t }, e).call(function () {
-                createjs.Tween.removeTweens(n.ANIMATION_KEY_TURN), o.removeAllEventListeners("change"), o.setPaused(!0), n.sprite.scale.x = t, i()
-            }).addEventListener("change", function () {
-                n.sprite.scale.x = n.ANIMATION_KEY_TURN.direction
-            })
-        }, e.prototype.__AnimationComplete__ = function () {
-            var t = this;
-            createjs.Tween.get(this.ANIMATION_KEY_COMPLETE, { loop: !0 }).wait(1e3).addEventListener("change", function () {
-                var e = t.syncAnimationKey.getNumber(r.SYNC_KEY_JUMP);
-                t.sprite.y = -15 * e, t.sprite.texture = .2 < e ? o.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : o.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
-            })
-        }, e.prototype.__AnimationBuilding__ = function () {
-            var t = this;
-            createjs.Tween.get(this.ANIMATION_KEY_BUILDING, { loop: !0 }).call(function () {
-                t.sparkParticle.updateStarPosition(), t.sparkParticle.updateAlpha(0), t.sprite.texture = o.ARSENAL_MAIN.getTexture(t.BUILD[1])
-            }).wait(500).call(function () {
-                t.sprite.texture = o.ARSENAL_MAIN.getTexture(t.BUILD[0]);
-                createjs.Tween.get(t.ANIMATION_KEY_BUILDING).to({ progress: 0 }).to({ progress: 1 }, 300).addEventListener("change", function () {
-                    var e = t.ANIMATION_KEY_BUILDING.progress;
-                    t.sparkParticle.updateAnimation(e), t.sparkParticle.updateAlpha(1 - e)
-                })
-            }).wait(500)
-        }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this.ANIMATION_KEY_WALK), createjs.Tween.removeTweens(this.ANIMATION_KEY_TURN), createjs.Tween.removeTweens(this.ANIMATION_KEY_COMPLETE), createjs.Tween.removeTweens(this.ANIMATION_KEY_BUILDING), this.sparkParticle.dispose(), this.sparkParticle = null, this.sprite = null, this.syncAnimationKey = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.Hammer = a
+    e.Carry = _
 }

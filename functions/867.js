@@ -15,24 +15,25 @@ const function867 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(868), r = i(3), s = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(45));
-            return e.ship = new o.NormalBuildShip, i.position.set(57, 82), e.ship.position.set(69, 15), e.addChild(i, e.ship), e
+    var o = i(3), r = i(3), s = i(1), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i.clickable = !1, i.hasKey = !1, i._onMouseOver = function (t) {
+                i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.hasKey ? i.confirm_dock_key_sprite.visible = !0 : i.alert_dock_key_sprite.visible = !0
+            }, i._onClick = function () {
+                i.hasKey || o.SE.play("248"), i.onClick()
+            }, i._onMouseOut = function (t) {
+                i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1
+            }, i.steelFrame_noDock_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(147)), i.alert_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(71)), i.confirm_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(72)), i.alert_dock_key_sprite.position.set(255, -15), i.confirm_dock_key_sprite.position.set(255, -15), i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.steelFrame_noDock_sprite.interactive = i.steelFrame_noDock_sprite.buttonMode = !0, i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOVER, i._onMouseOver), i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOUT, i._onMouseOut), i.steelFrame_noDock_sprite.on(s.EventType.CLICK, i._onClick), i.addChild(i.steelFrame_noDock_sprite), e.addChild(i.alert_dock_key_sprite, i.confirm_dock_key_sprite), i.overlayer = e, i
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (t <= 0) this.ship.update(0); else {
-                var e = Math.floor(this.phaseMax * t);
-                0 == e && (e = 1), this.ship.update(e)
-            }
-        }, e.prototype.updatePhaseMax = function (t) {
-            this.phaseMax = t
-        }, e.prototype.forceComplete = function () {
-            this.ship.update(this.phaseMax)
+        return n(e, t), e.prototype.update = function (t, e) {
+            this.steelFrame_noDock_sprite.interactive = !1, t && (this.steelFrame_noDock_sprite.interactive = !0), this.clickable = t, this.hasKey = e
+        }, e.prototype.hidePop = function () {
+            this.alert_dock_key_sprite.visible = this.confirm_dock_key_sprite.visible = !1
         }, e.prototype.dispose = function () {
-            this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
+            this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOVER), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOUT), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.CLICK), this.overlayer.removeChildren(), this.onClick = null, this.steelFrame_noDock_sprite = null, this.alert_dock_key_sprite = null, this.confirm_dock_key_sprite = null, this.overlayer = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.NormalBuildStage = s
+    e.NoDockView = a
 }

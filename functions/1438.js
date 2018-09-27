@@ -15,48 +15,48 @@ const function1438 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(229), s = i(6), a = i(177), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._now = 0, e._max = 0, e._animation_gauge = !1, e._ready_for_explode = !1, e._animation_explode = !1, e._exploded = !1, e._playExplosion = function (t, i) {
-                var n = new a.Explosion;
-                n.position.set(e._gauge.x + t, e._gauge.y + i), e.addChild(n), s.SE.play("102"), n.play(function () {
-                    e.removeChild(n)
-                })
-            }, e._onCompleteAnimation = function () {
-                e._animation_gauge = !1, 1 == e._ready_for_explode && (e._ready_for_explode = !1, e.explode())
-            }, e
+    var o = i(12), r = i(431), s = i(1439), a = i(1440), _ = i(15), u = i(1441), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._touch_plane = new u.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._touch_plane), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "now", {
+        return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
             get: function () {
-                return this._now
+                return this._touch_plane
             }, enumerable: !0, configurable: !0
-        }), e.prototype.hasGauge = function () {
-            return null != this._gauge
-        }, e.prototype.isExploded = function () {
-            return this._exploded
-        }, e.prototype.isAnimation = function () {
-            return this._animation_gauge || this._animation_explode
+        }), e.prototype.initialize = function () {
+            this._wave1.texture = _.BATTLE_MAIN.getTexture(88), this._wave2.texture = _.BATTLE_MAIN.getTexture(88), this._bg.texture = _.BATTLE_MAIN.getTexture(87)
         }, e.prototype.show = function (t, e, i, n) {
-            var s = this;
-            this._now = e, this._max = i, this._gauge = new r.GaugeHorizontal, this._gauge.initialize(t), this._gauge.x = o.default.width - this._gauge.width, this._gauge.y = -15, this._gauge.alpha = 0, this.addChild(this._gauge), createjs.Tween.get(this._gauge).to({
-                y: 0,
-                alpha: 1
-            }, 300).call(function () {
-                s._gauge.update(e, i, function () {
-                }), null != n && n()
-            })
-        }, e.prototype.update = function (t) {
-            0 != this.hasGauge() && (this._animation_gauge = !0, this._now = t, this._gauge.update(t, this._max, this._onCompleteAnimation))
-        }, e.prototype.explode = function () {
+            0 == e ? this._show(t, i) : this._showCombined(t, e, i, n)
+        }, e.prototype.wave = function () {
             var t = this;
-            if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void(this._ready_for_explode = !0) : void(1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
-                createjs.Tween.get(t._gauge).to({ alpha: 0 }, 350).call(function () {
-                    t.removeChild(t._gauge), t._gauge = null, t._animation_explode = !1, t._exploded = !0
-                })
-            }).wait(100).call(this._playExplosion, [309, 24])))
+            null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave1.scale.set(0), t._wave1.alpha = 1
+            }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
+            }))
+        }, e.prototype._show = function (t, e) {
+            var i = this, n = createjs.Tween.get(this._bg);
+            n.to({ scaleX: 1, scaleY: 1 }, 800), e <= 0 || n.call(function () {
+                var n = new r.FormationPoints(i._friend);
+                n.scale.set(.65), n.initialize(t, e), i._points.addChild(n), 1 == i._friend && (n.rotation = Math.PI), n.show()
+            })
+        }, e.prototype._showCombined = function (t, e, i, n) {
+            var o = this, r = createjs.Tween.get(this._bg);
+            r.to({ scaleX: 1, scaleY: 1 }, 800), i <= 0 || r.call(function () {
+                var r = new s.FormationPointsCombinedMain(o._friend);
+                r.initialize(t, i, e), o._points.addChild(r);
+                var _ = new a.FormationPointsCombinedSub(o._friend);
+                _.initialize(t, n), o._points.addChild(_), 0 == o._friend && (r.rotation = Math.PI, _.rotation = Math.PI), r.show(), _.show()
+            })
         }, e
     }(PIXI.Container);
-    e.LayerGauge = _
+    e.Rader = l
 }

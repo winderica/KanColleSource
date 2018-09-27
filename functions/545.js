@@ -15,27 +15,15 @@ const function545 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(546), r = i(547), s = function (t) {
+    var o = i(0), r = i(10), s = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._url = "api_req_member/get_incentive", e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._view1 = new o.TitleView1, this._view1.initialize(), this.addChild(this._view1)
-        }, e.prototype.dispose = function () {
-            this._view2.dispose()
-        }, e.prototype.setProgress = function (t) {
-            this._view1.setProgress(t)
-        }, e.prototype.showSecondPageTween = function (t) {
-            var e = this;
-            this._view2 = new r.TitleView2, this._view2.initialize(), this.addChildAt(this._view2, 0), this._view1.hideTween(function () {
-                e.removeChild(e._view1), e._view1.dispose(), e._view1 = null, e._view2.showTween(function () {
-                    t()
-                })
-            })
-        }, e.prototype.waitClickTween = function (t) {
-            this._view2.waitClickTween(t)
+        return n(e, t), e.prototype._completedEnd = function () {
+            o.default.model.incentive.setData(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.TitleViewMain = s
+    }(r.APIBase);
+    e.GetIncentiveAPI = s
 }

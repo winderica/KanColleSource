@@ -1,9 +1,32 @@
 const function39 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(2), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._time = 0, i._time = e, i
+        }
 
-    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1071)), n(i(384)), n(i(386)), n(i(385)), n(i(388)), n(i(387)), n(i(1073)), n(i(1074)), n(i(389)), n(i(390)), n(i(391)), n(i(383)), n(i(1075)), n(i(1076)), n(i(1077)), n(i(1078)), n(i(1079)), n(i(1081)), n(i(1082)), n(i(1083)), n(i(1084)), n(i(1085))
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            createjs.Tween.get(null).wait(this._time).call(function () {
+                t._endTask()
+            })
+        }, e
+    }(o.TaskBase);
+    e.WaitTask = r
 }

@@ -15,38 +15,24 @@ const function1491 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(1492), s = i(1495), a = i(1497), _ = function (t) {
+    var o = i(5), r = i(4), s = i(36), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
+            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e.addChild(e._bg), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
-            get: function () {
-                return this._banners_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_f", {
-            get: function () {
-                return this._info_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "banners_e", {
-            get: function () {
-                return this._banners_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_e", {
-            get: function () {
-                return this._info_e
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
-        }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
-            var i = this, n = o.default.width - this._banners_e.x;
-            return [createjs.Tween.get(this._banners_e).wait(e).to({ x: this._banners_e.x + n }, t).call(function () {
-                i._banners_e.dispose()
-            }), createjs.Tween.get(this._info_e).wait(e).to({ x: this._info_e.x + n }, t).call(function () {
-                i._info_e.dispose()
-            })]
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
+            var t = new r.TextBox(18, 16774898);
+            t.text = "FRIEND FLEET AREA", t.position.set(-582, 300), t.rotation = -Math.PI / 2, this._bg.addChild(t);
+            var e = new r.TextBox(18, 16774898);
+            e.text = "ENEMY FLEET AREA", e.position.set(578, -234), e.rotation = Math.PI / 2, this._bg.addChild(e)
+        }, e.prototype.show = function () {
+            var t = this;
+            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
+                t.emit("complete")
+            })
         }, e
     }(PIXI.Container);
-    e.LayerBanner = _
+    e.LayerBG = a
 }

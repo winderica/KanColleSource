@@ -15,60 +15,65 @@ const function1440 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(6), s = i(15), a = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(241), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._friend = e, i._points = [], i
         }
 
-        return n(e, t), e.prototype.showCenter = function (t) {
-            var e = this, i = new _(t), n = o.default.width / 2, s = o.default.height / 2;
-            i.position.set(n, s), i.bg.scale.y = 0, i.text.x += 150, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({ y: 1 }, 300).wait(1150).to({ y: 0 }, 300).call(function () {
-                e.removeChild(i), e.emit("complete")
-            }), createjs.Tween.get(i.text).wait(300).to({
-                x: 90,
-                alpha: 1
-            }, 300).to({ x: -90 }, 350).call(function () {
-                e.emit("showed")
-            }).to({ x: -150, alpha: 0 }, 500)
-        }, e.prototype.showTop = function (t) {
-            var e = this, i = new _(t), n = o.default.width / 2;
-            i.position.set(n, 117), i.bg.scale.y = 0, i.text.x = -n + i.text.width / 2 - 195, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({ y: 1 }, 300).wait(1450).to({ y: 0 }, 300).call(function () {
-                e.removeChild(i), e.emit("complete")
-            }), createjs.Tween.get(i.text).wait(250).to({ alpha: 1 }, 100).to({ x: -n + i.text.width / 2 }, 200).to({ x: -n + i.text.width / 2 + 90 }, 750).call(function () {
-                e.emit("showed")
-            }).to({ x: 10, alpha: 0 }, 350), createjs.Tween.get(i.subText).wait(750).call(function () {
-                i.subText.position.set(0, 110), i.subText.visible = !0
-            }).wait(700).to({ x: -n, alpha: 0 }, 300)
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            if (this._clearPoints(), e <= 0) return !1;
+            var i;
+            switch (t) {
+                case 11:
+                    i = this._get11Points(e);
+                    break;
+                case 12:
+                    i = this._get12Points(e);
+                    break;
+                case 13:
+                    i = this._get13Points(e);
+                    break;
+                case 14:
+                    i = this._get14Points(e)
+            }
+            if (null == i) return !1;
+            for (var n = 0; n < i.length; n++) {
+                var r = new o.FormationPoint, s = i[n];
+                r.position.set(s.x, s.y), r.initializeForCombinedSub(this._friend), r.visible = !1, this.addChild(r), this._points.push(r)
+            }
+            return !0
+        }, e.prototype.show = function (t) {
+            void 0 === t && (t = 100);
+            for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                var o = n[i];
+                !function (i) {
+                    e.wait(t), e.call(function () {
+                        i.visible = !0
+                    })
+                }(o)
+            }
+        }, e.prototype.dispose = function () {
+            this._clearPoints()
+        }, e.prototype._clearPoints = function () {
+            for (var t = 0, e = this._points; t < e.length; t++) {
+                var i = e[t];
+                this.removeChild(i)
+            }
+            this._points = []
+        }, e.prototype._get11Points = function (t) {
+            var e = [];
+            return t > 0 && e.push(new PIXI.Point(38, -12)), t > 1 && e.push(new PIXI.Point(23, -35)), t > 2 && e.push(new PIXI.Point(23, 12)), t > 3 && e.push(new PIXI.Point(8, -57)), t > 4 && e.push(new PIXI.Point(8, 35)), t > 5 && e.push(new PIXI.Point(0, -12)), e
+        }, e.prototype._get12Points = function (t) {
+            var e = [];
+            return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(17, -12)), t > 2 && e.push(new PIXI.Point(36, -38)), t > 3 && e.push(new PIXI.Point(36, 15)), t > 4 && e.push(new PIXI.Point(-3, -21)), t > 5 && e.push(new PIXI.Point(-3, 0)), e
+        }, e.prototype._get13Points = function (t) {
+            var e = [];
+            return t > 0 && e.push(new PIXI.Point(36, -12)), t > 1 && e.push(new PIXI.Point(11, -54)), t > 2 && e.push(new PIXI.Point(11, 33)), t > 3 && e.push(new PIXI.Point(-32, -54)), t > 4 && e.push(new PIXI.Point(-32, 33)), t > 5 && e.push(new PIXI.Point(-57, -12)), e
+        }, e.prototype._get14Points = function (t) {
+            var e = [];
+            return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(26, -38)), t > 2 && e.push(new PIXI.Point(26, 15)), t > 3 && e.push(new PIXI.Point(26, -12)), t > 4 && e.push(new PIXI.Point(9, -21)), t > 5 && e.push(new PIXI.Point(9, 0)), e
         }, e
     }(PIXI.Container);
-    e.LayerInfo = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n, r, a = t.call(this) || this;
-            i = 4 == e || 3 == e ? s.BATTLE_MAIN.getTexture(64) : s.BATTLE_MAIN.getTexture(65), n = a._getTextTextureNo(e), r = 1 == e || 2 == e ? s.BATTLE_MAIN.getTexture(66) : 4 == e || 3 == e ? s.BATTLE_MAIN.getTexture(67) : PIXI.Texture.EMPTY, a._bg = new PIXI.Container;
-            var _ = new PIXI.Sprite(i);
-            return _.width = o.default.width, _.x = -Math.round(_.width / 2), _.y = -Math.round(_.height / 2), a._bg.addChild(_), a._text = new PIXI.Sprite(n), a._text.anchor.set(.5), a._subText = new PIXI.Sprite(r), a._subText.anchor.set(.5), a._subText.visible = !1, a.addChild(a._bg), a.addChild(a._text), a.addChild(a._subText), a
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "subText", {
-            get: function () {
-                return this._subText
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._getTextTextureNo = function (t) {
-            var e = -1;
-            if (0 == t) e = 70; else if (1 == t) e = 78; else if (2 == t) e = 79; else if (4 == t) e = 81; else if (3 == t) e = 80; else if (5 == t) e = 68; else {
-                if (6 != t) return PIXI.Texture.EMPTY;
-                e = 69
-            }
-            return s.BATTLE_MAIN.getTexture(e)
-        }, e
-    }(PIXI.Container)
+    e.FormationPointsCombinedSub = r
 }

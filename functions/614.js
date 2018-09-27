@@ -1,51 +1,59 @@
 const function614 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = i(8), s = i(31), a = i(31), _ = i(300), u = i(201), l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var n = i(0), o = function () {
+        function t() {
+            this._melt_into_items = []
         }
 
-        return n(e, t), e.prototype._initBG = function () {
-            var t = this;
-            this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
-                t._animation()
-            })
-        }, e.prototype._createItemTobe = function (t, e) {
-            var i = o.COMMON_MISC.getTexture(49), n = new u.CenteringSprite(i);
-            return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
-        }, e.prototype._change = function () {
-            var e = this;
-            t.prototype._change.call(this);
-            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
-            i.x = -i.width / 2, i.y = -i.height / 2;
-            var n = new a.Container;
-            n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
-                scaleX: 3.3,
-                scaleY: 3.3,
-                alpha: 1
-            }, 350).to({ scaleX: 5, scaleY: 5 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
-                e._layer.removeChild(n)
-            });
-            var s = new r.AreaBox(1, 16777215);
-            s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({ alpha: 1 }, 500).wait(600).to({ alpha: 0 }, 300).call(function () {
-                e._layer.removeChild(s)
-            })
-        }, e
-    }(_.ModelChangeTask);
-    e.AirunitBaseOpenTask = l
+        return Object.defineProperty(t.prototype, "mst_id_from", {
+            get: function () {
+                return this._mst_id_from
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "mst_id_tobe", {
+            get: function () {
+                return this._mst_id_tobe
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "rarity_tobe", {
+            get: function () {
+                if (1 == this.isUseitemTo()) return 0;
+                var t = n.default.model.slot.getMst(this._mst_id_tobe);
+                return null == t ? 0 : t.rarity
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "message1", {
+            get: function () {
+                return this._message1
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "message2", {
+            get: function () {
+                return this._message2.replace(/<br>/, "\n")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "melt_into_items", {
+            get: function () {
+                return this._melt_into_items
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isUseitemFrom = function () {
+            return 6 == this._type_from
+        }, t.prototype.isUseitemTo = function () {
+            return 6 == this._type_tobe
+        }, t.prototype.isNeedUpdateUserBasic = function () {
+            if (0 == this.isNeedUpdateUseitem()) return !1;
+            if (1 == this.isUseitemFrom() && 44 == this._mst_id_from) return !0;
+            if (1 == this.isUseitemTo() && 44 == this._mst_id_tobe) return !0;
+            for (var t = 0, e = this.melt_into_items; t < e.length; t++) for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                var r = o[n];
+                if (6 == r.type && 44 == r.id) return !0
+            }
+            return !1
+        }, t.prototype.isNeedUpdateUseitem = function () {
+            if (1 == this.isUseitemFrom()) return !0;
+            if (1 == this.isUseitemTo()) return !0;
+            for (var t = 0, e = this.melt_into_items; t < e.length; t++) for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                var r = o[n];
+                if (6 == r.type) return !0
+            }
+            return !1
+        }, t
+    }();
+    e.ModelChangeModel = o
 }

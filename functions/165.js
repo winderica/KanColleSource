@@ -198,6 +198,18 @@ const function165 = function (t, e, i) {
                 }
             }
             return 0
+        }, t.prototype.selectRepairItem = function (t) {
+            var e;
+            if (1 == t) e = 42; else {
+                if (2 != t) return;
+                e = 43
+            }
+            if (null != this._slot_ex && this._slot_ex.mst_id == e) return this._slot_ex = null, void this._repair(t);
+            var i = this._slots;
+            if (null != i) for (var n = 0; n < i.length; n++) {
+                var o = i[n];
+                if (null != o && o.mst_id == e) return this._slots.splice(n, 1), this._slots.push(null), void this._repair(t)
+            }
         }, t.prototype.clone = function () {
             var e = new t(this._type, this._practice, this._index, this.mst_id, this.mem_id, this.level, this._speed);
             e.initializeHPInfo(this._hp_now, this._hp_max);

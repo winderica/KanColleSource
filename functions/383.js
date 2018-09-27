@@ -15,7 +15,7 @@ const function383 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(4), a = i(3), _ = i(39), u = i(39), l = i(39), c = i(39), h = i(39),
+    var o = i(0), r = i(1), s = i(4), a = i(3), _ = i(42), u = i(42), l = i(42), c = i(42), h = i(42),
         p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -25,11 +25,11 @@ const function383 = function (t, e, i) {
             }
 
             return n(e, t), e.prototype.initialize = function (t, e) {
-                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(85);
+                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(88);
                 var i = t.no, n = t.mst_ids[0];
                 this._title.initialize(i, n), this._message.text = t.message.replace(/<br>/g, "\n").replace(/\u2019/g, "'"), this._statusBox.initialize(t);
                 var o = t.sType;
-                this._stype.update(n, o), this._rader.update(null), this._content.initialize(t, e), this._close_btn.texture = a.ALBUM_MAIN.getTexture(16)
+                this._stype.update(n, o), this._rader.update(null), this._content.initialize(t, e), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
             }, e.prototype.preactivate = function () {
                 this._content.preactivate()
             }, e.prototype.activate = function () {
@@ -48,7 +48,7 @@ const function383 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function (t, e) {
-            this.texture = a.ALBUM_MAIN.getTexture(84), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
+            this.texture = a.ALBUM_MAIN.getTexture(87), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
         }, e
     }(PIXI.Sprite)
 }

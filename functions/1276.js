@@ -15,69 +15,55 @@ const function1276 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(2), a = i(6), _ = i(437), u = i(1277), l = function (t) {
+    var o = i(5), r = i(2), s = i(12), a = i(8), _ = i(20), u = i(1277), l = i(1), c = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._selected_no = -1, n._onClick = function (t) {
-                n._selected_no = t;
-                for (var e = n._scene.view.map, i = 0, o = n._cellWaves; i < o.length; i++) {
-                    var r = o[i];
-                    e.spotLayer.removeChild(r), r.dispose()
-                }
-                n._balloon.close(function () {
-                    n._scene.view.map.ship_icon.removeChild(n._balloon), createjs.Tween.get(null).wait(1e3).call(function () {
-                        n._endTask()
-                    })
-                })
-            }, n._scene = e, n._model = i, n
+            return n._shutter = e, n._item_ids = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "selected_no", {
-            get: function () {
-                return this._selected_no
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._scene.view.message_box.text = "\u8266\u968a\u306e\u91dd\u8def\u3092\u9078\u629e\u3067\u304d\u307e\u3059\u3002\n\u63d0\u7763\u3001\u3069\u3061\u3089\u306e\u91dd\u8def\u3092\u3068\u3089\u308c\u307e\u3059\u304b\uff1f", this._showHukidashi()
-        }, e.prototype._showHukidashi = function () {
-            var t = this, e = this._model.sortie.getNextCell(), i = this._scene.resInfo.getBranchOption(e.no);
-            if (this._balloon = new u.BranchBalloon, null == i) {
-                var n = this._model.sortie.map_id, o = e.no, r = 1;
-                425 == n && 6 == o && (r = 2), this._balloon.initialize(r, 0)
-            } else this._balloon.initialize(i.type, i.beak, i.offset);
-            this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
-                t._showWaves()
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._view = new u.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+            var e = _.MAP_COMMON.getTexture(105);
+            this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({ scaleY: 1 }, 300).call(function () {
+                t._showMessage()
             })
-        }, e.prototype._showWaves = function () {
-            this._cellWaves = [];
-            for (var t = this._model.sortie.getNextCell().getSelectableRoutes(), e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = this._scene.view.map, r = o.spotLayer.getSpot(n), s = new c(r, this._onClick);
-                s.position.set(r.x, r.y), o.spotLayer.addChild(s), this._cellWaves.push(s), s.activate()
-            }
-        }, e.prototype._endTask = function () {
-            this._scene.view.message_box.text = "";
-            var e = this._model.deck_f.ships[0], i = e.mst_id;
-            o.default.sound.voice.play(i.toString(), 26), this._scene = null, this._model = null, this._balloon = null, this._cellWaves = null, t.prototype._endTask.call(this)
+        }, e.prototype._showMessage = function () {
+            var t = this, e = _.MAP_COMMON.getTexture(108);
+            this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                x: o.default.width / 2 + 180,
+                alpha: 1
+            }, 300).to({ x: o.default.width / 2 }, 400).to({
+                x: o.default.width / 2 - 60,
+                alpha: 0
+            }, 400).call(function () {
+                t._shutter.removeChild(t._telopText), t._closeTelop()
+            })
+        }, e.prototype._closeTelop = function () {
+            var t = this;
+            createjs.Tween.get(this._telopBG).to({ scaleY: 0 }, 300).call(function () {
+                t._shutter.removeChild(t._telopBG)
+            }), createjs.Tween.get(this._view).to({ alpha: 1 }, 200).call(function () {
+                t._showContent()
+            })
+        }, e.prototype._showContent = function () {
+            var t = this;
+            this._shutter.close(), this._shutter.once("closed", function () {
+                createjs.Tween.get(t._view.content).to({ alpha: 1 }, 200).call(function () {
+                    t._waitClick()
+                })
+            })
+        }, e.prototype._waitClick = function () {
+            var t = this, e = new a.AreaBox(0);
+            e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(l.EventType.CLICK, function () {
+                t._shutter.removeChild(e), t._hideView()
+            })
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 200).call(function () {
+                t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
+            })
         }, e
-    }(s.TaskBase);
-    e.TaskBranchRoute = l;
-    var c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onMouseOver = function () {
-                n._stopTween(), n._wave.scale.set(1), n._wave.alpha = 1, n._target.showLine(), a.SE.play("242")
-            }, n._onMouseOut = function () {
-                n._startTween(), n._target.hideLine()
-            }, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._target.no)
-            }, n._target = e, n._cb_onClick = i, n.beginFill(16711680, 0), n.drawCircle(0, 0, 38), n.endFill(), n
-        }
-
-        return n(e, t), e.prototype.activate = function () {
-            1 != this._activated && (t.prototype.activate.call(this), this.buttonMode = !0, this.interactive = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            t.prototype.deactivate.call(this), this.buttonMode = !1, this.interactive = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._target = null, this._cb_onClick = null
-        }, e
-    }(_.CellWave)
+    }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

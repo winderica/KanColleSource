@@ -15,41 +15,84 @@ const function795 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(210), r = i(126), s = function (t) {
+    var o = i(0), r = i(86), s = i(3), a = i(33), _ = i(218), u = i(4), l = i(131), c = i(1), h = function (t) {
         function e() {
-            var e = this, i = r.REMODEL_POWERUP.getTexture(13);
-            e = t.call(this, i) || this;
-            var n = r.REMODEL_POWERUP.getTexture(22);
-            return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
+            var e = t.call(this) || this;
+            e._onClickEmpty = function (t) {
+                e.onClickEmpty(t)
+            }, e._onClickSlotIn = function (t) {
+                e.onClickSlotIn(t)
+            };
+            var i = new PIXI.Sprite(s.REMODEL_POWERUP.getTexture(15));
+            e.addChild(i);
+            for (var n = new Array, o = 0; o < 5; o++) {
+                var r = new p(o);
+                r.onClick = e._onClickEmpty, r.visible = !1, n.push(r), n[o].position.set(23, 26 + 90 * o), e.addChild(r)
+            }
+            for (var a = new Array, o = 0; o < 5; o++) {
+                var _ = new d(o);
+                _.onClick = e._onClickSlotIn, _.visible = !1, _.position.set(23, 26 + 90 * o), a.push(_), e.addChild(_)
+            }
+            return e.emptySlots = n, e.shipInSlots = a, e
         }
 
-        return n(e, t), e.prototype.clear = function () {
-            this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
-        }, e.prototype.updateKaryoku = function (t, e) {
-            var i = 5523516;
-            t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
-        }, e.prototype.updateRaisou = function (t, e) {
-            var i = 5523516;
-            t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
-        }, e.prototype.updateSoukou = function (t, e) {
-            var i = 5523516;
-            t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
-        }, e.prototype.updateTaiku = function (t, e) {
-            var i = 5523516;
-            t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
-        }, e.prototype.updateLucky = function (t, e, i) {
-            this._textLucky.visible = !1, this._luckyArrow.visible = !1;
-            var n = 5523516, o = "", r = t != e;
-            i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
-        }, e.prototype.updateTaikyu = function (t, e) {
-            this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
-        }, e.prototype.updateTaisen = function (t, e) {
-            this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
-        }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
-            this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
-        }, e.prototype._alignment = function () {
-            this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
+        return n(e, t), e.prototype.update = function (t) {
+            for (var e = 0; e < 5; e++) {
+                var i = this.shipInSlots[e], n = this.emptySlots[e];
+                if (i.visible = !1, n.visible = !1, e < t.length) {
+                    var s = t[e], a = o.default.model.ship.getMst(s.mstID), _ = r.RemodelUtil.genPowUpCategories(a);
+                    this.shipInSlots[e].update(s, _[0], _[1], _[2], _[3]), this.shipInSlots[e].visible = !0
+                } else this.emptySlots[e].visible = !0, this.emptySlots[e].update(!1), t.length == e && this.emptySlots[e].update(!0)
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0; t < this.emptySlots.length; t++) this.emptySlots[t].dispose(), this.emptySlots[t] = null;
+            for (var t = 0; t < this.shipInSlots.length; t++) this.shipInSlots[t].dispose(), this.shipInSlots[t] = null;
+            this.onClickEmpty = this._onClickEmpty = null, this.onClickSlotIn = this._onClickSlotIn = null, this.emptySlots = null, this.shipInSlots = null, this.removeChildren()
         }, e
-    }(o.ShipParameterViewBase);
-    e.ShipParameterChecker = s
+    }(PIXI.Container);
+    e.TargetShipBox = h;
+    var p = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onClick = function () {
+                i.onClick(i.index)
+            };
+            var n = new PIXI.Sprite(s.REMODEL_POWERUP.getTexture(5));
+            return n.addListener(c.EventType.CLICK, i._onClick), n.position.set(-6, -6), n.visible = !1, n.interactive = n.buttonMode = !0, i.addChild(n), i.btnCardSelect = n, i.index = e, i
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            this._updateClickable_(t)
+        }, e.prototype._updateClickable_ = function (t) {
+            this.btnCardSelect.visible = !1, t && (this.btnCardSelect.visible = !0)
+        }, e.prototype.dispose = function () {
+            this.btnCardSelect.texture = PIXI.Texture.EMPTY, this.btnCardSelect.removeAllListeners(c.EventType.CLICK), this.onClick = this._onClick = null, this.btnCardSelect = null, this.index = null, this.removeChildren()
+        }, e
+    }(PIXI.Container), d = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onClick = function () {
+                i.onClick(i.index, i.memId)
+            }, i._onMouseOver = function () {
+                i.btnCardLeave.visible = !0
+            }, i._onMouseOut = function () {
+                i.btnCardLeave.visible = !1
+            };
+            var n = new Array, r = new PIXI.Sprite(s.REMODEL_POWERUP.getTexture(4)), l = new a.ShipBanner,
+                h = new PIXI.Graphics, p = new PIXI.Container, d = new _.IconCategory, f = new _.IconCategory,
+                y = new _.IconCategory, v = new _.IconCategory, g = new u.TextBox(21, 16777215),
+                m = new u.TextBox(23, 16777215), b = new PIXI.Sprite(o.default.resources.getUIImage("mask"));
+            h.beginFill(0, 0), h.drawRect(0, 0, 240, 60), h.endFill(), h.renderable = !1, h.interactive = h.buttonMode = !0;
+            var w = new PIXI.Container;
+            return w.mask = b, w.addChild(g, b), b.scale.x = -1, b.anchor.x = 1, m.anchor.x = 1, w.position.set(248, -6), m.position.set(443, -2), p.position.set(254, 27), d.x = 0, f.x = 48, y.x = 96, v.x = 144, r.position.set(-6, -6), h.addListener(c.EventType.MOUSEOVER, i._onMouseOver), h.addListener(c.EventType.MOUSEOUT, i._onMouseOut), h.addListener(c.EventType.CLICK, i._onClick), p.addChild(d, f, y, v), n.push(d, f, y, v), r.visible = !1, i.addChild(p, w, m, l, r, h), i.iconCategories = n, i.shipBanner = l, i.btnCardLeave = r, i.index = e, i.textLevel = m, i.textName = g, i.clickArea = h, i.iconCategoriesContainer = p, i.containerName = w, i
+        }
+
+        return n(e, t), e.prototype.update = function (t, e, i, n, o) {
+            this.memId = t.memID, this.shipBanner.update(t, !1), this.iconCategories[0].visible = !1, e != l.PowerUpCategory.EMPTY && (this.iconCategories[0].visible = !0, this.iconCategories[0].update(e)), this.iconCategories[1].visible = !1, i != l.PowerUpCategory.EMPTY && (this.iconCategories[1].visible = !0, this.iconCategories[1].update(i)), this.iconCategories[2].visible = !1, n != l.PowerUpCategory.EMPTY && (this.iconCategories[2].visible = !0, this.iconCategories[2].update(n)), this.iconCategories[3].visible = !1, o != l.PowerUpCategory.EMPTY && (this.iconCategories[3].visible = !0, this.iconCategories[3].update(o)), this.btnCardLeave.visible = !1, this.textLevel.text = "Lv." + t.level, this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.containerName.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.containerName.mask = null, this.containerName.removeChildren(), this.shipBanner.dispose();
+            for (var t = 0; t < this.iconCategories.length; t++) this.iconCategoriesContainer.removeChild(this.iconCategories[t]), this.iconCategories[t].dispose(), this.iconCategories[t] = null;
+            this.textName.text = "", this.textLevel.text = "", this.clickArea.removeAllListeners(c.EventType.MOUSEOVER), this.clickArea.removeAllListeners(c.EventType.MOUSEOUT), this.clickArea.removeAllListeners(c.EventType.CLICK), this.clickArea.clear(), this.btnCardLeave.texture = PIXI.Texture.EMPTY, this.onClick = null, this.clickArea = null, this.btnCardLeave = null, this.shipBanner = null, this.iconCategories = null, this.iconCategoriesContainer = null, this.textName = null, this.textLevel = null, this.index = null, this.containerName = null, this.removeChildren()
+        }, e
+    }(PIXI.Container)
 }

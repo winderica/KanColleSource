@@ -15,17 +15,14 @@ const function1148 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(3), s = function (t) {
+    var o = i(31), r = i(3), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
-        }, e.prototype.update = function (t) {
-            t = Math.max(t, 0), this._text.text = t.toString()
+        return n(e, t), e.prototype._update = function (t) {
+            0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
         }, e
-    }(PIXI.Sprite);
-    e.CoinBox = s
+    }(o.BtnBase);
+    e.ExchangeBtn = s
 }

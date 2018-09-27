@@ -15,33 +15,39 @@ const function1071 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(200), r = i(154), s = i(1072), a = i(384), _ = i(385), u = i(387), l = function (t) {
-        function e(e, i, n) {
+    var o = i(2), r = i(14), s = i(383), a = function (t) {
+        function e(e, i, n, o) {
             var r = t.call(this) || this;
-            return r._bg = new PIXI.Sprite, r._bg.position.set(147, 60), r.addChild(r._bg), r._pager = new _.PagerContainer(i), r._pager.position.set(195, 14), r.addChild(r._pager), r._content = new s.MainContainer(n), r._content.position.set(129, 68), r.addChild(r._content), r._tab_container = new u.TabBtnContainer(e), r._tab_container.position.set(0, 60), r.addChild(r._tab_container), r._mini_chara = new a.MiniChara, r._mini_chara.position.set(104, 564), r.addChild(r._mini_chara), r._back_btn = new o.BackBtn, r._back_btn.position.set(0, 659), r.addChild(r._back_btn), r
+            return r._onClose = function () {
+                r._panel.deactivate(), r._hideFade()
+            }, r._layer = e, r._model = i, r._option = n, r._mainView = o, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "pager", {
-            get: function () {
-                return this._pager
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "content", {
-            get: function () {
-                return this._content
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "tab_container", {
-            get: function () {
-                return this._tab_container
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._bg.texture = r.ALBUM_MAIN.getTexture(15), this._pager.initialize(), this._tab_container.initialize(), this._pager.update(0, 0), this._content.update(1, 0, null), this._tab_container.update(1, 0), this._mini_chara.initialize(), this._back_btn.initialize(t)
-        }, e.prototype.activate = function () {
-            this._pager.activate(), this._content.activate(), this._tab_container.activate(), this._mini_chara.activate(), this._back_btn.activate()
-        }, e.prototype.deactivate = function () {
-            this._pager.deactivate(), this._content.deactivate(), this._tab_container.deactivate(), this._mini_chara.deactivate(), this._back_btn.deactivate()
-        }, e.prototype.dispose = function () {
-            this._pager.dispose(), this._content.dispose(), this._tab_container.dispose(), this._mini_chara.dispose(), this._back_btn.dispose()
+        return n(e, t), e.prototype._start = function () {
+            this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+        }, e.prototype._loadImages = function () {
+            var t = this, e = this._model.mst_ids, i = new r.ShipLoader;
+            i.add(e[0], !1, "album_status");
+            for (var n = 0, o = e; n < o.length; n++) {
+                var s = o[n], a = i.getSpecificAlbumImageLoadList(s);
+                1 == i.needCard(a) && i.add(s, !1, "card"), 1 == i.needCharaFull(a) && i.add(s, !1, "character_full"), 1 == i.needCharaUp(a) && i.add(s, !1, "character_up"), 1 == this._model.hasTaiha(s) && null == a && (i.add(s, !0, "character_full"), i.add(s, !0, "character_up"))
+            }
+            i.load(function () {
+                t._showPanel()
+            })
+        }, e.prototype._showPanel = function () {
+            var t = this, e = new s.ShipDetailPanel(this._onClose);
+            this._panel = e, e.initialize(this._model, this._option), e.alpha = 0, this._layer.addChild(e), e.preactivate(), createjs.Tween.get(e).to({ alpha: 1 }, 500).call(function () {
+                e.activate(), t._mainView.visible = !1
+            })
+        }, e.prototype._hideFade = function () {
+            var t = this;
+            this._mainView.visible = !0, createjs.Tween.get(this._panel).to({ alpha: 0 }, 300), this._layer.hide(500, function () {
+                t._layer.visible = !1, t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._model = null, this._option = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.MainView = l
+    }(o.TaskBase);
+    e.TaskShowShipDetail = a
 }

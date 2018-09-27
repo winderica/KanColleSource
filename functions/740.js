@@ -1,50 +1,108 @@
 const function740 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var n = i(110), o = i(741), r = i(0), s = i(742), a = i(216), _ = i(3), u = i(329), l = i(109),
+        c = function () {
+            function t(t) {
+                var e = this;
+                this.DECK_MAX = 6, this._isAllSupply = !1, this._onClickShip = function (t, i) {
+                    var n = e.deckSupplyBanners[t];
+                    e.supplyEditor.containts(i) ? (e.supplyEditor.remove(i), _.SE.play("238"), n.checkOff()) : (e.supplyEditor.push(i), _.SE.play("241"), n.checkOn()), e.onUpdateSupplyEdit()
+                }, this._onMouseOverSupplyAll = function () {
+                    e._isAllSupply = !1, e.supplyEditor.clear();
+                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
+                        var o = t.getShipModel(n);
+                        if (o) {
+                            0 == (o.ammoMax <= o.ammoNow && o.fuelMax <= o.fuelNow) && e.supplyEditor.push(o.memID)
+                        }
+                    }
+                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
+                        var s = n + e.shipInDeckOrigin, o = t.getShipModel(s);
+                        if (o && e.supplyEditor.containts(o.memID)) {
+                            e.deckSupplyBanners[n].checkOn()
+                        }
+                    }
+                    _.SE.play("241"), e.onUpdateSupplyEdit()
+                }, this._onMouseOutSupplyAll = function () {
+                    if (1 == e._isAllSupply) return !1;
+                    e.supplyEditor.clear();
+                    for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
+                        var n = i + e.shipInDeckOrigin, o = t.getShipModel(n);
+                        if (o) {
+                            var s = e.deckSupplyBanners[i];
+                            0 == (o.ammoMax <= o.ammoNow && o.fuelMax <= o.fuelNow) && s.checkOff()
+                        }
+                    }
+                    _.SE.play("238"), e.onUpdateSupplyEdit()
+                }, this._onClickSupplyAll = function () {
+                    e.supplyEditor.clear(), e._isAllSupply = !0;
+                    for (var t = r.default.model.deck.get(e.deckId), i = t.getShipList(), n = 0; n < i.length; n++) {
+                        var o = i[n];
+                        if (o) {
+                            0 == (o.ammoMax <= o.ammoNow && o.fuelMax <= o.fuelNow) && e.supplyEditor.push(o.memID)
+                        }
+                    }
+                    for (var n = 0; n < e.deckSupplyBanners.length; n++) {
+                        var s = n + e.shipInDeckOrigin, o = t.getShipModel(s);
+                        if (o && e.supplyEditor.containts(o.memID)) {
+                            e.deckSupplyBanners[n].checkOn()
+                        }
+                    }
+                    var _ = r.default.model.useItem.get(31).count, u = r.default.model.useItem.get(32).count,
+                        l = e.supplyEditor.getMemShipIds(), c = a.SupplyUtil.CalcRequireMaterials(l);
+                    0 < c.ammo && c.ammo <= u ? (e.onUpdateSupplyEdit(), e.onClickSupplyAll()) : 0 < c.fuel && c.fuel <= _ ? (e.onUpdateSupplyEdit(), e.onClickSupplyAll()) : e.supplyAllButton.updateClickable(!1)
+                }, this.shipInDeckOrigin = 0, this._onClickArrowTop = function () {
+                    e.shipInDeckOrigin -= 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
+                }, this._onClickArrowBottom = function () {
+                    e.shipInDeckOrigin += 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
+                }, this.mainView = t, this.supplyAllButton = new o.SupplyAllButton, this.deckSupplyBanners = [];
+                for (var i = 0; i < this.DECK_MAX; i++) {
+                    var n = new s.DeckSupplyBanner(i);
+                    n.position.set(165, 215 + n.ITEM_HEIGHT * i), this.deckSupplyBanners.push(n)
+                }
+                this.arrowTopButton = new l.ArrowTopButton, this.arrowBottomButton = new l.ArrowBottomButton
             }
 
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = i(8), a = i(0), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._canMouseOver = !1, e._onMouseOver = function () {
-                e._canMouseOver = !0, e.onMouseOver(), e._supplyAllOn.alpha = 1, e._clickArea.interactive = e._clickArea.buttonMode = !0
-            }, e._onMouseOut = function () {
-                e.onMouseOut(), e._supplyAllOn.alpha = 0, e._clickArea.interactive = e._clickArea.buttonMode = !1
-            }, e._onClick = function () {
-                e.onClick()
-            }, e._onTouchDown = function () {
-                e._canMouseOver || (e._touchActivate(), e.onMouseOver(), e._supplyAllOn.alpha = 1)
-            }, e._touchActivate = function () {
-                e._guardLayer = new s.AreaBox(0), e._touchArea = new s.AreaBox(0, 0, e._clickArea.width, e._clickArea.height), e._touchArea.hitArea = new PIXI.Rectangle(0, 0, e._clickArea.width, e._clickArea.height);
-                var t = e._clickArea.getGlobalPosition();
-                e._touchArea.position.set(t.x, t.y), e._guardLayer.addChild(e._touchArea), a.default.view.overLayer.addChild(e._guardLayer), e._guardLayer.on(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.on(r.EventType.MOUSEUP, e._onTouchUp)
-            }, e._onTouchMove = function (t) {
-                var i = t.data.getLocalPosition(e._touchArea);
-                1 === e._supplyAllOn.alpha && !1 === e._touchArea.hitArea.contains(i.x, i.y) && (e.onMouseOut(), e._supplyAllOn.alpha = 0)
-            }, e._onTouchUp = function () {
-                1 === e._supplyAllOn.alpha && e.onClick(), e._touchDeactivate()
-            }, e._touchDeactivate = function () {
-                e._guardLayer.off(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.off(r.EventType.MOUSEUP, e._onTouchUp), e._guardLayer.removeChildren(), e._touchArea = null, a.default.view.overLayer.removeChild(e._guardLayer), e._guardLayer = null
-            }, e._supplyAllOff = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(23)), e._supplyAllOn = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(24)), e._clickArea = new PIXI.Graphics, e._clickArea.beginFill(0, 0), e._clickArea.drawRect(0, 0, 62, 62), e._clickArea.endFill(), e._supplyAllOn.position.set(-26, -26), e._clickArea.position.set(-15, -15), e.addChild(e._supplyAllOff, e._supplyAllOn, e._clickArea), e._supplyAllOff.on(r.EventType.MOUSEOVER, e._onMouseOver), e._supplyAllOff.on(r.EventType.MOUSEDOWN, e._onTouchDown), e._clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e._clickArea.on(r.EventType.CLICK, e._onClick), e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
-        }, e.prototype.updateClickable = function (t) {
-            this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
-        }, e
-    }(PIXI.Container);
-    e.SupplyAllButton = _
+            return t.prototype.getSupplyEdit = function () {
+                return this.supplyEditor
+            }, t.prototype.updateDeck = function (t) {
+                this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit()
+            }, t.prototype.changeDeck = function (t) {
+                this.shipInDeckOrigin = 0, this.deckId = t, this.supplyEditor.clear(), this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit()
+            }, t.prototype.start = function (t) {
+                this.supplyAllButton.position.set(162, 164), this.mainView.addChild(this.supplyAllButton);
+                for (var e = 0; e < this.deckSupplyBanners.length; e++) {
+                    var i = this.deckSupplyBanners[e];
+                    i.onClick = this._onClickShip, this.mainView.addChild(i)
+                }
+                this.arrowTopButton.position.set(533, 173), this.arrowBottomButton.position.set(533, 650), this.mainView.addChild(this.arrowTopButton, this.arrowBottomButton), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll, this.supplyAllButton.onClick = this._onClickSupplyAll, this.arrowTopButton.onClick = this._onClickArrowTop, this.arrowBottomButton.onClick = this._onClickArrowBottom, this.supplyEditor = new u.SupplyEditor, this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit()
+            }, t.prototype._updateDeck_ = function (t, e) {
+                for (var i = r.default.model.deck.get(t), o = null != i.expedition, s = 0; s < this.deckSupplyBanners.length; s++) {
+                    var _ = e + s, u = this.deckSupplyBanners[s];
+                    n.TaskLoadShipResource.abortBy(u);
+                    var l = i.getShipModel(_);
+                    if (l) {
+                        var c = a.SupplyUtil.CheckRequireSupplyShip(l.memID);
+                        u.checkDisable();
+                        var h = c && 0 == o;
+                        if (h) {
+                            u.checkOff();
+                            this.supplyEditor.containts(l.memID) && u.checkOn()
+                        }
+                        u.update(_, l, o, h)
+                    } else u.empty()
+                }
+                if (this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 < e && (this.arrowTopButton.visible = !0), e + this.deckSupplyBanners.length < i.getCount() && (this.arrowBottomButton.visible = !0), i.expedition) this.supplyAllButton.updateClickable(!1); else {
+                    var c = a.SupplyUtil.CheckRequireSupplyDeck(t);
+                    this.supplyAllButton.updateClickable(c)
+                }
+                this.deckId = t
+            }, t.prototype.dispose = function () {
+                var t = this;
+                this.mainView.removeChildren(), this.deckSupplyBanners.forEach(function (e) {
+                    n.TaskLoadShipResource.abortBy(e), e.dispose(), e.onClick = t._onClickShip = null, e = null
+                }), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll = null, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll = null, this.supplyAllButton.onClick = this._onClickSupplyAll = null, this.supplyAllButton.dispose(), this.supplyAllButton = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.onUpdateSupplyEdit = null, this.onClickSupplyAll = null, this.mainView = null, this.deckSupplyBanners = null, this.deckId = null, this.supplyEditor = null
+            }, t
+        }();
+    e.TaskEditSupplyDeck = c
 }

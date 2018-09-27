@@ -1,61 +1,42 @@
 const function835 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(0), s = i(4), a = i(32), _ = i(23), u = i(1), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClickNO = function () {
-                e.onClickNO()
-            }, e._onClickYES = function () {
-                e.onClickYES()
-            };
-            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(63)),
-                n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(27)),
-                _ = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(26)), l = new s.TextBox(21, 1949120),
-                c = new s.TextBox(21, 1949120), h = new s.TextBox(21, 1949120), p = new s.TextBox(21, 1949120),
-                d = new s.TextBox(21, 1949120), f = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(9)),
-                y = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(5)), v = new a.ShipBanner,
-                g = (new s.TextBox(21, 16777215), new s.TextBox(21, 16777215)), m = new s.TextBox(21, 16777215),
-                b = new s.TextBox(21, 16777215), w = new s.TextBox(21, 16777215), x = new PIXI.Container,
-                I = new s.TextBox(21, 16777215), T = new PIXI.Sprite(r.default.resources.getUIImage("mask"));
-            T.scale.set(-2.8, 3.5), T.anchor.x = 1, x.mask = T, x.addChild(I, T), l.text = "-\u8266\u8239\u3000\u5165\u6e20-", l.position.set(Math.floor(i.width / 2) + .5, -39), l.anchor.set(.5, 0), c.text = "\u4fee\u5fa9\u3059\u308b\u8266\u8239", x.position.set(576, 147), c.position.set(310, 147), v.position.set(580, 180), h.text = "\u4f7f\u7528\u3059\u308b\u8cc7\u6750", h.position.set(310, 258), n.position.set(576, 261), _.position.set(576, 295), m.position.set(609, 262), b.position.set(609, 301), p.text = "\u6240\u8981\u6642\u9593", p.position.set(310, 345), g.position.set(579, 349), d.text = "\u9ad8\u901f\u4fee\u5fa9", d.position.set(310, 408), w.position.set(579, 408), e._useRepairKitTime = new PIXI.Container, e._useRepairKitTime.position.set(685, 349), e._useRepairKitTime.visible = !1;
-            var O = new s.TextBox(21, 16777215);
-            O.text = "\u2192", O.position.set(0, 0), e._useRepairKitTime.addChild(O);
-            var P = new s.TextBox(21, 16777215);
-            P.text = "00:00:00", P.position.set(32, 0), e._useRepairKitTime.addChild(P), e._useRepairKitCount = new PIXI.Container, e._useRepairKitCount.position.set(577, 450), e._useRepairKitCount.visible = !1;
-            var C = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(28));
-            C.position.set(0, 0), e._useRepairKitCount.addChild(C);
-            var k = new s.TextBox(21, 16777215);
-            k.name = "before", k.text = "9999", k.anchor.x = 1, k.position.set(106, 7), e._useRepairKitCount.addChild(k);
-            var M = new s.TextBox(21, 16777215);
-            M.text = "\u2192", M.position.set(116, 7), e._useRepairKitCount.addChild(M);
-            var S = new s.TextBox(21, 16777215);
-            return S.name = "after", S.text = "9999", S.position.set(146, 7), e._useRepairKitCount.addChild(S), y.position.set(297, 516), f.position.set(580, 516), y.addListener(u.EventType.CLICK, e._onClickNO), f.addListener(u.EventType.CLICK, e._onClickYES), y.interactive = y.buttonMode = !0, f.interactive = f.buttonMode = !0, e.addChild(i, l, c, h, p, d, x, m, b, g, e._useRepairKitTime, w, y, f, n, _, v, e._useRepairKitCount), e.textName = I, e.textSteelCount = m, e.textFuelCount = b, e.textUseOption = w, e.textRequireTime = g, e.buttonYes = f, e.buttonNo = y, e.shipBanner = v, e.containerName = x, e
+    var n = i(5), o = i(0), r = i(110), s = i(1), a = function () {
+        function t(t, e, i) {
+            var n = this;
+            this._useHiSpeed = !1, this._onClick = function () {
+                n._useHiSpeed = 1 == n.repairShipConfigView.state, n.onComplete(!0)
+            }, this._onClickBack = function () {
+                n.onComplete(!1)
+            }, i.alpha = 0, i.interactive = !0, i.addListener(s.EventType.CLICK, this._onClickBack), e.position.set(1200, 140), t.addChild(i, e), e.onClick = this._onClick, this.repairShipConfigView = e, this.background = i, this.mainView = t
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
-            if (this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.textSteelCount.text = "\xd7" + t.getRepairSteel().toString(), this.textFuelCount.text = "\xd7" + t.getRepairFuel().toString(), this.textUseOption.text = e ? "\u4f7f\u7528\u3059\u308b" : "\u4f7f\u7528\u3057\u306a\u3044", this.textRequireTime.text = _.MathUtil.timeToString(t.getRepairTime()), this.shipBanner.update(t, !1), this.containerName.cacheAsBitmap = !0, this._useRepairKitTime.visible = e, this._useRepairKitCount.visible = e, e) {
-                var i = r.default.model.useItem.get(1).count;
-                this._useRepairKitCount.getChildByName("before").text = i.toString(10);
-                this._useRepairKitCount.getChildByName("after").text = (i - 1).toString(10)
-            }
-        }, e.prototype.dispose = function () {
-            this.containerName.mask = null, this.containerName.removeChildren(), this.shipBanner.dispose(), this.buttonNo.removeAllListeners(u.EventType.CLICK), this.buttonYes.removeAllListeners(u.EventType.CLICK), this.onClickYES = null, this.onClickNO = null, this.textName = null, this.textSteelCount = null, this.textFuelCount = null, this.textUseOption = null, this.textRequireTime = null, this.buttonYes = null, this.buttonNo = null, this.shipBanner = null, this.containerName = null, this._useRepairKitTime.removeChildren(), this._useRepairKitTime = null, this._useRepairKitCount.removeChildren(), this._useRepairKitCount = null, this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.UseRepairConfirmView = l
+        return Object.defineProperty(t.prototype, "useHiSpeed", {
+            get: function () {
+                return this._useHiSpeed
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.start = function (t) {
+            var e = this;
+            o.default.view.clickGuard = !0;
+            var i = !1, n = o.default.model.ship.get(t), r = o.default.model.useItem.get(33).count,
+                s = o.default.model.useItem.get(31).count, a = n.getRepairSteel() <= r, _ = n.getRepairFuel() <= s,
+                u = o.default.model.deck.isInDeck(t), l = o.default.model.useItem.get(1), c = 0 < l.count,
+                h = o.default.model.ndock.getShipMemIDs(), p = -1 < h.indexOf(t);
+            null != u && (i = null != o.default.model.deck.get(u[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
+            var d = createjs.Tween.get(this.repairShipConfigView);
+            createjs.Tween.get(this.background).to({ alpha: 1 }, 150).play(null), d.to({ x: 855 }, 150).call(function () {
+                createjs.Tween.removeTweens(e.repairShipConfigView), createjs.Tween.removeTweens(e.background), e.repairShipConfigView.x = 855, e.background.alpha = 1, e.background.width = 887, o.default.view.clickGuard = !1
+            }).play(null)
+        }, t.prototype.hide = function (t) {
+            var e = this;
+            r.TaskLoadShipResource.abortBy(this.repairShipConfigView);
+            var i = createjs.Tween.get(this.repairShipConfigView), o = createjs.Tween.get(this.background);
+            this.background.width = n.default.width, o.to({ alpha: 0 }, 150).play(null), i.to({ x: 1200 }, 150).call(function () {
+                createjs.Tween.removeTweens(e.repairShipConfigView), createjs.Tween.removeTweens(e.background), e.repairShipConfigView.x = 1200, e.background.alpha = 0, t()
+            }).play(null)
+        }, t.prototype.dispose = function () {
+            this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipConfigView), this.background.removeAllListeners(s.EventType.CLICK), this.background = null, this.repairShipConfigView = null
+        }, t
+    }();
+    e.PhaseRepairShipConfig = a
 }

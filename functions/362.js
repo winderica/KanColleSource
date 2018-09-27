@@ -15,7 +15,7 @@ const function362 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(326), a = i(8), _ = i(972), u = function (t) {
+    var o = i(0), r = i(2), s = i(326), a = i(8), _ = i(973), u = function (t) {
         function e(e, i, n) {
             var r = t.call(this) || this;
             r._ships = e, r._rader = i, r._onUpdate = n, r._fuel = 0, r._ammo = 0;

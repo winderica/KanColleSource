@@ -15,18 +15,26 @@ const function824 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(52), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_kaisou/open_exslot", i.api_id = e, i
+    var o = i(4), r = i(3), s = i(1), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClickYes = function () {
+                e.onClickYes()
+            }, e._onClickNo = function () {
+                e.onClickNo()
+            };
+            var i = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(49)),
+                n = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(13)),
+                a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), _ = new o.TextBox(25, 5523516),
+                u = new o.TextBox(25, 5523516), l = new o.TextBox(18, 5523516);
+            return l.text = "\u2192", _.anchor.x = 1, _.position.set(395, 119), u.position.set(438, 119), n.position.set(78, 210), a.position.set(351, 210), l.position.set(404, 122), n.interactive = n.buttonMode = !0, a.interactive = a.buttonMode = !0, n.addListener(s.EventType.CLICK, e._onClickYes), a.addListener(s.EventType.CLICK, e._onClickNo), e.addChild(i, n, a, _, l, u), e.beforeCount = _, e.afterCount = u, e.positive = n, e.negative = a, e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = o.default.model.useItem.get(s.RemodelConst.REINFORCEMENT_WORK_ITEMID), i = e.count - 1;
-            e.__setCount__(i), o.default.model.ship.get(this.api_id).__updateExtraSlot__(-1), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.dispose = function () {
+            this.positive.removeAllListeners(s.EventType.CLICK), this.negative.removeAllListeners(s.EventType.CLICK), this.positive = null, this.negative = null, this.onClickYes = null, this.onClickNo = null, this.beforeCount = null, this.afterCount = null, this._onClickYes = this._onClickYes = null, this._onClickNo = this._onClickNo = null, this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.beforeCount.text = t.toString(), this.afterCount.text = (t - 1).toString()
         }, e
-    }(r.APIBase);
-    e.OpenExSlotAPI = a
+    }(PIXI.Container);
+    e.ExtensionConfirm = a
 }

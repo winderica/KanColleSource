@@ -15,19 +15,30 @@ const function1232 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(17), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(2), s = i(1233), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("map");
-            e.add("map_common.json"), e.add("map_compass.json"), e.add("map_flagship_damage.json"), e.load(function () {
-                t._endTask()
+            this._loadResources()
+        }, e.prototype._loadResources = function () {
+            var t = this;
+            (new s.TaskLoadResourcesMap).start(function () {
+                t._showViewMain()
             })
+        }, e.prototype._showViewMain = function () {
+            var t = this;
+            this._scene.view.bg.setDay(function () {
+                t._initialize()
+            })
+        }, e.prototype._initialize = function () {
+            this._scene.view.initialize();
+            var t = this._model.sortie.area_id, e = this._model.sortie.map_id,
+                i = o.default.model.map.getMapMst(e.toString()).name;
+            this._scene.view.upper.update(t, i), this._endTask()
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesMap = s
+    }(r.TaskBase);
+    e.TaskInitPre = a
 }

@@ -15,80 +15,53 @@ const function1216 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(27), _ = i(19), u = i(14), l = i(133), c = i(1217), h = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._layer = e, s._ships_f = i, s._medal_num_f = n, s._ships_e = o, s._medal_num_e = r, s
+    var o = i(122), r = i(171), s = i(431), a = i(1), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._enabled = !1, i._bg = new PIXI.Sprite, i._points = new s.FormationPoints(e), i._btn = new u, i._btn.position.set(15, 161), i._points.position.set(90, 84), i._points.scale.set(.6), i._points.rotation = Math.PI / 2, i.addChild(i._bg), i.addChild(i._points), i.addChild(i._btn), i
         }
 
-        return n(e, t), e.prototype.preload = function (t) {
-            var e = new u.ShipLoader, i = this._ships_f[0];
-            e.add(i.mst_id, i.isDamaged(), "full");
-            var n = this._ships_e[0];
-            e.add(n.mst_id, n.isDamaged(), "full"), e.load(function () {
-                null != t && t()
-            })
-        }, e.prototype._start = function () {
-            var t = this;
-            this._view = new c.PracticeAnimMainView, this._view.initialize(this._ships_f, this._medal_num_f, this._ships_e, this._medal_num_e), r.default.view.addChild(this._view);
-            var e = new _.TweenTask;
-            e.addTween(createjs.Tween.get(this._view.upper).to({ alpha: 1 }, 200)), e.addTween(createjs.Tween.get(this._view.enemy.content).wait(200).to({
-                x: 0,
-                alpha: 1
-            }, 200)), e.addTween(createjs.Tween.get(this._view.friend.content).wait(200).to({
-                x: 0,
-                alpha: 1
-            }, 200)), e.start(function () {
-                t._animation2()
-            })
-        }, e.prototype._animation2 = function () {
-            var t = this, e = new a.ParallelTask;
-            e.add(this._view.friend.getAnimationTask()), e.add(this._view.enemy.getAnimationTask()), e.start(function () {
-                t._animation3()
-            })
-        }, e.prototype._animation3 = function () {
-            var t = this, e = l.PRAC_MAIN.getTexture(5);
-            this._line_g = new PIXI.extras.TilingSprite(e, 825, 45), this._line_g.rotation = 109 / 180 * Math.PI, this._line_g.position.set(o.default.width / 2 - 128 + 38, o.default.height), this._view.friend.addChild(this._line_g), e = l.PRAC_MAIN.getTexture(6), this._line_r = new PIXI.extras.TilingSprite(e, 825, 45), this._line_r.rotation = -71 / 180 * Math.PI, this._line_r.position.set(90, 0), this._view.enemy.addChild(this._line_r);
-            var i = new _.TweenTask;
-            i.addTween(createjs.Tween.get(this._line_g).to({
-                x: o.default.width / 2 + 128,
-                y: 0
-            }, 200)), i.addTween(createjs.Tween.get(this._line_r).to({
-                x: -128,
-                y: o.default.height
-            }, 200)), i.start(function () {
-                t._animation4()
-            })
-        }, e.prototype._animation4 = function () {
-            var t = this;
-            this._view.friend.circle.visible = !0, this._view.enemy.circle.visible = !0;
-            var e = new _.TweenTask;
-            e.addTweens([createjs.Tween.get(this._view.friend.circle.scale).to({
-                x: 1,
-                y: 1
-            }, 600), createjs.Tween.get(this._view.friend.circle).to({ rotation: 4 * Math.PI }, 600), createjs.Tween.get(this._view.enemy.circle.scale).to({
-                x: 1,
-                y: 1
-            }, 600), createjs.Tween.get(this._view.enemy.circle).to({ rotation: 4 * Math.PI }, 600)]), e.start(function () {
-                t._animation5()
-            })
-        }, e.prototype._animation5 = function () {
-            var t = this, e = new _.TweenTask;
-            e.addTweens([createjs.Tween.get(this._line_g).wait(400).to({ x: 773 }, 500), createjs.Tween.get(this._line_r).wait(400).to({ x: -173 }, 500), createjs.Tween.get(this._view.friend.content).wait(400).to({ x: 45 }, 100).to({
-                x: -375,
-                alpha: 0
-            }, 400), createjs.Tween.get(this._view.enemy.content).wait(400).to({ x: -45 }, 100).to({
-                x: 375,
-                alpha: 0
-            }, 400), createjs.Tween.get(this._view.upper).wait(500).to({
-                y: -54,
-                alpha: 0
-            }, 400)]), e.start(function () {
-                r.default.view.removeChild(t._view), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._ships_f = null, this._ships_e = null, this._view = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+            get: function () {
+                return this._enabled
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i, n) {
+            3 == t && e < 5 ? (this._enabled = !1, this.visible = !1) : e < 4 ? (this._enabled = !1, this.visible = !1) : (this._enabled = !0, this._bg.texture = r.SALLY_JIN.getTexture(33), this._points.initialize(t, e, n), this._points.show(0), this._btn.initialize(t, i))
+        }, e.prototype.activate = function () {
+            1 == this._enabled && this._btn.activate()
+        }, e.prototype.deactivate = function () {
+            this._btn.deactivate()
+        }, e.prototype.dispose = function () {
+            this._btn.dispose()
         }, e
-    }(s.TaskBase);
-    e.StartAnimationTask = h
+    }(PIXI.Container);
+    e.FormationBox = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._update(!0)
+            }, e._onMouseOut = function () {
+                e._update(!1)
+            }, e._onClick = function () {
+                null != e._cb && e._cb(e._type)
+            }, e.interactive = !0, e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._type = t, this._cb = e, 1 == t ? (this._texture_no = 6, this._texture_no_on = 7) : 2 == t ? (this._texture_no = 0, this._texture_no_on = 1) : 3 == t ? (this._texture_no = 4, this._texture_no_on = 5) : 4 == t ? (this._texture_no = 10, this._texture_no_on = 11) : 5 == t ? (this._texture_no = 8, this._texture_no_on = 9) : 6 == t && (this._texture_no = 2, this._texture_no_on = 3), this._update(!1)
+        }, e.prototype.activate = function () {
+            if (1 != this.buttonMode) {
+                this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick);
+                var t = o.InteractiveUtil.isOnMouse(this);
+                this._update(t)
+            }
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            1 == this.buttonMode && this.deactivate(), this._cb = null
+        }, e.prototype._update = function (t) {
+            this.texture = 0 == t ? r.SALLY_JIN.getTexture(this._texture_no) : r.SALLY_JIN.getTexture(this._texture_no_on)
+        }, e
+    }(PIXI.Sprite)
 }

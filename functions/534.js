@@ -1,73 +1,41 @@
 const function534 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(16), a = i(268), _ = i(535), u = i(536), l = i(13), c = function (t) {
-        function e() {
-            return t.call(this) || this
+    var n = i(7), o = function () {
+        function t() {
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return Object.defineProperty(t.prototype, "renderer", {
             get: function () {
-                return this._bg
+                return this._args.renderer
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "portMain", {
+        }), Object.defineProperty(t.prototype, "path_root", {
             get: function () {
-                return this._portMain
+                return n.ObjUtil.getString(this._args, "path_root", "")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "mapLayer", {
+        }), Object.defineProperty(t.prototype, "voice_root", {
             get: function () {
-                return this._mapLayer
+                return n.ObjUtil.getString(this._args, "voice_root", null)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "overLayer", {
+        }), Object.defineProperty(t.prototype, "api_root", {
             get: function () {
-                return this._overLayer
+                return n.ObjUtil.getString(this._args, "api_root", "/kcsapi")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "fadeLayer", {
+        }), Object.defineProperty(t.prototype, "api_token", {
             get: function () {
-                return this._fadeLayer
+                return n.ObjUtil.getString(this._args, "api_token")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "loading", {
+        }), Object.defineProperty(t.prototype, "osapi_root", {
             get: function () {
-                return this._loading
+                return n.ObjUtil.getString(this._args, "osapi_root")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "clickGuard", {
+        }), Object.defineProperty(t.prototype, "version", {
             get: function () {
-                return this._clickGuard.visible
-            }, set: function (t) {
-                this._clickGuard.visible = t
+                return n.ObjUtil.getString(this._args, "version")
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._bg = new _.Background, this._portMain = t, this._mapLayer = new u.ContainerScene, this._mapLayer.visible = !1, this._overLayer = new PIXI.Container, this._fadeLayer = new s.FadeBox(1), this._fadeLayer.visible = !1, this._clickGuard = new r.AreaBox(0), this._clickGuard.visible = !1, this._loading = new a.LoadingBox, this._loading.hide(), this.addChild(this._bg), this.addChild(this._portMain), this.addChild(this._mapLayer), this.addChild(this._overLayer), this.addChild(this._fadeLayer), this.addChild(this._clickGuard), this.addChild(this._loading)
-        }, e.prototype.getNowScene = function () {
-            var t = this._mapLayer.getContent();
-            return null != t ? t : (t = this._portMain.getContent(), null != t ? t : this._portMain)
-        }, e.prototype.showError = function (t) {
-            void 0 === t && (t = null), this._bg.visible = !1, this._portMain.visible = !1, this._mapLayer.visible = !1, this._overLayer.removeChildren(), this._overLayer.visible = !0, createjs.Tween.removeAllTweens(), l.EditTextBoxUtil.setVisibility(!1);
-            var e = o.default.resources.getUIImage("error");
-            if (e == PIXI.Texture.EMPTY) {
-                var i = new r.AreaBox(1);
-                this.addChild(i);
-                var n = PIXI.Sprite.fromImage(o.default.settings.path_root + "img/common/error.png");
-                this.addChild(n)
-            } else {
-                var n = new PIXI.Sprite(e);
-                this.addChild(n)
-            }
-        }, e
-    }(PIXI.Container);
-    e.RootView = c
+        }), t.prototype.initialize = function (t) {
+            this._args = t
+        }, t
+    }();
+    e.SettingsModel = o
 }

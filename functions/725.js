@@ -15,17 +15,17 @@ const function725 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(215), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(10), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_language_type = this._japanese ? 0 : 1;
+            for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
+            t.prototype._connect.call(this)
         }, e
-    }(r.TaskBase);
-    e.InitializeTask = a
+    }(o.APIBase);
+    e.UpdateListStatusAPI = r
 }

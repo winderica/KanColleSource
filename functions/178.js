@@ -15,7 +15,7 @@ const function178 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(2), s = function (t) {
+    var o = i(24), r = i(2), s = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r

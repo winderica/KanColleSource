@@ -15,54 +15,38 @@ const function1495 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1496), r = function (t) {
+    var o = i(5), r = i(1496), s = i(1499), a = i(1501), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._items = [], e
+            return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "items", {
+        return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
             get: function () {
-                return this._items
+                return this._banners_f
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._resetItems();
-            var e = 0;
-            e = 7 == t.length ? 0 : 68;
-            for (var i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null != n) {
-                    var r = new o.BannerInfoFriend;
-                    r.y = e + 68 * i;
-                    var s = n.name, a = n.level;
-                    r.name_and_level.alpha = 0, r.name_and_level.initialize(s, a), this.addChild(r), this._items.push(r)
-                }
-            }
-        }, e.prototype.dispose = function () {
-            this._resetItems(), this.removeChildren(), this._items = null
-        }, e.prototype.createShowTweens = function (t) {
-            for (var e = [], i = 0; i < this._items.length; i++) {
-                var n = this._items[i], o = n.name_and_level;
-                o.x -= 15;
-                var r = createjs.Tween.get(o).wait(t + 100 * i).to({ x: o.x + 15, alpha: 1 }, 300);
-                e.push(r)
-            }
-            return e
-        }, e.prototype.createHideTweens = function (t) {
-            for (var e = [], i = 0; i < this._items.length; i++) {
-                var n = this._items[i], o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
-                    x: n.x - 15,
-                    alpha: 0
-                }, 300);
-                e.push(o)
-            }
-            return e
-        }, e.prototype._resetItems = function () {
-            for (null == this._items && (this._items = []); this._items.length > 0;) {
-                var t = this._items.pop();
-                null != t.parent && t.parent.removeChild(t), t.dispose()
-            }
+        }), Object.defineProperty(e.prototype, "info_f", {
+            get: function () {
+                return this._info_f
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "banners_e", {
+            get: function () {
+                return this._banners_e
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "info_e", {
+            get: function () {
+                return this._info_e
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
+        }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
+            var i = this, n = o.default.width - this._banners_e.x;
+            return [createjs.Tween.get(this._banners_e).wait(e).to({ x: this._banners_e.x + n }, t).call(function () {
+                i._banners_e.dispose()
+            }), createjs.Tween.get(this._info_e).wait(e).to({ x: this._info_e.x + n }, t).call(function () {
+                i._info_e.dispose()
+            })]
         }, e
     }(PIXI.Container);
-    e.BannerInfoFriendCanvas = r
+    e.LayerBanner = _
 }

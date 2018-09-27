@@ -15,17 +15,45 @@ const function1426 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = i(1427), s = function (t) {
+    var o = i(12), r = i(15), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._gauge_bg = new PIXI.Sprite, e._gauge = new r.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-            this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47)) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15, this._frame.texture = 0 == i ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)), this.updateHp(t, e)
-        }, e.prototype.updateHp = function (t, e) {
-            this._gauge.draw(t / e)
+        return n(e, t), e.prototype.show = function () {
+            var t = this, e = r.BATTLE_MAIN.getTexture(113);
+            this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, { loop: !0 }).to({
+                x: 5,
+                y: -7,
+                scaleX: .14,
+                scaleY: .14
+            }, 200).to({ x: 7, y: -15, scaleX: .25, scaleY: .25 }, 200).to({
+                x: 12,
+                y: -21,
+                scaleX: .35,
+                scaleY: .35
+            }, 200).to({ x: 14, y: -29, scaleX: .46, scaleY: .46 }, 200).to({
+                x: 15,
+                y: -36,
+                scaleX: .57,
+                scaleY: .57
+            }, 200).to({ x: 17, y: -42, scaleX: .68, scaleY: .68 }, 200).to({
+                x: 17,
+                y: -50,
+                scaleX: .78,
+                scaleY: .78
+            }, 200).to({ x: 21, y: -57, scaleX: .89, scaleY: .89 }, 200).to({
+                x: 24,
+                y: -65,
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 0
+            }, 200).call(function () {
+                t._content.scale.set(0), t._content.alpha = 1, t._content.position.set(0, 0)
+            })
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
     }(PIXI.Container);
-    e.BannerFrame = s
+    e.BannerBabble = s
 }

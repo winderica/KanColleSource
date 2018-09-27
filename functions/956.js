@@ -15,31 +15,71 @@ const function956 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(957), s = i(1), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
-            }, i._layer = e, i
-        }
+    var o = i(5), r = i(0), s = i(18), a = i(2), _ = i(16), u = i(957), l = i(959), c = i(350), h = i(357),
+        p = function (t) {
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new u.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level, e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new l.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(), e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
+                    })
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
-        }, e.prototype._open = function () {
-            var t = this;
-            this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({ alpha: 1 }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({ scaleY: 1 }, 250).call(function () {
-                t._wait()
-            })
-        }, e.prototype._wait = function () {
-            this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
-        }, e.prototype._close = function () {
-            var t = this;
-            createjs.Tween.get(this._dialog.chara).to({ alpha: 0 }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({ scaleY: 0 }, 150).call(function () {
-                t._layer.removeChild(t._dialog), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.ShowIntroAlertDialogTask = a
+            return n(e, t), e.prototype._start = function () {
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no, e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return { voice: [411, 415], delay: [0, 200] };
+                    case 2:
+                        return { voice: [411, 416, 423, 424], delay: [0, 200, 200, 200] };
+                    case 3:
+                        return { voice: [411, 417, 424], delay: [0, 200, 200] };
+                    case 4:
+                        return { voice: [412, 418, 423, 424], delay: [0, 200, 200, 200] };
+                    case 5:
+                        return { voice: [412, 421, 422, 424], delay: [0, 200, 200, 200] };
+                    default:
+                        return null
+                }
+            }, e.prototype._voicePlay = function (t) {
+                var e = this, i = t.voice, n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
+                })
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this, i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
+                })
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
+                var t = this, e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({ x: 840 }, 200).call(function () {
+                    e.activate(), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
+            }, e
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

@@ -15,7 +15,7 @@ const function280 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(26), a = i(2), _ = i(281), u = i(32), l = i(14), c = function (t) {
+    var o = i(5), r = i(0), s = i(24), a = i(2), _ = i(281), u = i(33), l = i(14), c = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._deck = r.default.model.deck.get(e), n._ships = n._deck.getShipList(), n._result = i, n

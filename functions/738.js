@@ -15,15 +15,29 @@ const function738 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
+    var o = i(0), r = i(2), s = i(17), a = i(3), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i.supplyScene = e, i
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this.supplyScene.finalize(), this.supplyScene = null, t.prototype._completedEnd.call(this)
+            this._phaseLoadResources()
+        }, e.prototype._phaseLoadResources = function () {
+            var t = this, e = new s.UIImageLoader("supply");
+            e.add("supply_main.json"), e.load(function () {
+                t._uploadToGPU()
+            })
+        }, e.prototype._uploadToGPU = function () {
+            var t = this;
+            o.default.settings.renderer.plugins.prepare.upload(a.SUPPLY_MAIN.getTexture(0).baseTexture, function () {
+                t._phaseLoadComplete()
+            })
+        }, e.prototype._phaseLoadComplete = function () {
+            this._scene.preInitialize(), this._scene.initialize(), o.default.sound.bgm.play(102), this._scene.start(), this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.FinalizeTask = r
+    }(r.TaskBase);
+    e.PreInitializeTask = _
 }

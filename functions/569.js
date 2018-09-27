@@ -15,38 +15,56 @@ const function569 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(8), a = i(6), _ = i(1), u = i(101), l = i(77), c = function (t) {
+    var o = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            i._data = e;
-            var n = parseInt(e.src), o = u.SuffixUtil.create(n, "furniture_picture"),
-                a = r.default.settings.path_root + "resources/furniture/picture/" + e.src + "_" + o + ".png" + l.VersionUtil.getResourceVersion(2, n);
-            if (null != PIXI.utils.TextureCache[a]) {
-                var _ = PIXI.utils.TextureCache[a];
-                i._img = new PIXI.Sprite(_), i._img.visible = !1, i._centering()
-            } else {
-                var _ = PIXI.Texture.fromImage(a);
-                i._img = new PIXI.Sprite(_), i._img.visible = !1, _.baseTexture.once("loaded", function () {
-                    i._centering()
-                })
-            }
-            return i.addChild(i._img), i._clickArea = new s.AreaBox(0, 16777215), i.addChild(i._clickArea), i
+            return i._fileName = "", i._frame_index = 0, i._frameCount = 0, i._frameMax = 0, i._loopCount = 0, i._end = !1, i._offset = null, i._model = e, i._updateTexture(), i._updateAlpha(), i._updateFrameMax(), i._updateOffset(), i
         }
 
-        return n(e, t), e.prototype.show = function (t) {
-            var e = this;
-            void 0 === t && (t = null), this._onClose = t, this._img.visible = !0, a.SE.play(this._data.se_open), this._clickArea.once(_.EventType.CLICK, function () {
-                e._onClose()
-            })
-        }, e.prototype.hide = function () {
-            this._img.visible = !1, a.SE.play(this._data.se_close)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img.texture.baseTexture.removeAllListeners("loaded"), this._clickArea.removeAllListeners(_.EventType.CLICK)
-        }, e.prototype._centering = function () {
-            var t = Math.floor(o.default.width / 2 - this._img.width / 2 + this._data.offset_x),
-                e = Math.floor(o.default.height / 2 - this._img.height / 2 + this._data.offset_y);
-            this._img.position.set(t, e)
+        return n(e, t), Object.defineProperty(e.prototype, "fileName", {
+            get: function () {
+                return this._fileName
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.isEnd = function () {
+            return this._end
+        }, e.prototype.getOffset = function () {
+            return this._offset
+        }, e.prototype.reset = function () {
+            this._frame_index = 0, this._frameCount = 0, this._loopCount = 0, this._end = !1, this._updateTexture(), this._updateAlpha(), this._updateFrameMax()
+        }, e.prototype.update = function () {
+            if (this._end) return null;
+            var t = this._model.frames[this._frame_index];
+            this._frameCount++;
+            var e = 0 == this._frame_index && 1 == this._frameCount && 0 == this._loopCount;
+            if (this._frameCount < this._frameMax) return this._updateAlpha(), e ? t : null;
+            if (this._frame_index + 1 < this._model.frames.length) this._frame_index = this._frame_index + 1, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset(); else {
+                if (this._loopCount += 1, !(this._model.loopMax < 0 || this._loopCount <= this._model.loopMax)) return this._end = !0, e ? t : null;
+                this._frame_index = 0, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset()
+            }
+            return t = this._model.frames[this._frame_index], 0 == t.frame && (this._end = !0), t
+        }, e.prototype._updateTexture = function () {
+            var t = this._model.frames[this._frame_index];
+            this._fileName != t.filename && (this._fileName = t.filename, "" == this._fileName ? this.texture = PIXI.Texture.EMPTY : this.texture = this._getTextureByName(this._fileName))
+        }, e.prototype._updateAlpha = function () {
+            var t = this._model.frames[this._frame_index];
+            if (t.alpha[0] == t.alpha[1]) this.alpha = t.alpha[0]; else {
+                var e = (t.alpha[1] - t.alpha[0]) / (this._frameMax - 1), i = t.alpha[0] + e * this._frameCount;
+                i = Math.max(0, i), this.alpha = Math.min(1, i)
+            }
+        }, e.prototype._updateFrameMax = function () {
+            var t = this._model.frames[this._frame_index];
+            if (this._frameMax = t.frame, t.framerand > 0) {
+                var e = Math.random() * t.framerand;
+                this._frameMax = this._frameMax + Math.floor(e)
+            }
+        }, e.prototype._updateOffset = function () {
+            null == this._offset && (this._offset = new PIXI.Point);
+            var t = this._model.frames[this._frame_index], e = t.offsetData;
+            null != e && e.length >= 2 && (this._offset.x = e[0], this._offset.y = e[1])
+        }, e.prototype._getTextureByName = function (t) {
+            var e = PIXI.utils.TextureCache[t];
+            return e || PIXI.Texture.EMPTY
         }, e
-    }(PIXI.Container);
-    e.FurniturePopupLayer = c
+    }(PIXI.Sprite);
+    e.FurnitureLayer = o
 }

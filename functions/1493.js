@@ -15,21 +15,37 @@ const function1493 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(30), s = i(146), a = i(147), _ = i(194), u = i(1494), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._taihi = e, i._img = new PIXI.Sprite, i._icon = new s.BannerIcon, i._soot = new a.BannerSoot, i._smoke = new _.BannerSmoke, i._smoke.visible = !1, i.addChild(i._img), i.addChild(i._icon), i.addChild(i._soot), i.addChild(i._smoke), i
+    var o = i(28), r = i(19), s = i(36), a = i(477), _ = i(478), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new a.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new _.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e._gauge_f = new _.Gauge, e._gauge_f.x = 11, e._gauge_f.y = 96, e.addChild(e._gauge_f), e._gauge_f.visible = !1, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this._icon = null, this._soot = null, this._smoke.dispose(), this._smoke = null, null != this._coin && (this._coin.dispose(), this._coin = null)
-        }, e.prototype.updateTexture = function (t, e, i) {
-            e <= 0 || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
-        }, e.prototype.updateIcon = function (t) {
-            this._smoke.stop(), this._smoke.play(t), 0 == this._taihi ? (this._soot.update(t), this._icon.setDamagedIcon(t)) : (this._soot.clear(), this._icon.setTaihiIcon())
-        }, e.prototype.createShowMVPCoinTween = function () {
-            return this._coin = new u.MVPCoin, this._coin.position.set(270, 30), this._coin.initialize(), this._coin.activate(), this._coin.alpha = 0, this.addChild(this._coin), createjs.Tween.get(this._coin).to({ alpha: 1 }, 300)
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._line.texture = s.BATTLE_RESULT_MAIN.getTexture(2), this._line.visible = !1, this._info.alpha = 0, this._info.deck_name.initialize(), this._info.deck_name.text = t, this._gauge_label.texture = s.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(16711680), this._gauge.alpha = 0, e && (this._info.deck_name.y = 14, this._gauge_label.y = 54, this._gauge_f.initialize(65298), this._gauge_f.alpha = 0, this._gauge_f.visible = !0)
+        }, e.prototype.createShowTween = function () {
+            var t = this;
+            return createjs.Tween.get(this._info).call(function () {
+                t._line.visible = !0
+            }).to({ alpha: 1 }, 100)
+        }, e.prototype.createTaskShowGauge = function (t, e, i, n, s) {
+            void 0 === i && (i = -1), void 0 === n && (n = -1);
+            var a, _ = new r.TweenTask;
+            this._gauge_label.x += 15, a = createjs.Tween.get(this._gauge_label).wait(s).to({
+                x: this._gauge_label.x - 15,
+                alpha: 1
+            }, 200), _.addTween(a), this._gauge.x += 15, a = createjs.Tween.get(this._gauge).wait(s).to({
+                x: this._gauge.x - 15,
+                alpha: 1
+            }, 200), _.addTween(a);
+            var u = new o.SerialTask;
+            u.add(_), a = this._gauge.createTween(t, e);
+            var l = new r.TweenTask;
+            return l.addTween(a), u.add(l), 1 == this._gauge_f.visible && (this._gauge_f.x += 15, a = createjs.Tween.get(this._gauge_f).wait(s + 100).to({
+                x: this._gauge_f.x - 15,
+                alpha: 1
+            }, 200), _.addTween(a), a = this._gauge_f.createTween(i, n), l.addTween(a)), u
         }, e
     }(PIXI.Container);
-    e.ShipBannerClone = l
+    e.DeckInfoPanelEnemy = u
 }

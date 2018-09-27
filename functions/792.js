@@ -15,23 +15,19 @@ const function792 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(4), r = i(127), s = i(793), a = i(13), _ = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e.MAX = 5;
-            for (var i = new Array, n = o.REMODEL_POWERUP.getTexture(29), r = 0; r < e.MAX; r++) {
-                var s = new PIXI.Sprite(n);
-                s.position.set(45 * r, 0), i.push(s), e.addChild(s)
-            }
-            return e.stars = i, e
+            var e = t.call(this) || this, i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(16)),
+                n = new o.TextBox(21, 16777215), _ = new o.TextBox(36, 16777215), u = new o.TextBox(65, 16777215),
+                l = new s.StarRate, c = a.CreateRect.gradientLeftToRight(220, 50, .65, .9), h = new PIXI.Container;
+            return h.mask = c, h.addChild(_, c), n.position.set(18, 8), h.position.set(18, 36), u.position.set(230, 89), l.position.set(15, 165), u.anchor.x = 1, e.addChild(i, n, h, u, l), e.textType = n, e.textName = _, e.textLevel = u, e.starRate = l, e.containerName = h, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            for (var e = 0; e < this.MAX; e++) this.stars[e].visible = !1, e < t && (this.stars[e].visible = !0)
+        return n(e, t), e.prototype.update = function (t, e, i, n) {
+            this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            for (var t = 0; t < this.MAX; t++) this.removeChild(this.stars[t]), this.stars[t] = null;
-            this.stars = null, this.removeChildren()
+            this.containerName.mask = null, this.containerName.removeChildren(), this.textType.text = "", this.textName.text = "", this.textLevel.text = "", this.starRate.dispose(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.StarRate = r
+    e.ShipInfoBox = _
 }

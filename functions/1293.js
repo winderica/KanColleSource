@@ -15,82 +15,33 @@ const function1293 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(6), s = i(20), a = i(1294), _ = function (t) {
+    var o = i(5), r = i(61), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
+            return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "direction", {
+        return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
             get: function () {
-                return this._direction
+                return this._extraLayer
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "under", {
-            get: function () {
-                return this._under
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ship", {
-            get: function () {
-                return this._ship
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            var e;
-            e = 1 == t ? 122 : 2 == t ? 123 : 3 == t ? 124 : 121, this._ship.texture = s.MAP_COMMON.getTexture(e)
-        }, e.prototype.startWaveWhite = function () {
-            this._startWave(48)
-        }, e.prototype.startWaveRed = function (t) {
-            var e = this;
-            this._startWave(47);
-            var i = new u;
-            i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
-                y: -75,
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 200).to({ y: -68 }, 200).to({ y: -78, scaleX: 1.3, scaleY: .6 }, 200).to({
-                y: -59,
-                scaleX: 1,
-                scaleY: 1
-            }, 200).to({ y: -68 }, 200).to({ alpha: 0 }, 100).call(function () {
-                e._over.removeChild(i), t()
-            })
-        }, e.prototype.stopWave = function () {
-            this._wave.deactivate()
-        }, e.prototype.turn = function (t, e, i) {
-            if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e(); else {
-                this._direction = t;
-                var n = 2 == t ? 1 : -1, o = createjs.Tween.get(this._ship);
-                o.to({ scaleX: n }, i), null != e && o.call(e)
+        }), e.prototype.addBGLayer = function (t, e) {
+            var i = new PIXI.Sprite(t);
+            if (null != e && e.length > 0) {
+                if (1 == this._bgDic.hasOwnProperty(e)) {
+                    var n = this._bgDic[e];
+                    null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
+                }
+                this._bgDic[e] = i
             }
-        }, e.prototype._startWave = function (t) {
-            this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
-                r.SE.play("252")
-            }).wait(2e3).call(function () {
-                r.SE.play("252")
-            })
+            i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
+        }, e.prototype.getBGLayer = function (t) {
+            return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
+        }, e.prototype.addLabel = function (t, e, i) {
+            null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
+            var n = new r.CenteringSprite(t);
+            n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
         }, e
     }(PIXI.Container);
-    e.CompShipIcon = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
-            get: function () {
-                return this.scale.x
-            }, set: function (t) {
-                this.scale.x = t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "scaleY", {
-            get: function () {
-                return this.scale.y
-            }, set: function (t) {
-                this.scale.y = t
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = s.MAP_COMMON.getTexture(93)
-        }, e
-    }(PIXI.Sprite)
+    e.MapBackGround = s
 }

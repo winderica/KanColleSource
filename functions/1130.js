@@ -15,47 +15,23 @@ const function1130 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(128), a = i(87), _ = i(1131), u = i(1132), l = i(1133), c = i(1134), h = i(1138),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._count = 0, n._onChangePage = function () {
-                    var t = n._views.indexOf(n._current);
-                    n._showView(t ? 0 : 1)
-                }, n._onSelect = function (t, e) {
-                    r.SE.play("214");
-                    var i = 10;
-                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
-                    var s = new c.TaskPurchaseConfirm(t, e, i);
-                    n.addChild(s.layer), s.start(function () {
-                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
-                    })
-                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new u.NormalItemShopMain(n._onSelect)), n._views.push(new l.SpecialItemShopMain(n._onSelect)), n
-            }
+    var o = i(31), r = i(3), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
+        }
 
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_ISHOP.getTexture(35);
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.update = function () {
-                this._count = 0, this._showView(0)
-            }, e.prototype.activate = function () {
-                null != this._current && this._current.activate(), this._tab.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._current && this._current.deactivate(), this._tab.deactivate()
-            }, e.prototype.dispose = function () {
-                this._purchasedItems = null, this._tab.dispose(), this._removeView();
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
-            }, e.prototype._showView = function (t) {
-                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
-                var e = o.default.view.overLayer;
-                new h.TaskWelcomeCutin(e, t, this._count).start()
-            }, e
-        }(a.ViewBase);
-    e.ItemShopMain = p
+        return n(e, t), e.prototype.dispose = function () {
+            this._stopTween(), t.prototype.dispose.call(this)
+        }, e.prototype._update = function (t) {
+            0 == t ? (this.texture = r.ITEM_ILIST.getTexture(10), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(11), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
+        }, e.prototype._activate = function () {
+            this._stopTween(), this._startTween(), t.prototype._activate.call(this)
+        }, e.prototype._startTween = function () {
+            this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 1 }, 3e3).to({ alpha: 0 }, 3e3)
+        }, e.prototype._stopTween = function () {
+            null != this._tween && this._tween.setPaused(!0), this._tween = null
+        }, e
+    }(o.BtnBase);
+    e.PickupBtn = s
 }

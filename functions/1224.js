@@ -15,25 +15,18 @@ const function1224 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(7), a = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
+    var o = i(10), r = function (t) {
+        function e(e, i, n) {
+            void 0 === n && (n = -1);
+            var o = t.call(this) || this;
+            return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
+            this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
         }, e.prototype._completedEnd = function () {
-            for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
-                var r = n[i];
-                o.default.model.deck.updateData(r)
-            }
-            for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, u = a; _ < u.length; _++) {
-                var r = u[_];
-                o.default.model.ship.updateData(r)
-            }
-            t.prototype._completedEnd.call(this)
+            this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(r.APIBase);
-    e.APIShipDeck = a
+    }(o.APIBase);
+    e.APIMapNext = r
 }

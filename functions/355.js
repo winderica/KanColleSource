@@ -15,7 +15,7 @@ const function355 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(22), r = i(6), s = i(25), a = i(1), _ = function (t) {
+    var o = i(22), r = i(6), s = i(26), a = i(1), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._activated = !1, e._enabled = !0, e._state = -1, e._onMouseOver = function () {
@@ -45,6 +45,8 @@ const function355 = function (t, e, i) {
             }).to({ scaleX: 1 }, 200, createjs.Ease.quadOut).call(function () {
                 i._t = null
             }))
+        }, e.prototype.skipAnimation = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._content.update(this._state), this._content.scaleX = 1)
         }, e.prototype.activate = function () {
             this._activated = !0, 1 != this.buttonMode && 0 != this._enabled && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {

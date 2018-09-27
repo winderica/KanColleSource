@@ -15,23 +15,25 @@ const function939 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(18), r = i(354), s = i(941), a = function (t) {
-        function e(e, i) {
-            var n = t.call(this, e) || this;
-            return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
+    var o = i(26), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i._img_light = new PIXI.Sprite, i._img_light.alpha = 0, i.addChild(i._img_light), i._img = new PIXI.Sprite, i._img.position.set(12, 12), i.addChild(i._img), i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype.initialize = function (e) {
-            t.prototype.initialize.call(this, e), this._btn_extend.initialize()
-        }, e.prototype.activate = function () {
-            t.prototype.activate.call(this), this._btn_extend.activate()
-        }, e.prototype.deactivate = function () {
-            t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = o.SALLY_AIRUNIT.getTexture(19), this._img_light.texture = o.SALLY_AIRUNIT.getTexture(22), this.update(!1)
+        }, e.prototype.update = function (t) {
+            this.visible = t, 1 == t ? this._activate() : this._deactivate()
         }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._btn_extend.dispose()
-        }, e.prototype.updateExtendBtn = function (t, e) {
-            this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
+            this._deactivate()
+        }, e.prototype._activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), null == this._t && (this._img_light.alpha = 0, this._t = createjs.Tween.get(this._img_light, { loop: !0 }).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3)))
+        }, e.prototype._deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null, this._img_light.alpha = 0)
         }, e
-    }(r.AirUnitPanelTabContainer);
-    e.AirUnitPanelTabContainerWithExtend = a
+    }(PIXI.Container);
+    e.AirUnitPanelItemSupplyButton = s
 }

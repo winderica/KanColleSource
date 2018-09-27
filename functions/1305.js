@@ -15,78 +15,39 @@ const function1305 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(20), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._now = -1, e._max = 100, e._bar = new PIXI.Graphics, e._img = new PIXI.Sprite, e._light = new PIXI.Sprite, e._tp = new a, e.addChild(e._bar), e.addChild(e._img), e.addChild(e._light), e.addChild(e._tp), e.visible = !1, e
+    var o = i(2), r = i(14), s = i(437), a = i(1306), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._onTaihi = function () {
+                r._view.deactivate();
+                var t = r._model.map_info.area_id, e = r._model.map_info.map_no, i = r._model.map_info.cell_no;
+                new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
+                    r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
+                })
+            }, r._onTaihiSezu = function () {
+                r._view.deactivate(), r._hideView()
+            }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "now", {
-            get: function () {
-                return this._now
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "max", {
-            get: function () {
-                return this._max
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            if (null == t) return this._stopLoopTween(), this._tp.enabled = !1, void(this.visible = !1);
-            this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.clear(), this._bar.beginFill(t.barColor), this._bar.drawRect(0, 0, t.barW, t.barH), this._bar.endFill(), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startLoopTween()
-        }, e.prototype.update = function (t, e) {
-            this._now = t, this._max = e;
-            var i = this._now / this._max;
-            i = Math.max(i, 0), i = Math.min(i, 1), this._bar.scale.y = i, 1 == this._tp.enabled ? (this._tp.update(t, e), this._tp.visible = !0) : this._tp.visible = !1
-        }, e.prototype.dispose = function () {
-            this._stopLoopTween()
-        }, e.prototype._startLoopTween = function () {
-            null == this._t && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 1 }, 500).to({ alpha: 0 }, 500))
-        }, e.prototype._stopLoopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null), this._light.alpha = 0
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipResources()
+        }, e.prototype._loadShipResources = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
+                t._show()
+            })
+        }, e.prototype._show = function () {
+            this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+            var t = this._target, e = this._towing;
+            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.GaugeVertical = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new _, e._now.x = 30, e._max = new _, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-            get: function () {
-                return this._enabled
-            }, set: function (t) {
-                this._enabled = t
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._title.texture = r.MAP_COMMON.getTexture(44), this._slash.texture = r.MAP_COMMON.getTexture(43)
-        }, e.prototype.update = function (t, e) {
-            this._now.update(t), this._max.update(e)
-        }, e
-    }(PIXI.Container), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._nums = [];
-            for (var i = 0; i < 4; i++) {
-                var n = new u;
-                n.x = 8 * i, e.addChild(n), e._nums.push(n)
-            }
-            return e
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            t = Math.max(0, t), t = Math.min(9999, t);
-            for (var e = !1, i = 0; i < this._nums.length; i++) {
-                var n = Math.pow(10, this._nums.length - i - 1), o = Math.floor(t / n);
-                o > 0 || 1 == e ? (this._nums[i].update(o), e = !0) : this._nums[i].update(-1), t %= n
-            }
-        }, e
-    }(PIXI.Container), u = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            t >= 0 && t <= 9 ? (this.texture = r.MAP_COMMON.getTexture(e._TEXTURES[t]), this.visible = !0) : this.visible = !1
-        }, e._TEXTURES = [33, 34, 35, 36, 37, 38, 39, 40, 41, 42], e
-    }(PIXI.Sprite)
+    }(o.TaskBase);
+    e.EscapeGoeiTask = _
 }

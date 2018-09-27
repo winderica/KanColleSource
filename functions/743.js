@@ -1,88 +1,59 @@
 const function743 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(216), o = i(83), r = i(3), s = i(744), a = i(745), _ = i(329), u = function () {
-        function t(t) {
-            var e = this;
-            this.LIST_MAX = 10, this._onChangePage = function (t) {
-                e._pageIndex != t && e._updatePage(t)
-            }, this._onClickListItem = function (t, i) {
-                e.supplyEditor.containts(i) ? (r.SE.play("238"), e.supplyEditor.remove(i)) : (r.SE.play("241"), e.supplyEditor.push(i)), e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
-            }, this._onClickSupplySelectAll = function () {
-                for (var t = 0, i = 0, o = e.otherShips.slice(e._pageIndex * e.otherSupplyListItems.length, e._pageIndex * e.otherSupplyListItems.length + e.otherSupplyListItems.length), s = 0; s < o.length; s++) {
-                    var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                    if (_) {
-                        t++;
-                        var u = e.supplyEditor.containts(a.memID);
-                        u && i++
-                    }
-                }
-                if (i < t) {
-                    for (var s = 0; s < o.length; s++) {
-                        var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                        if (_) {
-                            0 == e.supplyEditor.containts(a.memID) && e.supplyEditor.push(a.memID)
-                        }
-                    }
-                    r.SE.play("241")
-                } else {
-                    if (i == t) for (var s = 0; s < o.length; s++) {
-                        var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                        if (_) {
-                            var u = e.supplyEditor.containts(a.memID);
-                            u && e.supplyEditor.remove(a.memID)
-                        }
-                    }
-                    r.SE.play("238")
-                }
-                e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
-            }, this.mainView = t, this.otherSupplyListItems = [];
-            for (var i = 0; i < this.LIST_MAX; i++) {
-                var u = new s.OtherSupplyListItem(i);
-                u.position.set(155, 44 * i + 206), this.otherSupplyListItems.push(u)
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-            this.pagerView = new o.PagerView, this.pagerView.position.set(285, 663), this.supplySelectAllButton = new a.SupplySelectAllButton, this.supplyEditor = new _.SupplyEditor
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(9), r = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite;
+            return n.position.set(-29, -27), n.alpha = 0, e.addChild(n, i), e.meter = i, e.meterLight = n, e
         }
 
-        return t.prototype.getSupplyEdit = function () {
-            return this.supplyEditor
-        }, Object.defineProperty(t.prototype, "pageIndex", {
-            get: function () {
-                return this._pageIndex
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.start = function (t, e) {
-            this.supplyEditor.clear(), this.otherShips = t, this.supplySelectAllButton.position.set(162, 164), this.mainView.addChild(this.supplySelectAllButton);
-            for (var i = 0; i < this.otherSupplyListItems.length; i++) {
-                var n = this.otherSupplyListItems[i];
-                n.onClick = this._onClickListItem, this.mainView.addChild(n)
+        return n(e, t), e.prototype.update = function (t, e) {
+            this.meter.texture = o.COMMON_MISC.getTexture(133), this.meterLight.texture = o.COMMON_MISC.getTexture(145);
+            var i;
+            0 == t ? i = 0 : t == e ? i = 10 : (i = Math.floor(9 * t / e) + 1, 10 < i && (i = 10), i < 0 && (i = 0));
+            this.meter.texture = o.COMMON_MISC.getTexture(this.getResIDProgressImage(i))
+        }, e.prototype.getResIDProgressImage = function (t) {
+            switch (t) {
+                case 0:
+                    return 133;
+                case 1:
+                    return 134;
+                case 2:
+                    return 136;
+                case 3:
+                    return 137;
+                case 4:
+                    return 138;
+                case 5:
+                    return 139;
+                case 6:
+                    return 140;
+                case 7:
+                    return 141;
+                case 8:
+                    return 142;
+                case 9:
+                    return 143;
+                case 10:
+                    return 135
             }
-            var o = this.calcPageCount(this.otherShips.length, this.otherSupplyListItems.length);
-            this.pagerView.init(o), this.mainView.addChild(this.pagerView), this.pagerView.onChangePage = this._onChangePage, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll, this._updatePage(e), this.onUpdateSupplyEdit()
-        }, t.prototype.reload = function () {
-            this.supplyEditor.clear(), this._updatePage(this.pageIndex), this.onUpdateSupplyEdit()
-        }, t.prototype._updatePage = function (t) {
-            for (var e = 0, i = 0, o = this.otherShips.slice(t * this.otherSupplyListItems.length, t * this.otherSupplyListItems.length + this.otherSupplyListItems.length), r = 0; r < this.otherSupplyListItems.length; r++) {
-                var s = this.otherSupplyListItems[r];
-                if (s.empty(), r < o.length) {
-                    var a = o[r], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                    if (s.checkDisable(), _) {
-                        e++, s.checkOff();
-                        this.supplyEditor.containts(a.memID) && (i++, s.checkOn())
-                    }
-                    s.update(r, a, _)
-                }
-            }
-            var u = 1;
-            0 < e && (u = 2, i == e && (u = 3)), this.supplySelectAllButton.update(u), this.pagerView.changePage(t), this._pageIndex = t
-        }, t.prototype.dispose = function () {
-            var t = this;
-            this.mainView.removeChildren(), this.otherSupplyListItems.forEach(function (e) {
-                e.onClick = t._onClickListItem = null, e.dispose(), e = null
-            }), this.pagerView.onChangePage = this._onChangePage = null, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll = null, this.onUpdateSupplyEdit = null, this.mainView = null, this.otherSupplyListItems = null, this.pagerView.dispose(), this.pagerView = null, this.supplySelectAllButton.dispose(), this.supplySelectAllButton = null, this.supplyEditor = null, this.otherShips = null, this._pageIndex = null
-        }, t.prototype.calcPageCount = function (t, e) {
-            var i = 0 == t ? 0 : t / e;
-            return i += 0 == t ? 0 : 0 < t % e ? 1 : 0, i = Math.floor(i)
-        }, t
-    }();
-    e.TaskEditSupplyOther = u
+        }, e.prototype.dispose = function () {
+            this.removeChild(this.meter), this.removeChild(this.meterLight), this.meter = null, this.meterLight = null
+        }, e
+    }(PIXI.Container);
+    e.MaterialMeterViewS = r
 }

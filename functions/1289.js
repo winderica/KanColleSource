@@ -15,42 +15,82 @@ const function1289 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(20), r = i(1), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._handle = -1, n._onClick = function () {
-                if (-1 != n._handle) {
-                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
-                    n._cb_onDoubleClick(n._no)
-                } else n._handle = setTimeout(function () {
-                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
-                }, 300)
-            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._state = 0, n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
+    var o = i(12), r = i(6), s = i(20), a = i(1290), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "no", {
+        return n(e, t), Object.defineProperty(e.prototype, "direction", {
             get: function () {
-                return this._no
+                return this._direction
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "under", {
+            get: function () {
+                return this._under
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ship", {
+            get: function () {
+                return this._ship
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function (t) {
-            this._no = t, this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
-        }, e.prototype.update = function (t) {
-            switch (t) {
-                case 1:
-                    this._img.texture = o.MAP_COMMON.getTexture(147);
-                    break;
-                case 2:
-                    this._img.texture = o.MAP_COMMON.getTexture(148);
-                    break;
-                case 3:
-                    this._img.texture = o.MAP_COMMON.getTexture(149);
-                    break;
-                default:
-                    this._img.texture = PIXI.Texture.EMPTY
+            var e;
+            e = 1 == t ? 122 : 2 == t ? 123 : 3 == t ? 124 : 121, this._ship.texture = s.MAP_COMMON.getTexture(e)
+        }, e.prototype.startWaveWhite = function () {
+            this._startWave(48)
+        }, e.prototype.startWaveRed = function (t) {
+            var e = this;
+            this._startWave(47);
+            var i = new u;
+            i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
+                y: -75,
+                alpha: 1,
+                scaleX: 1,
+                scaleY: 1
+            }, 200).to({ y: -68 }, 200).to({ y: -78, scaleX: 1.3, scaleY: .6 }, 200).to({
+                y: -59,
+                scaleX: 1,
+                scaleY: 1
+            }, 200).to({ y: -68 }, 200).to({ alpha: 0 }, 100).call(function () {
+                e._over.removeChild(i), t()
+            })
+        }, e.prototype.stopWave = function () {
+            this._wave.deactivate()
+        }, e.prototype.turn = function (t, e, i) {
+            if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e(); else {
+                this._direction = t;
+                var n = 2 == t ? 1 : -1, o = createjs.Tween.get(this._ship);
+                o.to({ scaleX: n }, i), null != e && o.call(e)
             }
+        }, e.prototype._startWave = function (t) {
+            this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
+                r.SE.play("252")
+            }).wait(2e3).call(function () {
+                r.SE.play("252")
+            })
         }, e
-    }(PIXI.Graphics);
-    e.AirUnitAppointmentPoint = s
+    }(PIXI.Container);
+    e.CompShipIcon = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
+            get: function () {
+                return this.scale.x
+            }, set: function (t) {
+                this.scale.x = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "scaleY", {
+            get: function () {
+                return this.scale.y
+            }, set: function (t) {
+                this.scale.y = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.MAP_COMMON.getTexture(93)
+        }, e
+    }(PIXI.Sprite)
 }

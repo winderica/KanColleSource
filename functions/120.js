@@ -15,7 +15,7 @@ const function120 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(2), s = i(15), a = function (t) {
+    var o = i(24), r = i(2), s = i(15), a = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             return r._layer = e, r._a_banner = i, r._d_banner = n, r._type = o, r
@@ -55,19 +55,19 @@ const function120 = function (t, e, i) {
         }), e.prototype.initialize = function (t) {
             switch (t) {
                 case 1:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(145), this._img.position.set(-45, -21);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(148), this._img.position.set(-45, -21);
                     break;
                 case 2:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(144), this._img.position.set(-53, -24);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(147), this._img.position.set(-53, -24);
                     break;
                 case 3:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(142), this._img.position.set(-45, -21);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(145), this._img.position.set(-45, -21);
                     break;
                 case 4:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(143), this._img.position.set(-35, -24);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(146), this._img.position.set(-35, -24);
                     break;
                 case 5:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(146), this._img.position.set(-45, -26);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(149), this._img.position.set(-45, -26);
                     break;
                 default:
                     this._img.texture = PIXI.Texture.EMPTY

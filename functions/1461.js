@@ -15,22 +15,73 @@ const function1461 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(11), s = i(1462), a = function (t) {
-        function e(e, i, n, o) {
-            void 0 === o && (o = !1);
-            var r = t.call(this) || this;
-            return r._hideTelop = function () {
-                createjs.Tween.get(r._telop).to({ alpha: 0 }, 300).call(function () {
-                    r._layer.removeChild(r._telop), r._telop = null, r._endTask()
-                })
-            }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
+    var o = i(0), r = i(2), s = i(27), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._showTelop()
-        }, e.prototype._showTelop = function () {
-            this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
+            var t = this, e = new s.ParallelTask;
+            e.add(new _(this._scene)), e.add(new u(this._scene)), e.add(new l(this._scene)), e.start(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
         }, e
     }(r.TaskBase);
-    e.TaskBonusTelop = a
+    e.TaskShowExtraResults = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._scene.data.extra_war_results;
+            if (e > 0) {
+                var i = this._scene.view.panel_exp.extra_result.extra_war_result;
+                i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._scene.data.extra_useitem_mst_id;
+            if (e > 0) {
+                var i = o.default.resources.getUseitem(e, 0),
+                    n = this._scene.view.panel_exp.extra_result.useitem_icon;
+                n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (1 == this._scene.data.extra_result) {
+                var e = this._scene.view.panel_exp.extra_result.map_incentive;
+                e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase)
 }

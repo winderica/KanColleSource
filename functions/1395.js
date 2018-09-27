@@ -15,96 +15,60 @@ const function1395 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(74), r = i(89), s = i(119), a = i(90), _ = i(92), u = i(93), l = i(63), c = i(94), h = i(95),
-        p = i(75), d = i(96), f = i(100), y = i(97), v = i(98), g = i(99), m = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
-            }
+    var o = i(0), r = i(2), s = i(174), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._record = i, n
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._sakuteki()
-            }, e.prototype._sakuteki = function () {
-                var t = this;
-                new s.PhaseSakuteki(this.scene, this._record).start(function () {
-                    t._ration()
-                })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new r.PhaseRation(this.scene, this._record).start(function () {
-                    t._jetAirUnit()
-                })
-            }, e.prototype._jetAirUnit = function () {
-                var t = this;
-                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
-                    t._jetAirWar()
-                })
-            }, e.prototype._jetAirWar = function () {
-                var t = this;
-                new _.PhaseAirWarJet(this.scene, this._record).start(function () {
-                    t._airUnit()
-                })
-            }, e.prototype._airUnit = function () {
-                var t = this;
-                new u.PhaseAirUnit(this.scene, this._record).start(function () {
-                    t._airWar()
-                })
-            }, e.prototype._airWar = function () {
-                var t = this;
-                new l.PhaseAirWar(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new f.PhaseSupport(this.scene, this._record).start(function () {
-                    t._openingAttack()
-                })
-            }, e.prototype._openingAttack = function () {
-                var t = this;
-                new d.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
-                    t._openingTorpedo()
-                })
-            }, e.prototype._openingTorpedo = function () {
-                var t = this;
-                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
-                    t._formation()
-                })
-            }, e.prototype._formation = function () {
-                var t = this;
-                new y.PhaseFormation(this.scene, this._record).start(function () {
-                    t._airWar2()
-                })
-            }, e.prototype._airWar2 = function () {
-                var t = this;
-                new c.PhaseAirWar2(this.scene, this._record).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this;
-                new v.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
-                    t._torpedo()
-                })
-            }, e.prototype._torpedo = function () {
-                var t = this;
-                new p.PhaseRaigeki(this.scene, this._record).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this;
-                new v.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new v.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new g.PhaseEnding(this.scene, this._record).start(function () {
-                    t._endTask()
-                })
-            }, e
-        }(o.PhaseCombatBase);
-    e.PhaseDay_06vs12 = m
+        return n(e, t), Object.defineProperty(e.prototype, "scene", {
+            get: function () {
+                return this._scene
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "record", {
+            get: function () {
+                return this._record
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
+            this._scene.view.layer_title.hide(), this._endTouchPlane()
+        }, e.prototype._endTouchPlane = function () {
+            var t = this._scene.view.raderLayer;
+            t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
+        }, e.prototype._waitGaugeExplodeAnimation = function () {
+            var t = this;
+            1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
+                t._waitGaugeExplodeAnimation()
+            }) : this._fadeOutBGM()
+        }, e.prototype._fadeOutBGM = function () {
+            var t = this, e = this._scene.data.model.map_info.area_id, i = this._scene.data.model.map_info.map_no,
+                n = this._scene.data.model.map_info.isBoss();
+            if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
+            1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
+                t._playBossLastGasp()
+            })) : this._playBossLastGasp()
+        }, e.prototype._playBossLastGasp = function () {
+            if (o.default.option.vol_voice <= 0) return void this._wait();
+            var t = this._scene.data.model.deck_e.ships[0];
+            if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
+            var e = this._scene.view.layer_gauge.isExploded(),
+                i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
+            return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
+        }, e.prototype._playBossVoice = function (t) {
+            var e = this;
+            o.default.sound.voice.play("9998", t, function () {
+                e._wait()
+            })
+        }, e.prototype._wait = function () {
+            var t = this;
+            createjs.Tween.get(this).wait(1e3).call(function () {
+                t._shutter_close()
+            })
+        }, e.prototype._shutter_close = function () {
+            var t = this;
+            this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
+                t._endTask()
+            })
+        }, e
+    }(r.TaskBase);
+    e.PhaseEnding = a
 }

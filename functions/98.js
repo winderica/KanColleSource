@@ -16,7 +16,7 @@ const function98 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(0), r = i(2), s = i(62), a = i(248), _ = i(249), u = i(250), l = i(251), c = i(253), h = i(451),
-        p = i(453), d = i(255), f = function (t) {
+        p = i(453), d = i(255), f = i(455), y = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -36,7 +36,7 @@ const function98 = function (t, e, i) {
                 } else this._endTask()
             }, e.prototype._hougeki = function (t) {
                 var e = t.type;
-                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : this._special(t)
+                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : this._special(t)
             }, e.prototype._normal = function (t) {
                 var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
                     o = this._getDShip(t.d_indexes[0], t.flag);
@@ -85,6 +85,17 @@ const function98 = function (t, e, i) {
                     a = t.getSlotitem(2), _ = t.getDamage(0), u = t.getHitType(0), l = t.isShield(0),
                     c = this._getDaihatsuEffectType(n, o), h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l);
                 h.setOptionalEffects(c), h.start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._nelson_touch = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new f.PhaseNelsonTouch(this._scene, i, r, s, a).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._special = function (t) {
@@ -142,5 +153,5 @@ const function98 = function (t, e, i) {
                 return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e
         }(r.TaskBase);
-    e.PhaseHougeki = f
+    e.PhaseHougeki = y
 }

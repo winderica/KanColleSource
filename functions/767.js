@@ -15,44 +15,19 @@ const function767 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(768), r = i(52), s = function (t) {
+    var o = i(210), r = i(21), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e._mousedown = function (t, i) {
-                e.mousedown(t, i)
-            }, e._onClickDetach = function (t) {
-                e.onClickDetach(t)
-            }, e._onMouseUp = function (t) {
-                e.onMouseUp(t)
-            }, e._onMouseOut = function () {
-                e.onMouseOut()
-            };
-            for (var i = new Array, n = new Array, s = 0; s < 5; s++) {
-                var a = new o.SlotItemSlot(s);
-                a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
-                var _ = new o.ClearSlotItemSlot;
-                _.y = a.y = r.RemodelConst.DETAIL_LISTITEM.HEIGHT * s + 6, i.push(a), n.push(_), e.addChild(_, a)
-            }
-            return e._slotItemSlots = i, e._clearSlotItemSlots = n, e
+            var e = r.COMMON_MAIN.getTexture(15);
+            return t.call(this, e) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
-            get: function () {
-                return this._slotItemSlots
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.clean = function () {
-            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
-            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
-        }, e.prototype.update = function (t, e, i, n, o) {
-            var r = this._slotItemSlots[t], s = this._clearSlotItemSlots[t];
-            r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
-        }, e.prototype.hide = function (t) {
-            for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
-        }, e.prototype.dispose = function () {
-            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
-            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].dispose(), this._clearSlotItemSlots[t] = null;
-            this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = this._onClickDetach = null, this.mousedown = this._mousedown = null, this.onMouseOut = this._onMouseOut = null, this.removeChildren()
+        return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+            this._update_(t, e, i, n, o, r, s, a, _, u, l, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+        }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+            this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + u, this._textSakuteki.text = "" + l, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
+        }, e.prototype._alignment = function () {
+            this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
         }, e
-    }(PIXI.Container);
-    e.SlotItemSlotBox = s
+    }(o.ShipParameterViewBase);
+    e.ShipParameter = s
 }

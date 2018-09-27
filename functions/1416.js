@@ -1,80 +1,56 @@
 const function1416 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(26), s = i(470), a = i(1419), _ = function (t) {
-        function e() {
-            return t.call(this) || this
+    var n = i(7), o = i(165), r = i(223), s = i(470), a = function () {
+        function t(t, e) {
+            this._info = t, this._battle = e, this._initializeShipData()
         }
 
-        return n(e, t), e.prototype.playTorpedo = function (t, e, i, n) {
-            var o = this;
-            void 0 === i && (i = 1800), void 0 === n && (n = null);
-            var r = new a.Torpedo(1);
-            this.addChild(r), r.play(t, e, i, function () {
-                o.removeChild(r), null != n && n()
-            })
-        }, e.prototype.playTorpedoAtNight = function (t, e, i, n) {
-            var o = this;
-            void 0 === i && (i = 800), void 0 === n && (n = null);
-            var r = new a.Torpedo(2);
-            this.addChild(r), r.play(t, e, i, function () {
-                o.removeChild(r), null != n && n()
-            })
-        }, e.prototype.playAerialTorpedo = function (t, e, i) {
-            var n = this;
-            void 0 === i && (i = null);
-            var o = new a.Torpedo(3);
-            this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
-                n.removeChild(o), null != i && i()
-            })
-        }, e.prototype.playAerialTorpedoSuper = function (t, e, i) {
-            var n = this;
-            void 0 === i && (i = null);
-            var o = new a.Torpedo(5);
-            this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
-                n.removeChild(o), null != i && i()
-            })
-        }, e.prototype.playAerialTorpedoJet = function (t, e, i) {
-            var n = this;
-            void 0 === i && (i = null);
-            var o = new a.Torpedo(4);
-            this.addChild(o), o.play(t, e, 0, function () {
-                n.removeChild(o), null != i && i()
-            })
-        }, e
-    }(s.LayerExplosion);
-    e.LayerTorpedo = _;
-    !function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._night = e, i._canvas = new Array, i._createCanvas(!1, !1), i._createCanvas(!0, !1), i._createCanvas(!1, !0), i._createCanvas(!0, !0), i
-        }
-
-        n(e, t), e.prototype.getCanvas = function (t, e) {
-            return this._night ? this._canvas[0] : this._canvas[(t ? 1 : 0) + (e ? 2 : 0)]
-        }, e.prototype._createCanvas = function (t, e) {
-            var i = r.BannerSize.W;
-            1 == t && (i += .9 * r.BannerSize.W);
-            var n = r.BannerSize.W;
-            1 == e && (n += .9 * r.BannerSize.W);
-            var s = o.default.width - i - n, a = new PIXI.Graphics;
-            a.beginFill(16711680, .3), a.drawRect(i, 0, s, o.default.height), a.endFill(), this.addChild(a);
-            var _ = new PIXI.Container;
-            _.mask = a, this.addChild(_), this._canvas.push(_)
-        }
-    }(PIXI.Container)
+        return Object.defineProperty(t.prototype, "ships", {
+            get: function () {
+                return this._ships
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getDisplayList = function () {
+            for (var t = [], e = this._voice_p_no, i = this._voice_ids, n = 0; n < 3; n++) {
+                var o = e.indexOf(n + 1);
+                if (!(o >= 0)) break;
+                var r = o < this._ships.length ? this._ships[o] : null, s = i[o];
+                t.push({ ship: r, voiceID: s.toString() })
+            }
+            return t
+        }, t.prototype.getFlareIndex_f = function () {
+            var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+            return null == t || t.length < 1 ? -1 : t[0]
+        }, t.prototype.getFlareIndex_e = function () {
+            var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
+            return null == t || t.length < 2 ? -1 : t[1]
+        }, t.prototype.getHougekiData = function () {
+            var t = n.ObjUtil.getObject(this._battle, "api_hougeki");
+            return new s.HougekiListNightData(t)
+        }, t.prototype._initializeShipData = function () {
+            this._ships = [];
+            for (var t = n.ObjUtil.getNumArray(this._info, "api_ship_id"), e = n.ObjUtil.getNumArray(this._info, "api_ship_lv"), i = n.ObjUtil.getNumArray(this._info, "api_maxhps"), s = n.ObjUtil.getNumArray(this._info, "api_nowhps"), a = n.ObjUtil.getObjectArray(this._info, "api_Slot"), _ = n.ObjUtil.getObjectArray(this._info, "api_Param"), u = 0; u < t.length; u++) {
+                var l = t[u], c = e[u], h = new o.ShipModelReplica(2, !1, u, l, 0, c), p = s[u], d = i[u];
+                h.initializeHPInfo(p, d);
+                for (var f = a[u], y = [], v = [], g = 0, m = f; g < m.length; g++) {
+                    var b = m[g];
+                    b > 0 && (y.push(new r.SlotitemModelReplica(b)), v.push(1))
+                }
+                h.initializeSlots(y, null, v);
+                var w = _[u], x = w[0], I = w[1], T = w[2], O = w[3];
+                h.initializeParams(x, I, T, O), this._ships.push(h)
+            }
+        }, Object.defineProperty(t.prototype, "_voice_p_no", {
+            get: function () {
+                var t = n.ObjUtil.getNumArray(this._info, "api_voice_p_no");
+                return null == t ? [] : t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "_voice_ids", {
+            get: function () {
+                var t = n.ObjUtil.getNumArray(this._info, "api_voice_id");
+                return null == t ? [] : t
+            }, enumerable: !0, configurable: !0
+        }), t
+    }();
+    e.AllyAttackModel = a
 }

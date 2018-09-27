@@ -1,7 +1,7 @@
 const function14 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(30), r = i(23), s = i(101), a = i(77), _ = function () {
+    var n = i(0), o = i(30), r = i(23), s = i(101), a = i(78), _ = function () {
         function t() {
             null == t._queue && (t._queue = []), this._url_list = []
         }
@@ -17,7 +17,7 @@ const function14 = function (t, e, i) {
                     return ""
             }
         }, t.getPath = function (e, i, _) {
-            "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
+            "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
             var u = _ + (i ? "_dmg" : ""), l = "ship_" + u, c = s.SuffixUtil.create(e, l),
                 h = r.MathUtil.zeroPadding(e, 4);
             return n.default.settings.path_root + "resources/ship/" + u + "/" + (h + t.hSuffix(e, _)) + "_" + c + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))

@@ -1,67 +1,63 @@
 const function514 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(30), r = i(142), s = i(515), a = function () {
-        function t() {
+    var n = i(7), o = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "num", {
+        return Object.defineProperty(t.prototype, "mstID", {
             get: function () {
-                var t = 0;
-                for (var e in this._map) t++;
-                return t
+                return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.setData = function (t) {
-            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new r.ShipModelEdit(i), o = n.memID;
-                if (o > 0) {
-                    var s = o.toString();
-                    this._map[s] = n
-                }
-            }
-        }, t.prototype.get = function (t) {
-            var e = t.toString();
-            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.delete = function (t, e) {
-            void 0 === e && (e = !1);
-            var i = this.get(t), o = i.getSlotitems(), r = i.getSlotitemEx(), s = i.memID.toString();
-            if (1 == this._map.hasOwnProperty(s) && delete this._map[s], !1 === e) {
-                for (var a = 0; a < o.length; a++) {
-                    var _ = o[a];
-                    null != _ && n.default.model.slot.delete(_.memID)
-                }
-                null != r && n.default.model.slot.delete(r.memID)
-            }
-        }, t.prototype.getAll = function () {
-            var t = new Array;
-            for (var e in this._map) {
-                var i = this._map[e];
-                t.push(i)
-            }
-            return t
-        }, t.prototype.getAllOther = function () {
-            var t = o.ShipUtil.getMemIDsInAllDeck(), e = new Array;
-            for (var i in this._map) {
-                var n = this._map[i];
-                -1 == t.indexOf(n.memID) && e.push(n)
-            }
-            return e
-        }, t.prototype.setMstData = function (t) {
-            if (this._mapMst = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new s.ShipMstModel(i), o = n.mstID;
-                if (o > 0) {
-                    var r = o.toString();
-                    this._mapMst[r] = n
-                }
-            }
-        }, t.prototype.getMst = function (t) {
-            var e = t.toString();
-            return 1 == this._mapMst.hasOwnProperty(e) ? this._mapMst[e] : null
-        }, t.prototype.updateData = function (t) {
-            if (null == this._map) return null;
-            var e = new r.ShipModelEdit(t), i = e.memID.toString();
-            return 1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e, e
+        }), Object.defineProperty(t.prototype, "version", {
+            get: function () {
+                var t = n.ObjUtil.getStrArray(this._o, "api_version");
+                return null != t && t.length > 0 ? t[0] : "1"
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "version_voice", {
+            get: function () {
+                var t = n.ObjUtil.getStrArray(this._o, "api_version");
+                return null != t && t.length > 1 ? t[1] : "1"
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "version_voice_boko", {
+            get: function () {
+                var t = n.ObjUtil.getStrArray(this._o, "api_version");
+                return null != t && t.length > 2 ? t[2] : "1"
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "unique_key", {
+            get: function () {
+                return n.ObjUtil.getString(this._o, "api_filename")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getPortOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_boko_d" : "api_boko_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getCenterOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_kaizo_d" : "api_kaizo_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getLeftOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_ensyuf_d" : "api_ensyuf_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getMapOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_map_d" : "api_map_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getRemodelPowupUIOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_kaisyu_d" : "api_kaisyu_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getBattleOffset = function (t) {
+            void 0 === t && (t = !1);
+            var e = t ? "api_battle_d" : "api_battle_n", i = n.ObjUtil.getNumArray(this._o, e);
+            return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
+        }, t.prototype.getFaceRect = function (t) {
+            void 0 === t && (t = !1);
+            var e = n.ObjUtil.getNumArray(this._o, "api_weda"), i = n.ObjUtil.getNumArray(this._o, "api_wedb");
+            return new PIXI.Rectangle(e[0], e[1], i[0], i[1])
         }, t
     }();
-    e.ShipModelHolder = a
+    e.ShipGraphModel = o
 }

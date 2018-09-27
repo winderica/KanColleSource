@@ -15,18 +15,14 @@ const function40 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._time = 0, i._time = e, i
+    var o = i(58), r = i(9), s = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(this._time).call(function () {
-                t._endTask()
-            })
+        return n(e, t), e.prototype._getContentTexture = function () {
+            return r.COMMON_MISC.getTexture(23)
         }, e
-    }(o.TaskBase);
-    e.WaitTask = r
+    }(o.GearBtnNext);
+    e.GearBtnHome = s
 }

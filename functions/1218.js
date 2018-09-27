@@ -15,38 +15,27 @@ const function1218 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(19), s = i(133), a = i(1219), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._friend = e, i._circle = new PIXI.Sprite, i._circle.anchor.set(.5, .5), i._circle.scale.set(.1), i._circle.visible = !1, i._content = new a.Content(e), i._content.alpha = 0, i.addChild(i._circle), i.addChild(i._content);
-            var n = new PIXI.Graphics;
-            return n.beginFill(65280, .5), i._drawGraphics(n), n.endFill(), i.addChild(n), i.mask = n, i._friend ? (i.circle.position.set(255, 311), i.content.position.set(-150, 0)) : (i.circle.position.set(345, 311), i.content.position.set(150, 0)), i
+    var o = i(5), r = i(1219), s = i(1222), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "circle", {
+        return n(e, t), Object.defineProperty(e.prototype, "enemy", {
             get: function () {
-                return this._circle
+                return this._enemy
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "content", {
+        }), Object.defineProperty(e.prototype, "friend", {
             get: function () {
-                return this._content
+                return this._friend
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            this._friend ? this._circle.texture = s.PRAC_MAIN.getTexture(3) : this._circle.texture = s.PRAC_MAIN.getTexture(4), this._content.initialize(t, e)
-        }, e.prototype.getAnimationTask = function () {
-            var t = new r.TweenTask;
-            t.addTween(createjs.Tween.get(this._content.medal).to({ alpha: 1 }, 100));
-            for (var e = this._content.elements, i = this._friend ? 0 : 173, n = 0; n < e.length; n++) {
-                var o = e[n];
-                0 != o.visible && t.addTween(createjs.Tween.get(o).wait(300 + 100 * n).to({
-                    x: i,
-                    alpha: 1
-                }, 200, createjs.Ease.sineIn))
-            }
-            return t
-        }, e.prototype._drawGraphics = function (t) {
-            this._friend ? (t.moveTo(0, 0), t.lineTo(0, o.default.height), t.lineTo(o.default.width / 2 - 128, o.default.height), t.lineTo(o.default.width / 2 + 128, 0)) : (t.moveTo(128, 0), t.lineTo(o.default.width / 2, 0), t.lineTo(o.default.width / 2, o.default.height), t.lineTo(-128, o.default.height))
+        }), Object.defineProperty(e.prototype, "upper", {
+            get: function () {
+                return this._upper
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i, n) {
+            this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
         }, e
     }(PIXI.Container);
-    e.Panel = _
+    e.PracticeAnimMainView = a
 }

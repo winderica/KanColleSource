@@ -15,27 +15,25 @@ const function1222 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(16), r = i(144), s = i(51), a = function (t) {
+    var o = i(4), r = i(134), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
+            return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "bg", {
             get: function () {
                 return this._bg
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "black", {
+        }), Object.defineProperty(e.prototype, "text", {
             get: function () {
-                return this._black
+                return this._text
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "shutter", {
-            get: function () {
-                return this._shutter
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._shutter.initializeLight()
+        }), e.prototype.initialize = function (t) {
+            void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
+        }, e.prototype.update = function (t) {
+            this._text.text = t
         }, e
     }(PIXI.Container);
-    e.ViewMain = a
+    e.PracticeTitleBar = s
 }

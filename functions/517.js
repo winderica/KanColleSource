@@ -15,47 +15,44 @@ const function517 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(13), r = function () {
-        function t(t) {
-            this._o = t
+    var o = i(518), r = function () {
+        function t() {
+            this._dic = {}
         }
 
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "build_phase_num", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_kcnt", 3)
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getEquippableTypes = function () {
-            if (null == this._equippqble_types) {
-                this._equippqble_types = new Array;
-                var t = o.ObjUtil.getObject(this._o, "api_equip_type");
-                if (null != t) for (var e in t) 1 == t[e] && this._equippqble_types.push(parseInt(e))
-            }
-            return this._equippqble_types.concat()
-        }, t.prototype.getEquippableTypesEx = function () {
-            if (null == this._equippqble_types_ex) return new Array;
-            var t = this.getEquippableTypes(), e = this._equippqble_types_ex.concat();
-            return t.filter(function (t, i, n) {
-                return -1 != e.indexOf(t)
-            })
+        return t.prototype.get = function (t) {
+            var e = t.toString();
+            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
+        }, t.prototype.getAllExId = function () {
+            return this._equippable_types_ex
         }, t
     }();
-    e.ShipTypeModel = r;
+    e.ShipTypeModelHolder = r;
     var s = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.__set_equippqble_types_ex__ = function (t) {
-            this._equippqble_types_ex = t
+        return n(e, t), e.prototype.__setData__ = function (t) {
+            if (this._dic = {}, null != t) {
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e], n = new o.ShipTypeModelEdit(i), r = n.id;
+                    if (r > 0) {
+                        var s = r.toString();
+                        this._dic[s] = n
+                    }
+                }
+                this._setExEtypes()
+            }
+        }, e.prototype.__setEquipTypeExData__ = function (t) {
+            this._equippable_types_ex = t, this._setExEtypes()
+        }, e.prototype._setExEtypes = function () {
+            var t = this._equippable_types_ex;
+            if (null != this._dic && null != t) for (var e in this._dic) {
+                var i = this._dic[e];
+                i.__set_equippqble_types_ex__(t)
+            }
         }, e
     }(r);
-    e.ShipTypeModelEdit = s
+    e.ShipTypeModelHolderEdit = s
 }

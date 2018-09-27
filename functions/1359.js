@@ -15,82 +15,115 @@ const function1359 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(89), r = i(74), s = i(1360), a = i(1361), _ = i(1389), u = i(1390), l = i(1391), c = i(462),
-        h = i(1392), p = i(1393), d = i(179), f = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
-            }
+    var o = i(0), r = i(2), s = i(12), a = i(15), _ = i(14), u = i(1360), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._preAnim = function () {
+                for (var t = 0; t < i._canvas.chara.length; t++) i._canvas.chara[t].alpha = 0;
+                i._nelson.texture = o.default.resources.getShip(i._attackers[0].mst_id, !1, "special"), i._nelson.position.set(-117, 208), i._nelson.alpha = 0;
+                for (var t = 0; t < i._attackers.length; t++) {
+                    var e = i._attackers[t].mst_id, n = 0 != t && i._attackers[t].isDamaged(),
+                        r = o.default.model.ship_graph.get(e).getBattleOffset(n);
+                    i._ships[t].texture = o.default.resources.getShip(e, n, "full"), i._ships[t].position.set(r.x, r.y), i._canvas.chara[t].addChild(i._ships[t]), i._canvas.chara[t].position.set(0 - i._ships[t].width, 720 + i._ships[t].height)
+                }
+                i._canvas.chara[0].addChild(i._nelson), i._anim1()
+            }, i._anim2 = function () {
+                createjs.Tween.get(null).wait(500).call(function () {
+                    createjs.Tween.get(i._ships[0]).to({ alpha: 0 }, 400), createjs.Tween.get(i._nelson).to({ alpha: 1 }, 400);
+                    var t = i._createSmoke(82, 981, 240);
+                    i._canvas.explosion.addChild(t), t.createTweens(700, null);
+                    var e = i._createSmoke(83, 752, 192);
+                    i._canvas.explosion.addChild(e), e.createTweens(800, null);
+                    var n = i._createSmoke(84, 480, 321);
+                    i._canvas.explosion.addChild(n), n.createTweens(900, i._anim3)
+                })
+            }, i._anim3 = function () {
+                createjs.Tween.get(i._canvas.chara[0]).wait(400).to({
+                    x: 307,
+                    y: -240,
+                    alpha: 1
+                }, 300), createjs.Tween.get(i._canvas.chara[1]).wait(450).to({
+                    x: 65,
+                    y: -65,
+                    alpha: 1
+                }, 500), createjs.Tween.get(i._canvas.chara[2]).wait(500).to({
+                    x: -323,
+                    y: 34,
+                    alpha: 1
+                }, 500).call(function () {
+                    i._anim4()
+                })
+            }, i._anim4 = function () {
+                createjs.Tween.get(i._canvas.chara[0]).wait(500).call(function () {
+                    createjs.Tween.get(i._canvas.chara[0]).to({ alpha: 0 }, 500), createjs.Tween.get(i._canvas.chara[1]).to({ alpha: 0 }, 500), createjs.Tween.get(i._canvas.chara[2]).to({ alpha: 0 }, 500)
+                }).wait(600).call(function () {
+                    i._endTask()
+                })
+            }, i._attackers = e, i._canvas = new u.CutinNelsonTouchCanvas, i._view = new PIXI.Container, i.view.addChild(i._canvas), i._nelson = new PIXI.Sprite, i._ships = [];
+            for (var n = 0; n < i._attackers.length; n++) i._ships.push(new PIXI.Sprite);
+            return i._preload_task = new c(e), i
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._opening()
-            }, e.prototype._opening = function () {
-                var t = this;
-                new s.PhaseOpening(this.scene, this._record).start(function () {
-                    t._allyAttack()
-                })
-            }, e.prototype._allyAttack = function () {
-                var t = this;
-                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this;
-                new u.PhaseMoveShips(this.scene, this._record).start(function () {
-                    t._showTouchPlane()
-                })
-            }, e.prototype._showTouchPlane = function () {
-                var t = this, e = this._record.raw.getTouchPlaneFriend(), i = this._record.raw.getTouchPlaneEnemy();
-                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
-                    t._ration()
-                })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new o.PhaseRation(this.scene, this._record).start(function () {
-                    t._light()
-                })
-            }, e.prototype._light = function () {
-                var t = this;
-                new _.PhaseLighting(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new l.PhaseSupport(this.scene, this._record).start(function () {
-                    t._attack()
-                })
-            }, e.prototype._attack = function () {
-                var t = this, e = this._record.raw.hougeki, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this, e = this._record.raw.hougeki1, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this, e = this._record.raw.hougeki2, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new h.PhaseEnding(this.scene, this._record).start(function () {
-                    t._dayBattle()
-                })
-            }, e.prototype._dayBattle = function () {
-                var t = this;
-                if (1 == this._record.raw.hasDayBattle()) {
-                    var e = this.scene, i = this._record.getDayRecord();
-                    new p.PhaseDayFromNight(e, i).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e
-        }(r.PhaseCombatBase);
-    e.PhaseNight = f
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreloadTask = function () {
+            return this._preload_task
+        }, e.prototype._start = function () {
+            var t = this;
+            this._preload_task.start(function () {
+                t._preAnim()
+            })
+        }, e.prototype._anim1 = function () {
+            for (var t = 0; t < this._canvas.chara.length; t++) this._canvas.chara[t].alpha = 0;
+            o.default.sound.voice.play(this._attackers[0].mst_id.toString(), 900), createjs.Tween.get(this._canvas.chara[0]).to({
+                x: -140,
+                y: -142,
+                alpha: 1
+            }, 600).call(this._anim2)
+        }, e.prototype._createSmoke = function (t, e, i) {
+            var n = new h;
+            return n.initialize(t), n.x = e, n.y = i, n
+        }, e.prototype._endTask = function () {
+            this._canvas.dispose(), this._view.removeChildren(), null != this._view.parent && this._view.parent.removeChild(this._view), this._attackers = null, this._view = null, this._canvas = null, this._ships = null, this._nelson = null, this._preload_task = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase);
+    e.CutinNelsonTouch = l;
+    var c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._attackers = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this, e = new _.ShipLoader;
+            e.add(this._attackers[0].mst_id, !1, "full"), e.add(this._attackers[0].mst_id, !1, "special");
+            for (var i = 1; i < this._attackers.length; i++) e.add(this._attackers[i].mst_id, this._attackers[i].isDamaged(), "full");
+            e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(r.TaskBase);
+    e.PreloadCutinNelsonTouch = c;
+    var h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new s.Sprite, e._img.anchor.set(.35, .8), e._img.scale.set(0), e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._img.texture = a.BATTLE_MAIN.getTexture(t)
+        }, e.prototype.createTweens = function (t, e) {
+            createjs.Tween.get(this._img).wait(t).to({ scaleX: 1.2, scaleY: 1.2 }, 300).to({
+                scaleX: 1.5,
+                scaleY: 1.5,
+                alpha: 0
+            }, 600).call(function () {
+                e && e()
+            })
+        }, e
+    }(PIXI.Container)
 }

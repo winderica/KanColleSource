@@ -16,26 +16,41 @@ const function1285 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(20), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onMouseOver = function () {
-                i._stopTween()
-            }, i._onMouseOut = function () {
-                i._startTween()
-            }, i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick()
-            }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._handle = -1, n._onClick = function () {
+                if (-1 != n._handle) {
+                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
+                    n._cb_onDoubleClick(n._no)
+                } else n._handle = setTimeout(function () {
+                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
+                }, 300)
+            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._state = 0, n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
+        return n(e, t), Object.defineProperty(e.prototype, "no", {
+            get: function () {
+                return this._no
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._no = t, this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, { loop: !0 }).to({ alpha: .1 }, 1e3).to({ alpha: 1 }, 400))
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.texture = o.MAP_COMMON.getTexture(147);
+                    break;
+                case 2:
+                    this._img.texture = o.MAP_COMMON.getTexture(148);
+                    break;
+                case 3:
+                    this._img.texture = o.MAP_COMMON.getTexture(149);
+                    break;
+                default:
+                    this._img.texture = PIXI.Texture.EMPTY
+            }
         }, e
-    }(PIXI.Container);
-    e.PanelCancelBtn = s
+    }(PIXI.Graphics);
+    e.AirUnitAppointmentPoint = s
 }

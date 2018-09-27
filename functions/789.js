@@ -15,49 +15,76 @@ const function789 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(3), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this, s = r.REMODEL_POWERUP.getTexture(e), a = r.REMODEL_POWERUP.getTexture(i),
-                _ = new o.TextBox(30, 5523516), u = new o.TextBox(30, 5523516),
-                l = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(41));
-            return _.anchor.x = 0, u.anchor.x = 0, l.anchor.x = 0, l.position.set(233 - Math.floor(l.width / 2), 6), l.visible = !1, n.addChild(_, u, l), n.textureNormalFrame = s, n.textureMaxFrame = a, n.textBefore = _, n.textAfter = u, n.textMax = l, n
-        }
+    var o = i(21), r = i(335), s = i(790), a = i(791), _ = i(792), u = i(794), l = i(795), c = i(796),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this, i = new a.PowerUpHeader,
+                    n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(12));
+                n.interactive = !0;
+                var h = new PIXI.Container, p = new PIXI.Graphics, d = new PIXI.Sprite;
+                h.position.set(-1, -1), h.mask = p, h.addChild(d, p);
+                var f = new r.CancelButton, y = new _.ShipInfoBox, v = new s.KaryokuBeforeAfterConfirm,
+                    g = new s.RaisouBeforeAfterConfirm, m = new s.SoukouBeforeAfterConfirm,
+                    b = new s.TaikuBeforeAfterConfirm, w = new c.ShipParameterChecker, x = new l.TargetShipBox,
+                    I = new u.StartButton;
+                return p.beginFill(0, 0), p.moveTo(0, 30), p.lineTo(30, 0), p.lineTo(1050, 0), p.lineTo(1050, 569), p.lineTo(29, 569), p.lineTo(0, 537), p.lineTo(0, 30), p.endFill(), p.renderable = !1, f.width = 198, f.height = 56, f.position.set(543, 498), I.position.set(755, 483), x.position.set(534, 11), y.position.set(11, 334), i.position.set(0, -41), w.position.set(255, 343), e.addChild(n, h, y, f, I, v, g, m, b, w, i, x), e._shipFull = d, e._shipInfoBox = y, e._karyokuBeforeAfterConfirm = v, e._raisouBeforeAfterConfirm = g, e._soukouBeforeAfterConfirm = m, e._taikuBeforeAfterConfirm = b, e._shipParameterChecker = w, e._targetShipBox = x, e._startButton = I, e._cancelButton = f, e.headerKindaika = i, e._containerShipFull = h, e
+            }
 
-        return n(e, t), e.prototype.update = function (t, e, i) {
-            this.textBefore.text = t.toString(), this.textAfter.text = e.toString(), this.textMax.visible = !1, t == e || i ? this.textAfter.style.fill = 5523516 : (this.textAfter.style.fill = 1949120, this.textMax.visible = !0), this.texture = this.textureNormalFrame, i && (this.texture = this.textureMaxFrame), this.textBefore.position.set(108 + Math.floor(34.0125 - this.textBefore.width / 2), 14), this.textAfter.position.set(203 + Math.floor(31.5 - this.textAfter.width / 2), 14)
-        }, e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY, this.textBefore.texture = PIXI.Texture.EMPTY, this.textAfter.texture = PIXI.Texture.EMPTY, this.textMax.texture = PIXI.Texture.EMPTY, this.textBefore.text = "", this.textAfter.text = "", this.removeChild(this.textBefore), this.removeChild(this.textAfter), this.textBefore = null, this.textBefore = null, this.textAfter = null, this.textureNormalFrame = null, this.textureMaxFrame = null, this.removeChildren()
-        }, e
-    }(PIXI.Sprite), a = function (t) {
-        function e() {
-            return t.call(this, 30, 31) || this
-        }
-
-        return n(e, t), e
-    }(s);
-    e.KaryokuBeforeAfterConfirm = a;
-    var _ = function (t) {
-        function e() {
-            return t.call(this, 32, 33) || this
-        }
-
-        return n(e, t), e
-    }(s);
-    e.RaisouBeforeAfterConfirm = _;
-    var u = function (t) {
-        function e() {
-            return t.call(this, 34, 35) || this
-        }
-
-        return n(e, t), e
-    }(s);
-    e.TaikuBeforeAfterConfirm = u;
-    var l = function (t) {
-        function e() {
-            return t.call(this, 36, 37) || this
-        }
-
-        return n(e, t), e
-    }(s);
-    e.SoukouBeforeAfterConfirm = l
+            return n(e, t), Object.defineProperty(e.prototype, "shipFull", {
+                get: function () {
+                    return this._shipFull
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "containerShipFull", {
+                get: function () {
+                    return this._containerShipFull
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "shipInfoBox", {
+                get: function () {
+                    return this._shipInfoBox
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "karyokuBeforeAfterConfirm", {
+                get: function () {
+                    return this._karyokuBeforeAfterConfirm
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "raisouBeforeAfterConfirm", {
+                get: function () {
+                    return this._raisouBeforeAfterConfirm
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "soukouBeforeAfterConfirm", {
+                get: function () {
+                    return this._soukouBeforeAfterConfirm
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "taikuBeforeAfterConfirm", {
+                get: function () {
+                    return this._taikuBeforeAfterConfirm
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "shipParameterChecker", {
+                get: function () {
+                    return this._shipParameterChecker
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "targetShipBox", {
+                get: function () {
+                    return this._targetShipBox
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "startButton", {
+                get: function () {
+                    return this._startButton
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "cancelButton", {
+                get: function () {
+                    return this._cancelButton
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.SetPos_karyokuBeforeAfterConfirm = function (t) {
+                this._karyokuBeforeAfterConfirm.position.set(252, 26 - (t ? 3 : 0))
+            }, e.prototype.SetPos_raisouBeforeAfterConfirm = function (t) {
+                this._raisouBeforeAfterConfirm.position.set(252, 100 - (t ? 3 : 0))
+            }, e.prototype.SetPos_taikuBeforeAfterConfirm = function (t) {
+                this._taikuBeforeAfterConfirm.position.set(252, 170 - (t ? 3 : 0))
+            }, e.prototype.SetPos_soukouBeforeAfterConfirm = function (t) {
+                this._soukouBeforeAfterConfirm.position.set(252, 242 - (t ? 3 : 0))
+            }, e.prototype.dispose = function () {
+                this.headerKindaika.dispose(), this.headerKindaika = null, this._shipFull = null, this._containerShipFull.removeChildren(), this._containerShipFull.mask = null, this._containerShipFull = null, this._shipInfoBox.dispose(), this._shipInfoBox = null, this._karyokuBeforeAfterConfirm.dispose(), this._karyokuBeforeAfterConfirm = null, this._raisouBeforeAfterConfirm.dispose(), this._raisouBeforeAfterConfirm = null, this._soukouBeforeAfterConfirm.dispose(), this._soukouBeforeAfterConfirm = null, this._taikuBeforeAfterConfirm.dispose(), this._taikuBeforeAfterConfirm = null, this._shipParameterChecker.dispose(), this._shipParameterChecker = null, this._targetShipBox.onClickEmpty = null, this._targetShipBox.onClickSlotIn = null, this._targetShipBox.dispose(), this._targetShipBox = null, this._startButton.dispose(), this._startButton = null, this._cancelButton.dispose(), this._cancelButton = null, this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.PowerUpEdit = h
 }

@@ -45,10 +45,11 @@ const function99 = function (t, e, i) {
             })) : this._playBossLastGasp()
         }, e.prototype._playBossLastGasp = function () {
             if (o.default.option.vol_voice <= 0) return void this._wait();
-            var t = this._scene.data.model.deck_f.ships[0];
+            var t = this._scene.data.model.deck_e.ships[0];
             if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
-            var e = (this._scene.view.layer_gauge.isExploded(), s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t));
-            return e > 0 ? void this._playBossVoice(e) : (e = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(e) : void this._wait()
+            var e = this._scene.view.layer_gauge.isExploded(),
+                i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
+            return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
         }, e.prototype._playBossVoice = function (t) {
             var e = this;
             o.default.sound.voice.play("9998", t, function () {
