@@ -4,7 +4,16 @@ The source code of KanColle HTML5 version is written in `Typescript` and bundled
 
 ## Description
 
-For my own curiosity and the demand of reviewing ES5, this repo is built, trying to analyse bundled code of game *KanColle*
+For my own curiosity and the demand of reviewing ES5, this repo is built, trying to analyse bundled code of game *KanColle*.
+
+It's difficult to check diff between two versions of `webpack` bundled file:
+
+1. `main.js` is large and difficult to do analysis for the whole file.
+2. So the only way is to divide `main.js` into modules and read code in each file. But it will be annoying to check diff 
+because of the implementation of `webpack`, which turn modules into an array, implying that the change of modules will lead 
+to the change of array we get, and we cannot find a better way to organize the elements of this array.
+
+For the reasons above, I will only do analysis for a certain version (maybe `4.1.1.6`) until a better idea is brought up.
 
 ## Folder structure
 
