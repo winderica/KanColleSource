@@ -1,41 +1,23 @@
 /*
- * the function called by `475.js`
- * configuration of width and height
+ * the function called by `479.js`
+ * definition of width and height
  */
 const function5 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: true });
-    /*
-     * class represented by IIFE, the same as:
-            class n {
-                static _width = 1200;
-                static _height = 720;
-                static get width() {
-                    return this._width;
-                }
-                static get height() {
-                    return this._height;
-                }
-            }
-     */
+    Object.defineProperty(e, "__esModule", { value: !0 });
     var n = function () {
         function t() {
         }
 
-        Object.defineProperty(t, "width", {
+        return Object.defineProperty(t, "width", {
             get: function () {
                 return this._width
-            }, enumerable: true, configurable: true
-        });
-        Object.defineProperty(t, "height", {
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t, "height", {
             get: function () {
                 return this._height
-            }, enumerable: true, configurable: true
-        });
-        t._width = 1200; // game width
-        t._height = 720; // game height
-        return t;
+            }, enumerable: !0, configurable: !0
+        }), t._width = 1200, t._height = 720, t // 1200 * 720
     }();
-    // `export default n`
     e.default = n
-};
+}
