@@ -15,8 +15,8 @@ const function352 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(26), a = i(933), _ = i(934), u = i(935), l = i(936), c = i(937), h = i(938),
-        p = i(939), d = function (t) {
+    var o = i(0), r = i(1), s = i(26), a = i(935), _ = i(936), u = i(937), l = i(938), c = i(939), h = i(940),
+        p = i(941), d = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._activated = !1, n._onMouseDown = function () {
@@ -64,7 +64,7 @@ const function352 = function (t, e, i) {
             }, e.prototype.deactivate = function () {
                 this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this.deactivate(), null != this._load_task && this._load_task.cancel(), this._cb_onMouseDown = null, this._cb_onSupply = null
+                this.deactivate(), this._detail.dispose(), this._supply_btn.dispose(), this._relocation.dispose(), null != this._load_task && this._load_task.cancel(), this._cb_onMouseDown = null, this._cb_onSupply = null
             }, e.prototype.isNoneData = function () {
                 return this._none_label.visible
             }, e.prototype.isRelocation = function () {

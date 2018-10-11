@@ -28,9 +28,9 @@ const function69 = function (t, e, i) {
         return n(e, t), e.prototype.activate = function () {
             null == this._t && (this._ring.alpha = 1, this._light.alpha = 1, this._degree = 0, this._t = createjs.Tween.get(this._ring, { loop: !0 }), this._t.to({ alpha: .2 }, 1667).to({ alpha: 1 }, 1667).addEventListener("change", this.run))
         }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.removeAllEventListeners("change"), this._t.setPaused(!0), this._t = null)
+            null != this._t && (this._t.removeAllEventListeners("change"), this._t.setPaused(!0), createjs.Tween.removeTweens(this._ring), this._t = null)
         }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.removeChildren(), this.deactivate(), this._ring = null, this._light = null, this._center = null, this._radius = null, this._pos = null, this._ang = null, this._degree = null
         }, e
     }(PIXI.Container), s = function (t) {
         function e() {

@@ -15,23 +15,23 @@ const function1177 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(8), s = i(1178), a = function (t) {
+    var o = i(0), r = i(11), s = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._result = !1, n._onSelected = function (t) {
-                n._result = t, n._dialog.dispose(), n._layer.removeChild(n._dialog), n._layer.removeChild(n._click_guard), n._endTask()
-            }, n._layer = e, n._texture = i, n
+            return n._data = e, n._scene_activate_delegate = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._click_guard = new r.AreaBox(0), this._layer.addChild(this._click_guard), this._dialog = new s.RewardSelectConfirm(this._onSelected), this._dialog.position.set(465, 495), this._dialog.initialize(this._texture), this._layer.addChild(this._dialog), this._dialog.activate()
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(102), this._playVoice()
+        }, e.prototype._playVoice = function () {
+            1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
+        }, e.prototype._startScene = function () {
+            null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
         }, e.prototype._endTask = function () {
-            this._layer = null, this._texture = null, this._click_guard = null, this._dialog = null, t.prototype._endTask.call(this)
+            this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskRewardSelectConfirm = a
+    }(r.TaskBase);
+    e.TaskDutySceneInitialize = s
 }

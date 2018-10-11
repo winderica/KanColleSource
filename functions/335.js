@@ -24,13 +24,13 @@ const function335 = function (t, e, i) {
                 e.texture = e._textureOff
             }, e._onClick = function () {
                 null != e._cb_onClick && e._cb_onClick()
-            }, e._textureOff = o.REMODEL_MAIN.getTexture(1), e._textureOn = o.REMODEL_MAIN.getTexture(2), e.texture = e._textureOff, e.interactive = e.buttonMode = !0, e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut), e
+            }, e._textureOff = o.REMODEL_MAIN.getTexture(1), e._textureOn = o.REMODEL_MAIN.getTexture(2), e.texture = e._textureOff, e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
             this._cb_onClick = t
         }, e.prototype.dispose = function () {
-            this._textureOff = null, this._textureOn = null, this.removeListener(r.EventType.CLICK, this._onClick), this.removeListener(r.EventType.MOUSEOVER, this._onMouseOver), this.removeListener(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
+            this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
         }, e
     }(PIXI.Sprite);
     e.CancelButton = s

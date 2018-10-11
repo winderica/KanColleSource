@@ -15,82 +15,80 @@ const function1362 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(90), r = i(74), s = i(1363), a = i(1364), _ = i(1392), u = i(1393), l = i(1394), c = i(463),
-        h = i(1395), p = i(1396), d = i(179), f = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
-            }
+    var o = i(0), r = i(16), s = i(15), a = i(137), _ = i(181), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new r.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._bar1 = new l, e._bar1.position.set(600, 183), e.addChild(e._bar1), e._bar2 = new l, e._bar2.position.set(600, 392), e.addChild(e._bar2), e._bar3 = new l, e._bar3.position.set(600, 600), e.addChild(e._bar3), e._plane1 = new a.Plane(.88), e.addChild(e._plane1), e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._opening()
-            }, e.prototype._opening = function () {
-                var t = this;
-                new s.PhaseOpening(this.scene, this._record).start(function () {
-                    t._allyAttack()
-                })
-            }, e.prototype._allyAttack = function () {
-                var t = this;
-                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this;
-                new u.PhaseMoveShips(this.scene, this._record).start(function () {
-                    t._showTouchPlane()
-                })
-            }, e.prototype._showTouchPlane = function () {
-                var t = this, e = this._record.raw.getTouchPlaneFriend(), i = this._record.raw.getTouchPlaneEnemy();
-                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
-                    t._ration()
-                })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new o.PhaseRation(this.scene, this._record).start(function () {
-                    t._light()
-                })
-            }, e.prototype._light = function () {
-                var t = this;
-                new _.PhaseLighting(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new l.PhaseSupport(this.scene, this._record).start(function () {
-                    t._attack()
-                })
-            }, e.prototype._attack = function () {
-                var t = this, e = this._record.raw.hougeki, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this, e = this._record.raw.hougeki1, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this, e = this._record.raw.hougeki2, i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new h.PhaseEnding(this.scene, this._record).start(function () {
-                    t._dayBattle()
-                })
-            }, e.prototype._dayBattle = function () {
-                var t = this;
-                if (1 == this._record.raw.hasDayBattle()) {
-                    var e = this.scene, i = this._record.getDayRecord();
-                    new p.PhaseDayFromNight(e, i).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e
-        }(r.PhaseCombatBase);
-    e.PhaseNight = f
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "bar1", {
+            get: function () {
+                return this._bar1
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "bar2", {
+            get: function () {
+                return this._bar2
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "bar3", {
+            get: function () {
+                return this._bar3
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "plane1", {
+            get: function () {
+                return this._plane1
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container);
+    e.CutinKuboDayCanvas = u;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._mst_id = 0, e._bg = new _.TelopBG, e.addChild(e._bg), e._plane_canvas = new PIXI.Sprite, e.addChild(e._plane_canvas);
+            var i = new PIXI.Graphics;
+            return i.beginFill(16711680, .5), i.drawRect(-600, -71, 1200, 141), i.endFill(), e._plane_canvas.addChild(i), e._plane_canvas.mask = i, e._plane = new a.Plane(.85), e._plane.alpha = 0, e._plane_canvas.addChild(e._plane), e._icon = new c, e._icon.y = 72, e._icon.alpha = 0, e.addChild(e._icon), e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._mst_id = t, this._friend = e, this._bg.initialize(e, !0), 1 == e ? (this._bg.x = 1500, this._plane.x = -600, this._icon.x = 677) : (this._bg.x = -1500, this._plane.x = 600, this._icon.x = -677), this._plane.initialize(t, e), this._icon.initialize(t)
+        }, e.prototype.createTween = function (t) {
+            var e = [];
+            return this._mst_id <= 0 ? e : (e.push(createjs.Tween.get(this._bg).wait(t).to({ x: this._friend ? 780 : -780 }, 300), createjs.Tween.get(this._plane).wait(t).to({
+                x: this._friend ? 386 : -386,
+                alpha: 1
+            }, 250), createjs.Tween.get(this._icon).wait(t).to({ x: this._friend ? 96 : -96, alpha: 1 }, 200)), e)
+        }, e.prototype.createTween2 = function (t) {
+            var e = [];
+            return e.push(createjs.Tween.get(this._plane).wait(t).to({ scaleX: 1.5, scaleY: 1.5 }, 500)), e
+        }, e
+    }(PIXI.Container), c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e._img.scale.set(.75), e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height)
+        }, e.prototype._getTexture = function (t) {
+            var e = o.default.model.slot.getMst(t);
+            if (null == e) return PIXI.Texture.EMPTY;
+            switch (e.equipType) {
+                case 6:
+                    return s.BATTLE_MAIN.getTexture(71);
+                case 7:
+                    return s.BATTLE_MAIN.getTexture(72);
+                case 8:
+                    return s.BATTLE_MAIN.getTexture(73);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e
+    }(PIXI.Container)
 }

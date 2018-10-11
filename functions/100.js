@@ -15,8 +15,8 @@ const function100 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(28), a = i(39), _ = i(14), u = i(75), l = i(62), c = i(456), h = i(457),
-        p = i(458), d = i(460), f = i(461), y = function (t) {
+    var o = i(0), r = i(2), s = i(29), a = i(39), _ = i(14), u = i(75), l = i(62), c = i(458), h = i(459),
+        p = i(460), d = i(462), f = i(463), y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n._damage_cutin = new u.PhaseDamageCutin(n._scene), n
@@ -45,10 +45,10 @@ const function100 = function (t, e, i) {
                     }
                     var h = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
                     h.add(d);
-                    var y = r[0].mst_id, g = r[0].damaged;
-                    h.add(new v(i, y, g));
-                    var m = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
-                    h.add(new p.TaskSupportAir(e._scene, t, m, b, e._damage_cutin, null)), h.start(function () {
+                    var y = r[0].mst_id, m = r[0].damaged;
+                    h.add(new v(i, y, m));
+                    var g = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
+                    h.add(new p.TaskSupportAir(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -69,8 +69,8 @@ const function100 = function (t, e, i) {
                     }
                     var p = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
                     p.add(d);
-                    var y = r[0].mst_id, g = r[0].damaged;
-                    p.add(new v(i, y, g)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
+                    var y = r[0].mst_id, m = r[0].damaged;
+                    p.add(new v(i, y, m)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -91,8 +91,8 @@ const function100 = function (t, e, i) {
                     }
                     var p = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
                     p.add(d);
-                    var y = r[0].mst_id, g = r[0].damaged;
-                    p.add(new v(i, y, g)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
+                    var y = r[0].mst_id, m = r[0].damaged;
+                    p.add(new v(i, y, m)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -112,10 +112,10 @@ const function100 = function (t, e, i) {
                     }
                     var h = new s.SerialTask, p = new f.TaskSupportDeckCutin(i, r);
                     h.add(p);
-                    var y = r[0].mst_id, g = r[0].damaged;
-                    h.add(new v(i, y, g));
-                    var m = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
-                    h.add(new d.TaskSupportTaisen(e._scene, t, m, b, e._damage_cutin, null)), h.start(function () {
+                    var y = r[0].mst_id, m = r[0].damaged;
+                    h.add(new v(i, y, m));
+                    var g = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
+                    h.add(new d.TaskSupportTaisen(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
                         new a.WaitTask(800).start(function () {
                             e._endTask()
                         })

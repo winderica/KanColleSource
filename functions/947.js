@@ -15,23 +15,40 @@ const function947 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._txt = new PIXI.Sprite, e._txt.position.set(479, 12), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(467, -2), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
+    var o = i(948), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._tabs = [];
+            for (var n = 0; n < 5; n++) {
+                var r = new o.AirUnitListTab(e);
+                r.x = 69 * n, i.addChild(r), i._tabs.push(r)
+            }
+            return i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_AIRUNIT.getTexture(60), this._txt.texture = o.SALLY_AIRUNIT.getTexture(104), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(105)
+            for (var t = 0; t < this._tabs.length; t++) {
+                var e = this._tabs[t];
+                0 == t && (e.selected = !0), e.initialize(t)
+            }
         }, e.prototype.update = function (t) {
-            this.visible = t, 1 == t ? this._activate() : this._deactivate()
+            for (var e = 0, i = this._tabs; e < i.length; e++) {
+                var n = i[e];
+                n.selected = n.category == t
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._tabs; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._tabs; t < e.length; t++) {
+                e[t].deactivate()
+            }
         }, e.prototype.dispose = function () {
-            this._deactivate()
-        }, e.prototype._activate = function () {
-            null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 400))
-        }, e.prototype._deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
+            for (var t = 0, e = this._tabs; t < e.length; t++) {
+                e[t].dispose()
+            }
         }, e
-    }(PIXI.Sprite);
-    e.AirUnitListItemRelocationLayer = r
+    }(PIXI.Container);
+    e.AirUnitListTabContainer = r
 }

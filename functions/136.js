@@ -15,7 +15,7 @@ const function136 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(45), a = i(23), _ = i(50), u = i(65), l = i(6), c = i(15), h = i(177),
+    var o = i(5), r = i(0), s = i(45), a = i(23), _ = i(50), u = i(65), l = i(6), c = i(15), h = i(178),
         p = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -131,9 +131,9 @@ const function136 = function (t, e, i) {
                     var h = .99, p = 1 - h,
                         d = Math.pow(p, 3) * s.x + 3 * Math.pow(p, 2) * h * o.x + 3 * p * h * h * r.x + h * h * h * a.x,
                         f = Math.pow(p, 3) * s.y + 3 * Math.pow(p, 2) * h * o.y + 3 * p * h * h * r.y + h * h * h * a.y,
-                        y = a.y + (e - a.x) * (a.y - f) / (a.x - d), v = a.x - d, g = (e - a.x) / v,
-                        m = i / (100 + g) * 100, b = i / (100 + g) * g;
-                    this._tween = u.TweenUtil.create3BezierTween(this, s, o, r, a, m), this._tween.call(function () {
+                        y = a.y + (e - a.x) * (a.y - f) / (a.x - d), v = a.x - d, m = (e - a.x) / v,
+                        g = i / (100 + m) * 100, b = i / (100 + m) * m;
+                    this._tween = u.TweenUtil.create3BezierTween(this, s, o, r, a, g), this._tween.call(function () {
                         n.emit("attacked")
                     }), this._tween.to({ x: e, y: y }, b), c = new PIXI.Point(e, y)
                 } else this._tween = u.TweenUtil.create3BezierTween(this, s, o, r, a, i), this._tween.call(function () {

@@ -15,55 +15,60 @@ const function1298 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(20), r = function (t) {
+    var o = i(22), r = i(20), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._layer = new PIXI.Container, e._layer.y = -30, e.addChild(e._layer), e._img3 = new PIXI.Sprite, e._layer.addChild(e._img3), e._img2 = new PIXI.Sprite, e._layer.addChild(e._img2), e._img1 = new PIXI.Sprite, e._layer.addChild(e._img1), e._basePos1 = new PIXI.Point, e._basePos2 = new PIXI.Point, e._basePos3 = new PIXI.Point, e._tweens = [], e
+            return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
+        return n(e, t), Object.defineProperty(e.prototype, "color", {
+            get: function () {
+                return this._color
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this.update(t)
+        }, e.prototype.update = function (t) {
+            this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(127), this._startTween(), this._light.visible = !0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, this._cell.y = 0), this._cell.texture = this._getTexture(t)
+        }, e.prototype.dispose = function () {
+            this._stopTween()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 300).to({ alpha: 1 }, 300))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+        }, e.prototype._getTexture = function (t) {
             switch (t) {
+                case-1:
+                    return r.MAP_COMMON.getTexture(133);
                 case 1:
-                    this._img1.texture = o.MAP_COMMON.getTexture(84), this._img2.texture = o.MAP_COMMON.getTexture(85);
-                    break;
-                case 0:
-                    this._img1.texture = o.MAP_COMMON.getTexture(86), this._img2.texture = o.MAP_COMMON.getTexture(88);
-                    break;
+                    return r.MAP_COMMON.getTexture(126);
                 case 2:
-                    this._img1.texture = o.MAP_COMMON.getTexture(87), this._img2.texture = o.MAP_COMMON.getTexture(89);
-                    break;
+                case 6:
+                    return r.MAP_COMMON.getTexture(129);
                 case 3:
-                    this._img1.texture = o.MAP_COMMON.getTexture(90), this._img2.texture = o.MAP_COMMON.getTexture(91);
-                    break;
-                default:
-                    this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY
+                    return r.MAP_COMMON.getTexture(131);
+                case 4:
+                    return r.MAP_COMMON.getTexture(132);
+                case 5:
+                    return r.MAP_COMMON.getTexture(120);
+                case 7:
+                    return r.MAP_COMMON.getTexture(100);
+                case 8:
+                    return r.MAP_COMMON.getTexture(119);
+                case 9:
+                    return r.MAP_COMMON.getTexture(130);
+                case 10:
+                    return r.MAP_COMMON.getTexture(95);
+                case 11:
+                    return r.MAP_COMMON.getTexture(134);
+                case 12:
+                    return r.MAP_COMMON.getTexture(135);
+                case-2:
+                    return r.MAP_COMMON.getTexture(128);
+                case-3:
+                    return r.MAP_COMMON.getTexture(125)
             }
-            3 != t ? (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 0, this._basePos1.y = 0, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0) : (this._img3.texture = o.MAP_COMMON.getTexture(92), this._basePos1.x = -5, this._basePos1.y = -25, this._basePos2.x = -40, this._basePos2.y = -50, this._basePos3.x = -45, this._basePos3.y = 0), this._img1.x = this._basePos1.x, this._img1.y = this._basePos1.y, this._img2.x = this._basePos2.x, this._img2.y = this._basePos2.y, this._img3.x = this._basePos3.x, this._img3.y = this._basePos3.y
-        }, e.prototype.activate = function () {
-            this._stopTweens(), this._startAnimation()
-        }, e.prototype.deactivate = function () {
-            this._stopTweens()
-        }, e.prototype._startAnimation = function () {
-            var t = this, e = 6 * Math.random() - 3, i = 6 * Math.random() - 3;
-            this._tweens.push(createjs.Tween.get(this._img3).to({
-                x: this._basePos3.x + e,
-                y: this._basePos3.y + i
-            }, 250, createjs.Ease.sineInOut)), e = 6 * Math.random() - 3, i = 6 * Math.random() - 3, this._tweens.push(createjs.Tween.get(this._img2).to({
-                x: this._basePos2.x + e,
-                y: this._basePos2.y + i
-            }, 250, createjs.Ease.sineInOut)), e = 6 * Math.random() - 3, i = 6 * Math.random() - 3, this._tweens.push(createjs.Tween.get(this._img1).to({
-                x: this._basePos1.x + e,
-                y: this._basePos1.y + i
-            }, 250, createjs.Ease.sineInOut).call(function () {
-                t._startAnimation()
-            }))
-        }, e.prototype._stopTweens = function () {
-            for (var t = 0, e = this._tweens; t < e.length; t++) {
-                var i = e[t];
-                null != i && i.setPaused(!0)
-            }
-            this._tweens = []
+            return PIXI.Texture.EMPTY
         }, e
-    }(PIXI.Container);
-    e.MapPlane = r
+    }(o.Container);
+    e.SpotPointImage = s
 }

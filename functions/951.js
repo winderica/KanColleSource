@@ -18,20 +18,16 @@ const function951 = function (t, e, i) {
     var o = i(4), r = i(26), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._fuel_max = 0, e._baux_max = 0, e._key = null, e._title = new PIXI.Sprite, e._title.position.set(15, 17), e.addChild(e._title), e._icon_fuel = new PIXI.Sprite, e._icon_fuel.position.set(17, 75), e.addChild(e._icon_fuel), e._icon_baux = new PIXI.Sprite, e._icon_baux.position.set(158, 75), e.addChild(e._icon_baux), e._txt_fuel = new o.TextBox(28, 5523516), e._txt_fuel.y = 158, e.addChild(e._txt_fuel), e._txt_baux = new o.TextBox(28, 5523516), e._txt_baux.y = 158, e.addChild(e._txt_baux), e
+            return e._star = new PIXI.Sprite, e._star.position.set(0, 3), e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(18, 6), e.addChild(e._plus), e._num = new o.TextBox(19, 3198426), e._num.position.set(30, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(6, 0), e.addChild(e._max), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._fuel_max = t, this._baux_max = e, this._title.texture = r.SALLY_AIRUNIT.getTexture(94), this._icon_fuel.texture = r.SALLY_AIRUNIT.getTexture(11), this._icon_baux.texture = r.SALLY_AIRUNIT.getTexture(10)
-        }, e.prototype.show = function (t, e, i) {
-            void 0 === i && (i = null), this._key = i;
-            var n = t > this._fuel_max ? 16711680 : 5523516;
-            this._txt_fuel.style.fill = n, this._txt_fuel.text = t.toString(), this._txt_fuel.x = 144 - this._txt_fuel.width;
-            var o = e > this._baux_max ? 16711680 : 5523516;
-            this._txt_baux.style.fill = o, this._txt_baux.text = e.toString(), this._txt_baux.x = 285 - this._txt_baux.width
-        }, e.prototype.hide = function (t) {
-            void 0 === t && (t = null), null != t && t != this._key || (this._key = null, this._txt_fuel.text = "", this._txt_baux.text = "")
+        return n(e, t), e.prototype.initialize = function () {
+            this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = r.SALLY_AIRUNIT.getTexture(44), this._plus.texture = r.SALLY_AIRUNIT.getTexture(43), this._max.texture = r.SALLY_AIRUNIT.getTexture(45)
+        }, e.prototype.update = function (t) {
+            t <= 0 || t > 10 ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !1) : 10 == t ? (this._star.visible = !1, this._plus.visible = !1, this._num.text = "", this._max.visible = !0) : (this._star.visible = !0, this._plus.visible = !0, this._num.text = t.toString(), this._max.visible = !1)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._num.destroy()
         }, e
     }(PIXI.Container);
-    e.AirUnitSupplyPanelTitle = s
+    e.SlotitemLevel = s
 }

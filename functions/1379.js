@@ -15,15 +15,18 @@ const function1379 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(24), s = i(6), a = i(1380), _ = i(121), u = i(43), l = function (t) {
-        function e(e, i, n, r, s, a, _, u, l) {
-            var c = t.call(this, e, n, s, _, u, l) || this;
-            return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
+    var o = i(0), r = i(24), s = i(6), a = i(121), _ = i(43), u = i(1380), l = function (t) {
+        function e(e, i, n, r, s, a, _, l, c) {
+            var h = t.call(this, e, i, r, _, l, c) || this;
+            return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new u.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
         }
 
-        return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new a.CutinSpSR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
-        }, e.prototype._start = function () {
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._cutin.preload(function () {
+                t._completePreload()
+            })
+        }, e.prototype._completePreload = function () {
             var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
             1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
         }, e.prototype._playPicket = function (t, e) {
@@ -31,7 +34,7 @@ const function1379 = function (t, e, i) {
             if (this._attacker.hasSlot(129, !0)) {
                 var n = new PIXI.Point;
                 n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                var o = new _.Picket;
+                var o = new a.Picket;
                 o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
                     i._playCutin(t, e)
                 })
@@ -72,6 +75,6 @@ const function1379 = function (t, e, i) {
             }
         }, e.prototype._log = function (t) {
         }, e
-    }(u.PhaseAttackBase);
-    e.PhaseAttackSpSR = l
+    }(_.PhaseAttackBase);
+    e.PhaseAttackSpRDJ = l
 }

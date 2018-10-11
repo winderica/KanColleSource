@@ -15,66 +15,52 @@ const function782 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(84), r = i(334), s = i(21), a = i(208), _ = i(85), u = i(783), l = i(784), c = i(785), h = i(786),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t, i) {
-                    e.onClick(t, i)
-                }, e._onClickLock = function (t, i) {
-                    e.onClickLock(t, i)
-                };
-                var i = new PIXI.Sprite(a.COMMON_SORT.getTexture(51)), n = new _.TitleBar;
-                n.initialize(s.COMMON_MAIN.getTexture(2), 26);
-                var p = s.COMMON_MAIN.getTexture(37), d = new PIXI.Sprite(s.COMMON_MAIN.getTexture(13)),
-                    f = new c.ListHeader, y = new o.PagerView, v = new r.SlotItemFilterView, g = new Array,
-                    m = new u.ChangeListSwitch, b = new Array, w = new l.InUseMarker;
-                d.interactive = !0;
-                for (var x = new PIXI.Point(54, 54), I = x.x, T = 0; T < 10; T++) {
-                    var O = new PIXI.Sprite(p), P = new h.ListItem(T), C = 45 * T + x.y;
-                    P.position.set(I, C), P.onClick = e._onClick, P.onClickLock = e._onClickLock, O.width += 45, O.position.set(I + 30, C + 45 - O.height), g.push(O), b.push(P)
-                }
-                return i.position.set(90, 65), y.position.set(96, 525), f.position.set(90, 12), v.position.set(246, 14), m.position.set(569, 12), n.position.set(0, -39), w.position.y = 12, e.addChild(d), b.forEach(function (t) {
-                    return e.addChild(t)
-                }), g.forEach(function (t) {
-                    return e.addChild(t)
-                }), e.addChild(y, f, i, v, m, n, w), e._pagerView = y, e.lines = g, e._slotItemFilterView = v, e._changeListSwitch = m, e.headerSoubiSentaku = n, e.listItems = b, e._inUseMarker = w, e._listHeader = f, e.sortSoubiTxtNone = i, e
-            }
+    var o = i(1), r = i(50), s = i(111), a = i(4), _ = i(83), u = i(21), l = i(70), c = i(85), h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
+            };
+            var i = new PIXI.Sprite(u.COMMON_MAIN.getTexture(12)),
+                n = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(52)),
+                o = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(51));
+            return e.downArrowAnimationView = new s.DownArrowAnimationView, e.fromSlotItemChangeSummly = new d, e.toSlotItemChangeSummly = new d, e.changeButton = new p, e.headerHenkouKakunin = new c.TitleBar, e.headerHenkouKakunin.initialize(u.COMMON_MAIN.getTexture(3), 26), i.interactive = !0, e.changeButton.onClick = e._onClick, n.position.set(266, 18), e.fromSlotItemChangeSummly.position.set(27, 41), o.position.set(266, 267), e.toSlotItemChangeSummly.position.set(27, 288), e.changeButton.position.set(92, 486), e.downArrowAnimationView.position.set(170, 242), e.headerHenkouKakunin.position.set(0, -39), e.addChild(i, n, e.fromSlotItemChangeSummly, o, e.toSlotItemChangeSummly, e.changeButton, e.downArrowAnimationView, e.headerHenkouKakunin), e
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "pagerView", {
-                get: function () {
-                    return this._pagerView
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "slotItemFilterView", {
-                get: function () {
-                    return this._slotItemFilterView
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "changeListSwitch", {
-                get: function () {
-                    return this._changeListSwitch
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "inUseMarker", {
-                get: function () {
-                    return this._inUseMarker
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "listHeader", {
-                get: function () {
-                    return this._listHeader
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.dispose = function () {
-                this.onClick = this._onClick = null, this.onClickLock = this._onClickLock = null, this._pagerView.dispose(), this._pagerView = null, this._slotItemFilterView.dispose(), this._slotItemFilterView = null, this._changeListSwitch.dispose(), this._changeListSwitch = null, this._inUseMarker.dispose(), this._inUseMarker = null, this._listHeader.dispose(), this._listHeader = null, this.lines = null;
-                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose();
-                this.listItems = null, this.headerSoubiSentaku.dispose(), this.headerSoubiSentaku = null, this.sortSoubiTxtNone = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i, n, o, r) {
-                var s = this.listItems[t];
-                s.update(e, i, n, o, r), s.visible = !0
-            }, e.prototype.visibleEmptyText = function () {
-                this.sortSoubiTxtNone.visible = !0
-            }, e.prototype.clear = function () {
-                this.listItems.forEach(function (t) {
-                    t.visible = !1
-                }), this.sortSoubiTxtNone.visible = !1
-            }, e
-        }(PIXI.Container);
-    e.SlotItemList = p
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.fromSlotItemChangeSummly.dispose(), this.toSlotItemChangeSummly.dispose(), this.downArrowAnimationView.dispose(), this.changeButton.dispose(), this.headerHenkouKakunin.dispose(), this.downArrowAnimationView = null, this.fromSlotItemChangeSummly = null, this.toSlotItemChangeSummly = null, this.changeButton = null, this.onClick = null
+        }, e.prototype.update = function (t, e) {
+            t ? this.fromSlotItemChangeSummly.update(t) : this.fromSlotItemChangeSummly.clear(), e ? this.toSlotItemChangeSummly.update(e) : this.toSlotItemChangeSummly.clear()
+        }, e
+    }(PIXI.Container);
+    e.ChangeConfirm = h;
+    var p = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = e.textureBtnSelectOn
+            }, e._onMouseOut = function () {
+                e.texture = e.textureBtnSelectOff
+            }, e._onClick = function () {
+                e.onClick()
+            }, e.textureBtnSelectOff = l.REMODEL_MAIN.getTexture(10), e.textureBtnSelectOn = l.REMODEL_MAIN.getTexture(11), e.on(o.EventType.MOUSEOVER, e._onMouseOver), e.on(o.EventType.MOUSEOUT, e._onMouseOut), e.on(o.EventType.CLICK, e._onClick), e.texture = e.textureBtnSelectOff, e.interactive = e.buttonMode = !0, e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.off(o.EventType.MOUSEOVER), this.off(o.EventType.MOUSEOUT), this.off(o.EventType.CLICK), this.onClick = null, this.textureBtnSelectOff = null, this.textureBtnSelectOn = null, this.removeChildren()
+        }, e
+    }(PIXI.Sprite), d = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.textureCon2Bg2 = l.REMODEL_MAIN.getTexture(19), e.background = new PIXI.Sprite(e.textureCon2Bg2), e.textSpec = new a.TextBox(19, 5523516), e.textSpec.position.set(17, 42), e.addChild(e.background, e.textSpec), e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.textSpec.destroy(), this.textSpec = null, this.textureCon2Bg2 = null, this.background = null
+        }, e.prototype.update = function (t) {
+            this.background.texture = this.textureCon2Bg2, this.textSpec.text = r.SlotUtil.genSummaryText(t, "+", "\n", !1, 5), new _.TaskLoadSlotResource("remodel", this.background, t.mstID).start()
+        }, e.prototype.clear = function () {
+            this.textSpec.text = "", this.background.texture = this.textureCon2Bg2
+        }, e
+    }(PIXI.Container)
 }

@@ -15,18 +15,17 @@ const function1018 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(1019), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._selected_type = e, n._view = i, n
+    var o = i(54), r = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.ChangeMatchingAPI(this._selected_type);
-            e.start(function () {
-                t._view.updateMatchingState(e.res_model.isSucceed(), t._selected_type), t._endTask()
-            })
+        return n(e, t), e.prototype.initialize = function () {
+            this._result = new PIXI.Sprite, this._rank = new PIXI.Sprite, this._rank.position.set(66, 7), this.addChild(this._result), this.addChild(this._rank)
+        }, e.prototype.update = function (t) {
+            this.visible = !0, 6 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(25)) : 5 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(20)) : 4 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(21)) : 3 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(22)) : 2 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(23)) : 1 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(24)) : this.visible = !1
+        }, e.prototype.dispose = function () {
         }, e
-    }(o.TaskBase);
-    e.TaskChangeMatching = s
+    }(PIXI.Container);
+    e.CompRank = r
 }

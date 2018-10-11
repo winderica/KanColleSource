@@ -15,27 +15,75 @@ const function1182 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(169), s = function (t) {
+    var o = i(29), r = i(77), s = i(14), a = i(25), _ = i(66), u = i(2), l = function (t) {
         function e() {
-            var e = null !== t && t.apply(this, arguments) || this;
-            return e._onMouseOver = function () {
-                e._canvas.scale.set(1.05)
-            }, e._onMouseOut = function () {
-                e._canvas.scale.set(1)
-            }, e
+            var e = t.call(this) || this;
+            return e._task = new o.SerialTask, e
         }
 
-        return n(e, t), e.prototype.load = function (t) {
-            t()
-        }, e.prototype._initialize = function () {
-            this._icon.visible = !1;
-            this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getShip(e, !1, "card_round"),
-                n = new PIXI.Sprite(i);
-            n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype.addShip = function (t) {
+            this._task.add(new c(t))
+        }, e.prototype.addSlotitem = function (t) {
+            this._task.add(new h(t))
+        }, e.prototype.addUseitem = function (t) {
+            this._task.add(new p(t))
+        }, e.prototype.addFurniture = function (t) {
+            this._task.add(new d(t))
+        }, e.prototype._start = function () {
+            var t = this;
+            this._task.start(function () {
+                t._endTask()
+            })
         }, e
-    }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtn = s
+    }(u.TaskBase);
+    e.TaskLoadResources = l;
+    var c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new s.ShipLoader;
+            e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new a.SlotLoader;
+            e.add(this._mst_id, "card"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), p = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new _.UseitemLoader;
+            e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), d = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new r.FurnitureLoader;
+            e.add(this._mst_id, "reward"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase)
 }

@@ -26,7 +26,7 @@ const function109 = function (t, e, i) {
                 }, 300))
             }, i._onMouseUp = function () {
                 clearInterval(i._mouseTimer)
-            }, i._btm = e, i._canvas = new PIXI.Sprite, i.addChild(i._canvas), 0 == i._btm ? i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(1)) : i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(0)), i._img.interactive = !0, i._img.x = -Math.round(i._img.width / 2), i._img.y = -Math.round(i._img.height / 2), i._canvas.addChild(i._img), i
+            }, i._btm = e, i._canvas = new PIXI.Container, i.addChild(i._canvas), 0 == i._btm ? i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(1)) : i._img = new PIXI.Sprite(o.COMMON_MISC.getTexture(0)), i._img.interactive = !0, i._img.x = -Math.round(i._img.width / 2), i._img.y = -Math.round(i._img.height / 2), i._canvas.addChild(i._img), i
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
@@ -34,9 +34,9 @@ const function109 = function (t, e, i) {
         }, e.prototype.activate = function () {
             this._img.buttonMode = !0, null == this._tween && (this._img.on(r.EventType.MOUSEUP, this._onMouseUp), this._img.on(r.EventType.MOUSEDOWN, this._onClick), this._tween = createjs.Tween.get(this._canvas), this._tween.loop = !0, 0 == this._btm ? this._tween.to({ y: -11 }, 350, createjs.Ease.cubicOut) : this._tween.to({ y: 11 }, 350, createjs.Ease.cubicOut), this._tween.to({ y: 0 }, 350, createjs.Ease.quadIn))
         }, e.prototype.deactivate = function () {
-            this._img.buttonMode = !1, this._canvas.y = 0, null != this._tween && (this._img.off(r.EventType.MOUSEUP, this._onMouseUp), this._img.off(r.EventType.MOUSEDOWN, this._onClick), this._tween.setPaused(!0), this._tween = null)
+            this._img.buttonMode = !1, this._canvas.y = 0, null != this._tween && (this._img.off(r.EventType.MOUSEUP, this._onMouseUp), this._img.off(r.EventType.MOUSEDOWN, this._onClick), this._tween.setPaused(!0), createjs.Tween.removeTweens(this._canvas), this._tween = null)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this.removeChildren(), this._cb_onClick = null
+            this.removeChildren(), this.deactivate(), this._btm = null, this._canvas = null, this._img = null, this._cb_onClick = null, this._mouseTimer = null
         }, e.prototype.resetInterval = function () {
             null != this._mouseTimer && clearInterval(this._mouseTimer)
         }, e

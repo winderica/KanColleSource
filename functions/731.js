@@ -15,20 +15,31 @@ const function731 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(13), a = function (t) {
-        function e(e, i) {
-            void 0 === e && (e = !1);
-            var n = t.call(this) || this;
-            return n._url = "api_req_hensei/lock", n._debug = e, n.api_ship_id = i, n
+    var o = i(324), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick()
+            }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked"),
-                i = o.default.model.ship.get(this.api_ship_id);
-            null != i && i.__setLocked__(e), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeAllListeners(r.EventType.CLICK), this.onClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this.texture = o.ORGANIZE_FILTER.getTexture(6);
+                    break;
+                case 4:
+                    this.texture = o.ORGANIZE_FILTER.getTexture(7);
+                    break;
+                case 3:
+                    this.texture = o.ORGANIZE_FILTER.getTexture(8);
+                    break;
+                case 2:
+                    this.texture = o.ORGANIZE_FILTER.getTexture(9)
+            }
         }, e
-    }(r.APIBase);
-    e.ShipLockAPI = a
+    }(PIXI.Sprite);
+    e.ShipSortButton = s
 }

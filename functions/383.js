@@ -37,7 +37,7 @@ const function383 = function (t, e, i) {
             }, e.prototype.deactivate = function () {
                 this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._stype.dispose(), this._rader.dispose(), this._content.dispose(), this._cb_onClose = null
+                this.removeChildren(), this.deactivate(), this._title.dispose(), this._stype.dispose(), this._rader.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._stype = null, this._rader = null, this._content = null, this._close_btn = null, this._cb_onClose = null
             }, e
         }(PIXI.Sprite);
     e.ShipDetailPanel = p;
@@ -47,7 +47,9 @@ const function383 = function (t, e, i) {
             return e._nums = new u.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
+        }, e.prototype.initialize = function (t, e) {
             this.texture = a.ALBUM_MAIN.getTexture(87), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
         }, e
     }(PIXI.Sprite)

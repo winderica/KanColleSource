@@ -15,23 +15,19 @@ const function895 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(5), r = i(0), s = i(25), a = i(346), _ = function (t) {
         function e() {
-            for (var e = t.call(this) || this, i = new Array, n = 0; n < 13; n++) {
-                var r = new PIXI.Sprite(o.ARSENAL_ANIMATION.getTexture(3));
-                r.alpha = 0, i.push(r), e.addChild(r)
-            }
-            return e.leaf_dashes = i, e
+            return t.call(this) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "dashes", {
-            get: function () {
-                return this.leaf_dashes
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            for (var t = 0; t < this.leaf_dashes.length; t++) this.leaf_dashes[t].texture = PIXI.Texture.EMPTY, this.leaf_dashes[t] = null;
-            this.leaf_dashes = null, this.removeChildren()
+        return n(e, t), e.prototype.preload = function (t, e, i, n) {
+            var a = this;
+            this._mst_id = t, this._message = e, (new s.SlotLoader).add(t, "card").load(function () {
+                a._target.texture = r.default.resources.getSlotitem(t, "card"), a._target.x = o.default.width / 2 - a._target.width / 2, a._target.y = 67, a._rarityBG.initiailzeForSlotitem(i, function () {
+                    a._messageBox.initialize(a._message), null != n && n()
+                })
+            })
         }, e
-    }(PIXI.Container);
-    e.LeafDashes = r
+    }(a.RewardAnimation);
+    e.RewardAnimationSlot = _
 }

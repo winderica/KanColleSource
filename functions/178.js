@@ -15,62 +15,105 @@ const function178 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(24), r = i(2), s = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
+    var o = i(1345), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._current_frame = 0, e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
-                var o = n[i];
-                !function (i) {
-                    if (null == i) return "continue";
-                    if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
-                        var n = Math.floor(Math.random() * e._from_planes.length), o = e._from_planes[n],
-                            r = e._scene.view.bannerGroupLayer.getBanner(i),
-                            s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e, _ = s.getDamage(i.index),
-                            u = s.isShield(i.index), l = new a(e._scene, o, r, _, u);
-                        e._tasks.push(l), l.start(function () {
-                            t._taskComplete(i, l)
-                        })
-                    }
-                }(o)
+        return n(e, t), e.prototype.play = function (t) {
+            void 0 === t && (t = null), this._isPlaying || (this._isPlaying = !0, this.createTween(t))
+        }, e.prototype.createTween = function (t) {
+            var e = this;
+            void 0 === t && (t = null), createjs.Tween.removeTweens(this), this._tween = createjs.Tween.get(this), this._tween.wait(33).call(function () {
+                e._current_frame++, e._img.texture = e._getTexture(e._current_frame), e._setImageOffset(e._current_frame), e._current_frame <= 15 ? e.createTween(t) : (e._isPlaying = !1, e._current_frame = 0, null != t && t())
+            })
+        }, e.prototype.stop = function () {
+            this._isPlaying && (this._isPlaying = !1, this._tween.setPaused(!0)), this._current_frame = 0, this._img.texture = this._getTexture(this._current_frame), this._setImageOffset(this._current_frame)
+        }, e.prototype._getTexture = function (t) {
+            switch (t) {
+                case 1:
+                    return o.COMMON_EXPLOSION.getTexture(0);
+                case 2:
+                    return o.COMMON_EXPLOSION.getTexture(7);
+                case 3:
+                    return o.COMMON_EXPLOSION.getTexture(8);
+                case 4:
+                    return o.COMMON_EXPLOSION.getTexture(9);
+                case 5:
+                    return o.COMMON_EXPLOSION.getTexture(10);
+                case 6:
+                    return o.COMMON_EXPLOSION.getTexture(11);
+                case 7:
+                    return o.COMMON_EXPLOSION.getTexture(12);
+                case 8:
+                    return o.COMMON_EXPLOSION.getTexture(13);
+                case 9:
+                    return o.COMMON_EXPLOSION.getTexture(14);
+                case 10:
+                    return o.COMMON_EXPLOSION.getTexture(1);
+                case 11:
+                    return o.COMMON_EXPLOSION.getTexture(2);
+                case 12:
+                    return o.COMMON_EXPLOSION.getTexture(3);
+                case 13:
+                    return o.COMMON_EXPLOSION.getTexture(4);
+                case 14:
+                    return o.COMMON_EXPLOSION.getTexture(5);
+                case 15:
+                    return o.COMMON_EXPLOSION.getTexture(6);
+                default:
+                    return PIXI.Texture.EMPTY
             }
-            0 == this._tasks.length && this._endTask()
-        }, e.prototype._taskComplete = function (t, e) {
-            var i = this._tasks.indexOf(e);
-            this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
+        }, e.prototype._setImageOffset = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.position.set(-71, -53);
+                    break;
+                case 2:
+                    this._img.position.set(-74, -60);
+                    break;
+                case 3:
+                    this._img.position.set(-77, -69);
+                    break;
+                case 4:
+                    this._img.position.set(-78, -72);
+                    break;
+                case 5:
+                    this._img.position.set(-81, -77);
+                    break;
+                case 6:
+                    this._img.position.set(-84, -81);
+                    break;
+                case 7:
+                    this._img.position.set(-84, -86);
+                    break;
+                case 8:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 9:
+                    this._img.position.set(-89, -90);
+                    break;
+                case 10:
+                    this._img.position.set(-90, -90);
+                    break;
+                case 11:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 12:
+                case 13:
+                    this._img.position.set(-87, -87);
+                    break;
+                case 14:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 15:
+                    this._img.position.set(-90, -89);
+                    break;
+                default:
+                    this._img.position.set(0)
+            }
         }, e
-    }(r.TaskBase);
-    e.TaskAirWarTorpedo = s;
-    var a = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._explosion = function () {
-                var t = s._shield;
-                if (1 == t) {
-                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
-                    s._scene.view.layer_damage.showShieldAtBanner(e)
-                }
-                s._to_banner.moveAtDamage(t);
-                var i = s._to_banner.getGlobalPos(!0), n = s._scene.view;
-                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
-                    s._endTask()
-                })
-            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._torpedo()
-        }, e.prototype._torpedo = function () {
-            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y), e = this._to_banner.getGlobalPos();
-            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedo(t, e, this._explosion)
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskAirWarTorpedoOne = a
+    }(PIXI.Container);
+    e.Explosion = r
 }

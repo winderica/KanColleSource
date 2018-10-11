@@ -15,32 +15,28 @@ const function1435 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = function (t) {
+    var o = i(15), r = i(1436), s = i(1437), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._num0001 = new PIXI.Sprite, e._num0001.anchor.set(0, 1), e._num0001.alpha = 0, e._num0010 = new PIXI.Sprite, e._num0010.anchor.set(0, 1), e._num0010.alpha = 0, e._num0100 = new PIXI.Sprite, e._num0100.anchor.set(0, 1), e._num0100.alpha = 0, e._num1000 = new PIXI.Sprite, e._num1000.anchor.set(0, 1), e._num1000.alpha = 0, e._critical = new PIXI.Sprite, e._critical.anchor.set(.5, 0), e._critical.visible = !1, e.addChild(e._num0001), e.addChild(e._num0010), e.addChild(e._num0100), e.addChild(e._num1000), e.addChild(e._critical), e
+            return e._gauge_bg = new PIXI.Sprite, e._gauge = new s.BannerHPBar, e._frame = new PIXI.Sprite, e._frame.y = -10, e.addChild(e._gauge_bg), e.addChild(e._gauge), e.addChild(e._frame), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            0 == e ? this._initializeForMiss() : (t = Math.min(t, 9999), t = Math.floor(t), this._initialize(t, e))
-        }, e.prototype.play = function (t) {
-            void 0 === t && (t = null), 1 == this._critical.visible && createjs.Tween.get(this._critical).wait(65).to({ alpha: 1 }, 0).to({ x: 20 }, 65).to({ x: 38 }, 65).to({ x: 21 }, 65).to({ x: 36 }, 65).to({ x: 26 }, 65).to({ x: 32 }, 65).to({ x: 27 }, 65).to({ x: 30 }, 65).to({ x: 29 }, 65), createjs.Tween.get(this._num1000).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0100).wait(65).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0010).wait(130).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100);
-            var e = createjs.Tween.get(this._num0001).wait(200).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100).wait(265);
-            null != t && e.call(t)
-        }, e.prototype._initializeForMiss = function () {
-            this._num1000.visible = !1, this._num0100.visible = !1, this._num0010.visible = !1, this._num0001.texture = o.BATTLE_MAIN.getTexture(19), this._num1000.position.set(-47, 0)
-        }, e.prototype._initialize = function (t, e) {
-            var i;
-            2 == e ? (i = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29], this._critical.texture = o.BATTLE_MAIN.getTexture(18), this._critical.position.set(29, -7), this._critical.alpha = 0, this._critical.visible = !0) : i = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-            var n = !1, r = Math.floor(t / 1e3);
-            r > 0 && (n = !0, this._num1000.texture = o.BATTLE_MAIN.getTexture(i[r]));
-            var s = Math.floor(t % 1e3 / 100);
-            (1 == n || s > 0) && (n = !0, this._num0100.texture = o.BATTLE_MAIN.getTexture(i[s]));
-            var a = Math.floor(t % 100 / 10);
-            (1 == n || a > 0) && (n = !0, this._num0010.texture = o.BATTLE_MAIN.getTexture(i[a]));
-            var _ = t % 10;
-            this._num0001.texture = o.BATTLE_MAIN.getTexture(i[_]), this._num0001.position.set(47, 0), this._num0010.position.set(26, 0), this._num0100.position.set(5, 0), this._num1000.position.set(-17, 0)
+        return n(e, t), e.prototype.initialize = function (t, e, i, n, r) {
+            this._index = i, this._friend = n, this._gauge_bg.texture = o.BATTLE_MAIN.getTexture(45), n ? (this._gauge_bg.x = 240, this._gauge.x = 240) : (this._gauge_bg.x = -10, this._gauge.x = -10, this._frame.x = -15), this._frame.texture = this._getTexture(i, n, r), this.updateHp(t, e)
+        }, e.prototype.updateHp = function (t, e) {
+            this._gauge.draw(t / e)
+        }, e.prototype.getAnimationTween = function (t) {
+            var e = this, i = this._frame.texture, n = new PIXI.Sprite(i);
+            return n.x = this._frame.x, n.y = this._frame.y, this.addChild(n), this._frame.texture = this._getTexture1(this._index, this._friend), this._frame.alpha = 0, createjs.Tween.get(this._frame).wait(t).to({ alpha: 1 }, 600).call(function () {
+                e.removeChild(n)
+            })
+        }, e.prototype._getTexture = function (t, e, i) {
+            return 0 == i ? this._getTexture1(t, e) : this._getTexture2(t, e)
+        }, e.prototype._getTexture1 = function (t, e) {
+            return e ? 0 == t ? o.BATTLE_MAIN.getTexture(46) : o.BATTLE_MAIN.getTexture(47) : 0 == t ? o.BATTLE_MAIN.getTexture(43) : o.BATTLE_MAIN.getTexture(44)
+        }, e.prototype._getTexture2 = function (t, e) {
+            return e ? 0 == t ? r.BATTLE_MAIN2.getTexture(2) : r.BATTLE_MAIN2.getTexture(3) : 0 == t ? r.BATTLE_MAIN2.getTexture(0) : r.BATTLE_MAIN2.getTexture(1)
         }, e
     }(PIXI.Container);
-    e.DamageNumber = r
+    e.BannerFrame = a
 }

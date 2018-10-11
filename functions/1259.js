@@ -15,85 +15,122 @@ const function1259 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(22), s = i(6), a = i(20), _ = i(1260), u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n.run = function () {
-                n._timer <= 0 && n._isTurn || (n._movePlane(), n._timer -= 1e3 / 60, n._timer <= 0 && !n._isTurn && (n._timer = n._baseTime, n._isTurn = !n._isTurn))
-            }, n._scene = e, n._model = i, n
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._data = this._model.sortie.getNextCell().getAirReconnaissanceData(), this._showMessage()
-        }, e.prototype._showMessage = function () {
-            var t = this, e = this._data.plane_type;
-            this._data.result;
-            1 == e ? (this._scene.view.message_box.text = "\u5927\u578b\u98db\u884c\u8247\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : 2 == e ? (this._scene.view.message_box.text = "\u6c34\u4e0a\u5075\u5bdf\u6a5f\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : (this._scene.view.message_box.text = "\u822a\u7a7a\u5075\u5bdf\u4e88\u5b9a\u5730\u70b9\u306b\u5230\u7740\u3057\u307e\u3057\u305f\u304c\u3001\n\u7a3c\u50cd\u5075\u5bdf\u6a5f\u304c\u306a\u3044\u305f\u3081\u3001\u5075\u5bdf\u3092\u4e2d\u6b62\u3057\u307e\u3059\u3002", createjs.Tween.get(null).wait(2e3).call(function () {
-                t._scene.view.message_box.text = "", t._endTask()
-            }))
-        }, e.prototype._flyPlane = function (t) {
-            var e = this, i = this._scene.view.map.ship_icon;
-            this._from = new PIXI.Point(i.x, i.y);
-            var n = this._model.sortie.getNextCell().no;
-            this._to = this._scene.resInfo.getAirReconnaissancePoint(n), null == this._to && (this._to = new PIXI.Point(this._from.x, this._from.y));
-            var o = this._to.x > this._from.x ? 1 : -1;
-            this._baseTime = 1500, this._timer = 1500, this._isTurn = !1;
-            var r = new l;
-            r.initialize(t), r.scale.set(0);
-            var a = this._scene.view.universal_layer;
-            this._container = new PIXI.Container, this._container.x = this._from.x, this._container.y = this._from.y, a.addChild(this._container), this._container.addChild(r), this._c1 = new PIXI.Point(this._from.x - .3 * (this._to.y - this._from.y), this._from.y + .3 * (this._to.x - this._from.x)), this._c2 = new PIXI.Point(this._to.x - .3 * (this._from.y - this._to.y), this._to.y + .3 * (this._from.x - this._to.x)), createjs.Tween.get(this._container).wait(200).call(function () {
-                e._bezierTween = createjs.Tween.get({}), e._bezierTween.wait(3e3), e._bezierTween.addEventListener("change", function () {
-                    e.run()
-                })
-            }).wait(3e3).wait(300).call(function () {
-                a.removeChild(e._container), e._showBalloon()
-            }), createjs.Tween.get(r).to({ scaleX: o, scaleY: 1 }, 200).wait(100).call(function () {
-                s.SE.play("228")
-            }).wait(1200).to({ scaleX: -o }, 400).wait(1200).to({ scaleX: 0, scaleY: 0 }, 100)
-        }, e.prototype._movePlane = function () {
-            var t = (this._baseTime - this._timer) / this._baseTime, e = this._isTurn ? 1 * t : 1 * t - 1,
-                i = this._isTurn ? this._to : this._from, n = this._isTurn ? this._from : this._to,
-                o = this._isTurn ? this._c2 : this._c1;
-            this._container.position.x = (1 - t) * (1 - t) * i.x + 2 * (1 - t) * t * o.x + t * t * n.x, this._container.position.y = (1 - t) * (1 - t) * i.y + 2 * (1 - t) * t * o.y + t * t * n.y, 0 != e && (this._container.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
-        }, e.prototype._showBalloon = function () {
-            var t = this;
-            this._scene.view.message_box.text = "";
-            var e = this._data.result, i = this._model.sortie.getNextCell().getDropItems(), n = 0, o = 0;
-            if (null != i && i.length > 0) {
-                var r = i[0];
-                n = r.icon_id, o = r.count
+    var o = i(5), r = i(0), s = i(2), a = i(16), _ = i(12), u = i(14), l = i(172), c = i(20), h = i(1260),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._selected_formation = 12, n._showText = function () {
+                    var t = n._telopContainer.text;
+                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(107), createjs.Tween.get(t).to({
+                        x: 630,
+                        alpha: 1
+                    }, 500).to({ x: 585 }, 500).call(n._formationSelect), createjs.Tween.get(n._chara).to({ alpha: 1 }, 500);
+                    var e = n._view.shutter;
+                    e.alpha = 0, e.close(0), createjs.Tween.get(e).to({ alpha: 1 }, 400)
+                }, n._formationSelect = function () {
+                    var t = n._deck.type, e = n._deck.getCountSubDeck();
+                    if (n._layer.boxes.initialize(t, e, n._onSelectFormation), n._layer.boxes.alpha = 0, n._layer.boxes.count <= 1) {
+                        var i = n._telopContainer.bg;
+                        createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100).call(n._showText2);
+                        var o = n._telopContainer.text;
+                        createjs.Tween.get(o).to({ x: 555, alpha: 0 }, 100)
+                    } else {
+                        n._layer.fade.show(200);
+                        var i = n._telopContainer.bg;
+                        createjs.Tween.get(i).wait(150).to({ alpha: 0, scaleY: 0 }, 100);
+                        var o = n._telopContainer.text;
+                        createjs.Tween.get(o).to({
+                            x: 555,
+                            alpha: 0
+                        }, 100), createjs.Tween.get(n._layer.boxes).to({ alpha: 1 }, 300).call(function () {
+                            n._layer.boxes.activate(), n._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+                        }), n._layer.description.alpha = 0, 1 == t ? n._layer.description.texture = l.SALLY_JIN.getTexture(18) : 2 == t ? n._layer.description.texture = l.SALLY_JIN.getTexture(38) : 3 == t && (n._layer.description.texture = l.SALLY_JIN.getTexture(43)), createjs.Tween.get(n._layer.description).to({ alpha: 1 }, 300)
+                    }
+                }, n._onSelectFormation = function (t) {
+                    n._selected_formation = t, n._layer.boxes.deactivate(), createjs.Tween.get(n._layer.boxes).to({ alpha: 0 }, 200), createjs.Tween.get(n._layer.description).to({ alpha: 0 }, 200), n._layer.fade.hide(200, n._showText2)
+                }, n._showText2 = function () {
+                    var t = n._telopContainer.bg, e = n._telopContainer.text;
+                    e.position.set(o.default.width / 2, o.default.height / 2), e.texture = c.MAP_COMMON.getTexture(106), createjs.Tween.get(t).to({
+                        alpha: 1,
+                        scaleY: 1
+                    }, 200).wait(950).to({
+                        alpha: 0,
+                        scaleY: 0
+                    }, 200), createjs.Tween.get(e).wait(150).to({ alpha: 1 }, 100).wait(200).to({ x: 570 }, 300).to({
+                        x: 450,
+                        alpha: 0
+                    }, 400), createjs.Tween.get(n._layer.chara).wait(950).to({
+                        x: -75,
+                        alpha: 0
+                    }, 600), createjs.Tween.get(n._view.map).wait(950).to({ alpha: 0 }, 600).call(function () {
+                        n._view.map.ship_icon.stopWave(), n._preEnd()
+                    }), createjs.Tween.get(n._view.upper).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n._view.gauge_layer).wait(950).to({ alpha: 0 }, 600), createjs.Tween.get(n).wait(750).call(function () {
+                        n._view.message_box.deactivate()
+                    })
+                }, n._view = e, n._deck = i, n
             }
-            var s = new _.AirReconnaissanceBalloon;
-            s.x = 21, s.y = -6, s.alpha = 0, s.initialize(e, n, o);
-            var a = this._scene.view.map.ship_icon;
-            a.addChild(s), createjs.Tween.get(s).to({ y: -29, alpha: 1 }, 100).wait(4e3).to({
-                y: -6,
-                alpha: 0
-            }, 100).call(function () {
-                a.removeChild(s), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._model = null, this._data = null, this._container = null, this._from = null, this._to = null, this._c1 = null, this._c2 = null, this._baseTime = null, this._timer = null, this._bezierTween = null, this._isTurn = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.CellTaskAirReconnaissance = u;
-    var l = function (t) {
+
+            return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
+                get: function () {
+                    return this._selected_formation
+                }, enumerable: !0, configurable: !0
+            }), e.prototype._start = function () {
+                this._layer = new d, this._view.universal_layer.addChild(this._layer), this._telopContainer = new f, this._view.top_layer.addChild(this._telopContainer), this._readyForFlagship()
+            }, e.prototype._readyForFlagship = function () {
+                var t = this, e = this._deck.ships[0], i = e.mst_id, n = e.isDamaged();
+                this._chara = new PIXI.Sprite;
+                var o = r.default.model.ship_graph.get(i).getMapOffset(n);
+                this._chara.position.set(-80 + o.x, -93 + o.y), this._chara.alpha = 0, this._layer.chara.addChild(this._chara), (new u.ShipLoader).add(i, n, "full").load(function () {
+                    t._chara.texture = r.default.resources.getShip(i, n, "full"), t._showTelopBG()
+                })
+            }, e.prototype._showTelopBG = function () {
+                var t = this._telopContainer.bg;
+                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(104), createjs.Tween.get(t).to({
+                    alpha: 1,
+                    scaleY: 1
+                }, 500).call(this._showText)
+            }, e.prototype._preEnd = function () {
+                this._view.universal_layer.removeChild(this._layer), this._view = null, this._deck = null, this._chara = null, this._layer = null, this._endTask()
+            }, e
+        }(s.TaskBase);
+    e.TaskFormationSelectCombined = p;
+    var d = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e._fade = new a.FadeBox(.6), e._fade.hide(0), e._chara = new PIXI.Sprite, e._boxes = new h.FormationBoxContainerCombined, e._description = new PIXI.Sprite, e._description.x = 984, e._description.y = 500, e.addChild(e._fade), e.addChild(e._chara), e.addChild(e._boxes), e.addChild(e._description), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            switch (t) {
-                case 2:
-                    this._img.texture = a.MAP_COMMON.getTexture(98), this._img.position.set(-74, -84);
-                    break;
-                case 1:
-                    this._img.texture = a.MAP_COMMON.getTexture(99), this._img.position.set(-74, -101);
-                    break;
-                default:
-                    this._img.texture = null
-            }
-        }, e
-    }(r.Container)
+        return n(e, t), Object.defineProperty(e.prototype, "fade", {
+            get: function () {
+                return this._fade
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "boxes", {
+            get: function () {
+                return this._boxes
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "description", {
+            get: function () {
+                return this._description
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container), f = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new _.Sprite, e._bg.anchor.set(.5), e._text = new PIXI.Sprite, e._text.anchor.set(.5), e.addChild(e._bg), e.addChild(e._text), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container)
 }

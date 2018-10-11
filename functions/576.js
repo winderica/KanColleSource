@@ -15,25 +15,52 @@ const function576 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(189), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._coin = o.default.model.useItem.getCount(44), i._furnitureJukeBoxBGMLineModel = e, i
+    var o = i(190), r = i(577), s = i(1), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "btn_kagu", {
+        return n(e, t), Object.defineProperty(e.prototype, "jukebox_table", {
             get: function () {
-                return this._btn_kagu
+                return this._table3
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "btn_back3", {
+        }), Object.defineProperty(e.prototype, "jukebox_btn_up2", {
             get: function () {
-                return this._btn_back3
+                return this._btn_up2
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "jukebox_btn_down2", {
+            get: function () {
+                return this._btn_down2
             }, enumerable: !0, configurable: !0
         }), e.prototype.init = function () {
-            this._pop_jukeboxbg2 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(18)), this._pop_jukeboxbg2.position.set(301, 232), this.addChild(this._pop_jukeboxbg2), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._jukebox_icon_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(10)), this._jukebox_icon_bgm.position.set(469, 305), this.addChild(this._jukebox_icon_bgm)), this._bgm_name = new r.TextBox(17, 4473924), this._bgm_name.position.set(658, 301), this._bgm_name.text = this._furnitureJukeBoxBGMLineModel.api_name + "", this.addChild(this._bgm_name), this._bgm_coin_price = new r.TextBox(17, 4473924), this._bgm_coin_price.position.set(746, 340), this._bgm_coin_price.anchor.set(1, 0), this._bgm_coin_price.text = this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_price), this._bgm_coin_now = new r.TextBox(17, 4473924), this._bgm_coin_now.position.set(746, 379), this._bgm_coin_now.anchor.set(1, 0), this._bgm_coin_now.text = this._coin + "", this.addChild(this._bgm_coin_now), this._coin < this._furnitureJukeBoxBGMLineModel.api_use_coin ? (this._bgm_coin_now.style.fill = 14483456, this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(3)), this._btn_kagu.interactive = !1) : (this._arrow_mini = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(0)), this._arrow_mini.position.set(751, 385), this.addChild(this._arrow_mini), this._bgm_coin_after = new r.TextBox(17, 4473924), this._bgm_coin_after.position.set(836, 379), this._bgm_coin_after.anchor.set(1, 0), this._bgm_coin_after.text = this._coin - this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_after), this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(2)), this._btn_kagu.interactive = this._btn_kagu.buttonMode = !0), this._btn_kagu.position.set(370, 412), this.addChild(this._btn_kagu), this._btn_back3 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(1)), this._btn_back3.interactive = this._btn_back3.buttonMode = !0, this._btn_back3.position.set(689, 412), this.addChild(this._btn_back3)
+            this._table3 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(11)), this._table3.position.set(10, 194), this._table3.alpha = 0, this._table3.interactive = !0, this.addChild(this._table3), this._param_mask = new Array(3), this._param_mask[0] = new PIXI.Graphics, this._param_mask[0].beginFill(16777215), this._param_mask[0].drawRect(43, 286, 358, 150), this._param_mask[0].endFill(), this.addChild(this._param_mask[0]), this._param_mask[1] = new PIXI.Graphics, this._param_mask[1].beginFill(16777215), this._param_mask[1].drawRect(405, 286, 166, 150), this._param_mask[1].endFill(), this.addChild(this._param_mask[1]), this._param_mask[2] = new PIXI.Graphics, this._param_mask[2].beginFill(16777215), this._param_mask[2].drawRect(575, 286, 100, 150), this._param_mask[2].endFill(), this.addChild(this._param_mask[2]), this._bgmList = [];
+            for (var t = 0; t < 5; t++) {
+                var e = new r.BGMList(t, 10, 194, this._param_mask);
+                this.addChild(e), this._bgmList.push(e)
+            }
+            this._btn_up2 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(8)), this._btn_up2.position.set(346, 248), this._btn_up2.alpha = 1, this._btn_up2.interactive = this._btn_up2.buttonMode = !0, this.addChild(this._btn_up2), this._btn_down2 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(7)), this._btn_down2.position.set(346, 450), this._btn_down2.alpha = 1, this._btn_down2.interactive = this._btn_down2.buttonMode = !0, this.addChild(this._btn_down2)
         }, e.prototype.discard = function () {
-            this.removeChildren(0, this.children.length)
+            this.removeChildren();
+            for (var t = 0, e = this._bgmList; t < e.length; t++) {
+                e[t].dispose()
+            }
+        }, e.prototype.setBGMBtnEvent = function (t, e, i) {
+            for (var n = this, o = 0; o < this._bgmList.length; o++) !function (o) {
+                n._bgmList[o].Btn.on(s.EventType.MOUSEOVER, t), n._bgmList[o].Btn.on(s.EventType.MOUSEOUT, e), n._bgmList[o].Btn.on(s.EventType.CLICK, function () {
+                    i(o)
+                })
+            }(o)
+        }, e.prototype.removeBGMBtnEvent = function (t, e, i) {
+            for (var n = this, o = 0; o < this._bgmList.length; o++) !function (o) {
+                n._bgmList[o].Btn.off(s.EventType.MOUSEOVER, t), n._bgmList[o].Btn.off(s.EventType.MOUSEOUT, e), n._bgmList[o].Btn.off(s.EventType.CLICK, function () {
+                    i(o)
+                })
+            }(o)
+        }, e.prototype.playBGMListFadeInOut = function (t, e) {
+            for (var i = 0; i < this._bgmList.length; i++) this._bgmList[i].playFadeInOut(t, e)
+        }, e.prototype.redrawBGMList = function (t, e) {
+            for (var i = 0; i < this._bgmList.length; i++) this._bgmList[i].setText(t[i + e])
         }, e
     }(PIXI.Container);
-    e.JukeBoxConfirm = a
+    e.JukeBoxList = a
 }

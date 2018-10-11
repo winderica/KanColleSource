@@ -15,17 +15,18 @@ const function858 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(17), s = function (t) {
+    var o = i(11), r = i(0), s = function (t) {
         function e() {
             return t.call(this) || this
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.UIImageLoader("arsenal");
-            e.add("arsenal_main.json"), e.add("arsenal_animation.json"), e.load(function () {
-                t._endTask()
-            })
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            r.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
         }, e
     }(o.TaskBase);
-    e.TaskLoadResourcesArsenal = s
+    e.InitializeTask = s
 }

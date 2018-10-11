@@ -15,15 +15,18 @@ const function854 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
+    var o = i(2), r = i(0), s = function (t) {
         function e(e) {
-            var i = t.call(this) || this;
-            return i.repairScene = e, i.repairScene.dispose(), i
+            return t.call(this) || this
         }
 
         return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            r.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
             this._endTask()
         }, e
     }(o.TaskBase);
-    e.DisposeTask = r
+    e.InitializeTask = s
 }

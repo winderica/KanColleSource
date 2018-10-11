@@ -15,19 +15,23 @@ const function1183 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(169), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(2), r = i(8), s = i(1184), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._result = !1, n._onSelected = function (t) {
+                n._result = t, n._dialog.dispose(), n._layer.removeChild(n._dialog), n._layer.removeChild(n._click_guard), n._endTask()
+            }, n._layer = e, n._texture = i, n
         }
 
-        return n(e, t), e.prototype._initialize = function () {
-            this._icon.texture = r.DUTY_COMMON.getTexture(24);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getSlotitem(e, "card"), n = new PIXI.Sprite(i),
-                s = Math.min(195 / n.width, 195 / n.height);
-            n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), Object.defineProperty(e.prototype, "result", {
+            get: function () {
+                return this._result
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
+            this._click_guard = new r.AreaBox(0), this._layer.addChild(this._click_guard), this._dialog = new s.RewardSelectConfirm(this._onSelected), this._dialog.position.set(465, 495), this._dialog.initialize(this._texture), this._layer.addChild(this._dialog), this._dialog.activate()
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._texture = null, this._click_guard = null, this._dialog = null, t.prototype._endTask.call(this)
         }, e
-    }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogSlotitemBtn = a
+    }(o.TaskBase);
+    e.TaskRewardSelectConfirm = a
 }

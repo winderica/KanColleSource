@@ -15,21 +15,20 @@ const function1078 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(18), s = i(23), a = function (t) {
+    var o = i(4), r = i(3), s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
-            var i;
-            if (553 == t) i = o.default.settings.path_root + "resources/stype/etext/sp001.png?" + r.START_TIME; else {
-                8 == e ? e = 9 : 15 == e && (e = 22);
-                var n = s.MathUtil.zeroPadding(e, 3);
-                i = o.default.settings.path_root + "resources/stype/etext/" + n + ".png?" + r.START_TIME
-            }
-            this.texture = PIXI.Texture.fromImage(i)
-        }, e.prototype.dispose = function () {
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
+        }, e.prototype.initialize = function (t) {
+            this.texture = r.ALBUM_MAIN.getTexture(94), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
+        }, e.prototype._createTextBox = function (t) {
+            var e = new o.TextBox(23, 16777215);
+            return e.y = t - 3, this.addChild(e), e
         }, e
     }(PIXI.Sprite);
-    e.EngStypeView = a
+    e.ShipDetailStatusBox = s
 }

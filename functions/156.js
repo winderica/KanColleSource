@@ -24,7 +24,7 @@ const function156 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.starLevel.removeChild(this.text), this.starLevel = null, this.text = null, this.starMax = null, this.removeChildren()
+            this.removeChildren(), this.starLevel.removeChildren(), this.text.destroy(), this.starLevel = null, this.text = null, this.starMax = null
         }, e.prototype.update = function (t) {
             this.removeChildren(), 10 <= t ? this.addChild(this.starMax) : 0 < t && (this.addChild(this.starLevel), this.text.text = t.toString())
         }, e

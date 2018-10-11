@@ -15,7 +15,7 @@ const function391 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(31), r = i(3), s = i(1), a = function (t) {
+    var o = i(32), r = i(3), s = i(1), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._onMouseOver = function () {
@@ -40,7 +40,7 @@ const function391 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._t.setPaused(!0), this._t = null
+            this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._t = null, this._cb_onClick = null
         }, e.prototype._update = function (t) {
             0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(2), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(10), this._icon.visible = !1, this._t.setPaused(!0))
         }, e

@@ -1,23 +1,50 @@
 const function491 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(492), r = function () {
+    var o = function () {
         function t() {
-            this.__map__ = {}
+            this._type = 0
         }
 
-        return t.prototype.__initData__ = function (t) {
-            for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.EquipModel(i), r = n.ship_id.toString();
-                this.__map__[r] = n
-            }
-        }, t.prototype.get = function (t) {
-            var e = t.toString(), i = this.__map__[e];
-            if (i) return i;
-            var r = n.default.model.ship.getMst(t).shipTypeID,
-                s = n.default.model.shipType.get(r).getEquippableTypes(), a = {};
-            return a.api_ship_id = t, a.api_equip_type = s, new o.EquipModel(a)
+        return Object.defineProperty(t.prototype, "type", {
+            get: function () {
+                return this._type
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "deck_id_main", {
+            get: function () {
+                return 1 == this.isCombined() ? 1 : 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "deck_id_sub", {
+            get: function () {
+                return 1 == this.isCombined() ? 2 : 0
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isCombined = function () {
+            return 1 == this._type || 2 == this._type || 3 == this._type
         }, t
     }();
-    e.EquipModelHolder = r
+    e.DeckCombinedModel = o;
+    var r = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.__update__ = function (t) {
+            this._type = t
+        }, e
+    }(o);
+    e.DeckCombinedModelEdit = r
 }

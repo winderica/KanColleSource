@@ -15,28 +15,31 @@ const function1170 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(32), a = i(68), _ = i(408), u = i(409), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._data = e, n._scene_initialize_delegate = i, n
+    var o = i(210), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._dic = {}, e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new u.TaskLoadResources).start(function () {
-                t._connectAPI()
-            })
-        }, e.prototype._connectAPI = function () {
-            var t = this, e = new s.APIConnector;
-            20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
-            e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
-                null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.showAlert = function (t) {
+            var e, i = t.model.alert, n = 384, r = 0;
+            if (1 == i) e = 5, n = 444, r = -7; else if (2 == i) e = 6; else if (3 == i) e = 7; else if (4 == i) e = 8; else {
+                if (5 != i) return;
+                e = 9
+            }
+            var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
+            s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
+        }, e.prototype.hideAlert = function (t) {
+            if (void 0 === t && (t = null), null == t) for (var e in this._dic) this._hideAlert(e); else {
+                var i = t.model.id;
+                this._hideAlert(i.toString())
+            }
+        }, e.prototype._hideAlert = function (t) {
+            if (1 == this._dic.hasOwnProperty(t)) {
+                var e = this._dic[t];
+                null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
+            }
         }, e
-    }(r.TaskBase);
-    e.TaskDutyScenePreInitialize = l
+    }(PIXI.Container);
+    e.AlertLayer = r
 }

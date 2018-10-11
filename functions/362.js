@@ -15,7 +15,7 @@ const function362 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(326), a = i(8), _ = i(973), u = function (t) {
+    var o = i(0), r = i(2), s = i(326), a = i(8), _ = i(975), u = function (t) {
         function e(e, i, n) {
             var r = t.call(this) || this;
             r._ships = e, r._rader = i, r._onUpdate = n, r._fuel = 0, r._ammo = 0;
@@ -67,7 +67,7 @@ const function362 = function (t, e, i) {
                 null != t._clickGuard.parent && t._clickGuard.parent.removeChild(t._clickGuard), t._endTask()
             })
         }, e.prototype._endTask = function () {
-            this._ships = null, this._rader = null, this._onUpdate = null, this._clickGuard = null, this._box = null, t.prototype._endTask.call(this)
+            this._ships = null, this._rader = null, this._onUpdate = null, this._clickGuard = null, this._box && this._box.dispose(), this._box = null, t.prototype._endTask.call(this)
         }, e
     }(r.TaskBase);
     e.TaskTemporarySupply = u

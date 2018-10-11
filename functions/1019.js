@@ -15,33 +15,19 @@ const function1019 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(7), s = function (t) {
-        function e(e, i) {
-            void 0 === i && (i = !1);
-            var n = t.call(this) || this;
-            return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
+    var o = i(4), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._txt1 = new o.TextBox(16, 4999235), e._txt2 = new o.TextBox(16, 4999235), e._txt3 = new o.TextBox(16, 4999235), e.addChild(e._txt1), e.addChild(e._txt2), e.addChild(e._txt3), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "res_model", {
-            get: function () {
-                return this._res_model
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._connect = function () {
-            this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+            this._txt1.text = "\u73fe\u5728\u306e\u6f14\u7fd2\u5019\u88dc\u306f", this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e00\u7fa4\u3011", this._txt3.text = "\u3088\u308a\u62bd\u51fa\u3055\u308c\u305f\u3082\u306e\u3067\u3059\u3002", this._txt2.x = this._txt1.width
+        }, e.prototype.update = function (t) {
+            0 == t ? (this._txt2.style.fill = 6595904, this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e00\u7fa4\u3011") : 1 == t ? (this._txt2.style.fill = 4236648, this._txt2.text = "\u6f14\u7fd2\u8266\u968a\u3010\u7b2c\u4e8c\u7fa4\u3011") : (this._txt2.style.fill = 4232101, this._txt2.text = "\u3010\u5168\u4f53\u3011"), this._txt3.x = this._txt2.x + this._txt2.width
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._txt1.destroy(), this._txt1 = null, this._txt2.destroy(), this._txt2 = null, this._txt3.destroy(), this._txt3 = null
         }, e
-    }(o.APIBase);
-    e.ChangeMatchingAPI = s;
-    var a = function () {
-        function t() {
-        }
-
-        return t.prototype.setData = function (t) {
-            this._o = t
-        }, t.prototype.isSucceed = function () {
-            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
-        }, t
-    }();
-    e.ChangeMatchingAPIResultModel = a
+    }(PIXI.Container);
+    e.CompSubTitle = r
 }

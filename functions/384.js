@@ -41,7 +41,7 @@ const function384 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this._stopWait(), null != this._action_tween && (this._action_tween.setPaused(!0), this._action_tween = null)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._caterpillar.off(s.EventType.CLICK, this._onClick)
+            this.removeChildren(), this.deactivate(), this._caterpillar.off(s.EventType.CLICK, this._onClick), this._shadow = null, this._frown = null, this._caterpillar = null, this._wait_tween = null, this._action_tween = null
         }, e.prototype._stopWait = function () {
             null != this._wait_tween && (this._wait_tween.setPaused(!0), this._wait_tween = null)
         }, e.prototype._action1 = function () {

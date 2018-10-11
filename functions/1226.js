@@ -1,167 +1,57 @@
 const function1226 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(1227), o = function () {
-        function t() {
-            this._data = []
+    var o = i(0), r = i(166), s = i(4), a = i(134), _ = i(1227), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._friend = e, i._chara = new PIXI.Sprite, i.addChild(i._chara), i._bg = new PIXI.Sprite, i._bg.x = e ? 0 : 95, i._bg.y = 368, i.addChild(i._bg), i._stype_txt = new s.TextBox(21, 16774898);
+            var n = new PIXI.Graphics;
+            return n.beginFill(0).drawRect(0, 0, 126, 27).endFill(), i._stype_txt.addChild(n), i._stype_txt.mask = n, i._stype_txt.x = e ? 6 : 168, i._stype_txt.y = 476, i.addChild(i._stype_txt), i._name_txt = new s.TextBox(39, 16774898), n = new PIXI.Graphics, n.beginFill(0).drawRect(0, 0, 204, 45).endFill(), i._name_txt.addChild(n), i._name_txt.mask = n, i._name_txt.x = e ? 143 : 303, i._name_txt.y = 465, i.addChild(i._name_txt), i._lvlabel_txt = new s.TextBox(27, 16774898), i._lvlabel_txt.text = "Lv", i._lvlabel_txt.x = e ? 351 : 512, i._lvlabel_txt.y = 474, i.addChild(i._lvlabel_txt), i._lv_txt = new s.TextBox(28, 16774898), i._lv_txt.x = e ? 383 : 543, i._lv_txt.y = 473, i.addChild(i._lv_txt), i._elementLayer = new PIXI.Container, i.addChild(i._elementLayer), i._medal = new r.MedalIcon, i._medal.alpha = 0, i._medal.x = e ? 440 : 108, i._medal.y = 533, i.addChild(i._medal), i
         }
 
-        return Object.defineProperty(t.prototype, "backgrounds", {
+        return n(e, t), Object.defineProperty(e.prototype, "medal", {
             get: function () {
-                if (null == this._backgrounds) {
-                    this._backgrounds = [];
-                    for (var t = 0, e = this._data; t < e.length; t++) {
-                        var i = e[t];
-                        (n = this._backgrounds).push.apply(n, i.backgrounds)
-                    }
-                }
-                return this._backgrounds;
-                var n
+                return this._medal
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "labels", {
+        }), Object.defineProperty(e.prototype, "elements", {
             get: function () {
-                if (null == this._labels) {
-                    this._labels = [];
-                    for (var t = 0, e = this._data; t < e.length; t++) {
-                        var i = e[t];
-                        (n = this._labels).push.apply(n, i.labels)
-                    }
-                }
-                return this._labels;
-                var n
+                return this._elements
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "spots", {
-            get: function () {
-                if (null == this._spots) {
-                    this._spots = [];
-                    for (var t = 0, e = this._data; t < e.length; t++) {
-                        var i = e[t];
-                        (n = this._spots).push.apply(n, i.spots)
-                    }
-                }
-                return this._spots;
-                var n
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.add = function (t) {
-            var e = new n.MapInfoModel(t);
-            this._data.push(e), this._backgrounds = null, this._labels = null, this._spots = null, this._airraids = null, this._recce = null
-        }, t.prototype.getSpot = function (t) {
-            for (var e = 0, i = this.spots; e < i.length; e++) {
-                var n = i[e];
-                if (n.no == t) return n
+        }), e.prototype.initialize = function (t, e) {
+            this._friend ? this._bg.texture = a.PRAC_MAIN.getTexture(1) : this._bg.texture = a.PRAC_MAIN.getTexture(0);
+            var i = t[0], n = i.mst_id, r = i.isDamaged(), s = o.default.model.ship_graph.get(n),
+                _ = null == s ? new PIXI.Point : s.getLeftOffset(r);
+            this._friend || (_.x += 90), this._chara.position.set(_.x - 150, _.y - 60), this._chara.texture = o.default.resources.getShip(n, r, "full"), this._stype_txt.text = i.stype_name, this._name_txt.text = i.name, this._lv_txt.text = i.level.toString(), this._initializeElements(t), e > 0 && (this._medal.initialize(), this._medal.update(e, 9466926))
+        }, e.prototype.dispose = function () {
+            if (this.removeChildren(), this._stype_txt.destroy(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy(), this._medal.dispose(), null != this._elements) for (var t = 0, e = this._elements; t < e.length; t++) {
+                var i = e[t];
+                i.dispose()
             }
-            return null
-        }, t.prototype.getEnemyOption = function (t) {
-            for (var e = this.getSameSpotData(t), i = e.map(function (t, e, i) {
-                return t.no
-            }), n = 0, o = this._data; n < o.length; n++) for (var r = o[n], s = r.enemies, a = 0, _ = s; a < _.length; a++) {
-                var u = _[a];
-                if (i.indexOf(u.no) >= 0) return u
+        }, e.prototype._initializeElements = function (t) {
+            this._elements = [];
+            for (var e = 1; e < t.length; e++) {
+                var i = t[e];
+                if (null == i) return;
+                var n = new _.ShipElement;
+                n.alpha = 0, n.x = this._friend ? -101 : 273, n.y = 530 + 38 * (e - 1);
+                var o = i.stype_name, r = i.name, s = i.level;
+                n.update(o, r, s), this._elements.push(n), this._elementLayer.addChild(n)
             }
-            return null
-        }, t.prototype.getAirRaidOption = function (t) {
-            if (null == this._airraids) {
-                this._airraids = [];
-                for (var e = 0, i = this._data; e < i.length; e++) {
-                    var n = i[e];
-                    (p = this._airraids).push.apply(p, n.airraids)
-                }
-            }
-            for (var o = 0, r = this._airraids; o < r.length; o++) {
-                var s = r[o];
-                if (s.no == t) return s
-            }
-            for (var a = this.getSameSpotData(t), _ = 0, u = a; _ < u.length; _++) {
-                var l = u[_];
-                if (l.no != t) for (var c = 0, h = this._airraids; c < h.length; c++) {
-                    var s = h[c];
-                    if (s.no == l.no) return s
-                }
-            }
-            return null;
-            var p
-        }, t.prototype.getAirBaseRaidOption = function () {
-            for (var t = 0, e = this._data; t < e.length; t++) {
-                var i = e[t], n = i.airbaseraid;
-                if (null != n) return n
-            }
-            return null
-        }, t.prototype.getAirBasePos = function () {
-            for (var t = 0, e = this._data; t < e.length; t++) {
-                var i = e[t], n = i.airbase;
-                if (null != n) return n
-            }
-            return null
-        }, t.prototype.getShipDirection = function (t) {
-            var e = this.getSpot(t);
-            return null == e ? 0 : e.direction
-        }, t.prototype.getControlPoint = function (t) {
-            var e = this.getSpot(t);
-            return null == e ? null : e.controll_point
-        }, t.prototype.getBranchOption = function (t) {
-            var e = this.getSpot(t);
-            if (null != e.branch) return e.branch;
-            for (var i = this.getSameSpotData(t), n = 0, o = i; n < o.length; n++) {
-                var r = o[n];
-                if (r != e && null != r.branch) return r.branch
-            }
-            return null
-        }, t.prototype.getReplenishConfirmOffsets = function (t) {
-            var e = this.getSpot(t);
-            return null == e ? null : e.replenish_confirm_offsets
-        }, t.prototype.getRationConfirmOffset = function (t) {
-            var e = this.getSpot(t);
-            return null == e ? null : e.ration_confirm_offset
-        }, t.prototype.getAirReconnaissancePoint = function (t) {
-            if (null == this._recce) {
-                this._recce = [];
-                for (var e = 0, i = this._data; e < i.length; e++) {
-                    var n = i[e];
-                    (c = this._recce).push.apply(c, n.recce)
-                }
-            }
-            for (var o = 0, r = this._recce; o < r.length; o++) {
-                var s = r[o];
-                if (s.no == t) return new PIXI.Point(s.x, s.y)
-            }
-            for (var a = this.getSameSpotData(t), _ = a.map(function (t, e, i) {
-                return t.no
-            }), u = 0, l = this._recce; u < l.length; u++) {
-                var s = l[u];
-                if (_.indexOf(s.no) >= 0) return new PIXI.Point(s.x, s.y)
-            }
-            return null;
-            var c
-        }, t.prototype.hasAirReconnaissancePoint = function () {
-            if (null == this._recce) {
-                this._recce = [];
-                for (var t = 0, e = this._data; t < e.length; t++) {
-                    var i = e[t];
-                    (n = this._recce).push.apply(n, i.recce)
-                }
-            }
-            return this._recce.length > 0;
-            var n
-        }, t.prototype.getLandingBalloonType = function (t) {
-            var e = this.getSpot(t);
-            return null == e ? 0 : null == e.landing ? 0 : e.landing.type
-        }, t.prototype.getSameSpotData = function (t) {
-            for (var e = [], i = this.spots, n = null, o = 0, r = i; o < r.length; o++) {
-                var s = r[o];
-                if (s.no == t) {
-                    n = s;
-                    break
-                }
-            }
-            if (null == n) return e;
-            for (var a = 0, _ = i; a < _.length; a++) {
-                var s = _[a];
-                s.x == n.x && s.y == n.y && e.push(s)
-            }
-            return e.sort(function (t, e) {
-                return t.no < e.no ? -1 : t.no > e.no ? 1 : 0
-            })
-        }, t
-    }();
-    e.MapResourceInfo = o
+        }, e
+    }(PIXI.Container);
+    e.Content = u
 }

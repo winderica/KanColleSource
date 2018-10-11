@@ -15,29 +15,34 @@ const function804 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.rollR = [0, 0, 0, 0], e.rot = [0, 0, 0, 0], e.spd = 2, e.balls = [], e.RESIDS = [4, 5, 6, 7];
-            for (var i = 0; i < e.RESIDS.length; i++) {
-                var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(e.RESIDS[i]));
-                n.anchor.set(.5, .5), e.addChild(n), e.balls.push(n)
-            }
-            return createjs.Tween.get(e, { loop: !0 }).wait(1 / 60).call(function () {
-                e.__ENTERFRAME__()
-            }).play(null), e
+    var o = i(0), r = i(10), s = i(143), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
         }
 
-        return n(e, t), e.prototype.updateRotationTable = function () {
-            for (var t = 0; t < this.RESIDS.length; t++) this.rollR[t] = Math.floor(121 * Math.random()) - 60, this.rot[t] = Math.floor(360 * Math.random())
-        }, e.prototype.__ENTERFRAME__ = function () {
-            for (var t = 0; t < 4; t++) {
-                var e = this.balls[t];
-                e.x = this.rollR[t] * Math.cos(this.rot[t] / 180 * Math.PI), e.y = this.rollR[t] * Math.sin(this.rot[t] / 180 * Math.PI), this.rot[t] += this.spd
+        return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
+            get: function () {
+                return 1 == this._raw_data.api_powerup_flag
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "api_ship", {
+            get: function () {
+                return this._raw_data.api_ship
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "api_deck", {
+            get: function () {
+                return this._raw_data.api_deck
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            for (var e = 0; e < this.api_id_items.length; e++) {
+                var i = this.api_id_items[e];
+                o.default.model.ship.delete(i, !1)
             }
-        }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this), this.rollR = null, this.rot = null, this.spd = null, this.balls = null, this.RESIDS = null, this.removeChildren()
+            var n = new s.ShipModelEdit(this.api_ship);
+            o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.PowerElement = r
+    }(r.APIBase);
+    e.PowerUpAPI = a
 }

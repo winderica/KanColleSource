@@ -1,41 +1,27 @@
 const function1218 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(1219), s = i(1222), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
+    var n = i(1219), o = function () {
+        function t() {
+            this._dic = {}
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "enemy", {
-            get: function () {
-                return this._enemy
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "friend", {
-            get: function () {
-                return this._friend
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "upper", {
-            get: function () {
-                return this._upper
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n) {
-            this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
-        }, e
-    }(PIXI.Container);
-    e.PracticeAnimMainView = a
+        return t.prototype.add = function (t) {
+            null != t && (this._dic[t.mem_id] = new n.ShipInstantModel(t))
+        }, t.prototype.addList = function (t) {
+            if (null != t) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e];
+                this.add(n)
+            }
+        }, t.prototype.get = function (t) {
+            return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+        }, t.prototype.getTotalHP = function () {
+            var t = 0;
+            for (var e in this._dic) {
+                t += this._dic[e].hp
+            }
+            return t
+        }, t
+    }();
+    e.DeckInstantModel = o
 }

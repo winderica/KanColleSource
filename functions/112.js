@@ -15,8 +15,8 @@ const function112 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(221), s = i(79), a = i(32), _ = i(68), u = i(35), l = i(859), c = i(861), h = i(875),
-        p = i(877), d = i(879), f = i(881), y = i(882), v = i(883), g = i(884), m = i(885), b = i(345), w = i(887);
+    var o = i(0), r = i(222), s = i(79), a = i(33), _ = i(68), u = i(35), l = i(861), c = i(863), h = i(877),
+        p = i(879), d = i(881), f = i(883), y = i(884), v = i(885), m = i(886), g = i(887), b = i(345), w = i(889);
     e.SYNC_KEY_JUMP = "sync_key_jump";
     var x, I = function () {
         function t() {
@@ -57,7 +57,7 @@ const function112 = function (t, e, i) {
                     i._getShipAnimation(t, r, e.kDocks)
                 })
             }, i._onClickNoDock = function (t) {
-                o.default.view.clickGuard = !0, new m.OpenNewDockAPI(t).start(function () {
+                o.default.view.clickGuard = !0, new g.OpenNewDockAPI(t).start(function () {
                     i.unLockDock(t), o.default.model.kdock.get(t).__open__();
                     var e = o.default.model.kdock.getAll().filter(function (t) {
                         return -1 == t.state
@@ -111,12 +111,12 @@ const function112 = function (t, e, i) {
                 _ = new PIXI.Sprite(u.ARSENAL_MAIN.getTexture(145)), h = new PIXI.Container;
             i.layerBases = new Array, i.layerBuilds = new Array, i.layerInteractives = new Array, s.position.set(34, 4), a.position.set(214, 4), _.position.set(661, 4);
             for (var d = 0; d < i.KDOCK_IDS.length; d++) {
-                var f = 51 + 117 * d, g = new PIXI.Container, b = new PIXI.Container, w = new PIXI.Container;
-                g.position.set(0, f), b.position.set(0, f), w.position.set(0, f), i.layerBases.push(g), i.layerBuilds.push(b), i.layerInteractives.push(w)
+                var f = 51 + 117 * d, m = new PIXI.Container, b = new PIXI.Container, w = new PIXI.Container;
+                m.position.set(0, f), b.position.set(0, f), w.position.set(0, f), i.layerBases.push(m), i.layerBuilds.push(b), i.layerInteractives.push(w)
             }
             for (var d = 0; d < i.KDOCK_IDS.length; d++) {
-                var T = i.KDOCK_IDS[d], g = i.layerBases[d], b = i.layerBuilds[d], w = i.layerInteractives[d],
-                    O = new c.KDockView(T, g, b, w, i.syncAnimationKey);
+                var T = i.KDOCK_IDS[d], m = i.layerBases[d], b = i.layerBuilds[d], w = i.layerInteractives[d],
+                    O = new c.KDockView(T, m, b, w, i.syncAnimationKey);
                 O.updateCondition(!0, !0), O.onClickGet = i._onClickGet, O.onClickSelect = i._onClickDock, O.onClickHighSpeed = i._onClickHighSpeed, O.onClickNoDock = i._onClickNoDock;
                 var P = T.toString();
                 i.kDockViews[P] = O
@@ -232,8 +232,8 @@ const function112 = function (t, e, i) {
                 case!0:
                     var n = t.kDockId, s = t.ammo, u = t.fuel, l = t.steel, c = t.bauxite, h = t.buildKit,
                         p = t.devKit, d = 0 < h, y = new f.CreateShipAPI(n, 0, u, s, l, c, p, d ? 1 : 0),
-                        v = new g.KDockAPI, m = new a.APIConnector;
-                    0 == o.default.model.basic.getTutorialProgress() && m.add(new _.UpdateTutorialAPI(10)), m.add(y), m.add(v), o.default.view.clickGuard = !0, m.start(function () {
+                        v = new m.KDockAPI, g = new a.APIConnector;
+                    0 == o.default.model.basic.getTutorialProgress() && g.add(new _.UpdateTutorialAPI(10)), g.add(y), g.add(v), o.default.view.clickGuard = !0, g.start(function () {
                         t.dispose();
                         var e = o.default.model.kdock.get(n),
                             s = (o.default.model.kdock.getAll(), o.default.model.ship.getMst(e.ship_mst_id)),
@@ -279,8 +279,8 @@ const function112 = function (t, e, i) {
                                 break;
                             case d.Result.START:
                                 var u = _.ammo, l = _.fuel, c = _.steel, h = _.bauxite, y = _.buildKit,
-                                    v = _.devKit, m = 0 < y,
-                                    b = new f.CreateShipAPI(n, 1, l, u, c, h, v, m ? 1 : 0), w = new g.KDockAPI,
+                                    v = _.devKit, g = 0 < y,
+                                    b = new f.CreateShipAPI(n, 1, l, u, c, h, v, g ? 1 : 0), w = new m.KDockAPI,
                                     x = new a.APIConnector;
                                 x.add(b), x.add(w), o.default.view.clickGuard = !0, x.start(function () {
                                     o.default.view.portMain.updateInfo();
@@ -290,13 +290,13 @@ const function112 = function (t, e, i) {
                                         c = 9 < o.default.model.useItem.get(2).count;
                                     _.dispose();
                                     var h = t.complete_time;
-                                    m && (h = l + 60 * s * 1e3);
+                                    g && (h = l + 60 * s * 1e3);
                                     var p = r.ArsenalUtil.developLimit();
                                     e.hideHighSpeedButton(n), o.default.model.kdock.getAll().forEach(function (t) {
                                         2 == t.state && e.updateHighSpeedButtonState(t.id), e.onUpdateCondition(t.id, p.forShip, p.forSlot)
                                     }), o.default.view.clickGuard = !1;
                                     var d = o.default.model.shipType.get(i.shipTypeID).build_phase_num;
-                                    e.build(t.id, !0, m, c, a, u, s, h, l, d)
+                                    e.build(t.id, !0, g, c, a, u, s, h, l, d)
                                 }), e.largeSettingMemory.ammo = _.ammo, e.largeSettingMemory.fuel = _.fuel, e.largeSettingMemory.steel = _.steel, e.largeSettingMemory.bauxite = _.bauxite, e.largeSettingMemory.buildKit = 0, e.largeSettingMemory.devKit = 1
                         }
                     }, _.play(e.largeSettingMemory.fuel, e.largeSettingMemory.ammo, e.largeSettingMemory.steel, e.largeSettingMemory.bauxite, e.largeSettingMemory.devKit, e.largeSettingMemory.buildKit)

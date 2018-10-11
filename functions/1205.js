@@ -15,27 +15,17 @@ const function1205 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(417), r = i(1), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e.texture = o.REVAMP_BOX.getTexture(9)
-            }, e._onMouseOut = function () {
-                e.texture = o.REVAMP_BOX.getTexture(9)
-            }, e._onClick = function () {
-                e.emit("dicision")
-            }, e.interactive = !0, e
+    var o = i(11), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.REVAMP_BOX.getTexture(9)
-        }, e.prototype.activate = function () {
-            0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype._setTextture = function (t) {
-            this.texture = t
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.BtnDicision = s
+    }(o.APIBase);
+    e.RevampSlotlistAPI = r
 }

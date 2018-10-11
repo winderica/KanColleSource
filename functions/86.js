@@ -1,7 +1,7 @@
 const function86 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(52), o = i(131), r = i(30), s = i(0), a = i(776);
+    var n = i(52), o = i(131), r = i(31), s = i(0), a = i(778);
     !function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);
@@ -29,16 +29,16 @@ const function86 = function (t, e, i) {
                 var f = e[d], y = f.powUp;
                 u += y[0], l += y[1], c += y[2], h += y[3], p += y[4]
             }
-            for (var v = 0, g = {}, d = 0; d < e.length; d++) {
-                var m = e[d], b = m.shipTypeID, w = m.getClassType().toString();
+            for (var v = 0, m = {}, d = 0; d < e.length; d++) {
+                var g = e[d], b = g.shipTypeID, w = g.getClassType().toString();
                 if (1 == b) {
-                    var x = g[w];
-                    x || (g[w] = x = new Array), -1 == x.indexOf(m.yomi) && x.push(m.yomi), v++
+                    var x = m[w];
+                    x || (m[w] = x = new Array), -1 == x.indexOf(g.yomi) && x.push(g.yomi), v++
                 }
             }
             var I = !1;
-            for (var T in g) {
-                var x = g[T];
+            for (var T in m) {
+                var x = m[T];
                 2 <= x.length && (I = !0)
             }
             var O = !1;
@@ -100,8 +100,8 @@ const function86 = function (t, e, i) {
             });
             var f = s.default.model.slot.createSetList(d), y = [[], {}];
             -1 < p.indexOf(17) && (y = s.default.model.slot.createSetListFromMstId(33));
-            for (var v = [[], {}], g = (new Array, 0); g < h.length; g++) {
-                var m = h[g], b = s.default.model.slot.createSetListFromMstId(m);
+            for (var v = [[], {}], m = (new Array, 0); m < h.length; m++) {
+                var g = h[m], b = s.default.model.slot.createSetListFromMstId(g);
                 v[0] = v[0].concat(b[0]);
                 for (var w = 0; w < b[0].length; w++) {
                     var x = b[0][w].memID;

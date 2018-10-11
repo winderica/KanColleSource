@@ -15,49 +15,57 @@ const function979 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(18), s = i(980), a = i(981), _ = i(982), u = i(987), l = i(988), c = i(994), h = i(1),
-        p = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onSelect = function (t, e) {
-                    r._cb_select(t, e)
-                }, r._onSelectAirUnit = function () {
-                    null != r._cb_onSelectAirUnit && r._cb_onSelectAirUnit()
-                }, r._cb_select = e, r._cb_onSelectAirUnit = i, r._cb_back = n, r._cb_next = o, r._back_btn = new s.BtnBack, r._next_btn = new a.BtnNext, r
-            }
+    var o = i(0), r = i(4), s = i(30), a = i(53), _ = i(368), u = i(369), l = i(980), c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb && i._cb(i._selected_id)
+            }, i._cb = e, i.interactive = !0, i
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.initialize = function () {
-                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
-            }, e.prototype.update = function (t, e, i) {
-                var n = o.default.model.map.getMapMems(t);
-                t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
-            }, e.prototype.deactivate = function () {
-                this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
-            }, e.prototype._updateNormalArea = function (t, e, i) {
-                this._removePreContent(), this._content = 0 == e ? new u.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
-            }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), this._content = e >= 3 ? new l.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
-            }, e.prototype._removePreContent = function () {
-                null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
-            }, e.prototype._updateBackBtn = function (t) {
-                void 0 === t && (t = !1), this._content.offset > 0 ? (this._back_btn.update(t), this._back_btn.show()) : this._back_btn.hide()
-            }, e.prototype._updateNextBtn = function (t, e, i) {
-                var n = !1, o = this._content.offset + this._content.num;
-                if (o < i.length) {
-                    var r = i[o];
-                    if (1 == r.isOpened()) n = !0; else if (65 == r.mst_id) {
-                        var s = i[o - 1];
-                        1 == s.isCleared() && (n = !0)
-                    }
-                }
-                1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
-            }, e
-        }(PIXI.Container);
-    e.ContainerLayout = p
+        return n(e, t), e.prototype.initialize = function () {
+            var t = new PIXI.Sprite(s.SALLY_COMMON.getTexture(27));
+            t.position.set(0, 138), this.addChild(t);
+            var e = new PIXI.Sprite(s.SALLY_COMMON.getTexture(50));
+            e.position.set(0, 102), this.addChild(e);
+            var i = new PIXI.Sprite(a.SALLY_SORTIE.getTexture(9));
+            i.position.set(24, 111), this.addChild(i);
+            var n = new PIXI.Sprite(a.SALLY_SORTIE.getTexture(33));
+            n.position.set(27, 227), this.addChild(n);
+            var o = new PIXI.Sprite(a.SALLY_SORTIE.getTexture(34));
+            o.position.set(27, 315), this.addChild(o);
+            var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(46));
+            c.position.set(27, 530), this.addChild(c);
+            var h = new PIXI.Graphics;
+            h.lineStyle(1, 13421772), h.moveTo(21, 224), h.lineTo(336, 224), h.moveTo(21, 309), h.lineTo(336, 309), this.addChild(h), this._map_name_txt = new r.TextBox(21, 4999235), this._map_name_txt.position.set(24, 156), this.addChild(this._map_name_txt), this._areaText = new _.AreaTextImage, this._areaText.position.set(29, 185), this.addChild(this._areaText), this._ope_name_txt = new r.TextBox(21, 4999235), this._ope_name_txt.position.set(24, 249), this.addChild(this._ope_name_txt), this._ope_detail_txt = new r.TextBox(21, 4999235), this._ope_detail_txt.position.set(24, 342), this._ope_detail_txt.style.wordWrap = !0, this._ope_detail_txt.style.breakWords = !0, this._ope_detail_txt.style.wordWrapWidth = 323, this.addChild(this._ope_detail_txt), this._err_txt = new r.TextBox(17, 12467003), this._err_txt.position.set(24, 465), this.addChild(this._err_txt), this._shop = new l.BtnShop2, this._shop.position.set(271, 468), this._shop.initialize(), this.addChild(this._shop), this._items = new Array;
+            for (var p = 0; p < 4; p++) {
+                var d = new PIXI.Sprite;
+                d.position.set(26 + 81 * p, 555), this._items.push(d)
+            }
+            for (var f = 0, y = this._items; f < y.length; f++) {
+                var v = y[f];
+                this.addChild(v)
+            }
+            this._btn = new u.BtnDicision, this._btn.position.set(33, 638), this._btn.initialize(), this._btn.on("dicision", this._onClick), this.addChild(this._btn)
+        }, e.prototype.update = function (t) {
+            this._selected_id = t.mst_id, 42 == t.area_id ? (this._map_name_txt.position.set(24, 152), this._areaText.position.set(18, 202), this._map_name_txt.text = t.name.replace(/ /g, "\n")) : (this._map_name_txt.position.set(24, 156), this._areaText.position.set(29, 185), this._map_name_txt.text = t.name), this._areaText.update(t.area_id), this._ope_name_txt.text = t.operation_name, this._ope_detail_txt.text = t.operation_detail.replace(/<br.*?>/g, "\n"), this._err_txt.text = "";
+            for (var e = t.item_ids, i = 0; i < this._items.length; i++) {
+                var n = this._items[i];
+                if (null != e && e.length > i && e[i] > 0) {
+                    var r = e[i];
+                    n.texture = o.default.resources.getUseitem(r, 0), n.visible = !0
+                } else n.visible = !1
+            }
+            var s = o.default.model.const.boko_max_ships, a = o.default.model.basic.shipMax, _ = a < s,
+                u = o.default.model.ship.num, l = o.default.model.basic.slotMax, c = o.default.model.slot.num;
+            a - u < 1 ? (this._err_txt.text = "\u8266\u5a18\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : l - c < 4 ? (this._err_txt.text = "\u88c5\u5099\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : this._shop.visible = !1
+        }, e.prototype.activate = function () {
+            this._shop.activate(), this._btn.activate()
+        }, e.prototype.deactivate = function () {
+            this._shop.deactivate(), this._btn.deactivate()
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._cb = null, this._map_name_txt.destroy(), this._areaText.dispose(), this._ope_name_txt.destroy(), this._ope_detail_txt.destroy(), this._err_txt.destroy(), this._shop.deactivate(), this._btn.off("dicision", this._onClick)
+        }, e
+    }(PIXI.Container);
+    e.PanelDetail = c
 }

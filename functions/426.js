@@ -16,15 +16,16 @@ const function426 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(118), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._particle = new Array;
-            for (var i = [600], n = [243], o = 0; o < 8; o++) i.push(555 + 90 * Math.random()), n.push(243 - 90 * Math.random());
-            for (var o = 0; o < i.length; o++) {
-                var r = new s;
-                r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
+        function e(e) {
+            void 0 === e && (e = 0);
+            var i = t.call(this) || this;
+            i._wind = e, i._particle = new Array;
+            for (var n = [300, 600, 900], o = [0, 0, 0], r = 0; r < 10; r++) 0 == e ? n.push(1200 * Math.random()) : n.push(300 * Math.random() + 450), o.push(-30 - 105 * Math.random());
+            for (var r = 0; r < n.length; r++) {
+                var a = new s(e);
+                a.position.set(n[r], o[r]), i.addChild(a), i._particle.push(a)
             }
-            return e
+            return i
         }
 
         return n(e, t), e.prototype.activate = function () {
@@ -32,11 +33,7 @@ const function426 = function (t, e, i) {
         }, e.prototype.initialize = function () {
             for (var t = 0, e = this._particle; t < e.length; t++) {
                 var i = e[t];
-                !function (t) {
-                    createjs.Tween.get(null).wait(1e3 * Math.random()).call(function () {
-                        t.initialize(), t.alpha = 1, t.startAnim()
-                    })
-                }(i)
+                i.initialize(), i.alpha = 1, i.startAnim()
             }
         }, e.prototype.dispose = function () {
             for (var t = 0, e = this._particle; t < e.length; t++) {
@@ -45,28 +42,29 @@ const function426 = function (t, e, i) {
             }
         }, e
     }(PIXI.Container);
-    e.RevampRingParticleLayer = r;
+    e.RevampParticleLayer = r;
     var s = function (t) {
-        function e() {
-            return t.call(this) || this
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._wind = e, i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this.alpha = 0, this.anchor.set(.5, .5), this.scale.set(.5, .5), this._initXYSpeed(), this.texture = o.REVAMP_REVAMP.getTexture(13)
+            this.alpha = 0, this.anchor.set(.5, .5), this._rot = (2 * Math.random() < 1 ? 1 : -1) * Math.random() * 5 * Math.PI * 2, this._scale = .75 * Math.random() + .5, this._vx = (1 * Math.random() * this._scale * this._scale + 300) * this._wind, this._vy = 6 * Math.random() * this._scale * this._scale + 2, this.scale.set(this._scale, this._scale), this.texture = o.REVAMP_REVAMP.getTexture(14)
         }, e.prototype.startAnim = function () {
             this._anim()
         }, e.prototype.stopAnim = function () {
             null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._initXYSpeed = function () {
-            this._vx = (2 * Math.random() < 1 ? 1 : -1) * (6 * Math.random() + 6), this._vy = -(6 * Math.random() + 6), this._rot = .025 * (this._vx > 0 ? 1 : -1)
+        }, e.prototype._calc = function () {
+            0 == this._wind ? this.x = 1200 * Math.random() : this.x = 300 * Math.random() + 450, this.y = -30 - 105 * Math.random(), this._rot += (2 * Math.random() < 1 ? 1 : -1) * Math.random() * 5 * Math.PI * 2
         }, e.prototype._anim = function () {
             var t = this;
-            this._tween = createjs.Tween.get(this).to({ alpha: 1 }, 0).to({
+            this._tween = createjs.Tween.get(this).to({ alpha: 1 }).to({
+                y: 800,
                 x: this.x + this._vx,
-                y: this.y + this._vy,
-                rotation: this.rotation + this._rot
-            }, 20).call(function () {
-                t._tween = null, t.y > 1200 && (t.y = 243 - 90 * Math.random(), t.x = 555 + 90 * Math.random(), t._initXYSpeed()), t._vy += .4, t._anim()
+                rotation: this._rot
+            }, 3e3 * Math.random() + 1e3).call(function () {
+                t._tween = null, t._calc(), t._anim()
             })
         }, e
     }(PIXI.Sprite)

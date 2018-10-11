@@ -26,6 +26,7 @@ const function166 = function (t, e, i) {
         }, e.prototype.update = function (t, e) {
             void 0 === e && (e = 4999235), t > 0 ? (this._text.style.fill = e, this._text.text = t.toString(), this.visible = !0) : this.visible = !1
         }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text && this._text.destroy()
         }, e
     }(PIXI.Container);
     e.MedalIcon = s

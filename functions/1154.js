@@ -15,19 +15,19 @@ const function1154 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(17), s = function (t) {
+    var o = i(4), r = i(3), s = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("interior");
-            e.add("interior_parts.json"), e.load(function () {
-                t._endTask()
-            })
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
+        }, e.prototype.update = function (t) {
+            t = Math.max(t, 0), this._text.text = t.toString()
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResources = s
+    }(PIXI.Sprite);
+    e.CoinBox = s
 }

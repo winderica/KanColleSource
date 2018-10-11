@@ -15,59 +15,62 @@ const function1337 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(12), s = i(15), a = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._scene = e, o._type = i, o._plane = n, o
+    var o = i(28), r = i(39), s = i(2), a = i(15), _ = i(1338), u = i(1339), l = i(1340), c = i(1341), h = i(1342),
+        p = i(1343), d = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._ship = i, s._damage = n, s._type = o, s._plane = r, s
+            }
+
+            return n(e, t), e.prototype._start = function () {
+                var t = this, e = 500 * Math.random();
+                this._banner = this._scene.view.bannerGroupLayer.getBanner(this._ship);
+                var i = null;
+                if (1 == this._type) i = new r.WaitTask(500); else if (3 == this._type) i = new _.AnimAntiAircraftFunshin(this._banner); else if (2 == this._type) i = new l.AnimAntiAircraftKoukaku(this._banner); else if (5 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new h.AnimAntiAircraftSanshikidan2(this._banner)), i = n
+                } else if (4 == this._type) i = new u.AnimAntiAircraftFunshinKai2(this._banner); else if (6 == this._type) {
+                    var n = new o.ParallelTask;
+                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new u.AnimAntiAircraftFunshinKai2(this._banner)), i = n
+                }
+                if (null == i ? this._endTask() : (this._banner.moveFront(), this._createGuns(), this._banner.addChild(this._gun1), this._banner.addChild(this._gun2), this._gun1.activate(), this._gun2.activate(), this._planeExplosion(), createjs.Tween.get(null).wait(e).call(function () {
+                    i.start(function () {
+                        t._endTask()
+                    })
+                })), Math.floor(this._damage) <= 0 && (4 == this._type || 6 == this._type)) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showDanmaku(s, e)
+                } else if (5 == this._type || 6 == this._type) {
+                    var s = this._banner.getGlobalPos(!1);
+                    this._scene.view.bannerInfoLayer.showSanshiki(s, e)
+                }
+            }, e.prototype._planeExplosion = function () {
+                var t = this._scene, e = this._type, i = this._plane;
+                new p.TaskAirWarAntiAircraftExplosion(t, e, i).start()
+            }, e.prototype._endTask = function () {
+                null != this._gun1 && (null != this._gun1.parent && this._gun1.parent.removeChild(this._gun1), this._gun1.deactivate()), null != this._gun2 && (null != this._gun2.parent && this._gun2.parent.removeChild(this._gun2), this._gun2.deactivate()), this._scene = null, this._ship = null, this._type = null, this._banner.moveDefault(), this._banner = null, this._gun1 = null, this._gun2 = null, t.prototype._endTask.call(this)
+            }, e.prototype._createGuns = function () {
+                this._gun1 = new f, this._gun1.position.set(26, 20), this._gun1.rotation = (45 * -Math.random() - 30) / 180 * Math.PI, this._gun2 = new f, this._gun2.position.set(35, 30), this._gun2.rotation = (45 * -Math.random() - 30) / 180 * Math.PI
+            }, e
+        }(s.TaskBase);
+    e.TaskAirWarAntiAircraft = d;
+    var f = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = a.BATTLE_MAIN.getTexture(126);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
-        }, e.prototype._animSanshiki = function () {
-            var t = this, e = new _(5);
-            e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 100).to({ scaleX: 2, scaleY: 2, alpha: 0 }, 700).call(function () {
-                e.parent.removeChild(e), t._endTask()
-            })
-        }, e.prototype._animKoukaku = function () {
-            var t = this, e = new _(2);
-            e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 100).to({ scaleX: 2, scaleY: 2, alpha: 0 }, 700).call(function () {
-                e.parent.removeChild(e), t._endTask()
-            })
-        }, e.prototype._animFunshin = function () {
-            var t = this, e = new _(3);
-            e.position.set(0, -15), this._plane.addChild(e);
-            var i = new _(3);
-            i.position.set(-15, 0), this._plane.addChild(i);
-            var n = new _(3);
-            n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 100).to({ scaleX: 2, scaleY: 2, alpha: 0 }, 700), createjs.Tween.get(i).wait(100).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 100).to({ scaleX: 2, scaleY: 2, alpha: 0 }, 700), createjs.Tween.get(n).wait(200).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 100).to({ scaleX: 2, scaleY: 2, alpha: 0 }, 700).call(function () {
-                e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this._content, { loop: !0 }).call(function () {
+                t._content.visible = !0, t._content.position.set(0, 0)
+            }).wait(33).call(function () {
+                t._content.position.set(30, 0)
+            }).wait(33).call(function () {
+                t._content.visible = !1
+            }).wait(33))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(o.TaskBase);
-    e.TaskAirWarAntiAircraftExplosion = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n = t.call(this) || this;
-            return 5 == e ? (i = 150, n.anchor.set(.5, .91)) : 2 == e ? (i = 151, n.anchor.set(.5, .85)) : 3 == e && (i = 150, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
-        }
-
-        return n(e, t), e
-    }(r.Sprite)
+    }(PIXI.Container)
 }

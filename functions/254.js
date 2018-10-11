@@ -15,7 +15,7 @@ const function254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(25), a = i(447), _ = i(448), u = function (t) {
+    var o = i(2), r = i(14), s = i(25), a = i(449), _ = i(450), u = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
@@ -32,7 +32,7 @@ const function254 = function (t, e, i) {
         }), e.prototype.getPreloadTask = function () {
             return this._preload_task
         }, e.prototype._endTask = function () {
-            this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
         }, e
     }(o.TaskBase);
     e.CutinDouble = u;

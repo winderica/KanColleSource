@@ -15,36 +15,28 @@ const function1129 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(128), s = i(168), a = i(1130), _ = function (t) {
+    var o = i(27), r = i(1130), s = i(1131), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._onPickup = function () {
-                null != i._cb_onPickup && i._cb_onPickup(i._model)
-            }, i._cb_onPickup = e, i._name = new o.TextBox(22, 16777215), i._name.position.set(0, 18), i.addChild(i._name), i._icon = new PIXI.Sprite, i._icon.position.set(105, 81), i.addChild(i._icon), i._count = new u, i._count.position.set(243, 84), i.addChild(i._count), i._description = new o.TextBox(18, 16777215), i._description.position.set(22, 186), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 264, i.addChild(i._description), i._pickup_btn = new a.PickupBtn, i._pickup_btn.position.set(66, 388), i._pickup_btn.visible = !1, i.addChild(i._pickup_btn), i
+            return i._onSelectFromTop = function (t) {
+                if (i._top_view.deactivate(), -1 == t) {
+                    if (null == i._cb_onResult) return;
+                    i._cb_onResult(t)
+                } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(312, 207), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+            }, i._onSelectFromConfirm = function (t) {
+                null != i._cb_onResult && i._cb_onResult(t)
+            }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 176), i.addChild(i._top_view), i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._pickup_btn.initialize(this._onPickup)
-        }, e.prototype.update = function (t) {
-            return null != t && this._model == t ? void this._onPickup() : (this._model = t, null == this._model ? void this._clean() : (this._name.text = this._model.name, this._name.x = Math.round(154 - this._name.width / 2), this._icon.texture = s.getPayitemIcon(this._model.id), this._count.update(this._model.count), this._count.visible = !0, this._description.text = this._model.description.replace(/<br>/g, "\n"), this._pickup_btn.visible = !0, void this._pickup_btn.activate()))
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._count = t, this._top_view.initialize()
+        }, e.prototype.activate = function () {
+            null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+        }, e.prototype.deactivate = function () {
+            null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
         }, e.prototype.dispose = function () {
-            this._pickup_btn.dispose()
-        }, e.prototype._clean = function () {
-            this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._pickup_btn.visible = !1, this._pickup_btn.deactivate()
+            null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
         }, e
-    }(PIXI.Sprite);
-    e.PurchasedItemDetailPanel = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new o.TextBox(30, 16777215), e._text.y = 28, e.addChild(e._text), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.update(0)
-        }, e.prototype.update = function (t) {
-            var e;
-            e = t < 100 ? 24 : t < 1e3 ? 25 : 26, this._bg.texture = r.ITEM_ILIST.getTexture(e), this._bg.x = -Math.round(this._bg.width / 2), this._text.text = t.toString(), this._text.x = -Math.round(this._text.width / 2)
-        }, e
-    }(PIXI.Container)
+    }(o.DialogBase);
+    e.SanmaUseDialog = a
 }

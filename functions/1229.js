@@ -1,51 +1,41 @@
 const function1229 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
-        function t(t) {
-            this._o = t
+    var o = i(16), r = i(145), s = i(51), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
         }
 
-        return Object.defineProperty(t.prototype, "offset", {
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
             get: function () {
-                return this._o.hasOwnProperty("x") || this._o.hasOwnProperty("y") ? new PIXI.Point(n.ObjUtil.getNumber(this._o, "x"), n.ObjUtil.getNumber(this._o, "y")) : null
+                return this._bg
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "type", {
+        }), Object.defineProperty(e.prototype, "black", {
             get: function () {
-                switch (n.ObjUtil.getString(this._o, "type")) {
-                    case"R":
-                        return 2;
-                    case"L":
-                        return 6;
-                    case"T":
-                        return 0;
-                    case"B":
-                        return 4;
-                    case"RT":
-                    case"TR":
-                        return 1;
-                    case"RB":
-                    case"BR":
-                        return 3;
-                    case"LT":
-                    case"TL":
-                        return 7;
-                    case"LB":
-                    case"BL":
-                        return 5
-                }
-                return 1
+                return this._black
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "beak", {
+        }), Object.defineProperty(e.prototype, "shutter", {
             get: function () {
-                switch (n.ObjUtil.getString(this._o, "beak")) {
-                    case"s":
-                    case"straight":
-                        return 1
-                }
-                return 0
+                return this._shutter
             }, enumerable: !0, configurable: !0
-        }), t
-    }();
-    e.BranchBalloonData = o
+        }), e.prototype.initialize = function () {
+            this._shutter.initializeLight()
+        }, e
+    }(PIXI.Container);
+    e.ViewMain = a
 }

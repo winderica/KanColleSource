@@ -15,8 +15,8 @@ const function300 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(2), a = i(8), _ = i(59), u = i(40), l = i(28), c = i(25), h = i(66), p = i(9),
-        d = i(201), f = i(617), y = i(618), v = i(619), g = function (t) {
+    var o = i(0), r = i(1), s = i(2), a = i(8), _ = i(59), u = i(40), l = i(29), c = i(25), h = i(66), p = i(9),
+        d = i(202), f = i(619), y = i(620), v = i(621), m = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._model = i, n
@@ -137,5 +137,5 @@ const function300 = function (t, e, i) {
                 this._layer = null, this._model = null, this._bg = null, this._item_from = null, this._item_tobe = null, this._particle_layer = null, this._messagebox = null, this._white = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.ModelChangeTask = g
+    e.ModelChangeTask = m
 }

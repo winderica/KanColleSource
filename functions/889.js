@@ -15,19 +15,25 @@ const function889 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(5), r = i(0), s = i(14), a = i(346), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.bg_0 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_1 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.bg_0.position.set(0, 102), e.bg_1.position.set(529, 102);
-            var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(8));
-            i.anchor.set(0, .5), i.position.set(198, e.bg_0.height / 2 - 4);
-            var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(4));
-            return n.anchor.set(0, .5), n.position.set(19, e.bg_0.height / 2 - 4), e.bg_0.addChild(i), e.bg_1.addChild(n), e.addChild(e.bg_0), e.addChild(e.bg_1), e
+            return e._stype_name = "", e._ship_name = "", e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.bg_0.removeChildren(), this.bg_1.removeChildren(), this.removeChildren(), this.bg_0 = null, this.bg_1 = null
+        return n(e, t), e.prototype.preloadFromMst = function (t, e) {
+            var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
+            this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
+        }, e.prototype.preload = function (t, e, i, n, a, _, u) {
+            var l = this;
+            this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
+                l._target.texture = r.default.resources.getShip(t, !1, "full"), l._target.x = o.default.width / 2 - 379 + _.x, l._target.y = o.default.height / 2 - 418 + _.y, l._rarityBG.initiailzeForShip(a, function () {
+                    l._messageBox.initializeForShip(l._stype_name, l._ship_name, l._message), null != u && u()
+                })
+            })
+        }, e.prototype._03_waitClick = function () {
+            r.default.sound.voice.play(this._mst_id.toString(), 1), t.prototype._03_waitClick.call(this)
         }, e
-    }(PIXI.Container);
-    e.TopBarLayer = r
+    }(a.RewardAnimation);
+    e.RewardAnimationShip = _
 }

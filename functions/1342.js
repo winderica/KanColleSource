@@ -15,44 +15,33 @@ const function1342 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(2), s = i(15), a = function (t) {
+    var o = i(2), r = i(61), s = i(15), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._layer = e, i
+            return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
         }
 
         return n(e, t), e.prototype._start = function () {
             var t = this;
-            this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
-                x: 90,
-                alpha: 1
-            }, 300).to({ x: -90 }, 350).to({
-                x: -150,
-                alpha: 0
-            }, 500), createjs.Tween.get(this._telop.bg.scale).to({ y: 1 }, 300).wait(1150).to({ y: 0 }, 300).call(function () {
-                t._layer.removeChild(t._telop), t._endTask()
+            this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({ alpha: 1 }, 100).to({
+                x: this._smoke1.x - 4,
+                alpha: 0,
+                scaleX: 1.1,
+                scaleY: 1.1
+            }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({ alpha: 1 }, 100).to({
+                x: this._smoke2.x - 4,
+                alpha: 0,
+                scaleX: 1.1,
+                scaleY: 1.1
+            }, 700);
+            var e = [s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107), s.BATTLE_MAIN.getTexture(108), s.BATTLE_MAIN.getTexture(109), s.BATTLE_MAIN.getTexture(110), s.BATTLE_MAIN.getTexture(111)],
+                i = new PIXI.extras.AnimatedSprite(e);
+            i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
+                i.play(), i.onComplete = function () {
+                    i.onComplete = null, t._layer.removeChild(i), t._endTask()
+                }
             })
-        }, e.prototype._endTask = function () {
-            this._layer = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.TaskAirUnitAttackStartTelop = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = s.BATTLE_MAIN.getTexture(65);
-            e._bg = new PIXI.Container;
-            var n = new PIXI.Sprite(i);
-            return n.width = o.default.width, n.x = -Math.round(n.width / 2), n.y = -Math.round(n.height / 2), e._bg.addChild(n), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(74)), e._text.anchor.set(.5), e.addChild(e._text), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(PIXI.Container)
+    }(o.TaskBase);
+    e.AnimAntiAircraftSanshikidan2 = a
 }

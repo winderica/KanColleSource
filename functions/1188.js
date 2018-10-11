@@ -15,26 +15,27 @@ const function1188 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(6), a = i(238), _ = i(170), u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._model = e, n._holder = i, n
+    var o = i(0), r = i(170), s = function (t) {
+        function e() {
+            var e = null !== t && t.apply(this, arguments) || this;
+            return e._onMouseOver = function () {
+                e._canvas.scale.set(1.05)
+            }, e._onMouseOut = function () {
+                e._canvas.scale.set(1)
+            }, e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = o.default.model.basic.getDutyExecutableCount();
-            if (this._holder.getExecCount() >= e) return void this._endTask();
-            s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
-                t._update()
-            })
-        }, e.prototype._update = function () {
-            var t = this, e = this._holder.selected_page_no, i = this._holder.selected_type;
-            new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._model = null, this._holder = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.load = function (t) {
+            t()
+        }, e.prototype._initialize = function () {
+            this._icon.visible = !1;
+            this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
+            var t = new PIXI.Graphics;
+            t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
+            var e = this._candidate.mst_id, i = o.default.resources.getShip(e, !1, "card_round"),
+                n = new PIXI.Sprite(i);
+            n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
         }, e
-    }(r.TaskBase);
-    e.TaskWaitedDutySelect = u
+    }(r.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogShipBtn = s
 }

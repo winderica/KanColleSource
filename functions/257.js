@@ -15,7 +15,7 @@ const function257 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(7), s = i(490), a = function () {
+    var o = i(0), r = i(7), s = i(492), a = function () {
         function t(t) {
             if (this._o = t, this._expedition = null, null != this._o) {
                 var e = r.ObjUtil.getNumArray(this._o, "api_mission"), i = new s.DeckExpeditionModelEdit(e);

@@ -15,40 +15,22 @@ const function686 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(687), a = i(1), _ = function (t) {
+    var o = i(82), r = i(108), s = i(4), a = i(34), _ = i(56), u = i(311), l = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e.animation = { light: 0 }, e._onClick = function () {
-                e.onClick()
-            }, e._onMouseOver_Light = function () {
-                e._stop(), e.hokyuLight.texture = e.textureHover
-            }, e._onMouseOut_Light = function () {
-                e._play()
-            };
-            var i = o.ORGANIZE_MAIN.getTexture(17), n = o.ORGANIZE_MAIN.getTexture(18),
-                _ = o.ORGANIZE_MAIN.getTexture(19);
-            return e.textCount = new r.TextBox(30, 5523516), e.tween = createjs.Tween.get(e.animation), e.hokyuLight = new PIXI.Sprite, e.hokyuNormal = new PIXI.Sprite(i), e.hokyuNone = new PIXI.Sprite(n), e.hokyuDisable = new PIXI.Sprite(_), e.crossCharacter = new s.CrossCharacter, e.crossCharacter.position.set(48, 15), e.hokyuLight.texture = n, e.tween.to({ light: 0 }), e.tween.to({ light: 1 }, 500), e.tween.to({ light: 0 }, 500), e.tween.loop = !0, e.tween.addEventListener("change", function () {
-                .5 <= e.animation.light ? e.hokyuLight.texture = e.textureDefault : e.hokyuLight.texture = e.textureHover
-            }), e.tween.setPaused(!0), e.hokyuLight.addListener(a.EventType.CLICK, e._onClick), e.hokyuLight.addListener(a.EventType.MOUSEOVER, e._onMouseOver_Light), e.hokyuLight.addListener(a.EventType.MOUSEOUT, e._onMouseOut_Light), e.hokyuNormal.addListener(a.EventType.CLICK, e._onClick), e.hokyuLight.interactive = e.hokyuLight.buttonMode = !0, e.hokyuNormal.interactive = e.hokyuNormal.buttonMode = !0, e.hokyuNone.visible = e.hokyuNormal.visible = e.hokyuLight.visible = !1, e.textCount.position.set(e.crossCharacter.width + 48, -1), e.addChild(e.hokyuDisable, e.hokyuNone, e.hokyuNormal, e.hokyuLight, e.textCount, e.crossCharacter), e.textureDefault = n, e.textureHover = i, e._play(), e
+            var e = t.call(this) || this, i = _.ORGANIZE_MAIN.getTexture(30);
+            e.background = new PIXI.Sprite(i);
+            e.textHp = new s.TextBox(15, "white"), e.textLv = new s.TextBox(21, "white"), e.textHougeki = new s.TextBox(15, "white"), e.textTaiku = new s.TextBox(15, "white"), e.textRaigeki = new s.TextBox(15, "white"), e.textSoukou = new s.TextBox(15, "white"), e.shipBanner = new a.ShipBanner, e.rateView = new o.StarRateView, e.hpGaugeView = new r.HpGaugeView, e.expGaugeView = new u.ExpGaugeView, e.textHp.anchor.set(1, 0), e.textHp.position.set(229, 64), e.textLv.anchor.set(1, 0), e.textLv.position.set(237, 20), e.shipBanner.position.set(244, 18), e.textHougeki.anchor.set(1, 0), e.textHougeki.position.set(117, 90), e.textRaigeki.position.set(117, 120), e.textRaigeki.anchor.set(1, 0), e.textTaiku.position.set(232, 90), e.textTaiku.anchor.set(1, 0), e.textSoukou.position.set(232, 120), e.textSoukou.anchor.set(1, 0), e.rateView.position.set(18, 63), e.hpGaugeView.position.set(132, 54), e.expGaugeView.position.set(241, 87), e.containerName = new PIXI.Container;
+            var n = new PIXI.Graphics;
+            return e.textName = new s.TextBox(35, "white"), n.beginFill(0, 0), n.drawRect(0, 0, 105, 72), n.endFill(), e.containerName.position.set(23, 18), e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.background.interactive = !0, e.addChild(e.background, e.hpGaugeView, e.expGaugeView, e.rateView, e.textHp, e.textLv, e.containerName, e.textHougeki, e.textTaiku, e.textRaigeki, e.textSoukou, e.shipBanner), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.tween && (this.tween.setPaused(!0), createjs.Tween.removeTweens(this.tween.target)), this.hokyuLight.removeAllListeners(a.EventType.CLICK), this.hokyuLight.removeAllListeners(a.EventType.MOUSEOVER), this.hokyuLight.removeAllListeners(a.EventType.MOUSEOUT), this.hokyuNormal.removeAllListeners(a.EventType.CLICK), this._onClick = this._onMouseOut_Light = this._onMouseOver_Light = null, this.crossCharacter.dispose(), this.onClick = null, this.textureDefault = null, this.textureHover = null, this.textCount = null, this.animation = null, this.tween = null, this.hokyuLight = null, this.hokyuNormal = null, this.hokyuNone = null, this.hokyuDisable = null, this.crossCharacter = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n) {
-            void 0 === i && (i = 0), this.hokyuNone.visible = !1, this.hokyuLight.visible = !1, this.hokyuNormal.visible = !1, this.textCount.visible = !1, this.hokyuDisable.visible = !1, this.crossCharacter.visible = !1;
-            var o = t + e;
-            if (0 < o) {
-                if (this.crossCharacter.visible = !0, this.textCount.text = o.toString(), this.textCount.visible = !0, 0 < i) {
-                    if (n) return void(this.hokyuLight.visible = !0);
-                    if (0 < e) return void(this.hokyuNormal.visible = !0)
-                }
-                return void(this.hokyuDisable.visible = !0)
-            }
-        }, e.prototype._play = function () {
-            this.tween.setPosition(0, createjs.Tween.LOOP), this.tween.setPaused(!1)
-        }, e.prototype._stop = function () {
-            this.tween.setPaused(!0)
+            this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.rateView.dispose(), this.shipBanner.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.textHp.destroy(), this.textLv.destroy(), this.textName.destroy(), this.textHougeki.destroy(), this.textTaiku.destroy(), this.textRaigeki.destroy(), this.textSoukou.destroy(), this.containerName = null, this.hpGaugeView = null, this.expGaugeView = null, this.rateView = null, this.shipBanner = null, this.textHp = null, this.textLv = null, this.textName = null, this.textHougeki = null, this.textTaiku = null, this.textRaigeki = null, this.textSoukou = null, this.background = null
+        }, e.prototype._updateName_ = function (t, e) {
+            this.containerName.cacheAsBitmap = !1, this.textName.style.fill = e ? 16766947 : "white", this.textName.text = t, this.containerName.cacheAsBitmap = !0
+        }, e.prototype.update = function (t, e) {
+            this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label), this.textHougeki.text = t.karyoku.toString(), this.textTaiku.text = t.taiku.toString(), this.textRaigeki.text = t.raisou.toString(), this.textSoukou.text = t.soukou.toString(), this._updateName_(t.name, t.isMarriage()), this.textHp.text = t.hpNow + "/" + t.hpMax, this.background.interactive = !0, this.textLv.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.rateView.update(t.starNum), this.hpGaugeView.update(t.hpNow, t.hpMax), this.expGaugeView.update(t.expNowRate)
         }, e
     }(PIXI.Container);
-    e.SweetsButton = _
+    e.ShipInfo = l
 }

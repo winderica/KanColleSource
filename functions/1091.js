@@ -15,45 +15,56 @@ const function1091 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(17), a = i(234), _ = function () {
+    var o = i(7), r = function () {
         function t() {
+            this._dic = {}
         }
 
-        return t.isLoaded = function () {
-            return t._loaded
-        }, t.loaded = function () {
-            t._loaded = !0
-        }, t._loaded = !1, t
-    }(), u = function (t) {
+        return t.prototype.getCount = function (t) {
+            var e = this.getData(t);
+            return null == e ? 0 : e.count
+        }, t.prototype.getData = function (t) {
+            return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+        }, t.prototype.setData = function (t) {
+            if (this._dic = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e], o = new a(n);
+                this._dic[o.id] = o
+            }
+        }, t
+    }();
+    e.PurchasedItemModelHolder = r;
+    var s = function () {
+        function t(t) {
+            this._o = t
+        }
+
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return parseInt(o.ObjUtil.getString(this._o, "api_payitem_id"))
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_name")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "description", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_description")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "count", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_count")
+            }, enumerable: !0, configurable: !0
+        }), t
+    }();
+    e.PurchasedItemModel = s;
+    var a = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new s.UIImageLoader("item");
-            e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
-                t._load2()
-            })
-        }, e.prototype._load2 = function () {
-            var t = this, e = new s.UIImageLoader("item");
-            e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
-                t._loadSkinResource()
-            })
-        }, e.prototype._loadSkinResource = function () {
-            var t = this, e = new s.UIImageLoader("item"), i = o.default.model.basic.getUISkinID();
-            101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
-                t._loadAkashiResoueces()
-            })
-        }, e.prototype._loadAkashiResoueces = function () {
-            var t = this;
-            if (_.isLoaded()) return void this._endTask();
-            var e = o.default.settings.path_root + "resources/misc/akashi/", i = new PIXI.loaders.Loader(e);
-            i.add(a.POSTER_KEY_1, a.POSTER_TYPE + "1.png"), i.add(a.POSTER_KEY_2, a.POSTER_TYPE + "2.png"), _.loaded(), i.load(function () {
-                t._endTask()
-            })
+        return n(e, t), e.prototype.setCount = function (t) {
+            this._o.api_count = t
         }, e
-    }(r.TaskBase);
-    e.TaskLoadResources = u
+    }(s);
+    e.PurchasedItemModelEdit = a
 }

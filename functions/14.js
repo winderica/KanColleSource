@@ -1,7 +1,7 @@
 const function14 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(30), r = i(23), s = i(101), a = i(78), _ = function () {
+    var n = i(0), o = i(31), r = i(23), s = i(101), a = i(78), _ = function () {
         function t() {
             null == t._queue && (t._queue = []), this._url_list = []
         }
@@ -28,7 +28,10 @@ const function14 = function (t, e, i) {
             switch (t) {
                 case 754:
                 case 755:
+                    return { typeList: ["character_up", "character_full"], hasTaiha: !1 };
                 case 984:
+                case 997:
+                    return { typeList: ["character_up", "character_full"], hasTaiha: !0 };
                 case 1003:
                 case 1004:
                 case 1005:
@@ -61,16 +64,16 @@ const function14 = function (t, e, i) {
                 case 1032:
                 case 1033:
                 case 1034:
-                    return ["character_up", "character_full"];
+                    return { typeList: ["character_up", "character_full"], hasTaiha: !1 };
                 default:
-                    return null
+                    return { typeList: null, hasTaiha: null }
             }
         }, t.prototype.needCard = function (t) {
             return null === t || t.indexOf("card") > -1
         }, t.prototype.needCharaFull = function (t) {
             return null === t || t.indexOf("character_full") > -1
         }, t.prototype.needCharaUp = function (t) {
-            return null === t || t.indexOf("character_full") > -1
+            return null === t || t.indexOf("character_up") > -1
         }, t.prototype.load = function (e) {
             void 0 === e && (e = null), this._cb_onComplete = e, t._queue.indexOf(this) >= 0 || (t._queue.push(this), 1 == t._queue.length && this._load())
         }, t.prototype._load = function () {

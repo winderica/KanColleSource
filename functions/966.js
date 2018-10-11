@@ -15,23 +15,39 @@ const function966 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick()
-            }, i._cb_onClick = e, i.interactive = !0, i
+    var o = i(2), r = i(967), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._cancel = !0, n._waitClick = function () {
+                n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
+            }, n._onNo = function () {
+                n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
+            }, n._onYes = function () {
+                n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
+            }, n._layer = e, n._model = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_AIRUNIT.getTexture(6)
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onClick = null
+        return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+            get: function () {
+                return this._cancel
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
+            0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
+        }, e.prototype._openDialog = function () {
+            var t = this;
+            this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
+                createjs.Tween.get(t._dialog.bg).to({ alpha: 1 }, 300).call(t._waitClick)
+            })
+        }, e.prototype._closeDialog = function () {
+            var t = this;
+            createjs.Tween.get(this._dialog).to({ alpha: 0 }, 200).call(function () {
+                t._dialog.fade.hide(100, function () {
+                    t._layer.removeChild(t._dialog), t._endTask()
+                })
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.AirUnitBtn = s
+    }(o.TaskBase);
+    e.ChangeConfirmTask = s
 }

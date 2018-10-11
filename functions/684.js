@@ -15,22 +15,25 @@ const function684 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(82), r = i(108), s = i(4), a = i(33), _ = i(56), u = i(311), l = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = _.ORGANIZE_MAIN.getTexture(30);
-            e.background = new PIXI.Sprite(i);
-            e.textHp = new s.TextBox(15, "white"), e.textLv = new s.TextBox(21, "white"), e.textHougeki = new s.TextBox(15, "white"), e.textTaiku = new s.TextBox(15, "white"), e.textRaigeki = new s.TextBox(15, "white"), e.textSoukou = new s.TextBox(15, "white"), e.shipBanner = new a.ShipBanner, e.rateView = new o.StarRateView, e.hpGaugeView = new r.HpGaugeView, e.expGaugeView = new u.ExpGaugeView, e.textHp.anchor.set(1, 0), e.textHp.position.set(229, 64), e.textLv.anchor.set(1, 0), e.textLv.position.set(237, 20), e.shipBanner.position.set(244, 18), e.textHougeki.anchor.set(1, 0), e.textHougeki.position.set(117, 90), e.textRaigeki.position.set(117, 120), e.textRaigeki.anchor.set(1, 0), e.textTaiku.position.set(232, 90), e.textTaiku.anchor.set(1, 0), e.textSoukou.position.set(232, 120), e.textSoukou.anchor.set(1, 0), e.rateView.position.set(18, 63), e.hpGaugeView.position.set(132, 54), e.expGaugeView.position.set(241, 87), e.containerName = new PIXI.Container;
-            var n = new PIXI.Graphics;
-            return e.textName = new s.TextBox(35, "white"), n.beginFill(0, 0), n.drawRect(0, 0, 105, 72), n.endFill(), e.containerName.position.set(23, 18), e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.background.interactive = !0, e.addChild(e.background, e.hpGaugeView, e.expGaugeView, e.rateView, e.textHp, e.textLv, e.containerName, e.textHougeki, e.textTaiku, e.textRaigeki, e.textSoukou, e.shipBanner), e
+    var o = i(0), r = i(155), s = i(60), a = i(156), _ = i(4), u = i(21), l = function (t) {
+        function e(e) {
+            void 0 === e && (e = !1);
+            var i = t.call(this) || this, n = new PIXI.Sprite, l = new _.TextBox(19, 5523516),
+                c = new PIXI.Sprite(o.default.resources.getUIImage("mask")), h = new _.TextBox(21, 5523516),
+                p = new a.SlotItemLevel, d = new PIXI.Sprite, f = new r.AirPlaneLevel,
+                y = new PIXI.Sprite(u.COMMON_MAIN.getTexture(42)), v = new s.IconWeapon;
+            n.texture = u.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
+            var m = new PIXI.Container;
+            return m.mask = c, m.addChild(l, c), m.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, m, h, d, p, f, y, v), i.background = n, i.textName = l, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = v, i.containerName = m, i
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.rateView.dispose(), this.shipBanner.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.containerName = null, this.hpGaugeView = null, this.expGaugeView = null, this.rateView = null, this.shipBanner = null, this.textHp = null, this.textLv = null, this.textName = null, this.textHougeki = null, this.textTaiku = null, this.textRaigeki = null, this.textSoukou = null, this.background = null, this.removeChildren()
-        }, e.prototype._updateName_ = function (t, e) {
-            this.containerName.cacheAsBitmap = !1, this.textName.style.fill = e ? 16766947 : "white", this.textName.text = t, this.containerName.cacheAsBitmap = !0
-        }, e.prototype.update = function (t, e) {
-            this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label), this.textHougeki.text = t.karyoku.toString(), this.textTaiku.text = t.taiku.toString(), this.textRaigeki.text = t.raisou.toString(), this.textSoukou.text = t.soukou.toString(), this._updateName_(t.name, t.isMarriage()), this.textHp.text = t.hpNow + "/" + t.hpMax, this.background.interactive = !0, this.textLv.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.rateView.update(t.starNum), this.hpGaugeView.update(t.hpNow, t.hpMax), this.expGaugeView.update(t.expNowRate)
+            this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
+        }, e.prototype.clear = function () {
+            this.update(0, "", !1, 0, 0, 0, !1)
+        }, e.prototype.update = function (t, e, i, n, o, r, s) {
+            void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
         }, e
     }(PIXI.Container);
-    e.ShipInfo = l
+    e.SlotItemSlotView = l
 }

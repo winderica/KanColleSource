@@ -15,16 +15,23 @@ const function994 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(371), r = i(372), s = function (t) {
-        function e(e, i, n) {
-            for (var o = t.call(this, e, n) || this, s = 0; s < 3; s++) {
-                var a = new r.EventMapThumbnail(3, i, n, o._onMouseOver, o._onMouseOut), _ = 207 + 144 * s;
-                a.position.set(501, _), o.addChild(a), o._maps.push(a)
-            }
-            return o
+    var o = i(26), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i.interactive = !0, i
         }
 
-        return n(e, t), e
-    }(o.EventLayoutBase);
-    e.LayoutEventMap3 = s
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_AIRUNIT.getTexture(5)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
+        }, e
+    }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

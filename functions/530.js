@@ -1,38 +1,76 @@
 const function530 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(531), o = function () {
-        function t() {
-            this._manager = new n.VoiceManager, this._additional_managers = {}
+    var n = i(7), o = function () {
+        function t(t, e, i) {
+            void 0 === e && (e = 219), void 0 === i && (i = 14), this._barW_default = 219, this._barH_default = 14, this._o = t, this._barW_default = e, this._barH_default = i
         }
 
-        return t.prototype.getNumOfMultiPlay = function () {
-            return this._manager.num_of_simultaneous_playback
-        }, t.prototype.setNumOfMultiPlay = function (t) {
-            this._manager.num_of_simultaneous_playback = t
-        }, t.prototype.preload = function (t, e) {
-            this._manager.preload(t, e)
-        }, t.prototype.play = function (t, e, i, o) {
-            void 0 === i && (i = null), void 0 === o && (o = null);
-            var r = this._getManager(o);
-            return null == r && (r = new n.VoiceManager, this._additional_managers[o] = r), r.play(t, e, i)
-        }, t.prototype.playAtRandom = function (t, e, i, o, r) {
-            void 0 === o && (o = null), void 0 === r && (r = null);
-            var s = this._getManager(r);
-            return null == s && (s = new n.VoiceManager, this._additional_managers[r] = s), s.playAtRandom(t, e, i, o)
-        }, t.prototype.stop = function (t) {
-            if (1 == this._manager.stop(t)) return !0;
-            for (var e in this._additional_managers) {
-                if (1 == this._additional_managers[e].stop(t)) return !0
-            }
-            return !1
-        }, t.prototype.stopAll = function (t) {
-            void 0 === t && (t = null);
-            var e = this._getManager(t);
-            null != e && e.stopAll()
-        }, t.prototype._getManager = function (t) {
-            return null == t ? this._manager : 1 == this._additional_managers.hasOwnProperty(t) ? this._additional_managers[t] : null
+        return Object.defineProperty(t.prototype, "x", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "x")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "y", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "y")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "image_path", {
+            get: function () {
+                return n.ObjUtil.getString(this._o, "img")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "image_light_path", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "img_l");
+                return null == t || "" == t ? this.image_path + "_light" : t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "lightX", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "light");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "lightY", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "light");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "barX", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "bar");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "barY", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "bar");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "barW", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "bar");
+                return null == t ? this._barW_default : n.ObjUtil.getNumber(t, "w", this._barW_default)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "barH", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "bar");
+                return null == t ? this._barH_default : n.ObjUtil.getNumber(t, "h", this._barH_default)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "barColor", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "bar");
+                return null == t ? 16711680 : n.ObjUtil.getNumber(t, "color", 16711680)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "transportX", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "transport");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "transportY", {
+            get: function () {
+                var t = n.ObjUtil.getString(this._o, "transport");
+                return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isTransport = function () {
+            return this._o.hasOwnProperty("transport")
         }, t
     }();
-    e.VoiceManagerHolder = o
+    e.GaugeModel = o
 }

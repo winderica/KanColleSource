@@ -15,21 +15,26 @@ const function1497 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(30), s = i(147), a = i(148), _ = i(194), u = i(1498), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._taihi = e, i._img = new PIXI.Sprite, i._icon = new s.BannerIcon, i._soot = new a.BannerSoot, i._smoke = new _.BannerSmoke, i._smoke.visible = !1, i.addChild(i._img), i.addChild(i._icon), i.addChild(i._soot), i.addChild(i._smoke), i
+    var o = i(5), r = i(4), s = i(36), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e.addChild(e._bg), e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this._icon = null, this._soot = null, this._smoke.dispose(), this._smoke = null, null != this._coin && (this._coin.dispose(), this._coin = null)
-        }, e.prototype.updateTexture = function (t, e, i) {
-            e <= 0 || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
-        }, e.prototype.updateIcon = function (t) {
-            this._smoke.stop(), this._smoke.play(t), 0 == this._taihi ? (this._soot.update(t), this._icon.setDamagedIcon(t)) : (this._soot.clear(), this._icon.setTaihiIcon())
-        }, e.prototype.createShowMVPCoinTween = function () {
-            return this._coin = new u.MVPCoin, this._coin.position.set(270, 30), this._coin.initialize(), this._coin.activate(), this._coin.alpha = 0, this.addChild(this._coin), createjs.Tween.get(this._coin).to({ alpha: 1 }, 300)
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
+            var t = new r.TextBox(18, 16774898);
+            t.text = "FRIEND FLEET AREA", t.position.set(-582, 300), t.rotation = -Math.PI / 2, this._bg.addChild(t);
+            var e = new r.TextBox(18, 16774898);
+            e.text = "ENEMY FLEET AREA", e.position.set(578, -234), e.rotation = Math.PI / 2, this._bg.addChild(e)
+        }, e.prototype.show = function () {
+            var t = this;
+            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
+                t.emit("complete")
+            })
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._bg.destroy(!0)
         }, e
     }(PIXI.Container);
-    e.ShipBannerClone = l
+    e.LayerBG = a
 }

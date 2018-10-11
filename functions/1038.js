@@ -15,16 +15,18 @@ const function1038 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = function (t) {
-        function e(e, i, n) {
-            void 0 === n && (n = !1);
-            var o = t.call(this) || this;
-            return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
+    var o = i(38), r = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+        }, e.prototype.update = function (t) {
+            0 == t ? (this._setTexture(38), this.visible = !0) : 2 == t ? (this._setTexture(32), this.visible = !0) : this.visible = !1
+        }, e.prototype.dispose = function () {
+        }, e.prototype._setTexture = function (t) {
+            this.texture = o.SALLY_EXPEDITION.getTexture(t)
         }, e
-    }(r.APIBase);
-    e.ExpeditionStartAPI = s
+    }(PIXI.Sprite);
+    e.ExpeditionStateIcon = r
 }

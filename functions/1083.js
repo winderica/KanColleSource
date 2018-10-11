@@ -15,55 +15,37 @@ const function1083 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(42), s = i(1), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onPrev = function (t) {
-                if (t.stopPropagation(), null != e._current) {
-                    var i = e._data_list.indexOf(e._current);
-                    if (!(i < 0)) {
-                        var n = i - 1;
-                        n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
-                    }
-                }
-            }, e._onNext = function (t) {
-                if (t.stopPropagation(), null != e._current) {
-                    var i = e._data_list.indexOf(e._current);
-                    if (!(i < 0)) {
-                        var n = i + 1;
-                        n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
-                    }
-                }
-            }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
+    var o = i(32), r = i(3), s = i(1), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._update(!0)
+            }, i._onMouseOut = function () {
+                i._update(!1)
+            }, i._onClick = function (t) {
+                null != i._cb_onClick && i._cb_onClick(t, i._voice_id)
+            }, i._bg = new PIXI.Sprite, i._bg.position.set(0, 0), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i.addChild(i._icon), i._category = new PIXI.Sprite, i._category.position.set(0, 0), i.addChild(i._category), i._t = createjs.Tween.get(i._icon, { loop: !0 }).to({
+                scaleX: 1.5,
+                scaleY: 1.5
+            }, 1e3).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i._bg.interactive = !0, i
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            this._data_list = [];
-            for (var e = 0, i = t.mst_ids; e < i.length; e++) {
-                var n = i[e], r = o.default.resources.getSlotitem(n, "card");
-                this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
-            }
-            this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
+            this._voice_id = null === t ? -1 : t.api_voice_id, this._icon.texture = r.ALBUM_MAIN.getTexture(12);
+            var e = 4;
+            this._category.position.set(23, 20), null !== t && 2 === t.api_icon_id && (e = 3, this._category.position.set(20, 20)), this._category.texture = r.ALBUM_MAIN.getTexture(e), this._update(!1)
+        }, e.prototype._update = function (t) {
+            0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(1), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(13), this._icon.visible = !1, this._t.setPaused(!0))
         }, e.prototype.activate = function () {
-            1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
+            1 != this.buttonMode && (this._bg.buttonMode = !0, this._bg.on(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.on(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.on(s.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {
-            this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
+            this._bg.buttonMode = !1, this._bg.off(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.off(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.off(s.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose()
-        }, e.prototype._addImageData = function (t, e, i) {
-            if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
-                var n = new _;
-                n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
-            }
-        }, e.prototype._update = function () {
-            null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
+            this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._category = null, this._t = null, this._cb_onClick = null, this._voice_id = null
         }, e
     }(PIXI.Container);
-    e.SlotDetailContent = a;
-    var _ = function () {
-        function t() {
-        }
-
-        return t
-    }()
+    e.extraVoiceBtn = a
 }

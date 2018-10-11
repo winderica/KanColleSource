@@ -15,45 +15,42 @@ const function1291 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(61), r = i(1292), s = function (t) {
+    var o = i(20), r = i(1), s = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
+            return n._handle = -1, n._onClick = function () {
+                if (-1 != n._handle) {
+                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
+                    n._cb_onDoubleClick(n._no)
+                } else n._handle = setTimeout(function () {
+                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
+                }, 300)
+            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._state = 0, n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "no", {
             get: function () {
                 return this._no
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "route", {
-            get: function () {
-                return this._route
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "point", {
-            get: function () {
-                return this._point
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.isAddedSpot = function () {
-            return null != this._route
-        }, e.prototype.showLine = function () {
-            null != this._line && (this._line.visible = !0)
-        }, e.prototype.hideLine = function () {
-            null != this._line && (this._line.visible = !1)
-        }, e.prototype.setColor = function (t) {
-            this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
-        }, e.prototype.getColor = function () {
-            return this._point.color
-        }, e.prototype.setRoute = function (t, e, i, n) {
-            null != this._route && (this.removeChild(this._route), this._route = null);
-            var r = new o.CenteringSprite(t);
-            r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
-        }, e.prototype.setLine = function (t, e, i, n) {
-            null != this._line && (this.removeChild(this._line), this._line = null);
-            var o = new PIXI.Sprite(t);
-            o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
+        }), e.prototype.initialize = function (t) {
+            this._no = t, this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this._point.dispose()
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.texture = o.MAP_COMMON.getTexture(147);
+                    break;
+                case 2:
+                    this._img.texture = o.MAP_COMMON.getTexture(148);
+                    break;
+                case 3:
+                    this._img.texture = o.MAP_COMMON.getTexture(149);
+                    break;
+                default:
+                    this._img.texture = PIXI.Texture.EMPTY
+            }
         }, e
-    }(PIXI.Container);
-    e.CompSpot = s
+    }(PIXI.Graphics);
+    e.AirUnitAppointmentPoint = s
 }

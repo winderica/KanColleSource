@@ -15,42 +15,132 @@ const function1022 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(29), a = i(38), _ = i(369), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._activated = !1, i._target_id = -1, i._onClick = function () {
-                null != i._decision_cb && i._decision_cb(i._target_id)
-            }, i._decision_cb = e, i
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Graphics;
-            t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
-            var e = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(45));
-            e.position.set(28, 433), this.addChild(e);
-            var i = new PIXI.Sprite(s.SALLY_COMMON.getTexture(29));
-            i.position.set(187, 430), this.addChild(i), this._fuel = new r.TextBox(21, 4999235), this._fuel.anchor.set(1, 0), this._fuel.position.set(262, 432), this.addChild(this._fuel);
-            var n = new PIXI.Sprite(s.SALLY_COMMON.getTexture(30));
-            n.position.set(270, 430), this.addChild(n), this._ammo = new r.TextBox(21, 4999235), this._ammo.anchor.set(1, 0), this._ammo.position.set(346, 432), this.addChild(this._ammo);
-            var o = new PIXI.Sprite(s.SALLY_COMMON.getTexture(46));
-            o.position.set(28, 508), this.addChild(o), this._item1 = new PIXI.Sprite, this._item1.position.set(25, 546), this.addChild(this._item1), this._item1_count = new r.TextBox(22, 4999235), this._item1_count.position.set(100, 570), this.addChild(this._item1_count), this._item2 = new PIXI.Sprite, this._item2.position.set(189, 546), this.addChild(this._item2), this._item2_count = new r.TextBox(22, 4999235), this._item2_count.position.set(265, 570), this.addChild(this._item2_count), this._btn = new _.BtnDicision, this._btn.initialize(), this._btn.position.set(45, 637), this._btn.on("dicision", this._onClick), this._btn.visible = !1, this.addChild(this._btn)
-        }, e.prototype.update = function (t) {
-            if (null == t) this._target_id = -1, this._fuel.text = "", this._ammo.text = "", this._item1.visible = !1, this._item1_count.text = "", this._item2.visible = !1, this._item2_count.text = "", this._btn.visible = !1, this._deactivate(); else {
-                this._target_id = t.mstID, this._fuel.text = this._getMaterialText(t.fuel), this._ammo.text = this._getMaterialText(t.ammo);
-                var e = t.item1_id, i = t.item1_count;
-                e > 0 && i > 0 ? (this._item1.texture = o.default.resources.getUseitem(e, 0), this._item1.visible = !0, this._item1_count.text = i > 0 ? "\xd7" + i : "") : (this._item1.visible = !1, this._item1_count.text = "");
-                var n = t.item2_id, r = t.item2_count;
-                n > 0 && r > 0 ? (this._item2.texture = o.default.resources.getUseitem(n, 0), this._item2.visible = !0, this._item2_count.text = r > 0 ? "\xd7" + r : "") : (this._item2.visible = !1, this._item2_count.text = ""), this._btn.visible = !0, this._activate()
+    var o = i(0), r = i(109), s = i(33), a = i(375), _ = i(30), u = i(38), l = i(225), c = i(226), h = i(1023),
+        p = i(1027), d = i(1033), f = i(1035), y = i(1036), v = i(1040), m = i(1041), g = i(1042),
+        b = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                for (n._list_offset = 0, n._onChangeArea = function (t) {
+                    n._areaIcons.selected = t, n._updateList(t), n._detailView.update(null, null)
+                }, n._onSelect = function (t) {
+                    var e = o.default.model.expedition.get(t);
+                    if (null != e) {
+                        for (var i = o.default.model.deck.getAll(), r = null, s = 0, a = i; s < a.length; s++) {
+                            var _ = a[s];
+                            if (null != _.expedition && _.expedition.expedition_id == t) {
+                                r = _;
+                                break
+                            }
+                        }
+                        n._detailView.update(e, r)
+                    }
+                }, n._onDecision = function (t) {
+                    if (null == n._deckSelect) {
+                        n._deckSelect = new p.ContainerDeckSelect(n._onGo);
+                        var e = o.default.model.deck.getIDs(), i = e.indexOf(1);
+                        -1 != i && e.splice(i, 1);
+                        var r = o.default.model.deck.isCombined();
+                        n._deckSelect.initialize(t, e, r), n.addChild(n._deckSelect), n._deckSelect.cancelArea.show(300), createjs.Tween.get(n._detailView).to({ x: 323 }, 300), createjs.Tween.get(n._deckSelect.panel).to({ x: 493 }, 300).call(function () {
+                            n._deckSelect.activate()
+                        })
+                    }
+                }, n._onGo = function (t, e) {
+                    if (-1 == e) n._deckSelect.deactivate(), n._deckSelect.cancelArea.hide(300), createjs.Tween.get(n._detailView).to({ x: 840 }, 300), createjs.Tween.get(n._deckSelect.panel).to({ x: 1200 }, 300).call(function () {
+                        n.removeChild(n._deckSelect), n._deckSelect.dispose(), n._deckSelect = null
+                    }); else {
+                        o.default.view.clickGuard = !0, n._deckSelect.deactivate();
+                        var i = o.default.model.deck.get(e).getShipModel(0).mstID;
+                        o.default.sound.voice.play(i.toString(), 26), (new s.APIConnector).add(new v.ExpeditionStartAPI(t, e)).add(new a.DeckAPI).start(function () {
+                            n._deckSelect.cancelArea.hide(300), createjs.Tween.get(n._detailView).to({ x: 840 }, 300), createjs.Tween.get(n._deckSelect.panel).to({ x: 1200 }, 300).call(function () {
+                                n.removeChild(n._deckSelect), n._deckSelect.dispose(), n._deckSelect = null, new m.GoExpeditionTask(n, t, e).start(function () {
+                                    o.default.view.clickGuard = !1
+                                })
+                            })
+                        })
+                    }
+                }, n._onCancel = function (t, e) {
+                    new g.CancelExpeditionTask(n, e).start(function () {
+                        var i = o.default.model.expedition.get(t), r = o.default.model.deck.get(e);
+                        n._detailView.update(i, r)
+                    })
+                }, n._onScrollUp = function () {
+                    n._list_offset--, n.__updateList()
+                }, n._onScrollDown = function () {
+                    n._list_offset++, n.__updateList()
+                }, n._items = []; n._items.length < 8;) {
+                    var _ = new y.ExpeditionListItem(n._onSelect);
+                    _.position.set(171, 238 + 45 * n._items.length), n._items.push(_)
+                }
+                return n._list = new f.ExpeditionListFrame, n._list.position.set(165, 199), n._switch = new c.CompSwitchBtns(2, e, i), n._areaIcons = new d.ExpeditionAreaIconSet(n._onChangeArea), n._detailView = new h.ContainerDetail(n._onDecision, n._onCancel), n._switch.position.set(456, 151), n._areaIcons.position.set(167, 624), n._detailView.position.set(840, 0), n._arrowUp = new r.ArrowButton, n._arrowUp.scale.set(.85), n._arrowUp.position.set(470, 215), n._arrowBtm = new r.ArrowButton(!0), n._arrowBtm.scale.set(.85), n._arrowBtm.position.set(470, 614), n
             }
-        }, e.prototype.dispose = function () {
-            this._deactivate(), this._btn.off("dicision", this._onClick)
-        }, e.prototype._activate = function () {
-            0 == this._activated && (this._btn.activate(), this._activated = !0)
-        }, e.prototype._deactivate = function () {
-            this._btn.deactivate(), this._activated = !1
-        }, e.prototype._getMaterialText = function (t) {
-            return t <= 0 ? "\u306a\u3057" : t <= .3 ? "\u5c11\u91cf" : "\u666e\u901a"
-        }, e
-    }(PIXI.Container);
-    e.PanelDetailNoExpe = u
+
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
+                get: function () {
+                    return this._items
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "detail_view", {
+                get: function () {
+                    return this._detailView
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(_.SALLY_COMMON.getTexture(26));
+                t.position.set(144, 139);
+                var e = new PIXI.Sprite(_.SALLY_COMMON.getTexture(50));
+                e.position.set(0, 102);
+                var i = new PIXI.Sprite(u.SALLY_EXPEDITION.getTexture(14));
+                i.position.set(198, 112);
+                var n = new PIXI.Sprite(u.SALLY_EXPEDITION.getTexture(24));
+                n.position.set(150, 138);
+                for (var o = 0, r = this._items; o < r.length; o++) {
+                    var s = r[o];
+                    s.initialize()
+                }
+                this._list.initialize(), this._switch.initialize(), this._areaIcons.initialize(), this._detailView.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n);
+                for (var a = 0, l = this._items; a < l.length; a++) {
+                    var s = l[a];
+                    this.addChild(s)
+                }
+                this.addChild(this._list), this.addChild(this._switch), this.addChild(this._areaIcons), this._arrowUp.initialize(this._onScrollUp), this.addChild(this._arrowUp), this._arrowBtm.initialize(this._onScrollDown), this.addChild(this._arrowBtm), this.addChild(this._detailView), this._updateList(1)
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].activate()
+                }
+                this._switch.activate(), this._areaIcons.activate(), this._arrowUp.activate(), this._arrowBtm.activate()
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+                this._switch.deactivate(), this._areaIcons.deactivate(), this._arrowUp.deactivate(), this._arrowBtm.deactivate()
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._switch.dispose(), this._areaIcons.dispose(), this._arrowUp.dispose(), this._arrowBtm.dispose(), this._detailView.dispose()
+            }, e.prototype._updateList = function (t) {
+                this._datalist = o.default.model.expedition.getInArea(t, !0);
+                var e = this._areaIcons.getSelectedIcon();
+                if (null != e) {
+                    var i = Math.round(e.x + e.width / 2);
+                    this._list.update(i)
+                }
+                this._arrowUp.resetInterval(), this._arrowBtm.resetInterval(), this._list_offset = 0, this.__updateList()
+            }, e.prototype.__updateList = function () {
+                for (var t = o.default.model.deck.getAll(), e = [], i = 0, n = t; i < n.length; i++) {
+                    var r = n[i];
+                    if (null != r.expedition && r.expedition.expedition_id > 0) {
+                        for (; e.length <= r.mstID;) e.push(0);
+                        e[r.mstID] = r.expedition.expedition_id
+                    }
+                }
+                for (var s = 0; s < this._items.length; s++) {
+                    var a = this._items[s], _ = s + this._list_offset;
+                    if (_ < 0 || _ >= this._datalist.length) a.update(null, -1); else {
+                        var u = this._datalist[_], l = e.indexOf(u.mstID);
+                        a.update(u, l)
+                    }
+                }
+                this._arrowUp.visible = 0 != this._list_offset, this._arrowBtm.visible = this._datalist.length - this._list_offset > this._items.length
+            }, e
+        }(l.ViewMainBase);
+    e.ViewMain = b
 }

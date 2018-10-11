@@ -15,34 +15,47 @@ const function1136 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(1137), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._result = !1, e._api = null, e._retry_count = 0, e
-        }
+    var o = i(0), r = i(6), s = i(129), a = i(88), _ = i(1137), u = i(1138), l = i(1139), c = i(1140), h = i(1144),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._count = 0, n._onChangePage = function () {
+                    var t = n._views.indexOf(n._current);
+                    n._showView(t ? 0 : 1)
+                }, n._onSelect = function (t, e) {
+                    r.SE.play("214");
+                    var i = 10;
+                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
+                    var s = new c.TaskPurchaseConfirm(t, e, i);
+                    n.addChild(s.layer), s.start(function () {
+                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
+                    })
+                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new u.NormalItemShopMain(n._onSelect)), n._views.push(new l.SpecialItemShopMain(n._onSelect)), n
+            }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(500).call(function () {
-                t._check()
-            })
-        }, e.prototype._check = function () {
-            var t = this;
-            this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                t._checked()
-            })
-        }, e.prototype._checked = function () {
-            var t = this;
-            2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                t._check()
-            })
-        }, e.prototype._endTask = function () {
-            this._api = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.TaskPayCheck = s
+            return n(e, t), e.prototype.initialize = function () {
+                this._header.texture = s.ITEM_ISHOP.getTexture(35);
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].initialize()
+                }
+            }, e.prototype.update = function () {
+                this._count = 0, this._showView(0)
+            }, e.prototype.activate = function () {
+                null != this._current && this._current.activate(), this._tab.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._current && this._current.deactivate(), this._tab.deactivate()
+            }, e.prototype.dispose = function () {
+                this._purchasedItems = null, this._tab.dispose(), this._removeView();
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].dispose()
+                }
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
+            }, e.prototype._showView = function (t) {
+                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
+                var e = o.default.view.overLayer;
+                new h.TaskWelcomeCutin(e, t, this._count).start()
+            }, e
+        }(a.ViewBase);
+    e.ItemShopMain = p
 }

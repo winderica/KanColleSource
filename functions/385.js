@@ -44,9 +44,11 @@ const function385 = function (t, e, i) {
                 e[t].deactivate()
             }
         }, e.prototype.dispose = function () {
+            this.removeChildren();
             for (var t = 0, e = this._pagers; t < e.length; t++) {
                 e[t].dispose()
             }
+            this._pagers = null
         }, e
     }(PIXI.Container);
     e.PagerContainer = r

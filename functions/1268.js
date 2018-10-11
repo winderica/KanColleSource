@@ -15,36 +15,33 @@ const function1268 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(19), r = i(61), s = i(20), a = function (t) {
+    var o = i(0), r = i(8), s = i(59), a = i(80), _ = i(206), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
+            return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(104), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(109), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(111) : s.MAP_COMMON.getTexture(110)
-        }, e.prototype.playAnimation = function (t) {
-            this._animation1(t)
-        }, e.prototype._animation1 = function (t) {
-            var e = this, i = new o.TweenTask;
-            i.addTween(createjs.Tween.get(this._bg).to({
-                alpha: 1,
-                scaleY: 1
-            }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
-                x: 30,
-                alpha: 1
-            }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({ alpha: 1 }, 700)), i.start(function () {
-                e._animation2(t)
-            })
-        }, e.prototype._animation2 = function (t) {
-            var e = new o.TweenTask;
-            e.addTween(createjs.Tween.get(this._bg).wait(1200).to({ scaleY: 0 }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
-                x: -40,
-                alpha: 0
-            }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({ alpha: 0 }, 100)), e.start(function () {
-                null != t && t()
-            })
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "particle", {
+            get: function () {
+                return this._particle
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message_box", {
+            get: function () {
+                return this._message_box
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "white", {
+            get: function () {
+                return this._white
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
         }, e
     }(PIXI.Container);
-    e.AirRaidTelop = a
+    e.BonusUseItem = u
 }

@@ -15,23 +15,28 @@ const function1112 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(3), a = i(34), _ = function (t) {
+    var o = i(27), r = i(1113), s = i(1114), a = i(1115), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._message = new r.TextBox(18, 4999235), i._message.position.set(272, 74), i.addChild(i._message), i._icon = new PIXI.Sprite, i._icon.position.set(149, 74), i.addChild(i._icon), i._btn_plan = new a.BtnBase(1, e), i._btn_plan.position.set(21, 207), i.addChild(i._btn_plan), i._btn_mat = new a.BtnBase(0, e), i._btn_mat.position.set(332, 188), i.addChild(i._btn_mat), i._btn_rev = new a.BtnBase(2, e), i._btn_rev.position.set(332, 237), i.addChild(i._btn_rev), i._btn_back = new a.BtnBase(-1, e), i._btn_back.position.set(585, 213), i.addChild(i._btn_back), i
+            return i._count = 0, i._onSelectFromTop = function (t) {
+                if (-1 == t) {
+                    if (null == i._cb_onResult) return;
+                    i._cb_onResult(t)
+                } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
+            }, i._onSelectFromConfirm = function (t) {
+                null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
+            }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = s.ITEM_ILIST_MEDAL.getTexture(7), this._message.text = "\u300c\u8cc7\u6e90\u300d\u3084\u300c\u6539\u4fee\u8cc7\u6750\u300d\u306b\u4ea4\u63db\u3067\u304d\u307e\u3059\u3002\n\u307e\u305f\u3001\u52f2\u7ae04\u500b\u3092\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d1\u679a\u306b\n\u4ea4\u63db\u53ef\u80fd\u3067\u3059\u3002", this._icon.texture = o.default.resources.getUseitem(57, 0);
-            var e = s.ITEM_ILIST_MEDAL.getTexture(2), i = s.ITEM_ILIST_MEDAL.getTexture(3);
-            this._btn_plan.initialize(e, i), this._btn_plan.enabled = t >= 4, e = s.ITEM_ILIST_MEDAL.getTexture(4), this._btn_mat.initialize(e), e = s.ITEM_ILIST_MEDAL.getTexture(5), this._btn_rev.initialize(e), e = s.ITEM_ILIST_MEDAL.getTexture(1), this._btn_back.initialize(e)
+            this._count = t, this._top_view.initialize(t)
         }, e.prototype.activate = function () {
-            this._btn_plan.activate(), this._btn_mat.activate(), this._btn_rev.activate(), this._btn_back.activate()
+            this._top_view.activate()
         }, e.prototype.deactivate = function () {
-            this._btn_plan.deactivate(), this._btn_mat.deactivate(), this._btn_rev.deactivate(), this._btn_back.deactivate()
+            this._top_view.deactivate()
         }, e.prototype.dispose = function () {
-            this._btn_plan.dispose(), this._btn_mat.dispose(), this._btn_rev.dispose(), this._btn_back.dispose()
+            this._top_view.dispose()
         }, e
-    }(PIXI.Sprite);
-    e.TopView = _
+    }(o.DialogBase);
+    e.MedalUseDialog = _
 }

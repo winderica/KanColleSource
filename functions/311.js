@@ -17,15 +17,16 @@ const function311 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(21), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(21)),
-                n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(20));
-            return i.x = 3, i.y = 3, i.scale.x = 0, e.addChild(n, i), e.bar = i, e
+            var e = t.call(this) || this;
+            e.bar = new PIXI.Sprite(o.COMMON_MAIN.getTexture(21));
+            var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(20));
+            return e.bar.x = 3, e.bar.y = 3, e.bar.scale.x = 0, e.addChild(i, e.bar), e
         }
 
         return n(e, t), e.prototype.update = function (t) {
             this.bar.scale.x = .01 * t, 1 <= this.bar.scale.x ? this.bar.scale.x = 1 : this.bar.scale.x <= 0 && (this.bar.scale.x = 0)
         }, e.prototype.dispose = function () {
-            this.removeChild(this.bar), this.bar = null
+            this.removeChildren(), this.bar = null
         }, e
     }(PIXI.Container);
     e.ExpGaugeView = r

@@ -15,70 +15,27 @@ const function1144 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(4), s = i(106), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onMouseOverListItem = function (t) {
-                i._focusTo = t, i._focus.x = t.x - 6, i._focus.y = t.y - 4, i._focus.visible = !0
-            }, i._onMouseOutListItem = function (t) {
-                i._focusTo == t && (i._focusTo = null, i._focus.visible = !1)
-            }, i._items = [];
-            for (var n = 0; n < 10; n++) {
-                var o = new _(i._onMouseOverListItem, i._onMouseOutListItem, e);
-                o.y = 45 * n, i.addChild(o), i._items.push(o)
-            }
-            return i._focus = new PIXI.Sprite, i.addChild(i._focus), i
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = s.ITEM_FSHOP.getTexture(22);
-            for (var t = 0, e = this._items; t < e.length; t++) {
-                e[t].initialize()
-            }
-            this._focus.texture = s.ITEM_FSHOP.getTexture(23)
-        }, e.prototype.update = function (t) {
-            for (var e = 0; e < this._items.length; e++) {
-                var i = this._items[e];
-                e < t.length ? (i.update(t[e]), i.visible = !0) : i.visible = !1
-            }
-        }, e.prototype.activate = function () {
-            for (var t = 0, e = this._items; t < e.length; t++) {
-                e[t].activate()
-            }
-        }, e.prototype.deactivate = function () {
-            for (var t = 0, e = this._items; t < e.length; t++) {
-                e[t].deactivate()
-            }
-        }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._items; t < e.length; t++) {
-                e[t].dispose()
-            }
-            this._items = null
-        }, e
-    }(PIXI.Sprite);
-    e.FShopListPanel = a;
-    var _ = function (t) {
+    var o = i(0), r = i(2), s = i(8), a = i(1), _ = i(235), u = function (t) {
         function e(e, i, n) {
             var o = t.call(this) || this;
-            return o._onMouseOver = function () {
-                null != o._cb_onMouseOver && o._cb_onMouseOver(o)
-            }, o._onMouseOut = function () {
-                null != o._cb_onMouseOut && o._cb_onMouseOut(o)
-            }, o._onClick = function () {
-                null != o._cb_onClick && o._cb_onClick(o._model)
-            }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o._coin = new PIXI.Sprite, o._coin.position.set(316, 12), o.addChild(o._coin), o._name = new r.TextBox(20, 16774898), o._name.position.set(6, 10), o.addChild(o._name), o._price = new r.TextBox(18, 16774898), o._price.anchor.x = 1, o._price.position.set(433, 10), o.addChild(o._price), o._soldout = new PIXI.Sprite, o._soldout.x = 1, o._soldout.alpha = 0, o.addChild(o._soldout), o.interactive = !0, o
+            return o._onClose = function () {
+                o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
+                    y: 450,
+                    alpha: 0
+                }, 300).call(function () {
+                    o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
+                })
+            }, o._layer = e, o._page_no = i, o._count = n, o
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._coin.texture = s.ITEM_FSHOP.getTexture(14), this._soldout.texture = s.ITEM_FSHOP.getTexture(24)
-        }, e.prototype.update = function (t) {
-            this._model = t, this._name.text = t.name, this._price.text = t.price.toString(), this._soldout.alpha = 1 == t.has() ? 1 : 0
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._model = null, this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onClick = null
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
+            var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1), i = _.getPosterOffsetWelcome();
+            null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({ x: 660 }, 300).call(function () {
+                t._t = null
+            })
         }, e
-    }(PIXI.Container)
+    }(r.TaskBase);
+    e.TaskWelcomeCutin = u
 }

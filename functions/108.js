@@ -15,7 +15,7 @@ const function108 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(30), s = function (t) {
+    var o = i(0), r = i(31), s = function (t) {
         function e() {
             var e = t.call(this) || this, i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common"),
                 n = new PIXI.Sprite(i);
@@ -45,7 +45,7 @@ const function108 = function (t, e, i) {
             var e = 0;
             t < 33.3 ? (e = 255 << 16, e += t / 33.3 * 128 << 8) : t < 66.6 ? (e = 255 << 16, e += 32768, e += (t - 33.3) / 33.3 * 128 << 8) : (e = 255 - (t - 66.6) / 33.3 * 255 << 16, e += 65280), this.containerGauge.cacheAsBitmap = !1, this.graphicsGauge.clear(), this.graphicsGauge.beginFill(e), this.graphicsGauge.drawRect(0, 0, t / 100 * 98, 11), this.graphicsGauge.endFill(), this.containerGauge.cacheAsBitmap = !0
         }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this.spriteRedLight), this.containerGauge.mask = null, this.containerGauge.removeChildren(), this.containerGauge = null, this.containerGaugeBackground.mask = null, this.containerGaugeBackground.removeChildren(), this.containerGaugeBackground = null, this.removeChildren()
+            createjs.Tween.removeTweens(this.spriteRedLight), this.containerGauge.cacheAsBitmap = !1, this.containerGauge.mask = null, this.containerGauge.removeChildren(), this.containerGauge = null, this.containerGaugeBackground.cacheAsBitmap = !1, this.containerGaugeBackground.mask = null, this.containerGaugeBackground.removeChildren(), this.containerGaugeBackground = null, this.removeChildren()
         }, e
     }(PIXI.Container);
     e.HpGaugeView = s

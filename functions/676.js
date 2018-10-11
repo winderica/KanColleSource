@@ -15,74 +15,115 @@ const function676 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(677), s = i(109), a = i(683), _ = i(313), u = function (t) {
+    var o = i(9), r = i(0), s = i(1), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.SLOT_MAX = 6, e.shipSlots = [];
-            for (var i = 0; i < e.SLOT_MAX; i++) {
-                var n = new a.ShipSlot(i), o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
-                    r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
-                n.position.set(o, r), e.shipSlots.push(n)
-            }
-            return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
+            e._onClickDeckFlag = function (t) {
+                e.onClickDeckFlag(t)
+            }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
+            var i = new u, n = new u, s = new u, a = new u;
+            return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(181)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
-            get: function () {
-                return this.shipSlots
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ArrowTopButton", {
-            get: function () {
-                return this.arrowTopButton
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
-            get: function () {
-                return this.arrowBottomButton
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
-            this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
-        }, e.prototype.init = function (t, e, i) {
-            this.shipSlots.forEach(function (n) {
-                n.activate(t, e, i)
-            })
-        }, e.prototype.initArrow = function (t) {
-            this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
-                t && t(-2)
-            }), this.arrowBottomButton.initialize(function () {
-                t && t(2)
-            })
-        }, e.prototype.show = function () {
-            this.visible = !0
-        }, e.prototype.hide = function () {
-            this.visible = !1
-        }, e.prototype.update = function (t, e) {
-            for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
-                var _ = this.shipSlots[a], u = a + e, l = i.getShipModel(u);
-                if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open(); else if (u < s) {
-                    var c = r < s, h = u == r, p = 0 == n, d = p && c && h;
-                    _.visible = !0, _.updateEmpty(u, d), _.close()
-                }
+        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+            this.interactiveDeckFlag_1.visible = !1, this.interactiveDeckFlag_2.visible = !1, this.interactiveDeckFlag_3.visible = !1, this.interactiveDeckFlag_4.visible = !1, t && (this.interactiveDeckFlag_1.visible = !0), e && (this.interactiveDeckFlag_2.visible = !0), i && (this.interactiveDeckFlag_3.visible = !0), n && (this.interactiveDeckFlag_4.visible = !0)
+        }, e.prototype.update = function (t) {
+            switch (this.interactiveDeckFlag_1.normal(), this.interactiveDeckFlag_2.normal(), this.interactiveDeckFlag_3.normal(), this.interactiveDeckFlag_4.normal(), t) {
+                case 1:
+                    this.interactiveDeckFlag_1.hover();
+                    break;
+                case 2:
+                    this.interactiveDeckFlag_2.hover();
+                    break;
+                case 3:
+                    this.interactiveDeckFlag_3.hover();
+                    break;
+                case 4:
+                    this.interactiveDeckFlag_4.hover()
             }
-            this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
-        }, e.prototype.shutterAnimation = function (t, e, i) {
-            var n = this.shipSlots[t];
-            n.closeAnimation(function () {
-                e && e(), n.close();
-                createjs.Tween.get(null).wait(100).call(function () {
-                    n.openAnimation(function () {
-                        i && i()
-                    }, 200)
-                })
-            }, 200)
-        }, e.prototype.onShipDetail = function (t, e, i) {
-            var n = this;
-            this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
-                n.taskShipDetail.hide(function () {
-                    n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
-                })
-            }, this.taskShipDetail.start(t)
+        }, e.prototype.dispose = function () {
+            this.interactiveDeckFlag_1.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_2.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_3.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_4.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_1.dispose(), this.interactiveDeckFlag_2.dispose(), this.interactiveDeckFlag_3.dispose(), this.interactiveDeckFlag_4.dispose(), this.onClickDeckFlag = null, this.interactiveDeckFlag_1 = null, this.interactiveDeckFlag_2 = null, this.interactiveDeckFlag_3 = null, this.interactiveDeckFlag_4 = null, this.icon3rdUnit = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.ShipSlotLayer = u
+    e.DeckSelector = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick(e.memDeckId)
+            }, e.addListener(s.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.onClick = null, this.memDeckId = null, this._onClick = null, this.removeAllListeners(s.EventType.CLICK), this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.memDeckId = t
+        }, e.prototype.hover = function () {
+            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "on"));
+            this.texture = t
+        }, e.prototype.normal = function () {
+            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "off"));
+            this.texture = t
+        }, e
+    }(PIXI.Sprite);
+    e.InteractiveDeckFlag = _;
+    var u = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = o.COMMON_MISC.getTexture(l.getResourceId(t, "no")), this.memDeckId = t
+        }, e
+    }(PIXI.Sprite);
+    e.DisableDeckFlag = u;
+    var l;
+    !function (t) {
+        function e(t, e) {
+            switch (t) {
+                case 1:
+                    switch (e) {
+                        case"no":
+                            return 72;
+                        case"on":
+                            return 74;
+                        case"off":
+                            return 73
+                    }
+                    break;
+                case 2:
+                    switch (e) {
+                        case"no":
+                            return 75;
+                        case"on":
+                            return 77;
+                        case"off":
+                            return 76
+                    }
+                    break;
+                case 3:
+                    switch (e) {
+                        case"no":
+                            return 78;
+                        case"on":
+                            return 80;
+                        case"off":
+                            return 79
+                    }
+                    break;
+                case 4:
+                    switch (e) {
+                        case"no":
+                            return 81;
+                        case"on":
+                            return 83;
+                        case"off":
+                            return 82
+                    }
+            }
+            return -1
+        }
+
+        t.getResourceId = e
+    }(l || (l = {}))
 }

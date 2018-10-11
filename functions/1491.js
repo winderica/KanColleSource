@@ -15,24 +15,26 @@ const function1491 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(4), s = i(36), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e.addChild(e._bg), e
+    var o = i(2), r = i(6), s = i(178), a = function (t) {
+        function e(e, i, n, o) {
+            void 0 === o && (o = 0);
+            var r = t.call(this) || this;
+            return r._layer = e, r._x = i, r._y = n, r._delay = o, r
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
-            var t = new r.TextBox(18, 16774898);
-            t.text = "FRIEND FLEET AREA", t.position.set(-582, 300), t.rotation = -Math.PI / 2, this._bg.addChild(t);
-            var e = new r.TextBox(18, 16774898);
-            e.text = "ENEMY FLEET AREA", e.position.set(578, -234), e.rotation = Math.PI / 2, this._bg.addChild(e)
-        }, e.prototype.show = function () {
+        return n(e, t), e.prototype._start = function () {
+            this._wait()
+        }, e.prototype._wait = function () {
             var t = this;
-            createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
-                t.emit("complete")
+            this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
+                t._explode()
+            }) : this._explode()
+        }, e.prototype._explode = function () {
+            var t = this, e = new s.Explosion;
+            e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
+                t._layer.removeChild(e), t._endTask()
             })
         }, e
-    }(PIXI.Container);
-    e.LayerBG = a
+    }(o.TaskBase);
+    e.TaskExplosion = a
 }

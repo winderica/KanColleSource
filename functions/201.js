@@ -15,16 +15,14 @@ const function201 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(31), r = function (t) {
-        function e(e) {
-            void 0 === e && (e = null);
-            var i = t.call(this) || this;
-            return i._img = new PIXI.Sprite, i.addChild(i._img), null != e && i.update(e), i
+    var o = i(9), r = i(32), s = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        return n(e, t), e.prototype._update = function (t) {
+            this.texture = 0 == t ? o.COMMON_MISC.getTexture(20) : o.COMMON_MISC.getTexture(21)
         }, e
-    }(o.Container);
-    e.CenteringSprite = r
+    }(r.BtnBase);
+    e.BackBtn = s
 }

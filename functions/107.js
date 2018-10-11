@@ -33,7 +33,7 @@ const function107 = function (t, e, i) {
         }, e.prototype.activate = function () {
             null === this._tween && (this._tween = createjs.Tween.get(this._frame, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 800).wait(200).play(null))
         }, e.prototype.deactivate = function () {
-            null !== this._tween && (this._tween.setPaused(!0), this._tween = null), this._frame.alpha = 0
+            null !== this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._frame), this._tween = null), this._frame.alpha = 0
         }, e.prototype.dispose = function () {
             this.deactivate(), this._toRelease && (this._text.interactive = !1, this._text.off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOver).off(r.EventType.CLICK, this._onClick)), this.onClick = null, this.removeChildren()
         }, e

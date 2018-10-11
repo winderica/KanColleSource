@@ -15,33 +15,14 @@ const function681 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = function (t) {
+    var o = i(283), r = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            switch (t) {
-                case 0:
-                    this.texture = o.COMMON_MAIN.getTexture(58);
-                    break;
-                case 1:
-                    this.texture = o.COMMON_MAIN.getTexture(61);
-                    break;
-                case 2:
-                    this.texture = o.COMMON_MAIN.getTexture(57);
-                    break;
-                case 3:
-                    this.texture = o.COMMON_MAIN.getTexture(55);
-                    break;
-                case 4:
-                    this.texture = o.COMMON_MAIN.getTexture(62);
-                    break;
-                default:
-                    this.texture = PIXI.Texture.EMPTY
-            }
-        }, e.prototype.dispose = function () {
+        return n(e, t), e.prototype.__getPositions__ = function () {
+            return [[48, 0], [12, 50], [29, 86], [87, 86], [0, 140], [20, 224], [0, 381], [96, 426], [132, 390], [219, 395], [266, 426], [309, 381], [284, 320], [302, 120], [284, 84], [293, 48], [257, 26], [293, 0]]
         }, e
-    }(PIXI.Sprite);
-    e.ShateiImage = r
+    }(o.BaseKirakira);
+    e.CardKirakira = r
 }

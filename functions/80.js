@@ -46,7 +46,7 @@ const function80 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             null != this._get_icon && this._get_icon.deactivate(), null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.deactivate(), this.removeChildren(), this._stype_name.destroy(), this._ship_name.destroy(), this._text.destroy(), null != this._get_icon && this._get_icon.dispose()
         }, e
     }(PIXI.Sprite);
     e.MessageBox = a

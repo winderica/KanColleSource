@@ -15,7 +15,7 @@ const function160 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(752), r = i(753), s = i(9), a = function (t) {
+    var o = i(754), r = i(755), s = i(9), a = function (t) {
         function e(e, i, n, o) {
             var a = t.call(this) || this;
             a._nowLevel = 0, a.PLACE_INFOS = e;
@@ -23,8 +23,8 @@ const function160 = function (t, e, i) {
             for (var p in e) if (!1 !== e.hasOwnProperty(p)) {
                 var d = e[p];
                 for (var f in d) if (!1 !== d.hasOwnProperty(f)) {
-                    var y = i.clone(), v = d[f], g = v.x, m = v.y, b = v.r;
-                    y.x = g, y.y = m, y.rotation = Math.PI / 180 * b, _[f] = y, u[f] = createjs.Tween.get(y), l.addChild(y), c.push("m" + (h + 1)), h++
+                    var y = i.clone(), v = d[f], m = v.x, g = v.y, b = v.r;
+                    y.x = m, y.y = g, y.rotation = Math.PI / 180 * b, _[f] = y, u[f] = createjs.Tween.get(y), l.addChild(y), c.push("m" + (h + 1)), h++
                 }
             }
             var w = new PIXI.Sprite(o), x = new PIXI.Sprite(s.COMMON_MISC.getTexture(18)), I = new r.SupplyFloor;

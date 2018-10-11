@@ -15,27 +15,37 @@ const function1266 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(242), r = function (t) {
+    var o = i(20), r = i(242), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._imgs = [], e
+            return e._bg = new PIXI.Sprite, e._bg.x = -11, e._bg.y = -128, e.addChild(e._bg), e._label1 = new PIXI.Sprite, e.addChild(e._label1), e._label2 = new PIXI.Sprite, e.addChild(e._label2), e._icon = new PIXI.Sprite, e._icon.anchor.x = 1, e._icon.position.set(44, -80), e.addChild(e._icon), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (this._imgs = [], t <= 0) {
-                var e = new o.NumericalDisplay(0);
-                this.addChild(e), this._imgs.push(e)
-            } else for (; t > 0;) {
-                var i = t % 10, e = new o.NumericalDisplay(i);
-                this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
+        return n(e, t), e.prototype.initialize = function (t, e, i) {
+            switch (this._bg.texture = o.MAP_COMMON.getTexture(49), 2 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(157), this._label1.position.set(20, -117), this._label2.texture = o.MAP_COMMON.getTexture(159), this._label2.position.set(20, -41)) : 1 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(158), this._label1.position.set(24, -117), this._label2.texture = o.MAP_COMMON.getTexture(159), this._label2.position.set(20, -41)) : (this._label1.texture = o.MAP_COMMON.getTexture(160), this._label1.position.set(11, -86), this._label2.texture = PIXI.Texture.EMPTY), e) {
+                case 2:
+                    this._icon.texture = o.MAP_COMMON.getTexture(78);
+                    break;
+                case 4:
+                    this._icon.texture = o.MAP_COMMON.getTexture(79);
+                    break;
+                case 7:
+                    this._icon.texture = o.MAP_COMMON.getTexture(80);
+                    break;
+                default:
+                    this._icon.texture = PIXI.Texture.EMPTY
             }
-            var n = new o.NumericalDisplay(-1);
-            this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
-            for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
-                var _ = a[s];
-                _.x = r, r += _.width
+            if (i > 0) {
+                var n = Math.log(i) * Math.LOG10E + 1;
+                n = Math.floor(n);
+                for (var s = i, a = 0; a < n; a++) {
+                    var _ = new r.NumericalDisplay(s % 10);
+                    _.x = 77 + n / 2 * _.width - a * _.width, _.y = -60, this.addChild(_), s = Math.floor(s / 10)
+                }
+                var u = new r.NumericalDisplay(-1);
+                u.x = 77 - n / 2 * u.width, u.y = -60, this.addChild(u)
             }
         }, e
     }(PIXI.Container);
-    e.NumericalDisplaySet = r
+    e.AirReconnaissanceBalloon = s
 }

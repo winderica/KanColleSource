@@ -32,7 +32,7 @@ const function353 = function (t, e, i) {
         }, e.prototype.update = function (t) {
             this.visible = t, 1 == t ? this._activate() : this._deactivate()
         }, e.prototype.dispose = function () {
-            this._deactivate(), this._onMouseOut()
+            this._deactivate(), this._onMouseOut(), this.removeChildren(), this._cb_onClick = null
         }, e.prototype._activate = function () {
             1 != this._img.buttonMode && (this._img.buttonMode = !0, this._img.on(r.EventType.MOUSEOVER, this._onMouseOver), this._img.on(r.EventType.MOUSEOUT, this._onMouseOut), this._img.on(r.EventType.CLICK, this._onClick))
         }, e.prototype._deactivate = function () {

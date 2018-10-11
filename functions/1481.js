@@ -15,40 +15,38 @@ const function1481 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(18), r = i(22), s = i(29), a = i(41), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(17), r = i(11), s = i(18), a = i(1482), _ = i(1484), u = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._layer = e, r._area_id = i, r._map_no = n, r._file_suffix = o, r
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0); else switch (t) {
-                case 1:
-                    this._img.texture = s.SALLY_COMMON.getTexture(1);
-                    break;
-                case 2:
-                    this._img.texture = s.SALLY_COMMON.getTexture(3);
-                    break;
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
+            switch (this._map_no) {
                 case 3:
-                    this._img.texture = s.SALLY_COMMON.getTexture(5);
-                    break;
-                case 4:
-                    this._img.texture = s.SALLY_COMMON.getTexture(9);
+                    var e = new s.UIImageLoader("battle_result");
+                    e.add("battle_result_event_ed1_" + this._file_suffix + ".json"), e.load(function () {
+                        new a.TaskEventEnding423(t._layer).start(function () {
+                            t._endTask()
+                        })
+                    });
                     break;
                 case 5:
-                    this._img.texture = s.SALLY_COMMON.getTexture(11);
-                    break;
-                case 6:
-                    this._img.texture = s.SALLY_COMMON.getTexture(13);
-                    break;
-                case 7:
-                    this._img.texture = s.SALLY_COMMON.getTexture(7);
+                    var e = new s.UIImageLoader("battle_result");
+                    e.add("battle_result_event_ed2_" + this._file_suffix + ".json"), e.load(function () {
+                        new _.TaskEventEnding425(t._layer).start(function () {
+                            t._endTask()
+                        })
+                    });
                     break;
                 default:
-                    this._img.texture = PIXI.Texture.EMPTY
+                    this._endTask()
             }
-            this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype._endTask = function () {
+            this._layer = null, t.prototype._endTask.call(this)
         }, e
-    }(r.Container);
-    e.AreaIcon = _
+    }(r.TaskBase);
+    e.TaskEventEnding = u
 }

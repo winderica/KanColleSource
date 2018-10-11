@@ -15,19 +15,33 @@ const function584 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = function (t) {
-        function e(e, i, n) {
-            void 0 === n && (n = !1);
-            var o = t.call(this) || this;
-            return o._url = "api_req_mission/result", o._deck_id = e, o._result_model = i, o._debug = n, o
-        }
+    var o = i(8), r = i(4), s = i(585), a = i(33), _ = i(279), u = i(586), l = i(102), c = i(280), h = i(149),
+        p = i(591), d = i(1), f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._initialized = !1, e._activated = !1, e._onClick = function () {
+                    var t = new s.ExpeditionResultModel, i = new u.ExpeditionResultAPI(e._deck_id, t);
+                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new l.UseItemAPI).start(function () {
+                        e._showExpeditionCutin(t)
+                    })
+                }, e._showExpeditionCutin = function (t) {
+                    new c.TaskExpeditionEndCutin(e._deck_id, t).start(function () {
+                        e._showExpeditionResult(t)
+                    })
+                }, e._showExpeditionResult = function (t) {
+                    new p.TaskExpeditionResultShow(e._deck_id, t).start()
+                }, e
+            }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = o.default.model.deck.get(this._deck_id), i = e.expedition.expedition_id;
-            this._result_model.setData(this._raw_data, i), t.prototype._completedEnd.call(this)
-        }, e
-    }(r.APIBase);
-    e.ExpeditionResultAPI = s
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
+            }, e.prototype.activate = function () {
+                0 == this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(d.EventType.CLICK, this._onClick))
+            }, e.prototype.deactive = function () {
+                this.interactive = this.buttonMode = !1, this.off(d.EventType.CLICK, this._onClick), this._activated = !1
+            }, e.prototype.dispose = function () {
+                this.deactive(), this._initialized = !1, this.removeChildren(), this._bg = null, this._balloon = null, this._message && this._message.destroy(), this._message = null
+            }, e
+        }(PIXI.Container);
+    e.ExpeditionAlert = f
 }

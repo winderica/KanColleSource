@@ -15,7 +15,7 @@ const function138 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(12), _ = i(14), u = i(25), l = i(44), c = i(447), h = i(448),
+    var o = i(5), r = i(0), s = i(2), a = i(12), _ = i(14), u = i(25), l = i(44), c = i(449), h = i(450),
         p = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
@@ -120,7 +120,7 @@ const function138 = function (t, e, i) {
             }, e.prototype._animTelop = function (t, e) {
                 null != t && 0 != this._showTelop && (this._telop.initialize(t.mstID, e), this._view.addChildAt(this._telop, 0), this._telop.play())
             }, e.prototype._endTask = function () {
-                this._attacker = null, this._slot = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._telop = null, this._preload_task = null, t.prototype._endTask.call(this)
+                this._attacker = null, this._slot = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
     e.CutinAttack = p;

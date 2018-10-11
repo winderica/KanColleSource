@@ -15,17 +15,39 @@ const function1311 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(172), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this, n = e.model.deck_f, o = 0 != n.type;
-            return i._url = 0 == o ? "api_req_sortie/airbattle" : "api_req_combined_battle/airbattle", i._data = e, i
+    var o = i(2), r = i(14), s = i(439), a = i(1312), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._onTaihi = function () {
+                r._view.deactivate();
+                var t = r._model.map_info.area_id, e = r._model.map_info.map_no, i = r._model.map_info.cell_no;
+                new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
+                    r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
+                })
+            }, r._onTaihiSezu = function () {
+                r._view.deactivate(), r._hideView()
+            }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipResources()
+        }, e.prototype._loadShipResources = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
+                t._show()
+            })
+        }, e.prototype._show = function () {
+            this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+            var t = this._target, e = this._towing;
+            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
         }, e
-    }(o.APIBase);
-    e.APIBattleStartAirBattle = s
+    }(o.TaskBase);
+    e.EscapeGoeiTask = _
 }

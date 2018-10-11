@@ -15,43 +15,46 @@ const function1128 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(7), s = function (t) {
+    var o = i(0), r = i(401), s = i(27), a = i(169), _ = i(1129), u = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
+            return n._onResult = function (t) {
+                n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+            }, n._layer = e, n._target = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._connect = function () {
-            this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._showDialog()
+        }, e.prototype._showDialog = function () {
+            var t = this;
+            this._dialog = new _.SanmaUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({ alpha: 1 }, 150).call(function () {
+                t._dialog.activate()
+            })
+        }, e.prototype._connectAPI = function () {
+            var t = this, e = this._target.mstID, i = this._seleced_use_type,
+                n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)), s = n.result;
+            n.start(function () {
+                1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
+            })
+        }, e.prototype._hideDialog = function (t) {
+            var e = this;
+            createjs.Tween.get(this._dialog).to({ alpha: 0 }, 150).call(function () {
+                e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+            })
+        }, e.prototype._confirm = function () {
+            var t = this, e = this._target.mstID, i = this._seleced_use_type, n = this._layer,
+                o = new a.TaskItemOverflowConfirm(n);
+            o.start(function () {
+                if (1 == o.result) {
+                    var n = new r.UseItemUseAPI(e, !0, i), s = n.result;
+                    n.start(function () {
+                        t._result = s, t._endTask()
+                    })
+                } else t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._target = null, t.prototype._endTask.call(this)
         }, e
-    }(o.APIBase);
-    e.PurchasedItemPickupAPI = s;
-    var a = function () {
-        function t() {
-        }
-
-        return Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t
-    }();
-    e.PurchasedItemPickupResult = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
-        }, e
-    }(a)
+    }(s.TaskWithResult);
+    e.TaskUseSanma = u
 }

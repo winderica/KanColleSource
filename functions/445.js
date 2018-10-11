@@ -15,107 +15,61 @@ const function445 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(16), s = i(12), a = i(15), _ = i(247), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new r.FadeBox(.8), e._bg.hide(0), e._content = new PIXI.Container, e._overlay = new h, e.addChild(e._bg), e.addChild(e._content), e.addChild(e._overlay), e
+    var o = i(24), r = i(2), s = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "content", {
-            get: function () {
-                return this._content
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "overlay", {
-            get: function () {
-                return this._overlay
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._overlay.initialize()
+        return n(e, t), e.prototype._start = function () {
+            for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
+                var o = n[i];
+                !function (i) {
+                    if (null == i) return "continue";
+                    if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
+                        var n = Math.floor(Math.random() * e._from_planes.length), o = e._from_planes[n],
+                            r = e._scene.view.bannerGroupLayer.getBanner(i),
+                            s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e, _ = s.getDamage(i.index),
+                            u = s.isShield(i.index), l = new a(e._scene, o, r, _, u);
+                        e._tasks.push(l), l.start(function () {
+                            t._taskComplete(i, l)
+                        })
+                    }
+                }(o)
+            }
+            0 == this._tasks.length && this._endTask()
+        }, e.prototype._taskComplete = function (t, e) {
+            var i = this._tasks.indexOf(e);
+            this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.CutinCanvasFunnel = u;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._telop_bg = new PIXI.Sprite, e._telop_bg.anchor.set(.5), e._laser_effect = new c, e._laser_effect.visible = !1, e._ship = new PIXI.Sprite, e._ship.alpha = 0, e._ship_mask = new PIXI.Graphics, e._plane1 = new s.Sprite, e._plane2 = new s.Sprite, e._plane3 = new s.Sprite, e.addChild(e._telop_bg), e.addChild(e._plane3), e.addChild(e._laser_effect), e.addChild(e._ship), e.addChild(e._ship_mask), e.addChild(e._plane2), e.addChild(e._plane1), e
+    }(r.TaskBase);
+    e.TaskAerialTorpedoJet = s;
+    var a = function (t) {
+        function e(e, i, n, o, r) {
+            var s = t.call(this) || this;
+            return s._explosion = function () {
+                var t = s._shield;
+                if (1 == t) {
+                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
+                    s._scene.view.layer_damage.showShieldAtBanner(e)
+                }
+                s._to_banner.moveAtDamage(t);
+                var i = s._to_banner.getGlobalPos(!0), n = s._scene.view;
+                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
+                    s._endTask()
+                })
+            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "telop_bg", {
-            get: function () {
-                return this._telop_bg
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "laser_effect", {
-            get: function () {
-                return this._laser_effect
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ship", {
-            get: function () {
-                return this._ship
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ship_mask", {
-            get: function () {
-                return this._ship_mask
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "plane1", {
-            get: function () {
-                return this._plane1
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "plane2", {
-            get: function () {
-                return this._plane2
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "plane3", {
-            get: function () {
-                return this._plane3
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._ship_mask.beginFill(16711680, .3), 1 == t ? (this._telop_bg.texture = _.BATTLE_TELOP.getTexture(16), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height), new PIXI.Point(o.default.width / 4 * 3, o.default.height), new PIXI.Point(0, o.default.height / 3 * 2)])) : (this._telop_bg.texture = _.BATTLE_TELOP.getTexture(13), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height / 3 * 2), new PIXI.Point(o.default.width / 4, o.default.height), new PIXI.Point(0, o.default.height)])), this._ship_mask.endFill()
+        return n(e, t), e.prototype._start = function () {
+            this._torpedo()
+        }, e.prototype._torpedo = function () {
+            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y), e = this._to_banner.getGlobalPos();
+            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedoJet(t, e, this._explosion)
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.CutinCanvasFunnelOnce = l;
-    var c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.lineStyle(2.6, 65535), e.moveTo(24, 198), e.lineTo(-420, -105), e.moveTo(90, 174), e.lineTo(-90, -200), e.moveTo(177, 177), e.lineTo(420, -195), e
-        }
-
-        return n(e, t), e
-    }(PIXI.Graphics), h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._content = new PIXI.Graphics, e._content.visible = !1, e._gradient = new PIXI.Sprite, e._gradient.visible = !1, e.addChild(e._content), e._content.addChild(e._gradient), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "showed", {
-            get: function () {
-                return this._content.visible
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._gradient.texture = a.BATTLE_MAIN.getTexture(42), this._gradient.height = o.default.height, this._content.beginFill(0), this._content.drawRect(0, 0, o.default.width, o.default.height), this._content.endFill()
-        }, e.prototype.showFromRight = function (t) {
-            void 0 === t && (t = null), 1 != this._content.visible && (this._content.x = this._gradient.width + o.default.width, this._gradient.scale.x = 1, this._gradient.x = -this._gradient.width, this._show(t))
-        }, e.prototype.showFromLeft = function (t) {
-            void 0 === t && (t = null), 1 != this._content.visible && (this._content.x = -this._gradient.width - o.default.width, this._gradient.scale.x = -1, this._gradient.x = o.default.width + this._gradient.width, this._show(t))
-        }, e.prototype.hideToRight = function (t) {
-            void 0 === t && (t = null), 0 != this._content.visible && (this._gradient.scale.x = 1, this._gradient.x = -this._gradient.width, this._hide(o.default.width + this._gradient.width, t))
-        }, e.prototype.hideToLeft = function (t) {
-            void 0 === t && (t = null), 0 != this._content.visible && (this._gradient.scale.x = -1, this._gradient.x = o.default.width + this._gradient.width, this._hide(-o.default.width - this._gradient.width, t))
-        }, e.prototype._show = function (t) {
-            var e = this;
-            void 0 === t && (t = null), this._stopAnimation(), this._gradient.visible = !0, this._content.visible = !0, this._t = createjs.Tween.get(this._content).to({ x: 0 }, 250).call(function () {
-                e._gradient.visible = !1, null != t && t()
-            })
-        }, e.prototype._hide = function (t, e) {
-            var i = this;
-            void 0 === e && (e = null), this._stopAnimation(), this._gradient.visible = !0, this._t = createjs.Tween.get(this._content).to({ x: t }, 250).call(function () {
-                i._gradient.visible = !1, i._content.visible = !1, null != e && e()
-            })
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+    }(r.TaskBase)
 }

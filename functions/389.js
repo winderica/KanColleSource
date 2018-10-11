@@ -34,7 +34,7 @@ const function389 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.deactivate(), this._cb_onClick = null
         }, e
     }(PIXI.Sprite), a = function (t) {
         function e() {

@@ -15,43 +15,52 @@ const function1042 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1043), a = i(1045), _ = i(1046), u = i(1053), l = i(1056), c = i(1057),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._dispose = function () {
-                    null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
-                }, e
-            }
-
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "viewInfo", {
-                get: function () {
-                    return this._viewInfo
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "viewRanking", {
-                get: function () {
-                    return this._viewRanking
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new s.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new s.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new a.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new a.FinalizeTask(this._dispose)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new u.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new l.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
-            }, e.prototype.startTopTask = function () {
-                var t = this, e = o.default.model.deck.get(1).getShipList()[0].mstID;
-                o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
+    var o = i(0), r = i(2), s = i(16), a = i(38), _ = i(1043), u = i(1), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._showDialog = function () {
+                n._dialog = new c, n._dialog.alpha = 0, n._dialog.initialize(), o.default.view.overLayer.addChild(n._dialog), createjs.Tween.get(n._dialog).to({ alpha: 1 }, 150).call(n._waitClick)
+            }, n._waitClick = function () {
+                n._dialog.btn_y.interactive = n._dialog.btn_y.buttonMode = !0, n._dialog.btn_y.once(u.EventType.CLICK, n._onClickYes), n._dialog.btn_n.interactive = n._dialog.btn_n.buttonMode = !0, n._dialog.btn_n.once(u.EventType.CLICK, n._onClickNo)
+            }, n._onClickYes = function () {
+                n._deactivate(), new _.ExpeditionCancelAPI(n._deck_id).start(n._hideDialog)
+            }, n._onClickNo = function () {
+                n._deactivate(), n._hideDialog()
+            }, n._hideDialog = function () {
+                createjs.Tween.get(n._dialog).to({ alpha: 0 }, 150).call(function () {
+                    n._dialog.parent.removeChild(n._dialog), n._fade.hide(100, function () {
+                        n._fade.parent.removeChild(n._fade), n._endTask()
+                    })
                 })
-            }, e
-        }(r.SceneBase);
-    e.RecordScene = h
+            }, n._view = e, n._deck_id = i, n
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._fade = new s.FadeBox(.6), this._fade.hide(), o.default.view.overLayer.addChild(this._fade), this._fade.show(100, this._showDialog)
+        }, e.prototype._deactivate = function () {
+            this._dialog.btn_y.interactive = this._dialog.btn_y.buttonMode = !1, this._dialog.btn_y.off(u.EventType.CLICK, this._onClickYes), this._dialog.btn_n.interactive = this._dialog.btn_n.buttonMode = !1, this._dialog.btn_n.off(u.EventType.CLICK, this._onClickNo)
+        }, e.prototype._endTask = function (e) {
+            void 0 === e && (e = !1), this._view = null, this._fade = null, this._dialog = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase);
+    e.CancelExpeditionTask = l;
+    var c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._activated = !1, e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "btn_y", {
+            get: function () {
+                return this._btn_y
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_n", {
+            get: function () {
+                return this._btn_n
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            var t = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(41));
+            this._btn_y = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(17)), this._btn_n = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(16)), t.position.set(219, 207), this._btn_y.position.set(375, 411), this._btn_n.position.set(645, 411), this.addChild(t), this.addChild(this._btn_y), this.addChild(this._btn_n)
+        }, e
+    }(PIXI.Container)
 }

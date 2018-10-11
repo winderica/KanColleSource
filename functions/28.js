@@ -23,21 +23,23 @@ const function28 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.add = function (t) {
-            if (1 == this._started) throw new Error("SerialTask::add");
+            if (1 == this._started) throw new Error("ParallelTask::add");
             return null != t && this._tasks.push(t), this
         }, e.prototype._start = function () {
-            if (1 == this._started) throw new Error("SerialTask::start");
-            this._started = !0, this._endCheck()
-        }, e.prototype._startTask = function () {
             var t = this;
-            this._current = this._tasks.shift(), this._current.start(function () {
-                t._current = null, t._endCheck()
-            })
+            if (1 == this._started) throw new Error("ParallelTask::start");
+            if (this._started = !0, 0 == this._tasks.length) this._endTask(); else for (var e = this._tasks.concat(), i = 0, n = e; i < n.length; i++) {
+                var o = n[i];
+                !function (e) {
+                    e.start(function () {
+                        var i = t._tasks.indexOf(e);
+                        t._tasks.splice(i, 1), t._endCheck()
+                    })
+                }(o)
+            }
         }, e.prototype._endCheck = function () {
-            null == this._tasks || 0 == this._tasks.length ? this._endTask() : this._startTask()
-        }, e.prototype._endTask = function (e) {
-            void 0 === e && (e = !1), this._tasks = null, this._current = null, t.prototype._endTask.call(this, e)
+            0 == this._tasks.length && this._endTask()
         }, e
     }(o.TaskBase);
-    e.SerialTask = r
+    e.ParallelTask = r
 }

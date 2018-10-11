@@ -15,7 +15,7 @@ const function396 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1095), r = function (t) {
+    var o = i(1097), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._btns = [], i._btns.push(new o.TabBtn(0, e)), i._btns.push(new o.TabBtn(1, e)), i._btns.push(new o.TabBtn(2, e));

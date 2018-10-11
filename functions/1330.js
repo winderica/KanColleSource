@@ -15,33 +15,46 @@ const function1330 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(15), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(2), r = i(12), s = i(176), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._ready2 = function () {
+                i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
+            }, i._layer = e, i
         }
 
-        return n(e, t), e.prototype._initialize = function (t, e) {
-            if (0 == e) this._img.texture = r.BATTLE_MAIN.getTexture(77); else {
-                var i = e / t;
-                if (i < .25) this._img.texture = r.BATTLE_MAIN.getTexture(76); else {
-                    if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
-                    this._img.texture = r.BATTLE_MAIN.getTexture(75)
-                }
-            }
-            return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
-        }, e.prototype.play = function (t, e, i, n) {
-            var r = this;
-            return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
-                x: o.default.width / 2 + 12,
+        return n(e, t), e.prototype._start = function () {
+            this._ready()
+        }, e.prototype._ready = function () {
+            this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
+        }, e.prototype._showText = function () {
+            this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
+                y: 300,
+                scaleX: 1,
+                scaleY: 1,
                 alpha: 1
-            }, 300).to({ x: o.default.width / 2 - 12 }, 1500).to({
-                x: o.default.width / 2 - 24,
-                alpha: 0
-            }, 300).call(function () {
-                t.removeChild(r), null != n && n()
-            })))
+            }, 300), createjs.Tween.get(this._blue_lost).to({
+                y: 420,
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 300).wait(500).call(this._ready2)
+        }, e.prototype._hideText = function () {
+            var t = this;
+            this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({ alpha: 1 }, 500).call(function () {
+                t._layer.removeChild(t._blue)
+            }).wait(500).to({ alpha: 0 }, 300).call(function () {
+                t._layer.removeChild(t._gray)
+            }), createjs.Tween.get(this._gray_lost).to({ alpha: 1 }, 500).call(function () {
+                t._layer.removeChild(t._blue_lost)
+            }).wait(500).to({ alpha: 0 }, 300).call(function () {
+                t._layer.removeChild(t._gray_lost)
+            }).wait(500).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.AirUnitAttackResultTelop = s
+    }(o.TaskBase);
+    e.TaskGouchinCutinText = a
 }

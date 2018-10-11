@@ -1,25 +1,29 @@
 const function529 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(266), r = function () {
+    var n = i(264), o = i(264), r = function () {
         function t() {
-            this._now = 0
+            var t = this;
+            this._onLoadCompleteInfo = function (e, i) {
+                t._info_dic[e] = i
+            }, this._onLoadCompleteResources = function (e) {
+                for (var i in e) 0 == t._dic.hasOwnProperty(i) && (t._dic[i] = e[i])
+            }, this._info_dic = {}, this._dic = {}
         }
 
-        return Object.defineProperty(t.prototype, "now", {
-            get: function () {
-                return null == this._task ? this._now : this._task.after
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.isChangingNow = function () {
-            return null != this._task
-        }, t.prototype.change = function (t, e) {
-            var i = this;
-            return void 0 === e && (e = null), 1 != this.isChangingNow() && (this._now != t && (this._task = new o.TaskSceneChange(this._now, t, e), this._task.start(function () {
-                i._changeComplete()
-            }), !0))
-        }, t.prototype._changeComplete = function () {
-            this._now = this._task.after, this._task = null, n.default.view.getNowScene().emit("showed")
+        return t.prototype.createLoaderHorizontal = function () {
+            return new n.HorizontalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+        }, t.prototype.createLoaderVertical = function () {
+            return new o.VerticalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+        }, t.prototype.getGaugeInfo = function (t) {
+            return 1 == this._info_dic.hasOwnProperty(t) ? this._info_dic[t] : null
+        }, t.prototype.getTexture = function (t) {
+            if (1 == this._dic.hasOwnProperty(t)) {
+                var e = this._dic[t];
+                if (null != e && null != e.texture && void 0 != e.texture) return e.texture
+            }
+            return PIXI.Texture.EMPTY
         }, t
     }();
-    e.SceneManager = r
+    e.GaugeRManager = r
 }

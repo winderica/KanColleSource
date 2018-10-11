@@ -15,45 +15,64 @@ const function1166 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
-        }
+    var o = i(0), r = i(11), s = i(8), a = i(9), _ = i(3), u = i(236), l = i(117), c = i(73), h = i(73), p = i(73),
+        d = i(73), f = i(73), y = i(73), v = i(73), m = i(73), g = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(55), i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
+                    }
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer, n = new m.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
+                        }
+                    } else if (2 == t.status) {
+                        var n = new v.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new u.DutyDataHolder, e._view = new l.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
+            }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.DUTY_COMMON.getTexture(49), this._star1.texture = o.DUTY_COMMON.getTexture(52), this._star2.texture = o.DUTY_COMMON.getTexture(51)
-        }, e.prototype.activate = function () {
-            null == this._t && this._wait()
-        }, e.prototype.deactivate = function () {
-            this._stopTween()
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._wait = function () {
-            var t = this;
-            this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
-                t._wink()
-            })
-        }, e.prototype._wink = function () {
-            0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(50), this._t = createjs.Tween.get(null).wait(150).call(function () {
-                t.texture = o.DUTY_COMMON.getTexture(49)
-            }).wait(150).call(function () {
-                t.texture = o.DUTY_COMMON.getTexture(50)
-            }).wait(150).call(function () {
-                t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(49)
-            }).wait(100).call(function () {
-                t._star2.visible = !0
-            }).wait(600).call(function () {
-                t._star1.visible = !1
-            }).wait(30).call(function () {
-                t._star2.visible = !1, t._wait()
-            })
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(49), this._star1.visible = !1, this._star2.visible = !1)
-        }, e
-    }(PIXI.Sprite);
-    e.MiniChara = r
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
+            }, e
+        }(r.SceneBase);
+    e.DutyScene = g
 }

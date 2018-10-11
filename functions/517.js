@@ -1,58 +1,67 @@
 const function517 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(518), r = function () {
+    var n = i(0), o = i(31), r = i(143), s = i(518), a = function () {
         function t() {
-            this._dic = {}
         }
 
-        return t.prototype.get = function (t) {
+        return Object.defineProperty(t.prototype, "num", {
+            get: function () {
+                var t = 0;
+                for (var e in this._map) t++;
+                return t
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.setData = function (t) {
+            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new r.ShipModelEdit(i), o = n.memID;
+                if (o > 0) {
+                    var s = o.toString();
+                    this._map[s] = n
+                }
+            }
+        }, t.prototype.get = function (t) {
             var e = t.toString();
-            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getAllExId = function () {
-            return this._equippable_types_ex
+            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
+        }, t.prototype.delete = function (t, e) {
+            void 0 === e && (e = !1);
+            var i = this.get(t), o = i.getSlotitems(), r = i.getSlotitemEx(), s = i.memID.toString();
+            if (1 == this._map.hasOwnProperty(s) && delete this._map[s], !1 === e) {
+                for (var a = 0; a < o.length; a++) {
+                    var _ = o[a];
+                    null != _ && n.default.model.slot.delete(_.memID)
+                }
+                null != r && n.default.model.slot.delete(r.memID)
+            }
+        }, t.prototype.getAll = function () {
+            var t = new Array;
+            for (var e in this._map) {
+                var i = this._map[e];
+                t.push(i)
+            }
+            return t
+        }, t.prototype.getAllOther = function () {
+            var t = o.ShipUtil.getMemIDsInAllDeck(), e = new Array;
+            for (var i in this._map) {
+                var n = this._map[i];
+                -1 == t.indexOf(n.memID) && e.push(n)
+            }
+            return e
+        }, t.prototype.setMstData = function (t) {
+            if (this._mapMst = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new s.ShipMstModel(i), o = n.mstID;
+                if (o > 0) {
+                    var r = o.toString();
+                    this._mapMst[r] = n
+                }
+            }
+        }, t.prototype.getMst = function (t) {
+            var e = t.toString();
+            return 1 == this._mapMst.hasOwnProperty(e) ? this._mapMst[e] : null
+        }, t.prototype.updateData = function (t) {
+            if (null == this._map) return null;
+            var e = new r.ShipModelEdit(t), i = e.memID.toString();
+            return 1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e, e
         }, t
     }();
-    e.ShipTypeModelHolder = r;
-    var s = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-
-        return n(e, t), e.prototype.__setData__ = function (t) {
-            if (this._dic = {}, null != t) {
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e], n = new o.ShipTypeModelEdit(i), r = n.id;
-                    if (r > 0) {
-                        var s = r.toString();
-                        this._dic[s] = n
-                    }
-                }
-                this._setExEtypes()
-            }
-        }, e.prototype.__setEquipTypeExData__ = function (t) {
-            this._equippable_types_ex = t, this._setExEtypes()
-        }, e.prototype._setExEtypes = function () {
-            var t = this._equippable_types_ex;
-            if (null != this._dic && null != t) for (var e in this._dic) {
-                var i = this._dic[e];
-                i.__set_equippqble_types_ex__(t)
-            }
-        }, e
-    }(r);
-    e.ShipTypeModelHolderEdit = s
+    e.ShipModelHolder = a
 }

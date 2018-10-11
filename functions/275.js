@@ -58,14 +58,21 @@ const function275 = function (t, e, i) {
         }, t.getSecretaryDeskTextureName = function (t, e) {
             var i = o.default.model.ship.getMst(e);
             if (null == i) return "";
-            for (var n = i.getClassType(), r = 1, s = 0, a = t.shipclass; s < a.length; s++) {
-                var _ = a[s];
-                if (_.list.indexOf(n) >= 0) {
-                    r = _.fileno;
+            for (var n = i.yomi, r = i.getClassType(), s = 1, a = 0, _ = t.shipyomi; a < _.length; a++) {
+                var u = _[a];
+                if (u.list.indexOf(n) >= 0) {
+                    s = u.fileno;
                     break
                 }
             }
-            return "f171_f103_secretary1_B" + r + ".png"
+            if (1 == s) for (var l = 0, c = t.shipclass; l < c.length; l++) {
+                var u = c[l];
+                if (u.list.indexOf(r) >= 0) {
+                    s = u.fileno;
+                    break
+                }
+            }
+            return "f171_f103_secretary1_B" + s + ".png"
         }, t.getUmbrellarackTextures = function (t, e) {
             for (var i = o.default.model.ship.getMst(e), n = null == i ? "" : i.yomi, s = 3, a = null == i ? 0 : i.shipTypeID, _ = 0, u = t.shiptype; _ < u.length; _++) {
                 var l = u[_];
@@ -80,7 +87,7 @@ const function275 = function (t, e, i) {
             }
             var y = r.ObjUtil.getObjectArray(t.standard, "data"), v = [];
             v.push(p + "_" + s + "_A.png");
-            for (var g = 1; g < y.length && !(g > h); g++) v.push(p + "_" + s + "_B" + g + ".png");
+            for (var m = 1; m < y.length && !(m > h); m++) v.push(p + "_" + s + "_B" + m + ".png");
             return v
         }, t
     }();

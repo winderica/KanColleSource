@@ -1,122 +1,87 @@
 const function1423 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(28), r = i(19), s = i(1424), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._ally = null, e._friends_combined = new s.BannerGroup(!0, !0), e._friends_combined.position.set(228, 117), e.addChild(e._friends_combined), e._enemies_combined = new s.BannerGroup(!1, !0), e._enemies_combined.position.set(753, 220), e.addChild(e._enemies_combined), e._friends = new s.BannerGroup(!0, !1), e._friends.position.set(0, 117), e.addChild(e._friends), e._enemies = new s.BannerGroup(!1, !1), e._enemies.position.set(960, 220), e.addChild(e._enemies), e._effect_layer = new PIXI.Container, e.addChild(e._effect_layer), e
+    var n = i(7), o = i(470), r = i(472), s = i(471), a = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "friends", {
+        return Object.defineProperty(t.prototype, "ration", {
             get: function () {
-                return this._friends
+                var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
+                return null == t ? [] : t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "enemies", {
+        }), Object.defineProperty(t.prototype, "ration_combined", {
             get: function () {
-                return this._enemies
+                var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
+                return null == t ? [] : t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "friends_combined", {
+        }), Object.defineProperty(t.prototype, "support_air", {
             get: function () {
-                return this._friends_combined
+                if (1 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
+                var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
+                if (null == t) return null;
+                var e = n.ObjUtil.getObject(t, "api_support_airatack");
+                return new o.AirSupportData(e)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "enemies_combined", {
+        }), Object.defineProperty(t.prototype, "support_hou", {
             get: function () {
-                return this._enemies_combined
+                if (2 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
+                var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
+                if (null == t) return null;
+                var e = n.ObjUtil.getObject(t, "api_support_hourai");
+                return new s.SupportData(e)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ally", {
+        }), Object.defineProperty(t.prototype, "support_rai", {
             get: function () {
-                return this._ally
+                if (3 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
+                var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
+                if (null == t) return null;
+                var e = n.ObjUtil.getObject(t, "api_support_hourai");
+                return new s.SupportData(e)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "effect_layer", {
+        }), Object.defineProperty(t.prototype, "support_taisen", {
             get: function () {
-                return this._effect_layer
+                if (4 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
+                var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
+                if (null == t) return null;
+                var e = n.ObjUtil.getObject(t, "api_support_airatack");
+                return new o.AirSupportData(e)
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n) {
-            this._friends.initialize(t), this._enemies.initialize(e), this._friends_combined.initialize(i), this._enemies_combined.initialize(n)
-        }, e.prototype.addAllyBannerGroup = function (t) {
-            this._ally = new s.BannerGroup(!0, !1), this._ally.x = this._friends.x, this._ally.y = this._friends.y, this._ally.initialize(t);
-            var e = this.getChildIndex(this._effect_layer);
-            this.addChildAt(this._ally, e)
-        }, e.prototype.removeAllyBannerGroup = function () {
-            null != this._ally && (null != this._ally.parent && this._ally.parent.removeChild(this._ally), this._ally = null)
-        }, e.prototype.dispose = function () {
-            this._friends.dispose(), this._enemies.dispose(), this._friends_combined.dispose(), this._enemies_combined.dispose()
-        }, e.prototype.getBanner = function (t, e) {
-            if (void 0 === e && (e = -1), -1 == e) {
-                var i = t;
-                return this._getBanner(i.friend, i.index)
-            }
-            var n = t;
-            return this._getBanner(n, e)
-        }, e.prototype._getBanner = function (t, e) {
-            var i;
-            if (1 == t) {
-                if (null != this._ally) return this._ally.getBanner(e);
-                i = this._friends.getBanner(e), null == i && (i = this._friends_combined.getBanner(e - 6))
-            } else null == (i = this._enemies.getBanner(e)) && (i = this._enemies_combined.getBanner(e - 6));
-            return i
-        }, e.prototype.getShieldTargetBanner = function (t) {
-            if (null == t) return null;
-            if (1 == t.friend) {
-                if (this._friends.isContains(t)) return this._friends.getBanner(0);
-                if (this._friends_combined.isContains(t)) return this._friends_combined.getBanner(0);
-                if (null != this._ally && this._ally.isContains(t)) return this._ally.getBanner(0)
-            } else {
-                if (this._enemies.isContains(t)) return this._enemies.getBanner(0);
-                if (this._enemies_combined.isContains(t)) return this._enemies_combined.getBanner(0)
-            }
-            return null
-        }, e.prototype.isEnteredFriend = function () {
-            return this._friends.isEntered() || this._friends_combined.isEntered()
-        }, e.prototype.isEnteredEnemy = function () {
-            return this._enemies.isEntered() || this._enemies_combined.isEntered()
-        }, e.prototype.createFriendEnterTask = function () {
-            return this._createEnterTask(!0)
-        }, e.prototype.createEnemyEnterTask = function () {
-            return this._createEnterTask(!1)
-        }, e.prototype.createFriendSubDeckMoveTween = function (t) {
-            return this._createBannerMoveTween(t, !0)
-        }, e.prototype.createEnemySubDeckMoveTween = function (t) {
-            return this._createBannerMoveTween(t, !1)
-        }, e.prototype._createEnterTask = function (t) {
-            var e = t ? this._friends : this._enemies, i = t ? this._friends_combined : this._enemies_combined,
-                n = new o.SerialTask, s = e.createEnterTweens();
-            if (s.length > 0) {
-                var a = new r.TweenTask;
-                a.addTweens(s), n.add(a)
-            }
-            var _ = i.createEnterTweens();
-            if (_.length > 0) {
-                var a = new r.TweenTask;
-                a.addTweens(_), n.add(a)
-            }
-            return n
-        }, e.prototype._createBannerMoveTween = function (t, e) {
-            var i = [], n = e ? this._friends : this._enemies,
-                o = e ? this._friends_combined : this._enemies_combined, r = n.x - o.x;
-            o.x = n.x;
-            for (var s = 0; s < o.getBannerNum(); s++) {
-                var a = o.getBanner(s);
-                a.x -= r;
-                var _ = a.createSubDeckMoveTween(t);
-                null != _ && i.push.apply(this, _), t += 100
-            }
-            return i
-        }, e
-    }(PIXI.Container);
-    e.BannerGroupLayer = a
+        }), Object.defineProperty(t.prototype, "hougeki", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "api_hougeki");
+                return null == t ? null : new r.HougekiListNightData(t)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "hougeki1", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "api_n_hougeki1");
+                return null == t ? null : new r.HougekiListNightData(t)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "hougeki2", {
+            get: function () {
+                var t = n.ObjUtil.getObject(this._o, "api_n_hougeki2");
+                return null == t ? null : new r.HougekiListNightData(t)
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getTouchPlaneFriend = function () {
+            if (null == this._o) return -1;
+            var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
+            return null == t || t.length < 1 ? -1 : t[0]
+        }, t.prototype.getTouchPlaneEnemy = function () {
+            if (null == this._o) return -1;
+            var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
+            return null == t || t.length < 2 ? -1 : t[1]
+        }, t.prototype.getFlareLightFriend = function () {
+            if (null == this._o) return -1;
+            var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
+            return null == t ? -1 : t.length < 1 ? -1 : t[0]
+        }, t.prototype.getFlareLightEnemy = function () {
+            if (null == this._o) return -1;
+            var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
+            return null == t ? -1 : t.length < 2 ? -1 : t[1]
+        }, t.prototype.hasDayBattle = function () {
+            return 1 == n.ObjUtil.getNumber(this._o, "api_day_flag")
+        }, t
+    }();
+    e.RawNightBattleData = a
 }

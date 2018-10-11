@@ -15,46 +15,62 @@ const function485 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(486), r = i(487), s = function () {
-        function t() {
+    var o = i(0), r = i(7), s = function () {
+        function t(t) {
+            this._initialize(t)
         }
 
-        return t.prototype.getMst = function (t) {
-            return null == this._dic ? null : 0 == this._dic.hasOwnProperty(t.toString()) ? null : this._dic[t]
-        }, t.prototype.getMapBGM = function (t, e) {
-            var i = this._getMapBGMData(t, e);
-            return null == i ? 0 : i.mapBGMID
-        }, t.prototype.getCombatBGM = function (t, e, i, n) {
-            var o = this._getMapBGMData(t, e);
-            return null == o ? i ? 2 : 1 : o.getBGM(i, n)
-        }, t.prototype.isSameBGM = function (t, e, i) {
-            var n = this._getMapBGMData(t, e);
-            return null != n && n.getDayBGM(i) == n.getNightBGM(i)
-        }, t.prototype._getMapBGMData = function (t, e) {
-            var i = t.toString() + e.toString();
-            return 1 == this._dic_battle.hasOwnProperty(i) ? this._dic_battle[i] : null
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_squadron_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "state", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_state")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "mem_id", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_slotid")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "count", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_count")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "countMax", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_max_count")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "fatigue", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_cond")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "mst_id", {
+            get: function () {
+                return null == this._model ? -1 : this._model.mstID
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "skill_level", {
+            get: function () {
+                return null == this._model ? 0 : this._model.skillLevel
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return null == this._model ? 0 : this._model.level
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isRelocation = function () {
+            return o.default.model.slot.getAirUnitRelocation().indexOf(this.mem_id) >= 0
+        }, t.prototype._initialize = function (t) {
+            this._o = t, this._model = o.default.model.slot.get(this.mem_id)
         }, t
     }();
-    e.BGMMstModelHolder = s;
+    e.AirUnitSquadronModel = s;
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.setMstBGMData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = new r.BGMMstModel(t[e]), n = i.mstID;
-                n > 0 && (this._dic[n] = i)
-            }
-        }, e.prototype.setMapBGMData = function (t) {
-            if (this._dic_battle = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.BattleBGMMstModel(i), r = n.mapID;
-                if (r > 0) {
-                    var s = r.toString();
-                    this._dic_battle[s] = n
-                }
-            }
+        return n(e, t), e.prototype.update = function (t) {
+            this._initialize(t)
         }, e
     }(s);
-    e.BGMMstModelHolderEdit = a
+    e.AirUnitSquadronModelEdit = a
 }

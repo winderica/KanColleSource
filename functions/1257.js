@@ -15,77 +15,49 @@ const function1257 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(27), a = i(433), _ = i(434), u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._anim = function () {
-                var t = n._getRandomShip(), e = t.mst_id;
-                o.default.sound.voice.play(e.toString(), 26);
-                var i = new _.AnimFlagShip(n._scene, e, t.isDamaged()), r = new l(n._scene, n._drop_items);
-                new s.ParallelTask(i, r).start(function () {
-                    n._endTask()
-                })
-            }, n._scene = e, n._model = i, n
+    var o = i(0), r = i(2), s = i(1258), a = i(1259), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._selectFormation = function () {
+                if (0 == r._model.deck_f.type) {
+                    var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f);
+                    t.start(function () {
+                        r._fadeoutBGM(t.selected_formation)
+                    })
+                } else {
+                    var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f);
+                    e.start(function () {
+                        r._fadeoutBGM(e.selected_formation)
+                    })
+                }
+            }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._drop_items = this._model.sortie.getNextCell().getDropItems();
-            for (var t = 0, e = this._drop_items; t < e.length; t++) {
-                var i = e[t];
-                i.icon_id;
-                if (4 == i.type) {
-                    var n = i.getUseitemMstID();
-                    this._model.sortie.obtained_items.push(n)
-                } else if (5 == i.type) {
-                    var n = i.getUseitemMstID();
-                    this._model.sortie.obtained_items.push(n)
-                }
-            }
-            var o = this._drop_items.concat();
-            this._animItem(o, this._anim)
-        }, e.prototype._animItem = function (t, e) {
-            var i = this;
-            if (0 == t.length) return void(null != e && e());
-            var n = t.shift(), o = n.getUseitemMstID(), r = n.count, s = new a.CompDropItem;
-            s.initialize(o, r);
-            var _ = this._scene.view.map.ship_icon;
-            s.position.set(_.x, _.y), this._scene.view.addChild(s), createjs.Tween.get(s).to({ y: _.y - 60 }, 400).to({
-                y: _.y - 75,
-                alpha: 0
-            }, 200).call(function () {
-                i._scene.view.removeChild(s), _.startWaveWhite(), i._animItem(t, e)
+            this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
+        }, e.prototype._fadeoutBGM = function (t) {
+            var e = this;
+            1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                e._startBattle(t)
+            })) : this._startBattle(t)
+        }, e.prototype._startBattle = function (t) {
+            var e = this;
+            this._model.deck_f.formation = t;
+            var i = new this._battle_cls;
+            i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
+                e._startBattleResult(i, e._model)
+            }), i.start()
+        }, e.prototype._startBattleResult = function (t, e) {
+            var i = this, n = new this._battle_result_cls;
+            n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
+                i._completeBattleResult(n)
+            }), n.start(e)
+        }, e.prototype._completeBattleResult = function (t) {
+            var e = this;
+            createjs.Tween.get(t).to({ alpha: 0 }, 200).call(function () {
+                e._scene.removeChild(t), t.dispose(), e._endTask()
             })
-        }, e.prototype._endTask = function () {
-            this._scene.view.map.ship_icon.stopWave(), this._scene.view.message_box.text = "", t.prototype._endTask.call(this)
-        }, e.prototype._getRandomShip = function () {
-            for (var t = this._model.deck_f.ships, e = new Array, i = 0, n = t; i < n.length; i++) {
-                var o = n[i];
-                null != o && (0 != o.damageType && 1 != o.isTaihi() && e.push(o))
-            }
-            return e[Math.floor(Math.random() * e.length)]
         }, e
     }(r.TaskBase);
-    e.CellTaskItem = u;
-    var l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._items = i, n
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._current_index = 0, this._loop()
-        }, e.prototype._loop = function () {
-            if (this._current_index < this._items.length) {
-                var t = this._items[this._current_index];
-                this._current_index++, this._show(t)
-            } else this._endTask()
-        }, e.prototype._show = function (t) {
-            var e = this, i = t.getUseitemMstID(), n = t.count;
-            this._scene.view.message_box.showItemGetText(i, n), createjs.Tween.get(null).wait(2e3).call(function () {
-                e._loop()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._items = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase)
+    e.CellTaskBattle = _
 }

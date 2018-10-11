@@ -15,33 +15,33 @@ const function1336 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(61), s = i(15), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
+    var o = i(5), r = i(15), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({ alpha: 1 }, 100).to({
-                x: this._smoke1.x - 4,
-                alpha: 0,
-                scaleX: 1.1,
-                scaleY: 1.1
-            }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({ alpha: 1 }, 100).to({
-                x: this._smoke2.x - 4,
-                alpha: 0,
-                scaleX: 1.1,
-                scaleY: 1.1
-            }, 700);
-            var e = [s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107), s.BATTLE_MAIN.getTexture(108), s.BATTLE_MAIN.getTexture(109), s.BATTLE_MAIN.getTexture(110), s.BATTLE_MAIN.getTexture(111)],
-                i = new PIXI.extras.AnimatedSprite(e);
-            i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
-                i.play(), i.onComplete = function () {
-                    i.onComplete = null, t._layer.removeChild(i), t._endTask()
+        return n(e, t), e.prototype._initialize = function (t, e) {
+            if (0 == e) this._img.texture = r.BATTLE_MAIN.getTexture(77); else {
+                var i = e / t;
+                if (i < .25) this._img.texture = r.BATTLE_MAIN.getTexture(76); else {
+                    if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
+                    this._img.texture = r.BATTLE_MAIN.getTexture(75)
                 }
-            })
+            }
+            return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
+        }, e.prototype.play = function (t, e, i, n) {
+            var r = this;
+            return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+                x: o.default.width / 2 + 12,
+                alpha: 1
+            }, 300).to({ x: o.default.width / 2 - 12 }, 1500).to({
+                x: o.default.width / 2 - 24,
+                alpha: 0
+            }, 300).call(function () {
+                t.removeChild(r), null != n && n()
+            })))
         }, e
-    }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan2 = a
+    }(PIXI.Container);
+    e.AirUnitAttackResultTelop = s
 }

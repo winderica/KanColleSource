@@ -36,7 +36,7 @@ const function399 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.deactivate(), this._count.dispose()
         }, e.prototype._getTexture = function (t) {
             return o.default.resources.getUseitem(t, 0)
         }, e
@@ -67,7 +67,7 @@ const function399 = function (t, e, i) {
             var e;
             t < 100 ? (e = 27, this._bg.position.set(36, 36), this._text.position.set(54 - Math.floor(this._text.width / 2), 42)) : t < 1e3 ? (e = 28, this._bg.position.set(25, 39), this._text.position.set(49 - Math.floor(this._text.width / 2), 42)) : (e = 29, this._bg.position.set(12, 40), this._text.position.set(43 - Math.floor(this._text.width / 2), 40)), this._bg.texture = a.ITEM_ILIST.getTexture(e)
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg = null, this._text = null
+            this.removeChildren(), this._bg = null, this._text.destroy(), this._text = null
         }, e
     }(PIXI.Container)
 }

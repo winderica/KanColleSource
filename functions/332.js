@@ -18,15 +18,13 @@ const function332 = function (t, e, i) {
     var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClick = function () {
+            return e._onClick = function () {
                 e.onClick()
-            };
-            var i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), n = new PIXI.Graphics;
-            return n.beginFill(0, 0), n.drawRect(0, 0, 30, 45), n.y = -n.height / 2 + i.height / 2, n.endFill(), n.renderable = !1, e.addChild(n, i), e.slotIconDelete = i, e.clickArea = n, e.interactive = e.buttonMode = !0, e.addListener(r.EventType.CLICK, e._onClick), e
+            }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.removeAllListeners(r.EventType.CLICK), this.slotIconDelete.texture = PIXI.Texture.EMPTY, this.clickArea.clear(), this.interactive = this.buttonMode = !1, this.slotIconDelete = null, this.clickArea = null, this.onClick = this._onClick = null, this.removeChildren()
+            this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
         }, e
     }(PIXI.Container);
     e.DetachButton = s

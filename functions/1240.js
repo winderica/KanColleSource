@@ -15,36 +15,53 @@ const function1240 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(20), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._wait = function () {
-                o._layer.removeChild(o._plane), createjs.Tween.get(null).wait(200).call(function () {
-                    o._endTask()
-                })
-            }, o.run = function () {
-                o._timer <= 0 && o._isTurn || (o._movePlane(), o._timer -= 1e3 / 60, o._timer <= 0 && !o._isTurn && (o._timer = o._baseTime, o._isTurn = !o._isTurn))
-            }, o._layer = e, o._from = i, o._to = n, o._baseTime = 1500, o._timer = o._baseTime, o
-        }
+    var o = i(5), r = i(0), s = i(140), a = i(2), _ = i(16), u = i(67), l = i(429), c = i(1241), h = i(1242),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n._black = new _.FadeBox(1), n
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            this._plane = new PIXI.Sprite;
-            var e = this._to.x > this._from.x ? 1 : -1, i = this._to.x > this._from.x ? -.1 : .1;
-            this._plane.texture = r.MAP_COMMON.getTexture(98), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
-                x: -1 * this._plane.scale.x,
-                y: 1
-            }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({ x: i, y: .1 }, 200).call(function () {
-                t._wait()
-            }), this._bezierTween = createjs.Tween.get(null).wait(3e3).addEventListener("change", function () {
-                t.run()
-            })
-        }, e.prototype._movePlane = function () {
-            var t = (this._baseTime - this._timer) / this._baseTime, e = this._isTurn ? 1 * t : 1 * t - 1;
-            this._plane.position.x = this._from.x + .9 * this._to.x - .9 * this._to.x * e * e, this._plane.position.y = this._from.y + .9 * this._to.y - .9 * this._to.y * e * e, 0 != e && (this._plane.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
-        }, e.prototype._endTask = function () {
-            this._bezierTween = null, this._plane = null, this._layer = null, this._from = null, this._to = null, this._baseTime = null, this._timer = null, this._isTurn = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.AnimPlane = s
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._black.hide(0), this._scene.view.addChild(this._black), this._black.show(300), new l.SallyAnimationTask(this._scene.view).start(function () {
+                    t._loadMapResource()
+                })
+            }, e.prototype._loadMapResource = function () {
+                var t = this, e = this._model.sortie.map_id, i = this._scene.view.map, n = this._scene.resInfo,
+                    o = this._model.sortie.cells;
+                new c.TaskCreateMap(e, i, n, o).start(function () {
+                    t._initMapGauge()
+                })
+            }, e.prototype._initMapGauge = function () {
+                var t = this;
+                if (1 == this._model.sortie.map.isCleared()) return void this._loadMapBGM();
+                var e = 0, i = 0, n = this._model.sortie.getNextCell();
+                if (1 == n.hasEventMapData() ? (e = n.gauge_max, i = n.gauge_now) : (e = this._model.sortie.map.defeat_required, i = e - this._model.sortie.map.defeat_count), e <= 0) return void this._loadMapBGM();
+                var s = this._model.sortie.map, a = s.area_id, _ = s.map_no, l = s.getGaugeNum(),
+                    c = u.GaugeSetModel.createKey(a, _, l), h = r.default.resources.gauge.createLoaderVertical();
+                h.add(c), h.load(function () {
+                    var n = r.default.resources.gauge.getGaugeInfo(c);
+                    if (n) {
+                        var s = n.vertical;
+                        null != s && (t._scene.view.gauge_layer.initialize(s, i, e), s.x < o.default.width / 2 && t._scene.view.frontOfGaugeLayer())
+                    }
+                    t._loadMapBGM()
+                })
+            }, e.prototype._loadMapBGM = function () {
+                var t = this._model.sortie.area_id, e = this._model.sortie.map_no, i = s.MapConst.getMapBGMID(t, e);
+                1 == i.battle_bgm ? r.default.sound.bgm.playBattleBGM(i.id) : r.default.sound.bgm.play(i.id), this._showMap()
+            }, e.prototype._showMap = function () {
+                var t = this;
+                this._black.hide(200, function () {
+                    t._scene.view.removeChild(t._black), t._showShipAndMessageBox()
+                })
+            }, e.prototype._showShipAndMessageBox = function () {
+                var t = this;
+                this._scene.view.message_box.activate(), new h.AnimShipInit(this._scene, this._model).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(a.TaskBase);
+    e.TaskInit = p
 }

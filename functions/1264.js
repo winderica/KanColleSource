@@ -15,64 +15,69 @@ const function1264 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(19), s = i(1265), a = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._layer = e, s._ship_pos = i, s._drum_num = n, s._daihatsu_num = o, s._direction = r, s
+    var o = i(0), r = i(2), s = i(14), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._additional_waittime = 0, n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._balloon1 = this._createBalloon(this._direction, 1), this._balloon1.initialize(), this._drum_num > 0 && (this._balloon2 = this._createBalloon(this._direction, 2), this._balloon2.initialize(), this._balloon2.update(this._drum_num)), this._daihatsu_num > 0 && (this._balloon3 = this._createBalloon(this._direction, 3), this._balloon3.initialize(), this._balloon3.update(this._daihatsu_num)), this._showBalloons()
-        }, e.prototype._createBalloon = function (t, e) {
-            return 0 == t ? new s.LandingBalloonType1(e) : 1 == t ? new s.LandingBalloonType2(e) : 2 == t ? new s.LandingBalloonType3(e) : null
-        }, e.prototype._showBalloons = function () {
-            var t = this, e = new r.TweenTask;
-            0 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 48, -18)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 0, -42)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -51, -18))) : 1 == this._direction ? (e.addTween(this._createShowTween(this._balloon1, 50, -9)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, 44, 8)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -15, 8))) : 2 == this._direction && (e.addTween(this._createShowTween(this._balloon1, -14, -21)), null != this._balloon2 && e.addTween(this._createShowTween(this._balloon2, -33, -17)), null != this._balloon3 && e.addTween(this._createShowTween(this._balloon3, -24, 8))), e.start(function () {
-                t._wait()
-            })
-        }, e.prototype._wait = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(250).call(function () {
-                t._scaling()
-            })
-        }, e.prototype._scaling = function () {
-            var t = this, e = new r.TweenTask;
-            e.addTween(this._createScalingTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createScalingTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createScalingTween(this._balloon3)), e.start(function () {
-                t._wait2()
-            })
-        }, e.prototype._wait2 = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(2e3).call(function () {
-                t._hideBalloons()
-            })
-        }, e.prototype._hideBalloons = function () {
-            var t = this, e = new r.TweenTask;
-            e.addTween(this._createHideTween(this._balloon1)), null != this._balloon2 && e.addTween(this._createHideTween(this._balloon2)), null != this._balloon3 && e.addTween(this._createHideTween(this._balloon3)), e.start(function () {
-                t._endTask()
-            })
-        }, e.prototype._createShowTween = function (t, e, i) {
-            var n = this;
-            return t.x = this._ship_pos.x + e, t.y = this._ship_pos.y + i + 23, t.alpha = 0, createjs.Tween.get(t).call(function () {
-                n._layer.addChild(t)
-            }).to({ y: this._ship_pos.y + i, alpha: 1 }, 100, createjs.Ease.sineOut)
-        }, e.prototype._createScalingTween = function (t) {
-            var e = t.y;
-            return createjs.Tween.get(t).to({
-                y: e - 5,
-                scaleX: 1.2,
-                scaleY: 1.2
-            }, 150, createjs.Ease.sineOut).to({ y: e, scaleX: 1, scaleY: 1 }, 300, createjs.Ease.sineOut)
-        }, e.prototype._createHideTween = function (t) {
+            var t = this._model.sortie, e = t.getNextCell().isDeadEnd(),
+                i = this._scene.resInfo.hasAirReconnaissancePoint();
+            1 == e && 1 == i ? (this._additional_waittime = 3e3, o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1e3).call(function () {
+                o.default.sound.bgm.play(4, !1, 1e3, "fanfare")
+            }), this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002\n\u672c\u4f5c\u6226\u5b8c\u9042\u5931\u6557\u3002")) : this._selectMessage()
+        }, e.prototype._selectMessage = function () {
+            var t = this._model.sortie.getNextCell().flavor_text;
+            if (null != t && t.length > 0) {
+                var e = this._model.sortie.getNextCell().flavor_text_type;
+                t = t.replace(/<br>/g, "\n"), 0 == e ? this._merefancy(t) : this._calm_sea(t)
+            } else {
+                var i = this._model.sortie.getNextCell().event_detail_id;
+                0 == i ? this._merefancy("\u6c17\u306e\u305b\u3044\u3060\u3063\u305f\u3002") : 1 == i ? this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002") : 3 == i ? this._calm_sea("\u7a4f\u3084\u304b\u306a\u6d77\u3067\u3059\u3002") : 4 == i ? this._merefancy("\u7a4f\u3084\u304b\u306a\u6d77\u5ce1\u3067\u3059\u3002") : 5 == i ? this._merefancy("\u8b66\u6212\u304c\u5fc5\u8981\u3067\u3059\u3002") : 6 == i ? this._calm_sea("\u9759\u304b\u306a\u6d77\u3067\u3059\u3002") : this._merefancy("")
+            }
+        }, e.prototype._merefancy = function (t) {
             var e = this;
-            return createjs.Tween.get(t).to({
-                y: t.y + 23,
-                alpha: 0
-            }, 100, createjs.Ease.sineOut).call(function () {
-                e._layer.removeChild(t)
+            this._scene.view.map.ship_icon.startWaveRed(function () {
+                e._scene.view.message_box.text = t, e._stopShipWave(2e3)
             })
+        }, e.prototype._calm_sea = function (t) {
+            var e, i = this, n = this._model.deck_f.ships;
+            if (n.length > 6) {
+                e = n[Math.random() < .5 ? 0 : 6]
+            } else e = n[0];
+            var o = e.mst_id, r = e.isDamaged(), a = new s.ShipLoader;
+            a.add(o, r, "full"), a.load(function () {
+                i._calm_sea2(o, r, t)
+            })
+        }, e.prototype._calm_sea2 = function (t, e, i) {
+            var n = this;
+            this._chara = new PIXI.Sprite, this._chara.alpha = 0, this._chara.texture = o.default.resources.getShip(t, e, "full");
+            var r = o.default.model.ship_graph.get(t).getMapOffset(e);
+            this._chara.x = -80 + r.x, this._chara.y = -93 + r.y, this._scene.view.chara_layer.addChild(this._chara), createjs.Tween.get(this._chara).to({ alpha: 1 }, 300).call(function () {
+                n._calm_sea3(i)
+            })
+        }, e.prototype._calm_sea3 = function (t) {
+            var e = this;
+            this._scene.view.map.ship_icon.startWaveRed(function () {
+                e._scene.view.message_box.text = t, e._stopShipWave(2e3)
+            })
+        }, e.prototype._stopShipWave = function (t) {
+            var e = this;
+            createjs.Tween.get(null).wait(t).call(function () {
+                e._scene.view.map.ship_icon.stopWave(), e._changeCellColor()
+            })
+        }, e.prototype._changeCellColor = function () {
+            var t = this, e = this._model.sortie.getNextCell();
+            (this._scene.view.map.spotLayer.getSpot(e.no).setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({ alpha: 0 }, 300).call(function () {
+                t._chara.parent.removeChild(t._chara), t._endTask()
+            })) : this._endTask()
         }, e.prototype._endTask = function () {
-            this._layer = null, this._ship_pos = null, this._balloon1 = null, this._balloon2 = null, this._balloon3 = null, t.prototype._endTask.call(this)
+            var e = this;
+            createjs.Tween.get(null).wait(this._additional_waittime).call(function () {
+                t.prototype._endTask.call(e)
+            })
         }, e
-    }(o.TaskBase);
-    e.TaskLandingBalloon = a
+    }(r.TaskBase);
+    e.CellTaskFancy = a
 }

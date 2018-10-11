@@ -15,26 +15,45 @@ const function770 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(3), r = i(771), s = i(52), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick()
-            }, e._onMouseOver = function () {
-                e.texture = e.BTN_REMODEL_ON
+            e._mousedown = function (t, i) {
+                e.mousedown(t, i)
+            }, e._onClickDetach = function (t) {
+                e.onClickDetach(t)
+            }, e._onMouseUp = function (t) {
+                e.onMouseUp(t)
             }, e._onMouseOut = function () {
-                e.texture = e.BTN_REMODEL_OFF
-            }, e.addListener(r.EventType.CLICK, e._onClick), e.addListener(r.EventType.MOUSEOVER, e._onMouseOver), e.addListener(r.EventType.MOUSEOUT, e._onMouseOut);
-            var i = o.REMODEL_MAIN.getTexture(8), n = o.REMODEL_MAIN.getTexture(9),
-                s = o.REMODEL_MAIN.getTexture(7);
-            return e.BTN_REMODEL_NONE = s, e.BTN_REMODEL_OFF = i, e.BTN_REMODEL_ON = n, e
+                e.onMouseOut()
+            };
+            e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
+            for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
+                var a = new r.SlotItemSlot(n);
+                a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
+                var _ = new PIXI.Sprite(i);
+                _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
+            }
+            return e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeAllListeners(r.EventType.CLICK), this.removeAllListeners(r.EventType.MOUSEOVER), this.removeAllListeners(r.EventType.MOUSEOUT), this.texture = PIXI.Texture.EMPTY, this.BTN_REMODEL_ON = null, this.BTN_REMODEL_OFF = null, this.BTN_REMODEL_NONE = null, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.removeChildren()
-        }, e.prototype.update = function (t) {
-            this.texture = this.BTN_REMODEL_NONE, this.interactive = this.buttonMode = !1, t && (this.texture = this.BTN_REMODEL_OFF, this.interactive = this.buttonMode = !0)
+        return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
+            get: function () {
+                return this._slotItemSlots
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.clean = function () {
+            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
+            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
+        }, e.prototype.update = function (t, e, i, n, o) {
+            var r = this._slotItemSlots[t], s = this._clearSlotItemSlots[t];
+            r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
+        }, e.prototype.hide = function (t) {
+            for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
+        }, e.prototype.dispose = function () {
+            for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
+            for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
+            this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
         }, e
-    }(PIXI.Sprite);
-    e.KaizoButton = s
+    }(PIXI.Container);
+    e.SlotItemSlotBox = a
 }

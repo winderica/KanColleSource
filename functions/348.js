@@ -37,7 +37,7 @@ const function348 = function (t, e, i) {
             }
             this.textCount.text = e.toString()
         }, e.prototype.dispose = function () {
-            this.iconMaterial = null, this.textCount = null, this.removeChildren()
+            this.removeChildren(), this.textCount.destroy(), this.iconMaterial = null, this.textCount = null
         }, e
     }(PIXI.Container);
     e.DisassemblyMaterialItem = s

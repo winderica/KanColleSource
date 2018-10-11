@@ -15,81 +15,90 @@ const function766 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = i(3), s = i(3), a = i(4), _ = i(82), u = i(108), l = i(310), c = i(767), h = i(768),
-        p = i(770), d = i(771), f = i(772), y = i(773), v = i(774), g = i(775), m = i(85), b = i(13),
-        w = function (t) {
-            function e() {
-                var e = t.call(this) || this, i = new m.TitleBar;
-                i.initialize(s.COMMON_MAIN.getTexture(1), 35);
-                var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), r = new a.TextBox(28, 5523516),
-                    w = new a.TextBox(15, 5523516), x = new _.StarRateView, I = new u.HpGaugeView,
-                    T = new PIXI.Sprite(o.COMMON_MISC.getTexture(180)),
-                    O = new PIXI.Sprite(s.COMMON_MAIN.getTexture(28)), P = new l.ShipCard(!1, !1),
-                    C = new c.ShipParameter, k = new h.SlotItemSlotBox, M = new p.KaizoButton,
-                    S = new d.KindaikaButton, A = new f.ExtraSlotItemSlot, j = new y.DetachAllButton,
-                    E = new v.ExtensionButton, N = new g.MarriageButton, L = new PIXI.Container;
-                L.position.set(42, 20);
-                var B = new a.TextBox(27, 5523516), R = b.CreateRect.gradientLeftToRight(210, 45, .88, .91);
-                return L.mask = R, L.addChild(B, R), i.position.set(0, -39), j.position.set(6, 101), k.position.set(57, 101), M.position.set(546, 483), S.position.set(372, 483), A.position.set(636, 311), T.position.set(238, 30), I.position.set(44, 72), w.position.set(152, 68), x.position.set(228, 72), O.position.set(323, 20), P.position.set(369, 26), E.position.set(369, 301), C.position.set(51, 351), N.position.set(212, 6), e.addChild(n, P, I, w, x, C, k, M, S, j, A, E, O, N, T, r, i, L), e.background = n, e._shipCard = P, e.textName = B, e.maskTextName = R, e.textLevel = r, e.remodelMaxMedal = O, e.starRateView = x, e.textHp = w, e.hpGaugeView = I, e.textImageLv = T, e._shipParameter = C, e._slotItemSlotBox = k, e._kaizoButton = M, e._kindaikaButton = S, e._extraSlotItemSlot = A, e._detachAllButton = j, e._extensionButton = E, e._marriageButton = N, e.headerKansenStatus = i, e.containerName = L, e
-            }
-
-            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlotBox", {
-                get: function () {
-                    return this._slotItemSlotBox
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "kaizoButton", {
-                get: function () {
-                    return this._kaizoButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "kindaikaButton", {
-                get: function () {
-                    return this._kindaikaButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "shipCard", {
-                get: function () {
-                    return this._shipCard
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "extraSlotItemSlot", {
-                get: function () {
-                    return this._extraSlotItemSlot
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "detachAllButton", {
-                get: function () {
-                    return this._detachAllButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "shipParameter", {
-                get: function () {
-                    return this._shipParameter
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "extensionButton", {
-                get: function () {
-                    return this._extensionButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "marriageButton", {
-                get: function () {
-                    return this._marriageButton
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.update = function (t, e, i, n, o, r) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.starRateView.update(o), this._updateRemodelMax_(r), this._updateLevel_(e)
-            }, e.prototype._updateRemodelMax_ = function (t) {
-                this.remodelMaxMedal.visible = !1, t && (this.remodelMaxMedal.visible = !0)
-            }, e.prototype._updateLevel_ = function (t) {
-                this.textLevel.position.set(324, 24), this.textLevel.anchor.x = 1, this.textLevel.text = "" + t, 99 == t && (this.textLevel.anchor.x = 0, this.textLevel.position.x = this.textImageLv.x + 9 + this.textImageLv.width)
-            }, e.prototype.dispose = function () {
-                this.background.texture = PIXI.Texture.EMPTY, this._shipCard.dispose(), this.textName.text = "", this.textName.mask = null, this.maskTextName.texture = PIXI.Texture.EMPTY, this.textLevel.text = "", this.remodelMaxMedal.texture = PIXI.Texture.EMPTY, this.starRateView.dispose(), this.textHp.text = "", this.hpGaugeView.dispose(), this.textImageLv.texture = PIXI.Texture.EMPTY, this._shipParameter.dispose(), this._slotItemSlotBox.dispose(), this._kaizoButton.dispose(), this._kindaikaButton.dispose(), this._extraSlotItemSlot.dispose(), this._detachAllButton.dispose(), this._extensionButton.dispose(), this._marriageButton.dispose(), this.headerKansenStatus.dispose(), this.containerName.removeChildren(), this.headerKansenStatus = null, this.background = null, this._shipCard = null, this.textName = null, this.maskTextName = null, this.textLevel = null, this.remodelMaxMedal = null, this.starRateView = null, this.textHp = null, this.hpGaugeView = null, this.textImageLv = null, this._shipParameter = null, this._slotItemSlotBox = null, this._kaizoButton = null, this._kindaikaButton = null, this._extraSlotItemSlot = null, this._detachAllButton = null, this._extensionButton = null, this._marriageButton = null, this.removeChildren()
-            }, e
-        }(PIXI.Container);
-    e.ShipDetail = w;
-    var x = function (t) {
+    var o = i(3), r = i(4), s = i(1), a = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)),
-                n = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(53));
-            return n.position.set(210, 258), e.addChild(i, n), e
+            var e = t.call(this) || this;
+            e.HIT_AREA_SIZE = 30, e.COLOR_ON = 1949120, e.COLOR_OFF = 5523516, e.COLOR_NO = 16774898, e.BASE = 68, e.NUMBEROFFSET = 10, e.PADDING = 60, e._onClickPrev3 = function () {
+                var t = e.focusIndex - 3;
+                t < 0 && (t = 0), e.notifyChangeIndex(t)
+            }, e._onClickNext3 = function () {
+                var t = e.focusIndex + 3;
+                if (e.pageCount <= 3) switch (e.pageCount) {
+                    case 0:
+                    case 1:
+                        t = 0;
+                        break;
+                    case 2:
+                        t = 1;
+                        break;
+                    case 3:
+                        t = 2
+                } else e.pageCount - 1 < t && (t = e.pageCount - 1, e.pageCount <= 2 && e.pageCount++);
+                e.notifyChangeIndex(t)
+            }, e._onClickChange0 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || 2 == e.pageCount ? 0 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 3 : e.focusIndex - 1, e.notifyChangeIndex(t)
+            }, e._onClickChange1 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || e.pageCount <= 2 ? 1 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 2 : e.focusIndex, e.notifyChangeIndex(t)
+            }, e._onClickChange2 = function () {
+                var t = 0;
+                t = e.focusIndex < 2 || 2 == e.pageCount ? 2 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 1 : e.focusIndex + 1, e.notifyChangeIndex(t)
+            }, e.focusIndex = 0;
+            return e.textChange_0 = new r.TextBox(24, e.COLOR_NO), e.textChange_1 = new r.TextBox(24, e.COLOR_NO), e.textChange_2 = new r.TextBox(24, e.COLOR_NO), e.buttonPrev_3 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(8)), e.buttonChange_0 = new PIXI.Graphics, e.buttonChange_1 = new PIXI.Graphics, e.buttonChange_2 = new PIXI.Graphics, e.buttonNext_3 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(7)), e.buttonChange_0.beginFill(0, 0), e.buttonChange_0.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_0.endFill(), e.buttonChange_0.renderable = !1, e.buttonChange_1.beginFill(0, 0), e.buttonChange_1.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_1.endFill(), e.buttonChange_1.renderable = !1, e.buttonChange_2.beginFill(0, 0), e.buttonChange_2.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_2.endFill(), e.buttonChange_2.renderable = !1, e.buttonPrev_3.position.set(20, 0), e.buttonChange_0.position.x = e.BASE, e.buttonChange_1.position.x = e.BASE + e.PADDING, e.buttonChange_2.position.x = e.BASE + 2 * e.PADDING, e.buttonChange_0.position.y = -Math.floor(e.buttonChange_0.height / 2), e.buttonChange_1.position.y = -Math.floor(e.buttonChange_1.height / 2), e.buttonChange_2.position.y = -Math.floor(e.buttonChange_2.height / 2), e.buttonNext_3.position.set(233.7, 0), e.buttonPrev_3.anchor.set(0, .5), e.buttonNext_3.anchor.set(0, .5), e.textChange_0.anchor.set(0, 0), e.textChange_1.anchor.set(0, 0), e.textChange_2.anchor.set(0, 0), e.buttonChange_0.interactive = e.buttonPrev_3.interactive = e.buttonNext_3.interactive = e.buttonChange_1.interactive = e.buttonChange_2.interactive = !0, e.addChild(e.buttonPrev_3, e.buttonChange_0, e.buttonChange_1, e.buttonChange_2, e.buttonNext_3, e.textChange_0, e.textChange_1, e.textChange_2), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren()
+            this.buttonPrev_3.off(s.EventType.CLICK), this.buttonNext_3.off(s.EventType.CLICK), this.buttonChange_0.off(s.EventType.CLICK), this.buttonChange_1.off(s.EventType.CLICK), this.buttonChange_2.off(s.EventType.CLICK), this.textChange_0.destroy(), this.textChange_1.destroy(), this.textChange_2.destroy(), this.buttonPrev_3 = null, this.buttonChange_0 = null, this.buttonChange_1 = null, this.buttonChange_2 = null, this.buttonNext_3 = null, this.textChange_0 = null, this.textChange_1 = null, this.textChange_2 = null, this.focusIndex = null, this.pageCount = null, this.onClick = null, this.removeChildren()
+        }, e.prototype.init = function (t) {
+            switch (this.buttonPrev_3.off(s.EventType.CLICK), this.buttonNext_3.off(s.EventType.CLICK), this.buttonChange_0.off(s.EventType.CLICK), this.buttonChange_1.off(s.EventType.CLICK), this.buttonChange_2.off(s.EventType.CLICK), t) {
+                case 0:
+                case 1:
+                    break;
+                case 2:
+                    this.buttonPrev_3.on(s.EventType.CLICK, this._onClickPrev3), this.buttonChange_0.on(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.on(s.EventType.CLICK, this._onClickChange1), this.buttonNext_3.on(s.EventType.CLICK, this._onClickNext3);
+                    break;
+                default:
+                    this.buttonPrev_3.on(s.EventType.CLICK, this._onClickPrev3), this.buttonNext_3.on(s.EventType.CLICK, this._onClickNext3), this.buttonChange_0.on(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.on(s.EventType.CLICK, this._onClickChange1), this.buttonChange_2.on(s.EventType.CLICK, this._onClickChange2)
+            }
+            this.pageCount = t
+        }, e.prototype.focus = function (t) {
+            if (this.focusIndex = t, this.textChange_0.style.fill = this.COLOR_NO, this.textChange_1.style.fill = this.COLOR_NO, this.textChange_2.style.fill = this.COLOR_NO, this.textChange_0.style.fontSize = 24, this.textChange_1.style.fontSize = 24, this.textChange_2.style.fontSize = 24, t < 2 || this.pageCount <= 2) {
+                switch (this.textChange_0.text = "1", this.textChange_1.text = "2", this.textChange_2.text = "3", this.pageCount) {
+                    case 0:
+                    case 1:
+                        this.textChange_0.style.fill = this.COLOR_NO, this.textChange_1.style.fill = this.COLOR_NO, this.textChange_2.style.fill = this.COLOR_NO;
+                        break;
+                    case 2:
+                        this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_NO;
+                        break;
+                    default:
+                        this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_OFF
+                }
+                switch (t) {
+                    case 0:
+                        this.textChange_0.style.fill = this.COLOR_ON, this.textChange_0.style.fontSize = 30;
+                        break;
+                    case 1:
+                        this.textChange_1.style.fill = this.COLOR_ON, this.textChange_1.style.fontSize = 30;
+                        break;
+                    case 2:
+                        this.textChange_2.style.fill = this.COLOR_ON, this.textChange_2.style.fontSize = 30
+                }
+            } else if (this.pageCount - 3 < t) switch (this.textChange_0.text = "" + (this.pageCount - 3 + 1), this.textChange_1.text = "" + (this.pageCount - 2 + 1), this.textChange_2.text = "" + (this.pageCount - 1 + 1), this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_OFF, this.focusIndex) {
+                case this.pageCount - 3:
+                    this.textChange_0.style.fill = this.COLOR_ON, this.textChange_0.style.fontSize = 30;
+                    break;
+                case this.pageCount - 2:
+                    this.textChange_1.style.fill = this.COLOR_ON, this.textChange_1.style.fontSize = 30;
+                    break;
+                case this.pageCount - 1:
+                    this.textChange_2.style.fill = this.COLOR_ON, this.textChange_2.style.fontSize = 30
+            } else this.textChange_0.text = "" + (this.focusIndex - 1 + 1), this.textChange_1.text = "" + (this.focusIndex + 1), this.textChange_2.text = "" + (this.focusIndex + 1 + 1), this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_ON, this.textChange_2.style.fill = this.COLOR_OFF, this.textChange_1.style.fontSize = 37;
+            this.textChange_0.position.set(this.BASE - Math.floor(this.textChange_0.width / 2) + this.NUMBEROFFSET + 0 * this.PADDING, -Math.floor(this.textChange_0.height / 2)), this.textChange_1.position.set(this.BASE - Math.floor(this.textChange_1.width / 2) + this.NUMBEROFFSET + 1 * this.PADDING, -Math.floor(this.textChange_1.height / 2)), this.textChange_2.position.set(this.BASE - Math.floor(this.textChange_2.width / 2) + this.NUMBEROFFSET + 2 * this.PADDING, -Math.floor(this.textChange_2.height / 2))
+        }, e.prototype.notifyChangeIndex = function (t) {
+            this.onClick(t)
         }, e
     }(PIXI.Container);
-    e.ShipDetailEmpty = x
+    e.MiniPager = a
 }

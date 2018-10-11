@@ -15,20 +15,17 @@ const function933 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(25), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mstid = e, i
+    var o = i(10), r = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._url = "api_req_air_corps/change_name", o._area_id = e, o._airunit_id = i, o._changed_name = n, o
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            (new r.SlotLoader).add(this._mstid, "airunit_banner").add(this._mstid, "airunit_name").load(function () {
-                t._endTask()
-            })
-        }, e.prototype.cancel = function () {
-            this._cb = null, this._cb_failed = null
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_area_id = this._area_id, this._post_data.api_base_id = this._airunit_id, this._post_data.api_name = this._changed_name, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            t.prototype._completedEnd.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskAirUnitImageLoader = s
+    }(o.APIBase);
+    e.AirUnitChangeNameAPI = r
 }

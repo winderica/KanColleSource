@@ -15,16 +15,20 @@ const function913 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = function (t) {
+    var o = i(10), r = i(914), s = function (t) {
         function e(e) {
             void 0 === e && (e = !1);
             var i = t.call(this) || this;
-            return i._url = "api_get_member/mission", i._debug = e, i
+            return i._url = "api_get_member/practice", i._res_model = new r.PracticeAPIModel, i._debug = e, i
         }
 
-        return n(e, t), e.prototype._completedEnd = function () {
-            o.default.model.expedition.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+            get: function () {
+                return this._res_model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._completedEnd = function () {
+            this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(r.APIBase);
-    e.ExpeditionAPI = s
+    }(o.APIBase);
+    e.PracticeAPI = s
 }

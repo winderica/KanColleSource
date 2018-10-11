@@ -51,9 +51,11 @@ const function84 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.buttonChanges.forEach(function (t) {
+            this.removeChildren(), this.buttonChanges.forEach(function (t) {
                 t.off(s.EventType.CLICK)
-            }), this.buttonPrev_First.off(s.EventType.CLICK), this.buttonPrev_5.off(s.EventType.CLICK), this.buttonNext_5.off(s.EventType.CLICK), this.buttonNext_Last.off(s.EventType.CLICK), this.buttonPrev_First = null, this.buttonPrev_5 = null, this.textChanges = null, this.buttonChanges = null, this.buttonNext_5 = null, this.buttonNext_Last = null, this.onChangePage = null, this.removeChildren()
+            }), this.buttonPrev_First.off(s.EventType.CLICK), this.buttonPrev_5.off(s.EventType.CLICK), this.buttonNext_5.off(s.EventType.CLICK), this.buttonNext_Last.off(s.EventType.CLICK), this.textChanges.forEach(function (t) {
+                t.destroy()
+            }), this.buttonPrev_First = null, this.buttonPrev_5 = null, this.textChanges = null, this.buttonChanges = null, this.buttonNext_5 = null, this.buttonNext_Last = null, this.onChangePage = null
         }, e.prototype.init = function (t) {
             var e = this;
             this.pageCount = t, this.focusIndex = 0, this.buttonChanges.forEach(function (t) {

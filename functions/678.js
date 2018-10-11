@@ -15,36 +15,75 @@ const function678 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(108), r = i(310), s = i(82), a = i(4), _ = i(21), u = i(9), l = i(311), c = i(680), h = i(312),
-        p = i(13), d = function (t) {
-            function e() {
-                var e = t.call(this) || this, i = new PIXI.Sprite;
-                i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
-                var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
-                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new l.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
-                var d = new PIXI.Sprite(u.COMMON_MISC.getTexture(180));
-                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
-                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
-                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
-                var y = new PIXI.Sprite(_.COMMON_MAIN.getTexture(12));
-                e.containerName = new PIXI.Container, e.containerName.position.set(42, 23);
-                var v = p.CreateRect.gradientLeftToRight(185, 45, .94, .95);
-                return e.containerName.mask = v, e.containerName.addChild(e.textName, v), e.textLevel.anchor.x = 1, e.slotItemSlotContainer.position.set(51, 100), e.extraSlotItemViewContainer.position.set(405, 516), d.position.set(229, 30), f.position.set(364, 478), e.shipParameterView.position.set(51, 351), e.hpGaugeView.position.set(43, 72), e.textHp.position.set(152, 68), e.rateView.position.set(228, 72), e.expGaugeView.position.set(451, 481), e.textLevel.position.set(321, 24), e.remodelMaxMedal.position.set(322, 19), e.textExp.position.set(465, 493), e.textExp.anchor.x = 1, e.shipCard.position.set(369, 25), e.sixSlotMessage.position.set(531, 499), e.addChild(y, e.containerName, e.textLevel, e.hpGaugeView, e.textHp, e.expGaugeView, e.rateView, e.slotItemSlotContainer, e.extraSlotItemViewContainer, e.shipParameterView, e.shipCard, f, d, e.textExp, e.sixSlotMessage, e.remodelMaxMedal, i), e
+    var o = i(0), r = i(679), s = i(109), a = i(685), _ = i(313), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.SLOT_MAX = 6, e.shipSlots = [];
+            for (var i = 0; i < e.SLOT_MAX; i++) {
+                var n = new a.ShipSlot(i), o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
+                    r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
+                n.position.set(o, r), e.shipSlots.push(n)
             }
+            return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
+        }
 
-            return n(e, t), e.prototype.dispose = function () {
-                this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.shipParameterView.dispose(), this.slotItemSlotContainer.dispose(), this.rateView.dispose(), this.extraSlotItemViewContainer.dispose(), this.shipCard.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.hpGaugeView = null, this.expGaugeView = null, this.shipParameterView = null, this.slotItemSlotContainer = null, this.rateView = null, this.extraSlotItemViewContainer = null, this.shipCard = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textExp = null, this.remodelMaxMedal = null, this.sixSlotMessage = null, this.containerName = null, this.removeChildren()
-            }, e.prototype.updateBox1 = function (t, e, i, n, o, r) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
-            }, e.prototype.updateBox2 = function (t, e) {
-                this.slotItemSlotContainer.update(t, e, !1)
-            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, u, l, c) {
-                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, u, l, c)
-            }, e.prototype.updateBox4 = function (t, e, i) {
-                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.update(t, [e], !0), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
-            }, e.prototype.updateBox5 = function (t, e) {
-                this.shipCard.update(t, e)
-            }, e
-        }(PIXI.Container);
-    e.ShipDetailView = d
+        return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
+            get: function () {
+                return this.shipSlots
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ArrowTopButton", {
+            get: function () {
+                return this.arrowTopButton
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
+            get: function () {
+                return this.arrowBottomButton
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren();
+            for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
+            this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
+        }, e.prototype.init = function (t, e, i) {
+            this.shipSlots.forEach(function (n) {
+                n.activate(t, e, i)
+            })
+        }, e.prototype.initArrow = function (t) {
+            this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
+                t && t(-2)
+            }), this.arrowBottomButton.initialize(function () {
+                t && t(2)
+            })
+        }, e.prototype.show = function () {
+            this.visible = !0
+        }, e.prototype.hide = function () {
+            this.visible = !1
+        }, e.prototype.update = function (t, e) {
+            for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
+                var _ = this.shipSlots[a], u = a + e, l = i.getShipModel(u);
+                if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open(); else if (u < s) {
+                    var c = r < s, h = u == r, p = 0 == n, d = p && c && h;
+                    _.visible = !0, _.updateEmpty(u, d), _.close()
+                }
+            }
+            this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
+        }, e.prototype.shutterAnimation = function (t, e, i) {
+            var n = this.shipSlots[t];
+            n.closeAnimation(function () {
+                e && e(), n.close();
+                createjs.Tween.get(null).wait(100).call(function () {
+                    n.openAnimation(function () {
+                        i && i()
+                    }, 200)
+                })
+            }, 200)
+        }, e.prototype.onShipDetail = function (t, e, i) {
+            var n = this;
+            this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
+                n.taskShipDetail.hide(function () {
+                    n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
+                })
+            }, this.taskShipDetail.start(t)
+        }, e
+    }(PIXI.Container);
+    e.ShipSlotLayer = u
 }

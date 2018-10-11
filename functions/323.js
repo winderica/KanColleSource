@@ -75,7 +75,7 @@ const function323 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.containerName.removeChildren(), this.shipShadow.texture = PIXI.Texture.EMPTY, this.containerName.mask = null, this.containerName = null, this.textName = null, this.shipShadow = null, this.removeChildren()
+            this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.textName.destroy(), this.containerName = null, this.textName = null, this.shipShadow = null
         }, e.prototype.update = function (t, e, i, n) {
             this.containerName.cacheAsBitmap = !1, this.textName.text = t;
             var o = this.getShadowTextureName(e, i), r = s.ORGANIZE_SHIP.getTexture(o);

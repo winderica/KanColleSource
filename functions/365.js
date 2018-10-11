@@ -15,7 +15,7 @@ const function365 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(29), s = function (t) {
+    var o = i(4), r = i(30), s = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._animation_progress = 0, e._model = new a, e._karyoku = new o.TextBox(22, 1949120), e._raisou = new o.TextBox(22, 1949120), e._taiku = new o.TextBox(22, 1949120), e._kaihi = new o.TextBox(22, 1949120), e._taikyu = new o.TextBox(22, 1949120), e._g = new PIXI.Graphics, e._karyoku.anchor.set(.5, 0), e._raisou.anchor.set(.5, 0), e._taiku.anchor.set(.5, 0), e._kaihi.anchor.set(.5, 0), e._taikyu.anchor.set(.5, 0), e._karyoku.position.set(209, 81), e._raisou.position.set(345, 231), e._taiku.position.set(336, 393), e._kaihi.position.set(93, 393), e._taikyu.position.set(30, 228), e._g.position.set(186, 269), e
@@ -32,7 +32,7 @@ const function365 = function (t, e, i) {
             if (null == t) return void this._clearDraw();
             this._model.update(t), this._karyoku.text = this._model.karyoku.toString(), this._raisou.text = this._model.raisou.toString(), this._taiku.text = this._model.taiku.toString(), this._kaihi.text = this._model.kaihi.toString(), this._taikyu.text = this._model.taikyu.toString(), this._startAnimation()
         }, e.prototype.dispose = function () {
-            this._stopAnimation()
+            this._stopAnimation(), this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy()
         }, e.prototype._startAnimation = function () {
             var t = this;
             this._stopAnimation(), this._animation_progress = 0, this._animation = createjs.Tween.get(this).to({ animation_progress: 1 }, 500).call(function () {

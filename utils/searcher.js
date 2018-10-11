@@ -27,7 +27,7 @@ const searcher = index => {
     }
 };
 
-fs.writeFile('../tree.json', JSON.stringify(searcher(479)), err => {
+fs.writeFile('../tree.json', JSON.stringify(searcher(481)), err => {
     err && console.log(err);
 });
 

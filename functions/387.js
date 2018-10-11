@@ -67,6 +67,7 @@ const function387 = function (t, e, i) {
                 i.deactivate()
             }
         }, e.prototype.dispose = function () {
+            this.removeChildren();
             for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
                 var i = e[t];
                 i.dispose()
@@ -75,6 +76,7 @@ const function387 = function (t, e, i) {
                 var i = o[n];
                 i.dispose()
             }
+            this._ship_tabs = null, this._slot_tabs = null
         }, e.prototype._getBtnTextureNo = function (t, e) {
             return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [74, 76, 78, 80, 82, 84][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [64, 66, 68, 70, 72][e] : -1
         }, e.prototype._getBtnOnTextureNo = function (t, e) {

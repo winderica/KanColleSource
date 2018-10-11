@@ -15,8 +15,8 @@ const function339 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(1), a = i(187), _ = i(40), u = i(14), l = i(17), c = i(818), h = i(819), p = 18,
-        d = 20, f = 8, y = 3, v = 1.75, g = function (t) {
+    var o = i(5), r = i(0), s = i(1), a = i(188), _ = i(40), u = i(14), l = i(18), c = i(820), h = i(821), p = 18,
+        d = 20, f = 8, y = 3, v = 1.75, m = function (t) {
             function e(e, i) {
                 void 0 === i && (i = null);
                 var n = t.call(this) || this;
@@ -264,5 +264,5 @@ const function339 = function (t, e, i) {
                 return [9, 12, 13, 14, 15, 16, 17, 18, 19, 10, 11][t]
             }, e
         }(PIXI.Container);
-    e.MarriageAnimation = g
+    e.MarriageAnimation = m
 }

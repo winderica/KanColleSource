@@ -38,7 +38,7 @@ const function386 = function (t, e, i) {
         }, e.prototype.deactivate = function () {
             this._activated = !1, this._deactivate()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onChange = null
+            this.removeChildren(), this.deactivate(), this._from.dispose(), this._to.dispose(), this._dash = null, this._from = null, this._to = null, this._cb_onChange = null
         }, e.prototype._setBGTexture = function () {
             0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(95), this._dash.texture = o.ALBUM_MAIN.getTexture(22)) : (this.texture = o.ALBUM_MAIN.getTexture(96), this._dash.texture = o.ALBUM_MAIN.getTexture(23))
         }, e.prototype._activate = function () {
@@ -54,7 +54,9 @@ const function386 = function (t, e, i) {
             return e._n100 = new _, e.addChild(e._n100), e._n010 = new _, e._n010.x = 15, e.addChild(e._n010), e._n001 = new _, e._n001.x = 30, e.addChild(e._n001), e
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
+        }, e.prototype.update = function (t, e) {
             if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY; else {
                 this._n100.update(Math.floor(t / 100), e);
                 var i = t % 100;

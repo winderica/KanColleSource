@@ -15,49 +15,81 @@ const function1146 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(77), r = i(301), s = i(78), a = i(3), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
+    var o = i(4), r = i(3), s = i(1147), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onBtnMouseOver = function (t) {
+                i._illust.update(t)
+            }, i._onBtnMouseOut = function (t) {
+                i._illust.update()
+            }, i._onBtnClick = function (t) {
+                null != i._cb_onSelect && i._cb_onSelect(t)
+            }, i._cb_onSelect = e, i._header = new PIXI.Sprite, i._header.position.set(561, 169), i.addChild(i._header), i._illust = new _, i._illust.position.set(387, 210), i.addChild(i._illust), i._footer = new o.TextBox(16, 0), i._footer.position.set(670, 679), i._footer.text = "\u5bb6\u5177\u30b3\u30a4\u30f3\u306f\u9060\u5f81\u306a\u3069\u3067\u5165\u624b\u3067\u304d\u307e\u3059\u3002", i.addChild(i._footer), i._btns = [];
+            for (var n = [1, 0, 5, 2, 3, 4], r = 0; r < n.length; r++) {
+                var a = n[r], u = new s.FurnitureTypeBtn(a);
+                u.x = 204, u.y = 241 + 70 * r, i.addChild(u), i._btns.push(u)
+            }
+            return i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
-        }, e.prototype.updateFromModel = function (e) {
-            if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
-                this._img.scale.set(1), this._img.position.set(0, 0);
-                var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
-                    n = o.FurnitureLoader.getVersionQuery(e.mstID), r = i + ("" == n ? "" : "?" + n),
-                    a = PIXI.Texture.fromImage(r);
-                t.prototype.update.call(this, a)
-            } else {
-                switch (e.type) {
+            this._header.texture = r.ITEM_FSHOP.getTexture(51), this._illust.initiatize();
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].initialize(this._onBtnMouseOver, this._onBtnMouseOut, this._onBtnClick)
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            this._illust.update();
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].deactivate()
+            }
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._footer.destroy();
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].dispose()
+            }
+            this._cb_onSelect = null
+        }, e
+    }(PIXI.Container);
+    e.FurnitureShopMainView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._over = new PIXI.Sprite, e.addChild(e._over), e
+        }
+
+        return n(e, t), e.prototype.initiatize = function () {
+            this.texture = r.ITEM_FSHOP.getTexture(38)
+        }, e.prototype.update = function (t) {
+            if (void 0 === t && (t = -1), -1 == t) this._over.visible = !1; else {
+                var e = void 0;
+                switch (t) {
                     case 0:
-                        this._img.scale.set(1.45), this._img.position.set(-757, -99);
+                        e = 39, this._over.position.set(16, 258);
                         break;
                     case 1:
-                        this._img.scale.set(.64), this._img.position.set(-96, 3);
+                        e = 40, this._over.position.set(16, 16);
                         break;
                     case 2:
-                        this._img.scale.set(.64), this._img.position.set(3, 3);
+                        e = 41, this._over.position.set(196, 15);
                         break;
                     case 3:
-                        this._img.scale.set(1), this._img.position.set(0, 0);
+                        e = 42, this._over.position.set(16, 16);
                         break;
                     case 4:
-                        this._img.scale.set(.73), this._img.position.set(1, -90);
+                        e = 43, this._over.position.set(577, 16);
                         break;
                     case 5:
-                        this._img.scale.set(.56), this._img.position.set(-34, 9)
+                        e = 44, this._over.position.set(39, 114);
+                        break;
+                    default:
+                        return void(this._over.visible = !1)
                 }
-                var _ = e.mstID,
-                    r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
-                    a = PIXI.Texture.fromImage(r);
-                t.prototype.update.call(this, a)
+                this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
             }
-        }, e.prototype.clean = function () {
-            this._soldout.visible = !1, t.prototype.clean.call(this)
         }, e
-    }(r.FurnitureThumbnail);
-    e.Thumbnail = _
+    }(PIXI.Sprite)
 }

@@ -15,25 +15,28 @@ const function1340 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(25), a = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._ship_mst_id = e, s._damaged = i, s._plane1 = n, s._plane2 = o, s._plane3 = r, s
+    var o = i(2), r = i(22), s = i(15), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadShipImage()
-        }, e.prototype._loadShipImage = function () {
-            var t = this, e = new r.ShipLoader;
-            e.add(this._ship_mst_id, this._damaged, "full"), e.load(function () {
-                t._loadPlaneImage()
-            })
-        }, e.prototype._loadPlaneImage = function () {
-            var t = this, e = new s.SlotLoader;
-            this._plane1 > 0 && e.add(this._plane1, "item_up"), this._plane2 > 0 && e.add(this._plane2, "item_up"), this._plane3 > 0 && e.add(this._plane3, "item_up"), e.load(function () {
-                t._endTask()
+            var t = this, e = this._smoke.x - 105, i = this._smoke.y - 9;
+            createjs.Tween.get(this._smoke).call(function () {
+                t._layer.addChild(t._smoke)
+            }).to({ x: e, y: i, alpha: 0, scaleX: 1.5, scaleY: 1.5 }, 500).call(function () {
+                t._layer.removeChild(t._smoke), t._endTask()
             })
         }, e
     }(o.TaskBase);
-    e.PreloadCutinFunnel = a
+    e.AnimAntiAircraftKoukaku = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(151)), e._img.position.set(-44, -63), e.addChild(e._img), e
+        }
+
+        return n(e, t), e
+    }(r.Container)
 }

@@ -15,66 +15,49 @@ const function1103 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(16), a = i(32), _ = i(163), u = i(126), l = i(102), c = i(151), h = i(197),
-        p = i(6), d = i(400), f = i(1108), y = i(1110), v = i(1115), g = i(1119), m = i(1123), b = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._target = i, n
-            }
+    var o = i(0), r = i(4), s = i(3), a = i(1104), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onUse = function () {
+                null != i._cb_onUse && i._cb_onUse(i._mst_id)
+            }, i._cb_onUse = e, i._name = new r.TextBox(22, 16777215), i._name.position.set(0, 18), i.addChild(i._name), i._name2 = new r.TextBox(22, 16777215), i._name2.position.set(0, 18), i.addChild(i._name2), i._name2.visible = !1, i._icon = new PIXI.Sprite, i._icon.position.set(105, 81), i.addChild(i._icon), i._count = new u, i._count.position.set(243, 84), i.addChild(i._count), i._description = new r.TextBox(18, 16777215), i._description.position.set(22, 186), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 264, i.addChild(i._description), i._use_btn = new a.UseBtn, i._use_btn.position.set(66, 388), i._use_btn.visible = !1, i.addChild(i._use_btn), i
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return null != this._api_result
-                }, enumerable: !0, configurable: !0
-            }), e.prototype._start = function () {
-                if (null == this._target) return void this._endTask();
-                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
-            }, e.prototype._startTask = function () {
-                var t, e = this._target.mstID;
-                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target); else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target); else if (60 == e) t = new v.TaskUsePresentBox(this._fade, this._target); else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target); else if (62 == e) t = new m.TaskUseHishimochi(this._fade, this._target); else if (63 == e) {
-                    var i = o.default.model.const.quest_max, n = o.default.model.basic.getDutyExecutableCount();
-                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
-                } else 68 == e || 72 == e || 80 == e || 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || (t = new d.TaskUseNormalItem(this._fade, this._target));
-                null != t ? this._showFade(t) : this._endTask()
-            }, e.prototype._showFade = function (t) {
-                var e = this;
-                this._layer.addChild(this._fade), this._fade.show(200, function () {
-                    t.start(function () {
-                        e._api_result = t.result, e._updateData()
-                    })
-                })
-            }, e.prototype._updateData = function () {
-                var t = this;
-                if (null == this._api_result) return void this._hideFade();
-                if (63 == this._target.mstID) {
-                    var e = o.default.model.basic.getDutyExecutableCount();
-                    o.default.model.basic.setDutyExcutableCount(e + 1)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = s.ITEM_ILIST.getTexture(17), this._use_btn.initialize(this._onUse)
+        }, e.prototype.update = function (t) {
+            this._mst_id = t;
+            var e = o.default.model.useItem.get(t);
+            if (null == e) return void this._clean();
+            if (76 == this._mst_id) {
+                var i = e.name.match(/(.+)(\(.+\))/);
+                if (null == i || i.length < 3) this._name.text = e.name, this._name.x = Math.round(154 - this._name.width / 2), this._name2.visible = !1; else {
+                    this._name.text = i[1], this._name2.text = i[2], this._name2.style.fontSize = 21, this._name2.visible = !0;
+                    var n = this._name.width + this._name2.width;
+                    this._name.x = Math.round(154 - n / 2), this._name2.x = this._name.x + this._name.width, this._name2.y = this._name.y + this._name.height - this._name2.height
                 }
-                var i = new a.APIConnector;
-                if (i.add(new l.UseItemAPI), this._api_result.hasMaterialReward() && i.add(new _.MaterialAPI), this._api_result.hasCoinReward() && i.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
-                    var n = this._api_result.getSlotitemObjects();
-                    o.default.model.slot.addMemData(n), i.add(new u.UnsetSlotAPI)
-                }
-                i.start(function () {
-                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
-                })
-            }, e.prototype._showReward = function () {
-                var t = this;
-                if (null == this._api_result) return void this._hideFade();
-                var e = this._api_result.rewards;
-                if (null == e || 0 == e.length) return void this._hideFade();
-                var i = o.default.view.overLayer;
-                new h.TaskReward(i, e).start(function () {
-                    t._hideFade()
-                })
-            }, e.prototype._hideFade = function () {
-                var t = this;
-                this._fade.hide(150, function () {
-                    t._layer.removeChild(t._fade), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase);
-    e.TaskUseItem = b
+            } else this._name.text = e.name, this._name.x = Math.round(154 - this._name.width / 2), this._name2.visible = !1;
+            this._icon.texture = o.default.resources.getUseitem(t, 0), this._count.update(e.count), this._count.visible = !0, this._description.text = e.description.replace(/<br>/g, "\n"), 1 == e.isUsable() && e.count > 0 ? (this._use_btn.visible = !0, this._use_btn.activate()) : (this._use_btn.visible = !1, this._use_btn.deactivate())
+        }, e.prototype.dispose = function () {
+            this._name.destroy(), this._name2.destroy(), this._count.dispose(), this._description.destroy(), this._use_btn.dispose(), this._cb_onUse = null
+        }, e.prototype._clean = function () {
+            this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._use_btn.visible = !1, this._use_btn.deactivate()
+        }, e
+    }(PIXI.Sprite);
+    e.OwnedItemDetailPanel = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new r.TextBox(30, 16777215), e._text.y = 28, e.addChild(e._text), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.update(0)
+        }, e.prototype.update = function (t) {
+            var e;
+            e = t < 100 ? 24 : t < 1e3 ? 25 : 26, this._bg.texture = s.ITEM_ILIST.getTexture(e), this._bg.x = -Math.round(this._bg.width / 2), this._text.text = t.toString(), this._text.x = -Math.round(this._text.width / 2)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e
+    }(PIXI.Container)
 }

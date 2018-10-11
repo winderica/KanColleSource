@@ -15,7 +15,7 @@ const function338 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(59), a = i(14), _ = i(804), u = function (t) {
+    var o = i(0), r = i(8), s = i(59), a = i(14), _ = i(806), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._clickGuard = new r.AreaBox(0), i._background = new s.RarityBG, i._ship = new PIXI.Sprite, i._elements = new l(e), i._white = new r.AreaBox(1, 16777215), i

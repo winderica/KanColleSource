@@ -15,26 +15,19 @@ const function411 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(412), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._result = [], n._layer = e, n._candidates_list = null == i ? [] : i.concat(), n
+    var o = i(2), r = i(18), s = i(237), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            if (0 == this._candidates_list.length) return void this._endTask();
-            var e = this._candidates_list.shift(), i = new r.TaskRewardSelect(this._layer, e);
-            i.start(function () {
-                t._result.push(i.result), t._start()
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("duty");
+            e.add("duty_common.json"), 0 == s.POSTER_GIRL ? e.add("duty_poster_girl.json") : 1 == s.POSTER_GIRL ? e.add("duty_poster_girl_gyudon.json") : 2 == s.POSTER_GIRL ? e.add("duty_poster_girl_newyear.json") : 3 == s.POSTER_GIRL ? e.add("duty_poster_girl_sanma.json") : 4 == s.POSTER_GIRL ? e.add("duty_poster_girl_summer.json") : 5 == s.POSTER_GIRL && e.add("duty_poster_girl_xmas.json"), e.load(function () {
+                t._endTask()
             })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._candidates_list = null, t.prototype._endTask.call(this)
         }, e
     }(o.TaskBase);
-    e.TaskRewardSelectMulti = s
+    e.TaskLoadResources = a
 }

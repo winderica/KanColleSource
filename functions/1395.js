@@ -15,60 +15,75 @@ const function1395 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(174), a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._record = i, n
+    var o = i(0), r = i(2), s = i(16), a = i(14), _ = i(25), u = i(1396), l = i(64), c = i(44), h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._view = new PIXI.Container, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "scene", {
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
             get: function () {
-                return this._scene
+                return this._view
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "record", {
-            get: function () {
-                return this._record
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._scene.view.layer_title.hide(), this._endTouchPlane()
-        }, e.prototype._endTouchPlane = function () {
-            var t = this._scene.view.raderLayer;
-            t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
-        }, e.prototype._waitGaugeExplodeAnimation = function () {
-            var t = this;
-            1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
-                t._waitGaugeExplodeAnimation()
-            }) : this._fadeOutBGM()
-        }, e.prototype._fadeOutBGM = function () {
-            var t = this, e = this._scene.data.model.map_info.area_id, i = this._scene.data.model.map_info.map_no,
-                n = this._scene.data.model.map_info.isBoss();
-            if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
-            1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
-                t._playBossLastGasp()
-            })) : this._playBossLastGasp()
-        }, e.prototype._playBossLastGasp = function () {
-            if (o.default.option.vol_voice <= 0) return void this._wait();
-            var t = this._scene.data.model.deck_e.ships[0];
-            if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
-            var e = this._scene.view.layer_gauge.isExploded(),
-                i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
-            return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
-        }, e.prototype._playBossVoice = function (t) {
-            var e = this;
-            o.default.sound.voice.play("9998", t, function () {
-                e._wait()
+        }), e.prototype.preload = function (t, e, i, n, o) {
+            var r = this;
+            this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
+            var s = new a.ShipLoader, u = this._attacker.isDamaged(), l = this._attacker.mst_id;
+            571 != l && 576 != l || 0 != u ? s.add(l, u, "full") : s.add(l, !1, "special"), s.load(function () {
+                var t = null == r._slot1 ? 0 : r._slot1.mstID, e = null == r._slot2 ? 0 : r._slot2.mstID,
+                    i = null == r._slot3 ? 0 : r._slot3.mstID, n = new _.SlotLoader;
+                t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
+                    null != o && o()
+                })
             })
-        }, e.prototype._wait = function () {
+        }, e.prototype._start = function () {
+            this._canvas = new u.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+        }, e.prototype._ready = function () {
+            var t, e, i = this._attacker.mst_id, n = this._attacker.isDamaged();
+            571 != i && 576 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (n = !1, t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+        }, e.prototype._anim1 = function () {
             var t = this;
-            createjs.Tween.get(this).wait(1e3).call(function () {
-                t._shutter_close()
+            this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
+                x: 48 + (this._attacker.friend ? 0 : 336),
+                alpha: 1
+            }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
+            var e = this._attacker.friend ? 75 : 1125;
+            createjs.Tween.get(this._canvas.name1).wait(400).to({
+                x: e,
+                alpha: 1
+            }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
+                x: e,
+                alpha: 1
+            }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
+                x: e,
+                alpha: 1
+            }, 200).call(function () {
+                t._anim2()
             })
-        }, e.prototype._shutter_close = function () {
+        }, e.prototype._anim2 = function () {
             var t = this;
-            this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
-                t._endTask()
+            this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
+                t._shipFlash.play()
+            }).wait(200).call(function () {
+                t._shipFlash.play()
+            }).wait(133).call(function () {
+                t._anim3()
             })
+        }, e.prototype._anim3 = function () {
+            var t = this, e = new l.IntensiveLines;
+            e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({ alpha: 1 }, 200);
+            var i = new s.FadeBox(1, 16777215);
+            i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 500).call(function () {
+                t._anim4(e, i)
+            })
+        }, e.prototype._anim4 = function (t, e) {
+            var i = this;
+            this._canvas.dispose(), createjs.Tween.get(t).to({ alpha: 0 }, 300), createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
+                t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
         }, e
     }(r.TaskBase);
-    e.PhaseEnding = a
+    e.CutinSpSSS = h
 }

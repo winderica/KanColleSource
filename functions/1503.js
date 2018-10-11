@@ -15,24 +15,21 @@ const function1503 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+    var o = i(0), r = i(31), s = i(147), a = i(148), _ = i(195), u = i(1504), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._taihi = e, i._img = new PIXI.Sprite, i._icon = new s.BannerIcon, i._soot = new a.BannerSoot, i._smoke = new _.BannerSmoke, i._smoke.visible = !1, i.addChild(i._img), i.addChild(i._icon), i.addChild(i._soot), i.addChild(i._smoke), i
         }
 
-        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
-            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({ alpha: 1 }, i)
-        }, e.prototype.createHideTween = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 0);
-            var n = createjs.Tween.get(this._img).wait(e);
-            return 1 == this._img.visible && n.to({ alpha: 0 }, t).call(function () {
-                i._img.visible = !1
-            }), n
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img = null
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._img.texture = PIXI.Texture.EMPTY, this._img = null, this._icon = null, this._soot = null, this._smoke.dispose(), this._smoke = null, null != this._coin && (this._coin.dispose(), this._coin = null)
+        }, e.prototype.updateTexture = function (t, e, i) {
+            e <= 0 || 1 == this._taihi ? this._img.texture = o.default.resources.getShip(t, !0, "banner_g") : r.ShipUtil.isDamaged(e, i) ? this._img.texture = o.default.resources.getShip(t, !0, "banner") : this._img.texture = o.default.resources.getShip(t, !1, "banner")
+        }, e.prototype.updateIcon = function (t) {
+            this._smoke.stop(), this._smoke.play(t), 0 == this._taihi ? (this._soot.update(t), this._icon.setDamagedIcon(t)) : (this._soot.clear(), this._icon.setTaihiIcon())
+        }, e.prototype.createShowMVPCoinTween = function () {
+            return this._coin = new u.MVPCoin, this._coin.position.set(270, 30), this._coin.initialize(), this._coin.activate(), this._coin.alpha = 0, this.addChild(this._coin), createjs.Tween.get(this._coin).to({ alpha: 1 }, 300)
         }, e
     }(PIXI.Container);
-    e.LayerMVP = o
+    e.ShipBannerClone = l
 }

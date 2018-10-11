@@ -18,12 +18,12 @@ const function1193 = function (t, e, i) {
     var o = i(11), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene_dispose_delegate = e, i
+            return i._url = "api_req_quest/stop", i._duty_id = e, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskItemSceneFinalize = r
+    }(o.APIBase);
+    e.DutyCancelAPI = r
 }

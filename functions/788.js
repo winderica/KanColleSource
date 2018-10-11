@@ -1,123 +1,278 @@
 const function788 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(37), s = i(8), a = i(6), _ = i(86), u = i(789), l = i(797), c = i(799),
-        h = i(802), p = i(803), d = i(805), f = i(49), y = function () {
-            function t(t) {
-                var e = this;
-                this._onClickEmpty = function (t) {
-                    var i = [];
-                    i.push(e.memShipId), e.targetShips.forEach(function (t) {
-                        i.push(t.memID)
-                    });
-                    var n = new c.TaskShipChoice(e.mainView);
-                    n.onClickShip = function (t) {
-                        var i = o.default.model.ship.get(e.memShipId), n = o.default.model.ship.getMst(i.mstID), r = [],
-                            s = o.default.model.ship.get(t);
-                        e.targetShips.push(s), e.targetShips.forEach(function (t) {
-                            var e = o.default.model.ship.getMst(t.mstID);
-                            r.push(e)
-                        });
-                        var a = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                        e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, a.karyoku, a.raiso, a.taiku, a.souko, a.lucky, a.checkBonusLucky, a.checkBonusTaikyu, a.checkBonusTaisen)
-                    }, n.onComplete = function () {
-                        n.dispose(), e.taskShipChoice = null
-                    }, e.taskShipChoice = n, n.start(i, 0)
-                }, this._onClickCancel = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.clickGuardKindaika.width = n.default.width, o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardKindaika).to({ alpha: 0 }, t), createjs.Tween.get(e.powerUpEdit).to({ x: n.default.width }, t).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickStart = function () {
-                    e.clickGuardConfirm.alpha = 0, e.powerUpStartConfirm.alpha = 0;
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0;
-                    var i = o.default.model.ship.get(e.memShipId), n = o.default.model.ship.getMst(i.mstID), r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpStartConfirm.update(i, e.targetShips, s), createjs.Tween.get(e.clickGuardConfirm).to({ alpha: 1 }, t), createjs.Tween.get(e.powerUpStartConfirm).to({ alpha: 1 }, t).call(function () {
-                        e.mainView.visible = !1, o.default.view.clickGuard = !1
-                    })
-                }, this._onClickPowerUpStartYES = function () {
-                    o.default.view.clickGuard = !0;
-                    var t = o.default.model.ship.get(e.memShipId), i = o.default.model.ship.getMst(t.mstID),
-                        n = new Array;
-                    e.targetShips.forEach(function (t) {
-                        n.push(t.memID)
-                    });
-                    var r = new h.PowerUpAPI(e.memShipId, n);
-                    o.default.sound.voice.playAtRandom(t.mstID.toString(), [9, 10], [50, 50]), r.start(function () {
-                        e.powerUpEdit.shipInfoBox.update(t.shipTypeName, t.name, t.level, t.starNum), e.onUpdateShip();
-                        var s, a = r.api_powerup_flag, _ = n.length;
-                        s = 1 == a ? new d.PowerUpAnimationSuccess(_, e.mainView) : new p.PowerUpAnimationFailed(_, e.mainView);
-                        var u = t.mstID, l = t.isDamaged(), c = o.default.model.ship_graph.get(u).getCenterOffset(l);
-                        s.preload(u, l, c, function () {
-                            o.default.view.clickGuard = !1, o.default.view.overLayer.addChild(e.animationClickGuard, s), s.play(function () {
-                                e.targetShips.length = 0, e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(t, i, 0, 0, 0, 0, 0, !1, !1, !1), o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm)
-                            }, function () {
-                                s.dispose(), o.default.view.overLayer.removeChild(e.animationClickGuard), o.default.view.overLayer.removeChild(s), o.default.view.portMain.updateInfo()
-                            })
-                        })
-                    })
-                }, this._onClickPowerUpStartNO = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.mainView.visible = !0, o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardConfirm).to({ alpha: 0 }, t), createjs.Tween.get(e.powerUpStartConfirm).to({ alpha: 0 }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm), o.default.view.clickGuard = !1
-                    })
-                }, this._onClickSlotIn = function (t) {
-                    e.targetShips.splice(t, 1);
-                    var i = o.default.model.ship.get(e.memShipId), n = o.default.model.ship.getMst(i.mstID), r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, s.karyoku, s.raiso, s.taiku, s.souko, s.lucky, s.checkBonusLucky, s.checkBonusTaikyu, s.checkBonusTaisen)
-                }, this.mainView = t;
-                this.clickGuardKindaika = new s.AreaBox(.5), this.clickGuardKindaika.height = n.default.height - 103, this.clickGuardKindaika.position.set(0, 103), this.clickGuardConfirm = new s.AreaBox(1), this.clickGuardConfirm.height = n.default.height, this.clickGuardConfirm.position.set(0, 0), this.animationClickGuard = new s.AreaBox(0), this.animationClickGuard.renderable = !1, this.powerUpStartConfirm = new l.PowerUpStartConfirm, this.powerUpEdit = new u.PowerUpEdit
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
 
-            return t.prototype.start = function (t) {
-                var e = this;
-                o.default.view.clickGuard = !0, a.SE.play("249"), this.targetShips = [];
-                var i = o.default.model.ship.get(t), r = o.default.model.ship.getMst(i.mstID);
-                this.powerUpEdit.targetShipBox.onClickEmpty = this._onClickEmpty, this.powerUpEdit.targetShipBox.onClickSlotIn = this._onClickSlotIn, this.powerUpEdit.cancelButton.initialize(this._onClickCancel), this.powerUpEdit.startButton.onClick = this._onClickStart, this.powerUpStartConfirm.onClickNO = this._onClickPowerUpStartNO, this.powerUpStartConfirm.onClickYES = this._onClickPowerUpStartYES, this.memShipId = t, this.powerUpEdit.shipInfoBox.update(i.shipTypeName, i.name, i.level, i.starNum), this._updatePowerUp_(i, r, 0, 0, 0, 0, 0, !1, !1, !1), this._updateShipFull_(i.mstID, i.isDamaged()), this.powerUpEdit.targetShipBox.update(this.targetShips), this.clickGuardKindaika.alpha = 0, this.powerUpEdit.position.set(n.default.width, 140), this.mainView.addChild(this.clickGuardKindaika, this.powerUpEdit);
-                var s = f.UISettings.DIALOG_FADETIME;
-                createjs.Tween.get(this.clickGuardKindaika).to({ alpha: 1 }, s), createjs.Tween.get(this.powerUpEdit).to({ x: 174 }, s).call(function () {
-                    e.clickGuardKindaika.width = 212, o.default.view.clickGuard = !1
-                })
-            }, t.prototype.dispose = function () {
-                this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null, this.mainView.removeChild(this.clickGuardKindaika), this.mainView.removeChild(this.powerUpEdit), this._onClickEmpty = null, this._onClickSlotIn = null, this.onComplete = null, this.onUpdateShip = null, this.mainView = null, this.powerUpEdit && this.powerUpEdit.dispose(), this.powerUpEdit = null, this.clickGuardKindaika = null, this.animationClickGuard = null, this.powerUpStartConfirm && this.powerUpStartConfirm.dispose(), this.powerUpStartConfirm = null, this.clickGuardConfirm = null, this.targetShips = null, this.memShipId = null, this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null
-            }, t.prototype._updatePowerUp_ = function (t, e, i, n, o, r, s, a, _, u) {
-                var l = t.karyoku - (e.hougMin + t.gradeUpHoug), c = t.raisou - (e.raigMin + t.gradeUpRaig),
-                    h = t.taiku - (e.tykuMin + t.gradeUpTyku), p = t.soukou - (e.soukMin + t.gradeUpSouk),
-                    d = t.lucky - (e.luckMin + t.gradeUpLuck), f = e.hougMax + l <= t.karyoku,
-                    y = e.raigMax + c <= t.raisou, v = e.tykuMax + h <= t.taiku, g = e.soukMax + p <= t.soukou,
-                    m = e.luckMax + d <= t.lucky, b = Math.min(t.gradeUpHoug + e.hougMin + i, e.hougMax),
-                    w = Math.min(t.gradeUpRaig + e.raigMin + n, e.raigMax),
-                    x = Math.min(t.gradeUpTyku + e.tykuMin + o, e.tykuMax),
-                    I = Math.min(t.gradeUpSouk + e.soukMin + r, e.soukMax),
-                    T = Math.min(t.gradeUpLuck + e.luckMin + s, e.luckMax), O = b + l, P = w + c, C = x + h, k = I + p,
-                    M = T + d;
-                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, P), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, C), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, P, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, C, v), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(v), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, M, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, u);
-                var S = [a, _, u].some(function (t) {
-                    return 1 == t
-                }), A = [f, y, v, g, m].some(function (t) {
-                    return 0 == t
-                }), j = !1;
-                (A || S) && (O > t.karyoku || P > t.raisou || C > t.taiku || k > t.soukou || M > t.lucky || S) && (j = !0), this.powerUpEdit.startButton.update(j)
-            }, t.prototype._updateShipFull_ = function (t, e) {
-                this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, r.TaskLoadShipResource.abortBy(this.powerUpEdit.shipFull);
-                var i = new PIXI.Point(-173, -139), n = o.default.model.ship_graph.get(t).getRemodelPowupUIOffset(e),
-                    s = n.x + (e ? 51 : 75) + i.x, a = n.y + (e ? 95 : 110) + i.y;
-                if (this.powerUpEdit.shipFull.position.set(s, a), 1 == o.default.resources.isLoadedShip(t, e, "character_full")) this.powerUpEdit.shipFull.texture = o.default.resources.getShip(t, e, "character_full"), this.powerUpEdit.containerShipFull.cacheAsBitmap = !0; else {
-                    this.powerUpEdit.shipFull.texture = PIXI.Texture.EMPTY;
-                    new r.TaskLoadShipResource("character_full", this.powerUpEdit.shipFull, t, e).start()
-                }
-            }, t
-        }();
-    e.TaskKindaika = y
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(0), r = i(139), s = i(50), a = i(155), _ = i(60), u = i(159), l = i(156), c = i(4), h = i(21),
+        p = i(70), d = i(1), f = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function (t, e) {
+                    i.onClick(t, e)
+                }, i._onClickLock = function (t, e) {
+                    i.onClickLock(t, e)
+                }, i.listItemInUse = new v(e), i.listItemDefault = new m(e), i.listItemExtra = new g(e), i.listItemInUse.onClick = i._onClick, i.listItemDefault.onClick = i._onClick, i.listItemDefault.onClickLock = i._onClickLock, i.listItemExtra.onClickLock = i._onClickLock, i
+            }
+
+            return n(e, t), e.prototype.update = function (t, e, i, n, o) {
+                this.removeChildren(), e ? (this.listItemInUse.update(t, e, i, n), this.addChild(this.listItemInUse)) : o ? (this.listItemExtra.update(t), this.addChild(this.listItemExtra)) : (this.listItemDefault.update(t), this.addChild(this.listItemDefault))
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.listItemInUse.dispose(), this.listItemDefault.dispose(), this.listItemExtra.dispose(), this.onClick = null, this.onClickLock = null, this.listItemInUse = null, this.listItemDefault = null, this.listItemExtra = null
+            }, e
+        }(PIXI.Container);
+    e.ListItem = f;
+    var y, v = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.center = 23, i._onClick = function () {
+                i.onClick(i.index, i.memSlotItemId)
+            }, i._onMouseOver = function (t) {
+                i.mouseover()
+            }, i._onMouseOut = function (t) {
+                i.mouseout()
+            }, i.index = e, i.iconWeapon = new _.IconWeapon, i.focus = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), i.clickArea = new PIXI.Graphics, i.containerName = new PIXI.Container, i.textName = new c.TextBox(21, 5523516);
+            var n = new PIXI.Graphics;
+            n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), i.containerName.mask = n, i.containerName.addChild(i.textName, n), i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, i.slotItemLevel = new l.SlotItemLevel, i.airPlaneLevel = new a.AirPlaneLevel;
+            var o = Math.floor(i.center - i.textName.height / 2);
+            return i.shipSummary = new w, i.iconWeapon.position.x = -6, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, i.focus.width + 180, i.focus.height), i.clickArea.endFill(), i.clickArea.on(d.EventType.CLICK, i._onClick), i.clickArea.on(d.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(d.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.renderable = !1, i.clickArea.interactive = i.clickArea.buttonMode = !0, i.shipSummary.position.set(306, 0), i.airPlaneLevel.position.set(232, 3), i.slotItemLevel.position.set(260, 13), i.containerName.position.set(42, o), i.focus.width += 135, i.focus.position.x = 36, i.focus.visible = !1, i.addChild(i.clickArea, i.focus, i.iconWeapon, i.containerName, i.maskName, i.shipSummary, i.slotItemLevel, i.airPlaneLevel), i
+        }
+
+        return n(e, t), e.prototype.update = function (t, e, i, n) {
+            var o = e.isRepair(), r = t.iconType;
+            this.textName.text = t.name, this.iconWeapon.update(r), this._updateInteractive_(n), this._updateLevel_(t.level), this._updateSkillLevel_(t.skillLevel), this._updateShipSummary_(e.name, e.level, i, n, o), this.memSlotItemId = t.memID, this.mouseout()
+        }, e.prototype._updateSkillLevel_ = function (t) {
+            this.airPlaneLevel.visible = !1, 0 < t && (this.airPlaneLevel.update(t), this.airPlaneLevel.visible = !0)
+        }, e.prototype._updateLevel_ = function (t) {
+            this.slotItemLevel.visible = !1, 0 < t && (this.slotItemLevel.update(t), this.slotItemLevel.visible = !0)
+        }, e.prototype._updateShipSummary_ = function (t, e, i, n, o) {
+            this.shipSummary.update(t, e, i, n, o)
+        }, e.prototype._updateInteractive_ = function (t) {
+            this.clickArea.interactive = !0, t && (this.clickArea.interactive = !1)
+        }, e.prototype.mouseover = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textName.style.fill = 16774898, this.shipSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this.textName.style.fill = 5523516, this.shipSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.iconWeapon.dispose(), this.shipSummary.dispose(), this.slotItemLevel.dispose(), this.airPlaneLevel.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.clickArea.off(d.EventType.CLICK), this.clickArea.off(d.EventType.MOUSEOVER), this.clickArea.off(d.EventType.MOUSEOUT), this.clickArea.clear(), this.textName.destroy(), this.onClick = null, this.index = null, this.memSlotItemId = null, this.iconWeapon = null, this.shipSummary = null, this.textName = null, this.containerName = null, this.maskName = null, this.focus = null, this.clickArea = null, this.slotItemLevel = null, this.airPlaneLevel = null
+        }, e
+    }(PIXI.Container), m = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.center = 23, i._onClick = function () {
+                i.onClick(i.index, i.memSlotItemId)
+            }, i._onClickLock = function () {
+                i.onClickLock(i.index, i.memSlotItemId)
+            }, i._onMouseOver = function (t) {
+                t.target != i.clickArea && t.target != i.lockIcon || i.mouseover()
+            }, i._onMouseOut = function (t) {
+                t.target != i.clickArea && t.target != i.lockIcon && i.mouseout()
+            }, i.index = e, i.iconWeapon = new _.IconWeapon, i.focus = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), i.clickArea = new PIXI.Graphics, i.textRare = new c.TextBox(15, 5523516), i.itemSummary = new x(5523516), i.itemSummary.position.set(395, 0), i.lockIcon = new I, i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, i.slotItemLevel = new l.SlotItemLevel, i.airPlaneLevel = new a.AirPlaneLevel, i.airPlaneLevel.position.set(232, 3), i.slotItemLevel.position.set(260, 13), i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, i.focus.width + 180, i.focus.height), i.clickArea.endFill(), i.clickArea.on(d.EventType.CLICK, i._onClick), i.clickArea.on(d.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(d.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.renderable = !1, i.clickArea.interactive = i.clickArea.buttonMode = !0, i.containerName = new PIXI.Container, i.textName = new c.TextBox(21, 5523516);
+            var n = new PIXI.Graphics;
+            n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill();
+            var o = Math.floor(i.center - i.textName.height / 2);
+            return i.containerName.mask = n, i.containerName.position.set(42, o), i.containerName.addChild(i.textName, n), i.lockIcon.onClick = i._onClickLock, i.lockIcon.onMouseOut = i._onMouseOut, i.lockIcon.onMouseOver = i._onMouseOver, i.lockIcon.position.x = 603, i.focus.width += 135, i.focus.position.x = 36, i.focus.visible = !1, i.iconWeapon.position.x = -6, i.addChild(i.clickArea, i.focus, i.iconWeapon, i.containerName, i.maskName, i.textRare, i.itemSummary, i.lockIcon, i.slotItemLevel, i.airPlaneLevel), i
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            var e = t.isLocked(), i = o.default.model.slot.getMst(t.mstID).rarity;
+            this.iconWeapon.update(t.iconType), this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.containerName.cacheAsBitmap = !0, this._updateTextRare_(i), this._updateItemSummary_(t), this._updateLock_(e), this._updateSkillLevel_(t.skillLevel), this._updateLevel_(t.level), this.memSlotItemId = t.memID, this.locked = e, this.mouseout()
+        }, e.prototype._updateItemSummary_ = function (t) {
+            this.itemSummary.update(t)
+        }, e.prototype._updateTextRare_ = function (t) {
+            var e = r.SlotConst.SLOTITEM_RARITY_NAMES[t];
+            this.textRare.text = e;
+            var i = Math.floor(338 - this.textRare.width / 2),
+                n = Math.floor(this.center - this.textRare.height / 2);
+            this.textRare.position.set(i, n)
+        }, e.prototype._updateSkillLevel_ = function (t) {
+            this.airPlaneLevel.visible = !1, 0 < t && (this.airPlaneLevel.update(t), this.airPlaneLevel.visible = !0)
+        }, e.prototype._updateLevel_ = function (t) {
+            this.slotItemLevel.visible = !1, 0 < t && (this.slotItemLevel.update(t), this.slotItemLevel.visible = !0)
+        }, e.prototype._updateLock_ = function (t) {
+            this.lockIcon.alpha = t ? 1 : 0, this.lockIcon.update(t)
+        }, e.prototype.mouseover = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textRare.style.fill = this.textName.style.fill = 16777215, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 5523516, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.iconWeapon.dispose(), this.itemSummary.dispose(), this.slotItemLevel.dispose(), this.airPlaneLevel.dispose(), this.lockIcon.dispose(), this.clickArea.clear(), this.clickArea.off(d.EventType.CLICK), this.clickArea.off(d.EventType.MOUSEOVER), this.clickArea.off(d.EventType.MOUSEOUT), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.textRare.destroy(), this.textName.destroy(), this.index = null, this.locked = null, this.memSlotItemId = null, this.onClick = null, this.onClickLock = null, this.iconWeapon = null, this.itemSummary = null, this.textName = null, this.textRare = null, this.lockIcon = null, this.focus = null, this.clickArea = null, this.slotItemLevel = null, this.airPlaneLevel = null, this.maskName = null, this.containerName = null
+        }, e
+    }(PIXI.Container), g = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.center = 23, i._onClickLock = function () {
+                i.onClickLock(i.index, i.memSlotItemId)
+            }, i._onMouseOver = function (t) {
+                t.target != i.clickArea && t.target != i.lockIcon || i.mouseover()
+            }, i._onMouseOut = function (t) {
+                t.target != i.clickArea && t.target != i.lockIcon && i.mouseout()
+            }, i.index = e, i.iconWeapon = new _.IconWeapon, i.focus = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), i.clickArea = new PIXI.Graphics, i.textRare = new c.TextBox(15, 10263708), i.itemSummary = new x(10263708), i.lockIcon = new I, i.slotItemLevel = new l.SlotItemLevel, i.airPlaneLevel = new a.AirPlaneLevel, i.itemSummary.position.set(395, 0), i.airPlaneLevel.position.set(232, 3), i.slotItemLevel.position.set(260, 13), i.iconWeapon.position.x = -6, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, i.focus.width + 180, i.focus.height), i.clickArea.endFill(), i.clickArea.on(d.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(d.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.renderable = !1, i.clickArea.interactive = i.clickArea.buttonMode = !0, i.containerName = new PIXI.Container, i.textName = new c.TextBox(21, 10263708);
+            var n = new PIXI.Graphics;
+            n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill();
+            var o = Math.floor(i.center - i.textName.height / 2);
+            return i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, i.containerName.mask = n, i.containerName.addChild(i.textName, n), i.containerName.position.set(42, o), i.lockIcon.onClick = i._onClickLock, i.lockIcon.onMouseOut = i._onMouseOut, i.lockIcon.onMouseOver = i._onMouseOver, i.lockIcon.position.x = 603, i.focus.width += 135, i.focus.position.x = 36, i.focus.visible = !1, i.addChild(i.clickArea, i.focus, i.iconWeapon, i.containerName, i.maskName, i.textRare, i.itemSummary, i.lockIcon, i.slotItemLevel, i.airPlaneLevel), i
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            var e = t.isLocked(), i = o.default.model.slot.getMst(t.mstID).rarity;
+            this.iconWeapon.update(t.iconType), this.textName.text = t.name, this._updateTextRare_(i), this._updateItemSummary_(t), this._updateLock_(e), this._updateSkillLevel_(t.skillLevel), this._updateLevel_(t.level), this.memSlotItemId = t.memID, this.locked = e, this.mouseout()
+        }, e.prototype._updateItemSummary_ = function (t) {
+            this.itemSummary.update(t)
+        }, e.prototype._updateTextRare_ = function (t) {
+            var e = r.SlotConst.SLOTITEM_RARITY_NAMES[t];
+            this.textRare.text = e;
+            var i = Math.floor(338 - this.textRare.width / 2),
+                n = Math.floor(this.center - this.textRare.height / 2);
+            this.textRare.position.set(i, n)
+        }, e.prototype._updateSkillLevel_ = function (t) {
+            this.airPlaneLevel.visible = !1, 0 < t && (this.airPlaneLevel.update(t), this.airPlaneLevel.visible = !0)
+        }, e.prototype._updateLevel_ = function (t) {
+            this.slotItemLevel.visible = !1, 0 < t && (this.slotItemLevel.update(t), this.slotItemLevel.visible = !0)
+        }, e.prototype._updateLock_ = function (t) {
+            this.lockIcon.alpha = t ? 1 : 0, this.lockIcon.update(t)
+        }, e.prototype.mouseover = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !0, this.lockIcon.alpha = 1, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textName.style.fill = this.textRare.style.fill = 16774898, this.itemSummary.mouseover(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.containerName.cacheAsBitmap = !1, this.focus.visible = !1, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this._updateLock_(this.locked), this.textName.style.fill = this.textRare.style.fill = 10263708, this.itemSummary.mouseout(), this.containerName.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.clickArea.off(d.EventType.MOUSEOVER), this.clickArea.off(d.EventType.MOUSEOUT), this.iconWeapon.dispose(), this.itemSummary.dispose(), this.lockIcon.dispose(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.clickArea.clear(), this.textRare.destroy(), this.textName.destroy(), this.index = null, this.locked = null, this.memSlotItemId = null, this.onClickLock = null, this.iconWeapon = null, this.itemSummary = null, this.containerName = null, this.textName = null, this.maskName = null, this.textRare = null, this.lockIcon = null, this.focus = null, this.clickArea = null, this.airPlaneLevel = null, this.slotItemLevel = null
+        }, e
+    }(PIXI.Container);
+    !function (t) {
+        t[t.NONE = 0] = "NONE", t[t.TAN = 1] = "TAN", t[t.CHU = 2] = "CHU", t[t.CHO = 3] = "CHO", t[t.CHOCHO = 4] = "CHOCHO"
+    }(y || (y = {}));
+    var b = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.center = 22, e.textName = new c.TextBox(21, 5523516), e.textLevel = new c.TextBox(18, 5523516), e.textName.position.y = e.center - Math.floor(e.textName.height / 2), e.textLevel.position.y = e.textName.position.y + (e.textName.height - e.textLevel.height), e.addChild(e.textName, e.textLevel), e
+        }
+
+        return n(e, t), e.prototype.update = function (t, e, i) {
+            this.textName.text = t, this.textLevel.text = "(Lv." + e + ")", this.textLevel.position.x = this.textName.width, this._updateTextColor_(i), this.mouseout()
+        }, e.prototype._updateTextColor_ = function (t) {
+            var e = 5523516;
+            t && (e = 10263708), this.defaultTextColor = e
+        }, e.prototype.mouseover = function () {
+            this.cacheAsBitmap = !1, this.textName.style.fill = this.textLevel.style.fill = 16777215, this.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.cacheAsBitmap = !1, this.textName.style.fill = this.textLevel.style.fill = this.defaultTextColor, this.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.textName.destroy(), this.textLevel.destroy(), this.cacheAsBitmap = !1, this.textName = null, this.textLevel = null
+        }, e
+    }(PIXI.Container), w = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.center = 23, e.shipInDeckFlag = new u.ShipInDeckFlag, e.textStatus = new c.TextBox(18, 5523516), e.textNameAndLevel = new b, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskName.position.x = 80;
+            var i = new PIXI.Graphics;
+            return i.beginFill(0, 0), i.drawRect(0, 0, 170, 45), i.endFill(), e.textNameAndLevel.mask = i, e.textNameAndLevel.addChild(i), e.shipInDeckFlag.position.x = 188, e.shipInDeckFlag.scale.set(.75, .75), e.textStatus.position.x = 225, e.textStatus.position.y = e.center - Math.floor(e.textStatus.height / 2), e.addChild(e.textNameAndLevel, e.maskName, e.shipInDeckFlag, e.textStatus), e
+        }
+
+        return n(e, t), e.prototype.update = function (t, e, i, n, o) {
+            this.textNameAndLevel.update(t, e, n), this._updateDeck_(i), this._updateState_(o, n), this._updateTextColor_(o, n), this.mouseout()
+        }, e.prototype.mouseover = function () {
+            this.textNameAndLevel.cacheAsBitmap = !1, this.textNameAndLevel.mouseover(), this.textStatus.style.fill = 16777215, this.maskName.texture = h.COMMON_MAIN.getTexture(16), this.textNameAndLevel.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.textNameAndLevel.cacheAsBitmap = !1, this.textNameAndLevel.mouseout(), this.textStatus.style.fill = this.stateColor, this.maskName.texture = h.COMMON_MAIN.getTexture(38), this.textNameAndLevel.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.textNameAndLevel.removeChildren(), this.shipInDeckFlag.dispose(), this.textNameAndLevel.dispose(), this.textStatus.destroy(), this.repair = null, this.expedition = null, this.defaultTextColor = null, this.stateColor = null, this.textStatus = null, this.shipInDeckFlag = null, this.textNameAndLevel = null, this.maskName = null
+        }, e.prototype._updateDeck_ = function (t) {
+            this.shipInDeckFlag.visible = !1, t && (this.shipInDeckFlag.update(t), this.shipInDeckFlag.position.y = Math.floor(this.center - this.shipInDeckFlag.height / 2), this.shipInDeckFlag.visible = !0)
+        }, e.prototype._updateTextColor_ = function (t, e) {
+            var i = 5523516, n = 5523516;
+            e ? (i = 13224393, n = 2466210) : t && (n = 6201187), this.defaultTextColor = i, this.stateColor = n
+        }, e.prototype._updateState_ = function (t, e) {
+            this.textStatus.text = "", this.textStatus.visible = !1, t ? (this.textStatus.text = "\u5165\u6e20\u4e2d", this.textStatus.visible = !0) : e && (this.textStatus.text = "\u9060\u5f81\u4e2d", this.textStatus.visible = !0)
+        }, e
+    }(PIXI.Container), x = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.defaultColor = e, i.labelShatei = new c.TextBox(15, e), i.textShatei = new c.TextBox(15, e), i.textOtherSpec = new c.TextBox(15, e), i.paraLayer = new PIXI.Container;
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), i.paraLayer.mask = n, i.labelShatei.text = "\u5c04\u7a0b ", i.textShatei.visible = !1, i.labelShatei.visible = !1, i.textOtherSpec.visible = !1, i.paraLayer.addChild(i.labelShatei, i.textShatei, i.textOtherSpec), i.maskPara = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskPara.position.x = 160, i.paraLayer.position.y = Math.floor(i.maskPara.height / 2 - i.labelShatei.height / 2), i.addChild(i.paraLayer, i.maskPara), i
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.paraLayer.cacheAsBitmap = !1, this.paraLayer.removeChildren(), this.labelShatei.destroy(), this.textShatei.destroy(), this.textOtherSpec.destroy(), this.colorMouseOverShatei = null, this.defaultColor = null, this.labelShatei = null, this.textShatei = null, this.textOtherSpec = null, this.maskPara = null, this.paraLayer = null
+        }, e.prototype.update = function (t) {
+            this.paraLayer.cacheAsBitmap = !1, this.labelShatei.visible = !1, this.textShatei.visible = !1, this.textOtherSpec.visible = !1;
+            var e = s.SlotUtil.genSummaryText(t, "+", "/", !1);
+            this.textOtherSpec.visible = !0;
+            var i = this.lengthToShatei(t.range);
+            if (i == y.NONE) this.textOtherSpec.text = e, this.textOtherSpec.x = 0; else {
+                this.textOtherSpec.text = "/" + e;
+                var n = this.shateiToString(i), o = this.shateiToColor(i);
+                this.textShatei.text = n, this.colorMouseOverShatei = this.textShatei.style.fill = o, this.labelShatei.x = 0, this.textShatei.x = this.labelShatei.x + this.labelShatei.width, this.textOtherSpec.x = this.textShatei.x + this.textShatei.width, this.labelShatei.visible = !0, this.textShatei.visible = !0
+            }
+            this.paraLayer.cacheAsBitmap = !0
+        }, e.prototype.mouseover = function () {
+            this.paraLayer.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.textShatei.style.fill = this.labelShatei.style.fill = 16777215, this.maskPara.texture = h.COMMON_MAIN.getTexture(16), this.paraLayer.cacheAsBitmap = !0
+        }, e.prototype.mouseout = function () {
+            this.paraLayer.cacheAsBitmap = !1, this.textOtherSpec.style.fill = this.labelShatei.style.fill = this.defaultColor, this.textShatei.style.fill = this.colorMouseOverShatei, this.maskPara.texture = h.COMMON_MAIN.getTexture(38), this.paraLayer.cacheAsBitmap = !0
+        }, e.prototype.lengthToShatei = function (t) {
+            switch (t) {
+                case 1:
+                    return y.TAN;
+                case 2:
+                    return y.CHU;
+                case 3:
+                    return y.CHO;
+                case 4:
+                    return y.CHOCHO
+            }
+            return y.NONE
+        }, e.prototype.shateiToString = function (t) {
+            switch (t) {
+                case y.TAN:
+                    return "\u77ed";
+                case y.CHU:
+                    return "\u4e2d";
+                case y.CHO:
+                    return "\u9577";
+                case y.CHOCHO:
+                    return "\u8d85\u9577"
+            }
+            throw new Error("un supported")
+        }, e.prototype.shateiToColor = function (t) {
+            switch (t) {
+                case y.TAN:
+                    return 33023;
+                case y.CHU:
+                    return 4246528;
+                case y.CHO:
+                    return 16744448;
+                case y.CHOCHO:
+                    return 16711680
+            }
+            throw new Error("un supported")
+        }, e
+    }(PIXI.Container), I = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick()
+            }, e._onMouseOver = function (t) {
+                e.onMouseOver(t)
+            }, e._onMouseOut = function (t) {
+                e.onMouseOut(t)
+            }, e.textureLockOn = p.REMODEL_MAIN.getTexture(41), e.textureLockOff = p.REMODEL_MAIN.getTexture(40), e.interactive = e.buttonMode = !0, e.on(d.EventType.CLICK, e._onClick), e.on(d.EventType.MOUSEOVER, e._onMouseOver), e.on(d.EventType.MOUSEOUT, e._onMouseOut), e
+        }
+
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = this.textureLockOff, t && (this.texture = this.textureLockOn)
+        }, e.prototype.dispose = function () {
+            this.off(d.EventType.CLICK), this.off(d.EventType.MOUSEOVER), this.off(d.EventType.MOUSEOUT), this.onClick = null, this.textureLockOff = null, this.textureLockOn = null
+        }, e
+    }(PIXI.Sprite)
 }

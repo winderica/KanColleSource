@@ -15,28 +15,17 @@ const function435 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(20), s = function (t) {
+    var o = i(4), r = i(431), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._activated = !1;
-            var i = r.MAP_COMMON.getTexture(17);
-            return e._wave = new o.Sprite(i), e._wave.anchor.set(.5), e._wave.scale.set(0), e.addChild(e._wave), e
+            return e._icon = new r.CompDropItemIcon, e._icon.anchor.set(.5, 1), e._text = new o.TextBox(20, 16774898), e._text.position.set(17, -27), e.addChild(e._icon), e.addChild(e._text), e
         }
 
-        return n(e, t), e.prototype.activate = function () {
-            1 != this._activated && (this._activated = !0, this._startTween())
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this._stopTween()
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._icon.update(t), this._text.text = e.toString()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._wave = null
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._wave.scale.set(0), this._wave.alpha = 1, this._t = createjs.Tween.get(this._wave, { loop: !0 }).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 800).to({ scaleX: 1.35, scaleY: 1.35, alpha: 0 }, 300).to({ scaleX: 0, scaleY: 0, alpha: 1 }, 0))
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+            this.removeChildren(), this._text.destroy()
         }, e
-    }(PIXI.Graphics);
-    e.CellWave = s
+    }(PIXI.Container);
+    e.CompDropItem = s
 }

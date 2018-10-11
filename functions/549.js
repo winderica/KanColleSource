@@ -15,42 +15,25 @@ const function549 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(550), r = i(0), s = i(2), a = i(17), _ = function (t) {
-        function e(e) {
-            void 0 === e && (e = null);
-            var i = t.call(this) || this;
-            return i._onProgressPhase1 = function (t, e) {
-                var n = .4 * t.progress;
-                null != i._progress && i._progress(n)
-            }, i._loadPhase2 = function () {
-                var t = new a.UIImageLoader("common");
-                t.add("common_icon_weapon.json"), t.add("common_itemicons.json"), t.add("common_misc.json"), t.add("common_expedition.json"), t.add("common_shutter.json"), t.add("common_event.json"), t.load(i._loadPhase3, i._onProgressPhase2)
-            }, i._onProgressPhase2 = function (t, e) {
-                var n = 40 + .4 * t.progress;
-                null != i._progress && i._progress(n)
-            }, i._loadPhase3 = function () {
-                o.load({
-                    custom: { families: ["font_j"], urls: [r.default.settings.path_root + "css/main.css"] },
-                    active: i._onComplete,
-                    inactive: function () {
-                        r.default.view.showError("[WebFontLoader] inactive")
-                    },
-                    fontinactive: function (t, e) {
-                        r.default.view.showError("[WebFontLoader] fontinactive")
-                    },
-                    timeout: 6e4
-                })
-            }, i._onComplete = function () {
-                null != i._progress && i._progress(100), i._endTask()
-            }, i._progress = e, i
+    var o = i(0), r = i(270), s = i(271), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadPhase1()
-        }, e.prototype._loadPhase1 = function () {
-            var t = new a.UIImageLoader("common");
-            t.add("hpgauge/hp_gauge_mask.png"), t.add("hpgauge/hp_s_bg2.png"), t.add("hpgauge/hp_s_red_light.png"), t.add("error.png", "error"), t.add("focus_mask3.png", "mask"), t.add("common_main.json"), t.add("common_sort.json"), t.add("common_animation.json"), t.add("common_shogo.json"), t.load(this._loadPhase2, this._onProgressPhase1)
+        return n(e, t), e.prototype.initialize = function () {
+            var t = o.default.resources.getUIImage("title_bg1");
+            this._bg = new PIXI.Sprite(t), this._parts_layer = new PIXI.Container, this._logo = new PIXI.Sprite(r.TITLE_MAIN.getTexture(3)), this._logo.scale.set(.6, .6), this._logo.anchor.set(.5, .5), this._logo.position.set(234, 264), this._kira = new s.KiraLayer, this._kira.scale.set(.6, .6), this._kira.position.set(144, 183), this._kira.initialize(), this._bar = new PIXI.Graphics, this._bar.beginFill(2466210), this._bar.drawRect(0, 0, 960, 30), this._bar.endFill(), this._bar.position.set(120, 663), this._bar.scale.x = 0, this._bar_frame = new PIXI.Graphics, this._bar_frame.lineStyle(3, 16777215), this._bar_frame.drawRect(0, 0, 960, 30), this._bar_frame.endFill(), this._bar_frame.position.set(120, 663), this.addChild(this._bg), this._parts_layer.addChild(this._logo), this._parts_layer.addChild(this._kira), this._parts_layer.addChild(this._bar), this._parts_layer.addChild(this._bar_frame), this.addChild(this._parts_layer)
+        }, e.prototype.dispose = function () {
+            this._kira.dispose()
+        }, e.prototype.setProgress = function (t) {
+            this._bar.scale.x = t / 100
+        }, e.prototype.hideTween = function (t) {
+            var e = createjs.Tween.get(this._bg).to({ alpha: 0 }, 300),
+                i = createjs.Tween.get(this._parts_layer).to({ alpha: 0 }, 100);
+            (e.duration >= i.duration ? e : i).call(function () {
+                t()
+            })
         }, e
-    }(s.TaskBase);
-    e.TaskLoadResourcesCommon = _
+    }(PIXI.Container);
+    e.TitleView1 = a
 }

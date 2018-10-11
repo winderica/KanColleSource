@@ -15,21 +15,17 @@ const function654 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
-            return i.position.set(195, 10), e.conBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(14)), e.titBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.titBg.addChild(i), e.addChild(e.conBg), e.addChild(e.titBg), e
+    var o = i(11), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._shipId = e, i._url = "api_req_init/firstship", i
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.conBg = null, this.titBg = null, this.removeChildren()
-        }, e.prototype.init = function () {
-            this.conBg.position.set(148, 145), this.titBg.position.set(0, 105)
-        }, e.prototype.show = function () {
-            this.visible = !0
-        }, e.prototype.hide = function () {
-            this.visible = !1
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_ship_id = this._shipId, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.BackgroundLayer = r
+    }(o.APIBase);
+    e.APIFirstShip = r
 }

@@ -1,38 +1,39 @@
 const function695 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(8), r = i(696), s = function () {
-        function t(t) {
-            var e = this;
-            this._onClickBack = function () {
-                e.onClickBack()
-            }, this._onClickIrako = function () {
-                e.onClickUse(2)
-            }, this._onClickMamiya = function () {
-                e.onClickUse(1)
-            }, this._onClickMamiyaAndIrako = function () {
-                e.onClickUse(3)
-            }, this.mainView = t, this.sweetsSelectView = new r.SweetsSelectView, this.dialogBackground = new o.AreaBox(.8)
+    var o = i(9), r = i(1), s = i(8), a = function (t) {
+        function e(e, i, n) {
+            var a = t.call(this, .1) || this;
+            a._cbDrop = n, a._drag = null, a._isPosible = !1, a._onMove = function (t) {
+                a._flagIcon.position.set(t.data.global.x, t.data.global.y);
+                var e = a._reactionArea, i = t.data.getLocalPosition(e);
+                a._isPosible = e.hitArea.contains(i.x, i.y)
+            }, a._onUp = function () {
+                a._dispose(), a._cbDrop(a._isPosible)
+            }, a._onOut = function () {
+                a._dispose(), a._cbDrop(!1)
+            }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
+            var _ = a._flagIcon.width, u = a._flagIcon.height;
+            return a._reactionArea = new s.AreaBox(0, 16777215, _, u), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, u), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
         }
 
-        return t.prototype.dispose = function () {
-            this.sweetsSelectView.dispose(), this.mainView.removeChild(this.sweetsSelectView), this.mainView.removeChild(this.dialogBackground), this.sweetsSelectView = null, this.mainView = null, this.dialogBackground = null, this.onClickBack = null, this.onClickUse = null
-        }, t.prototype.start = function (t) {
-            var e = this;
-            this.sweetsSelectView.position.set(147, 267), this.sweetsSelectView.onClickBack = this._onClickBack, this.sweetsSelectView.onClickIrako = this._onClickIrako, this.sweetsSelectView.onClickMamiya = this._onClickMamiya, this.sweetsSelectView.onClickMamiyaAndIrako = this._onClickMamiyaAndIrako;
-            for (var i = n.default.model.deck.get(t), o = i.getShipList(), r = n.default.model.useItem.get(54).count, s = n.default.model.useItem.get(59).count, a = !1, _ = 0; _ < o.length; _++) {
-                var u = o[_];
-                u && u.tired < 40 && (a = !0)
-            }
-            var l = 0 < r && a, c = 0 < s, h = 0 < r && 0 < s;
-            this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(l, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({ alpha: 1 }, 125).call(function () {
-                e.sweetsSelectView.visible = !0, n.default.view.clickGuard = !1
-            })
-        }, t.prototype.hide = function (t) {
-            this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({ alpha: 0 }, 125).call(function () {
-                t()
-            })
-        }, t
-    }();
-    e.TaskChoiceMamiyaIrako = s
+        return n(e, t), e.prototype._dispose = function () {
+            this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)
+        }, e
+    }(s.AreaBox);
+    e.CombineDragging = a
 }

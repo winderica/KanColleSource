@@ -15,21 +15,14 @@ const function453 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(45), r = i(1354), s = i(1357), a = i(120), _ = i(449), u = i(450), l = i(43), c = function (t) {
-        function e(e, i, n, o, a, _, l, c, h, p) {
-            void 0 === p && (p = !1);
-            var d = t.call(this, e, i, o, l, c, h) || this;
-            d._onAttack = function () {
-                d._playVoice(), d._createPlanes()
-            }, d._onDamaged = function () {
-                1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
-                var t = d._getDamage(d._defender);
-                d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
-                    d._complete_flg_damage = !0, d._endTask()
-                })
-            }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
-            var f = d._scene.data.isNight(), y = d._scene.view.layer_cutin;
-            return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new u.PlaneTrio(i.friend), d
+    var o = i(0), r = i(24), s = i(6), a = i(182), _ = i(182), u = i(182), l = i(182), c = i(43), h = function (t) {
+        function e(e, i, n, r, s, c, h, p, d, f) {
+            var y = t.call(this, e, n, s, p, d, f) || this;
+            if (y._slot2 = o.default.model.slot.getMst(c), y._slot3 = o.default.model.slot.getMst(h), y._defender = r, 3 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3); else if (4 == i) y._cutin = new _.CutinDanchaku2(n, y._slot, y._slot2, y._slot3); else if (5 == i) y._cutin = new u.CutinDanchaku3(n, y._slot, y._slot2, y._slot3); else {
+                if (6 != i) throw new Error;
+                y._cutin = new l.CutinDanchaku4(n, y._slot, y._slot2, y._slot3)
+            }
+            return y
         }
 
         return n(e, t), e.prototype._start = function () {
@@ -38,31 +31,40 @@ const function453 = function (t, e, i) {
                 t._completePreload()
             })
         }, e.prototype._completePreload = function () {
-            var t = this._attacker.friend, e = this._attacker.index, i = this._defender.index;
-            1 == t ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i)), this._cutin.setCallback(this._onAttack), this._cutin.start()
-        }, e.prototype._createPlanes = function () {
-            var t;
-            t = 1 == this._defender.isSubMarine() ? o.PlaneConst.getPlaneType(!0) : o.PlaneConst.getPlaneType(!1);
-            for (var e = this._attacker.slots, i = 0, n = e; i < n.length; i++) {
-                var r = n[i];
-                if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
-                    var s = r.mst_id;
-                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
-                    var a = this._a_banner.getGlobalPos(!0);
-                    this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
-                }
-            }
-            this._attack()
-        }, e.prototype._attack = function () {
-            var t = this, e = this._scene.view.layer_content, i = this._a_banner, n = this._d_banner;
-            new a.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start();
-            var o = n.getGlobalPos(!0);
-            new _.TaskPlane(e, this._trio, o, this._onDamaged).start(function () {
-                t._complete_flg_plane = !0, t._endTask()
+            var t, e, i = this, n = this._attacker.friend, o = this._attacker.index, s = this._defender.index;
+            1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, s)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, s)), t.moveFront(), e.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(), this._cutin.view.once("attack", function () {
+                i._playVoice();
+                var n = i._getDamage(i._defender), o = e.getGlobalPos(!0),
+                    s = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                    a = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
+                    _ = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                    u = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                createjs.Tween.get(null).wait(800).call(function () {
+                    e.moveAtDamage(i._shield), i._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n)
+                }).wait(150).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(o.x + s, o.y + a)
+                }).wait(100).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                        i._attack(t, e)
+                    })
+                })
             })
-        }, e.prototype._endTask = function () {
-            0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
+        }, e.prototype._attack = function (t, e) {
+            var i = this;
+            s.SE.play("102"), t.attack(function () {
+                i._damageEffect(t, e)
+            })
+        }, e.prototype._damageEffect = function (t, e) {
+            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+            var i = this._getDamage(this._defender);
+            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+        }, e.prototype._playVoice = function () {
+            if (this._attacker.friend) {
+                var t = this._attacker.mst_id;
+                o.default.sound.voice.play(t.toString(), 17)
+            }
+        }, e.prototype._log = function (t) {
         }, e
-    }(l.PhaseAttackBase);
-    e.PhaseAttackKuboCutin = c
+    }(c.PhaseAttackBase);
+    e.PhaseAttackDanchaku = h
 }

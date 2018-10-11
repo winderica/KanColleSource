@@ -15,25 +15,18 @@ const function1462 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(1463), s = i(1467), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var o = i(10), r = function (t) {
+        function e(e, i) {
+            void 0 === i && (i = !1);
+            var n = t.call(this) || this;
+            return n._url = "api_req_practice/battle_result", n._data = e, n._debug = i, n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._normalBonus()
-        }, e.prototype._normalBonus = function () {
-            var t = this;
-            new r.TaskNormalBonus(this._scene).start(function () {
-                t._scene.view.dispose(), t._mapBonus()
-            })
-        }, e.prototype._mapBonus = function () {
-            var t = this, e = this._scene.layer_bonus, i = this._scene.data.getMapBonus();
-            new s.TaskEventBonus(e, i).start(function () {
-                t._endTask()
-            })
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
         }, e
-    }(o.TaskBase);
-    e.PhaseBonus = a
+    }(o.APIBase);
+    e.APIPracticeResult = r
 }
