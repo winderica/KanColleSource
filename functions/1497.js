@@ -22,18 +22,14 @@ const function1497 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1);
-            var t = new r.TextBox(18, 16774898);
-            t.text = "FRIEND FLEET AREA", t.position.set(-582, 300), t.rotation = -Math.PI / 2, this._bg.addChild(t);
-            var e = new r.TextBox(18, 16774898);
-            e.text = "ENEMY FLEET AREA", e.position.set(578, -234), e.rotation = Math.PI / 2, this._bg.addChild(e)
+            this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1), this._text1 = new r.TextBox(18, 16774898), this._text1.text = "FRIEND FLEET AREA", this._text1.position.set(-582, 300), this._text1.rotation = -Math.PI / 2, this._bg.addChild(this._text1), this._text2 = new r.TextBox(18, 16774898), this._text2.text = "ENEMY FLEET AREA", this._text2.position.set(578, -234), this._text2.rotation = Math.PI / 2, this._bg.addChild(this._text2)
         }, e.prototype.show = function () {
             var t = this;
             createjs.Tween.get(this._bg.scale).to({ y: 1 }, 300).call(function () {
                 t.emit("complete")
             })
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg.destroy(!0)
+            this.removeChildren(), this._text1.destroy(), this._text2.destroy()
         }, e
     }(PIXI.Container);
     e.LayerBG = a
