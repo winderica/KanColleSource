@@ -1,7 +1,17 @@
+/*
+ * util
+ * getters
+ */
 const function7 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
+        /*
+         * e: object;
+         * i: string; // key
+         * n: any; // default value
+         */
+
         function e(e, i, n) {
             return void 0 === n && (n = 0), t._getProp(e, i, n)
         }
