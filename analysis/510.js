@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * 入渠ドック
+ */
 const function510 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -5,7 +9,8 @@ const function510 = function (t, e, i) {
         function t() {
         }
 
-        return t.prototype.setData = function (t) {
+        // set repairing data
+        t.prototype.setData = function (t) {
             if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
                 var i = t[e], o = new n.NDockModelEdit(i), r = o.mstID;
                 if (r > 0) {
@@ -13,23 +18,30 @@ const function510 = function (t, e, i) {
                     this._map[s] = o
                 }
             }
-        }, t.prototype.get = function (t) {
+        };
+        // get repairing data
+        t.prototype.get = function (t) {
             var e = t.toString();
             return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.getAll = function () {
+        };
+        // get all repairing data
+        t.prototype.getAll = function () {
             var t = new Array;
             for (var e in this._map) {
                 var i = this._map[e];
                 t.push(i)
             }
             return t
-        }, t.prototype.getShipMemIDs = function () {
+        };
+        // get id of ships under repairing
+        t.prototype.getShipMemIDs = function () {
             for (var t = [], e = this.getAll(), i = 0, n = e; i < n.length; i++) {
                 var o = n[i];
                 o.shipMemID > 0 && t.push(o.shipMemID)
             }
             return t
-        }, t
+        };
+        return t
     }();
     e.NDockModelHolder = o
 }

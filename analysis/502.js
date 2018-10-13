@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * construction(建造)
+ */
 const function502 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,10 +24,13 @@ const function502 = function (t, e, i) {
             this._dic = {}
         }
 
-        return t.prototype.get = function (t) {
+        // get construction data
+        t.prototype.get = function (t) {
             var e = t.toString();
             return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getAll = function () {
+        };
+        // get all construction data
+        t.prototype.getAll = function () {
             var t = new Array;
             for (var e in this._dic) {
                 var i = this._dic[e];
@@ -32,7 +39,8 @@ const function502 = function (t, e, i) {
             return t.sort(function (t, e) {
                 return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
             }), t
-        }, t
+        };
+        return t
     }();
     e.KDockModelHolder = r;
     var s = function (t) {

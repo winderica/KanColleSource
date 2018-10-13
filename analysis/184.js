@@ -1,3 +1,7 @@
+/*
+ * called by `501.js`
+ * when reward is furniture
+ */
 const function184 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -15,24 +19,31 @@ const function184 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(46), s = function (t) {
-        function e(e, i, n) {
-            void 0 === i && (i = null), void 0 === n && (n = null);
-            var o = t.call(this) || this;
-            return o._mst_id = e, o._name = i, o._message = n, o
-        }
+    var o = i(0),
+        r = i(46),
+        s = function (t) {
+            function e(e, i, n) {
+                void 0 === i && (i = null), void 0 === n && (n = null);
+                var o = t.call(this) || this;
+                return o._mst_id = e, o._name = i, o._message = n, o
+            }
 
-        return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
-            get: function () {
-                return this._mst_id
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "name", {
-            get: function () {
-                if (null != this._name && this._name.length > 0) return this._name;
-                var t = o.default.model.furniture.getData(this._mst_id);
-                return null == t ? "" : t.name
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(r.RewardModel);
+            n(e, t);
+            // furniture id
+            Object.defineProperty(e.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                }, enumerable: !0, configurable: !0
+            });
+            // furniture name
+            Object.defineProperty(e.prototype, "name", {
+                get: function () {
+                    if (null != this._name && this._name.length > 0) return this._name;
+                    var t = o.default.model.furniture.getData(this._mst_id);
+                    return null == t ? "" : t.name
+                }, enumerable: !0, configurable: !0
+            });
+            return e
+        }(r.RewardModel);
     e.RewardModelFurniture = s
 }

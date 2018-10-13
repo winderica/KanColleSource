@@ -1,3 +1,7 @@
+/*
+ * called by `515.js`
+ * file name of ship's graph and voice (api_start2.api_mst_shipgraph)
+ */
 const function516 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -6,11 +10,14 @@ const function516 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
+        // 艦船ID
+        Object.defineProperty(t.prototype, "mstID", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "version", {
+        });
+        // ファイルのバージョン 文字列 [グラフィック, ボイス, 母港ボイス] [0]
+        Object.defineProperty(t.prototype, "version", {
             get: function () {
                 var t = n.ObjUtil.getStrArray(this._o, "api_version");
                 return null != t && t.length > 0 ? t[0] : "1"
@@ -25,39 +32,63 @@ const function516 = function (t, e, i) {
                 var t = n.ObjUtil.getStrArray(this._o, "api_version");
                 return null != t && t.length > 2 ? t[2] : "1"
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "unique_key", {
+        });
+        // ファイル名
+        Object.defineProperty(t.prototype, "unique_key", {
             get: function () {
                 return n.ObjUtil.getString(this._o, "api_filename")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.getPortOffset = function (t) {
+        });
+        /*
+         * api_xxxx_n: xxでの表示座標(無傷)
+         * api_xxxx_d: (中破)
+         */
+        // 母港
+        t.prototype.getPortOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_boko_d" : "api_boko_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getCenterOffset = function (t) {
+        };
+        // 改装
+        t.prototype.getCenterOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_kaizo_d" : "api_kaizo_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getLeftOffset = function (t) {
+        };
+        // 演習(自軍側)
+        t.prototype.getLeftOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_ensyuf_d" : "api_ensyuf_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getMapOffset = function (t) {
+        };
+        // 出撃中
+        t.prototype.getMapOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_map_d" : "api_map_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getRemodelPowupUIOffset = function (t) {
+        };
+        // 近代化改修
+        t.prototype.getRemodelPowupUIOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_kaisyu_d" : "api_kaisyu_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getBattleOffset = function (t) {
+        };
+        // 戦闘
+        t.prototype.getBattleOffset = function (t) {
             void 0 === t && (t = !1);
             var e = t ? "api_battle_d" : "api_battle_n", i = n.ObjUtil.getNumArray(this._o, e);
             return null == i || i.length < 2 ? new PIXI.Point(0, 0) : new PIXI.Point(i[0], i[1])
-        }, t.prototype.getFaceRect = function (t) {
+        };
+        /*
+         * api_weda: ケッコンカッコカリの顔枠の左上?
+         * api_wedb: 右下?
+         */
+        t.prototype.getFaceRect = function (t) {
             void 0 === t && (t = !1);
             var e = n.ObjUtil.getNumArray(this._o, "api_weda"), i = n.ObjUtil.getNumArray(this._o, "api_wedb");
             return new PIXI.Rectangle(e[0], e[1], i[0], i[1])
-        }, t
+        };
+        return t
     }();
     e.ShipGraphModel = o
 }

@@ -1,3 +1,7 @@
+/*
+ * the function called by `482.js`
+ * expedition
+ */
 const function495 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -19,32 +23,46 @@ const function495 = function (t, e, i) {
         function t() {
         }
 
-        return t.prototype.get = function (t) {
+        /*
+         * get expedition data
+         * t: number; // expedition id
+         */
+        t.prototype.get = function (t) {
             return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
-        }, t.prototype.getInArea = function (t, e) {
+        };
+        // get expeditions in an area
+        t.prototype.getInArea = function (t, e) {
             var i = [];
             for (var n in this._map) {
                 var o = this._map[n];
+                // `state`: 達成状況　0=未出撃, 1=未達成, 2=達成済み
                 o.areaID == t && (1 == e && -1 == o.state || i.push(o))
             }
             return i.sort(function (t, e) {
                 return t.mstID - e.mstID
             }), i
-        }, t.prototype.getserialID = function () {
+        };
+        // ?
+        t.prototype.getserialID = function () {
             return this._serial_id
-        }, Object.defineProperty(t.prototype, "serial_id", {
+        };
+        Object.defineProperty(t.prototype, "serial_id", {
             set: function (t) {
                 this._serial_id = t
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.ExpeditionModelHolder = s;
+    // class a extends s
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.setMstData = function (t) {
+        n(e, t);
+        // set expedition data
+        e.prototype.setMstData = function (t) {
             if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
                 var i = t[e], n = new o.ExpeditionModelEdit(i), r = n.mstID;
                 if (r > 0) {
@@ -52,7 +70,9 @@ const function495 = function (t, e, i) {
                     this._map[s] = n
                 }
             }
-        }, e.prototype.setData = function (t) {
+        };
+        // set expedition state
+        e.prototype.setData = function (t) {
             if (null != this._map && null != t) for (var e = 0, i = t; e < i.length; e++) {
                 var n = i[e], o = r.ObjUtil.getNumber(n, "api_mission_id");
                 if (o > 0) {
@@ -63,7 +83,8 @@ const function495 = function (t, e, i) {
                     }
                 }
             }
-        }, e
+        };
+        return e
     }(s);
     e.ExpeditionModelHolderEdit = a
 }

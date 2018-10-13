@@ -1,3 +1,7 @@
+/*
+ * the function called by `495.js`
+ * expedition (api_start2.api_mst_mission)
+ */
 const function496 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,47 +24,68 @@ const function496 = function (t, e, i) {
             this._o = t, this._state = -1
         }
 
-        return Object.defineProperty(t.prototype, "state", {
+        // `state`: 達成状況　0=未出撃, 1=未達成, 2=達成済み
+        Object.defineProperty(t.prototype, "state", {
             get: function () {
                 return this._state
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "mstID", {
+        });
+        // api_id: 遠征ID
+        Object.defineProperty(t.prototype, "mstID", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "areaID", {
+        });
+        // api_maparea_id: 海域カテゴリID
+        Object.defineProperty(t.prototype, "areaID", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_maparea_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "dispID", {
+        });
+        // api_disp_no: 表示上の遠征ID ("A1"のような)
+        Object.defineProperty(t.prototype, "dispID", {
             get: function () {
                 return o.ObjUtil.getString(this._o, "api_disp_no")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
+        });
+        // api_name: 遠征名
+        Object.defineProperty(t.prototype, "name", {
             get: function () {
                 return o.ObjUtil.getString(this._o, "api_name")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "difficulty", {
+        });
+        // api_difficulty: 難易度
+        Object.defineProperty(t.prototype, "difficulty", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_difficulty")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "detail", {
+        });
+        // api_details: 遠征詳細
+        Object.defineProperty(t.prototype, "detail", {
             get: function () {
                 return o.ObjUtil.getString(this._o, "api_details")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "time", {
+        });
+        // api_time: 時間　分単位
+        Object.defineProperty(t.prototype, "time", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_time")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "fuel", {
+        });
+        // api_use_fuel: 燃料消費割合
+        Object.defineProperty(t.prototype, "fuel", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_use_fuel")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ammo", {
+        });
+        // api_use_bull: 弾薬消費割合
+        Object.defineProperty(t.prototype, "ammo", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_use_bull")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "item1_id", {
+        });
+        // api_win_item1: 獲得アイテム1　[0]=アイテムID, [1]=入手個数
+        Object.defineProperty(t.prototype, "item1_id", {
             get: function () {
                 var t = o.ObjUtil.getNumArray(this._o, "api_win_item1");
                 return null != t && t.length > 0 ? t[0] : 0
@@ -70,7 +95,9 @@ const function496 = function (t, e, i) {
                 var t = o.ObjUtil.getNumArray(this._o, "api_win_item1");
                 return null != t && t.length > 1 ? t[1] : 0
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "item2_id", {
+        });
+        // api_win_item2: 獲得アイテム2
+        Object.defineProperty(t.prototype, "item2_id", {
             get: function () {
                 var t = o.ObjUtil.getNumArray(this._o, "api_win_item2");
                 return null != t && t.length > 0 ? t[0] : 0
@@ -80,17 +107,25 @@ const function496 = function (t, e, i) {
                 var t = o.ObjUtil.getNumArray(this._o, "api_win_item2");
                 return null != t && t.length > 1 ? t[1] : 0
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "required_num", {
+        });
+        // api_deck_num: 必要隻数
+        Object.defineProperty(t.prototype, "required_num", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_deck_num")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isCancelable = function () {
+        });
+        // api_return_flag: 遠征中止可否
+        t.prototype.isCancelable = function () {
             return 1 == o.ObjUtil.getNumber(this._o, "api_return_flag")
-        }, t.prototype.isSupport = function () {
+        };
+        // is 支援艦隊
+        t.prototype.isSupport = function () {
             return [33, 34, 301, 302].indexOf(this.mstID) >= 0
-        }, t
+        };
+        return t
     }();
     e.ExpeditionModel = r;
+    // class s extends r
     var s = function (t) {
         function e(e) {
             return t.call(this, e) || this

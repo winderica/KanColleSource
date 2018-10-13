@@ -1,3 +1,7 @@
+/*
+ * called by `501.js`
+ * when reward is アイテム
+ */
 const function124 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -22,20 +26,27 @@ const function124 = function (t, e, i) {
             return o._mst_id = e, o._count = i, o._message = n, o
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+        n(e, t);
+        // item id
+        Object.defineProperty(e.prototype, "mst_id", {
             get: function () {
                 return this._mst_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "count", {
+        });
+        // item count
+        Object.defineProperty(e.prototype, "count", {
             get: function () {
                 return this._count
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "name", {
+        });
+        // item name
+        Object.defineProperty(e.prototype, "name", {
             get: function () {
                 var t = o.default.model.useItem.get(this._mst_id);
                 return null == t ? "" : t.name
             }, enumerable: !0, configurable: !0
-        }), e
+        });
+        return e
     }(r.RewardModel);
     e.RewardModelUseitem = s
 }

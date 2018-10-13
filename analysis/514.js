@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * constants (api_start2.api_mst_const)
+ */
 const function514 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -19,22 +23,28 @@ const function514 = function (t, e, i) {
         function t() {
         }
 
-        return Object.defineProperty(t.prototype, "boko_max_ships", {
+        // 「最大保有艦娘数」最大値 2018.10.14現時点390
+        Object.defineProperty(t.prototype, "boko_max_ships", {
             get: function () {
                 var t = o.ObjUtil.getObject(this._o, "api_boko_max_ships");
                 return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "quest_max", {
+        });
+        // 「最大受領可能任務数」最大値 10
+        Object.defineProperty(t.prototype, "quest_max", {
             get: function () {
                 var t = o.ObjUtil.getObject(this._o, "api_parallel_quest_max");
                 return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_server", {
+        });
+        // ???
+        Object.defineProperty(t.prototype, "voice_server", {
             get: function () {
                 var t = o.ObjUtil.getObject(this._o, "api_voice_server_addr");
                 return null == t ? "" : o.ObjUtil.getString(t, "api_string_value")
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.ServerConstModel = r;
     var s = function (t) {

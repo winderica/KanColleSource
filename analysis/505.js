@@ -1,3 +1,7 @@
+/*
+ * called by `504.js`
+ * log (api_port/port.api_log)
+ */
 const function505 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -6,15 +10,19 @@ const function505 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        // 通知タイプ　文字列　1から 入渠, 工廠, 遠征, 支給?, 演習, 勲章?, 出撃, 任務?, 申請?, 昇格?, 図鑑, 達成?, 改造?
+        Object.defineProperty(t.prototype, "type", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_type")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "message", {
+        });
+        // メッセージ
+        Object.defineProperty(t.prototype, "message", {
             get: function () {
                 return n.ObjUtil.getString(this._o, "api_message")
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.LogModel = o
 }

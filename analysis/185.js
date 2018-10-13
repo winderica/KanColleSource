@@ -1,3 +1,7 @@
+/*
+ * called by `501.js`
+ * when reward is ship
+ */
 const function185 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -22,16 +26,21 @@ const function185 = function (t, e, i) {
             return n._mst_id = e, n._message = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+        n(e, t);
+        // ship id
+        Object.defineProperty(e.prototype, "mst_id", {
             get: function () {
                 return this._mst_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "name", {
+        });
+        // ship name
+        Object.defineProperty(e.prototype, "name", {
             get: function () {
                 var t = o.default.model.ship.get(this._mst_id);
                 return null == t ? "" : t.name
             }, enumerable: !0, configurable: !0
-        }), e
+        });
+        return e
     }(r.RewardModel);
     e.RewardModelShip = s
 }

@@ -1,3 +1,7 @@
+/*
+ * called by `497.js`
+ * movable furniture (api_start2.api_mst_furnituregraph)
+ */
 const function498 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -6,19 +10,25 @@ const function498 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
+        // 家具ID
+        Object.defineProperty(t.prototype, "mstID", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "typeID", {
+        });
+        // カテゴリ
+        Object.defineProperty(t.prototype, "typeID", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_type")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "numberID", {
+        });
+        // カテゴリ内通し番号
+        Object.defineProperty(t.prototype, "numberID", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_no")
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.FurnitureGraphModel = o
 }

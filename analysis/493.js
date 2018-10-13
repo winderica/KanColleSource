@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * equippable equipments of ships
+ */
 const function493 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });

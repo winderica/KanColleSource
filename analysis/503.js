@@ -1,3 +1,7 @@
+/*
+ * called by `502.js`
+ * construction(建造) (api_get_member/kdock)
+ */
 const function503 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,45 +24,65 @@ const function503 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "id", {
+        // ドック番号
+        Object.defineProperty(t.prototype, "id", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "state", {
+        });
+        // 状態 -1=ロック, 0=空, 2=建造中, 3=完成
+        Object.defineProperty(t.prototype, "state", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_state", -1)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ship_mst_id", {
+        });
+        // 建造艦ID
+        Object.defineProperty(t.prototype, "ship_mst_id", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_created_ship_id", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "complete_time", {
+        });
+        // 建造完了時間 0=空き|完了済み
+        Object.defineProperty(t.prototype, "complete_time", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_complete_time", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "fuel", {
+        });
+        // 投入燃料
+        Object.defineProperty(t.prototype, "fuel", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_item1", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ammo", {
+        });
+        // 投入弾薬
+        Object.defineProperty(t.prototype, "ammo", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_item2", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "steel", {
+        });
+        // 投入鋼材
+        Object.defineProperty(t.prototype, "steel", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_item3", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "baux", {
+        });
+        // 投入ボーキサイト
+        Object.defineProperty(t.prototype, "baux", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_item4", 0)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "dev_kit", {
+        });
+        // 投入開発資材
+        Object.defineProperty(t.prototype, "dev_kit", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_item5", 0)
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isLargeBuild = function () {
+        });
+        // 大型艦建造 (fuel >= 1000)
+        t.prototype.isLargeBuild = function () {
             return (2 == this.state || 3 == this.state) && this.fuel >= 1e3
-        }, t
+        };
+        return t
     }();
     e.KDockModel = r;
     var s = function (t) {
@@ -66,11 +90,16 @@ const function503 = function (t, e, i) {
             return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.__open__ = function () {
+        n(e, t);
+        e.prototype.__open__ = function () {
+            // current state is locked and next state is empty
             -1 == this.state && (this._o.api_state = 0)
-        }, e.prototype.__complete__ = function (t) {
+        };
+        e.prototype.__complete__ = function (t) {
+            // current state is building and next state is finished
             void 0 === t && (t = !1), (t || 2 == this.state) && (this._o.api_state = 3, this._o.api_complete_time = 0, this._o.api_complete_time_str = "")
-        }, e
+        };
+        return e
     }(r);
     e.KDockModelEdit = s
 }

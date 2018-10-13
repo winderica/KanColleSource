@@ -1,3 +1,7 @@
+/*
+ * the function called by `499.js`
+ * furniture data (api_start2.api_mst_furniture)
+ */
 const function500 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,65 +24,99 @@ const function500 = function (t, e, i) {
             this._hasFlag = !1, this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
+        // 家具ID
+        Object.defineProperty(t.prototype, "mstID", {
             get: function () {
                 return this._o.api_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "no", {
+        });
+        // カテゴリ内通し番号 0から始まる
+        Object.defineProperty(t.prototype, "no", {
             get: function () {
                 return this._o.api_no
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "type", {
+        });
+        // カテゴリ 0=床, 1=壁紙, 2=窓, 3=壁掛け, 4=家具, 5=机
+        Object.defineProperty(t.prototype, "type", {
             get: function () {
                 return this._o.api_type
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
+        });
+        // 家具名
+        Object.defineProperty(t.prototype, "name", {
             get: function () {
                 return this._o.api_title
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "outside", {
+        });
+        // outside graph? (only window has non-zero `api_outside_id` property?)
+        Object.defineProperty(t.prototype, "outside", {
             get: function () {
                 return this._o.hasOwnProperty("api_outside_id") ? this._o.api_outside_id : 4
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
+        });
+        // 説明
+        Object.defineProperty(t.prototype, "description", {
             get: function () {
                 return this._o.api_description
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "price", {
+        });
+        // 価格
+        Object.defineProperty(t.prototype, "price", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_price")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "rarity", {
+        });
+        // レアリティ
+        Object.defineProperty(t.prototype, "rarity", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_rarity")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "seasonID", {
+        });
+        // ?
+        Object.defineProperty(t.prototype, "seasonID", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_season")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "version", {
+        });
+        // ? (value is always '1'?)
+        Object.defineProperty(t.prototype, "version", {
             get: function () {
                 return o.ObjUtil.getString(this._o, "api_version", "1")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.has = function () {
+        });
+        // has furniture
+        t.prototype.has = function () {
             return this._hasFlag
-        }, t.prototype.isOnSale = function () {
+        };
+        // 販売中?
+        t.prototype.isOnSale = function () {
             return 1 == o.ObjUtil.getNumber(this._o, "api_saleflg")
-        }, t.prototype.isNeedCraftsman = function () {
+        };
+        // 職人必要: [2000, 20000)
+        t.prototype.isNeedCraftsman = function () {
             return this.price >= 2e3 && this.price < 2e4
-        }, t.prototype.isHighGrade = function () {
+        };
+        // 長者向け: [100000, )
+        t.prototype.isHighGrade = function () {
             return this.price >= 1e5
-        }, t.prototype.isActive = function () {
+        };
+        // is movable?
+        t.prototype.isActive = function () {
             return 1 == this._o.api_active_flag
-        }, t.prototype.getDiscountPrice = function () {
+        };
+        // discount using Craftsman: 0.1 * (price - 100000)
+        t.prototype.getDiscountPrice = function () {
             if (0 == this.isHighGrade()) return this.price;
             var t = .1 * (this.price - 1e5);
             return t = Math.max(t, 0), Math.floor(t)
-        }, Object.defineProperty(t.prototype, "getVersion", {
+        };
+        // get version
+        Object.defineProperty(t.prototype, "getVersion", {
             get: function () {
                 return this._o.api_version
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.FurnitureModel = r;
     var s = function (t) {

@@ -1,3 +1,7 @@
+/*
+ * called by `493.js`
+ * equippable equipments of ships (api_start2.api_mst_equip_ship)
+ */
 const function494 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -6,15 +10,19 @@ const function494 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "ship_id", {
+        // 艦船ID
+        Object.defineProperty(t.prototype, "ship_id", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_ship_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "equip_type", {
+        });
+        // 装備可能カテゴリ
+        Object.defineProperty(t.prototype, "equip_type", {
             get: function () {
                 return n.ObjUtil.getNumArray(this._o, "api_equip_type")
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        return t
     }();
     e.EquipModel = o
 }

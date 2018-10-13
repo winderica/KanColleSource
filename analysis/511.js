@@ -1,3 +1,7 @@
+/*
+ * called by `510.js`
+ * 入渠ドック (api_get_member/ndock)
+ */
 const function511 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,23 +24,31 @@ const function511 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
+        // ドック番号
+        Object.defineProperty(t.prototype, "mstID", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "state", {
+        });
+        // 状態　-1=ロック?, 0=空き, 1=入渠中
+        Object.defineProperty(t.prototype, "state", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_state", -1)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "shipMemID", {
+        });
+        // 入渠中艦船ID　空きは0
+        Object.defineProperty(t.prototype, "shipMemID", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_ship_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "completeTime", {
+        });
+        // 入渠完了時間
+        Object.defineProperty(t.prototype, "completeTime", {
             get: function () {
                 return o.ObjUtil.getNumber(this._o, "api_complete_time")
             }, enumerable: !0, configurable: !0
-        }), t
+        });
+        returnt
     }();
     e.NDockModel = r;
     var s = function (t) {
