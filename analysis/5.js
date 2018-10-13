@@ -1,5 +1,5 @@
 /*
- * the function called by `479.js`
+ * util
  * definition of width and height
  */
 const function5 = function (t, e, i) {
@@ -9,15 +9,19 @@ const function5 = function (t, e, i) {
         function t() {
         }
 
-        return Object.defineProperty(t, "width", {
+        Object.defineProperty(t, "width", {
             get: function () {
                 return this._width
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t, "height", {
+        });
+        Object.defineProperty(t, "height", {
             get: function () {
                 return this._height
             }, enumerable: !0, configurable: !0
-        }), t._width = 1200, t._height = 720, t // 1200 * 720
+        });
+        t._width = 1200;
+        t._height = 720;
+        return t;
     }();
     e.default = n
-}
+};

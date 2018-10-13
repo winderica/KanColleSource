@@ -1,39 +1,80 @@
-// This function is first executed (See ./trunk.js)
 const function479 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-    /*
-     * parse url to object
-     *
-     * interface T {
-     *     api_root: '/kcapi';
-     *     api_starttime: string; // unix timestamp
-     *     api_token: string;
-     *     osapi_root: 'osapi.dmm.com';
-     *     version: string; // current version
-     *     voice_root: '/kcs/sound';
-     * }
-     */
-    function n() {
-        var t = {}, e = window.location.search.substring(1);
-        if (e.length > 0) for (var i = e.split("&"), n = 0; n < i.length; n++) {
-            var o = i[n], r = o.split("=");
-            2 == r.length && (t[r[0]] = r[1])
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-        return t
-    }
-
-    // initialize game
-    function o() {
-        createjs.Ticker.timingMode = createjs.Ticker.TIMEOUT, createjs.Ticker.setFPS(60);
-        var t = { antialias: !1, backgroundColor: 0 },
-            e = new PIXI.Application(s.default.width, s.default.height, t);
-        document.body.appendChild(e.view), e.stage.addChild(r.default.view);
-        var i = n();
-        i.renderer = e.renderer, new a.AppInitializeTask(i).start()
-    }
-
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var r = i(0), s = i(5), a = i(538), _ = { init: o };
-    e.default = _
+    var o = i(166), r = i(4), s = i(36), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "user_name", {
+            get: function () {
+                return this._user_name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "level", {
+            get: function () {
+                return this._level
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "deck_name", {
+            get: function () {
+                return this._deck_name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "medal", {
+            get: function () {
+                return this._medal
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._user_name.destroy(), this._level.dispose(), this._deck_name.dispose(), this._medal.dispose()
+        }, e
+    }(PIXI.Container);
+    e.DeckInfo = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._text = new r.TextBox(21, 16774898), e._text.x = 29, e._text.y = -1, e.addChild(e._text), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text.text
+            }, set: function (t) {
+                this._text.text = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(68)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e
+    }(PIXI.Sprite), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._text = new r.TextBox(21, 16774898), e._text.x = 71, e._text.y = -3, e.addChild(e._text), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return this._text.text
+            }, set: function (t) {
+                this._text.text = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(76)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e
+    }(PIXI.Sprite)
 }

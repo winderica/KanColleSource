@@ -13,7 +13,7 @@ It's difficult to check diff between two versions of `webpack` bundled file:
 because of the implementation of `webpack`, which turn modules into an array, implying that the change of modules will lead 
 to the change of array we get, and we cannot find a better way to organize the elements of this array.
 
-For the reasons above, I will only do analysis for a certain version (maybe `4.1.1.6`) until a better idea is brought up.
+For the reasons above, I will only do analysis for a certain version(`4.2.0.2`) until a better idea is brought up.
 
 ## Folder structure
 
