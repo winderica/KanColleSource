@@ -1,3 +1,7 @@
+/*
+ * called by `0.js`
+ * settings
+ */
 const function536 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -5,7 +9,8 @@ const function536 = function (t, e, i) {
         function t() {
         }
 
-        return Object.defineProperty(t.prototype, "renderer", {
+        // getters
+        Object.defineProperty(t.prototype, "renderer", {
             get: function () {
                 return this._args.renderer
             }, enumerable: !0, configurable: !0
@@ -33,9 +38,16 @@ const function536 = function (t, e, i) {
             get: function () {
                 return n.ObjUtil.getString(this._args, "version")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.initialize = function (t) {
+        });
+
+        /*
+         * initialize function
+         * t: object; // passed from `481.js`
+         */
+        t.prototype.initialize = function (t) {
             this._args = t
-        }, t
+        };
+        return t
     }();
     e.SettingsModel = o
 }

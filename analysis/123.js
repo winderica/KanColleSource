@@ -1,3 +1,7 @@
+/*
+ * the function called by `13.js`
+ * rectangular gradient
+ */
 const function123 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
@@ -5,7 +9,7 @@ const function123 = function (t, e, i) {
         function t() {
         }
 
-        return t._getRectItem = function (t, e) {
+        t._getRectItem = function (t, e) {
             if (!1 === this._items.hasOwnProperty(t)) return void(this._items[t] = []);
             var i = this._items[t].filter(function (t) {
                 for (var i = t.data, n = !0, o = 0, r = i.length; o < r; o++) if (i[o] !== e[o]) {
@@ -15,7 +19,8 @@ const function123 = function (t, e, i) {
                 return n
             });
             if (0 !== i.length) return i[0].sprite
-        }, t.gradientLeftToRight = function (t, e, i, n) {
+        };
+        t.gradientLeftToRight = function (t, e, i, n) {
             var o = this._getRectItem("L2R", [t, e, i, n]);
             if (void 0 !== o) return new PIXI.Sprite(o);
             var r = document.createElement("canvas");
@@ -26,7 +31,9 @@ const function123 = function (t, e, i) {
             a.addColorStop(0, "#ffffff"), a.addColorStop(i, "#ffffff"), a.addColorStop(n, "#000000"), a.addColorStop(1, "#000000"), s.fillStyle = a, s.rect(0, 0, t, e), s.fill();
             var _ = PIXI.Texture.fromCanvas(r);
             return this._items.L2R.push({ data: [t, e, i, n], sprite: _ }), new PIXI.Sprite(_)
-        }, t._items = {}, t
+        };
+        t._items = {};
+        return t
     }();
     e.CreateRect = n
 }

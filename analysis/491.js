@@ -1,3 +1,7 @@
+/*
+ * the function called by `490.js`
+ * deck - combined fleet
+ */
 const function491 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -20,31 +24,43 @@ const function491 = function (t, e, i) {
             this._type = 0
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        // 0=解隊, 1=機動部隊, 2=水上部隊, 3=輸送部隊
+        Object.defineProperty(t.prototype, "type", {
             get: function () {
                 return this._type
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_main", {
+        });
+        // 連合艦隊 第1艦隊 id
+        Object.defineProperty(t.prototype, "deck_id_main", {
             get: function () {
                 return 1 == this.isCombined() ? 1 : 0
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_sub", {
+        });
+        // 連合艦隊 第2艦隊 id
+        Object.defineProperty(t.prototype, "deck_id_sub", {
             get: function () {
                 return 1 == this.isCombined() ? 2 : 0
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isCombined = function () {
+        });
+        // is combined
+        t.prototype.isCombined = function () {
             return 1 == this._type || 2 == this._type || 3 == this._type
-        }, t
+        };
+        return t
     }();
     e.DeckCombinedModel = o;
+    // class r extends o
     var r = function (t) {
         function e() {
             return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.__update__ = function (t) {
+        n(e, t);
+        // update combined fleet type
+        e.prototype.__update__ = function (t) {
             this._type = t
-        }, e
+        };
+        return e
     }(o);
     e.DeckCombinedModelEdit = r
 }
