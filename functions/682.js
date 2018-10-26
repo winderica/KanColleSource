@@ -15,19 +15,25 @@ const function682 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(211), r = i(21), s = function (t) {
-        function e() {
-            var e = r.COMMON_MAIN.getTexture(15);
-            return t.call(this, e) || this
+    var o = i(0), r = i(154), s = i(60), a = i(155), _ = i(4), u = i(21), l = function (t) {
+        function e(e) {
+            void 0 === e && (e = !1);
+            var i = t.call(this) || this, n = new PIXI.Sprite, l = new _.TextBox(19, 5523516),
+                c = new PIXI.Sprite(o.default.resources.getUIImage("mask")), h = new _.TextBox(21, 5523516),
+                p = new a.SlotItemLevel, d = new PIXI.Sprite, f = new r.AirPlaneLevel,
+                y = new PIXI.Sprite(u.COMMON_MAIN.getTexture(42)), m = new s.IconWeapon;
+            n.texture = u.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
+            var v = new PIXI.Container;
+            return v.mask = c, v.addChild(l, c), v.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, v, h, d, p, f, y, m), i.background = n, i.textName = l, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = v, i
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.cacheAsBitmap = !1, t.prototype.dispose.call(this)
-        }, e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
-            this.cacheAsBitmap = !1, this._sokuryoku.update(o), this._textHp.text = t.toString(), this._textSoukou.text = e.toString(), this._textKaihi.text = i.toString(), this._textTousai.text = n.toString(), this._shatei.update(r), this._textKaryoku.text = s.toString(), this._textRaisou.text = a.toString(), this._textTaiku.text = _.toString(), this._textTaisen.text = u.toString(), this._textSakuteki.text = l.toString(), this._textLucky.text = c.toString(), this.cacheAsBitmap = !0, this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
-        }, e.prototype._alignment = function () {
-            this._textHp.position.set(137, 3), this._textSoukou.position.set(137, 38), this._textKaihi.position.set(137, 72), this._textTousai.position.set(137, 107), this._sokuryoku.position.set(116, 143), this._shatei.position.set(116, 177), this._textKaryoku.position.set(285, 3), this._textRaisou.position.set(285, 38), this._textTaiku.position.set(285, 72), this._textTaisen.position.set(285, 107), this._textSakuteki.position.set(285, 141), this._textLucky.position.set(285, 176)
+            this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
+        }, e.prototype.clear = function () {
+            this.update(0, "", !1, 0, 0, 0, !1)
+        }, e.prototype.update = function (t, e, i, n, o, r, s) {
+            void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
         }, e
-    }(o.ShipParameterViewBase);
-    e.ShipParameterView = s
+    }(PIXI.Container);
+    e.SlotItemSlotView = l
 }

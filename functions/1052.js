@@ -16,16 +16,16 @@ const function1052 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_get_member/record", i._recordInfoModel = e, i
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_member/updatecomment", n._comment = e, n._cmt_id = i, n
         }
 
         return n(e, t), e.prototype._connect = function () {
-            t.prototype._connect.call(this)
+            this._post_data.api_cmt = this._comment, "" != this._cmt_id && (this._post_data.api_cmt_id = this._cmt_id), t.prototype._connect.call(this)
         }, e.prototype._completedEnd = function () {
-            this._recordInfoModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.RecordInfoAPI = r
+    e.RecordUpdateCommentAPI = r
 }

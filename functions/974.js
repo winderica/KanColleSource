@@ -15,23 +15,27 @@ const function974 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(30), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
+    var o = i(53), r = i(365), s = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = o.SALLY_COMMON.getTexture(28), this._label.texture = o.SALLY_COMMON.getTexture(33), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
-        }, e.prototype.update = function (t) {
-            if (null == t) this.visible = !1; else {
-                var e = t.level;
-                e = Math.max(0, e), e = Math.min(999, e);
-                var i = Math.floor(e / 100), n = e % 100, r = Math.floor(n / 10), s = n % 10,
-                    a = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67];
-                e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "air_unit", {
+            get: function () {
+                return null != this._airunit
+            }, set: function (t) {
+                if (t != this.air_unit) {
+                    if (1 == t) {
+                        this._btn.position.set(0, -8);
+                        var e = o.SALLY_SORTIE.getTexture(7);
+                        this._airunit = new PIXI.Sprite(e), this._airunit.position.set(6, 33), this.addChild(this._airunit)
+                    } else this.removeChild(this._airunit), this._airunit = null, this._btn.position.set(0, 0);
+                    this._updateTexture()
+                }
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._updateTexture = function () {
+            1 == this.air_unit ? 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(18) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(19) : this._btn.texture = o.SALLY_SORTIE.getTexture(17) : 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(21) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(22) : this._btn.texture = o.SALLY_SORTIE.getTexture(20)
         }, e
-    }(PIXI.Container);
-    e.CompBannerLevel = r
+    }(r.BtnGoBase);
+    e.BtnGo = s
 }

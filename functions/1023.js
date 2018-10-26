@@ -15,35 +15,46 @@ const function1023 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(23), s = i(30), a = i(38), _ = i(368), u = i(1024), l = i(1025), c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onLoadCompleteAreaTextImage = function () {
-                1 == n._panel_inexpe.visible && (n._panel_inexpe.deck_name.y = n._areaText.y + n._areaText.height - 1)
-            }, n._panel_noexpe = new u.PanelDetailNoExpe(e), n._panel_inexpe = new l.PanelDetailInExpe(i), n
+    var o = i(4), r = (i(257), i(22)), s = i(38), a = i(1024), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._activated = !1, i._expedition_id = -1, i._deck_id = -1, i._remain_time = 0, i._timer_key = -1, i._onClick = function () {
+                null != i._cancel_cb && i._cancel_cb(i._expedition_id, i._deck_id)
+            }, i._cancel_cb = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(s.SALLY_COMMON.getTexture(27));
-            t.position.set(0, 138), this.addChild(t);
-            var e = new PIXI.Sprite(s.SALLY_COMMON.getTexture(50));
-            e.position.set(0, 102), this.addChild(e);
-            var i = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(15));
-            i.position.set(24, 111), this.addChild(i);
-            var n = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(43));
-            n.position.set(28, 235), this.addChild(n);
-            var r = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(44));
-            r.position.set(28, 394), this.addChild(r), this._panel_noexpe.initialize(), this.addChild(this._panel_noexpe), this._panel_inexpe.initialize(), this._panel_inexpe.visible = !1, this.addChild(this._panel_inexpe), this._title = new o.TextBox(25, 4999235), this._title.position.set(22, 156), this.addChild(this._title), this._areaText = new _.AreaTextImage, this._areaText.position.set(27, 187), this.addChild(this._areaText), this._description = new o.TextBox(21, 4999235), this._description.style.wordWrap = !0, this._description.style.wordWrapWidth = 322, this._description.style.breakWords = !0, this._description.position.set(22, 261), this.addChild(this._description), this._time = new o.TextBox(22, 4999235), this._time.anchor.set(1, 0), this._time.position.set(343, 390), this.addChild(this._time)
+        return n(e, t), Object.defineProperty(e.prototype, "deck_name", {
+            get: function () {
+                return this._deck_name
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            var t = new PIXI.Graphics;
+            t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 439), t.lineTo(336, 439), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
+            var e = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(42));
+            e.position.set(28, 579), this.addChild(e), this._deck_name = new o.TextBox(15, 4999235), this._deck_name.position.set(27, 186), this.addChild(this._deck_name), this._time_remaining = new o.TextBox(22, 4999235), this._time_remaining.anchor.set(1, 0), this._time_remaining.position.set(337, 576), this.addChild(this._time_remaining), this._remaining_none = new o.TextBox(19, 4999235), this._remaining_none.text = "\u307e\u3082\u306a\u304f\u5e30\u9084\u3057\u307e\u3059", this._remaining_none.position.set(127, 606), this.addChild(this._remaining_none), this._icon = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(35)), this._icon.position.set(31, 627), this.addChild(this._icon), this._btn = new a.BtnCancel(this._onClick), this._btn.initialize(), this._btn.position.set(87, 636), this._btn.visible = !1, this.addChild(this._btn)
         }, e.prototype.update = function (t, e) {
-            if (null == t) this._title.text = "", this._areaText.clear(), this._description.text = "", this._time.text = "", this._panel_noexpe.visible = !0, this._panel_inexpe.visible = !1, this._panel_noexpe.update(null); else {
-                this._title.text = t.name, this._title.text = t.name.replace(/<br.*?>/g, "\n"), 42 == t.areaID ? this._areaText.x = 18 : this._areaText.x = 27, this._description.text = t.detail.replace(/<br\s*\/?>/g, "\n");
-                var i = t.time, n = r.MathUtil.zeroPadding(Math.floor(i / 60), 2),
-                    o = r.MathUtil.zeroPadding(i % 60, 2);
-                this._time.text = n + ":" + o + ":00", null != e ? (this._panel_noexpe.visible = !1, this._panel_inexpe.visible = !0, this._panel_noexpe.update(null), this._panel_inexpe.update(t, e)) : (this._panel_noexpe.visible = !0, this._panel_inexpe.visible = !1, this._panel_noexpe.update(t), this._panel_inexpe.update(null, null)), this._areaText.update(t.areaID, this._onLoadCompleteAreaTextImage)
+            if (null == t) this._expedition_id = -1, this._deck_id = -1, this._deck_name.text = "", this._time_remaining.text = "", this._remaining_none.visible = !1, this._btn.visible = !1, this._deactivate(); else {
+                this._expedition_id = t.mstID, this._deck_id = e.mstID, this._deck_name.text = e.name;
+                var i = Date.now(), n = e.expedition.complete_unixtime, o = n - i;
+                o = Math.max(o, 0) / 1e3, this._remain_time = o, this._updateRemainTime(), this._btn.visible = !0, 3 == e.expedition.state ? this._btn.enabled = !1 : 0 == t.isCancelable() ? this._btn.enabled = !1 : this._btn.enabled = !(o <= 0), this._activate()
             }
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._title.destroy(), this._areaText.dispose(), this._description.destroy(), this._time.destroy(), this._panel_noexpe.dispose(), this._panel_inexpe.dispose()
+            this._deactivate(), this.removeChildren(), this._cancel_cb = null, this._deck_name.destroy(), this._time_remaining.destroy(), this._remaining_none.destroy()
+        }, e.prototype._activate = function () {
+            var t = this;
+            0 == this._activated && (this._activated = !0), this._remain_time > 0 && -1 == this._timer_key && (this._timer_key = setInterval(function () {
+                t._remain_time--, t._remain_time <= 0 && (clearInterval(t._timer_key), t._timer_key = -1), t._updateRemainTime()
+            }, 1e3)), this._btn.activate()
+        }, e.prototype._deactivate = function () {
+            this._timer_key > 0 && (clearInterval(this._timer_key), this._timer_key = -1), this._btn.deactivate(), this._activated = !1
+        }, e.prototype._updateRemainTime = function () {
+            var t = this._remain_time;
+            if (t > 0) {
+                var e = r.MathUtil.zeroPadding(Math.floor(t) % 60, 2), i = Math.floor(t / 60),
+                    n = r.MathUtil.zeroPadding(i % 60, 2), o = r.MathUtil.zeroPadding(Math.floor(i / 60), 2);
+                this._time_remaining.text = o + ":" + n + ":" + e, this._time_remaining.visible = !0, this._remaining_none.visible = !1
+            } else this._time_remaining.visible = !1, this._remaining_none.visible = !0, this._btn.enabled = !1
         }, e
     }(PIXI.Container);
-    e.ContainerDetail = c
+    e.PanelDetailInExpe = _
 }

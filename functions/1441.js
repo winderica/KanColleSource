@@ -15,32 +15,48 @@ const function1441 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(15), r = function (t) {
+    var o = i(5), r = i(228), s = i(6), a = i(176), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._num0001 = new PIXI.Sprite, e._num0001.anchor.set(0, 1), e._num0001.alpha = 0, e._num0010 = new PIXI.Sprite, e._num0010.anchor.set(0, 1), e._num0010.alpha = 0, e._num0100 = new PIXI.Sprite, e._num0100.anchor.set(0, 1), e._num0100.alpha = 0, e._num1000 = new PIXI.Sprite, e._num1000.anchor.set(0, 1), e._num1000.alpha = 0, e._critical = new PIXI.Sprite, e._critical.anchor.set(.5, 0), e._critical.visible = !1, e.addChild(e._num0001), e.addChild(e._num0010), e.addChild(e._num0100), e.addChild(e._num1000), e.addChild(e._critical), e
+            return e._now = 0, e._max = 0, e._animation_gauge = !1, e._ready_for_explode = !1, e._animation_explode = !1, e._exploded = !1, e._playExplosion = function (t, i) {
+                var n = new a.Explosion;
+                n.position.set(e._gauge.x + t, e._gauge.y + i), e.addChild(n), s.SE.play("102"), n.play(function () {
+                    e.removeChild(n)
+                })
+            }, e._onCompleteAnimation = function () {
+                e._animation_gauge = !1, 1 == e._ready_for_explode && (e._ready_for_explode = !1, e.explode())
+            }, e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            0 == e ? this._initializeForMiss() : (t = Math.min(t, 9999), t = Math.floor(t), this._initialize(t, e))
-        }, e.prototype.play = function (t) {
-            void 0 === t && (t = null), 1 == this._critical.visible && createjs.Tween.get(this._critical).wait(65).to({ alpha: 1 }, 0).to({ x: 20 }, 65).to({ x: 38 }, 65).to({ x: 21 }, 65).to({ x: 36 }, 65).to({ x: 26 }, 65).to({ x: 32 }, 65).to({ x: 27 }, 65).to({ x: 30 }, 65).to({ x: 29 }, 65), createjs.Tween.get(this._num1000).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0100).wait(65).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0010).wait(130).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100);
-            var e = createjs.Tween.get(this._num0001).wait(200).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100).wait(265);
-            null != t && e.call(t)
-        }, e.prototype._initializeForMiss = function () {
-            this._num1000.visible = !1, this._num0100.visible = !1, this._num0010.visible = !1, this._num0001.texture = o.BATTLE_MAIN.getTexture(19), this._num1000.position.set(-47, 0)
-        }, e.prototype._initialize = function (t, e) {
-            var i;
-            2 == e ? (i = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29], this._critical.texture = o.BATTLE_MAIN.getTexture(18), this._critical.position.set(29, -7), this._critical.alpha = 0, this._critical.visible = !0) : i = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-            var n = !1, r = Math.floor(t / 1e3);
-            r > 0 && (n = !0, this._num1000.texture = o.BATTLE_MAIN.getTexture(i[r]));
-            var s = Math.floor(t % 1e3 / 100);
-            (1 == n || s > 0) && (n = !0, this._num0100.texture = o.BATTLE_MAIN.getTexture(i[s]));
-            var a = Math.floor(t % 100 / 10);
-            (1 == n || a > 0) && (n = !0, this._num0010.texture = o.BATTLE_MAIN.getTexture(i[a]));
-            var _ = t % 10;
-            this._num0001.texture = o.BATTLE_MAIN.getTexture(i[_]), this._num0001.position.set(47, 0), this._num0010.position.set(26, 0), this._num0100.position.set(5, 0), this._num1000.position.set(-17, 0)
+        return n(e, t), Object.defineProperty(e.prototype, "now", {
+            get: function () {
+                return this._now
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.hasGauge = function () {
+            return null != this._gauge
+        }, e.prototype.isExploded = function () {
+            return this._exploded
+        }, e.prototype.isAnimation = function () {
+            return this._animation_gauge || this._animation_explode
+        }, e.prototype.show = function (t, e, i, n) {
+            var s = this;
+            this._now = e, this._max = i, this._gauge = new r.GaugeHorizontal, this._gauge.initialize(t), this._gauge.x = o.default.width - this._gauge.width, this._gauge.y = -15, this._gauge.alpha = 0, this.addChild(this._gauge), createjs.Tween.get(this._gauge).to({
+                y: 0,
+                alpha: 1
+            }, 300).call(function () {
+                s._gauge.update(e, i, function () {
+                }), null != n && n()
+            })
+        }, e.prototype.update = function (t) {
+            0 != this.hasGauge() && (this._animation_gauge = !0, this._now = t, this._gauge.update(t, this._max, this._onCompleteAnimation))
+        }, e.prototype.explode = function () {
+            var t = this;
+            if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void(this._ready_for_explode = !0) : void(1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
+                createjs.Tween.get(t._gauge).to({ alpha: 0 }, 350).call(function () {
+                    t.removeChild(t._gauge), t._gauge = null, t._animation_explode = !1, t._exploded = !0
+                })
+            }).wait(100).call(this._playExplosion, [309, 24])))
         }, e
     }(PIXI.Container);
-    e.DamageNumber = r
+    e.LayerGauge = _
 }

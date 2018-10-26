@@ -15,15 +15,19 @@ const function1192 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_quest/start", i._duty_id = e, i
+    var o = i(2), r = i(13), s = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("revamp");
+            e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.APIBase);
-    e.DutyStartAPI = r
+    }(o.TaskBase);
+    e.TaskLoadResources = s
 }

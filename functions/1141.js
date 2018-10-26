@@ -15,34 +15,79 @@ const function1141 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(1142), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._result = !1, e._api = null, e._retry_count = 0, e
+    var o = i(3), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._update(!0), null != i._cb_onMouseOver && i._cb_onMouseOver(i._type)
+            }, i._onMouseOut = function () {
+                i._update(!1), null != i._cb_onMouseOut && i._cb_onMouseOut(i._type)
+            }, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick(i._type)
+            }, i._type = e, i.interactive = !0, i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(500).call(function () {
-                t._check()
-            })
-        }, e.prototype._check = function () {
-            var t = this;
-            this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                t._checked()
-            })
-        }, e.prototype._checked = function () {
-            var t = this;
-            2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                t._check()
-            })
-        }, e.prototype._endTask = function () {
-            this._api = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function (t, e, i) {
+            this._cb_onMouseOver = t, this._cb_onMouseOut = e, this._cb_onClick = i, this._update(!1)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._update(!1))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._update = function (t) {
+            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
+        }, e.prototype._getTexture = function () {
+            var t;
+            switch (this._type) {
+                case 0:
+                    t = 25;
+                    break;
+                case 1:
+                    t = 27;
+                    break;
+                case 2:
+                    t = 29;
+                    break;
+                case 3:
+                    t = 31;
+                    break;
+                case 4:
+                    t = 33;
+                    break;
+                case 5:
+                    t = 35;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return o.ITEM_FSHOP.getTexture(t)
+        }, e.prototype._getTextureOn = function () {
+            var t;
+            switch (this._type) {
+                case 0:
+                    t = 26;
+                    break;
+                case 1:
+                    t = 28;
+                    break;
+                case 2:
+                    t = 30;
+                    break;
+                case 3:
+                    t = 32;
+                    break;
+                case 4:
+                    t = 34;
+                    break;
+                case 5:
+                    t = 36;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return o.ITEM_FSHOP.getTexture(t)
         }, e
-    }(o.TaskBase);
-    e.TaskPayCheck = s
+    }(PIXI.Sprite);
+    e.FurnitureTypeBtn = s
 }

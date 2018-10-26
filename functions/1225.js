@@ -15,40 +15,25 @@ const function1225 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(19), s = i(134), a = i(1226), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._friend = e, i._circle = new PIXI.Sprite, i._circle.anchor.set(.5, .5), i._circle.scale.set(.1), i._circle.visible = !1, i._content = new a.Content(e), i._content.alpha = 0, i.addChild(i._circle), i.addChild(i._content);
-            var n = new PIXI.Graphics;
-            return n.beginFill(65280, .5), i._drawGraphics(n), n.endFill(), i.addChild(n), i.mask = n, i._friend ? (i.circle.position.set(255, 311), i.content.position.set(-150, 0)) : (i.circle.position.set(345, 311), i.content.position.set(150, 0)), i
+    var o = i(0), r = i(10), s = i(7), a = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "circle", {
-            get: function () {
-                return this._circle
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "content", {
-            get: function () {
-                return this._content
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            this._friend ? this._circle.texture = s.PRAC_MAIN.getTexture(3) : this._circle.texture = s.PRAC_MAIN.getTexture(4), this._content.initialize(t, e)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._content.dispose()
-        }, e.prototype.getAnimationTask = function () {
-            var t = new r.TweenTask;
-            t.addTween(createjs.Tween.get(this._content.medal).to({ alpha: 1 }, 100));
-            for (var e = this._content.elements, i = this._friend ? 0 : 173, n = 0; n < e.length; n++) {
-                var o = e[n];
-                0 != o.visible && t.addTween(createjs.Tween.get(o).wait(300 + 100 * n).to({
-                    x: i,
-                    alpha: 1
-                }, 200, createjs.Ease.sineIn))
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
+                var r = n[i];
+                o.default.model.deck.updateData(r)
             }
-            return t
-        }, e.prototype._drawGraphics = function (t) {
-            this._friend ? (t.moveTo(0, 0), t.lineTo(0, o.default.height), t.lineTo(o.default.width / 2 - 128, o.default.height), t.lineTo(o.default.width / 2 + 128, 0)) : (t.moveTo(128, 0), t.lineTo(o.default.width / 2, 0), t.lineTo(o.default.width / 2, o.default.height), t.lineTo(-128, o.default.height))
+            for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, u = a; _ < u.length; _++) {
+                var r = u[_];
+                o.default.model.ship.updateData(r)
+            }
+            t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.Panel = _
+    }(r.APIBase);
+    e.APIShipDeck = a
 }

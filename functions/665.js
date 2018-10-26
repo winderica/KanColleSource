@@ -3,9 +3,9 @@ const function665 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ilist_presentbox_" + t)
+            return PIXI.Texture.fromFrame("duty_poster_girl_gyudon_" + t)
         }
 
         t.getTexture = e
-    }(e.ITEM_ILIST_PRESENTBOX || (e.ITEM_ILIST_PRESENTBOX = {}))
+    }(e.DUTY_POSTER_GIRL_GYUDON || (e.DUTY_POSTER_GIRL_GYUDON = {}))
 }

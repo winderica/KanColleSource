@@ -15,15 +15,15 @@ const function1193 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
+    var o = i(11), r = i(13), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._url = "api_req_quest/stop", i._duty_id = e, i
+            return i._scene_dispose_delegate = e, i
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype._start = function () {
+            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
         }, e
-    }(o.APIBase);
-    e.DutyCancelAPI = r
+    }(o.TaskBase);
+    e.TaskItemSceneFinalize = s
 }

@@ -15,37 +15,49 @@ const function753 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(160), a = function (t) {
+    var o = i(9), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(17)),
-                n = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(25)), a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(2)),
-                _ = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(1)), u = new r.TextBox(28, 5523516),
-                l = new r.TextBox(28, 5523516), c = new r.TextBox(16, 12467003), h = new s.FuelContainer,
-                p = new s.AmmoContainer;
-            return u.anchor.set(1, 0), l.anchor.set(1, 0), i.position.set(0, 0), n.position.set(17, 24), a.position.set(18, 83), _.position.set(159, 83), h.position.set(18, 209), p.position.set(159, 209), u.position.set(144, 166), l.position.set(285, 166), c.position.set(155, 441), c.anchor.set(.5, 0), c.visible = !1, e.addChild(i, n, a, _, l, u, c, h, p), e.textAmmo = l, e.textFuel = u, e.textAlert = c, e.fuelContainer = h, e.ammoContainer = p, e
+            var e = t.call(this) || this;
+            e.DURATION = 1 / 30 * 1e3, e.MOVE_ROTATION = Math.PI / 180 * 20.4, e.MOVE_X = 36;
+            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                n = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                r = new PIXI.Sprite(o.COMMON_MISC.getTexture(12));
+            i.pivot.set(i.width, i.height), i.rotation = Math.PI / 180 * 180, n.x = i.width, r.y = 3, e._shutterWidth = i.width;
+            var s = new PIXI.Graphics;
+            s.beginFill(10798649, .5), s.drawRect(0, 0, 201.45, 180), s.pivot.set(s.width, 0), s.position.set(i.width + 3, -77);
+            var a = new PIXI.Graphics;
+            return a.beginFill(5978566, .5), a.drawRect(0, 0, 201.45, 180), a.pivot.set(0, 0), a.position.set(n.width, -77), i.mask = s, n.mask = a, e.addChild(i, n, s, a, r), e._leftFloor = i, e._rightFloor = n, e._leftFloorMask = s, e._rightFloorMask = a, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.textAmmo.destroy(), this.textFuel.destroy(), this.textAlert.destroy(), this.fuelContainer.dispose(), this.fuelContainer = null, this.ammoContainer.dispose(), this.ammoContainer = null, this.textFuel = null, this.textAmmo = null, this.textAlert = null
-        }, e.prototype.updateFuelCount = function (t, e) {
-            var i, n = t.toString();
-            i = e ? 5523516 : 12467003, this.textFuel.style.fill = i, this.textFuel.text = n
-        }, e.prototype.updateAmmoCount = function (t, e) {
-            var i, n = t.toString();
-            i = e ? 5523516 : 12467003, this.textAmmo.style.fill = i, this.textAmmo.text = n
-        }, e.prototype.playAnimationFuel = function (t) {
-            this.fuelContainer.update(t)
-        }, e.prototype.playAnimationAmmo = function (t) {
-            this.ammoContainer.update(t)
-        }, e.prototype.playSupplyAmmo = function (t) {
-            this.ammoContainer.playSupply(t)
-        }, e.prototype.playSupplyFuel = function (t) {
-            this.fuelContainer.playSupply(t)
-        }, e.prototype.showAlert = function (t) {
-            this.textAlert.text = t, this.textAlert.visible = !0
-        }, e.prototype.hideAlert = function () {
-            this.textAlert.visible = !1
+        return n(e, t), e.prototype.__stop__ = function () {
+            createjs.Tween.removeTweens(this._leftFloorMask), createjs.Tween.removeTweens(this._rightFloorMask)
+        }, e.prototype.open = function (t) {
+            this.__stop__();
+            var e = 9 * this.DURATION, i = 0, n = function () {
+                2 === ++i && t()
+            };
+            createjs.Tween.get(this._leftFloorMask).to({
+                rotation: this.MOVE_ROTATION,
+                x: this._shutterWidth - this.MOVE_X
+            }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                rotation: -this.MOVE_ROTATION,
+                x: this._shutterWidth + this.MOVE_X
+            }, e).call(n)
+        }, e.prototype.close = function (t) {
+            this.__stop__();
+            var e = 9 * this.DURATION, i = 0, n = function () {
+                2 === ++i && t()
+            };
+            createjs.Tween.get(this._leftFloorMask).to({
+                rotation: 0,
+                x: this._shutterWidth
+            }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                rotation: 0,
+                x: this._shutterWidth
+            }, e).call(n)
+        }, e.prototype.dispose = function () {
+            this.__stop__(), this._leftFloor.texture = PIXI.Texture.EMPTY, this._rightFloor.texture = PIXI.Texture.EMPTY, this._leftFloor.mask = null, this._rightFloor.mask = null, this._leftFloorMask.clear(), this._rightFloorMask.clear(), this._leftFloor = null, this._rightFloor = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.SupplyShowcaseView = a
+    e.SupplyFloor = r
 }

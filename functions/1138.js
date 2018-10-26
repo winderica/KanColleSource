@@ -15,43 +15,27 @@ const function1138 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(129), a = i(88), _ = i(405), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onMouseOn = function (t, e) {
-                i._description.x = 0 == t ? 202 : 1 == t ? 535 : 865, i._description.text = e.replace(/<br>/g, "\n")
-            }, i._onMouseOff = function () {
-                i._description.text = ""
-            }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(18, 16777215), i._description.y = 217, i.addChild(i._description), i
+    var o = i(0), r = i(2), s = i(8), a = i(1), _ = i(233), u = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._onClose = function () {
+                o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
+                    y: 450,
+                    alpha: 0
+                }, 300).call(function () {
+                    o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
+                })
+            }, o._layer = e, o._page_no = i, o._count = n, o
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(29));
-            t.position.set(186, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(13)), t.position.set(184, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(28)), t.position.set(516, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(17)), t.position.set(516, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(27)), t.position.set(846, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(15)), t.position.set(846, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(25)), t.position.set(1176, 144), this._bg_layer.addChild(t), this._icons = [];
-            for (var e = 0; e < 12; e++) {
-                var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
-                i.x = 204 + 330 * Math.floor(e / 4) + e % 2 * 150, i.y = 289 + (Math.floor(e % 4) <= 1 ? 0 : 180), i.initialize(Math.floor(e / 4)), this.addChild(i), this._icons.push(i)
-            }
-        }, e.prototype.update = function () {
-            for (var t = o.default.model.payitem.getOrder(0), e = 0; e < this._icons.length; e++) {
-                var i = this._icons[e], n = t[e], r = o.default.model.payitem.getData(n);
-                i.update(r)
-            }
-        }, e.prototype.activate = function () {
-            for (var t = 0, e = this._icons; t < e.length; t++) {
-                e[t].activate()
-            }
-        }, e.prototype.deactivate = function () {
-            for (var t = 0, e = this._icons; t < e.length; t++) {
-                e[t].deactivate()
-            }
-        }, e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t = 0, e = this._icons; t < e.length; t++) {
-                e[t].dispose()
-            }
-            this._description.destroy(), this._cb_onSelect = null
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
+            var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1), i = _.getPosterOffsetWelcome();
+            null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({ x: 660 }, 300).call(function () {
+                t._t = null
+            })
         }, e
-    }(a.ViewBase);
-    e.NormalItemShopMain = u
+    }(r.TaskBase);
+    e.TaskWelcomeCutin = u
 }

@@ -15,39 +15,108 @@ const function1073 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(14), s = i(383), a = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._onClose = function () {
-                r._panel.deactivate(), r._hideFade()
-            }, r._layer = e, r._model = i, r._option = n, r._mainView = o, r
+    var o = i(14), r = i(42), s = i(3), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._items_ship = [], i._items_slot = [], i._slot_separate = new PIXI.Container, i._slot_separate.position.set(0, 10);
+            var n = new PIXI.Sprite;
+            n.name = "l1", n.position.set(120, 312), i._slot_separate.addChild(n);
+            var o = new PIXI.Sprite;
+            o.name = "l2", o.position.set(502, 300), i._slot_separate.addChild(o);
+            var s = new PIXI.Sprite;
+            s.name = "l3", s.position.set(660, 312), i._slot_separate.addChild(s), i.addChild(i._slot_separate);
+            for (var a = 0; a < 10; a++) {
+                var _ = new r.MainItemShip(e);
+                _.x = 120 + a % 5 * 179, _.y = 45 + 288 * Math.floor(a / 5), i._items_ship.push(_);
+                var u = new r.MainItemSlot(e);
+                u.x = 120 + a % 5 * 179, u.y = 60 + 318 * Math.floor(a / 5), i._items_slot.push(u)
+            }
+            return i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
-        }, e.prototype._loadImages = function () {
-            var t = this, e = this._model.mst_ids, i = new r.ShipLoader;
-            i.add(e[0], !1, "album_status");
-            for (var n = 0, o = e; n < o.length; n++) {
-                var s = o[n], a = i.getSpecificAlbumImageLoadList(s);
-                1 == i.needCard(a.typeList) && i.add(s, !1, "card"), 1 == i.needCharaFull(a.typeList) && i.add(s, !1, "character_full"), 1 == i.needCharaUp(a.typeList) && i.add(s, !1, "character_up"), 1 == this._model.hasTaiha(s) && (null == a.typeList ? (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")) : a.hasTaiha && (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")))
+        return n(e, t), e.prototype.initialize = function () {
+            this._slot_separate.getChildByName("l1").texture = s.ALBUM_MAIN.getTexture(17), this._slot_separate.getChildByName("l2").texture = s.ALBUM_MAIN.getTexture(18), this._slot_separate.getChildByName("l3").texture = s.ALBUM_MAIN.getTexture(17), this._items_ship.forEach(function (t) {
+                t.initialize()
+            }), this._items_slot.forEach(function (t) {
+                t.initialize()
+            })
+        }, e.prototype.update = function (t, e, i) {
+            if (this._updateLabels(t, e), 1 == t) this._slot_separate.visible = !1, this._removeSlotItems(), this._updateShipItem(i), this._addShipItem(); else {
+                if (2 != t) return this._slot_separate.visible = !1, this._removeShipItems(), this._removeSlotItems(), null;
+                this._slot_separate.visible = !0, this._removeShipItems(), this._updateSlotItem(i), this._addSlotItem()
             }
-            i.load(function () {
-                t._showPanel()
-            })
-        }, e.prototype._showPanel = function () {
-            var t = this, e = new s.ShipDetailPanel(this._onClose);
-            this._panel = e, e.initialize(this._model, this._option), e.alpha = 0, this._layer.addChild(e), e.preactivate(), createjs.Tween.get(e).to({ alpha: 1 }, 500).call(function () {
-                e.activate(), t._mainView.visible = !1
-            })
-        }, e.prototype._hideFade = function () {
-            var t = this;
-            this._mainView.visible = !0, createjs.Tween.get(this._panel).to({ alpha: 0 }, 300), this._layer.hide(500, function () {
-                t._layer.visible = !1, t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._model = null, this._option = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
+        }, e.prototype.activate = function () {
+            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
+                var i = e[t];
+                null != i.parent && i.activate()
+            }
+            if (null != this._items_slot) for (var n = 0, o = this._items_slot; n < o.length; n++) {
+                var i = o[n];
+                null != i.parent && i.activate()
+            }
+        }, e.prototype.deactivate = function () {
+            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
+                var i = e[t];
+                i.deactivate()
+            }
+            if (null != this._items_slot) for (var n = 0, o = this._items_slot; n < o.length; n++) {
+                var i = o[n];
+                i.deactivate()
+            }
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.deactivate();
+            for (var t = 0; t < this._items_ship.length; t++) this._items_ship[t].dispose(), this._items_ship[t] = null;
+            for (var t = 0; t < this._items_slot.length; t++) this._items_slot[t].dispose(), this._items_slot[t] = null;
+            this._slot_separate.removeChildren(), this._items_ship = null, this._items_slot = null, this._slot_separate = null
+        }, e.prototype._updateLabels = function (t, e) {
+            switch (t) {
+                case 1:
+                    this._items_ship.forEach(function (t, i) {
+                        var n = o.MathUtil.zeroPadding(e + 1 + i, 3);
+                        t.updateLabel(n)
+                    });
+                    break;
+                case 2:
+                    this._items_slot.forEach(function (t, i) {
+                        var n = o.MathUtil.zeroPadding(e + 1 + i, 3);
+                        t.updateLabel(n)
+                    })
+            }
+        }, e.prototype._addShipItem = function () {
+            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
+                var i = e[t];
+                this.addChild(i)
+            }
+        }, e.prototype._updateShipItem = function (t) {
+            if (null == this._items_ship) return null;
+            if (null == t) return null;
+            for (var e = t, i = Math.min(this._items_ship.length, e.length), n = 0; n < i; n++) {
+                var o = this._items_ship[n], r = e[n];
+                o.update(r)
+            }
+        }, e.prototype._removeShipItems = function () {
+            if (null != this._items_ship) for (var t = 0, e = this._items_ship; t < e.length; t++) {
+                var i = e[t];
+                null != i.parent && i.parent.removeChild(i)
+            }
+        }, e.prototype._addSlotItem = function () {
+            if (null != this._items_slot) for (var t = 0, e = this._items_slot; t < e.length; t++) {
+                var i = e[t];
+                this.addChild(i)
+            }
+        }, e.prototype._updateSlotItem = function (t) {
+            if (null == this._items_slot) return null;
+            if (null == t) return null;
+            for (var e = t, i = Math.min(this._items_slot.length, e.length), n = 0; n < i; n++) {
+                var o = this._items_slot[n], r = e[n];
+                o.update(r)
+            }
+        }, e.prototype._removeSlotItems = function () {
+            if (null != this._items_slot) for (var t = 0, e = this._items_slot; t < e.length; t++) {
+                var i = e[t];
+                null != i.parent && i.parent.removeChild(i)
+            }
         }, e
-    }(o.TaskBase);
-    e.TaskShowShipDetail = a
+    }(PIXI.Container);
+    e.MainContainer = a
 }

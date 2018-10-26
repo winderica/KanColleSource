@@ -15,54 +15,82 @@ const function1289 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(141), s = i(26), a = i(354), _ = i(351), u = i(355), l = i(352), c = i(353),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._base.hitArea = new PIXI.Rectangle(0, 0, 0, 0), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new u.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new l.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
-            }
+    var o = i(12), r = i(6), s = i(20), a = i(1290), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
-                get: function () {
-                    return this._selected_airunit_id
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(7), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
-                }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, u = !1, l = 0; l < this._items.length; l++) {
-                        var c = l < a.length ? a[l] : null;
-                        this._items[l].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), u = u || c.count < c.countMax
-                    }
-                    this._banner.update(t, _), this._supply_btn.update(u)
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._tabs.dispose(), this._banner.dispose(), this._name.destroy(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._supply_btn.dispose()
-            }, e
-        }(PIXI.Container);
-    e.AirUnitPanel = h
+        return n(e, t), Object.defineProperty(e.prototype, "direction", {
+            get: function () {
+                return this._direction
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "under", {
+            get: function () {
+                return this._under
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ship", {
+            get: function () {
+                return this._ship
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            var e;
+            e = 1 == t ? 122 : 2 == t ? 123 : 3 == t ? 124 : 121, this._ship.texture = s.MAP_COMMON.getTexture(e)
+        }, e.prototype.startWaveWhite = function () {
+            this._startWave(48)
+        }, e.prototype.startWaveRed = function (t) {
+            var e = this;
+            this._startWave(47);
+            var i = new u;
+            i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
+                y: -75,
+                alpha: 1,
+                scaleX: 1,
+                scaleY: 1
+            }, 200).to({ y: -68 }, 200).to({ y: -78, scaleX: 1.3, scaleY: .6 }, 200).to({
+                y: -59,
+                scaleX: 1,
+                scaleY: 1
+            }, 200).to({ y: -68 }, 200).to({ alpha: 0 }, 100).call(function () {
+                e._over.removeChild(i), t()
+            })
+        }, e.prototype.stopWave = function () {
+            this._wave.deactivate()
+        }, e.prototype.turn = function (t, e, i) {
+            if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e(); else {
+                this._direction = t;
+                var n = 2 == t ? 1 : -1, o = createjs.Tween.get(this._ship);
+                o.to({ scaleX: n }, i), null != e && o.call(e)
+            }
+        }, e.prototype._startWave = function (t) {
+            this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
+                r.SE.play("252")
+            }).wait(2e3).call(function () {
+                r.SE.play("252")
+            })
+        }, e
+    }(PIXI.Container);
+    e.CompShipIcon = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
+            get: function () {
+                return this.scale.x
+            }, set: function (t) {
+                this.scale.x = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "scaleY", {
+            get: function () {
+                return this.scale.y
+            }, set: function (t) {
+                this.scale.y = t
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.MAP_COMMON.getTexture(93)
+        }, e
+    }(PIXI.Sprite)
 }

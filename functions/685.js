@@ -15,50 +15,33 @@ const function685 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(686), s = i(687), a = i(213), _ = i(57), u = i(1), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onMouseDown = function () {
-                i.onDragging(i.slotPosition, i.memShipId)
-            }, i.___onMouseDown = function (t) {
-                i.onMouseDown(i.slotPosition, i.slotNo, i.memShipId)
-            }, i._onClickChange = function () {
-                i.onClickChange(i.slotPosition, i.slotNo)
-            }, i._onClickDetail = function () {
-                i.onClickDetail(i.memShipId)
-            }, i.shipSlotShutter = new s.ShipSlotShutter, i.shipInfo = new r.ShipInfo, i.deckIndexEmblem = new a.DeckIndexEmblem;
-            var n = o.ORGANIZE_MAIN.getTexture(23), l = o.ORGANIZE_MAIN.getTexture(24),
-                c = o.ORGANIZE_MAIN.getTexture(25), h = o.ORGANIZE_MAIN.getTexture(9),
-                p = o.ORGANIZE_MAIN.getTexture(10);
-            return i.disableChangeButton = new PIXI.Sprite(n), i.changeButton = new _.SimpleButton(l, c), i.detailButton = new _.SimpleButton(h, p), i.shipBannerDragArea = new PIXI.Graphics, i.shipBannerDragArea.beginFill(0, 0), i.shipBannerDragArea.drawRect(0, 0, 240, 60), i.shipBannerDragArea.endFill(), i.shipBannerDragArea.position.set(245, 18), i.shipBannerDragArea.interactive = !0, i.shipBannerDragArea.buttonMode = !0, i.shipBannerDragArea.renderable = !1, i.shipBannerDragArea.on(u.EventType.MOUSEDOWN, i._onMouseDown), i.changeButton.onClick = i._onClickChange, i.detailButton.onClick = i._onClickDetail, i.disableChangeButton.position.set(379, 103), i.changeButton.position.set(379, 103), i.detailButton.position.set(250, 103), i.deckIndexEmblem.position.set(-15, 0), i.slotPosition = e, i
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = o.ORGANIZE_MAIN.getTexture(31), n = o.ORGANIZE_MAIN.getTexture(32);
+            e.frameShutterLeft = new PIXI.Sprite(i), e.frameShutterRight = new PIXI.Sprite(n);
+            var r = new PIXI.Graphics, s = new PIXI.Graphics;
+            return r.beginFill(0, 1), r.moveTo(0, 15), r.lineTo(15, 0), r.lineTo(247, 0), r.lineTo(247, 157), r.lineTo(13, 157), r.lineTo(0, 142), r.lineTo(0, 15), r.endFill(), s.beginFill(0, 1), s.moveTo(0, 0), s.lineTo(232, 0), s.lineTo(247, 16), s.lineTo(247, 141), s.lineTo(231, 157), s.lineTo(0, 157), s.lineTo(0, 0), s.endFill(), s.x = s.width, e.frameShutterLeft.mask = r, e.frameShutterRight.mask = s, e.frameShutterRight.position.set(e.frameShutterRight.width, 0), e.frameShutterLeft.position.set(0, 0), e.frameShutterRight.position.set(247, 0), e.frameShutterLeft.interactive = !0, e.frameShutterRight.interactive = !0, e.addChild(e.frameShutterLeft, e.frameShutterRight, r, s), e
         }
 
-        return n(e, t), e.prototype.activate = function (t, e, i) {
-            this.deactivate(), this.onDragging = t, this.onClickChange = e, this.onClickDetail = i
-        }, e.prototype.deactivate = function () {
-            this.onDragging = null, this.onClickChange = null, this.onClickDetail = null
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this.shipBannerDragArea.off(u.EventType.MOUSEDOWN, this._onMouseDown), this.shipSlotShutter.dispose(), this.shipInfo.dispose(), this.deckIndexEmblem.dispose(), this.changeButton.dispose(), this.shipSlotShutter = null, this.shipInfo = null, this.deckIndexEmblem = null, this.changeButton = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i) {
-            this.removeChildren();
-            var n = e.memID;
-            this.shipInfo.update(e, i), this.deckIndexEmblem.update(t), i ? this.addChild(this.shipInfo, this.deckIndexEmblem, this.disableChangeButton, this.detailButton, this.shipSlotShutter) : this.addChild(this.shipInfo, this.deckIndexEmblem, this.changeButton, this.detailButton, this.shipBannerDragArea, this.shipSlotShutter), this.memShipId = n, this.slotNo = t
-        }, e.prototype.close = function () {
-            this.shipSlotShutter.close(), this.deckIndexEmblem.visible = !1
-        }, e.prototype.closeAnimation = function (t, e) {
-            void 0 === e && (e = 250), this.deckIndexEmblem.visible = !1, this.shipSlotShutter.closeAnimation(function () {
-                t()
-            }, e)
-        }, e.prototype.open = function () {
-            this.deckIndexEmblem.visible = !0, this.shipSlotShutter.open()
+        return n(e, t), e.prototype.dispose = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.removeChildren(), this.frameShutterRight.removeChildren(), this.frameShutterLeft.mask = null, this.frameShutterRight.mask = null, this.frameShutterLeft = null, this.frameShutterRight = null, this.removeChildren()
         }, e.prototype.openAnimation = function (t, e) {
             var i = this;
-            void 0 === e && (e = 250), this.shipSlotShutter.openAnimation(function () {
-                i.deckIndexEmblem.visible = !0, t()
-            }, e)
-        }, e.prototype.updateEmpty = function (t, e) {
-            this.removeChildren(), this.memShipId = null, this.slotNo = t, e ? this.addChild(this.shipSlotShutter, this.changeButton) : this.addChild(this.shipSlotShutter)
+            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+            this.frameShutterLeft.position.x = 0, createjs.Tween.get(this.frameShutterLeft).to({ x: -247 }, e).call(function () {
+                i.cacheAsBitmap = !0, t()
+            }), this.frameShutterRight.position.x = 247, createjs.Tween.get(this.frameShutterRight).to({ x: 494 }, e)
+        }, e.prototype.closeAnimation = function (t, e) {
+            var i = this;
+            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+            this.frameShutterLeft.position.x = -247, createjs.Tween.get(this.frameShutterLeft).to({ x: 0 }, e).call(function () {
+                i.cacheAsBitmap = !0, t()
+            }), this.frameShutterRight.position.x = 494, createjs.Tween.get(this.frameShutterRight).to({ x: 247 }, e)
+        }, e.prototype.open = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.x = -247, this.frameShutterRight.x = 494, this.cacheAsBitmap = !0
+        }, e.prototype.close = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.x = 0, this.frameShutterRight.x = 247, this.cacheAsBitmap = !0
         }, e
     }(PIXI.Container);
-    e.ShipSlot = l
+    e.ShipSlotShutter = r
 }

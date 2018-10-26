@@ -15,62 +15,39 @@ const function1087 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(3), a = i(3), _ = i(42), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._boxes = new h, e._boxes.position.set(7, 190), e.addChild(e._boxes), e._icon = new l, e.addChild(e._icon), e._name = new c, e._name.position.set(150, 19), e.addChild(e._name), e._params = new _.SlotParamsContainer, e._params.position.set(159, 66), e.addChild(e._params), e
+    var o = i(11), r = i(25), s = i(42), a = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._onClose = function () {
+                o._panel.deactivate(), o._hideFade()
+            }, o._layer = e, o._model = i, o._mainView = n, o
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._boxes.dispose(), this._params.dispose(), this._boxes = null, this._icon = null, this._name = null, this._params = null
-        }, e.prototype.initialize = function (t) {
-            this.texture = r.ALBUM_MAIN.getTexture(86), this._boxes.initialize(), this._boxes.update(t.equipType), this._icon.update(t.iconType), this._name.update(t.equipType, t.iconType), this._params.update(t)
-        }, e
-    }(PIXI.Sprite);
-    e.SlotDetailStatusBox = u;
-    var l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            this.texture = a.ALBUM_SLOT4.getTextureFromMstID(t)
-        }, e
-    }(PIXI.Sprite);
-    e.IconView = l;
-    var c = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t, e) {
-            38 == t ? t = 3 : 93 == t ? t = 13 : 94 == t ? t = 9 : 48 == t && 44 == e && (t = 148), this.texture = s.ALBUM_SLOT3.getTextureFromMstID(t)
-        }, e
-    }(PIXI.Sprite);
-    e.TypeNameView = c;
-    var h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._boxes = [];
-            for (var i = 0; i < 8; i++) {
-                var n = new PIXI.Sprite;
-                n.x = i % 4 * 144, n.y = 54 * Math.floor(i / 4), n.visible = !1, e.addChild(n), e._boxes.push(n)
+        return n(e, t), e.prototype._start = function () {
+            this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+        }, e.prototype._loadImages = function () {
+            var t = this, e = this._model.mst_ids, i = new r.SlotLoader;
+            i.add(e[0], "statustop_item");
+            for (var n = 0, o = e; n < o.length; n++) {
+                var s = o[n];
+                i.add(s, "card"), i.add(s, "item_up"), i.add(s, "item_on"), i.add(s, "item_character")
             }
-            return e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._boxes = null
-        }, e.prototype.initialize = function () {
-            for (var t = [39, 40, 41, 43, 42, 37, 38, 36], e = 0; e < this._boxes.length; e++) {
-                var i = t[e];
-                this._boxes[e].texture = r.ALBUM_MAIN.getTexture(i)
-            }
-        }, e.prototype.update = function (t) {
-            for (var e = [2, 3, 5, 9, 7, 11, 16, 10], i = 0; i < this._boxes.length; i++) {
-                var n = e[i], r = this._boxes[i], s = o.default.model.shipType.get(n);
-                r.visible = s.getEquippableTypes().indexOf(t) >= 0
-            }
+            i.load(function () {
+                t._showPanel()
+            })
+        }, e.prototype._showPanel = function () {
+            var t = this, e = new s.SlotDetailPanel(this._onClose);
+            this._panel = e, e.initialize(this._model), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).to({ alpha: 1 }, 500).call(function () {
+                e.activate(), t._mainView.visible = !1
+            })
+        }, e.prototype._hideFade = function () {
+            var t = this;
+            this._mainView.visible = !0, createjs.Tween.get(this._panel).to({ alpha: 0 }, 300), this._layer.hide(500, function () {
+                t._layer.visible = !1, t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._model = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container)
+    }(o.TaskBase);
+    e.TaskShowSlotDetail = a
 }

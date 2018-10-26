@@ -15,13 +15,33 @@ const function439 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._area_id = e, s._map_no = i, s._cell_no = n, s._target_mem_id = o, s._towing_mem_id = r, s._towing_mem_id <= 0 ? s._url = "api_req_sortie/goback_port" : s._url = "api_req_combined_battle/goback_port", s
+    var o = i(134), r = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e
-    }(o.APIBase);
-    e.GobackPortAPI = r
+        return n(e, t), e.prototype.play = function (t) {
+            for (var e = this, i = this, n = 0, o = this._planes_f; n < o.length; n++) {
+                var r = o[n];
+                !function (n) {
+                    var o = new PIXI.Point(1373, n.y - 405);
+                    1 == i._air_raid && (o.x += -570, o.y += -450), n.playForJet(o, 1850), i._now_animation.push(n), n.once("complete", function () {
+                        var i = e._now_animation.indexOf(n);
+                        e._now_animation.splice(i, 1), 0 == e._now_animation.length && t()
+                    })
+                }(r)
+            }
+            for (var s = this, a = 0, _ = this._planes_e; a < _.length; a++) {
+                var r = _[a];
+                !function (i) {
+                    var n = new PIXI.Point(-173, i.y - 855);
+                    i.playForJet(n, 1850), s._now_animation.push(i), i.once("complete", function () {
+                        var n = e._now_animation.indexOf(i);
+                        e._now_animation.splice(n, 1), 0 == e._now_animation.length && t()
+                    })
+                }(r)
+            }
+        }, e
+    }(o.AirWarCanvas);
+    e.AirWarJetCanvas = r
 }

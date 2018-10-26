@@ -15,37 +15,44 @@ const function1300 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1301), r = function (t) {
+    var o = i(31), r = i(1301), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._spots = {}, e._flags = {}, e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.addSpot = function (t) {
-            this._spots[t.no] = t, this.addChild(t)
-        }, e.prototype.addFlag = function (t, e, i) {
-            var n = new o.LandingFlag;
-            n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-        }, e.prototype.getAllSpots = function () {
-            var t = [];
-            for (var e in this._spots) {
-                var i = this._spots[e];
-                t.push(i)
-            }
-            return t
-        }, e.prototype.getSpot = function (t) {
-            var e = t.toString();
-            return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-        }, e.prototype.getFlag = function (t) {
-            var e = t.toString();
-            return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+        return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+            void 0 === n && (n = 1), null != this._gauge && (this._gauge.dispose(), null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new r.GaugeVertical, this._gauge.initialize(t), this._gauge.update(e, i), this._gauge.position.set(t.x, t.y), this._gauge.alpha = n, this.addChild(this._gauge)
         }, e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t in this._spots) {
-                this._spots[t].dispose()
+            this._stopTween(), null != this._gauge && this._gauge.dispose()
+        }, e.prototype.update = function (t, e, i, n) {
+            var o = this;
+            if (void 0 === i && (i = 0), void 0 === n && (n = null), this._stopTween(), i <= 0) this._gauge.update(t, e); else {
+                var r = { now: this._gauge.now, max: this._gauge.max }, s = function (t) {
+                    o._gauge.update(r.now, r.max)
+                };
+                this._t = createjs.Tween.get(r, { onChange: s }).to({ now: t, max: e }, i).call(function () {
+                    o._t = null, null != n && n()
+                })
             }
-            this._spots = null
+        }, e.prototype.vanish = function (t) {
+            void 0 === t && (t = null), this._stopTween();
+            var e = new o.Container;
+            e.x = this._gauge.x + Math.round(this._gauge.width / 2), e.y = this._gauge.y + Math.round(this._gauge.height / 2), this.addChild(e), this._gauge.x = -Math.round(this._gauge.width / 2), this._gauge.y = -Math.round(this._gauge.height / 2), e.addChild(this._gauge), this._t = createjs.Tween.get(e).wait(800).wait(200).to({
+                scaleX: 1.1,
+                scaleY: .9
+            }, 35).to({ scaleX: 0, scaleY: 1.4 }, 200).call(function () {
+                null != t && t()
+            })
+        }, e.prototype.createShowTween = function () {
+            if (null == this._gauge) return null;
+            var t = this._gauge.x;
+            return this._gauge.x = -this._gauge.width, this._gauge.alpha = 0, createjs.Tween.get(this._gauge).to({
+                x: t,
+                alpha: 1
+            }, 500, createjs.Ease.quadOut)
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
     }(PIXI.Container);
-    e.MapSpotLayer = r
+    e.GaugeLayer = s
 }

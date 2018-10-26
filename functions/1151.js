@@ -15,49 +15,31 @@ const function1151 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(77), r = i(301), s = i(78), a = i(3), _ = function (t) {
+    var o = i(47), r = i(1152), s = i(1154), a = i(1156), _ = i(1159), u = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
-        }, e.prototype.updateFromModel = function (e) {
-            if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
-                this._img.scale.set(1), this._img.position.set(0, 0);
-                var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
-                    n = o.FurnitureLoader.getVersionQuery(e.mstID), r = i + ("" == n ? "" : "?" + n),
-                    a = PIXI.Texture.fromImage(r);
-                t.prototype.update.call(this, a)
-            } else {
-                switch (e.type) {
-                    case 0:
-                        this._img.scale.set(1.45), this._img.position.set(-757, -99);
-                        break;
-                    case 1:
-                        this._img.scale.set(.64), this._img.position.set(-96, 3);
-                        break;
-                    case 2:
-                        this._img.scale.set(.64), this._img.position.set(3, 3);
-                        break;
-                    case 3:
-                        this._img.scale.set(1), this._img.position.set(0, 0);
-                        break;
-                    case 4:
-                        this._img.scale.set(.73), this._img.position.set(1, -90);
-                        break;
-                    case 5:
-                        this._img.scale.set(.56), this._img.position.set(-34, 9)
-                }
-                var _ = e.mstID,
-                    r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
-                    a = PIXI.Texture.fromImage(r);
-                t.prototype.update.call(this, a)
-            }
-        }, e.prototype.clean = function () {
-            this._soldout.visible = !1, t.prototype.clean.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+            get: function () {
+                return this._viewTop
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreInitializeTask = function (t) {
+            return new r.PreInitializeTask(this)
+        }, e.prototype.getInitializeTask = function (t) {
+            return new r.InitializeTask(this)
+        }, e.prototype.getFinalizeTask = function () {
+            return new _.FinalizeTask(this)
+        }, e.prototype.initialize = function () {
+            this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+        }, e.prototype.startTopTask = function () {
+            var t = this;
+            this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                t._topTask = null
+            })
+        }, e.prototype.dispose = function () {
+            null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
         }, e
-    }(r.FurnitureThumbnail);
-    e.Thumbnail = _
+    }(o.SceneBase);
+    e.InteriorScene = u
 }

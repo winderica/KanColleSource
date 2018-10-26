@@ -15,57 +15,66 @@ const function1372 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(16), s = i(28), a = i(6), _ = i(1373), u = i(1375), l = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+    var o = i(0), r = i(24), s = i(6), a = i(120), _ = i(43), u = i(1373), l = function (t) {
+        function e(e, i, n, r, s, a, _, l, c) {
+            var h = t.call(this, e, i, r, _, l, c) || this;
+            return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new u.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._banner_f, i = this._banner_e;
-            1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                t._search_light_task = null, t._preEndTask()
+            var t = this;
+            this._cutin.preload(function () {
+                t._completePreload()
             })
-        }, e.prototype._effectWithFlare = function (t, e) {
-            var i = this, n = new s.ParallelTask;
-            n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                createjs.Tween.get(null).wait(1170).call(function () {
-                    i._flareAnimation(t, e)
-                }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                    i._search_light_task.start(function () {
-                        i._search_light_task = null, i._preEndTask()
-                    })
-                })
-            })
-        }, e.prototype._flareAnimation = function (t, e) {
+        }, e.prototype._completePreload = function () {
+            var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
+            1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
+        }, e.prototype._playPicket = function (t, e) {
             var i = this;
-            this._flare_light_task = new s.ParallelTask;
-            var n = this._layer;
-            this._flare_light_task.add(new c(n));
-            var o;
-            null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                i._flare_light_task = null, i._preEndTask()
-            })
-        }, e.prototype._preEndTask = function () {
-            null == this._search_light_task && null == this._flare_light_task && this._endTask()
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.TaskFlareEffect = l;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
+            if (this._attacker.hasSlot(129, !0)) {
+                var n = new PIXI.Point;
+                n.x = this._attacker.friend ? r.BannerSize.W : 0;
+                var o = new a.Picket;
+                o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
+                    i._playCutin(t, e)
                 })
+            } else this._playCutin(t, e)
+        }, e.prototype._playCutin = function (t, e) {
+            var i = this;
+            this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
+                i._shoot(t, e)
+            }), this._cutin.view.once("attack", function () {
+                i._playVoice()
             })
+        }, e.prototype._shoot = function (t, e) {
+            var i = this;
+            t.moveShoot(function () {
+                i._torpedo(t, e)
+            })
+        }, e.prototype._torpedo = function (t, e) {
+            var i = this, n = t.friend ? 1 : -1, o = t.getGlobalPos(!0);
+            o.x += r.BannerSize.W / 3 * n;
+            var a = e.getGlobalPos(!0);
+            a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
+            var _ = this._scene.view.layer_torpedo;
+            _.playTorpedoAtNight(o, a, 800, function () {
+                _.playTorpedoWaterColumn(e), i._explosion(t, e)
+            })
+        }, e.prototype._explosion = function (t, e) {
+            var i = this, n = e.getGlobalPos(!0);
+            createjs.Tween.get(this).wait(300).call(function () {
+                i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
+            }).wait(350).call(function () {
+                var n = i._getDamage(i._defender);
+                i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+            })
+        }, e.prototype._playVoice = function () {
+            if (this._attacker.friend) {
+                var t = this._attacker.mst_id, e = 17;
+                432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
+            }
+        }, e.prototype._log = function (t) {
         }, e
-    }(o.TaskBase)
+    }(_.PhaseAttackBase);
+    e.PhaseAttackSpRDJ = l
 }

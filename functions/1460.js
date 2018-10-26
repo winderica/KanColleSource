@@ -15,25 +15,73 @@ const function1460 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(18), s = function (t) {
+    var o = i(0), r = i(2), s = i(27), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._event = e, i
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadCommon()
-        }, e.prototype._loadCommon = function () {
-            var t = this, e = new r.UIImageLoader("common");
-            e.add("common_explosion.json"), e.load(function () {
-                t._load()
-            })
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("battle_result");
-            e.add("battle_result_main.json"), this._event && e.add("battle_result_event_base.json"), e.load(function () {
+            var t = this, e = new s.ParallelTask;
+            e.add(new _(this._scene)), e.add(new u(this._scene)), e.add(new l(this._scene)), e.start(function () {
                 t._endTask()
             })
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesBattleResult = s
+    }(r.TaskBase);
+    e.TaskShowExtraResults = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._scene.data.extra_war_results;
+            if (e > 0) {
+                var i = this._scene.view.panel_exp.extra_result.extra_war_result;
+                i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._scene.data.extra_useitem_mst_id;
+            if (e > 0) {
+                var i = o.default.resources.getUseitem(e, 0),
+                    n = this._scene.view.panel_exp.extra_result.useitem_icon;
+                n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (1 == this._scene.data.extra_result) {
+                var e = this._scene.view.panel_exp.extra_result.map_incentive;
+                e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({ alpha: 1 }, 300).call(function () {
+                    t._endTask()
+                })
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase)
 }

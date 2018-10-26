@@ -15,49 +15,31 @@ const function1433 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(24), r = i(22), s = i(12), a = i(15), _ = i(1434), u = i(1435), l = i(1438), c = function (t) {
+    var o = i(24), r = i(1434), s = i(1435), a = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new u.BannerFrame, e._frame.alpha = 0, e._layer_color = new l.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "img", {
-            get: function () {
-                return this._img
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "flagship_mark", {
-            get: function () {
-                return this._flagship_mark
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "frame", {
-            get: function () {
-                return this._frame
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_color", {
-            get: function () {
-                return this._layer_color
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "layer_over", {
-            get: function () {
-                return this._layer_over
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n, r, s, _, u) {
-            if (this._img.initialize(t, e, i, _, u, s, r), 1 == s && (1 == r ? this._img.x += 7 : this._img.x -= 78), 0 == n && (this._flagship_mark.texture = a.BATTLE_MAIN.getTexture(48), 0 == r && 1 == s && (this._flagship_mark.alpha = .5, this._flagship_mark.x = 135)), this._frame.initialize(e, i, n, r, s), s) {
-                var l = new PIXI.Graphics;
-                l.beginFill(0), l.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), l.endFill(), this._img.mask = l, this.addChild(l)
-            }
-            this.layer_color.initialize(r, s)
-        }, e.prototype.updateHp = function (t, e) {
-            this._img.update(t, e), this._frame.updateHp(t, e)
-        }, e.prototype.waveOver = function (t) {
-            var e = this, i = new s.Sprite(a.BATTLE_MAIN.getTexture(88));
-            i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
-                scaleX: .75,
-                scaleY: .75
-            }, 400).to({ alpha: 0, scaleX: 1, scaleY: 1 }, 200).call(function () {
-                e._layer_over.removeChild(i)
+        return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
+            void 0 === n && (n = null);
+            var o = t.getGlobalPos(!0), r = 1 == t.friend ? o.x + 23 : o.x - 74, s = o.y + 7;
+            this.show(r, s, e, i, n)
+        }, e.prototype.show = function (t, e, i, n, o) {
+            var s = this;
+            void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
+            var a = new r.DamageNumber;
+            a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
+                createjs.Tween.get(a).to({ alpha: 0 }, 230).call(function () {
+                    s.removeChild(a), null != o && o()
+                })
             })
+        }, e.prototype.showShieldAtBanner = function (t) {
+            var e = t.getGlobalPos(!0), i = e.x, n = e.y, r = t.friend;
+            1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
+        }, e.prototype.showShield = function (t, e, i) {
+            var n = new s.Shield;
+            n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
         }, e
-    }(r.Container);
-    e.BannerContent = c
+    }(PIXI.Container);
+    e.LayerDamage = a
 }

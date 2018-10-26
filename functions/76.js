@@ -15,7 +15,7 @@ const function76 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(62), a = i(1349), _ = function (t) {
+    var o = i(0), r = i(6), s = i(62), a = i(1343), _ = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -96,8 +96,8 @@ const function76 = function (t, e, i) {
                 var f = this._scene.view.bannerGroupLayer.getBanner(!0, 0);
                 this._scene.view.layer_damage.showShieldAtBanner(f)
             }
-            for (var y = 0, v = this._scene.data.model.deck_e.ships; y < v.length; y++) {
-                var d = v[y];
+            for (var y = 0, m = this._scene.data.model.deck_e.ships; y < m.length; y++) {
+                var d = m[y];
                 if (null != d) {
                     var _ = u[d.index];
                     null != _ && this._damageBase(d, _)

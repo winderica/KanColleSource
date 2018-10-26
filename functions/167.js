@@ -1,6 +1,15 @@
 const function167 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 }), function (t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }(i(1061))
+
+    function n(t) {
+        try {
+            return o.ITEM_PAYITEMICON.getTextureFromMstID(t)
+        } catch (t) {
+            return PIXI.Texture.EMPTY
+        }
+    }
+
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(1099);
+    e.getPayitemIcon = n
 }

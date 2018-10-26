@@ -15,42 +15,58 @@ const function1504 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(36), r = function (t) {
+    var o = i(4), r = i(36), s = i(1505), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._coin = new PIXI.Sprite, e._coin.anchor.set(.5), e._coin_white = new PIXI.Sprite, e._coin_white.anchor.set(.5), e._coin_white.alpha = 0, e._p1 = new s, e._p1.position.set(-14, -14), e._p2 = new s, e._p2.position.set(14, 14), e.addChild(e._coin), e.addChild(e._coin_white), e.addChild(e._p1), e.addChild(e._p2), e
+            return e._line_v = new PIXI.Sprite, e._line_v.position.set(0, 0), e._line_v.scale.set(1, 3.7), e._line_h = new PIXI.Sprite, e._line_h.position.set(15, 149), e._bonus_label = new PIXI.Sprite, e._bonus_label.position.set(21, 11), e._title_label = new PIXI.Sprite, e._title_label.position.set(30, 62), e._sub_title = new PIXI.Sprite, e.addChild(e._sub_title), e._exp_label = new PIXI.Sprite, e._exp_label.position.set(479, 117), e._exp_text = new o.TextBox(32, 16774898), e._exp_text.anchor.set(1, 0), e._exp_text.position.set(471, 99), e._exp_ships = [], e.addChild(e._line_v), e.addChild(e._line_h), e.addChild(e._bonus_label), e.addChild(e._title_label), e.addChild(e._exp_label), e.addChild(e._exp_text), e._extra_result = new s.ExtraResultPanel, e.addChild(e._extra_result), e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._coin.texture = o.BATTLE_RESULT_MAIN.getTexture(13), this._coin_white.texture = o.BATTLE_RESULT_MAIN.getTexture(14), this._p1.initialize(), this._p2.initialize()
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._coin_white).wait(166).to({ alpha: 1 }, 166).to({ alpha: 0 }, 333), this._t.loop = !0, this._p1.activate(), this._p2.activate())
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._p1.deactivate(), this._p2.deactivate())
+        return n(e, t), Object.defineProperty(e.prototype, "extra_result", {
+            get: function () {
+                return this._extra_result
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i, n) {
+            this._line_v.texture = r.BATTLE_RESULT_MAIN.getTexture(2), this._line_h.texture = r.BATTLE_RESULT_MAIN.getTexture(20), this._bonus_label.texture = r.BATTLE_RESULT_MAIN.getTexture(71), this._title_label.texture = 0 == i ? r.BATTLE_RESULT_MAIN.getTexture(69) : r.BATTLE_RESULT_MAIN.getTexture(74), this._sub_title.texture = r.BATTLE_RESULT_MAIN.getTexture(70), this._exp_label.texture = r.BATTLE_RESULT_MAIN.getTexture(75), this._exp_text.text = t.toString();
+            var o = 176;
+            n ? (this._line_h.y = 97, this._sub_title.x = 203, this._sub_title.y = 68, this._exp_text.y = 60, this._exp_label.y = 80, o -= 68) : (this._line_h.y = 149, this._sub_title.x = 35, this._sub_title.y = 110, this._exp_text.y = 99, this._exp_label.y = 117);
+            for (var s = 0; s < e.length; s++) {
+                var a = e[s], u = new _;
+                u.x = 6, u.y = o + 68 * s, this._exp_ships.push(u), this.addChild(u), a >= 0 ? u.initialize(a) : u.visible = !1
+            }
+            this._extra_result.initialize()
+        }, e.prototype.createShowShipExpTweens = function (t, e, i) {
+            void 0 === i && (i = 0);
+            for (var n = [], o = 0; o < this._exp_ships.length; o++) {
+                var r = this._exp_ships[o];
+                t[o] >= 0 ? (r.initialize(t[o]), r.visible = !0) : r.visible = !1, n.push(createjs.Tween.get(r).wait(i).to({ alpha: 1 }, e))
+            }
+            return n
+        }, e.prototype.createHideShipExpTweens = function (t, e) {
+            void 0 === e && (e = 0);
+            for (var i = [], n = 0; n < this._exp_ships.length; n++) {
+                var o = this._exp_ships[n];
+                i.push(createjs.Tween.get(o).wait(e).to({ alpha: 0 }, t))
+            }
+            return i
         }, e.prototype.dispose = function () {
-            this.deactivate()
+            this.removeChildren(), this._line_v = null, this._line_h = null, this._bonus_label = null, this._exp_label = null, this._exp_text.destroy(), this._exp_text = null;
+            for (var t = 0, e = this._exp_ships; t < e.length; t++) {
+                e[t].dispose()
+            }
+            this._exp_ships = null, this._extra_result.dispose(), this._extra_result = null
         }, e
     }(PIXI.Container);
-    e.MVPCoin = r;
-    var s = function (t) {
+    e.PanelExp = a;
+    var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._activated = !1, e.scale.y = 0, e._content = new PIXI.Sprite, e._content.anchor.set(.5), e._content.scale.set(.1), e._content.rotation = Math.PI / 4, e.addChild(e._content), e
+            return e._plus = new PIXI.Sprite, e._plus.position.set(18, 9), e._exp = new PIXI.Sprite, e._exp.position.set(120, 12), e._text = new o.TextBox(24, 16774898), e._text.anchor.set(1, 0), e._text.position.set(111, 0), e.addChild(e._plus), e.addChild(e._exp), e.addChild(e._text), e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._content.texture = o.BATTLE_RESULT_MAIN.getTexture(10)
-        }, e.prototype.activate = function () {
-            1 != this._activated && (this._activated = !0, this._anim())
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._anim = function () {
-            var t = this;
-            null == this._t && (this._t = createjs.Tween.get(this.scale).call(function () {
-                t.rotation = (Math.random() < .5 ? 1 : -1) * Math.PI / 4
-            }).wait(200 + 800 * Math.random()).to({ y: 1 }, 300, createjs.Ease.cubicOut).to({ y: 0 }, 300, createjs.Ease.cubicIn).call(function () {
-                t._t = null, t._anim()
-            }))
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._plus.texture = r.BATTLE_RESULT_MAIN.getTexture(86), this._exp.texture = r.BATTLE_RESULT_MAIN.getTexture(75), this._text.text = t.toString()
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._plus = null, this._exp = null, this._text.destroy(), this._text = null
         }, e
     }(PIXI.Container)
 }

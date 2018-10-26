@@ -15,41 +15,57 @@ const function1370 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(29), r = i(19), s = i(2), a = i(1371), _ = i(1378), u = i(465), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._record = i, n
+    var o = i(2), r = i(12), s = i(172), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._light = new r.Sprite, e._light.anchor.set(0, .5), e.addChild(e._light), e._animatin_task = new _(e), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "light", {
+            get: function () {
+                return this._light
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            var e;
+            e = 1 == t ? 8 : 7, this._light.texture = s.BATTLE_NIGHT.getTexture(e)
+        }, e.prototype.getAnimationTask = function () {
+            return this._animatin_task
+        }, e
+    }(PIXI.Container);
+    e.SearchLight = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._light = e, i._light.light.scale.x = .74, i._light.light.alpha = 0, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-        }, e.prototype._opening = function () {
-            var t = this, e = this._scene.view.bannerGroupLayer, i = this._scene.view.layer_cutin,
-                n = new _.PhaseAllyOpening(this._model, e, i);
-            n.preload(function () {
-                e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                    t._light()
-                })
-            })
-        }, e.prototype._light = function () {
-            var t = this, e = this._scene.view.bannerGroupLayer.ally;
-            new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                t._hougeki()
-            })
-        }, e.prototype._hougeki = function () {
-            var t = this, e = this._model.getHougekiData(), i = this._model.ships,
-                n = this._scene.data.model.deck_e.ships;
-            new u.PhaseHougeki(this._scene, e, i, n).start(function () {
-                t._moveShips()
-            })
-        }, e.prototype._moveShips = function () {
-            var t = this, e = this._scene.view.bannerGroupLayer, i = new o.SerialTask;
-            i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                e.removeAllyBannerGroup(), t._endTask()
+            var t = this, e = this._light.light;
+            createjs.Tween.get(e).to({ scaleX: .95, scaleY: 1.12, alpha: .35 }, 433).to({
+                scaleX: 1,
+                scaleY: 1.16,
+                alpha: .5
+            }, 166).to({ scaleX: .98, scaleY: 1.16, alpha: .65 }, 166).to({
+                scaleX: .9,
+                scaleY: 1.12,
+                alpha: 1
+            }, 433).to({ scaleX: .9, scaleY: 1.12, alpha: .43 }, 200).to({
+                scaleX: .95,
+                scaleY: 1.12,
+                alpha: .35
+            }, 266).to({ scaleX: 1, scaleY: 1.16, alpha: .5 }, 166).to({
+                scaleX: .98,
+                scaleY: 1.16,
+                alpha: .65
+            }, 166).to({ scaleX: .9, scaleY: 1.12, alpha: 1 }, 433).to({
+                scaleX: .9,
+                scaleY: 1.12,
+                alpha: 0
+            }, 200).wait(200).call(function () {
+                t._endTask()
             })
         }, e.prototype._endTask = function () {
-            this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
+            this._light = null, t.prototype._endTask.call(this)
         }, e
-    }(s.TaskBase);
-    e.PhaseAllyAttack = l
+    }(o.TaskBase)
 }

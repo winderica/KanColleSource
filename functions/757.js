@@ -15,24 +15,24 @@ const function757 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(758), a = i(760), _ = i(761), u = i(71), l = function (t) {
+    var o = i(2), r = i(13), s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-            return new s.PreInitializeTask(this)
-        }, e.prototype.getInitializeTask = function (t) {
-            return new a.InitializeTask(this)
-        }, e.prototype.getFinalizeTask = function () {
-            var t = this;
-            return new u.FuncTask(function () {
-                t.taskIdleMain.dispose(), t.taskIdleMain = null
+        return n(e, t), e.prototype._start = function () {
+            this._load01()
+        }, e.prototype._load01 = function () {
+            var t = this, e = new r.UIImageLoader("remodel");
+            e.add("6slot_huki1_c.png"), e.add("6slot_huki1_r.png"), e.add("6slot_huki1_l.png"), e.add("6slot_huki2.png"), e.load(function () {
+                t._load02()
             })
-        }, e.prototype.start = function () {
-            var t = o.default.model.deck.get(1).getShipMemID(0);
-            this.taskIdleMain = new _.TaskIdleMain(this), this.taskIdleMain.start(1, t)
+        }, e.prototype._load02 = function () {
+            var t = this, e = new r.UIImageLoader("remodel");
+            e.add("remodel_main.json"), e.add("remodel_powerup.json"), e.add("remodel_gradeup.json"), e.add("remodel_animation.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(r.SceneBase);
-    e.RemodelScene = l
+    }(o.TaskBase);
+    e.TaskLoadResourcesRemodel = s
 }

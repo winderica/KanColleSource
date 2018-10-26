@@ -15,42 +15,55 @@ const function1286 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1287), r = i(1288), s = i(1289), a = i(1), _ = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onMouseOver = function () {
-                null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({ x: 831 }, 300, createjs.Ease.quadOut).call(function () {
-                    n._move_tween = null
-                }) : n._move_tween = createjs.Tween.get(n).to({ x: 0 }, 300, createjs.Ease.quadOut).call(function () {
-                    n._move_tween = null
-                }))
-            }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+    var o = i(144), r = i(51), s = i(427), a = i(1287), _ = i(1288), u = i(1300), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "title", {
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
             get: function () {
-                return this._title
+                return this._bg
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "cancel_btn", {
+        }), Object.defineProperty(e.prototype, "shutter", {
             get: function () {
-                return this._cancel_btn
+                return this._shutter
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "panel", {
+        }), Object.defineProperty(e.prototype, "map", {
             get: function () {
-                return this._panel
+                return this._map
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            var i = null == e ? 0 : e.length;
-            this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-        }, e.prototype.activate = function () {
-            this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-        }, e.prototype.deactivate = function () {
-            null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-        }, e.prototype.update = function (t) {
-            this._title.update(t), this._panel.update(t, !0)
+        }), Object.defineProperty(e.prototype, "upper", {
+            get: function () {
+                return this._upper
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "gauge_layer", {
+            get: function () {
+                return this._gauge_layer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "chara_layer", {
+            get: function () {
+                return this._chara_layer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "universal_layer", {
+            get: function () {
+                return this._universal_layer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message_box", {
+            get: function () {
+                return this._message_box
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "top_layer", {
+            get: function () {
+                return this._top_layer
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+            this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+        }, e.prototype.frontOfGaugeLayer = function () {
+            this.addChild(this._gauge_layer), this.addChild(this._top_layer)
         }, e
     }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    e.ViewMain = l
 }

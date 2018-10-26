@@ -15,33 +15,45 @@ const function1006 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(16), a = i(1007), _ = i(1008), u = function (t) {
-        function e(e, i, n) {
-            var r = t.call(this) || this;
-            return r._hideDetailInfo = function () {
-                r._detail.deactivate(), createjs.Tween.get(r._detail).to({ alpha: 0 }, 300), createjs.Tween.get(r._fade).wait(100).to({ alpha: 0 }, 300).call(function () {
-                    r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
-                })
-            }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+    var o = i(0), r = i(1007), s = i(221), a = i(164), _ = i(1008), u = i(1013), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._changeToInfo = function () {
+                e._showInfo()
+            }, e._changeToDeck = function () {
+                e._showDeck()
+            }, e._onStartPractice = function () {
+                for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, u = new s.DeckModelReplica(i, !0, n, _), l = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
+                    var p = c[h];
+                    if (null == p) l.push(null); else {
+                        var d = p.id, f = p.level, y = new a.ShipModelReplica(1, !0, h, d, -h, f);
+                        l.push(y)
+                    }
+                }
+                var m = e._selected_rival.id, v = e._selected_rival.medal_num, g = e._selected_rival.name,
+                    b = e._selected_rival.deck_name, w = new s.DeckModelReplica(m, !0, v, g, 0, b, l),
+                    x = new r.PracticeSceneModel(u, w);
+                o.default.scene.change(32, x), e.emit("close")
+            }, e._onClose = function () {
+                e.emit("close")
+            }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new u.PanelDeckSelect(e._onClose), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._showFade()
-        }, e.prototype._showFade = function () {
-            this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
-        }, e.prototype._connectAPI = function () {
-            var t = this, e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
-            e.start(function () {
-                t._showDetailInfo(e.res_model)
-            })
-        }, e.prototype._showDetailInfo = function (t) {
-            var e = this;
-            this._detail = new _.ContainerOverlay;
-            var i = o.default.model.deck.getIDs(), n = o.default.model.deck.isCombined();
-            this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({ alpha: 1 }, 300).call(function () {
-                e._detail.once("close", e._hideDetailInfo), e._detail.activate()
-            })
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
+        }, e.prototype.update = function (t) {
+            this._selected_rival = t, this._info.update(t), this._showInfo()
+        }, e.prototype.activate = function () {
+            1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
+        }, e.prototype.deactivate = function () {
+            this._info.deactivate(), this._deck.deactivate()
+        }, e.prototype.dispose = function () {
+            this._info.dispose(), this._deck.dispose()
+        }, e.prototype._showInfo = function () {
+            1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
+        }, e.prototype._showDeck = function () {
+            1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
         }, e
-    }(r.TaskBase);
-    e.TaskDetailInfo = u
+    }(PIXI.Container);
+    e.ContainerOverlay = l
 }

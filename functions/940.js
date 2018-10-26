@@ -15,41 +15,23 @@ const function940 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(18), r = i(352), s = i(942), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this, e) || this;
+            return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            var e;
-            switch (t) {
-                case 1:
-                    e = 74;
-                    break;
-                case 2:
-                    e = 75;
-                    break;
-                case 3:
-                    e = 76;
-                    break;
-                case 4:
-                    e = 77;
-                    break;
-                case 5:
-                    e = 78;
-                    break;
-                case 6:
-                    e = 79;
-                    break;
-                case 7:
-                    e = 80;
-                    break;
-                default:
-                    return void(this.visible = !1)
-            }
-            this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
+        return n(e, t), e.prototype.initialize = function (e) {
+            t.prototype.initialize.call(this, e), this._btn_extend.initialize()
+        }, e.prototype.activate = function () {
+            t.prototype.activate.call(this), this._btn_extend.activate()
+        }, e.prototype.deactivate = function () {
+            t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+        }, e.prototype.dispose = function () {
+            t.prototype.dispose.call(this), this._btn_extend.dispose()
+        }, e.prototype.updateExtendBtn = function (t, e) {
+            this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
         }, e
-    }(PIXI.Container);
-    e.AirUnitPanelItemSkillLevelIcon = r
+    }(r.AirUnitPanelTabContainer);
+    e.AirUnitPanelTabContainerWithExtend = a
 }

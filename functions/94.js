@@ -15,14 +15,19 @@ const function94 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(63), r = function (t) {
+    var o = i(62), r = i(76), s = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._data = this._record.raw.air_war2, 0 == this._hasPhase() ? this._endTask() : (this._scene.view.layer_title.show(4), this._preload())
+            var t = this;
+            if (this._data = this._record.raw.raigeki_opening, null == this._data) this._endTask(); else {
+                new o.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                    t._ready()
+                })
+            }
         }, e
-    }(o.PhaseAirWar);
-    e.PhaseAirWar2 = r
+    }(r.PhaseRaigeki);
+    e.PhaseRaigekiOpening = s
 }

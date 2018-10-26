@@ -15,53 +15,113 @@ const function376 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(38), r = i(1), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._activated = !1, n._selected = !1, n._onMouseOver = function () {
-                n._update(!0)
-            }, n._onMouseOut = function () {
-                n._update(!1)
-            }, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._area_id)
-            }, n._area_id = e, n._cb_onClick = i, n
+    var o = i(14), r = i(231), s = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "area_id", {
+        return n(e, t), Object.defineProperty(e.prototype, "nickname", {
             get: function () {
-                return this._area_id
+                return this._nickname
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "selected", {
+        }), Object.defineProperty(e.prototype, "comment", {
             get: function () {
-                return this._selected
-            }, set: function (t) {
-                this._selected = t, 1 == this._selected ? this.deactivate() : this.activate(), this._update(!1)
+                return this._comment
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._update(!1)
-        }, e.prototype.activate = function () {
-            1 != this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._activated = !1, this.interactive = this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onClick = null
+        }), Object.defineProperty(e.prototype, "level", {
+            get: function () {
+                return this._level
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "rank", {
+            get: function () {
+                return this._rank
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "experience_now", {
+            get: function () {
+                return this._experience_now
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "experience_next", {
+            get: function () {
+                return this._experience_next
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "warWin", {
+            get: function () {
+                return this._war_win
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "warLose", {
+            get: function () {
+                return this._war_lose
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "warRate", {
+            get: function () {
+                return this._war_rate
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "missionCount", {
+            get: function () {
+                return this._mission_count
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "missionSuccess", {
+            get: function () {
+                return this._mission_success
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "missionRate", {
+            get: function () {
+                return this._mission_rate
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "practiceWin", {
+            get: function () {
+                return this._practice_win
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "practiceLose", {
+            get: function () {
+                return this._practice_lose
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "practiceRate", {
+            get: function () {
+                return this._practice_rate
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "deckNum", {
+            get: function () {
+                return this._deck
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "kDockNum", {
+            get: function () {
+                return this._kdoc
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "nDockNum", {
+            get: function () {
+                return this._ndoc
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shipNum", {
+            get: function () {
+                return this._shipNow
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "shipMax", {
+            get: function () {
+                return this._shipMax
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotitemNum", {
+            get: function () {
+                return this._slotitemNow
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotitemMax", {
+            get: function () {
+                return this._slotitemMax
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "furnitureNum", {
+            get: function () {
+                return this._furniture
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "materialMax", {
+            get: function () {
+                return this._material_max
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.SetAll = function (t) {
+            var e;
+            this._nickname = o.ObjUtil.getString(t, "api_nickname"), this._comment = o.ObjUtil.getString(t, "api_cmt"), this._level = o.ObjUtil.getNumber(t, "api_level"), this._rank = o.ObjUtil.getNumber(t, "api_rank");
+            var i = o.ObjUtil.getNumArray(t, "api_experience");
+            this._experience_now = i[0], this._experience_next = i[1], i = null, e = o.ObjUtil.getNumArray(t, "api_war"), this._war_win = o.ObjUtil.getNumber(e, "api_win"), this._war_lose = o.ObjUtil.getNumber(e, "api_lose"), this._war_rate = o.ObjUtil.getString(e, "api_rate"), e = o.ObjUtil.getNumArray(t, "api_mission"), this._mission_count = o.ObjUtil.getNumber(e, "api_count"), this._mission_success = o.ObjUtil.getNumber(e, "api_success"), this._mission_rate = o.ObjUtil.getString(e, "api_rate"), e = o.ObjUtil.getNumArray(t, "api_practice"), this._practice_win = o.ObjUtil.getNumber(e, "api_win"), this._practice_lose = o.ObjUtil.getNumber(e, "api_lose"), this._practice_rate = o.ObjUtil.getString(e, "api_rate"), this._deck = o.ObjUtil.getNumber(t, "api_deck"), this._kdoc = o.ObjUtil.getNumber(t, "api_kdoc"), this._ndoc = o.ObjUtil.getNumber(t, "api_ndoc"), i = o.ObjUtil.getNumArray(t, "api_ship"), this._shipNow = i[0], this._shipMax = i[1], i = null, i = o.ObjUtil.getNumArray(t, "api_slotitem"), this._slotitemNow = i[0], this._slotitemMax = i[1], i = null, this._furniture = o.ObjUtil.getNumber(t, "api_furniture"), this._material_max = o.ObjUtil.getNumber(t, "api_material_max")
         }, e
-    }(PIXI.Sprite);
-    e.ExpeditionAreaIconBtnBase = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype._update = function (t) {
-            if (this.selected || t) {
-                var e = [-1, 1, 3, 5, 9, 11, 13, 7], i = e[this.area_id];
-                this.texture = o.SALLY_EXPEDITION.getTexture(i)
-            } else {
-                var e = [-1, 0, 2, 4, 8, 10, 12, 6], i = e[this.area_id];
-                this.texture = o.SALLY_EXPEDITION.getTexture(i)
-            }
-        }, e
-    }(s);
-    e.ExpeditionAreaIconBtn = a
+    }(r.RecordModelBase);
+    e.RecordInfoModel = s
 }

@@ -15,30 +15,23 @@ const function372 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(41), r = i(229), s = i(995), a = function (t) {
-        function e(e, i, n, o, r) {
-            return t.call(this, e, i, n, o, r) || this
+    var o = i(29), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype._setPositions = function () {
-            1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-        }, e.prototype._getNoneTexture = function () {
-            switch (this._type) {
-                case 3:
-                    return o.SALLY_EVENT.getTexture(27)
-            }
-            return PIXI.Texture.EMPTY
-        }, e.prototype._getFocusTexture = function () {
-            switch (this._type) {
-                case 1:
-                    return o.SALLY_EVENT.getTexture(26);
-                case 3:
-                    return o.SALLY_EVENT.getTexture(25)
-            }
-            return PIXI.Texture.EMPTY
-        }, e.prototype._createLock = function () {
-            return new s.EventMapThumbnailLocked(this._type)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_COMMON.getTexture(25)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
         }, e
-    }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+    }(PIXI.Sprite);
+    e.CloseBtn = s
 }

@@ -15,15 +15,42 @@ const function1285 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._url = "api_req_map/start_air_base", o._airunit1 = e, o._airunit2 = i, o._airunit3 = n, o
+    var o = i(20), r = i(1), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._handle = -1, n._onClick = function () {
+                if (-1 != n._handle) {
+                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
+                    n._cb_onDoubleClick(n._no)
+                } else n._handle = setTimeout(function () {
+                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
+                }, 300)
+            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._state = 0, n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            null != this._airunit1 && this._airunit1.length > 0 && (this._post_data.api_strike_point_1 = this._airunit1.join(",")), null != this._airunit2 && this._airunit2.length > 0 && (this._post_data.api_strike_point_2 = this._airunit2.join(",")), null != this._airunit3 && this._airunit3.length > 0 && (this._post_data.api_strike_point_3 = this._airunit3.join(",")), t.prototype._connect.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "no", {
+            get: function () {
+                return this._no
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._no = t, this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.texture = o.MAP_COMMON.getTexture(147);
+                    break;
+                case 2:
+                    this._img.texture = o.MAP_COMMON.getTexture(148);
+                    break;
+                case 3:
+                    this._img.texture = o.MAP_COMMON.getTexture(149);
+                    break;
+                default:
+                    this._img.texture = PIXI.Texture.EMPTY
+            }
         }, e
-    }(o.APIBase);
-    e.AirUnitGoAPI = r
+    }(PIXI.Graphics);
+    e.AirUnitAppointmentPoint = s
 }

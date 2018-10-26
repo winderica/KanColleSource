@@ -15,51 +15,33 @@ const function1290 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(6), r = i(1291), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onClick = function (t) {
-                n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
-            }, n._onDoubleClick = function (t) {
-                var e = n._selected_spot_no.lastIndexOf(t);
-                -1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
-            }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
+    var o = i(20), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i) {
-            this._clear(), e = this._dedupeCells(e);
-            for (var n = 0, o = e; n < o.length; n++) {
-                var s = o[n], a = s.no, _ = i.getCellInfo(a);
-                if (!(_.distance <= 0) && !(_.distance > t)) {
-                    var u = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
-                    u.initialize(a), u.x = s.x, u.y = s.y, this.addChild(u), this._points[a] = u
-                }
-            }
-        }, e.prototype.update = function () {
-            var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
-                e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
-            for (var i in this._points) {
-                var n = this._points[i];
-                n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
-            }
+        return n(e, t), e.prototype.update = function (t) {
+            this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+        }, e.prototype.activate = function () {
+            null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, { loop: !0 }).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, { loop: !0 }).to({
+                x: .7,
+                y: .7
+            }, 900).to({
+                x: 1,
+                y: 1
+            }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, { loop: !0 }).wait(500).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, { loop: !0 }).wait(500).to({
+                x: .7,
+                y: .7
+            }, 900).to({ x: 1, y: 1 }, 400))
+        }, e.prototype.deactivate = function () {
+            this._stopTween()
         }, e.prototype.dispose = function () {
-            this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
-        }, e.prototype._clear = function () {
-            for (var t in this._points) this._points[t].dispose();
-            this.removeChildren(), this._points = []
-        }, e.prototype._dedupeCells = function (t) {
-            for (var e = [], i = t.concat(); i.length > 0;) {
-                for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
-                    var a = s[r], _ = n.x - a.x, u = n.y - a.y;
-                    if (Math.sqrt(_ * _ + u * u) <= 10) {
-                        o = !0;
-                        break
-                    }
-                }
-                0 == o && e.push(n)
-            }
-            return e
+            this._stopTween()
+        }, e.prototype._stopTween = function () {
+            for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+            this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
         }, e
     }(PIXI.Container);
-    e.AirUnitAppointmentLayer = s
+    e.CompShipWave = r
 }

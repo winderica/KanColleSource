@@ -15,34 +15,27 @@ const function845 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(14), a = i(18), _ = i(846), u = i(340), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._updateNDock = function () {
-                (new u.NDockAPI).start(i._loadAtlas)
-            }, i._loadAtlas = function () {
-                var t = new a.UIImageLoader("repair");
-                t.add("repair_main.json"), t.load(i._loadShipBanner)
-            }, i._loadShipBanner = function () {
-                var t = o.default.model.ndock.getShipMemIDs();
-                if (0 < t.length) {
-                    for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
-                        var r = t[n], a = o.default.model.ship.get(r);
-                        e.add(a.mstID, a.isDamaged(), "banner")
-                    }
-                    e.load(function () {
-                        i._onCompleteLoad()
-                    })
-                } else i._onCompleteLoad()
-            }, i._onCompleteLoad = function () {
-                var t = o.default.model.ndock.getAll(), e = new _.MainView(t);
-                i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
-            }, i.repairScene = e, i
+    var o = i(3), r = i(3), s = i(1), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onMouseOver = function () {
+                e.popup.visible = !0
+            }, e._onMouseOut = function () {
+                e.popup.visible = !1
+            }, e._onClick = function () {
+                e.hasKey ? e.onClick(e.memDockId) : r.SE.play("248")
+            };
+            var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(11)), n = new PIXI.Sprite;
+            n.position.set(462, -24), e.addChild(i, n);
+            var a = o.REPAIR_MAIN.getTexture(25), _ = o.REPAIR_MAIN.getTexture(24);
+            return e.background = i, e.background.addListener(s.EventType.MOUSEOVER, e._onMouseOver), e.background.addListener(s.EventType.MOUSEOUT, e._onMouseOut), e.background.addListener(s.EventType.CLICK, e._onClick), e.popup = n, e.huki_r_01 = _, e.huki_r_02 = a, e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._updateNDock()
+        return n(e, t), e.prototype.update = function (t, e, i) {
+            this.popup.texture = PIXI.Texture.EMPTY, this.popup.visible = !1, this.popup.texture = this.huki_r_01, this.hasKey = i, i && (this.popup.texture = this.huki_r_02), this.background.interactive = this.background.buttonMode = !1, e && (this.background.interactive = this.background.buttonMode = !0), this.memDockId = t
+        }, e.prototype.dispose = function () {
+            this.removeChild(this.background), this.removeChild(this.popup), this.background.removeAllListeners(s.EventType.MOUSEOVER), this.background.removeAllListeners(s.EventType.MOUSEOUT), this.background.removeAllListeners(s.EventType.CLICK), this.background.interactive = this.background.buttonMode = !1, this.background.texture = PIXI.Texture.EMPTY, this.popup.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.huki_r_01 = null, this.huki_r_02 = null, this.background = null, this.popup = null, this.memDockId = null, this.removeChildren()
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = l
+    }(PIXI.Container);
+    e.ExtensionDock = a
 }

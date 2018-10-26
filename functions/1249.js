@@ -15,39 +15,39 @@ const function1249 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            n._ropeLength = 0, n._animation_count = 0, n._texture = e, n._points = [];
-            var o = e.orig.width;
-            n._ropeLength = o / i;
-            for (var r = 0; r < i; r++) {
-                var s = new PIXI.Point;
-                s.x = r * (e.height / (i - 1)), s.y = e.width / 2, n._points.push(s)
-            }
-            var a = new PIXI.mesh.Rope(e, n._points), _ = e.frame,
-                u = PIXI.GroupD8.isVertical(2) ? e.frame.height : e.frame.width,
-                l = PIXI.GroupD8.isVertical(2) ? e.frame.width : e.frame.height,
-                c = new PIXI.Rectangle(_.x, _.y, u, l), h = new PIXI.Rectangle(0, 0, u, l),
-                p = new PIXI.Texture(e.baseTexture, _, c, h, 2);
-            return a = new PIXI.mesh.Rope(p, n._points), a.rotation = Math.PI / 2, a.x = a.height, n.addChild(a), n
+    var o = i(2), r = i(28), s = i(20), a = i(1250), _ = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._buff = function () {
+                for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
+                e.start(o._hideBalloon)
+            }, o._hideBalloon = function () {
+                var t = o._balloon.y + 23;
+                createjs.Tween.get(o._balloon).to({ y: t, alpha: 0 }, 100).call(function () {
+                    o._balloon.parent.removeChild(o._balloon), o._endTask()
+                })
+            }, o._scene = e, o._buff_count = i, o._offset = n, o
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.stopAnimation(), this.removeChildren(), this._texture = null, this._points = null, this._ropeLength = null, this._animation_count = null
-        }, e.prototype.startAnimation = function () {
-            var t = this;
-            this._tween = createjs.Tween.get(this), this._tween.loop = !0, this._tween.wait(40).call(function () {
-                t._onUpdate()
-            })
-        }, e.prototype.stopAnimation = function () {
-            this._tween && (this._tween.setPaused(!0), this._tween = null)
-        }, e.prototype._onUpdate = function () {
-            this._animation_count += .05;
-            for (var t = 0; t < this._points.length; t++) {
-                this._points[t].y = this._texture.width / 2 + 5 * Math.cos(.3 * t + this._animation_count)
-            }
+        return n(e, t), e.prototype._start = function () {
+            this._showBalloon()
+        }, e.prototype._showBalloon = function () {
+            var t = this._scene.view.map.ship_icon;
+            this._balloon = new u, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
+                y: this._balloon.y - 23,
+                alpha: 1
+            }, 100).wait(200).call(this._buff)
         }, e
-    }(PIXI.Container);
-    e.MapEnemy = o
+    }(o.TaskBase);
+    e.TaskReplenishmentBalloonEffect = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.MAP_COMMON.getTexture(49), this._icon.texture = s.MAP_COMMON.getTexture(77), this._label.texture = s.MAP_COMMON.getTexture(156)
+        }, e
+    }(PIXI.Container)
 }

@@ -15,23 +15,27 @@ const function962 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
+    var o = i(12), r = i(41), s = i(963), a = i(0), _ = i(13), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = this._model.getGaugeNum(), i = this._model.gauge_type, n = this._model.gauge_max,
-                o = this._model.gauge_now, r = this._raw_data;
-            if (null != r && r.hasOwnProperty("api_maphp")) {
-                var s = r.api_maphp;
-                s.hasOwnProperty("api_gauge_num") && (e = s.api_gauge_num), s.hasOwnProperty("api_gauge_type") && (i = s.api_gauge_type), 1 == s.hasOwnProperty("api_max_maphp") && (n = s.api_max_maphp), 1 == s.hasOwnProperty("api_now_maphp") && (o = s.api_now_maphp)
-            }
-            this._model.changeOperation(this._selected, e, i, n, o), t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "selectView", {
+            get: function () {
+                return this._createSelectView(), this._selectView
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                i = "?version=" + _.UIImageLoader.getVersion("sally");
+            this.texture = r.SALLY_EVENT.getTexture(5), 421 == t ? (this._content.position.set(-306, -222), this._content.texture = PIXI.Texture.fromImage(e + "/225_407b0.png" + i)) : 422 == t ? (this._content.position.set(-295, -226), this._content.texture = PIXI.Texture.fromImage(e + "/226_9f8ae.png" + i)) : 423 == t ? (this._content.position.set(-331, -226), this._content.texture = PIXI.Texture.fromImage(e + "/227_26a55.png" + i)) : 424 == t ? (this._content.position.set(-309, -225), this._content.texture = PIXI.Texture.fromImage(e + "/228_55a55.png" + i)) : 425 == t ? (this._content.position.set(-314, -224), this._content.texture = PIXI.Texture.fromImage(e + "/229_68011.png" + i)) : this._content.texture = PIXI.Texture.EMPTY
+        }, e.prototype.showSelectView = function () {
+            return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
+        }, e.prototype.dispose = function () {
+            null != this._selectView && this._selectView.dispose()
+        }, e.prototype._createSelectView = function () {
+            null == this._selectView && (this._selectView = new s.OperationSelectView)
         }, e
-    }(o.APIBase);
-    e.APIOperationChange = r
+    }(o.Sprite);
+    e.MapIntroBoard = u
 }

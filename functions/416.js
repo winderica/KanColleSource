@@ -1,11 +1,6 @@
 const function416 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("revamp_box_" + t)
-        }
-
-        t.getTexture = e
-    }(e.REVAMP_BOX || (e.REVAMP_BOX = {}))
+    Object.defineProperty(e, "__esModule", { value: !0 }), function (t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }(i(117))
 }

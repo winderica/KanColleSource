@@ -1,9 +1,31 @@
 const function1207 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(2), r = i(13), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._callback = e, i
+        }
 
-    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1208)), n(i(1209)), n(i(423)), n(i(422)), n(i(1210)), n(i(1211)), n(i(425)), n(i(426)), n(i(424)), n(i(427)), n(i(428))
+        return n(e, t), e.prototype._start = function () {
+            this._callback && this._callback(), this._endTask()
+        }, e.prototype._endTask = function () {
+            this._callback = null, r.UIImageLoader.clearMemoryCache("prac"), t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.TaskFinalize = s
 }

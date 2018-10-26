@@ -15,46 +15,68 @@ const function1417 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(183), s = function (t) {
-        function e(e) {
-            var i = t.call(this, e) || this;
-            return i._initPlaneFrom(), i
-        }
+    var o = i(51), r = i(1418), s = i(1422), a = i(471), _ = i(1432), u = i(1433), l = i(1436), c = i(1441),
+        h = i(1442), p = i(1443), d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new u.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new l.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
+            }
 
-        return n(e, t), Object.defineProperty(e.prototype, "airunit_id", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_base_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "squadrons", {
-            get: function () {
-                var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_squadron_plane");
-                if (null != e) for (var i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    t.push({
-                        mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
-                        count: o.ObjUtil.getNumber(r, "api_count")
-                    })
-                }
-                if (null != (e = o.ObjUtil.getObjectArray(this._o, "api_map_squadron_plane"))) for (var s = this.plane_from_f.map(function (t) {
-                    return t + 1
-                }), a = 0, _ = s; a < _.length; a++) {
-                    var u = _[a];
-                    if (e.hasOwnProperty(u.toString())) for (var l = e[u], c = 0, h = l; c < h.length; c++) {
-                        var p = h[c];
-                        t.push({
-                            mst_id: o.ObjUtil.getNumber(p, "api_mst_id"),
-                            count: o.ObjUtil.getNumber(p, "api_count")
-                        })
-                    }
-                }
-                return t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "seiku", {
-            get: function () {
-                var t = this._stage1;
-                return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(r.AirWarDataBase);
-    e.AirUnitData = s
+            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
+                get: function () {
+                    return this._layer_torpedo
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
+                get: function () {
+                    return this._bannerGroupLayer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_explosion", {
+                get: function () {
+                    return this._layer_explosion
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_damage", {
+                get: function () {
+                    return this._layer_damage
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
+                get: function () {
+                    return this._bannerInfoLayer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_content", {
+                get: function () {
+                    return this._layer_content
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "raderLayer", {
+                get: function () {
+                    return this._raderLayer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_gauge", {
+                get: function () {
+                    return this._layer_gauge
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info", {
+                get: function () {
+                    return this._layer_info
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_title", {
+                get: function () {
+                    return this._layer_title
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info2", {
+                get: function () {
+                    return this._layer_info2
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
+            }, e
+        }(PIXI.Container);
+    e.ViewMain = d
 }

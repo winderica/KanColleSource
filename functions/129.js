@@ -3,9 +3,13 @@ const function129 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ishop_" + t)
+            try {
+                return PIXI.Texture.fromFrame("common_icon_weapon_id_" + t)
+            } catch (t) {
+                return PIXI.Texture.EMPTY
+            }
         }
 
-        t.getTexture = e
-    }(e.ITEM_ISHOP || (e.ITEM_ISHOP = {}))
+        t.getTextureFromMstID = e
+    }(e.COMMON_ICON_WEAPON || (e.COMMON_ICON_WEAPON = {}))
 }

@@ -1,41 +1,52 @@
 const function536 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
-        function t() {
+    var o = i(0), r = i(22), s = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return Object.defineProperty(t.prototype, "renderer", {
-            get: function () {
-                return this._args.renderer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "path_root", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "path_root", "")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_root", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "voice_root", null)
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "api_root", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "api_root", "/kcsapi")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "api_token", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "api_token")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "osapi_root", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "osapi_root")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "version", {
-            get: function () {
-                return n.ObjUtil.getString(this._args, "version")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.initialize = function (t) {
-            this._args = t
-        }, t
-    }();
-    e.SettingsModel = o
+        return n(e, t), e.prototype.setImage = function (t, e) {
+            switch (t) {
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 23:
+                case 31:
+                    var i = r.MathUtil.zeroPadding(t, 3),
+                        n = o.default.settings.path_root + "img/common/bg/" + i + ".png";
+                    null != PIXI.utils.TextureCache[n] ? (this.texture = PIXI.utils.TextureCache[n], this.visible = !0, null != e && e()) : this._load(n, e);
+                    break;
+                default:
+                    this.visible = !1, null != e && e()
+            }
+        }, e.prototype._load = function (t, e) {
+            var i = this;
+            this._loader = new PIXI.loaders.Loader, this._loader.add(t), this._loader.load(function (n) {
+                if (i._loader == n) {
+                    i._loader = null;
+                    var o = n.resources[t];
+                    i.texture = o.texture, i.visible = !0, null != e && e()
+                }
+            })
+        }, e
+    }(PIXI.Sprite);
+    e.Background = s
 }

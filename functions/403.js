@@ -15,17 +15,25 @@ const function403 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._arrow = new r.TextBox(22, 4999235), e._arrow.position.set(152, 20), e.addChild(e._arrow), e._from = new r.TextBox(24, 4999235), e._from.y = 20, e.addChild(e._from), e._tobe = new r.TextBox(24, 4999235), e._tobe.position.set(188, 20), e.addChild(e._tobe), e
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e, i) {
+            void 0 === i && (i = !1);
+            var n = t.call(this) || this;
+            return n._url = "api_req_furniture/buy", n._model = e, n._discount = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            void 0 === e && (e = 1), this.texture = o.default.resources.getUseitem(57, 0), this._arrow.text = "\u2192", this._from.text = t.toString(), this._from.x = 147 - this._from.width, this._tobe.text = (t - e).toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_type = this._model.type, this._post_data.api_no = this._model.no, 1 == this._discount && (this._post_data.api_discount_flag = 1), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            if (1 == this._discount || 1 == this._model.isNeedCraftsman()) {
+                var e = o.default.model.useItem.get(52);
+                e.__setCount__(e.count - 1)
+            }
+            var i = this._model.price;
+            1 == this._discount && (i = this._model.getDiscountPrice());
+            var n = o.default.model.useItem.get(44);
+            n.__setCount__(n.count - i), this._model.updateHasFlag(!0), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.MedalIcon = s
+    }(r.APIBase);
+    e.FurnitureExchangeAPI = s
 }

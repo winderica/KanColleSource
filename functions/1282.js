@@ -15,55 +15,47 @@ const function1282 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(2), s = i(12), a = i(8), _ = i(20), u = i(1283), l = i(1), c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._shutter = e, n._item_ids = i, n
+    var o = i(20), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
+                null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
+            }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            this._view = new u.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
-            var e = _.MAP_COMMON.getTexture(105);
-            this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({ scaleY: 1 }, 300).call(function () {
-                t._showMessage()
-            })
-        }, e.prototype._showMessage = function () {
-            var t = this, e = _.MAP_COMMON.getTexture(108);
-            this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
-                x: o.default.width / 2 + 180,
-                alpha: 1
-            }, 300).to({ x: o.default.width / 2 }, 400).to({
-                x: o.default.width / 2 - 60,
-                alpha: 0
-            }, 400).call(function () {
-                t._shutter.removeChild(t._telopText), t._closeTelop()
-            })
-        }, e.prototype._closeTelop = function () {
-            var t = this;
-            createjs.Tween.get(this._telopBG).to({ scaleY: 0 }, 300).call(function () {
-                t._shutter.removeChild(t._telopBG)
-            }), createjs.Tween.get(this._view).to({ alpha: 1 }, 200).call(function () {
-                t._showContent()
-            })
-        }, e.prototype._showContent = function () {
-            var t = this;
-            this._shutter.close(), this._shutter.once("closed", function () {
-                createjs.Tween.get(t._view.content).to({ alpha: 1 }, 200).call(function () {
-                    t._waitClick()
-                })
-            })
-        }, e.prototype._waitClick = function () {
-            var t = this, e = new a.AreaBox(0);
-            e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(l.EventType.CLICK, function () {
-                t._shutter.removeChild(e), t._hideView()
-            })
-        }, e.prototype._hideView = function () {
-            var t = this;
-            createjs.Tween.get(this._view).to({ alpha: 0 }, 200).call(function () {
-                t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
-            })
+        return n(e, t), Object.defineProperty(e.prototype, "complete", {
+            get: function () {
+                return this._complete
+            }, set: function (t) {
+                this._complete = t, this.buttonMode = t, this._update()
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
+        }, e.prototype.update = function (t) {
+            this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
+        }, e.prototype.dispose = function () {
+            this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype._update = function () {
+            if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(154), this._img.position.set(0, 0); else {
+                switch (this._airunit_id) {
+                    case 0:
+                        this._img.texture = o.MAP_COMMON.getTexture(150);
+                        break;
+                    case 1:
+                        this._img.texture = o.MAP_COMMON.getTexture(151);
+                        break;
+                    case 2:
+                        this._img.texture = o.MAP_COMMON.getTexture(152);
+                        break;
+                    case 3:
+                        this._img.texture = o.MAP_COMMON.getTexture(153);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
+                this._img.position.set(11, 9)
+            }
         }, e
-    }(r.TaskBase);
-    e.TaskShowMapEndView = c
+    }(PIXI.Container);
+    e.AirUnitAppointmentTitle = s
 }

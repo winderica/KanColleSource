@@ -15,14 +15,19 @@ const function1153 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(32), r = i(3), s = function (t) {
+    var o = i(2), r = i(13), s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._update = function (t) {
-            0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("interior");
+            e.add("interior_parts.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.BtnBase);
-    e.ExchangeBtn = s
+    }(o.TaskBase);
+    e.TaskLoadResources = s
 }

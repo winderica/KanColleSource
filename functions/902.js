@@ -15,29 +15,24 @@ const function902 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(7), a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_kousyou/destroyship", n.api_ship_ids = e, n.type = i, n
+    var o = i(10), r = i(0), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_kousyou/destroyitem2", i.api_slotitem_ids = e, i
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_ship_id = this.api_ship_ids.join(","), this._post_data.api_slot_dest_flag = this.type, o.default.model.basic.setDestroyShipSlotType(this.type), t.prototype._connect.call(this)
+            this._post_data.api_slotitem_ids = this.api_slotitem_ids.toString(), t.prototype._connect.call(this)
         }, e.prototype._completedEnd = function () {
-            var e = this._raw_data.api_material;
-            o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]);
-            var i = 0 === this.type;
-            i && o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unset_list"));
-            for (var n = 0, r = this.api_ship_ids.length; n < r; n++) {
-                var a = this.api_ship_ids[n], _ = o.default.model.ship.get(a), u = o.default.model.deck.isInDeck(a);
-                if (u) {
-                    var l = u[0], c = u[1];
-                    o.default.model.deck.get(l).__remove__(c)
-                }
-                o.default.model.ship.delete(_.memID, i)
+            for (var e = 0; e < this.api_slotitem_ids.length; e++) {
+                var i = this.api_slotitem_ids[e];
+                r.default.model.slot.delete(i)
             }
-            t.prototype._completedEnd.call(this)
+            var n = this._raw_data.api_get_material, o = r.default.model.useItem.get(31),
+                s = r.default.model.useItem.get(32), a = r.default.model.useItem.get(33),
+                _ = r.default.model.useItem.get(34);
+            o.__setCount__(o.count + n[0]), s.__setCount__(s.count + n[1]), a.__setCount__(a.count + n[2]), _.__setCount__(_.count + n[3]), t.prototype._completedEnd.call(this)
         }, e
-    }(r.APIBase);
-    e.DestroyShipAPI = a
+    }(o.APIBase);
+    e.DestroyItem2API = s
 }

@@ -1,112 +1,67 @@
 const function1234 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1235), r = function () {
-        function t(t) {
-            this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
-        }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-        return Object.defineProperty(t.prototype, "no", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "no")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "x", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "x")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "y", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "y")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "color", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "color")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "offsetDic", {
-            get: function () {
-                return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "line", {
-            get: function () {
-                if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
-                    var t = this._o.line;
-                    this._line = {
-                        x: n.ObjUtil.getNumber(t, "x"),
-                        y: n.ObjUtil.getNumber(t, "y"),
-                        r: n.ObjUtil.getNumber(t, "r"),
-                        img: n.ObjUtil.getString(t, "img")
-                    }
-                }
-                return this._line
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "route", {
-            get: function () {
-                if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
-                    var t = this._o.route;
-                    this._route = {
-                        x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
-                        y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
-                        r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
-                        img: n.ObjUtil.getString(t, "img")
-                    }
-                }
-                return this._route
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "landing", {
-            get: function () {
-                if (0 == this._o.hasOwnProperty("landing")) return null;
-                var t = this._o.landing;
-                return {
-                    x: n.ObjUtil.getNumber(t, "x"),
-                    y: n.ObjUtil.getNumber(t, "y"),
-                    type: n.ObjUtil.getNumber(t, "type")
-                }
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "branch", {
-            get: function () {
-                if (null == this._branch) {
-                    if (0 == this._o.hasOwnProperty("branch")) return null;
-                    var t = this._o.branch;
-                    this._branch = new o.BranchBalloonData(t)
-                }
-                return this._branch
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "direction", {
-            get: function () {
-                if (0 == this._o.hasOwnProperty("direction")) return 0;
-                var t = n.ObjUtil.getString(this._o, "direction");
-                return "R" == t ? 2 : "L" == t ? 1 : 0
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "controll_point", {
-            get: function () {
-                var t = n.ObjUtil.getObject(this._o, "cpoint");
-                return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
-            get: function () {
-                var t = n.ObjUtil.getObject(this._o, "replenish");
-                if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "box"),
-                    i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
-                    o = n.ObjUtil.getObject(t, "button"),
-                    r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
-                    s = n.ObjUtil.getObject(t, "balloon");
-                return {
-                    box: i,
-                    btn: r,
-                    bln: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
-                }
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
-            get: function () {
-                var t = n.ObjUtil.getObject(this._o, "ration");
-                if (null == t) return null;
-                var e = n.ObjUtil.getNumber(t, "box"), i = new PIXI.Point;
-                i.x = n.ObjUtil.getNumber(e, "x"), i.y = n.ObjUtil.getNumber(e, "y");
-                var o = n.ObjUtil.getNumber(t, "button"), r = new PIXI.Point;
-                return r.x = n.ObjUtil.getNumber(o, "x"), r.y = n.ObjUtil.getNumber(o, "y"), [i, r]
-            }, enumerable: !0, configurable: !0
-        }), t
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
     }();
-    e.SpotData = r
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(5), r = i(0), s = i(139), a = i(2), _ = i(17), u = i(67), l = i(426), c = i(1235), h = i(1236),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n._black = new _.FadeBox(1), n
+            }
+
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._black.hide(0), this._scene.view.addChild(this._black), this._black.show(300), new l.SallyAnimationTask(this._scene.view).start(function () {
+                    t._loadMapResource()
+                })
+            }, e.prototype._loadMapResource = function () {
+                var t = this, e = this._model.sortie.map_id, i = this._scene.view.map, n = this._scene.resInfo,
+                    o = this._model.sortie.cells;
+                new c.TaskCreateMap(e, i, n, o).start(function () {
+                    t._initMapGauge()
+                })
+            }, e.prototype._initMapGauge = function () {
+                var t = this;
+                if (1 == this._model.sortie.map.isCleared()) return void this._loadMapBGM();
+                var e = 0, i = 0, n = this._model.sortie.getNextCell();
+                if (1 == n.hasEventMapData() ? (e = n.gauge_max, i = n.gauge_now) : (e = this._model.sortie.map.defeat_required, i = e - this._model.sortie.map.defeat_count), e <= 0) return void this._loadMapBGM();
+                var s = this._model.sortie.map, a = s.area_id, _ = s.map_no, l = s.getGaugeNum(),
+                    c = u.GaugeSetModel.createKey(a, _, l), h = r.default.resources.gauge.createLoaderVertical();
+                h.add(c), h.load(function () {
+                    var n = r.default.resources.gauge.getGaugeInfo(c);
+                    if (n) {
+                        var s = n.vertical;
+                        null != s && (t._scene.view.gauge_layer.initialize(s, i, e), s.x < o.default.width / 2 && t._scene.view.frontOfGaugeLayer())
+                    }
+                    t._loadMapBGM()
+                })
+            }, e.prototype._loadMapBGM = function () {
+                var t = this._model.sortie.area_id, e = this._model.sortie.map_no, i = s.MapConst.getMapBGMID(t, e);
+                1 == i.battle_bgm ? r.default.sound.bgm.playBattleBGM(i.id) : r.default.sound.bgm.play(i.id), this._showMap()
+            }, e.prototype._showMap = function () {
+                var t = this;
+                this._black.hide(200, function () {
+                    t._scene.view.removeChild(t._black), t._showShipAndMessageBox()
+                })
+            }, e.prototype._showShipAndMessageBox = function () {
+                var t = this;
+                this._scene.view.message_box.activate(), new h.AnimShipInit(this._scene, this._model).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(a.TaskBase);
+    e.TaskInit = p
 }

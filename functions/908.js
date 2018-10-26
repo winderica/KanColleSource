@@ -15,38 +15,26 @@ const function908 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(2), a = i(909), _ = function (t) {
+    var o = i(11), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene = e, i
+            return i._view = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this, e = o.default.model.map.getArea(r.EVENT_AREA_ID), i = null != e;
-            new a.TaskLoadResourcesSally(i).start(function () {
-                t._showTopView()
-            })
-        }, e.prototype._showTopView = function () {
-            var t = o.default.model.deck.num > 1;
-            this._scene.initialize(t), this._scene = null, this._endTask()
+            this._view = null, this._endTask()
         }, e
-    }(s.TaskBase);
-    e.PreInitializeTask = _;
-    var u = function (t) {
+    }(o.TaskBase);
+    e.PreFinalizeTask = r;
+    var s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene = e, i
+            return i._view = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(103), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._scene.startTopTask(), this._endTask()
+            this._view.dispose(), this._view = null, this._endTask()
         }, e
-    }(s.TaskBase);
-    e.InitializeTask = u
+    }(o.TaskBase);
+    e.FinalizeTask = s
 }

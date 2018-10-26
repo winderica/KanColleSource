@@ -1,24 +1,24 @@
 const function926 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
+    var n = i(14), o = function () {
         function t(t) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        return Object.defineProperty(t.prototype, "ship_mem_id", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_usemst")
+                return n.ObjUtil.getNumber(this._o, "api_supply_ship")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "id", {
+        }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_id")
+                return n.ObjUtil.getNumber(this._o, "api_given_ship")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
+        }), Object.defineProperty(t.prototype, "num_of_use", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_getcount")
+                return n.ObjUtil.getNumber(this._o, "api_use_num")
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.EOItemModel = o
+    e.ReplenishmentModel = o
 }

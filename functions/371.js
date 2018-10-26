@@ -15,26 +15,14 @@ const function371 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(41), r = i(231), s = i(991), a = i(994), _ = i(357), u = function (t) {
-        function e(e, i) {
-            var n = t.call(this, e) || this;
-            n._onMouseOver = function (t) {
-                n._strategy_map.update(t)
-            }, n._onMouseOut = function (t) {
-            };
-            var r = o.SALLY_EVENT.getTexture(4), _ = new PIXI.Sprite(r);
-            return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
+    var o = i(54), r = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (e) {
-            t.prototype.initialize.call(this, e);
-            var i = e[this.offset].mst_id;
-            this._strategy_map.update(i), this._airunitbtn.initialize()
-        }, e.prototype.updateAirUnitEnabled = function (e) {
-            t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
-        }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
+        return n(e, t), e.prototype.update = function (t) {
+            this.visible = !0, 3 == t ? this.texture = o.SALLY_PRACTICE.getTexture(17) : 2 == t ? this.texture = o.SALLY_PRACTICE.getTexture(18) : 1 == t ? this.texture = o.SALLY_PRACTICE.getTexture(16) : this.visible = !1
         }, e
-    }(r.LayoutBase);
-    e.EventLayoutBase = u
+    }(PIXI.Sprite);
+    e.CompFlag = r
 }

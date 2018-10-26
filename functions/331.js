@@ -15,15 +15,18 @@ const function331 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_kaisou/slotset_ex", n.api_id = e, n.api_item_id = i, n
+    var o = i(0), r = i(11), s = i(14), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, t.prototype._connect.call(this)
+            this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
+            o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
         }, e
-    }(o.APIBase);
-    e.SlotSetExAPI = r
+    }(r.APIBase);
+    e.SlotItemLockAPI = a
 }

@@ -15,75 +15,101 @@ const function1395 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(16), a = i(14), _ = i(25), u = i(1396), l = i(64), c = i(44), h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._view = new PIXI.Container, e
-        }
+    var o = i(74), r = i(1396), s = i(90), a = i(91), _ = i(92), u = i(63), l = i(99), c = i(95), h = i(94),
+        p = i(96), d = i(93), f = i(97), y = i(76), m = i(98), v = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, !1) || this;
+                return n._record = i, n
+            }
 
-        return n(e, t), Object.defineProperty(e.prototype, "view", {
-            get: function () {
-                return this._view
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.preload = function (t, e, i, n, o) {
-            var r = this;
-            this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
-            var s = new a.ShipLoader, u = this._attacker.isDamaged(), l = this._attacker.mst_id;
-            571 != l && 576 != l || 0 != u ? s.add(l, u, "full") : s.add(l, !1, "special"), s.load(function () {
-                var t = null == r._slot1 ? 0 : r._slot1.mstID, e = null == r._slot2 ? 0 : r._slot2.mstID,
-                    i = null == r._slot3 ? 0 : r._slot3.mstID, n = new _.SlotLoader;
-                t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
-                    null != o && o()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this.scene.bg.setDay(function () {
+                    t._shutterOpen()
                 })
-            })
-        }, e.prototype._start = function () {
-            this._canvas = new u.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
-        }, e.prototype._ready = function () {
-            var t, e, i = this._attacker.mst_id, n = this._attacker.isDamaged();
-            571 != i && 576 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (n = !1, t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
-        }, e.prototype._anim1 = function () {
-            var t = this;
-            this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
-                x: 48 + (this._attacker.friend ? 0 : 336),
-                alpha: 1
-            }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
-            var e = this._attacker.friend ? 75 : 1125;
-            createjs.Tween.get(this._canvas.name1).wait(400).to({
-                x: e,
-                alpha: 1
-            }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
-                x: e,
-                alpha: 1
-            }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
-                x: e,
-                alpha: 1
-            }, 200).call(function () {
-                t._anim2()
-            })
-        }, e.prototype._anim2 = function () {
-            var t = this;
-            this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
-                t._shipFlash.play()
-            }).wait(200).call(function () {
-                t._shipFlash.play()
-            }).wait(133).call(function () {
-                t._anim3()
-            })
-        }, e.prototype._anim3 = function () {
-            var t = this, e = new l.IntensiveLines;
-            e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({ alpha: 1 }, 200);
-            var i = new s.FadeBox(1, 16777215);
-            i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 500).call(function () {
-                t._anim4(e, i)
-            })
-        }, e.prototype._anim4 = function (t, e) {
-            var i = this;
-            this._canvas.dispose(), createjs.Tween.get(t).to({ alpha: 0 }, 300), createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
-                t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.CutinSpSSS = h
+            }, e.prototype._shutterOpen = function () {
+                var t = this, e = this.scene.view;
+                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
+                    e.shutter.once("opened", function () {
+                        t._moveBanner()
+                    }), e.shutter.open()
+                })
+            }, e.prototype._moveBanner = function () {
+                var t = this;
+                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new _.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new l.PhaseSupport(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new p.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new d.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new m.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(o.PhaseCombatBase);
+    e.PhaseDayFromNight = v
 }

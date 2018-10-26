@@ -15,35 +15,22 @@ const function1108 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._activated = !1, n._enabled = !0, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._target)
-            }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
+    var o = i(3), r = i(3), s = i(34), a = i(34), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._bg = new PIXI.Sprite, i._bg.position.set(147, 267), i.addChild(i._bg), i._btn_all = new a.BtnBase(41, e), i._btn_all.position.set(332, 305), i.addChild(i._btn_all), i._btn_half = new a.BtnBase(42, e), i._btn_half.position.set(537, 305), i.addChild(i._btn_half), i._btn_only10 = new a.BtnBase(43, e), i._btn_only10.position.set(744, 305), i.addChild(i._btn_only10), i._btn_back = new a.BtnBase(-1, e), i._btn_back.position.set(972, 402), i.addChild(i._btn_back), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-            get: function () {
-                return this._enabled
-            }, set: function (t) {
-                this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
+        return n(e, t), e.prototype.initialize = function (t) {
+            var e, i;
+            e = r.ITEM_FSHOP.getTexture(52), this._bg.texture = e, e = o.ITEM_ILIST.getTexture(4), this._btn_all.initialize(e), e = o.ITEM_ILIST.getTexture(5), i = o.ITEM_ILIST.getTexture(6), this._btn_half.initialize(e, i), this._btn_half.enabled = t > 1, e = o.ITEM_ILIST.getTexture(7), i = o.ITEM_ILIST.getTexture(8), this._btn_only10.initialize(e, i), this._btn_only10.enabled = t >= 10, e = r.ITEM_FSHOP.getTexture(1), this._btn_back.initialize(e)
         }, e.prototype.activate = function () {
-            1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
+            this._btn_all.activate(), this._btn_half.activate(), this._btn_only10.activate(), this._btn_back.activate()
         }, e.prototype.deactivate = function () {
-            this._activated = !1, this._deactivate()
+            this._btn_all.deactivate(), this._btn_half.deactivate(), this._btn_only10.deactivate(), this._btn_back.deactivate()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
-        }, e.prototype._update = function () {
-            0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
-        }, e.prototype._activate = function () {
-            this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
-        }, e.prototype._deactivate = function () {
-            this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
+            this._btn_all.dispose(), this._btn_half.dispose(), this._btn_only10.dispose(), this._btn_back.dispose()
         }, e
-    }(PIXI.Sprite);
-    e.BtnBase = r
+    }(s.DialogBase);
+    e.FBoxUseDialog = _
 }

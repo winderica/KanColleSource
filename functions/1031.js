@@ -15,34 +15,67 @@ const function1031 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(143), r = i(38), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._drums = [];
-            for (var i = 0; i < 4; i++) {
-                var n = new PIXI.Sprite;
-                n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+    var o = i(0), r = i(18), s = i(374), a = i(1032), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._icons = new Array;
+            for (var n = [0, 62, 124, 248, 310, 372, 186], o = 0; o < n.length; o++) {
+                var _ = new s.ExpeditionAreaIconBtn(o + 1, e);
+                _.position.x = n[o], _.position.y = 0, i._icons.push(_)
             }
-            return e
+            return i._icon_event = new a.ExpeditionEventAreaIconBtn(r.EVENT_AREA_ID, e), i._icon_event.position.set(559, -9), i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.update(0);
-            for (var t = 0, e = this._drums; t < e.length; t++) {
-                e[t].texture = r.SALLY_EXPEDITION.getTexture(34)
+        return n(e, t), Object.defineProperty(e.prototype, "selected", {
+            get: function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    if (1 == i.selected) return i.area_id
+                }
+                return 1 == this._icon_event.selected ? this._icon_event.area_id : 0
+            }, set: function (t) {
+                for (var e = 0, i = this._icons; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = t == n.area_id
+                }
+                this._icon_event.selected = t == this._icon_event.area_id
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                i.initialize()
             }
-        }, e.prototype.update = function (t) {
-            t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
-        }, e.prototype._updateFromShipModel = function (t) {
-            for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
-                var r = o[n];
-                null != r && (75 == r.mstID && e++)
+            this.selected = 1;
+            for (var n = 0, s = this._icons; n < s.length; n++) {
+                var i = s[n];
+                this.addChild(i)
             }
-            var s = t.getSlotitemEx();
-            null != s && 75 == s.mstID && e++, this._update(e)
-        }, e.prototype._update = function (t) {
-            for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
+            if (r.EVENT_AREA_ID > 0) {
+                null != o.default.model.map.getArea(r.EVENT_AREA_ID) && (this._icon_event.initialize(), this.addChild(this._icon_event))
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                1 == i.selected ? i.deactivate() : i.activate()
+            }
+            1 == this._icon_event.selected ? this._icon_event.deactivate() : this._icon_event.activate()
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].deactivate()
+            }
+            this._icon_event.deactivate()
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].dispose()
+            }
+            this._icon_event.dispose()
+        }, e.prototype.getSelectedIcon = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                if (1 == i.selected) return i
+            }
+            return 1 == this._icon_event.selected ? this._icon_event : null
         }, e
     }(PIXI.Container);
-    e.CompDrumCount = s
+    e.ExpeditionAreaIconSet = _
 }

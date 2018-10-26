@@ -15,40 +15,136 @@ const function414 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(1182), a = i(1183), _ = i(415), u = i(415), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._result = null, n._onSelect = function (t) {
-                var e = PIXI.Texture.EMPTY;
-                if (11 == t.type) e = o.default.resources.getShip(t.mst_id, !1, "icon_box"); else if (12 == t.type) e = o.default.resources.getSlotitem(t.mst_id, "card"); else if (13 == t.type) e = o.default.resources.getUseitem(t.mst_id, 2); else if (14 == t.type) {
-                    e = o.default.resources.getFurniture(t.mst_id, "reward");
-                    var i = o.default.model.furniture.getData(t.mst_id);
-                    if (null == i || 1 == i.has()) return void n._dialog.showAlert(t)
-                }
-                var r = new a.TaskRewardSelectConfirm(n._layer, e);
-                r.start(function () {
-                    1 == r.result && (n._layer.removeChild(n._dialog), n._result = t, n._endTask())
-                })
-            }, n._layer = e, n._candidates = i, n
+    var o = i(14), r = i(1196), s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            i._list = new Array(3);
+            for (var n = 0; n < 3; n++) i._list[n] = new a;
+            return i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
+        return n(e, t), Object.defineProperty(e.prototype, "list", {
             get: function () {
-                return this._result
+                return this._list
             }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            for (var t = this, e = new s.TaskLoadResources, i = 0, n = this._candidates; i < n.length; i++) {
-                var o = n[i];
-                11 == o.type ? e.addShip(o.mst_id) : 12 == o.type ? e.addSlotitem(o.mst_id) : 13 == o.type ? e.addUseitem(o.mst_id) : 14 == o.type && e.addFurniture(o.mst_id)
+        }), e.prototype.SetAll = function (t) {
+            for (var e = 0; e < 3; e++) {
+                var i = t[e];
+                this._list[e].id = o.ObjUtil.getNumber(i, "api_id"), this._list[e].slot_id = o.ObjUtil.getNumber(i, "api_slot_id"), this._list[e].req_fuel = o.ObjUtil.getNumber(i, "api_req_fuel"), this._list[e].req_bull = o.ObjUtil.getNumber(i, "api_req_bull"), this._list[e].req_steel = o.ObjUtil.getNumber(i, "api_req_steel"), this._list[e].req_bauxite = o.ObjUtil.getNumber(i, "api_req_bauxite"), this._list[e].req_buildkit = o.ObjUtil.getNumber(i, "api_req_buildkit"), this._list[e].req_remodelkit = o.ObjUtil.getNumber(i, "api_req_remodelkit"), this._list[e].req_slot_id = o.ObjUtil.getNumber(i, "api_req_slot_id"), this._list[e].req_slot_num = o.ObjUtil.getNumber(i, "api_req_slot_num")
             }
-            e.start(function () {
-                3 == t._candidates.length ? (t._dialog = new u.RewardSelectDialog3, t._dialog.position.set(195, 164)) : (t._dialog = new _.RewardSelectDialog2, t._dialog.position.set(297, 164)), t._dialog.initialize(t._candidates, t._onSelect), t._layer.addChild(t._dialog), t._dialog.activate()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._candidates = null, this._dialog = null, t.prototype._endTask.call(this)
+        }, e.prototype.SetDetail = function (t, e) {
+            this._list[e].req_buildkit = o.ObjUtil.getNumber(t, "api_req_buildkit"), this._list[e].req_remodelkit = o.ObjUtil.getNumber(t, "api_req_remodelkit"), this._list[e].certain_buildkit = o.ObjUtil.getNumber(t, "api_certain_buildkit"), this._list[e].certain_remodelkit = o.ObjUtil.getNumber(t, "api_certain_remodelkit"), this._list[e].req_slot_id = o.ObjUtil.getNumber(t, "api_req_slot_id"), this._list[e].req_slot_num = o.ObjUtil.getNumber(t, "api_req_slot_num"), this._list[e].req_useitem_id = o.ObjUtil.getNumber(t, "api_req_useitem_id"), this._list[e].req_useitem_num = o.ObjUtil.getNumber(t, "api_req_useitem_num"), this._list[e].req_useitem_id2 = o.ObjUtil.getNumber(t, "api_req_useitem_id2"), this._list[e].req_useitem_num2 = o.ObjUtil.getNumber(t, "api_req_useitem_num2"), this._list[e].change_flag = o.ObjUtil.getNumber(t, "api_change_flag")
         }, e
-    }(r.TaskBase);
-    e.TaskRewardSelect = l
+    }(r.RevampModelBase);
+    e.RevampSlotlistModel = s;
+    var a = function () {
+        function t() {
+            this._id = -1, this._slot_id = -1, this._req_fuel = -1, this._req_bull = -1, this._req_steel = -1, this._req_bauxite = -1, this._req_buildkit = -1, this._req_remodelkit = -1, this._req_slot_id = -1, this._req_slot_num = -1, this._certain_buildkit = -1, this._certain_remodelkit = -1, this._req_useitem_id = -1, this._req_useitem_num = -1, this._req_useitem_id2 = -1, this._req_useitem_num2 = -1, this._change_flag = -1
+        }
+
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return this._id
+            }, set: function (t) {
+                this._id = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "slot_id", {
+            get: function () {
+                return this._slot_id
+            }, set: function (t) {
+                this._slot_id = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_fuel", {
+            get: function () {
+                return this._req_fuel
+            }, set: function (t) {
+                this._req_fuel = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_bull", {
+            get: function () {
+                return this._req_bull
+            }, set: function (t) {
+                this._req_bull = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_steel", {
+            get: function () {
+                return this._req_steel
+            }, set: function (t) {
+                this._req_steel = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_bauxite", {
+            get: function () {
+                return this._req_bauxite
+            }, set: function (t) {
+                this._req_bauxite = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_buildkit", {
+            get: function () {
+                return this._req_buildkit
+            }, set: function (t) {
+                this._req_buildkit = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_remodelkit", {
+            get: function () {
+                return this._req_remodelkit
+            }, set: function (t) {
+                this._req_remodelkit = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_slot_id", {
+            get: function () {
+                return this._req_slot_id
+            }, set: function (t) {
+                this._req_slot_id = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_slot_num", {
+            get: function () {
+                return this._req_slot_num
+            }, set: function (t) {
+                this._req_slot_num = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "certain_buildkit", {
+            get: function () {
+                return this._certain_buildkit
+            }, set: function (t) {
+                this._certain_buildkit = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "certain_remodelkit", {
+            get: function () {
+                return this._certain_remodelkit
+            }, set: function (t) {
+                this._certain_remodelkit = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_useitem_id", {
+            get: function () {
+                return this._req_useitem_id
+            }, set: function (t) {
+                this._req_useitem_id = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_useitem_num", {
+            get: function () {
+                return this._req_useitem_num
+            }, set: function (t) {
+                this._req_useitem_num = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_useitem_id2", {
+            get: function () {
+                return this._req_useitem_id2
+            }, set: function (t) {
+                this._req_useitem_id2 = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "req_useitem_num2", {
+            get: function () {
+                return this._req_useitem_num2
+            }, set: function (t) {
+                this._req_useitem_num2 = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "change_flag", {
+            get: function () {
+                return this._change_flag
+            }, set: function (t) {
+                this._change_flag = t
+            }, enumerable: !0, configurable: !0
+        }), t
+    }();
+    e.RevampSlotlistLineModel = a
 }

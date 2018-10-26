@@ -15,29 +15,31 @@ const function368 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(13), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._area_id = -1, e
+    var o = i(53), r = i(986), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._type = e, i._black = new PIXI.Sprite, i._key = new PIXI.Sprite, i._cloud = new r.MapThumbnailLockedCloud, i._text = new PIXI.Container, i
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
-            var i = this;
-            if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
-            this._area_id = t;
-            var n = s.MathUtil.zeroPadding(t, 3),
-                a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
-            if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e(); else {
-                var _ = new PIXI.loaders.Loader;
-                _.add(a), _.load(function () {
-                    i._img.texture = _.resources[a].texture, null != e && e()
-                })
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._black.texture = this._getBlackTexture(), this._key.texture = o.SALLY_SORTIE.getTexture(30), this._cloud.initialize(), this._text.visible = !0, this._text.removeChildren();
+            var e = new PIXI.Sprite;
+            0 == t ? e.texture = o.SALLY_SORTIE.getTexture(42) : 1 == t ? e.texture = o.SALLY_SORTIE.getTexture(43) : 3 == t ? e.texture = o.SALLY_SORTIE.getTexture(44) : this._text.visible = !1, 1 == this._text.visible && (e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._text.addChild(e)), this._setPositions(), this.addChild(this._black), this.addChild(this._key), this.addChild(this._cloud), this.addChild(this._text)
+        }, e.prototype.activate = function () {
+            this._cloud.activate()
+        }, e.prototype.deactivate = function () {
+            this._cloud.deactivate()
+        }, e.prototype._getBlackTexture = function () {
+            switch (this._type) {
+                case 3:
+                    return o.SALLY_SORTIE.getTexture(36);
+                case 4:
+                    return o.SALLY_SORTIE.getTexture(35)
             }
-        }, e.prototype.clear = function () {
-            null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
-        }, e.prototype.dispose = function () {
-            this.clear()
+            return PIXI.Texture.EMPTY
+        }, e.prototype._setPositions = function () {
+            3 == this._type ? (this._key.position.set(470, 14), this._cloud.position.set(491, 53), this._text.position.set(490, 99)) : 4 == this._type && (this._key.position.set(218, 42), this._cloud.position.set(239, 81), this._text.position.set(240, 152))
         }, e
     }(PIXI.Container);
-    e.AreaTextImage = a
+    e.MapThumbnailLocked = s
 }

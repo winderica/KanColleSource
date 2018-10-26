@@ -15,37 +15,26 @@ const function1045 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1046), a = i(13), _ = function (t) {
+    var o = i(11), r = i(14), s = i(13), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene = e, i
+            return i._view = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
-            })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = _;
-    var u = function (t) {
+    }(o.TaskBase);
+    e.PreFinalizeTask = a;
+    var _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene = e, i
+            return i._scene_dispose_delegate = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(102), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
+            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, s.UIImageLoader.clearMemoryCache("record"), this._endTask()
         }, e
-    }(r.TaskBase);
-    e.InitializeTask = u
+    }(o.TaskBase);
+    e.FinalizeTask = _
 }

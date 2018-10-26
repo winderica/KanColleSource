@@ -15,78 +15,109 @@ const function484 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(485), s = function () {
-        function t(t) {
-            this.name_tmp = null, this._state_tmp = -1, this._o = t, this._squadrons = [];
-            for (var e = o.ObjUtil.getObjectArray(t, "api_plane_info"), i = 0, n = e; i < n.length; i++) {
-                var s = n[i], a = new r.AirUnitSquadronModelEdit(s);
-                this._squadrons.push(a)
-            }
+    var o = i(18), r = i(7), s = function () {
+        function t() {
+            this._skinID = 101
         }
 
-        return Object.defineProperty(t.prototype, "area_id", {
+        return Object.defineProperty(t.prototype, "member_id", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_area_id")
+                return this._o.api_member_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "id", {
+        }), Object.defineProperty(t.prototype, "firstFlag", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_rid")
+                return 1 != this._o.api_firstflag
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name_raw", {
+        }), Object.defineProperty(t.prototype, "nickName", {
             get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
+                return r.ObjUtil.getString(this._o, "api_nickname")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
+        }), Object.defineProperty(t.prototype, "level", {
             get: function () {
-                return null != this.name_tmp ? this.name_tmp : this.name_raw
+                return r.ObjUtil.getNumber(this._o, "api_level")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "state_tmp", {
+        }), Object.defineProperty(t.prototype, "rank", {
             get: function () {
-                return this._state_tmp
-            }, set: function (t) {
-                this._state_tmp = t
+                return r.ObjUtil.getNumber(this._o, "api_rank")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "state_raw", {
+        }), Object.defineProperty(t.prototype, "rankName", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_action_kind")
+                var t = o.RANK_NAME, e = this.rank;
+                return e > 0 && e < t.length ? t[e] : t[0]
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "airUnitState", {
+        }), Object.defineProperty(t.prototype, "port_bgm_id", {
             get: function () {
-                return -1 != this._state_tmp ? this._state_tmp : this.state_raw
+                return this._port_bgm_id
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "distance", {
+        }), Object.defineProperty(t.prototype, "medal_num", {
             get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_distance")
+                return r.ObjUtil.getNumber(this._o, "api_medals")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "squadrons", {
+        }), Object.defineProperty(t.prototype, "shipMax", {
             get: function () {
-                return this._squadrons
+                return r.ObjUtil.getNumber(this._o, "api_max_chara")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.updateStateFromTemporaryInfo = function () {
-            return -1 != this.state_tmp && (this.state_tmp != this.state_raw && (this._o.api_action_kind = this._state_tmp, this._state_tmp = -1, !0))
-        }, t.prototype.updateNameFromTemporaryInfo = function () {
-            return null != this.name_tmp && (this.name_tmp != this.name_raw && (this._o.api_name = this.name_tmp, this.name_tmp = null, !0))
-        }, t.prototype.hasActiveSquadron = function () {
-            if (null == this._squadrons) return !1;
-            for (var t = 0, e = this._squadrons; t < e.length; t++) {
-                var i = e[t];
-                if (1 == i.state && !(i.mem_id <= 0 || i.count <= 0)) return !0
-            }
-            return !1
+        }), Object.defineProperty(t.prototype, "slotMax", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_max_slotitem") + 3
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getTutorialProgress = function () {
+            return r.ObjUtil.getNumber(this._o, "api_tutorial_progress")
+        }, t.prototype.getPortFurnitureMstID = function (t) {
+            return this._o.api_furniture[t]
+        }, t.prototype.getDutyExecutableCount = function () {
+            return this._duty_executable_count
+        }, t.prototype.getComment = function () {
+            return r.ObjUtil.getString(this._o, "api_comment")
+        }, t.prototype.isLargeBuild = function () {
+            return 1 == r.ObjUtil.getNumber(this._o, "api_large_dock")
+        }, t.prototype.getExtraSupplyExpedition = function () {
+            return null != this._extra_supply && (!(this._extra_supply.length < 1) && 1 == this._extra_supply[0])
+        }, t.prototype.getExtraSupplySortie = function () {
+            return null != this._extra_supply && (!(this._extra_supply.length < 2) && 1 == this._extra_supply[1])
+        }, t.prototype.getFilterStatusOrganizeList = function () {
+            return this._filter_status_olist
+        }, t.prototype.isJapaneseOrganizeList = function () {
+            return this._japanese_olist
+        }, t.prototype.getDestroyShipSlotType = function () {
+            return this._destroy_ship_slot_type
+        }, t.prototype.getUISkinID = function () {
+            return this._skinID
+        }, t.prototype.getMFlag2 = function () {
+            return null != this._event_data && (0 != this._event_data.hasOwnProperty("api_m_flag2") && 1 == this._event_data.api_m_flag2)
         }, t
     }();
-    e.AirUnitModel = s;
+    e.BasicModel = s;
     var a = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.updateSquadronData = function (t, e) {
-            if (e >= 0 && (this._o.api_distance = e), null != t) for (var i = 0, n = t; i < n.length; i++) for (var r = n[i], s = o.ObjUtil.getNumber(r, "api_squadron_id"), a = 0, _ = this.squadrons; a < _.length; a++) {
-                var u = _[a];
-                u.id == s && u.update(r)
-            }
+        return n(e, t), e.prototype.setUserData = function (t) {
+            this._o = t
+        }, e.prototype.updateTutorialProgress = function (t) {
+            null != this._o && (this._o.api_tutorial_progress = t)
+        }, e.prototype.updatePortFurnitureMstID = function (t, e) {
+            null != this._o && (this._o.api_furniture[t] = e)
+        }, e.prototype.setPortBGMID = function (t) {
+            this._port_bgm_id = t
+        }, e.prototype.setDutyExcutableCount = function (t) {
+            this._duty_executable_count = t
+        }, e.prototype.getCoinCount = function () {
+            return r.ObjUtil.getNumber(this._o, "api_fcoin")
+        }, e.prototype.setCoinCount = function (t) {
+            null != this._o && (this._o.api_fcoin = t)
+        }, e.prototype.setExtraSupplyFlag = function (t) {
+            this._extra_supply = t
+        }, e.prototype.updateOrganizeListSetting = function (t, e) {
+            this._filter_status_olist = t, this._japanese_olist = e
+        }, e.prototype.setDestroyShipSlotType = function (t) {
+            this._destroy_ship_slot_type = t
+        }, e.prototype.setUISkinID = function (t) {
+            this._skinID = t
+        }, e.prototype.setEventData = function (t) {
+            this._event_data = t
         }, e
     }(s);
-    e.AirUnitModelEdit = a
+    e.BasicModelEdit = a
 }

@@ -15,63 +15,75 @@ const function1388 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(24), s = i(6), a = i(1389), _ = i(121), u = i(43), l = function (t) {
-        function e(e, i, n, r, s, a, _, u, l) {
-            var c = t.call(this, e, n, s, _, u, l) || this;
-            return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
+    var o = i(0), r = i(2), s = i(17), a = i(15), _ = i(25), u = i(1389), l = i(64), c = i(44), h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._view = new PIXI.Container, e
         }
 
-        return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
-        }, e.prototype._start = function () {
-            var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
-            1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-        }, e.prototype._playPicket = function (t, e) {
-            var i = this;
-            if (this._attacker.hasSlot(129, !0)) {
-                var n = new PIXI.Point;
-                n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                var o = new _.Picket;
-                o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                    i._playCutin(t, e)
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.preload = function (t, e, i, n, o) {
+            var r = this;
+            this._attacker = t, this._slot1 = e, this._slot2 = i, this._slot3 = n;
+            var s = new a.ShipLoader, u = this._attacker.isDamaged(), l = this._attacker.mst_id;
+            571 != l && 576 != l || 0 != u ? s.add(l, u, "full") : s.add(l, !1, "special"), s.load(function () {
+                var t = null == r._slot1 ? 0 : r._slot1.mstID, e = null == r._slot2 ? 0 : r._slot2.mstID,
+                    i = null == r._slot3 ? 0 : r._slot3.mstID, n = new _.SlotLoader;
+                t > 0 && (n.add(t, "item_up"), n.add(t, "btxt_flat")), e > 0 && (n.add(e, "item_up"), n.add(e, "btxt_flat")), i > 0 && (n.add(i, "item_up"), n.add(i, "btxt_flat")), n.load(function () {
+                    null != o && o()
                 })
-            } else this._playCutin(t, e)
-        }, e.prototype._playCutin = function (t, e) {
+            })
+        }, e.prototype._start = function () {
+            this._canvas = new u.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+        }, e.prototype._ready = function () {
+            var t, e, i = this._attacker.mst_id, n = this._attacker.isDamaged();
+            571 != i && 576 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (n = !1, t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+        }, e.prototype._anim1 = function () {
+            var t = this;
+            this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
+                x: 48 + (this._attacker.friend ? 0 : 336),
+                alpha: 1
+            }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
+            var e = this._attacker.friend ? 75 : 1125;
+            createjs.Tween.get(this._canvas.name1).wait(400).to({
+                x: e,
+                alpha: 1
+            }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
+                x: e,
+                alpha: 1
+            }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
+                x: e,
+                alpha: 1
+            }, 200).call(function () {
+                t._anim2()
+            })
+        }, e.prototype._anim2 = function () {
+            var t = this;
+            this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
+                t._shipFlash.play()
+            }).wait(200).call(function () {
+                t._shipFlash.play()
+            }).wait(133).call(function () {
+                t._anim3()
+            })
+        }, e.prototype._anim3 = function () {
+            var t = this, e = new l.IntensiveLines;
+            e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({ alpha: 1 }, 200);
+            var i = new s.FadeBox(1, 16777215);
+            i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 500).call(function () {
+                t._anim4(e, i)
+            })
+        }, e.prototype._anim4 = function (t, e) {
             var i = this;
-            this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                i._shoot(t, e)
-            }), this._cutin.view.once("attack", function () {
-                i._playVoice()
+            this._canvas.dispose(), createjs.Tween.get(t).to({ alpha: 0 }, 300), createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
+                t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
             })
-        }, e.prototype._shoot = function (t, e) {
-            var i = this;
-            t.moveShoot(function () {
-                i._torpedo(t, e)
-            })
-        }, e.prototype._torpedo = function (t, e) {
-            var i = this, n = t.friend ? 1 : -1, o = t.getGlobalPos(!0);
-            o.x += r.BannerSize.W / 3 * n;
-            var a = e.getGlobalPos(!0);
-            a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
-            var _ = this._scene.view.layer_torpedo;
-            _.playTorpedoAtNight(o, a, 800, function () {
-                _.playTorpedoWaterColumn(e), i._explosion(t, e)
-            })
-        }, e.prototype._explosion = function (t, e) {
-            var i = this, n = e.getGlobalPos(!0);
-            createjs.Tween.get(this).wait(300).call(function () {
-                i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
-            }).wait(350).call(function () {
-                var n = i._getDamage(i._defender);
-                i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
-            })
-        }, e.prototype._playVoice = function () {
-            if (this._attacker.friend) {
-                var t = this._attacker.mst_id, e = 17;
-                432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
-            }
-        }, e.prototype._log = function (t) {
+        }, e.prototype._endTask = function () {
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
         }, e
-    }(u.PhaseAttackBase);
-    e.PhaseAttackSpRR = l
+    }(r.TaskBase);
+    e.CutinSpSSS = h
 }

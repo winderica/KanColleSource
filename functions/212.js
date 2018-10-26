@@ -15,34 +15,19 @@ const function212 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(31), r = i(3), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(11), r = i(0), s = function (t) {
+        function e(e, i, n, o) {
+            void 0 === e && (e = !1);
+            var r = t.call(this) || this;
+            return r._url = "api_req_hensei/change", r._debug = e, r.api_id = i, r.api_ship_idx = n, r.api_ship_id = o, r
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.texture = PIXI.Texture.EMPTY
-        }, e.prototype.update = function (t) {
-            switch (o.ShipUtil.getSpeedType(t)) {
-                case 4:
-                    this.texture = r.COMMON_MAIN.getTexture(60);
-                    break;
-                case 3:
-                    this.texture = r.COMMON_MAIN.getTexture(56);
-                    break;
-                case 2:
-                    this.texture = r.COMMON_MAIN.getTexture(53);
-                    break;
-                case 1:
-                    this.texture = r.COMMON_MAIN.getTexture(54);
-                    break;
-                case 0:
-                    this.texture = r.COMMON_MAIN.getTexture(59);
-                    break;
-                default:
-                    this.texture = PIXI.Texture.EMPTY
-            }
+        return n(e, t), e.prototype._connect = function () {
+            1 == this._debug && (-2 == this.api_ship_id || this.api_ship_id), this._post_data.api_id = this.api_id, this._post_data.api_ship_idx = this.api_ship_idx, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = r.default.model.deck.get(this.api_id);
+            -2 == this.api_ship_id ? e.__removeAll__() : -1 == this.api_ship_id ? e.__remove__(this.api_ship_idx) : e.__change__(this.api_ship_idx, this.api_ship_id), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.ShipSpeedImage = s
+    }(o.APIBase);
+    e.ChangeAPI = s
 }

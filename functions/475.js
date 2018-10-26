@@ -15,70 +15,138 @@ const function475 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(1), a = i(65), _ = i(8), u = i(40), l = i(25), c = i(205), h = i(1470),
-        p = i(207), d = function (t) {
-            function e(e, i, n, l, c, h) {
-                void 0 === h && (h = null);
-                var p = t.call(this) || this;
-                return p._moveCard = function () {
-                    null != p._pre_task && (p._pre_task.dispose(), p._pre_task = null), p._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
-                    var t = new PIXI.Point(p._insert.card.x, p._insert.card.y),
-                        e = new PIXI.Point(o.default.width / 2, o.default.height / 2),
-                        i = new PIXI.Point(t.x + 300, t.y), n = new PIXI.Point(e.x + 150, e.y + 150);
-                    a.TweenUtil.create3BezierTween(p._insert.card, t, i, n, e, 700), createjs.Tween.get(p._insert.card).to({
-                        scaleX: .86,
-                        scaleY: .86,
-                        rotation: 4 * Math.PI
-                    }, 700).to({ scaleX: 1, scaleY: 1 }, 133).wait(700).call(function () {
-                        p._insert.particle.activate()
-                    }).wait(1e3).call(p._flash)
-                }, p._flash = function () {
-                    var t = r.default.model.slot.getMst(p._mst_id);
-                    p._bonus.alpha = 1, p._bonus.initialize(t.mstID, p._count, p._level, t.name), createjs.Tween.get(p._insert.card).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.bg_dark).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.flash).to({
-                        scaleX: 3.5,
-                        scaleY: 3.5
-                    }, 800), createjs.Tween.get(p._insert).wait(800).to({ alpha: 0 }, 200).call(function () {
-                        p._layer.removeChild(p._insert), p._insert.dispose(), p._insert = null, p._showBonus()
-                    })
-                }, p._showMessageBox = function () {
-                    createjs.Tween.get(p._bonus.message_box).to({ y: 480 }, 300).call(p._waitClick)
-                }, p._waitClick = function () {
-                    p._bonus.message_box.activate();
-                    var t = new u.GearBtnHome;
-                    t.position.set(1140, 660), t.initialize(), t.activate(), p._bonus.addChild(t);
-                    var e = new _.AreaBox(0);
-                    e.interactive = !0, e.buttonMode = !0, p._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
-                        p._bonus.removeChild(e), p._finalize(t)
-                    })
-                }, p._layer = e, p._mst_id = i, p._count = n, p._level = l, p._pre_task = h, p._play_bgm = c, p
-            }
+    var o = i(2), r = i(19), s = i(8), a = i(12), _ = i(58), u = i(474), l = i(476), c = i(1), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._layer = e, i
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._bonus = new h.BonusSlot, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new c.BonusInsert, this._loadBG()
-            }, e.prototype._loadBG = function () {
-                var t = this, e = r.default.model.slot.getMst(this._mst_id);
-                this._bonus.bg.initiailzeForSlotitem(e.rarity, function () {
-                    t._loadSlotImage()
-                })
-            }, e.prototype._loadSlotImage = function () {
-                var t = this, e = new l.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    t._insert.preload(function () {
-                        t._showInsert()
-                    })
-                })
-            }, e.prototype._showInsert = function () {
-                this._insert.initialize(2), this._insert.alpha = 0, this._insert.card.scale.set(.38), this._insert.card.position.set(o.default.width / 2 - 228, o.default.height / 2 + 521), this._insert.flash.position.set(o.default.width / 2, o.default.height / 2), this._layer.addChild(this._insert), createjs.Tween.get(this._insert).to({ alpha: 1 }, 500).call(this._moveCard)
-            }, e.prototype._showBonus = function () {
-                this._bonus.particle.activate(), createjs.Tween.get(this._bonus.white).to({ alpha: 0 }, 500).call(this._showMessageBox)
-            }, e.prototype._finalize = function (t) {
-                var e = this;
-                this._play_bgm && r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
-                    t.deactivate(), e._bonus.removeChild(t), e._endTask()
-                })
-            }, e.prototype.dispose = function () {
-                this._bonus.dispose(), this._layer.removeChild(this._bonus), this._layer = null, this._bonus = null
-            }, e
-        }(p.TaskBonusBase);
-    e.TaskBonusSlot = d
+        return n(e, t), e.prototype._start = function () {
+            this._showBG()
+        }, e.prototype._showBG = function () {
+            var t = this;
+            this._bg = new p, this._bg.initialize(), this._bg.alpha = 0, this._layer.addChild(this._bg), createjs.Tween.get(this._bg).to({ alpha: 1 }, 500).call(function () {
+                t._initializeMapImages(), t._initializeStampImages(), t._showMaps()
+            })
+        }, e.prototype.__createMapShowTweens = function (t) {
+            for (var e = [], i = 0; i < this._maps.length; i++) {
+                var n = this._maps[i], o = n.x;
+                n.x += 645;
+                var r = createjs.Tween.get(n).wait(i * t).to({ x: o - 12, alpha: 1 }, 400).to({ x: o }, 100);
+                e.push(r)
+            }
+            return e
+        }, e.prototype.__createStampShowTweens = function (t) {
+            for (var e = [], i = 0; i < this._stamps.length; i++) {
+                var n = this._stamps[i],
+                    o = createjs.Tween.get(n).wait(350 + i * t).to({ scaleX: 1, scaleY: 1, alpha: 1 }, 400);
+                e.push(o)
+            }
+            return e
+        }, e.prototype._showMaps = function () {
+            var t = this, e = new r.TweenTask;
+            e.addTweens(this._createMapShowTweens()), e.addTweens(this._createStampShowTweens()), e.start(function () {
+                t._showText()
+            })
+        }, e.prototype.__showText = function (t) {
+            var e = this;
+            this._texts = t, this._texts.initialize(), this._texts.text1.alpha = 0, this._texts.text2.alpha = 0, this._texts.text3.alpha = 0, this._layer.addChild(this._texts), createjs.Tween.get(this._texts.text1).wait(200).to({ alpha: 1 }, 400), createjs.Tween.get(this._texts.text2).wait(700).to({ alpha: 1 }, 450), createjs.Tween.get(this._texts.text3).wait(1300).to({ alpha: 1 }, 500).wait(500).call(function () {
+                e._showLastStamp()
+            }), this._createParticle()
+        }, e.prototype._createParticle = function () {
+            this._particles = new l.ParticleLayer, this._particles.addParticle(1050, 440), this._particles.addParticle(1121, 392), this._particles.addParticle(1068, 263), this._particles.addParticle(230, 429), this._particles.addParticle(902, 399), this._particles.addParticle(951, 453), this._particles.addParticle(1089, 323), this._particles.addParticle(128, 383), this._particles.addParticle(207, 278), this._particles.addParticle(68, 320), this._particles.addParticle(296, 471), this._particles.addParticle(122, 272), this._particles.addParticle(93, 467), this._particles.addParticle(53, 425), this._layer.addChild(this._particles), this._particles.startAnimation()
+        }, e.prototype._showLastStamp = function () {
+            var t = this;
+            this._stamp_last = this._createStampLast();
+            var e = this._layer.getChildIndex(this._texts);
+            this._layer.addChildAt(this._stamp_last, e), createjs.Tween.get(this._stamp_last).wait(800).to({ alpha: 1 }, 200);
+            var i = new a.Sprite(this._stamp_last.texture);
+            i.anchor.set(.5), i.position.set(this._stamp_last.x, this._stamp_last.y), i.scale.set(2), i.alpha = 0, e = this._layer.getChildIndex(this._texts), this._layer.addChildAt(i, e + 1), createjs.Tween.get(i).to({
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 800).to({ alpha: 0 }, 200).call(function () {
+                t._layer.removeChild(i), t._waitClick()
+            })
+        }, e.prototype._waitClick = function () {
+            var t = this, e = new s.AreaBox(0);
+            e.buttonMode = !0, this._layer.addChild(e);
+            var i = new _.GearBtnNext;
+            i.position.set(1139, 561), i.initialize(), i.activate(), this._layer.addChild(i), e.once(c.EventType.CLICK, function () {
+                i.dispose(), t._layer.removeChild(e), t._hide(i)
+            })
+        }, e.prototype._hide = function (t) {
+            for (var e = this, i = new r.TweenTask, n = 0; n < this._maps.length; n++) {
+                var o = this._maps[n], s = createjs.Tween.get(o).wait(50 * n).to({ x: o.x - 75, alpha: 0 }, 200);
+                i.addTween(s)
+            }
+            for (var n = 0; n < this._stamps.length; n++) {
+                var a = this._stamps[n], _ = createjs.Tween.get(a).wait(50 * n).to({ x: a.x - 75, alpha: 0 }, 200);
+                i.addTween(_)
+            }
+            var u = createjs.Tween.get(this._texts.text1).wait(100).to({
+                x: this._texts.text1.x - 47,
+                alpha: 0
+            }, 200);
+            i.addTween(u), u = createjs.Tween.get(this._texts.text2).wait(200).to({
+                x: this._texts.text2.x - 47,
+                alpha: 0
+            }, 200), i.addTween(u), u = createjs.Tween.get(this._texts.text3).wait(150).to({
+                x: this._texts.text3.x - 47,
+                alpha: 0
+            }, 200), i.addTween(u), u = createjs.Tween.get(this._stamp_last).wait(200).to({
+                x: this._stamp_last.x - 75,
+                alpha: 0
+            }, 200), i.addTween(u), u = createjs.Tween.get(this._particles).wait(200).to({ alpha: 0 }, 200).call(function () {
+                e._particles.stopAnimation(), e._layer.removeChild(e._particles)
+            }), i.addTween(u), u = createjs.Tween.get(t).to({ alpha: 0 }, 500).call(function () {
+                t.dispose(), e._layer.removeChild(t)
+            }), i.addTween(u), u = createjs.Tween.get(this._bg).wait(200).to({ alpha: 0 }, 300), i.addTween(u), i.start(function () {
+                for (var t = 0, i = e._maps; t < i.length; t++) {
+                    var n = i[t];
+                    e._layer.removeChild(n)
+                }
+                for (var o = 0, r = e._stamps; o < r.length; o++) {
+                    var s = r[o];
+                    e._layer.removeChild(s)
+                }
+                e._layer.removeChild(e._texts), e._layer.removeChild(e._stamp_last), e._layer.removeChild(e._bg), e._endTask()
+            })
+        }, e
+    }(o.TaskBase);
+    e.TaskEventEndingBase = h;
+    var p = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            var t = new PIXI.Sprite;
+            t.texture = u.BATTLE_RESULT_EVENT_BASE.getTexture(5), t.position.set(0, 65), t.alpha = .9, this.addChild(t);
+            var e = u.BATTLE_RESULT_EVENT_BASE.getTexture(6), i = new PIXI.Sprite(e);
+            i.position.set(270, 8), this.addChild(i);
+            var n = u.BATTLE_RESULT_EVENT_BASE.getTexture(3), o = new PIXI.Sprite(n);
+            o.rotation = Math.PI, o.position.set(984, 713), this.addChild(o)
+        }, e
+    }(PIXI.Container), d = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._text1 = new PIXI.Sprite, e.addChild(e._text1), e._text2 = new PIXI.Sprite, e.addChild(e._text2), e._text3 = new PIXI.Sprite, e.addChild(e._text3), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "text1", {
+            get: function () {
+                return this._text1
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "text2", {
+            get: function () {
+                return this._text2
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "text3", {
+            get: function () {
+                return this._text3
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container);
+    e.TextsBase = d
 }

@@ -15,45 +15,60 @@ const function1394 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(24), s = i(1395), a = i(121), _ = i(43), u = function (t) {
-        function e(e, i, n, r, s, a, _, u, l, c) {
-            var h = t.call(this, e, n, s, u, l, c) || this;
-            return h._slot2 = o.default.model.slot.getMst(a), h._slot3 = o.default.model.slot.getMst(_), h._defender = r, h
+    var o = i(0), r = i(2), s = i(173), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._record = i, n
         }
 
-        return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new s.CutinSpSSS, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
-        }, e.prototype._start = function () {
-            var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
-            1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-        }, e.prototype._playPicket = function (t, e) {
-            var i = this;
-            if (this._attacker.hasSlot(129, !0)) {
-                var n = new PIXI.Point;
-                n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                var o = new a.Picket;
-                o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                    i._playCutin(t, e)
-                })
-            } else this._playCutin(t, e)
-        }, e.prototype._playCutin = function (t, e) {
-            var i = this;
-            this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                t.moveFront(), e.moveFront(), i._damageEffect(t, e)
-            }), this._cutin.view.once("attack", function () {
-                i._playVoice()
+        return n(e, t), Object.defineProperty(e.prototype, "scene", {
+            get: function () {
+                return this._scene
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "record", {
+            get: function () {
+                return this._record
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
+            this._scene.view.layer_title.hide(), this._endTouchPlane()
+        }, e.prototype._endTouchPlane = function () {
+            var t = this._scene.view.raderLayer;
+            t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
+        }, e.prototype._waitGaugeExplodeAnimation = function () {
+            var t = this;
+            1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
+                t._waitGaugeExplodeAnimation()
+            }) : this._fadeOutBGM()
+        }, e.prototype._fadeOutBGM = function () {
+            var t = this, e = this._scene.data.model.map_info.area_id, i = this._scene.data.model.map_info.map_no,
+                n = this._scene.data.model.map_info.isBoss();
+            if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
+            1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
+                t._playBossLastGasp()
+            })) : this._playBossLastGasp()
+        }, e.prototype._playBossLastGasp = function () {
+            if (o.default.option.vol_voice <= 0) return void this._wait();
+            var t = this._scene.data.model.deck_e.ships[0];
+            if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
+            var e = this._scene.view.layer_gauge.isExploded(),
+                i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
+            return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
+        }, e.prototype._playBossVoice = function (t) {
+            var e = this;
+            o.default.sound.voice.play("9998", t, function () {
+                e._wait()
             })
-        }, e.prototype._damageEffect = function (t, e) {
-            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-            var i = this._getDamage(this._defender);
-            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
-        }, e.prototype._playVoice = function () {
-            if (this._attacker.friend) {
-                var t = this._attacker.mst_id, e = 17;
-                432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
-            }
-        }, e.prototype._log = function (t) {
+        }, e.prototype._wait = function () {
+            var t = this;
+            createjs.Tween.get(this).wait(1e3).call(function () {
+                t._shutter_close()
+            })
+        }, e.prototype._shutter_close = function () {
+            var t = this;
+            this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
+                t._endTask()
+            })
         }, e
-    }(_.PhaseAttackBase);
-    e.PhaseAttackSpSSS = u
+    }(r.TaskBase);
+    e.PhaseEnding = a
 }

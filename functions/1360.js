@@ -15,67 +15,85 @@ const function1360 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(19), a = i(6), _ = i(44), u = i(456), l = i(1362), c = i(64), h = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this, i, n, o, r, !1) || this;
-            return s._layer = e, s._friend = s._attacker.friend, s
+    var o = i(5), r = i(145), s = i(16), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new l, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new u, e.addChild(e._particles), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._friend ? 1 : -1;
-            this._canvas = new l.CutinKuboDayCanvas, this._canvas.bg.alpha = 0;
-            var i = this._attacker.mst_id, n = this._attacker.isDamaged(),
-                r = o.default.resources.getShip(i, n, "full"), u = new PIXI.Sprite(r), c = new _.ShipFlash(r),
-                h = o.default.model.ship_graph.get(i).getBattleOffset(n);
-            u.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.chara.addChild(u), this._canvas.chara.addChild(c), this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
-            var p = 0, d = this._attacker.slots;
-            if (null != d && d.length > 0 && null != d[0]) {
-                var f = d[0].mst_id;
-                f == this._slot_mst_id1 ? p = 1 : f == this._slot_mst_id2 ? p = 2 : f == this._slot_mst_id3 && (p = 3)
-            }
-            var y, v = new s.TweenTask;
-            this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), y = 1 == p ? 1300 : 1600, v.addTweens(this._canvas.bar1.createTween(y)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), y = 2 == p ? 1300 : 1600, v.addTweens(this._canvas.bar2.createTween(y)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), y = 3 == p ? 1300 : 1600, v.addTweens(this._canvas.bar3.createTween(y)), v.start(function () {
-                var e = new s.TweenTask;
-                e.addTweens(t._canvas.bar1.createTween2(1300)), e.addTweens(t._canvas.bar2.createTween2(1300)), e.addTweens(t._canvas.bar3.createTween2(1300)), e.start()
-            }), this._layer.addChild(this._canvas), createjs.Tween.get(this._canvas.bg).to({ alpha: 1 }, 250), createjs.Tween.get(this._canvas.chara).to({
-                y: -87,
-                alpha: 1
-            }, 500).wait(700).call(function () {
-                c.play()
-            }).wait(100).wait(1500).call(function () {
-                c.play()
-            }).wait(100).call(function () {
-                null != t._cb_onAttack && t._cb_onAttack()
-            }).wait(100).to({
-                y: -351,
-                alpha: 0
-            }, 500), createjs.Tween.get(this._canvas.plane1).wait(300).call(function () {
-                t._canvas.plane1.activate()
-            }).to({ x: 600 - 38 * e }, 400).wait(700).to({ x: 600 + 863 * e }, 400).call(function () {
-                t._canvas.plane1.deactivate()
-            }), createjs.Tween.get(null).wait(750).call(function () {
-                a.SE.play("105")
-            }).wait(250).call(function () {
-                a.SE.play("109")
-            }).wait(600).call(function () {
-                a.SE.play("105")
-            }).wait(200).call(function () {
-                a.SE.play("109")
-            }), this._anim2()
-        }, e.prototype._anim2 = function () {
-            var t = this, e = new c.IntensiveLines;
-            e.initialize(), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).wait(3100).call(function () {
-                e.activate()
-            }).to({ alpha: 1 }, 200).wait(300).to({ alpha: 0 }, 300);
-            var i = new r.AreaBox(1, 16777215);
-            i.alpha = 0, this._layer.addChild(i), createjs.Tween.get(i).wait(3100).to({ alpha: 1 }, 500).call(function () {
-                t._layer.removeChild(t._canvas)
-            }).to({ alpha: 0 }, 300).call(function () {
-                t._layer.removeChild(e), t._layer.removeChild(i), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._canvas = null, t.prototype._endTask.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message", {
+            get: function () {
+                return this._message
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "banner_top", {
+            get: function () {
+                return this._banner_top
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "banner_bottom", {
+            get: function () {
+                return this._banner_bottom
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "particles", {
+            get: function () {
+                return this._particles
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
+        }, e.prototype.dispose = function () {
+            this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
         }, e
-    }(u.CutinKuboBase);
-    e.CutinKuboDay = h
+    }(PIXI.Container);
+    e.SupportDeckCutin = a;
+    var _ = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren()
+        }, e
+    }(PIXI.Container), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._particles = new Array;
+            for (var t in this.XPOS) {
+                var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+            }
+        }, e.prototype.startAnim = function () {
+            if (null == this._tweens) {
+                this._tweens = [];
+                for (var t = 0; t < this._particles.length; t++) {
+                    var e = this._particles[t],
+                        i = createjs.Tween.get(e.scale).wait(100 * t).to({ x: 1, y: 1 }, 100).to({
+                            x: 0,
+                            y: 0
+                        }, 100);
+                    this._tweens.push(i)
+                }
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._tweens; t < e.length; t++) {
+                e[t].setPaused(!0)
+            }
+            this._tweens = null, this._particles = null, this.removeChildren()
+        }, e
+    }(PIXI.Container), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e
+    }(PIXI.Container)
 }

@@ -15,20 +15,14 @@ const function199 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(46), r = i(124), s = function (t) {
+    var o = i(9), r = i(31), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._rewards = [], e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "rewards", {
-            get: function () {
-                return this._rewards
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.add = function (t, e) {
-            var i = new r.RewardModelUseitem(t, e);
-            return this._rewards.push(i), this
+        return n(e, t), e.prototype._update = function (t) {
+            this.texture = 0 == t ? o.COMMON_MISC.getTexture(20) : o.COMMON_MISC.getTexture(21)
         }, e
-    }(o.RewardModel);
-    e.RewardModelMultiUseitem = s
+    }(r.BtnBase);
+    e.BackBtn = s
 }

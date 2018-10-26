@@ -1,29 +1,43 @@
 const function217 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0);
-    !function (t) {
-        function e(t) {
-            var e = 0, i = 0;
-            return t.forEach(function (t) {
-                var o = n.default.model.ship.get(t);
-                e += o.getFuelForSupply(), i += o.getAmmoForSupply()
-            }), { fuel: e, ammo: i }
-        }
-
-        function i(e) {
-            for (var i = n.default.model.deck.get(e), o = i.getCount(), r = 0; r < o; r++) {
-                var s = i.getShipMemID(r);
-                if (t.CheckRequireSupplyShip(s)) return !0
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-            return !1
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(130), r = i(3), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.textureRemodelCategory1 = r.REMODEL_POWERUP.getTexture(23), e.textureRemodelCategory2 = r.REMODEL_POWERUP.getTexture(24), e.textureRemodelCategory3 = r.REMODEL_POWERUP.getTexture(25), e.textureRemodelCategory4 = r.REMODEL_POWERUP.getTexture(26), e
         }
 
-        function o(t) {
-            var e = n.default.model.ship.get(t);
-            return !(0 != (e.ammoMax <= e.ammoNow && e.fuelMax <= e.fuelNow))
-        }
-
-        t.CalcRequireMaterials = e, t.CheckRequireSupplyDeck = i, t.CheckRequireSupplyShip = o
-    }(e.SupplyUtil || (e.SupplyUtil = {}))
+        return n(e, t), e.prototype.update = function (t) {
+            switch (this.texture = PIXI.Texture.EMPTY, t) {
+                case o.PowerUpCategory.Karyoku:
+                    this.texture = this.textureRemodelCategory1;
+                    break;
+                case o.PowerUpCategory.Raisou:
+                    this.texture = this.textureRemodelCategory2;
+                    break;
+                case o.PowerUpCategory.Taiku:
+                    this.texture = this.textureRemodelCategory3;
+                    break;
+                case o.PowerUpCategory.Soukou:
+                    this.texture = this.textureRemodelCategory4
+            }
+        }, e.prototype.dispose = function () {
+            this.textureRemodelCategory1 = null, this.textureRemodelCategory2 = null, this.textureRemodelCategory3 = null, this.textureRemodelCategory4 = null
+        }, e
+    }(PIXI.Sprite);
+    e.IconCategory = s
 }

@@ -15,38 +15,17 @@ const function1501 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(1502), s = i(1505), a = i(1507), _ = function (t) {
+    var o = i(4), r = i(36), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
+            return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._enemy_type = new PIXI.Sprite, e._enemy_type.position.set(2, 29), e.addChild(e._name), e.addChild(e._enemy_type), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
-            get: function () {
-                return this._banners_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_f", {
-            get: function () {
-                return this._info_f
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "banners_e", {
-            get: function () {
-                return this._banners_e
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "info_e", {
-            get: function () {
-                return this._info_e
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
-        }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
-            var i = this, n = o.default.width - this._banners_e.x;
-            return [createjs.Tween.get(this._banners_e).wait(e).to({ x: this._banners_e.x + n }, t).call(function () {
-                i._banners_e.dispose()
-            }), createjs.Tween.get(this._info_e).wait(e).to({ x: this._info_e.x + n }, t).call(function () {
-                i._info_e.dispose()
-            })]
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 246, this._name.height), this._name_mask.endFill(), this._enemy_type.texture = 1 == e ? r.BATTLE_RESULT_MAIN.getTexture(7) : 2 == e ? r.BATTLE_RESULT_MAIN.getTexture(8) : PIXI.Texture.EMPTY
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._name.destroy(), this._name = null, this._name_mask = null, this._enemy_type = null
         }, e
     }(PIXI.Container);
-    e.LayerBanner = _
+    e.BannerInfoEnemy = s
 }

@@ -15,30 +15,28 @@ const function1366 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._chara = [];
-            for (var i = 0; i < 3; i++) {
-                var n = new PIXI.Container;
-                e._chara.push(n), e.addChild(n)
-            }
-            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
+    var o = i(24), r = i(2), s = i(1367), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._banner = e, i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "chara", {
-            get: function () {
-                return this._chara
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "explosion", {
-            get: function () {
-                return this._explosion
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-        }, e.prototype.dispose = function () {
-            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
-            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (null == this._banner) return void this._endTask();
+            this._banner.moveFront(function () {
+                t._antiAircraft()
+            })
+        }, e.prototype._antiAircraft = function () {
+            var t = this, e = this._banner.friend, i = new s.AntiAircraftFire;
+            i.initialize(), i.x = e ? o.BannerSize.W : 0, i.rotation = (e ? -60 : 240) / 180 * Math.PI, this._banner.addChild(i), i.getAnimationTask().start(function () {
+                t._banner.removeChild(i), t._banner.moveDefault(), t._banner.once("complete_moveDefault", function () {
+                    t._endTask()
+                })
+            })
+        }, e.prototype._endTask = function () {
+            this._banner = null, t.prototype._endTask.call(this)
         }, e
-    }(PIXI.Container);
-    e.CutinNelsonTouchCanvas = o
+    }(r.TaskBase);
+    e.TaskBannerFlareFire = a
 }

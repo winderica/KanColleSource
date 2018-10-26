@@ -15,17 +15,26 @@ const function1070 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._view = e, i
+    var o = i(0), r = i(2), s = i(25), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._mst_id = e, n._target = i, n
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._view.dispose(), this._endTask()
+        return n(e, t), e.prototype.cancel = function () {
+            this._target = null
+        }, e.prototype._start = function () {
+            var t = this, e = new s.SlotLoader;
+            e.add(this._mst_id, "card"), e.load(function () {
+                if (null != t._target) {
+                    var e = o.default.resources.getSlotitem(t._mst_id, "card");
+                    t._target.texture = e
+                }
+                t._endTask()
+            })
         }, e.prototype._endTask = function () {
-            this._view = null, t.prototype._endTask.call(this)
+            this._target = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskSceneFinalize = r
+    }(r.TaskBase);
+    e.TaskShowSlotCard = a
 }

@@ -15,7 +15,7 @@ const function61 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(22), r = function (t) {
+    var o = i(23), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._img = new PIXI.Sprite, i.addChild(i._img), i.texture = e, i

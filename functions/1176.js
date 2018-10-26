@@ -15,28 +15,75 @@ const function1176 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(33), a = i(68), _ = i(410), u = i(411), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._data = e, n._scene_initialize_delegate = i, n
+    var o = i(28), r = i(77), s = i(15), a = i(25), _ = i(66), u = i(2), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._task = new o.SerialTask, e
+        }
+
+        return n(e, t), e.prototype.addShip = function (t) {
+            this._task.add(new c(t))
+        }, e.prototype.addSlotitem = function (t) {
+            this._task.add(new h(t))
+        }, e.prototype.addUseitem = function (t) {
+            this._task.add(new p(t))
+        }, e.prototype.addFurniture = function (t) {
+            this._task.add(new d(t))
+        }, e.prototype._start = function () {
+            var t = this;
+            this._task.start(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase);
+    e.TaskLoadResources = l;
+    var c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new u.TaskLoadResources).start(function () {
-                t._connectAPI()
+            var t = this, e = new s.ShipLoader;
+            e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
+                t._endTask()
             })
-        }, e.prototype._connectAPI = function () {
-            var t = this, e = new s.APIConnector;
-            20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
-            e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
-                null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.TaskDutyScenePreInitialize = l
+    }(u.TaskBase), h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new a.SlotLoader;
+            e.add(this._mst_id, "card"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), p = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new _.UseitemLoader;
+            e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), d = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new r.FurnitureLoader;
+            e.add(this._mst_id, "reward"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase)
 }

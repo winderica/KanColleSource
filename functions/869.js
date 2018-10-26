@@ -15,25 +15,32 @@ const function869 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(3), s = i(1), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i.clickable = !1, i.hasKey = !1, i._onMouseOver = function (t) {
-                i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.hasKey ? i.confirm_dock_key_sprite.visible = !0 : i.alert_dock_key_sprite.visible = !0
-            }, i._onClick = function () {
-                i.hasKey || o.SE.play("248"), i.onClick()
-            }, i._onMouseOut = function (t) {
-                i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1
-            }, i.steelFrame_noDock_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(147)), i.alert_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(71)), i.confirm_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(72)), i.alert_dock_key_sprite.position.set(255, -15), i.confirm_dock_key_sprite.position.set(255, -15), i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.steelFrame_noDock_sprite.interactive = i.steelFrame_noDock_sprite.buttonMode = !0, i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOVER, i._onMouseOver), i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOUT, i._onMouseOut), i.steelFrame_noDock_sprite.on(s.EventType.CLICK, i._onClick), i.addChild(i.steelFrame_noDock_sprite), e.addChild(i.alert_dock_key_sprite, i.confirm_dock_key_sprite), i.overlayer = e, i
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.build_ship_00 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(52)), e.build_ship_01 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(53)), e.build_ship_02 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(54)), e.build_ship_03 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(55)), e.build_ship_04 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(56)), e.build_ship_00.alpha = 0, e.build_ship_01.alpha = 0, e.build_ship_02.alpha = 0, e.build_ship_03.alpha = 0, e.build_ship_04.alpha = 0, e.addChild(e.build_ship_00, e.build_ship_01, e.build_ship_02, e.build_ship_03, e.build_ship_04), e
         }
 
-        return n(e, t), e.prototype.update = function (t, e) {
-            this.steelFrame_noDock_sprite.interactive = !1, t && (this.steelFrame_noDock_sprite.interactive = !0), this.clickable = t, this.hasKey = e
-        }, e.prototype.hidePop = function () {
-            this.alert_dock_key_sprite.visible = this.confirm_dock_key_sprite.visible = !1
+        return n(e, t), e.prototype.update = function (t) {
+            switch (this.build_ship_00.alpha = 0, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0, t) {
+                case 1:
+                    this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                    break;
+                case 2:
+                    this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                    break;
+                case 3:
+                    this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                    break;
+                case 4:
+                    this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 0;
+                    break;
+                case 5:
+                    this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 1
+            }
         }, e.prototype.dispose = function () {
-            this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOVER), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOUT), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.CLICK), this.overlayer.removeChildren(), this.onClick = null, this.steelFrame_noDock_sprite = null, this.alert_dock_key_sprite = null, this.confirm_dock_key_sprite = null, this.overlayer = null, this.removeChildren()
+            this.build_ship_00 = null, this.build_ship_01 = null, this.build_ship_02 = null, this.build_ship_03 = null, this.build_ship_04 = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.NoDockView = a
+    e.NormalBuildShip = r
 }

@@ -15,24 +15,41 @@ const function1191 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e.visible = !1, e
+    var o = i(0), r = i(2), s = i(1192), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.DUTY_COMMON.getTexture(56)
-        }, e.prototype.show = function () {
+        return n(e, t), e.prototype._start = function () {
+            this._loadResources()
+        }, e.prototype._loadResources = function () {
             var t = this;
-            this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({ alpha: 1 }, 300).wait(2e3).to({ alpha: 0 }, 300).call(function () {
-                t.visible = !1
+            (new s.TaskLoadResources).start(function () {
+                t._showTopView()
             })
-        }, e.prototype.hide = function () {
-            this._stopTween(), this.alpha = 0, this.visible = !1
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype._showTopView = function () {
+            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
         }, e
-    }(PIXI.Sprite);
-    e.RewardSelectDialogFurnitureAlert = r
+    }(r.TaskBase);
+    e.PreInitializeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            var t = this._getBGMID();
+            o.default.sound.bgm.play(t), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e.prototype._getBGMID = function () {
+            var t = o.default.model.deck.get(1).getShipModel(1);
+            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = _
 }

@@ -15,17 +15,17 @@ const function330 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(0), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._url = "api_req_kaisou/slotset", o.api_id = e, o.api_item_id = i, o.api_slot_idx = n, o
+    var o = i(3), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick()
+            }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, this._post_data.api_slot_idx = this.api_slot_idx, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            r.default.model.ship.get(this.api_id).__updateSlot__(this.api_slot_idx, this.api_item_id), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
         }, e
-    }(o.APIBase);
-    e.SlotSetAPI = s
+    }(PIXI.Container);
+    e.DetachButton = s
 }

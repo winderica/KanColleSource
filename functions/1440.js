@@ -15,31 +15,51 @@ const function1440 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(24), r = i(1441), s = i(1442), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(16), r = i(136), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = -1, i._friend = e, i._plane = new r.Plane, i._plane.scale.set(-.25, .25), i._label = new a, i._label.position.set(-56, 35), i.addChild(i._plane), i.addChild(i._label), i
         }
 
-        return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
-            void 0 === n && (n = null);
-            var o = t.getGlobalPos(!0), r = 1 == t.friend ? o.x + 23 : o.x - 74, s = o.y + 7;
-            this.show(r, s, e, i, n)
-        }, e.prototype.show = function (t, e, i, n, o) {
-            var s = this;
-            void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
-            var a = new r.DamageNumber;
-            a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
-                createjs.Tween.get(a).to({ alpha: 0 }, 230).call(function () {
-                    s.removeChild(a), null != o && o()
-                })
-            })
-        }, e.prototype.showShieldAtBanner = function (t) {
-            var e = t.getGlobalPos(!0), i = e.x, n = e.y, r = t.friend;
-            1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
-        }, e.prototype.showShield = function (t, e, i) {
-            var n = new s.Shield;
-            n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._mst_id = t, this._stopShowTween(), this._stopHideTween(), this._label.initialize()
+        }, e.prototype.show = function () {
+            var t = this;
+            null == this._show_tween && (this._mst_id <= 0 || (this._stopHideTween(), this._label.activate(), this._plane.visible = !1, this._plane.initialize(this._mst_id, this._friend), this._plane.activate(), this._show_tween = createjs.Tween.get(this._plane).wait(133).call(function () {
+                t._plane.alpha = .5, t._plane.visible = !0
+            }).wait(100).call(function () {
+                t._plane.visible = !1
+            }).wait(500).call(function () {
+                t._plane.alpha = .85, t._plane.visible = !0
+            }).wait(100).call(function () {
+                t._plane.alpha = .6, t._plane.filters = null
+            }).to({ alpha: .8 }, 166).call(function () {
+                t._show_tween = null
+            })))
+        }, e.prototype.hide = function () {
+            var t = this;
+            null == this._hide_tween && (this._stopShowTween(), this._mst_id > 0 && (this._mst_id = -1, this._label.deactivate(), this._hide_tween = createjs.Tween.get(this._plane).to({ alpha: 0 }, 200).call(function () {
+                t._plane.deactivate(), t._plane.visible = !1, t._hide_tween = null
+            })))
+        }, e.prototype._stopShowTween = function () {
+            null != this._show_tween && (this._show_tween.setPaused(!0), this._show_tween = null)
+        }, e.prototype._stopHideTween = function () {
+            null != this._hide_tween && (this._hide_tween.setPaused(!0), this._hide_tween = null)
         }, e
     }(PIXI.Container);
-    e.LayerDamage = a
+    e.TouchPlane = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.alpha = 0, e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.BATTLE_MAIN.getTexture(130)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ alpha: 1 }, 100).wait(700).to({ alpha: 0 }, 100).wait(200))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this.alpha = 0)
+        }, e
+    }(PIXI.Sprite)
 }

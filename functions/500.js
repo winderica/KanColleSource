@@ -15,80 +15,43 @@ const function500 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = function () {
-        function t(t) {
-            this._hasFlag = !1, this._o = t
+    var o = i(501), r = function () {
+        function t() {
+            this._dic = {}
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
-            get: function () {
-                return this._o.api_id
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "no", {
-            get: function () {
-                return this._o.api_no
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "type", {
-            get: function () {
-                return this._o.api_type
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return this._o.api_title
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "outside", {
-            get: function () {
-                return this._o.hasOwnProperty("api_outside_id") ? this._o.api_outside_id : 4
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
-            get: function () {
-                return this._o.api_description
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "price", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_price")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "rarity", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_rarity")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "seasonID", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_season")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "version", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_version", "1")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.has = function () {
-            return this._hasFlag
-        }, t.prototype.isOnSale = function () {
-            return 1 == o.ObjUtil.getNumber(this._o, "api_saleflg")
-        }, t.prototype.isNeedCraftsman = function () {
-            return this.price >= 2e3 && this.price < 2e4
-        }, t.prototype.isHighGrade = function () {
-            return this.price >= 1e5
-        }, t.prototype.isActive = function () {
-            return 1 == this._o.api_active_flag
-        }, t.prototype.getDiscountPrice = function () {
-            if (0 == this.isHighGrade()) return this.price;
-            var t = .1 * (this.price - 1e5);
-            return t = Math.max(t, 0), Math.floor(t)
-        }, Object.defineProperty(t.prototype, "getVersion", {
-            get: function () {
-                return this._o.api_version
-            }, enumerable: !0, configurable: !0
-        }), t
+        return t.prototype.get = function (t) {
+            var e = t.toString();
+            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
+        }, t.prototype.getAll = function () {
+            var t = new Array;
+            for (var e in this._dic) {
+                var i = this._dic[e];
+                t.push(i)
+            }
+            return t.sort(function (t, e) {
+                return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
+            }), t
+        }, t
     }();
-    e.FurnitureModel = r;
+    e.KDockModelHolder = r;
     var s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.updateHasFlag = function (t) {
-            this._hasFlag = t
+        return n(e, t), e.prototype.__setData__ = function (t) {
+            if (null != t) {
+                this._dic = {};
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e], r = new o.KDockModelEdit(n), s = r.id;
+                    if (s > 0) {
+                        var a = s.toString();
+                        this._dic[a] = r
+                    }
+                }
+            }
         }, e
     }(r);
-    e.FurnitureModelEdit = s
+    e.KDockModelHolderEdit = s
 }

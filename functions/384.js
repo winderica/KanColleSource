@@ -15,66 +15,64 @@ const function384 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(61), r = i(154), s = i(1), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._startWait = function () {
-                e._stopWait();
-                var t = 3e3 * Math.random() + 1e3;
-                e._wait_tween = createjs.Tween.get(null).wait(t).call(function () {
-                    e._caterpillar.buttonMode = !1, 0 == Math.floor(5 * Math.random()) ? e._action2() : e._action1()
-                })
-            }, e._onClick = function () {
-                if (0 != e._caterpillar.buttonMode) {
-                    e._caterpillar.buttonMode = !1;
-                    0 == Math.floor(5 * Math.random()) ? e._action3() : e._action1()
-                }
-            }, e._shadow = new o.CenteringSprite, e._shadow.position.set(60, 92), e.addChild(e._shadow), e._frown = new PIXI.Sprite, e.addChild(e._frown), e._caterpillar = new o.CenteringSprite, e._caterpillar.position.set(63, 77), e._caterpillar.interactive = !0, e.addChild(e._caterpillar), e
+    var o = i(3), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._offset = 0, i._activated = !1, i._selected = !1, i._onClick = function () {
+                null != i._cb_onChange && i._cb_onChange(i._offset)
+            }, i._cb_onChange = e, i._dash = new PIXI.Sprite, i._dash.position.set(75, 28), i.addChild(i._dash), i._from = new a, i._from.position.set(24, 22), i.addChild(i._from), i._to = new a, i._to.position.set(95, 22), i.addChild(i._to), i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.ALBUM_MAIN.getTexture(111), this._shadow.texture = r.ALBUM_MAIN.getTexture(110), this._frown.texture = r.ALBUM_MAIN.getTexture(108);
-            var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(109));
-            t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(107), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
+        return n(e, t), Object.defineProperty(e.prototype, "selected", {
+            get: function () {
+                return this._selected
+            }, set: function (t) {
+                this._selected != t && (this._selected = t, 1 == this._selected ? this._deactivate() : 1 == this._activated && this._activate(), this.update(this._offset))
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._setBGTexture(), this._from.update(0, this._selected), this._to.update(0, this._selected)
+        }, e.prototype.update = function (t) {
+            this._offset = t, this._setBGTexture(), this._from.update(t + 1, this._selected), this._to.update(t + 10, this._selected)
         }, e.prototype.activate = function () {
-            this._startWait()
+            1 != this._activated && (this._activated = !0, this._activate())
         }, e.prototype.deactivate = function () {
-            this._stopWait(), null != this._action_tween && (this._action_tween.setPaused(!0), this._action_tween = null)
+            this._activated = !1, this._deactivate()
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this.deactivate(), this._caterpillar.off(s.EventType.CLICK, this._onClick), this._shadow = null, this._frown = null, this._caterpillar = null, this._wait_tween = null, this._action_tween = null
-        }, e.prototype._stopWait = function () {
-            null != this._wait_tween && (this._wait_tween.setPaused(!0), this._wait_tween = null)
-        }, e.prototype._action1 = function () {
-            var t = this;
-            null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({ y: -105 }, 400, createjs.Ease.sineOut).to({ y: 77 }, 400, createjs.Ease.sineIn).call(function () {
-                t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
-            }), createjs.Tween.get(this._shadow).to({ alpha: .4, scaleX: .9, scaleY: .9 }, 400).to({
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 400))
-        }, e.prototype._action2 = function () {
-            var t = this;
-            null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({ rotation: -30 * Math.PI / 180 }, 200).to({ rotation: 25 * Math.PI / 180 }, 400).to({ rotation: 0 }, 200).call(function () {
-                t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
-            }))
-        }, e.prototype._action3 = function () {
-            var t = this;
-            null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({ y: -584 }, 500, createjs.Ease.sineOut).call(function () {
-                createjs.Tween.get(t._frown).to({ alpha: 0 }, 100)
-            }).wait(700).to({ y: 77 }, 500, createjs.Ease.sineIn).to({ y: 80, scaleY: .8 }, 100).to({
-                y: 77,
-                scaleY: 1
-            }, 100).call(function () {
-                createjs.Tween.get(t._frown).to({ alpha: 1 }, 100)
-            }).call(function () {
-                t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
-            }), createjs.Tween.get(this._shadow).to({
-                alpha: 0,
-                scaleX: .7,
-                scaleY: .7
-            }, 600).wait(400).to({ alpha: 1, scaleX: 1, scaleY: 1 }, 400))
+            this.removeChildren(), this.deactivate(), this._from.dispose(), this._to.dispose(), this._dash = null, this._from = null, this._to = null, this._cb_onChange = null
+        }, e.prototype._setBGTexture = function () {
+            0 == this._selected ? (this.texture = o.ALBUM_MAIN.getTexture(95), this._dash.texture = o.ALBUM_MAIN.getTexture(22)) : (this.texture = o.ALBUM_MAIN.getTexture(96), this._dash.texture = o.ALBUM_MAIN.getTexture(23))
+        }, e.prototype._activate = function () {
+            1 != this._selected && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+        }, e.prototype._deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
         }, e
     }(PIXI.Sprite);
-    e.MiniChara = a
+    e.Pager = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._n100 = new _, e.addChild(e._n100), e._n010 = new _, e._n010.x = 15, e.addChild(e._n010), e._n001 = new _, e._n001.x = 30, e.addChild(e._n001), e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
+        }, e.prototype.update = function (t, e) {
+            if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY; else {
+                this._n100.update(Math.floor(t / 100), e);
+                var i = t % 100;
+                this._n010.update(Math.floor(i / 10), e), i = t % 10, this._n001.update(i, e)
+            }
+        }, e
+    }(PIXI.Sprite), _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.update = function (t, e) {
+            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY; else {
+                var i = void 0;
+                i = 0 == e ? [44, 46, 48, 50, 52, 54, 56, 58, 60, 62][t] : [45, 47, 49, 51, 53, 55, 57, 59, 61, 63][t], this.texture = o.ALBUM_MAIN.getTexture(i)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

@@ -15,57 +15,62 @@ const function1085 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(42), s = i(1), a = function (t) {
+    var o = i(0), r = i(3), s = i(3), a = i(3), _ = i(42), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onPrev = function (t) {
-                if (t.stopPropagation(), null != e._current) {
-                    var i = e._data_list.indexOf(e._current);
-                    if (!(i < 0)) {
-                        var n = i - 1;
-                        n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
-                    }
-                }
-            }, e._onNext = function (t) {
-                if (t.stopPropagation(), null != e._current) {
-                    var i = e._data_list.indexOf(e._current);
-                    if (!(i < 0)) {
-                        var n = i + 1;
-                        n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
-                    }
-                }
-            }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
+            return e._boxes = new h, e._boxes.position.set(7, 190), e.addChild(e._boxes), e._icon = new l, e.addChild(e._icon), e._name = new c, e._name.position.set(150, 19), e.addChild(e._name), e._params = new _.SlotParamsContainer, e._params.position.set(159, 66), e.addChild(e._params), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._data_list = [];
-            for (var e = 0, i = t.mst_ids; e < i.length; e++) {
-                var n = i[e], r = o.default.resources.getSlotitem(n, "card");
-                this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
-            }
-            this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
-        }, e.prototype.activate = function () {
-            1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
-        }, e.prototype.deactivate = function () {
-            this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose();
-            for (var t = 0; t < this._data_list.length; t++) this._data_list[t] = null;
-            this._data_list = null, this._current = null, this._canvas = null, this._prevBtn = null, this._nextBtn = null
-        }, e.prototype._addImageData = function (t, e, i) {
-            if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
-                var n = new _;
-                n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
-            }
-        }, e.prototype._update = function () {
-            null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._boxes.dispose(), this._params.dispose(), this._boxes = null, this._icon = null, this._name = null, this._params = null
+        }, e.prototype.initialize = function (t) {
+            this.texture = r.ALBUM_MAIN.getTexture(86), this._boxes.initialize(), this._boxes.update(t.equipType), this._icon.update(t.iconType), this._name.update(t.equipType, t.iconType), this._params.update(t)
         }, e
-    }(PIXI.Container);
-    e.SlotDetailContent = a;
-    var _ = function () {
-        function t() {
+    }(PIXI.Sprite);
+    e.SlotDetailStatusBox = u;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return t
-    }()
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = a.ALBUM_SLOT4.getTextureFromMstID(t)
+        }, e
+    }(PIXI.Sprite);
+    e.IconView = l;
+    var c = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.update = function (t, e) {
+            38 == t ? t = 3 : 93 == t ? t = 13 : 94 == t ? t = 9 : 48 == t && 44 == e && (t = 148), this.texture = s.ALBUM_SLOT3.getTextureFromMstID(t)
+        }, e
+    }(PIXI.Sprite);
+    e.TypeNameView = c;
+    var h = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._boxes = [];
+            for (var i = 0; i < 8; i++) {
+                var n = new PIXI.Sprite;
+                n.x = i % 4 * 144, n.y = 54 * Math.floor(i / 4), n.visible = !1, e.addChild(n), e._boxes.push(n)
+            }
+            return e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._boxes = null
+        }, e.prototype.initialize = function () {
+            for (var t = [39, 40, 41, 43, 42, 37, 38, 36], e = 0; e < this._boxes.length; e++) {
+                var i = t[e];
+                this._boxes[e].texture = r.ALBUM_MAIN.getTexture(i)
+            }
+        }, e.prototype.update = function (t) {
+            for (var e = [2, 3, 5, 9, 7, 11, 16, 10], i = 0; i < this._boxes.length; i++) {
+                var n = e[i], r = this._boxes[i], s = o.default.model.shipType.get(n);
+                r.visible = s.getEquippableTypes().indexOf(t) >= 0
+            }
+        }, e
+    }(PIXI.Container)
 }

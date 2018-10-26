@@ -15,96 +15,40 @@ const function1241 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(55), s = i(23), a = i(7), _ = i(2), u = i(18), l = function (t) {
+    var o = i(2), r = i(20), s = function (t) {
         function e(e, i, n, o) {
+            void 0 === o && (o = null);
             var r = t.call(this) || this;
-            if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o) for (var s = 0, a = o; s < a.length; s++) {
-                var _ = a[s];
-                r._memData[_.no] = _, r._memDataNum++
-            }
-            return r._version = u.UIImageLoader.getResourceVersionMap(r._map_id), r
+            return r._ship = e, r._type = i, r._directionType = n, r._offset = o, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
-            axios.get(e).then(function (e) {
-                var i = a.ObjUtil.getObject(e, "data");
-                t._mapInfo.add(i), t._loadSpriteSheet()
-            }).catch(function (e) {
-                t._failedEnd()
+            var t = this, e = new a(this._offset);
+            e.initialize(this._type, this._directionType), e.alpha = 0, this._ship.addChild(e), createjs.Tween.get(e).to({
+                y: -23,
+                alpha: 1
+            }, 100).wait(2e3).to({ y: 0, alpha: 0 }, 100).call(function () {
+                t._ship.removeChild(e), t._endTask()
             })
-        }, e.prototype._loadSpriteSheet = function () {
-            var t = this, e = this._getPath("image.json");
-            if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo(); else {
-                var i = new PIXI.loaders.Loader;
-                null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
-                    t._loadAddingInfo()
-                })
-            }
-        }, e.prototype._loadAddingInfo = function () {
-            var t = this;
-            if (this._mapInfo.spots.length >= this._memDataNum) return void this._createMapBackGround();
-            var e = this._mapInfo.spots.length,
-                i = this._getPath("info" + e + ".json" + (this._version ? "?version=" + this._version : ""));
-            axios.get(i).then(function (i) {
-                var n = a.ObjUtil.getObject(i, "data");
-                t._mapInfo.add(n), t._loadAddingSpriteSheet(e)
-            }).catch(function (e) {
-                t._failedEnd()
-            })
-        }, e.prototype._loadAddingSpriteSheet = function (t) {
-            var e = this, i = this._getPath("image" + t + ".json");
-            if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo(); else {
-                var n = new PIXI.loaders.Loader;
-                null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
-                    e._loadAddingInfo()
-                })
-            }
-        }, e.prototype._createMapBackGround = function () {
-            for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.MapUtil.toResKey(this._map_id), s = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(s);
-                this._mapView.bg.addBGLayer(a, n.name)
-            }
-            this._createLabel()
-        }, e.prototype._createLabel = function () {
-            for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.MapUtil.toResKey(this._map_id), s = "map" + o + "_" + n.img,
-                    a = PIXI.Texture.fromFrame(s);
-                this._mapView.bg.addLabel(a, n.x, n.y)
-            }
-            this._createSpots()
-        }, e.prototype._createSpots = function () {
-            for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = n.no;
-                if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
-                    var r = n.x + n.landing.x, s = n.y + n.landing.y;
-                    this._mapView.spotLayer.addFlag(o, r, s)
-                }
-            }
-            this._createAirBase()
-        }, e.prototype._createAirBase = function () {
-            var t = this._mapInfo.getAirBasePos();
-            null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
-        }, e.prototype._initCellColor = function () {
-            for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
-                var o = n[i];
-                if (!(t.indexOf(o.no) >= 0)) {
-                    for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), u = 0, l = _; u < l.length; u++) {
-                        var c = l[u];
-                        t.push(c.no), 0 == s && (s = c.color);
-                        var h = this._memData[c.no];
-                        null != h && (r = r || h.passed, 0 == a && (a = h.color))
-                    }
-                    var p = _[0].no, d = this._mapView.spotLayer.getSpot(p);
-                    1 == r ? d.setColor(a) : d.setColor(s)
-                }
-            }
-            this._endTask()
-        }, e.prototype._getPath = function (t) {
-            var e = r.MapUtil.toAreaID(this._map_id), i = r.MapUtil.toMapNo(this._map_id);
-            return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
         }, e
-    }(_.TaskBase);
-    e.TaskCreateMap = l
+    }(o.TaskBase);
+    e.AnimBalloon = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._offset = e, i._img = new PIXI.Sprite, i.addChild(i._img), i
+        }
+
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            1 == t ? this._initializeFoundEnemy(e) : 2 == t && this._initializeFoundTarget(e), 3 == t && this._initializePatrol(e), this._addOffset(e)
+        }, e.prototype._initializeFoundEnemy = function (t) {
+            0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(45), this._img.position.set(-66, -77)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(27), this._img.position.set(-15, -68)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(26), this._img.position.set(0, -36)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(28), this._img.position.set(-114, -68))
+        }, e.prototype._initializeFoundTarget = function (t) {
+            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(29), this._img.position.set(-15, -68)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(30), this._img.position.set(-140, -66))
+        }, e.prototype._initializePatrol = function (t) {
+            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(31), this._img.position.set(-14, -66)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(32), this._img.position.set(-114, -66))
+        }, e.prototype._addOffset = function (t) {
+            0 == t ? (this._img.x += -3, this._img.y += -9) : 1 == t ? (this._img.x += 21, this._img.y += -6) : 2 == t ? (this._img.x += 39, this._img.y += 9) : 3 == t || 4 == t || 5 == t || 6 == t || 7 == t && (this._img.x += -21, this._img.y += -6), this._offset && (this._img.x += this._offset.x, this._img.y += this._offset.y)
+        }, e
+    }(PIXI.Container)
 }

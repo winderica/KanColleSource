@@ -15,79 +15,25 @@ const function693 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(34), a = i(1), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClickYES = function () {
-                e.onClickYES()
-            }, e._onClickNO = function () {
-                e.onClickNO()
-            };
-            var i = new PIXI.Container;
-            i.position.set(69, 153), e.firstShipInDeckBanners = new Array;
-            for (var n = 0; n < 6; n++) {
-                var _ = new s.ShipBanner;
-                _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
-            }
-            var u = new PIXI.Container;
-            u.position.set(678, 153), e.secondShipInDeckBanners = new Array;
-            for (var n = 0; n < 6; n++) {
-                var _ = new s.ShipBanner;
-                _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), u.addChild(_)
-            }
-            e.background = new PIXI.Sprite;
-            var l = o.ORGANIZE_MAIN.getTexture(15);
-            e.buttonOrganize = new PIXI.Sprite(l);
-            var c = o.ORGANIZE_MAIN.getTexture(8);
-            return e.buttonBack = new PIXI.Sprite(c), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(18, 16777215), e.secondDeckName = new r.TextBox(18, 16777215), e.firstDeckName.position.set(60, 122), e.secondDeckName.position.set(667, 122), e.buttonOrganize.position.set(300, 420), e.buttonBack.position.set(480, 420), e.buttonOrganize.interactive = e.buttonOrganize.buttonMode = !0, e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonOrganize.addListener(a.EventType.CLICK, e._onClickYES), e.buttonBack.addListener(a.EventType.CLICK, e._onClickNO), e.addChild(e.background, e.message, e.buttonOrganize, e.buttonBack, e.firstDeckName, e.secondDeckName, i, u), e
+    var o = i(9), r = i(1), s = i(8), a = function (t) {
+        function e(e, i, n) {
+            var a = t.call(this, .1) || this;
+            a._cbDrop = n, a._drag = null, a._isPosible = !1, a._onMove = function (t) {
+                a._flagIcon.position.set(t.data.global.x, t.data.global.y);
+                var e = a._reactionArea, i = t.data.getLocalPosition(e);
+                a._isPosible = e.hitArea.contains(i.x, i.y)
+            }, a._onUp = function () {
+                a._dispose(), a._cbDrop(a._isPosible)
+            }, a._onOut = function () {
+                a._dispose(), a._cbDrop(!1)
+            }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
+            var _ = a._flagIcon.width, u = a._flagIcon.height;
+            return a._reactionArea = new s.AreaBox(0, 16777215, _, u), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, u), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t = 0; t < this.firstShipInDeckBanners.length; t++) this.firstShipInDeckBanners[t].dispose(), this.firstShipInDeckBanners[t] = null;
-            for (var t = 0; t < this.secondShipInDeckBanners.length; t++) this.secondShipInDeckBanners[t].dispose(), this.secondShipInDeckBanners[t] = null;
-            this.firstDeckName.destroy(), this.secondDeckName.destroy(), this.onClickYES = null, this.onClickNO = null, this.background = null, this.buttonOrganize = null, this.buttonBack = null, this.message = null, this.firstDeckName = null, this.secondDeckName = null, this.firstShipInDeckBanners = null, this.secondShipInDeckBanners = null
-        }, e.prototype.updateFirstDeck = function (t) {
-            this.firstDeckName.text = t.name;
-            for (var e = t.getShipList(), i = 0; i < e.length; i++) {
-                var n = this.firstShipInDeckBanners[i], o = e[i];
-                n.visible = !1, o && (n.update(o, !1), n.visible = !0)
-            }
-        }, e.prototype.updateSecondDeck = function (t) {
-            this.secondDeckName.text = t.name;
-            for (var e = null != t.expedition, i = t.getShipList(), n = 0; n < i.length; n++) {
-                var o = this.secondShipInDeckBanners[n], r = i[n];
-                o.visible = !1, r && (o.update(r, e), o.visible = !0)
-            }
-        }, e.prototype.updateCombineDeck = function (t, e) {
-            this.updateFirstDeck(t), this.updateSecondDeck(e)
-        }, e.prototype.updateViewType = function (t) {
-            switch (t) {
-                case 1:
-                    this.initKidoView();
-                    break;
-                case 2:
-                    this.initSuijoView();
-                    break;
-                case 3:
-                    this.initYusoView()
-            }
-        }, e.prototype.initKidoView = function () {
-            var t = o.ORGANIZE_RENGO.getTexture(13);
-            this.background.texture = t;
-            var e = o.ORGANIZE_RENGO.getTexture(14);
-            this.message.texture = e, this.message.position.set(213, 49)
-        }, e.prototype.initSuijoView = function () {
-            var t = o.ORGANIZE_RENGO.getTexture(19);
-            this.background.texture = t;
-            var e = o.ORGANIZE_RENGO.getTexture(20);
-            this.message.texture = e, this.message.position.set(213, 49)
-        }, e.prototype.initYusoView = function () {
-            var t = o.ORGANIZE_RENGO.getTexture(22);
-            this.background.texture = t;
-            var e = o.ORGANIZE_RENGO.getTexture(23);
-            this.message.texture = e, this.message.position.set(183, 49)
+        return n(e, t), e.prototype._dispose = function () {
+            this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)
         }, e
-    }(PIXI.Container);
-    e.CombineConfirmDialog = _
+    }(s.AreaBox);
+    e.CombineDragging = a
 }

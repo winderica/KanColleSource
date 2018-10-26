@@ -15,50 +15,71 @@ const function888 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(306), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.animation = {};
-            var i = o.ARSENAL_ANIMATION.getTexture(2);
-            e.scatterCircles = new Array;
-            for (var n = 0; n < 40; n++) {
+            e.MAX_CIRCLE = 5, e.onUpdate = function () {
+                for (var t = 0; t < e.effectCircles.length; t++) {
+                    var i = e.effectCircles[t];
+                    if (!i.isAnimation && !(Math.floor(100 * Math.random()) >= 10)) {
+                        i.play();
+                        break
+                    }
+                }
+            };
+            var i = o.ARSENAL_ANIMATION.getTexture(1);
+            e.effectCircles = new Array;
+            for (var n = 0; n < e.MAX_CIRCLE; n++) {
                 var r = new s(i);
-                e.scatterCircles.push(r), e.addChild(r)
+                e.effectCircles.push(r), r.texture = i, e.addChild(r)
             }
             return e
         }
 
-        return n(e, t), e.prototype.play = function () {
-            var t = this;
-            createjs.Tween.removeTweens(this.animation);
-            for (var e = createjs.Tween.get(this.animation), i = 0; i < this.scatterCircles.length; i++) {
-                this.scatterCircles[i].reset()
-            }
-            e.call(function () {
-                e.removeAllEventListeners("change"), e.addEventListener("change", function () {
-                    for (var e = 0; e < t.scatterCircles.length; e++) {
-                        t.scatterCircles[e].update()
-                    }
-                })
-            }).to({}, 5e3).call(function () {
-                e.removeAllEventListeners("change")
-            }), e.play(null)
+        return n(e, t), e.prototype.dispose = function () {
+            this.stop();
+            for (var t = 0; t < this.effectCircles.length; t++) this.effectCircles[t].dispose(), this.effectCircles[t] = null;
+            this.effectCircles = null, this.removeChildren()
+        }, e.prototype.play = function () {
+            createjs.Tween.removeTweens(this);
+            var t = createjs.Tween.get(this, { onChange: this.onUpdate });
+            t.loop = !0, t.play(null)
+        }, e.prototype.stop = function () {
+            createjs.Tween.removeTweens(this);
+            for (var t = 0; t < this.effectCircles.length; t++) this.effectCircles[t].stop(), this.effectCircles[t].reset()
         }, e
     }(PIXI.Container);
-    e.ScatterCircleParticle = r;
+    e.MaterialCircleRollAnimation = r;
     var s = function (t) {
         function e(e) {
             var i = t.call(this, e) || this;
-            return i.updateCount = 0, i
+            return i.update = function (t) {
+                var e = t.target.target.time, n = t.target.target.alpha;
+                i.rotation = i._rotationSpeed * e, i.alpha = n
+            }, i.anchor.set(.5, .5), i._isAnimation = !1, i.reset(), i
         }
 
-        return n(e, t), e.prototype.reset = function () {
-            var t = 1.999 * Math.random() * Math.PI, e = .2 * Math.random() + .8, i = 30 * e * Math.cos(t),
-                n = 30 * e * Math.sin(t), o = 15 * (.2 * Math.random() + .8), r = -1 * (.2 * Math.random() + .8);
-            this.updateCount = 0, this.vx = i, this.vy = n, this.x = 0, this.y = 0, this.scale.x = 1, this.scale.y = 1, this.alpha = 1, this.vScale = o, this.vAlpha = r
-        }, e.prototype.update = function () {
-            this.updateCount++;
-            this.x += this.vx * Math.exp(-.05 * this.updateCount) * 1, this.y += 1 * (2 + this.vy * Math.exp(-.05 * this.updateCount)), this.scale.x += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.scale.y += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.alpha += this.vAlpha * (1 - Math.exp(-.05 * this.updateCount)) / 100 * 1
+        return n(e, t), Object.defineProperty(e.prototype, "isAnimation", {
+            get: function () {
+                return this._isAnimation
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.stop(), this._isAnimation = null, this._rotationSpeed = null, this._time = null, this._tween = null
+        }, e.prototype.reset = function () {
+            var t = .2 * Math.random() + .8;
+            this.scale.set(t, t), this._rotationSpeed = Math.PI / 180 * (180 * Math.random() - 90), this._time = 200 + 400 * Math.random(), this.x = 450 * Math.random() - 225, this.y = 450 * Math.random() - 158, this.alpha = 0
+        }, e.prototype.play = function () {
+            var t = this;
+            this._isAnimation = !0;
+            var e = { time: 0, alpha: 0 };
+            null != this._tween && this._tween.removeAllEventListeners(), this.reset(), this._tween = createjs.Tween.get(e, { onChange: this.update }).to({
+                time: .5,
+                alpha: 1
+            }, this._time).to({ time: 1, alpha: 0 }, this._time).call(function () {
+                t.stop()
+            })
+        }, e.prototype.stop = function () {
+            this._isAnimation = !1, null != this._tween && this._tween.removeAllEventListeners()
         }, e
     }(PIXI.Sprite)
 }

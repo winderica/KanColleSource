@@ -15,55 +15,60 @@ const function1292 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(145), r = i(51), s = i(430), a = i(1293), _ = i(1294), u = i(1306), l = function (t) {
+    var o = i(23), r = i(20), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
+            return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "color", {
             get: function () {
-                return this._bg
+                return this._color
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "shutter", {
-            get: function () {
-                return this._shutter
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "map", {
-            get: function () {
-                return this._map
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "upper", {
-            get: function () {
-                return this._upper
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "gauge_layer", {
-            get: function () {
-                return this._gauge_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara_layer", {
-            get: function () {
-                return this._chara_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "universal_layer", {
-            get: function () {
-                return this._universal_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "top_layer", {
-            get: function () {
-                return this._top_layer
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+        }), e.prototype.initialize = function (t) {
+            this.update(t)
+        }, e.prototype.update = function (t) {
+            this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(127), this._startTween(), this._light.visible = !0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, this._cell.y = 0), this._cell.texture = this._getTexture(t)
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
-        }, e.prototype.frontOfGaugeLayer = function () {
-            this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+            this._stopTween()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 300).to({ alpha: 1 }, 300))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+        }, e.prototype._getTexture = function (t) {
+            switch (t) {
+                case-1:
+                    return r.MAP_COMMON.getTexture(133);
+                case 1:
+                    return r.MAP_COMMON.getTexture(126);
+                case 2:
+                case 6:
+                    return r.MAP_COMMON.getTexture(129);
+                case 3:
+                    return r.MAP_COMMON.getTexture(131);
+                case 4:
+                    return r.MAP_COMMON.getTexture(132);
+                case 5:
+                    return r.MAP_COMMON.getTexture(120);
+                case 7:
+                    return r.MAP_COMMON.getTexture(100);
+                case 8:
+                    return r.MAP_COMMON.getTexture(119);
+                case 9:
+                    return r.MAP_COMMON.getTexture(130);
+                case 10:
+                    return r.MAP_COMMON.getTexture(95);
+                case 11:
+                    return r.MAP_COMMON.getTexture(134);
+                case 12:
+                    return r.MAP_COMMON.getTexture(135);
+                case-2:
+                    return r.MAP_COMMON.getTexture(128);
+                case-3:
+                    return r.MAP_COMMON.getTexture(125)
+            }
+            return PIXI.Texture.EMPTY
         }, e
-    }(PIXI.Container);
-    e.ViewMain = l
+    }(o.Container);
+    e.SpotPointImage = s
 }

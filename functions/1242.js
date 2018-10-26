@@ -15,32 +15,31 @@ const function1242 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._anim = function () {
-                var t = n._scene.view.map.ship_icon;
-                createjs.Tween.get(t).to({ alpha: 1 }, 300), createjs.Tween.get(t.scale).to({
-                    x: 1,
-                    y: 1
-                }, 300).call(function () {
-                    n._endTask()
-                })
-            }, n._scene = e, n._model = i, n
+    var o = i(55), r = i(2), s = i(1243), a = function (t) {
+        function e(e, i, n) {
+            void 0 === n && (n = 0);
+            var o = t.call(this) || this;
+            return o._scene = e, o._model = i, o._delay = n, o
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._initialize()
-        }, e.prototype._initialize = function () {
-            var t = this._scene.view.map.ship_icon;
-            t.alpha = 0, t.scale.set(1.7);
-            var e = this._model.deck_f.type;
-            t.initialize(e);
-            var i = this._model.sortie.now_cell_no, n = this._scene.view.map.spotLayer.getSpot(i);
-            t.position.set(n.x, n.y);
-            var o = t.direction, r = this._scene.resInfo.getShipDirection(i);
-            1 == r ? o = 1 : 2 == r && (o = 2), t.turn(o, this._anim, 0)
+            var t = this, e = this._model.sortie.getNextCell().no, i = this._scene.resInfo.getEnemyOption(e);
+            null == i ? this._endTask() : this._delay <= 0 ? this._showEnemy(i.img, i.x, i.y) : createjs.Tween.get(null).wait(this._delay).call(function () {
+                t._showEnemy(i.img, i.x, i.y)
+            })
+        }, e.prototype._showEnemy = function (t, e, i) {
+            var n, r = this, a = this._model.sortie.area_id, _ = this._model.sortie.map_no,
+                u = this._model.sortie.getNextCell().no, l = this._model.sortie.map.getGaugeNum();
+            if (42 == a && 3 == _ && 25 == u && 3 == l) n = new s.MapEnemy(PIXI.Texture.fromFrame("map04203_icon_E3boss_2"), 5), n.x = 130, n.y = 230; else {
+                var c = this._model.sortie.map_id, h = o.MapUtil.toResKey(c);
+                n = new s.MapEnemy(PIXI.Texture.fromFrame("map" + h + "_" + t), 5), n.x = e, n.y = i
+            }
+            this._scene.view.map.enemy_layer.show(n, function () {
+                r._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.AnimShipInit = r
+    }(r.TaskBase);
+    e.AnimShowMapEnemy = a
 }

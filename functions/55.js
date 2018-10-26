@@ -1,7 +1,7 @@
 const function55 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(23);
+    var n = i(22);
     !function (t) {
         function e(t, e) {
             return 10 * t + e

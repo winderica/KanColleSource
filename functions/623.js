@@ -15,25 +15,33 @@ const function623 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e(e, i, n, o, r) {
-            void 0 === r && (r = 1);
-            var s = Math.sqrt(n / 2 * n / 2 + o * o);
-            return t.call(this, null, "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x;\n            uniform float y;\n            uniform float r;\n            uniform float width;\n            uniform float height;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float dx = abs(gl_FragCoord.x - x);\n                float dy = abs((720.0 - gl_FragCoord.y) - (y + height / 2.0));\n                float d = sqrt(dx * dx + dy * dy);\n                if(d > r * rate) {\n                    float a = min((d - r * rate), (r * grad));\n                    a = 1.0 - a / (r * grad);\n                    //float a = 0.5;\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ", {
-                x: {
-                    type: "1f",
-                    value: e
-                },
-                y: { type: "1f", value: i },
-                r: { type: "1f", value: s },
-                width: { type: "1f", value: n },
-                height: { type: "1f", value: o },
-                rate: { type: "1f", value: 1 },
-                grad: { type: "1f", value: .5 }
-            }) || this
+    var o = i(4), r = i(9), s = i(48), a = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), e
-    }(PIXI.Filter);
-    e.MeltIntoUseitemFilter = o
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._createContent = function () {
+            var t = r.COMMON_MISC.getTexture(50);
+            this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135;
+            var e = new PIXI.Sprite;
+            switch (this.model.deck_id) {
+                case 2:
+                    e.texture = r.COMMON_MISC.getTexture(77);
+                    break;
+                case 3:
+                    e.texture = r.COMMON_MISC.getTexture(80);
+                    break;
+                case 4:
+                    e.texture = r.COMMON_MISC.getTexture(83)
+            }
+            e.position.set(117, 40), this._img.addChild(e), this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = this.model.deck_name + "\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u89e3\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
+        }, e.prototype._removeContent = function () {
+            this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text2.destroy(), this._text1 = null, this._text2 = null
+        }, e
+    }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogDeck = a
 }

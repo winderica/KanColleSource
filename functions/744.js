@@ -1,53 +1,88 @@
 const function744 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(8), s = i(319), a = i(21), _ = i(153), u = i(327), l = i(328), c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i.ITEM_WIDTH = 765, i.ITEM_HEIGHT = 77, i._onClick = function () {
-                i.onClick(i.index, i.memShipId)
-            };
-            var n = new r.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT);
-            n.renderable = !1, n.buttonMode = !0, n.on(o.EventType.CLICK, i._onClick);
-            var c = new PIXI.Sprite;
-            c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
-            var h = new s.LongShipBanner;
-            h.position.x = 38;
-            var p = new l.SupplyCheckBox;
-            p.position.set(0, 24);
-            var d = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(20));
-            d.position.x = 33, d.position.y = -5;
-            var f = new u.MaterialView;
-            return f.position.set(517, 6), i.emptyBackground = c, i.supplyCheckBox = p, i.longShipBanner = h, i.clickArea = n, i.focusFrame = d, i.index = e, i.materialView = f, i
+    var n = i(215), o = i(84), r = i(3), s = i(745), a = i(746), _ = i(327), u = function () {
+        function t(t) {
+            var e = this;
+            this.LIST_MAX = 10, this._onChangePage = function (t) {
+                e._pageIndex != t && e._updatePage(t)
+            }, this._onClickListItem = function (t, i) {
+                e.supplyEditor.containts(i) ? (r.SE.play("238"), e.supplyEditor.remove(i)) : (r.SE.play("241"), e.supplyEditor.push(i)), e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
+            }, this._onClickSupplySelectAll = function () {
+                for (var t = 0, i = 0, o = e.otherShips.slice(e._pageIndex * e.otherSupplyListItems.length, e._pageIndex * e.otherSupplyListItems.length + e.otherSupplyListItems.length), s = 0; s < o.length; s++) {
+                    var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
+                    if (_) {
+                        t++;
+                        var u = e.supplyEditor.containts(a.memID);
+                        u && i++
+                    }
+                }
+                if (i < t) {
+                    for (var s = 0; s < o.length; s++) {
+                        var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
+                        if (_) {
+                            0 == e.supplyEditor.containts(a.memID) && e.supplyEditor.push(a.memID)
+                        }
+                    }
+                    r.SE.play("241")
+                } else {
+                    if (i == t) for (var s = 0; s < o.length; s++) {
+                        var a = o[s], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
+                        if (_) {
+                            var u = e.supplyEditor.containts(a.memID);
+                            u && e.supplyEditor.remove(a.memID)
+                        }
+                    }
+                    r.SE.play("238")
+                }
+                e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
+            }, this.mainView = t, this.otherSupplyListItems = [];
+            for (var i = 0; i < this.LIST_MAX; i++) {
+                var u = new s.OtherSupplyListItem(i);
+                u.position.set(155, 44 * i + 206), this.otherSupplyListItems.push(u)
+            }
+            this.pagerView = new o.PagerView, this.pagerView.position.set(285, 663), this.supplySelectAllButton = new a.SupplySelectAllButton, this.supplyEditor = new _.SupplyEditor
         }
 
-        return n(e, t), e.prototype.update = function (t, e, i, n) {
-            this.removeChildren(), this.addChild(this.longShipBanner, this.supplyCheckBox, this.materialView, this.focusFrame), n && this.addChild(this.clickArea), this.longShipBanner.update(t, e, i), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
-        }, e.prototype.checkOn = function () {
-            this.supplyCheckBox.update(3), this.focusFrame.visible = !0
-        }, e.prototype.checkDisable = function () {
-            this.supplyCheckBox.update(1), this.focusFrame.visible = !1
-        }, e.prototype.checkOff = function () {
-            this.supplyCheckBox.update(2), this.focusFrame.visible = !1
-        }, e.prototype.empty = function () {
-            this.memShipId = null, this.removeChildren(), this.addChild(this.emptyBackground)
-        }, e.prototype.dispose = function () {
-            this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.emptyBackground = null, this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.longShipBanner.dispose(), this.longShipBanner = null, this.focusFrame = null, this.onClick = this._onClick = null
-        }, e
-    }(PIXI.Container);
-    e.DeckSupplyBanner = c
+        return t.prototype.getSupplyEdit = function () {
+            return this.supplyEditor
+        }, Object.defineProperty(t.prototype, "pageIndex", {
+            get: function () {
+                return this._pageIndex
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.start = function (t, e) {
+            this.supplyEditor.clear(), this.otherShips = t, this.supplySelectAllButton.position.set(162, 164), this.mainView.addChild(this.supplySelectAllButton);
+            for (var i = 0; i < this.otherSupplyListItems.length; i++) {
+                var n = this.otherSupplyListItems[i];
+                n.onClick = this._onClickListItem, this.mainView.addChild(n)
+            }
+            var o = this.calcPageCount(this.otherShips.length, this.otherSupplyListItems.length);
+            this.pagerView.init(o), this.mainView.addChild(this.pagerView), this.pagerView.onChangePage = this._onChangePage, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll, this._updatePage(e), this.onUpdateSupplyEdit()
+        }, t.prototype.reload = function () {
+            this.supplyEditor.clear(), this._updatePage(this.pageIndex), this.onUpdateSupplyEdit()
+        }, t.prototype._updatePage = function (t) {
+            for (var e = 0, i = 0, o = this.otherShips.slice(t * this.otherSupplyListItems.length, t * this.otherSupplyListItems.length + this.otherSupplyListItems.length), r = 0; r < this.otherSupplyListItems.length; r++) {
+                var s = this.otherSupplyListItems[r];
+                if (s.empty(), r < o.length) {
+                    var a = o[r], _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
+                    if (s.checkDisable(), _) {
+                        e++, s.checkOff();
+                        this.supplyEditor.containts(a.memID) && (i++, s.checkOn())
+                    }
+                    s.update(r, a, _)
+                }
+            }
+            var u = 1;
+            0 < e && (u = 2, i == e && (u = 3)), this.supplySelectAllButton.update(u), this.pagerView.changePage(t), this._pageIndex = t
+        }, t.prototype.dispose = function () {
+            var t = this;
+            this.mainView.removeChildren(), this.otherSupplyListItems.forEach(function (e) {
+                e.onClick = t._onClickListItem = null, e.dispose(), e = null
+            }), this.pagerView.onChangePage = this._onChangePage = null, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll = null, this.onUpdateSupplyEdit = null, this.mainView = null, this.otherSupplyListItems = null, this.pagerView.dispose(), this.pagerView = null, this.supplySelectAllButton.dispose(), this.supplySelectAllButton = null, this.supplyEditor = null, this.otherShips = null, this._pageIndex = null
+        }, t.prototype.calcPageCount = function (t, e) {
+            var i = 0 == t ? 0 : t / e;
+            return i += 0 == t ? 0 : 0 < t % e ? 1 : 0, i = Math.floor(i)
+        }, t
+    }();
+    e.TaskEditSupplyOther = u
 }

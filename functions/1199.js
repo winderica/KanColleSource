@@ -18,12 +18,14 @@ const function1199 = function (t, e, i) {
     var o = i(11), r = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene_dispose_delegate = e, i
+            return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskItemSceneFinalize = r
+    }(o.APIBase);
+    e.RevampSlotlistAPI = r
 }

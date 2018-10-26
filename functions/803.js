@@ -15,69 +15,49 @@ const function803 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(158), r = i(123), s = i(84), a = i(159), _ = i(220), u = i(4), l = i(21), c = i(127), h = i(52),
-        p = i(86), d = i(85), f = i(219), y = i(1), v = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t, i) {
-                    e.onClick(t, i)
-                };
-                var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
-                    n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)), o = new s.PagerView,
-                    r = new _.ShipSortButton, a = new Array, u = new PIXI.Container, p = new d.TitleBar;
-                p.initialize(l.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), u.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
-                for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
-                    var y = new m(f);
-                    y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
-                }
-                return e.addChild(p), p.position.set(0, -37), e._pagerView = o, e._shipSortButton = r, e.listItems = a, e.headerKansenSentaku = p, e
+    var o = i(334), r = i(19), s = i(8), a = i(335), _ = i(40), u = i(80), l = i(6), c = i(3), h = i(336), p = i(1),
+        d = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new u.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
             }
 
-            return n(e, t), Object.defineProperty(e.prototype, "shipSortButton", {
-                get: function () {
-                    return this._shipSortButton
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "pagerView", {
-                get: function () {
-                    return this._pagerView
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.clear = function () {
-                this.listItems.forEach(function (t) {
-                    return t.visible = !1
+            return n(e, t), e.prototype._03_link = function () {
+                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 400).call(function () {
+                    t.removeChild(t._background), t.removeChild(t._ship)
+                }).to({ alpha: 0 }, 500).call(function () {
+                    t.removeChild(t._white), t._05_showFailedPenguin()
                 })
-            }, e.prototype.update = function (t, e, i, n) {
-                var o = this.listItems[t];
-                o.update(e, i, n), o.visible = !0
+            }, e.prototype._05_showFailedPenguin = function () {
+                var t, e = this, i = new r.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({ alpha: 1 }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({ alpha: 1 }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
+                })
+            }, e.prototype._06_typeMessage = function () {
+                var t = this;
+                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({ y: 480 }, 500, createjs.Ease.quadOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), l.SE.play("247"), t._messageBox.activate(function () {
+                        t._07_waitClick()
+                    })
+                })
+            }, e.prototype._07_waitClick = function () {
+                var t = this, e = new s.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
+                    t.removeChild(e), t._08_whiteInOut()
+                })
+            }, e.prototype._08_whiteInOut = function () {
+                var t = this;
+                this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 500).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({ alpha: 0 }, 500).call(function () {
+                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    })
+                })
             }, e.prototype.dispose = function () {
-                this._shipSortButton.dispose(), this._pagerView.dispose(), this.headerKansenSentaku.dispose(), this.listItems.forEach(function (t) {
-                    t.dispose()
-                }), this.onClick = null, this._onClick = null, this._shipSortButton = null, this._pagerView = null, this.headerKansenSentaku = null, this.listItems = null
+                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
             }, e
-        }(PIXI.Container);
-    e.ShipList = v;
-    var m = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onMouseOver = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 1, i.textType.style.fill = i.textName.style.fill = i.textLevel.style.fill = 16777215, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onMouseOut = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 0, i.textType.style.fill = i.textName.style.fill = 5523516, i.textLevel.style.fill = i.mouseoutColor, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onClick = function () {
-                i.onClick(i.index, i.memId)
-            };
-            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(l.COMMON_MAIN.getTexture(17)), s = new PIXI.Container,
-                _ = new u.TextBox(18, 5523516), c = new u.TextBox(20, 5523516), h = new u.TextBox(20, 5523516),
-                p = new f.IconCategory, d = new f.IconCategory, v = new f.IconCategory, m = new f.IconCategory,
-                g = new a.ShipInDeckFlag, b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
-            return g.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.on(y.EventType.MOUSEOVER, i._onMouseOver), o.on(y.EventType.MOUSEOUT, i._onMouseOut), o.on(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), v.position.set(401, 0), m.position.set(446, 0), g.anchor.set(0, .5), g.position.set(-15, n), g.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, v, m, g), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = v, i.iconCategory_3 = m, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = g, i.containerTypeAndName = s, i.maskTextAndName = b, i
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.mask = null, this.containerTypeAndName.removeChildren(), this.iconCategory_0.dispose(), this.iconCategory_1.dispose(), this.iconCategory_2.dispose(), this.iconCategory_3.dispose(), this.background.off(y.EventType.MOUSEOVER), this.background.off(y.EventType.MOUSEOUT), this.background.off(y.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.onClick = null, this.memId = null, this.textType = null, this.textName = null, this.textLevel = null, this.iconCategory_0 = null, this.iconCategory_1 = null, this.iconCategory_2 = null, this.iconCategory_3 = null, this.background = null, this.shipInDeckFlag = null, this.maskTextAndName = null, this.containerTypeAndName = null, this.mouseoutColor = null
-        }, e.prototype.update = function (t, e, i) {
-            this.containerTypeAndName.cacheAsBitmap = !1, this.shipInDeckFlag.visible = !1, i && (this.shipInDeckFlag.update(i), this.shipInDeckFlag.visible = !0), this.textLevel.style.fill = this.mouseoutColor = o.ColorUtil.getLevelColor(t.level), this.memId = t.memID;
-            var n = p.RemodelUtil.genPowUpCategories(e);
-            this.textLevel.text = t.level.toString(), this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.iconCategory_0.update(n[0]), this.iconCategory_1.update(n[1]), this.iconCategory_2.update(n[2]), this.iconCategory_3.update(n[3]), this.containerTypeAndName.cacheAsBitmap = !0
-        }, e
-    }(PIXI.Container)
+        }(h.PowerUpAnimation);
+    e.PowerUpAnimationFailed = d
 }

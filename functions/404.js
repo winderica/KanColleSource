@@ -3,9 +3,9 @@ const function404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ilist_sanma_" + t)
+            return PIXI.Texture.fromFrame("interior_parts_" + t)
         }
 
         t.getTexture = e
-    }(e.ITEM_ILIST_SANMA || (e.ITEM_ILIST_SANMA = {}))
+    }(e.INTERIOR_PARTS || (e.INTERIOR_PARTS = {}))
 }

@@ -15,73 +15,44 @@ const function1467 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(28), a = function (t) {
+    var o = i(2), r = i(1468), s = i(1474), a = i(1479), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new s.ParallelTask;
-            e.add(new _(this._scene)), e.add(new u(this._scene)), e.add(new l(this._scene)), e.start(function () {
-                t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskShowExtraResults = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._scene.data.extra_war_results;
-            if (e > 0) {
-                var i = this._scene.view.panel_exp.extra_result.extra_war_result;
-                i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({ alpha: 1 }, 300).call(function () {
-                    t._endTask()
-                })
-            } else this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._scene.data.extra_useitem_mst_id;
-            if (e > 0) {
-                var i = o.default.resources.getUseitem(e, 0),
-                    n = this._scene.view.panel_exp.extra_result.useitem_icon;
-                n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({ alpha: 1 }, 300).call(function () {
-                    t._endTask()
-                })
-            } else this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
+            this._mapClear()
+        }, e.prototype._mapClear = function () {
             var t = this;
-            if (1 == this._scene.data.extra_result) {
-                var e = this._scene.view.panel_exp.extra_result.map_incentive;
-                e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({ alpha: 1 }, 300).call(function () {
+            if (1 == this._scene.data.isFirstClear()) {
+                var e = this._scene.shutter, i = this._scene.data.battle_model.map_info.area_id,
+                    n = this._scene.data.battle_model.map_info.map_no,
+                    o = this._scene.data.battle_model.deck_f.ships[0], s = o.mst_id, a = o.isDamaged(),
+                    _ = this._scene.data.getClearMapSuffix();
+                new r.TaskEventClear(e, i, n, s, a, _).start(function () {
+                    t._ending()
+                })
+            } else this._ending()
+        }, e.prototype._ending = function () {
+            var t = this;
+            if (1 == this._scene.data.isFirstClear()) {
+                var e = this._scene.layer_bonus, i = this._scene.data.battle_model.map_info.area_id,
+                    n = this._scene.data.battle_model.map_info.map_no,
+                    o = this._scene.data.getClearOperationSuffix();
+                new s.TaskEventEnding(e, i, n, o).start(function () {
+                    t._mapOpen()
+                })
+            } else this._mapOpen()
+        }, e.prototype._mapOpen = function () {
+            var t = this, e = this._scene.data.getOpenedMapIDs();
+            if (e.length > 0) {
+                var i = this._scene.layer_bonus;
+                new a.TaskMapOpen(i, e).start(function () {
                     t._endTask()
                 })
             } else this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase)
+    }(o.TaskBase);
+    e.PhaseClear = _
 }

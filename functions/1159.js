@@ -15,19 +15,26 @@ const function1159 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(18), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(11), r = i(13), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("interior");
-            e.add("interior_parts.json"), e.load(function () {
-                t._endTask()
-            })
+            this._view = null, this._endTask()
         }, e
     }(o.TaskBase);
-    e.TaskLoadResources = s
+    e.PreFinalizeTask = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, r.UIImageLoader.clearMemoryCache("interior"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = a
 }

@@ -6,35 +6,17 @@ const function522 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "required_level", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_upgrade_level")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "mst_id_before", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_current_ship_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "mst_id_after", {
+        return Object.defineProperty(t.prototype, "id", {
             get: function () {
                 return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "blueprint", {
+        }), Object.defineProperty(t.prototype, "name", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_drawing_count")
+                return n.ObjUtil.getString(this._o, "api_name")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "catapult", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_catapult_count")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "battlereport", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_report_count")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "newkohohesosizai", {
-            get: function () {
-                return 546 == this.mst_id_after ? 3 : 0
-            }, enumerable: !0, configurable: !0
-        }), t
+        }), t.prototype.needsDisplayName = function () {
+            return 1 == n.ObjUtil.getNumber(this._o, "api_show_flg")
+        }, t
     }();
-    e.ShipUpgradeModel = o
+    e.EquipTypeMstModel = o
 }

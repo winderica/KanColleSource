@@ -15,34 +15,49 @@ const function1145 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(106), a = i(88), _ = i(1146), u = i(1148), l = i(1154), c = i(1155),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new u.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
-                }, e._onUnSelect = function () {
-                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
-                }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer, n = new c.TaskExchange(i, t);
-                    n.start(function () {
-                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
-                    })
-                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new l.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
-            }
+    var o = i(77), r = i(299), s = i(78), a = i(3), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
+        }
 
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
-            }, e.prototype.update = function () {
-                var t = o.default.model.useItem.getCount(44);
-                this._coin.update(t)
-            }, e.prototype.activate = function () {
-                1 == this._main_view.visible && this._main_view.activate()
-            }, e.prototype.deactivate = function () {
-                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
-            }, e
-        }(a.ViewBase);
-    e.FurnitureShopMain = h
+        return n(e, t), e.prototype.initialize = function () {
+            t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
+        }, e.prototype.updateFromModel = function (e) {
+            if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
+                this._img.scale.set(1), this._img.position.set(0, 0);
+                var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
+                    n = o.FurnitureLoader.getVersionQuery(e.mstID), r = i + ("" == n ? "" : "?" + n),
+                    a = PIXI.Texture.fromImage(r);
+                t.prototype.update.call(this, a)
+            } else {
+                switch (e.type) {
+                    case 0:
+                        this._img.scale.set(1.45), this._img.position.set(-757, -99);
+                        break;
+                    case 1:
+                        this._img.scale.set(.64), this._img.position.set(-96, 3);
+                        break;
+                    case 2:
+                        this._img.scale.set(.64), this._img.position.set(3, 3);
+                        break;
+                    case 3:
+                        this._img.scale.set(1), this._img.position.set(0, 0);
+                        break;
+                    case 4:
+                        this._img.scale.set(.73), this._img.position.set(1, -90);
+                        break;
+                    case 5:
+                        this._img.scale.set(.56), this._img.position.set(-34, 9)
+                }
+                var _ = e.mstID,
+                    r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
+                    a = PIXI.Texture.fromImage(r);
+                t.prototype.update.call(this, a)
+            }
+        }, e.prototype.clean = function () {
+            this._soldout.visible = !1, t.prototype.clean.call(this)
+        }, e
+    }(r.FurnitureThumbnail);
+    e.Thumbnail = _
 }

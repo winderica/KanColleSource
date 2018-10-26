@@ -15,88 +15,63 @@ const function556 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(557), a = i(68), _ = i(580), u = i(584), l = i(593), c = i(594), h = i(597),
-        p = i(599), d = i(601), f = i(603), y = i(604), v = i(607), m = i(608), g = i(612), b = i(639), w = i(642),
-        x = i(1), I = function (t) {
+    var o = i(270), r = i(22), s = i(186), a = i(557), _ = i(558), u = i(559), l = i(561), c = i(571),
+        h = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._only_furniture = !1, e._onMouseMove = function (t) {
-                    1 == e._flagShip_layer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : 1 == e.furnitureLayer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : e._underLayer.buttonMode = !1
-                }, e._onClick = function (t) {
-                    e._flagShip_layer.onClick(t.data) || e._furniture_layer.onClick(t.data) || e._only_furniture && e.showPortUI(!0)
-                }, e._flagShip_layer = new y.FlagShipLayer, e.addChild(e._flagShip_layer), e._underLayer = new r.AreaBox(0), e.addChild(e._underLayer), e._ringMenu = new m.RingMenuLayer, e.addChild(e._ringMenu), e.addChild(e._contentLayer), e.addChild(e._fadeLayer), e._logBox = new l.LogBox, e.addChild(e._logBox), e._upperBar = new d.UpperBar, e.addChild(e._upperBar), e._frame_layer = new v.FrameLayer, e.addChild(e._frame_layer), e._sideMenu = new h.SideMenu, e.addChild(e._sideMenu), e._tutorial = new p.Tutorial(function () {
-                    new a.UpdateTutorialAPI(100).start(), e._tutorial.dispose(), e.removeChild(e._tutorial), e._tutorial = null
-                }), e.addChild(e._tutorial), e._clock_layer = new f.ClockLayer, e.addChild(e._clock_layer), e._circle = new _.Circle, e.addChild(e._circle), e.addChild(e._overLayer), e._expedition_alert = new u.ExpeditionAlert, e._expedition_alert.visible = !1, e.addChild(e._expedition_alert), e._option = new c.Option, e.addChild(e._option), e._underLayer.on(x.EventType.MOUSEMOVE, e._onMouseMove), e._underLayer.on(x.EventType.CLICK, e._onClick), e
+                return e._animationFlg = !1, e._timeChkCount = 0, e.current_bgm_furniture = null, e.animate = function () {
+                    if (e._animationFlg) {
+                        if (e._timeChkCount == o.FurnitureConst.TIME_CHK_COUNT_MAX) {
+                            e._timeChkCount = 0;
+                            var t = new Date, i = r.MathUtil.zeroPadding(t.getHours(), 2),
+                                n = r.MathUtil.zeroPadding(t.getMinutes(), 2),
+                                s = r.MathUtil.zeroPadding(t.getSeconds(), 2);
+                            e._Floor.timeCheck(i, n, s), e._Wall.timeCheck(i, n, s), e._Window.timeCheck(i, n, s), e._Object.timeCheck(i, n, s), e._Chest.timeCheck(i, n, s), e._Desk.timeCheck(i, n, s)
+                        }
+                        e._timeChkCount++, requestAnimationFrame(e.animate), e._Floor.animate(), e._Wall.animate(), e._Window.animate(), e._Object.animate(), e._Chest.animate(), e._Desk.animate()
+                    } else e._kaikyo.finalize(), e._shogo.stopAnimation(), e._Floor.restart(), e._Wall.restart(), e._Window.restart(), e._Object.restart(), e._Chest.restart(), e._Desk.restart()
+                }, e._Floor = new l.Furniture(0), e._Wall = new l.Furniture(1), e._Window = new l.Furniture(2), e._Object = new l.Furniture(3), e._Chest = new l.Furniture(4), e._Desk = new l.Furniture(5), e._outside = new a.FurnitureOutside, e._outside.x = 294, e._sakura = new s.Sakura, e._isSakura = !1, e.addChild(e._Floor), e.addChild(e._Wall), e.addChild(e._outside), e.addChild(e._Window), e.addChild(e._Object), e.addChild(e._sakura), e.addChild(e._Chest), e.addChild(e._Desk), e._kaikyo = new _.Kaikyo, e.addChild(e._kaikyo), e._shogo = new u.Shogo, e.addChild(e._shogo), e
             }
 
-            return n(e, t), Object.defineProperty(e.prototype, "flagShip", {
+            return n(e, t), Object.defineProperty(e.prototype, "outside", {
                 get: function () {
-                    return this._flagShip_layer
+                    return this._outside
                 }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "ringMenu", {
-                get: function () {
-                    return this._ringMenu
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "upperBar", {
-                get: function () {
-                    return this._upperBar
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "sideMenu", {
-                get: function () {
-                    return this._sideMenu
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "tutorial", {
-                get: function () {
-                    return this._tutorial
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "circle", {
-                get: function () {
-                    return this._circle
-                }, enumerable: !0, configurable: !0
-            }), Object.defineProperty(e.prototype, "expedition_alert", {
-                get: function () {
-                    return this._expedition_alert
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.initialize = function () {
-                this._clock_layer.initialize(), this._option.initialize(), this._logBox.initialize();
-                var t = o.default.model.basic.getTutorialProgress();
-                t < 100 ? this._tutorial.initialize(t) : (this.removeChild(this._tutorial), this._tutorial = null)
-            }, e.prototype.initializeNext = function (e) {
-                this._circle.initialize(e), this._frame_layer.initialize(e);
-                var i = o.default.model.basic.shipMax, n = o.default.model.basic.slotMax;
-                this._upperBar.initialize(e, i, n), t.prototype.initialize.call(this)
-            }, e.prototype.update = function (e) {
-                t.prototype.update.call(this, e), this._frame_layer.update(e), this._tutorial && (0 == e ? this._tutorial.update(o.default.model.basic.getTutorialProgress()) : this._tutorial.visible = !1), 23 == e || 25 == e ? (this._upperBar.visible = !1, this._circle.visible = !1) : (this._upperBar.visible = !0, this._circle.visible = !0), this._clock_layer.update(e)
-            }, e.prototype.activate = function (e, i) {
-                t.prototype.activate.call(this, e, i), this._flagShip_layer.activate(), this._flagShip_layer.marriageEff = i, this._flagShip_layer.visible = !0, this._underLayer.interactive = !0, this._ringMenu.activate();
-                var n = 182 == e || 187 == e;
-                this._ringMenu.setRevampFlg(n), this._ringMenu.visible = !0, this._logBox.visible = !0, this._tutorial && this._tutorial.activate(), this._option.visible = !0
+            }), e.prototype.activate = function () {
+                this.animationFlag = !0
             }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._flagShip_layer.visible = !1, this._flagShip_layer.deactivate(), this._underLayer.interactive = !1, this._ringMenu.visible = !1, this._ringMenu.deactivate(), this._logBox.visible = !1, this._logBox.close(0), this._tutorial && this._tutorial.deactivate(), this._expedition_alert.deactive(), this._expedition_alert.visible = !1, this._option.visible = !1
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._underLayer.off(x.EventType.MOUSEMOVE, this._onMouseMove), this._underLayer.off(x.EventType.CLICK, this._onClick), this._ringMenu.dispose(), this._logBox.dispose(), this._upperBar.dispose(), this._frame_layer.dispose(), this._sideMenu.dispose(), this._tutorial && this._tutorial.dispose(), this._clock_layer.dispose(), this._circle.dispose(), this._expedition_alert.dispose(), this._option.dispose()
-            }, e.prototype.showPortUI = function (e) {
-                t.prototype.showPortUI.call(this, e), this._only_furniture = !e, this._flagShip_layer.visible = !0, this._ringMenu.visible = e, this._logBox.visible = e, this._upperBar.visible = e, this._frame_layer.visible = e, this._sideMenu.visible = !1, this._tutorial && (this._tutorial.visible = e), this._clock_layer.visible = e, this._circle.visible = e, this._option.visible = e
-            }, e.prototype.closeLogBox = function () {
-                this._logBox.close()
-            }, e.prototype.updateUserInfo = function (t) {
-                this._upperBar.updateUserInfo(t)
-            }, e.prototype.updateInfo = function () {
-                var t = o.default.model.useItem.getMaterialCounts();
-                t.shipNum = o.default.model.ship.num, t.shipMax = o.default.model.basic.shipMax, t.slotNum = o.default.model.slot.num, t.slotMax = o.default.model.basic.slotMax, this._upperBar.updateInfo(t)
-            }, e.prototype.playCraneAnimation = function () {
-                this._sideMenu.crane.startAnimation()
-            }, e.prototype.playChangeAnimation = function (t) {
-                this._overLayer.removeChildren(), this._circle.startMoveAnimation(t), this.sideMenu.startAnimation(t)
-            }, e.prototype.changeSkin = function (t) {
-                this._upperBar.changeSkin(t), this._frame_layer.changeSkin(t), this._circle.changeSkin(t)
-            }, e.prototype.getPreInitializeTask = function (t) {
-                return new g.PreInitializeTask(t)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new b.InitializeTask(t)
-            }, e.prototype.getFinalizeTask = function () {
-                return new w.FinalizeTask(this)
+                this.animationFlag = !1
+            }, Object.defineProperty(e.prototype, "animationFlag", {
+                set: function (t) {
+                    this._animationFlg != t && (this._animationFlg = t, t && (this._Floor.restart(), this._Wall.restart(), this._Window.restart(), this._Object.restart(), this._Chest.restart(), this._Desk.restart(), this.animate()))
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.updateAll = function (t) {
+                if (this._isSakura = !1, this._Floor.update(t[0]), this._Wall.update(t[1]), this._Window.update(t[2]), this._Object.update(t[3]), this._Chest.update(t[4], this._kaikyo, this._shogo), this._Desk.update(t[5]), this._outside.update(), 235 == t[3] && (this._isSakura = !0), this._isSakura) {
+                    var e = new PIXI.Rectangle(-600, -240, 600, 1200);
+                    this._sakura.startAnimation(e, 4)
+                } else this._sakura.stopAnimation(4)
+            }, e.prototype.onMouseMove = function (t) {
+                var e = t.getLocalPosition(this), i = !1;
+                return i = i || this._Floor.isHit(e), i = i || this._Wall.isHit(e), i = i || this._Window.isHit(e), i = i || this._Object.isHit(e), i = i || this._Chest.isHit(e), i = i || this._Desk.isHit(e)
+            }, e.prototype.onClick = function (t) {
+                for (var e = t.getLocalPosition(this), i = 0, n = this._getFurnitures(); i < n.length; i++) {
+                    var o = n[i];
+                    if (o.isHit(e)) {
+                        if (o.isJukeBox()) {
+                            new c.JukeBoxTask(o.id).JukeStart();
+                            break
+                        }
+                        return o.isRadio() ? (this.current_bgm_furniture = o, this.stopGramophone()) : o.isGramo() && (this.current_bgm_furniture = o), o.clickAction(), !0
+                    }
+                }
+                return !1
+            }, e.prototype.stopGramophone = function () {
+                this._getFurnitures().forEach(function (t, e, i) {
+                    t.isGramo() && t.stopGramophone()
+                })
+            }, e.prototype._getFurnitures = function () {
+                return [this._Desk, this._Chest, this._Object, this._Window, this._Wall, this._Floor]
             }, e
-        }(s.MainView);
-    e.PortScene = I
+        }(PIXI.Container);
+    e.FurnitureView = h
 }

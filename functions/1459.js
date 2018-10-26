@@ -15,66 +15,68 @@ const function1459 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = i(2), a = i(1460), _ = i(14), u = i(36), l = i(1461), c = i(1462),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._waited = !1, i._connected = !1, i._scene = e, i
-            }
+    var o = i(11), r = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._combined = i, n._tasks = [], n
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                var t = this, e = o.default.model.map.getArea(r.EVENT_AREA_ID), i = null != e;
-                new a.TaskLoadResourcesBattleResult(i).start(function () {
-                    t._loadBannerImages()
-                })
-            }, e.prototype._loadBannerImages = function () {
-                for (var t = this, e = new _.ShipLoader, i = this._scene.data.battle_model, n = i.deck_f.ships, o = 0, r = n; o < r.length; o++) {
-                    var s = r[o];
-                    this._addResourceToLoader(e, s)
+        return n(e, t), e.prototype._start = function () {
+            this._showComponent()
+        }, e.prototype._showComponent = function () {
+            for (var t = this._scene.data.getLevelupInfoList(this._combined), e = this._scene.view.layer_banner.info_f.items, i = this._scene.data.getShipExp(this._combined), n = [], o = 0; o < e.length; o++) {
+                var r = e[o], a = o < i.length ? i[o] : 0;
+                if (!(a < 0)) {
+                    var _ = t[o], u = new s(r, a, _);
+                    n.push(u), this._tasks.push(u)
                 }
-                for (var a = i.deck_e.ships, u = 0, l = a; u < l.length; u++) {
-                    var s = l[u];
-                    this._addResourceToLoader(e, s)
+            }
+            0 == n.length ? this._endTask() : this._startTasks(n)
+        }, e.prototype._startTasks = function (t) {
+            for (var e = this, i = 0, n = t; i < n.length; i++) {
+                var o = n[i];
+                !function (t) {
+                    t.start(function () {
+                        var i = e._tasks.indexOf(t);
+                        e._tasks.splice(i, 1), 0 == e._tasks.length && e._endTask()
+                    })
+                }(o)
+            }
+        }, e
+    }(o.TaskBase);
+    e.TaskShowLevelup = r;
+    var s = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            o._onChange = function (t) {
+                if (null != o._banner_info) {
+                    var e = t.target.target.value;
+                    e >= o._borders[0] && (o._borders.shift(), o._banner_info.levelup());
+                    var i = -1;
+                    o._borders.length > 0 && (i = o._borders[0] - e), o._banner_info.up_to_the_next_level.update(i)
                 }
-                e.load(function () {
-                    t._showImage()
-                })
-            }, e.prototype._addResourceToLoader = function (t, e) {
-                null != e && (e.hp_now <= 0 ? t.add(e.mst_id, !0, "banner_g") : t.add(e.mst_id, e.isDamaged(), "banner"))
-            }, e.prototype._showImage = function () {
-                var t = this, e = u.BATTLE_RESULT_MAIN.getTexture(73);
-                this._img = new PIXI.Sprite(e), this._img.anchor.set(.5, .5), this._img.position.set(330, 290), this._img.alpha = 0, this._scene.addChild(this._img), createjs.Tween.get(this._img).to({ alpha: 1 }, 200).call(function () {
-                    t._waited = !0, t._hideImage()
-                }), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t, e = this;
-                t = 1 == this._scene.data.battle_model.isPractice() ? new c.APIPracticeResult(this._scene.data) : new l.APIBattleResult(this._scene.data), t.start(function () {
-                    e._connected = !0, e._hideImage()
-                })
-            }, e.prototype._hideImage = function () {
-                var t = this;
-                0 != this._waited && 0 != this._connected && createjs.Tween.get(this._img).to({ x: 270 }, 200).to({
-                    x: 240,
-                    alpha: 0
-                }, 200).wait(500).call(function () {
-                    t._img.parent.removeChild(t._img), t._showTitle()
-                })
-            }, e.prototype._showTitle = function () {
-                var t = this;
-                this._scene.view.layer_title.show();
-                var e = this._scene.data.map_name;
-                this._scene.view.layer_map_name.initialize(e), this._scene.view.layer_bg.initialize();
-                var i = this._scene.data.user_name_f, n = this._scene.data.user_level_f,
-                    o = this._scene.data.deck_name_f, r = this._scene.data.deck_name_e,
-                    s = this._scene.data.battle_model.deck_f.isYugeki();
-                this._scene.view.layer_deck_info.initialize(i, n, o, r, s);
-                this._scene.data.battle_model.deck_f.ships, this._scene.data.battle_model.deck_e.ships;
-                this._scene.view.layer_bg.once("complete", function () {
-                    t._scene.view.layer_map_name.show()
-                }), this._scene.view.layer_map_name.once("complete", function () {
-                    t._endTask()
-                }), this._scene.view.layer_bg.show()
-            }, e
-        }(s.TaskBase);
-    e.TaskInit = h
+            }, o._banner_info = e, o._exp = i, null != n && n.length > 1 ? o._initial_value = n[0] : o._initial_value = -1, o._borders = new Array;
+            for (var r = 1; r < n.length; r++) o._borders.push(n[r]);
+            return o
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._initial_value < 0 ? this._endTask() : this._init()
+        }, e.prototype._init = function () {
+            var t = this, e = this._banner_info.up_to_the_next_level;
+            e.alpha = 0, e.x -= 15;
+            var i = this._borders[0] - this._initial_value;
+            e.initialize(i), createjs.Tween.get(e).to({ x: e.x + 15, alpha: 1 }, 500).call(function () {
+                e.showExpText(), t._completedShow()
+            })
+        }, e.prototype._completedShow = function () {
+            var t = this, e = this._borders[this._borders.length - 1] - this._initial_value - this._exp,
+                i = this._initial_value + this._exp, n = { value: this._initial_value };
+            createjs.Tween.get(n, { onChange: this._onChange }).to({ value: i }, 2e3).call(function () {
+                i === t._borders[0] && t._banner_info.levelup(), t._banner_info.up_to_the_next_level.update(e), t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._banner_info = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase)
 }

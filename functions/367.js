@@ -15,32 +15,27 @@ const function367 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._enabled = !0, i._overed = !1, i._onMouseOver = function () {
-                i._overed = !0, i._updateTexture()
-            }, i._onMouseOut = function () {
-                i._overed = !1, i._updateTexture()
-            }, i._onClick = function () {
-                null != i._cb && 1 == i._btn.buttonMode && i._cb()
-            }, i._cb = e, i._btn = new PIXI.Sprite, i.addChild(i._btn), i._btn.interactive = !0, i
+    var o = i(29), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = o.SALLY_COMMON.getTexture(19)
+            }, e._onMouseOut = function () {
+                e.texture = o.SALLY_COMMON.getTexture(18)
+            }, e._onClick = function () {
+                e.emit("dicision")
+            }, e.interactive = !0, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-            set: function (t) {
-                this._enabled != t && (this._enabled = t, 1 == this._enabled ? this.activate() : this.deactivate(), this._updateTexture())
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._updateTexture()
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_COMMON.getTexture(18)
         }, e.prototype.activate = function () {
-            1 != this._btn.buttonMode && 0 != this._enabled && (this._btn.buttonMode = !0, this._btn.on(o.EventType.MOUSEOVER, this._onMouseOver), this._btn.on(o.EventType.MOUSEOUT, this._onMouseOut), this._btn.on(o.EventType.CLICK, this._onClick))
+            0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {
-            this._btn.buttonMode = !1, this._btn.off(o.EventType.MOUSEOVER, this._onMouseOver), this._btn.off(o.EventType.MOUSEOUT, this._onMouseOut), this._btn.off(o.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb = null
-        }, e.prototype._updateTexture = function () {
+            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype._setTextture = function (t) {
+            this.texture = t
         }, e
-    }(PIXI.Container);
-    e.BtnGoBase = r
+    }(PIXI.Sprite);
+    e.BtnDicision = s
 }

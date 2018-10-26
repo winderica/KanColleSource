@@ -1,60 +1,57 @@
 const function490 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(491), o = i(257), r = i(7), s = function () {
-        function t() {
-            this._exist3rdUnit = !1, this._combined = new n.DeckCombinedModelEdit
+    var o = function () {
+        function t(t) {
+            this._a = t
         }
 
-        return Object.defineProperty(t.prototype, "num", {
+        return Object.defineProperty(t.prototype, "state", {
             get: function () {
-                var t = 0;
-                for (var e in this._map) t++;
-                return t
+                return null != this._a && this._a.length > 0 ? this._a[0] : 0
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "combined", {
+        }), Object.defineProperty(t.prototype, "expedition_id", {
             get: function () {
-                return this._combined
+                return null != this._a && this._a.length > 1 ? this._a[1] : -1
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "exist3rdUnit", {
+        }), Object.defineProperty(t.prototype, "complete_unixtime", {
             get: function () {
-                return this._exist3rdUnit
+                return null != this._a && this._a.length > 2 ? this._a[2] : -1
             }, enumerable: !0, configurable: !0
-        }), t.prototype.setData = function (t) {
-            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = r.ObjUtil.getNumber(i, "api_id");
-                if (n > 0) {
-                    var s = n.toString(), a = new o.DeckModelEdit(i);
-                    this._map[s] = a, 2 === e && (this._exist3rdUnit = i.api_ship.length >= 7)
-                }
-            }
-        }, t.prototype.updateData = function (t) {
-            if (null != this._map && null != t) {
-                var e = new o.DeckModelEdit(t);
-                if (!(e.mstID <= 0)) {
-                    var i = e.mstID.toString();
-                    1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e
-                }
-            }
-        }, t.prototype.get = function (t) {
-            var e = t.toString();
-            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.getAll = function () {
-            var t, e = [];
-            return null != (t = this.get(1)) && e.push(t), null != (t = this.get(2)) && e.push(t), null != (t = this.get(3)) && e.push(t), null != (t = this.get(4)) && e.push(t), e
-        }, t.prototype.getIDs = function () {
-            return this.getAll().map(function (t, e, i) {
-                return t.mstID
-            })
-        }, t.prototype.isInDeck = function (t) {
-            for (var e = this.getAll(), i = 0, n = e; i < n.length; i++) {
-                var o = n[i], r = o.isInDeck(t);
-                if (-1 != r) return [o.mstID, r]
-            }
-            return null
-        }, t.prototype.isCombined = function () {
-            return this._combined.isCombined()
-        }, t
+        }), t
     }();
-    e.DeckModelHolder = s
+    e.DeckExpeditionModel = o;
+    var r = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
+        }
+
+        return n(e, t), e.prototype.__update__ = function (t) {
+            this._a = t
+        }, e.prototype.__update_state__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 0;) this._a.push(0);
+            this._a[0] = t
+        }, e.prototype.__update_id__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 1;) this._a.push(0);
+            this._a[1] = t
+        }, e.prototype.__update_time__ = function (t) {
+            for (null == this._a && (this._a = []); this._a.length <= 2;) this._a.push(0);
+            this._a[2] = t
+        }, e
+    }(o);
+    e.DeckExpeditionModelEdit = r
 }

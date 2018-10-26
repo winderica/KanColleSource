@@ -15,25 +15,46 @@ const function187 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(17), s = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(11), s = i(14), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_furniture/music_list", i._furnitureJukeBoxBGMModel = e, i
         }
 
-        return n(e, t), e.prototype.load = function (t) {
-            var e = this._getPath(t) + "?" + r.START_TIME;
-            this.texture = PIXI.Texture.fromImage(e)
-        }, e.prototype._getKeyName = function () {
-            var t = location.hostname;
-            if (t.match(/\./)) {
-                for (var e = t.split("."), i = 0; i < e.length; i++) e[i] = ("00" + e[i]).slice(-3);
-                return e.join("_")
-            }
-            return t
-        }, e.prototype._getPath = function (t) {
-            var e = this._getKeyName();
-            return "title" == t ? o.default.settings.path_root + "resources/world/" + e + "_t.png" : "small" == t ? o.default.settings.path_root + "resources/world/" + e + "_s.png" : "large" == t ? o.default.settings.path_root + "resources/world/" + e + "_l.png" : void 0
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._furnitureJukeBoxBGMModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Sprite);
-    e.WorldTextImage = s
+    }(r.APIBase);
+    e.UserFurnitureJukeBoxMusicListAPI = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_furniture/music_play", i._post_data.api_music_id = e, i
+        }
+
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._updateMaterialCount(44, s.ObjUtil.getNumber(this._raw_data, "api_coin")), t.prototype._completedEnd.call(this)
+        }, e.prototype._updateMaterialCount = function (t, e) {
+            var i = o.default.model.useItem.get(t);
+            null != i && i.__setCount__(e)
+        }, e
+    }(r.APIBase);
+    e.UserFurnitureJukeBoxMusicPlayAPI = _;
+    var u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_furniture/set_portbgm", i._post_data.api_music_id = e, i
+        }
+
+        return n(e, t), e.prototype._connect = function () {
+            t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            t.prototype._completedEnd.call(this)
+        }, e
+    }(r.APIBase);
+    e.UserFurnitureJukeBoxSetPortBGMAPI = u
 }

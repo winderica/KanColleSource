@@ -15,26 +15,56 @@ const function451 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(6), s = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._onComplete = function () {
-                r._layer.removeChild(r._planes), r._planes.stopFluctuations(), r._planes.dispose(), r._endTask()
-            }, r._layer = e, r._planes = i, r._to_pos = n, r._cb_onDamaged = o, r
+    var o = i(0), r = i(24), s = i(6), a = i(180), _ = i(180), u = i(180), l = i(180), c = i(43), h = function (t) {
+        function e(e, i, n, r, s, c, h, p, d, f) {
+            var y = t.call(this, e, n, s, p, d, f) || this;
+            if (y._slot2 = o.default.model.slot.getMst(c), y._slot3 = o.default.model.slot.getMst(h), y._defender = r, 3 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3); else if (4 == i) y._cutin = new _.CutinDanchaku2(n, y._slot, y._slot2, y._slot3); else if (5 == i) y._cutin = new u.CutinDanchaku3(n, y._slot, y._slot2, y._slot3); else {
+                if (6 != i) throw new Error;
+                y._cutin = new l.CutinDanchaku4(n, y._slot, y._slot2, y._slot3)
+            }
+            return y
         }
 
         return n(e, t), e.prototype._start = function () {
             var t = this;
-            this._planes.startFluctuations(), this._planes.scale.set(0), this._layer.addChild(this._planes), r.SE.play("115"), createjs.Tween.get(this._planes.scale).to({
-                x: 1,
-                y: 1
-            }, 250).call(function () {
-                var e = t._to_pos, i = t._planes.friend ? 1275 : -75;
-                t._planes.play(e, i, 2500, t._cb_onDamaged, t._onComplete)
+            this._cutin.getPreloadTask().start(function () {
+                t._completePreload()
             })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._planes = null, this._to_pos = null, this._cb_onDamaged = null, t.prototype._endTask.call(this)
+        }, e.prototype._completePreload = function () {
+            var t, e, i = this, n = this._attacker.friend, o = this._attacker.index, s = this._defender.index;
+            1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, s)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, s)), t.moveFront(), e.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(), this._cutin.view.once("attack", function () {
+                i._playVoice();
+                var n = i._getDamage(i._defender), o = e.getGlobalPos(!0),
+                    s = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                    a = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
+                    _ = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                    u = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                createjs.Tween.get(null).wait(800).call(function () {
+                    e.moveAtDamage(i._shield), i._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n)
+                }).wait(150).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(o.x + s, o.y + a)
+                }).wait(100).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                        i._attack(t, e)
+                    })
+                })
+            })
+        }, e.prototype._attack = function (t, e) {
+            var i = this;
+            s.SE.play("102"), t.attack(function () {
+                i._damageEffect(t, e)
+            })
+        }, e.prototype._damageEffect = function (t, e) {
+            1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+            var i = this._getDamage(this._defender);
+            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+        }, e.prototype._playVoice = function () {
+            if (this._attacker.friend) {
+                var t = this._attacker.mst_id;
+                o.default.sound.voice.play(t.toString(), 17)
+            }
+        }, e.prototype._log = function (t) {
         }, e
-    }(o.TaskBase);
-    e.TaskPlane = s
+    }(c.PhaseAttackBase);
+    e.PhaseAttackDanchaku = h
 }

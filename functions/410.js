@@ -15,17 +15,26 @@ const function410 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._url = "api_get_member/questlist", o._page_no = e, o._type = i, o._data_holder = n, o
+    var o = i(2), r = i(411), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._result = [], n._layer = e, n._candidates_list = null == i ? [] : i.concat(), n
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_page_no = this._page_no, this._post_data.api_tab_id = this._type, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._data_holder.update(this._type, this._raw_data), this._data_holder = null, t.prototype._completedEnd.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "result", {
+            get: function () {
+                return this._result
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._start = function () {
+            var t = this;
+            if (0 == this._candidates_list.length) return void this._endTask();
+            var e = this._candidates_list.shift(), i = new r.TaskRewardSelect(this._layer, e);
+            i.start(function () {
+                t._result.push(i.result), t._start()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._candidates_list = null, t.prototype._endTask.call(this)
         }, e
-    }(o.APIBase);
-    e.DutyListAPI = r
+    }(o.TaskBase);
+    e.TaskRewardSelectMulti = s
 }

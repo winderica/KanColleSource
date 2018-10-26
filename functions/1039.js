@@ -15,30 +15,31 @@ const function1039 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(32), r = i(9), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+    var o = i(0), r = i(2), s = i(318), a = function (t) {
+        function e(e, i, n) {
+            var r = t.call(this) || this;
+            return r._updateView = function (t) {
+                var e = o.default.model.expedition.get(r._expedition_id);
+                0 == e.state && e.__setState__(1);
+                var i = o.default.model.deck.get(r._deck_id);
+                t.update(e, i.mstID), r._view.detail_view.update(e, i), r._showCutin(i)
+            }, r._view = e, r._expedition_id = i, r._deck_id = n, r
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-        }, e.prototype.update = function (t) {
-            var e = this._getTexture(t);
-            null == e ? this.visible = !1 : (this._img.texture = e, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.visible = !0)
-        }, e.prototype.dispose = function () {
-        }, e.prototype._getTexture = function (t) {
-            switch (t) {
-                case 1:
-                    return r.COMMON_MISC.getTexture(74);
-                case 2:
-                    return r.COMMON_MISC.getTexture(77);
-                case 3:
-                    return r.COMMON_MISC.getTexture(80);
-                case 4:
-                    return r.COMMON_MISC.getTexture(83)
-            }
-            return null
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._getTargetListItem();
+            e.getDeckIconTween(this._deck_id, function () {
+                t._updateView(e)
+            })
+        }, e.prototype._getTargetListItem = function () {
+            for (var t, e = this._view.items, i = 0, n = e; i < n.length && (t = n[i], t.target_id != this._expedition_id); i++) ;
+            return t
+        }, e.prototype._showCutin = function (t) {
+            var e = this;
+            new s.TaskExpeditionStartCutin(t.mstID).start(function () {
+                e._endTask()
+            })
         }, e
-    }(o.Container);
-    e.ExpeditionDeckIcon = s
+    }(r.TaskBase);
+    e.GoExpeditionTask = a
 }

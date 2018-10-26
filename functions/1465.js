@@ -15,102 +15,44 @@ const function1465 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(2), a = i(29), _ = i(19), u = i(39), l = i(8), c = i(58), h = i(14), p = i(1466),
-        d = i(1467), f = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-
-            return n(e, t), e.prototype._start = function () {
-                this._loadMVPImage()
-            }, e.prototype._loadMVPImage = function () {
-                var t = this, e = this._scene.data.battle_model.deck_f.ships, i = null, n = null,
-                    o = this._scene.data.getMvpIndex(!1);
-                if (o >= 0 && o < e.length && (i = e[o]), o = this._scene.data.getMvpIndex(!0), o >= 0 && o + 6 < e.length && (n = e[o + 6]), null == i && null == n) this._initMove(); else {
-                    var r = new h.ShipLoader;
-                    null != i && r.add(i.mst_id, i.isDamaged(), "full"), null != n && r.add(n.mst_id, n.isDamaged(), "full"), r.load(function () {
-                        t._showMVP(i)
-                    })
-                }
-            }, e.prototype._showMVP = function (t) {
-                var e = this;
-                this._scene.view.layer_banner.banners_f.getBanner(t.index).createShowMVPCoinTween();
-                var i = t.mst_id, n = t.isDamaged(), r = o.default.resources.getShip(i, n, "full"),
-                    s = o.default.model.ship_graph.get(i).getBattleOffset(n);
-                this._scene.view.layer_mvp.createShowTween(r, s, 500).call(function () {
-                    e._playVoice(i)
-                }), this._initMove()
-            }, e.prototype._playVoice = function (t) {
-                var e = this._scene.data.battle_result_rank;
-                "S" != e && "A" != e && "B" != e || o.default.sound.voice.play(t.toString(), 23)
-            }, e.prototype._initMove = function () {
-                var t = this;
-                this._scene.view.layer_deck_info.friend.createHideGaugeTweens(-54), createjs.Tween.get(this._scene.view.layer_banner.info_f).wait(200).to({ x: 87 }, 500), createjs.Tween.get(this._scene.view.layer_banner.banners_f).wait(200).to({ x: 294 }, 500).call(function () {
-                    t._showPanel()
-                })
-            }, e.prototype._showPanel = function () {
-                var t = this, e = this._scene.data.base_exp, i = this._scene.data.getShipExp(!1),
-                    n = this._scene.data.battle_model.isPractice(), o = this._scene.data.battle_model.deck_f.isYugeki(),
-                    r = this._scene.view.panel_exp;
-                r.initialize(e, i, n, o), r.alpha = 0, r.visible = !0, createjs.Tween.get(r).to({
-                    x: 591,
+    var o = i(6), r = i(9), s = i(36), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._anim2 = function () {
+                o.SE.play("222"), e._t = createjs.Tween.get(e._message).to({
+                    x: 38,
                     alpha: 1
-                }, 300).call(function () {
-                    t._showLevelup()
+                }, 200).to({ x: 0 }, 66).wait(700).to({ x: -38 }, 66).to({
+                    x: -132,
+                    alpha: 0
+                }, 200).call(function () {
+                    e._t = null, e.emit("complete")
                 })
-            }, e.prototype._showLevelup = function () {
-                var t = this;
-                new p.TaskShowLevelup(this._scene, !1).start(function () {
-                    t._showExtraReward()
-                })
-            }, e.prototype._showExtraReward = function () {
-                var t = this, e = new a.SerialTask;
-                e.add(new d.TaskShowExtraResults(this._scene)), e.add(new u.WaitTask(500)), e.start(function () {
-                    1 == t._scene.data.battle_model.deck_f.isCombined() ? t._showNextGearButton() : t._endTask()
-                })
-            }, e.prototype._showNextGearButton = function () {
-                var t = this, e = new c.GearBtnNext;
-                e.position.set(1130, 648), e.initialize(), e.activate(), this._scene.view.addChild(e);
-                var i = new l.AreaBox(0);
-                i.buttonMode = !0, this._scene.view.addChild(i), i.once(r.EventType.CLICK, function () {
-                    e.deactivate(), t._scene.view.removeChild(e), t._scene.view.removeChild(i), t._hideMainDeckBanners()
-                })
-            }, e.prototype._hideMainDeckBanners = function () {
-                var t = this, e = new _.TweenTask, i = this._scene.view.layer_banner.banners_f.createHideTweens(0),
-                    n = i.length;
-                e.addTweens(i), i = this._scene.view.layer_banner.info_f.createHideTweens(0), e.addTweens(i);
-                var o = 100 * (n - 1) + 200;
-                i = this._scene.view.panel_exp.createHideShipExpTweens(300, o - 300), e.addTweens(i), e.addTween(this._scene.view.layer_mvp.createHideTween(300, o - 300)), e.addTween(this._scene.view.layer_deck_info.friend.createHideDeckNameTween(o - 200, 200)), e.start(function () {
-                    t._showSubDeckBanners()
-                })
-            }, e.prototype._showSubDeckBanners = function () {
-                var t = this, e = new _.TweenTask, i = this._scene.data.battle_model.deck_f.ships_sub;
-                this._scene.view.layer_banner.banners_f.initialize(i), this._scene.view.layer_banner.info_f.initialize(i);
-                var n = this._scene.view.layer_banner.banners_f.createShowTweens(0), r = n.length;
-                e.addTweens(n), n = this._scene.view.layer_banner.info_f.createShowTweens(0), e.addTweens(n);
-                var s = 100 * (r - 1) + 200, a = this._scene.data.getShipExp(!0);
-                n = this._scene.view.panel_exp.createShowShipExpTweens(a, 300, s - 300), e.addTweens(n);
-                var u = this._scene.data.getMvpIndex(!0);
-                if (u >= 0) {
-                    var l = i[u], c = l.mst_id, h = l.isDamaged(), p = o.default.resources.getShip(c, h, "full"),
-                        d = o.default.model.ship_graph.get(c).getBattleOffset(h);
-                    e.addTween(this._scene.view.layer_mvp.createShowTween(p, d, 300, s - 300).call(function () {
-                        t._playVoice(c)
-                    }));
-                    var f = this._scene.view.layer_banner.banners_f.getBanner(u);
-                    e.addTween(f.createShowMVPCoinTween())
-                }
-                var y = this._scene.data.deck_name_f2;
-                e.addTween(this._scene.view.layer_deck_info.friend.createShowDeckNameTween(y, s - 200, 200)), e.start(function () {
-                    t._showLevelupCombined()
-                })
-            }, e.prototype._showLevelupCombined = function () {
-                var t = this;
-                new p.TaskShowLevelup(this._scene, !0).start(function () {
-                    t._endTask()
-                })
-            }, e
-        }(s.TaskBase);
-    e.TaskExp = f
+            }, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.alpha = 0, e._message = new PIXI.Sprite, e._message.anchor.set(.5), e._message.alpha = 0, e._message.x = 132, e.addChild(e._bg), e.addChild(e._message), e
+        }
+
+        return n(e, t), e.prototype.initializeForShip = function (t) {
+            void 0 === t && (t = !1), this._bg.texture = r.COMMON_MISC.getTexture(120);
+            var e = 31;
+            this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(e), 1 == t && (this._message.y = -30, e = 25, this._sub_message = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(e)), this._sub_message.anchor.set(.5), this._sub_message.position.y = 80, this._message.addChild(this._sub_message))
+        }, e.prototype.initializeForSlot = function () {
+            this._bg.texture = r.COMMON_MISC.getTexture(120);
+            this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(26)
+        }, e.prototype.initializeForUseitem = function (t) {
+            this._bg.texture = r.COMMON_MISC.getTexture(120);
+            var e = -1;
+            60 == t ? e = 27 : 62 == t ? e = 28 : 68 == t ? e = 29 : 72 == t ? e = 30 : 85 != t && 86 != t && 87 != t && 88 != t || (e = 21), this._message.texture = -1 == e ? PIXI.Texture.EMPTY : s.BATTLE_RESULT_MAIN.getTexture(e)
+        }, e.prototype.dispose = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype.play = function () {
+            var t = this;
+            if (null == this._t) {
+                var e = s.BATTLE_RESULT_MAIN.getTexture(24), i = new PIXI.Sprite(e);
+                i.anchor.set(.5), i.alpha = 0, this.addChild(i), this._t = createjs.Tween.get(i).to({ alpha: 1 }, 200).call(function () {
+                    t._bg.alpha = 1
+                }).to({ alpha: 0 }, 266).call(this._anim2)
+            }
+        }, e
+    }(PIXI.Container);
+    e.BonusTelop = a
 }

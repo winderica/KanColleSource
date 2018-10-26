@@ -15,19 +15,25 @@ const function1189 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(170), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(11), r = i(6), s = i(237), a = i(169), _ = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._model = e, n._holder = i, n
         }
 
-        return n(e, t), e.prototype._initialize = function () {
-            this._icon.texture = r.DUTY_COMMON.getTexture(24);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getSlotitem(e, "card"), n = new PIXI.Sprite(i),
-                s = Math.min(195 / n.width, 195 / n.height);
-            n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
+                t._update()
+            })
+        }, e.prototype._update = function () {
+            var t = this, e = this._holder.selected_page_no, i = this._holder.selected_type;
+            new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._model = null, this._holder = null, t.prototype._endTask.call(this)
         }, e
-    }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogSlotitemBtn = a
+    }(o.TaskBase);
+    e.TaskExecutedDutySelect = _
 }

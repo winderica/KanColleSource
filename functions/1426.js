@@ -15,32 +15,49 @@ const function1426 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(15), s = function (t) {
+    var o = i(24), r = i(23), s = i(12), a = i(16), _ = i(1427), u = i(1428), l = i(1431), c = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
+            return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new u.BannerFrame, e._frame.alpha = 0, e._layer_color = new l.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._splash1.texture = r.BATTLE_MAIN.getTexture(118), this._splash2.texture = r.BATTLE_MAIN.getTexture(119), this._splash3.texture = r.BATTLE_MAIN.getTexture(120)
-        }, e.prototype.play = function () {
-            var t = this;
-            createjs.Tween.get(this._splash1).to({ scaleX: 1, scaleY: 1 }, 366).to({
-                scaleX: .78,
-                scaleY: .78,
-                alpha: 0
-            }, 200), createjs.Tween.get(this._splash2).wait(200).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 200).to({ alpha: 0 }, 33), createjs.Tween.get(this._splash3).wait(333).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 166).to({ scaleX: .88, scaleY: .88, alpha: 0 }, 166).call(function () {
-                t._init(), t.emit("complete")
+        return n(e, t), Object.defineProperty(e.prototype, "img", {
+            get: function () {
+                return this._img
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "flagship_mark", {
+            get: function () {
+                return this._flagship_mark
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "frame", {
+            get: function () {
+                return this._frame
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_color", {
+            get: function () {
+                return this._layer_color
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "layer_over", {
+            get: function () {
+                return this._layer_over
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i, n, r, s, _, u) {
+            if (this._img.initialize(t, e, i, _, u, s, r), 1 == s && (1 == r ? this._img.x += 7 : this._img.x -= 78), 0 == n && (this._flagship_mark.texture = a.BATTLE_MAIN.getTexture(48), 0 == r && 1 == s && (this._flagship_mark.alpha = .5, this._flagship_mark.x = 135)), this._frame.initialize(e, i, n, r, s), s) {
+                var l = new PIXI.Graphics;
+                l.beginFill(0), l.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), l.endFill(), this._img.mask = l, this.addChild(l)
+            }
+            this.layer_color.initialize(r, s)
+        }, e.prototype.updateHp = function (t, e) {
+            this._img.update(t, e), this._frame.updateHp(t, e)
+        }, e.prototype.waveOver = function (t) {
+            var e = this, i = new s.Sprite(a.BATTLE_MAIN.getTexture(82));
+            i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
+                scaleX: .75,
+                scaleY: .75
+            }, 400).to({ alpha: 0, scaleX: 1, scaleY: 1 }, 200).call(function () {
+                e._layer_over.removeChild(i)
             })
-        }, e.prototype._init = function () {
-            this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
         }, e
-    }(PIXI.Container);
-    e.TorpedoWaterColumn = s
+    }(r.Container);
+    e.BannerContent = c
 }

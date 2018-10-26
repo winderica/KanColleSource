@@ -1,50 +1,80 @@
 const function1418 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = function () {
-        function t(t) {
-            this._o = t
+    var o = i(5), r = i(24), s = i(471), a = i(1421), _ = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return t.prototype.getAttackTo_f = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_frai");
-            return null == e || e.length <= t ? -1 : e[t]
-        }, t.prototype.getDamage_f = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-            return null == e || e.length <= t ? 0 : Math.floor(e[t])
-        }, t.prototype.isShield_f = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-            return !(null == e || e.length <= t) && e[t] % 1 != 0
-        }, t.prototype.getHitType_f = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_fcl");
-            return null == e || e.length <= t ? 0 : e[t]
-        }, t.prototype.hasShield_f = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_fdam");
-            if (null == t) return !1;
-            for (var e = 0, i = t; e < i.length; e++) {
-                if (i[e] % 1 != 0) return !0
-            }
-            return !1
-        }, t.prototype.getAttackTo_e = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_erai");
-            return null == e || e.length <= t ? -1 : e[t]
-        }, t.prototype.getDamage_e = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_eydam");
-            return null == e || e.length <= t ? 0 : e[t]
-        }, t.prototype.isShield_e = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-            return !(null == e || e.length <= t) && e[t] % 1 != 0
-        }, t.prototype.getHitType_e = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_ecl");
-            return null == e || e.length <= t ? 0 : e[t]
-        }, t.prototype.hasShield_e = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_edam");
-            if (null == t) return !1;
-            for (var e = 0, i = t; e < i.length; e++) {
-                if (i[e] % 1 != 0) return !0
-            }
-            return !1
-        }, t
-    }();
-    e.RaigekiData = o
+        return n(e, t), e.prototype.playTorpedo = function (t, e, i, n) {
+            var o = this;
+            void 0 === i && (i = 1800), void 0 === n && (n = null);
+            var r = new a.Torpedo(1);
+            this.addChild(r), r.play(t, e, i, function () {
+                o.removeChild(r), null != n && n()
+            })
+        }, e.prototype.playTorpedoAtNight = function (t, e, i, n) {
+            var o = this;
+            void 0 === i && (i = 800), void 0 === n && (n = null);
+            var r = new a.Torpedo(2);
+            this.addChild(r), r.play(t, e, i, function () {
+                o.removeChild(r), null != n && n()
+            })
+        }, e.prototype.playAerialTorpedo = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null);
+            var o = new a.Torpedo(3);
+            this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                n.removeChild(o), null != i && i()
+            })
+        }, e.prototype.playAerialTorpedoSuper = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null);
+            var o = new a.Torpedo(5);
+            this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                n.removeChild(o), null != i && i()
+            })
+        }, e.prototype.playAerialTorpedoJet = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null);
+            var o = new a.Torpedo(4);
+            this.addChild(o), o.play(t, e, 0, function () {
+                n.removeChild(o), null != i && i()
+            })
+        }, e
+    }(s.LayerExplosion);
+    e.LayerTorpedo = _;
+    !function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._night = e, i._canvas = new Array, i._createCanvas(!1, !1), i._createCanvas(!0, !1), i._createCanvas(!1, !0), i._createCanvas(!0, !0), i
+        }
+
+        n(e, t), e.prototype.getCanvas = function (t, e) {
+            return this._night ? this._canvas[0] : this._canvas[(t ? 1 : 0) + (e ? 2 : 0)]
+        }, e.prototype._createCanvas = function (t, e) {
+            var i = r.BannerSize.W;
+            1 == t && (i += .9 * r.BannerSize.W);
+            var n = r.BannerSize.W;
+            1 == e && (n += .9 * r.BannerSize.W);
+            var s = o.default.width - i - n, a = new PIXI.Graphics;
+            a.beginFill(16711680, .3), a.drawRect(i, 0, s, o.default.height), a.endFill(), this.addChild(a);
+            var _ = new PIXI.Container;
+            _.mask = a, this.addChild(_), this._canvas.push(_)
+        }
+    }(PIXI.Container)
 }

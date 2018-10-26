@@ -15,145 +15,96 @@ const function1400 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(29), a = i(39), _ = i(14), u = i(75), l = i(62), c = i(458), h = i(459),
-        p = i(460), d = i(462), f = i(463), y = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new u.PhaseDamageCutin(n._scene), n
+    var o = i(74), r = i(89), s = i(92), a = i(90), _ = i(63), u = i(93), l = i(91), c = i(98), h = i(96),
+        p = i(95), d = i(97), f = i(94), y = i(76), m = i(118), v = i(99), g = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
 
             return n(e, t), e.prototype._start = function () {
-                var t = this._record.raw.support_air;
-                if (null != t) return void this._supportAir(t);
-                var e = this._record.raw.support_hou;
-                if (null != e) return void this._supportHou(e);
-                var i = this._record.raw.support_rai;
-                if (null != i) return void this._supportRai(i);
-                var n = this._record.raw.support_taisen;
-                if (null != n) return void this._supportTaisen(n);
-                this._endTask()
-            }, e.prototype._supportAir = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(1);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({ mst_id: c.mstID, damaged: l.damaged }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
-                    h.add(d);
-                    var y = r[0].mst_id, m = r[0].damaged;
-                    h.add(new v(i, y, m));
-                    var g = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
-                    h.add(new p.TaskSupportAir(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new m.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
                 })
-            }, e.prototype._supportHou = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(2);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var h = o.default.model.ship.get(l.mem_id);
-                            null != h ? r.push({ mst_id: h.mstID, damaged: l.damaged }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var p = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id, m = r[0].damaged;
-                    p.add(new v(i, y, m)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
                 })
-            }, e.prototype._supportRai = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(3);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({ mst_id: c.mstID, damaged: l.damaged }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var p = new s.SerialTask, d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id, m = r[0].damaged;
-                    p.add(new v(i, y, m)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
                 })
-            }, e.prototype._supportTaisen = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({ mst_id: c.mstID, damaged: l.damaged }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask, p = new f.TaskSupportDeckCutin(i, r);
-                    h.add(p);
-                    var y = r[0].mst_id, m = r[0].damaged;
-                    h.add(new v(i, y, m));
-                    var g = e._scene.data.model.deck_f.ships, b = e._scene.data.model.deck_e.ships;
-                    h.add(new d.TaskSupportTaisen(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
-                        new a.WaitTask(800).start(function () {
-                            e._endTask()
-                        })
-                    })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new l.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
                 })
-            }, e.prototype._endTask = function () {
-                var e = this;
-                this._damage_cutin.start(function () {
-                    e._scene = null, e._record = null, e._damage_cutin = null, t.prototype._endTask.call(e)
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new s.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new _.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new v.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new p.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new f.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new h.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new u.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new c.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
                 })
             }, e
-        }(r.TaskBase);
-    e.PhaseSupport = y;
-    var v = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._layer = e, o._mst_id = i, o._damaged = n, o
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new _.ShipLoader;
-            e.add(this._mst_id, this._damaged, "full"), e.load(function () {
-                t._show()
-            })
-        }, e.prototype._show = function () {
-            var t = this, e = o.default.model.ship_graph.get(this._mst_id).getBattleOffset(this._damaged),
-                i = -740 + e.x, n = o.default.resources.getShip(this._mst_id, this._damaged, "full");
-            this._s = new PIXI.Sprite(n), this._s.x = i, this._s.y = -105 + e.y, this._s.alpha = 0, this._layer.addChild(this._s), createjs.Tween.get(this._s).to({
-                x: i + 665,
-                alpha: 1
-            }, 500).to({ x: i + 740 }, 300).call(function () {
-                o.default.sound.voice.playAtRandom(t._mst_id.toString(), [16, 17, 18], [33, 33, 34])
-            }).wait(300).to({ x: i + 1070, alpha: 0 }, 500).call(function () {
-                t._layer.removeChild(t._s), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._s = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskFlagShip = v
+        }(o.PhaseCombatBase);
+    e.PhaseDay_Suijo_vs12 = g
 }

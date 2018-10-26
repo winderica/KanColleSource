@@ -1,40 +1,74 @@
 const function1063 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(72), o = i(72), r = function () {
-        function t() {
-            this._ship_data_flag = [], this._slot_data_flag = [], this._ship = {}, this._slot = {}
+    var o = i(14), r = i(72), s = function (t) {
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return t.prototype.hasData = function (t, e) {
-            return 1 == t ? this._ship_data_flag.indexOf(e) >= 0 : 2 == t && this._slot_data_flag.indexOf(e) >= 0
-        }, t.prototype.getData = function (t, e, i) {
-            return 1 == t ? this.getShipData(e, i) : 2 == t ? this.getSlotData(e, i) : null
-        }, t.prototype.getShipData = function (t, e) {
-            for (var i = [], n = 0; n < e; n++) {
-                var o = t + 1 + n;
-                1 == this._ship.hasOwnProperty(o.toString()) ? i.push(this._ship[o]) : i.push(null)
+        return n(e, t), Object.defineProperty(e.prototype, "sType", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_stype")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_sinfo")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "karyoku", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_houg")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "raisou", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_raig")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "taiku", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_tyku")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "kaihi", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_kaih")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "taikyu", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_taik")
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.hasTaiha = function (t) {
+            var e = this.mst_ids.indexOf(t);
+            if (e < 0) return !1;
+            var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+            return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
+        }, e.prototype.isMarriage = function (t) {
+            var e = this.mst_ids.indexOf(t);
+            if (e < 0) return !1;
+            var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+            return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
+        }, e.prototype.hasMarriage = function () {
+            var t = o.ObjUtil.getObjectArray(this._o, "api_state");
+            if (null == t) return !1;
+            for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e];
+                if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
             }
-            return i
-        }, t.prototype.getSlotData = function (t, e) {
-            for (var i = [], n = 0; n < e; n++) {
-                var o = t + 1 + n;
-                1 == this._slot.hasOwnProperty(o.toString()) ? i.push(this._slot[o]) : i.push(null)
-            }
-            return i
-        }, t.prototype.addShipData = function (t, e) {
-            this._ship_data_flag.push(t);
-            for (var i = 0, o = e; i < o.length; i++) {
-                var r = o[i], s = new n.AlbumShipModel(r);
-                this._ship[s.no] = s
-            }
-        }, t.prototype.addSlotData = function (t, e) {
-            this._slot_data_flag.push(t);
-            for (var i = 0, n = e; i < n.length; i++) {
-                var r = n[i], s = new o.AlbumSlotModel(r);
-                this._slot[s.no] = s
-            }
-        }, t
-    }();
-    e.AlbumModelManager = r
+            return !1
+        }, e.prototype.extraVoices = function () {
+            return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
+        }, e
+    }(r.AlbumModelBase);
+    e.AlbumShipModel = s
 }

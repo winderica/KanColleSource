@@ -15,24 +15,24 @@ const function870 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(871), r = i(3), s = function (t) {
+    var o = i(3), r = i(871), s = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(45));
-            return e.ship = new o.NormalBuildShip, i.position.set(57, 82), e.ship.position.set(69, 15), e.addChild(i, e.ship), e
+            var e = t.call(this) || this, i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(46));
+            return e.ship = new r.LargeBuildShip, e.ship.position.set(22, 13), i.position.set(12, 82), e.addChild(i, e.ship), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            if (t <= 0) this.ship.update(0); else {
+        return n(e, t), e.prototype.updatePhaseMax = function (t) {
+            this.phaseMax = t
+        }, e.prototype.update = function (t) {
+            if (0 == t) this.ship.update(0); else {
                 var e = Math.floor(this.phaseMax * t);
                 0 == e && (e = 1), this.ship.update(e)
             }
-        }, e.prototype.updatePhaseMax = function (t) {
-            this.phaseMax = t
         }, e.prototype.forceComplete = function () {
             this.ship.update(this.phaseMax)
         }, e.prototype.dispose = function () {
             this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
         }, e
     }(PIXI.Container);
-    e.NormalBuildStage = s
+    e.LargeBuildStage = s
 }
