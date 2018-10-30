@@ -19,8 +19,12 @@ const function15 = function (t, e, i) {
         }, t.getPath = function (e, i, _) {
             "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
             var u = _ + (i ? "_dmg" : ""), l = "ship_" + u, c = s.SuffixUtil.create(e, l),
-                h = r.MathUtil.zeroPadding(e, 4);
-            return n.default.settings.path_root + "resources/ship/" + u + "/" + (h + t.hSuffix(e, _)) + "_" + c + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
+                h = r.MathUtil.zeroPadding(e, 4), p = "";
+            if ("full" == _) {
+                var d = n.default.model.ship_graph.get(e);
+                null != d && (p = "_" + d.unique_key)
+            }
+            return n.default.settings.path_root + "resources/ship/" + u + "/" + (h + t.hSuffix(e, _)) + "_" + c + p + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
         }, t.prototype.add = function (e, i, n) {
             var o = t.getPath(e, i, n);
             return this._url_list.push(o), this
