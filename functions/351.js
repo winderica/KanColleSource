@@ -28,7 +28,7 @@ const function351 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = o.SALLY_AIRUNIT.getTexture(20), this._light.texture = o.SALLY_AIRUNIT.getTexture(21)
+            this._img.texture = o.SALLY_AIRUNIT.getTexture(21), this._light.texture = o.SALLY_AIRUNIT.getTexture(22)
         }, e.prototype.update = function (t) {
             this.visible = t, 1 == t ? this._activate() : this._deactivate()
         }, e.prototype.dispose = function () {

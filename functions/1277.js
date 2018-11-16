@@ -15,37 +15,55 @@ const function1277 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(40), s = i(20), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
+    var o = i(5), r = i(2), s = i(12), a = i(8), _ = i(20), u = i(1278), l = i(1), c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._shutter = e, n._item_ids = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "content", {
-            get: function () {
-                return this._content
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "gearBtn", {
-            get: function () {
-                return this._gearBtn
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            this._bg.texture = s.MAP_COMMON.getTexture(142), this._content.initialize(t), this._gearBtn.initialize()
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._view = new u.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+            var e = _.MAP_COMMON.getTexture(105);
+            this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({ scaleY: 1 }, 300).call(function () {
+                t._showMessage()
+            })
+        }, e.prototype._showMessage = function () {
+            var t = this, e = _.MAP_COMMON.getTexture(108);
+            this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                x: o.default.width / 2 + 180,
+                alpha: 1
+            }, 300).to({ x: o.default.width / 2 }, 400).to({
+                x: o.default.width / 2 - 60,
+                alpha: 0
+            }, 400).call(function () {
+                t._shutter.removeChild(t._telopText), t._closeTelop()
+            })
+        }, e.prototype._closeTelop = function () {
+            var t = this;
+            createjs.Tween.get(this._telopBG).to({ scaleY: 0 }, 300).call(function () {
+                t._shutter.removeChild(t._telopBG)
+            }), createjs.Tween.get(this._view).to({ alpha: 1 }, 200).call(function () {
+                t._showContent()
+            })
+        }, e.prototype._showContent = function () {
+            var t = this;
+            this._shutter.close(), this._shutter.once("closed", function () {
+                createjs.Tween.get(t._view.content).to({ alpha: 1 }, 200).call(function () {
+                    t._waitClick()
+                })
+            })
+        }, e.prototype._waitClick = function () {
+            var t = this, e = new a.AreaBox(0);
+            e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(l.EventType.CLICK, function () {
+                t._shutter.removeChild(e), t._hideView()
+            })
+        }, e.prototype._hideView = function () {
+            var t = this;
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 200).call(function () {
+                t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
+            })
         }, e
-    }(PIXI.Container);
-    e.MapEndView = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
-        }
-
-        return n(e, t), e.prototype.initialize = function (t) {
-            if (this._title.texture = s.MAP_COMMON.getTexture(161), null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = o.default.resources.getUseitem(i, 0), r = new PIXI.Sprite(n);
-                r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
-            }
-        }, e
-    }(PIXI.Container);
-    e.MapEndContentView = _
+    }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

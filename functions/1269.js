@@ -15,30 +15,36 @@ const function1269 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(61), s = i(20), a = function (t) {
+    var o = i(19), r = i(61), s = i(20), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
+            return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            switch (t) {
-                case 1:
-                    this._bg.texture = s.MAP_COMMON.getTexture(101), this._txt.texture = s.MAP_COMMON.getTexture(112);
-                    break;
-                case 2:
-                    this._bg.texture = s.MAP_COMMON.getTexture(104), this._txt.texture = s.MAP_COMMON.getTexture(114);
-                    break;
-                case 3:
-                    this._bg.texture = s.MAP_COMMON.getTexture(101), this._txt.texture = s.MAP_COMMON.getTexture(113);
-                    break;
-                case 4:
-                    this._bg.texture = s.MAP_COMMON.getTexture(102), this._txt.texture = s.MAP_COMMON.getTexture(115)
-            }
-            this._container.y = -o.default.height / 2 - this._container.height
+            this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(104), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(109), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(111) : s.MAP_COMMON.getTexture(110)
         }, e.prototype.playAnimation = function (t) {
-            createjs.Tween.get(this._container).to({ y: 0 }, 600, createjs.Ease.sineOut).wait(1e3).to({ y: o.default.height / 2 + this.height }, 600, createjs.Ease.sineIn).call(t)
+            this._animation1(t)
+        }, e.prototype._animation1 = function (t) {
+            var e = this, i = new o.TweenTask;
+            i.addTween(createjs.Tween.get(this._bg).to({
+                alpha: 1,
+                scaleY: 1
+            }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
+                x: 30,
+                alpha: 1
+            }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({ alpha: 1 }, 700)), i.start(function () {
+                e._animation2(t)
+            })
+        }, e.prototype._animation2 = function (t) {
+            var e = new o.TweenTask;
+            e.addTween(createjs.Tween.get(this._bg).wait(1200).to({ scaleY: 0 }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
+                x: -40,
+                alpha: 0
+            }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({ alpha: 0 }, 100)), e.start(function () {
+                null != t && t()
+            })
         }, e
     }(PIXI.Container);
-    e.AirRaidResultTelop = a
+    e.AirRaidTelop = a
 }

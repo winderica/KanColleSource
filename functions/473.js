@@ -15,70 +15,93 @@ const function473 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(1), a = i(65), _ = i(8), u = i(40), l = i(25), c = i(203), h = i(1463),
-        p = i(205), d = function (t) {
-            function e(e, i, n, l, c, h) {
-                void 0 === h && (h = null);
-                var p = t.call(this) || this;
-                return p._moveCard = function () {
-                    null != p._pre_task && (p._pre_task.dispose(), p._pre_task = null), p._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
-                    var t = new PIXI.Point(p._insert.card.x, p._insert.card.y),
-                        e = new PIXI.Point(o.default.width / 2, o.default.height / 2),
-                        i = new PIXI.Point(t.x + 300, t.y), n = new PIXI.Point(e.x + 150, e.y + 150);
-                    a.TweenUtil.create3BezierTween(p._insert.card, t, i, n, e, 700), createjs.Tween.get(p._insert.card).to({
-                        scaleX: .86,
-                        scaleY: .86,
-                        rotation: 4 * Math.PI
-                    }, 700).to({ scaleX: 1, scaleY: 1 }, 133).wait(700).call(function () {
-                        p._insert.particle.activate()
-                    }).wait(1e3).call(p._flash)
-                }, p._flash = function () {
-                    var t = r.default.model.slot.getMst(p._mst_id);
-                    p._bonus.alpha = 1, p._bonus.initialize(t.mstID, p._count, p._level, t.name), createjs.Tween.get(p._insert.card).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.bg_dark).to({ alpha: 0 }, 800), createjs.Tween.get(p._insert.flash).to({
-                        scaleX: 3.5,
-                        scaleY: 3.5
-                    }, 800), createjs.Tween.get(p._insert).wait(800).to({ alpha: 0 }, 200).call(function () {
-                        p._layer.removeChild(p._insert), p._insert.dispose(), p._insert = null, p._showBonus()
-                    })
-                }, p._showMessageBox = function () {
-                    createjs.Tween.get(p._bonus.message_box).to({ y: 480 }, 300).call(p._waitClick)
-                }, p._waitClick = function () {
-                    p._bonus.message_box.activate();
-                    var t = new u.GearBtnHome;
-                    t.position.set(1140, 660), t.initialize(), t.activate(), p._bonus.addChild(t);
-                    var e = new _.AreaBox(0);
-                    e.interactive = !0, e.buttonMode = !0, p._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
-                        p._bonus.removeChild(e), p._finalize(t)
-                    })
-                }, p._layer = e, p._mst_id = i, p._count = n, p._level = l, p._pre_task = h, p._play_bgm = c, p
-            }
+    var o = i(24), r = i(6), s = i(176), a = i(1422), _ = i(1423), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._under_layer = new PIXI.Sprite, e._over_layer = new PIXI.Sprite, e.addChild(e._under_layer), e.addChild(e._over_layer), e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                this._bonus = new h.BonusSlot, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new c.BonusInsert, this._loadBG()
-            }, e.prototype._loadBG = function () {
-                var t = this, e = r.default.model.slot.getMst(this._mst_id);
-                this._bonus.bg.initiailzeForSlotitem(e.rarity, function () {
-                    t._loadSlotImage()
-                })
-            }, e.prototype._loadSlotImage = function () {
-                var t = this, e = new l.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    t._insert.preload(function () {
-                        t._showInsert()
-                    })
-                })
-            }, e.prototype._showInsert = function () {
-                this._insert.initialize(2), this._insert.alpha = 0, this._insert.card.scale.set(.38), this._insert.card.position.set(o.default.width / 2 - 228, o.default.height / 2 + 521), this._insert.flash.position.set(o.default.width / 2, o.default.height / 2), this._layer.addChild(this._insert), createjs.Tween.get(this._insert).to({ alpha: 1 }, 500).call(this._moveCard)
-            }, e.prototype._showBonus = function () {
-                this._bonus.particle.activate(), createjs.Tween.get(this._bonus.white).to({ alpha: 0 }, 500).call(this._showMessageBox)
-            }, e.prototype._finalize = function (t) {
-                var e = this;
-                this._play_bgm && r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
-                    t.deactivate(), e._bonus.removeChild(t), e._endTask()
-                })
-            }, e.prototype.dispose = function () {
-                this._bonus.dispose(), this._layer.removeChild(this._bonus), this._layer = null, this._bonus = null
-            }, e
-        }(p.TaskBonusBase);
-    e.TaskBonusSlot = d
+        return n(e, t), e.prototype.playDamageExplosion = function (t, e, i, n) {
+            void 0 === n && (n = null), i < 0 ? null != n && n() : i < 16 ? this.playExplosionSmall(t, e, n) : i < 40 ? this.playExplosionMiddle(t, e, n) : this.playExplosionLarge(t, e, n)
+        }, e.prototype.playExplosionSmall = function (t, e, i) {
+            void 0 === i && (i = null), r.SE.play("102"), this._explode(t, e, i)
+        }, e.prototype.playExplosionMiddle = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null), createjs.Tween.get(this).call(function () {
+                r.SE.play("103"), n._explode(t - 26, e + 35)
+            }).wait(100).call(function () {
+                n._explode(t + 27, e - 23, i)
+            })
+        }, e.prototype.playExplosionLarge = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null), createjs.Tween.get(this).call(function () {
+                r.SE.play("104"), n._explode(t - 5, e + 33)
+            }).wait(100).call(function () {
+                n._explode(t + 48, e - 24)
+            }).wait(100).call(function () {
+                n._explode(t - 50, e - 8, i)
+            })
+        }, e.prototype.playExplosions = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null), createjs.Tween.get(null).wait(166).call(function () {
+                n._explode(t - 98, e + 135)
+            }).wait(33).call(function () {
+                n._explode(t - 47, e + 84)
+            }).wait(33).call(function () {
+                n._explode(t, e + 30)
+            }).wait(33).call(function () {
+                n._explode(t + 21, e - 27)
+            }).wait(33).call(function () {
+                n._explode(t + 56, e - 95)
+            }).wait(33).call(function () {
+                n._explode(t - 92, e - 42)
+            }).wait(33).call(function () {
+                n._explode(t + 50, e + 134)
+            }).wait(33).call(function () {
+                n._explode(t - 27, e - 80)
+            }).wait(33).call(function () {
+                n._explode(t + 36, e - 161)
+            }).wait(33).call(function () {
+                n._explode(t - 66, e - 150)
+            }).wait(33).call(function () {
+                n._explode(t + 81, e + 44), n._explode(t - 89, e - 53)
+            }).wait(33).call(function () {
+                n._explode(t - 68, e + 146, i)
+            })
+        }, e.prototype._explode = function (t, e, i) {
+            var n = this;
+            void 0 === i && (i = null);
+            var o = new s.Explosion;
+            o.position.set(t, e), this.addChild(o), o.play(function () {
+                n.removeChild(o), null != i && i()
+            })
+        }, e.prototype.playTorpedoWaterColumn = function (t, e) {
+            void 0 === e && (e = null);
+            var i = t.getGlobalPos(!0);
+            i.y += o.BannerSize.H / 2, 1 == t.friend ? (i.x += o.BannerSize.W / 2 + 45, this.playTorpedoWaterColumnToFriend(i.x, i.y, e)) : (i.x -= o.BannerSize.W / 2 + 45, this.playTorpedoWaterColumnToEnemy(i.x, i.y, e))
+        }, e.prototype.playTorpedoWaterColumnToFriend = function (t, e, i) {
+            void 0 === i && (i = null), this._playTorpedoWaterColumn(!0, t, e, i)
+        }, e.prototype.playTorpedoWaterColumnToEnemy = function (t, e, i) {
+            void 0 === i && (i = null), this._playTorpedoWaterColumn(!1, t, e, i)
+        }, e.prototype._playTorpedoWaterColumn = function (t, e, i, n) {
+            var o = this;
+            void 0 === n && (n = null);
+            var r = new a.TorpedoWaterColumn;
+            r.initialize(), t && (r.scale.x = -1), r.position.set(e, i), this.addChild(r), r.play(), r.once("complete", function () {
+                o.removeChild(r), null != n && n()
+            })
+        }, e.prototype.playWaterColumnToFriend = function (t, e, i) {
+            void 0 === i && (i = null), this._playWaterColumn(!0, t, e, i)
+        }, e.prototype.playWaterColumnToEnemy = function (t, e, i) {
+            void 0 === i && (i = null), this._playWaterColumn(!1, t, e, i)
+        }, e.prototype._playWaterColumn = function (t, e, i, n) {
+            var o = this;
+            void 0 === n && (n = null);
+            var r = new _.WaterColumn;
+            r.initialize(), t && (r.scale.x = -1), r.position.set(e, i), this.addChild(r), r.play(), r.once("complete", function () {
+                o.removeChild(r), null != n && n()
+            })
+        }, e
+    }(PIXI.Container);
+    e.LayerExplosion = u
 }

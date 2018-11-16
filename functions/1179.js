@@ -15,19 +15,27 @@ const function1179 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(168), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(3), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClickYes = function () {
+                null != i._cb_onClick && i._cb_onClick(!0)
+            }, i._onClickNo = function () {
+                null != i._cb_onClick && i._cb_onClick(!1)
+            }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
         }
 
-        return n(e, t), e.prototype._initialize = function () {
-            this._icon.texture = r.DUTY_COMMON.getTexture(19);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getFurniture(e, "reward"),
-                n = new PIXI.Sprite(i), s = Math.min(195 / n.width, 195 / n.height);
-            n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = o.DUTY_COMMON.getTexture(1);
+            var e = new PIXI.Sprite(t), i = Math.min(135 / e.width, 135 / e.height);
+            e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = o.DUTY_COMMON.getTexture(3), this._btn_no.texture = o.DUTY_COMMON.getTexture(2)
+        }, e.prototype.activate = function () {
+            1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(r.EventType.CLICK, this._onClickNo))
+        }, e.prototype.deactivate = function () {
+            this._btn_yes.buttonMode = !1, this._btn_yes.off(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(r.EventType.CLICK, this._onClickNo)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb_onClick = null
         }, e
-    }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogFurnitureBtn = a
+    }(PIXI.Sprite);
+    e.RewardSelectConfirm = s
 }

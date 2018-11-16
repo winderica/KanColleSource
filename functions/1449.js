@@ -6,11 +6,19 @@ const function1449 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mst_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_useitem_id")
-            }, enumerable: !0, configurable: !0
-        }), t
+        return t.prototype.getTargetShipIndexes = function () {
+            if (null == this._o) return [];
+            var t = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
+            if (null == t) return [];
+            for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+            return e
+        }, t.prototype.getTowingShipIndexes = function () {
+            if (null == this._o) return [];
+            var t = n.ObjUtil.getNumArray(this._o, "api_tow_idx");
+            if (null == t) return [];
+            for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+            return e
+        }, t
     }();
-    e.BonusUseitemModel = o
+    e.EscapeCandidateModel = o
 }

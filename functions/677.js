@@ -1,34 +1,57 @@
 const function677 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(1), s = i(30), a = i(8), _ = i(37), u = i(6), l = i(678), c = function () {
-        function t(t) {
-            var e = this;
-            this._onClickBack = function () {
-                e.onClickBack()
-            }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new l.ShipDetailView
+    var o = i(3), r = i(57), s = i(14), a = i(4), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClickUpdate = function () {
+                e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
+            }, e._onKeyDown = function () {
+                var t = s.EditTextBoxUtil.text;
+                e._mirrorText.text = t;
+                var i = s.EditTextBoxUtil.validation(t, e.baseText);
+                e.__updateButton__(i, e._editable)
+            };
+            var i = o.ORGANIZE_MAIN.getTexture(27), n = o.ORGANIZE_MAIN.getTexture(57),
+                _ = o.ORGANIZE_MAIN.getTexture(58), u = o.ORGANIZE_MAIN.getTexture(59), l = new PIXI.Sprite(i);
+            return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, u), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(l.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(l.width, 1), e.addChild(l, e.editButton, e.updateButton, e._mirrorText), e
         }
 
-        return t.prototype.start = function (t) {
-            var e = o.default.model.ship.get(t), i = o.default.model.ship.getMst(e.mstID),
-                a = s.ShipUtil.isMaxGradeUp(e, i, !1), _ = o.default.model.deck.isInDeck(e.memID);
-            this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
-            var l = !1;
-            if (_) {
-                l = null != o.default.model.deck.get(_[0]).expedition
-            }
-            this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, l), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, u.SE.play("249");
-            createjs.Tween.get(this.dialogBackground).to({ alpha: 1 }, 125), createjs.Tween.get(this.shipDetailView).to({ x: 471 }, 125).call(function () {
-                o.default.sound.voice.playAtRandom(e.mstID.toString(), [2, 3], [50, 50]), o.default.view.clickGuard = !1
-            })
-        }, t.prototype.hide = function (t) {
-            _.TaskLoadShipResource.abortBy(this.shipDetailView), o.default.view.clickGuard = !0;
-            createjs.Tween.get(this.dialogBackground).to({ alpha: 0 }, 125), createjs.Tween.get(this.shipDetailView).to({ x: n.default.width }, 125).call(function () {
-                o.default.view.clickGuard = !1, t()
-            })
-        }, t.prototype.dispose = function () {
-            this.dialogBackground.off(r.EventType.CLICK, this._onClickBack), this.shipDetailView.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipDetailView), this.onClickBack = null, this.dialogBackground = null, this.mainView = null, this.shipDetailView = null
-        }, t
-    }();
-    e.TaskShipDetail = c
+        return n(e, t), Object.defineProperty(e.prototype, "text", {
+            get: function () {
+                return s.EditTextBoxUtil.text
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.__updateButton__ = function (t, e) {
+            this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
+        }, e.prototype.reload = function (t) {
+            this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
+            var e = s.EditTextBoxUtil.validation(t, this.baseText);
+            this.__updateButton__(e, this._editable)
+        }, Object.defineProperty(e.prototype, "writable", {
+            set: function (t) {
+                s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "editable", {
+            set: function (t) {
+                this.editButton.visible = this._editable = t
+            }, enumerable: !0, configurable: !0
+        }), e
+    }(PIXI.Container);
+    e.EditNameArea = _
 }

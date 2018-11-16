@@ -15,15 +15,19 @@ const function884 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._url = "api_get_member/kdock", e
+    var o = i(10), r = i(0), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._url = "api_req_kousyou/createship_speedchange", n.api_kdock_id = e, n.isLarge = i, n
         }
 
-        return n(e, t), e.prototype._completedEnd = function () {
-            o.default.model.kdock.__setData__(this._raw_data), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_highspeed = 1, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = r.default.model.useItem.get(2), i = r.default.model.kdock.get(this.api_kdock_id),
+                n = this.isLarge ? 10 : 1;
+            e.__setCount__(e.count - n), i.__complete__(), t.prototype._completedEnd.call(this)
         }, e
-    }(r.APIBase);
-    e.KDockAPI = s
+    }(o.APIBase);
+    e.CreateShipSpeedChangeAPI = s
 }

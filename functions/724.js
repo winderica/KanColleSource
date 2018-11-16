@@ -1,41 +1,36 @@
 const function724 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(13), a = i(214), _ = i(725), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
+    var n = i(14), o = i(0), r = i(725), s = function () {
+        function t() {
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
-                var e = a.OrganizeSceneMemory.filterStatus, i = a.OrganizeSceneMemory.japanese;
-                new _.UpdateListStatusAPI(e, i).start(function () {
-                    o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
-                })
-            } else this._endTask()
-        }, e.prototype._isChangeListStatus = function () {
-            if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
-            var t = o.default.model.basic.getFilterStatusOrganizeList(), e = a.OrganizeSceneMemory.filterStatus;
-            if (t.length != e.length) return !0;
-            for (var i = 0; i < t.length; i++) if (t[i] != e[i]) return !0;
-            return !1
-        }, e
-    }(r.TaskBase);
-    e.FinalizeTask = u
+        return Object.defineProperty(t.prototype, "maxNum", {
+            get: function () {
+                return this.api_max_num
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.setData = function (t) {
+            var e = n.ObjUtil.getObject(t, "api_deck", {}), i = t.api_max_num;
+            this.api_max_num = i, this.api_deck = e
+        }, t.prototype.updateData = function (t) {
+            var e = n.ObjUtil.getNumber(t, "api_preset_no");
+            this.api_deck[e.toString()] = t
+        }, t.prototype.getPresetDeckData = function (t) {
+            if (t > this.maxNum) return null;
+            var e = t.toString(), i = this.api_deck[e];
+            return new r.PresetModel(t, i)
+        }, t.prototype.getPresetDeckDataList = function () {
+            for (var t = new Array, e = 1; e <= this.maxNum; e++) {
+                var i = this.getPresetDeckData(e);
+                i.getRealShipCount() > 0 && t.push(i)
+            }
+            return t
+        }, t.prototype.__updateByPresetExpanded__ = function (t) {
+            if (this.maxNum + 1 != t) return void o.default.view.showError("Invalid preset_expand.");
+            this.api_deck[t.toString()] = null, this.api_max_num = t
+        }, t.prototype.__deletePresetDeckData__ = function (t) {
+            delete this.api_deck[t.toString()], this.api_deck[t.toString()] = null
+        }, t
+    }();
+    e.PresetListModel = s
 }

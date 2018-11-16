@@ -15,54 +15,47 @@ const function1283 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(140), s = i(26), a = i(352), _ = i(349), u = i(353), l = i(350), c = i(351),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._base.hitArea = new PIXI.Rectangle(0, 0, 0, 0), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new u.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new l.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
-            }
+    var o = i(20), r = i(1), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
+                null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
+            }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
+        }
 
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
-                get: function () {
-                    return this._selected_airunit_id
-                }, enumerable: !0, configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(7), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
+        return n(e, t), Object.defineProperty(e.prototype, "complete", {
+            get: function () {
+                return this._complete
+            }, set: function (t) {
+                this._complete = t, this.buttonMode = t, this._update()
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
+        }, e.prototype.update = function (t) {
+            this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
+        }, e.prototype.dispose = function () {
+            this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype._update = function () {
+            if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(154), this._img.position.set(0, 0); else {
+                switch (this._airunit_id) {
+                    case 0:
+                        this._img.texture = o.MAP_COMMON.getTexture(150);
+                        break;
+                    case 1:
+                        this._img.texture = o.MAP_COMMON.getTexture(151);
+                        break;
+                    case 2:
+                        this._img.texture = o.MAP_COMMON.getTexture(152);
+                        break;
+                    case 3:
+                        this._img.texture = o.MAP_COMMON.getTexture(153);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
                 }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, u = !1, l = 0; l < this._items.length; l++) {
-                        var c = l < a.length ? a[l] : null;
-                        this._items[l].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), u = u || c.count < c.countMax
-                    }
-                    this._banner.update(t, _), this._supply_btn.update(u)
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._tabs.dispose(), this._banner.dispose(), this._name.destroy(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._supply_btn.dispose()
-            }, e
-        }(PIXI.Container);
-    e.AirUnitPanel = h
+                this._img.position.set(11, 9)
+            }
+        }, e
+    }(PIXI.Container);
+    e.AirUnitAppointmentTitle = s
 }

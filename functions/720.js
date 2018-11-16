@@ -15,27 +15,15 @@ const function720 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(18), r = i(2), s = i(13), a = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(11), r = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i.organizeSceneMain = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new s.UIImageLoader("organize");
-            switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
-                case 2:
-                    e.add("organize_hokyu_dialog_xmas.json");
-                    break;
-                case 4:
-                    e.add("organize_hokyu_dialog_summer.json");
-                    break;
-                default:
-                    e.add("organize_hokyu_dialog_default.json")
-            }
-            e.load(function () {
-                t._endTask()
-            })
+            this.organizeSceneMain.prefinalize(), this._completedEnd()
         }, e
-    }(r.TaskBase);
-    e.TaskLoadResourcesOrganize = a
+    }(o.TaskBase);
+    e.PreFinalizeTask = r
 }

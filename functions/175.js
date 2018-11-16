@@ -15,7 +15,7 @@ const function175 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(45), s = i(2), a = i(6), _ = i(1331), u = i(1338), l = i(135), c = function (t) {
+    var o = i(0), r = i(45), s = i(2), a = i(6), _ = i(1332), u = i(1339), l = i(135), c = function (t) {
         function e(e, i, n, o, r, s) {
             var a = t.call(this) || this;
             return a._completeflg_plane = !1, a._complete_show_damage_number = !1, a._scene = e, a._data = i, a._ships_f = n, a._ships_e = o, a._damage_cutin = r, a._aaCutin = s, a._hunshin_danmaku = [], a

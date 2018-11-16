@@ -22,7 +22,7 @@ const function1381 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
+            this._cutin = new a.CutinSpSR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
         }, e.prototype._start = function () {
             var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
             1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
@@ -73,5 +73,5 @@ const function1381 = function (t, e, i) {
         }, e.prototype._log = function (t) {
         }, e
     }(u.PhaseAttackBase);
-    e.PhaseAttackSpRR = l
+    e.PhaseAttackSpSR = l
 }

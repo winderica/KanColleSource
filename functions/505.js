@@ -6,15 +6,15 @@ const function505 = function (t, e, i) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
+        return Object.defineProperty(t.prototype, "type", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_id")
+                return n.ObjUtil.getNumber(this._o, "api_type")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
+        }), Object.defineProperty(t.prototype, "message", {
             get: function () {
-                return n.ObjUtil.getString(this._o, "api_name")
+                return n.ObjUtil.getString(this._o, "api_message")
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.MapAreaModel = o
+    e.LogModel = o
 }

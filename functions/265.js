@@ -1,9 +1,9 @@
 const function265 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(22), r = i(100), s = i(530), a = function () {
+    var n = i(0), o = i(22), r = i(100), s = i(532), a = i(17), _ = function () {
         function t() {
-            this._bgm = new _, this._se = new u, this._voice = new s.VoiceManagerHolder
+            this._bgm = new u, this._se = new l, this._voice = new s.VoiceManagerHolder
         }
 
         return Object.defineProperty(t.prototype, "bgm", {
@@ -20,8 +20,8 @@ const function265 = function (t, e, i) {
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.SoundManager = a;
-    var _ = function () {
+    e.SoundManager = _;
+    var u = function () {
         function t() {
             this._bgm_id = 0, this._bgm = null
         }
@@ -36,15 +36,15 @@ const function265 = function (t, e, i) {
             }, enumerable: !0, configurable: !0
         }), t.prototype.playBattleBGM = function (t, e, i, n) {
             void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === n && (n = null), this.play(t, e, i, "battle", n)
-        }, t.prototype.play = function (t, e, i, s, a) {
-            if (void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === s && (s = "port"), void 0 === a && (a = null), (null == this._bgm || this._bgm_id != t) && s) {
+        }, t.prototype.play = function (t, e, i, s, _) {
+            if (void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === s && (s = "port"), void 0 === _ && (_ = null), (null == this._bgm || this._bgm_id != t) && s) {
                 this.stop(), this._bgm_id = t;
-                var _ = n.default.option.vol_bgm / 100;
-                if (0 != _) {
-                    var u = o.MathUtil.zeroPadding(t, 3), l = r.SuffixUtil.create(t, "bgm_" + s), c = u + "_" + l,
-                        h = n.default.settings.path_root + "resources/bgm/" + s + "/" + c + ".mp3",
-                        p = { src: [h], onend: a };
-                    p.autoplay = !0, p.loop = e, i > 0 ? (p.volume = 0, this._bgm = new Howl(p), this._bgm.fade(0, _, i)) : (p.volume = _, this._bgm = new Howl(p))
+                var u = n.default.option.vol_bgm / 100;
+                if (0 != u) {
+                    var l = o.MathUtil.zeroPadding(t, 3), c = r.SuffixUtil.create(t, "bgm_" + s), h = l + "_" + c,
+                        p = n.default.settings.path_root + "resources/bgm/" + s + "/" + h + ".mp3",
+                        d = { src: [p], html5: a.HTML5_AUDIO, onend: _ };
+                    d.autoplay = !0, d.loop = e, i > 0 ? (d.volume = 0, this._bgm = new Howl(d), this._bgm.fade(0, u, i)) : (d.volume = u, this._bgm = new Howl(d))
                 }
             }
         }, t.prototype.stop = function () {
@@ -63,7 +63,7 @@ const function265 = function (t, e, i) {
             if (null == this._bgm) return !1;
             this._bgm.volume(t / 100)
         }, t
-    }(), u = function () {
+    }(), l = function () {
         function t() {
         }
 

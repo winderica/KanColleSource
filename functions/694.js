@@ -1,48 +1,51 @@
 const function694 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(695), o = i(700), r = i(702), s = i(704), a = i(101), _ = i(206), u = i(32), l = i(0),
-        c = function () {
-            function t(t, e) {
-                var i = this;
-                this.onCompleteConfirmUseMamiyaIrako = function (t) {
-                    switch (t) {
-                        case!1:
-                            l.default.view.clickGuard = !0, i.taskConfirmUseMamiyaIrako.hide(function () {
-                                i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, l.default.view.clickGuard = !1, i.onComplete()
-                            });
-                            break;
-                        case!0:
-                            l.default.view.clickGuard = !0;
-                            var e = new s.ItemUseCondAPI(!0, i.deckId, i.sweetType), n = new a.UseItemAPI,
-                                o = new _.UserShipAPI, r = new u.APIConnector;
-                            r.add(e), r.add(n), r.add(o), r.start(i.onCompleteCallAPI)
-                    }
-                }, this.onCompleteCallAPI = function () {
-                    i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, i.taskAnimationMamiyaIrako = new r.TaskAnimationMamiyaIrako(i.OrganizeView), l.default.view.overLayer.addChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.preLoad(function () {
-                        i.taskAnimationMamiyaIrako.play(i.sweetType, function () {
-                            i.onWhiteOut()
-                        }, function () {
-                            i.onCompleteAnimation()
-                        })
-                    })
-                }, this.onCompleteAnimation = function () {
-                    l.default.view.overLayer.removeChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.dispose(), i.taskAnimationMamiyaIrako = null, l.default.view.clickGuard = !1, i.onComplete()
-                }, this.mainView = t, this.OrganizeView = e
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
 
-            return t.prototype.start = function (t) {
-                var e = this;
-                this.deckId = t, this.taskChoiceMamiyaIrako = new n.TaskChoiceMamiyaIrako(this.mainView), this.taskChoiceMamiyaIrako.onClickBack = function () {
-                    l.default.view.clickGuard = !0, e.taskChoiceMamiyaIrako.hide(function () {
-                        e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, l.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this.taskChoiceMamiyaIrako.onClickUse = function (t) {
-                    e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, e.taskConfirmUseMamiyaIrako = new o.TaskConfirmUseMamiyaIrako(e.mainView), e.taskConfirmUseMamiyaIrako.onComplete = e.onCompleteConfirmUseMamiyaIrako, e.sweetType = t, e.taskConfirmUseMamiyaIrako.start(t)
-                }, this.taskChoiceMamiyaIrako.start(this.deckId)
-            }, t.prototype.dispose = function () {
-                this.taskChoiceMamiyaIrako && (this.taskChoiceMamiyaIrako.dispose(), this.taskChoiceMamiyaIrako = null), this.taskConfirmUseMamiyaIrako && (this.taskConfirmUseMamiyaIrako.dispose(), this.taskConfirmUseMamiyaIrako = null), this.taskAnimationMamiyaIrako && (this.taskAnimationMamiyaIrako.dispose(), this.taskAnimationMamiyaIrako = null), this.onComplete = null, this.onWhiteOut = null, this.mainView = null, this.deckId = null, this.sweetType = null
-            }, t
-        }();
-    e.TaskMamiyaIrako = c
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(3), r = i(57), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClickYuso = function () {
+                e.onClickYuso()
+            }, e._onClickKido = function () {
+                e.onClickKido()
+            }, e._onClickSuijo = function () {
+                e.onClickSuijo()
+            }, e._onClickBack = function () {
+                e.onClickBack()
+            };
+            var i = o.ORGANIZE_RENGO.getTexture(17), n = o.ORGANIZE_RENGO.getTexture(18), s = new PIXI.Sprite(i),
+                a = new PIXI.Sprite(n), _ = o.ORGANIZE_RENGO.getTexture(0), u = o.ORGANIZE_RENGO.getTexture(2);
+            e.buttonKido = new r.SimpleButton(_, u);
+            var l = o.ORGANIZE_RENGO.getTexture(3), c = o.ORGANIZE_RENGO.getTexture(5);
+            e.buttonSuijo = new r.SimpleButton(l, c);
+            var h = o.ORGANIZE_RENGO.getTexture(6), p = o.ORGANIZE_RENGO.getTexture(8);
+            e.buttonYuso = new r.SimpleButton(h, p);
+            var d = o.ORGANIZE_MAIN.getTexture(7);
+            e.buttonBack = new r.SimpleButton(d, d);
+            var f = o.ORGANIZE_RENGO.getTexture(1), y = new PIXI.Sprite(f), m = o.ORGANIZE_RENGO.getTexture(4),
+                v = new PIXI.Sprite(m), g = o.ORGANIZE_RENGO.getTexture(7), b = new PIXI.Sprite(g);
+            return e.buttonKido.onClick = e._onClickKido, e.buttonSuijo.onClick = e._onClickSuijo, e.buttonYuso.onClick = e._onClickYuso, e.buttonBack.onClick = e._onClickBack, a.position.set(189, 25), e.buttonKido.position.set(84, 61), e.buttonSuijo.position.set(298, 61), e.buttonYuso.position.set(84, 124), e.buttonBack.position.set(211, 192), y.position.set(84, 61), v.position.set(298, 61), b.position.set(84, 124), e.buttonSuijo.visible = e.buttonYuso.visible = e.buttonKido.visible = !1, e.addChild(s, y, v, b, e.buttonKido, e.buttonSuijo, e.buttonYuso, e.buttonBack, a), e
+        }
+
+        return n(e, t), e.prototype.dispose = function () {
+            this.buttonKido.onClick = this._onClickKido = null, this.buttonSuijo.onClick = this._onClickSuijo = null, this.buttonYuso.onClick = this._onClickYuso = null, this.buttonBack.onClick = this._onClickBack = null, this.buttonKido.dispose(), this.buttonSuijo.dispose(), this.buttonYuso.dispose(), this.buttonBack.dispose(), this.buttonKido = null, this.buttonSuijo = null, this.buttonYuso = null, this.buttonBack = null, this.removeChildren()
+        }, e.prototype.update = function (t, e, i) {
+            this.buttonSuijo.reset(), this.buttonYuso.reset(), this.buttonKido.reset(), this.buttonSuijo.visible = this.buttonYuso.visible = this.buttonKido.visible = !1, t && (this.buttonKido.visible = !0), i && (this.buttonYuso.visible = !0), e && (this.buttonSuijo.visible = !0)
+        }, e
+    }(PIXI.Container);
+    e.CombineTypeSelectDialog = s
 }

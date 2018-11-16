@@ -15,16 +15,36 @@ const function987 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(227), r = i(229), s = function (t) {
-        function e(e, i, n) {
-            for (var r = t.call(this, e) || this, s = 0; s < 4; s++) {
-                var a = new o.MapThumbnail(4, i, n, null, null), _ = s % 2 == 0 ? 188 : 689, u = s < 2 ? 207 : 422;
-                a.position.set(_, u), r.addChild(a), r._maps.push(a)
-            }
-            return r
+    var o = i(53), r = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = createjs.Ticker.framerate;
+            return e._cloud1 = new s(3, 60 / i * .0035), e._cloud2 = new s(2, 60 / i * .0025), e._cloud3 = new s(0, 60 / i * .005), e._cloud1.anchor.set(.5, .5), e._cloud2.anchor.set(.5, .5), e._cloud3.anchor.set(.5, .5), e.addChild(e._cloud1), e.addChild(e._cloud2), e.addChild(e._cloud3), e
         }
 
-        return n(e, t), e
-    }(r.LayoutBase);
-    e.LayoutMap4 = s
+        return n(e, t), e.prototype.initialize = function () {
+            this._cloud1.texture = o.SALLY_SORTIE.getTexture(27), this._cloud2.texture = o.SALLY_SORTIE.getTexture(28), this._cloud3.texture = o.SALLY_SORTIE.getTexture(29)
+        }, e.prototype.activate = function () {
+            var t = this;
+            if (null == this._t) {
+                var e = function (e) {
+                    t._cloud1.update(), t._cloud2.update(), t._cloud3.update()
+                };
+                this._t = createjs.Tween.get(this, { loop: !0, onChange: e })
+            }
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Container);
+    e.MapThumbnailLockedCloud = r;
+    var s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._tmp = 150 * Math.random(), n._offset = e, n._speed = i, n
+        }
+
+        return n(e, t), e.prototype.update = function () {
+            var t = createjs.Ticker.framerate;
+            this.x = 90 * Math.cos(this._tmp + this._offset), this.y = 15 * Math.cos(.9 * this._tmp * (60 / t) + this._offset), this._tmp += this._speed
+        }, e
+    }(PIXI.Sprite)
 }

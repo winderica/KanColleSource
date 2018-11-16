@@ -15,51 +15,21 @@ const function936 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = function (t) {
+    var o = i(4), r = i(26), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._star = new PIXI.Sprite, e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(20, 3), e.addChild(e._plus), e._num = new PIXI.Sprite, e._num.position.set(33, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(8, -3), e.addChild(e._max), e
+            e._img = [];
+            var i = new PIXI.Sprite;
+            return e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(0, 27), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 0), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 27), e.addChild(i), e._img.push(i), e._kadou = new o.TextBox(24, 0), e._kadou.y = -5, e.addChild(e._kadou), e._teisu = new o.TextBox(24, 0), e._teisu.y = 21, e.addChild(e._teisu), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = o.SALLY_AIRUNIT.getTexture(58), this._plus.texture = o.SALLY_AIRUNIT.getTexture(57), this._max.texture = o.SALLY_AIRUNIT.getTexture(56)
-        }, e.prototype.update = function (t) {
-            var e;
-            switch (t) {
-                case 1:
-                    e = 47;
-                    break;
-                case 2:
-                    e = 48;
-                    break;
-                case 3:
-                    e = 49;
-                    break;
-                case 4:
-                    e = 50;
-                    break;
-                case 5:
-                    e = 51;
-                    break;
-                case 6:
-                    e = 52;
-                    break;
-                case 7:
-                    e = 53;
-                    break;
-                case 8:
-                    e = 54;
-                    break;
-                case 9:
-                    e = 55;
-                    break;
-                case 10:
-                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !0);
-                default:
-                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !1)
-            }
-            this._star.visible = !0, this._plus.visible = !0, this._num.texture = o.SALLY_AIRUNIT.getTexture(e), this._num.visible = !0, this._max.visible = !1
+            this._img[0].texture = r.SALLY_AIRUNIT.getTexture(135), this._img[1].texture = r.SALLY_AIRUNIT.getTexture(143), this._img[2].texture = r.SALLY_AIRUNIT.getTexture(136), this._img[3].texture = r.SALLY_AIRUNIT.getTexture(136)
+        }, e.prototype.update = function (t, e) {
+            this._kadou.text = t.toString(), this._kadou.x = 72 - this._kadou.width, this._teisu.text = e.toString(), this._teisu.x = 72 - this._teisu.width
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._img = null, this._kadou.destroy(), this._kadou = null, this._teisu.destroy(), this._teisu = null
         }, e
     }(PIXI.Container);
-    e.AirUnitPanelItemLevelIcon = r
+    e.AirUnitPanelItemDetailInfoPanel = s
 }

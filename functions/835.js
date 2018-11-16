@@ -1,42 +1,74 @@
 const function835 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(109), s = i(1), a = function () {
-        function t(t, e, i) {
-            var n = this;
-            this._useHiSpeed = !1, this._onClick = function () {
-                n._useHiSpeed = 1 == n.repairShipConfigView.state, n.onComplete(!0)
+    var n = i(5), o = i(0), r = i(30), s = i(163), a = i(836), _ = i(3), u = i(1), l = function () {
+        function t(t, e, i, n, o) {
+            var a = this;
+            this._pageIndex = 0, this._onClickPage = function (t) {
+                if (a._pageIndex != t) {
+                    var e = a.ships.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                    a.repairShipChoiceView.update(e, a.repairingIds), a._pageIndex = t
+                }
             }, this._onClickBack = function () {
-                n.onComplete(!1)
-            }, i.alpha = 0, i.interactive = !0, i.addListener(s.EventType.CLICK, this._onClickBack), e.position.set(1200, 140), t.addChild(i, e), e.onClick = this._onClick, this.repairShipConfigView = e, this.background = i, this.mainView = t
+                a.onComplete(!1)
+            }, this._onClickListItem = function (t) {
+                a._memShipId = t, a.onComplete(!0)
+            }, this._onClickSort = function () {
+                var t;
+                switch (a._shipSortKeyType) {
+                    case 1:
+                        t = 2;
+                        break;
+                    case 2:
+                        t = 3;
+                        break;
+                    case 3:
+                        t = 4;
+                        break;
+                    case 4:
+                        t = 1
+                }
+                r.ShipUtil.sort(a.ships, t);
+                var e = a.ships.slice(a._pageIndex * s.RepairConst.ITEM_IN_COUNT, a._pageIndex * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                a.repairShipChoiceView.update(e, a.repairingIds), a.shipSortButton.update(t), a._shipSortKeyType = t
+            }, n.onClick = this._onClickSort, i.onChangePage = this._onClickPage, e.onClickListItem = this._onClickListItem, o.interactive = !0, o.addListener(u.EventType.CLICK, this._onClickBack), o.alpha = 0, t.addChild(o, e), e.addChild(i, n), e.position.set(1200, 142), n.position.set(585, 6), i.position.set(69, 528), this.repairShipChoiceView = e, this.shipSortButton = n, this.pagerView = i, this.mainView = t, this.background = o
         }
 
-        return Object.defineProperty(t.prototype, "useHiSpeed", {
+        return Object.defineProperty(t.prototype, "memShipId", {
             get: function () {
-                return this._useHiSpeed
+                return this._memShipId
             }, enumerable: !0, configurable: !0
-        }), t.prototype.start = function (t) {
-            var e = this;
-            o.default.view.clickGuard = !0;
-            var i = !1, n = o.default.model.ship.get(t), r = o.default.model.useItem.get(33).count,
-                s = o.default.model.useItem.get(31).count, a = n.getRepairSteel() <= r, _ = n.getRepairFuel() <= s,
-                u = o.default.model.deck.isInDeck(t), l = o.default.model.useItem.get(1), c = 0 < l.count,
-                h = o.default.model.ndock.getShipMemIDs(), p = -1 < h.indexOf(t);
-            null != u && (i = null != o.default.model.deck.get(u[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
-            var d = createjs.Tween.get(this.repairShipConfigView);
-            createjs.Tween.get(this.background).to({ alpha: 1 }, 150).play(null), d.to({ x: 855 }, 150).call(function () {
-                createjs.Tween.removeTweens(e.repairShipConfigView), createjs.Tween.removeTweens(e.background), e.repairShipConfigView.x = 855, e.background.alpha = 1, e.background.width = 887, o.default.view.clickGuard = !1
+        }), Object.defineProperty(t.prototype, "pageIndex", {
+            get: function () {
+                return this._pageIndex
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "shipSortKeyType", {
+            get: function () {
+                return this._shipSortKeyType
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.start = function (t, e) {
+            var i = this;
+            _.SE.play("249"), o.default.view.clickGuard = !0;
+            var n = o.default.model.ndock.getAll(), u = [];
+            n.forEach(function (t) {
+                u.push(t.shipMemID)
+            });
+            var l = o.default.model.ship.getAll(), c = a.RepairUtil.calcPageCount(l.length);
+            r.ShipUtil.sort(l, e);
+            var h = l.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+            this.repairShipChoiceView.update(h, u), this.shipSortButton.update(e), this.ships = l, this._pageIndex = t, this._shipSortKeyType = e, this.pagerView.init(c), this.pagerView.changePage(t), this.repairingIds = u;
+            var p = createjs.Tween.get(this.repairShipChoiceView);
+            createjs.Tween.get(this.background).to({ alpha: 1 }, 150).play(null), p.to({ x: 532 }, 150).call(function () {
+                o.default.view.clickGuard = !1, i.background.width = 568
             }).play(null)
         }, t.prototype.hide = function (t) {
-            var e = this;
-            r.TaskLoadShipResource.abortBy(this.repairShipConfigView);
-            var i = createjs.Tween.get(this.repairShipConfigView), o = createjs.Tween.get(this.background);
-            this.background.width = n.default.width, o.to({ alpha: 0 }, 150).play(null), i.to({ x: 1200 }, 150).call(function () {
-                createjs.Tween.removeTweens(e.repairShipConfigView), createjs.Tween.removeTweens(e.background), e.repairShipConfigView.x = 1200, e.background.alpha = 0, t()
+            var e = createjs.Tween.get(this.repairShipChoiceView), i = createjs.Tween.get(this.background);
+            this.background.width = n.default.width, i.to({ alpha: 0 }, 150).play(null), e.to({ x: 1200 }, 150).call(function () {
+                t()
             }).play(null)
         }, t.prototype.dispose = function () {
-            this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipConfigView), this.background.removeAllListeners(s.EventType.CLICK), this.background = null, this.repairShipConfigView = null
+            this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipChoiceView), this.repairShipChoiceView.removeChild(this.shipSortButton), this.repairShipChoiceView.removeChild(this.pagerView), this.background.removeAllListeners(u.EventType.CLICK), this.onComplete = null, this._memShipId = null, this.repairShipChoiceView = null, this.shipSortButton = null, this.pagerView = null, this.ships = null, this._shipSortKeyType = null, this._pageIndex = null
         }, t
     }();
-    e.PhaseRepairShipConfig = a
+    e.PhaseRepairShipChoice = l
 }

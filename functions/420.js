@@ -15,108 +15,188 @@ const function420 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(129), a = i(418), _ = i(421), u = function (t) {
+    var o = i(117), r = i(4), s = i(0), a = i(1), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._fuki1_serif = new Array(8), e._fuki2_serif = new Array(2), e._fuki3_serif = new Array(5), e._fuki4_serif = new Array(2), e._fuki1_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(16)), e._fuki1_bg.position.set(-33, 4), e.addChild(e._fuki1_bg);
-            for (var i = 0; i < 8; i++) e._fuki1_serif[i] = new r.TextBox(19, 98690), e._fuki1_serif[i].scale.set(.95, 1), e.addChild(e._fuki1_serif[i]);
-            e._fuki1_mask0 = new PIXI.Graphics, e._fuki1_mask0.beginFill(0), e._fuki1_mask0.drawRect(0, 0, 320, 25), e._fuki1_mask0.endFill(), e._fuki1_serif[0].addChild(e._fuki1_mask0), e._fuki1_serif[0].mask = e._fuki1_mask0, e._fuki1_mask1 = new PIXI.Graphics, e._fuki1_mask1.beginFill(0), e._fuki1_mask1.drawRect(3, 0, 320, 25), e._fuki1_mask1.endFill(), e._fuki1_serif[1].addChild(e._fuki1_mask1), e._fuki1_serif[1].mask = e._fuki1_mask1, e._fuki1_slot_mask = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(20)), e._fuki1_slot_mask.position.set(0, 0), e.addChild(e._fuki1_slot_mask), e._fuki2_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(17)), e._fuki2_bg.position.set(7, 294), e.addChild(e._fuki2_bg);
-            for (var i = 0; i < 2; i++) e._fuki2_serif[i] = new r.TextBox(21, 4999235), e._fuki2_serif[i].text = "", e._fuki2_serif[i].anchor.set(1, 0), e._fuki2_serif[i].position.set(253, 314 + 34 * i), e.addChild(e._fuki2_serif[i]);
-            e._fuki3_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(19)), e._fuki3_bg.position.set(-33, 189), e.addChild(e._fuki3_bg);
-            for (var i = 0; i < 6; i++) e._fuki3_serif[i] = new r.TextBox(19, 98690), e._fuki3_serif[i].scale.set(.95, 1), e.addChild(e._fuki3_serif[i]);
-            return e._fuki4_bg = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(18)), e._fuki4_bg.position.set(-453, -30), e.addChild(e._fuki4_bg), e._fuki4_icon_type = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(14)), e._fuki4_icon_type.anchor.set(.5, .5), e._fuki4_icon_type.position.set(-417, 26), e.addChild(e._fuki4_icon_type), e._fuki4_serif[0] = new r.TextBox(22, 4999235), e._fuki4_serif[0].position.set(-426, -22), e.addChild(e._fuki4_serif[0]), e._fuki4_mask = new PIXI.Graphics, e._fuki4_mask.beginFill(16777215), e._fuki4_mask.drawRect(-400, 12, 270, 39), e.addChild(e._fuki4_mask), e._fuki4_serif[1] = new r.TextBox(22, 98690), e._fuki4_serif[1].position.set(-394, 12), e._fuki4_serif[1].mask = e._fuki4_mask, e.addChild(e._fuki4_serif[1]), e._fuki4_slot_mask = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(15)), e._fuki4_slot_mask.position.set(-261, 4), e.addChild(e._fuki4_slot_mask), e._fuki4_star = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(22)), e._fuki4_star.position.set(-429, 48), e.addChild(e._fuki4_star), e._fuki4_plus = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(21)), e._fuki4_plus.position.set(-411, 52), e.addChild(e._fuki4_plus), e._fuki4_starnum = new r.TextBox(22, 98690), e._fuki4_starnum.position.set(-397, 46), e._fuki4_starnum.text = "", e.addChild(e._fuki4_starnum), e._fuki4_starM = new PIXI.Sprite(a.REVAMP_REVAMP.getTexture(23)), e._fuki4_starM.position.set(-426, 45), e.addChild(e._fuki4_starM), e._revampLevelParticleLayer = new _.RevampLevelParticleLayer, e._revampLevelParticleLayer.position.set(-447, 27), e.addChild(e._revampLevelParticleLayer), e._setBalloon1(9), e._setBalloon2(1), e._setBalloon3(0, 0), e._setBalloon4(0), e
+            e._slotItemParamsValue = new Array(6), e._slotItemParams = new Array(10), e._icon_m16_light = new Array(2), e._icon_stars = new Array(10), e._isCertainly = !1, e._isBtnAnime = !1, e._isRevampableByItem = !1, e._isRevampableByKit = !1, e._isFlashFinished = !0, e._isVoiceFinished = !0, e._box_bg_selected = new u, e._box_bg_selected.position.set(-15, -15), e._box_bg_selected.initialize(0, 2), e._box_bg_selected.width = 457, e._box_bg_selected.height = 192, e.addChild(e._box_bg_selected), e._box_set_bg = new PIXI.Sprite(o.REVAMP_BOX.getTexture(1)), e._box_set_bg.position.set(0, 0), e.addChild(e._box_set_bg), e._frame_item = new PIXI.Sprite(o.REVAMP_BOX.getTexture(15)), e._frame_item.position.set(6, 6), e.addChild(e._frame_item), e._frame_name = new PIXI.Sprite(o.REVAMP_BOX.getTexture(16)), e._frame_name.position.set(85, 6), e.addChild(e._frame_name), e._icon_m1 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(18)), e._icon_m1.position.set(7, 88), e.addChild(e._icon_m1), e._icon_m2 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(20)), e._icon_m2.position.set(73, 88), e.addChild(e._icon_m2), e._icon_m3 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(21)), e._icon_m3.position.set(142, 88), e.addChild(e._icon_m3), e._icon_m4 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(22)), e._icon_m4.position.set(210, 88), e.addChild(e._icon_m4), e._icon_m8 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(23)), e._icon_m8.position.set(7, 120), e.addChild(e._icon_m8), e._icon_m16 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(24)), e._icon_m16.position.set(70, 120), e.addChild(e._icon_m16), e._slotItemIcon = new PIXI.Sprite, e._slotItemIcon.position.set(43, 45), e._slotItemIcon.anchor.set(.5, .5), e._slotItemIcon.scale.set(.2, .2), e.addChild(e._slotItemIcon), e._slotItemIcon_mask = new PIXI.Graphics, e._slotItemIcon_mask.beginFill(16777215), e._slotItemIcon_mask.drawRect(0, 0, 82, 85), e._slotItemIcon_mask.endFill(), e.addChild(e._slotItemIcon_mask), e._slotItemIcon.mask = e._slotItemIcon_mask, e._slotTypeItemIcon = new PIXI.Sprite, e._slotTypeItemIcon.position.set(108, 28), e._slotTypeItemIcon.anchor.set(.5, .5), e.addChild(e._slotTypeItemIcon), e._frame_name_length_mask = new PIXI.Graphics, e._frame_name_length_mask.beginFill(16777215), e._frame_name_length_mask.drawRect(130, 10, 291, 36), e.addChild(e._frame_name_length_mask), e._slotItemName = new r.TextBox(21, 4999235), e._slotItemName.text = "", e._slotItemName.mask = e._frame_name_length_mask, e._slotItemName.position.set(132, 15), e.addChild(e._slotItemName), e._frame_name_mask = new PIXI.Sprite(o.REVAMP_BOX.getTexture(17)), e._frame_name_mask.scale.set(.4, 1), e._frame_name_mask.position.set(373, 10), e.addChild(e._frame_name_mask), e._frame_name_mask2 = new PIXI.Sprite(o.REVAMP_BOX.getTexture(17)), e._frame_name_mask2.visible = !1, e._frame_name_mask2.position.set(301, 10), e.addChild(e._frame_name_mask2);
+            for (var i = 0; i < 4; i++) e._slotItemParams[i] = new r.TextBox(17, 4999235), e._slotItemParams[i].position.set(37 + 67 * i, 91), e._slotItemParams[i].text = "", e.addChild(e._slotItemParams[i]);
+            for (var i = 4; i < 6; i++) e._slotItemParams[i] = new r.TextBox(17, 4999235), e._slotItemParams[i].position.set(37 + 61 * (i - 4), 129), e._slotItemParams[i].text = "", e.addChild(e._slotItemParams[i]);
+            e._btn_select = new PIXI.Sprite(o.REVAMP_BOX.getTexture(10)), e._btn_select.position.set(282, 91), e.addChild(e._btn_select), e._btn_cancel = new u, e._btn_cancel.initialize(4, 6), e._btn_cancel.visible = !1, e._btn_cancel.position.set(282, 90), e.addChild(e._btn_cancel), e._btn_start = new u, e._btn_start.initialize(12, 14), e._btn_start.visible = !1, e._btn_start.position.set(282, 121), e.addChild(e._btn_start), e._icon_quickly = new PIXI.Sprite(o.REVAMP_BOX.getTexture(26)), e._icon_quickly.visible = !1, e._icon_quickly.position.set(351, 49), e.addChild(e._icon_quickly), e._switch_btn = new u, e._switch_btn.initialize(8, 8), e._switch_btn.visible = !1, e._switch_btn.position.set(337, 64), e.addChild(e._switch_btn), e._switch_btn_maru = new PIXI.Sprite(o.REVAMP_BOX.getTexture(7)), e._switch_btn_maru.visible = !1, e._switch_btn_maru.position.set(402, 64), e.addChild(e._switch_btn_maru);
+            for (var i = 0; i < 2; i++) e._icon_m16_light[i] = new PIXI.Sprite(o.REVAMP_BOX.getTexture(19)), e._icon_m16_light[i].visible = !1, e._icon_m16_light[i].position.set(64 * i - 1, 111), e.addChild(e._icon_m16_light[i]);
+            for (var i = 0; i < 10; i++) e._icon_stars[i] = new PIXI.Sprite(o.REVAMP_BOX.getTexture(27)), e._icon_stars[i].visible = !1, e._icon_stars[i].position.set(85 + 19 * i, 60), e.addChild(e._icon_stars[i]);
+            return e._icon_star = new PIXI.Sprite(o.REVAMP_BOX.getTexture(27)), e._icon_star.visible = !1, e._icon_star.position.set(376, 19), e.addChild(e._icon_star), e._icon_plus = new PIXI.Sprite(o.REVAMP_BOX.getTexture(25)), e._icon_plus.visible = !1, e._icon_plus.position.set(393, 22), e.addChild(e._icon_plus), e._text_level = new r.TextBox(17, 4565413), e._text_level.visible = !1, e._text_level.position.set(406, 18), e._text_level.text = "", e.addChild(e._text_level), e._icon_starM = new PIXI.Sprite(o.REVAMP_BOX.getTexture(28)), e._icon_starM.visible = !1, e._icon_starM.position.set(387, 13), e.addChild(e._icon_starM), e._need_item = new PIXI.Sprite(o.REVAMP_BOX.getTexture(31)), e._need_item.visible = !1, e._need_item.position.set(132, 121), e.addChild(e._need_item), e._box_white_bg = new PIXI.Sprite(o.REVAMP_BOX.getTexture(3)), e._box_white_bg.visible = !0, e._box_white_bg.alpha = 0, e.addChild(e._box_white_bg), e
         }
 
-        return n(e, t), e.prototype._setBalloon4 = function (t) {
-            0 == t ? (this._fuki4_bg.visible = !1, this._fuki4_serif[0].visible = !1, this._fuki4_serif[1].visible = !1, this._fuki4_icon_type.visible = !1, this._fuki4_slot_mask.visible = !1, this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1, this.SetResultBalloonKira(!1)) : (this._fuki4_bg.visible = !0, this._fuki4_serif[0].visible = !0, this._fuki4_serif[1].visible = !0, this._fuki4_icon_type.visible = !0, this._fuki4_slot_mask.visible = !0, this._fuki4_star.visible = !0, this._fuki4_plus.visible = !0, this._fuki4_starnum.visible = !0, this._fuki4_starM.visible = !0), 1 == t && (this._fuki4_serif[0].text = "", this._fuki4_serif[1].text = "", this._fuki4_starnum.text = "")
-        }, e.prototype._setBalloon3 = function (t, e) {
-            if (0 == t) {
-                this._fuki3_bg.visible = !1;
-                for (var i = 0; i < 6; i++) this._fuki3_serif[i].visible = !1
-            } else {
-                this._fuki3_bg.visible = !0;
-                for (var i = 0; i < 6; i++) this._fuki3_serif[i].visible = !0
-            }
-            if (0 == e) {
-                for (var i = 3; i < 6; i++) this._fuki3_serif[i].visible = !1;
-                this._fuki3_serif[0].position.set(20, 215)
-            } else {
-                for (var i = 3; i < 6; i++) this._fuki3_serif[i].visible = !0;
-                this._fuki3_serif[0].position.set(20, 193)
-            }
-            1 == t ? (this._fuki3_serif[0].style.fontSize = 19, this._fuki3_serif[0].style.fill = 98690, this._fuki3_serif[0].text = "", this._fuki3_serif[1].style.fontSize = 19, this._fuki3_serif[1].style.fill = 4999235, this._fuki3_serif[1].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki3_serif[1].position.set(this._fuki3_serif[0].position.x + this._fuki3_serif[0].width, this._fuki3_serif[0].position.y), this._fuki3_serif[2].style.fontSize = 18, this._fuki3_serif[2].style.fill = 4999235, this._fuki3_serif[2].text = "") : 2 == t && (this._fuki3_serif[0].style.fontSize = 19, this._fuki3_serif[0].style.fill = 15859712, this._fuki3_serif[0].text = "", this._fuki3_serif[1].style.fontSize = 19, this._fuki3_serif[1].style.fill = 15859712, this._fuki3_serif[1].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki3_serif[1].position.set(this._fuki3_serif[0].position.x + this._fuki3_serif[0].width, this._fuki3_serif[0].position.y), this._fuki3_serif[2].style.fontSize = 18, this._fuki3_serif[2].style.fill = 4999235, this._fuki3_serif[2].text = ""), 1 == e ? (this._fuki3_serif[3].style.fontSize = 19, this._fuki3_serif[3].style.fill = 98690, this._fuki3_serif[3].text = "", this._fuki3_serif[4].style.fontSize = 19, this._fuki3_serif[4].style.fill = 4999235, this._fuki3_serif[4].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki3_serif[4].position.set(this._fuki3_serif[3].position.x + this._fuki3_serif[3].width, this._fuki3_serif[3].position.y), this._fuki3_serif[5].style.fontSize = 18, this._fuki3_serif[5].style.fill = 4999235, this._fuki3_serif[5].text = "") : 2 == e && (this._fuki3_serif[3].style.fontSize = 19, this._fuki3_serif[3].style.fill = 15859712, this._fuki3_serif[3].text = "", this._fuki3_serif[4].style.fontSize = 19, this._fuki3_serif[4].style.fill = 15859712, this._fuki3_serif[4].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki3_serif[4].position.set(this._fuki3_serif[3].position.x + this._fuki3_serif[3].width, this._fuki3_serif[3].position.y), this._fuki3_serif[5].style.fontSize = 18, this._fuki3_serif[5].style.fill = 4999235, this._fuki3_serif[5].text = "")
-        }, e.prototype._setBalloon2 = function (t) {
-            0 == t ? (this._fuki2_serif[0].visible = !1, this._fuki2_serif[1].visible = !1, this._fuki2_bg.visible = !1) : (this._fuki2_serif[0].visible = !0, this._fuki2_serif[1].visible = !0, this._fuki2_bg.visible = !0), this._fuki2_serif[0].text = o.default.model.useItem.getMaterialCounts().devKit + "", this._fuki2_serif[1].text = o.default.model.useItem.getMaterialCounts().revKit + ""
-        }, e.prototype._setBalloon1 = function (t) {
-            if (0 == t) {
-                for (var e = 0; e < 8; e++) this._fuki1_serif[e].visible = !1;
-                this._fuki1_bg.visible = !1, this._fuki1_slot_mask.visible = !1
-            } else {
-                for (var e = 0; e < 8; e++) this._fuki1_serif[e].visible = !0;
-                this._fuki1_bg.visible = !0, this._fuki1_slot_mask.visible = !0
-            }
-            9 == t ? (this._fuki1_serif[0].style.fontSize = 22, this._fuki1_serif[0].style.fill = 4999235, this._fuki1_serif[0].text = "\u63d0\u7763\u3001\u660e\u77f3\u306e\u5de5\u5ee0\u3078\u3088\u3046\u3053\u305d\uff01", this._fuki1_serif[0].position.set(21, 67), this._fuki1_serif[1].style.fontSize = 22, this._fuki1_serif[1].style.fill = 4999235, this._fuki1_serif[1].text = "\u3069\u306e\u88c5\u5099\u306e\u6539\u4fee\u3092\u8a66\u307f\u307e\u3059\u304b\uff1f", this._fuki1_serif[1].position.set(21, 93), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 4999235, this._fuki1_serif[2].text = "", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 98690, this._fuki1_serif[3].text = "", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 4999235, this._fuki1_serif[4].text = "", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 15, this._fuki1_serif[5].style.fill = 4999235, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(132, 144), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(174, 153), this._fuki1_slot_mask.visible = !1) : 1 == t ? (this._fuki1_serif[0].style.fontSize = 22, this._fuki1_serif[0].style.fill = 98690, this._fuki1_serif[0].text = "", this._fuki1_serif[0].position.set(21, 64), this._fuki1_serif[1].style.fontSize = 21, this._fuki1_serif[1].style.fill = 4999235, this._fuki1_serif[1].text = "\u3092\u3001\u6539\u4fee\u3057\u307e\u3059\u306d\uff01", this._fuki1_serif[1].position.set(21, 90), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 4999235, this._fuki1_serif[2].text = "", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 98690, this._fuki1_serif[3].text = "", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 4999235, this._fuki1_serif[4].text = "", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 15, this._fuki1_serif[5].style.fill = 4999235, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(132, 129), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(174, 153), this._fuki1_slot_mask.visible = !0, this._fuki1_slot_mask.position.set(231, 50)) : 2 == t ? (this._fuki1_serif[0].style.fontSize = 19, this._fuki1_serif[0].style.fill = 98690, this._fuki1_serif[0].text = "", this._fuki1_serif[0].position.set(21, 19), this._fuki1_serif[1].style.fontSize = 19, this._fuki1_serif[1].style.fill = 4999235, this._fuki1_serif[1].text = "\u3092\u3001\u6539\u4fee\u3057\u307e\u3059\u306d\uff01", this._fuki1_serif[1].position.set(21, 42), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 4999235, this._fuki1_serif[2].text = "\u3053\u306e\u6539\u4fee\u306b\u306f\u3001\u7121\u6539\u4fee\u306e", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 98690, this._fuki1_serif[3].text = "", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 4999235, this._fuki1_serif[4].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 15, this._fuki1_serif[5].style.fill = 4999235, this._fuki1_serif[5].text = "\uff08\u203b\u6539\u4fee\u3067\u6d88\u8cbb\u3057\u307e\u3059\uff09", this._fuki1_serif[5].position.set(132, 129), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "\u540c\u6539\u4fee\u6d88\u8cbb\u53ef\u80fd\u88c5\u5099\u6570", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "\xd7", this._fuki1_serif[7].position.set(162, 153), this._fuki1_slot_mask.visible = !0, this._fuki1_slot_mask.position.set(231, 7)) : 3 == t ? (this._fuki1_serif[0].style.fontSize = 19, this._fuki1_serif[0].style.fill = 98690, this._fuki1_serif[0].text = "", this._fuki1_serif[0].position.set(21, 19), this._fuki1_serif[1].style.fontSize = 19, this._fuki1_serif[1].style.fill = 4999235, this._fuki1_serif[1].text = "\u3092\u3001\u6539\u4fee\u3057\u307e\u3059\u306d\uff01", this._fuki1_serif[1].position.set(21, 42), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 16711680, this._fuki1_serif[2].text = "\u3053\u306e\u6539\u4fee\u306b\u5fc5\u8981\u3068\u306a\u308b", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 16711680, this._fuki1_serif[3].text = "(\u7121\u6539\u4fee)", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 98690, this._fuki1_serif[4].text = "", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 19, this._fuki1_serif[5].style.fill = 16711680, this._fuki1_serif[5].text = "\u304c\u8db3\u308a\u307e\u305b\u3093\u3002", this._fuki1_serif[5].position.set(21, 145), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(168, 153), this._fuki1_slot_mask.visible = !0, this._fuki1_slot_mask.position.set(231, 7)) : 4 == t && (this._fuki1_serif[0].style.fontSize = 19, this._fuki1_serif[0].style.fill = 16711680, this._fuki1_serif[0].text = "\u73fe\u5728\u9078\u629e\u3055\u308c\u305f\u88c5\u5099", this._fuki1_serif[0].position.set(21, 39), this._fuki1_serif[1].style.fontSize = 19, this._fuki1_serif[1].style.fill = 98690, this._fuki1_serif[1].text = "", this._fuki1_serif[1].position.set(21, 61), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 16711680, this._fuki1_serif[2].text = "\u306f\u3001\u3053\u308c\u4ee5\u4e0a\u306e\u6539\u4fee\u304c\u3067\u304d\u307e\u305b\u3093\u3002", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 16711680, this._fuki1_serif[3].text = "", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 98690, this._fuki1_serif[4].text = "", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 19, this._fuki1_serif[5].style.fill = 16711680, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(21, 145), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(168, 153), this._fuki1_slot_mask.visible = !0, this._fuki1_slot_mask.position.set(231, 40))
-        }, e.prototype.ResetBaloon = function () {
-            this._setBalloon1(9), this._setBalloon3(0, 0), this._setBalloon4(0)
-        }, e.prototype._setstars = function (t) {
-            0 == t ? (this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1, this._fuki4_starnum.text = "") : t < 10 ? (this._fuki4_star.visible = !0, this._fuki4_plus.visible = !0, this._fuki4_starnum.visible = !0, this._fuki4_starM.visible = !1, this._fuki4_starnum.text = t + "") : (this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !0, this._fuki4_starnum.text = "")
-        }, e.prototype.SetResultBalloon = function (t, e, i) {
-            if (t) {
-                this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u6210\u529f\u3057\u307e\u3057\u305f\uff01";
-                var n = o.default.model.slot.getMst(e).iconType;
-                switch (this._fuki4_icon_type.texture = s.COMMON_ICON_WEAPON.getTextureFromMstID(n), n) {
-                    case 4:
-                        this._fuki4_icon_type.position.y = 23;
-                        break;
-                    case 5:
-                    case 13:
-                        this._fuki4_icon_type.position.y = 25;
-                        break;
-                    case 15:
-                        this._fuki4_icon_type.position.y = 23;
-                        break;
-                    case 16:
-                        this._fuki4_icon_type.position.y = 25;
-                        break;
-                    case 23:
-                        this._fuki4_icon_type.position.y = 24;
-                        break;
-                    case 24:
-                    case 34:
-                        this._fuki4_icon_type.position.y = 27;
-                        break;
-                    case 36:
-                    case 42:
-                        this._fuki4_icon_type.position.y = 24;
-                        break;
-                    case 43:
-                        this._fuki4_icon_type.position.y = 25;
-                        break;
-                    default:
-                        this._fuki4_icon_type.position.y = 26
-                }
-                this._fuki4_serif[1].text = o.default.model.slot.getMst(e).name, this._fuki4_serif[1].visible = !0, this._fuki4_icon_type.visible = !0, this._fuki4_slot_mask.visible = !0, this._setstars(i)
-            } else this._fuki4_serif[0].text = "\u6539\u4fee\u306b\u5931\u6557\u3057\u307e\u3057\u305f...\u3002", this._fuki4_serif[1].visible = !1, this._fuki4_icon_type.visible = !1, this._fuki4_slot_mask.visible = !1, this._fuki4_star.visible = !1, this._fuki4_plus.visible = !1, this._fuki4_starnum.visible = !1, this._fuki4_starM.visible = !1
-        }, e.prototype.SetResultBalloonKira = function (t) {
-            this._revampLevelParticleLayer.visible = t, t ? this._revampLevelParticleLayer.initialize() : this._revampLevelParticleLayer.dispose()
-        }, e.prototype.SetBalloon = function (t, e, i) {
-            0 == t.req_buildkit && 0 == t.req_remodelkit ? (this._setBalloon1(4), this._fuki1_serif[1].text = o.default.model.slot.getMst(t.slot_id).name) : 0 == t.req_slot_num ? (this._setBalloon1(1), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name) : 0 != t.req_slot_num && (e >= t.req_slot_num ? 1 == t.change_flag && i ? (this._setBalloon1(3), this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 16711680, this._fuki1_serif[2].text = "\u3053\u306e\u88c5\u5099\u3092\u6539\u4fee\u3059\u308b\u306b\u306f", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 16711680, this._fuki1_serif[3].text = "\u540c\u88c5\u5099\u306e\u30ed\u30c3\u30af\u89e3\u9664\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 98690, this._fuki1_serif[4].text = "", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 19, this._fuki1_serif[5].style.fill = 16711680, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(21, 145)) : (this._setBalloon1(2), this._fuki1_serif[3].text = o.default.model.slot.getMst(t.req_slot_id).name + "\xd7" + t.req_slot_num, this._fuki1_serif[7].text = "\xd7" + e) : (this._setBalloon1(3), this._fuki1_serif[4].text = o.default.model.slot.getMst(t.req_slot_id).name + "\xd7" + t.req_slot_num), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name);
-            var n = 0;
-            t.req_useitem_num2 > 0 && (n = 1);
-            var r = 0, s = 0;
-            t.req_useitem_num > 0 && (t.req_useitem_num <= o.default.model.useItem.getCount(t.req_useitem_id) ? 71 == t.req_useitem_id ? (this._setBalloon3(0, n), this._setBalloon1(2), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name, this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 4999235, this._fuki1_serif[2].text = "\u3053\u306e\u6539\u4fee\u306b\u306f\u3001", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 6201187, this._fuki1_serif[3].text = o.default.model.useItem.get(t.req_useitem_id).name + (t.req_useitem_num < 2 ? "" : "\xd7" + t.req_useitem_num), this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 4999235, this._fuki1_serif[4].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 15, this._fuki1_serif[5].style.fill = 4999235, this._fuki1_serif[5].text = "\uff08\u203b\u6539\u4fee\u3067\u6d88\u8cbb\u3057\u307e\u3059\uff09", this._fuki1_serif[5].position.set(132, 129), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(162, 153)) : r = 1 : 71 == t.req_useitem_id ? (this._setBalloon3(0, n), this._setBalloon1(3), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name, this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 6201187, this._fuki1_serif[3].text = o.default.model.useItem.get(t.req_useitem_id).name + (t.req_useitem_num < 2 ? "" : "\xd7" + t.req_useitem_num), this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 16711680, this._fuki1_serif[4].text = "\u304c\u8db3\u308a\u307e\u305b\u3093\u3002", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 19, this._fuki1_serif[5].style.fill = 16711680, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(21, 145), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(168, 153)) : r = 2), t.req_useitem_num2 > 0 && (t.req_useitem_num2 <= o.default.model.useItem.getCount(t.req_useitem_id2) ? 71 == t.req_useitem_id2 ? (this._setBalloon3(0, n), this._setBalloon1(2), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name, this._fuki1_serif[2].style.fontSize = 19, this._fuki1_serif[2].style.fill = 4999235, this._fuki1_serif[2].text = "\u3053\u306e\u6539\u4fee\u306b\u306f\u3001", this._fuki1_serif[2].position.set(21, 82), this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 6201187, this._fuki1_serif[3].text = o.default.model.useItem.get(t.req_useitem_id).name + (t.req_useitem_num < 2 ? "" : "\xd7" + t.req_useitem_num), this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 4999235, this._fuki1_serif[4].text = "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 15, this._fuki1_serif[5].style.fill = 4999235, this._fuki1_serif[5].text = "\uff08\u203b\u6539\u4fee\u3067\u6d88\u8cbb\u3057\u307e\u3059\uff09", this._fuki1_serif[5].position.set(132, 129), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(162, 153)) : s = 1 : 71 == t.req_useitem_id2 ? (this._setBalloon3(0, n), this._setBalloon1(3), this._fuki1_serif[0].text = o.default.model.slot.getMst(t.slot_id).name, this._fuki1_serif[3].style.fontSize = 19, this._fuki1_serif[3].style.fill = 6201187, this._fuki1_serif[3].text = o.default.model.useItem.get(t.req_useitem_id).name + (t.req_useitem_num < 2 ? "" : "\xd7" + t.req_useitem_num), this._fuki1_serif[3].position.set(21, 103), this._fuki1_serif[4].style.fontSize = 19, this._fuki1_serif[4].style.fill = 16711680, this._fuki1_serif[4].text = "\u304c\u8db3\u308a\u307e\u305b\u3093\u3002", this._fuki1_serif[4].position.set(21, 124), this._fuki1_serif[5].style.fontSize = 19, this._fuki1_serif[5].style.fill = 16711680, this._fuki1_serif[5].text = "", this._fuki1_serif[5].position.set(21, 145), this._fuki1_serif[6].style.fontSize = 15, this._fuki1_serif[6].style.fill = 4999235, this._fuki1_serif[6].text = "", this._fuki1_serif[6].position.set(21, 153), this._fuki1_serif[7].style.fontSize = 15, this._fuki1_serif[7].style.fill = 98690, this._fuki1_serif[7].text = "", this._fuki1_serif[7].position.set(168, 153)) : s = 2), this._setBalloon3(r, n * s), t.req_useitem_num > 0 && (0 == t.req_useitem_num2 ? (this._fuki3_serif[0].text = o.default.model.useItem.get(t.req_useitem_id).name + "\xd7" + t.req_useitem_num, this._fuki3_serif[1].position.set(this._fuki3_serif[0].position.x + this._fuki3_serif[0].width, this._fuki3_serif[0].position.y), this._fuki3_serif[2].text = "\uff08\u73fe\u5728\u4fdd\u6709\u6570\xd7" + o.default.model.useItem.getCount(t.req_useitem_id) + "\uff09", this._fuki3_serif[2].position.set(this._fuki3_serif[0].position.x, this._fuki3_serif[0].position.y + this._fuki3_serif[0].height), this._fuki3_serif[3].visible = !1, this._fuki3_serif[4].visible = !1, this._fuki3_serif[5].visible = !1) : (this._fuki3_serif[0].text = o.default.model.useItem.get(t.req_useitem_id).name + "\xd7" + t.req_useitem_num, this._fuki3_serif[1].position.set(this._fuki3_serif[0].position.x + this._fuki3_serif[0].width, this._fuki3_serif[0].position.y), this._fuki3_serif[2].text = "\uff08\u73fe\u5728\u4fdd\u6709\u6570\xd7" + o.default.model.useItem.getCount(t.req_useitem_id) + "\uff09", this._fuki3_serif[2].position.set(this._fuki3_serif[0].position.x, this._fuki3_serif[0].position.y + this._fuki3_serif[0].height), this._fuki3_serif[3].visible = !0, this._fuki3_serif[4].visible = !0, this._fuki3_serif[5].visible = !0, this._fuki3_serif[3].text = o.default.model.useItem.get(t.req_useitem_id2).name + "\xd7" + t.req_useitem_num2, this._fuki3_serif[3].position.set(this._fuki3_serif[0].position.x, this._fuki3_serif[2].position.y + this._fuki3_serif[2].height + 2), this._fuki3_serif[4].position.set(this._fuki3_serif[3].position.x + this._fuki3_serif[3].width, this._fuki3_serif[3].position.y), this._fuki3_serif[5].text = "\uff08\u73fe\u5728\u4fdd\u6709\u6570\xd7" + o.default.model.useItem.getCount(t.req_useitem_id2) + "\uff09", this._fuki3_serif[5].position.set(this._fuki3_serif[2].position.x, this._fuki3_serif[3].position.y + this._fuki3_serif[3].height)))
+        return n(e, t), Object.defineProperty(e.prototype, "isCertainly", {
+            get: function () {
+                return this._isCertainly ? 1 : 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "isFlashFinished", {
+            get: function () {
+                return this._isFlashFinished
+            }, set: function (t) {
+                this._isFlashFinished = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "isVoiceFinished", {
+            set: function (t) {
+                this._isVoiceFinished = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "box_bg_selected", {
+            get: function () {
+                return this._box_bg_selected
+            }, set: function (t) {
+                this._box_bg_selected = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotItemIcon", {
+            get: function () {
+                return this._slotItemIcon
+            }, set: function (t) {
+                this._slotItemIcon = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotTypeItemIcon", {
+            get: function () {
+                return this._slotTypeItemIcon
+            }, set: function (t) {
+                this._slotTypeItemIcon = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotItemName", {
+            get: function () {
+                return this._slotItemName
+            }, set: function (t) {
+                this._slotItemName = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotItemParamsValue", {
+            get: function () {
+                return this._slotItemParamsValue
+            }, set: function (t) {
+                this._slotItemParamsValue = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "slotItemParams", {
+            get: function () {
+                return this._slotItemParams
+            }, set: function (t) {
+                this._slotItemParams = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_select", {
+            get: function () {
+                return this._btn_select
+            }, set: function (t) {
+                this._btn_select = t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_cancel", {
+            get: function () {
+                return this._btn_cancel
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_start", {
+            get: function () {
+                return this._btn_start
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "icon_quickly", {
+            get: function () {
+                return this._icon_quickly
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "switch_btn", {
+            get: function () {
+                return this._switch_btn
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "icon_m16_light", {
+            get: function () {
+                return this._icon_m16_light
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "need_item", {
+            get: function () {
+                return this._need_item
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.SlotItemParamsUpdate = function () {
+            for (var t = 0; t < 6; t++) this._slotItemParams[t].text = (t > 3 ? "x" : "") + this._slotItemParamsValue[t].toString()
+        }, e.prototype.SetNumbers = function (t, e) {
+            this._slotItemParams[4].text = "x" + t, this._slotItemParams[5].text = "x" + e, this._req_buildkit = t, this._req_remodelkit = e
+        }, e.prototype.SetDetailNumbers = function (t, e, i) {
+            this._certain_buildkit = t, this._certain_remodelkit = e, this._revampableItems = i
+        }, e.prototype.ToggleCertainSwitch = function () {
+            var t = this;
+            this._isBtnAnime || (this._isBtnAnime = !0, this._isCertainly ? (this._isCertainly = !1, this._tween0 = createjs.Tween.get(this._switch_btn_maru).to({ x: 402 }, 233, createjs.Ease.cubicOut).call(function () {
+                t._tween0 = null;
+                for (var e = 0; e < 2; e++) t._icon_m16_light[e].visible = !1;
+                t._switch_btn.dispose(), t._switch_btn.initialize(8, 8), t._slotItemParams[4].text = "x" + t._req_buildkit, t._slotItemParams[5].text = "x" + t._req_remodelkit, t.CheckGoBtnNyCertainly()
+            })) : (this._isCertainly = !0, this._tween0 = createjs.Tween.get(this._switch_btn_maru).to({ x: 337 }, 233, createjs.Ease.cubicOut).call(function () {
+                t._tween0 = null;
+                for (var e = 0; e < 2; e++) t._icon_m16_light[e].visible = !0;
+                t._switch_btn.dispose(), t._switch_btn.initialize(9, 9), t._slotItemParams[4].text = "x" + t._certain_buildkit, t._slotItemParams[5].text = "x" + t._certain_remodelkit, t.CheckGoBtnNyCertainly()
+            })))
+        }, e.prototype.SetSwitchReset = function () {
+            this._switch_btn_maru.position.set(402, 64);
+            for (var t = 0; t < 2; t++) this._icon_m16_light[t].visible = !1;
+            this._switch_btn.dispose(), this._switch_btn.initialize(8, 8), this._slotItemParams[4].text = "x" + this._req_buildkit, this._slotItemParams[5].text = "x" + this._req_remodelkit, this._isCertainly = !1
+        }, e.prototype.SetDetail = function (t) {
+            this._isCertainly = !1, this._box_bg_selected.visible = !t, this._box_bg_selected.interactive = this._box_bg_selected.buttonMode = !t, this._btn_select.visible = !t, this._btn_cancel.visible = t, this._btn_cancel.interactive = this._btn_cancel.buttonMode = t, this._btn_start.visible = t, this._btn_start.interactive = this._btn_start.buttonMode = t, this._icon_quickly.visible = t, this._switch_btn.visible = t, this._switch_btn.interactive = this._switch_btn.buttonMode = t, this._switch_btn_maru.visible = t, this._need_item.visible = t;
+            for (var e = 0; e < 2; e++) this._icon_m16_light[e].visible = !1;
+            t ? this._btn_cancel.texture = o.REVAMP_BOX.getTexture(4) : (this.SetStarts(0), this.SetSwitchReset(), this._need_item.texture = o.REVAMP_BOX.getTexture(31), this._btn_start.dispose(), this._btn_start.initialize(12, 14), this._btn_start.interactive = this._btn_start.buttonMode = !0)
+        }, e.prototype.CheckGoBtnNyCertainly = function () {
+            var t = !0;
+            this._isCertainly ? (this._certain_buildkit > s.default.model.useItem.getMaterialCounts().devKit || this._certain_remodelkit > s.default.model.useItem.getMaterialCounts().revKit) && (t = !1) : (this._req_buildkit > s.default.model.useItem.getMaterialCounts().devKit || this._req_remodelkit > s.default.model.useItem.getMaterialCounts().revKit) && (t = !1), (this._slotItemParamsValue[0] > s.default.model.useItem.getMaterialCounts().fuel || this._slotItemParamsValue[1] > s.default.model.useItem.getMaterialCounts().ammo || this._slotItemParamsValue[2] > s.default.model.useItem.getMaterialCounts().steel || this._slotItemParamsValue[3] > s.default.model.useItem.getMaterialCounts().baux) && (t = !1), this._isRevampableByKit = t, this.SetGoBtn()
+        }, e.prototype.CheckGoBtnByItem = function (t, e, i) {
+            var n = !0;
+            t.req_slot_num > e && (n = !1), 0 == t.req_buildkit && 0 == t.req_remodelkit && (this.SetNumbers(0, 0), this._slotItemParams[4].text = "x" + this._certain_buildkit, this._slotItemParams[5].text = "x" + this._certain_remodelkit, n = !1), 1 == t.change_flag && i && (n = !1), t.req_useitem_num > s.default.model.useItem.getCount(t.req_useitem_id) && (n = !1), t.req_useitem_num2 > 0 && t.req_useitem_num2 > s.default.model.useItem.getCount(t.req_useitem_id2) && (n = !1), this._isRevampableByItem = n, this.SetGoBtn()
+        }, e.prototype.CheckNeedItem = function (t) {
+            71 == t.req_useitem_id ? this._need_item.texture = o.REVAMP_BOX.getTexture(30) : 0 != t.req_slot_num ? this._need_item.texture = o.REVAMP_BOX.getTexture(32) : this._need_item.texture = o.REVAMP_BOX.getTexture(31)
+        }, e.prototype.SetGoBtn = function () {
+            this._isRevampableByItem && this._isRevampableByKit ? (this._btn_start.dispose(), this._btn_start.initialize(12, 14), this._btn_start.interactive = this._btn_start.buttonMode = !0) : (this._btn_start.dispose(), this._btn_start.initialize(13, 13), this._btn_start.interactive = this._btn_start.buttonMode = !1), this._isBtnAnime = !1
+        }, e.prototype.SetStarts = function (t) {
+            for (var e = 0; e < t; e++) this._icon_stars[e].visible = !0;
+            for (var e = t; e < 10; e++) this._icon_stars[e].visible = !1;
+            this._frame_name_mask2.visible = !0, t < 1 ? (this._frame_name_mask2.visible = !1, this._icon_star.visible = !1, this._icon_plus.visible = !1, this._text_level.visible = !1, this._text_level.text = "", this._icon_starM.visible = !1) : t < 10 ? (this._icon_star.visible = !0, this._icon_plus.visible = !0, this._text_level.visible = !0, this._text_level.text = t + "", this._icon_starM.visible = !1) : (this._icon_star.visible = !1, this._icon_plus.visible = !1, this._text_level.visible = !1, this._text_level.text = "", this._icon_starM.visible = !0)
         }, e.prototype.initialize = function () {
+        }, e.prototype.RevampFlash = function (t) {
+            this._btn_start.dispose(), this._btn_start.initialize(13, 13), this._btn_start.interactive = this._btn_start.buttonMode = !1, this._btn_cancel.dispose(), this._btn_cancel.initialize(5, 5), this._btn_cancel.interactive = this._btn_start.buttonMode = !1, this._switch_btn.interactive = this._btn_start.buttonMode = !1, this._isVoiceFinished = !1, this._isFlashFinished = !1, t.voice_ship_id, this._blinkBox(), this._shakeBox()
+        }, e.prototype.noVoiceWait = function (t) {
+            var e = this;
+            this._tween0 = createjs.Tween.get(this).wait(t).call(function () {
+                e._tween0 = null, e._isVoiceFinished = !0
+            })
+        }, e.prototype._blinkBox = function () {
+            var t = this;
+            this._tween1 = createjs.Tween.get(this).to({ alpha: 0 }, 750, createjs.Ease.sineIn).to({ alpha: 1 }, 750, createjs.Ease.cubicInOut).call(function () {
+                t._tween1 = null, t._isVoiceFinished ? t._flashBox() : t._blinkBox()
+            })
+        }, e.prototype._shakeBox = function () {
+            var t = this;
+            this._tween2 = createjs.Tween.get(this).to({ x: 163 }, 50).to({ x: 172 }, 50).call(function () {
+                t._tween2 = null, t._isVoiceFinished ? t.position.set(168, 339) : t._shakeBox()
+            })
+        }, e.prototype._flashBox = function () {
+            var t = this;
+            this._tween3 = createjs.Tween.get(this._box_white_bg).to({ alpha: 1 }, 1e3).call(function () {
+                t._tween3 = null, t._isFlashFinished = !0
+            })
+        }, e.prototype.FlashBoxOff = function () {
+            var t = this;
+            this._tween3 = createjs.Tween.get(this._box_white_bg).to({ alpha: 0 }, 500).call(function () {
+                t._tween3 = null
+            })
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._fuki1_serif.forEach(function (t) {
+            this.removeChildren(), this._slotItemName.destroy(), this._slotItemName = null, this._slotItemParams.forEach(function (t) {
                 t.destroy()
-            }), this._fuki1_serif = null, this._fuki2_serif.forEach(function (t) {
-                t.destroy()
-            }), this._fuki2_serif = null, this._fuki3_serif.forEach(function (t) {
-                t.destroy()
-            }), this._fuki3_serif = null, this._fuki4_serif.forEach(function (t) {
-                t.destroy()
-            }), this._fuki4_serif = null, this._fuki4_starnum.destroy(), this._fuki4_starnum = null
+            }), this._slotItemParams = null, this._text_level.destroy(), this._text_level = null, this._icon_m16_light = null, this._icon_stars = null
         }, e
     }(PIXI.Container);
-    e.RevampBalloon = u
+    e.RevampRecipeBox = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._setTexture(e._texture_no_on)
+            }, e._onMouseOut = function () {
+                e._setTexture(e._texture_no)
+            }, e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._texture_no = t, this._texture_no_on = e, this._setTexture(this._texture_no), null != this._texture_no_on && (this.interactive = this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut))
+        }, e.prototype.dispose = function () {
+            this.interactive = this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut)
+        }, e.prototype._setTexture = function (t) {
+            this.texture = o.REVAMP_BOX.getTexture(t)
+        }, e
+    }(PIXI.Sprite)
 }

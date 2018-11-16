@@ -15,30 +15,37 @@ const function617 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(9), s = function (t) {
+    var o = i(9), r = i(8), s = i(31), a = i(31), _ = i(298), u = i(200), l = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
-        }, e.prototype.changeText = function (t) {
-            var e = this;
-            createjs.Tween.get(this._text).to({ alpha: 0 }, 200).call(function () {
-                e._startAnimation(t)
+        return n(e, t), e.prototype._initBG = function () {
+            var t = this;
+            this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                t._animation()
             })
-        }, e.prototype.dispose = function () {
-            this._stopAnimation(), this.removeChildren(), this._text.destroy()
-        }, e.prototype._startAnimation = function (t) {
+        }, e.prototype._createItemTobe = function (t, e) {
+            var i = o.COMMON_MISC.getTexture(49), n = new u.CenteringSprite(i);
+            return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+        }, e.prototype._change = function () {
             var e = this;
-            null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, { loop: !0 }).wait(100).call(function () {
-                var t = e._message.substr(0, 1);
-                " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
-            }))
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+            t.prototype._change.call(this);
+            var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+            i.x = -i.width / 2, i.y = -i.height / 2;
+            var n = new a.Container;
+            n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                scaleX: 3.3,
+                scaleY: 3.3,
+                alpha: 1
+            }, 350).to({ scaleX: 5, scaleY: 5 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                e._layer.removeChild(n)
+            });
+            var s = new r.AreaBox(1, 16777215);
+            s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({ alpha: 1 }, 500).wait(600).to({ alpha: 0 }, 300).call(function () {
+                e._layer.removeChild(s)
+            })
         }, e
-    }(PIXI.Sprite);
-    e.ModelChangeMessageBox = s
+    }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = l
 }

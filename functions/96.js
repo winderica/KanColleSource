@@ -15,7 +15,7 @@ const function96 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(22), s = i(2), a = i(12), _ = i(13), u = i(6), l = i(1352), c = i(62), h = function (t) {
+    var o = i(5), r = i(22), s = i(2), a = i(12), _ = i(13), u = i(6), l = i(1353), c = i(63), h = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._scene = e, n._record = i, n._layer = new p, n

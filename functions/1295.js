@@ -15,15 +15,37 @@ const function1295 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(23), r = i(20), s = function (t) {
+    var o = i(1296), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e._spots = {}, e._flags = {}, e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = r.MAP_COMMON.getTexture(94), this._img.y = -39
+        return n(e, t), e.prototype.addSpot = function (t) {
+            this._spots[t.no] = t, this.addChild(t)
+        }, e.prototype.addFlag = function (t, e, i) {
+            var n = new o.LandingFlag;
+            n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
+        }, e.prototype.getAllSpots = function () {
+            var t = [];
+            for (var e in this._spots) {
+                var i = this._spots[e];
+                t.push(i)
+            }
+            return t
+        }, e.prototype.getSpot = function (t) {
+            var e = t.toString();
+            return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
+        }, e.prototype.getFlag = function (t) {
+            var e = t.toString();
+            return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+        }, e.prototype.dispose = function () {
+            this.removeChildren();
+            for (var t in this._spots) {
+                this._spots[t].dispose()
+            }
+            this._spots = null
         }, e
-    }(o.Container);
-    e.LandingFlag = s
+    }(PIXI.Container);
+    e.MapSpotLayer = r
 }

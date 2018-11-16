@@ -17,27 +17,21 @@ const function1435 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(16), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e.alpha = 0, e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.BATTLE_MAIN.getTexture(108)
-        }, e.prototype.play = function () {
-            var t = this, e = { a: 0, r: 255, g: 255, b: 255 }, i = function (e) {
-                var i = e.target.target;
-                t.alpha = i.a;
-                var n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                t.tint = n
-            };
-            createjs.Tween.get(e, { onChange: i }).to({ a: 1 }, 100).to({ r: 128 }, 100).to({
-                r: 255,
-                g: 192,
-                b: 192
-            }, 100).to({ a: 0 }, 100).call(function () {
-                null != t.parent && t.parent.removeChild(t)
+        return n(e, t), e.prototype.showSanshiki = function (t, e) {
+            var i = this, n = o.BATTLE_MAIN.getTexture(134), r = new PIXI.Sprite(n);
+            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                i.removeChild(r)
             })
+        }, e.prototype.showDanmaku = function (t, e) {
+            var i = this, n = o.BATTLE_MAIN.getTexture(132), r = new PIXI.Sprite(n);
+            r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({ alpha: 1 }, 300).wait(600).to({ alpha: 0 }, 300).call(function () {
+                i.removeChild(r)
+            })
+        }, e.prototype.dispose = function () {
         }, e
-    }(PIXI.Sprite);
-    e.Shield = r
+    }(PIXI.Container);
+    e.BannerInfoLayer = r
 }

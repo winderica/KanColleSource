@@ -15,39 +15,44 @@ const function1181 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(208), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._num = new PIXI.Sprite, e._num.position.set(29, 15), e.addChild(e._num), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.DUTY_COMMON.getTexture(0)
-        }, e.prototype.update = function (t) {
-            this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
-        }, e.prototype._getNumImage = function (t) {
-            switch (t) {
-                case 1:
-                    return o.DUTY_COMMON.getTexture(74);
-                case 2:
-                    return o.DUTY_COMMON.getTexture(75);
-                case 3:
-                    return o.DUTY_COMMON.getTexture(76);
-                case 4:
-                    return o.DUTY_COMMON.getTexture(77);
-                case 5:
-                    return o.DUTY_COMMON.getTexture(78);
-                case 6:
-                    return o.DUTY_COMMON.getTexture(79);
-                case 7:
-                    return o.DUTY_COMMON.getTexture(80);
-                case 8:
-                    return o.DUTY_COMMON.getTexture(81);
-                case 9:
-                    return o.DUTY_COMMON.getTexture(82)
+        return n(e, t), e.prototype.update = function (t) {
+            if (null == this._star && (this._star = new PIXI.Sprite(o.DUTY_COMMON.getTexture(57)), this.addChild(this._star)), null == this._plus && (this._plus = new PIXI.Sprite(o.DUTY_COMMON.getTexture(67)), this._plus.position.set(21, 5), this.addChild(this._plus)), null == this._level && (this._level = new PIXI.Sprite, this._level.position.set(39, 2), this.addChild(this._level)), t < 1 || 9 < t) this._star.visible = !1, this._plus.visible = !1, this._level.visible = !1; else {
+                switch (t) {
+                    case 1:
+                        this._level.texture = o.DUTY_COMMON.getTexture(58);
+                        break;
+                    case 2:
+                        this._level.texture = o.DUTY_COMMON.getTexture(59);
+                        break;
+                    case 3:
+                        this._level.texture = o.DUTY_COMMON.getTexture(60);
+                        break;
+                    case 4:
+                        this._level.texture = o.DUTY_COMMON.getTexture(61);
+                        break;
+                    case 5:
+                        this._level.texture = o.DUTY_COMMON.getTexture(62);
+                        break;
+                    case 6:
+                        this._level.texture = o.DUTY_COMMON.getTexture(63);
+                        break;
+                    case 7:
+                        this._level.texture = o.DUTY_COMMON.getTexture(64);
+                        break;
+                    case 8:
+                        this._level.texture = o.DUTY_COMMON.getTexture(65);
+                        break;
+                    case 9:
+                        this._level.texture = o.DUTY_COMMON.getTexture(66)
+                }
+                this._star.visible = !0, this._plus.visible = !0, this._level.visible = !0
             }
-            return PIXI.Texture.EMPTY
         }, e
-    }(PIXI.Sprite);
-    e.RewardSelectDialogCount = r
+    }(PIXI.Container);
+    e.LevelStar = r
 }

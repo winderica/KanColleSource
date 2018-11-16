@@ -15,48 +15,32 @@ const function1437 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(430), s = i(1438), a = i(1439), _ = i(16), u = i(1440), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._touch_plane = new u.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._touch_plane), i
+    var o = i(16), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._num0001 = new PIXI.Sprite, e._num0001.anchor.set(0, 1), e._num0001.alpha = 0, e._num0010 = new PIXI.Sprite, e._num0010.anchor.set(0, 1), e._num0010.alpha = 0, e._num0100 = new PIXI.Sprite, e._num0100.anchor.set(0, 1), e._num0100.alpha = 0, e._num1000 = new PIXI.Sprite, e._num1000.anchor.set(0, 1), e._num1000.alpha = 0, e._critical = new PIXI.Sprite, e._critical.anchor.set(.5, 0), e._critical.visible = !1, e.addChild(e._num0001), e.addChild(e._num0010), e.addChild(e._num0100), e.addChild(e._num1000), e.addChild(e._critical), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
-            get: function () {
-                return this._touch_plane
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this._wave1.texture = _.BATTLE_MAIN.getTexture(82), this._wave2.texture = _.BATTLE_MAIN.getTexture(82), this._bg.texture = _.BATTLE_MAIN.getTexture(81)
-        }, e.prototype.show = function (t, e, i, n) {
-            0 == e ? this._show(t, i) : this._showCombined(t, e, i, n)
-        }, e.prototype.wave = function () {
-            var t = this;
-            null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
-                t._wave1.scale.set(0), t._wave1.alpha = 1
-            }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
-                t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
-            }))
-        }, e.prototype._show = function (t, e) {
-            var i = this, n = createjs.Tween.get(this._bg);
-            n.to({ scaleX: 1, scaleY: 1 }, 800), e <= 0 || n.call(function () {
-                var n = new r.FormationPoints(i._friend);
-                n.scale.set(.65), n.initialize(t, e), i._points.addChild(n), 1 == i._friend && (n.rotation = Math.PI), n.show()
-            })
-        }, e.prototype._showCombined = function (t, e, i, n) {
-            var o = this, r = createjs.Tween.get(this._bg);
-            r.to({ scaleX: 1, scaleY: 1 }, 800), i <= 0 || r.call(function () {
-                var r = new s.FormationPointsCombinedMain(o._friend);
-                r.initialize(t, i, e), o._points.addChild(r);
-                var _ = new a.FormationPointsCombinedSub(o._friend);
-                _.initialize(t, n), o._points.addChild(_), 0 == o._friend && (r.rotation = Math.PI, _.rotation = Math.PI), r.show(), _.show()
-            })
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            0 == e ? this._initializeForMiss() : (t = Math.min(t, 9999), t = Math.floor(t), this._initialize(t, e))
+        }, e.prototype.play = function (t) {
+            void 0 === t && (t = null), 1 == this._critical.visible && createjs.Tween.get(this._critical).wait(65).to({ alpha: 1 }, 0).to({ x: 20 }, 65).to({ x: 38 }, 65).to({ x: 21 }, 65).to({ x: 36 }, 65).to({ x: 26 }, 65).to({ x: 32 }, 65).to({ x: 27 }, 65).to({ x: 30 }, 65).to({ x: 29 }, 65), createjs.Tween.get(this._num1000).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0100).wait(65).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100), createjs.Tween.get(this._num0010).wait(130).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100);
+            var e = createjs.Tween.get(this._num0001).wait(200).to({ alpha: 1 }, 0).to({ y: -21 }, 135).to({ y: 0 }, 135).to({ y: -7 }, 100).to({ y: 0 }, 100).wait(265);
+            null != t && e.call(t)
+        }, e.prototype._initializeForMiss = function () {
+            this._num1000.visible = !1, this._num0100.visible = !1, this._num0010.visible = !1, this._num0001.texture = o.BATTLE_MAIN.getTexture(19), this._num1000.position.set(-47, 0)
+        }, e.prototype._initialize = function (t, e) {
+            var i;
+            2 == e ? (i = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29], this._critical.texture = o.BATTLE_MAIN.getTexture(18), this._critical.position.set(29, -7), this._critical.alpha = 0, this._critical.visible = !0) : i = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+            var n = !1, r = Math.floor(t / 1e3);
+            r > 0 && (n = !0, this._num1000.texture = o.BATTLE_MAIN.getTexture(i[r]));
+            var s = Math.floor(t % 1e3 / 100);
+            (1 == n || s > 0) && (n = !0, this._num0100.texture = o.BATTLE_MAIN.getTexture(i[s]));
+            var a = Math.floor(t % 100 / 10);
+            (1 == n || a > 0) && (n = !0, this._num0010.texture = o.BATTLE_MAIN.getTexture(i[a]));
+            var _ = t % 10;
+            this._num0001.texture = o.BATTLE_MAIN.getTexture(i[_]), this._num0001.position.set(47, 0), this._num0010.position.set(26, 0), this._num0100.position.set(5, 0), this._num1000.position.set(-17, 0)
         }, e
     }(PIXI.Container);
-    e.Rader = l
+    e.DamageNumber = r
 }

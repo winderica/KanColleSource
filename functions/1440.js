@@ -15,51 +15,48 @@ const function1440 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(16), r = i(136), s = function (t) {
+    var o = i(12), r = i(431), s = i(1441), a = i(1442), _ = i(16), u = i(1443), l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._mst_id = -1, i._friend = e, i._plane = new r.Plane, i._plane.scale.set(-.25, .25), i._label = new a, i._label.position.set(-56, 35), i.addChild(i._plane), i.addChild(i._label), i
+            return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._touch_plane = new u.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._touch_plane), i
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._mst_id = t, this._stopShowTween(), this._stopHideTween(), this._label.initialize()
-        }, e.prototype.show = function () {
+        return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
+            get: function () {
+                return this._touch_plane
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._wave1.texture = _.BATTLE_MAIN.getTexture(82), this._wave2.texture = _.BATTLE_MAIN.getTexture(82), this._bg.texture = _.BATTLE_MAIN.getTexture(81)
+        }, e.prototype.show = function (t, e, i, n) {
+            0 == e ? this._show(t, i) : this._showCombined(t, e, i, n)
+        }, e.prototype.wave = function () {
             var t = this;
-            null == this._show_tween && (this._mst_id <= 0 || (this._stopHideTween(), this._label.activate(), this._plane.visible = !1, this._plane.initialize(this._mst_id, this._friend), this._plane.activate(), this._show_tween = createjs.Tween.get(this._plane).wait(133).call(function () {
-                t._plane.alpha = .5, t._plane.visible = !0
-            }).wait(100).call(function () {
-                t._plane.visible = !1
-            }).wait(500).call(function () {
-                t._plane.alpha = .85, t._plane.visible = !0
-            }).wait(100).call(function () {
-                t._plane.alpha = .6, t._plane.filters = null
-            }).to({ alpha: .8 }, 166).call(function () {
-                t._show_tween = null
-            })))
-        }, e.prototype.hide = function () {
-            var t = this;
-            null == this._hide_tween && (this._stopShowTween(), this._mst_id > 0 && (this._mst_id = -1, this._label.deactivate(), this._hide_tween = createjs.Tween.get(this._plane).to({ alpha: 0 }, 200).call(function () {
-                t._plane.deactivate(), t._plane.visible = !1, t._hide_tween = null
-            })))
-        }, e.prototype._stopShowTween = function () {
-            null != this._show_tween && (this._show_tween.setPaused(!0), this._show_tween = null)
-        }, e.prototype._stopHideTween = function () {
-            null != this._hide_tween && (this._hide_tween.setPaused(!0), this._hide_tween = null)
+            null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave1.scale.set(0), t._wave1.alpha = 1
+            }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.2, scaleY: 1.2, alpha: 0 }, 200).call(function () {
+                t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
+            }))
+        }, e.prototype._show = function (t, e) {
+            var i = this, n = createjs.Tween.get(this._bg);
+            n.to({ scaleX: 1, scaleY: 1 }, 800), e <= 0 || n.call(function () {
+                var n = new r.FormationPoints(i._friend);
+                n.scale.set(.65), n.initialize(t, e), i._points.addChild(n), 1 == i._friend && (n.rotation = Math.PI), n.show()
+            })
+        }, e.prototype._showCombined = function (t, e, i, n) {
+            var o = this, r = createjs.Tween.get(this._bg);
+            r.to({ scaleX: 1, scaleY: 1 }, 800), i <= 0 || r.call(function () {
+                var r = new s.FormationPointsCombinedMain(o._friend);
+                r.initialize(t, i, e), o._points.addChild(r);
+                var _ = new a.FormationPointsCombinedSub(o._friend);
+                _.initialize(t, n), o._points.addChild(_), 0 == o._friend && (r.rotation = Math.PI, _.rotation = Math.PI), r.show(), _.show()
+            })
         }, e
     }(PIXI.Container);
-    e.TouchPlane = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.alpha = 0, e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.BATTLE_MAIN.getTexture(130)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).to({ alpha: 1 }, 100).wait(700).to({ alpha: 0 }, 100).wait(200))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.alpha = 0)
-        }, e
-    }(PIXI.Sprite)
+    e.Rader = l
 }

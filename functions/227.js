@@ -15,8 +15,8 @@ const function227 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(55), s = i(67), a = i(228), _ = i(201), u = i(53), l = i(983), c = i(984), h = i(985),
-        p = i(368), d = i(1), f = function (t) {
+    var o = i(0), r = i(55), s = i(68), a = i(228), _ = i(201), u = i(53), l = i(984), c = i(985), h = i(986),
+        p = i(369), d = i(1), f = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
                 return s._mst_id = 0, s._enabled = !1, s._onMouseOver = function () {
@@ -54,7 +54,7 @@ const function227 = function (t, e, i) {
             }, e.prototype.updateAirUnitEnabled = function (t) {
                 this._airUnitBanner.enabled = t
             }, e.prototype.updateGauge = function (t) {
-                if (null != t && (0 != t.defeat_required || 0 != t.gauge_max) && 1 != t.isCleared() && 0 != t.isOpened()) {
+                if (null != t && (0 != t.defeat_required || 0 != t.gauge_max) && 0 != t.isOpened()) {
                     var e = t.area_id, i = t.map_no, n = t.getGaugeNum(), r = s.GaugeSetModel.createKey(e, i, n),
                         a = o.default.resources.gauge.getGaugeInfo(r);
                     if (null != a) if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {

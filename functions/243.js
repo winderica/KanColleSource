@@ -22,7 +22,7 @@ const function243 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(176), this._gear.texture = o.COMMON_MISC.getTexture(178)) : (this._bg.texture = o.COMMON_MISC.getTexture(177), this._gear.texture = o.COMMON_MISC.getTexture(179))
+            0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(177), this._gear.texture = o.COMMON_MISC.getTexture(179)) : (this._bg.texture = o.COMMON_MISC.getTexture(178), this._gear.texture = o.COMMON_MISC.getTexture(180))
         }, e.prototype.update = function (t) {
             this._text.texture = t, this._text.y = Math.round(45 - this._text.height / 2)
         }, e.prototype.activate = function () {

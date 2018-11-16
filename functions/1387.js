@@ -22,7 +22,7 @@ const function1387 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.preload = function (t) {
-            this._cutin = new s.CutinSpSSS, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
+            this._cutin = new s.CutinSpSSF, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
         }, e.prototype._start = function () {
             var t, e, i = this._attacker.friend, n = this._attacker.index, o = this._defender.index;
             1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
@@ -39,14 +39,32 @@ const function1387 = function (t, e, i) {
         }, e.prototype._playCutin = function (t, e) {
             var i = this;
             this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                t.moveFront(), e.moveFront(), i._damageEffect(t, e)
+                createjs.Tween.get(i).call(function () {
+                    i._damageEffect1(t, e)
+                }).wait(300).call(function () {
+                    i._damageEffect2(t, e)
+                }).wait(300).call(function () {
+                    i._damageEffect2(t, e)
+                }).wait(800).call(function () {
+                    i._damageEffect3(t, e)
+                })
             }), this._cutin.view.once("attack", function () {
-                i._playVoice()
+                i._playVoice(), t.moveFront(), e.moveFront()
             })
-        }, e.prototype._damageEffect = function (t, e) {
+        }, e.prototype._damageEffect1 = function (t, e) {
+            e.moveAtDamage(this._shield);
+            var i = e.getGlobalPos(!0), n = this._scene.view.layer_explosion;
+            n.playExplosionLarge(i.x, i.y), e.friend ? n.playTorpedoWaterColumnToFriend(i.x + r.BannerSize.W / 3 * 2, i.y) : n.playTorpedoWaterColumnToEnemy(i.x - r.BannerSize.W / 3 * 2, i.y)
+        }, e.prototype._damageEffect2 = function (t, e) {
+            e.moveAtDamage(this._shield);
+            var i = e.getGlobalPos(!0);
+            this._scene.view.layer_explosion.playExplosionLarge(i.x, i.y)
+        }, e.prototype._damageEffect3 = function (t, e) {
             1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-            var i = this._getDamage(this._defender);
-            this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
+            var i = e.getGlobalPos(!0), n = this._scene.view.layer_explosion;
+            n.playExplosionLarge(i.x, i.y), e.friend ? n.playTorpedoWaterColumnToFriend(i.x + r.BannerSize.W / 3 * 2, i.y) : n.playTorpedoWaterColumnToEnemy(i.x - r.BannerSize.W / 3 * 2, i.y);
+            var o = this._getDamage(this._defender);
+            this._playDamageEffect(t, e, this._defender, o, this._hit)
         }, e.prototype._playVoice = function () {
             if (this._attacker.friend) {
                 var t = this._attacker.mst_id, e = 17;
@@ -55,5 +73,5 @@ const function1387 = function (t, e, i) {
         }, e.prototype._log = function (t) {
         }, e
     }(_.PhaseAttackBase);
-    e.PhaseAttackSpSSS = u
+    e.PhaseAttackSpSSF = u
 }

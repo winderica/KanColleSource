@@ -15,23 +15,49 @@ const function478 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(31), r = i(9), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._MAX_ = 360;
-            var i = new PIXI.Graphics;
-            return e._draw(i, 0), e.mask = i, e.addChild(i), e._bar = new PIXI.Graphics, e._bar.x = -e._MAX_, e.addChild(e._bar), e
+            return e._particles = [], e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._draw(this, 16777215), this._draw(this._bar, t)
-        }, e.prototype.createTween = function (t, e, i) {
-            void 0 === i && (i = 1e3);
-            var n = Math.max(t - e, 0), o = 0 == t ? 0 : n / t, r = this._MAX_ * o;
-            return r = Math.min(this._MAX_, r), r = Math.max(0, r), createjs.Tween.get(this._bar).to({ x: -this._MAX_ + r }, i)
-        }, e.prototype._draw = function (t, e) {
-            t.beginFill(e), t.arc(8, 8, 8, Math.PI / 2, Math.PI / 2 * 3), t.arc(353, 8, 8, -Math.PI / 2, Math.PI / 2), t.endFill()
+        return n(e, t), e.prototype.addParticle = function (t, e) {
+            var i = new a;
+            i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
+        }, e.prototype.startAnimation = function () {
+            for (var t = 0, e = this._particles; t < e.length; t++) {
+                e[t].startAnimation()
+            }
+        }, e.prototype.stopAnimation = function () {
+            for (var t = 0, e = this._particles; t < e.length; t++) {
+                e[t].stopAnimation()
+            }
         }, e
-    }(PIXI.Graphics);
-    e.Gauge = o
+    }(PIXI.Container);
+    e.ParticleLayer = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
+        }, e.prototype.startAnimation = function () {
+            var t = this;
+            if (null == this._anim) {
+                var e = 2e3 * Math.random();
+                this._anim = createjs.Tween.get(this).wait(e).to({ scaleX: 1, scaleY: 1 }, 100).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 200).call(function () {
+                    t._anim = null, t.startAnimation()
+                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
+                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
+                createjs.Tween.get(this._r_canvas).wait(e).to({ rotation: i }, 300)
+            }
+        }, e.prototype.stopAnimation = function () {
+            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
+        }, e
+    }(o.Container)
 }

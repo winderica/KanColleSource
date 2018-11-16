@@ -15,31 +15,27 @@ const function368 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(53), r = i(986), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._type = e, i._black = new PIXI.Sprite, i._key = new PIXI.Sprite, i._cloud = new r.MapThumbnailLockedCloud, i._text = new PIXI.Container, i
+    var o = i(29), r = i(1), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e.texture = o.SALLY_COMMON.getTexture(19)
+            }, e._onMouseOut = function () {
+                e.texture = o.SALLY_COMMON.getTexture(18)
+            }, e._onClick = function () {
+                e.emit("dicision")
+            }, e.interactive = !0, e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._black.texture = this._getBlackTexture(), this._key.texture = o.SALLY_SORTIE.getTexture(30), this._cloud.initialize(), this._text.visible = !0, this._text.removeChildren();
-            var e = new PIXI.Sprite;
-            0 == t ? e.texture = o.SALLY_SORTIE.getTexture(42) : 1 == t ? e.texture = o.SALLY_SORTIE.getTexture(43) : 3 == t ? e.texture = o.SALLY_SORTIE.getTexture(44) : this._text.visible = !1, 1 == this._text.visible && (e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._text.addChild(e)), this._setPositions(), this.addChild(this._black), this.addChild(this._key), this.addChild(this._cloud), this.addChild(this._text)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.SALLY_COMMON.getTexture(18)
         }, e.prototype.activate = function () {
-            this._cloud.activate()
+            0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {
-            this._cloud.deactivate()
-        }, e.prototype._getBlackTexture = function () {
-            switch (this._type) {
-                case 3:
-                    return o.SALLY_SORTIE.getTexture(36);
-                case 4:
-                    return o.SALLY_SORTIE.getTexture(35)
-            }
-            return PIXI.Texture.EMPTY
-        }, e.prototype._setPositions = function () {
-            3 == this._type ? (this._key.position.set(470, 14), this._cloud.position.set(491, 53), this._text.position.set(490, 99)) : 4 == this._type && (this._key.position.set(218, 42), this._cloud.position.set(239, 81), this._text.position.set(240, 152))
+            this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype._setTextture = function (t) {
+            this.texture = t
         }, e
-    }(PIXI.Container);
-    e.MapThumbnailLocked = s
+    }(PIXI.Sprite);
+    e.BtnDicision = s
 }

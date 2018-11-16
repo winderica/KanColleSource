@@ -15,22 +15,25 @@ const function1464 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(11), s = i(1465), a = function (t) {
-        function e(e, i, n, o) {
-            void 0 === o && (o = !1);
-            var r = t.call(this) || this;
-            return r._hideTelop = function () {
-                createjs.Tween.get(r._telop).to({ alpha: 0 }, 300).call(function () {
-                    r._layer.removeChild(r._telop), r._telop = null, r._endTask()
-                })
-            }, r._layer = e, r._type = i, r._mst_id = n, r._sub_text = o, r
+    var o = i(2), r = i(1465), s = i(1469), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._showTelop()
-        }, e.prototype._showTelop = function () {
-            this._telop = new s.BonusTelop, this._telop.position.set(o.default.width / 2, o.default.height / 2), 3 == this._type ? this._telop.initializeForShip(this._sub_text) : 2 == this._type ? this._telop.initializeForSlot() : 6 == this._type && this._telop.initializeForUseitem(this._mst_id), this._layer.addChild(this._telop), this._telop.play(), this._telop.once("complete", this._hideTelop)
+            this._normalBonus()
+        }, e.prototype._normalBonus = function () {
+            var t = this;
+            new r.TaskNormalBonus(this._scene).start(function () {
+                t._scene.view.dispose(), t._mapBonus()
+            })
+        }, e.prototype._mapBonus = function () {
+            var t = this, e = this._scene.layer_bonus, i = this._scene.data.getMapBonus();
+            new s.TaskEventBonus(e, i).start(function () {
+                t._endTask()
+            })
         }, e
-    }(r.TaskBase);
-    e.TaskBonusTelop = a
+    }(o.TaskBase);
+    e.PhaseBonus = a
 }

@@ -1,56 +1,38 @@
 const function1415 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(164), r = i(222), s = i(470), a = function () {
-        function t(t, e) {
-            this._info = t, this._battle = e, this._initializeShipData()
+    var o = i(7), r = i(181), s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i._initPlaneFrom(), i
         }
 
-        return Object.defineProperty(t.prototype, "ships", {
+        return n(e, t), Object.defineProperty(e.prototype, "squadrons", {
             get: function () {
-                return this._ships
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getDisplayList = function () {
-            for (var t = [], e = this._voice_p_no, i = this._voice_ids, n = 0; n < 3; n++) {
-                var o = e.indexOf(n + 1);
-                if (!(o >= 0)) break;
-                var r = o < this._ships.length ? this._ships[o] : null, s = i[o];
-                t.push({ ship: r, voiceID: s.toString() })
-            }
-            return t
-        }, t.prototype.getFlareIndex_f = function () {
-            var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
-            return null == t || t.length < 1 ? -1 : t[0]
-        }, t.prototype.getFlareIndex_e = function () {
-            var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
-            return null == t || t.length < 2 ? -1 : t[1]
-        }, t.prototype.getHougekiData = function () {
-            var t = n.ObjUtil.getObject(this._battle, "api_hougeki");
-            return new s.HougekiListNightData(t)
-        }, t.prototype._initializeShipData = function () {
-            this._ships = [];
-            for (var t = n.ObjUtil.getNumArray(this._info, "api_ship_id"), e = n.ObjUtil.getNumArray(this._info, "api_ship_lv"), i = n.ObjUtil.getNumArray(this._info, "api_maxhps"), s = n.ObjUtil.getNumArray(this._info, "api_nowhps"), a = n.ObjUtil.getObjectArray(this._info, "api_Slot"), _ = n.ObjUtil.getObjectArray(this._info, "api_Param"), u = 0; u < t.length; u++) {
-                var l = t[u], c = e[u], h = new o.ShipModelReplica(2, !1, u, l, 0, c), p = s[u], d = i[u];
-                h.initializeHPInfo(p, d);
-                for (var f = a[u], y = [], m = [], v = 0, g = f; v < g.length; v++) {
-                    var b = g[v];
-                    b > 0 && (y.push(new r.SlotitemModelReplica(b)), m.push(1))
+                for (var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_air_base_data"), i = 0, n = e; i < n.length; i++) {
+                    var r = n[i];
+                    t.push({
+                        mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
+                        count: o.ObjUtil.getNumber(r, "api_count")
+                    })
                 }
-                h.initializeSlots(y, null, m);
-                var w = _[u], x = w[0], I = w[1], T = w[2], O = w[3];
-                h.initializeParams(x, I, T, O), this._ships.push(h)
-            }
-        }, Object.defineProperty(t.prototype, "_voice_p_no", {
-            get: function () {
-                var t = n.ObjUtil.getNumArray(this._info, "api_voice_p_no");
-                return null == t ? [] : t
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "_voice_ids", {
-            get: function () {
-                var t = n.ObjUtil.getNumArray(this._info, "api_voice_id");
-                return null == t ? [] : t
-            }, enumerable: !0, configurable: !0
-        }), t
-    }();
-    e.AllyAttackModel = a
+        }), e
+    }(r.AirWarDataBase);
+    e.AirUnitJetData = s
 }

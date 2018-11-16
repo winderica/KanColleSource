@@ -1,7 +1,7 @@
 const function0 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(480), o = i(526), r = i(529), s = i(265), a = i(533), _ = i(534), u = i(535), l = function () {
+    var n = i(482), o = i(528), r = i(531), s = i(265), a = i(535), _ = i(536), u = i(537), l = function () {
         function t() {
             this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager
         }

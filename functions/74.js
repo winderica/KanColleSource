@@ -1,33 +1,9 @@
 const function74 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
 
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._night = i, n
-        }
+    function n(t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }
 
-        return n(e, t), Object.defineProperty(e.prototype, "scene", {
-            get: function () {
-                return this._scene
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.isNight = function () {
-            return this._night
-        }, e
-    }(o.TaskBase);
-    e.PhaseCombatBase = r
+    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1171)), n(i(1172)), n(i(1173)), n(i(409)), n(i(1174)), n(i(1175)), n(i(169)), n(i(1189)), n(i(1190)), n(i(412)), n(i(411))
 }

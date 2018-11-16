@@ -15,45 +15,136 @@ const function1006 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1007), s = i(221), a = i(164), _ = i(1008), u = i(1013), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._changeToInfo = function () {
-                e._showInfo()
-            }, e._changeToDeck = function () {
-                e._showDeck()
-            }, e._onStartPractice = function () {
-                for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, u = new s.DeckModelReplica(i, !0, n, _), l = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
-                    var p = c[h];
-                    if (null == p) l.push(null); else {
-                        var d = p.id, f = p.level, y = new a.ShipModelReplica(1, !0, h, d, -h, f);
-                        l.push(y)
-                    }
-                }
-                var m = e._selected_rival.id, v = e._selected_rival.medal_num, g = e._selected_rival.name,
-                    b = e._selected_rival.deck_name, w = new s.DeckModelReplica(m, !0, v, g, 0, b, l),
-                    x = new r.PracticeSceneModel(u, w);
-                o.default.scene.change(32, x), e.emit("close")
-            }, e._onClose = function () {
-                e.emit("close")
-            }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new u.PanelDeckSelect(e._onClose), e
+    var o = i(0), r = i(17), s = i(10), a = i(7), _ = function (t) {
+        function e(e, i, n, o) {
+            void 0 === o && (o = !1);
+            var r = t.call(this) || this;
+            return r._url = "api_req_member/get_practice_enemyinfo", r._rival_id = e, r._flag_type = i, r._medal_num = n, r._res_model = new u, r._debug = o, r
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
-        }, e.prototype.update = function (t) {
-            this._selected_rival = t, this._info.update(t), this._showInfo()
-        }, e.prototype.activate = function () {
-            1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
-        }, e.prototype.deactivate = function () {
-            this._info.deactivate(), this._deck.deactivate()
-        }, e.prototype.dispose = function () {
-            this._info.dispose(), this._deck.dispose()
-        }, e.prototype._showInfo = function () {
-            1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
-        }, e.prototype._showDeck = function () {
-            1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
+        return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+            get: function () {
+                return this._res_model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_member_id = this._rival_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._res_model.setData(this._rival_id, this._raw_data, this._flag_type, this._medal_num), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.ContainerOverlay = l
+    }(s.APIBase);
+    e.RivalDetailAPI = _;
+    var u = function () {
+        function t() {
+        }
+
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return this._id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "flag_type", {
+            get: function () {
+                return this._flag_type
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "medal_num", {
+            get: function () {
+                return this._medal_num
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_nickname")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_level")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "rank", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_rank")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "rank_name", {
+            get: function () {
+                return r.RANK_NAME[this.rank]
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "exp_now", {
+            get: function () {
+                var t = a.ObjUtil.getStrArray(this._o, "api_experience");
+                return null != t && t.length > 0 ? t[0] : ""
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "exp_next", {
+            get: function () {
+                var t = a.ObjUtil.getStrArray(this._o, "api_experience");
+                return null != t && t.length > 1 ? t[1] : ""
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "comment", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_cmt")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "friend_num", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_friend")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ship_nums", {
+            get: function () {
+                var t = a.ObjUtil.getNumArray(this._o, "api_ship");
+                return null != t && t.length > 1 ? [t[0], t[1]] : [0, 0]
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "slot_nums", {
+            get: function () {
+                var t = a.ObjUtil.getNumArray(this._o, "api_slotitem");
+                return null != t && t.length > 1 ? [t[0], t[1] + 3] : [0, 0]
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "furniture_num", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_furniture")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "deck_name", {
+            get: function () {
+                return a.ObjUtil.getString(this._o, "api_deckname")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ships", {
+            get: function () {
+                return this._ships
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.setData = function (t, e, i, n) {
+            this._id = t, this._o = e, this._flag_type = i, this._medal_num = n, this._ships = new Array;
+            var o = a.ObjUtil.getObject(e, "api_deck");
+            if (null != o) for (var r = a.ObjUtil.getObjectArray(o, "api_ships"), s = 0, _ = r; s < _.length; s++) {
+                var u = _[s], c = new l(u);
+                1 == c.isValid() ? this._ships.push(c) : this._ships.push(null)
+            }
+            for (; this._ships.length < 6;) this._ships.push(null)
+        }, t
+    }();
+    e.RivalDetailAPIResultModel = u;
+    var l = function () {
+        function t(t) {
+            this._o = t
+        }
+
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_ship_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                var t = o.default.model.ship.getMst(this.id);
+                return null == t ? "" : t.name
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "level", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_level")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "star", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_star")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isValid = function () {
+            return this._mem_id > 0
+        }, Object.defineProperty(t.prototype, "_mem_id", {
+            get: function () {
+                return a.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), t
+    }();
+    e.RivalShipModel = l
 }

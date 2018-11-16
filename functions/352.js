@@ -15,7 +15,7 @@ const function352 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = i(941), s = function (t) {
+    var o = i(26), r = i(943), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i._total_num = 0, i._tabs = [];
@@ -27,7 +27,7 @@ const function352 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = o.SALLY_AIRUNIT.getTexture(99), this._total_num = t;
+            this.texture = o.SALLY_AIRUNIT.getTexture(123), this._total_num = t;
             for (var e = 0; e < this._tabs.length; e++) {
                 this._tabs[e].initialize(e + 1, t)
             }

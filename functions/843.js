@@ -15,34 +15,17 @@ const function843 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(15), a = i(13), _ = i(844), u = i(338), l = function (t) {
+    var o = i(0), r = i(10), s = i(163), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._updateNDock = function () {
-                (new u.NDockAPI).start(i._loadAtlas)
-            }, i._loadAtlas = function () {
-                var t = new a.UIImageLoader("repair");
-                t.add("repair_main.json"), t.load(i._loadShipBanner)
-            }, i._loadShipBanner = function () {
-                var t = o.default.model.ndock.getShipMemIDs();
-                if (0 < t.length) {
-                    for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
-                        var r = t[n], a = o.default.model.ship.get(r);
-                        e.add(a.mstID, a.isDamaged(), "banner")
-                    }
-                    e.load(function () {
-                        i._onCompleteLoad()
-                    })
-                } else i._onCompleteLoad()
-            }, i._onCompleteLoad = function () {
-                var t = o.default.model.ndock.getAll(), e = new _.MainView(t);
-                i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
-            }, i.repairScene = e, i
+            return i._url = "api_req_nyukyo/open_new_dock", i.memDockId = e, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._updateNDock()
+        return n(e, t), e.prototype._completedEnd = function () {
+            var e = o.default.model.useItem.get(s.RepairConst.OPEN_KEY_ITEMID),
+                i = o.default.model.ndock.get(this.memDockId);
+            i.__updateCompleteTime__(0), i.__updateShipId__(0), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
         }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = l
+    }(r.APIBase);
+    e.OpenNewDockAPI = a
 }

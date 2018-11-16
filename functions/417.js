@@ -1,11 +1,6 @@
 const function417 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("revamp_pager_" + t)
-        }
-
-        t.getTexture = e
-    }(e.REVAMP_PAGER || (e.REVAMP_PAGER = {}))
+    Object.defineProperty(e, "__esModule", { value: !0 }), function (t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }(i(117))
 }

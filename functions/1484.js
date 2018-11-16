@@ -15,26 +15,50 @@ const function1484 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(6), s = i(176), a = function (t) {
-        function e(e, i, n, o) {
-            void 0 === o && (o = 0);
-            var r = t.call(this) || this;
-            return r._layer = e, r._x = i, r._y = n, r._delay = o, r
+    var o = i(0), r = i(11), s = i(68), a = i(8), _ = i(31), u = i(1485), l = i(1), c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._wait()
+            var t = this._scene.data.getLandingData();
+            t.isLandingMap() ? this._loadResources(t) : this._endTask()
+        }, e.prototype._loadResources = function (t) {
+            var e = this, i = o.default.resources.gauge.createLoaderHorizontal(),
+                n = this._scene.data.battle_model.map_info.area_id,
+                r = this._scene.data.battle_model.map_info.map_no, a = this._scene.data.battle_model.stage,
+                _ = s.GaugeSetModel.createKey(n, r, a);
+            i.add(_);
+            i.load(function () {
+                var i = o.default.resources.gauge.getGaugeInfo(_), n = null;
+                e._showDialog(t, i, n)
+            })
+        }, e.prototype._showDialog = function (t, e, i) {
+            var n = this, o = new u.ResultDialog(t, e, i);
+            o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({ alpha: 1 }, 300).wait(500).call(function () {
+                o.startAnimation(function () {
+                    n._hideDialog(o)
+                })
+            })
+        }, e.prototype._hideDialog = function (t) {
+            var e = this;
+            createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                e._scene.view.removeChild(t), t.dispose(), e._wait()
+            })
         }, e.prototype._wait = function () {
             var t = this;
-            this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
-                t._explode()
-            }) : this._explode()
-        }, e.prototype._explode = function () {
-            var t = this, e = new s.Explosion;
-            e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
-                t._layer.removeChild(e), t._endTask()
+            createjs.Tween.get(null).wait(500).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            var e = this, i = new _.GearBtnNext;
+            i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
+            var n = new a.AreaBox(0);
+            n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
+                i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
             })
         }, e
-    }(o.TaskBase);
-    e.TaskExplosion = a
+    }(r.TaskBase);
+    e.PhaseTransportResult = c
 }

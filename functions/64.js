@@ -15,22 +15,66 @@ const function64 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(16), r = function (t) {
+    var o = i(244), r = i(245), s = i(445), a = i(178), _ = i(447), u = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._setPosition = function (t, i) {
-                e._content.position.set(t, i)
-            }, e._content = new PIXI.Sprite, e.addChild(e._content), e
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(119));
-            this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(119)), t.scale.x = -1, t.x = 2 * t.width, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(119)), t.scale.y = -1, t.y = 2 * t.height, this._content.addChild(t), t = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(119)), t.scale.x = -1, t.scale.y = -1, t.x = 2 * t.width, t.y = 2 * t.height, this._content.addChild(t)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._content), this._t.loop = !0, this._t.call(this._setPosition, [0, 0]).wait(33), this._t.call(this._setPosition, [2, 5]).wait(33), this._t.call(this._setPosition, [-5, 0]).wait(33), this._t.call(this._setPosition, [3, 8]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, -2]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33), this._t.call(this._setPosition, [-3, 2]).wait(33), this._t.call(this._setPosition, [6, 5]).wait(33), this._t.call(this._setPosition, [-5, 9]).wait(33), this._t.call(this._setPosition, [5, 0]).wait(33), this._t.call(this._setPosition, [2, 6]).wait(33), this._t.call(this._setPosition, [0, -5]).wait(33), this._t.call(this._setPosition, [5, 3]).wait(33), this._t.call(this._setPosition, [5, -3]).wait(33), this._t.call(this._setPosition, [0, 2]).wait(33))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        return n(e, t), e.prototype._start = function () {
+            this._data = this._record.raw.air_war, 0 == this._hasPhase() ? this._endTask() : this._preload()
+        }, e.prototype._preload = function () {
+            var t = this, e = this._data.getTaikuShipIndex(), i = this._scene.data.model.deck_f.ships[e];
+            if (null != i) {
+                var n = i.mst_id, o = i.isDamaged(), s = this._data.getTaikuSlotMstIDs();
+                this._aaCutin = new r.CutinAntiAircraft(n, o, s), this._aaCutin.preload(function () {
+                    t._selectCaptain()
+                })
+            } else this._selectCaptain()
+        }, e.prototype._selectCaptain = function () {
+            var t;
+            if (this._data.plane_from_f.length > 0) {
+                var e = this._data.plane_from_f[0];
+                t = this._scene.data.model.deck_f.ships[e]
+            }
+            var i;
+            if (this._data.plane_from_e.length > 0 && 0 == this._scene.data.model.map_info.isAirRaid()) {
+                var e = this._data.plane_from_e[0];
+                i = this._scene.data.model.deck_e.ships[e]
+            }
+            null != t || null != i ? this._cutin(t, i) : this._showTouchPlane()
+        }, e.prototype._cutin = function (t, e) {
+            var i = this, n = new s.CutinFunnel;
+            n.addCutinFromModel(t, !1), n.addCutinFromModel(e, !1);
+            var o = n.view;
+            n.preload_task.start(function () {
+                i._scene.view.layer_title.show(4), i._scene.view.layer_cutin.addChild(o), n.start(function () {
+                    i._scene.view.layer_cutin.removeChild(o), i._showTouchPlane()
+                })
+            })
+        }, e.prototype._showTouchPlane = function () {
+            var t = this, e = this._data.getTouchPlaneFriend(), i = this._data.getTouchPlaneEnemy();
+            new a.TaskShowTouchPlane(this._scene, e, i).start(function () {
+                t._main()
+            })
+        }, e.prototype._main = function () {
+            var t = this, e = this._scene.data.model.deck_f.ships, i = this._scene.data.model.deck_e.ships;
+            new _.TaskAirWar(this._scene, this._data, e, i, this._damage_cutin, this._aaCutin).start(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            var e = this, i = this._scene.view.raderLayer;
+            i.rader_e.touch_plane.hide(), i.rader_f.touch_plane.hide(), this._scene.view.layer_title.hide(function () {
+                t.prototype._endTask.call(e)
+            })
+        }, e.prototype._hasPhase = function () {
+            if (null == this._data) return !1;
+            if (1 == this._data.stage3_f.hasDamage()) return !0;
+            if (1 == this._data.stage3_e.hasDamage()) return !0;
+            var t = !1;
+            0 == this._record.raw.sakuteki.isSuccess_f() ? t = !0 : 0 == this._data.plane_from_f.length ? t = !0 : 1 == this._scene.data.model.deck_e.isSubmarineAll() && (t = !0);
+            var e = !1;
+            return 0 == this._record.raw.sakuteki.isSuccess_e() ? e = !0 : 0 == this._data.plane_from_e.length ? e = !0 : 1 == this._scene.data.model.deck_f.isSubmarineAll() && (e = !0), 1 != t || 1 != e
         }, e
-    }(PIXI.Container);
-    e.IntensiveLines = r
+    }(o.PhaseAirBase);
+    e.PhaseAirWar = u
 }

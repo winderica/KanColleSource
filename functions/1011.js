@@ -15,21 +15,23 @@ const function1011 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(82), s = i(33), a = i(14), _ = i(54), u = function (t) {
+    var o = i(165), r = i(4), s = i(31), a = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._name = new r.TextBox(30, 4999235), e._name.position.set(193, 129), e.addChild(e._name), e._level = new r.TextBox(26, 4999235), e._level.anchor.set(1, 0), e._level.position.set(319, 192), e.addChild(e._level), e._rank_name = new r.TextBox(19, 4999235), e._rank_name.position.set(324, 198), e.addChild(e._rank_name), e._exp = new r.TextBox(19, 4999235), e._exp.position.set(363, 235), e.addChild(e._exp), e._comment = new r.TextBox(16, 4999235), e._comment.position.set(151, 286), e.addChild(e._comment), e._friend_num = new r.TextBox(20, 4999235), e._friend_num.anchor.set(1, 0), e._friend_num.position.set(645, 344), e.addChild(e._friend_num), e._ship_num = new r.TextBox(20, 4999235), e._ship_num.anchor.set(1, 0), e._ship_num.position.set(645, 375), e.addChild(e._ship_num), e._slot_num = new r.TextBox(20, 4999235), e._slot_num.anchor.set(1, 0), e._slot_num.position.set(645, 407), e.addChild(e._slot_num), e._furniture_num = new r.TextBox(20, 4999235), e._furniture_num.anchor.set(1, 0), e._furniture_num.position.set(645, 438), e.addChild(e._furniture_num), e._rank_icon = new s.RankIcon, e._rank_icon.position.set(135, 181), e.addChild(e._rank_icon), e._medal = new o.MedalIcon, e._medal.position.set(594, 543), e.addChild(e._medal), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(_.SALLY_PRACTICE.getTexture(34));
-            this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(20, 4999235), this._star = new r.StarRateView, this._container = new PIXI.Container, t.position.set(330, 12);
-            var e = a.CreateRect.gradientLeftToRight(95, this._name.height, .85, .9);
-            this._container.position.set(243, 0), this._level.position.set(392, 11), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this.addChild(this._container), this._container.addChild(this._name, e), this._container.mask = e, this.addChild(this._level), this.addChild(this._star)
+            this._medal.initialize()
         }, e.prototype.update = function (t) {
-            null == t ? this.visible = !1 : (this._container.cacheAsBitmap = !1, this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0, this._container.cacheAsBitmap = !0)
+            this._name.text = t.name, this._level.text = t.level.toString(), this._rank_name.text = t.rank_name, this._exp.text = t.exp_now + "/" + t.exp_next, this._comment.text = t.comment, this._friend_num.text = t.friend_num.toString();
+            var e = t.ship_nums;
+            this._ship_num.text = e[0] + "/" + e[1];
+            var i = t.slot_nums;
+            this._slot_num.text = i[0] + "/" + i[1], this._furniture_num.text = t.furniture_num.toString(), this._rank_icon.update(t.rank), this._medal.update(t.medal_num, 9466926)
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._container.cacheAsBitmap = !1, this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._name.destroy(), this._level.destroy(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
+            this.removeChildren(), this._name.destroy(), this._name = null, this._level.destroy(), this._level = null, this._rank_name.destroy(), this._rank_name = null, this._exp.destroy(), this._exp = null, this._comment.destroy(), this._comment = null, this._friend_num.destroy(), this._friend_num = null, this._ship_num.destroy(), this._ship_num = null, this._slot_num.destroy(), this._slot_num = null, this._furniture_num.destroy(), this._furniture_num = null, this._rank_icon = null, this._medal.dispose(), this._medal = null
         }, e
     }(PIXI.Container);
-    e.CompRivalShip = u
+    e.UserinfoPanelInfoDetail = a
 }

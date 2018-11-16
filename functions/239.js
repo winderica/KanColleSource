@@ -1,7 +1,7 @@
 const function239 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(1212), o = function () {
+    var n = i(1213), o = function () {
         function t(t) {
             this._supplied = -1, this._use_ration = -1, this._gauge_now = 0, this._gauge_max = 0, this._stage = 1, this.m1 = 0, this._gekimetsu_data = null, this._practice = t, this._map_info = new r, this._ship_info = new s
         }

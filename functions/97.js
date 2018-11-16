@@ -15,8 +15,8 @@ const function97 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(62), a = i(246), _ = i(247), u = i(248), l = i(249), c = i(251), h = i(451),
-        p = i(453), d = i(253), f = i(455), y = function (t) {
+    var o = i(0), r = i(2), s = i(63), a = i(246), _ = i(247), u = i(248), l = i(249), c = i(251), h = i(452),
+        p = i(454), d = i(253), f = i(456), y = i(457), m = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -36,7 +36,7 @@ const function97 = function (t, e, i) {
                 } else this._endTask()
             }, e.prototype._hougeki = function (t) {
                 var e = t.type;
-                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : this._special(t)
+                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : this._special(t)
             }, e.prototype._normal = function (t) {
                 var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
                     o = this._getDShip(t.d_indexes[0], t.flag);
@@ -98,6 +98,17 @@ const function97 = function (t, e, i) {
                 new f.PhaseNelsonTouch(this._scene, i, r, s, a).start(function () {
                     e._hougekiCycle()
                 })
+            }, e.prototype._nagato_cutin = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new y.PhaseNagatoAttack(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
             }, e.prototype._special = function (t) {
                 var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != i && null != n) {
@@ -153,5 +164,5 @@ const function97 = function (t, e, i) {
                 return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e
         }(r.TaskBase);
-    e.PhaseHougeki = y
+    e.PhaseHougeki = m
 }

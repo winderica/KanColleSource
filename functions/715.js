@@ -15,74 +15,66 @@ const function715 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(1), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
-            }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(36), a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(12), u = o.ORGANIZE_MAIN.getTexture(13);
-            i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(u), l.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, l, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
-        }
+    var o = i(0), r = i(21), s = i(108), a = i(716), _ = i(57), u = i(319), l = i(316), c = i(320),
+        h = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n.PAGE_NUM = 5, n.headIndex = 0, n._onClickBack = function () {
+                    n.hide(), n.clickBack && n.clickBack()
+                }, n._onClickExpand = function (t) {
+                    n.clickExpand && n.clickExpand(t)
+                }, n._onClickDelete = function (t) {
+                    var e = new c.PresetDeleteAPI(t);
+                    o.default.view.clickGuard = !0, e.start(function () {
+                        var e = new Array, i = o.default.model.deck.get(n.deckId),
+                            r = (i.getShipList(), null != i.expedition),
+                            s = (i.getShipMemIDList(), 0 < i.getCount());
+                        n.presetList.__deletePresetDeckData__(t);
+                        for (var a = 0; a < n.presetList.maxNum; a++) {
+                            var _ = n.presetList.getPresetDeckData(a + 1);
+                            0 < _.getRealShipCount() && e.push(_)
+                        }
+                        var u = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
+                        n.presetExpansionContainer.update(n.deckId, n.presetList, u, s, r), o.default.view.clickGuard = !1, n.presets = e
+                    })
+                }, n._onClickNext = function () {
+                    n.arrowBottomButton.visible = !1;
+                    var t = n.headIndex + 1;
+                    n.presets.length < t + n.PAGE_NUM && (t = n.presets.length - n.PAGE_NUM), n.arrowBottomButton.visible = !1, n.arrowTopButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), 0 < t && (n.presetTitle.hideTxt2(), n.arrowTopButton.visible = !0);
+                    var e = n.presets.slice(t, t + n.PAGE_NUM), i = o.default.model.deck.get(n.deckId),
+                        r = (i.getShipList(), null != i.expedition), s = (i.getShipMemIDList(), 0 < i.getCount());
+                    n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
+                }, n._onClickPrev = function () {
+                    var t = n.headIndex - 1, e = n.presets.slice(t, t + n.PAGE_NUM),
+                        i = o.default.model.deck.get(n.deckId), r = (i.getShipList(), null != i.expedition),
+                        s = (i.getShipMemIDList(), 0 < i.getCount());
+                    t < 0 && (t = 0), n.arrowBottomButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), n.arrowTopButton.visible = !1, 0 < t && (n.arrowTopButton.visible = !0, n.presetTitle.hideTxt2()), n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
+                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new u.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new l.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
+                var h = r.COMMON_MAIN.getTexture(4);
+                return n.btnBack = new _.SimpleButton(h, h), n.btnBack.position.set(173, 638), n.btnBack.onClick = n._onClickBack, n.arrowTopButton = new s.ArrowButton, n.arrowTopButton.initialize(n._onClickPrev), n.arrowTopButton.position.set(446, 217), n.arrowBottomButton = new s.ArrowButton(!0), n.arrowBottomButton.initialize(n._onClickNext), n.arrowBottomButton.position.set(443, 667), n.presetExpansionContainer = new a.PresetExpansionContainer, n.presetExpansionContainer.position.set(168, 248), n.presetExpansionContainer.onClickExpand = n._onClickExpand, n.addChild(n.presetTitle, n.btnBack, n.presetExpansionContainer, n.longShipBannerContainer, n.arrowTopButton, n.arrowBottomButton), n
+            }
 
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
-            get: function () {
-                return this._index
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
-            get: function () {
-                return this._background
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
-            get: function () {
-                return this._positiveButton
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._positiveButton.off(s.EventType.CLICK), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.textMessage = null, this.negativeButton = null, this._index = null, this._background = null, this._positiveButton = null, this._presetId = null
-        }, e.prototype.update = function (t, e, i) {
-            this._positiveButton.visible = !1, this.negativeButton.visible = !1, i ? this._positiveButton.visible = !0 : this.negativeButton.visible = !0, this.textMessage.text = e, this._background.width = this.textMessage.width + 9, this._background.x = 285, 285 < this._background.width / 2 && (this._background.x = Math.floor(this._background.width / 2 - 285 + 285)), this.textMessage.x = this.background.x, this.positiveButton.x = Math.floor(this.background.x - this.positiveButton.width / 2), this.negativeButton.x = Math.floor(this.background.x - this.negativeButton.width / 2), this._presetId = t
-        }, e
-    }(PIXI.Container);
-    e.PresetAlertOrganizedPopup = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
-            }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._onMouseOver = function (t) {
-                i.onMouseOver(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(37), a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(13), u = o.ORGANIZE_MAIN.getTexture(11);
-            i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(u), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", l.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, l, i.textMessage, i._negativeButton, i._positiveButton), i
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
-            get: function () {
-                return this._index
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
-            get: function () {
-                return this._background
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
-            get: function () {
-                return this._positiveButton
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.CLICK), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textMessage = null, this._positiveButton = null, this._negativeButton = null, this._background = null, this._index = null, this._presetId = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this._presetId = t, this._positiveButton.visible = !1, this._negativeButton.visible = !1, e ? this._positiveButton.visible = !0 : this._negativeButton.visible = !0
-        }, e
-    }(PIXI.Container);
-    e.PresetAlertLostPopup = _
+            return n(e, t), e.prototype.dispose = function () {
+                if (this.removeChildren(), this.presetTitle.dispose(), this.presetExpansionContainer.hideAllPopupAndFocus(), this.presetExpansionContainer.dispose(), this.btnBack.dispose(), this.arrowTopButton.dispose(), this.arrowBottomButton.dispose(), this.longShipBannerContainer.dispose(), this.presets) for (var t = 0; t < this.presets.length; t++) this.presets[t] = null;
+                this.clickBack = null, this.clickExpand = null, this.presetTitle = null, this.deckId = null, this.headIndex = null, this.presetList = null, this.presets = null, this.presetExpansionContainer = null, this.btnBack = null, this.arrowTopButton = null, this.arrowBottomButton = null, this.longShipBannerContainer = null
+            }, e.prototype.show = function (t, e) {
+                this.visible = !0, o.default.view.portMain.playCraneAnimation(), this.deckId = t, this.presetList = e, this.arrowTopButton.activate(), this.arrowBottomButton.activate();
+                for (var i = (o.default.model.deck.get(t), new Array), n = 0; n < this.presetList.maxNum; n++) {
+                    var r = this.presetList.getPresetDeckData(n + 1);
+                    0 < r.getRealShipCount() && i.push(r)
+                }
+                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0), this.presets = i, this.headIndex = 0, this.updateDeck(t)
+            }, e.prototype.update = function (t) {
+                this.changeDeck(t)
+            }, e.prototype.hide = function () {
+                this.visible = !1
+            }, e.prototype.changeDeck = function (t) {
+                this.updateDeck(t)
+            }, e.prototype.updateDeck = function (t) {
+                var e = o.default.model.deck.get(t), i = e.getShipList(), n = null != e.expedition,
+                    r = this.presets.slice(this.headIndex, this.headIndex + this.PAGE_NUM), s = 0 < e.getCount();
+                this.longShipBannerContainer.update(i, n), this.presetExpansionContainer.update(t, this.presetList, r, s, n), this.deckId = t
+            }, e
+        }(PIXI.Container);
+    e.PresetExpansionLayer = h
 }

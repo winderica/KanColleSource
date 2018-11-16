@@ -18,7 +18,7 @@ const function1375 = function (t, e, i) {
     var o = i(0), r = i(24), s = i(6), a = i(120), _ = i(43), u = i(1376), l = function (t) {
         function e(e, i, n, r, s, a, _, l, c) {
             var h = t.call(this, e, i, r, _, l, c) || this;
-            return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new u.CutinSpSRD(i, h._slot, h._slot2, h._slot3), h
+            return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new u.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
         }
 
         return n(e, t), e.prototype._start = function () {
@@ -76,5 +76,5 @@ const function1375 = function (t, e, i) {
         }, e.prototype._log = function (t) {
         }, e
     }(_.PhaseAttackBase);
-    e.PhaseAttackSpSRD = l
+    e.PhaseAttackSpRDJ = l
 }

@@ -15,24 +15,22 @@ const function1509 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
+    var o = i(4), r = i(5), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+            return e._name = new o.TextBox(24, 1949120), e._name.anchor.set(0, 0), e._name.position.set(r.default.width / 2, 48), e._name.alpha = 0, e.addChild(e._name), e
         }
 
-        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
-            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({ alpha: 1 }, i)
-        }, e.prototype.createHideTween = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 0);
-            var n = createjs.Tween.get(this._img).wait(e);
-            return 1 == this._img.visible && n.to({ alpha: 0 }, t).call(function () {
-                i._img.visible = !1
-            }), n
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._name.text = t, this._name.position.x = r.default.width / 2 - Math.floor(this._name.width / 2)
+        }, e.prototype.show = function () {
+            var t = this;
+            createjs.Tween.get(this._name).to({ alpha: 1 }, 100).call(function () {
+                t.emit("complete")
+            })
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img = null
+            this.removeChildren(), this._name.destroy()
         }, e
     }(PIXI.Container);
-    e.LayerMVP = o
+    e.LayerMapName = s
 }

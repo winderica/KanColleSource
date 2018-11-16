@@ -15,7 +15,7 @@ const function1401 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(74), r = i(89), s = i(92), a = i(90), _ = i(63), u = i(93), l = i(91), c = i(98), h = i(96),
+    var o = i(75), r = i(89), s = i(92), a = i(90), _ = i(64), u = i(93), l = i(91), c = i(98), h = i(96),
         p = i(95), d = i(97), f = i(94), y = i(76), m = i(118), v = i(99), g = function (t) {
             function e(e, i, n) {
                 var o = t.call(this, e, n) || this;
@@ -87,16 +87,16 @@ const function1401 = function (t, e, i) {
             }, e.prototype._attack2 = function () {
                 var t = this;
                 new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
                     t._torpedo()
                 })
             }, e.prototype._torpedo = function () {
                 var t = this;
                 new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
                     t._ending()
                 })
             }, e.prototype._ending = function () {
@@ -106,5 +106,5 @@ const function1401 = function (t, e, i) {
                 })
             }, e
         }(o.PhaseCombatBase);
-    e.PhaseDay_Suijo = g
+    e.PhaseDay_Kido_vs12 = g
 }

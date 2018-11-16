@@ -15,7 +15,7 @@ const function317 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(30), s = i(211), a = i(107), _ = i(69), u = i(82), l = i(4), c = i(280), h = i(193),
+    var o = i(0), r = i(30), s = i(211), a = i(107), _ = i(70), u = i(82), l = i(4), c = i(280), h = i(193),
         p = i(37), d = i(21), f = i(9), y = function (t) {
             function e() {
                 var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite, o = new PIXI.Sprite,

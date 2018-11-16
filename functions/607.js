@@ -15,37 +15,23 @@ const function607 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(285), a = i(286), _ = i(287), u = i(288), l = i(149), c = i(1), h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mouse_down = !1, i._cb_onRelateOpen = null, i._cb_onRelateClose = null, i._onMouseOver = function () {
-                i._mouse_down = !1, i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._showWaves(), i._description.show(), null != i._cb_onRelateOpen && i._cb_onRelateOpen()
-            }, i._onMouseOut = function () {
-                i._mouse_down = !1, i._bg_on.visible = !1, i._bg_on.deactivate(), i._img.visible = !0, i._img_on.visible = !1, i._setScale(1), i._hideWaves(), i._description.hide(), null != i._cb_onRelateClose && i._cb_onRelateClose()
-            }, i._onMouseDown = function () {
-                i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
-            }, i._onMouseUp = function () {
-                i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
-            }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new u.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new l.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+    var o = i(189), r = i(190), s = i(191), a = i(192), _ = i(284), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()
-        }, e.prototype.activate = function () {
-            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
-        }, e.prototype.deactivate = function () {
-            this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
-        }, e.prototype.interactiveApply = function (t) {
-            this._hit_area.interactive = t
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.changeSkin(t), this._gear.activate()
+        }, e.prototype.changeSkin = function (t) {
+            101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
+            var e = PIXI.Texture.EMPTY;
+            e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
+        }, e.prototype.update = function (t) {
+            0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
         }, e.prototype.dispose = function () {
-            this._cb_onRelateOpen = null, this._cb_onRelateClose = null, this.deactivate(), this._hideWaves(), this._bg_on.dispose()
-        }, e.prototype._showWaves = function () {
-            null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
-        }, e.prototype._hideWaves = function () {
-            null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
-        }, e.prototype._setScale = function (t) {
-            this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+            this._gear.dispose()
         }, e
     }(PIXI.Container);
-    e.RingMenuBtn = h
+    e.FrameLayer = u
 }

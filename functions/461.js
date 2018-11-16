@@ -15,59 +15,62 @@ const function461 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(24), a = i(2), _ = i(15), u = i(1360), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._layer = e, n._ships = i, n
+    var o = i(24), r = i(2), s = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            for (var t = this, e = new _.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
+            for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
                 var o = n[i];
-                null != o && e.add(o.mst_id, o.damaged, "banner")
+                !function (i) {
+                    if (null == i) return "continue";
+                    if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
+                        var n = Math.floor(Math.random() * e._from_planes.length), o = e._from_planes[n],
+                            r = (e._scene.view.bannerGroupLayer, e._scene.view.bannerGroupLayer.getBanner(i)),
+                            s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e, _ = s.getDamage(i.index),
+                            u = s.isShield(i.index), l = new a(e._scene, o, r, _, u);
+                        e._tasks.push(l), l.start(function () {
+                            t._taskComplete(i, l)
+                        })
+                    }
+                }(o)
             }
-            e.load(function () {
-                t._initCutin()
-            })
-        }, e.prototype._initCutin = function () {
-            this._cutin = new u.SupportDeckCutin, this._cutin.initialize(), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
-        }, e.prototype._playCutin = function () {
-            var t = this;
-            this._layer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({ y: 2 }, 300).wait(1500).to({ y: 0 }, 300).call(function () {
-                t._endTask()
-            }), createjs.Tween.get(this._cutin.message).wait(400).to({ x: 660 }, 400).to({ x: 525 }, 800).to({
-                x: 420,
-                alpha: 0
-            }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({ alpha: 1 }, 100).to({ x: o.default.width / 2 - this._cutin.banner_top.width / 2 }, 800, createjs.Ease.cubicInOut).to({
-                x: o.default.width - this._cutin.banner_top.width,
-                alpha: 0
-            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({ alpha: 1 }, 100).to({ x: o.default.width / 2 - this._cutin.banner_bottom.width / 2 }, 800, createjs.Ease.cubicInOut).to({
-                x: 0,
-                alpha: 0
-            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
-                t._cutin.particles.startAnim()
-            })
-        }, e.prototype._createShipContainerU = function () {
-            var t, e = this._ships[0], i = this._ships[2], n = this._ships[4];
-            t = null == i ? [e] : null == n ? [e, i] : [n, e, i];
-            for (var o = 0; o < t.length; o++) {
-                var a = t[o], _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
-                    u = new PIXI.Sprite(_);
-                u.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(u)
-            }
-        }, e.prototype._createShipContainerB = function () {
-            var t, e = this._ships[1], i = this._ships[3], n = this._ships[5];
-            t = null == n ? null == i ? null == e ? [] : [e] : [i, e] : [i, e, n];
-            for (var o = 0; o < t.length; o++) {
-                var a = t[o], _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
-                    u = new PIXI.Sprite(_);
-                u.position.x = s.BannerSize.W * o, this._cutin.banner_bottom.addChild(u)
-            }
-        }, e.prototype._endTask = function (e) {
-            void 0 === e && (e = !1), this._layer.removeChild(this._cutin), this._cutin.dispose(), t.prototype._endTask.call(this)
+            0 == this._tasks.length && this._endTask()
+        }, e.prototype._taskComplete = function (t, e) {
+            var i = this._tasks.indexOf(e);
+            this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
         }, e
-    }(a.TaskBase);
-    e.TaskSupportDeckCutin = l
+    }(r.TaskBase);
+    e.TaskAirSupportTorpedo = s;
+    var a = function (t) {
+        function e(e, i, n, o, r) {
+            var s = t.call(this) || this;
+            return s._explosion = function () {
+                var t = s._shield;
+                if (1 == t) {
+                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
+                    s._scene.view.layer_damage.showShieldAtBanner(e)
+                }
+                s._to_banner.moveAtDamage(t);
+                var i = s._to_banner.getGlobalPos(!0), n = s._scene.view;
+                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
+                    s._endTask()
+                })
+            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._torpedo()
+        }, e.prototype._torpedo = function () {
+            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y), e = this._to_banner.getGlobalPos();
+            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedoSuper(t, e, this._explosion)
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase);
+    e.TaskAirWarTorpedoOne = a
 }

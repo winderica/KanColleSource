@@ -15,7 +15,7 @@ const function348 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(67), a = function (t) {
+    var o = i(0), r = i(2), s = i(68), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._maps = e, i
@@ -26,7 +26,7 @@ const function348 = function (t, e, i) {
         }, e.prototype._load = function () {
             for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
                 var r = n[i];
-                if ((0 != r.defeat_required || 0 != r.gauge_max) && (1 != r.isCleared() && 0 != r.isOpened())) {
+                if ((0 != r.defeat_required || 0 != r.gauge_max) && 0 != r.isOpened()) {
                     var a = r.area_id, _ = r.map_no, u = r.getGaugeNum(), l = s.GaugeSetModel.createKey(a, _, u);
                     e.add(l)
                 }

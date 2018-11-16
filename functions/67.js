@@ -1,42 +1,36 @@
 const function67 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(55), r = i(22), s = i(7), a = i(528), _ = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
+    var n = i(0), o = i(22), r = function () {
+        function t() {
+            null == t._queue && (t._queue = []), this._url_list = []
         }
 
-        return n(e, t), e.createKey = function (t, e, i) {
-            void 0 === i && (i = 1);
-            var n = r.MathUtil.zeroPadding(t, 3), o = r.MathUtil.zeroPadding(e, 2);
-            return i > 1 ? n + o + "_" + i : n + o
-        }, e.getMapId = function (t) {
-            if (null == t) return 0;
-            t = t.split("_")[0];
-            var e = parseInt(t);
-            if (isNaN(e)) return 0;
-            var i = Math.floor(e / 100), n = e % 100;
-            return o.MapUtil.toMapID(i, n)
-        }, Object.defineProperty(e.prototype, "vertical", {
-            get: function () {
-                var t = s.ObjUtil.getObject(this._o, "vertical");
-                return null == t ? null : new a.GaugeModel(t, 18, 253)
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(a.GaugeModel);
-    e.GaugeSetModel = _
+        return t.getPath = function (t, e) {
+            var i = o.MathUtil.zeroPadding(t, 3);
+            return 0 == e ? null : 1 == e ? n.default.settings.path_root + "resources/useitem/card/" + i + ".png" : 2 == e ? n.default.settings.path_root + "resources/useitem/card_/" + i + ".png" : ""
+        }, t.prototype.add = function (e, i) {
+            if (0 == i) return this;
+            var n = t.getPath(e, i);
+            return this._url_list.push(n), this
+        }, t.prototype.load = function (e) {
+            void 0 === e && (e = null), this._cb_onComplete = e, t._queue.indexOf(this) >= 0 || (t._queue.push(this), 1 == t._queue.length && this._load())
+        }, t.prototype._load = function () {
+            var t = this;
+            if (this._url_list = this._url_list.filter(function (t, e, i) {
+                return !PIXI.utils.TextureCache[t] && i.indexOf(t) === e
+            }), 0 == this._url_list.length) return void this._onLoadComplete();
+            for (var e = new PIXI.loaders.Loader, i = 0, n = this._url_list; i < n.length; i++) {
+                var o = n[i];
+                e.add(o)
+            }
+            e.load(function () {
+                t._onLoadComplete()
+            })
+        }, t.prototype._onLoadComplete = function () {
+            if (this._cb_onComplete(), this._cb_onComplete = null, t._queue.shift() != this) throw new Error("UseitemLoader Error");
+            t._queue.length > 0 && t._queue[0]._load()
+        }, t
+    }();
+    e.UseitemLoader = r
 }

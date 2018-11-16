@@ -15,8 +15,8 @@ const function460 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(71), s = i(27), a = i(19), _ = i(28), u = i(39), l = i(6), c = i(134), h = i(175),
-        p = i(135), d = i(459), f = i(177), y = function (t) {
+    var o = i(0), r = i(72), s = i(27), a = i(19), _ = i(28), u = i(39), l = i(6), c = i(134), h = i(175),
+        p = i(135), d = i(461), f = i(177), y = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
@@ -51,22 +51,17 @@ const function460 = function (t, e, i) {
             }, e.prototype._createFriendPlanes = function () {
                 for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
                     var r = n[i], s = r.mem_id, a = o.default.model.ship.get(s);
-                    if (null != a) for (var _ = a.getSlotitems(), u = 0; u < _.length; u++) {
-                        var l = _[u];
-                        if (null != l) {
-                            var c = a.getSlotitemTousai(u);
-                            l.taisen > 0 && c > 0 && t++
-                        }
-                    }
+                    null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
                 }
-                for (var h = [], u = 0; u < t; u++) {
-                    var d = new p.Plane,
-                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
-                        y = new PIXI.Point;
-                    d.initialize(16, !0, f, y), h.push(d)
+                t = Math.min(6, t);
+                for (var _ = [], u = 0; u < t; u++) {
+                    var l = new p.Plane,
+                        c = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
+                        h = new PIXI.Point;
+                    l.initialize(16, !0, c, h), _.push(l)
                 }
-                this._canvas.addPlanes_f(h)
+                this._canvas.addPlanes_f(_)
             }, e
         }(h.TaskAircraftFlightBase);
-    e.TaskSupportTaisen = y
+    e.TaskSupportAir = y
 }

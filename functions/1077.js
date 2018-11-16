@@ -15,33 +15,20 @@ const function1077 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(4), r = i(3), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
+            return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
-        }, e.prototype.update = function (t) {
-            if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY; else {
-                this._n100.update(Math.floor(t / 100));
-                var e = t % 100;
-                this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
-            }
+            this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
+        }, e.prototype.initialize = function (t) {
+            this.texture = r.ALBUM_MAIN.getTexture(94), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
+        }, e.prototype._createTextBox = function (t) {
+            var e = new o.TextBox(23, 16777215);
+            return e.y = t - 3, this.addChild(e), e
         }, e
-    }(PIXI.Container);
-    e.DetailPanelNumbers = r;
-    var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY; else {
-                var e = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106][t];
-                this.texture = o.ALBUM_MAIN.getTexture(e)
-            }
-        }, e
-    }(PIXI.Sprite)
+    }(PIXI.Sprite);
+    e.ShipDetailStatusBox = s
 }

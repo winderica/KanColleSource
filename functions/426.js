@@ -15,34 +15,59 @@ const function426 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(19), s = i(2), a = i(12), _ = i(132), u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
+    var o = i(117), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._particle = new Array;
+            for (var i = [600], n = [243], o = 0; o < 8; o++) i.push(555 + 90 * Math.random()), n.push(243 - 90 * Math.random());
+            for (var o = 0; o < i.length; o++) {
+                var r = new s;
+                r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
+            }
+            return e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._canvas = new PIXI.Container, this._layer.addChild(this._canvas);
-            var t = _.SALLY_MAP_PARTS.getTexture(1);
-            this._bg = new PIXI.Sprite(t), this._bg.width = o.default.width, this._bg.anchor.set(.5, .5), this._bg.position.set(o.default.width / 2, o.default.height / 2), this._bg.scale.y = 0, this._canvas.addChild(this._bg), t = _.SALLY_MAP_PARTS.getTexture(0), this._light = new PIXI.Sprite(t), this._light.width = o.default.width, this._light.anchor.set(0, .5), this._light.position.set(o.default.width, o.default.height / 2), this._canvas.addChild(this._light), this._text1 = new a.Sprite(_.SALLY_MAP_PARTS.getTexture(2)), this._text1.anchor.set(.5, .5), this._text1.position.set(o.default.width / 2, o.default.height / 2), this._text1.scale.set(1.6), this._text1.alpha = 0, this._canvas.addChild(this._text1), this._text2 = new a.Sprite(_.SALLY_MAP_PARTS.getTexture(2)), this._text2.anchor.set(.5, .5), this._text2.position.set(o.default.width / 2, o.default.height / 2), this._text2.scale.set(1.6), this._text2.alpha = 0, this._canvas.addChild(this._text2), this._startAnimation()
-        }, e.prototype._startAnimation = function () {
-            var t = this, e = new r.TweenTask;
-            e.addTweens([createjs.Tween.get(this._bg.scale).to({ y: 1 }, 200), createjs.Tween.get(this._light).to({ x: 0 }, 400).wait(150).to({ y: o.default.height / 2 + 8 }, 50).to({ y: o.default.height / 2 - 5 }, 50).to({ y: o.default.height / 2 }, 50), createjs.Tween.get(this._text1).wait(400).to({
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 200), createjs.Tween.get(this._text2).wait(300).to({
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 200)]), e.start(function () {
-                createjs.Tween.get(t._canvas).to({ alpha: 0 }, 200).call(function () {
-                    t._endTask()
-                })
-            })
-        }, e.prototype._endTask = function () {
-            this._canvas.removeChildren(), this._layer.removeChild(this._canvas), this._layer = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.activate = function () {
+            this.initialize()
+        }, e.prototype.initialize = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                !function (t) {
+                    createjs.Tween.get(null).wait(1e3 * Math.random()).call(function () {
+                        t.initialize(), t.alpha = 1, t.startAnim()
+                    })
+                }(i)
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                i.alpha = 0, i.stopAnim()
+            }
         }, e
-    }(s.TaskBase);
-    e.SallyAnimationTask = u
+    }(PIXI.Container);
+    e.RevampRingParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.alpha = 0, this.anchor.set(.5, .5), this.scale.set(.5, .5), this._initXYSpeed(), this.texture = o.REVAMP_REVAMP.getTexture(13)
+        }, e.prototype.startAnim = function () {
+            this._anim()
+        }, e.prototype.stopAnim = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._initXYSpeed = function () {
+            this._vx = (2 * Math.random() < 1 ? 1 : -1) * (6 * Math.random() + 6), this._vy = -(6 * Math.random() + 6), this._rot = .025 * (this._vx > 0 ? 1 : -1)
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this).to({ alpha: 1 }, 0).to({
+                x: this.x + this._vx,
+                y: this.y + this._vy,
+                rotation: this.rotation + this._rot
+            }, 20).call(function () {
+                t._tween = null, t.y > 1200 && (t.y = 243 - 90 * Math.random(), t.x = 555 + 90 * Math.random(), t._initXYSpeed()), t._vy += .4, t._anim()
+            })
+        }, e
+    }(PIXI.Sprite)
 }

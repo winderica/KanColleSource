@@ -1,7 +1,7 @@
 const function86 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(52), o = i(130), r = i(30), s = i(0), a = i(776);
+    var n = i(52), o = i(130), r = i(30), s = i(0), a = i(778);
     !function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);

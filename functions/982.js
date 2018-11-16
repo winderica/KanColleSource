@@ -15,16 +15,25 @@ const function982 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(227), r = i(229), s = function (t) {
-        function e(e, i, n) {
-            for (var r = t.call(this, e) || this, s = 0; s < 3; s++) {
-                var a = new o.MapThumbnail(3, i, n, null, null), _ = 206 + 144 * s;
-                a.position.set(186, _), r.addChild(a), r._maps.push(a)
-            }
-            return r
+    var o = i(17), r = i(53), s = i(41), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
         }
 
-        return n(e, t), e
-    }(r.LayoutBase);
-    e.LayoutMap3 = s
+        return n(e, t), e.prototype.update = function (t, e) {
+            t != o.EVENT_AREA_ID ? (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0) : (e >= 3 ? (this._content.position.set(1022, 348), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)) : (this._content.position.set(1038, 350), this._content.texture = s.SALLY_EVENT.getTexture(10), this._light.texture = s.SALLY_EVENT.getTexture(11)), this._light.position.set(1043, 329), this._light.alpha = 0)
+        }, e.prototype.show = function () {
+            this._activate(), this.visible = !0
+        }, e.prototype.hide = function () {
+            this._deactivate(), this.visible = !1
+        }, e.prototype.dispose = function () {
+            this._deactivate()
+        }, e.prototype._activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 1 }, 1500).to({ alpha: 0 }, 800))
+        }, e.prototype._deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+        }, e
+    }(PIXI.Container);
+    e.BtnNext = a
 }
