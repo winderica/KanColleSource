@@ -1,14 +1,11 @@
 const fs = require('fs');
 
-const chunker = a => {
-    for (let i = 0; i < 2000; i++) {
-        if (a[i]) {
-            try {
-                fs.writeFileSync(`functions/${i}.js`, `const function${i} = ${a[i].toString()}`)
-            } catch (err) {
-                console.log(err);
-                break;
-            }
+const chunker = arr => {
+    arr.map((func, index) => {
+        try {
+            fs.writeFileSync(`functions/${index}.js`, `const function${index} = ${func.toString()}`)
+        } catch (err) {
+            console.log(err);
         }
-    }
+    })
 };
