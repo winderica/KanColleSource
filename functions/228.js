@@ -28,7 +28,7 @@ const function228 = function (t, e, i) {
                 this._tp_visible = t, this._tp.visible = this._tp.enabled && this._tp_visible
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function (t) {
-            if (null == t) return this._stopTween(), this._tp.enabled = !1, void(this.visible = !1);
+            if (null == t) return this._stopTween(), this._tp.enabled = !1, void (this.visible = !1);
             this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.initialize(t.barColor, t.barW, t.barH), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startTween()
         }, e.prototype.update = function (t, e, i) {
             void 0 === i && (i = null), this._now = t, this._max = e;

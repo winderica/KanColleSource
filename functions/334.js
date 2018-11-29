@@ -16,7 +16,7 @@ const function334 = function (t, e, i) {
                             _ < 0 && (_ = 0);
                             var u = n[_], l = u[0], c = u[1], h = u[2], p = (o.progress - h) / (a - h),
                                 d = l + (r - l) * p, f = c + (s - c) * p;
-                            return t.position.x = d, void(t.position.y = f)
+                            return t.position.x = d, void (t.position.y = f)
                         }
                     }
                 }, a = function () {
@@ -40,7 +40,7 @@ const function334 = function (t, e, i) {
                             _ < 0 && (_ = 0);
                             var u = o[_], l = u[0], c = u[1], h = u[2], p = (r.progress - h) / (a - h),
                                 d = l + (n - l) * p, f = c + (s - c) * p;
-                            return t.position.x = d, void(t.position.y = f)
+                            return t.position.x = d, void (t.position.y = f)
                         }
                     }
                 }, _ = function () {

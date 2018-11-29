@@ -50,7 +50,7 @@ const function597 = function (t, e, i) {
                     i.activate(), e._updateBtnState(t)
                 }))
             } else {
-                if (16 != t && 31 != t) return this._current = null, void(this.visible = !1);
+                if (16 != t && 31 != t) return this._current = null, void (this.visible = !1);
                 this.visible = !0, null == this._current ? (this._hook.position.set(90, this._btn_port.y + this._btn_port.height / 2), this._updateBtnState(t), this._current = t, 31 == t && this._crane.startAnimation()) : (this._current = t, 31 == t && this._crane.startAnimation(), createjs.Tween.get(this._hook).to({ x: 90 }, 200).to({ y: this._btn_port.y + this._btn_port.height / 2 }, 200).call(function () {
                     e._updateBtnState(t)
                 }))

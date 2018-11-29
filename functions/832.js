@@ -46,7 +46,7 @@ const function832 = function (t, e, i) {
                                 if (1 == n.state) {
                                     if (n.completeTime < t) {
                                         r.default.view.clickGuard = !0, e.timerState = x.TimerState.UpdateOnly;
-                                        return void(new f.NDockAPI).start(function () {
+                                        return void (new f.NDockAPI).start(function () {
                                             var t = r.default.model.ndock.getAll();
                                             e.mainView.hideAnimation(t, function () {
                                                 e.updateNDocks(t), e.timerState = x.TimerState.WaitComplete, r.default.view.clickGuard = !1

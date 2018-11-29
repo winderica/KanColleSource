@@ -67,18 +67,18 @@ const function1014 = function (t, e, i) {
                 this._rader.dispose(), this._arrow.dispose(), this._btn.dispose(), this._btn_back.dispose(), this._btn_close.dispose(), this._err_message.destroy()
             }, e.prototype._checkCondition = function (t, e) {
                 var i = t.getCount();
-                if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
-                if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "");
+                if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
                 for (var n = o.default.model.ndock.getShipMemIDs(), r = !1, s = !1, a = !0, _ = 0, u = e; _ < u.length; _++) {
                     var l = u[_];
                     null != l && (-1 != n.indexOf(l.memID) && (r = !0), (l.fuelNow <= 0 || l.ammoNow <= 0) && (s = !0), (l.fuelNow < l.fuelMax || l.ammoNow < l.ammoMax) && (a = !1))
                 }
-                if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
-                if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
-                if (1 == r) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u8266\u968a\u5185\u306b\u5165\u6e20\u4e2d\u306e\u8266\u304c\u3042\u308a\u307e\u3059\uff01");
-                if (1 == s) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u71c3\u6599\u30fb\u5f3e\u85ac\u306e\u88dc\u7d66\u4e0d\u8db3\u3067\u3059\uff01");
+                if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "");
+                if (1 == r) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u8266\u968a\u5185\u306b\u5165\u6e20\u4e2d\u306e\u8266\u304c\u3042\u308a\u307e\u3059\uff01");
+                if (1 == s) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u71c3\u6599\u30fb\u5f3e\u85ac\u306e\u88dc\u7d66\u4e0d\u8db3\u3067\u3059\uff01");
                 var c = e[0].getDamageType();
-                if (25 == c || 0 == c) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u65d7\u8266\u304c\u5927\u7834\u3057\u3066\u304a\u308a\u3001\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (25 == c || 0 == c) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u65d7\u8266\u304c\u5927\u7834\u3057\u3066\u304a\u308a\u3001\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
                 this._arrow.enabled = !0, this._btn.setEnabled(!0), this._err_message.text = ""
             }, e
         }(PIXI.Container);

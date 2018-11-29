@@ -46,9 +46,9 @@ const function1427 = function (t, e, i) {
         }, e.prototype.showBabble = function () {
             this._babble.show()
         }, e.prototype.enter = function () {
-            return 0 == this.visible ? null : this.alpha > 0 ? null : (this._entered = !0, this.x = 0, this.alpha = 1, void(this._content.frame.alpha = 1))
+            return 0 == this.visible ? null : this.alpha > 0 ? null : (this._entered = !0, this.x = 0, this.alpha = 1, void (this._content.frame.alpha = 1))
         }, e.prototype.enterCombined = function () {
-            return 0 == this.visible ? null : this.alpha > 0 ? null : (this._entered = !0, this.alpha = 1, void(this._content.frame.alpha = 1))
+            return 0 == this.visible ? null : this.alpha > 0 ? null : (this._entered = !0, this.alpha = 1, void (this._content.frame.alpha = 1))
         }, e.prototype.createEnterTween = function (t) {
             var e = this;
             if (0 == this.visible) return null;
@@ -114,7 +114,7 @@ const function1427 = function (t, e, i) {
             }))
         }, e.prototype.moveFront = function (t) {
             var e = this;
-            if (void 0 === t && (t = null), 0 == this.visible) return void(null != t && t());
+            if (void 0 === t && (t = null), 0 == this.visible) return void (null != t && t());
             this._stopMoveTween(), this._in_front = !0, this._move_tween = createjs.Tween.get(this), 1 == this._friend ? this._move_tween.to({ x: 38 }, 150) : this._move_tween.to({ x: -38 }, 150), this._move_tween.call(function () {
                 e._move_tween = null, null != t && t()
             })

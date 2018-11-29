@@ -46,7 +46,7 @@ const function940 = function (t, e, i) {
                     e = 104;
                     break;
                 default:
-                    return void(this.visible = !1)
+                    return void (this.visible = !1)
             }
             this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
         }, e

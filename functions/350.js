@@ -54,7 +54,7 @@ const function350 = function (t, e, i) {
                 this._detail.initialize(), this._level.initialize(), this._supply_btn.initialize(), this._relocation.initialize()
             }, e.prototype.update = function (t) {
                 var e = this;
-                if (null != this._load_task && this._load_task.cancel(), null == t || -1 == t.mst_id) return this._showNone(), void(1 == this._activated && this._activate());
+                if (null != this._load_task && this._load_task.cancel(), null == t || -1 == t.mst_id) return this._showNone(), void (1 == this._activated && this._activate());
                 if (this._mst_id = t.mst_id, this._bg.texture = s.SALLY_AIRUNIT.getTexture(66), this._none_label.visible = !1, this._distanceLayer.visible = !1, this._relocation.update(!1), 1 == t.isRelocation()) this._isSlot = !1, this._detail.visible = !1, this._skill.update(0), this._fatigue.update(1), this._level.update(0), this._supply_btn.update(!1), this._relocation.update(!0), 1 == this._activated && this._deactivate(), this._distanceLayer.visible = !1; else {
                     this._isSlot = !0, this._detail.update(t.count, t.countMax), this._detail.visible = !0, this._skill.update(t.skill_level), this._fatigue.update(t.fatigue), this._level.update(t.level);
                     var i = t.count < t.countMax;

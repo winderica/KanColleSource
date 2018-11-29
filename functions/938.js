@@ -54,9 +54,9 @@ const function938 = function (t, e, i) {
                     e = 56;
                     break;
                 case 10:
-                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !0);
+                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void (this._max.visible = !0);
                 default:
-                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !1)
+                    return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void (this._max.visible = !1)
             }
             this._star.visible = !0, this._plus.visible = !0, this._num.texture = o.SALLY_AIRUNIT.getTexture(e), this._num.visible = !0, this._max.visible = !1
         }, e

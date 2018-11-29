@@ -24,7 +24,7 @@ const function362 = function (t, e, i) {
             this.alpha = 0, this.visible = !1
         }, e.prototype.update = function (t) {
             var e = this;
-            if (0 == t) return this.texture = PIXI.Texture.EMPTY, void(this.visible = !1);
+            if (0 == t) return this.texture = PIXI.Texture.EMPTY, void (this.visible = !1);
             this.texture = s.SALLY_COMMON.getTexture(0), this.visible = !0, this._type = t;
             var i = new r.UIImageLoader("sally"), n = "sally_alert_alert_" + t;
             i.add("alert/alert_" + t + ".png?" + o.START_TIME, n), i.load(function () {

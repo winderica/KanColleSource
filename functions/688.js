@@ -39,10 +39,10 @@ const function688 = function (t, e, i) {
             var o = t + e;
             if (0 < o) {
                 if (this.crossCharacter.visible = !0, this.textCount.text = o.toString(), this.textCount.visible = !0, 0 < i) {
-                    if (n) return void(this.hokyuLight.visible = !0);
-                    if (0 < e) return void(this.hokyuNormal.visible = !0)
+                    if (n) return void (this.hokyuLight.visible = !0);
+                    if (0 < e) return void (this.hokyuNormal.visible = !0)
                 }
-                return void(this.hokyuDisable.visible = !0)
+                return void (this.hokyuDisable.visible = !0)
             }
         }, e.prototype._play = function () {
             this.tween.setPosition(0, createjs.Tween.LOOP), this.tween.setPaused(!1)

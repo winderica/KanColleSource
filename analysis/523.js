@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * equipments
+ */
 const function523 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -19,32 +23,39 @@ const function523 = function (t, e, i) {
         function t() {
         }
 
-        return Object.defineProperty(t.prototype, "num", {
+        Object.defineProperty(t.prototype, "num", {
             get: function () {
                 var t = 0;
                 for (var e in this._map) t++;
                 return t
             }, enumerable: !0, configurable: !0
-        }), t.prototype.get = function (t) {
+        });
+        t.prototype.get = function (t) {
             var e = t.toString();
             return null != this._map && 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.delete = function (t) {
+        };
+        t.prototype.delete = function (t) {
             var e = t.toString();
             1 == this._map.hasOwnProperty(e) && delete this._map[e]
-        }, t.prototype.getMst = function (t) {
+        };
+        t.prototype.getMst = function (t) {
             var e = t.toString();
             return null != this._mapMst && 1 == this._mapMst.hasOwnProperty(e) ? this._mapMst[e] : null
-        }, t.prototype.getEquipTypeAll = function () {
+        };
+        t.prototype.getEquipTypeAll = function () {
             var t = new Array;
             for (var e in this._mapMstEquipType) t.push(this._mapMstEquipType[e]);
             return t
-        }, t.prototype.getEquipTypeById = function (t) {
+        };
+        t.prototype.getEquipTypeById = function (t) {
             return this._mapMstEquipType[t.toString()]
-        }, t.prototype.getAll = function () {
+        };
+        t.prototype.getAll = function () {
             var t = new Array;
             for (var e in this._map) t.push(this._map[e]);
             return t
-        }, t.prototype.createSetList = function (t, e, i) {
+        };
+        t.prototype.createSetList = function (t, e, i) {
             void 0 === t && (t = null), void 0 === e && (e = null), void 0 === i && (i = -1);
             var n = {}, r = new Array;
             if (null == t) {
@@ -67,19 +78,22 @@ const function523 = function (t, e, i) {
                 null != v && (-1 != t.indexOf(v.equipTypeSp) ? (r.push(v), n[v.memID] = h.memID) : null != e && -1 != e.indexOf(v.mstID) && (r.push(v), n[v.memID] = h.memID))
             }
             return [r, n]
-        }, t.prototype.createUnsetListFromMstId = function (t) {
+        };
+        t.prototype.createUnsetListFromMstId = function (t) {
             var e = o.default.model.slot.getMst(t).equipTypeSp, i = o.default.model.slot.createUnsetList([e]),
                 n = new Array;
             return i.forEach(function (e) {
                 e.mstID == t && n.push(e)
             }), n
-        }, t.prototype.createSetListFromMstId = function (t) {
+        };
+        t.prototype.createSetListFromMstId = function (t) {
             var e = o.default.model.slot.getMst(t).equipTypeSp, i = o.default.model.slot.createSetList([e]),
                 n = new Array, r = {};
             return i[0].forEach(function (e) {
                 e.mstID == t && (n.push(e), r[e.memID] = i[1][e.memID])
             }), [n, r]
-        }, t.prototype.createUnsetList = function (t, e) {
+        };
+        t.prototype.createUnsetList = function (t, e) {
             void 0 === t && (t = null), void 0 === e && (e = null);
             var i = new Array;
             if (null == t) {
@@ -113,18 +127,22 @@ const function523 = function (t, e, i) {
                 }
             }
             return i
-        }, t.prototype.getExtraEquipShipData = function (t) {
+        };
+        t.prototype.getExtraEquipShipData = function (t) {
             var e = t.toString(), i = this._extraEquipShips[e];
             return null != i ? i : []
-        }, t.prototype.getCount = function (t) {
+        };
+        t.prototype.getCount = function (t) {
             var e = 0;
             for (var i in this._map) {
                 this._map[i].mstID == t && e++
             }
             return e
-        }, t.prototype.getAirUnitRelocation = function () {
+        };
+        t.prototype.getAirUnitRelocation = function () {
             return null == this._airunit_relocation ? [] : this._airunit_relocation.concat()
-        }, t
+        };
+        return t
     }();
     e.SlotitemModelHolder = _;
     var u = function (t) {

@@ -144,7 +144,7 @@ const function1327 = function (t, e, i) {
         }), e.prototype.getContainer = function (t) {
             return t < 0 || t > 3 ? null : [this._ship1, this._ship2, this._ship3][t]
         }, e.prototype.initXposition = function () {
-            return 1 == this._ship3.visible ? (this._ship1.x = this.CENTER, this._ship2.x = this.LEFT, void(this._ship3.x = this.RIGHT)) : 1 == this._ship2.visible ? (this._ship1.x = this.LEFT, void(this._ship2.x = this.RIGHT)) : void(this._ship1.x = this.CENTER)
+            return 1 == this._ship3.visible ? (this._ship1.x = this.CENTER, this._ship2.x = this.LEFT, void (this._ship3.x = this.RIGHT)) : 1 == this._ship2.visible ? (this._ship1.x = this.LEFT, void (this._ship2.x = this.RIGHT)) : void (this._ship1.x = this.CENTER)
         }, e
     }(PIXI.Container), g = function (t) {
         function e() {

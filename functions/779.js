@@ -128,7 +128,7 @@ const function779 = function (t, e, i) {
                 this.slotItemList.slotItemFilterView.visible = !1, 0 == t && (this.slotItemList.slotItemFilterView.visible = !0)
             }, t.prototype._initSortieSlotItems_ = function () {
                 if (!this.sortieSlotItems) {
-                    var t = o.default.model.slot.createUnsetList([47, 48]);
+                    var t = o.default.model.slot.createUnsetList([47, 48, 49]);
                     this.sortieSlotItems = t
                 }
             }, t.prototype._initUnSetList_ = function (t, e, i) {

@@ -23,7 +23,7 @@ const function367 = function (t, e, i) {
 
         return n(e, t), e.prototype.update = function (t, e) {
             var i = this;
-            if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+            if (void 0 === e && (e = null), this._area_id == t) return void (null != e && e());
             this._area_id = t;
             var n = s.MathUtil.zeroPadding(t, 3),
                 a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";

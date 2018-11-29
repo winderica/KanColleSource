@@ -86,7 +86,7 @@ const function1141 = function (t, e, i) {
                         e = 44, this._over.position.set(39, 114);
                         break;
                     default:
-                        return void(this._over.visible = !1)
+                        return void (this._over.visible = !1)
                 }
                 this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
             }

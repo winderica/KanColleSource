@@ -34,7 +34,7 @@ const function943 = function (t, e, i) {
                 return this._airunit_id
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function (t, e) {
-            if (this._airunit_id = t, t > e) return void(this.visible = !1);
+            if (this._airunit_id = t, t > e) return void (this.visible = !1);
             if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(119); else switch (t) {
                 case 1:
                     this._label.texture = o.SALLY_AIRUNIT.getTexture(120);

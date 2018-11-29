@@ -90,7 +90,7 @@ const function964 = function (t, e, i) {
         }, e.prototype.dispose = function () {
             this.deactivate()
         }, e.prototype.showCircle = function (t) {
-            if (void 0 === t && (t = null), 1 == this._circle.visible) return void(null != t && t());
+            if (void 0 === t && (t = null), 1 == this._circle.visible) return void (null != t && t());
             this._circle.alpha = 0, this._circle.visible = !0;
             var e = createjs.Tween.get(this._circle).to({ alpha: 1 }, 500).wait(500);
             null != t && e.call(t)

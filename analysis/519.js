@@ -1,3 +1,7 @@
+/*
+ * called by `482.js`
+ * ship types
+ */
 const function519 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
@@ -28,6 +32,7 @@ const function519 = function (t, e, i) {
         }, t
     }();
     e.ShipTypeModelHolder = r;
+    // class s extends r
     var s = function (t) {
         function e() {
             return t.call(this) || this

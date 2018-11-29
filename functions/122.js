@@ -6,7 +6,7 @@ const function122 = function (t, e, i) {
         }
 
         return t._getRectItem = function (t, e) {
-            if (!1 === this._items.hasOwnProperty(t)) return void(this._items[t] = []);
+            if (!1 === this._items.hasOwnProperty(t)) return void (this._items[t] = []);
             var i = this._items[t].filter(function (t) {
                 for (var i = t.data, n = !0, o = 0, r = i.length; o < r; o++) if (i[o] !== e[o]) {
                     n = !1;

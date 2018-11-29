@@ -23,8 +23,8 @@ const function559 = function (t, e, i) {
 
         return n(e, t), e.prototype.load = function (t, e) {
             var i = this, n = o.default.model.furniture.getData(t);
-            if (null == n || 2 != n.type) return void(null != e && e());
-            if (this._id = this._createID(n), 1 == this._caches.hasOwnProperty(this._id)) return this._texture = this._caches[this._id], void(null != e && e());
+            if (null == n || 2 != n.type) return void (null != e && e());
+            if (this._id = this._createID(n), 1 == this._caches.hasOwnProperty(this._id)) return this._texture = this._caches[this._id], void (null != e && e());
             var r = this._createURL(this._id), s = new PIXI.loaders.Loader;
             s.add(this._id, r), s.load(function () {
                 if (i._img.texture = PIXI.Texture.EMPTY, 1 == s.resources.hasOwnProperty(i._id)) {

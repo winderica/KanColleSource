@@ -51,7 +51,7 @@ const function1444 = function (t, e, i) {
             0 != this.hasGauge() && (this._animation_gauge = !0, this._now = t, this._gauge.update(t, this._max, this._onCompleteAnimation))
         }, e.prototype.explode = function () {
             var t = this;
-            if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void(this._ready_for_explode = !0) : void(1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
+            if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void (this._ready_for_explode = !0) : void (1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
                 createjs.Tween.get(t._gauge).to({ alpha: 0 }, 350).call(function () {
                     t.removeChild(t._gauge), t._gauge = null, t._animation_explode = !1, t._exploded = !0
                 })

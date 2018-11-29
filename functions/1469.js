@@ -55,7 +55,7 @@ const function1469 = function (t, e, i) {
             })
         }, e.prototype._bonus = function (t) {
             var e = this;
-            if (0 == this._list.length) return o.default.sound.bgm.fadeOut(1200), void(null == t ? this._endTask() : createjs.Tween.get(this._canvas).to({ alpha: 0 }, 300).call(function () {
+            if (0 == this._list.length) return o.default.sound.bgm.fadeOut(1200), void (null == t ? this._endTask() : createjs.Tween.get(this._canvas).to({ alpha: 0 }, 300).call(function () {
                 e._canvas.parent.removeChild(e._canvas), t.dispose(), e._endTask()
             }));
             var i = this._list.shift();

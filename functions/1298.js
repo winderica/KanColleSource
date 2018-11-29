@@ -94,7 +94,7 @@ const function1298 = function (t, e, i) {
             })), this._tweens = [r, s]
         }, t.prototype.hide = function (t) {
             var e = this;
-            if (void 0 === t && (t = null), this._stopTweens(), null == this._plane) return void(null != t && t());
+            if (void 0 === t && (t = null), this._stopTweens(), null == this._plane) return void (null != t && t());
             var i = createjs.Tween.get(this._plane).to({ alpha: 0 }, 200).call(function () {
                 null != e._plane.parent && e._plane.parent.removeChild(e._plane), e._plane.deactivate(), e._plane = null, null != t && t()
             });

@@ -58,11 +58,11 @@ const function224 = function (t, e, i) {
         }), e.prototype._update = function (t) {
             switch (this._type) {
                 case 0:
-                    return void(1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(57) : this.texture = r.SALLY_COMMON.getTexture(56));
+                    return void (1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(57) : this.texture = r.SALLY_COMMON.getTexture(56));
                 case 1:
-                    return void(1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(52) : this.texture = r.SALLY_COMMON.getTexture(51));
+                    return void (1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(52) : this.texture = r.SALLY_COMMON.getTexture(51));
                 case 2:
-                    return void(0 == this.enabled && 0 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(54) : 1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(55) : this.texture = r.SALLY_COMMON.getTexture(53))
+                    return void (0 == this.enabled && 0 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(54) : 1 == t || 1 == this._selected ? this.texture = r.SALLY_COMMON.getTexture(55) : this.texture = r.SALLY_COMMON.getTexture(53))
             }
             this.texture = PIXI.Texture.EMPTY
         }, e

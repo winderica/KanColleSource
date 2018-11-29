@@ -10,7 +10,7 @@ const function45 = function (t, e, i) {
         }, t.getJetPlaneType = function () {
             return [56, 57, 58]
         }, t.getAirUnitPlaneType = function () {
-            return t._PLANE_TYPE_.concat(9, 10, 41, 47, 48, 59)
+            return t._PLANE_TYPE_.concat(9, 10, 41, 47, 48, 49, 59)
         }, t.getJetAirUnitPlaneType = function () {
             return this.getJetPlaneType().concat(59)
         }, t.getEnemyPlaneGraphicsType = function (t) {

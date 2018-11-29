@@ -23,7 +23,7 @@ const function241 = function (t, e, i) {
         }
 
         return n(e, t), e.prototype.update = function (t) {
-            if (-1 == t) return this._img.position.set(-9, -9), void(this._img.texture = o.MAP_COMMON.getTexture(73));
+            if (-1 == t) return this._img.position.set(-9, -9), void (this._img.texture = o.MAP_COMMON.getTexture(73));
             switch (this._img.position.set(-8, -11), t) {
                 case 0:
                     this._img.texture = o.MAP_COMMON.getTexture(63);

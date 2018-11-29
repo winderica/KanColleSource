@@ -16,7 +16,7 @@ const function138 = function (t, e, i) {
             8: [12, 13, 93],
             9: [24, 30, 46, 50],
             10: [43, 44],
-            11: [41, 47]
+            11: [41, 47, 49]
         }, t.SLOTITEM_RARITY_NAMES = ["\u30b3\u30e2\u30f3", "\u30ec\u30a2", "\u30db\u30ed", "S\u30db\u30ed", "SS\u30db\u30ed", "SS\u30db\u30ed", "SS\u30db\u30ed+"], t
     }();
     e.SlotConst = n

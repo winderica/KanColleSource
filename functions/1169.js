@@ -52,7 +52,7 @@ const function1169 = function (t, e, i) {
         return n(e, t), e.prototype.update = function (t) {
             var e;
             if (1 == t) e = 46; else if (2 == t) e = 41; else if (3 == t) e = 42; else if (4 == t) e = 43; else if (5 == t) e = 44; else if (6 == t) e = 47; else if (7 == t) e = 45; else if (8 == t) e = 41; else {
-                if (9 != t) return void(this.texture = PIXI.Texture.EMPTY);
+                if (9 != t) return void (this.texture = PIXI.Texture.EMPTY);
                 e = 48
             }
             this.texture = r.DUTY_COMMON.getTexture(e)

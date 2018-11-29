@@ -34,7 +34,7 @@ const function51 = function (t, e, i) {
                 if (0 != this._opened) return;
                 this._stopTween()
             } else if (1 == this._opened) return;
-            if (this._opened = !0, 0 == t) return this._top.y = this.TOP_OPENED_Y, void(this._btm.y = this.BTM_OPENED_Y);
+            if (this._opened = !0, 0 == t) return this._top.y = this.TOP_OPENED_Y, void (this._btm.y = this.BTM_OPENED_Y);
             o.SE.play("218"), this._t1 = createjs.Tween.get(this._top).to({ y: this.TOP_OPENED_Y }, t), this._t2 = createjs.Tween.get(this._btm).to({ y: this.BTM_OPENED_Y }, t).call(function () {
                 e._t1 = null, e._t2 = null, e.emit("opened")
             })
@@ -44,7 +44,7 @@ const function51 = function (t, e, i) {
                 if (1 != this._opened) return;
                 this._stopTween()
             } else if (0 == this._opened) return;
-            if (this._opened = !1, 0 == t) return this._top.y = this.TOP_CLOSED_Y, void(this._btm.y = this.BTM_CLOSED_Y);
+            if (this._opened = !1, 0 == t) return this._top.y = this.TOP_CLOSED_Y, void (this._btm.y = this.BTM_CLOSED_Y);
             this._t1 = createjs.Tween.get(this._top).to({ y: this.TOP_CLOSED_Y }, t), this._t2 = createjs.Tween.get(this._btm).to({ y: this.BTM_CLOSED_Y }, t).call(function () {
                 o.SE.play("217"), e._t1 = null, e._t2 = null, e.emit("closed")
             })

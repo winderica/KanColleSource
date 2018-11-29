@@ -79,7 +79,7 @@ const function1143 = function (t, e, i) {
                     e = 50;
                     break;
                 default:
-                    return void(this.texture = PIXI.Texture.EMPTY)
+                    return void (this.texture = PIXI.Texture.EMPTY)
             }
             this.texture = s.ITEM_FSHOP.getTexture(e)
         }, e

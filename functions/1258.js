@@ -45,7 +45,7 @@ const function1258 = function (t, e, i) {
             this._animItem(o, this._anim)
         }, e.prototype._animItem = function (t, e) {
             var i = this;
-            if (0 == t.length) return void(null != e && e());
+            if (0 == t.length) return void (null != e && e());
             var n = t.shift(), o = n.getUseitemMstID(), r = n.count, s = new a.CompDropItem;
             s.initialize(o, r);
             var _ = this._scene.view.map.ship_icon;

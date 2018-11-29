@@ -50,7 +50,7 @@ const function62 = function (t, e, i) {
             if (0 != t.friend) {
                 if (!(t.mst_id < 0)) {
                     var i = t.damageType_before, n = t.damageType;
-                    if (i != n) return 75 == n && 100 == i ? void o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : void(0 == t.type && (50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t)))
+                    if (i != n) return 75 == n && 100 == i ? void o.default.sound.voice.playAtRandom(t.mst_id.toString(), [19, 20], [50, 50]) : void (0 == t.type && (50 == n && 75 == i ? this._chuha_ships.push(t) : 50 == n && 100 == i ? this._chuha_ships.push(t) : 25 == n && 75 == i ? this._taiha_ships.push(t) : 25 == n && 100 == i ? this._taiha_ships.push(t) : 0 == n && this._gouchin_ships.push(t)))
                 }
             } else if (t.hp_now > 0 && e > 0) {
                 var r = s.EnemyVoiceConst.getDamagedVoiceIDs(this._scene, t);

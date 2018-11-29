@@ -42,7 +42,7 @@ const function1168 = function (t, e, i) {
             }
             this._first.initialize(r.COMMON_MAIN.getTexture(6)), this._prev.initialize(r.COMMON_MAIN.getTexture(8)), this._next.initialize(r.COMMON_MAIN.getTexture(7)), this._last.initialize(r.COMMON_MAIN.getTexture(5))
         }, e.prototype.update = function (t, e) {
-            if (0 == e) return void(this.visible = !1);
+            if (0 == e) return void (this.visible = !1);
             this.visible = !0, this._page_now = t, this._page_max = e;
             var i = Math.min(t - 2, e - 4);
             i = Math.max(i, 1);

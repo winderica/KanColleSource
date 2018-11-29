@@ -32,7 +32,7 @@ const function1331 = function (t, e, i) {
             return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
         }, e.prototype.play = function (t, e, i, n) {
             var r = this;
-            return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+            return void 0 === n && (n = null), null == t ? void (null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void (null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
                 x: o.default.width / 2 + 12,
                 alpha: 1
             }, 300).to({ x: o.default.width / 2 - 12 }, 1500).to({

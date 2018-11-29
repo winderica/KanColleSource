@@ -30,7 +30,7 @@ const function1302 = function (t, e, i) {
                 return this._max
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function (t) {
-            if (null == t) return this._stopLoopTween(), this._tp.enabled = !1, void(this.visible = !1);
+            if (null == t) return this._stopLoopTween(), this._tp.enabled = !1, void (this.visible = !1);
             this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.clear(), this._bar.beginFill(t.barColor), this._bar.drawRect(0, 0, t.barW, t.barH), this._bar.endFill(), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startLoopTween()
         }, e.prototype.update = function (t, e) {
             this._now = t, this._max = e;
