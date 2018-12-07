@@ -42,20 +42,20 @@ const function792 = function (t, e, i) {
         return n(e, t), e
     }(s);
     e.RaisouBeforeAfterConfirm = _;
-    var u = function (t) {
+    var l = function (t) {
         function e() {
             return t.call(this, 34, 35) || this
         }
 
         return n(e, t), e
     }(s);
-    e.TaikuBeforeAfterConfirm = u;
-    var l = function (t) {
+    e.TaikuBeforeAfterConfirm = l;
+    var u = function (t) {
         function e() {
             return t.call(this, 36, 37) || this
         }
 
         return n(e, t), e
     }(s);
-    e.SoukouBeforeAfterConfirm = l
+    e.SoukouBeforeAfterConfirm = u
 }

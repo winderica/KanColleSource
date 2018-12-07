@@ -15,7 +15,7 @@ const function791 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = i(333), s = i(792), a = i(793), _ = i(794), u = i(796), l = i(797), c = i(798),
+    var o = i(21), r = i(332), s = i(792), a = i(793), _ = i(794), l = i(796), u = i(797), c = i(798),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -23,7 +23,7 @@ const function791 = function (t, e, i) {
                 var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(12));
                 i.interactive = !0, e._containerShipFull = new PIXI.Container;
                 var n = new PIXI.Graphics;
-                return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton, e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new l.TargetShipBox, e._startButton = new u.StartButton, n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.width = 198, e._cancelButton.height = 56, e._cancelButton.position.set(543, 498), e._startButton.position.set(755, 483), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButton, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
+                return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton, e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new u.TargetShipBox, e._startButton = new l.StartButton, n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.width = 198, e._cancelButton.height = 56, e._cancelButton.position.set(543, 498), e._startButton.position.set(755, 483), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButton, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
             }
 
             return n(e, t), Object.defineProperty(e.prototype, "shipFull", {

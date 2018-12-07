@@ -15,44 +15,34 @@ const function1031 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(38), r = function (t) {
+    var o = i(143), r = i(38), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._icons = [];
+            e._drums = [];
             for (var i = 0; i < 4; i++) {
                 var n = new PIXI.Sprite;
-                n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
+                n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
             }
             return e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            for (var t = 0; t < this._icons.length; t++) {
-                this._icons[t].visible = !1
+            this.update(0);
+            for (var t = 0, e = this._drums; t < e.length; t++) {
+                e[t].texture = r.SALLY_EXPEDITION.getTexture(34)
             }
         }, e.prototype.update = function (t) {
-            var e = [];
-            if (null != t) {
-                var i = t.getSlotitems();
-                i = i.concat(t.getSlotitemEx());
-                for (var n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    if (null != r) {
-                        var s = r.equipType;
-                        24 == s ? e.push(r) : 46 == s && e.push(r)
-                    }
-                }
+            t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+        }, e.prototype._updateFromShipModel = function (t) {
+            for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                var r = o[n];
+                null != r && (75 == r.mstID && e++)
             }
-            this._update(e)
+            var s = t.getSlotitemEx();
+            null != s && 75 == s.mstID && e++, this._update(e)
         }, e.prototype._update = function (t) {
-            for (var e = 0; e < this._icons.length; e++) {
-                var i = this._icons[e];
-                if (e >= t.length) i.visible = !1; else {
-                    var n = t[e].equipType;
-                    24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(33) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(37)), i.visible = !0
-                }
-            }
+            for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
         }, e
     }(PIXI.Container);
-    e.CompSupportBoatCount = r
+    e.CompDrumCount = s
 }

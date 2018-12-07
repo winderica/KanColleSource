@@ -1,7 +1,7 @@
 const function801 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(30), s = i(161), a = i(52), _ = i(86), u = i(802), l = i(803), c = function () {
+    var n = i(5), o = i(0), r = i(30), s = i(162), a = i(52), _ = i(86), l = i(802), u = i(803), c = function () {
         function t(t) {
             var e = this;
             this._onClickShip = function (t, i) {
@@ -30,7 +30,7 @@ const function801 = function (t, e, i) {
                         s.SceneMemory.shipSortKeyType = 1
                 }
                 e._updateSort_(s.SceneMemory.shipSortKeyType), e._updatePage_(e.pageIndex)
-            }, this.mainView = t, this.backAreaChoiceShip = new u.BackAreaChoiceShip, this.shipList = new l.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
+            }, this.mainView = t, this.backAreaChoiceShip = new l.BackAreaChoiceShip, this.shipList = new u.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
         }
 
         return t.prototype.dispose = function () {

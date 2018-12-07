@@ -15,43 +15,62 @@ const function502 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(503), r = function () {
-        function t() {
-            this._dic = {}
+    var o = i(7), r = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return t.prototype.get = function (t) {
-            var e = t.toString();
-            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
-        }, t.prototype.getAll = function () {
-            var t = new Array;
-            for (var e in this._dic) {
-                var i = this._dic[e];
-                t.push(i)
-            }
-            return t.sort(function (t, e) {
-                return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
-            }), t
+        return Object.defineProperty(t.prototype, "id", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_id")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "state", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_state", -1)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ship_mst_id", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_created_ship_id", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "complete_time", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_complete_time", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "fuel", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_item1", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "ammo", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_item2", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "steel", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_item3", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "baux", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_item4", 0)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "dev_kit", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_item5", 0)
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isLargeBuild = function () {
+            return (2 == this.state || 3 == this.state) && this.fuel >= 1e3
         }, t
     }();
-    e.KDockModelHolder = r;
+    e.KDockModel = r;
     var s = function (t) {
-        function e() {
-            return t.call(this) || this
+        function e(e) {
+            return t.call(this, e) || this
         }
 
-        return n(e, t), e.prototype.__setData__ = function (t) {
-            if (null != t) {
-                this._dic = {};
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e], r = new o.KDockModelEdit(n), s = r.id;
-                    if (s > 0) {
-                        var a = s.toString();
-                        this._dic[a] = r
-                    }
-                }
-            }
+        return n(e, t), e.prototype.__open__ = function () {
+            -1 == this.state && (this._o.api_state = 0)
+        }, e.prototype.__complete__ = function (t) {
+            void 0 === t && (t = !1), (t || 2 == this.state) && (this._o.api_state = 3, this._o.api_complete_time = 0, this._o.api_complete_time_str = "")
         }, e
     }(r);
-    e.KDockModelHolderEdit = s
+    e.KDockModelEdit = s
 }

@@ -15,14 +15,14 @@ const function857 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(13), a = i(858), _ = i(859), u = i(111), l = i(220), c = i(891), h = i(892),
+    var o = i(0), r = i(47), s = i(13), a = i(858), _ = i(859), l = i(111), u = i(222), c = i(891), h = i(892),
         p = i(111), d = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
                     e.menuLayer.hasLimitOver = n, e.dockLayer.updateCondition(t, i, n)
                 }, e.onChangeArsenalTimer = function () {
-                    if (e.dockLayer.ArsenalTimerMode == u.ArsenalTimerMode.WaitComplete) {
+                    if (e.dockLayer.ArsenalTimerMode == l.ArsenalTimerMode.WaitComplete) {
                         var t = Date.now();
                         o.default.model.kdock.getAll().forEach(function (i) {
                             if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
@@ -39,16 +39,16 @@ const function857 = function (t, e, i) {
             return n(e, t), e.prototype.start = function () {
                 var t = o.default.model.kdock.getAll();
                 this.menuLayer = new h.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new p.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new c.TopBarLayer;
-                for (var e = l.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
+                for (var e = u.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
                     var r = t[n];
                     switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
                         case 2:
                             var s = o.default.model.ship.getMst(r.ship_mst_id), a = s.build_time,
-                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num, u = Date.now(),
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num, l = Date.now(),
                                 d = r.isLargeBuild(), f = r.complete_time, y = !1;
                             y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
                             var m = .5 < Math.random(), v = .5 < Math.random() || 0 == m;
-                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, v, a, f, u, _);
+                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, v, a, f, l, _);
                             break;
                         case-1:
                             if (0 == i) {
@@ -71,7 +71,7 @@ const function857 = function (t, e, i) {
                             this.dockLayer.standby(r.id)
                     }
                 }
-                l.ArsenalUtil.playVoiceOnBuildComplete();
+                u.ArsenalUtil.playVoiceOnBuildComplete();
                 var x = createjs.Tween.get(this.arsenalTimerKey, { loop: !0 }).wait(500);
                 x.addEventListener("change", this.onChangeArsenalTimer), this.addChild(this.dockLayer, this.menuLayer, this.topBarLayer), this.arsenalTimer = x
             }, e.prototype.getPreInitializeTask = function (t) {

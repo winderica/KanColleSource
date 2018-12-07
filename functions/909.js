@@ -15,20 +15,38 @@ const function909 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(13), s = function (t) {
+    var o = i(0), r = i(17), s = i(2), a = i(910), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._event = e, i
+            return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._load()
-        }, e.prototype._load = function () {
-            var t = this, e = new r.UIImageLoader("sally");
-            e.add("sally_common.json"), e.add("sally_top.json"), e.add("sally_sortie.json"), e.add("sally_practice.json"), e.add("sally_expedition.json"), e.add("sally_airunit.json"), e.add("sally_jin.json"), e.add("sally_map_parts.json"), this._event && (e.add("sally_event.json"), e.add("sally_strategymap.json"), e.add("sally_strategymap_s.json")), e.load(function () {
-                t._endTask()
+            this._loadResources()
+        }, e.prototype._loadResources = function () {
+            var t = this, e = o.default.model.map.getArea(r.EVENT_AREA_ID), i = null != e;
+            new a.TaskLoadResourcesSally(i).start(function () {
+                t._showTopView()
             })
+        }, e.prototype._showTopView = function () {
+            var t = o.default.model.deck.num > 1;
+            this._scene.initialize(t), this._scene = null, this._endTask()
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesSally = s
+    }(s.TaskBase);
+    e.PreInitializeTask = _;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(103), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._scene.startTopTask(), this._endTask()
+        }, e
+    }(s.TaskBase);
+    e.InitializeTask = l
 }

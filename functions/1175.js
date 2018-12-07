@@ -15,64 +15,29 @@ const function1175 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(32), a = i(374), _ = i(162), u = i(125), l = i(101), c = i(150), h = i(1176),
-        p = i(206), d = i(124), f = i(8), y = i(196), m = i(6), v = i(410), g = i(411), b = i(169),
-        w = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._layer = e, o._model = i, o._holder = n, o
+    var o = i(11), r = i(3), s = i(3), a = i(3), _ = i(3), l = i(3), u = i(3), c = i(238), h = i(1),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._waitClick = function () {
+                    i._layer.buttonMode = !0, i._layer.once(h.EventType.CLICK, i._onClick)
+                }, i._onClick = function () {
+                    i._layer.buttonMode = !1, i._chara.texture = i._getPosterGirlTexture2(), createjs.Tween.get(i._chara).wait(300).to({ x: 1200 }, 500, createjs.Ease.sineInOut).call(function () {
+                        i._layer.removeChild(i._chara), i._endTask()
+                    })
+                }, i._layer = e, i
             }
 
             return n(e, t), e.prototype._start = function () {
-                var t = this, e = this._model.getRewardCandidates();
-                if (null != e && e.length > 0) {
-                    this._click_guard = new f.AreaBox(.2), this._layer.addChild(this._click_guard);
-                    var i = new g.TaskRewardSelectMulti(this._layer, e);
-                    i.start(function () {
-                        var e = i.result;
-                        t._receiveReward(e)
-                    })
-                } else this._click_guard = new f.AreaBox(0), this._layer.addChild(this._click_guard), this._receiveReward(null)
-            }, e.prototype._receiveReward = function (t) {
-                var e, i = this;
-                m.SE.play("215"), this._model.hasVoiceID && o.default.sound.voice.play("9999", this._model.voiceID, null, "duty");
-                var n = this._model.id, r = [];
-                if (null != t) for (var s = 0, a = t; s < a.length; s++) {
-                    var e = a[s];
-                    null != e && r.push(e.no)
-                }
-                var _ = new v.DutyEndAPI(n, r), u = _.result;
-                _.start(function () {
-                    i._showRewardDialog(u)
-                })
-            }, e.prototype._showRewardDialog = function (t) {
-                var e = this, i = o.default.view.overLayer, n = t.getRewardList();
-                new y.TaskReward(i, n, this._model.id).start(function () {
-                    e._updateInternalData(t)
-                })
-            }, e.prototype._updateInternalData = function (t) {
-                var e = this, i = new s.APIConnector;
-                if (i.add(new _.MaterialAPI), 1 == t.isNeedUpdateUserBasic() && i.add(new c.UserDataAPI), 1 != t.isNeedUpdateSlotitem() && 318 != this._model.id && 513 != this._model.id || i.add(new d.UserSlotItemAPI), 1 == t.isNeedUpdateSlotitem() && i.add(new u.UnsetSlotAPI), 1 != t.isNeedUpdateUseitem() && 511 != this._model.id && 513 != this._model.id && 688 != this._model.id || i.add(new l.UseItemAPI), t.getRewards(2).length > 0 && i.add(new a.DeckAPI), t.getRewards(11).length > 0) i.add(new p.UserShipAPI); else if (318 == this._model.id || 513 == this._model.id) {
-                    var n = o.default.model.deck.get(1).getShipList()[0].memID;
-                    i.add(new p.UserShipAPI(n))
-                }
-                t.getRewards(14).length > 0 && i.add(new h.UserFurnitureAPI), i.start(function () {
-                    var i = t.getRewards(6);
-                    if (i.length > 0) for (var n = 0; n < i.length; n++) {
-                        var r = i[n], s = r.flag,
-                            a = [o.default.model.basic.getExtraSupplySortie() ? 1 : 0, o.default.model.basic.getExtraSupplyExpedition() ? 1 : 0];
-                        1 == s ? a[0] = 1 : 2 == s && (a[1] = 1), o.default.model.basic.setExtraSupplyFlag(a)
-                    }
-                    e._updateDutyList(t)
-                })
-            }, e.prototype._updateDutyList = function (t) {
-                var e = this;
-                new b.TaskUpdateDutyListData(this._holder.selected_page_no, this._holder.selected_type, this._holder).start(function () {
-                    t.getRewards(2).length > 0 && o.default.view.portMain.updateUserInfo({ fleetNum: o.default.model.deck.num }), o.default.view.portMain.updateInfo(), null != e._click_guard && e._layer.removeChild(e._click_guard), e._endTask()
-                })
+                var t = this._getPosterGirlTexture1();
+                this._chara = new PIXI.Sprite(t), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({ y: 45 }, 500).call(this._waitClick)
             }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._holder = null, this._click_guard = null, t.prototype._endTask.call(this)
+                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
+            }, e.prototype._getPosterGirlTexture1 = function () {
+                return 0 == c.POSTER_GIRL ? r.DUTY_POSTER_GIRL.getTexture(0) : 1 == c.POSTER_GIRL ? s.DUTY_POSTER_GIRL_GYUDON.getTexture(0) : 2 == c.POSTER_GIRL ? a.DUTY_POSTER_GIRL_NEWYEAR.getTexture(0) : 3 == c.POSTER_GIRL ? _.DUTY_POSTER_GIRL_SANMA.getTexture(0) : 4 == c.POSTER_GIRL ? l.DUTY_POSTER_GIRL_SUMMER.getTexture(0) : 5 == c.POSTER_GIRL ? u.DUTY_POSTER_GIRL_XMAS.getTexture(0) : void 0
+            }, e.prototype._getPosterGirlTexture2 = function () {
+                return 0 == c.POSTER_GIRL ? r.DUTY_POSTER_GIRL.getTexture(1) : 1 == c.POSTER_GIRL ? s.DUTY_POSTER_GIRL_GYUDON.getTexture(1) : 2 == c.POSTER_GIRL ? a.DUTY_POSTER_GIRL_NEWYEAR.getTexture(1) : 3 == c.POSTER_GIRL ? _.DUTY_POSTER_GIRL_SANMA.getTexture(1) : 4 == c.POSTER_GIRL ? l.DUTY_POSTER_GIRL_SUMMER.getTexture(1) : 5 == c.POSTER_GIRL ? u.DUTY_POSTER_GIRL_XMAS.getTexture(1) : void 0
             }, e
-        }(r.TaskBase);
-    e.TaskTasseiDutySelect = w
+        }(o.TaskBase);
+    e.TaskPosterGirl = p
 }

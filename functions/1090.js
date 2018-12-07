@@ -15,56 +15,46 @@ const function1090 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = function () {
-        function t() {
-            this._dic = {}
-        }
-
-        return t.prototype.getCount = function (t) {
-            var e = this.getData(t);
-            return null == e ? 0 : e.count
-        }, t.prototype.getData = function (t) {
-            return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
-        }, t.prototype.setData = function (t) {
-            if (this._dic = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = new a(n);
-                this._dic[o.id] = o
+    var o = i(0), r = i(47), s = i(200), a = i(9), _ = i(391), l = i(392), u = i(393), c = i(234), h = i(1091),
+        p = i(1092), d = i(1093), f = i(1094), y = i(1095), m = i(395), v = i(397), g = i(1098), b = i(1132),
+        w = i(1141), x = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._initialize = function (t) {
+                    e._selected_state = t;
+                    var i, n = o.default.model.basic.getUISkinID();
+                    101 == n || 102 == n ? (i = new PIXI.Sprite(_.ITEM_MENU_1.getTexture(6)), e._tabs.y = 193) : 201 == n ? (i = new PIXI.Sprite(l.ITEM_MENU_2.getTexture(6)), e._tabs.y = 190) : 301 != n && 311 != n || (i = new PIXI.Sprite(u.ITEM_MENU_3.getTexture(12)), e._tabs.y = 187), e._bg.addChild(i), i = new PIXI.Sprite(a.COMMON_MISC.getTexture(48)), i.position.set(171, 103), e._bg.addChild(i), e._tabs.initialize(n), e._mini_chara.initialize(), e._back_btn.initialize(e._onBack), e._showView(e._selected_state)
+                }, e._activate = function () {
+                    e._tabs.activate(), e._mini_chara.activate(), e._back_btn.activate()
+                }, e._dispose = function () {
+                    e._removeView(), null != e._ilist && (e._ilist.dispose(), e._ilist = null), null != e._ishop && (e._ishop.dispose(), e._ishop = null), null != e._fshop && (e._fshop.dispose(), e._fshop = null), e._tabs.dispose(), e._tabs = null, e._mini_chara.dispose(), e._mini_chara = null, e._back_btn.dispose(), e._back_btn = null, e._purchasedItems = null, e.removeChildren()
+                }, e._onChangeSceneState = function (t) {
+                    e._showView(t)
+                }, e._onPurchased = function () {
+                    new c.PayItemAPI(e._purchasedItems).start(function () {
+                        e._showView(0, !0)
+                    })
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._purchasedItems = new h.PurchasedItemModelHolder, e._bg = new PIXI.Container, e.addChild(e._bg), e._tabs = new m.TabContainer(e._onChangeSceneState), e.addChild(e._tabs), e._mini_chara = new v.MiniChara, e._mini_chara.position.set(-16, 444), e.addChild(e._mini_chara), e._back_btn = new s.BackBtn, e._back_btn.position.set(0, 653), e.addChild(e._back_btn), e
             }
-        }, t
-    }();
-    e.PurchasedItemModelHolder = r;
-    var s = function () {
-        function t(t) {
-            this._o = t
-        }
 
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return parseInt(o.ObjUtil.getString(this._o, "api_payitem_id"))
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_description")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_count")
-            }, enumerable: !0, configurable: !0
-        }), t
-    }();
-    e.PurchasedItemModel = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.setCount = function (t) {
-            this._o.api_count = t
-        }, e
-    }(s);
-    e.PurchasedItemModelEdit = a
+            return n(e, t), e.prototype.getPreInitializeTask = function (t, e) {
+                return new p.TaskItemScenePreInitialize(this._purchasedItems, e, this._initialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new d.TaskItemSceneInitialize(this._activate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new f.TaskItemSceneFinalize(this._dispose)
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null)
+            }, e.prototype._showView = function (t, e) {
+                if (void 0 === e && (e = !1), this._removeView(), this._tabs.update(t), 0 == t ? (null == this._ilist && (this._ilist = new g.ItemListMain(this._purchasedItems), this._ilist.initialize()), this._current = this._ilist) : 1 == t ? (null == this._ishop && (this._ishop = new b.ItemShopMain(this._purchasedItems, this._onPurchased), this._ishop.initialize()), this._current = this._ishop) : 2 == t && (null == this._fshop && (this._fshop = new w.FurnitureShopMain, this._fshop.initialize()), this._current = this._fshop), 0 == t && 1 == e) {
+                    this._ilist.updateForPurchasedView();
+                    var i = o.default.view.overLayer;
+                    new y.TaskPurchased(i).start()
+                } else this._current.update();
+                this._current.activate(), this.addChild(this._current)
+            }, e
+        }(r.SceneBase);
+    e.ItemScene = x
 }

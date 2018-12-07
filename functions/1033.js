@@ -15,23 +15,67 @@ const function1033 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(41), r = i(375), s = function (t) {
-        function e(e, i) {
-            var n = t.call(this, e, i) || this;
-            return n._light = new PIXI.Sprite, n.addChild(n._light), n
+    var o = i(0), r = i(17), s = i(374), a = i(1034), _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._icons = new Array;
+            for (var n = [0, 62, 124, 248, 310, 372, 186], o = 0; o < n.length; o++) {
+                var _ = new s.ExpeditionAreaIconBtn(o + 1, e);
+                _.position.x = n[o], _.position.y = 0, i._icons.push(_)
+            }
+            return i._icon_event = new a.ExpeditionEventAreaIconBtn(r.EVENT_AREA_ID, e), i._icon_event.position.set(559, -9), i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
+        return n(e, t), Object.defineProperty(e.prototype, "selected", {
+            get: function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    if (1 == i.selected) return i.area_id
+                }
+                return 1 == this._icon_event.selected ? this._icon_event.area_id : 0
+            }, set: function (t) {
+                for (var e = 0, i = this._icons; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = t == n.area_id
+                }
+                this._icon_event.selected = t == this._icon_event.area_id
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                i.initialize()
+            }
+            this.selected = 1;
+            for (var n = 0, s = this._icons; n < s.length; n++) {
+                var i = s[n];
+                this.addChild(i)
+            }
+            if (r.EVENT_AREA_ID > 0) {
+                null != o.default.model.map.getArea(r.EVENT_AREA_ID) && (this._icon_event.initialize(), this.addChild(this._icon_event))
+            }
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                1 == i.selected ? i.deactivate() : i.activate()
+            }
+            1 == this._icon_event.selected ? this._icon_event.deactivate() : this._icon_event.activate()
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].deactivate()
+            }
+            this._icon_event.deactivate()
         }, e.prototype.dispose = function () {
-            this._stopTween(), t.prototype.dispose.call(this)
-        }, e.prototype._update = function (t) {
-            this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 700).to({ alpha: 1 }, 700))
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                e[t].dispose()
+            }
+            this._icon_event.dispose()
+        }, e.prototype.getSelectedIcon = function () {
+            for (var t = 0, e = this._icons; t < e.length; t++) {
+                var i = e[t];
+                if (1 == i.selected) return i
+            }
+            return 1 == this._icon_event.selected ? this._icon_event : null
         }, e
-    }(r.ExpeditionAreaIconBtnBase);
-    e.ExpeditionEventAreaIconBtn = s
+    }(PIXI.Container);
+    e.ExpeditionAreaIconSet = _
 }

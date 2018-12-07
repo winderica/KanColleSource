@@ -15,7 +15,7 @@ const function881 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o, r = i(0), s = i(1), a = i(49), _ = i(8), u = i(112), l = i(4), c = i(21), h = i(35), p = i(87),
+    var o, r = i(0), s = i(1), a = i(49), _ = i(8), l = i(112), u = i(4), c = i(21), h = i(35), p = i(87),
         d = i(882);
     !function (t) {
         t[t.CANCEL = 0] = "CANCEL", t[t.CHANGE_NORMAL = 1] = "CHANGE_NORMAL", t[t.START = 2] = "START"
@@ -33,7 +33,7 @@ const function881 = function (t, e, i) {
                 i.update(a)
             }, i._onClickBack = function () {
                 i.onComplete(o.CANCEL)
-            }, i.mainView = e, i.configureMaterialView_fuel = new d.LargeConfigureMaterialView(31, 1500, 7e3), i.configureMaterialView_ammo = new d.LargeConfigureMaterialView(32, 1500, 7e3), i.configureMaterialView_steel = new d.LargeConfigureMaterialView(33, 2e3, 7e3), i.configureMaterialView_bauxite = new d.LargeConfigureMaterialView(34, 1e3, 7e3), i.btn_kenzou = new u.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
+            }, i.mainView = e, i.configureMaterialView_fuel = new d.LargeConfigureMaterialView(31, 1500, 7e3), i.configureMaterialView_ammo = new d.LargeConfigureMaterialView(32, 1500, 7e3), i.configureMaterialView_steel = new d.LargeConfigureMaterialView(33, 2e3, 7e3), i.configureMaterialView_bauxite = new d.LargeConfigureMaterialView(34, 1e3, 7e3), i.btn_kenzou = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
             var n = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(32)),
                 r = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(18)),
                 f = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(64));
@@ -41,7 +41,7 @@ const function881 = function (t, e, i) {
             var v = new PIXI.Sprite(c.COMMON_MAIN.getTexture(64));
             v.position.set(0, -37);
             var g = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(5));
-            return g.anchor.set(0, .5), g.position.set(22, Math.floor(v.height / 2 - 4)), i.addChild(f, i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, n, r), i._buildKitSwitch = new y(i._onChangeValue), i._buildKitSwitch.position.set(229, 427), i.addChild(i._buildKitSwitch), i._devKitSwitch = new m(i._onChangeValue), i._devKitSwitch.position.set(547, 427), i.addChild(i._devKitSwitch), i.textDevKitBefore = new l.TextBox(24, 5523516), i.textDevKitBefore.anchor.x = 1, i.textDevKitBefore.position.set(591, 438), i.addChild(i.textDevKitBefore), i.textDevKitAfter = new l.TextBox(24, 12467003), i.textDevKitAfter.position.set(619, 438), i.addChild(i.textDevKitAfter), i.addChild(i.btn_kenzou), i._btnToNormal = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(37)), i._btnToNormal.interactive = !0, i._btnToNormal.buttonMode = !0, i._btnToNormal.position.set(60, 492), i.addChild(i._btnToNormal), i.addChild(v), i.position.set(1200, 139), v.addChild(g), i.dialogBackground = new _.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i._btnToNormal.on(s.EventType.CLICK, i._onClickNormal), i.dialogBackground.on(s.EventType.CLICK, i._onClickBack), i
+            return g.anchor.set(0, .5), g.position.set(22, Math.floor(v.height / 2 - 4)), i.addChild(f, i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, n, r), i._buildKitSwitch = new y(i._onChangeValue), i._buildKitSwitch.position.set(229, 427), i.addChild(i._buildKitSwitch), i._devKitSwitch = new m(i._onChangeValue), i._devKitSwitch.position.set(547, 427), i.addChild(i._devKitSwitch), i.textDevKitBefore = new u.TextBox(24, 5523516), i.textDevKitBefore.anchor.x = 1, i.textDevKitBefore.position.set(591, 438), i.addChild(i.textDevKitBefore), i.textDevKitAfter = new u.TextBox(24, 12467003), i.textDevKitAfter.position.set(619, 438), i.addChild(i.textDevKitAfter), i.addChild(i.btn_kenzou), i._btnToNormal = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(37)), i._btnToNormal.interactive = !0, i._btnToNormal.buttonMode = !0, i._btnToNormal.position.set(60, 492), i.addChild(i._btnToNormal), i.addChild(v), i.position.set(1200, 139), v.addChild(g), i.dialogBackground = new _.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i._btnToNormal.on(s.EventType.CLICK, i._onClickNormal), i.dialogBackground.on(s.EventType.CLICK, i._onClickBack), i
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "fuel", {
@@ -74,10 +74,10 @@ const function881 = function (t, e, i) {
             this.configureMaterialView_fuel.setAvail(t), this.configureMaterialView_ammo.setAvail(e), this.configureMaterialView_steel.setAvail(i), this.configureMaterialView_bauxite.setAvail(n)
         }, e.prototype.play = function (t, e, i, n, o, s) {
             var a = r.default.model.useItem.get(31).count, _ = r.default.model.useItem.get(32).count,
-                u = r.default.model.useItem.get(33).count, l = r.default.model.useItem.get(34).count,
+                l = r.default.model.useItem.get(33).count, u = r.default.model.useItem.get(34).count,
                 c = r.default.model.useItem.get(3).count, h = r.default.model.useItem.get(2).count,
                 d = p.Util.BuildValidation(t, e, i, n, o, s);
-            this.update(d), this.initialize(a, _, u, l, c, h), this.configureMaterialView_fuel.updateValue(t), this.configureMaterialView_ammo.updateValue(e), this.configureMaterialView_steel.updateValue(i), this.configureMaterialView_bauxite.updateValue(n), this._buildKitSwitch.enable = h >= 10, this._buildKitSwitch.update(0), this._devKitSwitch.update(1), this.x = 412
+            this.update(d), this.initialize(a, _, l, u, c, h), this.configureMaterialView_fuel.updateValue(t), this.configureMaterialView_ammo.updateValue(e), this.configureMaterialView_steel.updateValue(i), this.configureMaterialView_bauxite.updateValue(n), this._buildKitSwitch.enable = h >= 10, this._buildKitSwitch.update(0), this._devKitSwitch.update(1), this.x = 412
         }, e.prototype.hide = function (t) {
             var e = this, i = { progress: 0 }, n = createjs.Tween.get(i);
             n.to({ progress: 1 }, 250).call(function () {

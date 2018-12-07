@@ -17,14 +17,35 @@ const function147 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(9), r = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._ground = !1, e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            25 == t ? (this.texture = o.COMMON_MISC.getTexture(98), this.visible = !0) : 50 == t ? (this.texture = o.COMMON_MISC.getTexture(96), this.visible = !0) : 75 == t ? (this.texture = o.COMMON_MISC.getTexture(97), this.visible = !0) : this.clear()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._ground = t
+        }, e.prototype.setDamagedIcon = function (t) {
+            if (25 == t) {
+                var e = this._ground ? 107 : 109;
+                this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+            } else if (50 == t) {
+                var e = this._ground ? 106 : 99;
+                this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+            } else if (75 == t) {
+                var e = this._ground ? 104 : 105;
+                this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+            } else if (0 == t) {
+                var e = this._ground ? 103 : 102;
+                this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
+            } else this.clear()
+        }, e.prototype.setExpeditionIcon = function () {
+            this.texture = o.COMMON_MISC.getTexture(100), this.visible = !0
+        }, e.prototype.setRepairIcon = function () {
+            this.texture = o.COMMON_MISC.getTexture(108), this.visible = !0
+        }, e.prototype.setTaihiIcon = function () {
+            this.texture = o.COMMON_MISC.getTexture(110), this.visible = !0
         }, e.prototype.clear = function () {
             this.texture = PIXI.Texture.EMPTY, this.visible = !1
         }, e
     }(PIXI.Sprite);
-    e.BannerSoot = r
+    e.BannerIcon = r
 }

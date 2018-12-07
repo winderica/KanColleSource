@@ -17,123 +17,55 @@ const function423 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(117), r = function (t) {
         function e(e) {
+            void 0 === e && (e = 0);
             var i = t.call(this) || this;
-            return i._eye_state = 0, i._isDischarge = !1, i._onUpdate = function () {
-            }, i._ship1st = e, i._disposed = !1, i.akashiset(), i
+            i._wind = e, i._particle = new Array;
+            for (var n = [300, 600, 900], o = [0, 0, 0], r = 0; r < 10; r++) 0 == e ? n.push(1200 * Math.random()) : n.push(300 * Math.random() + 450), o.push(-30 - 105 * Math.random());
+            for (var r = 0; r < n.length; r++) {
+                var a = new s(e);
+                a.position.set(n[r], o[r]), i.addChild(a), i._particle.push(a)
+            }
+            return i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "akashi", {
-            get: function () {
-                return this._akashi_body
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "akashi_eye", {
-            get: function () {
-                return this._akashi_eye
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.akashiset = function () {
-            182 == this._ship1st ? (this._akashi_body = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(5)), this._akashi_body.position.set(256, 156), this._akashi_eye = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(0)), this._akashi_eye.position.set(675, 225)) : (this._akashi_body = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(7)), this._akashi_body.position.set(256, 156), this._akashi_eye = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(0)), this._akashi_eye.position.set(675, 225)), this.addChild(this._akashi_body), this.addChild(this._akashi_eye), this._effect_1_2 = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(10)), this._effect_1_2.position.set(499, 559), this._effect_1_2.visible = !1, this._effect_1_2.anchor.set(.5, .5), this.addChild(this._effect_1_2), this._effect_3 = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(12)), this._effect_3.position.set(541, 275), this._effect_3.visible = !1, this.addChild(this._effect_3), this._effect_3_f = new PIXI.Sprite(o.REVAMP_REVAMP.getTexture(12)), this._effect_3_f.position.set(541, 275), this._effect_3_f.visible = !1, this.addChild(this._effect_3_f)
+        return n(e, t), e.prototype.activate = function () {
+            this.initialize()
         }, e.prototype.initialize = function () {
-            this._update()
-        }, e.prototype.activate = function () {
-            this._startWaiting()
-        }, e.prototype.deactivate = function () {
-            this._stopWaiting()
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._disposed = !0
-        }, e.prototype.ChangeFace = function (t) {
-        }, e.prototype.Spark = function () {
-            var t = this;
-            this._t = createjs.Tween.get(this._effect_1_2).wait(500).call(function () {
-                t._effect_1_2.visible = !0, t._effect_1_2.position.set(499, 559), t._effect_1_2.width = 214, t._effect_1_2.height = 247, t._effect_1_2.texture = o.REVAMP_REVAMP.getTexture(10)
-            }).to({ alpha: 1 }, 1).wait(100).to({ alpha: 0 }, 1).call(function () {
-                t._effect_1_2.position.set(511, 547), t._effect_1_2.width = 214, t._effect_1_2.height = 247
-            }).to({ alpha: 1 }, 1).to({ width: 6.42, height: 7.41 }, 1).to({
-                width: 214,
-                height: 247
-            }, 200).to({ alpha: 0 }, 60).call(function () {
-                t._effect_1_2.position.set(595, 629), t._effect_1_2.width = 214, t._effect_1_2.height = 247
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-                t._effect_1_2.position.set(595, 629), t._effect_1_2.texture = o.REVAMP_REVAMP.getTexture(11), t._effect_1_2.width = 142, t._effect_1_2.height = 165
-            }).to({ alpha: 1 }, 1).to({ width: 4.26, height: 4.95 }, 1).to({
-                width: 142,
-                height: 165
-            }, 200).to({ alpha: 0 }, 60).wait(1e3).call(function () {
-                t._effect_1_2.position.set(548, 537), t._effect_1_2.width = 143, t._effect_1_2.height = 165, t._effect_1_2.texture = o.REVAMP_REVAMP.getTexture(10)
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-                t._effect_1_2.position.set(554, 531), t._effect_1_2.width = 143, t._effect_1_2.height = 165
-            }).to({ alpha: 1 }, 1).to({ width: 6.42, height: 7.41 }, 1).to({
-                width: 214,
-                height: 247
-            }, 200).to({ alpha: 0 }, 60).call(function () {
-                t._effect_1_2.position.set(595, 629), t._effect_1_2.texture = o.REVAMP_REVAMP.getTexture(11), t._effect_1_2.width = 142, t._effect_1_2.height = 165
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-                t._effect_1_2.position.set(595, 629), t._effect_1_2.width = 142, t._effect_1_2.height = 165
-            }).to({ alpha: 1 }, 1).to({ width: 4.26, height: 4.95 }, 1).to({
-                width: 142,
-                height: 165
-            }, 200).to({ alpha: 0 }, 60).call(function () {
-                t._t = null
-            }), this._t2 = createjs.Tween.get(this._effect_3_f).wait(500).call(function () {
-                t._effect_3_f.visible = !0
-            }).to({ alpha: 1 }, 1).wait(100).to({ alpha: 0 }, 1).call(function () {
-            }).to({ alpha: 1 }, 1).wait(1).wait(200).to({ alpha: 0 }, 60).call(function () {
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-            }).to({ alpha: 1 }, 1).wait(1).wait(200).to({ alpha: 0 }, 60).wait(1e3).call(function () {
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-            }).to({ alpha: 1 }, 1).wait(1).wait(200).to({ alpha: 0 }, 60).call(function () {
-            }).to({ alpha: 1 }, 1).wait(100).call(function () {
-            }).to({ alpha: 1 }, 1).wait(1).wait(200).to({ alpha: 0 }, 60).call(function () {
-                t._t2 = null
-            })
-        }, e.prototype._eye_pattern = function (t, e, i) {
-            var n = this;
-            this._t = createjs.Tween.get(this).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(t)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(e)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(i), n._t = null
-            })
-        }, e.prototype._eye_pattern_twice = function (t, e, i) {
-            var n = this;
-            this._t = createjs.Tween.get(this).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(t)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(e)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(i)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(e)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(t)
-            }).wait(60).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(e)
-            }).wait(30).call(function () {
-                n._akashi_eye.texture = o.REVAMP_REVAMP.getTexture(i), n._t = null
-            })
-        }, e.prototype.AkashiMove = function (t) {
-            var e = this;
-            t || (182 == this._ship1st ? this._akashi_body.texture = o.REVAMP_REVAMP.getTexture(5) : this._akashi_body.texture = o.REVAMP_REVAMP.getTexture(7)), this._t = createjs.Tween.get(this).wait(1).to({ x: t ? 150 : 0 }, 250, createjs.Ease.quintIn).call(function () {
-                e._t = null, t && (182 == e._ship1st ? e._akashi_body.texture = o.REVAMP_REVAMP.getTexture(6) : e._akashi_body.texture = o.REVAMP_REVAMP.getTexture(8))
-            })
-        }, e.prototype._update = function () {
-            this._disposed || (0 == this._eye_state ? this._eye_pattern(0, 1, 2) : 1 == this._eye_state ? 10 * Math.random() > 2 ? this._eye_pattern(2, 1, 0) : this._eye_pattern_twice(2, 1, 0) : 2 == this._eye_state ? this._eye_pattern(4, 3, 2) : 10 * Math.random() > 2 ? this._eye_pattern(2, 3, 4) : this._eye_pattern_twice(2, 3, 4))
-        }, e.prototype._startWaiting = function () {
-            var t = this;
-            if (null == this._t && !this._disposed) {
-                var e = 0;
-                e = 1 == this._eye_state || 3 == this._eye_state ? 1e3 * Math.random() + 2e3 : 100 * Math.random() + 100, this._t = createjs.Tween.get(null, { onChange: this._onUpdate }).wait(e).call(function () {
-                    0 == t._eye_state ? 10 * Math.random() > 2 ? t._eye_state = 1 : t._eye_state = 3 : 1 == t._eye_state ? t._eye_state = 0 : 2 == t._eye_state ? 10 * Math.random() > 2 ? t._eye_state = 1 : t._eye_state = 3 : 3 == t._eye_state && (t._eye_state = 2), t._update(), t._t = null, t._startWaiting()
-                })
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                i.initialize(), i.alpha = 1, i.startAnim()
             }
-        }, e.prototype._discharge = function () {
-            var t = this;
-            this._t = createjs.Tween.get(this._effect_3).to({ alpha: 1 }, 25, createjs.Ease.bounceInOut).to({ alpha: 0 }, 25, createjs.Ease.bounceInOut).call(function () {
-                t._t = null, t._isDischarge && t._discharge()
-            })
-        }, e.prototype._stopWaiting = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                i.alpha = 0, i.stopAnim()
+            }
         }, e
     }(PIXI.Container);
-    e.RevampAkashi = r
+    e.RevampParticleLayer = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._wind = e, i
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.alpha = 0, this.anchor.set(.5, .5), this._rot = (2 * Math.random() < 1 ? 1 : -1) * Math.random() * 5 * Math.PI * 2, this._scale = .75 * Math.random() + .5, this._vx = (1 * Math.random() * this._scale * this._scale + 300) * this._wind, this._vy = 6 * Math.random() * this._scale * this._scale + 2, this.scale.set(this._scale, this._scale), this.texture = o.REVAMP_REVAMP.getTexture(14)
+        }, e.prototype.startAnim = function () {
+            this._anim()
+        }, e.prototype.stopAnim = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._calc = function () {
+            0 == this._wind ? this.x = 1200 * Math.random() : this.x = 300 * Math.random() + 450, this.y = -30 - 105 * Math.random(), this._rot += (2 * Math.random() < 1 ? 1 : -1) * Math.random() * 5 * Math.PI * 2
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this).to({ alpha: 1 }).to({
+                y: 800,
+                x: this.x + this._vx,
+                rotation: this._rot
+            }, 3e3 * Math.random() + 1e3).call(function () {
+                t._tween = null, t._calc(), t._anim()
+            })
+        }, e
+    }(PIXI.Sprite)
 }

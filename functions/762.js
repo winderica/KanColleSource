@@ -15,15 +15,18 @@ const function762 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_kaisou/unsetslot_all", i.api_id = e, i
+    var o = i(10), r = i(0), s = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
+            this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = this._raw_data.api_slot;
+            r.default.model.ship.get(this.api_id).__updateSlotAll__(e), t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.UnsetSlotAll = r
+    e.SlotExchangeIndexAPI = s
 }

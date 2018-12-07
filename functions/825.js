@@ -1,7 +1,7 @@
 const function825 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(8), r = i(6), s = i(52), a = i(826), _ = i(827), u = function () {
+    var n = i(0), o = i(8), r = i(6), s = i(52), a = i(826), _ = i(827), l = function () {
         function t(t) {
             var e = this;
             this._onClickNo = function () {
@@ -33,5 +33,5 @@ const function825 = function (t, e, i) {
             this.extensionConfirm.dispose(), this.onUpdateShip = null, this.onComplete = null, this.extensionConfirm = null, this.clickGuardConfirm = null, this.mainView = null, this.memShipId = null
         }, t
     }();
-    e.TaskExtension = u
+    e.TaskExtension = l
 }

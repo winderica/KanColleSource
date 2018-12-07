@@ -15,17 +15,28 @@ const function328 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = i(0), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._url = "api_req_kaisou/slotset", o.api_id = e, o.api_item_id = i, o.api_slot_idx = n, o
+    var o = i(3), r = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, this._post_data.api_slot_idx = this.api_slot_idx, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            r.default.model.ship.get(this.api_id).__updateSlot__(this.api_slot_idx, this.api_item_id), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this.texture = o.SUPPLY_MAIN.getTexture(14);
+                    break;
+                case 2:
+                    this.texture = o.SUPPLY_MAIN.getTexture(15);
+                    break;
+                case 3:
+                    this.texture = o.SUPPLY_MAIN.getTexture(16);
+                    break;
+                case 0:
+                    this.texture = PIXI.Texture.EMPTY
+            }
+        }, e.prototype.dispose = function () {
+            this.memShipId = null
         }, e
-    }(o.APIBase);
-    e.SlotSetAPI = s
+    }(PIXI.Sprite);
+    e.SupplyCheckBox = r
 }

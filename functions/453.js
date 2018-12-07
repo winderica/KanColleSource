@@ -15,49 +15,54 @@ const function453 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(252), a = i(44), _ = function (t) {
-        function e(e, i, n, o) {
-            return t.call(this, e, i, n, o) || this
+    var o = i(45), r = i(1355), s = i(1358), a = i(119), _ = i(449), l = i(450), u = i(43), c = function (t) {
+        function e(e, i, n, o, a, _, u, c, h, p) {
+            void 0 === p && (p = !1);
+            var d = t.call(this, e, i, o, u, c, h) || this;
+            d._onAttack = function () {
+                d._playVoice(), d._createPlanes()
+            }, d._onDamaged = function () {
+                1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
+                var t = d._getDamage(d._defender);
+                d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
+                    d._complete_flg_damage = !0, d._endTask()
+                })
+            }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
+            var f = d._scene.data.isNight(), y = d._scene.view.layer_cutin;
+            return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new l.PlaneTrio(i.friend), d
         }
 
-        return n(e, t), e.prototype.resume = function () {
+        return n(e, t), e.prototype._start = function () {
             var t = this;
-            null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
-                t._resume()
-            })) : this._resume()
-        }, e.prototype._start = function () {
-            var t = this, e = this._attacker.mst_id, i = this._attacker.isDamaged();
-            this._ship_sprite = new PIXI.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new a.ShipFlash(r.default.resources.getShip(e, i, "full"));
-            var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
-            this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
-            var s = this._base_pos, _ = this._friend ? 1 : -1;
-            if (this._view.chara.position.set(s.x - 180 * _, s.y + 120), this._view.chara.alpha = 0, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
-                x: s.x - 30 * _,
-                y: s.y + 15,
-                alpha: 1
-            }, 300).to({ x: s.x, y: s.y }, 250).call(function () {
-                t._view.emit("attack"), t._shipFlash.position = t._ship_sprite.position, t._shipFlash.play()
-            }).wait(135), null != this._slot1 || null != this._slot2) {
-                var u = this._view.box;
-                u.initilize(this._attacker);
-                var l = 0;
-                1 == this._attacker.friend ? u.x = -60 : (l = o.default.width - u.width, u.x = l + 60), u.y = o.default.height - u.height, u.alpha = 0, createjs.Tween.get(u).wait(365).to({
-                    x: l,
-                    alpha: 1
-                }, 165).wait(900).to({ alpha: 0 }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
-            }
-        }, e.prototype._resume = function () {
-            var t = this, e = this._base_pos, i = this._friend ? 1 : -1;
-            createjs.Tween.get(this._view.chara).call(function () {
-                t._view.emit("attack"), t._shipFlash.play()
-            }).wait(135).wait(200).to({ x: e.x + 38 * i, y: e.y - 23 }, 135).to({
-                x: e.x + 135 * i,
-                y: e.y - 75,
-                alpha: 0
-            }, 335).call(function () {
-                t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+            this._cutin.getPreloadTask().start(function () {
+                t._completePreload()
             })
+        }, e.prototype._completePreload = function () {
+            var t = this._attacker.friend, e = this._attacker.index, i = this._defender.index;
+            1 == t ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i)), this._cutin.setCallback(this._onAttack), this._cutin.start()
+        }, e.prototype._createPlanes = function () {
+            var t;
+            t = 1 == this._defender.isSubMarine() ? o.PlaneConst.getPlaneType(!0) : o.PlaneConst.getPlaneType(!1);
+            for (var e = this._attacker.slots, i = 0, n = e; i < n.length; i++) {
+                var r = n[i];
+                if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
+                    var s = r.mst_id;
+                    if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
+                    var a = this._a_banner.getGlobalPos(!0);
+                    this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
+                }
+            }
+            this._attack()
+        }, e.prototype._attack = function () {
+            var t = this, e = this._scene.view.layer_content, i = this._a_banner, n = this._d_banner;
+            new a.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start();
+            var o = n.getGlobalPos(!0);
+            new _.TaskPlane(e, this._trio, o, this._onDamaged).start(function () {
+                t._complete_flg_plane = !0, t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
         }, e
-    }(s.CutinDouble);
-    e.CutinDouble1 = _
+    }(u.PhaseAttackBase);
+    e.PhaseAttackKuboCutin = c
 }

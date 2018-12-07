@@ -1,9 +1,9 @@
 const function0 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(482), o = i(528), r = i(531), s = i(265), a = i(535), _ = i(536), u = i(537), l = function () {
+    var n = i(481), o = i(527), r = i(530), s = i(267), a = i(534), _ = i(535), l = i(536), u = function () {
         function t() {
-            this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager
+            this._view = new l.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager
         }
 
         return t._getInstance = function () {
@@ -38,5 +38,5 @@ const function0 = function (t, e, i) {
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.default = l
+    e.default = u
 }

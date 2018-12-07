@@ -15,20 +15,30 @@ const function1068 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(166), a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._view = i, n
+    var o = i(11), r = i(167), s = i(379), a = i(380), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._model = i, r._view = n, r._onBack = o, r
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = s.AlbumConst.BGM_ID_FOR_SHIP;
-            o.default.sound.bgm.play(t), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._view.activate(), this._endTask()
+            var t = this;
+            (new a.TaskLoadResources).start(function () {
+                t._initView()
+            })
+        }, e.prototype._initView = function () {
+            this._view.initialize(this._onBack), this._connectAPI()
+        }, e.prototype._connectAPI = function () {
+            var t = this;
+            new s.AlbumAPI(1, 0, this._model).start(function () {
+                t._showImage()
+            })
+        }, e.prototype._showImage = function () {
+            var t = r.AlbumConst.COUNT_INPAGE, e = this._model.getData(1, 0, t);
+            this._view.content.update(1, 0, e), this._endTask()
         }, e.prototype._endTask = function () {
-            this._view = null, t.prototype._endTask.call(this)
+            this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.TaskSceneInitialize = a
+    }(o.TaskBase);
+    e.TaskScenePreInitialize = _
 }

@@ -15,7 +15,7 @@ const function804 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = i(142), a = function (t) {
+    var o = i(0), r = i(10), s = i(143), a = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
             return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n

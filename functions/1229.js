@@ -1,112 +1,93 @@
 const function1229 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1230), r = function () {
+    var n = i(7), o = i(1230), r = i(1232), s = function () {
         function t(t) {
-            this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "no", {
+        return Object.defineProperty(t.prototype, "backgrounds", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "no")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "x", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "x")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "y", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "y")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "color", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "color")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "offsetDic", {
-            get: function () {
-                return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "line", {
-            get: function () {
-                if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
-                    var t = this._o.line;
-                    this._line = {
-                        x: n.ObjUtil.getNumber(t, "x"),
-                        y: n.ObjUtil.getNumber(t, "y"),
-                        r: n.ObjUtil.getNumber(t, "r"),
-                        img: n.ObjUtil.getString(t, "img")
-                    }
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "bg");
+                if (null != e) for (var i = 0, o = e; i < o.length; i++) {
+                    var r = o[i];
+                    if (r.hasOwnProperty("name") && r.hasOwnProperty("img")) {
+                        var s = n.ObjUtil.getString(r, "name"), a = n.ObjUtil.getString(r, "img");
+                        t.push({ name: s, img: a })
+                    } else t.push({ name: null, img: r })
                 }
-                return this._line
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "route", {
+        }), Object.defineProperty(t.prototype, "labels", {
             get: function () {
-                if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
-                    var t = this._o.route;
-                    this._route = {
-                        x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
-                        y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
-                        r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
-                        img: n.ObjUtil.getString(t, "img")
-                    }
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "labels");
+                if (null != e) for (var i = 0, o = e; i < o.length; i++) {
+                    var r = o[i], s = {
+                        x: n.ObjUtil.getNumber(r, "x"),
+                        y: n.ObjUtil.getNumber(r, "y"),
+                        r: n.ObjUtil.getNumber(r, "r"),
+                        img: n.ObjUtil.getString(r, "img")
+                    };
+                    t.push(s)
                 }
-                return this._route
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "landing", {
+        }), Object.defineProperty(t.prototype, "spots", {
             get: function () {
-                if (0 == this._o.hasOwnProperty("landing")) return null;
-                var t = this._o.landing;
-                return {
-                    x: n.ObjUtil.getNumber(t, "x"),
-                    y: n.ObjUtil.getNumber(t, "y"),
-                    type: n.ObjUtil.getNumber(t, "type")
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "spots");
+                if (null != e) for (var i = 0, r = e; i < r.length; i++) {
+                    var s = r[i], a = new o.SpotData(s);
+                    t.push(a)
                 }
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "branch", {
+        }), Object.defineProperty(t.prototype, "enemies", {
             get: function () {
-                if (null == this._branch) {
-                    if (0 == this._o.hasOwnProperty("branch")) return null;
-                    var t = this._o.branch;
-                    this._branch = new o.BranchBalloonData(t)
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "enemies");
+                if (null != e) for (var i = 0, o = e; i < o.length; i++) {
+                    var r = o[i], s = {
+                        no: n.ObjUtil.getNumber(r, "no"),
+                        x: n.ObjUtil.getNumber(r, "x"),
+                        y: n.ObjUtil.getNumber(r, "y"),
+                        img: n.ObjUtil.getString(r, "img")
+                    };
+                    t.push(s)
                 }
-                return this._branch
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "direction", {
+        }), Object.defineProperty(t.prototype, "airbase", {
             get: function () {
-                if (0 == this._o.hasOwnProperty("direction")) return 0;
-                var t = n.ObjUtil.getString(this._o, "direction");
-                return "R" == t ? 2 : "L" == t ? 1 : 0
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "controll_point", {
-            get: function () {
-                var t = n.ObjUtil.getObject(this._o, "cpoint");
+                var t = n.ObjUtil.getObject(this._o, "airbase");
                 return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
+        }), Object.defineProperty(t.prototype, "airraids", {
             get: function () {
-                var t = n.ObjUtil.getObject(this._o, "replenish");
-                if (null == t) return null;
-                var e = n.ObjUtil.getObject(t, "box"),
-                    i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
-                    o = n.ObjUtil.getObject(t, "button"),
-                    r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
-                    s = n.ObjUtil.getObject(t, "balloon");
-                return {
-                    box: i,
-                    btn: r,
-                    bln: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "airraids");
+                if (null != e) for (var i = 0, o = e; i < o.length; i++) {
+                    var s = o[i];
+                    t.push(new r.AirRaidData(s))
                 }
+                return t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
+        }), Object.defineProperty(t.prototype, "airbaseraid", {
             get: function () {
-                var t = n.ObjUtil.getObject(this._o, "ration");
-                if (null == t) return null;
-                var e = n.ObjUtil.getNumber(t, "box"), i = new PIXI.Point;
-                i.x = n.ObjUtil.getNumber(e, "x"), i.y = n.ObjUtil.getNumber(e, "y");
-                var o = n.ObjUtil.getNumber(t, "button"), r = new PIXI.Point;
-                return r.x = n.ObjUtil.getNumber(o, "x"), r.y = n.ObjUtil.getNumber(o, "y"), [i, r]
+                var t = n.ObjUtil.getObjectArray(this._o, "airbaseraid");
+                return null == t ? null : new r.AirRaidData(t)
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "recce", {
+            get: function () {
+                var t = [], e = n.ObjUtil.getObjectArray(this._o, "recce");
+                if (null != e) for (var i = 0, o = e; i < o.length; i++) {
+                    var r = o[i], s = {
+                        no: n.ObjUtil.getNumber(r, "no"),
+                        x: n.ObjUtil.getNumber(r, "x"),
+                        y: n.ObjUtil.getNumber(r, "y")
+                    };
+                    t.push(s)
+                }
+                return t
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.SpotData = r
+    e.MapInfoModel = s
 }

@@ -15,20 +15,31 @@ const function169 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(237), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._selected_page_no = e, o._selected_type = i, o._data = n, o
+    var o = i(1), r = i(1182), s = i(1183), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._canvas.scale.set(1), i._level.position.set(175, 34)
+            }, i._onMouseOut = function () {
+                i._canvas.scale.set(.9), i._level.position.set(165, 44)
+            }, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick(i._candidate)
+            }, i._cb_onClick = e, i._canvas = new PIXI.Sprite, i._canvas.position.set(113, 147), i.addChild(i._canvas), i._icon = new PIXI.Sprite, i.addChild(i._icon), i._level = new r.LevelStar, i.addChild(i._level), i._count = new s.RewardSelectDialogCount, i._count.position.set(158, 192), i.addChild(i._count), i._canvas.interactive = !0, i._onMouseOut(), i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._selected_page_no, i = this._selected_type;
-            new r.DutyListAPI(e, i, this._data).start(function () {
-                t._retry()
-            })
-        }, e.prototype._retry = function () {
-            return this._data.models.length > 0 ? void this._endTask() : this._data.selected_page_no <= 1 ? void this._endTask() : (this._selected_page_no--, void this._start())
+        return n(e, t), Object.defineProperty(e.prototype, "candidate", {
+            get: function () {
+                return this._candidate
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._candidate = t, this._initialize(), t.level > 0 && this._level.update(t.level), this._count.initialize(), t.count > 1 ? (this._count.update(t.count), this._count.visible = !0) : this._count.visible = !1
+        }, e.prototype.activate = function () {
+            1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(o.EventType.MOUSEOVER, this._onMouseOver), this._canvas.on(o.EventType.MOUSEOUT, this._onMouseOut), this._canvas.on(o.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this._canvas.buttonMode = !1, this._canvas.off(o.EventType.MOUSEOVER, this._onMouseOver), this._canvas.off(o.EventType.MOUSEOUT, this._onMouseOut), this._canvas.off(o.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._candidate = null, this._cb_onClick = null
         }, e
-    }(o.TaskBase);
-    e.TaskUpdateDutyListData = s
+    }(PIXI.Container);
+    e.RewardSelectDialogBtnBase = a
 }

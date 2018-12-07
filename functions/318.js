@@ -15,49 +15,33 @@ const function318 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(24), _ = i(33), u = i(279), l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._deck_id = e, i
+    var o = i(3), r = i(319), s = i(109), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e.empties = new Array, e.banners = new Array;
+            for (var i = 0; i < 6; i++) {
+                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(19)), s = new r.LongShipBanner, a = 76 * i;
+                n.y = a, s.y = a, e.empties.push(n), e.banners.push(s), e.addChild(n, s)
+            }
+            return e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            r.default.view.clickGuard = !0, this._cutin = new u.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
-        }, e.prototype._loadShipRespirces = function () {
-            this._anim()
-        }, e.prototype._anim = function () {
-            var t = this, e = r.default.model.deck.get(this._deck_id), i = e.getShipList();
-            this._createShipContainerU(i), this._createShipContainerB(i), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, r.default.view.overLayer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({ y: 2 }, 300).wait(1500).to({ y: 0 }, 300).call(function () {
-                t._endTask()
-            }), createjs.Tween.get(this._cutin.message).wait(400).to({ x: 660 }, 400).to({ x: 525 }, 800).to({
-                x: 420,
-                alpha: 0
-            }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({ alpha: 1 }, 100).to({ x: 600 - this._cutin.banner_top.width / 2 }, 800, createjs.Ease.cubicInOut).to({
-                x: o.default.width - this._cutin.banner_top.width,
-                alpha: 0
-            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({ alpha: 1 }, 100).to({ x: 600 - this._cutin.banner_bottom.width / 2 }, 800, createjs.Ease.cubicInOut).to({
-                x: 0,
-                alpha: 0
-            }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
-                t._cutin.particles.startAnim()
-            })
-        }, e.prototype._createShipContainerU = function (t) {
-            var e, i = t[0], n = t[2], o = t[4];
-            e = null == n ? [i] : null == o ? [n, i] : [n, i, o];
-            for (var r = 0; r < e.length; r++) {
-                var s = e[r], u = new _.ShipBanner;
-                u.update(s, !0), u.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(u)
+        return n(e, t), e.prototype.dispose = function () {
+            s.TaskLoadShipResource.abortBy(this);
+            for (var t = 0; t < this.empties.length; t++) this.empties[t].texture = PIXI.Texture.EMPTY, this.empties[t] = null;
+            this.empties = null;
+            for (var t = 0; t < this.banners.length; t++) this.banners[t].dispose(), this.banners[t] = null;
+            this.banners = null, this.removeChildren()
+        }, e.prototype.update = function (t, e) {
+            s.TaskLoadShipResource.abortBy(this);
+            for (var i = 0; i < 6; i++) {
+                var n = this.banners[i], o = this.empties[i];
+                if (n.visible = !1, o.visible = !0, i < t.length) {
+                    var r = t[i];
+                    null != r && (n.update(i, r, e), n.visible = !0, o.visible = !1)
+                }
             }
-        }, e.prototype._createShipContainerB = function (t) {
-            var e, i = t[1], n = t[3], o = t[5], r = t[6];
-            e = null == o ? null == n ? null == i ? [] : [i] : [i, n] : null == r ? [o, i, n] : [o, i, n, r];
-            for (var s = 0; s < e.length; s++) {
-                var u = e[s], l = new _.ShipBanner;
-                l.update(u, !0), l.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(l)
-            }
-        }, e.prototype._endTask = function (e) {
-            void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
         }, e
-    }(s.TaskBase);
-    e.TaskExpeditionStartCutin = l
+    }(PIXI.Container);
+    e.LongShipBannerContainer = a
 }

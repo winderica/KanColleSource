@@ -24,14 +24,14 @@ const function772 = function (t, e, i) {
                 e.texture = e.texture_on
             }, e._onMouseOut = function () {
                 e.texture = e.texture_off
-            }, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.texture_off = o.REMODEL_MAIN.getTexture(8), e.texture_on = o.REMODEL_MAIN.getTexture(9), e.texture_none = o.REMODEL_MAIN.getTexture(7), e
+            }, e.texture_on = o.REMODEL_MAIN.getTexture(5), e.texture_off = o.REMODEL_MAIN.getTexture(4), e.texture_none = o.REMODEL_MAIN.getTexture(3), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.interactive = e.buttonMode = !0, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.off(r.EventType.CLICK), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.texture_on = null, this.texture_off = null, this.texture_none = null, this.onClick = null, this.removeChildren()
-        }, e.prototype.update = function (t) {
+        return n(e, t), e.prototype.update = function (t) {
             this.texture = this.texture_none, this.interactive = this.buttonMode = !1, t && (this.texture = this.texture_off, this.interactive = this.buttonMode = !0)
+        }, e.prototype.dispose = function () {
+            this.off(r.EventType.CLICK), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.onClick = null, this.texture_on = null, this.texture_off = null, this.texture_none = null, this.removeChildren()
         }, e
     }(PIXI.Sprite);
-    e.KaizoButton = s
+    e.KindaikaButton = s
 }

@@ -3,29 +3,56 @@ const function471 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     var n = i(7), o = function () {
         function t(t) {
-            this._o = t
+            this._list = [];
+            var e = n.ObjUtil.getObjectArray(t, "api_df_list");
+            if (null != e) for (var i = n.ObjUtil.getNumArray(t, "api_at_eflag"), o = n.ObjUtil.getNumArray(t, "api_sp_list"), s = n.ObjUtil.getNumArray(t, "api_at_list"), a = n.ObjUtil.getObjectArray(t, "api_si_list"), _ = n.ObjUtil.getObjectArray(t, "api_cl_list"), l = n.ObjUtil.getObjectArray(t, "api_damage"), u = n.ObjUtil.getObjectArray(t, "api_n_mother_list"), c = 0; c < e.length; c++) {
+                var h = i[c], p = o[c], d = s[c], f = e[c], y = a[c], m = _[c], v = l[c], g = 1 == u[c],
+                    b = new r(h, p, d, f, y, m, v, g);
+                this._list.push(b)
+            }
         }
 
-        return Object.defineProperty(t.prototype, "deck_id", {
+        return Object.defineProperty(t.prototype, "list", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_deck_id")
+                return this._list
             }, enumerable: !0, configurable: !0
-        }), t.prototype.getShipList = function () {
-            for (var t = n.ObjUtil.getNumArray(this._o, "api_ship_id"), e = n.ObjUtil.getNumArray(this._o, "api_undressing_flag"), i = [], o = 0; o < t.length; o++) i.push({
-                mem_id: t[o],
-                damaged: 1 == e[o]
-            });
-            return i
+        }), t
+    }();
+    e.HougekiListNightData = o;
+    var r = function () {
+        function t(t, e, i, n, o, r, s, a) {
+            this._flag = t, this._type = e, this._a_index = i, this._d_indexes = n, this._slotitems = o, this._hit_types = r, this._damages = s, this._yasen_kubo = a
+        }
+
+        return Object.defineProperty(t.prototype, "flag", {
+            get: function () {
+                return this._flag
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "type", {
+            get: function () {
+                return this._type
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "a_index", {
+            get: function () {
+                return this._a_index
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "d_indexes", {
+            get: function () {
+                return this._d_indexes
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "yasen_kubo", {
+            get: function () {
+                return this._yasen_kubo
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getSlotitem = function (t) {
+            return null == this._slotitems ? -1 : this._slotitems.length <= t ? -1 : this._slotitems[t]
         }, t.prototype.getDamage = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-            return null != e && e.length > t ? Math.floor(e[t]) : 0
+            return null == this._damages ? 0 : this._damages.length <= t ? 0 : Math.floor(this._damages[t])
         }, t.prototype.getHitType = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_cl_list");
-            return null == e ? 0 : e.length <= t ? 0 : 1 == e[t] ? 2 : 1
+            return null == this._hit_types ? 0 : this._hit_types.length <= t ? 0 : this._hit_types[t]
         }, t.prototype.isShield = function (t) {
-            var e = n.ObjUtil.getNumArray(this._o, "api_damage");
-            return null != e && (!(e.length <= t) && e[t] % 1 != 0)
+            return null != this._damages && (!(this._damages.length <= t) && this._damages[t] % 1 > 0)
         }, t
     }();
-    e.SupportData = o
+    e.HougekiNightData = r
 }

@@ -15,42 +15,38 @@ const function1478 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(1479), s = i(477), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(17), r = i(11), s = i(13), a = i(1479), _ = i(1481), l = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._layer = e, r._area_id = i, r._map_no = n, r._file_suffix = o, r
         }
 
-        return n(e, t), e.prototype._initializeMapImages = function () {
-            this._maps = [];
-            for (var t = 0; t < 3; t++) {
-                var e = new PIXI.Sprite;
-                e.texture = [r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(3), r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 81, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            if (this._area_id != o.EVENT_AREA_ID) return void this._endTask();
+            switch (this._map_no) {
+                case 3:
+                    var e = new s.UIImageLoader("battle_result");
+                    e.add("battle_result_event_ed1_" + this._file_suffix + ".json"), e.load(function () {
+                        new a.TaskEventEnding423(t._layer).start(function () {
+                            t._endTask()
+                        })
+                    });
+                    break;
+                case 5:
+                    var e = new s.UIImageLoader("battle_result");
+                    e.add("battle_result_event_ed2_" + this._file_suffix + ".json"), e.load(function () {
+                        new _.TaskEventEnding425(t._layer).start(function () {
+                            t._endTask()
+                        })
+                    });
+                    break;
+                default:
+                    this._endTask()
             }
-        }, e.prototype._createMapShowTweens = function () {
-            return this.__createMapShowTweens(700)
-        }, e.prototype._initializeStampImages = function () {
-            this._stamps = [];
-            for (var t = 0; t < 2; t++) {
-                var e = new o.Sprite;
-                e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(0), e.x = 432.5 + 225 * t, e.y = 233.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-            }
-        }, e.prototype._createStampShowTweens = function () {
-            return this.__createStampShowTweens(700)
-        }, e.prototype._showText = function () {
-            this.__showText(new _)
-        }, e.prototype._createStampLast = function () {
-            var t = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(1), e = new o.Sprite(t);
-            return e.anchor.set(.5), e.position.set(1000.5, 302.5), e.alpha = 0, e
+        }, e.prototype._endTask = function () {
+            this._layer = null, t.prototype._endTask.call(this)
         }, e
-    }(s.TaskEventEndingBase);
-    e.TaskEventEnding423 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(5), this._text1.position.set(126, 271), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(6), this._text2.position.set(298, 516), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_JHNHDJYIJYHJGPXY.getTexture(8), this._text3.position.set(326, 578)
-        }, e
-    }(s.TextsBase)
+    }(r.TaskBase);
+    e.TaskEventEnding = l
 }

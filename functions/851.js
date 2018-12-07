@@ -15,7 +15,7 @@ const function851 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(339), s = i(852), a = function (t) {
+    var o = i(3), r = i(338), s = i(852), a = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.CATAPULT_WIDTH = 1245, e._tween = null, e._craneTexture = {
@@ -44,17 +44,17 @@ const function851 = function (t, e, i) {
                     r = { duration: 1e3, arms: this._armsPosition(1), wireHand: this._wireHand.getPosition(.7) },
                     s = { duration: 500, crane: this._cranePosition(.745) },
                     a = { duration: 500, wireHand: this._wireHand.getPosition(.4) },
-                    _ = { duration: 500, wireHand: this._wireHand.getPosition(.8) }, u = {
+                    _ = { duration: 500, wireHand: this._wireHand.getPosition(.8) }, l = {
                         duration: 500,
                         crane: this._cranePosition(.7),
                         arms: this._armsPosition(0),
                         wireHand: this._wireHand.getPosition(.35)
-                    }, l = { duration: i, crane: this._cranePosition(0) }, c = this._getTimeLineObj();
+                    }, u = { duration: i, crane: this._cranePosition(0) }, c = this._getTimeLineObj();
                 c.crane.to(n.crane).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
                     t._wireHand.hideMaterial()
-                }).wait(_.duration).to(u.crane, u.duration).to(l.crane, l.duration).call(function () {
+                }).wait(_.duration).to(l.crane, l.duration).to(u.crane, u.duration).call(function () {
                     t._randomColor(), t._wireHand.initialize()
-                }), c.arm.to(n.arms.arm).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.arm, u.duration).wait(l.duration), c.wire.to(n.arms.wire).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wire, u.duration).wait(l.duration), c.wireHand.to(n.arms.wireHand).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wireHand, u.duration).wait(l.duration), c.wireHandWire.to(n.wireHand.wire).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(u.wireHand.wire, u.duration).wait(l.duration), c.wireHandContainer.to(n.wireHand.container).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(u.wireHand.container, u.duration).wait(l.duration), e.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), e.gotoAndPlay("start"), this._tween = e
+                }), c.arm.to(n.arms.arm).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.arm, l.duration).wait(u.duration), c.wire.to(n.arms.wire).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wire, l.duration).wait(u.duration), c.wireHand.to(n.arms.wireHand).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wireHand, l.duration).wait(u.duration), c.wireHandWire.to(n.wireHand.wire).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(l.wireHand.wire, l.duration).wait(u.duration), c.wireHandContainer.to(n.wireHand.container).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(l.wireHand.container, l.duration).wait(u.duration), e.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), e.gotoAndPlay("start"), this._tween = e
             }
         }, e.prototype.timeLimit = function () {
             this.end(), createjs.Tween.get(this._crane).to({ x: this.CATAPULT_WIDTH }, 1e3, createjs.Ease.linear)
@@ -67,19 +67,19 @@ const function851 = function (t, e, i) {
                 r = { duration: 1e3, arms: this._armsPosition(1), wireHand: this._wireHand.getPosition(.8) },
                 s = { duration: 500, crane: this._cranePosition(.745) },
                 a = { duration: 500, wireHand: this._wireHand.getPosition(.5) },
-                _ = { duration: 500, wireHand: this._wireHand.getPosition(.8) }, u = {
+                _ = { duration: 500, wireHand: this._wireHand.getPosition(.8) }, l = {
                     duration: 500,
                     crane: this._cranePosition(.7),
                     arms: this._armsPosition(0),
                     wireHand: this._wireHand.getPosition(.3)
-                }, l = { duration: 1e3, crane: this._cranePosition(0) }, c = this._getTimeLineObj();
+                }, u = { duration: 1e3, crane: this._cranePosition(0) }, c = this._getTimeLineObj();
             c.crane.to(n.crane, n.duration).call(function () {
                 t._wireHand.bucketMaterial()
             }).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
                 t._wireHand.hideMaterial(), t.emit("high_speed_timer_stop")
-            }).wait(_.duration).to(u.crane, u.duration).to(l.crane, l.duration).call(function () {
+            }).wait(_.duration).to(l.crane, l.duration).to(u.crane, u.duration).call(function () {
                 t.end(), t.emit("high_speed_complete")
-            }), c.arm.wait(n.duration).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.arm, u.duration).wait(l.duration), c.wire.wait(n.duration).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wire, u.duration).wait(l.duration), c.wireHand.wait(n.duration).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wireHand, u.duration).wait(l.duration), c.wireHandWire.to(n.wireHand.wire, n.duration).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(u.wireHand.wire, u.duration).wait(l.duration), c.wireHandContainer.to(n.wireHand.container, n.duration).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(u.wireHand.container, u.duration).wait(l.duration), i.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), i.gotoAndPlay("start"), this._tween = i
+            }), c.arm.wait(n.duration).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.arm, l.duration).wait(u.duration), c.wire.wait(n.duration).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wire, l.duration).wait(u.duration), c.wireHand.wait(n.duration).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wireHand, l.duration).wait(u.duration), c.wireHandWire.to(n.wireHand.wire, n.duration).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(l.wireHand.wire, l.duration).wait(u.duration), c.wireHandContainer.to(n.wireHand.container, n.duration).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(l.wireHand.container, l.duration).wait(u.duration), i.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), i.gotoAndPlay("start"), this._tween = i
         }, e.prototype.end = function () {
             null !== this._tween && (this._tween.removeAllEventListeners("change"), this._tween.setPaused(!0)), this._tween = null
         }, e.prototype._randomColor = function (t) {

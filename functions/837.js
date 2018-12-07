@@ -20,9 +20,9 @@ const function837 = function (t, e, i) {
             o.default.view.clickGuard = !0;
             var i = !1, n = o.default.model.ship.get(t), r = o.default.model.useItem.get(33).count,
                 s = o.default.model.useItem.get(31).count, a = n.getRepairSteel() <= r, _ = n.getRepairFuel() <= s,
-                u = o.default.model.deck.isInDeck(t), l = o.default.model.useItem.get(1), c = 0 < l.count,
+                l = o.default.model.deck.isInDeck(t), u = o.default.model.useItem.get(1), c = 0 < u.count,
                 h = o.default.model.ndock.getShipMemIDs(), p = -1 < h.indexOf(t);
-            null != u && (i = null != o.default.model.deck.get(u[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
+            null != l && (i = null != o.default.model.deck.get(l[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
             var d = createjs.Tween.get(this.repairShipConfigView);
             createjs.Tween.get(this.background).to({ alpha: 1 }, 150).play(null), d.to({ x: 855 }, 150).call(function () {
                 createjs.Tween.removeTweens(e.repairShipConfigView), createjs.Tween.removeTweens(e.background), e.repairShipConfigView.x = 855, e.background.alpha = 1, e.background.width = 887, o.default.view.clickGuard = !1

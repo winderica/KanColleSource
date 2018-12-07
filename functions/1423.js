@@ -18,28 +18,29 @@ const function1423 = function (t, e, i) {
     var o = i(12), r = i(16), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.56, .95), e._splash1.position.set(129, 26), e._splash2.anchor.set(.77, .79), e._splash2.position.set(131, 26), e._splash3.anchor.set(.59, .9), e._splash3.position.set(137, 21), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
+            return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._splash1.texture = r.BATTLE_MAIN.getTexture(113), this._splash2.texture = r.BATTLE_MAIN.getTexture(112), this._splash3.texture = r.BATTLE_MAIN.getTexture(114)
+            this._splash1.texture = r.BATTLE_MAIN.getTexture(112), this._splash2.texture = r.BATTLE_MAIN.getTexture(113), this._splash3.texture = r.BATTLE_MAIN.getTexture(114)
         }, e.prototype.play = function () {
             var t = this;
-            createjs.Tween.get(this._splash1).to({
+            createjs.Tween.get(this._splash1).to({ scaleX: 1, scaleY: 1 }, 366).to({
+                scaleX: .78,
+                scaleY: .78,
+                alpha: 0
+            }, 200), createjs.Tween.get(this._splash2).wait(200).to({
                 scaleX: 1,
                 scaleY: 1
-            }, 233).to({ alpha: 0 }, 333), createjs.Tween.get(this._splash2).wait(166).to({
+            }, 200).to({ alpha: 0 }, 33), createjs.Tween.get(this._splash3).wait(333).to({
                 scaleX: 1,
                 scaleY: 1
-            }, 200).to({ alpha: 0 }, 200), createjs.Tween.get(this._splash3).wait(300).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 133).to({ alpha: 0 }, 133).call(function () {
+            }, 166).to({ scaleX: .88, scaleY: .88, alpha: 0 }, 166).call(function () {
                 t._init(), t.emit("complete")
             })
         }, e.prototype._init = function () {
             this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
         }, e
     }(PIXI.Container);
-    e.WaterColumn = s
+    e.TorpedoWaterColumn = s
 }

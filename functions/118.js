@@ -15,8 +15,8 @@ const function118 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(24), a = i(45), _ = i(2), u = i(7), l = i(19), c = i(18), h = i(25), p = i(6),
-        d = i(16), f = i(1322), y = function (t) {
+    var o = i(5), r = i(0), s = i(24), a = i(45), _ = i(2), l = i(7), u = i(19), c = i(18), h = i(25), p = i(6),
+        d = i(16), f = i(1323), y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n
@@ -73,14 +73,14 @@ const function118 = function (t, e, i) {
                         o.anchor.set(.5, 0);
                         var s = new PIXI.Sprite(r.default.resources.getSlotitem(n, "item_up"));
                         s.anchor.set(.5);
-                        var _ = 1, l = 1;
+                        var _ = 1, u = 1;
                         if (1 == a.PlaneConst.OFFSET.hasOwnProperty(n.toString())) {
-                            var c = a.PlaneConst.OFFSET[n], h = u.ObjUtil.getNumber(c, "x"),
-                                p = u.ObjUtil.getNumber(c, "y"), f = u.ObjUtil.getNumber(c, "r"),
-                                y = u.ObjUtil.getNumber(c, "sx", 1);
+                            var c = a.PlaneConst.OFFSET[n], h = l.ObjUtil.getNumber(c, "x"),
+                                p = l.ObjUtil.getNumber(c, "y"), f = l.ObjUtil.getNumber(c, "r"),
+                                y = l.ObjUtil.getNumber(c, "sx", 1);
                             s.x += h, s.y += p, s.rotation += -f / 180 * Math.PI, _ *= y
                         }
-                        1 == a.PlaneConst.SAKUTEKI_SPSCALE_MSTID.hasOwnProperty(t.mst_id.toString()) ? (_ *= .44, l *= .44) : 1 == a.PlaneConst.SAKUTEKI_SPSCALE_ETYPE.hasOwnProperty(t.equipTypeSp.toString()) ? (_ *= .4, l *= .4) : (_ *= .32, l *= .32), s.scale.set(_, l), o.scale.set(3.125 * _, 3.125 * l), i.addChild(o), i.addChild(s), e._flyPlane(i)
+                        1 == a.PlaneConst.SAKUTEKI_SPSCALE_MSTID.hasOwnProperty(t.mst_id.toString()) ? (_ *= .44, u *= .44) : 1 == a.PlaneConst.SAKUTEKI_SPSCALE_ETYPE.hasOwnProperty(t.equipTypeSp.toString()) ? (_ *= .4, u *= .4) : (_ *= .32, u *= .32), s.scale.set(_, u), o.scale.set(3.125 * _, 3.125 * u), i.addChild(o), i.addChild(s), e._flyPlane(i)
                     })
                 }
             }, e.prototype._flyPlane = function (t) {
@@ -102,9 +102,9 @@ const function118 = function (t, e, i) {
                 i = 1 == o.isSuccess_f() ? 1 == o.hasMikikan_f() ? 2 : 1 : 1 == o.hasMikikan_f() ? 4 : 3;
                 var r = this._scene.view.raderLayer, s = r.rader_e;
                 if (this._scene.view.layer_cutin.addChild(s), 1 == this._record.raw.sakuteki.isSuccess_f()) {
-                    var a = this._scene.data.model.deck_e, _ = a.formation, u = a.type, l = a.getCountMainDeck(),
+                    var a = this._scene.data.model.deck_e, _ = a.formation, l = a.type, u = a.getCountMainDeck(),
                         c = a.getCountSubDeck();
-                    s.show(_, u, l, c)
+                    s.show(_, l, u, c)
                 }
                 this._scene.view.layer_info2.once("complete", function () {
                     r.resetChildren()
@@ -121,7 +121,7 @@ const function118 = function (t, e, i) {
                 var t = this;
                 if (1 == this._record.raw.sakuteki.isSuccess_f()) {
                     this._scene.view.layer_info2.showCenter(5);
-                    var e = new l.TweenTask;
+                    var e = new u.TweenTask;
                     e.addTweens(this._scene.view.bannerGroupLayer.enemies.createSakutekiTweens()), e.addTweens(this._scene.view.bannerGroupLayer.enemies_combined.createSakutekiTweens()), e.start(function () {
                         t._endTask()
                     })
@@ -139,16 +139,16 @@ const function118 = function (t, e, i) {
                         if (null != s) {
                             var _ = s.equipType;
                             if (a.PlaneConst.SAKUTEKI.indexOf(_) >= 0) {
-                                var u = o.getTousai(r);
-                                if (u > 0) {
-                                    var l = s.sakuteki + Math.sqrt(s.level);
-                                    l > e && (e = l, t = s)
+                                var l = o.getTousai(r);
+                                if (l > 0) {
+                                    var u = s.sakuteki + Math.sqrt(s.level);
+                                    u > e && (e = u, t = s)
                                 }
                             }
                         }
                     }
                 }
-                var n, o, r, s, _, u;
+                var n, o, r, s, _, l;
                 return null != t && 25 == t.mst_id && (t = null), t
             }, e
         }(_.TaskBase);

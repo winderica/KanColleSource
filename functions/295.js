@@ -16,16 +16,20 @@ const function295 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(46), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._value = e, i
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._area_id = e, n._map_no = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "value", {
+        return n(e, t), Object.defineProperty(e.prototype, "area_id", {
             get: function () {
-                return this._value
+                return this._area_id
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "map_no", {
+            get: function () {
+                return this._map_no
             }, enumerable: !0, configurable: !0
         }), e
     }(o.RewardModel);
-    e.RewardModelWarResult = r
+    e.RewardModelMap = r
 }

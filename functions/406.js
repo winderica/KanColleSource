@@ -1,180 +1,124 @@
 const function406 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(289), r = i(290), s = i(291), a = i(182), _ = i(292), u = i(293), l = i(294), c = i(197),
-        h = i(183), p = i(141), d = i(123), f = i(295), y = function () {
-            function t(t) {
-                this._duty_id = t, this._dic = {}, this._rewards = []
-            }
-
-            return t.prototype.getRewards = function (t) {
-                return 0 == this._dic.hasOwnProperty(t.toString()) ? [] : this._dic[t]
-            }, t.prototype.getRewardList = function () {
-                return this._rewards.concat()
-            }, t.prototype.isNeedUpdateUserBasic = function () {
-                for (var t = this.getRewards(13), e = 0; e < t.length; e++) {
-                    if (44 == t[e].mst_id) return !0
-                }
-                t = this.getRewards(15);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_basic_update) return !0
-                }
-                t = this.getRewards(16);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_basic_update) return !0
-                }
-                return !1
-            }, t.prototype.isNeedUpdateSlotitem = function () {
-                var t = this.getRewards(11);
-                return t.length > 0 || (t = this.getRewards(12), t.length > 0 || (t = this.getRewards(15), t.length > 0 || (t = this.getRewards(16), t.length > 0)))
-            }, t.prototype.isNeedUpdateUseitem = function () {
-                var t = this.getRewards(3);
-                if (t.length > 0) return !0;
-                if (t = this.getRewards(13), t.length > 0) return !0;
-                t = this.getRewards(15);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_useitem_update) return !0
-                }
-                t = this.getRewards(16);
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e];
-                    if (1 == i.need_useitem_update) return !0
-                }
-                return !1
-            }, t.prototype._initialize = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_material");
-                if (null != t) {
-                    for (; t.length < 4;) t.push(0);
-                    this._addMaterialBonus(31, t[0]), this._addMaterialBonus(32, t[1]), this._addMaterialBonus(33, t[2]), this._addMaterialBonus(34, t[3])
-                }
-                var e = [], i = n.ObjUtil.getNumArray(this._o, "api_bounus");
-                if (null != i) for (var o = 0; o < i.length; o++) {
-                    var r = i[o];
-                    e.push(new m(r))
-                }
-                for (var o = 0; o < e.length; o++) {
-                    var s = e[o];
-                    if (1 == s.type) {
-                        if (s.count <= 0) continue;
-                        var a = s.id;
-                        switch (a) {
-                            case 5:
-                                a = 2;
-                                break;
-                            case 6:
-                                a = 1;
-                                break;
-                            case 7:
-                                a = 3;
-                                break;
-                            case 8:
-                                a = 4;
-                                break;
-                            default:
-                                a = -1
-                        }
-                        -1 != a && this._addMaterialBonus(a, s.count)
-                    } else 2 == s.type ? this._addDeckBonus(s) : 3 == s.type ? this._addFBoxBonus(s) : 4 == s.type ? this._addLargeBonus(s) : 5 == s.type ? this._addAirunitBaseBonus(s) : 6 == s.type ? this._addExtraSupplyBonus(s) : 11 == s.type ? this._addShipBonus(s) : 12 == s.type ? this._addSlotitemBonus(s) : 13 == s.type ? this._addUseitemBonus(s) : 14 == s.type ? this._addFurnitureBonus(s) : 15 == s.type ? this._addModelChangeBonus(s) : 16 == s.type ? this._addModelChangeBonus(s) : 18 == s.type && this._addWarResultBonus(s)
-                }
-            }, t.prototype._addMaterialBonus = function (t, e) {
-                if (0 != e) {
-                    var i;
-                    null != this._material && this._material.rewards.length < 6 ? i = this._material : (this._material = new c.RewardModelMultiUseitem, i = this._material, 0 == this._dic.hasOwnProperty(1..toString()) && (this._dic[1] = []), this._dic[1].push(i), this._rewards.push(i)), i.add(t, e)
-                }
-            }, t.prototype._addDeckBonus = function (t) {
-                var e = new r.RewardModelDeck(t.id, t.name);
-                0 == this._dic.hasOwnProperty(2..toString()) && (this._dic[2] = []), this._dic[2].push(e), this._rewards.push(e)
-            }, t.prototype._addFBoxBonus = function (t) {
-                if (0 != t.count) {
-                    var e;
-                    null != this._fbox && this._fbox.rewards.length < 6 ? e = this._fbox : (this._fbox = new c.RewardModelMultiUseitem, e = this._fbox, 0 == this._dic.hasOwnProperty(3..toString()) && (this._dic[3] = []), this._dic[3].push(e), this._rewards.push(e)), e.add(t.id, t.count)
-                }
-            }, t.prototype._addLargeBonus = function (t) {
-                var e = new _.RewardModelLargeBuild;
-                0 == this._dic.hasOwnProperty(4..toString()) && (this._dic[4] = []), this._dic[4].push(e), this._rewards.push(e)
-            }, t.prototype._addAirunitBaseBonus = function (t) {
-                var e = t.id, i = t.message_a, n = t.message, r = new o.RewardModelAirUnit(e, i, n);
-                if (0 == this._dic.hasOwnProperty(5..toString()) && (this._dic[5] = []), this._dic[5].push(r), this._rewards.push(r), 647 == this._duty_id && 1 == t.c_flag) {
-                    var s = new u.RewardModelMap(6, 5);
-                    this._rewards.push(s)
-                }
-            }, t.prototype._addExtraSupplyBonus = function (t) {
-                var e = new s.RewardModelExtraSupply(t.id);
-                0 == this._dic.hasOwnProperty(6..toString()) && (this._dic[6] = []), this._dic[6].push(e), this._rewards.push(e)
-            }, t.prototype._addShipBonus = function (t) {
-                var e = new h.RewardModelShip(t.id);
-                0 == this._dic.hasOwnProperty(11..toString()) && (this._dic[11] = []), this._dic[11].push(e), this._rewards.push(e)
-            }, t.prototype._addSlotitemBonus = function (t) {
-                for (var e = 0; e < t.count; e++) {
-                    var i = new p.RewardModelSlotitem(t.id, 1);
-                    0 == this._dic.hasOwnProperty(12..toString()) && (this._dic[12] = []), this._dic[12].push(i), this._rewards.push(i)
-                }
-            }, t.prototype._addUseitemBonus = function (t) {
-                for (var e = 0; e < t.count; e++) {
-                    var i = new d.RewardModelUseitem(t.id, 1);
-                    0 == this._dic.hasOwnProperty(13..toString()) && (this._dic[13] = []), this._dic[13].push(i), this._rewards.push(i)
-                }
-            }, t.prototype._addFurnitureBonus = function (t) {
-                var e = new a.RewardModelFurniture(t.id, t.name);
-                0 == this._dic.hasOwnProperty(14..toString()) && (this._dic[14] = []), this._dic[14].push(e), this._rewards.push(e)
-            }, t.prototype._addModelChangeBonus = function (t) {
-                var e = t.id_from, i = t.id_tobe, n = t.message, o = new l.RewardModelModelChange(e, i, "", n),
-                    r = t.type;
-                0 == this._dic.hasOwnProperty(r.toString()) && (this._dic[r] = []), this._dic[r].push(o), this._rewards.push(o)
-            }, t.prototype._addWarResultBonus = function (t) {
-                var e = new f.RewardModelWarResult(t.count), i = t.type;
-                0 == this._dic.hasOwnProperty(i.toString()) && (this._dic[i] = []), this._dic[i].push(e), this._rewards.push(e)
-            }, t
-        }();
-    e.DutyEndModel = y;
-    var m = function () {
+    var n = i(0), o = i(7), r = i(238), s = i(237), a = function () {
         function t(t) {
-            this._o = t
+            this._o = t, this._alert = this._initAlert()
         }
 
-        return Object.defineProperty(t.prototype, "type", {
+        return Object.defineProperty(t.prototype, "id", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_type")
+                return o.ObjUtil.getNumber(this._o, "api_no", -1)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
+        }), Object.defineProperty(t.prototype, "title", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_count")
+                return o.ObjUtil.getString(this._o, "api_title")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "id", {
+        }), Object.defineProperty(t.prototype, "description", {
             get: function () {
-                return 11 == this.type ? n.ObjUtil.getNumber(this._item, "api_ship_id") : n.ObjUtil.getNumber(this._item, "api_id")
+                return o.ObjUtil.getString(this._o, "api_detail")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "id_from", {
+        }), Object.defineProperty(t.prototype, "category", {
             get: function () {
-                return n.ObjUtil.getNumber(this._item, "api_id_from")
+                return o.ObjUtil.getNumber(this._o, "api_category", 1)
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "id_tobe", {
+        }), Object.defineProperty(t.prototype, "fuel", {
             get: function () {
-                return n.ObjUtil.getNumber(this._item, "api_id_to")
+                var t = o.ObjUtil.getNumArray(this._o, "api_get_material");
+                return null == t || t.length < 1 ? 0 : t[0]
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
+        }), Object.defineProperty(t.prototype, "ammo", {
             get: function () {
-                return n.ObjUtil.getString(this._item, "api_name")
+                var t = o.ObjUtil.getNumArray(this._o, "api_get_material");
+                return null == t || t.length < 2 ? 0 : t[1]
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "message_a", {
+        }), Object.defineProperty(t.prototype, "steel", {
             get: function () {
-                return n.ObjUtil.getString(this._item, "api_message_a")
+                var t = o.ObjUtil.getNumArray(this._o, "api_get_material");
+                return null == t || t.length < 3 ? 0 : t[2]
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "message", {
+        }), Object.defineProperty(t.prototype, "baux", {
             get: function () {
-                return n.ObjUtil.getString(this._item, "api_message")
+                var t = o.ObjUtil.getNumArray(this._o, "api_get_material");
+                return null == t || t.length < 4 ? 0 : t[3]
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "c_flag", {
+        }), Object.defineProperty(t.prototype, "progress", {
             get: function () {
-                return 1 == n.ObjUtil.getNumber(this._item, "api_c_flag")
+                var t = o.ObjUtil.getNumber(this._o, "api_progress_flag_", -1);
+                return -1 == t ? this._getRawProgress() : t
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "_item", {
+        }), Object.defineProperty(t.prototype, "type", {
             get: function () {
-                return n.ObjUtil.getObject(this._o, "api_item")
+                return o.ObjUtil.getNumber(this._o, "api_type")
             }, enumerable: !0, configurable: !0
-        }), t
-    }()
+        }), Object.defineProperty(t.prototype, "status", {
+            get: function () {
+                var t = o.ObjUtil.getNumber(this._o, "api_state_", -1);
+                return -1 == t ? this._getRawStatus() : t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "hasVoiceID", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_voice_id", 0) > 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "voiceID", {
+            get: function () {
+                switch (o.ObjUtil.getNumber(this._o, "api_no", -1)) {
+                    case 190:
+                        for (var t = void 0, e = void 0, i = 1; i <= n.default.model.deck.getAll().length; i++) {
+                            t = 0, e = !1;
+                            var r = n.default.model.deck.get(i), s = r.getCount();
+                            if (4 == s) {
+                                for (var a = 0; a < s; a++) switch (r.getShipModel(a).yomi) {
+                                    case"\u308f\u304b\u3070":
+                                    case"\u306f\u3064\u306f\u308b":
+                                    case"\u306f\u3064\u3057\u3082":
+                                        t++;
+                                        break;
+                                    case"\u306d\u306e\u3072":
+                                        e = !0
+                                }
+                                if (3 == t && e) break
+                            }
+                        }
+                        return e ? 1101 : o.ObjUtil.getNumber(this._o, "api_voice_id", 0);
+                    default:
+                        return o.ObjUtil.getNumber(this._o, "api_voice_id", 0)
+                }
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "alert", {
+            get: function () {
+                return this._alert
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.hasBonus = function () {
+            return 0 != o.ObjUtil.getNumber(this._o, "api_bonus_flag")
+        }, t.prototype.hasShipBonus = function () {
+            return 2 == o.ObjUtil.getNumber(this._o, "api_bonus_flag")
+        }, t.prototype.isValid = function () {
+            return 0 == o.ObjUtil.getNumber(this._o, "api_invalid_flag")
+        }, t.prototype.getNeedMedalCount = function () {
+            return o.ObjUtil.getNumber(this._o, "api_lost_badges")
+        }, t.prototype.getRewardCandidates = function () {
+            var t = o.ObjUtil.getObjectArray(this._o, "api_select_rewards");
+            if (null == t) return null;
+            for (var e = [], i = 0, n = t; i < n.length; i++) {
+                for (var r = n[i], a = [], _ = 0, l = r; _ < l.length; _++) {
+                    var u = l[_];
+                    a.push(new s.DutyRewardCandidateModel(u))
+                }
+                e.push(a)
+            }
+            return e
+        }, t.prototype._getRawProgress = function () {
+            return o.ObjUtil.getNumber(this._o, "api_progress_flag")
+        }, t.prototype._getRawStatus = function () {
+            return o.ObjUtil.getNumber(this._o, "api_state")
+        }, t.prototype._initAlert = function () {
+            if (1 == this.hasShipBonus()) {
+                if (n.default.model.basic.shipMax - n.default.model.ship.num < 1) return 1;
+                if (n.default.model.basic.slotMax - n.default.model.slot.num < 5) return 1
+            }
+            return 0 == this.isValid() ? 318 == this.id ? 5 : 683 == this.id || 684 == this.id || 685 == this.id || 686 == this.id || 687 == this.id ? 4 : this.getNeedMedalCount() > 0 ? 4 : r.BUTAI_SAIHENSEI.indexOf(this.id) >= 0 ? 3 : 2 : 0
+        }, t
+    }();
+    e.DutyModel = a
 }

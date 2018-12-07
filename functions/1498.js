@@ -15,52 +15,38 @@ const function1498 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1499), r = function (t) {
+    var o = i(5), r = i(1499), s = i(1502), a = i(1504), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._banners = [], e
+            return e._banners_f = new r.BannerSet, e._banners_f.position.set(348, 216), e._info_f = new s.BannerInfoFriendCanvas, e._info_f.position.set(141, 216), e._banners_e = new r.BannerSet, e._banners_e.position.set(614, 216), e._info_e = new a.BannerInfoEnemyCanvas, e._info_e.position.set(867, 216), e.addChild(e._banners_f), e.addChild(e._banners_e), e.addChild(e._info_f), e.addChild(e._info_e), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._resetBanners();
-            var e = 0;
-            e = 7 == t.length ? 0 : 68;
-            for (var i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null == n) return;
-                var r = new o.ShipBannerClone(n.isTaihi());
-                r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
-                var s = n.mst_id, a = n.hp_now, _ = n.hp_max;
-                r.updateTexture(s, a, _), r.updateIcon(n.damageType, n.isGround()), this.addChild(r)
-            }
-        }, e.prototype.dispose = function () {
-            this._resetBanners(), this._banners = null, this.removeChildren()
-        }, e.prototype.createShowTweens = function (t) {
-            for (var e = [], i = 0; i < this._banners.length; i++) {
-                var n = this._banners[i];
-                n.y += 30;
-                var o = createjs.Tween.get(n).wait(t + 50 * i).to({ y: n.y - 30, alpha: 1 }, 150);
-                e.push(o)
-            }
-            return e
-        }, e.prototype.createHideTweens = function (t) {
-            for (var e = [], i = 0; i < this._banners.length; i++) {
-                var n = this._banners[i],
-                    o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
-                        y: n.y + 30,
-                        alpha: 0
-                    }, 200);
-                e.push(o)
-            }
-            return e
-        }, e.prototype.getBanner = function (t) {
-            return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
-        }, e.prototype._resetBanners = function () {
-            for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
-                var t = this._banners.pop();
-                null != t.parent && t.parent.removeChild(t), t.dispose()
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "banners_f", {
+            get: function () {
+                return this._banners_f
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "info_f", {
+            get: function () {
+                return this._info_f
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "banners_e", {
+            get: function () {
+                return this._banners_e
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "info_e", {
+            get: function () {
+                return this._info_e
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._banners_f.dispose(), this._banners_f = null, this._info_f.dispose(), this._info_f = null, this._banners_e.dispose(), this._banners_e = null, this._info_e.dispose(), this._info_e = null
+        }, e.prototype.createSlideOutEnemyTweens = function (t, e) {
+            var i = this, n = o.default.width - this._banners_e.x;
+            return [createjs.Tween.get(this._banners_e).wait(e).to({ x: this._banners_e.x + n }, t).call(function () {
+                i._banners_e.dispose()
+            }), createjs.Tween.get(this._info_e).wait(e).to({ x: this._info_e.x + n }, t).call(function () {
+                i._info_e.dispose()
+            })]
         }, e
     }(PIXI.Container);
-    e.BannerSet = r
+    e.LayerBanner = _
 }

@@ -15,7 +15,7 @@ const function890 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(306), r = function (t) {
+    var o = i(308), r = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.MAX_CIRCLE = 5, e.onUpdate = function () {

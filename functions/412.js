@@ -15,40 +15,74 @@ const function412 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(1177), a = i(1178), _ = i(413), u = i(413), l = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._result = null, n._onSelect = function (t) {
-                var e = PIXI.Texture.EMPTY;
-                if (11 == t.type) e = o.default.resources.getShip(t.mst_id, !1, "icon_box"); else if (12 == t.type) e = o.default.resources.getSlotitem(t.mst_id, "card"); else if (13 == t.type) e = o.default.resources.getUseitem(t.mst_id, 2); else if (14 == t.type) {
-                    e = o.default.resources.getFurniture(t.mst_id, "reward");
-                    var i = o.default.model.furniture.getData(t.mst_id);
-                    if (null == i || 1 == i.has()) return void n._dialog.showAlert(t)
-                }
-                var r = new a.TaskRewardSelectConfirm(n._layer, e);
-                r.start(function () {
-                    1 == r.result && (n._layer.removeChild(n._dialog), n._result = t, n._endTask())
-                })
-            }, n._layer = e, n._candidates = i, n
+    var o = i(3), r = i(1181), s = i(1184), a = i(1185), _ = i(1186), l = i(1187), u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._btns = [], e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            for (var t = this, e = new s.TaskLoadResources, i = 0, n = this._candidates; i < n.length; i++) {
-                var o = n[i];
-                11 == o.type ? e.addShip(o.mst_id) : 12 == o.type ? e.addSlotitem(o.mst_id) : 13 == o.type ? e.addUseitem(o.mst_id) : 14 == o.type && e.addFurniture(o.mst_id)
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._btns = [];
+            for (var i = 0, n = t; i < n.length; i++) {
+                var o = n[i], r = this._createBtn(o, e);
+                this.addChild(r), this._btns.push(r)
             }
-            e.start(function () {
-                3 == t._candidates.length ? (t._dialog = new u.RewardSelectDialog3, t._dialog.position.set(195, 164)) : (t._dialog = new _.RewardSelectDialog2, t._dialog.position.set(297, 164)), t._dialog.initialize(t._candidates, t._onSelect), t._layer.addChild(t._dialog), t._dialog.activate()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._candidates = null, this._dialog = null, t.prototype._endTask.call(this)
+        }, e.prototype.activate = function () {
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].activate()
+            }
+        }, e.prototype.deactivate = function () {
+            for (var t = 0, e = this._btns; t < e.length; t++) {
+                e[t].deactivate()
+            }
+        }, e.prototype.showAlert = function (t) {
+            var e = this._getBtn(t);
+            null != e && (null == this._alert && (this._alert = new l.RewardSelectDialogFurnitureAlert, this._alert.initialize(), this.addChild(this._alert)), this._alert.x = e.x + 71, this._alert.y = e.y - 20, this._alert.show())
+        }, e.prototype._createBtn = function (t, e) {
+            if (11 == t.type) {
+                var i = new s.RewardSelectDialogShipBtn(e);
+                return i.initialize(t), i
+            }
+            if (12 == t.type) {
+                var i = new a.RewardSelectDialogSlotitemBtn(e);
+                return i.initialize(t), i
+            }
+            if (13 == t.type) {
+                var i = new _.RewardSelectDialogUseitemBtn(e);
+                return i.initialize(t), i
+            }
+            if (14 == t.type) {
+                var i = new r.RewardSelectDialogFurnitureBtn(e);
+                return i.initialize(t), i
+            }
+            return null
+        }, e.prototype._getBtn = function (t) {
+            for (var e = 0, i = this._btns; e < i.length; e++) {
+                var n = i[e];
+                if (n.candidate == t) return n
+            }
+            return null
         }, e
-    }(r.TaskBase);
-    e.TaskRewardSelect = l
+    }(PIXI.Sprite);
+    e.RewardSelectDialog = u;
+    var c = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function (e, i) {
+            t.prototype.initialize.call(this, e, i), this.texture = o.DUTY_COMMON.getTexture(53), this._btns[0].position.set(130, 86), this._btns[1].position.set(407, 86)
+        }, e
+    }(u);
+    e.RewardSelectDialog2 = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function (e, i) {
+            t.prototype.initialize.call(this, e, i), this.texture = o.DUTY_COMMON.getTexture(54), this._btns[0].position.set(78, 86), this._btns[1].position.set(326, 86), this._btns[2].position.set(578, 86)
+        }, e
+    }(c);
+    e.RewardSelectDialog3 = h
 }

@@ -18,11 +18,11 @@ const function1336 = function (t, e, i) {
     var o = i(2), r = i(23), s = i(16), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._layer = e, i._smoke = new _, i._smoke.position.set(75, 46), i
+            return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._smoke.x - 105, i = this._smoke.y - 12;
+            var t = this, e = this._smoke.x - 105, i = this._smoke.y - 9;
             createjs.Tween.get(this._smoke).call(function () {
                 t._layer.addChild(t._smoke)
             }).to({ x: e, y: i, alpha: 0, scaleX: 1.5, scaleY: 1.5 }, 500).call(function () {
@@ -30,11 +30,11 @@ const function1336 = function (t, e, i) {
             })
         }, e
     }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan = a;
+    e.AnimAntiAircraftKoukaku = a;
     var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(143)), e._img.position.set(-140, -213), e.addChild(e._img), e
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(144)), e._img.position.set(-44, -63), e.addChild(e._img), e
         }
 
         return n(e, t), e

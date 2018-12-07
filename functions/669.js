@@ -3,9 +3,9 @@ const function669 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("duty_poster_girl_sanma_" + t)
+            return PIXI.Texture.fromFrame("duty_poster_girl_summer_" + t)
         }
 
         t.getTexture = e
-    }(e.DUTY_POSTER_GIRL_SANMA || (e.DUTY_POSTER_GIRL_SANMA = {}))
+    }(e.DUTY_POSTER_GIRL_SUMMER || (e.DUTY_POSTER_GIRL_SUMMER = {}))
 }

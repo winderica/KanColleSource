@@ -15,7 +15,7 @@ const function62 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(173), a = i(1323), _ = i(1327), u = function (t) {
+    var o = i(0), r = i(2), s = i(174), a = i(1324), _ = i(1328), l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
@@ -82,8 +82,8 @@ const function62 = function (t, e, i) {
                 o.push(a.mst_id)
             }
             this._taiha_ships = Array();
-            for (var u = 0, l = this._chuha_ships; u < l.length; u++) {
-                var a = l[u];
+            for (var l = 0, u = this._chuha_ships; l < u.length; l++) {
+                var a = u[l];
                 o.push(a.mst_id)
             }
             if (this._clearTaihaList(), this._clearTaihaList(), o.length > 0) {
@@ -100,5 +100,5 @@ const function62 = function (t, e, i) {
         }, e.prototype._log = function (t, e) {
         }, e
     }(r.TaskBase);
-    e.PhaseDamageCutin = u
+    e.PhaseDamageCutin = l
 }

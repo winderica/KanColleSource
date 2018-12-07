@@ -15,55 +15,115 @@ const function1287 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(144), r = i(51), s = i(428), a = i(1288), _ = i(1289), u = i(1301), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
+    var o = i(20), r = i(1), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onMouseOver = function () {
+                if (n._img.texture != PIXI.Texture.EMPTY) return void n._effect.deactivate();
+                n._effect.activate()
+            }, n._onMouseOut = function () {
+                n._effect.deactivate()
+            }, n._handle = -1, n._onClick = function () {
+                if (-1 != n._handle) {
+                    if (clearTimeout(n._handle), n._handle = -1, null == n._cb_onDoubleClick) return;
+                    n._cb_onDoubleClick(n._no)
+                } else n._handle = setTimeout(function () {
+                    n._handle = -1, null != n._cb_onClick && n._cb_onClick(n._no)
+                }, 300)
+            }, n._cb_onClick = e, n._cb_onDoubleClick = i, n.beginFill(65280, 0), n.drawCircle(0, 0, 15), n.endFill(), n._effect = new a, n.addChild(n._effect), n._img = new PIXI.Sprite, n._img.position.set(-42, -42), n.addChild(n._img), n.interactive = !0, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "no", {
             get: function () {
-                return this._bg
+                return this._no
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "shutter", {
-            get: function () {
-                return this._shutter
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "map", {
-            get: function () {
-                return this._map
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "upper", {
-            get: function () {
-                return this._upper
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "gauge_layer", {
-            get: function () {
-                return this._gauge_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "chara_layer", {
-            get: function () {
-                return this._chara_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "universal_layer", {
-            get: function () {
-                return this._universal_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "top_layer", {
-            get: function () {
-                return this._top_layer
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function () {
-            this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+        }), e.prototype.initialize = function (t, e, i) {
+            this._no = t;
+            var n = "blue";
+            if (e.distance > i ? n = "red" : (e.distance == i && (n = "yellow"), this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)), this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), 5 == e.color || -2 == e.color) if (e.passed) {
+                switch (n) {
+                    case"red":
+                        this._effect.texture = o.MAP_COMMON.getTexture(121);
+                        break;
+                    case"yellow":
+                        this._effect.texture = o.MAP_COMMON.getTexture(120);
+                        break;
+                    case"blue":
+                        this._effect.texture = o.MAP_COMMON.getTexture(119)
+                }
+                this._effect.y = 0, this._effect.y = -2
+            } else {
+                switch (n) {
+                    case"red":
+                        this._effect.texture = o.MAP_COMMON.getTexture(118);
+                        break;
+                    case"yellow":
+                        this._effect.texture = o.MAP_COMMON.getTexture(117);
+                        break;
+                    case"blue":
+                        this._effect.texture = o.MAP_COMMON.getTexture(116)
+                }
+                this._effect.x = 0, this._effect.y = 0
+            } else if (10 == e.color && e.passed) {
+                switch (n) {
+                    case"red":
+                        this._effect.texture = o.MAP_COMMON.getTexture(124);
+                        break;
+                    case"yellow":
+                        this._effect.texture = o.MAP_COMMON.getTexture(123);
+                        break;
+                    case"blue":
+                        this._effect.texture = o.MAP_COMMON.getTexture(122)
+                }
+                this._effect.x = -9, this._effect.y = 9
+            } else {
+                switch (n) {
+                    case"red":
+                        this._effect.texture = o.MAP_COMMON.getTexture(127);
+                        break;
+                    case"yellow":
+                        this._effect.texture = o.MAP_COMMON.getTexture(126);
+                        break;
+                    case"blue":
+                        this._effect.texture = o.MAP_COMMON.getTexture(125)
+                }
+                this._effect.x = 0, this._effect.y = 0
+            }
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
-        }, e.prototype.frontOfGaugeLayer = function () {
-            this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+            this._effect.dispose(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick), this._cb_onClick = null, this._cb_onDoubleClick = null
+        }, e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.texture = o.MAP_COMMON.getTexture(159);
+                    break;
+                case 2:
+                    this._img.texture = o.MAP_COMMON.getTexture(160);
+                    break;
+                case 3:
+                    this._img.texture = o.MAP_COMMON.getTexture(161);
+                    break;
+                default:
+                    this._img.texture = PIXI.Texture.EMPTY
+            }
         }, e
-    }(PIXI.Container);
-    e.ViewMain = l
+    }(PIXI.Graphics);
+    e.AirUnitAppointmentPoint = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e.visible = !1, e
+        }
+
+        return n(e, t), e.prototype.activate = function () {
+            this._startAnimation()
+        }, e.prototype.deactivate = function () {
+            this._stopAnimation()
+        }, e.prototype.dispose = function () {
+            this._stopAnimation()
+        }, e.prototype._startAnimation = function () {
+            this.alpha = 0, this.visible = !0, this._t = createjs.Tween.get(this).to({ alpha: 1 }, 1e3).to({ alpha: 0 }, 1e3), this._t.loop = !0
+        }, e.prototype._stopAnimation = function () {
+            this.visible = !1, null != this._t && (this._t.setPaused(!0), this._t = null)
+        }, e
+    }(PIXI.Sprite)
 }

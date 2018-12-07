@@ -3,9 +3,9 @@ const function657 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", { value: !0 });
     !function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("organize_rengo_" + t)
+            return PIXI.Texture.fromFrame("repair_main_" + t)
         }
 
         t.getTexture = e
-    }(e.ORGANIZE_RENGO || (e.ORGANIZE_RENGO = {}))
+    }(e.REPAIR_MAIN || (e.REPAIR_MAIN = {}))
 }

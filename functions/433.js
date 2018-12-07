@@ -15,17 +15,29 @@ const function433 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(429), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._icon = new r.CompDropItemIcon, e._icon.anchor.set(.5, 1), e._text = new o.TextBox(20, 16774898), e._text.position.set(17, -27), e.addChild(e._icon), e.addChild(e._text), e
+    var o = i(0), r = i(2), s = i(15), a = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._scene = e, o._ship_mst_id = i, o._ship_damaged = n, o
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._icon.update(t), this._text.text = e.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._text.destroy()
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new s.ShipLoader;
+            e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
+                t._loadComplete()
+            })
+        }, e.prototype._loadComplete = function () {
+            var t = this, e = o.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full"),
+                i = PIXI.Sprite.from(e.baseTexture);
+            i.alpha = 0;
+            var n = o.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
+            i.position.set(n.x - 80, n.y - 93), this._scene.view.chara_layer.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 300).wait(700).to({
+                alpha: 0,
+                x: i.x - 75
+            }, 300).call(function () {
+                t._scene.view.chara_layer.removeChild(i), t._endTask()
+            })
         }, e
-    }(PIXI.Container);
-    e.CompDropItem = s
+    }(r.TaskBase);
+    e.AnimFlagShip = a
 }

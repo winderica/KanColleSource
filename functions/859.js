@@ -15,11 +15,11 @@ const function859 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(860), a = i(3), _ = i(3), u = i(3), l = function (t) {
+    var o = i(0), r = i(2), s = i(860), a = i(3), _ = i(3), l = i(3), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._uploadTexture = function () {
-                o.default.settings.renderer.plugins.prepare.upload(u.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
+                o.default.settings.renderer.plugins.prepare.upload(l.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
                     o.default.settings.renderer.plugins.prepare.upload(_.ARSENAL_MAIN.getTexture(0).baseTexture, function () {
                         o.default.settings.renderer.plugins.prepare.upload(a.COMMON_SORT.getTexture(0).baseTexture, function () {
                             i.arsenalScene.start(), i.arsenalScene = null, i._endTask()
@@ -36,5 +36,5 @@ const function859 = function (t, e, i) {
             })
         }, e
     }(r.TaskBase);
-    e.PreInitializeTask = l
+    e.PreInitializeTask = u
 }

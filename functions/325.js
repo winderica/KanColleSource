@@ -15,32 +15,48 @@ const function325 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(323), s = function (t) {
+    var o = i(9), r = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
-                n = new r.MaterialMeterView, s = new r.MaterialMeterView;
-            return n.position.set(12, 8), s.position.set(119, 8), e.addChild(i, n, s), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = s, e
+            var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite;
+            return n.position.set(-29, -27), n.alpha = 0, e.addChild(n, i), e.meter = i, e.meterLight = n, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n) {
-            this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
+        return n(e, t), e.prototype.update = function (t, e) {
+            this.meter.texture = o.COMMON_MISC.getTexture(121), this.meterLight.texture = o.COMMON_MISC.getTexture(132), null != this.meterLightTween && (this.meterLightTween.setPaused(!0), this.meterLightTween = null);
+            var i;
+            0 == t ? i = 0 : t == e ? i = 10 : (i = Math.floor(9 * t / e) + 1, 10 < i && (i = 10), i < 0 && (i = 0));
+            var n;
+            n = 0 == i ? 1 : 10 == i ? 0 : (11 - i) / 11;
+            var r = this.getTextureNoProgressImage(i);
+            this.meter.texture = o.COMMON_MISC.getTexture(r), this.meterLightTween = createjs.Tween.get(this.meterLight).to({ alpha: 0 }).to({ alpha: n }, 1e3).to({ alpha: 0 }, 1e3), this.meterLightTween.loop = !0, this.meterLightTween.play(null)
+        }, e.prototype.dispose = function () {
+            null != this.meterLightTween && this.meterLightTween.setPaused(!0), createjs.Tween.removeTweens(this.meterLight), this.removeChild(this.meter), this.removeChild(this.meterLight), this.meterLightTween = null, this.meter = null, this.meterLight = null
+        }, e.prototype.getTextureNoProgressImage = function (t) {
+            switch (t) {
+                case 0:
+                    return 121;
+                case 1:
+                    return 122;
+                case 2:
+                    return 124;
+                case 3:
+                    return 125;
+                case 4:
+                    return 126;
+                case 5:
+                    return 127;
+                case 6:
+                    return 128;
+                case 7:
+                    return 129;
+                case 8:
+                    return 130;
+                case 9:
+                    return 131;
+                case 10:
+                    return 123
+            }
         }, e
     }(PIXI.Container);
-    e.MaterialView = s;
-    var a = i(745), _ = i(9), u = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(_.COMMON_MISC.getTexture(144)),
-                n = new a.MaterialMeterViewS, o = new a.MaterialMeterViewS;
-            return n.position.set(29, 6), o.position.set(165, 6), e.addChild(i, n, o), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = o, e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n) {
-            this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
-        }, e
-    }(PIXI.Container);
-    e.MaterialViewS = u
+    e.MaterialMeterView = r
 }

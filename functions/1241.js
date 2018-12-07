@@ -15,36 +15,75 @@ const function1241 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(20), s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._wait = function () {
-                o._layer.removeChild(o._plane), createjs.Tween.get(null).wait(200).call(function () {
-                    o._endTask()
-                })
-            }, o.run = function () {
-                o._timer <= 0 && o._isTurn || (o._movePlane(), o._timer -= 1e3 / 60, o._timer <= 0 && !o._isTurn && (o._timer = o._baseTime, o._isTurn = !o._isTurn))
-            }, o._layer = e, o._from = i, o._to = n, o._baseTime = 1500, o._timer = o._baseTime, o
+    var o = i(2), r = i(66), s = i(27), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n.TIME = 2e3, n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this;
-            this._plane = new PIXI.Sprite;
-            var e = this._to.x > this._from.x ? 1 : -1, i = this._to.x > this._from.x ? -.1 : .1;
-            this._plane.texture = r.MAP_COMMON.getTexture(98), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
-                x: -1 * this._plane.scale.x,
-                y: 1
-            }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({ x: i, y: .1 }, 200).call(function () {
-                t._wait()
-            }), this._bezierTween = createjs.Tween.get(null).wait(3e3).addEventListener("change", function () {
-                t.run()
+            this._initialize()
+        }, e.prototype._initialize = function () {
+            var t = this, e = new s.ParallelTask, i = new _(this._scene, this._model, this.TIME);
+            e.add(i);
+            var n = new l(this._scene, this._model, this.TIME);
+            e.add(n), e.start(function () {
+                t._setCellColor()
             })
-        }, e.prototype._movePlane = function () {
-            var t = (this._baseTime - this._timer) / this._baseTime, e = this._isTurn ? 1 * t : 1 * t - 1;
-            this._plane.position.x = this._from.x + .9 * this._to.x - .9 * this._to.x * e * e, this._plane.position.y = this._from.y + .9 * this._to.y - .9 * this._to.y * e * e, 0 != e && (this._plane.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
-        }, e.prototype._endTask = function () {
-            this._bezierTween = null, this._plane = null, this._layer = null, this._from = null, this._to = null, this._baseTime = null, this._timer = null, this._isTurn = null, t.prototype._endTask.call(this)
+        }, e.prototype._setCellColor = function () {
+            var t = this._model.sortie.getNextCell().no, e = this._scene.view.map.spotLayer.getSpot(t);
+            if (null != e) {
+                e.showLine();
+                for (var i = this._scene.resInfo.getSameSpotData(t), n = 0; n < i.length; n++) {
+                    var o = i[n].no;
+                    if (0 == n) {
+                        var r = this._model.sortie.getCellInfo(o);
+                        this._scene.view.map.spotLayer.getSpot(o).setColor(r.color)
+                    } else {
+                        this._scene.view.map.spotLayer.getSpot(o).setColor(0)
+                    }
+                }
+            }
+            this._endTask()
         }, e
     }(o.TaskBase);
-    e.AnimPlane = s
+    e.AnimShipMove = a;
+    var _ = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._scene = e, o._model = i, o._time = n, o
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t, e = this, i = this._scene.view.map, n = i.ship_icon, o = this._model.sortie.now_cell_no,
+                s = (i.spotLayer.getSpot(o), this._model.sortie.getNextCell().no), a = i.spotLayer.getSpot(s),
+                _ = this._scene.resInfo.getControlPoint(s);
+            if (null == _) t = createjs.Tween.get(n), t.to({ x: a.x, y: a.y }, this._time); else {
+                var l = new PIXI.Point(n.x, n.y), u = new PIXI.Point(a.x, a.y),
+                    c = r.TweenUtil.create2BezierPoints(l, _, u, this._time);
+                t = createjs.Tween.get(n);
+                for (var h = 0, p = c; h < p.length; h++) {
+                    var d = p[h];
+                    t.to({ x: d.x, y: d.y }, d.t)
+                }
+            }
+            t.call(function () {
+                e._endTask()
+            })
+        }, e
+    }(o.TaskBase), l = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._scene = e, o._model = i, o._time = n, o
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._model.sortie.getNextCell().no, i = this._scene.resInfo.getAirRaidOption(e);
+            if (null == i) this._endTask(); else {
+                this._scene.view.map.plane_layer.show(e, i, 2e3, function () {
+                    t._endTask()
+                })
+            }
+        }, e
+    }(o.TaskBase)
 }

@@ -15,94 +15,47 @@ const function1351 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(19), s = i(61), a = i(23), _ = i(6), u = i(16), l = function (t) {
-        function e(e, i, n, o, r) {
-            void 0 === r && (r = 0);
-            var s = t.call(this) || this;
-            return s._layer = e, s._x = i, s._y = n, s._scaleX = o, s._delay = r, s
+    var o = i(5), r = i(0), s = i(12), a = i(254), _ = i(44), l = function (t) {
+        function e(e, i, n, o) {
+            return t.call(this, e, i, n, o) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._wait()
-        }, e.prototype._wait = function () {
+        return n(e, t), e.prototype.resume = function () {
             var t = this;
-            if (this._delay <= 0) return void this._anim();
-            createjs.Tween.get(null).wait(this._delay).call(function () {
-                t._anim()
+            null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
+                t._resume()
+            })) : this._resume()
+        }, e.prototype._start = function () {
+            var t = this, e = this._attacker.mst_id, i = this._attacker.isDamaged();
+            this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
+            var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
+            this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
+            var a = this._base_pos, l = this._friend ? 1 : -1;
+            this._view.chara.position.set(a.x - 180 * l, a.y + 120), this._view.chara.alpha = 0;
+            var u = 344 - n.x, c = 597 - n.y;
+            if (this._ship_sprite.x += u, this._ship_sprite.y += c, this._ship_sprite.anchor.set(u / this._ship_sprite.width, c / this._ship_sprite.height), this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
+                x: a.x - 30 * l,
+                y: a.y + 15,
+                alpha: 1
+            }, 300).to({ x: a.x, y: a.y }, 250).call(function () {
+                t._view.emit("attack"), t._shipFlash.play()
+            }).wait(135), null != this._slot1 || null != this._slot2) {
+                var h = this._view.box;
+                h.initilize(this._attacker);
+                var p = 0;
+                1 == this._attacker.friend ? h.x = -60 : (p = o.default.width - h.width, h.x = p + 60), h.y = o.default.height - h.height, h.alpha = 0, createjs.Tween.get(h).wait(365).to({
+                    x: p,
+                    alpha: 1
+                }, 165).wait(900).to({ alpha: 0 }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
+            }
+        }, e.prototype._resume = function () {
+            var t = this;
+            createjs.Tween.get(this._ship_sprite).call(function () {
+                t._view.emit("attack"), t._shipFlash.play()
+            }).wait(135).wait(200).to({ scaleY: 1.66, alpha: 0 }, 466).call(function () {
+                t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
             })
-        }, e.prototype._anim = function () {
-            var t = this, e = new c;
-            e.x = this._x, e.y = this._y, e.scale.x = this._scaleX, this._layer.addChild(e);
-            var i = new r.TweenTask;
-            e.smoke1.position.set(0, -15), e.smoke1.scale.set(0), e.smoke1.alpha = 0, i.addTween(createjs.Tween.get(e.smoke1).to({
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 120).to({ alpha: .2, scaleX: 2.5, scaleY: 2.5 }, 450).to({
-                alpha: 0,
-                scaleX: 2.6,
-                scaleY: 2.6
-            }, 100)), e.smoke2.position.set(-18, -30), e.smoke2.scale.set(0), e.smoke2.alpha = .8, i.addTween(createjs.Tween.get(e.smoke2).wait(240).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 330).to({
-                alpha: 0,
-                scaleX: 1.3,
-                scaleY: 1.3
-            }, 240)), e.smoke3.position.set(17, -36), e.smoke3.scale.set(0), e.smoke3.alpha = .8, i.addTween(createjs.Tween.get(e.smoke3).wait(330).to({
-                scaleX: 1,
-                scaleY: 1
-            }, 300).to({
-                alpha: 0,
-                scaleX: 1.3,
-                scaleY: 1.3
-            }, 240)), e.smoke4.position.set(0, -1), e.smoke4.scale.set(0), e.smoke4.alpha = .8, i.addTween(createjs.Tween.get(e.smoke4).wait(120).to({
-                y: -4,
-                scaleX: 1,
-                scaleY: 1
-            }, 390).to({ alpha: 0, scaleX: 1.3, scaleY: 1.3 }, 240)), _.SE.play("102"), i.start(function () {
-                t._layer.removeChild(e), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskRocketFire = l;
-    var c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._smoke1 = new h, e.addChild(e._smoke1), e._smoke2 = new p, e.addChild(e._smoke2), e._smoke3 = new p, e.addChild(e._smoke3), e._smoke4 = new p, e.addChild(e._smoke4), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "smoke1", {
-            get: function () {
-                return this._smoke1
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "smoke2", {
-            get: function () {
-                return this._smoke2
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "smoke3", {
-            get: function () {
-                return this._smoke3
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "smoke4", {
-            get: function () {
-                return this._smoke4
-            }, enumerable: !0, configurable: !0
-        }), e
-    }(PIXI.Container), h = function (t) {
-        function e() {
-            return t.call(this, u.BATTLE_MAIN.getTexture(111)) || this
-        }
-
-        return n(e, t), e
-    }(s.CenteringSprite), p = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(u.BATTLE_MAIN.getTexture(110));
-            return i.x = -33, i.y = -89, e.addChild(i), e
-        }
-
-        return n(e, t), e
-    }(a.Container)
+    }(a.CutinDouble);
+    e.CutinDouble4 = l
 }

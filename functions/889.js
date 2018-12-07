@@ -15,7 +15,7 @@ const function889 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(15), a = i(344), _ = function (t) {
+    var o = i(5), r = i(0), s = i(15), a = i(343), _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._stype_name = "", e._ship_name = "", e
@@ -24,11 +24,11 @@ const function889 = function (t, e, i) {
         return n(e, t), e.prototype.preloadFromMst = function (t, e) {
             var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
             this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
-        }, e.prototype.preload = function (t, e, i, n, a, _, u) {
-            var l = this;
+        }, e.prototype.preload = function (t, e, i, n, a, _, l) {
+            var u = this;
             this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
-                l._target.texture = r.default.resources.getShip(t, !1, "full"), l._target.x = o.default.width / 2 - 379 + _.x, l._target.y = o.default.height / 2 - 418 + _.y, l._rarityBG.initiailzeForShip(a, function () {
-                    l._messageBox.initializeForShip(l._stype_name, l._ship_name, l._message), null != u && u()
+                u._target.texture = r.default.resources.getShip(t, !1, "full"), u._target.x = o.default.width / 2 - 379 + _.x, u._target.y = o.default.height / 2 - 418 + _.y, u._rarityBG.initiailzeForShip(a, function () {
+                    u._messageBox.initializeForShip(u._stype_name, u._ship_name, u._message), null != l && l()
                 })
             })
         }, e.prototype._03_waitClick = function () {

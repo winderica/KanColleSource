@@ -15,27 +15,39 @@ const function1183 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(168), s = function (t) {
+    var o = i(3), r = function (t) {
         function e() {
-            var e = null !== t && t.apply(this, arguments) || this;
-            return e._onMouseOver = function () {
-                e._canvas.scale.set(1.05)
-            }, e._onMouseOut = function () {
-                e._canvas.scale.set(1)
-            }, e
+            var e = t.call(this) || this;
+            return e._num = new PIXI.Sprite, e._num.position.set(29, 15), e.addChild(e._num), e
         }
 
-        return n(e, t), e.prototype.load = function (t) {
-            t()
-        }, e.prototype._initialize = function () {
-            this._icon.visible = !1;
-            this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getShip(e, !1, "card_round"),
-                n = new PIXI.Sprite(i);
-            n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.DUTY_COMMON.getTexture(0)
+        }, e.prototype.update = function (t) {
+            this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+        }, e.prototype._getNumImage = function (t) {
+            switch (t) {
+                case 1:
+                    return o.DUTY_COMMON.getTexture(74);
+                case 2:
+                    return o.DUTY_COMMON.getTexture(75);
+                case 3:
+                    return o.DUTY_COMMON.getTexture(76);
+                case 4:
+                    return o.DUTY_COMMON.getTexture(77);
+                case 5:
+                    return o.DUTY_COMMON.getTexture(78);
+                case 6:
+                    return o.DUTY_COMMON.getTexture(79);
+                case 7:
+                    return o.DUTY_COMMON.getTexture(80);
+                case 8:
+                    return o.DUTY_COMMON.getTexture(81);
+                case 9:
+                    return o.DUTY_COMMON.getTexture(82)
+            }
+            return PIXI.Texture.EMPTY
         }, e
-    }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtn = s
+    }(PIXI.Sprite);
+    e.RewardSelectDialogCount = r
 }

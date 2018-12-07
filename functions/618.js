@@ -15,15 +15,30 @@ const function618 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(9), r = function (t) {
+    var o = i(4), r = i(9), s = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
         }
 
-        return n(e, t), e.prototype.update = function (t) {
-            var e = -1;
-            1 == t ? e = 47 : 2 == t ? e = 46 : 3 == t ? e = 45 : 4 == t ? e = 44 : 5 == t ? e = 43 : 6 == t ? e = 42 : 7 == t ? e = 41 : 8 == t ? e = 40 : 9 == t ? e = 39 : 10 == t && (e = 38), this.visible = !1, -1 != e && (this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
+        }, e.prototype.changeText = function (t) {
+            var e = this;
+            createjs.Tween.get(this._text).to({ alpha: 0 }, 200).call(function () {
+                e._startAnimation(t)
+            })
+        }, e.prototype.dispose = function () {
+            this._stopAnimation(), this.removeChildren(), this._text.destroy()
+        }, e.prototype._startAnimation = function (t) {
+            var e = this;
+            null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, { loop: !0 }).wait(100).call(function () {
+                var t = e._message.substr(0, 1);
+                " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
+            }))
+        }, e.prototype._stopAnimation = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
     }(PIXI.Sprite);
-    e.RankIcon = r
+    e.ModelChangeMessageBox = s
 }

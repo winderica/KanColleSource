@@ -15,8 +15,8 @@ const function97 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(63), a = i(246), _ = i(247), u = i(248), l = i(249), c = i(251), h = i(452),
-        p = i(454), d = i(253), f = i(456), y = i(457), m = function (t) {
+    var o = i(0), r = i(2), s = i(63), a = i(248), _ = i(249), l = i(250), u = i(251), c = i(253), h = i(451),
+        p = i(453), d = i(255), f = i(455), y = i(456), m = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -59,13 +59,13 @@ const function97 = function (t, e, i) {
                             e._hougekiCycle()
                         })
                     } else if (2 == p) {
-                        var y = new u.PhaseAttackBakurai(i, n, o, r, s, c, h);
+                        var y = new l.PhaseAttackBakurai(i, n, o, r, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
                         })
                     } else {
                         if (3 != p) throw new Error;
-                        var y = new l.PhaseAttackRaigeki(i, n, o, r, s, c, h);
+                        var y = new u.PhaseAttackRaigeki(i, n, o, r, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
                         })
@@ -74,16 +74,16 @@ const function97 = function (t, e, i) {
             }, e.prototype._double = function (t) {
                 var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
                     o = t.getSlotitem(0), r = t.getDamage(0), s = t.getHitType(0), a = t.isShield(0),
-                    _ = this._getDShip(t.d_indexes[1], t.flag), u = t.getSlotitem(1), l = t.getDamage(1),
+                    _ = this._getDShip(t.d_indexes[1], t.flag), l = t.getSlotitem(1), u = t.getDamage(1),
                     h = t.getHitType(1), p = t.isShield(1);
-                new c.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, u, l, h, p).start(function () {
+                new c.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, l, u, h, p).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuboCI = function (t) {
                 var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
                     o = this._getDShip(t.d_indexes[0], t.flag), r = t.getSlotitem(0), s = t.getSlotitem(1),
-                    a = t.getSlotitem(2), _ = t.getDamage(0), u = t.getHitType(0), l = t.isShield(0),
-                    c = this._getDaihatsuEffectType(n, o), h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l);
+                    a = t.getSlotitem(2), _ = t.getDamage(0), l = t.getHitType(0), u = t.isShield(0),
+                    c = this._getDaihatsuEffectType(n, o), h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, l, u);
                 h.setOptionalEffects(c), h.start(function () {
                     e._hougekiCycle()
                 })
@@ -113,8 +113,8 @@ const function97 = function (t, e, i) {
                 var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != i && null != n) {
                     var o = t.getSlotitem(0), r = t.getSlotitem(1), s = t.getSlotitem(2), a = t.getDamage(0),
-                        _ = t.getHitType(0), u = t.isShield(0);
-                    new h.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, u).start(function () {
+                        _ = t.getHitType(0), l = t.isShield(0);
+                    new h.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, l).start(function () {
                         e._hougekiCycle()
                     })
                 }
@@ -124,10 +124,10 @@ const function97 = function (t, e, i) {
                 return 0 == e ? this._scene.data.model.deck_e.ships[t] : this._scene.data.model.deck_f.ships[t]
             }, e.prototype._getNormalAttackType = function (t, e, i) {
                 for (var n = 0, r = 0, s = t.slots, a = 0, _ = s; a < _.length; a++) {
-                    var u = _[a];
-                    if (null != u) {
-                        var l = u.equipType;
-                        8 == l || 58 == l ? (n++, u.taisen > 0 && r++) : 11 != l && 25 != l || r++
+                    var l = _[a];
+                    if (null != l) {
+                        var u = l.equipType;
+                        8 == u || 58 == u ? (n++, l.taisen > 0 && r++) : 11 != u && 25 != u || r++
                     }
                 }
                 var c = t.stype;

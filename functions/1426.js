@@ -15,108 +15,108 @@ const function1426 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1427), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._entered = !1, n._friend = e, n._combined = i, n
+    var o = i(28), r = i(19), s = i(1427), a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._ally = null, e._friends_combined = new s.BannerGroup(!0, !0), e._friends_combined.position.set(228, 117), e.addChild(e._friends_combined), e._enemies_combined = new s.BannerGroup(!1, !0), e._enemies_combined.position.set(753, 220), e.addChild(e._enemies_combined), e._friends = new s.BannerGroup(!0, !1), e._friends.position.set(0, 117), e.addChild(e._friends), e._enemies = new s.BannerGroup(!1, !1), e._enemies.position.set(960, 220), e.addChild(e._enemies), e._effect_layer = new PIXI.Container, e.addChild(e._effect_layer), e
         }
 
-        return n(e, t), e.prototype.isEntered = function () {
-            return this._entered
-        }, e.prototype.getBannerNum = function () {
-            return null == this._banners ? 0 : this._banners.length
-        }, e.prototype.hasBanner = function () {
-            return this.getBannerNum() > 0
-        }, e.prototype.initialize = function (t) {
-            if (this._banners = [], null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e];
-                if (null != i) {
-                    var n = i.mst_id, r = i.hp_now, s = i.hp_max, a = i.isTaihi(), _ = 0 == i.speed,
-                        u = new o.Banner(e, this._friend, this._combined);
-                    u.initialize(n, r, s, a, _), this._banners.push(u), this.addChild(u)
-                }
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "friends", {
+            get: function () {
+                return this._friends
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "enemies", {
+            get: function () {
+                return this._enemies
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "friends_combined", {
+            get: function () {
+                return this._friends_combined
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "enemies_combined", {
+            get: function () {
+                return this._enemies_combined
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ally", {
+            get: function () {
+                return this._ally
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "effect_layer", {
+            get: function () {
+                return this._effect_layer
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i, n) {
+            this._friends.initialize(t), this._enemies.initialize(e), this._friends_combined.initialize(i), this._enemies_combined.initialize(n)
+        }, e.prototype.addAllyBannerGroup = function (t) {
+            this._ally = new s.BannerGroup(!0, !1), this._ally.x = this._friends.x, this._ally.y = this._friends.y, this._ally.initialize(t);
+            var e = this.getChildIndex(this._effect_layer);
+            this.addChildAt(this._ally, e)
+        }, e.prototype.removeAllyBannerGroup = function () {
+            null != this._ally && (null != this._ally.parent && this._ally.parent.removeChild(this._ally), this._ally = null)
         }, e.prototype.dispose = function () {
-            if (null != this._banners) for (var t = 0, e = this._banners; t < e.length; t++) {
-                var i = e[t];
-                i.dispose()
+            this._friends.dispose(), this._enemies.dispose(), this._friends_combined.dispose(), this._enemies_combined.dispose()
+        }, e.prototype.getBanner = function (t, e) {
+            if (void 0 === e && (e = -1), -1 == e) {
+                var i = t;
+                return this._getBanner(i.friend, i.index)
             }
-        }, e.prototype.getBanner = function (t) {
-            return null == this._banners ? null : t >= this._banners.length ? null : this._banners[t]
-        }, e.prototype.isContains = function (t) {
-            return null != this._banners && this._banners.indexOf(t) >= 0
-        }, e.prototype.enter = function () {
-            if (1 != this._entered && 0 != this.hasBanner()) {
-                this._entered = !0;
-                for (var t = 0, e = this._banners; t < e.length; t++) {
-                    var i = e[t];
-                    null != i && (0 == this._combined ? i.enter() : i.enterCombined())
-                }
+            var n = t;
+            return this._getBanner(n, e)
+        }, e.prototype._getBanner = function (t, e) {
+            var i;
+            if (1 == t) {
+                if (null != this._ally) return this._ally.getBanner(e);
+                i = this._friends.getBanner(e), null == i && (i = this._friends_combined.getBanner(e - 6))
+            } else null == (i = this._enemies.getBanner(e)) && (i = this._enemies_combined.getBanner(e - 6));
+            return i
+        }, e.prototype.getShieldTargetBanner = function (t) {
+            if (null == t) return null;
+            if (1 == t.friend) {
+                if (this._friends.isContains(t)) return this._friends.getBanner(0);
+                if (this._friends_combined.isContains(t)) return this._friends_combined.getBanner(0);
+                if (null != this._ally && this._ally.isContains(t)) return this._ally.getBanner(0)
+            } else {
+                if (this._enemies.isContains(t)) return this._enemies.getBanner(0);
+                if (this._enemies_combined.isContains(t)) return this._enemies_combined.getBanner(0)
             }
-        }, e.prototype.createEnterTweens = function () {
-            var t = [];
-            if (1 == this._entered) return t;
-            if (0 == this.hasBanner()) return t;
-            this._entered = !0;
-            for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                var o = n[i];
-                if (null != o) {
-                    var r = 0 == this._combined ? o.createEnterTween(e) : o.createEnterTweenCombined(e);
-                    null != r && (t.push(r), e += 100)
-                }
+            return null
+        }, e.prototype.isEnteredFriend = function () {
+            return this._friends.isEntered() || this._friends_combined.isEntered()
+        }, e.prototype.isEnteredEnemy = function () {
+            return this._enemies.isEntered() || this._enemies_combined.isEntered()
+        }, e.prototype.createFriendEnterTask = function () {
+            return this._createEnterTask(!0)
+        }, e.prototype.createEnemyEnterTask = function () {
+            return this._createEnterTask(!1)
+        }, e.prototype.createFriendSubDeckMoveTween = function (t) {
+            return this._createBannerMoveTween(t, !0)
+        }, e.prototype.createEnemySubDeckMoveTween = function (t) {
+            return this._createBannerMoveTween(t, !1)
+        }, e.prototype._createEnterTask = function (t) {
+            var e = t ? this._friends : this._enemies, i = t ? this._friends_combined : this._enemies_combined,
+                n = new o.SerialTask, s = e.createEnterTweens();
+            if (s.length > 0) {
+                var a = new r.TweenTask;
+                a.addTweens(s), n.add(a)
             }
-            return t
-        }, e.prototype.createSakutekiTweens = function () {
-            var t = [];
-            if (1 == this._entered) return t;
-            if (0 == this.hasBanner()) return t;
-            this._entered = !0;
-            for (var e = 0, i = this._banners; e < i.length; e++) {
-                var n = i[e];
-                if (null != n) {
-                    var o = n.createEnterTweenBySakuteki();
-                    null != o && t.push(o)
-                }
+            var _ = i.createEnterTweens();
+            if (_.length > 0) {
+                var a = new r.TweenTask;
+                a.addTweens(_), n.add(a)
             }
-            return t
-        }, e.prototype.createExitTweens = function () {
-            var t = [];
-            if (0 == this._entered) return t;
-            if (this._entered = !1, 0 == this.hasBanner()) return t;
-            for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                var o = n[i];
-                if (null != o) {
-                    var r = o.createMainDeckExitTween(e);
-                    t.push(r), e += 100
-                }
+            return n
+        }, e.prototype._createBannerMoveTween = function (t, e) {
+            var i = [], n = e ? this._friends : this._enemies,
+                o = e ? this._friends_combined : this._enemies_combined, r = n.x - o.x;
+            o.x = n.x;
+            for (var s = 0; s < o.getBannerNum(); s++) {
+                var a = o.getBanner(s);
+                a.x -= r;
+                var _ = a.createSubDeckMoveTween(t);
+                null != _ && i.push.apply(this, _), t += 100
             }
-            return t
-        }, e.prototype.createExitTweensUpward = function () {
-            var t = [];
-            if (0 == this._entered) return t;
-            if (this._entered = !1, 0 == this.hasBanner()) return t;
-            for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                var o = n[i];
-                if (null != o) {
-                    var r = o.createSubDeckExitTween(e, !1);
-                    t.push(r), e += 100
-                }
-            }
-            return t
-        }, e.prototype.createExitTweensUpDown = function () {
-            var t = [];
-            if (0 == this._entered) return t;
-            if (this._entered = !1, 0 == this.hasBanner()) return t;
-            for (var e = [], i = 0; i < this._banners.length; i++) {
-                var n = this._banners[i];
-                null != n && 0 != n.entered && e.push(n)
-            }
-            for (var o = 0; e.length > 0;) {
-                var r = e.shift(), s = r.createSubDeckExitTween(o, !1);
-                t.push(s), 0 != e.length && (r = e.pop(), s = r.createSubDeckExitTween(o, !0), t.push(s), o += 100)
-            }
-            return t
+            return i
         }, e
     }(PIXI.Container);
-    e.BannerGroup = r
+    e.BannerGroupLayer = a
 }

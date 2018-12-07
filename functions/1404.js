@@ -15,7 +15,7 @@ const function1404 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(75), r = i(89), s = i(92), a = i(90), _ = i(64), u = i(93), l = i(91), c = i(98), h = i(96),
+    var o = i(75), r = i(89), s = i(92), a = i(90), _ = i(64), l = i(93), u = i(91), c = i(98), h = i(96),
         p = i(95), d = i(97), f = i(94), y = i(76), m = i(118), v = i(99), g = function (t) {
             function e(e, i, n) {
                 var o = t.call(this, e, n) || this;
@@ -41,7 +41,7 @@ const function1404 = function (t, e, i) {
                 })
             }, e.prototype._jetAirWar = function () {
                 var t = this;
-                new l.PhaseAirWarJet(this.scene, this._record).start(function () {
+                new u.PhaseAirWarJet(this.scene, this._record).start(function () {
                     t._airUnit()
                 })
             }, e.prototype._airUnit = function () {
@@ -76,7 +76,7 @@ const function1404 = function (t, e, i) {
                 })
             }, e.prototype._airWar2 = function () {
                 var t = this;
-                new u.PhaseAirWar2(this.scene, this._record).start(function () {
+                new l.PhaseAirWar2(this.scene, this._record).start(function () {
                     t._attack1()
                 })
             }, e.prototype._attack1 = function () {
@@ -106,5 +106,5 @@ const function1404 = function (t, e, i) {
                 })
             }, e
         }(o.PhaseCombatBase);
-    e.PhaseDay_Suijo = g
+    e.PhaseDay_Suijo_vs12 = g
 }

@@ -15,41 +15,50 @@ const function204 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(9), s = function (t) {
+    var o = i(302), r = i(23), s = i(12), a = i(635), _ = i(9), l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onChange = function () {
-                e.children.length < 30 && Math.random() < .05 && e.addChild(new a);
-                for (var t = 0, i = e.children; t < i.length; t++) {
-                    i[t].update()
-                }
-            }, e.visible = !1, e
+            return e._bg_light = new o.GetBG, e._bg_dark = new o.GetBG, e._particle = new a.BonusInsertParticle, e._card = new u, e._flash = new s.Sprite, e._flash.anchor.set(.5), e._flash.scale.set(0), e.addChild(e._bg_light), e.addChild(e._bg_dark), e.addChild(e._particle), e.addChild(e._card), e.addChild(e._flash), e
         }
 
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(null, {
-                loop: !0,
-                onChange: this._onChange
-            }), this.visible = !0)
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
+        return n(e, t), Object.defineProperty(e.prototype, "bg_dark", {
+            get: function () {
+                return this._bg_dark
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "particle", {
+            get: function () {
+                return this._particle
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "card", {
+            get: function () {
+                return this._card
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "flash", {
+            get: function () {
+                return this._flash
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.preload = function (t) {
+            var e = this;
+            this._bg_light.initiailzeGetBG1(function () {
+                e._bg_dark.initiailzeGetBG2(function () {
+                    null != t && t()
+                })
+            })
+        }, e.prototype.initialize = function (t) {
+            this._card.initialize(t), this._flash.texture = _.COMMON_MISC.getTexture(68)
         }, e.prototype.dispose = function () {
-            this.deactivate(), this.removeChildren()
+            this.removeChildren(), this._bg_light = null, this._bg_dark = null, this._particle.dispose(), this._particle = null, this._card = null, this._flash = null
         }, e
     }(PIXI.Container);
-    e.BonusParticle = s;
-    var a = function (t) {
+    e.BonusInsert = l;
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._rad = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
+            return e._content = new PIXI.Sprite, e._content.anchor.set(.5), e.addChild(e._content), e
         }
 
-        return n(e, t), e.prototype.update = function () {
-            this.rotation += this._spdR / 180 * Math.PI, this.x = this._startX + this._haba * Math.sin(this._rad), this.y += this._spdY, this._rad += this._spdRad, this.y > o.default.height + 30 && null != this.parent && this.parent.removeChild(this)
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this._startX = Math.random() * (o.default.width - 60) + 30, this._haba = 45 * Math.random(), this._spdY = (3 * Math.random() + 1) * t, this._spdR = (.5 * Math.random() + .05) * t, this._spdRad = .05 * Math.random() + 5e-4, this.x = this._startX, this.y = 390 * Math.random() - 420, this.scale.set(.6 * Math.random() + .2)
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._content.texture = _.COMMON_MISC.getTexture(67), 3 != t && (this._content.scale.y = .7)
         }, e
-    }(PIXI.Sprite)
+    }(r.Container)
 }

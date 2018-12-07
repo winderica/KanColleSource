@@ -15,10 +15,10 @@ const function456 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(6), r = i(2), s = i(24), a = i(1359), _ = i(62), u = function (t) {
+    var o = i(6), r = i(2), s = i(24), a = i(1362), _ = i(62), l = function (t) {
         function e(e, i, n, o, r) {
             var s = t.call(this) || this;
-            return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[2], s._scene.data.model.deck_f.ships[4]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNelsonTouch(s._attackers), s
+            return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNagatoAttack(s._attackers), s
         }
 
         return n(e, t), e.prototype._start = function () {
@@ -42,13 +42,13 @@ const function456 = function (t, e, i) {
             var n = this, o = e[i].getGlobalPos(!0), r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
                 a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
                 _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                u = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
+                l = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
             createjs.Tween.get(null).wait(200).call(function () {
                 e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
             }).wait(150).call(function () {
                 n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
             }).wait(100).call(function () {
-                n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + l, function () {
                     n._attack(t, e, i)
                 })
             })
@@ -81,5 +81,5 @@ const function456 = function (t, e, i) {
         }, e.prototype._log = function (t) {
         }, e
     }(r.TaskBase);
-    e.PhaseNelsonTouch = u
+    e.PhaseNagatoAttack = l
 }

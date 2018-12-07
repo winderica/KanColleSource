@@ -15,29 +15,28 @@ const function434 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(15), a = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._scene = e, o._ship_mst_id = i, o._ship_damaged = n, o
+    var o = i(12), r = i(20), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._activated = !1;
+            var i = r.MAP_COMMON.getTexture(17);
+            return e._wave = new o.Sprite(i), e._wave.anchor.set(.5), e._wave.scale.set(0), e.addChild(e._wave), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new s.ShipLoader;
-            e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
-                t._loadComplete()
-            })
-        }, e.prototype._loadComplete = function () {
-            var t = this, e = o.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full"),
-                i = PIXI.Sprite.from(e.baseTexture);
-            i.alpha = 0;
-            var n = o.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
-            i.position.set(n.x - 80, n.y - 93), this._scene.view.chara_layer.addChild(i), createjs.Tween.get(i).to({ alpha: 1 }, 300).wait(700).to({
-                alpha: 0,
-                x: i.x - 75
-            }, 300).call(function () {
-                t._scene.view.chara_layer.removeChild(i), t._endTask()
-            })
+        return n(e, t), e.prototype.activate = function () {
+            1 != this._activated && (this._activated = !0, this._startTween())
+        }, e.prototype.deactivate = function () {
+            this._activated = !1, this._stopTween()
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._wave = null
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._wave.scale.set(0), this._wave.alpha = 1, this._t = createjs.Tween.get(this._wave, { loop: !0 }).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800).to({ scaleX: 1.35, scaleY: 1.35, alpha: 0 }, 300).to({ scaleX: 0, scaleY: 0, alpha: 1 }, 0))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(r.TaskBase);
-    e.AnimFlagShip = a
+    }(PIXI.Graphics);
+    e.CellWave = s
 }

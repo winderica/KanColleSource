@@ -15,7 +15,7 @@ const function64 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(244), r = i(245), s = i(445), a = i(178), _ = i(447), u = function (t) {
+    var o = i(246), r = i(247), s = i(444), a = i(179), _ = i(446), l = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -76,5 +76,5 @@ const function64 = function (t, e, i) {
             return 0 == this._record.raw.sakuteki.isSuccess_e() ? e = !0 : 0 == this._data.plane_from_e.length ? e = !0 : 1 == this._scene.data.model.deck_f.isSubmarineAll() && (e = !0), 1 != t || 1 != e
         }, e
     }(o.PhaseAirBase);
-    e.PhaseAirWar = u
+    e.PhaseAirWar = l
 }

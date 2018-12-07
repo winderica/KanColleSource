@@ -15,11 +15,11 @@ const function845 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(15), a = i(13), _ = i(846), u = i(338), l = function (t) {
+    var o = i(0), r = i(2), s = i(15), a = i(13), _ = i(846), l = i(337), u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._updateNDock = function () {
-                (new u.NDockAPI).start(i._loadAtlas)
+                (new l.NDockAPI).start(i._loadAtlas)
             }, i._loadAtlas = function () {
                 var t = new a.UIImageLoader("repair");
                 t.add("repair_main.json"), t.load(i._loadShipBanner)
@@ -44,5 +44,5 @@ const function845 = function (t, e, i) {
             this._updateNDock()
         }, e
     }(r.TaskBase);
-    e.PreInitializeTask = l
+    e.PreInitializeTask = u
 }

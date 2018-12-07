@@ -1,52 +1,97 @@
 const function572 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(8), a = i(6), _ = i(1), u = i(100), l = i(78), c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._data = e;
-            var n = parseInt(e.src), o = u.SuffixUtil.create(n, "furniture_picture"),
-                a = r.default.settings.path_root + "resources/furniture/picture/" + e.src + "_" + o + ".png" + l.VersionUtil.getResourceVersion(2, n);
-            if (null != PIXI.utils.TextureCache[a]) {
-                var _ = PIXI.utils.TextureCache[a];
-                i._img = new PIXI.Sprite(_), i._img.visible = !1, i._centering()
-            } else {
-                var _ = PIXI.Texture.fromImage(a);
-                i._img = new PIXI.Sprite(_), i._img.visible = !1, _.baseTexture.once("loaded", function () {
-                    i._centering()
-                })
+    var n = i(5), o = i(0), r = i(573), s = i(188), a = i(188), _ = i(188), l = i(13), u = i(8), c = i(575),
+        h = i(577), p = i(578), d = i(1), f = function () {
+            function t(t) {
+                var e = this;
+                this._tween = new Array(2), this._onMouseBtnFlag = !1, this._ListNow = -1, this._ListMax = -1, this._selectedBGM = -1, this._BGMCount = -1, this._onMouseBtn = function () {
+                    e._onMouseBtnFlag = !0
+                }, this._offMouseBtn = function () {
+                    e._onMouseBtnFlag = !1
+                }, this._onBtnUp = function () {
+                    0 != e._ListNow && (e._ListNow--, e.JukeRedraw())
+                }, this._onBtnDown = function () {
+                    e._ListNow != e._ListMax && (e._ListNow++, e.JukeRedraw())
+                }, this._onMouseout = function () {
+                    e._onMouseBtnFlag || e.JukeListClose(!0)
+                }, this._onBGMSelect = function (t) {
+                    e._selectedBGM = e._ListNow + t, e.JukeListClose(!1), e.JukeConfirmStart()
+                }, this._onJukeDispClose = function () {
+                    e.JukeDispClose(!1)
+                }, this._onJukeDispSetBGM = function () {
+                    e.set_portbgm(e._furnitureJukeBoxBGMModel.list[e._selectedBGM].api_bgm_id), new _.UserFurnitureJukeBoxSetPortBGMAPI(e._furnitureJukeBoxBGMModel.list[e._selectedBGM].api_id).start(function () {
+                        o.default.sound.bgm.play(e._furnitureJukeBoxBGMModel.list[e._selectedBGM].api_bgm_id), e.JukeDispClose(!0)
+                    })
+                }, this._playBGMCounter = function () {
+                    --e._BGMCount > 0 || e.JukeDispClose(!1)
+                }, this._id = t, this._jukemode = !1
             }
-            return i.addChild(i._img), i._clickArea = new s.AreaBox(0, 16777215), i.addChild(i._clickArea), i
-        }
 
-        return n(e, t), e.prototype.show = function (t) {
-            var e = this;
-            void 0 === t && (t = null), this._onClose = t, this._img.visible = !0, a.SE.play(this._data.se_open), this._clickArea.once(_.EventType.CLICK, function () {
-                e._onClose()
-            })
-        }, e.prototype.hide = function () {
-            this._img.visible = !1, a.SE.play(this._data.se_close)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img.texture.baseTexture.removeAllListeners("loaded"), this._clickArea.removeAllListeners(_.EventType.CLICK)
-        }, e.prototype._centering = function () {
-            var t = Math.floor(o.default.width / 2 - this._img.width / 2 + this._data.offset_x),
-                e = Math.floor(o.default.height / 2 - this._img.height / 2 + this._data.offset_y);
-            this._img.position.set(t, e)
-        }, e
-    }(PIXI.Container);
-    e.FurniturePopupLayer = c
+            return t.prototype.set_portbgm = function (t) {
+                o.default.model.basic.setPortBGMID(t)
+            }, t.prototype.JukeStart = function () {
+                var t = this;
+                if (!this._jukemode) {
+                    this._jukemode = !0;
+                    var e = new u.AreaBox(0);
+                    o.default.view.overLayer.addChild(e);
+                    var i = new l.UIImageLoader("jukebox");
+                    i.add("jukebox_common.json"), i.load(function () {
+                        t._furnitureJukeBoxBGMModel = new r.FurnitureJukeBoxBGMModel, new s.UserFurnitureJukeBoxMusicListAPI(t._furnitureJukeBoxBGMModel).start(function () {
+                            for (o.default.view.overLayer.removeChild(e), t._ListMax = 0; t._ListMax < t._furnitureJukeBoxBGMModel.list.length && t._furnitureJukeBoxBGMModel.list[t._ListMax].isLoaded; t._ListMax++) ;
+                            t._ListMax >= 5 && (t._ListMax -= 5), t._ListNow = t._ListMax, t._bg_black = new PIXI.Graphics, t._bg_black.beginFill(0), t._bg_black.drawRect(0, 0, n.default.width, n.default.height), t._bg_black.endFill(), t._bg_black.alpha = .2, t._bg_black.interactive = !0, t._bg_black.on(d.EventType.CLICK, t._onMouseout), o.default.view.portMain.overLayer.addChild(t._bg_black), t._jukeBoxList = new c.JukeBoxList, t._jukeBoxList.init(), o.default.view.portMain.overLayer.addChild(t._jukeBoxList), t._jukeBoxList.jukebox_table.on(d.EventType.MOUSEOUT, t._onMouseout), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.CLICK, t._onBtnUp), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.CLICK, t._onBtnDown), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.setBGMBtnEvent(t._onMouseBtn, t._offMouseBtn, t._onBGMSelect), t.JukeRedraw(), o.default.view.portMain.furnitureLayer.stopGramophone(), t._fadeinout(!0, 300), t._tween[0] = createjs.Tween.get(t._jukeBoxList.jukebox_table).to({ alpha: 0 }, 1).to({ alpha: 1 }, 300).call(function () {
+                                t._tween[0] = null
+                            })
+                        })
+                    })
+                }
+            }, t.prototype._fadeinout = function (t, e) {
+                void 0 === e && (e = 300);
+                var i = t ? 1 : 0;
+                this._jukeBoxList.playBGMListFadeInOut(i, e)
+            }, t.prototype.JukeRedraw = function () {
+                this._jukeBoxList.redrawBGMList(this._furnitureJukeBoxBGMModel.list, this._ListNow), this._ListNow == this._ListMax ? (this._jukeBoxList.jukebox_btn_down2.alpha = .001, this._jukeBoxList.jukebox_btn_down2.buttonMode = !1) : (this._jukeBoxList.jukebox_btn_down2.alpha = 1, this._jukeBoxList.jukebox_btn_down2.buttonMode = !0), 0 == this._ListNow ? (this._jukeBoxList.jukebox_btn_up2.alpha = .001, this._jukeBoxList.jukebox_btn_up2.buttonMode = !1) : (this._jukeBoxList.jukebox_btn_up2.alpha = 1, this._jukeBoxList.jukebox_btn_up2.buttonMode = !0)
+            }, t.prototype.JukeListRemoveEvents = function () {
+                this._bg_black.off(d.EventType.CLICK, this._onMouseout), this._jukeBoxList.jukebox_table.off(d.EventType.MOUSEOUT, this._onMouseout), this._jukeBoxList.jukebox_btn_up2.off(d.EventType.CLICK, this._onBtnUp), this._jukeBoxList.jukebox_btn_down2.off(d.EventType.CLICK, this._onBtnDown), this._jukeBoxList.jukebox_btn_up2.off(d.EventType.MOUSEOVER, this._onMouseBtn), this._jukeBoxList.jukebox_btn_up2.off(d.EventType.MOUSEOUT, this._offMouseBtn), this._jukeBoxList.jukebox_btn_down2.off(d.EventType.MOUSEOVER, this._onMouseBtn), this._jukeBoxList.jukebox_btn_down2.off(d.EventType.MOUSEOUT, this._offMouseBtn), this._jukeBoxList.removeBGMBtnEvent(this._onMouseBtn, this._offMouseBtn, this._onBGMSelect)
+            }, t.prototype.JukeListClose = function (t) {
+                var e = this;
+                this.JukeListRemoveEvents();
+                var i = t ? 300 : 1;
+                this._fadeinout(!1, i), this._tween[1] = createjs.Tween.get(this._jukeBoxList.jukebox_table).to({ alpha: 0 }, i).call(function () {
+                    e._tween[1] = null, e._jukeBoxList.discard(), o.default.view.portMain.overLayer.removeChild(e._jukeBoxList), t && e.JukeEnd()
+                }), this._jukeBoxList.jukebox_btn_up2.alpha = 0, this._jukeBoxList.jukebox_btn_down2.alpha = 0
+            }, t.prototype.JukeConfirmStart = function () {
+                var t = this;
+                this._jukeBoxConfirm = new h.JukeBoxConfirm(this._furnitureJukeBoxBGMModel.list[this._selectedBGM]), this._jukeBoxConfirm.init(), o.default.view.portMain.overLayer.addChild(this._jukeBoxConfirm), this._jukeBoxConfirm.btn_back3.on(d.EventType.CLICK, function () {
+                    t._onConfirm(!1)
+                }), this._jukeBoxConfirm.btn_kagu.on(d.EventType.CLICK, function () {
+                    t._onConfirm(!0)
+                })
+            }, t.prototype.JukeConfirmRemoveEvents = function () {
+                var t = this;
+                this._jukeBoxConfirm.btn_back3.off(d.EventType.CLICK, function () {
+                    t._onConfirm(!1)
+                }), this._jukeBoxConfirm.btn_kagu.off(d.EventType.CLICK, function () {
+                    t._onConfirm(!0)
+                })
+            }, t.prototype.JukeConfirmClose = function () {
+                this.JukeConfirmRemoveEvents(), this._jukeBoxConfirm.discard(), o.default.view.portMain.overLayer.removeChild(this._jukeBoxConfirm), this._jukeBoxConfirm = null
+            }, t.prototype._onConfirm = function (t) {
+                var e = this;
+                if (this.JukeConfirmClose(), t) {
+                    o.default.view.portMain.furnitureLayer.current_bgm_furniture = null;
+                    new a.UserFurnitureJukeBoxMusicPlayAPI(this._furnitureJukeBoxBGMModel.list[this._selectedBGM].api_id).start(function () {
+                        e.JukeDispStart()
+                    })
+                } else this.JukeEnd()
+            }, t.prototype.JukeDispStart = function () {
+                this._jukeBoxDisp = new p.JukeBoxDisp(this._furnitureJukeBoxBGMModel.list[this._selectedBGM]), this._jukeBoxDisp.init(), o.default.view.portMain.overLayer.addChild(this._jukeBoxDisp), this._jukeBoxDisp.text_scroll(), this._jukeBoxDisp.musicChibiAnime(), this._BGMCount = this._furnitureJukeBoxBGMModel.list[this._selectedBGM].api_loops, o.default.sound.bgm.stop(), o.default.sound.bgm.play(this._furnitureJukeBoxBGMModel.list[this._selectedBGM].api_bgm_id, !0, 0, "port", this._playBGMCounter), this._jukeBoxDisp.jukebox_close.on(d.EventType.CLICK, this._onJukeDispClose), 1 == this._furnitureJukeBoxBGMModel.list[this._selectedBGM].api_bgm_flag && this._jukeBoxDisp.jukebox_btn_bgm.on(d.EventType.CLICK, this._onJukeDispSetBGM)
+            }, t.prototype.JukeDispClose = function (t) {
+                this._BGMCount = 0, this._jukeBoxDisp.jukebox_close.off(d.EventType.CLICK, this._onJukeDispClose), 1 == this._furnitureJukeBoxBGMModel.list[this._selectedBGM].api_bgm_flag && this._jukeBoxDisp.jukebox_btn_bgm.off(d.EventType.CLICK, this._onJukeDispSetBGM), this._jukeBoxDisp.discard(), o.default.view.portMain.overLayer.removeChild(this._jukeBoxDisp), this.JukeEnd(), t || (o.default.sound.bgm.stop(), o.default.sound.bgm.play(o.default.model.basic.port_bgm_id))
+            }, t.prototype.JukeEnd = function () {
+                o.default.view.portMain.overLayer.removeChild(this._bg_black), this._bg_black = null, this._jukemode = !1
+            }, t
+        }();
+    e.JukeBoxTask = f
 }

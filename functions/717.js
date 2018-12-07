@@ -15,74 +15,69 @@ const function717 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(4), s = i(1), a = function (t) {
+    var o = i(0), r = i(1), s = i(4), a = i(37), _ = i(56), l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
+            i.HEIGHT = 76, i.problem = !1, i.isOver = !1, i._onMouseOver = function (t) {
+                i.isOver = !0, i.onMouseOver && i.onMouseOver(i.index, t)
             }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(36), a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(12), u = o.ORGANIZE_MAIN.getTexture(13);
-            i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(u), l.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, l, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
+                i.isOver = !1, i.onMouseOut && i.onMouseOut(i.index, t)
+            }, i._onClickExpand = function () {
+                0 == i.problem && i.onClickExpand(i.presetId)
+            }, i.index = e, i.frame_bg = new PIXI.Sprite(_.ORGANIZE_MAIN.getTexture(29)), i.frame_bg.buttonMode = !1, i.frame_bg.interactive = !0, i.frame_bg.addListener(r.EventType.MOUSEOUT, i._onMouseOut), i.frame_bg.addListener(r.EventType.MOUSEOVER, i._onMouseOver), i.addChild(i.frame_bg);
+            var n = _.ORGANIZE_MAIN.getTexture(33);
+            return i.presetFocuse = new PIXI.Sprite(n), i.presetFocuse.visible = !1, i.presetFocuse.x = -6, i.presetFocuse.y = -3, i.addChild(i.presetFocuse), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new s.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new s.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount), i.textureMouseOver = _.ORGANIZE_MAIN.getTexture(3), i.textureMouseOut = _.ORGANIZE_MAIN.getTexture(2), i.expandButton = new PIXI.Sprite(i.textureMouseOut), i.expandButton.interactive = i.expandButton.buttonMode = !0, i.expandButton.position.set(250, 36), i.expandButton.addListener(r.EventType.CLICK, i._onClickExpand), i.expandButton.addListener(r.EventType.MOUSEOUT, i._onMouseOut), i.expandButton.addListener(r.EventType.MOUSEOVER, i._onMouseOver), i.addChild(i.expandButton), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
+        return n(e, t), Object.defineProperty(e.prototype, "PresetId", {
             get: function () {
-                return this._index
+                return this.presetId
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
+        }), Object.defineProperty(e.prototype, "IsOver", {
             get: function () {
-                return this._background
+                return this.isOver
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
+        }), Object.defineProperty(e.prototype, "FrameBg", {
             get: function () {
-                return this._positiveButton
+                return this.frame_bg
             }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._positiveButton.off(s.EventType.CLICK), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.textMessage = null, this.negativeButton = null, this._index = null, this._background = null, this._positiveButton = null, this._presetId = null
-        }, e.prototype.update = function (t, e, i) {
-            this._positiveButton.visible = !1, this.negativeButton.visible = !1, i ? this._positiveButton.visible = !0 : this.negativeButton.visible = !0, this.textMessage.text = e, this._background.width = this.textMessage.width + 9, this._background.x = 285, 285 < this._background.width / 2 && (this._background.x = Math.floor(this._background.width / 2 - 285 + 285)), this.textMessage.x = this.background.x, this.positiveButton.x = Math.floor(this.background.x - this.positiveButton.width / 2), this.negativeButton.x = Math.floor(this.background.x - this.negativeButton.width / 2), this._presetId = t
-        }, e
-    }(PIXI.Container);
-    e.PresetAlertOrganizedPopup = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
-            }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._onMouseOver = function (t) {
-                i.onMouseOver(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(37), a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(13), u = o.ORGANIZE_MAIN.getTexture(11);
-            i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(u), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", l.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, l, i.textMessage, i._negativeButton, i._positiveButton), i
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
+        }), Object.defineProperty(e.prototype, "ExpandButton", {
             get: function () {
-                return this._index
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
-            get: function () {
-                return this._background
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
-            get: function () {
-                return this._positiveButton
+                return this.expandButton
             }, enumerable: !0, configurable: !0
         }), e.prototype.dispose = function () {
-            this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.CLICK), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textMessage = null, this._positiveButton = null, this._negativeButton = null, this._background = null, this._index = null, this._presetId = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this._presetId = t, this._positiveButton.visible = !1, this._negativeButton.visible = !1, e ? this._positiveButton.visible = !0 : this._negativeButton.visible = !0
+            this.removeChildren(), this.deckName.destroy(), this.deckCount.destroy(), this.onMouseOver = null, this.onMouseOut = null, this.onClickExpand = null, this.frame_bg = null, this.shipBanner = null, this.deckName = null, this.deckCount = null, this.presetFocuse = null, this.textureMouseOver = null, this.textureMouseOut = null, this.expandButton = null, this.index = null, this.presetId = null, this.problem = null, this.isOver = null
+        }, e.prototype.focus = function () {
+            this.expandButton.texture = this.problem ? this.textureMouseOver : this.textureMouseOut, this.presetFocuse.visible = !0
+        }, e.prototype.removeFocus = function () {
+            this.expandButton.texture = this.textureMouseOut, this.presetFocuse.visible = !1
+        }, e.prototype.hideFocus = function () {
+            this.expandButton.texture = this.textureMouseOut, this.presetFocuse.visible = !1
+        }, e.prototype.update = function (t, e, i, n, r) {
+            var s = null != i;
+            this.shipBanner.visible = !1, this.deckName.visible = !1, this.deckCount.visible = !1, this.expandButton.visible = !1, this.frame_bg.visible = !1;
+            var a = !1;
+            if (s) {
+                this.presetId = i.presetID, this.frame_bg.visible = !0;
+                var _ = 0 == i.getShipCount(), l = i.hasLostShip(), u = i.hasOtherDeckShip(t);
+                if (!_) {
+                    i.getShipsAfterExpanded(t).length;
+                    l ? a = !0 : u && (a = !0), this.updateShip(i), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0
+                }
+                var c = 0 < i.getShipCount();
+                this.updateButton(i.presetID, n, r, c, a);
+                var h = o.default.model.deck.get(t);
+                this.expandButton.visible = !h.expedition
+            }
+        }, e.prototype.updateShip = function (t) {
+            this.deckName.text = t.deckName;
+            var e = t.getFrontShip();
+            new a.TaskLoadShipResource("banner", this.shipBanner, e.mstID, e.isDamaged()).start();
+            var i = t.getShipCount();
+            this.deckCount.text = i + "\u96bb \u7de8\u6210"
+        }, e.prototype.updateButton = function (t, e, i, n, o) {
+            this.expandButton.visible = !1, this.expandButton.visible = !e || !i, this.presetId = t, this.problem = o
         }, e
     }(PIXI.Container);
-    e.PresetAlertLostPopup = _
+    e.PresetExpansionSlot = l
 }

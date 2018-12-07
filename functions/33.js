@@ -15,11 +15,11 @@ const function33 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(146), s = i(280), a = i(587), _ = i(193), u = i(147), l = i(589), c = i(590), h = i(70),
+    var o = i(0), r = i(147), s = i(282), a = i(586), _ = i(194), l = i(148), u = i(588), c = i(589), h = i(70),
         p = i(37), d = i(9), f = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._image = new PIXI.Sprite, e.addChild(e._image), e._state = new r.BannerIcon, e.addChild(e._state), e._burned = new u.BannerSoot, e.addChild(e._burned), e._smoke = new _.BannerSmoke, e.addChild(e._smoke), e._tired = new l.BannerTired, e.addChild(e._tired), e._plate = new a.BannerPlate, e._plate.position.set(47, 3), e.addChild(e._plate), e._kira = new s.BannerKirakira, e.addChild(e._kira), e._ring = new h.RingSmall, e.addChild(e._ring), e._lockSlot = new c.BannerLockSlot, e._lockSlot.visible = !1, e.addChild(e._lockSlot), e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e
+                return e._image = new PIXI.Sprite, e.addChild(e._image), e._state = new r.BannerIcon, e.addChild(e._state), e._burned = new l.BannerSoot, e.addChild(e._burned), e._smoke = new _.BannerSmoke, e.addChild(e._smoke), e._tired = new u.BannerTired, e.addChild(e._tired), e._plate = new a.BannerPlate, e._plate.position.set(47, 3), e.addChild(e._plate), e._kira = new s.BannerKirakira, e.addChild(e._kira), e._ring = new h.RingSmall, e.addChild(e._ring), e._lockSlot = new c.BannerLockSlot, e._lockSlot.visible = !1, e.addChild(e._lockSlot), e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e
             }
 
             return n(e, t), e.prototype.dispose = function () {

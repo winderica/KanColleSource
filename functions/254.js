@@ -1,54 +1,62 @@
 const function254 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.ITEMUP_REPLACE = {
-        516: 516,
-        517: 517,
-        518: 518,
-        519: 516,
-        520: 517,
-        521: 518,
-        522: 516,
-        523: 516,
-        524: 517,
-        525: 518,
-        526: 518,
-        546: 518,
-        547: 547,
-        548: 548,
-        549: 549,
-        550: 3,
-        551: 128,
-        552: 76,
-        553: 3,
-        554: 554,
-        555: 555,
-        556: 556,
-        557: 557,
-        558: 558,
-        561: 561,
-        562: 562,
-        563: 162,
-        564: 549,
-        565: 79,
-        566: 547,
-        568: 161,
-        567: 13,
-        571: 571,
-        572: 572,
-        573: 573,
-        574: 574,
-        575: 574,
-        576: 231,
-        577: 245,
-        578: 190,
-        579: 7,
-        580: 58,
-        581: 581,
-        582: 582,
-        583: 583,
-        584: 7,
-        585: 161,
-        586: 574,
-        587: 298
-    }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(2), r = i(15), s = i(25), a = i(447), _ = i(448), l = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
+            var s = Math.floor(3 * Math.random());
+            r._telop1 = new _.CutinTelop(s, o);
+            var l = Math.floor(3 * Math.random());
+            return r._telop2 = new _.CutinTelop(l, o), r._preload_task = new u(e, i, n), r
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreloadTask = function () {
+            return this._preload_task
+        }, e.prototype._endTask = function () {
+            this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.CutinDouble = l;
+    var u = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._attacker = e, o._slot1 = i, o._slot2 = n, o
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipImage()
+        }, e.prototype._loadShipImage = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                t._loadSlotTextImage()
+            })
+        }, e.prototype._loadSlotTextImage = function () {
+            var t = this;
+            if (null == this._slot1 && null == this._slot2) this._endTask(); else {
+                var e = new s.SlotLoader;
+                null != this._slot1 && e.add(this._slot1.mstID, "btxt_flat"), null != this._slot2 && e.add(this._slot2.mstID, "btxt_flat"), e.load(function () {
+                    t._endTask()
+                })
+            }
+        }, e
+    }(o.TaskBase)
 }

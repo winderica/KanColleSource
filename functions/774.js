@@ -15,43 +15,41 @@ const function774 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(60), s = i(4), a = i(71), _ = i(330), u = i(1), l = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onClick = function () {
-                e.onClick()
-            }, e._onClickDetach = function () {
-                e.onClickDetach()
-            }, e._onMouseOver = function () {
-                e.namePopUp.alpha = 1
+            return e._onMouseOver = function () {
+                e.gauge_on.visible = !0, e.huki.visible = !0
             }, e._onMouseOut = function () {
-                e.namePopUp.alpha = 0
-            }, e.exSlotBg = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(20)), e.iconSlot00 = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(37)), e.iconWeapon = new r.IconWeapon, e.detachButton = new _.DetachButton, e.namePopUp = new c, e.clickArea = new PIXI.Graphics, e.iconWeapon.position.set(6, 6), e.iconSlot00.position.set(6, 6), e.detachButton.position.set(57, 21), e.namePopUp.position.set(33, 63), e.addChild(e.exSlotBg, e.iconSlot00, e.iconWeapon, e.detachButton, e.namePopUp, e.clickArea), e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 57, 57), e.clickArea.endFill(), e.clickArea.on(u.EventType.CLICK, e._onClick), e.clickArea.on(u.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(u.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.renderable = !1, e.clickArea.interactive = e.clickArea.buttonMode = !0, e.detachButton.onClick = e._onClickDetach, e.namePopUp.visible = !1, e
+                e.gauge_on.visible = !1, e.huki.visible = !1
+            }, e._onClick = function () {
+                e.onClick()
+            }, e.textureGauge1 = o.REMODEL_MAIN.getTexture(23), e.textureGauge1_on = o.REMODEL_MAIN.getTexture(24), e.textureGauge2 = o.REMODEL_MAIN.getTexture(25), e.textureGauge2_on = o.REMODEL_MAIN.getTexture(26), e.textureGauge3 = o.REMODEL_MAIN.getTexture(27), e.textureGauge3_on = o.REMODEL_MAIN.getTexture(28), e.textureGauge4 = o.REMODEL_MAIN.getTexture(29), e.textureGauge4_on = o.REMODEL_MAIN.getTexture(30), e.textureGauge5 = o.REMODEL_MAIN.getTexture(31), e.textureGauge5_on = o.REMODEL_MAIN.getTexture(32), e.gauge = new PIXI.Sprite, e.gauge_on = new PIXI.Sprite, e.gauge_on.visible = !1, e.huki = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(35)), e.huki.position.x = -6, e.huki.visible = !1, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.slotIconDelete.on(r.EventType.MOUSEOVER, e._onMouseOver), e.slotIconDelete.on(r.EventType.MOUSEOUT, e._onMouseOut), e.slotIconDelete.on(r.EventType.CLICK, e._onClick), e.slotIconDelete.interactive = e.slotIconDelete.buttonMode = !0, e.slotIconDelete.anchor.x = .5, e.slotIconDelete.x = 11, e.addChild(e.gauge, e.gauge_on, e.slotIconDelete, e.huki), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.iconWeapon.dispose(), this.detachButton.dispose(), this.namePopUp.dispose(), this.onClick = null, this.onClickDetach = null, this.iconWeapon = null, this.exSlotBg = null, this.iconSlot00 = null, this.detachButton = null, this.namePopUp = null, this.clickArea.off(u.EventType.CLICK), this.clickArea.off(u.EventType.MOUSEOVER), this.clickArea.off(u.EventType.MOUSEOUT), this.clickArea.clear(), this.clickArea = null, this.removeChildren()
+            this.slotIconDelete.off(r.EventType.CLICK), this.slotIconDelete.off(r.EventType.MOUSEOUT), this.slotIconDelete.off(r.EventType.MOUSEOVER), this.onClick = null, this.gauge = null, this.gauge_on = null, this.slotIconDelete = null, this.huki = null, this.textureGauge1 = null, this.textureGauge1_on = null, this.textureGauge2 = null, this.textureGauge2_on = null, this.textureGauge3 = null, this.textureGauge3_on = null, this.textureGauge4 = null, this.textureGauge4_on = null, this.textureGauge5 = null, this.textureGauge5_on = null, this.removeChildren()
         }, e.prototype.update = function (t) {
-            this.iconWeapon.update(t.iconType), this.namePopUp.update(t.name), this.detachButton.visible = !0, this.interactive = this.buttonMode = !0, this.namePopUp.visible = !0, this.namePopUp.alpha = 0
-        }, e.prototype.clear = function () {
-            this.iconWeapon.clear(), this.detachButton.visible = !1, this.interactive = this.buttonMode = !0, this.namePopUp.visible = !1
+            switch (t) {
+                case 0:
+                    this.visible = !1;
+                    break;
+                case 1:
+                    this.gauge.texture = this.textureGauge1, this.gauge_on.texture = this.textureGauge1_on, this.slotIconDelete.y = 32 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 35;
+                    break;
+                case 2:
+                    this.gauge.texture = this.textureGauge2, this.gauge_on.texture = this.textureGauge2_on, this.slotIconDelete.y = 81 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 84;
+                    break;
+                case 3:
+                    this.gauge.texture = this.textureGauge3, this.gauge_on.texture = this.textureGauge3_on, this.slotIconDelete.y = 131 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 134;
+                    break;
+                case 4:
+                    this.gauge.texture = this.textureGauge4, this.gauge_on.texture = this.textureGauge4_on, this.slotIconDelete.y = 180 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 183;
+                    break;
+                case 5:
+                    this.gauge.texture = this.textureGauge5, this.gauge_on.texture = this.textureGauge5_on, this.slotIconDelete.y = 230 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 233
+            }
         }, e
     }(PIXI.Container);
-    e.ExtraSlotItemSlot = l;
-    var c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.TEXT_OFFSET_X = 3, e.TEXT_OFFSET_Y = 5, e.left = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_l.png", "remodel")), e.right = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_r.png", "remodel")), e.center = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki1_c.png", "remodel"));
-            var i = new PIXI.Sprite(o.default.resources.getUIImage("6slot_huki2.png", "remodel"));
-            return e.textName = new s.TextBox(18, 5523516), e.textName.anchor.x = e.left.anchor.x = e.center.anchor.x = 1, e.textName.position.set(e.TEXT_OFFSET_X, e.TEXT_OFFSET_Y), i.position.set(-18.75, 3 - i.height), e.addChild(e.left, e.center, e.right, e.textName, i), e.update(""), e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.textName.destroy(), this.left = null, this.center = null, this.right = null, this.textName = null
-        }, e.prototype.update = function (t) {
-            this.center.scale.x = 1, this.textName.text = t;
-            var e = this.textName.width / this.center.width;
-            this.center.scale.x = e, this.right.position.set(0, 0), this.center.position.set(0, 0), this.left.position.set(this.center.x - this.center.width, 0)
-        }, e
-    }(PIXI.Container)
+    e.DetachAllButton = s
 }

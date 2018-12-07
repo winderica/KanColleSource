@@ -15,8 +15,8 @@ const function803 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(157), r = i(122), s = i(84), a = i(158), _ = i(218), u = i(4), l = i(21), c = i(126), h = i(52),
-        p = i(86), d = i(85), f = i(217), y = i(1), m = function (t) {
+    var o = i(158), r = i(122), s = i(84), a = i(130), _ = i(220), l = i(4), u = i(21), c = i(126), h = i(52),
+        p = i(86), d = i(85), f = i(219), y = i(1), m = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e._onClick = function (t, i) {
@@ -24,8 +24,8 @@ const function803 = function (t, e, i) {
                 };
                 var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
                     n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)), o = new s.PagerView,
-                    r = new _.ShipSortButton, a = new Array, u = new PIXI.Container, p = new d.TitleBar;
-                p.initialize(l.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), u.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
+                    r = new _.ShipSortButton, a = new Array, l = new PIXI.Container, p = new d.TitleBar;
+                p.initialize(u.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), l.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
                 for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
                     var y = new v(f);
                     y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
@@ -65,8 +65,8 @@ const function803 = function (t, e, i) {
             }, i._onClick = function () {
                 i.onClick(i.index, i.memId)
             };
-            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(l.COMMON_MAIN.getTexture(17)), s = new PIXI.Container,
-                _ = new u.TextBox(18, 5523516), c = new u.TextBox(20, 5523516), h = new u.TextBox(20, 5523516),
+            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(u.COMMON_MAIN.getTexture(17)), s = new PIXI.Container,
+                _ = new l.TextBox(18, 5523516), c = new l.TextBox(20, 5523516), h = new l.TextBox(20, 5523516),
                 p = new f.IconCategory, d = new f.IconCategory, m = new f.IconCategory, v = new f.IconCategory,
                 g = new a.ShipInDeckFlag, b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
             return g.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.on(y.EventType.MOUSEOVER, i._onMouseOver), o.on(y.EventType.MOUSEOUT, i._onMouseOut), o.on(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), m.position.set(401, 0), v.position.set(446, 0), g.anchor.set(0, .5), g.position.set(-15, n), g.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, m, v, g), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = m, i.iconCategory_3 = v, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = g, i.containerTypeAndName = s, i.maskTextAndName = b, i

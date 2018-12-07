@@ -1,11 +1,4 @@
 const function238 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("revamp_list_" + t)
-        }
-
-        t.getTexture = e
-    }(e.REVAMP_LIST || (e.REVAMP_LIST = {}))
+    Object.defineProperty(e, "__esModule", { value: !0 }), e.POSTER_GIRL = 5, e.BUTAI_SAIHENSEI = [626, 629, 630, 659, 660]
 }

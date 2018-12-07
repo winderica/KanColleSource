@@ -15,8 +15,8 @@ const function111 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(220), s = i(79), a = i(32), _ = i(69), u = i(35), l = i(861), c = i(863), h = i(877),
-        p = i(879), d = i(881), f = i(883), y = i(884), m = i(885), v = i(886), g = i(887), b = i(343), w = i(889);
+    var o = i(0), r = i(222), s = i(79), a = i(31), _ = i(69), l = i(35), u = i(861), c = i(863), h = i(877),
+        p = i(879), d = i(881), f = i(883), y = i(884), m = i(885), v = i(886), g = i(887), b = i(342), w = i(889);
     e.SYNC_KEY_JUMP = "sync_key_jump";
     var x, I = function () {
         function t() {
@@ -71,7 +71,7 @@ const function111 = function (t, e, i) {
             }, i._onClickSelect = function (t) {
                 i.onClickSelect(t)
             }, i._onClickHighSpeed = function (t) {
-                var e = new l.HighSpeedConfirmContainer;
+                var e = new u.HighSpeedConfirmContainer;
                 o.default.view.overLayer.addChild(e);
                 var n = o.default.model.kdock.get(t).isLargeBuild(), s = o.default.model.useItem.get(2).count,
                     a = s - (n ? 10 : 1);
@@ -84,8 +84,8 @@ const function111 = function (t, e, i) {
                             i.useBurner(n.id, a, s);
                             var _ = r.ArsenalUtil.developLimit();
                             i.hideHighSpeedButton(t);
-                            var u = t.toString();
-                            i.kDockViews[u].changeState(3), o.default.model.kdock.getAll().forEach(function (t) {
+                            var l = t.toString();
+                            i.kDockViews[l].changeState(3), o.default.model.kdock.getAll().forEach(function (t) {
                                 2 == t.state && i.updateHighSpeedButtonState(t.id), i.onUpdateCondition(t.id, _.forShip, _.forSlot)
                             }), e.hide(function () {
                                 o.default.view.overLayer.removeChild(e), e.dispose(), o.default.view.clickGuard = !1
@@ -108,20 +108,20 @@ const function111 = function (t, e, i) {
                         break;
                     case!0:
                         var e = i._materialAmountContainer.kDockId, n = i._materialAmountContainer.ammo,
-                            s = i._materialAmountContainer.fuel, u = i._materialAmountContainer.steel,
-                            l = i._materialAmountContainer.bauxite, c = i._materialAmountContainer.buildKit,
+                            s = i._materialAmountContainer.fuel, l = i._materialAmountContainer.steel,
+                            u = i._materialAmountContainer.bauxite, c = i._materialAmountContainer.buildKit,
                             h = i._materialAmountContainer.devKit, p = 0 < c,
-                            d = new f.CreateShipAPI(e, 0, s, n, u, l, h, p ? 1 : 0), y = new v.KDockAPI,
+                            d = new f.CreateShipAPI(e, 0, s, n, l, u, h, p ? 1 : 0), y = new v.KDockAPI,
                             m = new a.APIConnector;
                         0 == o.default.model.basic.getTutorialProgress() && m.add(new _.UpdateTutorialAPI(10)), m.add(d), m.add(y), o.default.view.clickGuard = !0, m.start(function () {
                             i._materialAmountContainer.dispose(), i._materialAmountContainer = null;
                             var t = o.default.model.kdock.get(e),
                                 n = (o.default.model.kdock.getAll(), o.default.model.ship.getMst(t.ship_mst_id)),
                                 s = n.build_time, a = .5 < Math.random(), _ = .5 < Math.random() || 0 == a,
-                                u = 0 < o.default.model.useItem.get(2).count, l = Date.now(), c = t.complete_time;
-                            p && (c = l + 60 * s * 1e3);
+                                l = 0 < o.default.model.useItem.get(2).count, u = Date.now(), c = t.complete_time;
+                            p && (c = u + 60 * s * 1e3);
                             var h = o.default.model.shipType.get(n.shipTypeID).build_phase_num;
-                            i.build(t.id, !1, p, u, a, _, s, c, l, h), o.default.view.portMain.updateInfo(), i.arsenalTimerMode = x.WaitComplete;
+                            i.build(t.id, !1, p, l, a, _, s, c, u, h), o.default.view.portMain.updateInfo(), i.arsenalTimerMode = x.WaitComplete;
                             var d = r.ArsenalUtil.developLimit();
                             i.hideHighSpeedButton(e), o.default.model.kdock.getAll().forEach(function (t) {
                                 2 == t.state && i.updateHighSpeedButtonState(t.id), i.onUpdateCondition(t.id, d.forShip, d.forSlot)
@@ -152,35 +152,35 @@ const function111 = function (t, e, i) {
                                     });
                                     break;
                                 case d.Result.START:
-                                    var e = _.ammo, n = _.fuel, u = _.steel, l = _.bauxite, c = _.buildKit,
+                                    var e = _.ammo, n = _.fuel, l = _.steel, u = _.bauxite, c = _.buildKit,
                                         h = _.devKit, y = 0 < c,
-                                        m = new f.CreateShipAPI(s, 1, n, e, u, l, h, y ? 1 : 0), g = new v.KDockAPI,
+                                        m = new f.CreateShipAPI(s, 1, n, e, l, u, h, y ? 1 : 0), g = new v.KDockAPI,
                                         b = new a.APIConnector;
                                     b.add(m), b.add(g), o.default.view.clickGuard = !0, b.start(function () {
                                         o.default.view.portMain.updateInfo();
                                         var t = o.default.model.kdock.get(s),
                                             e = o.default.model.ship.getMst(t.ship_mst_id), n = e.build_time,
-                                            a = .5 < Math.random(), u = .5 < Math.random() || 0 == a,
-                                            l = Date.now(), c = 9 < o.default.model.useItem.get(2).count;
+                                            a = .5 < Math.random(), l = .5 < Math.random() || 0 == a,
+                                            u = Date.now(), c = 9 < o.default.model.useItem.get(2).count;
                                         _.dispose();
                                         var h = t.complete_time;
-                                        y && (h = l + 60 * n * 1e3);
+                                        y && (h = u + 60 * n * 1e3);
                                         var p = r.ArsenalUtil.developLimit();
                                         i.hideHighSpeedButton(s), o.default.model.kdock.getAll().forEach(function (t) {
                                             2 == t.state && i.updateHighSpeedButtonState(t.id), i.onUpdateCondition(t.id, p.forShip, p.forSlot)
                                         }), o.default.view.clickGuard = !1;
                                         var d = o.default.model.shipType.get(e.shipTypeID).build_phase_num;
-                                        i.build(t.id, !0, y, c, a, u, n, h, l, d)
+                                        i.build(t.id, !0, y, c, a, l, n, h, u, d)
                                     }), i.largeSettingMemory.ammo = _.ammo, i.largeSettingMemory.fuel = _.fuel, i.largeSettingMemory.steel = _.steel, i.largeSettingMemory.bauxite = _.bauxite, i.largeSettingMemory.buildKit = 0, i.largeSettingMemory.devKit = 1
                             }
                         }, _.play(i.largeSettingMemory.fuel, i.largeSettingMemory.ammo, i.largeSettingMemory.steel, i.largeSettingMemory.bauxite, i.largeSettingMemory.devKit, i.largeSettingMemory.buildKit)
                     }
                 })
             }, i.kDockViews = {};
-            var n = new PIXI.Sprite(u.ARSENAL_MAIN.getTexture(144)),
-                s = new PIXI.Sprite(u.ARSENAL_MAIN.getTexture(145)),
-                b = new PIXI.Sprite(u.ARSENAL_MAIN.getTexture(145)),
-                w = new PIXI.Sprite(u.ARSENAL_MAIN.getTexture(145)), T = new PIXI.Container;
+            var n = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(144)),
+                s = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(145)),
+                b = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(145)),
+                w = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(145)), T = new PIXI.Container;
             i.layerBases = new Array, i.layerBuilds = new Array, i.layerInteractives = new Array, s.position.set(34, 4), b.position.set(214, 4), w.position.set(661, 4);
             for (var O = 0; O < i.KDOCK_IDS.length; O++) {
                 var P = 51 + 117 * O, C = new PIXI.Container, k = new PIXI.Container, M = new PIXI.Container;
@@ -215,12 +215,12 @@ const function111 = function (t, e, i) {
         }, i.prototype.updateCondition = function (t, e, i) {
             var n = t.toString();
             this.kDockViews[n].updateCondition(e, i)
-        }, i.prototype.build = function (t, e, i, n, o, r, s, a, _, u) {
-            var l = t.toString();
-            this.kDockViews[l].Build(i, e, n, o, r, s, a, _, u)
-        }, i.prototype.resume = function (t, e, i, n, o, r, s, a, _) {
+        }, i.prototype.build = function (t, e, i, n, o, r, s, a, _, l) {
             var u = t.toString();
-            this.kDockViews[u].Resume(e, i, n, o, r, s, a, _)
+            this.kDockViews[u].Build(i, e, n, o, r, s, a, _, l)
+        }, i.prototype.resume = function (t, e, i, n, o, r, s, a, _) {
+            var l = t.toString();
+            this.kDockViews[l].Resume(e, i, n, o, r, s, a, _)
         }, i.prototype.showHighSpeedButton = function (t, e) {
             var i = t.toString();
             this.kDockViews[i].showHighSpeedButton(e)

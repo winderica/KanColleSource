@@ -15,36 +15,43 @@ const function501 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(7), r = i(182), s = i(141), a = i(183), _ = i(123), u = function () {
+    var o = i(502), r = function () {
         function t() {
-            this._arr = []
+            this._dic = {}
         }
 
-        return t.prototype.hasIncentive = function () {
-            return this._arr.length > 0
-        }, t.prototype.getRewards = function () {
-            return this._arr.concat()
-        }, t.prototype.clearData = function () {
-            this._arr = []
+        return t.prototype.get = function (t) {
+            var e = t.toString();
+            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
+        }, t.prototype.getAll = function () {
+            var t = new Array;
+            for (var e in this._dic) {
+                var i = this._dic[e];
+                t.push(i)
+            }
+            return t.sort(function (t, e) {
+                return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
+            }), t
         }, t
     }();
-    e.IncentiveModelHolder = u;
-    var l = function (t) {
+    e.KDockModelHolder = r;
+    var s = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.setData = function (t) {
-            if (this._arr = [], null != t) {
-                var e = o.ObjUtil.getObjectArray(t, "api_item");
-                if (null != e) for (var i = 0, n = e; i < n.length; i++) {
-                    var u = n[i], l = (o.ObjUtil.getNumber(u, "api_mode"), o.ObjUtil.getNumber(u, "api_type")),
-                        c = o.ObjUtil.getNumber(u, "api_mst_id"), h = o.ObjUtil.getString(u, "api_getmes"),
-                        p = void 0;
-                    1 == l ? p = new a.RewardModelShip(c, h) : 2 == l ? p = new s.RewardModelSlotitem(c, 1, h) : 3 == l ? p = new _.RewardModelUseitem(c, 1, h) : 4 == l || 5 == l && (p = new r.RewardModelFurniture(c, "", h)), null != p && this._arr.push(p)
+        return n(e, t), e.prototype.__setData__ = function (t) {
+            if (null != t) {
+                this._dic = {};
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e], r = new o.KDockModelEdit(n), s = r.id;
+                    if (s > 0) {
+                        var a = s.toString();
+                        this._dic[a] = r
+                    }
                 }
             }
         }, e
-    }(u);
-    e.IncentiveModelHolderEdit = l
+    }(r);
+    e.KDockModelHolderEdit = s
 }

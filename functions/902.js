@@ -29,10 +29,10 @@ const function902 = function (t, e, i) {
             var i = 0 === this.type;
             i && o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unset_list"));
             for (var n = 0, r = this.api_ship_ids.length; n < r; n++) {
-                var a = this.api_ship_ids[n], _ = o.default.model.ship.get(a), u = o.default.model.deck.isInDeck(a);
-                if (u) {
-                    var l = u[0], c = u[1];
-                    o.default.model.deck.get(l).__remove__(c)
+                var a = this.api_ship_ids[n], _ = o.default.model.ship.get(a), l = o.default.model.deck.isInDeck(a);
+                if (l) {
+                    var u = l[0], c = l[1];
+                    o.default.model.deck.get(u).__remove__(c)
                 }
                 o.default.model.ship.delete(_.memID, i)
             }

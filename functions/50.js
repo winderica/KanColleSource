@@ -1,7 +1,7 @@
 const function50 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(138);
+    var n = i(0), o = i(139);
     !function (t) {
         function e(t, e, i) {
             void 0 === i && (i = !0), null != t && (0 == e ? t.sort(function (t, e) {
@@ -57,9 +57,9 @@ const function50 = function (t, e, i) {
                 s = ["\u706b\u529b", "\u96f7\u88c5", "\u5bfe\u7a7a", "\u5bfe\u6f5c", "\u7206\u88c5", "\u547d\u4e2d", "\u56de\u907f", "\u7d22\u6575", "\u88c5\u7532"],
                 a = t.range, _ = t.equipType;
             n && 1 <= a && r.push("\u5c04\u7a0b " + ["", "\u77ed", "\u4e2d", "\u9577", "\u8d85\u9577"][a]), 48 == _ && (s[5] = "\u5bfe\u7206", s[6] = "\u8fce\u6483");
-            for (var u = [t.karyoku, t.raisou, t.taiku, t.taisen, t.bakusou, t.meichu, t.kaihi, t.sakuteki, t.soukou], l = 0, c = 0; c < u.length; c++) if (0 != u[c]) {
+            for (var l = [t.karyoku, t.raisou, t.taiku, t.taisen, t.bakusou, t.meichu, t.kaihi, t.sakuteki, t.soukou], u = 0, c = 0; c < l.length; c++) if (0 != l[c]) {
                 var h = e;
-                if (u[c] < 0 && (h = e.split("+").join("")), r.push(s[c] + h + u[c]), l++, -1 != o && o <= l) break
+                if (l[c] < 0 && (h = e.split("+").join("")), r.push(s[c] + h + l[c]), u++, -1 != o && o <= u) break
             }
             return r.join(i)
         }

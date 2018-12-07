@@ -15,8 +15,8 @@ const function894 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o, r = i(5), s = i(0), a = i(1), _ = i(49), u = i(8), l = i(112), c = i(4), h = i(21), p = i(35), d = i(87),
-        f = i(340), y = i(342);
+    var o, r = i(5), s = i(0), a = i(1), _ = i(49), l = i(8), u = i(112), c = i(4), h = i(21), p = i(35), d = i(87),
+        f = i(339), y = i(341);
     !function (t) {
         t[t.CANCEL = 0] = "CANCEL", t[t.DEVELOP = 1] = "DEVELOP", t[t.GOTO_STORE = 2] = "GOTO_STORE"
     }(o = e.Result || (e.Result = {}));
@@ -34,7 +34,7 @@ const function894 = function (t, e, i) {
             }, i._onClickBackground = function () {
                 i.onComplete(o.CANCEL)
             }, i.mainView = e;
-            i.configureMaterialView_fuel = new f.MaterialAmountView(31, 10, 300), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 10, 300), i.configureMaterialView_steel = new f.MaterialAmountView(33, 10, 300), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 10, 300), i.btn_kaihatsu = new l.SimpleButton(p.ARSENAL_MAIN.getTexture(25), p.ARSENAL_MAIN.getTexture(27));
+            i.configureMaterialView_fuel = new f.MaterialAmountView(31, 10, 300), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 10, 300), i.configureMaterialView_steel = new f.MaterialAmountView(33, 10, 300), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 10, 300), i.btn_kaihatsu = new u.SimpleButton(p.ARSENAL_MAIN.getTexture(25), p.ARSENAL_MAIN.getTexture(27));
             var n = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(26)),
                 s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12)),
                 m = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(139)),
@@ -46,7 +46,7 @@ const function894 = function (t, e, i) {
             w.position.set(0, -37);
             var x = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(7));
             x.anchor.set(0, .5), x.position.set(22, Math.floor(w.height / 2 - 4)), w.addChild(x), i.addChild(w);
-            return i.dialogBackground = new u.AreaBox(_.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = r.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.position.set(1200, 139), i.dialogBackground.on(a.EventType.CLICK, i._onClickBackground), i
+            return i.dialogBackground = new l.AreaBox(_.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = r.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.position.set(1200, 139), i.dialogBackground.on(a.EventType.CLICK, i._onClickBackground), i
         }
 
         return n(e, t), Object.defineProperty(e.prototype, "fuel", {
@@ -76,8 +76,8 @@ const function894 = function (t, e, i) {
         }, e.prototype.play = function (t, e, i, n) {
             var o = s.default.model.useItem.get(31).count, r = s.default.model.useItem.get(32).count,
                 a = s.default.model.useItem.get(33).count, _ = s.default.model.useItem.get(34).count,
-                u = s.default.model.useItem.get(3).count, l = d.Util.DevelopValidation(t, e, i, n, 1);
-            this.initialize(o, r, a, _, u), this.config(t, e, i, n, 1), this.update(l), this.onChangeValue = this._onChangeValue, s.default.view.clickGuard = !0, this.show(function () {
+                l = s.default.model.useItem.get(3).count, u = d.Util.DevelopValidation(t, e, i, n, 1);
+            this.initialize(o, r, a, _, l), this.config(t, e, i, n, 1), this.update(u), this.onChangeValue = this._onChangeValue, s.default.view.clickGuard = !0, this.show(function () {
                 s.default.view.clickGuard = !1
             })
         }, e.prototype.show = function (t) {
