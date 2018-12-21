@@ -9,7 +9,9 @@ const detector = cron.job("0 0 * * * *", async () => {
     const script = await (await fetch(`http://203.104.209.71/kcs2/js/main.js?version=${version}`)).text();
     fs.writeFile(`../raw.js`, script, err => {
         if (!err) {
-            exec(`git commit -m 'Update: \`main.js\` v${version}'`);
+            exec('git add raw.js');
+            exec(`git commit -m "Update: \`raw.js\` v${version}"`);
+            exec('git push origin master');
         }
     });
 });
