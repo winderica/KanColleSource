@@ -15,31 +15,40 @@ const function1311 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(13), s = function (t) {
-        function e(e, i) {
-            void 0 === e && (e = !1), void 0 === i && (i = !1);
-            var n = t.call(this) || this;
-            return n._night = e, n._combined = i, n
+    var o = i(273), r = i(1312), s = i(1320), a = i(1410), _ = i(1423), l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadCommon()
-        }, e.prototype._loadCommon = function () {
-            var t = this, e = new r.UIImageLoader("common");
-            e.add("common_explosion.json"), e.load(function () {
-                t._loadImage()
+        return n(e, t), Object.defineProperty(e.prototype, "data", {
+            get: function () {
+                return this._data
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "view", {
+            get: function () {
+                return this._view
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (e) {
+            t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+        }, e.prototype.dispose = function () {
+            this._view.dispose(), t.prototype.dispose.call(this)
+        }, e.prototype.start = function () {
+            var t = this;
+            new r.TaskInit(this).start(function () {
+                t._main()
             })
-        }, e.prototype._loadImage = function () {
-            var t = this, e = new r.UIImageLoader("battle");
-            e.add("battle_telop/txt_start.png", "battle_telop_txt_start"), e.add("battle_telop/mes_bg_f.png", "battle_telop_mes_bg_f"), e.add("battle_telop/mes_bg_e.png", "battle_telop_mes_bg_e"), e.add("battle_telop/mes2_f_hbg.png", "battle_telop_mes2_f_hbg"), e.add("battle_telop/mes2_e_hbg.png", "battle_telop_mes2_e_hbg"), e.add("battle_telop/mes2_f_ybg.png", "battle_telop_mes2_f_ybg"), e.add("battle_telop/mes2_e_ybg.png", "battle_telop_mes2_e_ybg"), e.add("battle_telop/mes_f_hbg.png", "battle_telop_mes_f_hbg"), e.add("battle_telop/mes_f_ybg.png", "battle_telop_mes_f_ybg"), e.add("battle_telop/mes_e_hbg.png", "battle_telop_mes_e_hbg"), e.add("battle_telop/mes_e_ybg.png", "battle_telop_mes_e_ybg"), e.add("battle_telop/mes_f_hbg3.png", "battle_telop_kkcutin_f"), e.add("battle_telop/mes_e_hbg3.png", "battle_telop_kkcutin_e"), e.load(function () {
-                t._loadSpriteSheet()
+        }, e.prototype._main = function () {
+            var t = this;
+            new s.TaskMain(this).start(function () {
+                t._end()
             })
-        }, e.prototype._loadSpriteSheet = function () {
-            var t = this, e = new r.UIImageLoader("battle");
-            e.add("battle_main.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_main2.json"), e.add("battle_airunit.json"), e.load(function () {
-                t._endTask()
-            })
+        }, e.prototype._end = function () {
+            var t = this.data.model.deck_f.ships, e = this.data.model.deck_e.ships;
+            this.data.model.ship_info.add(t, e);
+            var i = (new Date).getTime();
+            this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
         }, e
-    }(o.TaskBase);
-    e.TaskLoadResourcesBattle = s
+    }(o.BattleSceneBase);
+    e.BattleScene = l
 }

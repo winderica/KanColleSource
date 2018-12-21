@@ -15,27 +15,45 @@ const function1180 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClickYes = function () {
-                null != i._cb_onClick && i._cb_onClick(!0)
-            }, i._onClickNo = function () {
-                null != i._cb_onClick && i._cb_onClick(!1)
-            }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.texture = o.DUTY_COMMON.getTexture(1);
-            var e = new PIXI.Sprite(t), i = Math.min(135 / e.width, 135 / e.height);
-            e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = o.DUTY_COMMON.getTexture(3), this._btn_no.texture = o.DUTY_COMMON.getTexture(2)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.DUTY_COMMON.getTexture(42), this._star1.texture = o.DUTY_COMMON.getTexture(45), this._star2.texture = o.DUTY_COMMON.getTexture(44)
         }, e.prototype.activate = function () {
-            1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(r.EventType.CLICK, this._onClickNo))
+            null == this._t && this._wait()
         }, e.prototype.deactivate = function () {
-            this._btn_yes.buttonMode = !1, this._btn_yes.off(r.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(r.EventType.CLICK, this._onClickNo)
+            this._stopTween()
         }, e.prototype.dispose = function () {
-            this.deactivate(), this._cb_onClick = null
+            this.deactivate()
+        }, e.prototype._wait = function () {
+            var t = this;
+            this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
+                t._wink()
+            })
+        }, e.prototype._wink = function () {
+            0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(43), this._t = createjs.Tween.get(null).wait(150).call(function () {
+                t.texture = o.DUTY_COMMON.getTexture(42)
+            }).wait(150).call(function () {
+                t.texture = o.DUTY_COMMON.getTexture(43)
+            }).wait(150).call(function () {
+                t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(42)
+            }).wait(100).call(function () {
+                t._star2.visible = !0
+            }).wait(600).call(function () {
+                t._star1.visible = !1
+            }).wait(30).call(function () {
+                t._star2.visible = !1, t._wait()
+            })
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(42), this._star1.visible = !1, this._star2.visible = !1)
         }, e
     }(PIXI.Sprite);
-    e.RewardSelectConfirm = s
+    e.MiniChara = r
 }

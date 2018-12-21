@@ -15,33 +15,125 @@ const function624 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(9), s = i(48), a = function (t) {
-        function e(e, i) {
-            return t.call(this, e, i) || this
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "model", {
-            get: function () {
-                return this._model
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._createContent = function () {
-            var t = r.COMMON_MISC.getTexture(50);
-            this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135;
-            var e = new PIXI.Sprite;
-            switch (this.model.deck_id) {
-                case 2:
-                    e.texture = r.COMMON_MISC.getTexture(77);
-                    break;
-                case 3:
-                    e.texture = r.COMMON_MISC.getTexture(80);
-                    break;
-                case 4:
-                    e.texture = r.COMMON_MISC.getTexture(83)
+    var o = i(0), r = i(2), s = i(25), a = i(67), _ = i(23), l = i(66), u = i(9), c = i(625), h = i(626),
+        p = i(627), d = i(203), f = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._layer = e, r._items = i, r._direction = n, r._effType = o, r
             }
-            e.position.set(117, 40), this._img.addChild(e), this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = this.model.deck_name + "\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u89e3\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
-        }, e.prototype._removeContent = function () {
-            this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text2.destroy(), this._text1 = null, this._text2 = null
-        }, e
-    }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogDeck = a
+
+            return n(e, t), e.prototype._start = function () {
+                switch (this._effType) {
+                    case 0:
+                        this._effctSlotitem();
+                        break;
+                    case 1:
+                        this._effctUseitem();
+                        break;
+                    case 2:
+                        this._effctTojoin()
+                }
+            }, e.prototype._effctSlotitem = function () {
+                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
+                    var o = n[i];
+                    e.add(o)
+                }
+                e.initialize(function () {
+                    var i = 1 == t._direction, n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
+                        o = 600 + e.width / 4 * (i ? -1 : 1), r = n + .5 * (o - n);
+                    e.x = n, e.y = 720, t._layer.addChild(e);
+                    var s = new c.MeltIntoSlotitemFilter(o, e.width, t._direction);
+                    e.filters = [s];
+                    for (var a = new PIXI.Point(n, 720), h = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, h, p, 1e3, d), y = createjs.Tween.get(e), m = 0, v = f; m < v.length; m++) {
+                        var g = v[m];
+                        y.to({ x: g.x, y: g.y }, g.t)
+                    }
+                    var b = { rate: 1, grad: .4 };
+                    createjs.Tween.get(b, {
+                        onChange: function () {
+                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
+                        }
+                    }).wait(600).to({ rate: -.4 }, 400).wait(500).call(function () {
+                        t._layer.removeChild(e), t._endTask()
+                    });
+                    var w = new PIXI.Sprite(u.COMMON_MISC.getTexture(116));
+                    w.anchor.set(.5), w.alpha = 0;
+                    var x = new _.Container;
+                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({ alpha: .9 }, 200).wait(150).to({ alpha: 0 }, 450).call(function () {
+                        var t = x.parent;
+                        null != t && t.removeChild(x)
+                    })
+                })
+            }, e.prototype._effctUseitem = function () {
+                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
+                    var o = n[i];
+                    e.add(o)
+                }
+                e.initialize(function () {
+                    var i = 1 == t._direction, n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
+                        o = 600 + e.width / 4 * (i ? -1 : 1), r = n + .5 * (o - n);
+                    e.x = n, e.y = 720, t._layer.addChild(e);
+                    var s = new h.MeltIntoUseitemFilter(o, 240, e.width, e.height, t._direction);
+                    e.filters = [s];
+                    for (var a = new PIXI.Point(n, 720), c = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, c, p, 1e3, d), y = createjs.Tween.get(e), m = 0, v = f; m < v.length; m++) {
+                        var g = v[m];
+                        y.to({ x: g.x, y: g.y }, g.t)
+                    }
+                    var b = { rate: 1, grad: .4 };
+                    createjs.Tween.get(b, {
+                        onChange: function () {
+                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
+                        }
+                    }).wait(600).to({ rate: -.4 }, 400).wait(500).call(function () {
+                        t._layer.removeChild(e), t._endTask()
+                    });
+                    var w = new PIXI.Sprite(u.COMMON_MISC.getTexture(116));
+                    w.anchor.set(.5), w.alpha = 0;
+                    var x = new _.Container;
+                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({ alpha: .9 }, 200).wait(150).to({ alpha: 0 }, 450).call(function () {
+                        var t = x.parent;
+                        null != t && t.removeChild(x)
+                    })
+                })
+            }, e.prototype._effctTojoin = function () {
+                var t = this, e = this._items[0].id, i = this._items[0].type;
+                this._getTextureForTojoinEffct(e, i, function (e) {
+                    var i = new d.CenteringSprite(e);
+                    i.x = 600 + 195 * (1 == t._direction ? -1 : 1), i.y = 240, i.scale.set(1.1), i.alpha = 0, t._layer.addChild(i), createjs.Tween.get(i).to({
+                        scaleX: 1,
+                        scaleY: 1,
+                        alpha: 1
+                    }, 300).wait(250).to({ x: 600, alpha: 0 }, 600, createjs.Ease.sineIn).wait(500).call(function () {
+                        t._layer.removeChild(i), t._endTask()
+                    })
+                })
+            }, e.prototype._getTextureForTojoinEffct = function (t, e, i) {
+                if (6 == e) {
+                    var n = new a.UseitemLoader;
+                    n.add(t, 1), n.load(function () {
+                        if (i) {
+                            var e = o.default.resources.getUseitem(t, 1);
+                            return i(e)
+                        }
+                    })
+                } else if (2 == e) {
+                    var n = new s.SlotLoader;
+                    n.add(t, "card"), n.load(function () {
+                        if (i) {
+                            var e = o.default.resources.getSlotitem(t, "card");
+                            return i(e)
+                        }
+                    })
+                }
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._items = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.MeltIntoTask = f
 }

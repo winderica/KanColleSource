@@ -15,97 +15,84 @@ const function1250 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(27), a = i(39), _ = i(15), l = i(1251), u = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._playVoiceFrom = function () {
-                o._scene.view.message_box.text = "\u8266\u968a\u306b\u6d0b\u4e0a\u88dc\u7d66\u3092\u884c\u3044\u307e\u3059\u3002";
-                var t = new s.ParallelTask;
-                t.add(new a.WaitTask(1e3)), t.add(new c(o._ship_from.mst_id, 26)), t.start(function () {
-                    o._showShipTo()
-                })
-            }, o._playVoiceTo = function () {
-                var t = new s.ParallelTask;
-                t.add(new a.WaitTask(2e3)), t.add(new c(o._ship_to.mst_id, 27)), t.start(function () {
-                    o._hideShips()
-                })
-            }, o._scene = e, o._model = i, o._data = n, o
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipResource()
-        }, e.prototype._loadShipResource = function () {
-            var t = this;
-            this._ship_from = this._getShip(this._data.ship_mem_id), this._ship_to = this._getShip(this._data.ship_mem_id_supplied);
-            var e = new _.ShipLoader;
-            e.add(this._ship_from.mst_id, this._ship_from.isDamaged(), "full"), null != this._ship_to && e.add(this._ship_to.mst_id, this._ship_to.isDamaged(), "full"), e.load(function () {
-                t._anim()
-            })
-        }, e.prototype._anim = function () {
-            var t = this, e = this._ship_from.mst_id, i = this._ship_from.isDamaged(),
-                n = o.default.resources.getShip(e, i, "full");
-            this._ship_from_sprite = new PIXI.Sprite(n);
-            var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-            this._ship_from_x = -80 + r.x, this._ship_from_sprite.x = this._ship_from_x - 300, this._ship_from_sprite.y = -93 + r.y, this._ship_from_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_from_sprite), createjs.Tween.get(this._ship_from_sprite).to({
-                x: this._ship_from_x,
-                alpha: 1
-            }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                t._playVoiceFrom()
-            })
-        }, e.prototype._showShipTo = function () {
-            var t = this;
-            if (null == this._ship_to) createjs.Tween.get(null).wait(1e3).call(function () {
-                t._hideShips()
-            }); else {
-                var e = this._ship_to.mst_id, i = this._ship_to.isDamaged(),
-                    n = o.default.resources.getShip(e, i, "full");
-                this._ship_to_sprite = new PIXI.Sprite(n);
-                var r = o.default.model.ship_graph.get(e).getMapOffset(i);
-                this._ship_to_x = 520 + r.x, this._ship_to_sprite.x = this._ship_to_x + 300, this._ship_to_sprite.y = -93 + r.y, this._ship_to_sprite.alpha = 0, this._scene.view.chara_layer.addChild(this._ship_to_sprite), createjs.Tween.get(this._ship_to_sprite).to({
-                    x: this._ship_to_x,
-                    alpha: 1
-                }, 750, createjs.Ease.quadInOut), createjs.Tween.get(null).wait(450).call(function () {
-                    t._playVoiceTo()
-                })
-            }
-        }, e.prototype._hideShips = function () {
-            var t = this;
-            createjs.Tween.get(this._ship_from_sprite).to({
-                x: this._ship_from_x - 300,
-                alpha: 0
-            }, 300, createjs.Ease.sineIn).call(function () {
-                t._shipIconEffect()
-            }), null != this._ship_to && createjs.Tween.get(this._ship_to_sprite).to({
-                x: this._ship_to_x + 300,
-                alpha: 0
-            }, 300, createjs.Ease.sineIn)
-        }, e.prototype._shipIconEffect = function () {
-            var t = this, e = this._data.num_of_use, i = this._model.sortie.now_cell_no,
-                n = this._scene.resInfo.getReplenishConfirmOffsets(i), o = null != n ? n.bln : null;
-            new l.TaskReplenishmentBalloonEffect(this._scene, e, o).start(function () {
-                t._scene.view.message_box.text = "", createjs.Tween.get(null).wait(500).call(function () {
-                    t._endTask()
-                })
-            })
-        }, e.prototype._getShip = function (t) {
-            for (var e = this._model.deck_f.ships, i = 0, n = e; i < n.length; i++) {
-                var o = n[i];
-                if (null != o && o.mem_id == t) return o
-            }
-            return null
-        }, e
-    }(r.TaskBase);
-    e.TaskReplenishmentEffect = u;
-    var c = function (t) {
+    var o = i(2), r = i(6), s = i(20), a = i(1), _ = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._onVoiceEnd = function () {
-                n._endTask()
-            }, n._mst_id = e, n._voice_id = i, n
+            return n._onSelect = function (t) {
+                n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
+            }, n._scene = e, n._model = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            o.default.option.vol_voice <= 0 ? this._endTask() : o.default.sound.voice.play(this._mst_id.toString(), this._voice_id, this._onVoiceEnd)
+            1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
+        }, e.prototype._showConfirmDialog = function () {
+            var t = this, e = this._model.sortie.now_cell_no, i = this._scene.resInfo.getRationConfirmOffset(e),
+                n = this._scene.view.map.ship_icon;
+            this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
+                y: n.y,
+                alpha: 1
+            }, 300).call(function () {
+                t._confirm.activate()
+            })
+        }, e.prototype._hideConfirmDialog = function () {
+            var t = this;
+            this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({ alpha: 0 }, 200), createjs.Tween.get(this._confirm.btn_no).to({ alpha: 0 }, 200);
+            var e = this._confirm.y;
+            createjs.Tween.get(this._confirm).wait(200).to({ y: e, alpha: 0 }, 300).call(function () {
+                t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
+            })
         }, e
-    }(r.TaskBase)
+    }(o.TaskBase);
+    e.TaskConfirmRation = _;
+    var l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onClickYes = function () {
+                null != n._cb_onSelect && n._cb_onSelect(!0)
+            }, n._onClickNo = function () {
+                null != n._cb_onSelect && n._cb_onSelect(!1)
+            }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e && (n._box.x += e[0].x, n._box.y += e[0].y, n._beak.x += e[0].x, n._beak.y += e[0].y, n._btn_yes.x += e[1].x, n._btn_yes.y += e[1].y, n._btn_no.x += e[1].x, n._btn_no.y += e[1].y), n
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+            get: function () {
+                return this._btn_yes
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_no", {
+            get: function () {
+                return this._btn_no
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._box.texture = s.MAP_COMMON.getTexture(74), this._beak.texture = s.MAP_COMMON.getTexture(75);
+            var t = s.MAP_COMMON.getTexture(96), e = s.MAP_COMMON.getTexture(97);
+            this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(82), e = s.MAP_COMMON.getTexture(83), this._btn_no.initialize(t, e)
+        }, e.prototype.activate = function () {
+            this._btn_yes.activate(), this._btn_no.activate()
+        }, e.prototype.deactivate = function () {
+            this._btn_yes.deactivate(), this._btn_no.deactivate()
+        }, e.prototype.dispose = function () {
+            this._btn_yes.dispose(), this._btn_no.dispose()
+        }, e
+    }(PIXI.Container), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                r.SE.play("225"), i._over.alpha = 1
+            }, i._onMouseOut = function () {
+                i._over.alpha = 0
+            }, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+        }
+
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e
+    }(PIXI.Container)
 }

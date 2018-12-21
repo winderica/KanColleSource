@@ -15,40 +15,89 @@ const function90 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(28), r = i(39), s = i(246), a = i(247), _ = i(63), l = i(1331), u = i(179), c = function (t) {
+    var o = i(7), r = i(10), s = i(200), a = i(143), _ = i(124), l = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._url = "api_req_member/itemuse", o._result = new c, o._mst_id = e, o._force = i, o._exchange_type = n, o
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "result", {
+            get: function () {
+                return this._result
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_useitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, this._exchange_type > 0 && (this._post_data.api_exchange_type = this._exchange_type), t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+        }, e
+    }(r.APIBase);
+    e.UseItemUseAPI = l;
+    var u = function () {
+        function t() {
+            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._rewards = null
+        }
+
+        return Object.defineProperty(t.prototype, "rewards", {
+            get: function () {
+                return this._rewards
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "cautionFlg", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_caution_flag")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.hasCaution = function () {
+            return this.cautionFlg >= 1
+        }, t.prototype.hasMaterialReward = function () {
+            return this._has_material_reward
+        }, t.prototype.hasSlotitemReward = function () {
+            return this._has_slotitem_reward
+        }, t.prototype.hasCoinReward = function () {
+            return this._has_coin_reward
+        }, t.prototype.hasUseitemReward = function () {
+            return this._has_useitem_reward
+        }, t.prototype.getSlotitemObjects = function () {
+            var t = [];
+            if (null != this._o && this._o.hasOwnProperty("api_getitem")) {
+                var e = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+                if (null != e) for (var i = 0, n = e; i < n.length; i++) {
+                    var r = n[i], s = o.ObjUtil.getObject(r, "api_slotitem");
+                    t.push(s)
+                }
+            }
+            return t
+        }, t
+    }();
+    e.UseItemUseResult = u;
+    var c = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._data = this._record.raw.air_unit_jet, null == this._data ? this._endTask() : this._preload()
-        }, e.prototype._preload = function () {
-            var t = this, e = this._data.getTaikuShipIndex(), i = this._scene.data.model.deck_f.ships[e];
-            if (null != i) {
-                var n = i.mst_id, o = i.isDamaged(), r = this._data.getTaikuSlotMstIDs();
-                this._aaCutin = new a.CutinAntiAircraft(n, o, r), this._aaCutin.preload(function () {
-                    t._enterEnemy()
-                })
-            } else this._enterEnemy()
-        }, e.prototype._enterEnemy = function () {
-            var t = this, e = new o.SerialTask;
-            e.add(new _.PhaseEnemyEnter(this._scene, this._record)), e.add(new r.WaitTask(600)), e.start(function () {
-                t._showTouchPlane()
-            })
-        }, e.prototype._showTouchPlane = function () {
-            var t = this, e = this._data, i = e.getTouchPlaneFriend(), n = e.getTouchPlaneEnemy();
-            new u.TaskShowTouchPlane(this._scene, i, n).start(function () {
-                t._animation(e)
-            })
-        }, e.prototype._animation = function (t) {
-            var e = this, i = this._scene.data.model.deck_f.ships, n = this._scene.data.model.deck_e.ships;
-            new l.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
-                e._afterAnimetion()
-            })
-        }, e.prototype._afterAnimetion = function () {
-            var t = this._scene.view.raderLayer;
-            t.rader_e.touch_plane.hide(), t.rader_f.touch_plane.hide(), this._endTask()
+        return n(e, t), e.prototype.setData = function (t) {
+            this._o = t, this._rewards = [], this._initMaterialReward(), this._initRewardItem()
+        }, e.prototype._initRewardItem = function () {
+            var t = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+            if (null != t) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e], r = o.ObjUtil.getNumber(n, "api_usemst"), l = o.ObjUtil.getNumber(n, "api_mst_id"),
+                    u = o.ObjUtil.getNumber(n, "api_getcount");
+                if (0 != u) if (2 == r) {
+                    this._has_slotitem_reward = !0;
+                    for (var c = 0; c < u; c++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
+                } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, u)); else if (6 == r) if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, u)); else {
+                    this._has_useitem_reward = !0;
+                    for (var c = 0; c < u; c++) this._rewards.push(new _.RewardModelUseitem(l, 1))
+                }
+            }
+        }, e.prototype._initMaterialReward = function () {
+            var t = o.ObjUtil.getNumArray(this._o, "api_material");
+            if (null != t) for (var e = [31, 32, 33, 34, 2, 1, 3, 4], i = null, n = 0; n < t.length; n++) {
+                var r = t[n];
+                if (!(r <= 0)) {
+                    null == i && (this._has_material_reward = !0, i = new s.RewardModelMultiUseitem, this.rewards.push(i));
+                    var a = e[n];
+                    i.add(a, r)
+                }
+            }
         }, e
-    }(s.PhaseAirBase);
-    e.PhaseAirUnitJet = c
+    }(u)
 }

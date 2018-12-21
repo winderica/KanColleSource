@@ -15,45 +15,19 @@ const function1168 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(2), r = i(13), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.DUTY_COMMON.getTexture(49), this._star1.texture = o.DUTY_COMMON.getTexture(52), this._star2.texture = o.DUTY_COMMON.getTexture(51)
-        }, e.prototype.activate = function () {
-            null == this._t && this._wait()
-        }, e.prototype.deactivate = function () {
-            this._stopTween()
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._wait = function () {
-            var t = this;
-            this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
-                t._wink()
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("interior");
+            e.add("interior_parts.json"), e.load(function () {
+                t._endTask()
             })
-        }, e.prototype._wink = function () {
-            0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
-        }, e.prototype._anim = function () {
-            var t = this;
-            this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(50), this._t = createjs.Tween.get(null).wait(150).call(function () {
-                t.texture = o.DUTY_COMMON.getTexture(49)
-            }).wait(150).call(function () {
-                t.texture = o.DUTY_COMMON.getTexture(50)
-            }).wait(150).call(function () {
-                t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(49)
-            }).wait(100).call(function () {
-                t._star2.visible = !0
-            }).wait(600).call(function () {
-                t._star1.visible = !1
-            }).wait(30).call(function () {
-                t._star2.visible = !1, t._wait()
-            })
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(49), this._star1.visible = !1, this._star2.visible = !1)
         }, e
-    }(PIXI.Sprite);
-    e.MiniChara = r
+    }(o.TaskBase);
+    e.TaskLoadResources = s
 }

@@ -15,45 +15,33 @@ const function1008 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1009), s = i(223), a = i(165), _ = i(1010), l = i(1015), u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._changeToInfo = function () {
-                e._showInfo()
-            }, e._changeToDeck = function () {
-                e._showDeck()
-            }, e._onStartPractice = function () {
-                for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, l = new s.DeckModelReplica(i, !0, n, _), u = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
-                    var p = c[h];
-                    if (null == p) u.push(null); else {
-                        var d = p.id, f = p.level, y = new a.ShipModelReplica(1, !0, h, d, -h, f);
-                        u.push(y)
-                    }
-                }
-                var m = e._selected_rival.id, v = e._selected_rival.medal_num, g = e._selected_rival.name,
-                    b = e._selected_rival.deck_name, w = new s.DeckModelReplica(m, !0, v, g, 0, b, u),
-                    x = new r.PracticeSceneModel(l, w);
-                o.default.scene.change(32, x), e.emit("close")
-            }, e._onClose = function () {
-                e.emit("close")
-            }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new l.PanelDeckSelect(e._onClose), e
+    var o = i(6), r = i(54), s = i(1), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
+                i._updateState(!0)
+            }, i._onMouseOut = function () {
+                i._updateState(!1)
+            }, i._onClick = function () {
+                null != i._cb && 1 == i._btn.interactive && (o.SE.play("231"), i.deactivate(), i._updateState(!0), i._cb(i._type))
+            }, i._cb = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
-        }, e.prototype.update = function (t) {
-            this._selected_rival = t, this._info.update(t), this._showInfo()
+        return n(e, t), e.prototype.setSelected = function (t) {
+            this._selected = t, 1 == this._selected && 1 == this._activated && this.deactivate(), this._updateState(t)
+        }, e.prototype.initialize = function (t) {
+            this._type = t;
+            var e, i;
+            0 == t ? (e = 3, i = 4) : 1 == t ? (e = 5, i = 6) : (e = 7, i = 8), this._btn = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(e)), this._btn_on = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(i)), this._btn_on.position.set(-6, -7), this.addChild(this._btn), this.addChild(this._btn_on), this._updateState(!1)
         }, e.prototype.activate = function () {
-            1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
+            0 == this._activated && 0 == this._selected && (this._btn.interactive = this._btn.buttonMode = !0, this._btn.on(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.on(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.on(s.EventType.CLICK, this._onClick))
         }, e.prototype.deactivate = function () {
-            this._info.deactivate(), this._deck.deactivate()
+            this._btn.interactive = this._btn.buttonMode = !1, this._btn.off(s.EventType.MOUSEOVER, this._onMouseOver), this._btn.off(s.EventType.MOUSEOUT, this._onMouseOut), this._btn.off(s.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            this._info.dispose(), this._deck.dispose()
-        }, e.prototype._showInfo = function () {
-            1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
-        }, e.prototype._showDeck = function () {
-            1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
+            this.deactivate()
+        }, e.prototype._updateState = function (t) {
+            1 == t ? (this._btn.alpha = 0, this._btn_on.visible = !0) : (this._btn.alpha = 1, this._btn_on.visible = !1)
         }, e
     }(PIXI.Container);
-    e.ContainerOverlay = u
+    e.BtnMatchingSelect = a
 }

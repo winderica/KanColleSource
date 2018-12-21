@@ -15,31 +15,31 @@ const function1166 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(209), r = function (t) {
+    var o = i(47), r = i(1167), s = i(1169), a = i(1171), _ = i(1174), l = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._dic = {}, e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.showAlert = function (t) {
-            var e, i = t.model.alert, n = 384, r = 0;
-            if (1 == i) e = 5, n = 444, r = -7; else if (2 == i) e = 6; else if (3 == i) e = 7; else if (4 == i) e = 8; else {
-                if (5 != i) return;
-                e = 9
-            }
-            var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
-            s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
-        }, e.prototype.hideAlert = function (t) {
-            if (void 0 === t && (t = null), null == t) for (var e in this._dic) this._hideAlert(e); else {
-                var i = t.model.id;
-                this._hideAlert(i.toString())
-            }
-        }, e.prototype._hideAlert = function (t) {
-            if (1 == this._dic.hasOwnProperty(t)) {
-                var e = this._dic[t];
-                null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+            get: function () {
+                return this._viewTop
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.getPreInitializeTask = function (t) {
+            return new r.PreInitializeTask(this)
+        }, e.prototype.getInitializeTask = function (t) {
+            return new r.InitializeTask(this)
+        }, e.prototype.getFinalizeTask = function () {
+            return new _.FinalizeTask(this)
+        }, e.prototype.initialize = function () {
+            this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+        }, e.prototype.startTopTask = function () {
+            var t = this;
+            this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                t._topTask = null
+            })
+        }, e.prototype.dispose = function () {
+            null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.AlertLayer = r
+    }(o.SceneBase);
+    e.InteriorScene = l
 }

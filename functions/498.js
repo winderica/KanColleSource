@@ -15,51 +15,55 @@ const function498 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(499), r = i(7), s = function () {
+    var o = i(499), r = i(14), s = function () {
         function t() {
         }
 
-        return t.prototype.getData = function (t) {
-            var e = t.toString();
-            return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-        }, t.prototype.getOwnList = function (t) {
-            var e = [];
-            for (var i in this._map) {
-                var n = this._map[i];
-                n.type == t && 1 == n.has() && e.push(n)
+        return t.prototype.get = function (t) {
+            return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
+        }, t.prototype.getInArea = function (t, e) {
+            var i = [];
+            for (var n in this._map) {
+                var o = this._map[n];
+                o.areaID == t && (1 == e && -1 == o.state || i.push(o))
             }
-            return e
-        }, t.prototype.getOnSaleList = function (t) {
-            var e = [];
-            for (var i in this._map) {
-                var n = this._map[i];
-                n.type == t && 1 == n.isOnSale() && e.push(n)
-            }
-            return e.sort(function (t, e) {
-                return t.no > e.no ? 1 : t.no < e.no ? -1 : 0
-            }), e
-        }, t.prototype.isActive = function (t) {
-            var e = this.getData(t);
-            return null != e && e.isActive()
-        }, t
+            return i.sort(function (t, e) {
+                return t.mstID - e.mstID
+            }), i
+        }, t.prototype.getserialID = function () {
+            return this._serial_id
+        }, Object.defineProperty(t.prototype, "serial_id", {
+            set: function (t) {
+                this._serial_id = t
+            }, enumerable: !0, configurable: !0
+        }), t
     }();
-    e.FurnitureModelHolder = s;
+    e.ExpeditionModelHolder = s;
     var a = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
 
         return n(e, t), e.prototype.setMstData = function (t) {
             if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.FurnitureModelEdit(i), r = n.mstID;
-                this._map[r] = n
+                var i = t[e], n = new o.ExpeditionModelEdit(i), r = n.mstID;
+                if (r > 0) {
+                    var s = r.toString();
+                    this._map[s] = n
+                }
             }
-        }, e.prototype.setMemData = function (t) {
-            if (null != this._map) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.ObjUtil.getNumber(n, "api_id"), s = this.getData(o);
-                null != s && s.updateHasFlag(!0)
+        }, e.prototype.setData = function (t) {
+            if (null != this._map && null != t) for (var e = 0, i = t; e < i.length; e++) {
+                var n = i[e], o = r.ObjUtil.getNumber(n, "api_mission_id");
+                if (o > 0) {
+                    var s = this.get(o);
+                    if (null != s) {
+                        var a = r.ObjUtil.getNumber(n, "api_state"), _ = a;
+                        s.__setState__(_)
+                    }
+                }
             }
         }, e
     }(s);
-    e.FurnitureModelHolderEdit = a
+    e.ExpeditionModelHolderEdit = a
 }

@@ -16,16 +16,14 @@ const function860 = function (t, e, i) {
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
     var o = i(2), r = i(13), s = function (t) {
-        function e() {
-            return t.call(this) || this
+        function e(e) {
+            var i = t.call(this) || this;
+            return i.repairScene = e, i.repairScene.dispose(), i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.UIImageLoader("arsenal");
-            e.add("arsenal_main.json"), e.add("arsenal_animation.json"), e.load(function () {
-                t._endTask()
-            })
+            r.UIImageLoader.clearMemoryCache("repair"), this._endTask()
         }, e
     }(o.TaskBase);
-    e.TaskLoadResourcesArsenal = s
+    e.DisposeTask = s
 }

@@ -15,29 +15,24 @@ const function636 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(59), s = i(80), a = i(205), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new r.RarityBG, e._ship = new PIXI.Sprite, e._particle = new a.BonusParticle, e._message_box = new s.MessageBox, e._message_box.y = 721, e.addChild(e._bg), e.addChild(e._ship), e.addChild(e._particle), e.addChild(e._message_box), e
+    var o = i(0), r = i(25), s = i(48), a = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
             get: function () {
-                return this._bg
+                return this._model
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "particle", {
-            get: function () {
-                return this._particle
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "message_box", {
-            get: function () {
-                return this._message_box
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n, r) {
-            this._ship.texture = o.default.resources.getShip(t, !1, "full"), this._message_box.initializeForShip(i, e, n), this._ship.x = r.x + 221, this._ship.y = r.y - 59
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._bg = null, this._ship = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null
+        }), e.prototype._createContent = function () {
+            var t = this, e = this.model.mst_id, i = new r.SlotLoader;
+            i.add(e, "card"), i.load(function () {
+                var i = o.default.resources.getSlotitem(e, "card");
+                t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
+            })
+        }, e.prototype._removeContent = function () {
+            this._dialog.container.removeChild(this._card), this._card = null
         }, e
-    }(PIXI.Container);
-    e.BonusShip = _
+    }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogSlotitem = a
 }

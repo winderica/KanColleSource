@@ -15,33 +15,45 @@ const function1295 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(61), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
+    var o = i(61), r = i(1296), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
+        return n(e, t), Object.defineProperty(e.prototype, "no", {
             get: function () {
-                return this._extraLayer
+                return this._no
             }, enumerable: !0, configurable: !0
-        }), e.prototype.addBGLayer = function (t, e) {
-            var i = new PIXI.Sprite(t);
-            if (null != e && e.length > 0) {
-                if (1 == this._bgDic.hasOwnProperty(e)) {
-                    var n = this._bgDic[e];
-                    null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
-                }
-                this._bgDic[e] = i
-            }
-            i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
-        }, e.prototype.getBGLayer = function (t) {
-            return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
-        }, e.prototype.addLabel = function (t, e, i) {
-            null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
-            var n = new r.CenteringSprite(t);
-            n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
+        }), Object.defineProperty(e.prototype, "route", {
+            get: function () {
+                return this._route
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "point", {
+            get: function () {
+                return this._point
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.isAddedSpot = function () {
+            return null != this._route
+        }, e.prototype.showLine = function () {
+            null != this._line && (this._line.visible = !0)
+        }, e.prototype.hideLine = function () {
+            null != this._line && (this._line.visible = !1)
+        }, e.prototype.setColor = function (t) {
+            this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
+        }, e.prototype.getColor = function () {
+            return this._point.color
+        }, e.prototype.setRoute = function (t, e, i, n) {
+            null != this._route && (this.removeChild(this._route), this._route = null);
+            var r = new o.CenteringSprite(t);
+            r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
+        }, e.prototype.setLine = function (t, e, i, n) {
+            null != this._line && (this.removeChild(this._line), this._line = null);
+            var o = new PIXI.Sprite(t);
+            o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
+        }, e.prototype.dispose = function () {
+            this._point.dispose()
         }, e
     }(PIXI.Container);
-    e.MapBackGround = s
+    e.CompSpot = s
 }

@@ -15,19 +15,75 @@ const function681 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(210), r = i(21), s = function (t) {
+    var o = i(0), r = i(682), s = i(111), a = i(688), _ = i(314), l = function (t) {
         function e() {
-            var e = r.COMMON_MAIN.getTexture(15);
-            return t.call(this, e) || this
+            var e = t.call(this) || this;
+            e.SLOT_MAX = 6, e.shipSlots = [];
+            for (var i = 0; i < e.SLOT_MAX; i++) {
+                var n = new a.ShipSlot(i), o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
+                    r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
+                n.position.set(o, r), e.shipSlots.push(n)
+            }
+            return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.cacheAsBitmap = !1, t.prototype.dispose.call(this)
-        }, e.prototype.update = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-            this.cacheAsBitmap = !1, this._sokuryoku.update(o), this._textHp.text = t.toString(), this._textSoukou.text = e.toString(), this._textKaihi.text = i.toString(), this._textTousai.text = n.toString(), this._shatei.update(r), this._textKaryoku.text = s.toString(), this._textRaisou.text = a.toString(), this._textTaiku.text = _.toString(), this._textTaisen.text = l.toString(), this._textSakuteki.text = u.toString(), this._textLucky.text = c.toString(), this.cacheAsBitmap = !0, this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
-        }, e.prototype._alignment = function () {
-            this._textHp.position.set(137, 3), this._textSoukou.position.set(137, 38), this._textKaihi.position.set(137, 72), this._textTousai.position.set(137, 107), this._sokuryoku.position.set(116, 143), this._shatei.position.set(116, 177), this._textKaryoku.position.set(285, 3), this._textRaisou.position.set(285, 38), this._textTaiku.position.set(285, 72), this._textTaisen.position.set(285, 107), this._textSakuteki.position.set(285, 141), this._textLucky.position.set(285, 176)
+        return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
+            get: function () {
+                return this.shipSlots
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ArrowTopButton", {
+            get: function () {
+                return this.arrowTopButton
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
+            get: function () {
+                return this.arrowBottomButton
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren();
+            for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
+            this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
+        }, e.prototype.init = function (t, e, i) {
+            this.shipSlots.forEach(function (n) {
+                n.activate(t, e, i)
+            })
+        }, e.prototype.initArrow = function (t) {
+            this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
+                t && t(-2)
+            }), this.arrowBottomButton.initialize(function () {
+                t && t(2)
+            })
+        }, e.prototype.show = function () {
+            this.visible = !0
+        }, e.prototype.hide = function () {
+            this.visible = !1
+        }, e.prototype.update = function (t, e) {
+            for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
+                var _ = this.shipSlots[a], l = a + e, u = i.getShipModel(l);
+                if (_.visible = !1, u) _.visible = !0, _.update(l, u, n), _.open(); else if (l < s) {
+                    var c = r < s, h = l == r, p = 0 == n, d = p && c && h;
+                    _.visible = !0, _.updateEmpty(l, d), _.close()
+                }
+            }
+            this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
+        }, e.prototype.shutterAnimation = function (t, e, i) {
+            var n = this.shipSlots[t];
+            n.closeAnimation(function () {
+                e && e(), n.close();
+                createjs.Tween.get(null).wait(100).call(function () {
+                    n.openAnimation(function () {
+                        i && i()
+                    }, 200)
+                })
+            }, 200)
+        }, e.prototype.onShipDetail = function (t, e, i) {
+            var n = this;
+            this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
+                n.taskShipDetail.hide(function () {
+                    n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
+                })
+            }, this.taskShipDetail.start(t)
         }, e
-    }(o.ShipParameterViewBase);
-    e.ShipParameterView = s
+    }(PIXI.Container);
+    e.ShipSlotLayer = l
 }

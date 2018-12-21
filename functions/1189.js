@@ -15,15 +15,15 @@ const function1189 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._url = "api_req_quest/stop", i._duty_id = e, i
+    var o = i(0), r = i(10), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._url = "api_get_member/furniture", e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+        return n(e, t), e.prototype._completedEnd = function () {
+            o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(o.APIBase);
-    e.DutyCancelAPI = r
+    }(r.APIBase);
+    e.UserFurnitureAPI = s
 }

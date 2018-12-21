@@ -15,27 +15,33 @@ const function964 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(41), s = i(965), a = i(0), _ = i(13), l = function (t) {
+    var o = i(12), r = i(41), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._board = new a, e._board.position.set(732, 366), e._chara = new PIXI.Sprite, e._chara.position.set(14, 74), e.addChild(e._board), e.addChild(e._chara), e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "board", {
+            get: function () {
+                return this._board
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(22)
+        }, e
+    }(PIXI.Container);
+    e.IntroAlertDialog = s;
+    var a = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "selectView", {
-            get: function () {
-                return this._createSelectView(), this._selectView
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            var e = a.default.settings.path_root + "img/sally/event_maesetsu",
-                i = "?version=" + _.UIImageLoader.getVersion("sally");
-            this.texture = r.SALLY_EVENT.getTexture(5), 421 == t ? (this._content.position.set(-306, -222), this._content.texture = PIXI.Texture.fromImage(e + "/225_407b0.png" + i)) : 422 == t ? (this._content.position.set(-295, -226), this._content.texture = PIXI.Texture.fromImage(e + "/226_9f8ae.png" + i)) : 423 == t ? (this._content.position.set(-331, -226), this._content.texture = PIXI.Texture.fromImage(e + "/227_26a55.png" + i)) : 424 == t ? (this._content.position.set(-309, -225), this._content.texture = PIXI.Texture.fromImage(e + "/228_55a55.png" + i)) : 425 == t ? (this._content.position.set(-314, -224), this._content.texture = PIXI.Texture.fromImage(e + "/229_68011.png" + i)) : this._content.texture = PIXI.Texture.EMPTY
-        }, e.prototype.showSelectView = function () {
-            return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
-        }, e.prototype.dispose = function () {
-            null != this._selectView && this._selectView.dispose()
-        }, e.prototype._createSelectView = function () {
-            null == this._selectView && (this._selectView = new s.OperationSelectView)
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(29)
         }, e
-    }(o.Sprite);
-    e.MapIntroBoard = l
+    }(o.Sprite)
 }

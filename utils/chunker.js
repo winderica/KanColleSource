@@ -9,3 +9,6 @@ const chunker = arr => {
         }
     })
 };
+
+const functions = /}\((\[function.*)\).default/s.exec(fs.readFileSync('main.js'))[1];
+chunker(eval(functions)); // haven't find a better way to parse array of functions

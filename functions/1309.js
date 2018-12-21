@@ -15,40 +15,39 @@ const function1309 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(273), r = i(1310), s = i(1318), a = i(1408), _ = i(1421), l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
+    var o = i(2), r = i(15), s = i(440), a = i(1310), _ = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._onTaihi = function () {
+                r._view.deactivate();
+                var t = r._model.map_info.area_id, e = r._model.map_info.map_no, i = r._model.map_info.cell_no;
+                new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
+                    r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
+                })
+            }, r._onTaihiSezu = function () {
+                r._view.deactivate(), r._hideView()
+            }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "data", {
-            get: function () {
-                return this._data
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "view", {
-            get: function () {
-                return this._view
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (e) {
-            t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
-        }, e.prototype.dispose = function () {
-            this._view.dispose(), t.prototype.dispose.call(this)
-        }, e.prototype.start = function () {
-            var t = this;
-            new r.TaskInit(this).start(function () {
-                t._main()
+        return n(e, t), e.prototype._start = function () {
+            this._loadShipResources()
+        }, e.prototype._loadShipResources = function () {
+            var t = this, e = new r.ShipLoader;
+            e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
+                t._show()
             })
-        }, e.prototype._main = function () {
+        }, e.prototype._show = function () {
+            this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+            var t = this._target, e = this._towing;
+            this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({ alpha: 1 }, 300)
+        }, e.prototype._hideView = function () {
             var t = this;
-            new s.TaskMain(this).start(function () {
-                t._end()
+            createjs.Tween.get(this._view).to({ alpha: 0 }, 300).call(function () {
+                t._endTask()
             })
-        }, e.prototype._end = function () {
-            var t = this.data.model.deck_f.ships, e = this.data.model.deck_e.ships;
-            this.data.model.ship_info.add(t, e);
-            var i = (new Date).getTime();
-            this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
+        }, e.prototype._endTask = function () {
+            this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
         }, e
-    }(o.BattleSceneBase);
-    e.BattleScene = l
+    }(o.TaskBase);
+    e.EscapeGoeiTask = _
 }

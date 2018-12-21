@@ -15,25 +15,77 @@ const function403 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(10), s = function (t) {
-        function e(e, i) {
-            void 0 === i && (i = !1);
-            var n = t.call(this) || this;
-            return n._url = "api_req_furniture/buy", n._model = e, n._discount = i, n
+    var o = i(28), r = i(78), s = i(15), a = i(25), _ = i(67), l = i(13), u = i(2), c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._task = new o.SerialTask, e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_type = this._model.type, this._post_data.api_no = this._model.no, 1 == this._discount && (this._post_data.api_discount_flag = 1), t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            if (1 == this._discount || 1 == this._model.isNeedCraftsman()) {
-                var e = o.default.model.useItem.get(52);
-                e.__setCount__(e.count - 1)
-            }
-            var i = this._model.price;
-            1 == this._discount && (i = this._model.getDiscountPrice());
-            var n = o.default.model.useItem.get(44);
-            n.__setCount__(n.count - i), this._model.updateHasFlag(!0), t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype.addShip = function (t) {
+            this._task.add(new h(t))
+        }, e.prototype.addSlotitem = function (t) {
+            this._task.add(new p(t))
+        }, e.prototype.addUseitem = function (t) {
+            this._task.add(new d(t))
+        }, e.prototype.addFurniture = function (t) {
+            this._task.add(new f(t))
+        }, e.prototype._start = function () {
+            var t = this, e = new l.UIImageLoader("common");
+            e.add("common_selectable_reward.json"), e.load(function () {
+                t._task.start(function () {
+                    t._endTask()
+                })
+            })
         }, e
-    }(r.APIBase);
-    e.FurnitureExchangeAPI = s
+    }(u.TaskBase);
+    e.TaskLoadResources = c;
+    var h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new s.ShipLoader;
+            e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), p = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new a.SlotLoader;
+            e.add(this._mst_id, "card"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), d = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new _.UseitemLoader;
+            e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase), f = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mst_id = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = new r.FurnitureLoader;
+            e.add(this._mst_id, "reward"), e.load(function () {
+                t._endTask()
+            })
+        }, e
+    }(u.TaskBase)
 }

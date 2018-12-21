@@ -15,25 +15,35 @@ const function390 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(167), a = i(336), _ = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._layer = e, n._mst_id = i, n._marriageAnimation = new a.MarriageAnimation(i), n
+    var o = i(32), r = i(3), s = i(1), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._update(!0)
+            }, i._onMouseOut = function () {
+                i._update(!1)
+            }, i._onClick = function (t) {
+                null != i._cb_onClick && i._cb_onClick(t)
+            }, i._bg = new PIXI.Sprite, i._bg.position.set(-12, -12), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i._icon.scale.set(.5), i.addChild(i._icon), i._t = createjs.Tween.get(i._icon, { loop: !0 }).to({
+                scaleX: .8,
+                scaleY: .8
+            }, 1e3).to({
+                scaleX: .5,
+                scaleY: .5
+            }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i.interactive = !0, i
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this;
-            this._marriageAnimation.PreLoad(function () {
-                t._marriageAnimation.Initialize(), o.default.view.overLayer.addChild(t._marriageAnimation), t._marriageAnimation.Play(!0, function () {
-                    o.default.view.overLayer.removeChild(t._marriageAnimation), t._resetBGM()
-                })
-            })
-        }, e.prototype._resetBGM = function () {
-            var t = s.AlbumConst.BGM_ID_FOR_SHIP;
-            o.default.sound.bgm.play(t), this._endTask()
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._btn = null, this._marriageAnimation.Dispose(), this._marriageAnimation = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function () {
+            this._icon.texture = r.ALBUM_MAIN.getTexture(9), this._update(!1)
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._t = null, this._cb_onClick = null
+        }, e.prototype._update = function (t) {
+            0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(2), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(10), this._icon.visible = !1, this._t.setPaused(!0))
         }, e
-    }(r.TaskBase);
-    e.TaskWedding = _
+    }(PIXI.Container);
+    e.MovieBtn = a
 }

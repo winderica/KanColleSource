@@ -1,38 +1,47 @@
 const function690 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(49), r = i(8), s = i(314), a = i(691), _ = i(692), l = i(693), u = i(214), c = function () {
-        function t(t) {
-            this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new l.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
+    var o = i(3), r = function (t) {
+        function e() {
+            var e = t.call(this) || this, i = o.ORGANIZE_MAIN.getTexture(31), n = o.ORGANIZE_MAIN.getTexture(32);
+            e.frameShutterLeft = new PIXI.Sprite(i), e.frameShutterRight = new PIXI.Sprite(n);
+            var r = new PIXI.Graphics, s = new PIXI.Graphics;
+            return r.beginFill(0, 1), r.moveTo(0, 15), r.lineTo(15, 0), r.lineTo(247, 0), r.lineTo(247, 157), r.lineTo(13, 157), r.lineTo(0, 142), r.lineTo(0, 15), r.endFill(), s.beginFill(0, 1), s.moveTo(0, 0), s.lineTo(232, 0), s.lineTo(247, 16), s.lineTo(247, 141), s.lineTo(231, 157), s.lineTo(0, 157), s.lineTo(0, 0), s.endFill(), s.x = s.width, e.frameShutterLeft.mask = r, e.frameShutterRight.mask = s, e.frameShutterRight.position.set(e.frameShutterRight.width, 0), e.frameShutterLeft.position.set(0, 0), e.frameShutterRight.position.set(247, 0), e.frameShutterLeft.interactive = !0, e.frameShutterRight.interactive = !0, e.addChild(e.frameShutterLeft, e.frameShutterRight, r, s), e
         }
 
-        return t.prototype.dispose = function () {
-            this.combineTypeSelectDialog.dispose(), this.combineConfirmDialog.dispose(), this.combineConfirmAlertDialog.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineConfirmAlertDialog), this.mainView.removeChild(this.combineConfirmDialog), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineTypeSelectDialog.onClickBack = null, this.combineTypeSelectDialog.onClickKido = null, this.combineTypeSelectDialog.onClickSuijo = null, this.combineTypeSelectDialog.onClickYuso = null, this.combineConfirmDialog.onClickNO = null, this.combineConfirmDialog.onClickYES = null, this.combineConfirmAlertDialog.onClickYES = null, this.onCombined = null, this.onComplete = null, this.mainView = null, this.dialogBackground = null, this.combineTypeSelectDialog = null, this.combineConfirmDialog = null, this.combineConfirmAlertDialog = null
-        }, t.prototype.start = function () {
-            var t = this;
-            this.combineTypeSelectDialog.position.set(304, 232), this.combineTypeSelectDialog.update(!0, !0, !0), this.combineTypeSelectDialog.onClickBack = function () {
-                t.onComplete()
-            }, this.combineConfirmAlertDialog.position.set(216, 186), this.combineTypeSelectDialog.onClickKido = function () {
-                t._onClickType(1)
-            }, this.combineTypeSelectDialog.onClickSuijo = function () {
-                t._onClickType(2)
-            }, this.combineTypeSelectDialog.onClickYuso = function () {
-                t._onClickType(3)
-            }, this.mainView.addChild(this.dialogBackground, this.combineTypeSelectDialog)
-        }, t.prototype._onClickType = function (t) {
-            var e = this, i = n.default.model.deck.get(1), o = n.default.model.deck.get(2);
-            this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineConfirmDialog.position.set(171, 186);
-            var r = s.CombineUtil.checkCombinable(i, o, t), a = r[0], _ = r[1], l = r[2];
-            a ? (this.combineConfirmDialog.updateViewType(t), this.combineConfirmDialog.updateCombineDeck(i, o), this.combineConfirmDialog.onClickNO = function () {
-                e.onComplete()
-            }, this.combineConfirmDialog.onClickYES = function () {
-                n.default.view.clickGuard = !0, new u.CombinedAPI(t).start(function () {
-                    e.onCombined(), n.default.view.clickGuard = !1, e.onComplete()
-                })
-            }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, l), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
-                e.onComplete()
-            }, this.mainView.addChild(this.dialogBackground, this.combineConfirmAlertDialog))
-        }, t
-    }();
-    e.TaskCombineTypeSelect = c
+        return n(e, t), e.prototype.dispose = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.removeChildren(), this.frameShutterRight.removeChildren(), this.frameShutterLeft.mask = null, this.frameShutterRight.mask = null, this.frameShutterLeft = null, this.frameShutterRight = null, this.removeChildren()
+        }, e.prototype.openAnimation = function (t, e) {
+            var i = this;
+            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+            this.frameShutterLeft.position.x = 0, createjs.Tween.get(this.frameShutterLeft).to({ x: -247 }, e).call(function () {
+                i.cacheAsBitmap = !0, t()
+            }), this.frameShutterRight.position.x = 247, createjs.Tween.get(this.frameShutterRight).to({ x: 494 }, e)
+        }, e.prototype.closeAnimation = function (t, e) {
+            var i = this;
+            void 0 === e && (e = 250), this.cacheAsBitmap = !1;
+            this.frameShutterLeft.position.x = -247, createjs.Tween.get(this.frameShutterLeft).to({ x: 0 }, e).call(function () {
+                i.cacheAsBitmap = !0, t()
+            }), this.frameShutterRight.position.x = 494, createjs.Tween.get(this.frameShutterRight).to({ x: 247 }, e)
+        }, e.prototype.open = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.x = -247, this.frameShutterRight.x = 494, this.cacheAsBitmap = !0
+        }, e.prototype.close = function () {
+            this.cacheAsBitmap = !1, this.frameShutterLeft.x = 0, this.frameShutterRight.x = 247, this.cacheAsBitmap = !0
+        }, e
+    }(PIXI.Container);
+    e.ShipSlotShutter = r
 }

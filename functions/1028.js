@@ -15,81 +15,42 @@ const function1028 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(106), s = i(9), a = i(29), _ = i(38), l = i(227), u = i(228), c = i(358), h = i(362),
-        p = i(364), d = i(360), f = i(1029), y = i(361), m = i(1030), v = i(1031), g = i(1032), b = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onDeckChange = function (t) {
-                    i._update(t)
-                }, i._onGo = function () {
-                    null != i._cb_onGo && i._cb_onGo(i._selected_id, i._deck_id)
-                }, i._onClickTempSupply = function () {
-                    var t = o.default.model.deck.get(i._deck_id).getShipList();
-                    new d.TaskTemporarySupply(t, i._rader, function () {
-                        i._update(i._deck_id)
-                    }).start()
-                }, i._cb_onGo = e, i._banners = new c.PanelDeckSelectBanners, i._banners.position.set(30, 94), i._decks = new u.CompDeckBtns(i._onDeckChange), i._decks.position.set(30, 54), i._rader = new h.RaderCanvas, i._rader.position.set(487, 292), i._arrow = new l.CompArrow2, i._arrow.position.set(567, 537), i._alert = new y.AlertBalloon, i._alert.anchor.set(1, .5), i._alert.position.set(298, 565), i._btn = new m.BtnGo(i._onGo), i._btn.position.set(301, 538), i._drum_counts = [];
-                for (var n = 0; n < 6; n++) {
-                    var r = new v.CompDrumCount;
-                    r.position.set(33, 136 + 75 * n), i._drum_counts.push(r)
-                }
-                i._support_boats = [];
-                for (var n = 0; n < 6; n++) {
-                    var s = new g.CompSupportBoatCount;
-                    s.position.set(55, 145 + 75 * n), i._support_boats.push(s)
-                }
-                return i._flagship_flag = new PIXI.Sprite, i._flagship_flag.position.set(31, 87), i._temp_supply_btn = new p.TempSupplyBtn, i._temp_supply_btn.position.set(210, 528), i._checker = new f.ExpeditionCondition, i.interactive = !0, i
-            }
+    var o = i(0), r = i(4), s = i(29), a = i(38), _ = i(368), l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._activated = !1, i._target_id = -1, i._onClick = function () {
+                null != i._decision_cb && i._decision_cb(i._target_id)
+            }, i._decision_cb = e, i
+        }
 
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._selected_id = t;
-                var n = new PIXI.Sprite(a.SALLY_COMMON.getTexture(26));
-                n.position.set(-7, 36), this.addChild(n);
-                var l = new PIXI.Sprite(a.SALLY_COMMON.getTexture(50));
-                l.position.set(0, 0), this.addChild(l);
-                var u = new PIXI.Sprite(a.SALLY_COMMON.getTexture(15));
-                if (u.position.set(24, 10), this.addChild(u), this.addChild(this._banners), this._decks.initialize(e), this.addChild(this._decks), this._rader.initialize(), this.addChild(this._rader), this._arrow.initialize(), this.addChild(this._arrow), this._alert.initialize(), this.addChild(this._alert), o.default.model.deck.exist3rdUnit) {
-                    var c = new PIXI.Sprite(s.COMMON_MISC.getTexture(182));
-                    c.position.set(108, 33), this.addChild(c)
-                }
-                1 == i && (this._deck_combined_frame = new r.CombinedView, this._deck_combined_frame.position.set(22, 44), this.addChild(this._deck_combined_frame)), this._btn.initialize(), this.addChild(this._btn);
-                for (var h = 0, p = this._drum_counts; h < p.length; h++) {
-                    var d = p[h];
-                    d.initialize(), this.addChild(d)
-                }
-                for (var f = 0, y = this._support_boats; f < y.length; f++) {
-                    var m = y[f];
-                    m.initialize(), this.addChild(m)
-                }
-                this._flagship_flag.texture = _.SALLY_EXPEDITION.getTexture(36), this.addChild(this._flagship_flag), this._temp_supply_btn.initialize(this._onClickTempSupply), this.addChild(this._temp_supply_btn), this._update(e[0])
-            }, e.prototype.activate = function () {
-                this._decks.activate(), this._arrow.activate(), this._alert.activate(), null != this._deck_combined_frame && this._deck_combined_frame.activate(), this._btn.activate(), this._temp_supply_btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._decks.deactivate(), this._arrow.deactivate(), null != this._deck_combined_frame && this._deck_combined_frame.deactivate(), this._btn.deactivate(), this._temp_supply_btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this._banners.dispose(), this._decks.dispose(), this._rader.dispose(), this._arrow.dispose(), null != this._deck_combined_frame && this._deck_combined_frame.dispose(), this._btn.dispose(), this._temp_supply_btn.dispose(), this._checker = null
-            }, e.prototype._update = function (t) {
-                this._deck_id = t;
-                for (var e = o.default.model.deck.get(t), i = e.getShipListAll(), n = this._checker.check(this._selected_id, e), r = !0, s = 0; s < i.length; s++) {
-                    var a = i[s];
-                    null != a && 1 == r && (a.fuelNow < a.fuelMax || a.ammoNow < a.ammoMax) && (r = !1)
-                }
-                this._decks.setSelected(t), this._rader.update(i), this._arrow.enabled = n.result, this._arrow.update(r), this._arrow.activate(), this._alert.update(n.reason), this._btn.enabled = n.result;
-                for (var _ = e.getShipList(), s = 0; s < _.length; s++) {
-                    var a = _[s];
-                    this._drum_counts[s].update(a), this._support_boats[s].update(a)
-                }
-                if (this._flagship_flag.visible = null != _[0], 0 == o.default.model.basic.getExtraSupplyExpedition()) this._temp_supply_btn.visible = !1; else if (r) this._temp_supply_btn.visible = !1; else if (0 != n.reason && 2 != n.reason && 14 != n.reason) this._temp_supply_btn.visible = !1; else {
-                    for (var l = 0, u = 0, s = 0; s < _.length; s++) {
-                        var a = _[s];
-                        null != a && (l += a.getFuelForSupply(), u += a.getAmmoForSupply())
-                    }
-                    var c = o.default.model.useItem.getCount(31), h = o.default.model.useItem.getCount(32),
-                        p = l > 0 && l <= c, d = u > 0 && u <= h;
-                    this._temp_supply_btn.enabled = 0 != p || 0 != d, this._temp_supply_btn.visible = !0
-                }
-                this._banners.update(_)
-            }, e
-        }(PIXI.Container);
-    e.PanelDeckSelect = b
+        return n(e, t), e.prototype.initialize = function () {
+            var t = new PIXI.Graphics;
+            t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
+            var e = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(45));
+            e.position.set(28, 433), this.addChild(e);
+            var i = new PIXI.Sprite(s.SALLY_COMMON.getTexture(29));
+            i.position.set(187, 430), this.addChild(i), this._fuel = new r.TextBox(21, 4999235), this._fuel.anchor.set(1, 0), this._fuel.position.set(262, 432), this.addChild(this._fuel);
+            var n = new PIXI.Sprite(s.SALLY_COMMON.getTexture(30));
+            n.position.set(270, 430), this.addChild(n), this._ammo = new r.TextBox(21, 4999235), this._ammo.anchor.set(1, 0), this._ammo.position.set(346, 432), this.addChild(this._ammo);
+            var o = new PIXI.Sprite(s.SALLY_COMMON.getTexture(46));
+            o.position.set(28, 508), this.addChild(o), this._item1 = new PIXI.Sprite, this._item1.position.set(25, 546), this.addChild(this._item1), this._item1_count = new r.TextBox(22, 4999235), this._item1_count.position.set(100, 570), this.addChild(this._item1_count), this._item2 = new PIXI.Sprite, this._item2.position.set(189, 546), this.addChild(this._item2), this._item2_count = new r.TextBox(22, 4999235), this._item2_count.position.set(265, 570), this.addChild(this._item2_count), this._btn = new _.BtnDicision, this._btn.initialize(), this._btn.position.set(45, 637), this._btn.on("dicision", this._onClick), this._btn.visible = !1, this.addChild(this._btn)
+        }, e.prototype.update = function (t) {
+            if (null == t) this._target_id = -1, this._fuel.text = "", this._ammo.text = "", this._item1.visible = !1, this._item1_count.text = "", this._item2.visible = !1, this._item2_count.text = "", this._btn.visible = !1, this._deactivate(); else {
+                this._target_id = t.mstID, this._fuel.text = this._getMaterialText(t.fuel), this._ammo.text = this._getMaterialText(t.ammo);
+                var e = t.item1_id, i = t.item1_count;
+                e > 0 && i > 0 ? (this._item1.texture = o.default.resources.getUseitem(e, 0), this._item1.visible = !0, this._item1_count.text = i > 0 ? "\xd7" + i : "") : (this._item1.visible = !1, this._item1_count.text = "");
+                var n = t.item2_id, r = t.item2_count;
+                n > 0 && r > 0 ? (this._item2.texture = o.default.resources.getUseitem(n, 0), this._item2.visible = !0, this._item2_count.text = r > 0 ? "\xd7" + r : "") : (this._item2.visible = !1, this._item2_count.text = ""), this._btn.visible = !0, this._activate()
+            }
+        }, e.prototype.dispose = function () {
+            this._deactivate(), this.removeChildren(), this._decision_cb = null, this._fuel.destroy(), this._ammo.destroy(), this._item1_count.destroy(), this._item2_count.destroy(), this._btn.off("dicision", this._onClick)
+        }, e.prototype._activate = function () {
+            0 == this._activated && (this._btn.activate(), this._activated = !0)
+        }, e.prototype._deactivate = function () {
+            this._btn.deactivate(), this._activated = !1
+        }, e.prototype._getMaterialText = function (t) {
+            return t <= 0 ? "\u306a\u3057" : t <= .3 ? "\u5c11\u91cf" : "\u666e\u901a"
+        }, e
+    }(PIXI.Container);
+    e.PanelDetailNoExpe = l
 }

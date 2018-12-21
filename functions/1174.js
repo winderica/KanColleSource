@@ -18,14 +18,23 @@ const function1174 = function (t, e, i) {
     var o = i(11), r = i(13), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._scene_dispose_delegate = e, i
+            return i._view = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene_dispose_delegate = null, r.UIImageLoader.clearMemoryCache("duty"), t.prototype._endTask.call(this)
+            this._view = null, this._endTask()
         }, e
     }(o.TaskBase);
-    e.TaskDutySceneFinalize = s
+    e.PreFinalizeTask = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, r.UIImageLoader.clearMemoryCache("interior"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = a
 }

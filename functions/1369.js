@@ -15,57 +15,41 @@ const function1369 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(18), s = i(27), a = i(6), _ = i(1370), l = i(1372), u = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+    var o = i(28), r = i(19), s = i(2), a = i(1370), _ = i(1377), l = i(468), u = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._record = i, n
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._banner_f, i = this._banner_e;
-            1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                t._search_light_task = null, t._preEndTask()
-            })
-        }, e.prototype._effectWithFlare = function (t, e) {
-            var i = this, n = new s.ParallelTask;
-            n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                createjs.Tween.get(null).wait(1170).call(function () {
-                    i._flareAnimation(t, e)
-                }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                    i._search_light_task.start(function () {
-                        i._search_light_task = null, i._preEndTask()
-                    })
+            this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
+        }, e.prototype._opening = function () {
+            var t = this, e = this._scene.view.bannerGroupLayer, i = this._scene.view.layer_cutin,
+                n = new _.PhaseAllyOpening(this._model, e, i);
+            n.preload(function () {
+                e.addAllyBannerGroup(t._model.ships), n.start(function () {
+                    t._light()
                 })
             })
-        }, e.prototype._flareAnimation = function (t, e) {
-            var i = this;
-            this._flare_light_task = new s.ParallelTask;
-            var n = this._layer;
-            this._flare_light_task.add(new c(n));
-            var o;
-            null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                i._flare_light_task = null, i._preEndTask()
+        }, e.prototype._light = function () {
+            var t = this, e = this._scene.view.bannerGroupLayer.ally;
+            new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
+                t._hougeki()
             })
-        }, e.prototype._preEndTask = function () {
-            null == this._search_light_task && null == this._flare_light_task && this._endTask()
+        }, e.prototype._hougeki = function () {
+            var t = this, e = this._model.getHougekiData(), i = this._model.ships,
+                n = this._scene.data.model.deck_e.ships;
+            new l.PhaseHougeki(this._scene, e, i, n).start(function () {
+                t._moveShips()
+            })
+        }, e.prototype._moveShips = function () {
+            var t = this, e = this._scene.view.bannerGroupLayer, i = new o.SerialTask;
+            i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
+                e.removeAllyBannerGroup(), t._endTask()
+            })
         }, e.prototype._endTask = function () {
-            this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+            this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase);
-    e.TaskFlareEffect = u;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            })
-        }, e
-    }(o.TaskBase)
+    }(s.TaskBase);
+    e.PhaseAllyAttack = u
 }

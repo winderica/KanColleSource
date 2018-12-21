@@ -15,55 +15,36 @@ const function494 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(495), r = i(14), s = function () {
+    var o = function () {
         function t() {
+            this._type = 0
         }
 
-        return t.prototype.get = function (t) {
-            return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
-        }, t.prototype.getInArea = function (t, e) {
-            var i = [];
-            for (var n in this._map) {
-                var o = this._map[n];
-                o.areaID == t && (1 == e && -1 == o.state || i.push(o))
-            }
-            return i.sort(function (t, e) {
-                return t.mstID - e.mstID
-            }), i
-        }, t.prototype.getserialID = function () {
-            return this._serial_id
-        }, Object.defineProperty(t.prototype, "serial_id", {
-            set: function (t) {
-                this._serial_id = t
+        return Object.defineProperty(t.prototype, "type", {
+            get: function () {
+                return this._type
             }, enumerable: !0, configurable: !0
-        }), t
+        }), Object.defineProperty(t.prototype, "deck_id_main", {
+            get: function () {
+                return 1 == this.isCombined() ? 1 : 0
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "deck_id_sub", {
+            get: function () {
+                return 1 == this.isCombined() ? 2 : 0
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isCombined = function () {
+            return 1 == this._type || 2 == this._type || 3 == this._type
+        }, t
     }();
-    e.ExpeditionModelHolder = s;
-    var a = function (t) {
+    e.DeckCombinedModel = o;
+    var r = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.setMstData = function (t) {
-            if (this._map = {}, null != t) for (var e = 0; e < t.length; e++) {
-                var i = t[e], n = new o.ExpeditionModelEdit(i), r = n.mstID;
-                if (r > 0) {
-                    var s = r.toString();
-                    this._map[s] = n
-                }
-            }
-        }, e.prototype.setData = function (t) {
-            if (null != this._map && null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = r.ObjUtil.getNumber(n, "api_mission_id");
-                if (o > 0) {
-                    var s = this.get(o);
-                    if (null != s) {
-                        var a = r.ObjUtil.getNumber(n, "api_state"), _ = a;
-                        s.__setState__(_)
-                    }
-                }
-            }
+        return n(e, t), e.prototype.__update__ = function (t) {
+            this._type = t
         }, e
-    }(s);
-    e.ExpeditionModelHolderEdit = a
+    }(o);
+    e.DeckCombinedModelEdit = r
 }

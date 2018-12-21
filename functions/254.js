@@ -15,7 +15,7 @@ const function254 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(15), s = i(25), a = i(447), _ = i(448), l = function (t) {
+    var o = i(2), r = i(15), s = i(25), a = i(451), _ = i(452), l = function (t) {
         function e(e, i, n, o) {
             var r = t.call(this) || this;
             r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;

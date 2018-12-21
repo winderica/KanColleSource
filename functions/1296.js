@@ -15,37 +15,60 @@ const function1296 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1297), r = function (t) {
+    var o = i(23), r = i(20), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._spots = {}, e._flags = {}, e
+            return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
         }
 
-        return n(e, t), e.prototype.addSpot = function (t) {
-            this._spots[t.no] = t, this.addChild(t)
-        }, e.prototype.addFlag = function (t, e, i) {
-            var n = new o.LandingFlag;
-            n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-        }, e.prototype.getAllSpots = function () {
-            var t = [];
-            for (var e in this._spots) {
-                var i = this._spots[e];
-                t.push(i)
-            }
-            return t
-        }, e.prototype.getSpot = function (t) {
-            var e = t.toString();
-            return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-        }, e.prototype.getFlag = function (t) {
-            var e = t.toString();
-            return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+        return n(e, t), Object.defineProperty(e.prototype, "color", {
+            get: function () {
+                return this._color
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this.update(t)
+        }, e.prototype.update = function (t) {
+            this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(139), this._startTween(), this._light.visible = !0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, this._cell.y = 0), this._cell.texture = this._getTexture(t)
         }, e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t in this._spots) {
-                this._spots[t].dispose()
+            this._stopTween()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 300).to({ alpha: 1 }, 300))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+        }, e.prototype._getTexture = function (t) {
+            switch (t) {
+                case-1:
+                    return r.MAP_COMMON.getTexture(145);
+                case 1:
+                    return r.MAP_COMMON.getTexture(138);
+                case 2:
+                case 6:
+                    return r.MAP_COMMON.getTexture(141);
+                case 3:
+                    return r.MAP_COMMON.getTexture(143);
+                case 4:
+                    return r.MAP_COMMON.getTexture(144);
+                case 5:
+                    return r.MAP_COMMON.getTexture(132);
+                case 7:
+                    return r.MAP_COMMON.getTexture(100);
+                case 8:
+                    return r.MAP_COMMON.getTexture(131);
+                case 9:
+                    return r.MAP_COMMON.getTexture(142);
+                case 10:
+                    return r.MAP_COMMON.getTexture(95);
+                case 11:
+                    return r.MAP_COMMON.getTexture(146);
+                case 12:
+                    return r.MAP_COMMON.getTexture(147);
+                case-2:
+                    return r.MAP_COMMON.getTexture(140);
+                case-3:
+                    return r.MAP_COMMON.getTexture(137)
             }
-            this._spots = null
+            return PIXI.Texture.EMPTY
         }, e
-    }(PIXI.Container);
-    e.MapSpotLayer = r
+    }(o.Container);
+    e.SpotPointImage = s
 }

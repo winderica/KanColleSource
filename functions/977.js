@@ -15,30 +15,46 @@ const function977 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(79), s = i(29), a = i(1), _ = function (t) {
+    var o = i(29), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._flg = !1, e._overed = !1, e._updateTexture = function () {
-                e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(41) : e._icon.texture = s.SALLY_COMMON.getTexture(40)
-            }, e._onMouseOver = function () {
-                e._overed = !0, e._updateTexture(), e._over.visible = !0
-            }, e._onMouseOut = function () {
-                e._overed = !1, e._updateTexture(), e._over.visible = !1
-            }, e._onClick = function () {
-                o.default.scene.change(24, new r.ItemSceneModel)
-            }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(30, -55), e._over.visible = !1, e._icon.interactive = !0, e
+            return t.call(this) || this
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._icon.texture = s.SALLY_COMMON.getTexture(40), this._over.texture = s.SALLY_COMMON.getTexture(43), this.addChild(this._over), this.addChild(this._icon)
-        }, e.prototype.activate = function () {
-            var t = this;
-            null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, { loop: !0 }).wait(300).call(function () {
-                t._updateTexture()
-            }))
-        }, e.prototype.deactivate = function () {
-            this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
+            this._fuel = new a, this._ammo = new _, this._fuel.initialize(), this._ammo.initialize(), this._ammo.position.set(38, 0), this.addChild(this._fuel), this.addChild(this._ammo)
+        }, e.prototype.update = function (t) {
+            null == t ? this.visible = !1 : (this.visible = !0, this._fuel.update(t.fuelNow / t.fuelMax), this._ammo.update(t.ammoNow / t.ammoMax))
         }, e
     }(PIXI.Container);
-    e.BtnShop = _
+    e.CompLackAlerts = r;
+    var s = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            var t = new PIXI.Sprite(this._getTexture());
+            this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
+        }, e.prototype.update = function (t) {
+            t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(31), this.visible = !0) : this.visible = !1
+        }, e.prototype._getTexture = function () {
+            return null
+        }, e
+    }(PIXI.Container), a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype._getTexture = function () {
+            return o.SALLY_COMMON.getTexture(29)
+        }, e
+    }(s), _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+
+        return n(e, t), e.prototype._getTexture = function () {
+            return o.SALLY_COMMON.getTexture(30)
+        }, e
+    }(s)
 }

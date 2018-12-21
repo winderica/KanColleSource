@@ -15,22 +15,25 @@ const function552 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(22), r = i(2), s = i(13), a = function (t) {
-        function e(e) {
-            void 0 === e && (e = -1);
-            var i = t.call(this) || this;
-            i.rnd = 0, i._onComplete = function () {
-                i._endTask()
-            };
-            return i.rnd = e >= 0 && e < 6 ? e : Math.floor(6 * Math.random()), i
+    var o = i(0), r = i(270), s = i(271), a = function (t) {
+        function e() {
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
-            new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
-                t._onComplete()
+        return n(e, t), e.prototype.initialize = function () {
+            var t = o.default.resources.getUIImage("title_bg1");
+            this._bg = new PIXI.Sprite(t), this._parts_layer = new PIXI.Container, this._logo = new PIXI.Sprite(r.TITLE_MAIN.getTexture(3)), this._logo.scale.set(.6, .6), this._logo.anchor.set(.5, .5), this._logo.position.set(234, 264), this._kira = new s.KiraLayer, this._kira.scale.set(.6, .6), this._kira.position.set(144, 183), this._kira.initialize(), this._bar = new PIXI.Graphics, this._bar.beginFill(2466210), this._bar.drawRect(0, 0, 960, 30), this._bar.endFill(), this._bar.position.set(120, 663), this._bar.scale.x = 0, this._bar_frame = new PIXI.Graphics, this._bar_frame.lineStyle(3, 16777215), this._bar_frame.drawRect(0, 0, 960, 30), this._bar_frame.endFill(), this._bar_frame.position.set(120, 663), this.addChild(this._bg), this._parts_layer.addChild(this._logo), this._parts_layer.addChild(this._kira), this._parts_layer.addChild(this._bar), this._parts_layer.addChild(this._bar_frame), this.addChild(this._parts_layer)
+        }, e.prototype.dispose = function () {
+            this._kira.dispose()
+        }, e.prototype.setProgress = function (t) {
+            this._bar.scale.x = t / 100
+        }, e.prototype.hideTween = function (t) {
+            var e = createjs.Tween.get(this._bg).to({ alpha: 0 }, 300),
+                i = createjs.Tween.get(this._parts_layer).to({ alpha: 0 }, 100);
+            (e.duration >= i.duration ? e : i).call(function () {
+                t()
             })
         }, e
-    }(r.TaskBase);
-    e.TaskLoadResourcesTitle = a
+    }(PIXI.Container);
+    e.TitleView1 = a
 }

@@ -15,25 +15,28 @@ const function889 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(15), a = i(343), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._stype_name = "", e._ship_name = "", e
+    var o = i(0), r = i(7), s = i(10), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._url = "api_req_kousyou/getship", i.api_kdock_id = e, i
         }
 
-        return n(e, t), e.prototype.preloadFromMst = function (t, e) {
-            var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
-            this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
-        }, e.prototype.preload = function (t, e, i, n, a, _, l) {
-            var u = this;
-            this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
-                u._target.texture = r.default.resources.getShip(t, !1, "full"), u._target.x = o.default.width / 2 - 379 + _.x, u._target.y = o.default.height / 2 - 418 + _.y, u._rarityBG.initiailzeForShip(a, function () {
-                    u._messageBox.initializeForShip(u._stype_name, u._ship_name, u._message), null != l && l()
-                })
-            })
-        }, e.prototype._03_waitClick = function () {
-            r.default.sound.voice.play(this._mst_id.toString(), 1), t.prototype._03_waitClick.call(this)
+        return n(e, t), Object.defineProperty(e.prototype, "ship", {
+            get: function () {
+                return this._ship
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "kDocks", {
+            get: function () {
+                return this._kDocks
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_kdock_id = this.api_kdock_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = r.ObjUtil.getObject(this._raw_data, "api_ship");
+            this._ship = o.default.model.ship.updateData(e);
+            var i = r.ObjUtil.getObjectArray(this._raw_data, "api_slotitem");
+            o.default.model.slot.addMemData(i), this._kDocks = r.ObjUtil.getObjectArray(this._raw_data, "api_kdock"), t.prototype._completedEnd.call(this)
         }, e
-    }(a.RewardAnimation);
-    e.RewardAnimationShip = _
+    }(s.APIBase);
+    e.GetShipAPI = a
 }

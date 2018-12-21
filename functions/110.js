@@ -15,29 +15,38 @@ const function110 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = function (t) {
+    var o = i(0), r = i(30), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            e.texture = o.COMMON_MAIN.getTexture(26);
-            var i = o.COMMON_MAIN.getTexture(27), n = new PIXI.Sprite(i), r = new PIXI.Sprite(i);
-            n.alpha = 0, r.alpha = 0, r.position.set(0, 15), e.addChild(n, r);
-            var s = createjs.Tween.get(n).to({ alpha: 0 }).wait(250).to({ alpha: 1 }).wait(250).to({ alpha: 0 }).wait(250),
-                a = createjs.Tween.get(r).to({ alpha: 0 }).wait(250).to({ alpha: 0 }).wait(250).to({ alpha: 1 }).wait(250);
-            return s.loop = a.loop = !0, s.play(null), a.play(null), e.tweenIcon_arrow_on_0 = s, e.tweenIcon_arrow_on_1 = a, e
+            var e = t.call(this) || this, i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common"),
+                n = new PIXI.Sprite(i);
+            i = o.default.resources.getUIImage("hpgauge/hp_s_bg2.png", "common");
+            var r = new PIXI.Sprite(i), s = new PIXI.Sprite, a = new PIXI.Graphics, _ = new PIXI.Graphics;
+            i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common");
+            var l = new PIXI.Sprite(i);
+            s.position.set(-34, -27), s.texture = o.default.resources.getUIImage("hpgauge/hp_s_red_light.png", "common"), s.visible = !1, a.beginFill(16777215), a.drawRect(0, 0, 98, 11), a.endFill();
+            var u = new PIXI.Container;
+            u.mask = n, u.addChild(a, n), u.cacheAsBitmap = !0;
+            var c = new PIXI.Container;
+            return c.mask = l, c.addChild(_, l), e.addChild(u, s, c, r), e.spriteRedLight = s, e.graphicsGauge = _, e.containerGaugeBackground = u, e.containerGauge = c, e
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.tweenIcon_arrow_on_0.setPaused(!0), this.tweenIcon_arrow_on_1.setPaused(!0), createjs.Tween.removeTweens(this.tweenIcon_arrow_on_0.target), createjs.Tween.removeTweens(this.tweenIcon_arrow_on_1.target), this.tweenIcon_arrow_on_0 = null, this.tweenIcon_arrow_on_1 = null, this.removeChildren()
+        return n(e, t), e.prototype.update = function (t, e) {
+            var i = t / e * 100;
+            i <= 0 ? i = 0 : 100 <= i && (i = 100), this.updateGauge(i);
+            var n = r.ShipUtil.getDamageType(t, e), o = 25 == n, s = 50 == n;
+            this.updateTaihaLamp(o || s)
+        }, e.prototype.updateTaihaLamp = function (t) {
+            if (createjs.Tween.removeTweens(this.spriteRedLight), t) {
+                this.spriteRedLight.visible = !0, this.spriteRedLight.alpha = 0;
+                var e = createjs.Tween.get(this.spriteRedLight).to({ alpha: .7 }, 1e3).to({ alpha: 0 }, 1e3);
+                e.loop = !0, e.play(null)
+            } else this.spriteRedLight.visible = !1, this.spriteRedLight.alpha = 0
+        }, e.prototype.updateGauge = function (t) {
+            var e = 0;
+            t < 33.3 ? (e = 255 << 16, e += t / 33.3 * 128 << 8) : t < 66.6 ? (e = 255 << 16, e += 32768, e += (t - 33.3) / 33.3 * 128 << 8) : (e = 255 - (t - 66.6) / 33.3 * 255 << 16, e += 65280), this.containerGauge.cacheAsBitmap = !1, this.graphicsGauge.clear(), this.graphicsGauge.beginFill(e), this.graphicsGauge.drawRect(0, 0, t / 100 * 98, 11), this.graphicsGauge.endFill(), this.containerGauge.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.spriteRedLight), this.containerGauge.cacheAsBitmap = !1, this.containerGauge.mask = null, this.containerGauge.removeChildren(), this.containerGauge = null, this.containerGaugeBackground.cacheAsBitmap = !1, this.containerGaugeBackground.mask = null, this.containerGaugeBackground.removeChildren(), this.containerGaugeBackground = null, this.removeChildren()
         }, e
-    }(PIXI.Sprite);
-    e.DownArrowAnimationView = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.texture = o.COMMON_MAIN.getTexture(26), e
-        }
-
-        return n(e, t), e
-    }(PIXI.Sprite);
-    e.DisableDownArrowAnimationView = s
+    }(PIXI.Container);
+    e.HpGaugeView = s
 }

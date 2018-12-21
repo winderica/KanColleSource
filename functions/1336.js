@@ -15,26 +15,37 @@ const function1336 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(23), s = i(16), a = function (t) {
+    var o = i(2), r = i(23), s = i(19), a = i(16), _ = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
+            return i._layer = e, i._smoke1 = new l, i._smoke1.position.set(45, 39), i._smoke2 = new l, i._smoke2.position.set(54, 48), i._smoke3 = new l, i._smoke3.position.set(36, 65), i
         }
 
         return n(e, t), e.prototype._start = function () {
-            var t = this, e = this._smoke.x - 105, i = this._smoke.y - 9;
-            createjs.Tween.get(this._smoke).call(function () {
-                t._layer.addChild(t._smoke)
-            }).to({ x: e, y: i, alpha: 0, scaleX: 1.5, scaleY: 1.5 }, 500).call(function () {
-                t._layer.removeChild(t._smoke), t._endTask()
+            var t = this, e = new s.TweenTask;
+            e.addTween(this._createTween(this._smoke1, 0)), e.addTween(this._createTween(this._smoke2, 100)), e.addTween(this._createTween(this._smoke3, 400)), e.start(function () {
+                t._endTask()
+            })
+        }, e.prototype._createTween = function (t, e) {
+            var i = this, n = t.x - 105, o = t.y - 8;
+            return t.scale.set(0), createjs.Tween.get(t).wait(e).call(function () {
+                i._layer.addChild(t)
+            }).to({ scaleX: 1, scaleY: 1 }, 200).to({
+                x: n,
+                y: o,
+                alpha: 0,
+                scaleX: 1.5,
+                scaleY: 1.5
+            }, 400).call(function () {
+                i._layer.removeChild(t)
             })
         }, e
     }(o.TaskBase);
-    e.AnimAntiAircraftKoukaku = a;
-    var _ = function (t) {
+    e.AnimAntiAircraftFunshin = _;
+    var l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(144)), e._img.position.set(-44, -63), e.addChild(e._img), e
+            return e._img = new PIXI.Sprite(a.BATTLE_MAIN.getTexture(145)), e._img.position.set(-32, -42), e.addChild(e._img), e
         }
 
         return n(e, t), e

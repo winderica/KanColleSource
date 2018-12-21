@@ -1,102 +1,37 @@
 const function978 = function (t, e, i) {
     "use strict";
-
-    function n(t, e, i, n) {
-        if (0 == e.getCount()) return { result: !1, reason: 31 };
-        var _ = o(t, e);
-        if (null != _) return _;
-        var l = t.mst_id, u = e.getShipListAll();
-        if (16 == l && null != (_ = r(u))) return _;
-        if (63 == l && null != (_ = s(u))) return _;
-        if (64 == l && null != (_ = a(u))) return _;
-        if (null != e.expedition) return { result: !1, reason: 30 };
-        if (null != n) {
-            var c = e.getCombinedType(), h = n.check(c, u);
-            if (0 == h.result || 0 != h.reason) return h
-        }
-        for (var p = !1, d = !1, f = 0, y = u; f < y.length; f++) {
-            var m = y[f];
-            null != m && (-1 != i.indexOf(m.memID) && (p = !0), (m.fuelNow <= 0 || m.ammoNow <= 0) && (d = !0))
-        }
-        if (1 == p) return { result: !1, reason: 1 };
-        if (1 == d) return { result: !1, reason: 2 };
-        var v = u[0].getDamageType();
-        if (0 != e.getCombinedType()) {
-            if (50 == v || 25 == v || 0 == v) return { result: !1, reason: 21 };
-            var g = u[6].getDamageType();
-            if (50 == g || 25 == g || 0 == g) return { result: !1, reason: 21 }
-        } else if (25 == v || 0 == v) return { result: !1, reason: 3 };
-        return 1 == e.isCombined_Sub() ? { result: !1, reason: 20 } : { result: !0, reason: 0 }
-    }
-
-    function o(t, e) {
-        var i = e.getCombinedType(), n = t.getAllowedDeckType();
-        if (0 == i) {
-            if (e.getCount() > 6) return 1 == n.yugeki ? null : { result: !1, reason: 36 };
-            if (1 == n.normal) return null
-        }
-        var o = n.rengo;
-        return 0 != o || 1 != i && 2 != i && 3 != i ? 1 == o && 1 != i ? {
-            result: !1,
-            reason: 23
-        } : 2 == o && 2 != i ? { result: !1, reason: 24 } : 3 == o && 1 != i && 2 != i ? {
-            result: !1,
-            reason: 25
-        } : 4 == o && 3 != i ? { result: !1, reason: 28 } : 5 == o && 1 != i && 3 != i ? {
-            result: !1,
-            reason: 26
-        } : 6 == o && 2 != i && 3 != i ? {
-            result: !1,
-            reason: 27
-        } : 7 == o && 1 != i && 2 != i && 3 != i ? { result: !1, reason: 29 } : null : { result: !1, reason: 22 }
-    }
-
-    function r(t) {
-        for (var e = 0, i = t; e < i.length; e++) {
-            var n = i[e];
-            if (null != n) {
-                switch (n.shipTypeID) {
-                    case 4:
-                    case 8:
-                    case 9:
-                    case 11:
-                    case 13:
-                    case 14:
-                    case 18:
-                        return { result: !1, reason: 4 }
-                }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
             }
-        }
-        return null
-    }
 
-    function s(t) {
-        for (var e = 0, i = 0, n = 0, o = 0, r = t; o < r.length; o++) {
-            var s = r[o];
-            if (null != s) {
-                var a = s.shipTypeID;
-                if (2 == a) e++; else if (3 == a) i++; else if (21 == a) i++; else {
-                    if (16 != a) return { result: !1, reason: 5 };
-                    n++
-                }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(29), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = o.SALLY_COMMON.getTexture(28), this._label.texture = o.SALLY_COMMON.getTexture(33), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
+        }, e.prototype.update = function (t) {
+            if (null == t) this.visible = !1; else {
+                var e = t.level;
+                e = Math.max(0, e), e = Math.min(999, e);
+                var i = Math.floor(e / 100), n = e % 100, r = Math.floor(n / 10), s = n % 10,
+                    a = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67];
+                e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
             }
-        }
-        return 0 == e ? { result: !1, reason: 6 } : 0 == i ? { result: !1, reason: 7 } : i >= 4 ? {
-            result: !1,
-            reason: 8
-        } : 0 == n ? { result: !1, reason: 9 } : n >= 3 ? { result: !1, reason: 10 } : null
-    }
-
-    function a(t) {
-        for (var e = 0, i = 0, n = 0, o = t; n < o.length; n++) {
-            var r = o[n];
-            if (null != r) {
-                var s = r.shipTypeID;
-                8 == s ? e++ : 9 == s ? e++ : 10 == s ? e++ : 7 == s ? i++ : 11 == s ? i++ : 18 == s && i++
-            }
-        }
-        return e >= 3 ? { result: !1, reason: 11 } : i >= 3 ? { result: !1, reason: 12 } : null
-    }
-
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.check = n
+        }, e
+    }(PIXI.Container);
+    e.CompBannerLevel = r
 }

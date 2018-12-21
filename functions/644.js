@@ -15,34 +15,35 @@ const function644 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(81), r = i(5), s = i(103), a = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            n._ev = i, n._titleChange = function (t, e) {
-                void 0 === e && (e = null);
-                var i = createjs.Ease.linear;
-                if (0 == t) return createjs.Tween.get(n.getChildByName("titleBar")).to({ alpha: 0 }, 200, i), !1;
-                var r = o.TUTORIAL_MAIN.getTexture(e);
-                0 == n.getChildByName("titleBar").alpha ? (n._titleMessage.texture = r, createjs.Tween.get(n.getChildByName("titleBar")).to({ alpha: 1 }, 200, i)) : createjs.Tween.get(n._titleMessage).to({ alpha: 0 }, 200, i).call(function () {
-                    n._titleMessage.texture = r
-                }).to({ alpha: 1 }, 200, i)
-            }, n._onNext = function () {
-                createjs.Tween.get(n._currentTutorialIcon, { loop: !1 }).to({ x: n._currentTutorialIcon.x + 60 }, 400, createjs.Ease.linear)
-            }, n._ev.on("tutorial-title", n._titleChange).on("tutorial-next", n._onNext);
-            var a = new PIXI.Container;
-            a.position.set(0, 50), a.alpha = 0, a.name = "titleBar";
-            var _ = new PIXI.Sprite(e.use(s.IMAGE_FILE.TITLE_BG)), l = Math.floor(_.height / 2);
-            n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), l), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, l), a.addChild(_, n._titleIcon, n._titleMessage);
-            var u = new PIXI.Container, c = new PIXI.Sprite(e.use(s.IMAGE_FILE.CRUMB));
-            return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), u.position.set(r.default.width - c.width - 12, 0), u.addChild(c, n._currentTutorialIcon), n.addChild(a, u), n
+    var o = i(8), r = i(150), s = i(1), a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                0 != i._btn.buttonMode && null != i._cb && i._cb()
+            }, i._cb = e, i._layer = new o.AreaBox(.2), i._bg = new PIXI.Sprite, i._btn = new PIXI.Sprite, i.addChild(i._layer), i.addChild(i._bg), i.addChild(i._btn), i
         }
 
-        return n(e, t), e.prototype.start = function () {
-            var t = { angle: 2 * Math.PI, duration: 8e3, ease: createjs.Ease.linear };
-            createjs.Tween.get(this._titleIcon, { loop: !0 }).to({ rotation: t.angle }, t.duration, t.ease), createjs.Tween.get(this._currentTutorialIcon, { loop: !0 }).to({ rotation: t.angle }, t.duration, t.ease)
+        return n(e, t), Object.defineProperty(e.prototype, "layer", {
+            get: function () {
+                return this._layer
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "bg", {
+            get: function () {
+                return this._bg
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "btn", {
+            get: function () {
+                return this._btn
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function () {
+            this._bg.texture = r.PORT_MAIN.getTexture(18), this._bg.position.set(340, 273), this._btn.texture = r.PORT_MAIN.getTexture(1), this._btn.position.set(517, 450), this._btn.interactive = !0
+        }, e.prototype.activate = function () {
+            0 == this._btn.buttonMode && (this._btn.buttonMode = !0, this._btn.on(s.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this._btn.buttonMode = !1, this._btn.off(s.EventType.CLICK, this._onClick)
         }, e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this._titleIcon), createjs.Tween.removeTweens(this._currentTutorialIcon), this._ev.off("tutorial-title", this._titleChange).off("tutorial-next", this._onNext)
+            this.deactivate(), this._cb = null
         }, e
     }(PIXI.Container);
-    e.ViewMain = a
+    e.CompCombinedAlert = a
 }

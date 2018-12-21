@@ -1,24 +1,20 @@
 const function929 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(14), o = function () {
+    var n = i(7), o = function () {
         function t(t) {
             this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "ship_mem_id", {
+        return Object.defineProperty(t.prototype, "plane_type", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_supply_ship")
+                return n.ObjUtil.getNumber(this._o, "api_plane_type")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
+        }), Object.defineProperty(t.prototype, "result", {
             get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_given_ship")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "num_of_use", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_use_num")
+                return n.ObjUtil.getNumber(this._o, "api_result")
             }, enumerable: !0, configurable: !0
         }), t
     }();
-    e.ReplenishmentModel = o
+    e.AirReconnaissanceModel = o
 }

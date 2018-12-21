@@ -1,25 +1,37 @@
 const function530 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(266), r = function () {
-        function t() {
-            this._now = 0
+    var n = i(0), o = i(7), r = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "now", {
+        return Object.defineProperty(t.prototype, "mstID", {
             get: function () {
-                return null == this._task ? this._now : this._task.after
+                return o.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.isChangingNow = function () {
-            return null != this._task
-        }, t.prototype.change = function (t, e) {
-            var i = this;
-            return void 0 === e && (e = null), 1 != this.isChangingNow() && (this._now != t && (this._task = new o.TaskSceneChange(this._now, t, e), this._task.start(function () {
-                i._changeComplete()
-            }), !0))
-        }, t.prototype._changeComplete = function () {
-            this._now = this._task.after, this._task = null, n.default.view.getNowScene().emit("showed")
-        }, t
+        }), Object.defineProperty(t.prototype, "name", {
+            get: function () {
+                return o.ObjUtil.getString(this._o, "api_name")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "description", {
+            get: function () {
+                var t = o.ObjUtil.getStrArray(this._o, "api_description");
+                return null != t && t.length > 0 ? t[0] : ""
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "count", {
+            get: function () {
+                return 44 == this.mstID ? n.default.model.basic.getCoinCount() : o.ObjUtil.getNumber(this._o, "api_count")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.isUsable = function () {
+            return 4 == this._use_type
+        }, t.prototype.__setCount__ = function (t) {
+            44 == this.mstID ? n.default.model.basic.setCoinCount(t) : this._o.api_count = t
+        }, Object.defineProperty(t.prototype, "_use_type", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_usetype")
+            }, enumerable: !0, configurable: !0
+        }), t
     }();
-    e.SceneManager = r
+    e.UseItemModel = r
 }

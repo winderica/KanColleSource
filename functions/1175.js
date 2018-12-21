@@ -15,29 +15,64 @@ const function1175 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(3), s = i(3), a = i(3), _ = i(3), l = i(3), u = i(3), c = i(238), h = i(1),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._waitClick = function () {
-                    i._layer.buttonMode = !0, i._layer.once(h.EventType.CLICK, i._onClick)
-                }, i._onClick = function () {
-                    i._layer.buttonMode = !1, i._chara.texture = i._getPosterGirlTexture2(), createjs.Tween.get(i._chara).wait(300).to({ x: 1200 }, 500, createjs.Ease.sineInOut).call(function () {
-                        i._layer.removeChild(i._chara), i._endTask()
+    var o = i(0), r = i(11), s = i(8), a = i(9), _ = i(3), l = i(409), u = i(117), c = i(75), h = i(75), p = i(75),
+        d = i(75), f = i(75), y = i(75), m = i(75), v = i(75), g = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(46), i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
+                    }
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
                     })
-                }, i._layer = e, i
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer, n = new v.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
+                        }
+                    } else if (2 == t.status) {
+                        var n = new m.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
             }
 
-            return n(e, t), e.prototype._start = function () {
-                var t = this._getPosterGirlTexture1();
-                this._chara = new PIXI.Sprite(t), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({ y: 45 }, 500).call(this._waitClick)
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
-            }, e.prototype._getPosterGirlTexture1 = function () {
-                return 0 == c.POSTER_GIRL ? r.DUTY_POSTER_GIRL.getTexture(0) : 1 == c.POSTER_GIRL ? s.DUTY_POSTER_GIRL_GYUDON.getTexture(0) : 2 == c.POSTER_GIRL ? a.DUTY_POSTER_GIRL_NEWYEAR.getTexture(0) : 3 == c.POSTER_GIRL ? _.DUTY_POSTER_GIRL_SANMA.getTexture(0) : 4 == c.POSTER_GIRL ? l.DUTY_POSTER_GIRL_SUMMER.getTexture(0) : 5 == c.POSTER_GIRL ? u.DUTY_POSTER_GIRL_XMAS.getTexture(0) : void 0
-            }, e.prototype._getPosterGirlTexture2 = function () {
-                return 0 == c.POSTER_GIRL ? r.DUTY_POSTER_GIRL.getTexture(1) : 1 == c.POSTER_GIRL ? s.DUTY_POSTER_GIRL_GYUDON.getTexture(1) : 2 == c.POSTER_GIRL ? a.DUTY_POSTER_GIRL_NEWYEAR.getTexture(1) : 3 == c.POSTER_GIRL ? _.DUTY_POSTER_GIRL_SANMA.getTexture(1) : 4 == c.POSTER_GIRL ? l.DUTY_POSTER_GIRL_SUMMER.getTexture(1) : 5 == c.POSTER_GIRL ? u.DUTY_POSTER_GIRL_XMAS.getTexture(1) : void 0
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
             }, e
-        }(o.TaskBase);
-    e.TaskPosterGirl = p
+        }(r.SceneBase);
+    e.DutyScene = g
 }

@@ -15,32 +15,51 @@ const function1238 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._anim = function () {
-                var t = n._scene.view.map.ship_icon;
-                createjs.Tween.get(t).to({ alpha: 1 }, 300), createjs.Tween.get(t.scale).to({
-                    x: 1,
-                    y: 1
-                }, 300).call(function () {
-                    n._endTask()
-                })
-            }, n._scene = e, n._model = i, n
-        }
+    var o = i(5), r = i(0), s = i(141), a = i(2), _ = i(18), l = i(68), u = i(430), c = i(1239), h = i(1240),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n._black = new _.FadeBox(1), n
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            this._initialize()
-        }, e.prototype._initialize = function () {
-            var t = this._scene.view.map.ship_icon;
-            t.alpha = 0, t.scale.set(1.7);
-            var e = this._model.deck_f.type;
-            t.initialize(e);
-            var i = this._model.sortie.now_cell_no, n = this._scene.view.map.spotLayer.getSpot(i);
-            t.position.set(n.x, n.y);
-            var o = t.direction, r = this._scene.resInfo.getShipDirection(i);
-            1 == r ? o = 1 : 2 == r && (o = 2), t.turn(o, this._anim, 0)
-        }, e
-    }(o.TaskBase);
-    e.AnimShipInit = r
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._black.hide(0), this._scene.view.addChild(this._black), this._black.show(300), new u.SallyAnimationTask(this._scene.view).start(function () {
+                    t._loadMapResource()
+                })
+            }, e.prototype._loadMapResource = function () {
+                var t = this, e = this._model.sortie.map_id, i = this._scene.view.map, n = this._scene.resInfo,
+                    o = this._model.sortie.cells;
+                new c.TaskCreateMap(e, i, n, o).start(function () {
+                    t._initMapGauge()
+                })
+            }, e.prototype._initMapGauge = function () {
+                var t = this, e = 0, i = 0, n = this._model.sortie.getNextCell();
+                if (1 == n.hasEventMapData() ? (e = n.gauge_max, i = n.gauge_now) : (e = this._model.sortie.map.defeat_required, i = e - this._model.sortie.map.defeat_count), e <= 0) return void this._loadMapBGM();
+                var s = this._model.sortie.map, a = s.area_id, _ = s.map_no, u = s.getGaugeNum(),
+                    c = l.GaugeSetModel.createKey(a, _, u), h = r.default.resources.gauge.createLoaderVertical();
+                h.add(c), h.load(function () {
+                    var n = r.default.resources.gauge.getGaugeInfo(c);
+                    if (n) {
+                        var s = n.vertical;
+                        null != s && (t._scene.view.gauge_layer.initialize(s, i, e), s.x < o.default.width / 2 && t._scene.view.frontOfGaugeLayer())
+                    }
+                    t._loadMapBGM()
+                })
+            }, e.prototype._loadMapBGM = function () {
+                var t = this._model.sortie.area_id, e = this._model.sortie.map_no, i = s.MapConst.getMapBGMID(t, e);
+                1 == i.battle_bgm ? r.default.sound.bgm.playBattleBGM(i.id) : r.default.sound.bgm.play(i.id), this._showMap()
+            }, e.prototype._showMap = function () {
+                var t = this;
+                this._black.hide(200, function () {
+                    t._scene.view.removeChild(t._black), t._showShipAndMessageBox()
+                })
+            }, e.prototype._showShipAndMessageBox = function () {
+                var t = this;
+                this._scene.view.message_box.activate(), new h.AnimShipInit(this._scene, this._model).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(a.TaskBase);
+    e.TaskInit = p
 }

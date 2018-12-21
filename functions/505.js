@@ -15,63 +15,43 @@ const function505 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(55), r = i(506), s = i(507), a = i(508), _ = function () {
+    var o = i(506), r = function () {
         function t() {
+            this._dic = {}
         }
 
-        return t.prototype.getArea = function (t) {
-            return null == this._area_msts ? null : this._area_msts[t]
-        }, t.prototype.getMapMst = function (t, e) {
-            void 0 === e && (e = -1);
-            var i = t;
-            return -1 != e && (i = o.MapUtil.toMapID(t, e)), null == this._map_msts || 0 == this._map_msts.hasOwnProperty(i.toString()) ? null : this._map_msts[i]
-        }, t.prototype.getMapMsts = function (t) {
-            if (null == this._map_msts) return null;
-            var e = new Array;
-            for (var i in this._map_msts) {
-                var n = this._map_msts[i];
-                n.area_id == t && e.push(n)
+        return t.prototype.get = function (t) {
+            var e = t.toString();
+            return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
+        }, t.prototype.getAll = function () {
+            var t = new Array;
+            for (var e in this._dic) {
+                var i = this._dic[e];
+                t.push(i)
             }
-            return e.sort(function (t, e) {
-                return t.map_no > e.map_no ? 1 : t.map_no < e.map_no ? -1 : 0
-            }), e
-        }, t.prototype.getMapMem = function (t) {
-            if (null != this._maps && 1 == this._maps.hasOwnProperty(t.toString())) return this._maps[t];
-            if (null != this.getMapMst(t)) {
-                var e = new s.MapModelEdit(null);
-                return e.setMstID(t), e
-            }
-            return null
-        }, t.prototype.getMapMems = function (t) {
-            for (var e = this.getMapMsts(t), i = [], n = 0, o = e; n < o.length; n++) {
-                var r = o[n], s = r.mst_id, a = this.getMapMem(s);
-                i.push(a)
-            }
-            return i
+            return t.sort(function (t, e) {
+                return t.id < e.id ? -1 : t.id > e.id ? 1 : 0
+            }), t
         }, t
     }();
-    e.MapModelHolder = _;
-    var l = function (t) {
+    e.KDockModelHolder = r;
+    var s = function (t) {
         function e() {
             return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.setAreaMst = function (t) {
-            if (this._area_msts = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = new r.MapAreaModel(n), s = o.mstID;
-                s > 0 && (this._area_msts[s] = o)
-            }
-        }, e.prototype.setMapMst = function (t) {
-            if (this._map_msts = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = new a.MapMstModel(n), r = o.mst_id;
-                r > 0 && (this._map_msts[r] = o)
-            }
-        }, e.prototype.setMapMem = function (t) {
-            if (this._maps = {}, null != t) for (var e = 0, i = t; e < i.length; e++) {
-                var n = i[e], o = new s.MapModelEdit(n), r = o.mst_id;
-                r > 0 && (this._maps[r] = o)
+        return n(e, t), e.prototype.__setData__ = function (t) {
+            if (null != t) {
+                this._dic = {};
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e], r = new o.KDockModelEdit(n), s = r.id;
+                    if (s > 0) {
+                        var a = s.toString();
+                        this._dic[a] = r
+                    }
+                }
             }
         }, e
-    }(_);
-    e.MapModelHolderEdit = l
+    }(r);
+    e.KDockModelHolderEdit = s
 }

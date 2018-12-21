@@ -15,46 +15,27 @@ const function1133 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
+    var o = i(1), r = i(74), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._btn = new a(e), i.addChild(i._btn), i
+            return i._onClickYes = function () {
+                null != i._cb_onClick && i._cb_onClick(!0)
+            }, i._onClickNo = function () {
+                null != i._cb_onClick && i._cb_onClick(!1)
+            }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._btn.initialize()
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
+            var e = new PIXI.Sprite(t), i = Math.min(135 / e.width, 135 / e.height);
+            e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
         }, e.prototype.activate = function () {
-            this._btn.activate()
-        }, e.prototype.update = function (t) {
-            this._btn.update(t), 0 == t ? this._btn.position.set(801, 667) : this._btn.position.set(207, 666)
+            1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
         }, e.prototype.deactivate = function () {
-            this._btn.deactivate()
+            this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
         }, e.prototype.dispose = function () {
-            this._btn.dispose()
+            this.deactivate(), this._cb_onClick = null
         }, e
-    }(PIXI.Container);
-    e.TabContainer = s;
-    var a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick()
-            }, i._cb_onClick = e, i._over = new PIXI.Sprite, i.addChild(i._over), i.interactive = !0, i
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-        }, e.prototype.update = function (t) {
-            0 == t ? (this._texture = o.ITEM_ISHOP.getTexture(6), this._over.texture = o.ITEM_ISHOP.getTexture(7)) : (this._texture = o.ITEM_ISHOP.getTexture(4), this._over.texture = o.ITEM_ISHOP.getTexture(5))
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this._startTween())
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._stopTween()
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._over.alpha = 0, this._t = createjs.Tween.get(this._over, { loop: !0 }).to({ alpha: 1 }, 500).to({ alpha: 0 }, 500))
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._over.alpha = 0, this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Sprite)
+    }(PIXI.Sprite);
+    e.RewardSelectConfirm = s
 }

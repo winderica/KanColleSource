@@ -15,17 +15,17 @@ const function432 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(428), s = function (t) {
+    var o = i(134), r = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._icon = new r.CompDropItemIcon, e._icon.anchor.set(.5, 1), e._text = new o.TextBox(20, 16774898), e._text.position.set(17, -27), e.addChild(e._icon), e.addChild(e._text), e
+            return t.call(this) || this
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._icon.update(t), this._text.text = e.toString()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._text.destroy()
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = this._getTexture(t)
+        }, e.prototype._getTexture = function (t) {
+            var e = -1;
+            return 31 == t ? e = 3 : 32 == t ? e = 9 : 33 == t ? e = 10 : 34 == t ? e = 11 : 2 == t ? e = 4 : 1 == t ? e = 12 : 3 == t ? e = 13 : 4 == t ? e = 8 : 44 == t ? e = 14 : 10 == t ? e = 5 : 11 == t ? e = 6 : 12 == t && (e = 7), e < 0 ? PIXI.Texture.EMPTY : o.SALLY_MAP_PARTS.getTexture(e)
         }, e
-    }(PIXI.Container);
-    e.CompDropItem = s
+    }(PIXI.Sprite);
+    e.CompDropItemIcon = r
 }

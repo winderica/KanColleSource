@@ -15,25 +15,34 @@ const function849 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function () {
-                e.onClick()
-            }, e._onMouseOver = function () {
-                e.texture = o.REPAIR_MAIN.getTexture(4)
-            }, e._onMouseOut = function () {
-                e.texture = o.REPAIR_MAIN.getTexture(2)
-            }, e.texture = o.REPAIR_MAIN.getTexture(2), e.on(r.EventType.CLICK, e._onClick).on(r.EventType.MOUSEOVER, e._onMouseOver).on(r.EventType.MOUSEOUT, e._onMouseOut), e.buttonMode = !0, e
+    var o = i(0), r = i(2), s = i(15), a = i(13), _ = i(850), l = i(338), u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._updateNDock = function () {
+                (new l.NDockAPI).start(i._loadAtlas)
+            }, i._loadAtlas = function () {
+                var t = new a.UIImageLoader("repair");
+                t.add("repair_main.json"), t.load(i._loadShipBanner)
+            }, i._loadShipBanner = function () {
+                var t = o.default.model.ndock.getShipMemIDs();
+                if (0 < t.length) {
+                    for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
+                        var r = t[n], a = o.default.model.ship.get(r);
+                        e.add(a.mstID, a.isDamaged(), "banner")
+                    }
+                    e.load(function () {
+                        i._onCompleteLoad()
+                    })
+                } else i._onCompleteLoad()
+            }, i._onCompleteLoad = function () {
+                var t = o.default.model.ndock.getAll(), e = new _.MainView(t);
+                i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
+            }, i.repairScene = e, i
         }
 
-        return n(e, t), e.prototype.active = function () {
-            this.texture = o.REPAIR_MAIN.getTexture(2), this.interactive = !0
-        }, e.prototype.disable = function () {
-            this.texture = o.REPAIR_MAIN.getTexture(3), this.interactive = !1
-        }, e.prototype.dispose = function () {
-            this.onClick = null, this.off(r.EventType.CLICK, this._onClick).off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOut), this.texture = PIXI.Texture.EMPTY, this.interactive = this.buttonMode = !1
+        return n(e, t), e.prototype._start = function () {
+            this._updateNDock()
         }, e
-    }(PIXI.Sprite);
-    e.UseItemButton = s
+    }(r.TaskBase);
+    e.PreInitializeTask = u
 }

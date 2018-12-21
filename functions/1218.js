@@ -15,53 +15,69 @@ const function1218 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(121), r = i(171), s = i(430), a = i(1), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._enabled = !1, i._bg = new PIXI.Sprite, i._points = new s.FormationPoints(e), i._btn = new l, i._btn.position.set(15, 161), i._points.position.set(90, 84), i._points.scale.set(.6), i._points.rotation = Math.PI / 2, i.addChild(i._bg), i.addChild(i._points), i.addChild(i._btn), i
+    var o = i(0), r = i(2), s = i(15), a = i(431), _ = i(433), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._selected_formation = 1, n._onSelectFormation = function (t) {
+                n._selected_formation = t, n._view.boxes.deactivate(), n._view.message_box.text = "", createjs.Tween.get(n._view.message_box).to({ alpha: 0 }, 300), createjs.Tween.get(n._view.chara).to({ alpha: 0 }, 300), createjs.Tween.get(n._view.boxes).to({ alpha: 0 }, 300).call(function () {
+                    n._preEnd()
+                })
+            }, n._parent = e, n._deck = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+        return n(e, t), Object.defineProperty(e.prototype, "selected_formation", {
             get: function () {
-                return this._enabled
+                return this._selected_formation
             }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i, n) {
-            3 == t && e < 5 ? (this._enabled = !1, this.visible = !1) : e < 4 ? (this._enabled = !1, this.visible = !1) : (this._enabled = !0, this._bg.texture = r.SALLY_JIN.getTexture(33), this._points.initialize(t, e, n), this._points.show(0), this._btn.initialize(t, i))
-        }, e.prototype.activate = function () {
-            1 == this._enabled && this._btn.activate()
-        }, e.prototype.deactivate = function () {
-            this._btn.deactivate()
-        }, e.prototype.dispose = function () {
-            this._btn.dispose()
+        }), e.prototype._start = function () {
+            this._view = new u, this._parent.addChild(this._view), this._readyForFormationBox()
+        }, e.prototype._readyForFormationBox = function () {
+            var t = this._deck.getCount();
+            this._view.boxes.initialize(t, this._onSelectFormation, 6), this._view.boxes.alpha = 0, this._view.boxes.count <= 1 ? this._preEnd() : this._readyForFlagship()
+        }, e.prototype._readyForFlagship = function () {
+            var t = this, e = this._deck.ships[0], i = e.mst_id, n = e.isDamaged(),
+                r = o.default.model.ship_graph.get(i).getMapOffset(n);
+            this._view.chara.position.set(-80 + r.x, -93 + r.y), this._view.chara.alpha = 0, (new s.ShipLoader).add(i, n, "full").load(function () {
+                t._view.chara.texture = o.default.resources.getShip(i, n, "full"), t._showMessageBox()
+            })
+        }, e.prototype._showMessageBox = function () {
+            var t = this;
+            this._view.message_box.initialize(), this._view.message_box.activate(function () {
+                t._showFlagShip()
+            })
+        }, e.prototype._showFlagShip = function () {
+            var t = this, e = this._view.chara.x;
+            this._view.chara.x += 75, createjs.Tween.get(this._view.chara).to({
+                alpha: 1,
+                x: e
+            }, 300), createjs.Tween.get(this._view.boxes).to({ alpha: 1 }, 300).call(function () {
+                t._view.boxes.activate(), t._view.message_box.text = "\u9663\u5f62\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+            })
+        }, e.prototype._preEnd = function () {
+            this._parent.removeChild(this._view), this._view.dispose(), this._view = null, this._parent = null, this._deck = null, this._endTask()
         }, e
-    }(PIXI.Container);
-    e.FormationBox = _;
-    var l = function (t) {
+    }(r.TaskBase);
+    e.TaskFormationSelect = l;
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._update(!0)
-            }, e._onMouseOut = function () {
-                e._update(!1)
-            }, e._onClick = function () {
-                null != e._cb && e._cb(e._type)
-            }, e.interactive = !0, e
+            return e._chara = new PIXI.Sprite, e._boxes = new _.FormationBoxContainer, e._message_box = new a.CompMessageBox, e.addChild(e._chara), e.addChild(e._boxes), e.addChild(e._message_box), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._type = t, this._cb = e, 1 == t ? (this._texture_no = 6, this._texture_no_on = 7) : 2 == t ? (this._texture_no = 0, this._texture_no_on = 1) : 3 == t ? (this._texture_no = 4, this._texture_no_on = 5) : 4 == t ? (this._texture_no = 10, this._texture_no_on = 11) : 5 == t ? (this._texture_no = 8, this._texture_no_on = 9) : 6 == t && (this._texture_no = 2, this._texture_no_on = 3), this._update(!1)
-        }, e.prototype.activate = function () {
-            if (1 != this.buttonMode) {
-                this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick);
-                var t = o.InteractiveUtil.isOnMouse(this);
-                this._update(t)
-            }
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            1 == this.buttonMode && this.deactivate(), this._cb = null
-        }, e.prototype._update = function (t) {
-            this.texture = 0 == t ? r.SALLY_JIN.getTexture(this._texture_no) : r.SALLY_JIN.getTexture(this._texture_no_on)
+        return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "boxes", {
+            get: function () {
+                return this._boxes
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(e.prototype, "message_box", {
+            get: function () {
+                return this._message_box
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this._boxes.dispose(), this._message_box.dispose()
         }, e
-    }(PIXI.Sprite)
+    }(PIXI.Container)
 }

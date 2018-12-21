@@ -15,22 +15,25 @@ const function975 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(159), s = i(159), a = i(29), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
+    var o = i(5), r = i(358), s = i(976), a = function (t) {
+        function e(e, i, n) {
+            var r = t.call(this, n) || this;
+            return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._fuelTitle.texture = a.SALLY_COMMON.getTexture(17), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(16)
-        }, e.prototype.update = function (t, e) {
-            this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
-        }, e.prototype.play = function (t, e, i) {
-            1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {
-            })) : 1 == e ? this._ammoBox.playSupply(i) : i()
+        return n(e, t), Object.defineProperty(e.prototype, "panel", {
+            get: function () {
+                return this._panel
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.initialize = function (t, e, i) {
+            this._panel.initialize(t, e, i)
+        }, e.prototype.activate = function () {
+            t.prototype.activate.call(this), this._panel.activate()
+        }, e.prototype.deactivate = function () {
+            t.prototype.deactivate.call(this), this._panel.deactivate()
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._fuelBox.dispose(), this._ammoBox.dispose(), this._fuelText.destroy(), this._ammoText.destroy()
+            t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
         }, e
-    }(PIXI.Container);
-    e.TempSupplyBox = _
+    }(r.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = a
 }

@@ -15,39 +15,23 @@ const function966 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = i(967), s = function (t) {
+    var o = i(10), r = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;
-            return n._cancel = !0, n._waitClick = function () {
-                n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
-            }, n._onNo = function () {
-                n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
-            }, n._onYes = function () {
-                n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
-            }, n._layer = e, n._model = i, n
+            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "cancel", {
-            get: function () {
-                return this._cancel
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
-        }, e.prototype._openDialog = function () {
-            var t = this;
-            this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
-                createjs.Tween.get(t._dialog.bg).to({ alpha: 1 }, 300).call(t._waitClick)
-            })
-        }, e.prototype._closeDialog = function () {
-            var t = this;
-            createjs.Tween.get(this._dialog).to({ alpha: 0 }, 200).call(function () {
-                t._dialog.fade.hide(100, function () {
-                    t._layer.removeChild(t._dialog), t._endTask()
-                })
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = this._model.getGaugeNum(), i = this._model.gauge_type, n = this._model.gauge_max,
+                o = this._model.gauge_now, r = this._raw_data;
+            if (null != r && r.hasOwnProperty("api_maphp")) {
+                var s = r.api_maphp;
+                s.hasOwnProperty("api_gauge_num") && (e = s.api_gauge_num), s.hasOwnProperty("api_gauge_type") && (i = s.api_gauge_type), 1 == s.hasOwnProperty("api_max_maphp") && (n = s.api_max_maphp), 1 == s.hasOwnProperty("api_now_maphp") && (o = s.api_now_maphp)
+            }
+            this._model.changeOperation(this._selected, e, i, n, o), t.prototype._completedEnd.call(this)
         }, e
-    }(o.TaskBase);
-    e.ChangeConfirmTask = s
+    }(o.APIBase);
+    e.APIOperationChange = r
 }

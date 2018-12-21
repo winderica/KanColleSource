@@ -15,18 +15,25 @@ const function1459 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            void 0 === i && (i = !1);
-            var n = t.call(this) || this;
-            return n._url = "api_req_practice/battle_result", n._data = e, n._debug = i, n
+    var o = i(2), r = i(13), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._event = e, i
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+        return n(e, t), e.prototype._start = function () {
+            this._loadCommon()
+        }, e.prototype._loadCommon = function () {
+            var t = this, e = new r.UIImageLoader("common");
+            e.add("common_explosion.json"), e.load(function () {
+                t._load()
+            })
+        }, e.prototype._load = function () {
+            var t = this, e = new r.UIImageLoader("battle_result");
+            e.add("battle_result_main.json"), this._event && e.add("battle_result_event_base.json"), e.load(function () {
+                t._endTask()
+            })
         }, e
-    }(o.APIBase);
-    e.APIPracticeResult = r
+    }(o.TaskBase);
+    e.TaskLoadResourcesBattleResult = s
 }

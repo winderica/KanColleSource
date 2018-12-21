@@ -21,15 +21,17 @@ const function775 = function (t, e, i) {
             return e._onClick = function () {
                 e.onClick()
             }, e._onMouseOver = function () {
-                e.extensionPopUp.alpha = 1
+                e.texture = e.texture_on
             }, e._onMouseOut = function () {
-                e.extensionPopUp.alpha = 0
-            }, e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 330, 180), e.clickArea.endFill(), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.renderable = !1, e.clickArea.interactive = e.clickArea.buttonMode = !0, e.extensionPopUp = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(36)), e.extensionPopUp.alpha = 0, e.extensionPopUp.position.set(113, 0), e.addChild(e.clickArea, e.extensionPopUp), e
+                e.texture = e.texture_off
+            }, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.texture_off = o.REMODEL_MAIN.getTexture(8), e.texture_on = o.REMODEL_MAIN.getTexture(9), e.texture_none = o.REMODEL_MAIN.getTexture(7), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.off(r.EventType.CLICK), this.onClick = null, this.clickArea = null, this.extensionPopUp = null, this.removeChildren()
+            this.off(r.EventType.CLICK), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.texture_on = null, this.texture_off = null, this.texture_none = null, this.onClick = null, this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.texture = this.texture_none, this.interactive = this.buttonMode = !1, t && (this.texture = this.texture_off, this.interactive = this.buttonMode = !0)
         }, e
-    }(PIXI.Container);
-    e.ExtensionButton = s
+    }(PIXI.Sprite);
+    e.KaizoButton = s
 }

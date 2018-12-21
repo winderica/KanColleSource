@@ -15,98 +15,43 @@ const function611 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(31), a = i(279), _ = i(124), l = i(125), u = i(101), c = i(196), h = i(15),
-        p = i(13), d = i(197), f = i(637), y = i(285), m = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
-            }
+    var o = i(612), r = i(613), s = i(614), a = i(151), _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onRevampOpen = function () {
+                null != e._revamp && e._revamp.open()
+            }, e._onRevampClose = function () {
+                null != e._revamp && e._revamp.close()
+            }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
+        }
 
-            return n(e, t), e.prototype._start = function () {
-                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
-                    return /^resources\/ship\/.+/.test(t)
-                }), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var s = t.filter(function (t) {
-                    return /^resources\/slot\/.+/.test(t)
-                }), a = 0, _ = s; a < _.length; a++) {
-                    var o = _[a], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                p.UIImageLoader.clearMemoryCache("sally");
-                for (var l = t.filter(function (t) {
-                    return /^resources\/map\/\d{3}\/\d{2}_.+/.test(t)
-                }), u = 0, c = l; u < c.length; u++) {
-                    var o = c[u], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var l = t.filter(function (t) {
-                    return /^map\d{5}_.+/.test(t)
-                }), h = 0, d = l; h < d.length; h++) {
-                    var o = d[h], r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this, e = new s.APIConnector;
-                e.add(new a.PortAPI), 33 == this._pre_scene ? (e.add(new _.UserSlotItemAPI), e.add(new l.UnsetSlotAPI), e.add(new u.UseItemAPI)) : 32 == this._pre_scene && e.add(new _.UserSlotItemAPI), e.start(function () {
-                    t._loadPortResources()
-                })
-            }, e.prototype._loadPortResources = function () {
-                var t = this, e = o.default.model.basic.getUISkinID();
-                new f.TaskLoadResources(e).start(function () {
-                    t._loadFurnitureResources()
-                })
-            }, e.prototype._loadFurnitureResources = function () {
-                var t = this, e = new c.FurnitureLoadTask(!0);
-                e.floor_id = o.default.model.basic.getPortFurnitureMstID(0), e.wall_id = o.default.model.basic.getPortFurnitureMstID(1), e.window_id = o.default.model.basic.getPortFurnitureMstID(2), e.object_id = o.default.model.basic.getPortFurnitureMstID(3), e.desk_id = o.default.model.basic.getPortFurnitureMstID(5), e.chest_id = o.default.model.basic.getPortFurnitureMstID(4), e.start(function () {
-                    var e = o.default.view.portMain;
-                    0 == e.isInitialized() && e.initialize(), t._loadFlagShipResource()
-                })
-            }, e.prototype._loadFlagShipResource = function () {
-                var t = this, e = o.default.model.deck.get(1).getShipModel(0);
-                if (null != e) {
-                    var i = e.mstID, n = e.isDamaged();
-                    if (1 == o.default.resources.isLoadedShip(i, n, "full")) {
-                        var r = e.tired;
-                        o.default.view.portMain.flagShip.initialize(i, n, r), this._preInitPortView(e)
-                    } else {
-                        var s = new h.ShipLoader;
-                        s.add(i, n, "full"), s.load(function () {
-                            var r = e.tired;
-                            o.default.view.portMain.flagShip.initialize(i, n, r), t._preInitPortView(e)
-                        })
-                    }
-                } else this._preInitPortView(e)
-            }, e.prototype._preInitPortView = function (t) {
-                var e = o.default.view.portMain;
-                if (0 == e.isInitialized()) {
-                    var i = o.default.model.basic.getUISkinID();
-                    e.initializeNext(i)
-                } else e.showPortUI(!0);
-                this._initPortView(e, t)
-            }, e.prototype._initPortView = function (t, e) {
-                var i = e.isMarriage();
-                t.activate(e.mstID, i), o.default.view.portMain.updateUserInfo({
-                    userName: o.default.model.basic.nickName,
-                    userLevel: o.default.model.basic.level,
-                    userRank: "[" + o.default.model.basic.rankName + "]",
-                    fleetNum: o.default.model.deck.num
-                }), o.default.view.portMain.updateInfo(), this._showExpeditionResult()
-            }, e.prototype._showExpeditionResult = function () {
-                var t = this;
-                (new y.TaskExpeditionAlertUpdate).start(function () {
-                    t._loginBonus()
-                })
-            }, e.prototype._loginBonus = function () {
-                if (1 == o.default.model.incentive.hasIncentive()) {
-                    var t = o.default.view.overLayer, e = o.default.model.incentive.getRewards();
-                    new d.TaskReward(t, e).start(), o.default.model.incentive.clearData()
-                }
-                this._endTask()
-            }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = m
+        return n(e, t), e.prototype.initialize = function () {
+            this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
+        }, e.prototype.activate = function () {
+            this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
+        }, e.prototype.deactivate = function () {
+            this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
+        }, e.prototype.prePosition = function () {
+            this.x = this._presetX, this.alpha = 0
+        }, e.prototype.startAnimation = function () {
+            var t = this;
+            this._interactive(!1), createjs.Tween.get(this).wait(200).to({
+                x: this._baseX,
+                alpha: 1
+            }, 300, createjs.Ease.quadOut).call(function () {
+                t._interactive(!0)
+            })
+        }, e.prototype.dispose = function () {
+            this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
+        }, e.prototype.setRevampFlg = function (t) {
+            1 == t ? this._addRevampBtn() : this._removeRevampBtn()
+        }, e.prototype._addRevampBtn = function () {
+            null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
+        }, e.prototype._removeRevampBtn = function () {
+            null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
+        }, e.prototype._interactive = function (t) {
+            this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
+        }, e
+    }(PIXI.Container);
+    e.RingMenuLayer = _
 }

@@ -15,36 +15,46 @@ const function490 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function () {
+    var o = i(491), r = i(492), s = function () {
         function t() {
-            this._type = 0
         }
 
-        return Object.defineProperty(t.prototype, "type", {
-            get: function () {
-                return this._type
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_main", {
-            get: function () {
-                return 1 == this.isCombined() ? 1 : 0
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "deck_id_sub", {
-            get: function () {
-                return 1 == this.isCombined() ? 2 : 0
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.isCombined = function () {
-            return 1 == this._type || 2 == this._type || 3 == this._type
+        return t.prototype.getMst = function (t) {
+            return null == this._dic ? null : 0 == this._dic.hasOwnProperty(t.toString()) ? null : this._dic[t]
+        }, t.prototype.getMapBGM = function (t, e) {
+            var i = this._getMapBGMData(t, e);
+            return null == i ? 0 : i.mapBGMID
+        }, t.prototype.getCombatBGM = function (t, e, i, n) {
+            var o = this._getMapBGMData(t, e);
+            return null == o ? i ? 2 : 1 : o.getBGM(i, n)
+        }, t.prototype.isSameBGM = function (t, e, i) {
+            var n = this._getMapBGMData(t, e);
+            return null != n && n.getDayBGM(i) == n.getNightBGM(i)
+        }, t.prototype._getMapBGMData = function (t, e) {
+            var i = t.toString() + e.toString();
+            return 1 == this._dic_battle.hasOwnProperty(i) ? this._dic_battle[i] : null
         }, t
     }();
-    e.DeckCombinedModel = o;
-    var r = function (t) {
+    e.BGMMstModelHolder = s;
+    var a = function (t) {
         function e() {
-            return t.call(this) || this
+            return null !== t && t.apply(this, arguments) || this
         }
 
-        return n(e, t), e.prototype.__update__ = function (t) {
-            this._type = t
+        return n(e, t), e.prototype.setMstBGMData = function (t) {
+            if (this._dic = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = new r.BGMMstModel(t[e]), n = i.mstID;
+                n > 0 && (this._dic[n] = i)
+            }
+        }, e.prototype.setMapBGMData = function (t) {
+            if (this._dic_battle = {}, null != t) for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new o.BattleBGMMstModel(i), r = n.mapID;
+                if (r > 0) {
+                    var s = r.toString();
+                    this._dic_battle[s] = n
+                }
+            }
         }, e
-    }(o);
-    e.DeckCombinedModelEdit = r
+    }(s);
+    e.BGMMstModelHolderEdit = a
 }

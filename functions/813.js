@@ -15,31 +15,19 @@ const function813 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(3), s = i(14), a = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(10)),
-                n = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(20));
-            n.position.set(204, 23);
-            var a = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(12));
-            a.position.set(164, 143);
-            var _ = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(13));
-            _.position.set(21, 101);
-            var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(14));
-            l.position.set(21, 143);
-            var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(15));
-            u.position.set(162, 101), e.addChild(i, n, a, _, l, u), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
-            var c = s.CreateRect.gradientLeftToRight(200, 55, .9, .97);
-            e._textName.mask = c, e._containerName.addChild(e._textName, c), e.addChild(e._containerName), e._textShipType = new o.TextBox(22, 4999235), e._textShipType.position.set(14, 60), e.addChild(e._textShipType), e._textLevel = new o.TextBox(29, 4999235), e._textLevel.position.set(231, 16), e.addChild(e._textLevel);
-            return e._textKaryoku = new o.TextBox(24, 4999235), e._textKaryoku.position.set(141, 99), e._textKaryoku.anchor.x = 1, e.addChild(e._textKaryoku), e._textRaiso = new o.TextBox(24, 4999235), e._textRaiso.position.set(141, 142), e._textRaiso.anchor.x = 1, e.addChild(e._textRaiso), e._textTaiku = new o.TextBox(24, 4999235), e._textTaiku.position.set(284, 99), e._textTaiku.anchor.x = 1, e.addChild(e._textTaiku), e._textSouko = new o.TextBox(24, 4999235), e._textSouko.position.set(284, 142), e._textSouko.anchor.x = 1, e.addChild(e._textSouko), e
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
         }
 
-        return n(e, t), e.prototype.update = function (t, e, i) {
-            void 0 === e && (e = null), void 0 === i && (i = null), this._textLevel.text = t.toString(), null == e || "" == e ? (this._unknown.texture = r.REMODEL_GRADEUP.getTexture(28), this._unknown.visible = !0, this._textName.visible = !1, this._textShipType.visible = !1) : (this._unknown.visible = !1, this._containerName.cacheAsBitmap = !1, this._textName.text = e, this._containerName.cacheAsBitmap = !0, this._textName.visible = !0, this._textShipType.text = i, this._textShipType.visible = !0)
-        }, e.prototype.updateStatus = function (t, e, i, n) {
-            void 0 === t && (t = -1), void 0 === e && (e = -1), void 0 === i && (i = -1), void 0 === n && (n = -1), this._textKaryoku.text = t >= 0 ? t.toString() : "??", this._textRaiso.text = e >= 0 ? e.toString() : "??", this._textTaiku.text = i >= 0 ? i.toString() : "??", this._textSouko.text = n >= 0 ? n.toString() : "??"
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._containerName.cacheAsBitmap = !1, this._containerName.removeChildren(), this._textName.destroy(), this._textShipType.destroy(), this._textLevel.destroy(), this._textKaryoku.destroy(), this._textRaiso.destroy(), this._textTaiku.destroy(), this._textSouko.destroy(), this._unknown = null, this._containerName = null, this._textName = null, this._textShipType = null, this._textLevel = null, this._textKaryoku = null, this._textRaiso = null, this._textTaiku = null, this._textSouko = null
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
+                n = o.default.model.ship_upgrade.getRequires(i);
+            e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.KaizoDetailShipPanel = a
+    }(r.APIBase);
+    e.RemodelingAPI = s
 }

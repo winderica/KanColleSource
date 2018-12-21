@@ -15,18 +15,16 @@ const function104 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e) {
+            void 0 === e && (e = !1);
+            var i = t.call(this) || this;
+            return i._url = "api_get_member/useitem", i._debug = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            return null
-        }, e.prototype.start = function () {
-            return null
-        }, e.prototype.dispose = function () {
-            return null
+        return n(e, t), e.prototype._completedEnd = function () {
+            o.default.model.useItem.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.SceneBase = o
+    }(r.APIBase);
+    e.UseItemAPI = s
 }

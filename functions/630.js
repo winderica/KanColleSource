@@ -15,32 +15,28 @@ const function630 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(48), a = function (t) {
+    var o = i(0), r = i(301), s = i(4), a = i(78), _ = i(48), l = function (t) {
         function e(e, i) {
-            var n = t.call(this, e, null) || this;
-            return n._models = i, n
+            return t.call(this, e, i) || this
         }
 
-        return n(e, t), e.prototype._createContent = function () {
-            this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
-            for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
-                var n = i[e], s = o.default.resources.getUseitem(n.mst_id, 0), a = new PIXI.Sprite(s);
-                a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
-            }
-            this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
-            for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
-                var a = this._icons[c];
-                a.x = -u / 2 + (75 + l) * c
-            }
-            this._showDialog()
+        return n(e, t), Object.defineProperty(e.prototype, "model", {
+            get: function () {
+                return this._model
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._createContent = function () {
+            var t = this, e = this.model.mst_id, i = this.model.name, n = new a.FurnitureLoader;
+            n.add(e, "reward"), n.load(function () {
+                var n = o.default.model.furniture.getData(e);
+                if (null != n) {
+                    var a = (n.type, o.default.resources.getFurniture(e, "reward"));
+                    t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
+                }
+                t._showDialog()
+            })
         }, e.prototype._removeContent = function () {
-            this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
-            for (var t = 0, e = this._icons; t < e.length; t++) {
-                var i = e[t];
-                this._dialog.container.removeChild(i)
-            }
-            this._icons = null
+            null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
         }, e
-    }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogMultiUseitem = a
+    }(_.TaskRewardDialogBase);
+    e.TaskRewardDialogFurniture = l
 }

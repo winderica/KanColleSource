@@ -15,28 +15,96 @@ const function1323 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(16), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._wave1 = new o.Sprite, e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
-        }
+    var o = i(76), r = i(92), s = i(119), a = i(93), _ = i(94), l = i(95), u = i(64), c = i(96), h = i(97),
+        p = i(77), d = i(98), f = i(99), y = i(100), m = i(101), v = i(102), g = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
+            }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._wave1.scale.set(0), this._wave2.scale.set(0), this._wave1.alpha = 0, this._wave2.alpha = 0, this._wave1.texture = r.BATTLE_MAIN.getTexture(106), this._wave2.texture = r.BATTLE_MAIN.getTexture(106)
-        }, e.prototype.play = function () {
-            var t = this;
-            createjs.Tween.get(this._wave1).to({
-                scaleX: 1,
-                scaleY: 1,
-                alpha: 1
-            }, 1e3).to({ alpha: 0 }, 300), createjs.Tween.get(this._wave2).wait(600).to({
-                scaleX: 1,
-                scaleY: 1,
-                alpha: 1
-            }, 1e3).to({ alpha: 0 }, 300).call(function () {
-                t.removeChildren(), null != t.parent && t.parent.removeChild(t)
-            })
-        }, e
-    }(PIXI.Container);
-    e.SubMarineWave = s
+            return n(e, t), e.prototype._start = function () {
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new s.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new _.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new l.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new v.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new d.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new f.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new c.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new p.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new m.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
+            }, e
+        }(o.PhaseCombatBase);
+    e.PhaseDay = g
 }

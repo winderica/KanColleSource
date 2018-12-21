@@ -15,19 +15,23 @@ const function1185 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(3), s = i(169), a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+    var o = i(0), r = i(11), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._data = e, n._scene_activate_delegate = i, n
         }
 
-        return n(e, t), e.prototype._initialize = function () {
-            this._icon.texture = r.DUTY_COMMON.getTexture(24);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getSlotitem(e, "card"), n = new PIXI.Sprite(i),
-                s = Math.min(195 / n.width, 195 / n.height);
-            n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(102), this._playVoice()
+        }, e.prototype._playVoice = function () {
+            1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
+        }, e.prototype._startScene = function () {
+            null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+        }, e.prototype._endTask = function () {
+            this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
         }, e
-    }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogSlotitemBtn = a
+    }(r.TaskBase);
+    e.TaskDutySceneInitialize = s
 }

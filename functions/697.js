@@ -15,33 +15,37 @@ const function697 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(56), r = i(157), s = i(57), a = function (t) {
+    var o = i(3), r = i(57), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e._onClickMamiya = function () {
-                e.onClickMamiya()
-            }, e._onClickIrako = function () {
-                e.onClickIrako()
-            }, e._onClickMamiyaAndIrako = function () {
-                e.onClickMamiyaAndIrako()
+            e._onClickYuso = function () {
+                e.onClickYuso()
+            }, e._onClickKido = function () {
+                e.onClickKido()
+            }, e._onClickSuijo = function () {
+                e.onClickSuijo()
             }, e._onClickBack = function () {
                 e.onClickBack()
             };
-            var i = o.ORGANIZE_MAIN.getTexture(6);
-            e.message = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_info4);
-            var n = r.OrganizeConst.getMamiyaOption().res_btn_mamiya;
-            e.buttonMamiya = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_irako, e.buttonIrako = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_m_i, e.buttonMamiyaAndIrako = new s.SimpleButton(n, n), e.buttonBack = new s.SimpleButton(i, i);
-            var a = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_mamiya_g),
-                _ = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_irako_g),
-                l = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_m_i_g);
-            return e.buttonMamiya.position = a.position = new PIXI.Point(100, 43), e.buttonIrako.position = _.position = new PIXI.Point(753, 43), e.buttonMamiyaAndIrako.position = l.position = new PIXI.Point(390, 114), e.buttonBack.position.set(762, 135), e.buttonMamiya.onClick = e._onClickMamiya, e.buttonIrako.onClick = e._onClickIrako, e.buttonMamiyaAndIrako.onClick = e._onClickMamiyaAndIrako, e.buttonBack.onClick = e._onClickBack, e.addChild(e.message, a, _, l, e.buttonMamiya, e.buttonIrako, e.buttonMamiyaAndIrako, e.buttonBack), e
+            var i = o.ORGANIZE_RENGO.getTexture(17), n = o.ORGANIZE_RENGO.getTexture(18), s = new PIXI.Sprite(i),
+                a = new PIXI.Sprite(n), _ = o.ORGANIZE_RENGO.getTexture(0), l = o.ORGANIZE_RENGO.getTexture(2);
+            e.buttonKido = new r.SimpleButton(_, l);
+            var u = o.ORGANIZE_RENGO.getTexture(3), c = o.ORGANIZE_RENGO.getTexture(5);
+            e.buttonSuijo = new r.SimpleButton(u, c);
+            var h = o.ORGANIZE_RENGO.getTexture(6), p = o.ORGANIZE_RENGO.getTexture(8);
+            e.buttonYuso = new r.SimpleButton(h, p);
+            var d = o.ORGANIZE_MAIN.getTexture(7);
+            e.buttonBack = new r.SimpleButton(d, d);
+            var f = o.ORGANIZE_RENGO.getTexture(1), y = new PIXI.Sprite(f), m = o.ORGANIZE_RENGO.getTexture(4),
+                v = new PIXI.Sprite(m), g = o.ORGANIZE_RENGO.getTexture(7), b = new PIXI.Sprite(g);
+            return e.buttonKido.onClick = e._onClickKido, e.buttonSuijo.onClick = e._onClickSuijo, e.buttonYuso.onClick = e._onClickYuso, e.buttonBack.onClick = e._onClickBack, a.position.set(189, 25), e.buttonKido.position.set(84, 61), e.buttonSuijo.position.set(298, 61), e.buttonYuso.position.set(84, 124), e.buttonBack.position.set(211, 192), y.position.set(84, 61), v.position.set(298, 61), b.position.set(84, 124), e.buttonSuijo.visible = e.buttonYuso.visible = e.buttonKido.visible = !1, e.addChild(s, y, v, b, e.buttonKido, e.buttonSuijo, e.buttonYuso, e.buttonBack, a), e
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.buttonMamiya.dispose(), this.buttonIrako.dispose(), this.buttonMamiyaAndIrako.dispose(), this.buttonBack.dispose(), this._onClickBack = this._onClickIrako = this._onClickMamiya = this._onClickMamiyaAndIrako = null, this.buttonMamiya = null, this.buttonIrako = null, this.buttonMamiyaAndIrako = null, this.buttonBack = null, this.message = null, this.onClickMamiya = null, this.onClickIrako = null, this.onClickMamiyaAndIrako = null, this.onClickBack = null, this.removeChildren()
+            this.buttonKido.onClick = this._onClickKido = null, this.buttonSuijo.onClick = this._onClickSuijo = null, this.buttonYuso.onClick = this._onClickYuso = null, this.buttonBack.onClick = this._onClickBack = null, this.buttonKido.dispose(), this.buttonSuijo.dispose(), this.buttonYuso.dispose(), this.buttonBack.dispose(), this.buttonKido = null, this.buttonSuijo = null, this.buttonYuso = null, this.buttonBack = null, this.removeChildren()
         }, e.prototype.update = function (t, e, i) {
-            t ? (this.buttonMamiya.visible = !0, this.buttonMamiya.interactive = !0, this.buttonMamiya.buttonMode = !0) : (this.buttonMamiya.visible = !1, this.buttonMamiya.interactive = !1, this.buttonMamiya.buttonMode = !1), e ? (this.buttonIrako.visible = !0, this.buttonIrako.interactive = !0, this.buttonIrako.buttonMode = !0) : (this.buttonIrako.visible = !1, this.buttonIrako.interactive = !1, this.buttonIrako.buttonMode = !1), i ? (this.buttonMamiyaAndIrako.visible = !0, this.buttonMamiyaAndIrako.interactive = !0, this.buttonMamiyaAndIrako.buttonMode = !0) : (this.buttonMamiyaAndIrako.visible = !1, this.buttonMamiyaAndIrako.interactive = !1, this.buttonMamiyaAndIrako.buttonMode = !1)
+            this.buttonSuijo.reset(), this.buttonYuso.reset(), this.buttonKido.reset(), this.buttonSuijo.visible = this.buttonYuso.visible = this.buttonKido.visible = !1, t && (this.buttonKido.visible = !0), i && (this.buttonYuso.visible = !0), e && (this.buttonSuijo.visible = !0)
         }, e
     }(PIXI.Container);
-    e.SweetsSelectView = a
+    e.CombineTypeSelectDialog = s
 }

@@ -15,33 +15,24 @@ const function583 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(8), r = i(4), s = i(584), a = i(31), _ = i(279), l = i(585), u = i(101), c = i(280), h = i(149),
-        p = i(590), d = i(1), f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._initialized = !1, e._activated = !1, e._onClick = function () {
-                    var t = new s.ExpeditionResultModel, i = new l.ExpeditionResultAPI(e._deck_id, t);
-                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new u.UseItemAPI).start(function () {
-                        e._showExpeditionCutin(t)
-                    })
-                }, e._showExpeditionCutin = function (t) {
-                    new c.TaskExpeditionEndCutin(e._deck_id, t).start(function () {
-                        e._showExpeditionResult(t)
-                    })
-                }, e._showExpeditionResult = function (t) {
-                    new p.TaskExpeditionResultShow(e._deck_id, t).start()
-                }, e
-            }
+    var o = i(584), r = i(277), s = i(586), a = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
 
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
-            }, e.prototype.activate = function () {
-                0 == this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(d.EventType.CLICK, this._onClick))
-            }, e.prototype.deactive = function () {
-                this.interactive = this.buttonMode = !1, this.off(d.EventType.CLICK, this._onClick), this._activated = !1
-            }, e.prototype.dispose = function () {
-                this.deactive(), this._initialized = !1, this.removeChildren(), this._bg = null, this._balloon = null, this._message && this._message.destroy(), this._message = null
-            }, e
-        }(PIXI.Container);
-    e.ExpeditionAlert = f
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.changeSkin(t)
+        }, e.prototype.changeSkin = function (t) {
+            if (null != this._content) {
+                if (this._skinID == t) return;
+                this._content.dispose(), this.removeChild(this._content), this._content = null
+            }
+            this._skinID = t, 101 == t || 102 == t ? this._content = new o.CircleContentSkin1 : 201 == t && (this._content = new r.CircleContentSkin2), 301 == t && (this._content = new s.CircleContentSkin3), 311 == t && (this._content = new s.CircleContentSkin3k), this._content.initialize(), this.addChild(this._content)
+        }, e.prototype.dispose = function () {
+            null != this._content && (this._content.dispose(), this.removeChild(this._content), this._content = null)
+        }, e.prototype.startMoveAnimation = function (t) {
+            null != this._content && this._content.startMoveAnimation(t)
+        }, e
+    }(PIXI.Container);
+    e.Circle = a
 }

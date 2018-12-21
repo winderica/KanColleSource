@@ -15,31 +15,105 @@ const function179 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(25), a = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._scene = e, o._plane_f = i, o._plane_e = n, o
+    var o = i(1343), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._current_frame = 0, e._img = new PIXI.Sprite, e.addChild(e._img), e
         }
 
-        return n(e, t), e.prototype._start = function () {
-            this._plane_f <= 0 && this._plane_e <= 0 ? this._endTask() : this._loadImage()
-        }, e.prototype._loadImage = function () {
-            var t = this, e = this._scene.view.raderLayer, i = new s.SlotLoader;
-            if (this._plane_f > 0) {
-                o.default.model.slot.getMst(this._plane_f);
-                i.add(this._plane_f, "item_up"), e.rader_e.touch_plane.initialize(this._plane_f)
-            }
-            if (this._plane_e > 0) {
-                o.default.model.slot.getMst(this._plane_e);
-                i.add(this._plane_e, "item_up"), e.rader_f.touch_plane.initialize(this._plane_e)
-            }
-            i.load(function () {
-                t._show()
+        return n(e, t), e.prototype.play = function (t) {
+            void 0 === t && (t = null), this._isPlaying || (this._isPlaying = !0, this.createTween(t))
+        }, e.prototype.createTween = function (t) {
+            var e = this;
+            void 0 === t && (t = null), createjs.Tween.removeTweens(this), this._tween = createjs.Tween.get(this), this._tween.wait(33).call(function () {
+                e._current_frame++, e._img.texture = e._getTexture(e._current_frame), e._setImageOffset(e._current_frame), e._current_frame <= 15 ? e.createTween(t) : (e._isPlaying = !1, e._current_frame = 0, null != t && t())
             })
-        }, e.prototype._show = function () {
-            var t = this._scene.view.raderLayer;
-            t.rader_f.touch_plane.show(), t.rader_e.touch_plane.show(), this._endTask()
+        }, e.prototype.stop = function () {
+            this._isPlaying && (this._isPlaying = !1, this._tween.setPaused(!0)), this._current_frame = 0, this._img.texture = this._getTexture(this._current_frame), this._setImageOffset(this._current_frame)
+        }, e.prototype._getTexture = function (t) {
+            switch (t) {
+                case 1:
+                    return o.COMMON_EXPLOSION.getTexture(0);
+                case 2:
+                    return o.COMMON_EXPLOSION.getTexture(7);
+                case 3:
+                    return o.COMMON_EXPLOSION.getTexture(8);
+                case 4:
+                    return o.COMMON_EXPLOSION.getTexture(9);
+                case 5:
+                    return o.COMMON_EXPLOSION.getTexture(10);
+                case 6:
+                    return o.COMMON_EXPLOSION.getTexture(11);
+                case 7:
+                    return o.COMMON_EXPLOSION.getTexture(12);
+                case 8:
+                    return o.COMMON_EXPLOSION.getTexture(13);
+                case 9:
+                    return o.COMMON_EXPLOSION.getTexture(14);
+                case 10:
+                    return o.COMMON_EXPLOSION.getTexture(1);
+                case 11:
+                    return o.COMMON_EXPLOSION.getTexture(2);
+                case 12:
+                    return o.COMMON_EXPLOSION.getTexture(3);
+                case 13:
+                    return o.COMMON_EXPLOSION.getTexture(4);
+                case 14:
+                    return o.COMMON_EXPLOSION.getTexture(5);
+                case 15:
+                    return o.COMMON_EXPLOSION.getTexture(6);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e.prototype._setImageOffset = function (t) {
+            switch (t) {
+                case 1:
+                    this._img.position.set(-71, -53);
+                    break;
+                case 2:
+                    this._img.position.set(-74, -60);
+                    break;
+                case 3:
+                    this._img.position.set(-77, -69);
+                    break;
+                case 4:
+                    this._img.position.set(-78, -72);
+                    break;
+                case 5:
+                    this._img.position.set(-81, -77);
+                    break;
+                case 6:
+                    this._img.position.set(-84, -81);
+                    break;
+                case 7:
+                    this._img.position.set(-84, -86);
+                    break;
+                case 8:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 9:
+                    this._img.position.set(-89, -90);
+                    break;
+                case 10:
+                    this._img.position.set(-90, -90);
+                    break;
+                case 11:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 12:
+                case 13:
+                    this._img.position.set(-87, -87);
+                    break;
+                case 14:
+                    this._img.position.set(-87, -89);
+                    break;
+                case 15:
+                    this._img.position.set(-90, -89);
+                    break;
+                default:
+                    this._img.position.set(0)
+            }
         }, e
-    }(r.TaskBase);
-    e.TaskShowTouchPlane = a
+    }(PIXI.Container);
+    e.Explosion = r
 }

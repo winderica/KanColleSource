@@ -15,38 +15,50 @@ const function1487 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(230), r = i(23), s = i(27), a = i(1488), _ = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(0), r = i(11), s = i(68), a = i(8), _ = i(32), l = i(1488), u = i(1), c = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e, i) {
-            this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
-        }, e.prototype.update = function (t, e) {
-            if (null == this._gauge) return null;
-            this._gauge.update(t, e)
-        }, e.prototype.explode = function (t) {
-            var e = this, i = new s.ParallelTask, n = new a.TaskExplosion(this, 107, 20);
-            i.add(n);
-            var o = new a.TaskExplosion(this, 209, 57, 250);
-            i.add(o);
-            var r = new a.TaskExplosion(this, 309, 24, 450);
-            i.add(r), i.start(function () {
-                null != t && t()
-            }), createjs.Tween.get(this._gauge).wait(200).to({ alpha: 0 }, 400).call(function () {
-                e.removeChild(e._gauge), e._gauge = null
+        return n(e, t), e.prototype._start = function () {
+            var t = this._scene.data.getLandingData();
+            t.isLandingMap() ? this._loadResources(t) : this._endTask()
+        }, e.prototype._loadResources = function (t) {
+            var e = this, i = o.default.resources.gauge.createLoaderHorizontal(),
+                n = this._scene.data.battle_model.map_info.area_id,
+                r = this._scene.data.battle_model.map_info.map_no, a = this._scene.data.battle_model.stage,
+                _ = s.GaugeSetModel.createKey(n, r, a);
+            i.add(_);
+            i.load(function () {
+                var i = o.default.resources.gauge.getGaugeInfo(_), n = null;
+                e._showDialog(t, i, n)
             })
-        }, e.prototype.changeNextGauge = function (t, e) {
-            null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
-            var i = new r.Container;
-            i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
-                scaleX: 1,
-                scaleY: 1,
-                alpha: 1
-            }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
-                null != e && e()
+        }, e.prototype._showDialog = function (t, e, i) {
+            var n = this, o = new l.ResultDialog(t, e, i);
+            o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({ alpha: 1 }, 300).wait(500).call(function () {
+                o.startAnimation(function () {
+                    n._hideDialog(o)
+                })
+            })
+        }, e.prototype._hideDialog = function (t) {
+            var e = this;
+            createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+                e._scene.view.removeChild(t), t.dispose(), e._wait()
+            })
+        }, e.prototype._wait = function () {
+            var t = this;
+            createjs.Tween.get(null).wait(500).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            var e = this, i = new _.GearBtnNext;
+            i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
+            var n = new a.AreaBox(0);
+            n.buttonMode = !0, this._scene.view.addChild(n), n.once(u.EventType.CLICK, function () {
+                i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
             })
         }, e
-    }(PIXI.Container);
-    e.ResultDialogGauge = _
+    }(r.TaskBase);
+    e.PhaseTransportResult = c
 }

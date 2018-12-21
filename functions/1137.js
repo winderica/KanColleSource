@@ -15,34 +15,27 @@ const function1137 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(1138), s = function (t) {
+    var o = i(0), r = i(171), s = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._result = !1, e._api = null, e._retry_count = 0, e
+            var e = null !== t && t.apply(this, arguments) || this;
+            return e._onMouseOver = function () {
+                e._canvas.scale.set(1.05)
+            }, e._onMouseOut = function () {
+                e._canvas.scale.set(1)
+            }, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype._start = function () {
-            var t = this;
-            createjs.Tween.get(null).wait(500).call(function () {
-                t._check()
-            })
-        }, e.prototype._check = function () {
-            var t = this;
-            this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                t._checked()
-            })
-        }, e.prototype._checked = function () {
-            var t = this;
-            2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                t._check()
-            })
-        }, e.prototype._endTask = function () {
-            this._api = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.load = function (t) {
+            t()
+        }, e.prototype._initialize = function () {
+            this._icon.visible = !1;
+            this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
+            var t = new PIXI.Graphics;
+            t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
+            var e = this._candidate.mst_id, i = o.default.resources.getShip(e, !1, "card_round"),
+                n = new PIXI.Sprite(i);
+            n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
         }, e
-    }(o.TaskBase);
-    e.TaskPayCheck = s
+    }(r.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogShipBtn = s
 }

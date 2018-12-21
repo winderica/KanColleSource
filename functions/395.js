@@ -15,39 +15,53 @@ const function395 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1096), r = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._btns = [], i._btns.push(new o.TabBtn(0, e)), i._btns.push(new o.TabBtn(1, e)), i._btns.push(new o.TabBtn(2, e));
-            for (var n = 0; n < i._btns.length; n++) {
-                var r = i._btns[n];
-                r.y = 61 * n, i.addChild(r)
-            }
-            return i
+    var o = i(0), r = i(2), s = i(13), a = i(236), _ = function () {
+        function t() {
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            for (var e = 0; e < this._btns.length; e++) {
-                this._btns[e].initialize(t)
-            }
-        }, e.prototype.activate = function () {
-            for (var t = 0, e = this._btns; t < e.length; t++) {
-                e[t].activate()
-            }
-        }, e.prototype.update = function (t) {
-            for (var e = 0, i = this._btns; e < i.length; e++) {
-                var n = i[e];
-                n.selected = n.target == t
-            }
-        }, e.prototype.deactivate = function () {
-            for (var t = 0, e = this._btns; t < e.length; t++) {
-                e[t].deactivate()
-            }
-        }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._btns; t < e.length; t++) {
-                e[t].dispose()
-            }
+        return t.isLoaded = function () {
+            return t._loaded
+        }, t.loaded = function () {
+            t._loaded = !0
+        }, t.clearCache = function () {
+            [a.POSTER_KEY_1, a.POSTER_KEY_2].forEach(function (t) {
+                var e = PIXI.utils.TextureCache[t];
+                null != e && (e.destroy(!0), delete PIXI.utils.TextureCache[t])
+            }), t._loaded = !1
+        }, t._loaded = !1, t
+    }();
+    e.AkashiPicture = _;
+    var l = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype._start = function () {
+            this._load()
+        }, e.prototype._load = function () {
+            var t = this, e = new s.UIImageLoader("item");
+            e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
+                t._load2()
+            })
+        }, e.prototype._load2 = function () {
+            var t = this, e = new s.UIImageLoader("item");
+            e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
+                t._loadSkinResource()
+            })
+        }, e.prototype._loadSkinResource = function () {
+            var t = this, e = new s.UIImageLoader("item"), i = o.default.model.basic.getUISkinID();
+            101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
+                t._loadAkashiResoueces()
+            })
+        }, e.prototype._loadAkashiResoueces = function () {
+            var t = this;
+            if (_.isLoaded()) return void this._endTask();
+            var e = o.default.settings.path_root + "resources/misc/akashi/", i = new PIXI.loaders.Loader(e),
+                n = s.UIImageLoader.getVersion("item"), r = n ? "?version=" + n : null;
+            i.add(a.POSTER_KEY_1, a.POSTER_TYPE + "1.png" + r), i.add(a.POSTER_KEY_2, a.POSTER_TYPE + "2.png" + r), _.loaded(), i.load(function () {
+                t._endTask()
+            })
         }, e
-    }(PIXI.Container);
-    e.TabContainer = r
+    }(r.TaskBase);
+    e.TaskLoadResources = l
 }

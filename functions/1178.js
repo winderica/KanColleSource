@@ -15,75 +15,31 @@ const function1178 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(28), r = i(77), s = i(15), a = i(25), _ = i(67), l = i(2), u = function (t) {
+    var o = i(310), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._task = new o.SerialTask, e
+            return e._dic = {}, e
         }
 
-        return n(e, t), e.prototype.addShip = function (t) {
-            this._task.add(new c(t))
-        }, e.prototype.addSlotitem = function (t) {
-            this._task.add(new h(t))
-        }, e.prototype.addUseitem = function (t) {
-            this._task.add(new p(t))
-        }, e.prototype.addFurniture = function (t) {
-            this._task.add(new d(t))
-        }, e.prototype._start = function () {
-            var t = this;
-            this._task.start(function () {
-                t._endTask()
-            })
+        return n(e, t), e.prototype.showAlert = function (t) {
+            var e, i = t.model.alert, n = 384, r = 0;
+            if (1 == i) e = 1, n = 444, r = -7; else if (2 == i) e = 2; else if (3 == i) e = 3; else if (4 == i) e = 4; else {
+                if (5 != i) return;
+                e = 5
+            }
+            var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
+            s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
+        }, e.prototype.hideAlert = function (t) {
+            if (void 0 === t && (t = null), null == t) for (var e in this._dic) this._hideAlert(e); else {
+                var i = t.model.id;
+                this._hideAlert(i.toString())
+            }
+        }, e.prototype._hideAlert = function (t) {
+            if (1 == this._dic.hasOwnProperty(t)) {
+                var e = this._dic[t];
+                null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
+            }
         }, e
-    }(l.TaskBase);
-    e.TaskLoadResources = u;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mst_id = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new s.ShipLoader;
-            e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(l.TaskBase), h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mst_id = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new a.SlotLoader;
-            e.add(this._mst_id, "card"), e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(l.TaskBase), p = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mst_id = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new _.UseitemLoader;
-            e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(l.TaskBase), d = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._mst_id = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            var t = this, e = new r.FurnitureLoader;
-            e.add(this._mst_id, "reward"), e.load(function () {
-                t._endTask()
-            })
-        }, e
-    }(l.TaskBase)
+    }(PIXI.Container);
+    e.AlertLayer = r
 }

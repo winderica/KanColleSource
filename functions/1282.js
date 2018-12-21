@@ -15,42 +15,49 @@ const function1282 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1283), r = i(1284), s = i(1285), a = i(1), _ = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onMouseOver = function () {
-                null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({ x: 831 }, 300, createjs.Ease.quadOut).call(function () {
-                    n._move_tween = null
-                }) : n._move_tween = createjs.Tween.get(n).to({ x: 0 }, 300, createjs.Ease.quadOut).call(function () {
-                    n._move_tween = null
-                }))
-            }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+    var o = i(2), r = i(6), s = i(1283), a = i(1284), _ = i(1288), l = function (t) {
+        function e(e, i, n, o, s, a) {
+            var _ = t.call(this) || this;
+            return _._selected_spot_no_1 = null, _._selected_spot_no_2 = null, _._selected_spot_no_3 = null, _._onChange = function () {
+                _._point_layer.update(), 2 == _._selected_spot_no.length ? (_._panel.title.complete = !0, _._panel.cancel_btn.visible = !0) : 1 == _._selected_spot_no.length ? (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !0) : (_._panel.title.complete = !1, _._panel.cancel_btn.visible = !1)
+            }, _._onFixed = function () {
+                switch (_._current_target.id) {
+                    case 1:
+                        _._selected_spot_no_1 = _._selected_spot_no.concat();
+                        break;
+                    case 2:
+                        _._selected_spot_no_2 = _._selected_spot_no.concat();
+                        break;
+                    case 3:
+                        _._selected_spot_no_3 = _._selected_spot_no.concat()
+                }
+                r.SE.play("227");
+                var t = _._airunits.indexOf(_._current_target);
+                t == _._airunits.length - 1 ? _._endTask() : (_._current_target = _._airunits[t + 1], _._onCancel(), _._panel.update(_._current_target.id), _._initializePoints())
+            }, _._onCancel = function () {
+                for (; _._selected_spot_no.length > 0;) _._selected_spot_no.pop();
+                _._point_layer.update(), _._panel.title.complete = !1, _._panel.cancel_btn.visible = !1
+            }, _._layer = e, _._area_id = i, _._airunits_all = n, _._airunits = o, _._model = s, _._map = a, _
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "title", {
-            get: function () {
-                return this._title
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "cancel_btn", {
-            get: function () {
-                return this._cancel_btn
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "panel", {
-            get: function () {
-                return this._panel
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e) {
-            var i = null == e ? 0 : e.length;
-            this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-        }, e.prototype.activate = function () {
-            this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-        }, e.prototype.deactivate = function () {
-            null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-        }, e.prototype.update = function (t) {
-            this._title.update(t), this._panel.update(t, !0)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            this._current_target = this._airunits[0], this._selected_spot_no = [], this._point_layer = new _.AirUnitAppointmentLayer(this._selected_spot_no, this._onChange), this._layer.addChild(this._point_layer), this._panel = new a.AirUnitPanelSet(this._onFixed, this._onCancel), this._panel.x = -375, this._layer.addChild(this._panel);
+            var e = this._area_id;
+            this._panel.initialize(e, this._airunits_all), this._panel.update(this._current_target.id), createjs.Tween.get(this._panel).to({ x: 0 }, 300, createjs.Ease.quadOut).call(function () {
+                t._panel.activate(), t._initializePoints()
+            })
+        }, e.prototype._initializePoints = function () {
+            var t = this._current_target.distance, e = this._model.sortie, i = this._map.spotLayer.getAllSpots();
+            this._point_layer.initialize(t, i, e)
+        }, e.prototype._endTask = function () {
+            var e = this;
+            this._layer.removeChild(this._point_layer), this._point_layer.dispose(), this._panel.deactivate(), createjs.Tween.get(this._panel).to({ x: -450 }, 300, createjs.Ease.quadOut).call(function () {
+                e._layer.removeChild(e._panel), e._panel.dispose(), new s.AirUnitGoAPI(e._selected_spot_no_1, e._selected_spot_no_2, e._selected_spot_no_3).start(function () {
+                    t.prototype._endTask.call(e)
+                })
+            })
         }, e
-    }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    }(o.TaskBase);
+    e.TaskAirUnitAppointment = l
 }

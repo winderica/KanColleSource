@@ -1,105 +1,145 @@
 const function524 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(45), o = i(7), r = function () {
-        function t(t) {
-            this._o = t
+    var o = i(0), r = i(525), s = function () {
+        function t() {
+            this._USE_DEVKIT_GROUP_ = [503, 504]
         }
 
-        return Object.defineProperty(t.prototype, "mstID", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "cardType", {
-            get: function () {
-                var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                return null == t || t.length < 4 ? -1 : t[1]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "equipType", {
-            get: function () {
-                var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                return null == t || t.length < 4 ? -1 : t[2]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "equipTypeSp", {
-            get: function () {
-                return 128 == this.mstID ? 38 : 142 == this.mstID ? 93 : 151 == this.mstID ? 94 : 281 == this.mstID ? 38 : this.equipType
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "iconType", {
-            get: function () {
-                var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                return null == t || t.length < 4 ? -1 : t[3]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "planeIconType", {
-            get: function () {
-                var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                return null == t || t.length < 5 ? -1 : t[4]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "range", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_leng")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "karyoku", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_houg")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "raisou", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_raig")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "taiku", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_tyku")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "taisen", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_tais")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "bakusou", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_baku")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "meichu", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_houm")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "kaihi", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_houk")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "sakuteki", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_saku")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "soukou", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_souk")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "rarity", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_rare", 0)
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "version", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_version", "1")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "distance", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_distance")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "cost", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_cost")
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.isPlane = function () {
-            return -1 != n.PlaneConst.PLANE.indexOf(this.cardType)
-        }, t.prototype.getMaterialsFromBroken = function () {
-            var t = o.ObjUtil.getNumArray(this._o, "api_broken");
-            return { fuel: t[0], ammo: t[1], steel: t[2], baux: t[3] }
+        return t.prototype.getRequiredLevel = function (t) {
+            var e = this._getMst(t);
+            return null == e ? 0 : e.remodeling_level
+        }, t.prototype.getNextID = function (t) {
+            if (null != this._dic && 1 == this._dic.hasOwnProperty(t.toString())) {
+                return this._dic[t].mst_id_after
+            }
+            var e = this._getMst(t);
+            return null == e ? 0 : e.remodeled_mst_id
+        }, t.prototype.getRequires = function (t) {
+            var e = this._getMst(t);
+            if (null == e || e.remodeled_mst_id <= 0) return {
+                ammo: 0,
+                steel: 0,
+                devkit: 0,
+                buildkit: 0,
+                blueprint: 0,
+                catapult: 0,
+                battlereport: 0,
+                newhokohesosizai: 0
+            };
+            var i = e.remodeling_ammo, n = e.remodeling_steel;
+            if (1 == this._dic.hasOwnProperty(t.toString())) {
+                var o = this._dic[t];
+                return {
+                    ammo: i,
+                    steel: n,
+                    blueprint: o.blueprint,
+                    catapult: o.catapult,
+                    battlereport: o.battlereport,
+                    devkit: this._getRequiredDevkitNum(t, o.blueprint, n),
+                    buildkit: this._getRequiredBuildKitNum(t),
+                    newhokohesosizai: o.newkohohesosizai
+                }
+            }
+            return {
+                ammo: i,
+                steel: n,
+                blueprint: 0,
+                catapult: 0,
+                battlereport: 0,
+                devkit: this._getRequiredDevkitNum(t, 0, n),
+                buildkit: this._getRequiredBuildKitNum(t),
+                newhokohesosizai: 0
+            }
+        }, t.prototype._getRequiredDevkitNum = function (t, e, i) {
+            switch (t) {
+                case 214:
+                    return 15;
+                case 545:
+                case 550:
+                    return 20;
+                case 555:
+                case 560:
+                    return 5;
+                case 312:
+                case 320:
+                case 317:
+                    return 40;
+                case 225:
+                case 226:
+                    return 20;
+                case 82:
+                    return 80;
+                case 227:
+                    return 20;
+                case 242:
+                    return 15;
+                case 213:
+                    return 24;
+                case 381:
+                    return 40;
+                case 313:
+                    return 50;
+                default:
+                    return 0 != e && -1 == this._USE_DEVKIT_GROUP_.indexOf(t) ? 0 : i < 4500 ? 0 : i < 5500 ? 10 : i < 6500 ? 15 : 20
+            }
+        }, t.prototype._getRequiredBuildKitNum = function (t) {
+            switch (t) {
+                case 214:
+                    return 5;
+                case 503:
+                case 504:
+                case 508:
+                case 509:
+                    return 20;
+                case 545:
+                case 550:
+                    return 30;
+                case 555:
+                case 560:
+                    return 20;
+                case 312:
+                case 320:
+                case 317:
+                    return 10;
+                case 213:
+                    return 8;
+                case 313:
+                    return 20;
+                default:
+                    return 0
+            }
+        }, t.prototype._getMst = function (t) {
+            return o.default.model.ship.getMst(t)
         }, t
     }();
-    e.SlotitemMstModel = r
+    e.ShipUpgradeModelHolder = s;
+    var a = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.setData = function (t) {
+            if (this._dic = {}, null == t) return null;
+            for (var e = 0; e < t.length; e++) {
+                var i = t[e], n = new r.ShipUpgradeModel(i), o = n.mst_id_before;
+                o <= 0 || null == this._dic[o] && (this._dic[o] = n)
+            }
+        }, e
+    }(s);
+    e.ShipUpgradeModelHolderEdit = a
 }

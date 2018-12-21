@@ -1,97 +1,154 @@
 const function468 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(1409), r = function () {
-        function t(t) {
-            this._o = t
-        }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
 
-        return Object.defineProperty(t.prototype, "deck_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_deck_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "formation_id_f", {
-            get: function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_formation")[0];
-                return "string" == typeof t ? parseInt(t) : t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "formation_id_e", {
-            get: function () {
-                return n.ObjUtil.getNumArray(this._o, "api_formation")[1]
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "formation_id_c", {
-            get: function () {
-                return n.ObjUtil.getNumArray(this._o, "api_formation")[2]
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.getHPMaxFriend = function (t) {
-            return this._getNum(t, "api_f_maxhps", "api_f_maxhps_combined")
-        }, t.prototype.getHPNowFriend = function (t) {
-            return this._getNum(t, "api_f_nowhps", "api_f_nowhps_combined")
-        }, t.prototype.getMstIDEnemy = function (t) {
-            return this._getNum(t, "api_ship_ke", "api_ship_ke_combined")
-        }, t.prototype.getLevelEnemy = function (t) {
-            return this._getNum(t, "api_ship_lv", "api_ship_lv_combined", 1)
-        }, t.prototype.getHPMaxEnemy = function (t) {
-            return this._getNum(t, "api_e_maxhps", "api_e_maxhps_combined")
-        }, t.prototype.getHPNowEnemy = function (t) {
-            return this._getNum(t, "api_e_nowhps", "api_e_nowhps_combined")
-        }, t.prototype.getSlotMstIDsEnemy = function (t) {
-            return this._getNumArray(t, "api_eSlot", "api_eSlot_combined")
-        }, t.prototype.getParamsFriend = function (t) {
-            return this._getParams(t, "api_fParam", "api_fParam_combined")
-        }, t.prototype.getParamsEnemy = function (t) {
-            return this._getParams(t, "api_eParam", "api_eParam_combined")
-        }, t.prototype.isBossDamaged = function () {
-            return 1 == n.ObjUtil.getNumber(this._o, "api_xal01")
-        }, t.prototype.getTaihiShipIndexes = function () {
-            var t = [], e = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
-            if (null != e) for (var i = 0, o = e; i < o.length; i++) {
-                var r = o[i];
-                t.push(r - 1)
-            }
-            if (null != (e = n.ObjUtil.getNumArray(this._o, "api_escape_idx_combined"))) for (var s = 0, a = e; s < a.length; s++) {
-                var r = a[s];
-                t.push(r - 1 + 6)
-            }
-            return t
-        }, t.prototype.isCombinedFriend = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_f_maxhps_combined");
-            return null != t && t.length > 0 && t[0] > 0
-        }, t.prototype.isCombinedEnemy = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_e_maxhps_combined");
-            return null != t && t.length > 0 && t[0] > 0
-        }, t.prototype.getActiveDeckFriend = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_active_deck");
-            return null == t || 0 == t.length ? this.isCombinedFriend() ? 2 : 1 : t[0]
-        }, t.prototype.getActiveDeckEnemy = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_active_deck");
-            return null == t || 0 == t.length ? this.isCombinedEnemy() ? 2 : 1 : t[1]
-        }, t.prototype.getBossModels = function () {
-            var t = n.ObjUtil.getObjectArray(this._o, "api_flavor_info");
-            if (null == t) return null;
-            for (var e = [], i = 0, r = t; i < r.length; i++) {
-                var s = r[i], a = parseInt(n.ObjUtil.getString(s, "api_type")),
-                    _ = parseInt(n.ObjUtil.getString(s, "api_boss_ship_id")),
-                    l = n.ObjUtil.getString(s, "api_class_name"), u = n.ObjUtil.getString(s, "api_ship_name"),
-                    c = new o.BossModel(a, _, l, u), h = n.ObjUtil.getString(s, "api_voice_id"),
-                    p = n.ObjUtil.getString(s, "api_message");
-                c.setMessage(h, p);
-                var d = parseInt(n.ObjUtil.getString(s, "api_pos_x")),
-                    f = parseInt(n.ObjUtil.getString(s, "api_pos_y"));
-                c.setOffset(d, f), e.push(c)
-            }
-            return e
-        }, t.prototype._getNum = function (t, e, i, o) {
-            void 0 === o && (o = 0);
-            var r = n.ObjUtil.getNumArray(this._o, e);
-            return null != r && r.length > t ? r[t] : t >= 6 && null != (r = n.ObjUtil.getNumArray(this._o, i)) && r.length > t - 6 ? r[t - 6] : o
-        }, t.prototype._getNumArray = function (t, e, i) {
-            var o = n.ObjUtil.getObjectArray(this._o, e);
-            return null != o && o.length > t ? o[t] : t >= 6 && null != (o = n.ObjUtil.getObjectArray(this._o, i)) && o.length > t - 6 ? o[t - 6] : []
-        }, t.prototype._getParams = function (t, e, i) {
-            var n = { karyoku: 0, raisou: 0, taiku: 0, soukou: 0 }, o = this._getNumArray(t, e, i);
-            return null != o && (o.length > 0 && (n.karyoku = o[0]), o.length > 1 && (n.raisou = o[1]), o.length > 2 && (n.taiku = o[2]), o.length > 3 && (n.soukou = o[3])), n
-        }, t
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
     }();
-    e.BattleCommonModel = r
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(248), r = i(249), s = i(250), a = i(251), _ = i(1378), l = i(1381), u = i(253), c = i(1384),
+        h = i(1387), p = i(1390), d = i(1393), f = i(457), y = i(255), m = i(459), v = i(460), g = i(1396),
+        b = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._current_index = 0, r._scene = e, r._data = i, r._ships_f = n, r._ships_e = o, r
+            }
+
+            return n(e, t), e.prototype._start = function () {
+                null == this._data || null == this._data.list || 0 == this._data.list.length ? this._endTask() : this._hougekiCycle()
+            }, e.prototype._hougekiCycle = function () {
+                if (this._current_index < this._data.list.length) {
+                    var t = this._data.list[this._current_index];
+                    this._current_index++, this._hougeki(t)
+                } else this._endTask()
+            }, e.prototype._hougeki = function (t) {
+                var e = t.type;
+                0 == e ? this._normal(t) : 1 == e ? this._double(t) : 6 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : 7 == e ? this._kuchiku_special(t) : 8 == e ? this._kuchiku_special(t) : this._special(t)
+            }, e.prototype._normal = function (t) {
+                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
+                if (null != i && null != n) {
+                    var _ = t.getSlotitem(0), l = t.getDamage(0), u = t.getHitType(0), c = t.isShield(0),
+                        h = this._getNormalAttackType(i, n, _, t.yasen_kubo), p = this._getDaihatsuEffectType(i, n);
+                    if (1 == this._hasRocketEffect(i, n)) {
+                        var d = new y.PhaseAttackRocket(this._scene, i, n, l, u, c);
+                        d.setOptionalEffects(p), d.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (0 == h) {
+                        var d = new o.PhaseAttackNormal(this._scene, i, n, _, l, u, c);
+                        d.setOptionalEffects(p), d.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (1 == h) {
+                        var f = t.yasen_kubo, d = new r.PhaseAttackKansaiki(this._scene, i, n, _, l, u, c, f);
+                        d.setOptionalEffects(p), d.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (2 == h) {
+                        var d = new s.PhaseAttackBakurai(this._scene, i, n, _, l, u, c);
+                        d.setOptionalEffects(p), d.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else {
+                        if (3 != h) throw new Error;
+                        var d = new a.PhaseAttackRaigeki(this._scene, i, n, _, l, u, c);
+                        d.setOptionalEffects(p), d.start(function () {
+                            e._hougekiCycle()
+                        })
+                    }
+                }
+            }, e.prototype._double = function (t) {
+                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = this._getDShip(t.d_indexes[1], t.flag), r = t.getSlotitem(0), s = t.getDamage(0),
+                    a = t.getHitType(0), _ = t.isShield(0), l = t.getSlotitem(1), c = t.getDamage(1),
+                    h = t.getHitType(1), p = t.isShield(1);
+                new u.PhaseAttackDouble(this._scene, i, n, r, s, a, _, o, l, c, h, p).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._kuboCI = function (t) {
+                var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
+                    o = this._getDShip(t.d_indexes[0], t.flag), r = t.getSlotitem(0), s = t.getSlotitem(1),
+                    a = t.getSlotitem(2), _ = t.getDamage(0), l = t.getHitType(0), u = t.isShield(0),
+                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)), h = t.yasen_kubo,
+                    p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, l, u, h);
+                p.setOptionalEffects(c), p.start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._nelson_touch = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new m.PhaseNelsonTouch(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._nagato_cutin = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new v.PhaseNagatoAttack(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._kuchiku_special = function (t) {
+                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = t.getSlotitem(0), r = t.getSlotitem(1), s = t.getSlotitem(2), a = t.getDamage(0),
+                    u = t.getHitType(0), c = t.isShield(0), h = t.type;
+                if (7 == h) {
+                    var p = new l.PhaseAttackSpSRD(this._scene, i, n, o, r, s, a, u, c);
+                    p.start(function () {
+                        e._hougekiCycle()
+                    })
+                } else {
+                    if (8 != h) throw new Error;
+                    var p = new _.PhaseAttackSpRDJ(this._scene, i, n, o, r, s, a, u, c);
+                    p.start(function () {
+                        e._hougekiCycle()
+                    })
+                }
+            }, e.prototype._special = function (t) {
+                var e, i = this, n = this._getAShip(t.a_index, t.flag), o = this._getDShip(t.d_indexes[0], t.flag),
+                    r = t.getSlotitem(0), s = t.getSlotitem(1), a = t.getSlotitem(2), _ = t.getHitType(0),
+                    l = t.isShield(0), u = t.type;
+                if (2 == u) {
+                    var f = t.getDamage(0) + t.getDamage(1);
+                    e = new c.PhaseAttackSpSR(this._scene, t.type, n, o, r, s, f, _, l)
+                } else if (3 == u) {
+                    var f = t.getDamage(0) + t.getDamage(1);
+                    e = new h.PhaseAttackSpRR(this._scene, t.type, n, o, r, s, f, _, l)
+                } else if (4 == u) {
+                    var f = t.getDamage(0);
+                    e = new p.PhaseAttackSpSSF(this._scene, t.type, n, o, r, s, a, f, _, l)
+                } else if (5 == u) {
+                    var f = t.getDamage(0);
+                    e = new d.PhaseAttackSpSSS(this._scene, t.type, n, o, r, s, a, f, _, l)
+                }
+                if (null == e) throw new Error;
+                e.preload(function () {
+                    e.start(function () {
+                        i._hougekiCycle()
+                    })
+                })
+            }, e.prototype._getAShip = function (t, e) {
+                return 0 == e ? this._ships_f[t] : this._ships_e[t]
+            }, e.prototype._getDShip = function (t, e) {
+                return 0 == e ? this._ships_e[t] : this._ships_f[t]
+            }, e
+        }(g.PhaseHougekiBase);
+    e.PhaseHougeki = b
 }

@@ -1,11 +1,9 @@
 const function133 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("sally_map_parts_" + t)
-        }
 
-        t.getTexture = e
-    }(e.SALLY_MAP_PARTS || (e.SALLY_MAP_PARTS = {}))
+    function n(t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }
+
+    Object.defineProperty(e, "__esModule", { value: !0 }), n(i(1072)), n(i(1073)), n(i(1074)), n(i(381)), n(i(1075)), n(i(1076)), n(i(1077)), n(i(391)), n(i(1093))
 }

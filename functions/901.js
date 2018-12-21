@@ -1,18 +1,37 @@
 const function901 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
-        t.HOKAN = {
-            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u5009\u5eab\u306b\u4fdd\u7ba1\u3055\u308c\u307e\u3059\u3002",
-            color: 3564704,
-            x: 40
-        }, t.KAITAI = {
-            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u540c\u6642\u306b\u89e3\u4f53\u3055\u308c\u307e\u3059\u3002",
-            color: 12467003,
-            x: 105
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
-    }(e.DisassemblyTypeMessage || (e.DisassemblyTypeMessage = {}));
-    !function (t) {
-        t.HOKAN = "hokan", t.KAITAI = "kaitai", t.BTN = "btn"
-    }(e.DisassemblyTypeName || (e.DisassemblyTypeName = {}))
+    }();
+    Object.defineProperty(e, "__esModule", { value: !0 });
+    var o = i(3), r = function (t) {
+        function e() {
+            for (var e = t.call(this) || this, i = new Array, n = 0; n < 13; n++) {
+                var r = new PIXI.Sprite(o.ARSENAL_ANIMATION.getTexture(3));
+                r.alpha = 0, i.push(r), e.addChild(r)
+            }
+            return e.leaf_dashes = i, e
+        }
+
+        return n(e, t), Object.defineProperty(e.prototype, "dashes", {
+            get: function () {
+                return this.leaf_dashes
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.dispose = function () {
+            for (var t = 0; t < this.leaf_dashes.length; t++) this.leaf_dashes[t].texture = PIXI.Texture.EMPTY, this.leaf_dashes[t] = null;
+            this.leaf_dashes = null, this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.LeafDashes = r
 }

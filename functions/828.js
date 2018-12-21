@@ -15,21 +15,25 @@ const function828 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(8), s = i(33), a = i(71), _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._onClick = function () {
-                e.onClick(e.index, e.memId)
-            }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
+    var o = i(4), r = i(3), s = i(1), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            n._onClickSign = function () {
+                n._cb_onSign && n._cb_onSign()
+            }, n._onClickBack = function () {
+                n._cb_onBack && n._cb_onBack()
+            }, n._cb_onSign = e, n._cb_onBack = i;
+            var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(47));
+            n.addChild(a);
+            var _ = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(33));
+            return _.position.set(18, -117), a.addChild(_), n._buttonSign = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(12)), n._buttonSign.position.set(48, 212), n._buttonSign.interactive = !0, n._buttonSign.buttonMode = !0, n.addChild(n._buttonSign), n._buttonBack = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._buttonBack.position.set(384, 212), n._buttonBack.interactive = !0, n._buttonBack.buttonMode = !0, n.addChild(n._buttonBack), n._textBeforeCount = new o.TextBox(25, 5523516), n._textBeforeCount.position.set(386, 78), n._textBeforeCount.anchor.x = 1, n.addChild(n._textBeforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.position.set(393, 83), n._arrow.text = "\u2192", n.addChild(n._arrow), n._textAfterCount = new o.TextBox(25, 5523516), n._textAfterCount.position.set(417, 78), n.addChild(n._textAfterCount), n._buttonSign.on(s.EventType.CLICK, n._onClickSign), n._buttonBack.on(s.EventType.CLICK, n._onClickBack), n
         }
 
         return n(e, t), e.prototype.dispose = function () {
-            this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
-        }, e.prototype.update = function (t, e, i) {
-            this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
-        }, e.prototype.empty = function () {
-            this.removeChildren(), this.addChild(this.emptyShipBanner)
+            this._buttonSign.off(s.EventType.CLICK), this._buttonBack.off(s.EventType.CLICK), this._textBeforeCount.destroy(), this._textAfterCount.destroy(), this._arrow.destroy(), this._cb_onSign = null, this._cb_onBack = null, this._buttonSign = null, this._buttonBack = null, this._textBeforeCount = null, this._textAfterCount = null, this._arrow = null, this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this._textBeforeCount.text = "" + t, this._textAfterCount.text = "" + (t - 1)
         }, e
     }(PIXI.Container);
-    e.ShipSlot = _
+    e.MarriageConfirm = a
 }

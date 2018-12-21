@@ -19,7 +19,7 @@ const function1363 = function (t, e, i) {
         function e() {
             var e = t.call(this) || this;
             e._chara = [];
-            for (var i = 0; i < 2; i++) {
+            for (var i = 0; i < 3; i++) {
                 var n = new PIXI.Container;
                 e._chara.push(n), e.addChild(n)
             }
@@ -34,10 +34,11 @@ const function1363 = function (t, e, i) {
             get: function () {
                 return this._explosion
             }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            for (var t = 0; t < 2; t++) this._chara[t].removeChildren(), this._chara[t] = null;
+        }), e.prototype.initialize = function (t) {
+        }, e.prototype.dispose = function () {
+            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
             this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
         }, e
     }(PIXI.Container);
-    e.CutinNagatoAttackCanvas = o
+    e.CutinNelsonTouchCanvas = o
 }

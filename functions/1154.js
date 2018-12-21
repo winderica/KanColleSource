@@ -15,37 +15,34 @@ const function1154 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1155), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
+    var o = i(0), r = i(6), s = i(108), a = i(89), _ = i(1155), l = i(1157), u = i(1163), c = i(1164),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onSelect = function (t) {
+                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new l.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
+                }, e._onUnSelect = function () {
+                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
+                }, e._onExchange = function (t) {
+                    var i = o.default.view.overLayer, n = new c.TaskExchange(i, t);
+                    n.start(function () {
+                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
+                    })
+                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new u.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
+            }
 
-        return n(e, t), e.prototype._start = function () {
-            this._loadResources()
-        }, e.prototype._loadResources = function () {
-            var t = this;
-            (new s.TaskLoadResources).start(function () {
-                t._showTopView()
-            })
-        }, e.prototype._showTopView = function () {
-            this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(104), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+            return n(e, t), e.prototype.initialize = function () {
+                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
+            }, e.prototype.update = function () {
+                var t = o.default.model.useItem.getCount(44);
+                this._coin.update(t)
+            }, e.prototype.activate = function () {
+                1 == this._main_view.visible && this._main_view.activate()
+            }, e.prototype.deactivate = function () {
+                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
+            }, e
+        }(a.ViewBase);
+    e.FurnitureShopMain = h
 }

@@ -15,29 +15,25 @@ const function800 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(219), r = i(4), s = i(131), a = function (t) {
+    var o = i(3), r = i(1), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.powerNums = [], e.iconCategories = new Array;
-            for (var i = 0; i < 4; i++) {
-                var n = new o.IconCategory;
-                n.position.set(90 * i, 0), n.update(s.PowerUpCategory.EMPTY), e.iconCategories.push(n);
-                var a = new r.TextBox(21, 16777215);
-                a.position.set(45 + 90 * i, 9), e.powerNums.push(a), e.addChild(n), e.addChild(a)
-            }
-            return e
+            return e._onMouseOver = function () {
+                e.texture = e.textureBtnStartIntensifyOn
+            }, e._onMouseOut = function () {
+                e.texture = e.textureBtnStartIntensifyOff
+            }, e._onClick = function () {
+                e.onClick()
+            }, e.textureBtnStartIntensifyNone = o.REMODEL_POWERUP.getTexture(6), e.textureBtnStartIntensifyOn = o.REMODEL_POWERUP.getTexture(8), e.textureBtnStartIntensifyOff = o.REMODEL_POWERUP.getTexture(7), e.texture = e.textureBtnStartIntensifyNone, e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.on(r.EventType.CLICK, e._onClick), e
         }
 
         return n(e, t), e.prototype.update = function (t) {
-            for (var e = 0; e < 4; e++) this.powerNums[e].visible = !1, this.iconCategories[e].visible = !1;
-            var i = 0, n = t[s.PowerUpCategory.Karyoku];
-            0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Karyoku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Raisou], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Raisou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Taiku], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Taiku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), 0 < (n = t[s.PowerUpCategory.Soukou]) && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Soukou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++)
+            this._updateClickable_(t)
+        }, e.prototype._updateClickable_ = function (t) {
+            this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
         }, e.prototype.dispose = function () {
-            this.removeChildren();
-            for (var t = 0; t < this.iconCategories.length; t++) this.iconCategories[t].dispose(), this.iconCategories[t] = null;
-            for (var t = 0; t < this.powerNums.length; t++) this.powerNums[t].destroy(), this.powerNums[t] = null;
-            this.iconCategories = null, this.powerNums = null
+            this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this.interactive = this.buttonMode = !1, this.removeChildren()
         }, e
-    }(PIXI.Container);
-    e.IconCategories = a
+    }(PIXI.Sprite);
+    e.StartButton = s
 }

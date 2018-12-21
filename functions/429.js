@@ -15,46 +15,59 @@ const function429 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1218), r = function (t) {
+    var o = i(118), r = function (t) {
         function e() {
             var e = t.call(this) || this;
-            e.KEIKAIJIN = !1, e._count = 0, e._boxes = [];
-            for (var i = 0; i < (e.KEIKAIJIN ? 6 : 5); i++) {
-                var n = new o.FormationBox(!0);
-                e.addChild(n), e._boxes.push(n)
+            e._particle = new Array;
+            for (var i = [600], n = [243], o = 0; o < 8; o++) i.push(555 + 90 * Math.random()), n.push(243 - 90 * Math.random());
+            for (var o = 0; o < i.length; o++) {
+                var r = new s;
+                r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
             }
             return e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "count", {
-            get: function () {
-                return this._count
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t, e, i) {
-            void 0 === i && (i = -1), i <= 0 && (i = t), this._count = 0;
-            for (var n = 0; n < this._boxes.length; n++) {
-                var o = this._boxes[n];
-                o.initialize(n + 1, t, e, i), 1 == o.enabled && this._count++
-            }
-            var r, s;
-            1 == this.KEIKAIJIN ? 6 == this._count ? (r = [581, 776, 974, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [680, 876, 1073, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [581, 776, 974, 683, 879], s = [92, 92, 92, 330, 330]);
-            for (var n = 0; n < this._boxes.length; n++) {
-                var o = this._boxes[n], a = r[n], _ = s[n];
-                o.position.set(a, _)
-            }
-        }, e.prototype.activate = function () {
-            for (var t = 0, e = this._boxes; t < e.length; t++) {
-                e[t].activate()
-            }
-        }, e.prototype.deactivate = function () {
-            for (var t = 0, e = this._boxes; t < e.length; t++) {
-                e[t].deactivate()
+        return n(e, t), e.prototype.activate = function () {
+            this.initialize()
+        }, e.prototype.initialize = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                !function (t) {
+                    createjs.Tween.get(null).wait(1e3 * Math.random()).call(function () {
+                        t.initialize(), t.alpha = 1, t.startAnim()
+                    })
+                }(i)
             }
         }, e.prototype.dispose = function () {
-            for (var t = 0, e = this._boxes; t < e.length; t++) {
-                e[t].dispose()
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                i.alpha = 0, i.stopAnim()
             }
         }, e
     }(PIXI.Container);
-    e.FormationBoxContainer = r
+    e.RevampRingParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.alpha = 0, this.anchor.set(.5, .5), this.scale.set(.5, .5), this._initXYSpeed(), this.texture = o.REVAMP_REVAMP.getTexture(13)
+        }, e.prototype.startAnim = function () {
+            this._anim()
+        }, e.prototype.stopAnim = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._initXYSpeed = function () {
+            this._vx = (2 * Math.random() < 1 ? 1 : -1) * (6 * Math.random() + 6), this._vy = -(6 * Math.random() + 6), this._rot = .025 * (this._vx > 0 ? 1 : -1)
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this).to({ alpha: 1 }, 0).to({
+                x: this.x + this._vx,
+                y: this.y + this._vy,
+                rotation: this.rotation + this._rot
+            }, 20).call(function () {
+                t._tween = null, t.y > 1200 && (t.y = 243 - 90 * Math.random(), t.x = 555 + 90 * Math.random(), t._initXYSpeed()), t._vy += .4, t._anim()
+            })
+        }, e
+    }(PIXI.Sprite)
 }

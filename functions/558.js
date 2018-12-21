@@ -15,45 +15,50 @@ const function558 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = function (t) {
+    var o = i(187), r = i(23), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._texture = null, e._caches = {}, e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e._mask_shape = new PIXI.Graphics, e._mask_shape.visible = !1, e.addChild(e._mask_shape), e
+            return e._wave1 = new a(0, 1300), e.addChild(e._wave1), e._wave2 = new a(650, 650), e.addChild(e._wave2), e._wave3 = new a(1300, 0), e.addChild(e._wave3), e._ship = new PIXI.Sprite, e._ship.y = -10, e._ship.anchor.y = 1, e.addChild(e._ship), e
         }
 
-        return n(e, t), e.prototype.load = function (t, e) {
-            var i = this, n = o.default.model.furniture.getData(t);
-            if (null == n || 2 != n.type) return void (null != e && e());
-            if (this._id = this._createID(n), 1 == this._caches.hasOwnProperty(this._id)) return this._texture = this._caches[this._id], void (null != e && e());
-            var r = this._createURL(this._id), s = new PIXI.loaders.Loader;
-            s.add(this._id, r), s.load(function () {
-                if (i._img.texture = PIXI.Texture.EMPTY, 1 == s.resources.hasOwnProperty(i._id)) {
-                    var t = s.resources[i._id];
-                    null != t && null == t.error && null != t.texture && (i._caches[i._id] = t.texture, i._texture = t.texture)
-                }
-                e()
-            })
-        }, e.prototype.update = function () {
-            null != this._texture && (this._img.texture = this._texture), this._texture = null, this._img.visible = !0
-        }, e.prototype._createID = function (t) {
-            var e = (new Date).getHours(), i = t.outside;
-            if (i > 4) {
-                if (5 == i) {
-                    var n = [[127, 0, 127, 174, 255, 180, 255, 0], [375, 0, 375, 183, 517, 193, 517, 0]];
-                    this._createOutsideMask(n), this._img.mask = this._mask_shape
-                }
-                i = 4
-            } else this._img.mask = null;
-            var o = 0;
-            return o = e < 4 ? 4 : e < 8 ? 5 : e < 16 ? 1 : e < 18 ? 2 : e < 20 ? 3 : 4, "window_bg_" + i + "-" + o
-        }, e.prototype._createURL = function (t) {
-            return o.default.settings.path_root + "resources/furniture/outside/" + t + ".png"
-        }, e.prototype._createOutsideMask = function (t) {
-            for (var e = 0; e < t.length; e++) for (var i = 0; i < t[e].length; i += 2) t[e][i] += 294;
-            this._mask_shape.clear(), this._mask_shape.beginFill(16777215);
-            for (var e = 0; e < t.length; e++) this._mask_shape.drawPolygon(t[e]);
-            this._mask_shape.endFill()
+        return n(e, t), e.prototype.initialize = function () {
+            this._wave1.initialize(), this._wave2.initialize(), this._wave3.initialize(), this._ship.texture = o.TITLE_MAIN.getTexture(1), this._ship.x = -Math.round(this._ship.width / 2)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._wave1.activate(), this._wave2.activate(), this._wave3.activate(), this._t = createjs.Tween.get(this._ship, { loop: !0 }).to({ y: -18 }, 800, createjs.Ease.circOut).to({ y: -10 }, 800, createjs.Ease.circIn))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._wave1.deactivate(), this._wave2.deactivate(), this._wave3.deactivate(), this._t.setPaused(!0), this._t = null, this._ship.y = -10)
+        }, e.prototype.dispose = function () {
+            this._wave1.dispose(), this._wave2.dispose(), this._wave3.dispose(), this.deactivate()
         }, e
     }(PIXI.Container);
-    e.FurnitureOutside = r
+    e.Pukapuka = s;
+    var a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._waittime1 = e, n._waittime2 = i, n._img = new PIXI.Sprite, n.addChild(n._img), n
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this._init(), this._img.texture = o.TITLE_MAIN.getTexture(0), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+        }, e.prototype.activate = function () {
+            var t = this;
+            null == this._t && (this._t = createjs.Tween.get(this, { loop: !0 }).wait(this._waittime1).to({
+                scaleX: 1,
+                scaleY: 1,
+                alpha: 1
+            }, 500).to({ scaleX: 1.5, scaleY: 1.5 }, 1e3).to({
+                scaleX: 1.7,
+                scaleY: 1.7,
+                alpha: 0
+            }, 500).call(function () {
+                t._init()
+            }).wait(this._waittime2))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this._init())
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._init = function () {
+            this.alpha = 0, this.scale.set(.5)
+        }, e
+    }(r.Container)
 }

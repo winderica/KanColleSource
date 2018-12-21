@@ -15,49 +15,90 @@ const function1267 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(23), r = i(20), s = i(1268), a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
+    var o = i(2), r = i(28), s = i(39), a = i(1268), _ = i(438), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._model = i, n
         }
 
-        return n(e, t), e
-    }(o.Container);
-    e.LandingBalloonBase = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(51), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-86, -92))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
+        return n(e, t), e.prototype._start = function () {
+            var t = this._model.sortie.map;
+            1 == t.isCleared() ? this._startNoLanding("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u672c\u6d77\u57df\u306e\u8f38\u9001\u4f5c\u6226\u306f\u7121\u4e8b\u5b8c\u4e86\u3057\u3066\u3044\u307e\u3059\u3002") : 3 == t.gauge_type ? this._startWithLanding() : this._startNoLanding("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u540c\u5730\u70b9\u4ed8\u8fd1\u306e\u6575\u8266\u968a\u3092\u635c\u7d22\u3001\u3053\u308c\u3092\u6483\u6ec5\u305b\u3088\uff01")
+        }, e.prototype._startWithLanding = function () {
+            var t = this;
+            this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                t._showMessage("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u7269\u8cc7\u306e\u63da\u9678\u3092\u958b\u59cb\u3057\u307e\u3059\u3002")
+            }).wait(3e3).call(function () {
+                t._showMessage("")
+            }).wait(600).call(function () {
+                t._taskLanding()
+            })
+        }, e.prototype._taskLanding = function () {
+            var t = this, e = new r.SerialTask, i = this._scene.view,
+                n = this._scene.view.map.ship_icon.getGlobalPosition(), o = this._createShipList(),
+                _ = this._getDrumAndDaihatsuCount(o), l = _.drum_count, c = _.daihatsu_count,
+                h = this._model.sortie.getNextCell().no, p = this._scene.resInfo.getLandingBalloonType(h),
+                d = new a.TaskLandingBalloon(i, n, l, c, p);
+            e.add(d), e.add(new s.WaitTask(200)), e.add(new u(this._scene, this._model)), e.add(new s.WaitTask(1e3)), e.start(function () {
+                t._endTask()
+            })
+        }, e.prototype._startNoLanding = function (t) {
+            var e = this;
+            this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                e._showMessage(t)
+            }).wait(3e3).call(function () {
+                e._showMessage("")
+            }).wait(1e3).call(function () {
+                e._endTask()
+            })
+        }, e.prototype._showWave = function () {
+            var t = this._model.sortie.getNextCell().no, e = this._scene.view.map.spotLayer.getSpot(t);
+            this._wave = new _.CellWave, this._wave.x = e.x, this._wave.y = e.y, this._scene.view.map.spotLayer.addChild(this._wave), this._wave.activate()
+        }, e.prototype._showMessage = function (t) {
+            this._scene.view.message_box.text = t
+        }, e.prototype._createShipList = function () {
+            for (var t = this._model.deck_f.ships.concat(), e = [], i = 0, n = t; i < n.length; i++) {
+                var o = n[i];
+                if (null != o) {
+                    var r = o.damageType;
+                    0 != r && 25 != r && 1 != o.isTaihi() && e.push(o)
+                }
+            }
+            return e
+        }, e.prototype._getDrumAndDaihatsuCount = function (t) {
+            for (var e = 0, i = 0, n = 0, o = t; n < o.length; n++) for (var r = o[n], s = 0, a = r.slots; s < a.length; s++) {
+                var _ = a[s];
+                null != _ && (75 == _.mst_id ? e++ : 24 == _.equipType ? i++ : 46 == _.equipType && i++)
+            }
+            return { drum_count: e, daihatsu_count: i }
+        }, e.prototype._endTask = function () {
+            null != this._wave && (null != this._wave.parent && this._wave.parent.removeChild(this._wave), this._wave.dispose(), this._wave = null), this._scene = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(a);
-    e.LandingBalloonType1 = _;
-    var l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(55), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-63, 0))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
-        }, e
-    }(a);
-    e.LandingBalloonType2 = l;
+    }(o.TaskBase);
+    e.CellTaskLanding = l;
     var u = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._model = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(59), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-99, -12))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = this._model.sortie.getNextCell().no, i = this._scene.view.map.spotLayer.getFlag(e);
+            if (null == i) for (var n = this._scene.resInfo.getSameSpotData(e), o = 0, r = n; o < r.length; o++) {
+                var s = r[o];
+                if (null != (i = this._scene.view.map.spotLayer.getFlag(s.no))) break
+            }
+            null == i ? this._endTask() : createjs.Tween.get(i).to({
+                scaleX: 1.6,
+                scaleY: 1.6
+            }, 200, createjs.Ease.sineOut).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800, createjs.Ease.sineIn).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(a);
-    e.LandingBalloonType3 = u
+    }(o.TaskBase)
 }

@@ -15,23 +15,71 @@ const function962 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
-        }
-
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-        }, e.prototype._completedEnd = function () {
-            var e = this._model.getGaugeNum(), i = this._model.gauge_type, n = this._model.gauge_max,
-                o = this._model.gauge_now, r = this._raw_data;
-            if (null != r && r.hasOwnProperty("api_maphp")) {
-                var s = r.api_maphp;
-                s.hasOwnProperty("api_gauge_num") && (e = s.api_gauge_num), s.hasOwnProperty("api_gauge_type") && (i = s.api_gauge_type), 1 == s.hasOwnProperty("api_max_maphp") && (n = s.api_max_maphp), 1 == s.hasOwnProperty("api_now_maphp") && (o = s.api_now_maphp)
+    var o = i(5), r = i(0), s = i(17), a = i(2), _ = i(18), l = i(963), u = i(965), c = i(348), h = i(356),
+        p = function (t) {
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level, e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(), e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
+                    })
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
             }
-            this._model.changeOperation(this._selected, e, i, n, o), t.prototype._completedEnd.call(this)
-        }, e
-    }(o.APIBase);
-    e.APIOperationChange = r
+
+            return n(e, t), e.prototype._start = function () {
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no, e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return { voice: [411, 415], delay: [0, 200] };
+                    case 2:
+                        return { voice: [411, 416, 423, 424], delay: [0, 200, 200, 200] };
+                    case 3:
+                        return { voice: [411, 417, 424], delay: [0, 200, 200] };
+                    case 4:
+                        return { voice: [412, 418, 423, 424], delay: [0, 200, 200, 200] };
+                    case 5:
+                        return { voice: [412, 421, 422, 424], delay: [0, 200, 200, 200] };
+                    default:
+                        return null
+                }
+            }, e.prototype._voicePlay = function (t) {
+                var e = this, i = t.voice, n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
+                })
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this, i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
+                })
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
+                var t = this, e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({ x: 840 }, 200).call(function () {
+                    e.activate(), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
+            }, e
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

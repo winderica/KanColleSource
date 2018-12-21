@@ -15,45 +15,23 @@ const function830 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(8), r = i(1), s = i(52), a = i(3), _ = i(831), l = function (t) {
-        function e(e, i, n, o, r, s, a) {
-            var _ = t.call(this, 0) || this;
-            return _._onMove = function (t) {
-                var e = t.data.global;
-                _._dragSlotItem.position.set(e.x, e.y);
-                var i = -1;
-                _._slotArea.forEach(function (e, n) {
-                    var o = t.data.getLocalPosition(e), r = e.getChildByName("over");
-                    1 == e.hitArea.contains(o.x, o.y) ? (r.alpha = _._beforeIndex == n || n >= _._availSlotNumber ? 0 : 1, i = n) : r.alpha = 0
-                }), _._afterIndex = i
-            }, _._onUp = function () {
-                _._cbDrop(_._beforeIndex, _._afterIndex, _._equipmentList), _._cbEnd()
-            }, _._onOut = function () {
-                _._cbEnd()
-            }, _._afterIndex = -1, _._beforeIndex = n, _._slotItems = o, _._equipmentList = r, _._cbDrop = s, _._cbEnd = a, _.interactive = !1, _._slotArea = [], _._delayRun = createjs.Tween.get(null).wait(500).call(function () {
-                _._activate(e, i)
-            }), _
+    var o = i(4), r = i(3), s = i(1), a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            n._onClickYes = function () {
+                n._cb_onYes && n._cb_onYes()
+            }, n._onClickNo = function () {
+                n._cb_onNo && n._cb_onNo()
+            }, n._cb_onYes = e, n._cb_onNo = i;
+            var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(49));
+            return n.addChild(a), n._btnYes = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(13)), n._btnYes.position.set(78, 210), n._btnYes.interactive = !0, n._btnYes.buttonMode = !0, n.addChild(n._btnYes), n._btnNo = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._btnNo.position.set(351, 210), n._btnNo.interactive = !0, n._btnNo.buttonMode = !0, n.addChild(n._btnNo), n._beforeCount = new o.TextBox(25, 5523516), n._beforeCount.anchor.x = 1, n._beforeCount.position.set(395, 119), n.addChild(n._beforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.text = "\u2192", n._arrow.position.set(404, 122), n.addChild(n._arrow), n._afterCount = new o.TextBox(25, 5523516), n._afterCount.position.set(438, 119), n.addChild(n._afterCount), n._btnYes.on(s.EventType.CLICK, n._onClickYes), n._btnNo.on(s.EventType.CLICK, n._onClickNo), n
         }
 
-        return n(e, t), e.prototype.inDraggingEventWaiting = function () {
-            return null == this._drag
-        }, e.prototype.cancel = function () {
-            this._delayRun.setPaused(!0), this._cbEnd()
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEUP, this._onUp), this.off(r.EventType.MOUSEOUT, this._onOut), this._dragSlotItem && this._dragSlotItem.dispose(), null != this._drag && (this._slotItems[this._beforeIndex].alpha = 1, this._drag.removeChildren(), this._slotArea.forEach(function (t) {
-                t.removeChildren()
-            })), this._drag = null, this._slotArea = null, this._delayRun = null, this._dragSlotItem = null, this._afterIndex = null, this._availSlotNumber = null, this._beforeIndex = null, this._slotItems = null, this._equipmentList = null, this._cbEnd = null, this._cbDrop = null
-        }, e.prototype._activate = function (t, e) {
-            var i = this;
-            this.interactive = !0, this._availSlotNumber = this._equipmentList.length, this._afterIndex = this._beforeIndex, this._drag = new PIXI.Container, this._slotItems[this._beforeIndex].alpha = .5, this._slotItems.forEach(function (e, n) {
-                var r = new o.AreaBox(0, 16777215, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
-                r.hitArea = new PIXI.Rectangle(0, 0, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
-                var _ = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(22));
-                _.alpha = 0, _.name = "over", _.position.set(-30, 0), r.addChild(_);
-                var l = t.x + i._slotItems[n].x, u = t.y + i._slotItems[n].y;
-                r.position.set(l, u), i._slotArea.push(r), i._drag.addChild(r)
-            }), this._dragSlotItem = new _.SimpleSlotItemSlot, this._dragSlotItem.update(this._equipmentList[this._beforeIndex]), this._dragSlotItem.pivot.set(Math.round(this._dragSlotItem.width / 2), Math.round(this._dragSlotItem.height / 2)), this._dragSlotItem.position.set(e.x, e.y), this._drag.addChild(this._dragSlotItem), this.addChild(this._drag), a.SE.play("237"), this.on(r.EventType.MOUSEMOVE, this._onMove), this.on(r.EventType.MOUSEUP, this._onUp), this.on(r.EventType.MOUSEOUT, this._onOut)
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._btnYes.off(s.EventType.CLICK), this._btnNo.off(s.EventType.CLICK), this._beforeCount.destroy(), this._afterCount.destroy(), this._arrow.destroy(), this._cb_onYes = null, this._cb_onNo = null, this._btnYes = null, this._btnNo = null, this._beforeCount = null, this._afterCount = null, this._arrow = null
+        }, e.prototype.update = function (t) {
+            this._beforeCount.text = t.toString(), this._afterCount.text = (t - 1).toString()
         }, e
-    }(o.AreaBox);
-    e.SlotItemDragging = l
+    }(PIXI.Container);
+    e.ExtensionConfirm = a
 }

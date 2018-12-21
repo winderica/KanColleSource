@@ -15,101 +15,25 @@ const function846 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(847), r = i(848), s = i(853), a = i(3), _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClickExtension = function (t) {
-                i.onClickExtension(t)
-            }, i._onClickHiSpeed = function (t) {
-                i.onClickHiSpeed(t)
-            }, i._onClickEmptySlot = function (t) {
-                i.onClickEmptySlot(t)
-            };
-            var n = new PIXI.Sprite(a.COMMON_MAIN.getTexture(64));
-            n.position.set(0, 105);
-            var _ = new PIXI.Sprite(a.REPAIR_MAIN.getTexture(0));
-            _.anchor.y = .5, _.position.set(199, 20), n.addChild(_), i.addChild(n);
-            var l = new PIXI.Container;
-            l.position.set(195, 180);
-            for (var u = [], c = [], h = [], p = 0; p < 4; p++) {
-                var d = e[p], f = new s.EmptyDock;
-                f.onClick = i._onClickEmptySlot, f.position.set(0, 123 * p), f.visible = !1, u.push(f), l.addChild(f);
-                var y = new r.ShipInDock;
-                if (y.onClickHiSpeed = i._onClickHiSpeed, y.position.set(0, 123 * p), y.visible = !1, c.push(y), l.addChild(y), -1 === d.state) {
-                    var m = new o.ExtensionDock;
-                    m.update(-1, !1, !1), m.onClick = i._onClickExtension, m.position.set(0, 123 * p), m.visible = !1, h.push(m), l.addChild(m)
-                } else h.push(null)
-            }
-            return i.emptyDocks = u, i.shipInDocks = c, i.extensionDocks = h, i.addChild(l), i
+    var o = i(0), r = i(10), s = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o.MINIMUM_TIME = 6e4, o._url = "api_req_nyukyo/start", o.api_ship_id = i, o.api_ndock_id = e, o.api_highspeed = n, o
         }
 
-        return n(e, t), e.prototype.updateTime = function (t, e) {
-            for (var i = 0; i < e.length; i++) {
-                var n = e[i], o = this.shipInDocks[i];
-                1 == n.state && o.updateTime(t, n.completeTime)
-            }
-        }, e.prototype.highSpeedAnimation = function (t, e) {
-            this.shipInDocks[t].playHispeed(e)
-        }, e.prototype.hideAnimation = function (t, e) {
-            for (var i = Date.now(), n = !1, o = 0; o < t.length; o++) {
-                var r = this.shipInDocks[o];
-                if (0 == t[o].state) {
-                    var s = function () {
-                    };
-                    0 == n && (s = function () {
-                        e()
-                    }, n = !0), r.playTimelimit(i, s)
-                }
-            }
-        }, e.prototype.updateHighSpeedButton = function (t, e) {
-            this.shipInDocks[t].updateUsable(e)
-        }, e.prototype.updateExtensionState = function (t, e) {
-            for (var i = !1, n = 0; n < this.extensionDocks.length; n++) {
-                var o = this.extensionDocks[n];
-                if (null !== o) {
-                    var r = t[n];
-                    0 == i ? (o.update(r.mstID, !0, e), i = !0) : o.update(r.mstID, !1, !1)
-                }
-            }
-        }, e.prototype.updateDockInfo = function (t, e, i, n) {
-            this.shipInDocks[t].updateDockInfo(i, n), this.emptyDocks[t].update(i);
-            var o = this.extensionDocks[t];
-            null !== o && o.update(i, !1, !1)
-        }, e.prototype.stopAnimation = function (t) {
-            this.shipInDocks[t].stopAnimation()
-        }, e.prototype.playAnimation = function (t) {
-            this.shipInDocks[t].playAnimation()
-        }, e.prototype.unLockAnimation = function (t, e) {
-            this.emptyDocks[t].alpha = 0, this.emptyDocks[t].visible = !0, this.extensionDocks[t].visible = !1, createjs.Tween.get(this.emptyDocks[t]).to({ alpha: 1 }, 1500).call(function () {
-                e()
-            }).play(null)
-        }, e.prototype.updateViewState = function (t, e) {
-            var i = this.shipInDocks[t];
-            i.updateState(e), this.emptyDocks[t].visible = !1, i.visible = !1;
-            var n = this.extensionDocks[t];
-            switch (null !== n && (n.visible = !1), e) {
-                case-1:
-                    n.visible = !0;
-                    break;
-                case 0:
-                    this.emptyDocks[t].visible = !0;
-                    break;
-                case 1:
-                    i.visible = !0
-            }
-        }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a, _, l) {
-            this.shipInDocks[t].updateShipInfo(r, o, a, e, i, n, _, l)
-        }, e.prototype.dockState = function (t) {
-            return this.shipInDocks[t].state
-        }, e.prototype.forceEnd = function (t) {
-            this.updateViewState(t, 0), this.shipInDocks[t].playTimelimit(Date.now(), function () {
-            })
-        }, e.prototype.dispose = function () {
-            for (var t = 0; t < this.emptyDocks.length; t++) this.emptyDocks[t].dispose(), this.emptyDocks[t] = null;
-            for (var t = 0; t < this.shipInDocks.length; t++) this.shipInDocks[t].dispose(), this.shipInDocks[t] = null;
-            for (var t = 0; t < this.extensionDocks.length; t++) null !== this.extensionDocks[t] && (this.extensionDocks[t].dispose(), this.extensionDocks[t] = null);
-            this.onClickHiSpeed = null, this.onClickEmptySlot = null, this.onClickExtension = null, this.emptyDocks = null, this.shipInDocks = null, this.extensionDocks = null, this.removeChildren()
+        return n(e, t), e.prototype._connect = function () {
+            this._post_data.api_highspeed = this.api_highspeed ? 1 : 0, this._post_data.api_ndock_id = this.api_ndock_id, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = o.default.model.ship.get(this.api_ship_id), i = o.default.model.useItem.get(31),
+                n = o.default.model.useItem.get(33);
+            if (i.__setCount__(i.count - e.getRepairFuel()), n.__setCount__(n.count - e.getRepairSteel()), this.api_highspeed) {
+                var r = o.default.model.useItem.get(1);
+                r.__setCount__(r.count - 1), this.immediateRepair(e)
+            } else e.getRepairTime() <= this.MINIMUM_TIME && this.immediateRepair(e);
+            t.prototype._completedEnd.call(this)
+        }, e.prototype.immediateRepair = function (t) {
+            t.__updateNowHp__(t.hpMax), t.__updateNDockTime__(0), t.__updateNDockItem__([0, 0]), t.tired < 40 && t.__updateCond__(40)
         }, e
-    }(PIXI.Container);
-    e.MainView = _
+    }(r.APIBase);
+    e.StartAPI = s
 }

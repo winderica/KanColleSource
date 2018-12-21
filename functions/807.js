@@ -15,78 +15,69 @@ const function807 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(19), s = i(8), a = i(40), _ = i(12), l = i(6), u = i(3), c = i(335), h = i(1),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                return n._mainView = i, n._telopBG = new PIXI.Sprite, n._telopLineTop = new PIXI.Sprite, n._telopLineBottom = new PIXI.Sprite, n._telopText = new PIXI.Sprite, n._particles = new d, n
+    var o = i(159), r = i(123), s = i(85), a = i(131), _ = i(221), l = i(4), u = i(21), c = i(127), h = i(52),
+        p = i(87), d = i(86), f = i(220), y = i(1), m = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onClick = function (t, i) {
+                    e.onClick(t, i)
+                };
+                var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
+                    n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)), o = new s.PagerView,
+                    r = new _.ShipSortButton, a = new Array, l = new PIXI.Container, p = new d.TitleBar;
+                p.initialize(u.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), l.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
+                for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
+                    var y = new v(f);
+                    y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
+                }
+                return e.addChild(p), p.position.set(0, -37), e._pagerView = o, e._shipSortButton = r, e.listItems = a, e.headerKansenSentaku = p, e
             }
 
-            return n(e, t), e.prototype._03_link = function () {
-                this._04_showTelop()
-            }, e.prototype._04_showTelop = function () {
-                var t = this;
-                this._telopBG.texture = u.REMODEL_ANIMATION.getTexture(2), this._telopBG.alpha = .35, this._telopBG.anchor.set(.5), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.scale.y = 0, this.addChild(this._telopBG);
-                var e = u.REMODEL_ANIMATION.getTexture(3);
-                this._telopLineTop.texture = e, this._telopLineTop.anchor.set(.5), this._telopLineTop.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineTop), this._telopLineBottom.texture = e, this._telopLineBottom.anchor.set(.5), this._telopLineBottom.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineBottom);
-                var i, n = new r.TweenTask;
-                i = createjs.Tween.get(this._telopBG.scale).to({ y: 1 }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineTop).to({ y: o.default.height / 2 - 155 }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineBottom).to({ y: o.default.height / 2 + 155 }, 300), n.addTween(i), n.start(function () {
-                    t._telopText.texture = u.REMODEL_ANIMATION.getTexture(9), t._telopText.x = o.default.width, t._telopText.y = Math.round(o.default.height / 2 - t._telopText.height / 2), t.addChild(t._telopText), createjs.Tween.get(t._telopText).to({ x: 178 }, 400).call(function () {
-                        l.SE.play("226"), t.addChild(t._particles), t._particles.play()
-                    }).to({ x: 63 }, 1700).call(function () {
-                        t._05_waitClick()
-                    })
+            return n(e, t), Object.defineProperty(e.prototype, "shipSortButton", {
+                get: function () {
+                    return this._shipSortButton
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "pagerView", {
+                get: function () {
+                    return this._pagerView
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.clear = function () {
+                this.listItems.forEach(function (t) {
+                    return t.visible = !1
                 })
-            }, e.prototype._05_waitClick = function () {
-                var t = this, e = new a.GearBtnHome;
-                e.initialize(), e.activate(), e.position.set(1140, 660), this.addChild(e);
-                var i = new s.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(h.EventType.CLICK, function () {
-                    t.removeChild(i), t._06_whiteInOut(e)
-                })
-            }, e.prototype._06_whiteInOut = function (t) {
-                var e = this;
-                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 500).call(function () {
-                    e.removeChild(e._background), e.removeChild(e._ship), e.removeChild(e._telopBG), e.removeChild(e._telopLineTop), e.removeChild(e._telopLineBottom), e.removeChild(e._telopText), e.removeChild(e._particles), e.removeChild(t), t.dispose(), e._mainView.visible = !0
-                }).to({ alpha: 0 }, 500).call(function () {
-                    e.removeChild(e._white), null != e._cb_onComplete && e._cb_onComplete()
-                })
+            }, e.prototype.update = function (t, e, i, n) {
+                var o = this.listItems[t];
+                o.update(e, i, n), o.visible = !0
             }, e.prototype.dispose = function () {
-                this.removeChildren(), t.prototype.dispose.call(this), this._telopBG = null, this._telopLineTop = null, this._telopLineBottom = null, this._telopText = null, this._particles.dispose(), this._particles = null
+                this._shipSortButton.dispose(), this._pagerView.dispose(), this.headerKansenSentaku.dispose(), this.listItems.forEach(function (t) {
+                    t.dispose()
+                }), this.onClick = null, this._onClick = null, this._shipSortButton = null, this._pagerView = null, this.headerKansenSentaku = null, this.listItems = null
             }, e
-        }(c.PowerUpAnimation);
-    e.PowerUpAnimationSuccess = p;
-    var d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._particles = [];
-            for (var i = [[-459, -59], [-392, -74], [-332, 51], [-237, -89], [-158, 66], [-96, -54], [-8, 60], [39, -65], [141, -35], [239, 63], [308, -54], [420, 45]], n = u.REMODEL_ANIMATION.getTexture(8), o = 0; o < 12; o++) {
-                var r = new _.Sprite(n);
-                r.anchor.set(.5), r.scale.set(0), r.x = i[o][0] + 600, r.y = i[o][1] + 360, e.addChild(r), e._particles.push(r)
-            }
-            return e
+        }(PIXI.Container);
+    e.ShipList = m;
+    var v = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onMouseOver = function () {
+                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 1, i.textType.style.fill = i.textName.style.fill = i.textLevel.style.fill = 16777215, i.containerTypeAndName.cacheAsBitmap = !0
+            }, i._onMouseOut = function () {
+                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 0, i.textType.style.fill = i.textName.style.fill = 5523516, i.textLevel.style.fill = i.mouseoutColor, i.containerTypeAndName.cacheAsBitmap = !0
+            }, i._onClick = function () {
+                i.onClick(i.index, i.memId)
+            };
+            var n = Math.floor(22.5) + 1, o = new PIXI.Sprite(u.COMMON_MAIN.getTexture(17)), s = new PIXI.Container,
+                _ = new l.TextBox(18, 5523516), c = new l.TextBox(20, 5523516), h = new l.TextBox(20, 5523516),
+                p = new f.IconCategory, d = new f.IconCategory, m = new f.IconCategory, v = new f.IconCategory,
+                g = new a.ShipInDeckFlag, b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
+            return g.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.on(y.EventType.MOUSEOVER, i._onMouseOver), o.on(y.EventType.MOUSEOUT, i._onMouseOut), o.on(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), m.position.set(401, 0), v.position.set(446, 0), g.anchor.set(0, .5), g.position.set(-15, n), g.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, m, v, g), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = m, i.iconCategory_3 = v, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = g, i.containerTypeAndName = s, i.maskTextAndName = b, i
         }
 
-        return n(e, t), e.prototype.play = function () {
-            this._removeTweens(), this._tweens = [];
-            for (var t = 0; t < this._particles.length; t++) {
-                var e = this._particles[t];
-                e.scale.set(0);
-                var i = createjs.Tween.get(e).wait(100 * t).to({ scaleX: 1.5, scaleY: 1.5 }, 100).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100);
-                this._tweens.push(i)
-            }
-        }, e.prototype.dispose = function () {
-            this._removeTweens(), this.removeChildren(), this._particles = null
-        }, e.prototype._removeTweens = function () {
-            if (null != this._tweens) {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null
-            }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.mask = null, this.containerTypeAndName.removeChildren(), this.iconCategory_0.dispose(), this.iconCategory_1.dispose(), this.iconCategory_2.dispose(), this.iconCategory_3.dispose(), this.background.off(y.EventType.MOUSEOVER), this.background.off(y.EventType.MOUSEOUT), this.background.off(y.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.onClick = null, this.memId = null, this.textType = null, this.textName = null, this.textLevel = null, this.iconCategory_0 = null, this.iconCategory_1 = null, this.iconCategory_2 = null, this.iconCategory_3 = null, this.background = null, this.shipInDeckFlag = null, this.maskTextAndName = null, this.containerTypeAndName = null, this.mouseoutColor = null
+        }, e.prototype.update = function (t, e, i) {
+            this.containerTypeAndName.cacheAsBitmap = !1, this.shipInDeckFlag.visible = !1, i && (this.shipInDeckFlag.update(i), this.shipInDeckFlag.visible = !0), this.textLevel.style.fill = this.mouseoutColor = o.ColorUtil.getLevelColor(t.level), this.memId = t.memID;
+            var n = p.RemodelUtil.genPowUpCategories(e);
+            this.textLevel.text = t.level.toString(), this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.iconCategory_0.update(n[0]), this.iconCategory_1.update(n[1]), this.iconCategory_2.update(n[2]), this.iconCategory_3.update(n[3]), this.containerTypeAndName.cacheAsBitmap = !0
         }, e
     }(PIXI.Container)
 }

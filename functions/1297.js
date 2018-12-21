@@ -15,15 +15,33 @@ const function1297 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(23), r = i(20), s = function (t) {
+    var o = i(5), r = i(61), s = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._img.texture = r.MAP_COMMON.getTexture(94), this._img.y = -39
+        return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
+            get: function () {
+                return this._extraLayer
+            }, enumerable: !0, configurable: !0
+        }), e.prototype.addBGLayer = function (t, e) {
+            var i = new PIXI.Sprite(t);
+            if (null != e && e.length > 0) {
+                if (1 == this._bgDic.hasOwnProperty(e)) {
+                    var n = this._bgDic[e];
+                    null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
+                }
+                this._bgDic[e] = i
+            }
+            i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
+        }, e.prototype.getBGLayer = function (t) {
+            return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
+        }, e.prototype.addLabel = function (t, e, i) {
+            null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
+            var n = new r.CenteringSprite(t);
+            n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
         }, e
-    }(o.Container);
-    e.LandingFlag = s
+    }(PIXI.Container);
+    e.MapBackGround = s
 }

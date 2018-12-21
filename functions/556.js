@@ -15,42 +15,22 @@ const function556 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(47), r = i(18), s = i(557), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._initialized = !1, e._furniture_layer = new s.FurnitureView, e.addChild(e._furniture_layer), e._contentLayer = new PIXI.Container, e.addChild(e._contentLayer), e._fadeLayer = new r.FadeBox(1), e._fadeLayer.hide(), e._fadeLayer.visible = !1, e.addChild(e._fadeLayer), e._overLayer = new PIXI.Graphics, e.addChild(e._overLayer), e
+    var o = i(22), r = i(2), s = i(13), a = function (t) {
+        function e(e) {
+            void 0 === e && (e = -1);
+            var i = t.call(this) || this;
+            i.rnd = 0, i._onComplete = function () {
+                i._endTask()
+            };
+            return i.rnd = e >= 0 && e < 6 ? e : Math.floor(6 * Math.random()), i
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "furnitureLayer", {
-            get: function () {
-                return this._furniture_layer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "fadeLayer", {
-            get: function () {
-                return this._fadeLayer
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "overLayer", {
-            get: function () {
-                return this._overLayer
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.isInitialized = function () {
-            return this._initialized
-        }, e.prototype.initialize = function () {
-            1 != this._initialized && (this._initialized = !0, this.showPortUI(!0))
-        }, e.prototype.update = function (t) {
-            this._furniture_layer.visible = 0 == t || 25 == t
-        }, e.prototype.activate = function (t, e) {
-            this._furniture_layer.activate()
-        }, e.prototype.deactivate = function () {
-            this._furniture_layer.deactivate()
-        }, e.prototype.dispose = function () {
-        }, e.prototype.showPortUI = function (t) {
-            this._overLayer.visible = !0
-        }, e.prototype.getContent = function () {
-            return this._contentLayer.children.length > 0 ? this._contentLayer.getChildAt(0) : null
-        }, e.prototype.setContent = function (t) {
-            this._contentLayer.removeChildren(), null != t && this._contentLayer.addChild(t)
+        return n(e, t), e.prototype._start = function () {
+            var t = this, e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
+            new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
+                t._onComplete()
+            })
         }, e
-    }(o.SceneBase);
-    e.MainView = a
+    }(r.TaskBase);
+    e.TaskLoadResourcesTitle = a
 }

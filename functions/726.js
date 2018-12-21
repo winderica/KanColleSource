@@ -15,17 +15,15 @@ const function726 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
+    var o = i(10), r = i(727), s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._url = "api_get_member/preset_deck", e
         }
 
-        return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_language_type = this._japanese ? 0 : 1;
-            for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
-            t.prototype._connect.call(this)
+        return n(e, t), e.prototype._completedEnd = function () {
+            this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.UpdateListStatusAPI = r
+    e.PresetDeckAPI = s
 }

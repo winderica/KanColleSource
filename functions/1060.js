@@ -15,54 +15,47 @@ const function1060 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(18), a = i(109), _ = i(167), l = i(73), u = i(73), c = i(73), h = i(73),
-        p = i(379), d = i(132), f = i(132), y = i(132), m = i(132), v = i(132), g = i(42), b = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._selected_state = 1, e._selected_tab_no = 0, e._onChangeTab = function (t, i) {
-                    if (1 == t) {
-                        var n = _.AlbumConst.BGM_ID_FOR_SHIP;
-                        o.default.sound.bgm.play(n)
-                    } else {
-                        var n = _.AlbumConst.BGM_ID_FOR_SLOT;
-                        o.default.sound.bgm.play(n)
-                    }
-                    e._selected_state = t;
-                    var r = i * _.AlbumConst.COUNT_INTAB * _.AlbumConst.COUNT_INPAGE;
-                    if (e._selected_tab_no = r, e._view.tab_container.update(t, i), 0 == e._model.hasData(t, i)) {
-                        new p.AlbumAPI(t, i, e._model).start(function () {
-                            e._update(t, r)
-                        })
-                    } else e._update(t, r)
-                }, e._onChangePage = function (t) {
-                    var i = e._selected_state;
-                    e._update(i, t)
-                }, e._onSelect = function (t) {
-                    if (t instanceof c.AlbumShipModel) {
-                        var i = new m.TaskShowShipDetail(e._over, t, e._option, e._view);
-                        i.start()
-                    } else if (t instanceof h.AlbumSlotModel) {
-                        var i = new v.TaskShowSlotDetail(e._over, t, e._view);
-                        i.start()
-                    }
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._option = new l.AlbumSceneOptionModel, e._model = new u.AlbumModelManager, e._view = new g.MainView(e._onChangeTab, e._onChangePage, e._onSelect), e.addChild(e._view), e._over = new s.FadeBox(1, 0, 1200, 720), e._over.hide(0), e._over.visible = !1, e.addChild(e._over), e
+    var o = i(379), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._particle = new Array;
+            for (var i = [0, 4, 16], n = [0, 24, 16], o = 0; o < i.length; o++) {
+                var r = new s;
+                r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
             }
+            return e
+        }
 
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new d.TaskScenePreInitialize(t, this._model, this._view, this._onBack)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new f.TaskSceneInitialize(t, this._view)
-            }, e.prototype.getFinalizeTask = function () {
-                return a.TaskLoadBase.abortAll(), new y.TaskSceneFinalize(this._view)
-            }, e.prototype._update = function (t, e) {
-                a.TaskLoadBase.abortAll();
-                var i = _.AlbumConst.COUNT_INPAGE, n = this._model.getData(t, e, i), o = this._selected_tab_no;
-                this._view.pager.update(o, e);
-                var r = this._view.content;
-                r.deactivate(), r.update(t, e, n), r.activate()
-            }, e
-        }(r.SceneBase);
-    e.AlbumScene = b
+        return n(e, t), e.prototype.initialize = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                var i = e[t];
+                i.initialize(), i.startAnim()
+            }
+        }, e.prototype.dispose = function () {
+            for (var t = 0, e = this._particle; t < e.length; t++) {
+                e[t].stopAnim()
+            }
+            this._particle = null
+        }, e
+    }(PIXI.Container);
+    e.RecordKiraLayer = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.alpha = 0, e
+        }
+
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.RECORD_MINI.getTexture(2)
+        }, e.prototype.startAnim = function () {
+            this._anim()
+        }, e.prototype.stopAnim = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this).wait(1e3 * Math.random() + 1e3).to({ alpha: 1 }, 150).to({ alpha: 0 }, 150).call(function () {
+                t._tween = null, t._anim()
+            })
+        }, e
+    }(PIXI.Sprite)
 }

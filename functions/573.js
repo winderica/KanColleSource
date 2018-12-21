@@ -1,21 +1,57 @@
 const function573 = function (t, e, i) {
     "use strict";
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(7), o = i(574), r = function () {
-        function t() {
+    var n = i(7), o = function () {
+        function t(t) {
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "list", {
+        return Object.defineProperty(t.prototype, "filename", {
             get: function () {
-                return this._list
+                return n.ObjUtil.getString(this._o, "filename")
             }, enumerable: !0, configurable: !0
-        }), t.prototype.SetAll = function (t) {
-            var e = Object.keys(t).map(function (e) {
-                return t[e]
-            });
-            this._list = new Array(e.length);
-            for (var i = 0; i < e.length; i++) this._list[i] = new o.FurnitureJukeBoxBGMLineModel, this._list[i].api_id = n.ObjUtil.getNumber(e[i], "api_id"), this._list[i].api_name = n.ObjUtil.getString(e[i], "api_name"), this._list[i].api_description = n.ObjUtil.getString(e[i], "api_description"), this._list[i].api_bgm_id = n.ObjUtil.getNumber(e[i], "api_bgm_id"), this._list[i].api_use_coin = n.ObjUtil.getNumber(e[i], "api_use_coin"), this._list[i].api_bgm_flag = n.ObjUtil.getNumber(e[i], "api_bgm_flag"), this._list[i].api_loops = n.ObjUtil.getNumber(e[i], "api_loops"), this._list[i].isLoaded = !0
+        }), Object.defineProperty(t.prototype, "frame", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "frame")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "framerand", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "framerand")
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "alpha", {
+            get: function () {
+                var t = n.ObjUtil.getNumArray(this._o, "alpha");
+                return null == t || t.length < 2 ? [1, 1] : t
+            }, enumerable: !0, configurable: !0
+        }), Object.defineProperty(t.prototype, "offsetData", {
+            get: function () {
+                return n.ObjUtil.getNumArray(this._o, "offset")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getSEID = function () {
+            var t = n.ObjUtil.getString(this._o, "se", null);
+            if (null == t) return null;
+            var e = t.split(":");
+            if (e.length > 1) {
+                var i = parseInt(e[1]);
+                return i = Math.min(100, Math.max(0, i)), 100 * Math.random() < i ? e[0] : null
+            }
+            return t
+        }, t.prototype.getBGMAction = function () {
+            return n.ObjUtil.getString(this._o, "bgm", null)
+        }, t.prototype.getPopupOption = function () {
+            var t = n.ObjUtil.getObject(this._o, "popup", null);
+            if (null == t) return null;
+            var e = n.ObjUtil.getString(t, "src", null);
+            return null == e ? null : {
+                src: e,
+                se_open: n.ObjUtil.getString(t, "se_open"),
+                se_close: n.ObjUtil.getString(t, "se_close"),
+                offset_x: n.ObjUtil.getNumber(t, "offset_x"),
+                offset_y: n.ObjUtil.getNumber(t, "offset_y")
+            }
+        }, t.prototype.getStateChangeOption = function () {
+            return n.ObjUtil.getString(this._o, "state", null)
         }, t
     }();
-    e.FurnitureJukeBoxBGMModel = r
+    e.FurnitureKeyFrameModel = o
 }

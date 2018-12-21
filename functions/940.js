@@ -15,23 +15,20 @@ const function940 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(26), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._txt = new PIXI.Sprite, e._txt.position.set(23, 23), e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.position.set(11, 9), e._txt_on.alpha = 0, e.addChild(e._txt_on), e
+    var o = i(2), r = i(25), s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._mstid = e, i
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.SALLY_AIRUNIT.getTexture(65), this._txt.texture = o.SALLY_AIRUNIT.getTexture(128), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(129)
-        }, e.prototype.update = function (t) {
-            this.visible = t, 1 == t ? this._activate() : this._deactivate()
-        }, e.prototype.dispose = function () {
-            this._deactivate()
-        }, e.prototype._activate = function () {
-            null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, { loop: !0 }).to({ alpha: 1 }, 800).to({ alpha: 0 }, 400))
-        }, e.prototype._deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
+        return n(e, t), e.prototype._start = function () {
+            var t = this;
+            (new r.SlotLoader).add(this._mstid, "airunit_banner").add(this._mstid, "airunit_name").load(function () {
+                t._endTask()
+            })
+        }, e.prototype.cancel = function () {
+            this._cb = null, this._cb_failed = null
         }, e
-    }(PIXI.Sprite);
-    e.AirUnitPanelItemRelocationLayer = r
+    }(o.TaskBase);
+    e.TaskAirUnitImageLoader = s
 }

@@ -15,82 +15,63 @@ const function1291 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(12), r = i(6), s = i(20), a = i(1292), _ = function (t) {
+    var o = i(5), r = i(17), s = i(4), a = i(29), _ = i(41), l = i(20), u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
+            return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "direction", {
+        return n(e, t), Object.defineProperty(e.prototype, "bg", {
             get: function () {
-                return this._direction
+                return this._bg
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "under", {
+        }), Object.defineProperty(e.prototype, "icon", {
             get: function () {
-                return this._under
+                return this._icon
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "ship", {
+        }), Object.defineProperty(e.prototype, "text", {
             get: function () {
-                return this._ship
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.initialize = function (t) {
-            var e;
-            e = 1 == t ? 134 : 2 == t ? 135 : 3 == t ? 136 : 133, this._ship.texture = s.MAP_COMMON.getTexture(e)
-        }, e.prototype.startWaveWhite = function () {
-            this._startWave(48)
-        }, e.prototype.startWaveRed = function (t) {
-            var e = this;
-            this._startWave(47);
-            var i = new l;
-            i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
-                y: -75,
-                alpha: 1,
-                scaleX: 1,
-                scaleY: 1
-            }, 200).to({ y: -68 }, 200).to({ y: -78, scaleX: 1.3, scaleY: .6 }, 200).to({
-                y: -59,
-                scaleX: 1,
-                scaleY: 1
-            }, 200).to({ y: -68 }, 200).to({ alpha: 0 }, 100).call(function () {
-                e._over.removeChild(i), t()
-            })
-        }, e.prototype.stopWave = function () {
-            this._wave.deactivate()
-        }, e.prototype.turn = function (t, e, i) {
-            if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e(); else {
-                this._direction = t;
-                var n = 2 == t ? 1 : -1, o = createjs.Tween.get(this._ship);
-                o.to({ scaleX: n }, i), null != e && o.call(e)
-            }
-        }, e.prototype._startWave = function (t) {
-            this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
-                r.SE.play("252")
-            }).wait(2e3).call(function () {
-                r.SE.play("252")
-            })
-        }, e
-    }(PIXI.Container);
-    e.CompShipIcon = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
-            get: function () {
-                return this.scale.x
-            }, set: function (t) {
-                this.scale.x = t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "scaleY", {
-            get: function () {
-                return this.scale.y
-            }, set: function (t) {
-                this.scale.y = t
+                return this._text
             }, enumerable: !0, configurable: !0
         }), e.prototype.initialize = function () {
-            this.texture = s.MAP_COMMON.getTexture(93)
+            this._bg.texture = l.MAP_COMMON.getTexture(25)
+        }, e.prototype.update = function (t, e) {
+            void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e.prototype._update = function (t, e) {
+            void 0 === e && (e = "");
+            var i;
+            switch (t) {
+                case 1:
+                    i = a.SALLY_COMMON.getTexture(1);
+                    break;
+                case 2:
+                    i = a.SALLY_COMMON.getTexture(3);
+                    break;
+                case 3:
+                    i = a.SALLY_COMMON.getTexture(5);
+                    break;
+                case 4:
+                    i = a.SALLY_COMMON.getTexture(9);
+                    break;
+                case 5:
+                    i = a.SALLY_COMMON.getTexture(11);
+                    break;
+                case 6:
+                    i = a.SALLY_COMMON.getTexture(13);
+                    break;
+                case 7:
+                    i = a.SALLY_COMMON.getTexture(7);
+                    break;
+                default:
+                    i = PIXI.Texture.EMPTY
+            }
+            this._icon.texture = i, this._text.text = e
+        }, e.prototype._updateForEventMap = function (t) {
+            void 0 === t && (t = "");
+            this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
         }, e
-    }(PIXI.Sprite)
+    }(PIXI.Container);
+    e.CompUpperBar = u
 }

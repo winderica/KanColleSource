@@ -15,18 +15,23 @@ const function1038 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(38), r = function (t) {
-        function e() {
-            return t.call(this) || this
+    var o = i(41), r = i(375), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this, e, i) || this;
+            return n._light = new PIXI.Sprite, n.addChild(n._light), n
         }
 
         return n(e, t), e.prototype.initialize = function () {
-        }, e.prototype.update = function (t) {
-            0 == t ? (this._setTexture(38), this.visible = !0) : 2 == t ? (this._setTexture(32), this.visible = !0) : this.visible = !1
+            this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
         }, e.prototype.dispose = function () {
-        }, e.prototype._setTexture = function (t) {
-            this.texture = o.SALLY_EXPEDITION.getTexture(t)
+            this._stopTween(), t.prototype.dispose.call(this)
+        }, e.prototype._update = function (t) {
+            this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, { loop: !0 }).to({ alpha: 0 }, 700).to({ alpha: 1 }, 700))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(PIXI.Sprite);
-    e.ExpeditionStateIcon = r
+    }(r.ExpeditionAreaIconBtnBase);
+    e.ExpeditionEventAreaIconBtn = s
 }

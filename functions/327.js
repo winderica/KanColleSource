@@ -15,32 +15,31 @@ const function327 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(325), s = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
-                n = new r.MaterialMeterView, s = new r.MaterialMeterView;
-            return n.position.set(12, 8), s.position.set(119, 8), e.addChild(i, n, s), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = s, e
+    var o = i(0), r = i(10), s = i(7), a = function (t) {
+        function e(e, i, n) {
+            void 0 === n && (n = !0);
+            var o = t.call(this) || this;
+            return o._usedBauxite = !1, o._url = "api_req_hokyu/charge", o._kind = e, o._id_items = i, o._onslot = n, o
         }
 
-        return n(e, t), e.prototype.dispose = function () {
-            this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n) {
-            this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
+        return n(e, t), Object.defineProperty(e.prototype, "usedBauxite", {
+            get: function () {
+                return this._usedBauxite
+            }, enumerable: !0, configurable: !0
+        }), e.prototype._connect = function () {
+            this._post_data.api_kind = this._kind, this._post_data.api_id_items = this._id_items.join(","), this._post_data.api_onslot = this._onslot ? 1 : 0, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            var e = s.ObjUtil.getNumArray(this._raw_data, "api_material");
+            o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]), o.default.view.portMain.updateInfo();
+            for (var i = s.ObjUtil.getObjectArray(this._raw_data, "api_ship"), n = 0; n < i.length; n++) {
+                var r = i[n], a = s.ObjUtil.getNumber(r, "api_id"), _ = s.ObjUtil.getNumber(r, "api_fuel"),
+                    l = s.ObjUtil.getNumber(r, "api_bull"), u = s.ObjUtil.getNumArray(r, "api_onslot", []),
+                    c = o.default.model.ship.get(a);
+                c.__updateFuel__(_), c.__updateAmmo__(l), c.__updateOnSlot__(u)
+            }
+            var h = s.ObjUtil.getNumber(this._raw_data, "api_use_bou");
+            this._usedBauxite = !!h, t.prototype._completedEnd.call(this)
         }, e
-    }(PIXI.Container);
-    e.MaterialView = s;
-    var a = i(744), _ = i(9), l = function (t) {
-        function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(_.COMMON_MISC.getTexture(144)),
-                n = new a.MaterialMeterViewS, o = new a.MaterialMeterViewS;
-            return n.position.set(29, 6), o.position.set(165, 6), e.addChild(i, n, o), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = o, e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
-        }, e.prototype.update = function (t, e, i, n) {
-            this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
-        }, e
-    }(PIXI.Container);
-    e.MaterialViewS = l
+    }(r.APIBase);
+    e.ChargeAPI = a
 }

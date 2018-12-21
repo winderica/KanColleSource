@@ -15,27 +15,28 @@ const function1184 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(169), s = function (t) {
-        function e() {
-            var e = null !== t && t.apply(this, arguments) || this;
-            return e._onMouseOver = function () {
-                e._canvas.scale.set(1.05)
-            }, e._onMouseOut = function () {
-                e._canvas.scale.set(1)
-            }, e
+    var o = i(0), r = i(2), s = i(31), a = i(69), _ = i(412), l = i(413), u = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._data = e, n._scene_initialize_delegate = i, n
         }
 
-        return n(e, t), e.prototype.load = function (t) {
-            t()
-        }, e.prototype._initialize = function () {
-            this._icon.visible = !1;
-            this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
-            var t = new PIXI.Graphics;
-            t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
-            var e = this._candidate.mst_id, i = o.default.resources.getShip(e, !1, "card_round"),
-                n = new PIXI.Sprite(i);
-            n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+        return n(e, t), e.prototype._start = function () {
+            this._loadResources()
+        }, e.prototype._loadResources = function () {
+            var t = this;
+            (new l.TaskLoadResources).start(function () {
+                t._connectAPI()
+            })
+        }, e.prototype._connectAPI = function () {
+            var t = this, e = new s.APIConnector;
+            20 == o.default.model.basic.getTutorialProgress() && e.add(new a.UpdateTutorialAPI(30));
+            e.add(new _.DutyListAPI(1, 0, this._data)), e.start(function () {
+                null != t._scene_initialize_delegate && t._scene_initialize_delegate(), t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._data = null, this._scene_initialize_delegate = null, t.prototype._endTask.call(this)
         }, e
-    }(r.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogShipBtn = s
+    }(r.TaskBase);
+    e.TaskDutyScenePreInitialize = u
 }

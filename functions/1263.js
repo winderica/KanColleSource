@@ -15,148 +15,85 @@ const function1263 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(8), _ = i(51), l = i(23), u = i(40), c = i(58), h = i(244), p = i(20),
-        d = i(243), f = i(1), y = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._vanishGauge = function () {
-                    r.default.sound.bgm.play(135, !1), n._scene.view.gauge_layer.vanish(function () {
-                        createjs.Tween.get(null).wait(9500).call(function () {
-                            n._hideBalloon()
-                        })
-                    })
-                }, n._hideBalloon = function () {
-                    createjs.Tween.get(n._balloon).wait(500).to({ y: -6, alpha: 0 }, 100).call(function () {
-                        n._balloon.parent.removeChild(n._balloon), n._balloon = null, n._hideMapUI()
-                    })
-                }, n._showWarResult = function () {
-                    n._model.sortie.getNextCell().getEOSupplyWarResult() > 0 ? (n._dialog = new v, n._dialog.position.set(o.default.width / 2, o.default.height / 2), n._dialog.initialize(), n._dialog.activate(), n._dialog.scale.set(1.2), n._dialog.alpha = 0, n._scene.view.universal_layer.addChild(n._dialog), createjs.Tween.get(n._dialog).wait(500).to({
-                        scaleX: 1,
-                        scaleY: 1,
-                        alpha: 1
-                    }, 350).call(function () {
-                        var t = new a.AreaBox(0);
-                        t.buttonMode = !0;
-                        var e = new c.GearBtnNext;
-                        e.position.set(1140, 660), e.initialize(), e.activate(), t.addChild(e), n._scene.view.universal_layer.addChild(t), t.once(f.EventType.CLICK, function () {
-                            createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
-                                e.deactivate(), e.dispose(), n._scene.view.universal_layer.removeChild(t), n._showBonusItem()
-                            })
-                        })
-                    })) : n._showBonusItem()
-                }, n._waitClick = function () {
-                    null != n._dialog && (n._scene.view.universal_layer.removeChild(n._dialog), n._dialog.deactivate(), n._dialog.dispose(), n._dialog = null), null != n._bonus_task && (n._bonus_task.dispose(), n._bonus_task = null);
-                    var t = new a.AreaBox(0), e = new u.GearBtnHome;
-                    e.position.set(1140, 660), e.initialize(), e.activate(), t.addChild(e), t.buttonMode = !0, n._scene.view.universal_layer.addChild(t), t.once(f.EventType.CLICK, function () {
-                        t.buttonMode = !1, createjs.Tween.get(e).to({ alpha: 0 }, 300).call(function () {
-                            e.deactivate(), e.dispose(), t.removeChild(e), n._endTask()
-                        })
-                    })
-                }, n._scene = e, n._model = i, n
-            }
-
-            return n(e, t), e.prototype._start = function () {
-                this._showBalloon()
-            }, e.prototype._showBalloon = function () {
-                var t = this, e = this._model.sortie.getNextCell(), i = e.getEOSupplyItem();
-                null != i && i.count > 0 ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1200).call(function () {
-                    r.default.sound.bgm.play(134, !1), t._balloon = new m, t._balloon.x = 21, t._balloon.y = -6, t._balloon.alpha = 0, t._balloon.initialize(i.id, i.count), t._scene.view.map.ship_icon.addChild(t._balloon), createjs.Tween.get(t._balloon).to({
-                        y: -29,
-                        alpha: 1
-                    }, 100)
-                }).wait(4e3).call(function () {
-                    t._reduceGauge()
-                })) : this._reduceGauge()
-            }, e.prototype._reduceGauge = function () {
-                var t = this, e = this._model.sortie.map.defeat_required, i = e - this._model.sortie.map.defeat_count;
-                if (e > 0 && i > 0) {
-                    i -= 1;
-                    var n = createjs.Tween.get(null);
-                    n.wait(1500), 0 == i ? n.call(function () {
-                        t._scene.view.gauge_layer.update(i, e, 2e3, t._vanishGauge)
-                    }) : n.call(function () {
-                        t._scene.view.gauge_layer.update(i, e, 2e3, t._hideBalloon)
-                    })
-                } else this._hideBalloon()
-            }, e.prototype._hideMapUI = function () {
-                var t = this;
-                this._scene.view.message_box.deactivate(function () {
-                    createjs.Tween.get(t._scene.view.gauge_layer).to({ alpha: 0 }, 300).wait(500).call(function () {
-                        var e = t._model.sortie.getNextCell(), i = e.getEOSupplyWarResult(),
-                            n = e.getEOSupplyBonusItem();
-                        i <= 0 && null == n ? t._closeShutter2() : t._closeShutter1()
-                    })
-                })
-            }, e.prototype._closeShutter1 = function () {
-                var t = new _.Shutter;
-                t.initializeDark(), this._scene.view.universal_layer.addChild(t), t.close(200), createjs.Tween.get(null).wait(500).call(this._showWarResult)
-            }, e.prototype._showBonusItem = function () {
-                var t = this, e = this._model.sortie.getNextCell(), i = e.getEOSupplyBonusItem();
-                if (null != i) {
-                    if (5 == i.type) {
-                        var n = this._scene.view.universal_layer, o = i.id, r = i.count;
-                        this._bonus_task = new h.TaskBonusUseItem(n, o, r, !0), this._bonus_task.start(function () {
-                            t._closeShutter2()
-                        })
-                    }
-                } else this._closeShutter2()
-            }, e.prototype._closeShutter2 = function () {
-                var t = new _.Shutter;
-                t.initializeDark(), this._scene.view.universal_layer.addChild(t), t.close(200), createjs.Tween.get(null).wait(500).call(this._waitClick)
-            }, e
-        }(s.TaskBase);
-    e.CellTaskAnchor = y;
-    var m = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.y = -92, e.addChild(e._bg), e
+    var o = i(2), r = i(23), s = i(6), a = i(20), _ = i(1264), l = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n.run = function () {
+                n._timer <= 0 && n._isTurn || (n._movePlane(), n._timer -= 1e3 / 60, n._timer <= 0 && !n._isTurn && (n._timer = n._baseTime, n._isTurn = !n._isTurn))
+            }, n._scene = e, n._model = i, n
         }
 
-        return n(e, t), e.prototype.initialize = function (t, e) {
+        return n(e, t), e.prototype._start = function () {
+            this._data = this._model.sortie.getNextCell().getAirReconnaissanceData(), this._showMessage()
+        }, e.prototype._showMessage = function () {
+            var t = this, e = this._data.plane_type;
+            this._data.result;
+            1 == e ? (this._scene.view.message_box.text = "\u5927\u578b\u98db\u884c\u8247\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : 2 == e ? (this._scene.view.message_box.text = "\u6c34\u4e0a\u5075\u5bdf\u6a5f\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : (this._scene.view.message_box.text = "\u822a\u7a7a\u5075\u5bdf\u4e88\u5b9a\u5730\u70b9\u306b\u5230\u7740\u3057\u307e\u3057\u305f\u304c\u3001\n\u7a3c\u50cd\u5075\u5bdf\u6a5f\u304c\u306a\u3044\u305f\u3081\u3001\u5075\u5bdf\u3092\u4e2d\u6b62\u3057\u307e\u3059\u3002", createjs.Tween.get(null).wait(2e3).call(function () {
+                t._scene.view.message_box.text = "", t._endTask()
+            }))
+        }, e.prototype._flyPlane = function (t) {
+            var e = this, i = this._scene.view.map.ship_icon;
+            this._from = new PIXI.Point(i.x, i.y);
+            var n = this._model.sortie.getNextCell().no;
+            this._to = this._scene.resInfo.getAirReconnaissancePoint(n), null == this._to && (this._to = new PIXI.Point(this._from.x, this._from.y));
+            var o = this._to.x > this._from.x ? 1 : -1;
+            this._baseTime = 1500, this._timer = 1500, this._isTurn = !1;
+            var r = new u;
+            r.initialize(t), r.scale.set(0);
+            var a = this._scene.view.universal_layer;
+            this._container = new PIXI.Container, this._container.x = this._from.x, this._container.y = this._from.y, a.addChild(this._container), this._container.addChild(r), this._c1 = new PIXI.Point(this._from.x - .3 * (this._to.y - this._from.y), this._from.y + .3 * (this._to.x - this._from.x)), this._c2 = new PIXI.Point(this._to.x - .3 * (this._from.y - this._to.y), this._to.y + .3 * (this._from.x - this._to.x)), createjs.Tween.get(this._container).wait(200).call(function () {
+                e._bezierTween = createjs.Tween.get({}), e._bezierTween.wait(3e3), e._bezierTween.addEventListener("change", function () {
+                    e.run()
+                })
+            }).wait(3e3).wait(300).call(function () {
+                a.removeChild(e._container), e._showBalloon()
+            }), createjs.Tween.get(r).to({ scaleX: o, scaleY: 1 }, 200).wait(100).call(function () {
+                s.SE.play("228")
+            }).wait(1200).to({ scaleX: -o }, 400).wait(1200).to({ scaleX: 0, scaleY: 0 }, 100)
+        }, e.prototype._movePlane = function () {
+            var t = (this._baseTime - this._timer) / this._baseTime, e = this._isTurn ? 1 * t : 1 * t - 1,
+                i = this._isTurn ? this._to : this._from, n = this._isTurn ? this._from : this._to,
+                o = this._isTurn ? this._c2 : this._c1;
+            this._container.position.x = (1 - t) * (1 - t) * i.x + 2 * (1 - t) * t * o.x + t * t * n.x, this._container.position.y = (1 - t) * (1 - t) * i.y + 2 * (1 - t) * t * o.y + t * t * n.y, 0 != e && (this._container.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
+        }, e.prototype._showBalloon = function () {
+            var t = this;
+            this._scene.view.message_box.text = "";
+            var e = this._data.result, i = this._model.sortie.getNextCell().getDropItems(), n = 0, o = 0;
+            if (null != i && i.length > 0) {
+                var r = i[0];
+                n = r.icon_id, o = r.count
+            }
+            var s = new _.AirReconnaissanceBalloon;
+            s.x = 21, s.y = -6, s.alpha = 0, s.initialize(e, n, o);
+            var a = this._scene.view.map.ship_icon;
+            a.addChild(s), createjs.Tween.get(s).to({ y: -29, alpha: 1 }, 100).wait(4e3).to({
+                y: -6,
+                alpha: 0
+            }, 100).call(function () {
+                a.removeChild(s), t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._model = null, this._data = null, this._container = null, this._from = null, this._to = null, this._c1 = null, this._c2 = null, this._baseTime = null, this._timer = null, this._bezierTween = null, this._isTurn = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.CellTaskAirReconnaissance = l;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        }
+
+        return n(e, t), e.prototype.initialize = function (t) {
             switch (t) {
-                case 1:
-                    this._bg.texture = p.MAP_COMMON.getTexture(50);
-                    break;
                 case 2:
-                    this._bg.texture = p.MAP_COMMON.getTexture(54);
+                    this._img.texture = a.MAP_COMMON.getTexture(98), this._img.position.set(-74, -84);
                     break;
-                case 3:
-                    this._bg.texture = p.MAP_COMMON.getTexture(58);
-                    break;
-                case 4:
-                    this._bg.texture = p.MAP_COMMON.getTexture(62);
+                case 1:
+                    this._img.texture = a.MAP_COMMON.getTexture(99), this._img.position.set(-74, -101);
                     break;
                 default:
-                    this._bg.texture = PIXI.Texture.EMPTY
+                    this._img.texture = null
             }
-            var i = Math.log(e) * Math.LOG10E + 1;
-            i = Math.floor(i);
-            for (var n = e, o = 0; o < i; o++) {
-                var r = new d.NumericalDisplay(n % 10);
-                r.x = 45 + 15 * i / 2 - 15 * o, r.y = -18, this.addChild(r), n = Math.floor(n / 10)
-            }
-            var s = new d.NumericalDisplay(-1);
-            s.x = 45 + -8 * i, s.y = -18, this.addChild(s)
         }, e
-    }(PIXI.Container), v = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.position.set(-369, -125), e.addChild(e._bg), e._txt1 = new PIXI.Sprite, e._txt1.position.set(-189, 6), e.addChild(e._txt1), e._txt2 = new PIXI.Sprite, e._txt2.position.set(12, 50), e.addChild(e._txt2), e._txt3 = new PIXI.Sprite, e._txt3.position.set(39, 48), e.addChild(e._txt3), e._img = new PIXI.Sprite, e._img.position.set(203, -48), e.addChild(e._img), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = p.MAP_COMMON.getTexture(148), this._txt1.texture = p.MAP_COMMON.getTexture(151), this._txt2.texture = p.MAP_COMMON.getTexture(152), this._txt3.texture = p.MAP_COMMON.getTexture(153), this._img.texture = p.MAP_COMMON.getTexture(149)
-        }, e.prototype.activate = function () {
-            var t = this;
-            null == this._t && (this._img.texture = p.MAP_COMMON.getTexture(149), this._t = createjs.Tween.get(null, { loop: !0 }).wait(300).call(function () {
-                t._img.texture = p.MAP_COMMON.getTexture(150)
-            }).wait(300).call(function () {
-                t._img.texture = p.MAP_COMMON.getTexture(149)
-            }))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null, this._img.texture = p.MAP_COMMON.getTexture(149))
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e
-    }(l.Container)
+    }(r.Container)
 }

@@ -1,57 +1,37 @@
 const function491 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = function () {
+    var n = i(7), o = function () {
         function t(t) {
-            this._a = t
+            this._o = t
         }
 
-        return Object.defineProperty(t.prototype, "state", {
+        return Object.defineProperty(t.prototype, "mapID", {
             get: function () {
-                return null != this._a && this._a.length > 0 ? this._a[0] : 0
+                return n.ObjUtil.getNumber(this._o, "api_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "expedition_id", {
+        }), Object.defineProperty(t.prototype, "areaID", {
             get: function () {
-                return null != this._a && this._a.length > 1 ? this._a[1] : -1
+                return n.ObjUtil.getNumber(this._o, "api_maparea_id")
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "complete_unixtime", {
+        }), Object.defineProperty(t.prototype, "mapNo", {
             get: function () {
-                return null != this._a && this._a.length > 2 ? this._a[2] : -1
+                return n.ObjUtil.getNumber(this._o, "api_no")
             }, enumerable: !0, configurable: !0
-        }), t
+        }), Object.defineProperty(t.prototype, "mapBGMID", {
+            get: function () {
+                return n.ObjUtil.getNumber(this._o, "api_moving_bgm")
+            }, enumerable: !0, configurable: !0
+        }), t.prototype.getBGM = function (t, e) {
+            var i;
+            i = 0 == e ? n.ObjUtil.getNumArray(this._o, "api_map_bgm") : n.ObjUtil.getNumArray(this._o, "api_boss_bgm");
+            var o = t ? 1 : 0;
+            return null == i || i.length <= o ? t ? 2 : 1 : i[o]
+        }, t.prototype.getDayBGM = function (t) {
+            return this.getBGM(!1, t)
+        }, t.prototype.getNightBGM = function (t) {
+            return this.getBGM(!0, t)
+        }, t
     }();
-    e.DeckExpeditionModel = o;
-    var r = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
-        }
-
-        return n(e, t), e.prototype.__update__ = function (t) {
-            this._a = t
-        }, e.prototype.__update_state__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 0;) this._a.push(0);
-            this._a[0] = t
-        }, e.prototype.__update_id__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 1;) this._a.push(0);
-            this._a[1] = t
-        }, e.prototype.__update_time__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 2;) this._a.push(0);
-            this._a[2] = t
-        }, e
-    }(o);
-    e.DeckExpeditionModelEdit = r
+    e.BattleBGMMstModel = o
 }

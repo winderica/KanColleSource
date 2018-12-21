@@ -15,38 +15,23 @@ const function1130 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(127), s = i(168), a = i(1131), _ = function (t) {
+    var o = i(4), r = i(3), s = i(33), a = function (t) {
         function e(e) {
             var i = t.call(this) || this;
-            return i._onPickup = function () {
-                null != i._cb_onPickup && i._cb_onPickup(i._model)
-            }, i._cb_onPickup = e, i._name = new o.TextBox(22, 16777215), i._name.position.set(0, 18), i.addChild(i._name), i._icon = new PIXI.Sprite, i._icon.position.set(105, 81), i.addChild(i._icon), i._count = new l, i._count.position.set(243, 84), i.addChild(i._count), i._description = new o.TextBox(18, 16777215), i._description.position.set(22, 186), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 264, i.addChild(i._description), i._pickup_btn = new a.PickupBtn, i._pickup_btn.position.set(66, 388), i._pickup_btn.visible = !1, i.addChild(i._pickup_btn), i
+            return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(189, 89), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(189, 119), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(21, e), i._btn_shigen.position.set(143, 168), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(23, e), i._btn_kanmi.position.set(281, 168), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(22, e), i._btn_shizai.position.set(419, 168), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 270), i.addChild(i._btn_back), i
         }
 
         return n(e, t), e.prototype.initialize = function () {
-            this._pickup_btn.initialize(this._onPickup)
-        }, e.prototype.update = function (t) {
-            return null != t && this._model == t ? void this._onPickup() : (this._model = t, null == this._model ? void this._clean() : (this._name.text = this._model.name, this._name.x = Math.round(154 - this._name.width / 2), this._icon.texture = s.getPayitemIcon(this._model.id), this._count.update(this._model.count), this._count.visible = !0, this._description.text = this._model.description.replace(/<br>/g, "\n"), this._pickup_btn.visible = !0, void this._pickup_btn.activate()))
+            this.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(9), this._message1.text = "\u300c\u83f1\u9905\u300d\u3092\u4ea4\u63db\u3057\u307e\u3059\u3002", this._message1.x = 226 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 226 - this._message2.width / 2;
+            var t = r.ITEM_ILIST_HISHIMOCHI.getTexture(3);
+            this._btn_shigen.initialize(t), t = r.ITEM_ILIST_HISHIMOCHI.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_HISHIMOCHI.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_HISHIMOCHI.getTexture(0), this._btn_back.initialize(t)
+        }, e.prototype.activate = function () {
+            this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
+        }, e.prototype.deactivate = function () {
+            this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
         }, e.prototype.dispose = function () {
-            this.removeChildren(), this._name.destroy(), this._count.dispose(), this._description.destroy(), this._pickup_btn.dispose(), this._cb_onPickup = null
-        }, e.prototype._clean = function () {
-            this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._pickup_btn.visible = !1, this._pickup_btn.deactivate()
+            this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
         }, e
     }(PIXI.Sprite);
-    e.PurchasedItemDetailPanel = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new o.TextBox(30, 16777215), e._text.y = 28, e.addChild(e._text), e
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this.update(0)
-        }, e.prototype.update = function (t) {
-            var e;
-            e = t < 100 ? 24 : t < 1e3 ? 25 : 26, this._bg.texture = r.ITEM_ILIST.getTexture(e), this._bg.x = -Math.round(this._bg.width / 2), this._text.text = t.toString(), this._text.x = -Math.round(this._text.width / 2)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._text.destroy()
-        }, e
-    }(PIXI.Container)
+    e.TopView = a
 }

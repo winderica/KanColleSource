@@ -15,24 +15,32 @@ const function359 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(33), s = i(973), a = function (t) {
+    var o = i(37), r = i(360), s = i(978), a = function (t) {
         function e() {
-            return t.call(this) || this
+            var e = t.call(this) || this;
+            return e._banners = [], e._levels = [], e
         }
 
-        return n(e, t), e.prototype.initialize = function () {
-            this._banner = new r.ShipBanner, this._alert = new s.CompLackAlerts, this._alert.initialize(), this._alert.position.set(188, 53), this.addChild(this._banner), this.addChild(this._alert)
-        }, e.prototype.update = function (t, e) {
-            if (null == t) this.visible = !1; else {
-                var i = !1, n = o.default.model.deck.isInDeck(t.memID);
-                if (null != n) {
-                    null != o.default.model.deck.get(n[0]).expedition && (i = !0)
-                }
-                this._banner.update(t, i), this._banner.updatePlate(t.label), e && this._banner.updateLockSlot(t), this._alert.update(t), this.visible = !0
+        return n(e, t), e.prototype.dispose = function () {
+            for (var t = 0, e = this._banners; t < e.length; t++) {
+                e[t].dispose()
             }
-        }, e.prototype.dispose = function () {
-            this._banner.dispose()
+        }, e.prototype.update = function (t) {
+            for (o.TaskLoadShipResource.abortBy(this); this._banners.length > 0;) {
+                var e = this._banners.pop();
+                null != e.parent && e.parent.removeChild(e), e.dispose()
+            }
+            for (; this._levels.length > 0;) {
+                var i = this._levels.pop();
+                null != i.parent && i.parent.removeChild(i)
+            }
+            for (var n = 0; n < t.length; n++) {
+                var a = new r.CompBannerAndLack;
+                a.position.set(0, 75 * n), a.initialize(), a.update(t[n], !0), this.addChild(a), this._banners.push(a);
+                var _ = new s.CompBannerLevel;
+                _.position.set(201, 75 * n), _.initialize(), _.update(t[n]), this.addChild(_), this._levels.push(_)
+            }
         }, e
     }(PIXI.Container);
-    e.CompBannerAndLack = a
+    e.PanelDeckSelectBanners = a
 }

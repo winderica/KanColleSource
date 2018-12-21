@@ -15,40 +15,41 @@ const function954 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(18), _ = i(955), l = i(1), u = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._result = !1, s._onCancel = function () {
-                s._result = !1, s._close()
-            }, s._onChange = function () {
-                s._result = !0, s._close()
-            }, s._layer = e, s._area_id = i, s._airunit_id = n, s._index = o, s._item = r, s
+    var o = i(26), r = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.texture = PIXI.Texture.EMPTY, e
         }
 
-        return n(e, t), Object.defineProperty(e.prototype, "result", {
-            get: function () {
-                return this._result
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.cancel = function () {
-            this._onCancel()
-        }, e.prototype._start = function () {
-            this._cancel_area = new a.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
-        }, e.prototype._openPanel = function () {
-            var t = this, e = null, i = r.default.model.airunit.getAirUnit(this._area_id, this._airunit_id),
-                n = i.squadrons[this._index];
-            n.mem_id > 0 && (e = r.default.model.slot.get(n.mem_id));
-            var s = this._item;
-            this._panel = new _.AirUnitChangeConfirmPanel(this._onChange), this._panel.initialize(), this._panel.update(e, s), this._panel.position.set(o.default.width, 102), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({ x: 840 }, 200).call(function () {
-                t._cancel_area.on(l.EventType.CLICK, t._onCancel), t._cancel_area.buttonMode = !0, t._panel.activate()
-            })
-        }, e.prototype._close = function () {
-            var t = this;
-            this._cancel_area.off(l.EventType.CLICK, this._onCancel), this._cancel_area.buttonMode = !1, this._panel.deactivate(), createjs.Tween.get(this._panel).to({ x: o.default.width }, 200).call(function () {
-                t._panel.dispose(), t._layer.removeChild(t._panel), t._layer.removeChild(t._cancel_area), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._cancel_area = null, this._panel = null, this._item = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.update = function (t) {
+            switch (t) {
+                case 1:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(91);
+                    break;
+                case 2:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(92);
+                    break;
+                case 3:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(93);
+                    break;
+                case 4:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(94);
+                    break;
+                case 5:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(95);
+                    break;
+                case 6:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(96);
+                    break;
+                case 7:
+                    this.texture = o.SALLY_AIRUNIT.getTexture(97);
+                    break;
+                default:
+                    this.texture = PIXI.Texture.EMPTY
+            }
+        }, e.prototype.dispose = function () {
+            this.texture = PIXI.Texture.EMPTY
         }, e
-    }(s.TaskBase);
-    e.TaskShowAirUnitChangeConfirm = u
+    }(PIXI.Sprite);
+    e.AirPlaneSkillLevel = r
 }

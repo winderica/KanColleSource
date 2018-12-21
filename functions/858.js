@@ -15,8 +15,8 @@ const function858 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(11), r = i(0), s = function (t) {
-        function e() {
+    var o = i(2), r = i(0), s = function (t) {
+        function e(e) {
             return t.call(this) || this
         }
 

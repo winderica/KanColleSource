@@ -1,47 +1,40 @@
 const function415 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(14), o = function () {
-        function t() {
-            this._o = {}
+    var o = i(2), r = i(416), s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._result = [], n._layer = e, n._candidates_list = null == i ? [] : i.concat(), n
         }
 
-        return Object.defineProperty(t.prototype, "remodel_id", {
+        return n(e, t), Object.defineProperty(e.prototype, "result", {
             get: function () {
-                return n.ObjUtil.getNumArray(this._o, "api_remodel_id")
+                return this._result
             }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_ship_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_voice_ship_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_id", {
-            get: function () {
-                return n.ObjUtil.getNumber(this._o, "api_voice_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "after_materials", {
-            get: function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_after_material");
-                for (null == t && (t = []); t.length < 8;) t.push(0);
-                return t
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "target_slotitem_memid", {
-            get: function () {
-                var t = this.getItemObject();
-                return n.ObjUtil.getNumber(t, "api_id")
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(t.prototype, "use_slotitem_memids", {
-            get: function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_use_slot_id");
-                return null == t ? [] : t
-            }, enumerable: !0, configurable: !0
-        }), t.prototype.isSuccess = function () {
-            return 1 == n.ObjUtil.getNumber(this._o, "api_remodel_flag")
-        }, t.prototype.isChanged = function () {
-            var t = n.ObjUtil.getNumArray(this._o, "api_remodel_id");
-            return t[0] != t[1]
-        }, t.prototype.getItemObject = function () {
-            return n.ObjUtil.getObject(this._o, "api_after_slot")
-        }, t
-    }();
-    e.RevampRemodelSlotModel = o
+        }), e.prototype._start = function () {
+            var t = this;
+            if (0 == this._candidates_list.length) return void this._endTask();
+            var e = this._candidates_list.shift(), i = new r.TaskRewardSelect(this._layer, e);
+            i.start(function () {
+                t._result.push(i.result), t._start()
+            })
+        }, e.prototype._endTask = function () {
+            this._layer = null, this._candidates_list = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.TaskRewardSelectMulti = s
 }

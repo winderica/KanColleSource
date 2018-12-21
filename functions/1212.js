@@ -15,17 +15,25 @@ const function1212 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(2), r = function (t) {
+    var o = i(2), r = i(1213), s = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i
         }
 
         return n(e, t), e.prototype._start = function () {
-            this._scene.start(), this._endTask()
+            var t = this;
+            (new r.TaskLoadResourcesPractice).start(function () {
+                t._initView()
+            })
+        }, e.prototype._initView = function () {
+            var t = this;
+            this._scene.view.bg.setDay(function () {
+                t._scene.view.initialize(), t._endTask()
+            })
         }, e.prototype._endTask = function () {
             this._scene = null, t.prototype._endTask.call(this)
         }, e
     }(o.TaskBase);
-    e.TaskInit = r
+    e.TaskInitPre = s
 }

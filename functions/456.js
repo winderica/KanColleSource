@@ -15,71 +15,49 @@ const function456 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(6), r = i(2), s = i(24), a = i(1362), _ = i(62), l = function (t) {
-        function e(e, i, n, o, r) {
-            var s = t.call(this) || this;
-            return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNagatoAttack(s._attackers), s
+    var o = i(5), r = i(0), s = i(254), a = i(44), _ = function (t) {
+        function e(e, i, n, o) {
+            return t.call(this, e, i, n, o) || this
         }
 
-        return n(e, t), e.prototype._start = function () {
+        return n(e, t), e.prototype.resume = function () {
             var t = this;
-            this._cutin.getPreloadTask().start(function () {
-                t._completePreload()
-            })
-        }, e.prototype._completePreload = function () {
-            for (var t = this, e = this._attackers[0].friend, i = [], n = [], o = 0; o < this._attackers.length; o++) {
-                var r = this._attackers[o].index, s = this._scene.view.bannerGroupLayer.getBanner(!!e, r);
-                i.push(s), s.moveFront()
+            null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
+                t._resume()
+            })) : this._resume()
+        }, e.prototype._start = function () {
+            var t = this, e = this._attacker.mst_id, i = this._attacker.isDamaged();
+            this._ship_sprite = new PIXI.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new a.ShipFlash(r.default.resources.getShip(e, i, "full"));
+            var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
+            this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
+            var s = this._base_pos, _ = this._friend ? 1 : -1;
+            if (this._view.chara.position.set(s.x - 180 * _, s.y + 120), this._view.chara.alpha = 0, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
+                x: s.x - 30 * _,
+                y: s.y + 15,
+                alpha: 1
+            }, 300).to({ x: s.x, y: s.y }, 250).call(function () {
+                t._view.emit("attack"), t._shipFlash.position = t._ship_sprite.position, t._shipFlash.play()
+            }).wait(135), null != this._slot1 || null != this._slot2) {
+                var l = this._view.box;
+                l.initilize(this._attacker);
+                var u = 0;
+                1 == this._attacker.friend ? l.x = -60 : (u = o.default.width - l.width, l.x = u + 60), l.y = o.default.height - l.height, l.alpha = 0, createjs.Tween.get(l).wait(365).to({
+                    x: u,
+                    alpha: 1
+                }, 165).wait(900).to({ alpha: 0 }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
             }
-            for (var o = 0; o < this._defenders.length; o++) {
-                var a = this._defenders[o].index, _ = this._scene.view.bannerGroupLayer.getBanner(!e, a);
-                n.push(_)
-            }
-            this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                t._explosion(i, n, 0)
+        }, e.prototype._resume = function () {
+            var t = this, e = this._base_pos, i = this._friend ? 1 : -1;
+            createjs.Tween.get(this._view.chara).call(function () {
+                t._view.emit("attack"), t._shipFlash.play()
+            }).wait(135).wait(200).to({ x: e.x + 38 * i, y: e.y - 23 }, 135).to({
+                x: e.x + 135 * i,
+                y: e.y - 75,
+                alpha: 0
+            }, 335).call(function () {
+                t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
             })
-        }, e.prototype._explosion = function (t, e, i) {
-            var n = this, o = e[i].getGlobalPos(!0), r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
-                _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                l = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
-            createjs.Tween.get(null).wait(200).call(function () {
-                e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
-            }).wait(150).call(function () {
-                n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
-            }).wait(100).call(function () {
-                n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + l, function () {
-                    n._attack(t, e, i)
-                })
-            })
-        }, e.prototype._attack = function (t, e, i) {
-            o.SE.play("102"), this._damageEffect(t, e, i)
-        }, e.prototype._damageEffect = function (t, e, i) {
-            1 == this._shields[i] && this._showShield(e[i]), e[i].moveAtDamage(this._shields[i]), this._playExplosion(e[i], this._damages[i]), this._playDamageEffect(t, e, i)
-        }, e.prototype._showShield = function (t) {
-            var e = this._scene.view.bannerGroupLayer.getShieldTargetBanner(t);
-            this._scene.view.layer_damage.showShieldAtBanner(e)
-        }, e.prototype._playExplosion = function (t, e) {
-            var i = t.getGlobalPos(!0);
-            this._scene.view.layer_explosion.playDamageExplosion(i.x, i.y, e)
-        }, e.prototype._playDamageEffect = function (t, e, i) {
-            var n = this;
-            this._scene.view.layer_damage.showAtBanner(e[i], this._damages[i], this._hits[i]);
-            var o = createjs.Tween.get(null);
-            o.wait(200), o.call(function () {
-                if (n._damage_cutin.causeDamage(n._defenders[i], n._damages[i]), e[i].updateHp(n._defenders[i].hp_now), i + 1 >= n._defenders.length) for (var o = 0; o < n._attackers.length; o++) t[o].moveDefault()
-            }), i + 1 >= this._defenders.length ? (o.wait(1e3), o.call(function () {
-                n._endTask()
-            })) : (o.wait(150), o.call(function () {
-                n._explosion(t, e, i + 1)
-            }))
-        }, e.prototype._endTask = function () {
-            var e = this;
-            this._damage_cutin.start(function () {
-                t.prototype._endTask.call(e)
-            })
-        }, e.prototype._log = function (t) {
         }, e
-    }(r.TaskBase);
-    e.PhaseNagatoAttack = l
+    }(s.CutinDouble);
+    e.CutinDouble1 = _
 }

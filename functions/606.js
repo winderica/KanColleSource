@@ -15,23 +15,31 @@ const function606 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(190), r = i(191), s = i(192), a = i(193), _ = i(286), l = function (t) {
+    var o = i(4), r = i(22), s = i(150), a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
+            e._timer = -1, e._startAnimation = function () {
+                e._timer < 0 && (e._timer = setInterval(e._onTimer, 1e3))
+            }, e._stopAnimation = function () {
+                e._timer >= 0 && (clearInterval(e._timer), e._timer = -1)
+            }, e._onTimer = function () {
+                var t = new Date, i = t.getMonth() + 1, n = t.getDate();
+                e._date.text = r.MathUtil.zeroPadding(i, 2) + "/" + r.MathUtil.zeroPadding(n, 2);
+                var o = t.getHours(), s = t.getMinutes();
+                e._time.text = r.MathUtil.zeroPadding(o, 2) + ":" + r.MathUtil.zeroPadding(s, 2)
+            };
+            var i = new PIXI.Sprite;
+            return i.name = "bg", i.position.set(0, 573), e.addChild(i), e._date = new o.TextBox(26, "white"), e._date.anchor.set(.5, 0), e._date.position.set(58, 612), e.addChild(e._date), e._time = new o.TextBox(41, "white"), e._time.anchor.set(.5, 0), e._time.position.set(75, 651), e.addChild(e._time), e
         }
 
-        return n(e, t), e.prototype.initialize = function (t) {
-            this.changeSkin(t), this._gear.activate()
-        }, e.prototype.changeSkin = function (t) {
-            101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
-            var e = PIXI.Texture.EMPTY;
-            e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
+        return n(e, t), e.prototype.initialize = function () {
+            this.getChildByName("bg").texture = s.PORT_MAIN.getTexture(19), this._onTimer(), this._startAnimation()
         }, e.prototype.update = function (t) {
-            0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
+            var e = [0, 11, 12, 13, 14, 15, 31, 16];
+            this.visible = e.indexOf(t) >= 0, 1 == this.visible ? this._startAnimation() : this._stopAnimation()
         }, e.prototype.dispose = function () {
-            this._gear.dispose()
+            this._stopAnimation(), this.removeChildren(), this._date && this._date.destroy(), this._date = null, this._time && this._time.destroy(), this._time = null
         }, e
     }(PIXI.Container);
-    e.FrameLayer = l
+    e.ClockLayer = a
 }

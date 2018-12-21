@@ -15,15 +15,17 @@ const function218 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(10), r = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._url = "api_req_kaisou/slotset_ex", n.api_id = e, n.api_item_id = i, n
+    var o = i(10), r = i(0), s = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._url = "api_req_kaisou/slotset", o.api_id = e, o.api_item_id = i, o.api_slot_idx = n, o
         }
 
         return n(e, t), e.prototype._connect = function () {
-            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, t.prototype._connect.call(this)
+            this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, this._post_data.api_slot_idx = this.api_slot_idx, t.prototype._connect.call(this)
+        }, e.prototype._completedEnd = function () {
+            r.default.model.ship.get(this.api_id).__updateSlot__(this.api_slot_idx, this.api_item_id), t.prototype._completedEnd.call(this)
         }, e
     }(o.APIBase);
-    e.SlotSetExAPI = r
+    e.SlotSetAPI = s
 }

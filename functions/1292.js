@@ -15,33 +15,55 @@ const function1292 = function (t, e, i) {
         }
     }();
     Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(20), r = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
-        }
+    var o = i(1293), r = i(1295), s = i(1297), a = i(1298), _ = i(1300), l = i(1301), u = i(1303), c = i(14),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
+            }
 
-        return n(e, t), e.prototype.update = function (t) {
-            this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-        }, e.prototype.activate = function () {
-            null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, { loop: !0 }).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, { loop: !0 }).to({
-                x: .7,
-                y: .7
-            }, 900).to({
-                x: 1,
-                y: 1
-            }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, { loop: !0 }).wait(500).to({ alpha: 1 }, 900).to({ alpha: 0 }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, { loop: !0 }).wait(500).to({
-                x: .7,
-                y: .7
-            }, 900).to({ x: 1, y: 1 }, 400))
-        }, e.prototype.deactivate = function () {
-            this._stopTween()
-        }, e.prototype.dispose = function () {
-            this._stopTween()
-        }, e.prototype._stopTween = function () {
-            for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-            this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
-        }, e
-    }(PIXI.Container);
-    e.CompShipWave = r
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "ship_icon", {
+                get: function () {
+                    return this._ship_icon
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "spotLayer", {
+                get: function () {
+                    return this._spotLayer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "airbaseLayer", {
+                get: function () {
+                    return this._airbaseLayer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy_layer", {
+                get: function () {
+                    return this._enemy_layer
+                }, enumerable: !0, configurable: !0
+            }), Object.defineProperty(e.prototype, "plane_layer", {
+                get: function () {
+                    return this._plane_layer
+                }, enumerable: !0, configurable: !0
+            }), e.prototype.dispose = function () {
+                this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
+            }, e.prototype.addSpot = function (t, e, i) {
+                var n = i.getSpot(e), o = new r.CompSpot(e, n.offsetDic);
+                if (o.position.set(n.x, n.y), null != n.route) {
+                    var s = n.route, a = c.MapUtil.toResKey(t), _ = "map" + a + "_" + s.img,
+                        l = PIXI.Texture.fromFrame(_);
+                    o.setRoute(l, s.x, s.y, s.r)
+                }
+                var u = n.line;
+                if (null != u) {
+                    var a = c.MapUtil.toResKey(t), h = void 0;
+                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
+                    var l = PIXI.Texture.fromFrame(h);
+                    o.setLine(l, u.x, u.y, u.r)
+                }
+                this._spotLayer.addSpot(o)
+            }, e
+        }(PIXI.Container);
+    e.MapView = h
 }
