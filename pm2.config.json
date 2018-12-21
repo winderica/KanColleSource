@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "detector",
+            "script": "utils/detector.js",
+            "watch": false,
+            "cwd": "utils/"
+        }
+    ]
+}
