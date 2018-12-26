@@ -1,7 +1,10 @@
 const function468 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,19 +13,33 @@ const function468 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(248), r = i(249), s = i(250), a = i(251), _ = i(1378), l = i(1381), u = i(253), c = i(1384),
-        h = i(1387), p = i(1390), d = i(1393), f = i(457), y = i(255), m = i(459), v = i(460), g = i(1396),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(248),
+        r = i(249),
+        s = i(250),
+        a = i(251),
+        _ = i(1378),
+        l = i(1381),
+        u = i(253),
+        c = i(1384),
+        h = i(1387),
+        p = i(1390),
+        d = i(1393),
+        f = i(457),
+        y = i(255),
+        m = i(459),
+        v = i(460),
+        g = i(1396),
         b = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
                 return r._current_index = 0, r._scene = e, r._data = i, r._ships_f = n, r._ships_e = o, r
             }
-
             return n(e, t), e.prototype._start = function () {
                 null == this._data || null == this._data.list || 0 == this._data.list.length ? this._endTask() : this._hougekiCycle()
             }, e.prototype._hougekiCycle = function () {
@@ -34,10 +51,16 @@ const function468 = function (t, e, i) {
                 var e = t.type;
                 0 == e ? this._normal(t) : 1 == e ? this._double(t) : 6 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : 7 == e ? this._kuchiku_special(t) : 8 == e ? this._kuchiku_special(t) : this._special(t)
             }, e.prototype._normal = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != i && null != n) {
-                    var _ = t.getSlotitem(0), l = t.getDamage(0), u = t.getHitType(0), c = t.isShield(0),
-                        h = this._getNormalAttackType(i, n, _, t.yasen_kubo), p = this._getDaihatsuEffectType(i, n);
+                    var _ = t.getSlotitem(0),
+                        l = t.getDamage(0),
+                        u = t.getHitType(0),
+                        c = t.isShield(0),
+                        h = this._getNormalAttackType(i, n, _, t.yasen_kubo),
+                        p = this._getDaihatsuEffectType(i, n);
                     if (1 == this._hasRocketEffect(i, n)) {
                         var d = new y.PhaseAttackRocket(this._scene, i, n, l, u, c);
                         d.setOptionalEffects(p), d.start(function () {
@@ -49,7 +72,8 @@ const function468 = function (t, e, i) {
                             e._hougekiCycle()
                         })
                     } else if (1 == h) {
-                        var f = t.yasen_kubo, d = new r.PhaseAttackKansaiki(this._scene, i, n, _, l, u, c, f);
+                        var f = t.yasen_kubo,
+                            d = new r.PhaseAttackKansaiki(this._scene, i, n, _, l, u, c, f);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
@@ -67,18 +91,34 @@ const function468 = function (t, e, i) {
                     }
                 }
             }, e.prototype._double = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = this._getDShip(t.d_indexes[1], t.flag), r = t.getSlotitem(0), s = t.getDamage(0),
-                    a = t.getHitType(0), _ = t.isShield(0), l = t.getSlotitem(1), c = t.getDamage(1),
-                    h = t.getHitType(1), p = t.isShield(1);
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = this._getDShip(t.d_indexes[1], t.flag),
+                    r = t.getSlotitem(0),
+                    s = t.getDamage(0),
+                    a = t.getHitType(0),
+                    _ = t.isShield(0),
+                    l = t.getSlotitem(1),
+                    c = t.getDamage(1),
+                    h = t.getHitType(1),
+                    p = t.isShield(1);
                 new u.PhaseAttackDouble(this._scene, i, n, r, s, a, _, o, l, c, h, p).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuboCI = function (t) {
-                var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
-                    o = this._getDShip(t.d_indexes[0], t.flag), r = t.getSlotitem(0), s = t.getSlotitem(1),
-                    a = t.getSlotitem(2), _ = t.getDamage(0), l = t.getHitType(0), u = t.isShield(0),
-                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)), h = t.yasen_kubo,
+                var e = this,
+                    i = this._scene,
+                    n = this._getAShip(t.a_index, t.flag),
+                    o = this._getDShip(t.d_indexes[0], t.flag),
+                    r = t.getSlotitem(0),
+                    s = t.getSlotitem(1),
+                    a = t.getSlotitem(2),
+                    _ = t.getDamage(0),
+                    l = t.getHitType(0),
+                    u = t.isShield(0),
+                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)),
+                    h = t.yasen_kubo,
                     p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, l, u, h);
                 p.setOptionalEffects(c), p.start(function () {
                     e._hougekiCycle()
@@ -106,9 +146,16 @@ const function468 = function (t, e, i) {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuchiku_special = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = t.getSlotitem(0), r = t.getSlotitem(1), s = t.getSlotitem(2), a = t.getDamage(0),
-                    u = t.getHitType(0), c = t.isShield(0), h = t.type;
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = t.getSlotitem(0),
+                    r = t.getSlotitem(1),
+                    s = t.getSlotitem(2),
+                    a = t.getDamage(0),
+                    u = t.getHitType(0),
+                    c = t.isShield(0),
+                    h = t.type;
                 if (7 == h) {
                     var p = new l.PhaseAttackSpSRD(this._scene, i, n, o, r, s, a, u, c);
                     p.start(function () {
@@ -122,9 +169,15 @@ const function468 = function (t, e, i) {
                     })
                 }
             }, e.prototype._special = function (t) {
-                var e, i = this, n = this._getAShip(t.a_index, t.flag), o = this._getDShip(t.d_indexes[0], t.flag),
-                    r = t.getSlotitem(0), s = t.getSlotitem(1), a = t.getSlotitem(2), _ = t.getHitType(0),
-                    l = t.isShield(0), u = t.type;
+                var e, i = this,
+                    n = this._getAShip(t.a_index, t.flag),
+                    o = this._getDShip(t.d_indexes[0], t.flag),
+                    r = t.getSlotitem(0),
+                    s = t.getSlotitem(1),
+                    a = t.getSlotitem(2),
+                    _ = t.getHitType(0),
+                    l = t.isShield(0),
+                    u = t.type;
                 if (2 == u) {
                     var f = t.getDamage(0) + t.getDamage(1);
                     e = new c.PhaseAttackSpSR(this._scene, t.type, n, o, r, s, f, _, l)

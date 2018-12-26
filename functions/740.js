@@ -1,7 +1,10 @@
 const function740 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,17 @@ const function740 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(8), a = i(314), _ = [];
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(1),
+        s = i(8),
+        a = i(314),
+        _ = [];
     a.ShipAreaPosition.forEach(function (t) {
         _.push([t[0] + a.ShipOffsetPosition[0], t[1] + a.ShipOffsetPosition[1]])
     });
@@ -38,7 +46,8 @@ const function740 = function (t, e, i) {
                 } else {
                     u._shipBanner.position.set(e.x, e.y);
                     for (var a = -1, i = 0, l = u._shipSlotMaskLayers.length; i < l; i++) {
-                        var c = u._shipSlotMaskLayers[i], h = t.data.getLocalPosition(c);
+                        var c = u._shipSlotMaskLayers[i],
+                            h = t.data.getLocalPosition(c);
                         1 == c.hitArea.contains(h.x, h.y) ? (c.alpha = 1, a = i) : c.alpha = 0
                     }
                     u._afterIndex = a
@@ -50,7 +59,6 @@ const function740 = function (t, e, i) {
                 u._cbOnDrop(u._beforeIndex, u._afterIndex, u._memShipId), u._dispose()
             }, u.on(r.EventType.MOUSEMOVE, u._onMove), u.on(r.EventType.MOUSEOUT, u._onOut), u.on(r.EventType.MOUSEUP, u._onUp), u
         }
-
         return n(e, t), e.prototype._dispose = function () {
             this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp), this.interactive = !1, null != this._drag && this._drag.removeChildren(), this._shipBanner = null, this._shipSlotMaskLayers.forEach(function (t) {
                 null

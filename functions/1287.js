@@ -1,7 +1,10 @@
 const function1287 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,20 @@ const function1287 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(4), r = i(142), s = i(26), a = i(352), _ = i(349), l = i(353), u = i(350), c = i(351),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(4),
+        r = i(142),
+        s = i(26),
+        a = i(352),
+        _ = i(349),
+        l = i(353),
+        u = i(350),
+        c = i(351),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -28,11 +39,12 @@ const function1287 = function (t, e, i) {
                 }
                 return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
                 get: function () {
                     return this._selected_airunit_id
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function (t, e) {
                 this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
                 for (var i = 0; i < this._items.length; i++) {

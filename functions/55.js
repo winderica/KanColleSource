@@ -1,8 +1,10 @@
 const function55 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = i(22);
-    !function (t) {
+    ! function (t) {
         function e(t, e) {
             return 10 * t + e
         }
@@ -24,7 +26,6 @@ const function55 = function (t, e, i) {
             }
             return n.MathUtil.zeroPadding(r, 3).toString() + n.MathUtil.zeroPadding(e, 2).toString()
         }
-
         t.toMapID = e, t.toAreaID = i, t.toMapNo = o, t.toResKey = r
     }(e.MapUtil || (e.MapUtil = {}))
 }

@@ -1,7 +1,10 @@
 const function450 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,28 +13,40 @@ const function450 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(27), r = i(28), s = i(72), a = i(19), _ = i(39), l = i(6), u = i(136), c = i(178), h = i(446),
-        p = i(180), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(27),
+        r = i(28),
+        s = i(72),
+        a = i(19),
+        _ = i(39),
+        l = i(6),
+        u = i(136),
+        c = i(178),
+        h = i(446),
+        p = i(180),
+        d = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "data_", {
                 get: function () {
                     return this._data
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype._start = function () {
                 this._log();
                 var t = this._scene.data.model.map_info.isAirRaid();
                 this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {
-            }, e.prototype._startMainTask = function () {
-                var t = this, e = new o.ParallelTask, i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new o.ParallelTask,
+                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
                 e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
                     t._fireDogFight()
                 }, 750)), e.add(new s.FuncTask(function () {
@@ -48,8 +63,7 @@ const function450 = function (t, e, i) {
                     t._showDamage()
                 }, 3300)), e.add(new s.FuncTask(function () {
                     t._showDamageNumber()
-                }, 3600)), this._main_task = e, this._main_task.start(function () {
-                })
+                }, 3600)), this._main_task = e, this._main_task.start(function () {})
             }, e.prototype._showSeikuResult = function () {
                 var t = this._scene.view.layer_content;
                 new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()

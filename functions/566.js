@@ -1,7 +1,10 @@
 const function566 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,22 +13,32 @@ const function566 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(272), a = i(567), _ = i(569), l = i(574), u = i(575), c = i(275), h = i(6),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(0),
+        s = i(272),
+        a = i(567),
+        _ = i(569),
+        l = i(574),
+        u = i(575),
+        c = i(275),
+        h = i(6),
         p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._id = 0, i._preCheckedTimeStr = null, i._hitAreaLayer = null, i._hit_area_updated = !1, i._popupLayer = null, i._pre_state_name = "", i._data = new _.FAnimationData, i._type = e, i
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "id", {
                 get: function () {
                     return this._id
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.isRadio = function () {
                 return this._data.model.hasCategory("radio")
             }, e.prototype.isGramo = function () {
@@ -50,7 +63,8 @@ const function566 = function (t, e, i) {
                     var _ = !1;
                     if (0 == n.children.length ? _ = !0 : (n.id != t || n._data.model.reloadFlag) && (_ = !0, n.removeChildren()), _) {
                         n._id = t;
-                        var l = n._data.currentStateName, u = n._data.model.getState(l);
+                        var l = n._data.currentStateName,
+                            u = n._data.model.getState(l);
                         n._reCreate(u)
                     }
                 })
@@ -76,7 +90,8 @@ const function566 = function (t, e, i) {
             }, e.prototype.stopGramophone = function () {
                 return "standard2" == this._data.currentStateName && (this._data.setAnimationState(1), this._updateFurnitureLayers(), !0)
             }, e.prototype.timeCheck = function (t, e, i) {
-                var n = this._data.currentStateName, o = this._data.model.getState(n);
+                var n = this._data.currentStateName,
+                    o = this._data.model.getState(n);
                 if (null != o) {
                     var r = o.timeTable;
                     if (null != r && 0 == this._data.animationState) {
@@ -88,7 +103,8 @@ const function566 = function (t, e, i) {
                                 var _ = a.split(":");
                                 if (_.length > 1) {
                                     a = _[0];
-                                    var l = parseFloat(_[1]), u = 100 * Math.random();
+                                    var l = parseFloat(_[1]),
+                                        u = 100 * Math.random();
                                     u < l && (this._data.setAnimationState(2, a), this._updateFurnitureLayers())
                                 } else this._data.setAnimationState(2, a), this._updateFurnitureLayers()
                             }
@@ -98,7 +114,8 @@ const function566 = function (t, e, i) {
             }, e.prototype.animate = function () {
                 if (0 != r.default.model.furniture.isActive(this._id)) {
                     for (var t = 0; t < this._sprites.length; t++) {
-                        var e = this._sprites[t], i = e.update();
+                        var e = this._sprites[t],
+                            i = e.update();
                         null != i && (this._setOffset(e, i), this._execFrameAction(i))
                     }
                     for (var n = !0, o = 0, s = this._sprites; o < s.length; o++) {
@@ -117,7 +134,8 @@ const function566 = function (t, e, i) {
                 0 == this._type ? (t.x = 0, t.y = o.default.height - t.height) : 2 == this._type ? (t.x = 297, t.y = 0) : 4 == this._type ? (t.x = 0, t.y = o.default.height - t.height) : 5 == this._type ? (t.x = o.default.width - t.width, t.y = 0) : (t.x = 0, t.y = 0)
             }, e.prototype._setOffset = function (t, e) {
                 this._setOffsetBase(t);
-                var i = t.fileName, n = this._data.model.getOffset(i);
+                var i = t.fileName,
+                    n = this._data.model.getOffset(i);
                 null == n && (n = t.getOffset()), t.x += n.x, t.y += n.y
             }, e.prototype._updateFurnitureLayers = function () {
                 var t = this._data.currentStateName;
@@ -133,7 +151,9 @@ const function566 = function (t, e, i) {
             }, e.prototype._reCreate = function (t) {
                 if (this.removeChildren(), this._hit_area_map = null, this._hit_area_updated = !1, this._sprites = [], this._hitAreaLayer = null, null != t) {
                     for (var e = t.layers, i = 0; i < e.length; i++) {
-                        var n = e[i], o = n.frames[0], r = (o.filename, new l.FurnitureLayer(n));
+                        var n = e[i],
+                            o = n.frames[0],
+                            r = (o.filename, new l.FurnitureLayer(n));
                         this._sprites.push(r), this._setOffset(r, o), this.addChild(r)
                     }
                     var a = t.hitArea;
@@ -145,28 +165,33 @@ const function566 = function (t, e, i) {
                     }
                 }
             }, e.prototype._execFrameAction = function (t) {
-                var e = this, i = t.getSEID();
+                var e = this,
+                    i = t.getSEID();
                 null != i && h.SE.play(i);
                 var n = t.getBGMAction();
-                if (null != n && r.default.view.portMain.furnitureLayer.current_bgm_furniture == this) if ("play" == n) {
-                    var o = r.default.model.basic.port_bgm_id;
-                    r.default.sound.bgm.play(o)
-                } else if ("start" == n) if (this.isRadio()) {
-                    var o = r.default.model.basic.port_bgm_id;
-                    if (101 != o) {
-                        var s = new a.UserFurnitureRadioAPI;
-                        s.start(function () {
-                            r.default.model.basic.setPortBGMID(101), r.default.sound.bgm.play(101)
-                        })
-                    } else r.default.sound.bgm.play(101)
-                } else this.isGramo() && r.default.sound.bgm.play(237, !1, 0, "port", function () {
-                    e.stopGramophone()
-                }); else "stop" == n && r.default.sound.bgm.stop();
+                if (null != n && r.default.view.portMain.furnitureLayer.current_bgm_furniture == this)
+                    if ("play" == n) {
+                        var o = r.default.model.basic.port_bgm_id;
+                        r.default.sound.bgm.play(o)
+                    } else if ("start" == n)
+                    if (this.isRadio()) {
+                        var o = r.default.model.basic.port_bgm_id;
+                        if (101 != o) {
+                            var s = new a.UserFurnitureRadioAPI;
+                            s.start(function () {
+                                r.default.model.basic.setPortBGMID(101), r.default.sound.bgm.play(101)
+                            })
+                        } else r.default.sound.bgm.play(101)
+                    } else this.isGramo() && r.default.sound.bgm.play(237, !1, 0, "port", function () {
+                        e.stopGramophone()
+                    });
+                else "stop" == n && r.default.sound.bgm.stop();
                 this._openPopup(t);
                 var _ = t.getStateChangeOption();
                 null != _ && this._data.updateBaseStateName(_)
             }, e.prototype._openPopup = function (t) {
-                var e = this, i = t.getPopupOption();
+                var e = this,
+                    i = t.getPopupOption();
                 null != i && null == this._popupLayer && 0 == r.default.scene.now && (r.default.scene.isChangingNow() || (this._popupLayer = new u.FurniturePopupLayer(i), r.default.view.overLayer.addChild(this._popupLayer), this._popupLayer.show(function () {
                     e._removePopup()
                 })))

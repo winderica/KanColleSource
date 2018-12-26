@@ -4,9 +4,11 @@ const function543 = function (t, e, i) {
     function n(t) {
         return 11 == t ? new w.OrganizeScene : 12 == t ? new x.SupplyScene : 13 == t ? new I.RemodelScene : 14 == t ? new T.RepairScene : 15 == t ? new O.ArsenalScene : 16 == t ? new P.SallyScene : 21 == t ? new C.RecordScene : 23 == t ? new k.AlbumScene : 24 == t ? new M.ItemScene : 25 == t ? new S.InteriorScene : 26 == t ? new A.DutyScene : 31 == t ? new j.RevampScene : 33 == t ? new N.MapScene(L.BattleScene, B.BattleResultScene) : 32 == t ? new E.PracticeScene(new L.BattleScene, new B.BattleResultScene) : void 0
     }
-
     var o = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -15,24 +17,40 @@ const function543 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var r = i(0), s = i(7), a = i(31), _ = i(544), l = i(549), u = i(550), c = i(2), h = i(551), p = i(266),
-        d = i(554), f = i(556), y = i(557), m = i(13), v = i(559), g = i(646), b = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var r = i(0),
+        s = i(7),
+        a = i(31),
+        _ = i(544),
+        l = i(549),
+        u = i(550),
+        c = i(2),
+        h = i(551),
+        p = i(266),
+        d = i(554),
+        f = i(556),
+        y = i(557),
+        m = i(13),
+        v = i(559),
+        g = i(646),
+        b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
                     i._TutorialScene.emitter.off("tutorial-event-end", i._tutorialEnd), r.default.view.removeChild(i._TutorialScene), i._isTutorialEnd = !0, i._preInitPort()
                 }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.view.initialize(new v.PortScene), i
             }
-
             return o(e, t), e.prototype._start = function () {
                 this._loadVersionFile()
             }, e.prototype._loadVersionFile = function () {
-                var t = this, e = r.default.settings.version, i = "./version.json" + (e ? "?" + e : "");
+                var t = this,
+                    e = r.default.settings.version,
+                    i = "./version.json" + (e ? "?" + e : "");
                 axios.get(i).then(function (e) {
                     var i = s.ObjUtil.getObject(e, "data");
                     m.UIImageLoader.setVersionData(i), t._loadTitleResource()
@@ -63,7 +81,8 @@ const function543 = function (t, e, i) {
                     })
                 })
             }, e.prototype._playTitleCall = function () {
-                var t = this, e = Math.floor(86 * Math.random()) + 1;
+                var t = this,
+                    e = Math.floor(86 * Math.random()) + 1;
                 r.default.sound.voice.play("titlecall_1", e, function () {
                     var e = Math.floor(49 * Math.random()) + 1;
                     r.default.sound.voice.play("titlecall_2", e, function () {
@@ -72,7 +91,9 @@ const function543 = function (t, e, i) {
                 }), R.HTML5_AUDIO && r.default.sound.bgm.play(0, !1)
             }, e.prototype._hideTitle = function (t) {
                 var e = this;
-                this._pukapuka.visible = !0, this._pukapuka.activate(), r.default.view.portMain.visible = !1, createjs.Tween.get(t).to({ alpha: 0 }, 500).call(function () {
+                this._pukapuka.visible = !0, this._pukapuka.activate(), r.default.view.portMain.visible = !1, createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 500).call(function () {
                     r.default.view.removeChild(t), t.dispose(), e._connectAPI()
                 })
             }, e.prototype._connectAPI = function () {
@@ -83,17 +104,23 @@ const function543 = function (t, e, i) {
             }, e.prototype._preInitPort = function () {
                 var t = this;
                 if (0 != this._end_titlecall && 0 != this._end_connect_api) {
-                    if (!1 === this._isTutorialEnd) return r.default.view.addChild(this._TutorialScene), this._TutorialScene.visible = !0, createjs.Tween.get(this._TutorialScene).to({ alpha: 1 }, 600), !1;
+                    if (!1 === this._isTutorialEnd) return r.default.view.addChild(this._TutorialScene), this._TutorialScene.visible = !0, createjs.Tween.get(this._TutorialScene).to({
+                        alpha: 1
+                    }, 600), !1;
                     r.default.view.getNowScene().getPreInitializeTask(0).start(function () {
                         t._hidePukapuka()
                     })
                 }
             }, e.prototype._hidePukapuka = function () {
                 var t = this;
-                r.default.view.portMain.fadeLayer.alpha = 1, r.default.view.portMain.fadeLayer.visible = !0, r.default.view.portMain.visible = !0, createjs.Tween.get(this._pukapuka).to({ alpha: 0 }, 600).call(function () {
+                r.default.view.portMain.fadeLayer.alpha = 1, r.default.view.portMain.fadeLayer.visible = !0, r.default.view.portMain.visible = !0, createjs.Tween.get(this._pukapuka).to({
+                    alpha: 0
+                }, 600).call(function () {
                     r.default.view.removeChild(t._pukapuka), t._pukapuka.dispose(), t._pukapuka = null, m.UIImageLoader.clearMemoryCache("title");
                     var e = r.default.view.portMain.ringMenu;
-                    e.initialize(), e.prePosition(), createjs.Tween.get(r.default.view.portMain.fadeLayer).to({ alpha: 0 }, 500).call(function () {
+                    e.initialize(), e.prePosition(), createjs.Tween.get(r.default.view.portMain.fadeLayer).to({
+                        alpha: 0
+                    }, 500).call(function () {
                         r.default.view.portMain.fadeLayer.visible = !1, e.startAnimation(), r.default.view.portMain.sideMenu.initialize()
                     }), t._initPort()
                 })
@@ -105,7 +132,21 @@ const function543 = function (t, e, i) {
             }, e
         }(c.TaskBase);
     e.AppInitializeTask = b;
-    var w = i(658), x = i(741), I = i(760), T = i(836), O = i(861), P = i(912), C = i(1048), k = i(1064),
-        M = i(1094), S = i(1166), A = i(1175), j = i(1194), E = i(1210), N = i(435), L = i(1311), B = i(1450),
+    var w = i(658),
+        x = i(741),
+        I = i(760),
+        T = i(836),
+        O = i(861),
+        P = i(912),
+        C = i(1048),
+        k = i(1064),
+        M = i(1094),
+        S = i(1166),
+        A = i(1175),
+        j = i(1194),
+        E = i(1210),
+        N = i(435),
+        L = i(1311),
+        B = i(1450),
         R = i(17)
 }

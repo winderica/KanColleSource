@@ -1,7 +1,10 @@
 const function463 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,27 +13,41 @@ const function463 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(72), s = i(27), a = i(19), _ = i(28), l = i(39), u = i(6), c = i(136), h = i(178),
-        p = i(137), d = i(464), f = i(180), y = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(72),
+        s = i(27),
+        a = i(19),
+        _ = i(28),
+        l = i(39),
+        u = i(6),
+        c = i(136),
+        h = i(178),
+        p = i(137),
+        d = i(464),
+        f = i(180),
+        y = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "data_", {
                 get: function () {
                     return this._data
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype._start = function () {
                 this._log();
                 this._canvas = new c.AirWarCanvas(!1), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {
-            }, e.prototype._startMainTask = function () {
-                var t = this, e = new s.ParallelTask, i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new s.ParallelTask,
+                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
                 e.add((new a.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
                     t._fireDogFight()
                 }, 750)), e.add(new r.FuncTask(function () {
@@ -50,7 +67,9 @@ const function463 = function (t, e, i) {
                 })
             }, e.prototype._createFriendPlanes = function () {
                 for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
-                    var r = n[i], s = r.mem_id, a = o.default.model.ship.get(s);
+                    var r = n[i],
+                        s = r.mem_id,
+                        a = o.default.model.ship.get(s);
                     null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
                 }
                 t = Math.min(6, t);

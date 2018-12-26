@@ -1,7 +1,10 @@
 const function1048 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,20 @@ const function1048 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(1049), a = i(1051), _ = i(1052), l = i(1059), u = i(1062), c = i(1063),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(11),
+        s = i(1049),
+        a = i(1051),
+        _ = i(1052),
+        l = i(1059),
+        u = i(1062),
+        c = i(1063),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -23,19 +34,24 @@ const function1048 = function (t, e, i) {
                     null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
                 }, e
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
                 get: function () {
                     return this._viewTop
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "viewInfo", {
                 get: function () {
                     return this._viewInfo
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "viewRanking", {
                 get: function () {
                     return this._viewRanking
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.getPreInitializeTask = function (t) {
                 return new s.PreInitializeTask(this)
             }, e.prototype.getInitializeTask = function (t) {
@@ -47,7 +63,8 @@ const function1048 = function (t, e, i) {
             }, e.prototype.initialize = function () {
                 this._viewTop = new l.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new u.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
             }, e.prototype.startTopTask = function () {
-                var t = this, e = o.default.model.deck.get(1).getShipList()[0].mstID;
+                var t = this,
+                    e = o.default.model.deck.get(1).getShipList()[0].mstID;
                 o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
                     t._topTask = null
                 })

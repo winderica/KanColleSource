@@ -8,7 +8,8 @@ const function269 = function (t, e) {
         if ("object" != typeof t) return t = [t].concat(i);
         Array.isArray(t) && !Array.isArray(i) && (t = e.arrayToObject(t));
         for (var n = Object.keys(i), o = 0, r = n.length; o < r; ++o) {
-            var s = n[o], a = i[s];
+            var s = n[o],
+                a = i[s];
             t[s] ? t[s] = e.merge(t[s], a) : t[s] = a
         }
         return t

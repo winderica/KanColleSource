@@ -1,8 +1,21 @@
 const function576 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(5), o = i(0), r = i(577), s = i(190), a = i(190), _ = i(190), l = i(13), u = i(8), c = i(579),
-        h = i(581), p = i(582), d = i(1), f = function () {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = i(5),
+        o = i(0),
+        r = i(577),
+        s = i(190),
+        a = i(190),
+        _ = i(190),
+        l = i(13),
+        u = i(8),
+        c = i(579),
+        h = i(581),
+        p = i(582),
+        d = i(1),
+        f = function () {
             function t(t) {
                 var e = this;
                 this._tween = new Array(2), this._onMouseBtnFlag = !1, this._ListNow = -1, this._ListMax = -1, this._selectedBGM = -1, this._BGMCount = -1, this._onMouseBtn = function () {
@@ -27,7 +40,6 @@ const function576 = function (t, e, i) {
                     --e._BGMCount > 0 || e.JukeDispClose(!1)
                 }, this._id = t, this._jukemode = !1
             }
-
             return t.prototype.set_portbgm = function (t) {
                 o.default.model.basic.setPortBGMID(t)
             }, t.prototype.JukeStart = function () {
@@ -39,8 +51,12 @@ const function576 = function (t, e, i) {
                     var i = new l.UIImageLoader("jukebox");
                     i.add("jukebox_common.json"), i.load(function () {
                         t._furnitureJukeBoxBGMModel = new r.FurnitureJukeBoxBGMModel, new s.UserFurnitureJukeBoxMusicListAPI(t._furnitureJukeBoxBGMModel).start(function () {
-                            for (o.default.view.overLayer.removeChild(e), t._ListMax = 0; t._ListMax < t._furnitureJukeBoxBGMModel.list.length && t._furnitureJukeBoxBGMModel.list[t._ListMax].isLoaded; t._ListMax++) ;
-                            t._ListMax >= 5 && (t._ListMax -= 5), t._ListNow = t._ListMax, t._bg_black = new PIXI.Graphics, t._bg_black.beginFill(0), t._bg_black.drawRect(0, 0, n.default.width, n.default.height), t._bg_black.endFill(), t._bg_black.alpha = .2, t._bg_black.interactive = !0, t._bg_black.on(d.EventType.CLICK, t._onMouseout), o.default.view.portMain.overLayer.addChild(t._bg_black), t._jukeBoxList = new c.JukeBoxList, t._jukeBoxList.init(), o.default.view.portMain.overLayer.addChild(t._jukeBoxList), t._jukeBoxList.jukebox_table.on(d.EventType.MOUSEOUT, t._onMouseout), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.CLICK, t._onBtnUp), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.CLICK, t._onBtnDown), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.setBGMBtnEvent(t._onMouseBtn, t._offMouseBtn, t._onBGMSelect), t.JukeRedraw(), o.default.view.portMain.furnitureLayer.stopGramophone(), t._fadeinout(!0, 300), t._tween[0] = createjs.Tween.get(t._jukeBoxList.jukebox_table).to({ alpha: 0 }, 1).to({ alpha: 1 }, 300).call(function () {
+                            for (o.default.view.overLayer.removeChild(e), t._ListMax = 0; t._ListMax < t._furnitureJukeBoxBGMModel.list.length && t._furnitureJukeBoxBGMModel.list[t._ListMax].isLoaded; t._ListMax++);
+                            t._ListMax >= 5 && (t._ListMax -= 5), t._ListNow = t._ListMax, t._bg_black = new PIXI.Graphics, t._bg_black.beginFill(0), t._bg_black.drawRect(0, 0, n.default.width, n.default.height), t._bg_black.endFill(), t._bg_black.alpha = .2, t._bg_black.interactive = !0, t._bg_black.on(d.EventType.CLICK, t._onMouseout), o.default.view.portMain.overLayer.addChild(t._bg_black), t._jukeBoxList = new c.JukeBoxList, t._jukeBoxList.init(), o.default.view.portMain.overLayer.addChild(t._jukeBoxList), t._jukeBoxList.jukebox_table.on(d.EventType.MOUSEOUT, t._onMouseout), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.CLICK, t._onBtnUp), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.CLICK, t._onBtnDown), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_up2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOVER, t._onMouseBtn), t._jukeBoxList.jukebox_btn_down2.on(d.EventType.MOUSEOUT, t._offMouseBtn), t._jukeBoxList.setBGMBtnEvent(t._onMouseBtn, t._offMouseBtn, t._onBGMSelect), t.JukeRedraw(), o.default.view.portMain.furnitureLayer.stopGramophone(), t._fadeinout(!0, 300), t._tween[0] = createjs.Tween.get(t._jukeBoxList.jukebox_table).to({
+                                alpha: 0
+                            }, 1).to({
+                                alpha: 1
+                            }, 300).call(function () {
                                 t._tween[0] = null
                             })
                         })
@@ -58,7 +74,9 @@ const function576 = function (t, e, i) {
                 var e = this;
                 this.JukeListRemoveEvents();
                 var i = t ? 300 : 1;
-                this._fadeinout(!1, i), this._tween[1] = createjs.Tween.get(this._jukeBoxList.jukebox_table).to({ alpha: 0 }, i).call(function () {
+                this._fadeinout(!1, i), this._tween[1] = createjs.Tween.get(this._jukeBoxList.jukebox_table).to({
+                    alpha: 0
+                }, i).call(function () {
                     e._tween[1] = null, e._jukeBoxList.discard(), o.default.view.portMain.overLayer.removeChild(e._jukeBoxList), t && e.JukeEnd()
                 }), this._jukeBoxList.jukebox_btn_up2.alpha = 0, this._jukeBoxList.jukebox_btn_down2.alpha = 0
             }, t.prototype.JukeConfirmStart = function () {

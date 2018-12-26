@@ -1,7 +1,10 @@
 const function1199 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,17 +13,37 @@ const function1199 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(50), s = i(2), a = i(6), _ = i(130), l = i(417), u = i(240), c = i(418), h = i(1202),
-        p = i(1203), d = i(1204), f = i(22), y = i(1), m = i(25), v = i(15), g = i(31), b = i(161), w = i(218),
-        x = i(219), I = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(50),
+        s = i(2),
+        a = i(6),
+        _ = i(130),
+        l = i(417),
+        u = i(240),
+        c = i(418),
+        h = i(1202),
+        p = i(1203),
+        d = i(1204),
+        f = i(22),
+        y = i(1),
+        m = i(25),
+        v = i(15),
+        g = i(31),
+        b = i(161),
+        w = i(218),
+        x = i(219),
+        I = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._selected = null, i._UnlockSetItems = [[], {}], i._UnlockBtnParam = new Array(10), i._onClickBtnListBackBox = function () {
+                return i._selected = null, i._UnlockSetItems = [
+                    [], {}
+                ], i._UnlockBtnParam = new Array(10), i._onClickBtnListBackBox = function () {
                     i._listView._appearList(!1)
                 }, i._debugButton = function () {
                     i._goSlotChange(2, 63)
@@ -53,7 +76,8 @@ const function1199 = function (t, e, i) {
                 }, i._onClickBtnRemoveSlotItem = function (t) {
                     i._NowSelectedNo = 10 * i._ListNowPage + t;
                     var e = i._UnlockBtnParam[t][1] >= 0 ? new w.SlotSetAPI(i._UnlockBtnParam[t][0], -1, i._UnlockBtnParam[t][1]) : new x.SlotSetExAPI(i._UnlockBtnParam[t][0], -1),
-                        n = new g.APIConnector, o = new b.Ship3API(i._UnlockBtnParam[t][0]);
+                        n = new g.APIConnector,
+                        o = new b.Ship3API(i._UnlockBtnParam[t][0]);
                     a.SE.play("106"), n.add(e).add(o).start(function () {
                         null != i._items && delete i._items, i._items = i._createLevelSortedListFromMstId(i._recipe.list[i._NowSelectedBox].slot_id), i._drawList()
                     })
@@ -67,11 +91,10 @@ const function1199 = function (t, e, i) {
                     i._listView.namePopUp[t].visible = !1, i._listView.containerName[t].visible = !0, i._listView.list_kosho_mask[t].texture = u.REVAMP_LIST.getTexture(15)
                 }, i._scene = e, i._topView = e.viewTop, i._listView = e.viewList, i._tweens = new Array, i._NowVisibleUI = !0, i._NowAnimeUI = !1, i._recipe = new c.RevampSlotlistModel(i._o), i._req_buildkit_bak = new Array(3), i._req_remodelkit_bak = new Array(3), i._NowSelectedBox = -1, i._NowSelectedNo = -1, i._ListNowPage = 0, i._ListLastPage = -1, i._BackPressed = !1, i
             }
-
             return n(e, t), e.prototype._start = function () {
                 var t = this;
                 this._topView.debugBtn.on(y.EventType.CLICK, this._debugButton), this._listView.btn_prev.on(y.EventType.CLICK, this._onClickBtnListGoPrev), this._listView.btn_next.on(y.EventType.CLICK, this._onClickBtnListGoNext), this._listView.black_bg[0].on(y.EventType.CLICK, this._onClickBtnListBackBox), this._listView.btn_special_repair.on(y.EventType.CLICK, this._onClickDialogBtnSpecialRepair), this._listView.btn_back.on(y.EventType.CLICK, this._onClickDialogBtnBack);
-                for (var e = this, i = 0; i < 3; i++) !function (i) {
+                for (var e = this, i = 0; i < 3; i++) ! function (i) {
                     e._topView.revampRecipeBox[i].btn_cancel.on(y.EventType.CLICK, function () {
                         t._onClickRecipeBoxBtnCancel(i)
                     }), e._topView.revampRecipeBox[i].box_bg_selected.on(y.EventType.CLICK, function () {
@@ -82,7 +105,7 @@ const function1199 = function (t, e, i) {
                         t._onClickRecipeBoxGoRemodel(i)
                     })
                 }(i);
-                for (var n = this, i = 0; i < 10; i++) !function (e) {
+                for (var n = this, i = 0; i < 10; i++) ! function (e) {
                     n._listView.focus_txt[e].on(y.EventType.CLICK, function () {
                         t._onClickBtnLists(e)
                     }), n._listView.removeSlotItemBtn[e].on(y.EventType.CLICK, function () {
@@ -93,7 +116,7 @@ const function1199 = function (t, e, i) {
                         t._onNamePopupMouseOut(e)
                     })
                 }(i);
-                for (var o = this, i = 0; i < 5; i++) !function (e) {
+                for (var o = this, i = 0; i < 5; i++) ! function (e) {
                     o._listView.btn_list_goFigure[e].on(y.EventType.CLICK, function () {
                         t._onClickBtnGoFigure(e)
                     })
@@ -106,7 +129,8 @@ const function1199 = function (t, e, i) {
             }, e.prototype._voiceEnd = function () {
                 this._topView.revampRecipeBox[this._NowSelectedBox].isVoiceFinished = !0
             }, e.prototype._createLevelSortedListFromMstId = function (t) {
-                var e = this, i = o.default.model.slot.createUnsetListFromMstId(t);
+                var e = this,
+                    i = o.default.model.slot.createUnsetListFromMstId(t);
                 return this._UnlockSetItems = o.default.model.slot.createSetListFromMstId(t), this._UnlockSetItems[0].forEach(function (n) {
                     if (n.mstID == t) {
                         var r = o.default.model.ship.get(e._UnlockSetItems[1][n.memID]),
@@ -246,17 +270,18 @@ const function1199 = function (t, e, i) {
                         return PIXI.Texture.EMPTY
                 }
             }, e.prototype._drawList = function () {
-                for (var t = this, e = 10 * this._ListNowPage, i = this._items.slice(e, e + 10), n = this, r = 0; r < 10; r++) !function (e) {
+                for (var t = this, e = 10 * this._ListNowPage, i = this._items.slice(e, e + 10), n = this, r = 0; r < 10; r++) ! function (e) {
                     var r = null == i[e];
                     n._listView.focus_txt[e].dispose(), n._listView.focus_txt[e].initialize(2, 9), n._listView.focus_txt[e].interactive = n._listView.focus_txt[e].buttonMode = !r, n._listView.containerName[e].cacheAsBitmap = !1, n._listView.text_slotName[e].style.fill = 4999235, n._listView.text_slotName[e].text = r ? "" : i[e].name, n._listView.text_slotName[e].visible = !0, n._listView.removeSlotItemBtn[e].visible = !1, n._listView.focus_txt[e].textColorChangeEnabled = !0, n._listView.list_kosho_mask[e].visible = !1;
-                    var s = 0, a = !1;
+                    var s = 0,
+                        a = !1;
                     if (0 == r) {
                         var l = "";
                         if (null != n._UnlockSetItems[1][i[e].memID]) {
                             var u = o.default.model.ship.get(n._UnlockSetItems[1][i[e].memID]);
                             if (u.getSlotitems().forEach(function (n) {
-                                null != n && i[e].memID == n.memID && (t._UnlockBtnParam[e] = [u.memID, s], a = !0), s++
-                            }), 0 == a) {
+                                    null != n && i[e].memID == n.memID && (t._UnlockBtnParam[e] = [u.memID, s], a = !0), s++
+                                }), 0 == a) {
                                 var c = u.getSlotitemEx();
                                 null != c && i[e].memID == c.memID && (n._UnlockBtnParam[e] = [u.memID, -1], a = !0)
                             }
@@ -273,7 +298,7 @@ const function1199 = function (t, e, i) {
             }, e.prototype._removeEventListeners = function () {
                 var t = this;
                 this._listView.btn_prev.off(y.EventType.CLICK, this._onClickBtnListGoPrev), this._listView.btn_next.off(y.EventType.CLICK, this._onClickBtnListGoNext), this._listView.btn_special_repair.off(y.EventType.CLICK, this._onClickDialogBtnSpecialRepair), this._listView.btn_back.off(y.EventType.CLICK, this._onClickDialogBtnBack), this._listView.black_bg[0].on(y.EventType.CLICK, this._onClickBtnListBackBox);
-                for (var e = this, i = 0; i < 3; i++) !function (i) {
+                for (var e = this, i = 0; i < 3; i++) ! function (i) {
                     e._topView.revampRecipeBox[i].btn_cancel.off(y.EventType.CLICK, function () {
                         t._onClickRecipeBoxBtnCancel(i)
                     }), e._topView.revampRecipeBox[i].box_bg_selected.off(y.EventType.CLICK, function () {
@@ -284,7 +309,7 @@ const function1199 = function (t, e, i) {
                         t._onClickRecipeBoxGoRemodel(i)
                     })
                 }(i);
-                for (var n = this, i = 0; i < 10; i++) !function (e) {
+                for (var n = this, i = 0; i < 10; i++) ! function (e) {
                     n._listView.focus_txt[e].off(y.EventType.CLICK, function () {
                         t._onClickBtnLists(e)
                     }), n._listView.removeSlotItemBtn[e].on(y.EventType.CLICK, function () {
@@ -295,7 +320,7 @@ const function1199 = function (t, e, i) {
                         t._onNamePopupMouseOut(e)
                     })
                 }(i);
-                for (var o = this, i = 0; i < 5; i++) !function (e) {
+                for (var o = this, i = 0; i < 5; i++) ! function (e) {
                     o._listView.btn_list_goFigure[e].off(y.EventType.CLICK, function () {
                         t._onClickBtnGoFigure(e)
                     })
@@ -305,21 +330,49 @@ const function1199 = function (t, e, i) {
                 })
             }, e.prototype._CenteringBox = function () {
                 var t = this;
-                this._topView.fadeMask.interactive = !0, 0 == this._NowSelectedBox ? (a.SE.play("207"), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).to({ y: 1239 }, 1e3, createjs.Ease.quartIn).call(function () {
+                this._topView.fadeMask.interactive = !0, 0 == this._NowSelectedBox ? (a.SE.play("207"), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).to({
+                    y: 1239
+                }, 1e3, createjs.Ease.quartIn).call(function () {
                     t._tween1 = null
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({ y: 1539 }, 800, createjs.Ease.quartIn).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({
+                    y: 1539
+                }, 800, createjs.Ease.quartIn).call(function () {
                     t._tween2 = null
-                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(500).to({ y: 339 }, 400, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 354 }, 0).wait(30).to({ y: 332 }, 0).wait(40).to({ y: 339 }, 0).wait(30).call(function () {
+                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(500).to({
+                    y: 339
+                }, 400, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 354
+                }, 0).wait(30).to({
+                    y: 332
+                }, 0).wait(40).to({
+                    y: 339
+                }, 0).wait(30).call(function () {
                     t._tween0 = null, t._topView.fadeMask.alpha = 0, t._topView.fadeMask.interactive = !1, t._setBtnBalloon()
-                })) : 1 == this._NowSelectedBox ? (this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({ y: -561 }, 1e3, createjs.Ease.quartIn).call(function () {
+                })) : 1 == this._NowSelectedBox ? (this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({
+                    y: -561
+                }, 1e3, createjs.Ease.quartIn).call(function () {
                     t._topView.revampRecipeBox[0].position.y = -111, t._tween0 = null, a.SE.play("209"), t._topView.fadeMask.alpha = 0, t._topView.fadeMask.interactive = !1, t._setBtnBalloon()
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({ y: 1239 }, 1e3, createjs.Ease.quartIn).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({
+                    y: 1239
+                }, 1e3, createjs.Ease.quartIn).call(function () {
                     t._topView.revampRecipeBox[0].position.y = 789, t._tween2 = null
-                })) : (a.SE.play("207"), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({ y: -861 }, 800, createjs.Ease.quartIn).call(function () {
+                })) : (a.SE.play("207"), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({
+                    y: -861
+                }, 800, createjs.Ease.quartIn).call(function () {
                     t._tween0 = null
-                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).to({ y: -561 }, 1e3, createjs.Ease.quartIn).call(function () {
+                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).to({
+                    y: -561
+                }, 1e3, createjs.Ease.quartIn).call(function () {
                     t._tween1 = null
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).wait(500).to({ y: 339 }, 400, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 324 }, 0).wait(30).to({ y: 346 }, 0).wait(40).to({ y: 339 }, 0).wait(30).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).wait(500).to({
+                    y: 339
+                }, 400, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 324
+                }, 0).wait(30).to({
+                    y: 346
+                }, 0).wait(40).to({
+                    y: 339
+                }, 0).wait(30).call(function () {
                     t._tween2 = null, t._topView.fadeMask.alpha = 0, t._topView.fadeMask.interactive = !1, t._setBtnBalloon()
                 }))
             }, e.prototype._ResumeBox = function (t) {
@@ -330,17 +383,57 @@ const function1199 = function (t, e, i) {
                     a.SE.play("209")
                 }).wait(100).call(function () {
                     a.SE.play("209"), e._tween3 = null
-                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({ y: 159 }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 144 }, 0).wait(30).to({ y: 166 }, 0).wait(40).to({ y: 159 }, 0).wait(30).call(function () {
+                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({
+                    y: 159
+                }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 144
+                }, 0).wait(30).to({
+                    y: 166
+                }, 0).wait(40).to({
+                    y: 159
+                }, 0).wait(30).call(function () {
                     e._tween0 = null
-                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).wait(300).to({ y: 339 }, 750, createjs.Ease.quartIn).to({ y: 324 }, 0).wait(30).to({ y: 346 }, 0).wait(40).to({ y: 339 }, 0).wait(30).call(function () {
+                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).wait(300).to({
+                    y: 339
+                }, 750, createjs.Ease.quartIn).to({
+                    y: 324
+                }, 0).wait(30).to({
+                    y: 346
+                }, 0).wait(40).to({
+                    y: 339
+                }, 0).wait(30).call(function () {
                     e._tween1 = null
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).wait(500).to({ y: 519 }, 750, createjs.Ease.quartIn).to({ y: 504 }, 0).wait(30).to({ y: 526 }, 0).wait(40).to({ y: 519 }, 0).wait(30).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).wait(500).to({
+                    y: 519
+                }, 750, createjs.Ease.quartIn).to({
+                    y: 504
+                }, 0).wait(30).to({
+                    y: 526
+                }, 0).wait(40).to({
+                    y: 519
+                }, 0).wait(30).call(function () {
                     e._tween2 = null, e._NowAnimeUI = !1
                 })) : 1 == this._NowSelectedBox ? (this._tween3 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(400).call(function () {
                     e._tween3 = null, a.SE.play("208")
-                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({ y: 159 }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 174 }, 0).wait(30).to({ y: 152 }, 0).wait(40).to({ y: 159 }, 0).wait(30).call(function () {
+                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).to({
+                    y: 159
+                }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 174
+                }, 0).wait(30).to({
+                    y: 152
+                }, 0).wait(40).to({
+                    y: 159
+                }, 0).wait(30).call(function () {
                     e._tween0 = null, e._NowAnimeUI = !1
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({ y: 519 }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 504 }, 0).wait(30).to({ y: 526 }, 0).wait(40).to({ y: 519 }, 0).wait(30).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({
+                    y: 519
+                }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 504
+                }, 0).wait(30).to({
+                    y: 526
+                }, 0).wait(40).to({
+                    y: 519
+                }, 0).wait(30).call(function () {
                     e._tween2 = null
                 })) : 2 == this._NowSelectedBox && (this._tween3 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(350).call(function () {
                     a.SE.play("208")
@@ -348,17 +441,49 @@ const function1199 = function (t, e, i) {
                     a.SE.play("209")
                 }).wait(100).call(function () {
                     a.SE.play("209"), e._tween3 = null
-                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(500).to({ y: 159 }, 700, createjs.Ease.quartIn).to({ y: 144 }, 0).wait(30).to({ y: 166 }, 0).wait(40).to({ y: 159 }, 0).wait(30).call(function () {
+                }), this._tween0 = createjs.Tween.get(this._topView.revampRecipeBox[0]).wait(500).to({
+                    y: 159
+                }, 700, createjs.Ease.quartIn).to({
+                    y: 144
+                }, 0).wait(30).to({
+                    y: 166
+                }, 0).wait(40).to({
+                    y: 159
+                }, 0).wait(30).call(function () {
                     e._tween0 = null, e._NowAnimeUI = !1
-                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).wait(300).to({ y: 339 }, 700, createjs.Ease.quartIn).to({ y: 324 }, 0).wait(30).to({ y: 346 }, 0).wait(40).to({ y: 339 }, 0).wait(30).call(function () {
+                }), this._tween1 = createjs.Tween.get(this._topView.revampRecipeBox[1]).wait(300).to({
+                    y: 339
+                }, 700, createjs.Ease.quartIn).to({
+                    y: 324
+                }, 0).wait(30).to({
+                    y: 346
+                }, 0).wait(40).to({
+                    y: 339
+                }, 0).wait(30).call(function () {
                     e._tween1 = null
-                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({ y: 519 }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({ y: 504 }, 0).wait(30).to({ y: 526 }, 0).wait(40).to({ y: 519 }, 3).wait(30).call(function () {
+                }), this._tween2 = createjs.Tween.get(this._topView.revampRecipeBox[2]).to({
+                    y: 519
+                }, 700, createjs.Ease.getPowIn(2.72 * 2.5)).to({
+                    y: 504
+                }, 0).wait(30).to({
+                    y: 526
+                }, 0).wait(40).to({
+                    y: 519
+                }, 3).wait(30).call(function () {
                     e._tween2 = null
                 }))
             }, e.prototype._AlphaAnime = function (t, e) {
-                e ? this._tweens.push(createjs.Tween.get(t).to({ alpha: 1 }, 150)) : this._tweens.push(createjs.Tween.get(t).to({ alpha: 0 }, 150))
+                e ? this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 1
+                }, 150)) : this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 150))
             }, e.prototype._AlphaAnimeG = function (t, e) {
-                e ? this._tweens.push(createjs.Tween.get(t).to({ alpha: 1 }, 150)) : this._tweens.push(createjs.Tween.get(t).to({ alpha: 0 }, 150))
+                e ? this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 1
+                }, 150)) : this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 150))
             }, e.prototype._alignMid = function (t, e, i) {
                 t.position.set(parseInt(e - t.width / 2 + ""), parseInt(i - t.height / 2 + ""))
             }, e.prototype.dispose = function () {

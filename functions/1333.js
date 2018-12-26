@@ -1,7 +1,10 @@
 const function1333 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,24 +13,34 @@ const function1333 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(45), r = i(72), s = i(27), a = i(28), _ = i(19), l = i(39), u = i(6), c = i(443), h = i(444),
-        p = i(447), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(45),
+        r = i(72),
+        s = i(27),
+        a = i(28),
+        _ = i(19),
+        l = i(39),
+        u = i(6),
+        c = i(443),
+        h = i(444),
+        p = i(447),
+        d = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
-
             return n(e, t), e.prototype._start = function () {
                 this._log();
                 var t = this._scene.data.model.map_info.isAirRaid();
                 this._canvas = new c.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {
-            }, e.prototype._startMainTask = function () {
-                var t = this, e = new s.ParallelTask, i = createjs.Tween.get(null).call(u.SE.play, ["220"]).wait(1700);
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new s.ParallelTask,
+                    i = createjs.Tween.get(null).call(u.SE.play, ["220"]).wait(1700);
                 e.add((new _.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
                     t._showResult(), t._fireDogFight()
                 }, 350)), e.add(new r.FuncTask(function () {

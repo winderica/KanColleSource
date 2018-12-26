@@ -1,7 +1,9 @@
 const function663 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    ! function (t) {
         function e(t) {
             try {
                 return PIXI.Texture.fromFrame("album_slot3_id_" + t)
@@ -9,7 +11,6 @@ const function663 = function (t, e, i) {
                 return PIXI.Texture.EMPTY
             }
         }
-
         t.getTextureFromMstID = e
     }(e.ALBUM_SLOT3 || (e.ALBUM_SLOT3 = {}))
 }

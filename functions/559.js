@@ -1,7 +1,10 @@
 const function559 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,14 +13,32 @@ const function559 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(8), s = i(560), a = i(69), _ = i(583), l = i(587), u = i(596), c = i(597), h = i(600),
-        p = i(602), d = i(604), f = i(606), y = i(607), m = i(610), v = i(611), g = i(615), b = i(642), w = i(645),
-        x = i(1), I = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(8),
+        s = i(560),
+        a = i(69),
+        _ = i(583),
+        l = i(587),
+        u = i(596),
+        c = i(597),
+        h = i(600),
+        p = i(602),
+        d = i(604),
+        f = i(606),
+        y = i(607),
+        m = i(610),
+        v = i(611),
+        g = i(615),
+        b = i(642),
+        w = i(645),
+        x = i(1),
+        I = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._only_furniture = !1, e._onMouseMove = function (t) {
@@ -28,42 +49,56 @@ const function559 = function (t, e, i) {
                     new a.UpdateTutorialAPI(100).start(), e._tutorial.dispose(), e.removeChild(e._tutorial), e._tutorial = null
                 }), e.addChild(e._tutorial), e._clock_layer = new f.ClockLayer, e.addChild(e._clock_layer), e._circle = new _.Circle, e.addChild(e._circle), e.addChild(e._overLayer), e._expedition_alert = new l.ExpeditionAlert, e._expedition_alert.visible = !1, e.addChild(e._expedition_alert), e._option = new c.Option, e.addChild(e._option), e._underLayer.on(x.EventType.MOUSEMOVE, e._onMouseMove), e._underLayer.on(x.EventType.CLICK, e._onClick), e
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "flagShip", {
                 get: function () {
                     return this._flagShip_layer
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "ringMenu", {
                 get: function () {
                     return this._ringMenu
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "upperBar", {
                 get: function () {
                     return this._upperBar
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "sideMenu", {
                 get: function () {
                     return this._sideMenu
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "tutorial", {
                 get: function () {
                     return this._tutorial
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "circle", {
                 get: function () {
                     return this._circle
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "expedition_alert", {
                 get: function () {
                     return this._expedition_alert
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function () {
                 this._clock_layer.initialize(), this._option.initialize(), this._logBox.initialize();
                 var t = o.default.model.basic.getTutorialProgress();
                 t < 100 ? this._tutorial.initialize(t) : (this.removeChild(this._tutorial), this._tutorial = null)
             }, e.prototype.initializeNext = function (e) {
                 this._circle.initialize(e), this._frame_layer.initialize(e);
-                var i = o.default.model.basic.shipMax, n = o.default.model.basic.slotMax;
+                var i = o.default.model.basic.shipMax,
+                    n = o.default.model.basic.slotMax;
                 this._upperBar.initialize(e, i, n), t.prototype.initialize.call(this)
             }, e.prototype.update = function (e) {
                 t.prototype.update.call(this, e), this._frame_layer.update(e), this._tutorial && (0 == e ? this._tutorial.update(o.default.model.basic.getTutorialProgress()) : this._tutorial.visible = !1), 23 == e || 25 == e ? (this._upperBar.visible = !1, this._circle.visible = !1) : (this._upperBar.visible = !0, this._circle.visible = !0), this._clock_layer.update(e)

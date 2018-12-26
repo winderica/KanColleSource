@@ -1,7 +1,10 @@
 const function768 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,25 +13,28 @@ const function768 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(213), s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.select_bg_crane01 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)), e.select_bg_crane02 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44)), e.select_bg_crane01.position.set(275, -3), e.select_bg_crane02.position.set(0, 0), e.addChild(e.select_bg_crane01, e.select_bg_crane02), e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.select_bg_crane01 = null, this.select_bg_crane02 = null, this.removeChildren()
-        }, e
-    }(PIXI.Container);
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(3),
+        r = i(213),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.select_bg_crane01 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)), e.select_bg_crane02 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44)), e.select_bg_crane01.position.set(275, -3), e.select_bg_crane02.position.set(0, 0), e.addChild(e.select_bg_crane01, e.select_bg_crane02), e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.select_bg_crane01 = null, this.select_bg_crane02 = null, this.removeChildren()
+            }, e
+        }(PIXI.Container);
     e.OtherShipFrame = s;
     var a = function (t) {
         function e() {
-            var e = t.call(this) || this, i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)),
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)),
                 n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44));
             e.crane = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(46)), e.focus_card = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(21)), i.position.set(275, -3), n.position.set(0, 0);
             var s = [62, 143, 224, 305, 386, 467];
@@ -44,7 +50,6 @@ const function768 = function (t, e, i) {
             }
             return e
         }
-
         return n(e, t), e.prototype.dispose = function () {
             createjs.Tween.removeTweens(this.crane);
             for (var t = 0; t < this.indexEmblems.length; t++) this.indexEmblems[t].dispose(), this.indexEmblems[t] = null;
@@ -60,11 +65,19 @@ const function768 = function (t, e, i) {
         }, e.prototype.moveCrane = function (t) {
             createjs.Tween.removeTweens(this.crane);
             var e = this.getFocusPoint(t);
-            createjs.Tween.get(this.crane).to({ x: 278 }, 300, createjs.Ease.cubicIn).to({ y: e[1] - 8 }).to({ x: e[0] + 23 }, 500, createjs.Ease.cubicOut).play(null)
+            createjs.Tween.get(this.crane).to({
+                x: 278
+            }, 300, createjs.Ease.cubicIn).to({
+                y: e[1] - 8
+            }).to({
+                x: e[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
         }, e.prototype.insertCrane = function () {
             createjs.Tween.removeTweens(this.crane);
             var t = this.getFocusPoint(0);
-            this.crane.x = 278, this.crane.y = t[1] - 8, createjs.Tween.get(this.crane).to({ x: t[0] + 23 }, 500, createjs.Ease.cubicOut).play(null)
+            this.crane.x = 278, this.crane.y = t[1] - 8, createjs.Tween.get(this.crane).to({
+                x: t[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
         }, e.prototype.hideCraneImmidiate = function () {
             createjs.Tween.removeTweens(this.crane), this.crane.x = 278
         }, e.prototype.moveCraneImmidiate = function (t) {

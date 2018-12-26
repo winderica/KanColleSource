@@ -1,7 +1,10 @@
 const function199 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,21 +13,48 @@ const function199 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(2), a = i(18), _ = i(291), l = i(292), u = i(293), c = i(185), h = i(294),
-        p = i(295), d = i(296), f = i(200), y = i(186), m = i(143), v = i(124), g = i(297), b = i(616), w = i(617),
-        x = i(628), I = i(629), T = i(630), O = i(631), P = i(632), C = i(633), k = i(634), M = i(635), S = i(636),
-        A = i(637), j = i(638), E = i(205), N = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(18),
+        _ = i(291),
+        l = i(292),
+        u = i(293),
+        c = i(185),
+        h = i(294),
+        p = i(295),
+        d = i(296),
+        f = i(200),
+        y = i(186),
+        m = i(143),
+        v = i(124),
+        g = i(297),
+        b = i(616),
+        w = i(617),
+        x = i(628),
+        I = i(629),
+        T = i(630),
+        O = i(631),
+        P = i(632),
+        C = i(633),
+        k = i(634),
+        M = i(635),
+        S = i(636),
+        A = i(637),
+        j = i(638),
+        E = i(205),
+        N = function (t) {
             function e(e, i, n) {
                 void 0 === n && (n = -1);
                 var o = t.call(this) || this;
                 return o._layer = e, o._rewards = i, o._quest_id = n, o
             }
-
             return n(e, t), e.prototype._start = function () {
                 var t = this;
                 this._fade = new a.FadeBox(.6), this._layer.addChild(this._fade), this._fade.show(300, function () {
@@ -35,7 +65,8 @@ const function199 = function (t, e, i) {
             }, e.prototype._showReward = function () {
                 var t = this;
                 if (null == this._rewards || 0 == this._rewards.length) return void this._removeDialog();
-                var e = this._rewards.shift(), i = this._getTask(e);
+                var e = this._rewards.shift(),
+                    i = this._getTask(e);
                 null == i ? this._removeDialog() : i.start(function () {
                     t._showReward()
                 })
@@ -57,12 +88,15 @@ const function199 = function (t, e, i) {
         function e(e, i) {
             return t.call(this, e, i, !0) || this
         }
-
         return n(e, t), e.prototype._finalize = function (t) {
             var e = this;
-            r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({ alpha: 0 }, 300).call(function () {
+            r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({
+                alpha: 0
+            }, 300).call(function () {
                 t.deactivate(), e._bonus.removeChild(t)
-            }), createjs.Tween.get(this._bonus).wait(100).to({ alpha: 0 }, 300).call(function () {
+            }), createjs.Tween.get(this._bonus).wait(100).to({
+                alpha: 0
+            }, 300).call(function () {
                 e.dispose(), e._endTask()
             })
         }, e

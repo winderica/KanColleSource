@@ -1,7 +1,10 @@
 const function795 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,20 @@ const function795 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(21), r = i(333), s = i(796), a = i(797), _ = i(798), l = i(800), u = i(801), c = i(802),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(21),
+        r = i(333),
+        s = i(796),
+        a = i(797),
+        _ = i(798),
+        l = i(800),
+        u = i(801),
+        c = i(802),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -25,51 +36,72 @@ const function795 = function (t, e, i) {
                 var n = new PIXI.Graphics;
                 return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton, e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new u.TargetShipBox, e._startButton = new l.StartButton, n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.width = 198, e._cancelButton.height = 56, e._cancelButton.position.set(543, 498), e._startButton.position.set(755, 483), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButton, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "shipFull", {
                 get: function () {
                     return this._shipFull
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "containerShipFull", {
                 get: function () {
                     return this._containerShipFull
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "shipInfoBox", {
                 get: function () {
                     return this._shipInfoBox
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "karyokuBeforeAfterConfirm", {
                 get: function () {
                     return this._karyokuBeforeAfterConfirm
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "raisouBeforeAfterConfirm", {
                 get: function () {
                     return this._raisouBeforeAfterConfirm
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "soukouBeforeAfterConfirm", {
                 get: function () {
                     return this._soukouBeforeAfterConfirm
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "taikuBeforeAfterConfirm", {
                 get: function () {
                     return this._taikuBeforeAfterConfirm
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "shipParameterChecker", {
                 get: function () {
                     return this._shipParameterChecker
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "targetShipBox", {
                 get: function () {
                     return this._targetShipBox
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "startButton", {
                 get: function () {
                     return this._startButton
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "cancelButton", {
                 get: function () {
                     return this._cancelButton
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.SetPos_karyokuBeforeAfterConfirm = function (t) {
                 this._karyokuBeforeAfterConfirm.position.set(252, 26 - (t ? 3 : 0))
             }, e.prototype.SetPos_raisouBeforeAfterConfirm = function (t) {

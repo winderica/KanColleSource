@@ -1,7 +1,10 @@
 const function1154 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,20 @@ const function1154 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(108), a = i(89), _ = i(1155), l = i(1157), u = i(1163), c = i(1164),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(6),
+        s = i(108),
+        a = i(89),
+        _ = i(1155),
+        l = i(1157),
+        u = i(1163),
+        c = i(1164),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -24,13 +35,13 @@ const function1154 = function (t, e, i) {
                 }, e._onUnSelect = function () {
                     e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
                 }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer, n = new c.TaskExchange(i, t);
+                    var i = o.default.view.overLayer,
+                        n = new c.TaskExchange(i, t);
                     n.start(function () {
                         1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
                     })
                 }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new u.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
             }
-
             return n(e, t), e.prototype.initialize = function () {
                 this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
             }, e.prototype.update = function () {

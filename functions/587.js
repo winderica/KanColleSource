@@ -1,7 +1,10 @@
 const function587 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,17 +13,29 @@ const function587 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(8), r = i(4), s = i(588), a = i(31), _ = i(279), l = i(589), u = i(104), c = i(280), h = i(150),
-        p = i(594), d = i(1), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(8),
+        r = i(4),
+        s = i(588),
+        a = i(31),
+        _ = i(279),
+        l = i(589),
+        u = i(104),
+        c = i(280),
+        h = i(150),
+        p = i(594),
+        d = i(1),
+        f = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._initialized = !1, e._activated = !1, e._onClick = function () {
-                    var t = new s.ExpeditionResultModel, i = new l.ExpeditionResultAPI(e._deck_id, t);
+                    var t = new s.ExpeditionResultModel,
+                        i = new l.ExpeditionResultAPI(e._deck_id, t);
                     (new a.APIConnector).add(i).add(new _.PortAPI).add(new u.UseItemAPI).start(function () {
                         e._showExpeditionCutin(t)
                     })
@@ -32,7 +47,6 @@ const function587 = function (t, e, i) {
                     new p.TaskExpeditionResultShow(e._deck_id, t).start()
                 }, e
             }
-
             return n(e, t), e.prototype.initialize = function (t) {
                 this._deck_id = t, 0 == this._initialized && (this._bg = new o.AreaBox(0, 16711680), this.addChild(this._bg), this._balloon = new PIXI.Sprite(h.PORT_MAIN.getTexture(0)), this._balloon.position.set(726, 6), this.addChild(this._balloon), this._message = new r.TextBox(20, 1949120), this._message.position.set(810, 30), this._message.text = "\u9060\u5f81\u304b\u3089\u623b\u3063\u3066\u6765\u307e\u3057\u305f\u3002", this.addChild(this._message)), this._initialized = !0
             }, e.prototype.activate = function () {

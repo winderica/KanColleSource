@@ -1,14 +1,16 @@
 const function471 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = function () {
-        function t() {
-        }
-
+        function t() {}
         return Object.defineProperty(t.prototype, "common", {
             get: function () {
                 return this._common
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), t
     }();
     e.BattleRecord = n

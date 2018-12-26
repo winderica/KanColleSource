@@ -1,7 +1,10 @@
 const function738 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,24 @@ const function738 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(1), r = i(110), s = i(326), a = i(34), _ = i(83), l = i(4), u = i(21), c = i(9), h = i(56),
-        p = i(313), d = i(14), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(1),
+        r = i(110),
+        s = i(326),
+        a = i(34),
+        _ = i(83),
+        l = i(4),
+        u = i(21),
+        c = i(9),
+        h = i(56),
+        p = i(313),
+        d = i(14),
+        f = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e._positionType = 0, e.onMouseOver = function () {
@@ -27,8 +41,10 @@ const function738 = function (t, e, i) {
                     e.onClick()
                 };
                 var i = new PIXI.Sprite(u.COMMON_MAIN.getTexture(12)),
-                    n = new PIXI.Sprite(u.COMMON_MAIN.getTexture(64)), f = h.ORGANIZE_MAIN.getTexture(0),
-                    y = new PIXI.Sprite(f), m = new PIXI.Sprite(c.COMMON_MISC.getTexture(181));
+                    n = new PIXI.Sprite(u.COMMON_MAIN.getTexture(64)),
+                    f = h.ORGANIZE_MAIN.getTexture(0),
+                    y = new PIXI.Sprite(f),
+                    m = new PIXI.Sprite(c.COMMON_MISC.getTexture(181));
                 m.name = "img_lv";
                 var v = new PIXI.Sprite(u.COMMON_MAIN.getTexture(23));
                 v.name = "img_houg";
@@ -46,7 +62,6 @@ const function738 = function (t, e, i) {
                 var T = d.CreateRect.gradientLeftToRight(180, 42, .5, .98);
                 return e.containerName.mask = T, e.containerName.addChild(e.textName, T), n.addChild(y), e.addChild(i, e.starRateView, e.containerName, m, e.textLevel, v, e.textHoug, g, e.textRaig, I, e.textTaiku, x, e.textSoukou, b, e.fuelMeterView, w, e.ammoMeterView, e.hpGaugeView, e.slotItemSlotContainer, e.textHp, e.shipBanner, e.changeButton, n), e._defaultPosition(), e
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.fuelMeterView.dispose(), this.ammoMeterView.dispose(), this.hpGaugeView.dispose(), this.shipBanner.dispose(), this.starRateView.dispose(), this.slotItemSlotContainer.dispose(), this.changeButton.off(o.EventType.MOUSEOVER), this.changeButton.off(o.EventType.MOUSEOUT), this.changeButton.off(o.EventType.CLICK), this.textHp.destroy(), this.textLevel.destroy(), this.textHoug.destroy(), this.textRaig.destroy(), this.textTaiku.destroy(), this.textSoukou.destroy(), this.textName.destroy(), this.onClick = null, this.containerName = null, this.fuelMeterView = null, this.ammoMeterView = null, this.hpGaugeView = null, this.shipBanner = null, this.starRateView = null, this.slotItemSlotContainer = null, this.changeButton = null, this.textHp = null, this.textLevel = null, this.textHoug = null, this.textRaig = null, this.textTaiku = null, this.textSoukou = null, this.textName = null, this._positionType = null
             }, e.prototype.updateChangable = function (t) {

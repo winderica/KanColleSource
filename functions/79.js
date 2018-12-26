@@ -1,8 +1,10 @@
 const function79 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = i(0);
-    !function (t) {
+    ! function (t) {
         function e(t, e, i) {
             void 0 === i && (i = 1);
             var o = "1";
@@ -31,7 +33,6 @@ const function79 = function (t, e, i) {
             var o = t.get(e, i, n);
             return "1" != o ? "?version=" + o : ""
         }
-
         t.get = e, t.getResourceVersion = i
     }(e.VersionUtil || (e.VersionUtil = {}))
 }

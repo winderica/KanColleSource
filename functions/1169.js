@@ -1,7 +1,10 @@
 const function1169 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,21 @@ const function1169 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(80), a = i(78), _ = i(198), l = i(6), u = i(408), c = i(1170), h = i(1),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(2),
+        s = i(80),
+        a = i(78),
+        _ = i(198),
+        l = i(6),
+        u = i(408),
+        c = i(1170),
+        h = i(1),
         p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -92,8 +104,7 @@ const function1169 = function (t, e, i) {
                             i._ids_after[4] != i._NowFurnitureSelected && l.SE.play("246"), t = i._ids_season[4], i._ids_after[4] = i._NowFurnitureSelected
                     }
                     var e = new _.FurnitureLoadTask(!1);
-                    e.floor_id = i._ids_after[0], e.wall_id = i._ids_after[1], e.window_id = i._ids_after[2], e.object_id = i._ids_after[3], e.desk_id = i._ids_after[5], e.chest_id = i._ids_after[4], e.start(function () {
-                    });
+                    e.floor_id = i._ids_after[0], e.wall_id = i._ids_after[1], e.window_id = i._ids_after[2], e.object_id = i._ids_after[3], e.desk_id = i._ids_after[5], e.chest_id = i._ids_after[4], e.start(function () {});
                     var n = o.default.model.furniture.getData(i._NowFurnitureSelected).seasonID;
                     switch (0 != n ? (i._LastChangedSeason = n, i._ids_after[6] = n) : 0 != t && (i._LastChangedSeason = n, i._ids_after[6] = n), i._selected) {
                         case i._topView.btn_wall:
@@ -131,7 +142,6 @@ const function1169 = function (t, e, i) {
                     i._selected = i._topView.btn_chest, i._topView.menumoji.texture = u.INTERIOR_PARTS.getTexture(22), i.interactiveAllLeftMenuSet(!0), i._topView.btn_chest.interactive = !1, i._topView.btn_chest.texture = u.INTERIOR_PARTS.getTexture(38), i._changeList()
                 }, i._scene = e, i._topView = e.viewTop, i._ListNowFurnitureBeforeSelected = -1, i._tweens = new Array, i._NowVisibleUI = !0, i._NowAnimeUI = !1, i
             }
-
             return n(e, t), e.prototype.cancel = function () {
                 this._removeEventListeners();
                 for (var t = 0, e = this._tweens; t < e.length; t++) {
@@ -141,12 +151,12 @@ const function1169 = function (t, e, i) {
             }, e.prototype._start = function () {
                 var t = this;
                 this._firstIDs(), this._topView.btn_back.on(h.EventType.CLICK, this._onClickBtnBack), this._topView.btn_goShop.on(h.EventType.CLICK, this._onClickBtnGoShop), this._topView.btn_change.on(h.EventType.CLICK, this._onClickBtnChange), this._topView.btn_mess_icon.on(h.EventType.CLICK, this._onClickBtnMess), this._topView.btn_wall.on(h.EventType.CLICK, this._onClickBtnWall), this._topView.btn_floor.on(h.EventType.CLICK, this._onClickBtnFloor), this._topView.btn_desk.on(h.EventType.CLICK, this._onClickBtnDesk), this._topView.btn_window.on(h.EventType.CLICK, this._onClickBtnWindow), this._topView.btn_object.on(h.EventType.CLICK, this._onClickBtnObject), this._topView.btn_chest.on(h.EventType.CLICK, this._onClickBtnChest), this._topView.btn_list_goTop.on(h.EventType.CLICK, this._onClickBtnListGoTop), this._topView.btn_list_goPrev.on(h.EventType.CLICK, this._onClickBtnListGoPrev), this._topView.btn_list_goNext.on(h.EventType.CLICK, this._onClickBtnListGoNext), this._topView.btn_list_goLowest.on(h.EventType.CLICK, this._onClickBtnListGoLowest);
-                for (var e = this, i = 0; i < 10; i++) !function (i) {
+                for (var e = this, i = 0; i < 10; i++) ! function (i) {
                     e._topView.btn_lists[i].on(h.EventType.CLICK, function () {
                         t._onClickBtnLists(i)
                     })
                 }(i);
-                for (var n = this, i = 0; i < 5; i++) !function (e) {
+                for (var n = this, i = 0; i < 5; i++) ! function (e) {
                     n._topView.btn_list_goFigure[e].on(h.EventType.CLICK, function () {
                         t._onClickBtnGoFigure(e)
                     })
@@ -176,18 +186,19 @@ const function1169 = function (t, e, i) {
             }, e.prototype.__onLeaveInterior = function (t) {
                 var e = this;
                 this._removeEventListeners();
-                for (var i = !1, n = 0; n < 6; n++) if (this._ids_before[n] != this._ids_after[n]) {
-                    i = !0;
-                    break
-                }
-                if (l.SE.play("237"), i) {
+                for (var i = !1, n = 0; n < 6; n++)
+                    if (this._ids_before[n] != this._ids_after[n]) {
+                        i = !0;
+                        break
+                    } if (l.SE.play("237"), i) {
                     var o = this._ids_before[6] == this._ids_after[6] ? -1 : this._ids_after[6];
                     new c.FurnitureChangeAPI(this._ids_after[0], this._ids_after[1], this._ids_after[2], this._ids_after[3], this._ids_after[4], this._ids_after[5], o).start(function () {
                         e.__GotoScene(t)
                     })
                 } else this.__GotoScene(t)
             }, e.prototype.__GotoScene = function (t) {
-                if (t) o.default.scene.change(0); else {
+                if (t) o.default.scene.change(0);
+                else {
                     var e = new s.ItemSceneModel(2);
                     o.default.scene.change(24, e)
                 }
@@ -223,19 +234,20 @@ const function1169 = function (t, e, i) {
                 void 0 === t && (t = null);
                 for (var e = 0, i = 0, n = 0, o = this._FurnitureList; n < o.length; n++) {
                     var r = o[n];
-                    if (this._ListNowPage > i / 10) i++; else if (this._topView.lists_str[e].text = r.name, this._topView.btn_lists[e].interactive = this._topView.btn_lists[e].buttonMode = !0, this._FurnitureIdsonPage[e] = r.mstID, 10 == ++e) break
+                    if (this._ListNowPage > i / 10) i++;
+                    else if (this._topView.lists_str[e].text = r.name, this._topView.btn_lists[e].interactive = this._topView.btn_lists[e].buttonMode = !0, this._FurnitureIdsonPage[e] = r.mstID, 10 == ++e) break
                 }
                 for (var r = e; r < 10; r++) this._topView.lists_str[r].text = "", this._topView.btn_lists[r].interactive = this._topView.btn_lists[r].buttonMode = !1, this._FurnitureIdsonPage[r] = -1;
                 this._ListNowPage == this._ListNowFurniturePage ? this._topView.iconEquipment.position.set(288, 48 * this._ListNowFurnitureLine + 59) : this._topView.iconEquipment.position.set(-150, -150), this.PagerFigureDraw(), null != t && l.SE.play(t)
             }, e.prototype._removeEventListeners = function () {
                 var t = this;
                 this._topView.btn_back.off(h.EventType.CLICK, this._onClickBtnBack), this._topView.btn_change.off(h.EventType.CLICK, this._onClickBtnChange), this._topView.btn_goShop.on(h.EventType.CLICK, this._onClickBtnGoShop), this._topView.btn_mess_icon.off(h.EventType.CLICK, this._onClickBtnMess), this._topView.btn_wall.off(h.EventType.CLICK, this._onClickBtnWall), this._topView.btn_floor.off(h.EventType.CLICK, this._onClickBtnFloor), this._topView.btn_desk.off(h.EventType.CLICK, this._onClickBtnDesk), this._topView.btn_window.off(h.EventType.CLICK, this._onClickBtnWindow), this._topView.btn_object.off(h.EventType.CLICK, this._onClickBtnObject), this._topView.btn_chest.off(h.EventType.CLICK, this._onClickBtnChest), this._topView.btn_list_goTop.off(h.EventType.CLICK, this._onClickBtnListGoTop), this._topView.btn_list_goPrev.off(h.EventType.CLICK, this._onClickBtnListGoPrev), this._topView.btn_list_goNext.off(h.EventType.CLICK, this._onClickBtnListGoNext), this._topView.btn_list_goLowest.off(h.EventType.CLICK, this._onClickBtnListGoLowest);
-                for (var e = this, i = 0; i < 10; i++) !function (i) {
+                for (var e = this, i = 0; i < 10; i++) ! function (i) {
                     e._topView.btn_lists[i].off(h.EventType.CLICK, function () {
                         t._onClickBtnLists(i)
                     })
                 }(i);
-                for (var n = this, i = 0; i < 5; i++) !function (e) {
+                for (var n = this, i = 0; i < 5; i++) ! function (e) {
                     n._topView.btn_list_goFigure[e].off(h.EventType.CLICK, function () {
                         t._onClickBtnGoFigure(e)
                     })
@@ -246,7 +258,11 @@ const function1169 = function (t, e, i) {
                 for (var e = 0; e < 10; e++) this._topView.lists_str[e].visible = t, this._topView.btn_lists[e].visible = t;
                 this._topView.iconEquipment.visible = t, this._topView.itemName.visible = t, this._topView.itemDescription.visible = t, this._topView.thumbnailBG.visible = t, this._topView.thumbnail.visible = t, this._topView.thumbnailBG2.visible = t, this._topView.menumoji.visible = t, this._topView.bgm_fairy.visible = t
             }, e.prototype._AlphaAnime = function (t, e) {
-                e ? this._tweens.push(createjs.Tween.get(t).to({ alpha: 1 }, 150)) : this._tweens.push(createjs.Tween.get(t).to({ alpha: 0 }, 150))
+                e ? this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 1
+                }, 150)) : this._tweens.push(createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 150))
             }, e.prototype.Fade = function (t) {
                 var e = this;
                 this._NowAnimeUI = !0, this._NowVisibleUI || this._VisibleUI(!0), this._AlphaAnime(this._topView.btn_back, t), this._AlphaAnime(this._topView.btn_change, t), this._AlphaAnime(this._topView.btn_goShop, t), this._AlphaAnime(this._topView.btn_wall, t), this._AlphaAnime(this._topView.btn_floor, t), this._AlphaAnime(this._topView.btn_desk, t), this._AlphaAnime(this._topView.btn_window, t), this._AlphaAnime(this._topView.btn_object, t), this._AlphaAnime(this._topView.btn_chest, t), this._AlphaAnime(this._topView.frame1_bg, t), this._AlphaAnime(this._topView.btn_list_goTop, t), this._AlphaAnime(this._topView.btn_list_goPrev, t), this._AlphaAnime(this._topView.btn_list_goNext, t), this._AlphaAnime(this._topView.btn_list_goLowest, t), this._AlphaAnime(this._topView.frame2_bg, t);

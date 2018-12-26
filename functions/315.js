@@ -1,8 +1,11 @@
 const function315 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(0), o = i(30);
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = i(0),
+        o = i(30);
+    ! function (t) {
         function e() {
             for (var t = new Array, e = 0; e <= 99; e++) t.push(0);
             return t
@@ -21,8 +24,10 @@ const function315 = function (t, e, i) {
                 var v = h[y];
                 null != v && i(f, v.shipTypeID, o.ShipUtil.getSpeedType(v.speed), n.default.model.ship.getMst(v.mstID).taisen_base)
             }
-            if (p) s(l, u, 1, "\u7b2c2\u8266\u968a\u304c\u7a7a\u3067\u3059\u3002"); else {
-                if (null != r.expedition) s(l, u, 1, "\u7b2c" + r + "\u8266\u968a\u304c\u9060\u5f81\u4e2d\u3067\u3059\u3002"); else {
+            if (p) s(l, u, 1, "\u7b2c2\u8266\u968a\u304c\u7a7a\u3067\u3059\u3002");
+            else {
+                if (null != r.expedition) s(l, u, 1, "\u7b2c" + r + "\u8266\u968a\u304c\u9060\u5f81\u4e2d\u3067\u3059\u3002");
+                else {
                     var g = h[0];
                     switch (a) {
                         case 2:
@@ -51,7 +56,6 @@ const function315 = function (t, e, i) {
         function s(t, e, i, n) {
             t[i] < 3 && ("" != e[i] && (e[i] = e[i] + "\n"), e[i] = e[i] + n, t[i]++)
         }
-
         var a = {};
         a[60] = [1, 2], a[51] = [2], a[52] = [3, 4], a[58] = [3, 4, 5, 6, 8, 9, 10], a[53] = [5, 6], a[54] = [8, 9, 10], a[55] = [7, 11, 18], a[57] = [11, 18], a[56] = [16], a[59] = [8, 9], a[61] = [13, 14], a[62] = [9, 10];
         var _ = 6;

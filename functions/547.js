@@ -1,5 +1,8 @@
 const function547 = function (t, e, i) {
-    var n = i(269), o = { delimiter: "&" };
+    var n = i(269),
+        o = {
+            delimiter: "&"
+        };
     o.stringify = function (t, e) {
         if (n.isBuffer(t) ? t = t.toString() : t instanceof Date ? t = t.toISOString() : null === t && (t = ""), "string" == typeof t || "number" == typeof t || "boolean" == typeof t) return [encodeURIComponent(e) + "=" + encodeURIComponent(t)];
         var i = [];

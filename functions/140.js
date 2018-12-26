@@ -1,10 +1,10 @@
 const function140 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = function () {
-        function t() {
-        }
-
+        function t() {}
         return t.FILTERING_CATEGORIES = {
             1: [6, 56],
             2: [7, 8, 57, 58],

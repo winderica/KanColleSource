@@ -1,20 +1,33 @@
 const function531 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(17), o = i(78), r = i(15), s = i(25), a = i(13), _ = i(67), l = i(532), u = i(9), c = i(265),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = i(17),
+        o = i(78),
+        r = i(15),
+        s = i(25),
+        a = i(13),
+        _ = i(67),
+        l = i(532),
+        u = i(9),
+        c = i(265),
         h = function () {
             function t() {
                 this._gauge = new l.GaugeRManager
             }
-
             return Object.defineProperty(t.prototype, "gauge", {
                 get: function () {
                     return this._gauge
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), t.prototype.getUIImage = function (t, e) {
                 var i;
-                if (void 0 === e) i = t; else {
-                    var n = t, o = e;
+                if (void 0 === e) i = t;
+                else {
+                    var n = t,
+                        o = e;
                     i = a.UIImageLoader.getPath(n, o)
                 }
                 return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY

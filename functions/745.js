@@ -1,7 +1,16 @@
 const function745 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(112), o = i(746), r = i(0), s = i(747), a = i(217), _ = i(3), l = i(330), u = i(111),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = i(112),
+        o = i(746),
+        r = i(0),
+        s = i(747),
+        a = i(217),
+        _ = i(3),
+        l = i(330),
+        u = i(111),
         c = function () {
             function t(t) {
                 var e = this;
@@ -17,7 +26,8 @@ const function745 = function (t, e, i) {
                         }
                     }
                     for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin, o = t.getShipModel(s);
+                        var s = n + e.shipInDeckOrigin,
+                            o = t.getShipModel(s);
                         if (o && e.supplyEditor.containts(o.memID)) {
                             e.deckSupplyBanners[n].checkOn()
                         }
@@ -27,7 +37,8 @@ const function745 = function (t, e, i) {
                     if (1 == e._isAllSupply) return !1;
                     e.supplyEditor.clear();
                     for (var t = r.default.model.deck.get(e.deckId), i = 0; i < e.deckSupplyBanners.length; i++) {
-                        var n = i + e.shipInDeckOrigin, o = t.getShipModel(n);
+                        var n = i + e.shipInDeckOrigin,
+                            o = t.getShipModel(n);
                         if (o) {
                             var s = e.deckSupplyBanners[i];
                             0 == (o.ammoMax <= o.ammoNow && o.fuelMax <= o.fuelNow) && s.checkOff()
@@ -43,13 +54,16 @@ const function745 = function (t, e, i) {
                         }
                     }
                     for (var n = 0; n < e.deckSupplyBanners.length; n++) {
-                        var s = n + e.shipInDeckOrigin, o = t.getShipModel(s);
+                        var s = n + e.shipInDeckOrigin,
+                            o = t.getShipModel(s);
                         if (o && e.supplyEditor.containts(o.memID)) {
                             e.deckSupplyBanners[n].checkOn()
                         }
                     }
-                    var _ = r.default.model.useItem.get(31).count, l = r.default.model.useItem.get(32).count,
-                        u = e.supplyEditor.getMemShipIds(), c = a.SupplyUtil.CalcRequireMaterials(u);
+                    var _ = r.default.model.useItem.get(31).count,
+                        l = r.default.model.useItem.get(32).count,
+                        u = e.supplyEditor.getMemShipIds(),
+                        c = a.SupplyUtil.CalcRequireMaterials(u);
                     0 < c.ammo && c.ammo <= l ? (e.onUpdateSupplyEdit(), e.onClickSupplyAll()) : 0 < c.fuel && c.fuel <= _ ? (e.onUpdateSupplyEdit(), e.onClickSupplyAll()) : e.supplyAllButton.updateClickable(!1)
                 }, this.shipInDeckOrigin = 0, this._onClickArrowTop = function () {
                     e.shipInDeckOrigin -= 1, e._updateDeck_(e.deckId, e.shipInDeckOrigin)
@@ -62,7 +76,6 @@ const function745 = function (t, e, i) {
                 }
                 this.arrowTopButton = new u.ArrowTopButton, this.arrowBottomButton = new u.ArrowBottomButton
             }
-
             return t.prototype.getSupplyEdit = function () {
                 return this.supplyEditor
             }, t.prototype.updateDeck = function (t) {
@@ -78,7 +91,8 @@ const function745 = function (t, e, i) {
                 this.arrowTopButton.position.set(533, 173), this.arrowBottomButton.position.set(533, 650), this.mainView.addChild(this.arrowTopButton, this.arrowBottomButton), this.supplyAllButton.onMouseOver = this._onMouseOverSupplyAll, this.supplyAllButton.onMouseOut = this._onMouseOutSupplyAll, this.supplyAllButton.onClick = this._onClickSupplyAll, this.arrowTopButton.onClick = this._onClickArrowTop, this.arrowBottomButton.onClick = this._onClickArrowBottom, this.supplyEditor = new l.SupplyEditor, this._updateDeck_(t, this.shipInDeckOrigin), this.onUpdateSupplyEdit()
             }, t.prototype._updateDeck_ = function (t, e) {
                 for (var i = r.default.model.deck.get(t), o = null != i.expedition, s = 0; s < this.deckSupplyBanners.length; s++) {
-                    var _ = e + s, l = this.deckSupplyBanners[s];
+                    var _ = e + s,
+                        l = this.deckSupplyBanners[s];
                     n.TaskLoadShipResource.abortBy(l);
                     var u = i.getShipModel(_);
                     if (u) {
@@ -92,7 +106,8 @@ const function745 = function (t, e, i) {
                         l.update(_, u, o, h)
                     } else l.empty()
                 }
-                if (this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 < e && (this.arrowTopButton.visible = !0), e + this.deckSupplyBanners.length < i.getCount() && (this.arrowBottomButton.visible = !0), i.expedition) this.supplyAllButton.updateClickable(!1); else {
+                if (this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 < e && (this.arrowTopButton.visible = !0), e + this.deckSupplyBanners.length < i.getCount() && (this.arrowBottomButton.visible = !0), i.expedition) this.supplyAllButton.updateClickable(!1);
+                else {
                     var c = a.SupplyUtil.CheckRequireSupplyDeck(t);
                     this.supplyAllButton.updateClickable(c)
                 }

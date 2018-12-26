@@ -1,7 +1,10 @@
 const function1145 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,21 @@ const function1145 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(129), a = i(89), _ = i(1146), l = i(1147), u = i(1148), c = i(1149), h = i(1153),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(6),
+        s = i(129),
+        a = i(89),
+        _ = i(1146),
+        l = i(1147),
+        u = i(1148),
+        c = i(1149),
+        h = i(1153),
         p = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -32,7 +44,6 @@ const function1145 = function (t, e, i) {
                     })
                 }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
             }
-
             return n(e, t), e.prototype.initialize = function () {
                 this._header.texture = s.ITEM_ISHOP.getTexture(35);
                 for (var t = 0, e = this._views; t < e.length; t++) {

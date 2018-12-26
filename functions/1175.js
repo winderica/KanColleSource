@@ -1,7 +1,10 @@
 const function1175 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,17 +13,33 @@ const function1175 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(8), a = i(9), _ = i(3), l = i(409), u = i(117), c = i(75), h = i(75), p = i(75),
-        d = i(75), f = i(75), y = i(75), m = i(75), v = i(75), g = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(11),
+        s = i(8),
+        a = i(9),
+        _ = i(3),
+        l = i(409),
+        u = i(117),
+        c = i(75),
+        h = i(75),
+        p = i(75),
+        d = i(75),
+        f = i(75),
+        y = i(75),
+        m = i(75),
+        v = i(75),
+        g = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._onInitialize = function () {
-                    var t = _.DUTY_COMMON.getTexture(46), i = new PIXI.Sprite(t);
+                    var t = _.DUTY_COMMON.getTexture(46),
+                        i = new PIXI.Sprite(t);
                     e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
                     var n = o.default.model.basic.getDutyExecutableCount();
                     e._view.initialize(n, e._onBack), e._view.update(e._data)
@@ -45,7 +64,8 @@ const function1175 = function (t, e, i) {
                 }, e._onSelectDuty = function (t) {
                     if (3 == t.status) {
                         if (0 == t.alert) {
-                            var i = o.default.view.overLayer, n = new v.TaskTasseiDutySelect(i, t, e._data);
+                            var i = o.default.view.overLayer,
+                                n = new v.TaskTasseiDutySelect(i, t, e._data);
                             n.start(function () {
                                 e._view.update(e._data)
                             })
@@ -65,7 +85,6 @@ const function1175 = function (t, e, i) {
                     o.default.scene.change(0)
                 }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
             }
-
             return n(e, t), e.prototype.getPreInitializeTask = function (t) {
                 return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
             }, e.prototype.getInitializeTask = function (t) {

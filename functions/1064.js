@@ -1,7 +1,10 @@
 const function1064 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,29 @@ const function1064 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(11), s = i(18), a = i(112), _ = i(168), l = i(73), u = i(73), c = i(73), h = i(73),
-        p = i(380), d = i(133), f = i(133), y = i(133), m = i(133), v = i(133), g = i(42), b = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(11),
+        s = i(18),
+        a = i(112),
+        _ = i(168),
+        l = i(73),
+        u = i(73),
+        c = i(73),
+        h = i(73),
+        p = i(380),
+        d = i(133),
+        f = i(133),
+        y = i(133),
+        m = i(133),
+        v = i(133),
+        g = i(42),
+        b = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._selected_state = 1, e._selected_tab_no = 0, e._onChangeTab = function (t, i) {
@@ -49,7 +68,6 @@ const function1064 = function (t, e, i) {
                     o.default.scene.change(0)
                 }, e._option = new l.AlbumSceneOptionModel, e._model = new u.AlbumModelManager, e._view = new g.MainView(e._onChangeTab, e._onChangePage, e._onSelect), e.addChild(e._view), e._over = new s.FadeBox(1, 0, 1200, 720), e._over.hide(0), e._over.visible = !1, e.addChild(e._over), e
             }
-
             return n(e, t), e.prototype.getPreInitializeTask = function (t) {
                 return new d.TaskScenePreInitialize(t, this._model, this._view, this._onBack)
             }, e.prototype.getInitializeTask = function (t) {
@@ -58,7 +76,9 @@ const function1064 = function (t, e, i) {
                 return a.TaskLoadBase.abortAll(), new y.TaskSceneFinalize(this._view)
             }, e.prototype._update = function (t, e) {
                 a.TaskLoadBase.abortAll();
-                var i = _.AlbumConst.COUNT_INPAGE, n = this._model.getData(t, e, i), o = this._selected_tab_no;
+                var i = _.AlbumConst.COUNT_INPAGE,
+                    n = this._model.getData(t, e, i),
+                    o = this._selected_tab_no;
                 this._view.pager.update(o, e);
                 var r = this._view.content;
                 r.deactivate(), r.update(t, e, n), r.activate()

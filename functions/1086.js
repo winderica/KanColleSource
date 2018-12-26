@@ -1,7 +1,10 @@
 const function1086 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,21 @@ const function1086 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(8), a = i(70), _ = i(1087), l = i(388), u = i(390), c = i(389), h = i(391),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(1),
+        s = i(8),
+        a = i(70),
+        _ = i(1087),
+        l = i(388),
+        u = i(390),
+        c = i(389),
+        h = i(391),
         p = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -62,23 +74,27 @@ const function1086 = function (t, e, i) {
                     }
                 }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new l.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new l.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._voiceBtn = new c.VoiceBtn(e._onVoice), e._voiceBtn.position.set(105, 582), e.addChild(e._voiceBtn), e._movieBtn = new u.MovieBtn(e._onMovie), e._movieBtn.position.set(154, 582), e.addChild(e._movieBtn);
                 for (var i = [370, 325, 280, 235], n = 0, r = i.length; n < r; n++) {
-                    var p = i[n], d = new _.extraVoiceBtn(e._onClickExtraVoice);
+                    var p = i[n],
+                        d = new _.extraVoiceBtn(e._onClickExtraVoice);
                     d.position.set(p, 582), e.addChild(d), e._extraVoiceBtn[n] = d, e._extraVoiceBtnData[n] = null
                 }
                 return e._ring = new a.RingLarge, e._ring.position.set(-13, 22), e._ring.interactive = !0, e.addChild(e._ring), e._canvas.interactive = !0, e
             }
-
             return n(e, t), e.prototype.initialize = function (t, e) {
                 this._option = e, this._data_list = [];
                 for (var i = 0, n = t.mst_ids; i < n.length; i++) {
-                    var r = n[i], s = t.isMarriage(r), a = o.default.resources.getShip(r, !1, "card");
+                    var r = n[i],
+                        s = t.isMarriage(r),
+                        a = o.default.resources.getShip(r, !1, "card");
                     this._addImageData(r, a, s, new PIXI.Point(45, 105)), a = o.default.resources.getShip(r, !1, "character_full"), this._addImageData(r, a, s), a = o.default.resources.getShip(r, !1, "character_up"), this._addImageData(r, a, s), 1 == t.hasTaiha(r) && (a = o.default.resources.getShip(r, !0, "character_full"), this._addImageData(r, a, s), a = o.default.resources.getShip(r, !0, "character_up"), this._addImageData(r, a, s))
                 }
                 var _ = t.extraVoices();
-                if (null !== _) for (var l = 0, u = _.length; l < u; l++) {
-                    var c = _[l], h = c.api_no - 1;
-                    this._extraVoiceBtnData[h] = c
-                }
+                if (null !== _)
+                    for (var l = 0, u = _.length; l < u; l++) {
+                        var c = _[l],
+                            h = c.api_no - 1;
+                        this._extraVoiceBtnData[h] = c
+                    }
                 for (var l = 0, u = this._extraVoiceBtn.length; l < u; l++) this._extraVoiceBtn[l].initialize(this._extraVoiceBtnData[l]);
                 this._data_list.length > 0 && (this._current = this._data_list[0], this._update(), this._playVoice(this._current.mst_id, 25)), this._prevBtn.initialize(), this._nextBtn.initialize(), this._voiceBtn.initialize(), this._movieBtn.initialize(), this._ring.initialize()
             }, e.prototype.preactivate = function () {
@@ -117,9 +133,7 @@ const function1086 = function (t, e, i) {
         }(PIXI.Container);
     e.ShipDetailContent = p;
     var d = function () {
-        function t() {
-        }
-
+        function t() {}
         return t
     }()
 }

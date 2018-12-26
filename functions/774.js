@@ -1,7 +1,10 @@
 const function774 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,21 @@ const function774 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(156), s = i(157), a = i(60), _ = i(4), l = i(3), u = i(331), c = i(52), h = i(1),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(3),
+        r = i(156),
+        s = i(157),
+        a = i(60),
+        _ = i(4),
+        l = i(3),
+        u = i(331),
+        c = i(52),
+        h = i(1),
         p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -33,7 +45,6 @@ const function774 = function (t, e, i) {
                 var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(44));
                 return n.position.set(120, -2), i.containerItemName = new PIXI.Container, i.containerItemName.position.set(50, 11), i.containerItemName.mask = i._textItemNameMask, i.containerItemName.addChild(i._textItemName, i._textItemNameMask, n), i.textTousai = new _.TextBox(21, 5523516), i.textTousai.position.set(-2, 23), i.textTousai.anchor.set(1, .5), i.slotItemLevel = new s.SlotItemLevel, i.airPlaneLevel = new r.AirPlaneLevel, i.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), i.iconWeapon = new a.IconWeapon, i.detachButton = new u.DetachButton, i.detachButton.onClick = i._onClickDetach, i.detachButton.position.set(292, 15), i.slotItemLevel.position.set(247, 14), i.airPlaneLevel.position.set(219, 3), i.lockIcon.position.set(293, 2), i.focusItem.scale.x = 1, i.focusItem.position.x = -30, i.focusItem.alpha = 0, i.focusItem.visible = !1, i.addChild(i._background, i.containerItemName, i.textTousai, i.slotItemLevel, i.airPlaneLevel, i.lockIcon, i.iconWeapon, i.focusItem, i.clickAreaSlot, i.detachButton), i.clickAreaSlot.interactive = i.clickAreaSlot.buttonMode = !0, i.clickAreaSlot.on(h.EventType.MOUSEDOWN, i._mousedown), i.clickAreaSlot.on(h.EventType.MOUSEUP, i._mouseup), i.clickAreaSlot.on(h.EventType.MOUSEOVER, i._mouseover), i.clickAreaSlot.on(h.EventType.MOUSEOUT, i._mouseout), i
             }
-
             return n(e, t), e.prototype.update = function (t, e, i, n) {
                 this._update_(t.name, t.iconType, t.isPlane(), e, t.skillLevel, t.isLocked(), t.level, i, n)
             }, e.prototype.empty = function (t) {

@@ -2,7 +2,8 @@
   "name": "kancolle-source",
   "version": "1.0.0",
   "dependencies": {
-    "cron": "latest",
-    "node-fetch": "latest"
+    "cron": "^1.6.0",
+    "js-beautify": "^1.8.9",
+    "node-fetch": "^2.3.0"
   }
 }

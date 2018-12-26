@@ -1,21 +1,32 @@
 const function699 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n = i(700), o = i(705), r = i(707), s = i(709), a = i(104), _ = i(209), l = i(31), u = i(0),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n = i(700),
+        o = i(705),
+        r = i(707),
+        s = i(709),
+        a = i(104),
+        _ = i(209),
+        l = i(31),
+        u = i(0),
         c = function () {
             function t(t, e) {
                 var i = this;
                 this.onCompleteConfirmUseMamiyaIrako = function (t) {
                     switch (t) {
-                        case!1:
+                        case !1:
                             u.default.view.clickGuard = !0, i.taskConfirmUseMamiyaIrako.hide(function () {
                                 i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, u.default.view.clickGuard = !1, i.onComplete()
                             });
                             break;
-                        case!0:
+                        case !0:
                             u.default.view.clickGuard = !0;
-                            var e = new s.ItemUseCondAPI(!0, i.deckId, i.sweetType), n = new a.UseItemAPI,
-                                o = new _.UserShipAPI, r = new l.APIConnector;
+                            var e = new s.ItemUseCondAPI(!0, i.deckId, i.sweetType),
+                                n = new a.UseItemAPI,
+                                o = new _.UserShipAPI,
+                                r = new l.APIConnector;
                             r.add(e), r.add(n), r.add(o), r.start(i.onCompleteCallAPI)
                     }
                 }, this.onCompleteCallAPI = function () {
@@ -30,7 +41,6 @@ const function699 = function (t, e, i) {
                     u.default.view.overLayer.removeChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.dispose(), i.taskAnimationMamiyaIrako = null, u.default.view.clickGuard = !1, i.onComplete()
                 }, this.mainView = t, this.OrganizeView = e
             }
-
             return t.prototype.start = function (t) {
                 var e = this;
                 this.deckId = t, this.taskChoiceMamiyaIrako = new n.TaskChoiceMamiyaIrako(this.mainView), this.taskChoiceMamiyaIrako.onClickBack = function () {

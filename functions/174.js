@@ -2,9 +2,12 @@ const function174 = function (t, e, i) {
     "use strict";
 
     function n() {
-        var t = new Date, e = t.getTime(), i = -5;
+        var t = new Date,
+            e = t.getTime(),
+            i = -5;
         i = i < 0 ? 24 + i : i;
-        var n = new Date(e).setUTCHours(i, 40, 0, 0), r = o(e, n);
+        var n = new Date(e).setUTCHours(i, 40, 0, 0),
+            r = o(e, n);
         return r
     }
 
@@ -16,8 +19,9 @@ const function174 = function (t, e, i) {
         var i = new Date(e);
         return o(t, i.setUTCDate(i.getUTCDate() - 1))
     }
-
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     i(14);
     e.isNeedKeyAtBattleStartAPI = n
 }

@@ -1,7 +1,10 @@
 const function477 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,39 +13,40 @@ const function477 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(12), s = i(36), a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._timer_handle = -1, e._update = function () {
-                for (var t = 0, i = e._particles; t < i.length; t++) {
-                    i[t].update()
-                }
-            }, e
-        }
-
-        return n(e, t), e.prototype.startKamihubuki = function (t) {
-            this.removeChildren(), this._particles = [];
-            for (var e = 0; e < t; e++) {
-                var i = new _;
-                i.initialize(), this.addChild(i), this._particles.push(i)
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(12),
+        s = i(36),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._timer_handle = -1, e._update = function () {
+                    for (var t = 0, i = e._particles; t < i.length; t++) {
+                        i[t].update()
+                    }
+                }, e
             }
-            -1 == this._timer_handle && (this._timer_handle = setInterval(this._update, 1e3 / 30))
-        }, e.prototype.dispose = function () {
-            -1 != this._timer_handle && clearInterval(this._timer_handle), this.removeChildren(), this._particles = null
-        }, e
-    }(PIXI.Container);
+            return n(e, t), e.prototype.startKamihubuki = function (t) {
+                this.removeChildren(), this._particles = [];
+                for (var e = 0; e < t; e++) {
+                    var i = new _;
+                    i.initialize(), this.addChild(i), this._particles.push(i)
+                } - 1 == this._timer_handle && (this._timer_handle = setInterval(this._update, 1e3 / 30))
+            }, e.prototype.dispose = function () {
+                -1 != this._timer_handle && clearInterval(this._timer_handle), this.removeChildren(), this._particles = null
+            }, e
+        }(PIXI.Container);
     e.KamihubukiLayer = a;
     var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e.anchor.set(.5), e
         }
-
         return n(e, t), e.prototype.initialize = function () {
             this._initialize()
         }, e.prototype.update = function () {

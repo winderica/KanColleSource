@@ -1,7 +1,10 @@
 const function735 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,37 +13,47 @@ const function735 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(325), s = i(4), a = i(212), _ = i(159), l = i(110), u = i(70), c = i(131), h = i(14),
-        p = i(1), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(3),
+        r = i(325),
+        s = i(4),
+        a = i(212),
+        _ = i(159),
+        l = i(110),
+        u = i(70),
+        c = i(131),
+        h = i(14),
+        p = i(1),
+        d = function (t) {
             function e(e, i, n) {
                 var s = t.call(this) || this;
                 if (s.FILTER_TAB_NUM = 8, s.ITEM_NUM = 10, s._onClickListItem = function (t) {
-                    s.onClickItem(t)
-                }, s._onClicHeart = function (t) {
-                    s.onClickLock(t)
-                }, s._onClickDetach = function () {
-                    s.onClickDetach()
-                }, s.onClickFilter = function () {
-                    for (var t = [], e = 0, i = 0; i < s.filterBtns.length; i++) s.filterBtns[i].isFilter ? t.push(s.filterBtns[i].type) : e++;
-                    s.onFilter(t), s.updateSelectAll(e)
-                }, s.onClickTxtSwitch = function () {
-                    s._japanese = !s._japanese, s.setFilterText()
-                }, s.onClickSelectAll = function () {
-                    for (var t = !0, e = 0; e < s.filterBtns.length; e++) if (!s.filterBtns[e].isFilter) {
-                        t = !1;
-                        break
-                    }
-                    t ? s.filterBtns.forEach(function (t) {
-                        t.changeFilter()
-                    }) : s.filterBtns.forEach(function (t) {
-                        t.isFilter || t.changeFilter()
-                    }), s.onClickFilter()
-                }, s.onFilter = n, s._japanese = i, null == e || e.length != s.FILTER_TAB_NUM) {
+                        s.onClickItem(t)
+                    }, s._onClicHeart = function (t) {
+                        s.onClickLock(t)
+                    }, s._onClickDetach = function () {
+                        s.onClickDetach()
+                    }, s.onClickFilter = function () {
+                        for (var t = [], e = 0, i = 0; i < s.filterBtns.length; i++) s.filterBtns[i].isFilter ? t.push(s.filterBtns[i].type) : e++;
+                        s.onFilter(t), s.updateSelectAll(e)
+                    }, s.onClickTxtSwitch = function () {
+                        s._japanese = !s._japanese, s.setFilterText()
+                    }, s.onClickSelectAll = function () {
+                        for (var t = !0, e = 0; e < s.filterBtns.length; e++)
+                            if (!s.filterBtns[e].isFilter) {
+                                t = !1;
+                                break
+                            } t ? s.filterBtns.forEach(function (t) {
+                            t.changeFilter()
+                        }) : s.filterBtns.forEach(function (t) {
+                            t.isFilter || t.changeFilter()
+                        }), s.onClickFilter()
+                    }, s.onFilter = n, s._japanese = i, null == e || e.length != s.FILTER_TAB_NUM) {
                     for (e = []; e.length < s.FILTER_TAB_NUM;) e.push(!0);
                     s._japanese = !0
                 }
@@ -69,7 +82,6 @@ const function735 = function (t, e, i) {
                     return s.addChild(t)
                 }), s.addChild(s.txtSwitchBase, s.txtSwitch, s.allSelectBase, s.allSelect), s
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren();
                 for (var t = 0; t < this.filterBtns.length; t++) this.filterBtns[t].dispose(), this.filterBtns[t] = null;
@@ -104,86 +116,95 @@ const function735 = function (t, e, i) {
         }(PIXI.Container);
     e.ShipChoiceView = d;
     var f = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.locked = !1, e.onMouseOver = function () {
-                e.containerTypeAndName.cacheAsBitmap = !1, e.textLevel.style.fill = e.textName.style.fill = e.textTyku.style.fill = e.textHoug.style.fill = e.textRaig.style.fill = e.textTaik.style.fill = e.textType.style.fill = 16777215, e.background.visible = !0, 0 == e.locked && (e.lockedHeart.alpha = 1), e.containerTypeAndName.cacheAsBitmap = !0
-            }, e.onMouseOut = function () {
-                e.containerTypeAndName.cacheAsBitmap = !1, e.textLevel.style.fill = e.mouseoutLevelColor, e.textName.style.fill = e.textTyku.style.fill = e.textHoug.style.fill = e.textRaig.style.fill = e.textTaik.style.fill = e.textType.style.fill = 5523516, e.background.visible = !1, 0 == e.locked && (e.lockedHeart.alpha = 0), e.containerTypeAndName.cacheAsBitmap = !0
-            }, e._onClickHitArea = function () {
-                e.onClickItem(e.memShipId)
-            }, e._onClickHeart = function () {
-                e.onClickLock(e.memShipId)
-            }, e.textureLockOn = o.ORGANIZE_MAIN.getTexture(42), e.textureLockOff = o.ORGANIZE_MAIN.getTexture(41);
-            e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new u.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new l.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
-            var i = new m, n = new m, r = new m;
-            e.kirakira = new Array;
-            var _ = Math.floor(21) + 1;
-            e.background.width = 538, e.background.position.set(0, _), e.background.visible = !1, e.lockedHeart.interactive = e.lockedHeart.buttonMode = !0, e.textLevel.position.set(286, Math.floor(_ - e.textLevel.height / 2)), e.textTyku.position.set(342, Math.floor(_ - e.textTyku.height / 2)), e.textHoug.position.set(388, Math.floor(_ - e.textHoug.height / 2)), e.textRaig.position.set(436, Math.floor(_ - e.textRaig.height / 2)), e.textTaik.position.set(483, Math.floor(_ - e.textTaik.height / 2)), e.sokuryoku.position.set(511, _), e.lockedHeart.position.set(558, _), e.shipInDeckFlag.position.set(-15, _), e.shipInDeckFlag.scale.set(.8, .8), e.hpGauge.position.set(489, 34), e.ring.initialize(), e.ring.position.set(579, 6), e.background.anchor.set(0, .5), e.hpGauge.scale.set(1, .8), e.textLevel.anchor.set(1, 0), e.textTyku.anchor.set(1, 0), e.textHoug.anchor.set(1, 0), e.textRaig.anchor.set(1, 0), e.textTaik.anchor.set(1, 0), e.sokuryoku.anchor.set(.5, .5), e.lockedHeart.anchor.set(.5, .5), e.shipInDeckFlag.anchor.set(.5, .5), e.containerTypeAndName = new PIXI.Container, e.textName = new s.TextBox(20, 5523516);
-            var d = h.CreateRect.gradientLeftToRight(240, 44, .85, .9);
-            return e.containerTypeAndName.position.set(8, 0), e.textType.anchor.set(0, 0), e.textType.position.y = Math.floor(_ - e.textType.height / 2), e.textName.anchor.set(0, 0), e.textName.position.y = Math.floor(_ - e.textName.height / 2), e.containerTypeAndName.addChild(e.textType, e.textName, d), e.containerTypeAndName.mask = d, e.kirakira.push(i, n, r), i.position.set(483, 27), n.position.set(525, 27), r.position.set(570, 27), e.itemHitArea = new PIXI.Graphics, e.itemHitArea.beginFill(0, 0), e.itemHitArea.drawRect(0, 0, e.background.width, e.background.height), e.itemHitArea.endFill(), e.itemHitArea.on(p.EventType.MOUSEOVER, e.onMouseOver), e.itemHitArea.on(p.EventType.MOUSEOUT, e.onMouseOut), e.itemHitArea.on(p.EventType.CLICK, e._onClickHitArea), e.lockedHeart.on(p.EventType.MOUSEOVER, e.onMouseOver), e.lockedHeart.on(p.EventType.MOUSEOUT, e.onMouseOut), e.lockedHeart.on(p.EventType.CLICK, e._onClickHeart), e.itemHitArea.interactive = !0, e.ring.activate(), e.addChild(e.background, e.containerTypeAndName, e.textLevel, e.textTyku, e.textHoug, e.textRaig, e.textTaik, e.sokuryoku, e.shipInDeckFlag, e.hpGauge, i, n, r, e.ring, e.lockedHeart, e.itemHitArea), e
-        }
-
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.sokuryoku.dispose(), this.hpGauge.dispose();
-            for (var t = 0; t < this.kirakira.length; t++) this.kirakira[t].dispose(), this.kirakira[t] = null;
-            this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.removeChildren(), this.containerTypeAndName.mask = null, this.containerTypeAndName = null, this.ring.dispose(), this.itemHitArea.off(p.EventType.MOUSEOVER), this.itemHitArea.off(p.EventType.MOUSEOUT), this.itemHitArea.off(p.EventType.CLICK), this.lockedHeart.off(p.EventType.MOUSEOVER), this.lockedHeart.off(p.EventType.MOUSEOUT), this.lockedHeart.off(p.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textTyku.destroy(), this.textHoug.destroy(), this.textRaig.destroy(), this.textTaik.destroy(), this.onMouseOver = this.onMouseOut = this._onClickHitArea = this.onMouseOver = this.onMouseOut = this._onClickHeart = null, this.kirakira = null, this.hpGauge = null, this.onClickItem = null, this.onClickLock = null, this.shipInDeckFlag = null, this.textType = null, this.textName = null, this.textLevel = null, this.textTyku = null, this.textHoug = null, this.textRaig = null, this.textTaik = null, this.sokuryoku = null, this.background = null, this.lockedHeart = null, this.itemHitArea = null, this.locked = null, this.memShipId = null, this.ring = null, this.textureLockOn = null, this.textureLockOff = null
-        }, e.prototype._updateTypeAndName_ = function (t, e) {
-            this.containerTypeAndName.cacheAsBitmap = !1, this.textType.text = t + " ", this.textName.text = e, this.textName.position.x = this.textType.x + this.textType.width, this.containerTypeAndName.cacheAsBitmap = !0
-        }, e.prototype.update = function (t, e, i, n, o, r, s, a, l, u, c, h, p, d) {
-            this.memShipId = t, this.locked = c, this.textLevel.text = "" + n, this.textTyku.text = "" + o, this.textHoug.text = "" + s, this.textRaig.text = "" + a, this.textTaik.text = "" + l, this.hpGauge.update(o, r), this.sokuryoku.update(u), this.textLevel.style.fill = _.ColorUtil.getLevelColor(n), this.mouseoutLevelColor = this.textLevel.style.fill, this._updateCondition_(p), this._updateRing_(d), this._updateLock_(c), this._updateInDeck_(h), this._updateTypeAndName_(e, i)
-        }, e.prototype._updateCondition_ = function (t) {
-            this.kirakira.forEach(function (t) {
-                t.visible = !1
-            }), t && this.kirakira.forEach(function (t) {
-                t.visible = !0
-            })
-        }, e.prototype._updateRing_ = function (t) {
-            this.ring.visible = !1, t && (this.ring.visible = !0)
-        }, e.prototype._updateLock_ = function (t) {
-            t ? (this.lockedHeart.texture = this.textureLockOn, this.lockedHeart.alpha = 1) : (this.lockedHeart.texture = this.textureLockOff, this.lockedHeart.alpha = 0)
-        }, e.prototype._updateInDeck_ = function (t) {
-            this.shipInDeckFlag.visible = !1, t && (this.shipInDeckFlag.update(t), this.shipInDeckFlag.visible = !0)
-        }, e
-    }(PIXI.Container), y = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n.changeFilter = function () {
-                n._isFilter = !n._isFilter, n.texture = n._isFilter ? n.texture_on : n.texture_off
-            }, n._type = e, n._isFilter = i, n
-        }
-
-        return n(e, t), Object.defineProperty(e.prototype, "isFilter", {
-            get: function () {
-                return this._isFilter
-            }, enumerable: !0, configurable: !0
-        }), Object.defineProperty(e.prototype, "type", {
-            get: function () {
-                return this._type
-            }, enumerable: !0, configurable: !0
-        }), e.prototype.dispose = function () {
-            this.off(p.EventType.CLICK), this.texture_off = null, this.texture_on = null, this._type = null, this._isFilter = null
-        }, e.prototype.setTexture = function (t, e) {
-            this.texture_on = t, this.texture_off = e, this.texture = this._isFilter ? this.texture_on : this.texture_off
-        }, e.prototype.setOnClick = function (t) {
-            var e = this;
-            this.buttonMode = this.interactive = !0, this.on(p.EventType.CLICK, function () {
-                e.changeFilter(), t && t()
-            })
-        }, e
-    }(PIXI.Sprite), m = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.texture = o.COMMON_MAIN.getTexture(43), e._play(), e
-        }
-
-        return n(e, t), e.prototype._play = function () {
-            var t = this;
-            return createjs.Tween.get(this).wait(150 * Math.random() + 450).to({ alpha: 1 }, 150).to({ alpha: 0 }, 150).call(function () {
-                t._play()
-            })
-        }, e.prototype.dispose = function () {
-            createjs.Tween.get(this).setPaused(!0), createjs.Tween.removeTweens(this)
-        }, e
-    }(PIXI.Sprite)
+            function e() {
+                var e = t.call(this) || this;
+                e.locked = !1, e.onMouseOver = function () {
+                    e.containerTypeAndName.cacheAsBitmap = !1, e.textLevel.style.fill = e.textName.style.fill = e.textTyku.style.fill = e.textHoug.style.fill = e.textRaig.style.fill = e.textTaik.style.fill = e.textType.style.fill = 16777215, e.background.visible = !0, 0 == e.locked && (e.lockedHeart.alpha = 1), e.containerTypeAndName.cacheAsBitmap = !0
+                }, e.onMouseOut = function () {
+                    e.containerTypeAndName.cacheAsBitmap = !1, e.textLevel.style.fill = e.mouseoutLevelColor, e.textName.style.fill = e.textTyku.style.fill = e.textHoug.style.fill = e.textRaig.style.fill = e.textTaik.style.fill = e.textType.style.fill = 5523516, e.background.visible = !1, 0 == e.locked && (e.lockedHeart.alpha = 0), e.containerTypeAndName.cacheAsBitmap = !0
+                }, e._onClickHitArea = function () {
+                    e.onClickItem(e.memShipId)
+                }, e._onClickHeart = function () {
+                    e.onClickLock(e.memShipId)
+                }, e.textureLockOn = o.ORGANIZE_MAIN.getTexture(42), e.textureLockOff = o.ORGANIZE_MAIN.getTexture(41);
+                e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new u.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new l.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
+                var i = new m,
+                    n = new m,
+                    r = new m;
+                e.kirakira = new Array;
+                var _ = Math.floor(21) + 1;
+                e.background.width = 538, e.background.position.set(0, _), e.background.visible = !1, e.lockedHeart.interactive = e.lockedHeart.buttonMode = !0, e.textLevel.position.set(286, Math.floor(_ - e.textLevel.height / 2)), e.textTyku.position.set(342, Math.floor(_ - e.textTyku.height / 2)), e.textHoug.position.set(388, Math.floor(_ - e.textHoug.height / 2)), e.textRaig.position.set(436, Math.floor(_ - e.textRaig.height / 2)), e.textTaik.position.set(483, Math.floor(_ - e.textTaik.height / 2)), e.sokuryoku.position.set(511, _), e.lockedHeart.position.set(558, _), e.shipInDeckFlag.position.set(-15, _), e.shipInDeckFlag.scale.set(.8, .8), e.hpGauge.position.set(489, 34), e.ring.initialize(), e.ring.position.set(579, 6), e.background.anchor.set(0, .5), e.hpGauge.scale.set(1, .8), e.textLevel.anchor.set(1, 0), e.textTyku.anchor.set(1, 0), e.textHoug.anchor.set(1, 0), e.textRaig.anchor.set(1, 0), e.textTaik.anchor.set(1, 0), e.sokuryoku.anchor.set(.5, .5), e.lockedHeart.anchor.set(.5, .5), e.shipInDeckFlag.anchor.set(.5, .5), e.containerTypeAndName = new PIXI.Container, e.textName = new s.TextBox(20, 5523516);
+                var d = h.CreateRect.gradientLeftToRight(240, 44, .85, .9);
+                return e.containerTypeAndName.position.set(8, 0), e.textType.anchor.set(0, 0), e.textType.position.y = Math.floor(_ - e.textType.height / 2), e.textName.anchor.set(0, 0), e.textName.position.y = Math.floor(_ - e.textName.height / 2), e.containerTypeAndName.addChild(e.textType, e.textName, d), e.containerTypeAndName.mask = d, e.kirakira.push(i, n, r), i.position.set(483, 27), n.position.set(525, 27), r.position.set(570, 27), e.itemHitArea = new PIXI.Graphics, e.itemHitArea.beginFill(0, 0), e.itemHitArea.drawRect(0, 0, e.background.width, e.background.height), e.itemHitArea.endFill(), e.itemHitArea.on(p.EventType.MOUSEOVER, e.onMouseOver), e.itemHitArea.on(p.EventType.MOUSEOUT, e.onMouseOut), e.itemHitArea.on(p.EventType.CLICK, e._onClickHitArea), e.lockedHeart.on(p.EventType.MOUSEOVER, e.onMouseOver), e.lockedHeart.on(p.EventType.MOUSEOUT, e.onMouseOut), e.lockedHeart.on(p.EventType.CLICK, e._onClickHeart), e.itemHitArea.interactive = !0, e.ring.activate(), e.addChild(e.background, e.containerTypeAndName, e.textLevel, e.textTyku, e.textHoug, e.textRaig, e.textTaik, e.sokuryoku, e.shipInDeckFlag, e.hpGauge, i, n, r, e.ring, e.lockedHeart, e.itemHitArea), e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.sokuryoku.dispose(), this.hpGauge.dispose();
+                for (var t = 0; t < this.kirakira.length; t++) this.kirakira[t].dispose(), this.kirakira[t] = null;
+                this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.removeChildren(), this.containerTypeAndName.mask = null, this.containerTypeAndName = null, this.ring.dispose(), this.itemHitArea.off(p.EventType.MOUSEOVER), this.itemHitArea.off(p.EventType.MOUSEOUT), this.itemHitArea.off(p.EventType.CLICK), this.lockedHeart.off(p.EventType.MOUSEOVER), this.lockedHeart.off(p.EventType.MOUSEOUT), this.lockedHeart.off(p.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textTyku.destroy(), this.textHoug.destroy(), this.textRaig.destroy(), this.textTaik.destroy(), this.onMouseOver = this.onMouseOut = this._onClickHitArea = this.onMouseOver = this.onMouseOut = this._onClickHeart = null, this.kirakira = null, this.hpGauge = null, this.onClickItem = null, this.onClickLock = null, this.shipInDeckFlag = null, this.textType = null, this.textName = null, this.textLevel = null, this.textTyku = null, this.textHoug = null, this.textRaig = null, this.textTaik = null, this.sokuryoku = null, this.background = null, this.lockedHeart = null, this.itemHitArea = null, this.locked = null, this.memShipId = null, this.ring = null, this.textureLockOn = null, this.textureLockOff = null
+            }, e.prototype._updateTypeAndName_ = function (t, e) {
+                this.containerTypeAndName.cacheAsBitmap = !1, this.textType.text = t + " ", this.textName.text = e, this.textName.position.x = this.textType.x + this.textType.width, this.containerTypeAndName.cacheAsBitmap = !0
+            }, e.prototype.update = function (t, e, i, n, o, r, s, a, l, u, c, h, p, d) {
+                this.memShipId = t, this.locked = c, this.textLevel.text = "" + n, this.textTyku.text = "" + o, this.textHoug.text = "" + s, this.textRaig.text = "" + a, this.textTaik.text = "" + l, this.hpGauge.update(o, r), this.sokuryoku.update(u), this.textLevel.style.fill = _.ColorUtil.getLevelColor(n), this.mouseoutLevelColor = this.textLevel.style.fill, this._updateCondition_(p), this._updateRing_(d), this._updateLock_(c), this._updateInDeck_(h), this._updateTypeAndName_(e, i)
+            }, e.prototype._updateCondition_ = function (t) {
+                this.kirakira.forEach(function (t) {
+                    t.visible = !1
+                }), t && this.kirakira.forEach(function (t) {
+                    t.visible = !0
+                })
+            }, e.prototype._updateRing_ = function (t) {
+                this.ring.visible = !1, t && (this.ring.visible = !0)
+            }, e.prototype._updateLock_ = function (t) {
+                t ? (this.lockedHeart.texture = this.textureLockOn, this.lockedHeart.alpha = 1) : (this.lockedHeart.texture = this.textureLockOff, this.lockedHeart.alpha = 0)
+            }, e.prototype._updateInDeck_ = function (t) {
+                this.shipInDeckFlag.visible = !1, t && (this.shipInDeckFlag.update(t), this.shipInDeckFlag.visible = !0)
+            }, e
+        }(PIXI.Container),
+        y = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n.changeFilter = function () {
+                    n._isFilter = !n._isFilter, n.texture = n._isFilter ? n.texture_on : n.texture_off
+                }, n._type = e, n._isFilter = i, n
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "isFilter", {
+                get: function () {
+                    return this._isFilter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "type", {
+                get: function () {
+                    return this._type
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.off(p.EventType.CLICK), this.texture_off = null, this.texture_on = null, this._type = null, this._isFilter = null
+            }, e.prototype.setTexture = function (t, e) {
+                this.texture_on = t, this.texture_off = e, this.texture = this._isFilter ? this.texture_on : this.texture_off
+            }, e.prototype.setOnClick = function (t) {
+                var e = this;
+                this.buttonMode = this.interactive = !0, this.on(p.EventType.CLICK, function () {
+                    e.changeFilter(), t && t()
+                })
+            }, e
+        }(PIXI.Sprite),
+        m = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.texture = o.COMMON_MAIN.getTexture(43), e._play(), e
+            }
+            return n(e, t), e.prototype._play = function () {
+                var t = this;
+                return createjs.Tween.get(this).wait(150 * Math.random() + 450).to({
+                    alpha: 1
+                }, 150).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    t._play()
+                })
+            }, e.prototype.dispose = function () {
+                createjs.Tween.get(this).setPaused(!0), createjs.Tween.removeTweens(this)
+            }, e
+        }(PIXI.Sprite)
 }

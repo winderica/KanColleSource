@@ -1,7 +1,10 @@
 const function1032 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,29 @@ const function1032 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(109), s = i(9), a = i(29), _ = i(38), l = i(228), u = i(229), c = i(359), h = i(363),
-        p = i(365), d = i(361), f = i(1033), y = i(362), m = i(1034), v = i(1035), g = i(1036), b = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(109),
+        s = i(9),
+        a = i(29),
+        _ = i(38),
+        l = i(228),
+        u = i(229),
+        c = i(359),
+        h = i(363),
+        p = i(365),
+        d = i(361),
+        f = i(1033),
+        y = i(362),
+        m = i(1034),
+        v = i(1035),
+        g = i(1036),
+        b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i._onDeckChange = function (t) {
@@ -40,7 +59,6 @@ const function1032 = function (t, e, i) {
                 }
                 return i._flagship_flag = new PIXI.Sprite, i._flagship_flag.position.set(31, 87), i._temp_supply_btn = new p.TempSupplyBtn, i._temp_supply_btn.position.set(210, 528), i._checker = new f.ExpeditionCondition, i.interactive = !0, i
             }
-
             return n(e, t), e.prototype.initialize = function (t, e, i) {
                 this._selected_id = t;
                 var n = new PIXI.Sprite(a.SALLY_COMMON.getTexture(26));
@@ -79,13 +97,18 @@ const function1032 = function (t, e, i) {
                     var a = _[s];
                     this._drum_counts[s].update(a), this._support_boats[s].update(a)
                 }
-                if (this._flagship_flag.visible = null != _[0], 0 == o.default.model.basic.getExtraSupplyExpedition()) this._temp_supply_btn.visible = !1; else if (r) this._temp_supply_btn.visible = !1; else if (0 != n.reason && 2 != n.reason && 14 != n.reason) this._temp_supply_btn.visible = !1; else {
+                if (this._flagship_flag.visible = null != _[0], 0 == o.default.model.basic.getExtraSupplyExpedition()) this._temp_supply_btn.visible = !1;
+                else if (r) this._temp_supply_btn.visible = !1;
+                else if (0 != n.reason && 2 != n.reason && 14 != n.reason) this._temp_supply_btn.visible = !1;
+                else {
                     for (var l = 0, u = 0, s = 0; s < _.length; s++) {
                         var a = _[s];
                         null != a && (l += a.getFuelForSupply(), u += a.getAmmoForSupply())
                     }
-                    var c = o.default.model.useItem.getCount(31), h = o.default.model.useItem.getCount(32),
-                        p = l > 0 && l <= c, d = u > 0 && u <= h;
+                    var c = o.default.model.useItem.getCount(31),
+                        h = o.default.model.useItem.getCount(32),
+                        p = l > 0 && l <= c,
+                        d = u > 0 && u <= h;
                     this._temp_supply_btn.enabled = 0 != p || 0 != d, this._temp_supply_btn.visible = !0
                 }
                 this._banners.update(_)

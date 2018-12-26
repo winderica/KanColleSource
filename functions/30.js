@@ -1,8 +1,10 @@
 const function30 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = i(0);
-    !function (t) {
+    ! function (t) {
         function e(t) {
             return t > 1500
         }
@@ -32,7 +34,8 @@ const function30 = function (t, e, i) {
                 if (2 == e) return t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.level < i.level ? 1 : t.level > i.level ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0;
                 if (3 == e) return t.memID < i.memID ? 1 : t.memID > i.memID ? -1 : 0;
                 if (4 == e) {
-                    var n = t.hpNow / t.hpMax, o = i.hpNow / i.hpMax;
+                    var n = t.hpNow / t.hpMax,
+                        o = i.hpNow / i.hpMax;
                     return n > o ? 1 : n < o ? -1 : t.sortNo > i.sortNo ? 1 : t.sortNo < i.sortNo ? -1 : t.memID > i.memID ? 1 : t.memID < i.memID ? -1 : 0
                 }
                 return 0
@@ -62,7 +65,8 @@ const function30 = function (t, e, i) {
 
         function c() {
             for (var t = [], e = n.default.model.deck.getAll(), i = 0, o = e; i < o.length; i++) {
-                var r = o[i], s = r.getShipMemIDList();
+                var r = o[i],
+                    s = r.getShipMemIDList();
                 t = t.concat(s)
             }
             return t
@@ -80,13 +84,18 @@ const function30 = function (t, e, i) {
         }
 
         function p(t, e, i) {
-            var n = t.karyoku - (e.hougMin + t.gradeUpHoug), o = t.raisou - (e.raigMin + t.gradeUpRaig),
-                r = t.taiku - (e.tykuMin + t.gradeUpTyku), s = t.soukou - (e.soukMin + t.gradeUpSouk),
-                a = (t.lucky, e.luckMin, t.gradeUpLuck, e.hougMax + n <= t.karyoku), _ = e.raigMax + o <= t.raisou,
-                l = e.tykuMax + r <= t.taiku, u = e.soukMax + s <= t.soukou;
+            var n = t.karyoku - (e.hougMin + t.gradeUpHoug),
+                o = t.raisou - (e.raigMin + t.gradeUpRaig),
+                r = t.taiku - (e.tykuMin + t.gradeUpTyku),
+                s = t.soukou - (e.soukMin + t.gradeUpSouk),
+                a = (t.lucky, e.luckMin, t.gradeUpLuck, e.hougMax + n <= t.karyoku),
+                _ = e.raigMax + o <= t.raisou,
+                l = e.tykuMax + r <= t.taiku,
+                u = e.soukMax + s <= t.soukou;
             if (a && _ && l && u) {
                 if (!i) return !0;
-                var c = 0 == e.luckMax - t.lucky, h = !0;
+                var c = 0 == e.luckMax - t.lucky,
+                    h = !0;
                 t.gradeUpTaikyu < t.VHP && t.taikyu < e.taikyuMax && (h = !1);
                 var p = !0;
                 0 < t.taisenMax && t.gradeUpTaisen < t.VAS && (p = !1);
@@ -94,7 +103,6 @@ const function30 = function (t, e, i) {
             }
             return !1
         }
-
         t.isEnemy = e, t.getSpeedType = i, t.getDamageType = o, t.isDamaged = r, t.isMarriage = s, t.sort = a, t.filter = _, t.filterByShipFilterType = l, t.filterByShipType = u, t.getMemIDsInAllDeck = c, t.getMemIDsInExpedition = h, t.isMaxGradeUp = p
     }(e.ShipUtil || (e.ShipUtil = {}))
 }

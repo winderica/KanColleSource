@@ -1,7 +1,10 @@
 const function861 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,23 @@ const function861 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(13), a = i(862), _ = i(863), l = i(114), u = i(223), c = i(895), h = i(896),
-        p = i(114), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(47),
+        s = i(13),
+        a = i(862),
+        _ = i(863),
+        l = i(114),
+        u = i(223),
+        c = i(895),
+        h = i(896),
+        p = i(114),
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
@@ -35,7 +48,6 @@ const function861 = function (t, e, i) {
                     }
                 }, e
             }
-
             return n(e, t), e.prototype.start = function () {
                 var t = o.default.model.kdock.getAll();
                 this.menuLayer = new h.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new p.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new c.TopBarLayer;
@@ -43,28 +55,37 @@ const function861 = function (t, e, i) {
                     var r = t[n];
                     switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
                         case 2:
-                            var s = o.default.model.ship.getMst(r.ship_mst_id), a = s.build_time,
-                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num, l = Date.now(),
-                                d = r.isLargeBuild(), f = r.complete_time, y = !1;
+                            var s = o.default.model.ship.getMst(r.ship_mst_id),
+                                a = s.build_time,
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                l = Date.now(),
+                                d = r.isLargeBuild(),
+                                f = r.complete_time,
+                                y = !1;
                             y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
-                            var m = .5 < Math.random(), v = .5 < Math.random() || 0 == m;
+                            var m = .5 < Math.random(),
+                                v = .5 < Math.random() || 0 == m;
                             this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, v, a, f, l, _);
                             break;
-                        case-1:
+                        case -1:
                             if (0 == i) {
-                                var g = 0 < o.default.model.useItem.get(49).count, b = !0;
+                                var g = 0 < o.default.model.useItem.get(49).count,
+                                    b = !0;
                                 this.dockLayer.noDock(r.id, b, g)
                             } else {
-                                var b = !1, g = !1;
+                                var b = !1,
+                                    g = !1;
                                 this.dockLayer.noDock(r.id, b, g)
                             }
                             i = !0;
                             break;
                         case 3:
-                            var m = .5 < Math.random(), v = .5 < Math.random() || 0 == m;
+                            var m = .5 < Math.random(),
+                                v = .5 < Math.random() || 0 == m;
                             this.dockLayer.updateMotivation(r.id, m, v);
                             var s = o.default.model.ship.getMst(r.ship_mst_id),
-                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num, w = r.isLargeBuild();
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                w = r.isLargeBuild();
                             this.dockLayer.completed(r.id, _, w);
                             break;
                         case 0:
@@ -72,7 +93,9 @@ const function861 = function (t, e, i) {
                     }
                 }
                 u.ArsenalUtil.playVoiceOnBuildComplete();
-                var x = createjs.Tween.get(this.arsenalTimerKey, { loop: !0 }).wait(500);
+                var x = createjs.Tween.get(this.arsenalTimerKey, {
+                    loop: !0
+                }).wait(500);
                 x.addEventListener("change", this.onChangeArsenalTimer), this.addChild(this.dockLayer, this.menuLayer, this.topBarLayer), this.arsenalTimer = x
             }, e.prototype.getPreInitializeTask = function (t) {
                 return new _.PreInitializeTask(this)

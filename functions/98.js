@@ -1,7 +1,10 @@
 const function98 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,21 +13,31 @@ const function98 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(63), a = i(248), _ = i(249), l = i(250), u = i(251), c = i(455), h = i(253),
-        p = i(255), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(2),
+        s = i(63),
+        a = i(248),
+        _ = i(249),
+        l = i(250),
+        u = i(251),
+        c = i(455),
+        h = i(253),
+        p = i(255),
+        d = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
             }
-
             return n(e, t), e.prototype._start = function () {
                 var t = this;
-                if (null == this._data || null == this._data.list || 0 == this._data.list.length) this._endTask(); else {
+                if (null == this._data || null == this._data.list || 0 == this._data.list.length) this._endTask();
+                else {
                     new s.PhaseEnemyEnter(this._scene, this._record).start(function () {
                         t._hougekiCycle()
                     })
@@ -38,11 +51,17 @@ const function98 = function (t, e, i) {
                 var e = t.type;
                 0 == e ? this._normal(t) : 2 == e ? this._double(t) : this._special(t)
             }, e.prototype._normal = function (t) {
-                var e = this, i = this._scene, n = this._getAShip(t.a_index, t.flag),
+                var e = this,
+                    i = this._scene,
+                    n = this._getAShip(t.a_index, t.flag),
                     o = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != n && null != o) {
-                    var r = t.getSlotitem(0), s = t.getDamage(0), c = t.getHitType(0), h = t.isShield(0),
-                        d = this._getNormalAttackType(n, o, r), f = this._getDaihatsuEffectType(n, o);
+                    var r = t.getSlotitem(0),
+                        s = t.getDamage(0),
+                        c = t.getHitType(0),
+                        h = t.isShield(0),
+                        d = this._getNormalAttackType(n, o, r),
+                        f = this._getDaihatsuEffectType(n, o);
                     if (1 == this._hasRocketEffect(n, o)) {
                         var y = new p.PhaseAttackRocket(i, n, o, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
@@ -72,18 +91,32 @@ const function98 = function (t, e, i) {
                     }
                 }
             }, e.prototype._double = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = t.getSlotitem(0), r = t.getDamage(0), s = t.getHitType(0), a = t.isShield(0),
-                    _ = this._getDShip(t.d_indexes[1], t.flag), l = t.getSlotitem(1), u = t.getDamage(1),
-                    c = t.getHitType(1), p = t.isShield(1);
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = t.getSlotitem(0),
+                    r = t.getDamage(0),
+                    s = t.getHitType(0),
+                    a = t.isShield(0),
+                    _ = this._getDShip(t.d_indexes[1], t.flag),
+                    l = t.getSlotitem(1),
+                    u = t.getDamage(1),
+                    c = t.getHitType(1),
+                    p = t.isShield(1);
                 new h.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, l, u, c, p).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._special = function (t) {
-                var e = this, i = this._getAShip(t.a_index, t.flag), n = this._getDShip(t.d_indexes[0], t.flag);
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != i && null != n) {
-                    var o = t.getSlotitem(0), r = t.getSlotitem(1), s = t.getSlotitem(2), a = t.getDamage(0),
-                        _ = t.getHitType(0), l = t.isShield(0);
+                    var o = t.getSlotitem(0),
+                        r = t.getSlotitem(1),
+                        s = t.getSlotitem(2),
+                        a = t.getDamage(0),
+                        _ = t.getHitType(0),
+                        l = t.isShield(0);
                     new c.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, l).start(function () {
                         e._hougekiCycle()
                     })
@@ -122,12 +155,12 @@ const function98 = function (t, e, i) {
                 var i = e.name;
                 if (t.hasSlot(193) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i || "\u98db\u884c\u5834\u59eb" == i)) return 2;
                 if (t.hasSlot(166) && ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i || "\u98db\u884c\u5834\u59eb" == i)) return 3;
-                if (t.hasSlot(167)) if (t.isSubMarine()) {
-                    if (e.isGround()) return 4
-                } else if ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i || "\u98db\u884c\u5834\u59eb" == i) return 4;
+                if (t.hasSlot(167))
+                    if (t.isSubMarine()) {
+                        if (e.isGround()) return 4
+                    } else if ("\u96e2\u5cf6\u68f2\u59eb" == i || "\u7832\u53f0\u5c0f\u9b3c" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca" == i || "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode" == i || "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca" == i || "\u98db\u884c\u5834\u59eb" == i) return 4;
                 return 0
-            }, e.prototype._log = function (t, e, i, n, o) {
-            }, e.prototype._getIndex = function (t) {
+            }, e.prototype._log = function (t, e, i, n, o) {}, e.prototype._getIndex = function (t) {
                 var e = this._scene.data.model.deck_f.ships.indexOf(t);
                 return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e

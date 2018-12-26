@@ -1,9 +1,20 @@
 const function733 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var n, o = i(5), r = i(0), s = i(1), a = i(30), _ = i(8), l = i(85), u = i(734), c = i(6), h = i(216),
-        p = i(735), d = i(736);
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var n, o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(30),
+        _ = i(8),
+        l = i(85),
+        u = i(734),
+        c = i(6),
+        h = i(216),
+        p = i(735),
+        d = i(736);
+    ! function (t) {
         t[t.CANCEL = 0] = "CANCEL", t[t.DETACH = 1] = "DETACH", t[t.CHOICE = 2] = "CHOICE"
     }(n = e.TaskChoiceShipResult || (e.TaskChoiceShipResult = {}));
     var f = function () {
@@ -51,14 +62,16 @@ const function733 = function (t, e, i) {
                     o = e.ships.slice(0 * e.ITEM_NUM, 0 * e.ITEM_NUM + e.ITEM_NUM);
                 h.OrganizeSceneMemory.pageIndex = e._pageIndex = 0, 0 == o.length ? e.pagerView.visible = !1 : (e.pagerView.visible = !0, e.pagerView.init(n), e.pagerView.changePage(0)), e.shipChoiceView.setExistLineUI(o.length), e._updateShips_(o, e.detachable)
             }, this.mainView = t;
-            var i = h.OrganizeSceneMemory.filterStatus, o = h.OrganizeSceneMemory.japanese;
+            var i = h.OrganizeSceneMemory.filterStatus,
+                o = h.OrganizeSceneMemory.japanese;
             this.shipChoiceView = new p.ShipChoiceView(i, o, this._onFilter), this.dialogBackground = new _.AreaBox(.5), this.pagerView = new l.PagerView, this.shipSortButton = new u.ShipSortButton
         }
-
         return Object.defineProperty(t.prototype, "memShipId", {
             get: function () {
                 return this._memShipId
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), t.prototype.start = function (t) {
             var e = (h.OrganizeSceneMemory.pageIndex, h.OrganizeSceneMemory.shipSortKeyType);
             r.default.view.clickGuard = !0, this.dialogBackground.on(s.EventType.CLICK, this._onClickBackground), this.pagerView.onChangePage = this._onChangePage, this.shipChoiceView.onClickLock = this._onClickLock, this.shipChoiceView.onClickItem = this._onClickItem, this.shipChoiceView.onClickDetach = this._onClickDetach, this.shipSortButton.onClick = this._onClickSort, this.shipSortButton.interactive = this.shipSortButton.buttonMode = !0, this.pagerView.position.set(90, 528), this.shipChoiceView.position.set(1200, 138), this.shipSortButton.position.set(592, 41), this.dialogBackground.alpha = 0, this.shipChoiceView.addChild(this.pagerView, this.shipSortButton), this.mainView.addChild(this.dialogBackground, this.shipChoiceView), this.shipSortButton.update(e), this._shipSortKeyType = e, this.detachable = t;
@@ -67,7 +80,11 @@ const function733 = function (t, e, i) {
             var n = this._calcPageCount(this.ships.length),
                 o = this.ships.slice(this._pageIndex * this.ITEM_NUM, this._pageIndex * this.ITEM_NUM + this.ITEM_NUM);
             0 == o.length ? this.pagerView.visible = !1 : (this.pagerView.visible = !0, this.pagerView.init(n), this.pagerView.changePage(this._pageIndex)), this.shipChoiceView.setExistLineUI(o.length), this._updateShips_(o, this.detachable);
-            createjs.Tween.get(this.dialogBackground).to({ alpha: 1 }, 125), createjs.Tween.get(this.shipChoiceView).to({ x: 528 }, 125).call(function () {
+            createjs.Tween.get(this.dialogBackground).to({
+                alpha: 1
+            }, 125), createjs.Tween.get(this.shipChoiceView).to({
+                x: 528
+            }, 125).call(function () {
                 r.default.view.clickGuard = !1
             })
         }, t.prototype._updateShips_ = function (t, e) {
@@ -80,7 +97,11 @@ const function733 = function (t, e, i) {
                 } else this.shipChoiceView.hide(i)
             }
         }, t.prototype.hide = function (t) {
-            createjs.Tween.get(this.dialogBackground).to({ alpha: 1 }, 125), createjs.Tween.get(this.shipChoiceView).to({ x: o.default.width }, 125).call(function () {
+            createjs.Tween.get(this.dialogBackground).to({
+                alpha: 1
+            }, 125), createjs.Tween.get(this.shipChoiceView).to({
+                x: o.default.width
+            }, 125).call(function () {
                 t()
             })
         }, t.prototype.dispose = function () {

@@ -1,6 +1,8 @@
 const function106 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.IMAGE_FILE = {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    }), e.IMAGE_FILE = {
         BG: "bg",
         CRUMB: "crumb_bg",
         TITLE_BG: "title_bg",
@@ -11,5 +13,9 @@ const function106 = function (t, e, i) {
         SAZANAMI: "094",
         INADUMA: "037",
         SAMIDARE: "046"
-    }, e.CHARA_PREFIX = "chara", e.CHARA_SUFFIX = { FULL: "full", BG: "bg", TXT: "txt" }
+    }, e.CHARA_PREFIX = "chara", e.CHARA_SUFFIX = {
+        FULL: "full",
+        BG: "bg",
+        TXT: "txt"
+    }
 }

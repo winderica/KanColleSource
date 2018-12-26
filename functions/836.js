@@ -1,7 +1,10 @@
 const function836 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,14 +13,35 @@ const function836 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(47), a = i(837), _ = i(838), l = i(839), u = i(841), c = i(842), h = i(843),
-        p = i(844), d = i(845), f = i(338), y = i(846), m = i(847), v = i(848), g = i(165), b = i(849), w = i(858),
-        x = i(859), I = i(860), T = i(85), O = i(221), P = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(0),
+        s = i(47),
+        a = i(837),
+        _ = i(838),
+        l = i(839),
+        u = i(841),
+        c = i(842),
+        h = i(843),
+        p = i(844),
+        d = i(845),
+        f = i(338),
+        y = i(846),
+        m = i(847),
+        v = i(848),
+        g = i(165),
+        b = i(849),
+        w = i(858),
+        x = i(859),
+        I = i(860),
+        T = i(85),
+        O = i(221),
+        P = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.nDocks = [], e.listPageIndex = 0, e.shipSortKeyType = 4, e._onClickEmptySlot = function (t) {
@@ -31,7 +55,8 @@ const function836 = function (t, e, i) {
                     var i = t - 1;
                     e.timerState = x.TimerState.UpdateOnly, new m.OpenNewDockAPI(t).start(function () {
                         e.mainView.unLockAnimation(i, function () {
-                            var t = r.default.model.useItem.get(g.RepairConst.OPEN_KEY_ITEMID), i = 0 < t.count;
+                            var t = r.default.model.useItem.get(g.RepairConst.OPEN_KEY_ITEMID),
+                                i = 0 < t.count;
                             e.mainView.updateExtensionState(r.default.model.ndock.getAll(), i), e.timerState = x.TimerState.WaitComplete, r.default.view.clickGuard = !1
                         })
                     })
@@ -46,7 +71,7 @@ const function836 = function (t, e, i) {
                                 if (1 == n.state) {
                                     if (n.completeTime < t) {
                                         r.default.view.clickGuard = !0, e.timerState = x.TimerState.UpdateOnly;
-                                        return void (new f.NDockAPI).start(function () {
+                                        return void(new f.NDockAPI).start(function () {
                                             var t = r.default.model.ndock.getAll();
                                             e.mainView.hideAnimation(t, function () {
                                                 e.updateNDocks(t), e.timerState = x.TimerState.WaitComplete, r.default.view.clickGuard = !1
@@ -58,12 +83,12 @@ const function836 = function (t, e, i) {
                     }
                 }, e._onCompletePhaseRepairShipChoice = function (t, i, n) {
                     switch (e.listPageIndex = i.pageIndex, e.shipSortKeyType = i.shipSortKeyType, n) {
-                        case!1:
+                        case !1:
                             r.default.view.clickGuard = !0, i.hide(function () {
                                 i.dispose(), r.default.view.clickGuard = !1, e.timerState = x.TimerState.WaitComplete
                             });
                             break;
-                        case!0:
+                        case !0:
                             var o = i.memShipId,
                                 s = new u.PhaseRepairShipConfig(e, e.repairShipConfigView, e.repairShipConfigBackground);
                             s.onComplete = function (n) {
@@ -72,12 +97,12 @@ const function836 = function (t, e, i) {
                     }
                 }, e._onCompletePhaseRepairShipConfig = function (t, i, n, o) {
                     switch (o) {
-                        case!1:
+                        case !1:
                             r.default.view.clickGuard = !0, n.hide(function () {
                                 n.dispose(), r.default.view.clickGuard = !1
                             });
                             break;
-                        case!0:
+                        case !0:
                             var s = new a.PhaseRepairConfirm(r.default.view.overLayer, e.useRepairConfirmView, e.repairConfirmBackground);
                             s.onComplete = function (o) {
                                 e._onCompletePhaseRepairConfirm(t, i, n, s, o)
@@ -85,18 +110,23 @@ const function836 = function (t, e, i) {
                     }
                 }, e._onCompletePhaseRepairConfirm = function (t, i, n, o, s) {
                     switch (s) {
-                        case!1:
+                        case !1:
                             r.default.view.clickGuard = !0, o.hide(function () {
                                 o.dispose(), r.default.view.clickGuard = !1
                             });
                             break;
-                        case!0:
-                            var a = i.memShipId, _ = n.useHiSpeed, l = t - 1, u = r.default.model.ship.get(a), c = {
-                                hpNow: u.hpNow,
-                                hpMax: u.hpMax,
-                                damaged: u.isDamaged(),
-                                completeTime: u.getRepairTime()
-                            }, h = new y.StartAPI(t, i.memShipId, _);
+                        case !0:
+                            var a = i.memShipId,
+                                _ = n.useHiSpeed,
+                                l = t - 1,
+                                u = r.default.model.ship.get(a),
+                                c = {
+                                    hpNow: u.hpNow,
+                                    hpMax: u.hpMax,
+                                    damaged: u.isDamaged(),
+                                    completeTime: u.getRepairTime()
+                                },
+                                h = new y.StartAPI(t, i.memShipId, _);
                             e.mainView.stopAnimation(l), h.start(function () {
                                 var s = (r.default.model.useItem.get(31), r.default.model.useItem.get(33), r.default.model.useItem.get(1)),
                                     a = new f.NDockAPI;
@@ -113,7 +143,8 @@ const function836 = function (t, e, i) {
                                         _ ? e.mainView.highSpeedAnimation(l, function () {
                                             e.mainView.updateViewState(l, i.state), e.timerState = x.TimerState.WaitComplete
                                         }) : (1 == i.state && e.mainView.playAnimation(l), e.timerState = x.TimerState.WaitComplete);
-                                        var n = u.mstID, s = c.hpNow / c.hpMax > .5 ? 11 : 12;
+                                        var n = u.mstID,
+                                            s = c.hpNow / c.hpMax > .5 ? 11 : 12;
                                         r.default.sound.voice.play(n.toString(), s)
                                     })
                                 })
@@ -129,17 +160,19 @@ const function836 = function (t, e, i) {
                     }, n.start(t)
                 }, e._onCompletePhaseHiSpeedRepairConfirm = function (t, i, n) {
                     switch (n) {
-                        case!1:
+                        case !1:
                             i.hide(function () {
                                 i.dispose(), e.timerState = x.TimerState.WaitComplete
                             });
                             break;
-                        case!0:
+                        case !0:
                             r.default.view.clickGuard = !0;
-                            var o = t - 1, s = r.default.model.ndock.get(t).shipMemID;
+                            var o = t - 1,
+                                s = r.default.model.ndock.get(t).shipMemID;
                             new v.SpeedChangeAPI(t).start(function () {
                                 var n = (r.default.model.ndock.get(t), r.default.model.ndock.getAll()),
-                                    a = r.default.model.useItem.get(1), _ = 0 < a.count;
+                                    a = r.default.model.useItem.get(1),
+                                    _ = 0 < a.count;
                                 r.default.view.portMain.updateInfo();
                                 for (var l = 0; l < n.length; l++) {
                                     1 == n[l].state && e.mainView.updateHighSpeedButton(l, _)
@@ -156,13 +189,16 @@ const function836 = function (t, e, i) {
                     }
                 }, e
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 for (var t = 0; t < this.nDocks.length; t++) this.nDocks[t] = null;
                 this.mainView.dispose(), this.__stopNDockTimer__(), this.repairShipChoiceView.dispose(), this.repairShipConfigView.dispose(), this.useRepairConfirmView.dispose(), this.useHiSpeedRepairConfirmView.dispose(), this.pagerView.dispose(), this.repairShipConfigBackground.clear(), this.repairShipChoiceBackground.clear(), this.nDocks = null, this.mainView = null, this.timerState = null, this.listPageIndex = null, this.shipSortKeyType = null, this.nDockTimer = null, this.repairShipChoiceView = null, this.repairShipConfigView = null, this.useRepairConfirmView = null, this.useHiSpeedRepairConfirmView = null, this.repairShipConfigBackground = null, this.repairShipChoiceBackground = null, this.removeChildren()
             }, e.prototype.start = function (t) {
-                var e = new p.RepairShipChoiceView, i = new d.RepairShipConfigView, n = new c.UseRepairConfirmView,
-                    r = new h.UseHiSpeedRepairConfirmView, s = new O.ShipSortButton, a = new T.PagerView,
+                var e = new p.RepairShipChoiceView,
+                    i = new d.RepairShipConfigView,
+                    n = new c.UseRepairConfirmView,
+                    r = new h.UseHiSpeedRepairConfirmView,
+                    s = new O.ShipSortButton,
+                    a = new T.PagerView,
                     _ = new PIXI.Graphics;
                 _.beginFill(0, .3), _.drawRect(0, 103, o.default.width, o.default.height - 103), _.endFill();
                 var l = new PIXI.Graphics;
@@ -179,7 +215,8 @@ const function836 = function (t, e, i) {
                     }
                     this.mainView.updateViewState(n, o.state)
                 }
-                var a = r.default.model.useItem.get(g.RepairConst.OPEN_KEY_ITEMID), _ = 0 < a.count;
+                var a = r.default.model.useItem.get(g.RepairConst.OPEN_KEY_ITEMID),
+                    _ = 0 < a.count;
                 this.mainView.updateExtensionState(t, _), this.nDocks = t
             }, e.prototype.stopNDockTimer = function () {
                 this.__stopNDockTimer__()

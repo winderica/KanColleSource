@@ -1,7 +1,10 @@
 const function626 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,11 +13,12 @@ const function626 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var o = function (t) {
         function e(e, i, n, o, r) {
             void 0 === r && (r = 1);
@@ -24,15 +28,32 @@ const function626 = function (t, e, i) {
                     type: "1f",
                     value: e
                 },
-                y: { type: "1f", value: i },
-                r: { type: "1f", value: s },
-                width: { type: "1f", value: n },
-                height: { type: "1f", value: o },
-                rate: { type: "1f", value: 1 },
-                grad: { type: "1f", value: .5 }
+                y: {
+                    type: "1f",
+                    value: i
+                },
+                r: {
+                    type: "1f",
+                    value: s
+                },
+                width: {
+                    type: "1f",
+                    value: n
+                },
+                height: {
+                    type: "1f",
+                    value: o
+                },
+                rate: {
+                    type: "1f",
+                    value: 1
+                },
+                grad: {
+                    type: "1f",
+                    value: .5
+                }
             }) || this
         }
-
         return n(e, t), e
     }(PIXI.Filter);
     e.MeltIntoUseitemFilter = o

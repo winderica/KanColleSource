@@ -1,7 +1,9 @@
 const function258 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    ! function (t) {
         function e(e) {
             return e && t.hasItem(e) ? decodeURI(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + encodeURI(e).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1")) : null
         }
@@ -26,7 +28,6 @@ const function258 = function (t, e, i) {
         function n(t) {
             return new RegExp("(?:^|;\\s*)" + encodeURI(t).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=").test(document.cookie)
         }
-
         t.getItem = e, t.setItem = i, t.hasItem = n
     }(e.CookieUtil || (e.CookieUtil = {}))
 }

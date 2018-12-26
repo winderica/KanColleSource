@@ -1,7 +1,10 @@
 const function34 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,24 +13,36 @@ const function34 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(148), s = i(282), a = i(590), _ = i(196), l = i(149), u = i(592), c = i(593), h = i(70),
-        p = i(37), d = i(9), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(148),
+        s = i(282),
+        a = i(590),
+        _ = i(196),
+        l = i(149),
+        u = i(592),
+        c = i(593),
+        h = i(70),
+        p = i(37),
+        d = i(9),
+        f = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._image = new PIXI.Sprite, e.addChild(e._image), e._state = new r.BannerIcon, e.addChild(e._state), e._burned = new l.BannerSoot, e.addChild(e._burned), e._smoke = new _.BannerSmoke, e.addChild(e._smoke), e._tired = new u.BannerTired, e.addChild(e._tired), e._plate = new a.BannerPlate, e._plate.position.set(47, 3), e.addChild(e._plate), e._kira = new s.BannerKirakira, e.addChild(e._kira), e._ring = new h.RingSmall, e.addChild(e._ring), e._lockSlot = new c.BannerLockSlot, e._lockSlot.visible = !1, e.addChild(e._lockSlot), e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this._smoke.dispose(), this._tired.dispose(), this._kira.dispose(), this._ring.dispose(), this._lockSlot.dispose(), this._image = null, this._state = null, this._burned = null, this._smoke = null, this._tired = null, this._plate = null, this._kira = null, this._ring = null, this._lockSlot = null
             }, e.prototype.update = function (t, e) {
-                var i = t.mstID, n = t.isDamaged();
+                var i = t.mstID,
+                    n = t.isDamaged();
                 this.updateImage(i, n);
-                var o = t.isRepair(), r = t.getDamageType();
+                var o = t.isRepair(),
+                    r = t.getDamageType();
                 this.updateIcon(e, o, r), this.updateTired(t.tired), this.updateRing(t.isMarriage())
             }, e.prototype.updateImage = function (t, e) {
                 p.TaskLoadShipResource.abortBy(this._image), 1 == o.default.resources.isLoadedShip(t, e, "banner") ? this._image.texture = o.default.resources.getShip(t, e, "banner") : (this._image.texture = d.COMMON_MISC.getTexture(2), new p.TaskLoadShipResource("banner", this._image, t, e).start())

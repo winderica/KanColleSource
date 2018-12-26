@@ -1,9 +1,11 @@
 const function88 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = i(0);
     i(3);
-    !function (t) {
+    ! function (t) {
         function e(t, e, i, o, r, s) {
             return !(n.default.model.useItem.get(31).count < t) && (!(n.default.model.useItem.get(32).count < e) && (!(n.default.model.useItem.get(33).count < i) && (!(n.default.model.useItem.get(34).count < o) && (!(n.default.model.useItem.get(3).count < r) && !(n.default.model.useItem.get(2).count < s)))))
         }
@@ -76,7 +78,6 @@ const function88 = function (t, e, i) {
             }
             throw new Error("unsupported param:" + t)
         }
-
         t.BuildValidation = e, t.DevelopValidation = i, t.ShipDisassemblyValidation = o, t.getWhiteNumberResourceId = r, t.getRedNumberResourceId = s
     }(e.Util || (e.Util = {}))
 }

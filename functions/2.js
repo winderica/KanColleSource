@@ -1,10 +1,10 @@
 const function2 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = function () {
-        function t() {
-        }
-
+        function t() {}
         return t.prototype.start = function (t, e) {
             this._cb = t, this._cb_failed = e, this._start()
         }, t.prototype._endTask = function (t) {

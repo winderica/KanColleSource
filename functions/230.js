@@ -1,7 +1,10 @@
 const function230 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,24 @@ const function230 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(55), s = i(68), a = i(231), _ = i(204), l = i(53), u = i(989), c = i(990), h = i(991),
-        p = i(369), d = i(1), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(55),
+        s = i(68),
+        a = i(231),
+        _ = i(204),
+        l = i(53),
+        u = i(989),
+        c = i(990),
+        h = i(991),
+        p = i(369),
+        d = i(1),
+        f = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
                 return s._mst_id = 0, s._enabled = !1, s._onMouseOver = function () {
@@ -25,22 +39,26 @@ const function230 = function (t, e, i) {
                     s._update(!1), null != s._cb_onMouseOut && s._cb_onMouseOut(s._mst_id)
                 }, s._onClick = function (t) {
                     if (null != s._cb_onClick) {
-                        var e = t.data.global, i = new PIXI.Point(e.x, e.y);
+                        var e = t.data.global,
+                            i = new PIXI.Point(e.x, e.y);
                         s._cb_onClick(s._mst_id, i)
                     }
                 }, s._onClickAirUnitBadge = function () {
                     null != s._cb_onClickAirUnitBadge && s._cb_onClickAirUnitBadge()
                 }, s._type = e, s._cb_onClick = i, s._cb_onClickAirUnitBadge = n, s._cb_onMouseOver = o, s._cb_onMouseOut = r, s._image = new _.MapThumbnailImage, s._clear = new c.ClearBadge, s._focus = new PIXI.Sprite, s._focus.visible = !1, s._lock = s._createLock(), s._gauge = new a.GaugeHorizontal, s._airUnitBanner = new h.AirUnitBadge(s._onClickAirUnitBadge), s._setPositions(), s.interactive = !0, s
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
                 get: function () {
                     return this._mst_id
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function (t) {
-                if (this._focus.visible = !1, this._airUnitBanner.visible = !1, null == t) this._enabled = !1, this._mst_id = 0, this._image.setTexture(this._getNoneTexture()), this._lock.initialize(1), this._lock.visible = !0; else {
+                if (this._focus.visible = !1, this._airUnitBanner.visible = !1, null == t) this._enabled = !1, this._mst_id = 0, this._image.setTexture(this._getNoneTexture()), this._lock.initialize(1), this._lock.visible = !0;
+                else {
                     this._mst_id = t.mst_id;
-                    var e = r.MapUtil.toAreaID(this._mst_id), i = r.MapUtil.toMapNo(this._mst_id);
+                    var e = r.MapUtil.toAreaID(this._mst_id),
+                        i = r.MapUtil.toMapNo(this._mst_id);
                     if (this._image.setImage(e, i), 1 == t.isOpened()) {
                         if (this._enabled = !0, this._focus.texture = this._getFocusTexture(), this._lock.visible = !1, t.availableAirUnitCount > 0) {
                             var n = u.getType(this._mst_id);
@@ -55,15 +73,21 @@ const function230 = function (t, e, i) {
                 this._airUnitBanner.enabled = t
             }, e.prototype.updateGauge = function (t) {
                 if (null != t && (0 != t.defeat_required || 0 != t.gauge_max) && 0 != t.isOpened()) {
-                    var e = t.area_id, i = t.map_no, n = t.getGaugeNum(), r = s.GaugeSetModel.createKey(e, i, n),
+                    var e = t.area_id,
+                        i = t.map_no,
+                        n = t.getGaugeNum(),
+                        r = s.GaugeSetModel.createKey(e, i, n),
                         a = o.default.resources.gauge.getGaugeInfo(r);
-                    if (null != a) if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {
-                        var _ = t.defeat_required, l = _ - t.defeat_count;
-                        this._gauge.update(l, _)
-                    } else {
-                        var l = t.gauge_now, _ = t.gauge_max;
-                        this._gauge.update(l, _)
-                    }
+                    if (null != a)
+                        if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {
+                            var _ = t.defeat_required,
+                                l = _ - t.defeat_count;
+                            this._gauge.update(l, _)
+                        } else {
+                            var l = t.gauge_now,
+                                _ = t.gauge_max;
+                            this._gauge.update(l, _)
+                        }
                 }
             }, e.prototype._initClearBadge = function (t) {
                 if (null == t || 0 == t.isOpened() || 0 == t.isCleared()) return void this._clear.hide();

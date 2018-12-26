@@ -1,7 +1,10 @@
 const function324 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,20 +13,28 @@ const function324 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o, r = i(0), s = i(3), a = i(4);
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o, r = i(0),
+        s = i(3),
+        a = i(4);
+    ! function (t) {
         t[t.Top = 0] = "Top", t[t.Bottom = 1] = "Bottom"
     }(o = e.Direction || (e.Direction = {}));
     var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
             e.balloon = new PIXI.Sprite, e.shipInfos = new Array;
-            var i = new l, n = new l, o = new l, r = new l, a = new l, _ = new l;
+            var i = new l,
+                n = new l,
+                o = new l,
+                r = new l,
+                a = new l,
+                _ = new l;
             e.container = new PIXI.Container, i.position.set(0, 0), n.position.set(190, 0), o.position.set(0, 43), r.position.set(190, 43), a.position.set(0, 85), _.position.set(190, 85);
             var u = s.ORGANIZE_MAIN.getTexture(34);
             e.balloon.texture = u, e.shipInfos.push(i, n, o, r, a, _);
@@ -33,7 +44,6 @@ const function324 = function (t, e, i) {
             }
             return e.addChild(e.balloon, e.container), e
         }
-
         return n(e, t), e.prototype.dispose = function () {
             for (var t = 0; t < this.shipInfos.length; t++) this.shipInfos[t].dispose(), this.shipInfos[t] = null;
             this.shipInfos = null, this.balloon = null, this.container = null, this.removeChildren()
@@ -41,8 +51,10 @@ const function324 = function (t, e, i) {
             for (var n = i.getShipCount(), a = 0; a < 6; a++) {
                 var _ = this.shipInfos[a];
                 if (a < n) {
-                    if (i.isLostShip(a)) _.updateLost(); else {
-                        var l = i.ships[a], u = r.default.model.ship.getMst(l.mstID).getClassType(),
+                    if (i.isLostShip(a)) _.updateLost();
+                    else {
+                        var l = i.ships[a],
+                            u = r.default.model.ship.getMst(l.mstID).getClassType(),
                             c = 0 == i.isOtherDeckShip(a, t);
                         _.update(l.name, u, l.shipTypeID, c)
                     }
@@ -70,15 +82,17 @@ const function324 = function (t, e, i) {
     e.PresetPreviewBalloon = _;
     var l = function (t) {
         function e() {
-            var e = t.call(this) || this, i = r.default.resources.getUIImage("mask"), n = new PIXI.Sprite(i);
+            var e = t.call(this) || this,
+                i = r.default.resources.getUIImage("mask"),
+                n = new PIXI.Sprite(i);
             return e.shipShadow = new PIXI.Sprite, e.containerName = new PIXI.Container, e.textName = new a.TextBox(18, 5523516), e.shipShadow.position.set(0, 10), e.containerName.position.set(69, 10), n.anchor.set(1, 0), n.scale.x = -1, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.addChild(e.shipShadow, e.containerName), e
         }
-
         return n(e, t), e.prototype.dispose = function () {
             this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.textName.destroy(), this.containerName = null, this.textName = null, this.shipShadow = null
         }, e.prototype.update = function (t, e, i, n) {
             this.containerName.cacheAsBitmap = !1, this.textName.text = t;
-            var o = this.getShadowTextureName(e, i), r = s.ORGANIZE_SHIP.getTexture(o);
+            var o = this.getShadowTextureName(e, i),
+                r = s.ORGANIZE_SHIP.getTexture(o);
             this.shipShadow.texture = r, this.shipShadow.alpha = 1, this.textName.alpha = 1, this.shipShadow.position.set(0, 10), this.shipShadow.alpha = .5, this.textName.alpha = .5, n && (this.shipShadow.alpha = 1, this.textName.alpha = 1), this.containerName.cacheAsBitmap = !0
         }, e.prototype.updateLost = function () {
             this.containerName.cacheAsBitmap = !1, this.textName.text = "\u9664\u7c4d\u8266", this.shipShadow.position.set(8, 8);

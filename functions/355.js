@@ -8,6 +8,7 @@ const function355 = function (t, e, i) {
     function o(t) {
         return [9, 10, 41, 49, 59, 94].indexOf(t) >= 0 ? 4 : 18
     }
-
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.getEquipTypes = n, e.getKadouCount = o
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    }), e.getEquipTypes = n, e.getKadouCount = o
 }

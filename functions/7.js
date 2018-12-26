@@ -1,7 +1,9 @@
 const function7 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    !function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    ! function (t) {
         function e(e, i, n) {
             return void 0 === n && (n = 0), t._getProp(e, i, n)
         }
@@ -47,7 +49,6 @@ const function7 = function (t, e, i) {
             }
             return i
         }
-
         t.getNumber = e, t.getString = i, t.getObjectArray = n, t.getNumArray = o, t.getStrArray = r, t.getObject = s, t.getBoolean = a, t._getProp = _
     }(e.ObjUtil || (e.ObjUtil = {}))
 }

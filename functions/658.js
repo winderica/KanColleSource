@@ -1,7 +1,10 @@
 const function658 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,14 +13,34 @@ const function658 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(6), s = i(17), a = i(47), _ = i(31), l = i(69), u = i(659), c = i(676), h = i(710),
-        p = i(711), d = i(718), f = i(214), y = i(722), m = i(723), v = i(724), g = i(729), b = i(731), w = i(732),
-        x = i(739), I = i(740), T = i(8), O = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(6),
+        s = i(17),
+        a = i(47),
+        _ = i(31),
+        l = i(69),
+        u = i(659),
+        c = i(676),
+        h = i(710),
+        p = i(711),
+        d = i(718),
+        f = i(214),
+        y = i(722),
+        m = i(723),
+        v = i(724),
+        g = i(729),
+        b = i(731),
+        w = i(732),
+        x = i(739),
+        I = i(740),
+        T = i(8),
+        O = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
                 return e.currentViewMode = null, e._onClickBreakDeck = function () {
@@ -36,9 +59,11 @@ const function658 = function (t, e, i) {
                     t ? (e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1) : (e.presetButtonLayer.show(), e.deckLayer.EditNameArea.writable = !0)
                 }, e._onDrop = function (t, i, n) {
                     if (t != i) {
-                        var s = o.default.model.deck.get(e.deckLayer.deckID), a = s.getCount();
+                        var s = o.default.model.deck.get(e.deckLayer.deckID),
+                            a = s.getCount();
                         if (1 != a || 1 != s.mstID) {
-                            var u = t + e.deckLayer.shipInDeckOrigin, c = i + e.deckLayer.shipInDeckOrigin;
+                            var u = t + e.deckLayer.shipInDeckOrigin,
+                                c = i + e.deckLayer.shipInDeckOrigin;
                             if (!(u == a - 1 && i >= t)) {
                                 var h = new _.APIConnector;
                                 if (10 == o.default.model.basic.getTutorialProgress() && h.add(new l.UpdateTutorialAPI(20)), -1 == i) return h.add(new f.ChangeAPI(!0, s.mstID, u, -1)), void e._removeShip(h, t);
@@ -60,12 +85,13 @@ const function658 = function (t, e, i) {
                     var n = new T.AreaBox(0);
                     o.default.view.overLayer.addChild(n), t.start(function () {
                         var t = function () {
-                            return e.deckLayer.update()
-                        }, r = function () {
-                            s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.overLayer.removeChild(n)
-                            }) : o.default.view.overLayer.removeChild(n)
-                        };
+                                return e.deckLayer.update()
+                            },
+                            r = function () {
+                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
+                                    o.default.view.overLayer.removeChild(n)
+                                }) : o.default.view.overLayer.removeChild(n)
+                            };
                         e.deckLayer.ShipSlotLayer.shutterAnimation(i, t, r)
                     })
                 }, e._onClickDeckFlag = function (t) {
@@ -81,10 +107,13 @@ const function658 = function (t, e, i) {
                     }
                 }, e._onClickShipChange = function (t, i) {
                     e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1;
-                    var n = o.default.model.deck.get(e.deckLayer.deckID), a = (n.getShipModel(i), n.getCount());
+                    var n = o.default.model.deck.get(e.deckLayer.deckID),
+                        a = (n.getShipModel(i), n.getCount());
                     e.taskChangeShip = new w.TaskChangeShip(e), e.taskChangeShip.onUpdateDeck = function () {
                         o.default.view.clickGuard = !0;
-                        var n = o.default.model.deck.get(e.deckLayer.deckID), _ = n.getShipModel(i), l = n.getCount(),
+                        var n = o.default.model.deck.get(e.deckLayer.deckID),
+                            _ = n.getShipModel(i),
+                            l = n.getCount(),
                             u = e.deckLayer.ShipSlotLayer.ShipSlots[t];
                         l < a ? u.closeAnimation(function () {
                             e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
@@ -139,12 +168,11 @@ const function658 = function (t, e, i) {
                             i[a + e.deckLayer.shipInDeckOrigin] && n.push(a)
                         }
                         s.COMBINABLE && o.default.model.deck.isCombined(), r.SE.play("235"), e.presetExpansionLayer.hide(), e.presetList.getPresetDeckData(t).__deleteLostShips__(), e._changeMode(0), e.deckLayer.update();
-                        for (var _ = function () {
-                        }, l = function () {
-                            s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        }, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
+                        for (var _ = function () {}, l = function () {
+                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
+                                    o.default.view.clickGuard = !1
+                                }) : o.default.view.clickGuard = !1
+                            }, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
                             var u = e.deckLayer.ShipSlotLayer.ShipSlots[a];
                             u.close()
                         }
@@ -160,7 +188,6 @@ const function658 = function (t, e, i) {
                     })
                 }, e
             }
-
             return n(e, t), e.prototype.getPreInitializeTask = function (t) {
                 return new v.PreInitializeTask(this)
             }, e.prototype.getInitializeTask = function (t) {
@@ -189,7 +216,8 @@ const function658 = function (t, e, i) {
                 }
                 this.currentViewMode = t
             }, e.prototype._asyncCheckCombineStateAndRepair = function (t) {
-                var e = this, i = new x.TaskCheckCombineStateAndRepair(o.default.view.overLayer);
+                var e = this,
+                    i = new x.TaskCheckCombineStateAndRepair(o.default.view.overLayer);
                 i.onBroken = function () {
                     e.deckLayer.update()
                 }, i.onComplete = function () {

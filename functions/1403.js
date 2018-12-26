@@ -1,7 +1,10 @@
 const function1403 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,18 +13,32 @@ const function1403 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(76), r = i(92), s = i(119), a = i(93), _ = i(94), l = i(95), u = i(64), c = i(96), h = i(97),
-        p = i(77), d = i(98), f = i(102), y = i(99), m = i(100), v = i(101), g = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(76),
+        r = i(92),
+        s = i(119),
+        a = i(93),
+        _ = i(94),
+        l = i(95),
+        u = i(64),
+        c = i(96),
+        h = i(97),
+        p = i(77),
+        d = i(98),
+        f = i(102),
+        y = i(99),
+        m = i(100),
+        v = i(101),
+        g = function (t) {
             function e(e, i, n) {
                 var o = t.call(this, e, n) || this;
                 return o._record = i, o
             }
-
             return n(e, t), e.prototype._start = function () {
                 this._sakuteki()
             }, e.prototype._sakuteki = function () {

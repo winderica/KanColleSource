@@ -1,7 +1,10 @@
 const function1094 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,14 +13,31 @@ const function1094 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(47), s = i(202), a = i(9), _ = i(392), l = i(393), u = i(394), c = i(235), h = i(1095),
-        p = i(1096), d = i(1097), f = i(1098), y = i(1099), m = i(396), v = i(398), g = i(1102), b = i(1145),
-        w = i(1154), x = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(47),
+        s = i(202),
+        a = i(9),
+        _ = i(392),
+        l = i(393),
+        u = i(394),
+        c = i(235),
+        h = i(1095),
+        p = i(1096),
+        d = i(1097),
+        f = i(1098),
+        y = i(1099),
+        m = i(396),
+        v = i(398),
+        g = i(1102),
+        b = i(1145),
+        w = i(1154),
+        x = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._initialize = function (t) {
@@ -38,7 +58,6 @@ const function1094 = function (t, e, i) {
                     o.default.scene.change(0)
                 }, e._purchasedItems = new h.PurchasedItemModelHolder, e._bg = new PIXI.Container, e.addChild(e._bg), e._tabs = new m.TabContainer(e._onChangeSceneState), e.addChild(e._tabs), e._mini_chara = new v.MiniChara, e._mini_chara.position.set(-16, 444), e.addChild(e._mini_chara), e._back_btn = new s.BackBtn, e._back_btn.position.set(0, 653), e.addChild(e._back_btn), e
             }
-
             return n(e, t), e.prototype.getPreInitializeTask = function (t, e) {
                 return new p.TaskItemScenePreInitialize(this._purchasedItems, e, this._initialize)
             }, e.prototype.getInitializeTask = function (t) {

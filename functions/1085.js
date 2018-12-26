@@ -1,7 +1,10 @@
 const function1085 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,23 +13,26 @@ const function1085 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var o = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._progress = 0, e
         }
-
         return n(e, t), Object.defineProperty(e.prototype, "progress", {
             get: function () {
                 return this._progress
-            }, set: function (t) {
+            },
+            set: function (t) {
                 this._progress = t, this._draw(this._progress)
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), e.prototype.update = function (t) {
             if (this._model = t, null == t) return void this._clear();
             this._startAnimation()
@@ -36,7 +42,9 @@ const function1085 = function (t, e, i) {
             this._stopAnimation(), this.clear()
         }, e.prototype._startAnimation = function () {
             var t = this;
-            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({ progress: 1 }, 1e3).call(function () {
+            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
+                progress: 1
+            }, 1e3).call(function () {
                 t._t = null, t._progress = 0
             })
         }, e.prototype._stopAnimation = function () {
@@ -60,7 +68,6 @@ const function1085 = function (t, e, i) {
         function t() {
             this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
         }
-
         return t
     }();
     e.RaderGraphModel = r

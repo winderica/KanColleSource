@@ -1,7 +1,10 @@
 const function939 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,24 @@ const function939 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(142), a = i(8), _ = i(4), l = i(26), u = i(349), c = i(350), h = i(351),
-        p = i(947), d = i(353), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(1),
+        s = i(142),
+        a = i(8),
+        _ = i(4),
+        l = i(26),
+        u = i(349),
+        c = i(350),
+        h = i(351),
+        p = i(947),
+        d = i(353),
+        f = function (t) {
             function e(e, i, n) {
                 var r = t.call(this) || this;
                 r._selected_airunit_id = 0, r._onClick = function (t) {
@@ -44,11 +58,12 @@ const function939 = function (t, e, i) {
                 }
                 return r._supply_btn = new h.AirUnitPanelSupplyAllBtn(r._onSupplyAll), r._supply_btn.position.set(287, 146), r.addChild(r._supply_btn), r.interactive = !0, r
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
                 get: function () {
                     return this._selected_airunit_id
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function (t, e) {
                 this._area_id = t, this._models = e, this._tabs.initialize(this._models.length), this._base.texture = l.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
                 for (var i = 0; i < this._items.length; i++) {
@@ -79,7 +94,8 @@ const function939 = function (t, e, i) {
                 for (var t = 0, e = this._items; t < e.length; t++) {
                     e[t].activate()
                 }
-                var i = new PIXI.Point(this._name.x, this._name.y), n = this.toGlobal(i);
+                var i = new PIXI.Point(this._name.x, this._name.y),
+                    n = this.toGlobal(i);
                 s.EditTextBoxUtil.init(n.x - 2, n.y - 4, 300, 16, 0), s.EditTextBoxUtil.text = this._name.text, s.EditTextBoxUtil.setVisibility(!0), s.EditTextBoxUtil.onLengthCheck(12), this._name.visible = !1
             }, e.prototype.deactivate = function () {
                 this._tabs.deactivate(), this._tag.deactivate();
@@ -116,7 +132,8 @@ const function939 = function (t, e, i) {
                 s._removeListeners(), null != s._cb_onDrop && s._cb_onDrop(-1, -1), s._dispose()
             }, s._onMouseMove = function (t) {
                 if (null == s._drag) {
-                    var e = s._items[s._index], i = t.data.getLocalPosition(e);
+                    var e = s._items[s._index],
+                        i = t.data.getLocalPosition(e);
                     if (0 == e.isNoneData() && 0 == e.isRelocation() && 0 == e.contains(i.x, i.y)) {
                         for (var n = 0, r = s._items; n < r.length; n++) {
                             r[n].alpha = .5
@@ -135,20 +152,21 @@ const function939 = function (t, e, i) {
                 } else {
                     s._drag.x = t.data.global.x, s._drag.y = t.data.global.y;
                     for (var u = 0; u < s._items.length; u++) {
-                        var e = s._items[u], i = t.data.getLocalPosition(e);
+                        var e = s._items[u],
+                            i = t.data.getLocalPosition(e);
                         1 == e.contains(i.x, i.y) ? e.alpha = 1 : e.alpha = .5
                     }
                 }
             }, s._onMouseUp = function (t) {
                 s._removeListeners();
                 for (var e = 0; e < s._items.length; e++) {
-                    var i = s._items[e], n = t.data.getLocalPosition(i);
+                    var i = s._items[e],
+                        n = t.data.getLocalPosition(i);
                     if (1 == i.contains(n.x, n.y)) return s._index == e ? null == s._drag ? null != s._cb_onDrop && s._cb_onDrop(s._index, s._index) : null != s._cb_onDrop && s._cb_onDrop(-1, -1) : null == s._drag ? null != s._cb_onDrop && s._cb_onDrop(-1, -1) : null != s._cb_onDrop && s._cb_onDrop(s._index, e), void s._dispose()
                 }
                 null != s._drag && null != s._cb_onDrop && s._cb_onDrop(s._index, -1), s._dispose()
             }, s._cb_onDrop = n, s.buttonMode = !0, s._index = e, s._items = i, s.on(r.EventType.MOUSEOUT, s._onMouseOut), s.on(r.EventType.MOUSEMOVE, s._onMouseMove), s.on(r.EventType.MOUSEUP, s._onMouseUp), s
         }
-
         return n(e, t), e.prototype._dispose = function () {
             for (var t = 0; t < this._items.length; t++) {
                 this._items[t].alpha = 1

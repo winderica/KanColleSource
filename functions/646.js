@@ -1,7 +1,10 @@
 const function646 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,21 +13,37 @@ const function646 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(267), r = i(268), s = i(31), a = i(152), _ = i(209), l = i(125), u = i(106), c = i(647), h = i(648),
-        p = i(649), d = i(650), f = i(651), y = i(652), m = i(653), v = i(655), g = i(657), b = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(267),
+        r = i(268),
+        s = i(31),
+        a = i(152),
+        _ = i(209),
+        l = i(125),
+        u = i(106),
+        c = i(647),
+        h = i(648),
+        p = i(649),
+        d = i(650),
+        f = i(651),
+        y = i(652),
+        m = i(653),
+        v = i(655),
+        g = i(657),
+        b = function (t) {
             function e(e) {
                 void 0 === e && (e = 0);
                 var i = t.call(this) || this;
                 return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
                     switch (i._isStart) {
-                        case!0:
+                        case !0:
                             return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
-                        case!1:
+                        case !1:
                             return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
                     }
                 }, i._onNextScene = function () {
@@ -38,7 +57,6 @@ const function646 = function (t, e, i) {
                     i._shipId = t
                 }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
             }
-
             return n(e, t), e.prototype.start = function () {
                 this._ViewMain.start(), this._CurrentScene.start()
             }, e.prototype._create = function () {
@@ -64,9 +82,12 @@ const function646 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 var t = this;
                 this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
-                var e = new s.APIConnector, i = parseInt(this._shipId, 10);
+                var e = new s.APIConnector,
+                    i = parseInt(this._shipId, 10);
                 e.add(new g.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
-                    t._loader.hide(), createjs.Tween.get(t).to({ alpha: 0 }, 400, createjs.Ease.linear).call(function () {
+                    t._loader.hide(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 400, createjs.Ease.linear).call(function () {
                         t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
                     })
                 })

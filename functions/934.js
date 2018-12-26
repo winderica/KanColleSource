@@ -1,7 +1,10 @@
 const function934 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,29 +13,54 @@ const function934 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(1), a = i(2), _ = i(31), l = i(8), u = i(18), c = i(6), h = i(935), p = i(936),
-        d = i(937), f = i(938), y = i(939), m = i(354), v = i(956), g = i(958), b = i(960), w = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(2),
+        _ = i(31),
+        l = i(8),
+        u = i(18),
+        c = i(6),
+        h = i(935),
+        p = i(936),
+        d = i(937),
+        f = i(938),
+        y = i(939),
+        m = i(354),
+        v = i(956),
+        g = i(958),
+        b = i(960),
+        w = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._clickGuard = null, n._onCancel = function (t) {
-                    if (null == n._t) if (null != n._list) n._closeList(); else if (null != n._supply) n._closeSupply(); else {
-                        var e = t.data.global, i = n._panel.getBounds();
+                    if (null == n._t)
+                        if (null != n._list) n._closeList();
+                        else if (null != n._supply) n._closeSupply();
+                    else {
+                        var e = t.data.global,
+                            i = n._panel.getBounds();
                         if (1 == i.contains(e.x, e.y)) return;
                         n._cancel_area.buttonMode = !1, n._cancel_area.off(s.EventType.CLICK, n._onCancel), n._closePanel()
                     }
                 }, n._onDrop = function (t, e, i) {
                     if (-1 == i) {
-                        var o = n._area_id, s = new h.AirUnitEditAPI(o, t, e, -1);
+                        var o = n._area_id,
+                            s = new h.AirUnitEditAPI(o, t, e, -1);
                         s.start(function () {
                             n._panel.update(t, !0)
                         })
-                    } else if (e == i) n._openList(t, e); else {
-                        var o = n._area_id, a = r.default.model.airunit.getAirUnit(o, t), _ = a.squadrons[e],
+                    } else if (e == i) n._openList(t, e);
+                    else {
+                        var o = n._area_id,
+                            a = r.default.model.airunit.getAirUnit(o, t),
+                            _ = a.squadrons[e],
                             l = a.squadrons[i];
                         if (null != l && 2 == l.state) return;
                         var s = new h.AirUnitEditAPI(o, t, i, _.mem_id);
@@ -42,7 +70,9 @@ const function934 = function (t, e, i) {
                     }
                 }, n._onSelectListItem = function (t) {
                     if (null == n._task_comfirm) {
-                        var e = n._area_id, i = n._selected_airunit_id, o = n._selected_index;
+                        var e = n._area_id,
+                            i = n._selected_airunit_id,
+                            o = n._selected_index;
                         n._task_comfirm = new g.TaskShowAirUnitChangeConfirm(n._layer, e, i, o, t), n._task_comfirm.start(function () {
                             if (null != n._task_comfirm && 1 == n._task_comfirm.result) {
                                 n._closeList();
@@ -78,7 +108,6 @@ const function934 = function (t, e, i) {
                     n._currentCategory = t
                 }, n._layer = e, n._area_id = i, n._currentCategory = 0, n
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 var t = this;
                 if (null != this._t && (this._t.setPaused(!0), this._t = null), null != this._task_comfirm && (this._task_comfirm.cancel(), this._task_comfirm = null), null != this._supply && (this._supply.deactivate(), this._supply.dispose(), this._supply = null), null != this._list && (this._list.deactivate(), this._list.dispose(), this._list = null), null != this._panel) {
@@ -97,16 +126,24 @@ const function934 = function (t, e, i) {
             }, e.prototype._start = function () {
                 this._cancel_area = new u.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
             }, e.prototype._openPanel = function () {
-                var t = this, e = this._area_id, i = r.default.model.airunit.getAirUnitList(e);
-                this._panel = new y.AirUnitPanel(this._onDrop, this._onReadySupply, this._onExtend), this._panel.initialize(e, i), this._panel.position.set(203, o.default.height), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({ y: 164 }, 200, createjs.Ease.cubicOut).wait(100).call(function () {
+                var t = this,
+                    e = this._area_id,
+                    i = r.default.model.airunit.getAirUnitList(e);
+                this._panel = new y.AirUnitPanel(this._onDrop, this._onReadySupply, this._onExtend), this._panel.initialize(e, i), this._panel.position.set(203, o.default.height), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({
+                    y: 164
+                }, 200, createjs.Ease.cubicOut).wait(100).call(function () {
                     c.SE.play("219")
-                }).to({ x: 849 }, 200, createjs.Ease.backOut).call(function () {
+                }).to({
+                    x: 849
+                }, 200, createjs.Ease.backOut).call(function () {
                     t._panel.activate(), t._cancel_area.buttonMode = !0, t._cancel_area.on(s.EventType.CLICK, t._onCancel), t._pre_bgm_id = r.default.sound.bgm.bgm_id, r.default.sound.bgm.play(125)
                 })
             }, e.prototype._closePanel = function () {
                 var t = this;
                 if (null != this._panel) {
-                    this._panel.deactivate(), this._panel.updateTemporaryData(), this._t = createjs.Tween.get(this._panel), this._t.to({ y: o.default.height }, 300), this._t.call(function () {
+                    this._panel.deactivate(), this._panel.updateTemporaryData(), this._t = createjs.Tween.get(this._panel), this._t.to({
+                        y: o.default.height
+                    }, 300), this._t.call(function () {
                         t._t = null, t._panel.parent.removeChild(t._panel), t._panel.dispose(), t._cancel_area.parent.removeChild(t._cancel_area), t._endTask()
                     }), this._t.setPaused(!0);
                     this._createUpdateAPI().start(function () {
@@ -115,31 +152,49 @@ const function934 = function (t, e, i) {
                 }
             }, e.prototype._openList = function (t, e) {
                 var i = this;
-                null != this._panel && null == this._list && null == this._t && (this._selected_airunit_id = t, this._selected_index = e, this._layer.addChild(this._cancel_area), this._panel.deactivate(), this._list = new m.AirUnitList(this._onSelectListItem, this._recordCurrentCategory), this._list.x = o.default.width, this._list.y = 147, this._list.initialize(this._currentCategory), this._layer.addChild(this._list), createjs.Tween.get(this._panel).to({ x: 126 }, 300), this._t = createjs.Tween.get(this._list).to({ x: 473 }, 300).call(function () {
+                null != this._panel && null == this._list && null == this._t && (this._selected_airunit_id = t, this._selected_index = e, this._layer.addChild(this._cancel_area), this._panel.deactivate(), this._list = new m.AirUnitList(this._onSelectListItem, this._recordCurrentCategory), this._list.x = o.default.width, this._list.y = 147, this._list.initialize(this._currentCategory), this._layer.addChild(this._list), createjs.Tween.get(this._panel).to({
+                    x: 126
+                }, 300), this._t = createjs.Tween.get(this._list).to({
+                    x: 473
+                }, 300).call(function () {
                     i._t = null, i._list.activate()
                 }))
             }, e.prototype._closeList = function () {
                 var t = this;
-                null != this._list && null == this._t && (this._list.deactivate(), createjs.Tween.get(this._panel).to({ x: 849 }, 300).call(function () {
+                null != this._list && null == this._t && (this._list.deactivate(), createjs.Tween.get(this._panel).to({
+                    x: 849
+                }, 300).call(function () {
                     t._panel.activate()
-                }), this._t = createjs.Tween.get(this._list).to({ x: o.default.width }, 300).call(function () {
+                }), this._t = createjs.Tween.get(this._list).to({
+                    x: o.default.width
+                }, 300).call(function () {
                     t._t = null, t._layer.removeChild(t._list), t._list.dispose(), t._list = null, t._layer.addChild(t._panel)
                 }))
             }, e.prototype._openSupply = function (t, e) {
                 var i = this;
                 if (null != this._panel && null == this._list && null == this._supply && null == this._t) {
-                    var n = r.default.model.airunit.getAirUnit(this._area_id, t), s = null;
+                    var n = r.default.model.airunit.getAirUnit(this._area_id, t),
+                        s = null;
                     e >= 0 && (s = n.squadrons[e]), this._layer.addChild(this._cancel_area), this._panel.deactivate();
-                    var a = r.default.model.useItem.getCount(31), _ = r.default.model.useItem.getCount(34);
-                    this._supply = new v.AirUnitSupplyPanel(this._onSupply, this._onPreSupply), this._supply.x = o.default.width + 75, this._supply.y = 144, this._supply.initialize(a, _, n, s), this._layer.addChild(this._supply), null == s && this._onPreSupply(), createjs.Tween.get(this._panel).to({ x: 468 }, 300), this._t = createjs.Tween.get(this._supply).to({ x: 899 }, 300).call(function () {
+                    var a = r.default.model.useItem.getCount(31),
+                        _ = r.default.model.useItem.getCount(34);
+                    this._supply = new v.AirUnitSupplyPanel(this._onSupply, this._onPreSupply), this._supply.x = o.default.width + 75, this._supply.y = 144, this._supply.initialize(a, _, n, s), this._layer.addChild(this._supply), null == s && this._onPreSupply(), createjs.Tween.get(this._panel).to({
+                        x: 468
+                    }, 300), this._t = createjs.Tween.get(this._supply).to({
+                        x: 899
+                    }, 300).call(function () {
                         i._t = null, null == s ? i._supply.autoPlaySupplyAll() : i._supply.activate()
                     })
                 }
             }, e.prototype._closeSupply = function () {
                 var t = this;
-                null != this._supply && null == this._t && (this._supply.deactivate(), createjs.Tween.get(this._panel).to({ x: 849 }, 300).call(function () {
+                null != this._supply && null == this._t && (this._supply.deactivate(), createjs.Tween.get(this._panel).to({
+                    x: 849
+                }, 300).call(function () {
                     t._panel.activate()
-                }), this._t = createjs.Tween.get(this._supply).to({ x: o.default.width + 75 }, 300).call(function () {
+                }), this._t = createjs.Tween.get(this._supply).to({
+                    x: o.default.width + 75
+                }, 300).call(function () {
                     t._t = null, t._layer.removeChild(t._supply), t._supply.dispose(), t._supply = null, t._layer.addChild(t._panel)
                 }))
             }, e.prototype._endTask = function () {

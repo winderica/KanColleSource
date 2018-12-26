@@ -1,7 +1,10 @@
 const function1019 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,24 +13,38 @@ const function1019 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(4), s = i(109), a = i(37), _ = i(9), l = i(54), u = i(228), c = i(360), h = i(229),
-        p = i(364), d = i(1020), f = i(373), y = i(1021), m = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(4),
+        s = i(109),
+        a = i(37),
+        _ = i(9),
+        l = i(54),
+        u = i(228),
+        c = i(360),
+        h = i(229),
+        p = i(364),
+        d = i(1020),
+        f = i(373),
+        y = i(1021),
+        m = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._selected_deck_id = 1, i._onChangeDeck = function (t) {
                     i.update(t)
                 }, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._ship_container = new PIXI.Container, i._ship_container.position.set(270, 160), i.addChild(i._ship_container), i._ships = [], i._btn_close = new f.CloseBtn(e), i._btn_close.position.set(1108, 27), i
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "selected_deck_id", {
                 get: function () {
                     return this._selected_deck_id
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function (t, e, i, n) {
                 this._bg.texture = l.SALLY_PRACTICE.getTexture(35);
                 var a = new PIXI.Sprite(l.SALLY_PRACTICE.getTexture(29));
@@ -67,18 +84,18 @@ const function1019 = function (t, e, i) {
                 this._rader.dispose(), this._arrow.dispose(), this._btn.dispose(), this._btn_back.dispose(), this._btn_close.dispose(), this._err_message.destroy()
             }, e.prototype._checkCondition = function (t, e) {
                 var i = t.getCount();
-                if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "");
-                if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
+                if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
                 for (var n = o.default.model.ndock.getShipMemIDs(), r = !1, s = !1, a = !0, _ = 0, l = e; _ < l.length; _++) {
                     var u = l[_];
                     null != u && (-1 != n.indexOf(u.memID) && (r = !0), (u.fuelNow <= 0 || u.ammoNow <= 0) && (s = !0), (u.fuelNow < u.fuelMax || u.ammoNow < u.ammoMax) && (a = !1))
                 }
-                if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
-                if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "");
-                if (1 == r) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u8266\u968a\u5185\u306b\u5165\u6e20\u4e2d\u306e\u8266\u304c\u3042\u308a\u307e\u3059\uff01");
-                if (1 == s) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u71c3\u6599\u30fb\u5f3e\u85ac\u306e\u88dc\u7d66\u4e0d\u8db3\u3067\u3059\uff01");
+                if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
+                if (1 == r) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u8266\u968a\u5185\u306b\u5165\u6e20\u4e2d\u306e\u8266\u304c\u3042\u308a\u307e\u3059\uff01");
+                if (1 == s) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u71c3\u6599\u30fb\u5f3e\u85ac\u306e\u88dc\u7d66\u4e0d\u8db3\u3067\u3059\uff01");
                 var c = e[0].getDamageType();
-                if (25 == c || 0 == c) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void (this._err_message.text = "\u65d7\u8266\u304c\u5927\u7834\u3057\u3066\u304a\u308a\u3001\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (25 == c || 0 == c) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u65d7\u8266\u304c\u5927\u7834\u3057\u3066\u304a\u308a\u3001\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
                 this._arrow.enabled = !0, this._btn.setEnabled(!0), this._err_message.text = ""
             }, e
         }(PIXI.Container);

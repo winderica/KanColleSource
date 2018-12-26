@@ -1,7 +1,10 @@
 const function1009 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,12 +13,20 @@ const function1009 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(167), r = i(4), s = i(34), a = i(54), _ = i(1010), l = i(372), u = i(1022), c = i(1),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(167),
+        r = i(4),
+        s = i(34),
+        a = i(54),
+        _ = i(1010),
+        l = i(372),
+        u = i(1022),
+        c = i(1),
         h = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -23,7 +34,6 @@ const function1009 = function (t, e, i) {
                     new _.TaskDetailInfo(e._model.id, e._model.flag, e._model.medal_num).start()
                 }, e
             }
-
             return n(e, t), e.prototype.initialize = function () {
                 var t = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(14)),
                     e = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(34));

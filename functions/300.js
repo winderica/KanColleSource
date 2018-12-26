@@ -1,7 +1,10 @@
 const function300 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,22 +13,36 @@ const function300 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(1), s = i(2), a = i(8), _ = i(59), l = i(40), u = i(28), c = i(25), h = i(67), p = i(9),
-        d = i(203), f = i(622), y = i(623), m = i(624), v = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(8),
+        _ = i(59),
+        l = i(40),
+        u = i(28),
+        c = i(25),
+        h = i(67),
+        p = i(9),
+        d = i(203),
+        f = i(622),
+        y = i(623),
+        m = i(624),
+        v = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._model = i, n
             }
-
             return n(e, t), e.prototype._start = function () {
                 this._loadSlotitemResoucres()
             }, e.prototype._loadSlotitemResoucres = function () {
-                var t = this, e = new c.SlotLoader;
+                var t = this,
+                    e = new c.SlotLoader;
                 if (0 == this._model.isUseitemFrom()) {
                     var i = this._model.mst_id_from;
                     i > 0 && e.add(i, "card")
@@ -38,7 +55,8 @@ const function300 = function (t, e, i) {
                     t._loadUseitemResoucres()
                 })
             }, e.prototype._loadUseitemResoucres = function () {
-                var t = this, e = new h.UseitemLoader;
+                var t = this,
+                    e = new h.UseitemLoader;
                 if (1 == this._model.isUseitemFrom()) {
                     var i = this._model.mst_id_from;
                     i > 0 && e.add(i, 1)
@@ -54,7 +72,8 @@ const function300 = function (t, e, i) {
                 var t = this;
                 if (this._bg = new _.RarityBG, 1 == this._model.isUseitemTo()) this._bg.initiailzeForUseitem(function () {
                     t._animation()
-                }); else {
+                });
+                else {
                     var e = this._model.rarity_tobe;
                     this._bg.initiailzeForSlotitem(e, function () {
                         t._animation()
@@ -77,12 +96,19 @@ const function300 = function (t, e, i) {
                     alpha: 1
                 }, 1e3).wait(1e3).call(function () {
                     -1 != t._model.mst_id_tobe && (t._item_tobe.alpha = .5), t._meltInto()
-                }), this._particle_layer = new y.ModelChangeParticleLayer, this._layer.addChild(this._particle_layer), this._messagebox = new f.ModelChangeMessageBox, this._messagebox.initialize(this._model.message1), this._messagebox.y = 720, this._layer.addChild(this._messagebox), createjs.Tween.get(this._messagebox).wait(500).to({ y: 480 }, 300), this._white = new a.AreaBox(1, 16777215), this._layer.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 0 }, 500).call(function () {
+                }), this._particle_layer = new y.ModelChangeParticleLayer, this._layer.addChild(this._particle_layer), this._messagebox = new f.ModelChangeMessageBox, this._messagebox.initialize(this._model.message1), this._messagebox.y = 720, this._layer.addChild(this._messagebox), createjs.Tween.get(this._messagebox).wait(500).to({
+                    y: 480
+                }, 300), this._white = new a.AreaBox(1, 16777215), this._layer.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 0
+                }, 500).call(function () {
                     t._layer.removeChild(t._white)
                 })
             }, e.prototype._meltInto = function () {
                 for (var t = this, e = new u.SerialTask, i = 0, n = this._model.melt_into_items; i < n.length; i++) {
-                    var o = n[i], r = o.items, s = o.direction, a = o.eff_type,
+                    var o = n[i],
+                        r = o.items,
+                        s = o.direction,
+                        a = o.eff_type,
                         _ = new m.MeltIntoTask(this._layer, r, s, a);
                     e.add(_)
                 }
@@ -101,7 +127,9 @@ const function300 = function (t, e, i) {
                     scaleX: .6,
                     scaleY: .6,
                     alpha: .5
-                }, 600, createjs.Ease.sineIn).to({ alpha: 0 }, 50), createjs.Tween.get(this._item_tobe).to({
+                }, 600, createjs.Ease.sineIn).to({
+                    alpha: 0
+                }, 50), createjs.Tween.get(this._item_tobe).to({
                     x: 795,
                     scaleX: .9,
                     scaleY: .9,
@@ -109,7 +137,11 @@ const function300 = function (t, e, i) {
                 }, 650, createjs.Ease.sineOut).call(function () {
                     var e = t._layer.getChildIndex(t._item_from);
                     t._layer.addChildAt(t._item_tobe, e)
-                }).to({ x: 600, scaleX: 1, scaleY: 1 }, 650, createjs.Ease.sineIn).call(function () {
+                }).to({
+                    x: 600,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 650, createjs.Ease.sineIn).call(function () {
                     t._waitClick()
                 })
             }, e.prototype._waitClick = function () {
@@ -124,12 +156,16 @@ const function300 = function (t, e, i) {
                 })
             }, e.prototype._showLastWhite = function (t, e) {
                 var i = this;
-                this._layer.addChild(this._white), createjs.Tween.get(this._white).to({ alpha: 1 }, 400).call(function () {
+                this._layer.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 400).call(function () {
                     t.deactivate(), t.dispose(), i._layer.removeChild(t), i._layer.removeChild(e), i._messagebox.dispose(), i._layer.removeChild(i._messagebox), i._particle_layer.deactivate(), i._layer.removeChild(i._particle_layer), i._layer.removeChild(i._item_tobe), i._layer.removeChild(i._item_from), i._layer.removeChild(i._bg), i._hideLastWhite()
                 })
             }, e.prototype._hideLastWhite = function () {
                 var e = this;
-                createjs.Tween.get(this._white).to({ alpha: 0 }, 100).call(function () {
+                createjs.Tween.get(this._white).to({
+                    alpha: 0
+                }, 100).call(function () {
                     var i = e._white.parent;
                     null != i && i.removeChild(e._white), t.prototype._endTask.call(e)
                 })

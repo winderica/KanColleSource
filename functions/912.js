@@ -1,7 +1,10 @@
 const function912 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,21 +13,33 @@ const function912 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(47), r = i(913), s = i(915), a = i(916), _ = i(917), l = i(918), u = i(920), c = i(921), h = i(923),
-        p = i(1005), d = i(1026), f = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(47),
+        r = i(913),
+        s = i(915),
+        a = i(916),
+        _ = i(917),
+        l = i(918),
+        u = i(920),
+        c = i(921),
+        h = i(923),
+        p = i(1005),
+        d = i(1026),
+        f = function (t) {
             function e() {
                 return t.call(this) || this
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
                 get: function () {
                     return this._viewTop
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.initialize = function (t) {
                 this._expedition_available = t, this._viewTop = new c.ViewTop, this._viewTop.initialize(this._expedition_available), this.addChild(this._viewTop)
             }, e.prototype.dispose = function () {
@@ -35,7 +50,8 @@ const function912 = function (t, e, i) {
                     t._topTask = null
                 })
             }, e.prototype.openView = function (t) {
-                var e = this, i = this._viewSub;
+                var e = this,
+                    i = this._viewSub;
                 if (0 == t) {
                     var n = new h.ViewMain(this._expedition_available, function (t) {
                         e.openView(t)
@@ -45,8 +61,9 @@ const function912 = function (t, e, i) {
                     })
                 } else if (1 == t) {
                     var o = new p.ViewMain(this._expedition_available, function (t) {
-                        e.openView(t)
-                    }), r = new l.PracticeAPI;
+                            e.openView(t)
+                        }),
+                        r = new l.PracticeAPI;
                     r.start(function () {
                         o.initialize(), o.update(r.res_model), e._openView(o, i)
                     })
@@ -64,9 +81,13 @@ const function912 = function (t, e, i) {
                 t.position.set(1200, 0), this.addChild(t), this._viewSub = t, this._openViewTween(t, e)
             }, e.prototype._openViewTween = function (t, e) {
                 var i = this;
-                createjs.Tween.get(t).to({ x: 0 }, 200).call(function () {
+                createjs.Tween.get(t).to({
+                    x: 0
+                }, 200).call(function () {
                     i._removeTopView(), t.activate()
-                }), null != e && (e.deactivate(), createjs.Tween.get(e).wait(200).to({ alpha: 0 }, 300).call(function () {
+                }), null != e && (e.deactivate(), createjs.Tween.get(e).wait(200).to({
+                    alpha: 0
+                }, 300).call(function () {
                     e.dispose(), i.removeChild(e)
                 }))
             }, e.prototype.getPreInitializeTask = function (t) {

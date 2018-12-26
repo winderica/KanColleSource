@@ -1,7 +1,10 @@
 const function339 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,11 +13,12 @@ const function339 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var o = function (t) {
         function e() {
             var e = t.call(this) || this;
@@ -26,7 +30,6 @@ const function339 = function (t, e, i) {
             var o = n.clone();
             return n.position.y = 3, o.position.y = 0, e.addChild(i, n, o), e
         }
-
         return n(e, t), e.prototype.dispose = function () {
             this.removeChildren()
         }, e

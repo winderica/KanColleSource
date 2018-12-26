@@ -1,7 +1,10 @@
 const function976 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,27 @@ const function976 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(9), s = i(29), a = i(359), _ = i(361), l = i(362), u = i(228), c = i(363), h = i(229),
-        p = i(365), d = i(980), f = i(981), y = i(982), m = i(109), v = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(9),
+        s = i(29),
+        a = i(359),
+        _ = i(361),
+        l = i(362),
+        u = i(228),
+        c = i(363),
+        h = i(229),
+        p = i(365),
+        d = i(980),
+        f = i(981),
+        y = i(982),
+        m = i(109),
+        v = function (t) {
             function e(e, i, n) {
                 var r = t.call(this) || this;
                 return r._onDeckChange = function (t) {
@@ -33,7 +50,6 @@ const function976 = function (t, e, i) {
                     }).start()
                 }, r._cb_onGo = n, r._banners = new a.PanelDeckSelectBanners, r._banners.position.set(30, 95), r._decks = new h.CompDeckBtns(r._onDeckChange), r._decks.position.set(30, 54), r._rader = new c.RaderCanvas, r._rader.position.set(488, 293), r._arrow = new u.CompArrow2, r._arrow.position.set(567, 537), r._alert = new l.AlertBalloon, r._alert.anchor.set(1, .5), r._alert.position.set(299, 566), r.interactive = !0, r._airunit_limit = e, r._event_sortie_condition = i, r._btn = new d.BtnGo(r._onGo), r._btn.position.set(302, 539), r._shop = new f.BtnShop, r._shop.position.set(15, 538), r._temp_supply_btn = new p.TempSupplyBtn, r._temp_supply_btn.position.set(210, 528), r
             }
-
             return n(e, t), e.prototype.initialize = function (t, e, i) {
                 this._selected_map = t;
                 var n = new PIXI.Sprite(s.SALLY_COMMON.getTexture(26));
@@ -62,15 +78,21 @@ const function976 = function (t, e, i) {
                 var _ = o.default.model.ndock.getShipMemIDs(),
                     l = y.check(this._selected_map, e, _, this._event_sortie_condition);
                 this._btn.enabled = l.result;
-                var u = this._airunit_limit, c = this._selected_map.area_id,
+                var u = this._airunit_limit,
+                    c = this._selected_map.area_id,
                     h = o.default.model.airunit.getReadyAirUnitList(c);
-                if (this._btn.air_unit = u > 0 && h.length > 0, this._alert.update(l.reason), this._arrow.enabled = l.result, this._arrow.update(r), this._arrow.activate(), 0 == o.default.model.basic.getExtraSupplySortie()) this._temp_supply_btn.visible = !1; else if (r) this._temp_supply_btn.visible = !1; else if (0 != l.reason && 2 != l.reason && 14 != l.reason) this._temp_supply_btn.visible = !1; else {
+                if (this._btn.air_unit = u > 0 && h.length > 0, this._alert.update(l.reason), this._arrow.enabled = l.result, this._arrow.update(r), this._arrow.activate(), 0 == o.default.model.basic.getExtraSupplySortie()) this._temp_supply_btn.visible = !1;
+                else if (r) this._temp_supply_btn.visible = !1;
+                else if (0 != l.reason && 2 != l.reason && 14 != l.reason) this._temp_supply_btn.visible = !1;
+                else {
                     for (var p = 0, d = 0, s = 0; s < n.length; s++) {
                         var a = n[s];
                         null != a && (p += a.getFuelForSupply(), d += a.getAmmoForSupply())
                     }
-                    var f = o.default.model.useItem.getCount(31), m = o.default.model.useItem.getCount(32),
-                        v = p > 0 && p <= f, g = d > 0 && d <= m;
+                    var f = o.default.model.useItem.getCount(31),
+                        m = o.default.model.useItem.getCount(32),
+                        v = p > 0 && p <= f,
+                        g = d > 0 && d <= m;
                     this._temp_supply_btn.enabled = 0 != v || 0 != g, this._temp_supply_btn.visible = !0
                 }
                 this._shop.visible = l.result, this._banners.update(n)

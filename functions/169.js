@@ -8,8 +8,9 @@ const function169 = function (t, e, i) {
             return PIXI.Texture.EMPTY
         }
     }
-
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var o = i(1105);
     e.getPayitemIcon = n
 }

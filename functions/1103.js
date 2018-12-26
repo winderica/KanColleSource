@@ -1,7 +1,10 @@
 const function1103 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,29 +13,31 @@ const function1103 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(3), r = i(1), s = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._owned = new a(0, e), i.addChild(i._owned), i._purchased = new a(1, e), i._purchased.x = 192, i.addChild(i._purchased), i
-        }
-
-        return n(e, t), e.prototype.initialize = function () {
-            this._owned.initialize(), this._purchased.initialize()
-        }, e.prototype.activate = function () {
-            this._owned.activate(), this._purchased.activate()
-        }, e.prototype.update = function (t) {
-            this._owned.selected = t == this._owned.state, this._purchased.selected = t == this._purchased.state
-        }, e.prototype.deactivate = function () {
-            this._owned.deactivate(), this._purchased.deactivate()
-        }, e.prototype.dispose = function () {
-            this._owned.dispose(), this._purchased.dispose()
-        }, e
-    }(PIXI.Container);
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._owned = new a(0, e), i.addChild(i._owned), i._purchased = new a(1, e), i._purchased.x = 192, i.addChild(i._purchased), i
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._owned.initialize(), this._purchased.initialize()
+            }, e.prototype.activate = function () {
+                this._owned.activate(), this._purchased.activate()
+            }, e.prototype.update = function (t) {
+                this._owned.selected = t == this._owned.state, this._purchased.selected = t == this._purchased.state
+            }, e.prototype.deactivate = function () {
+                this._owned.deactivate(), this._purchased.deactivate()
+            }, e.prototype.dispose = function () {
+                this._owned.dispose(), this._purchased.dispose()
+            }, e
+        }(PIXI.Container);
     e.TabContainer = s;
     var a = function (t) {
         function e(e, i) {
@@ -45,17 +50,21 @@ const function1103 = function (t, e, i) {
                 null != n._cb_onClick && n._cb_onClick(n._state)
             }, n._state = e, n._cb_onClick = i, n.interactive = !0, n
         }
-
         return n(e, t), Object.defineProperty(e.prototype, "state", {
             get: function () {
                 return this._state
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), Object.defineProperty(e.prototype, "selected", {
             get: function () {
                 return this._selected
-            }, set: function (t) {
+            },
+            set: function (t) {
                 this._selected != t && (this._selected = t, 0 == this._selected && 1 == this._activated ? this.activate() : 1 == this._selected && 1 == this._activated && this._deactivate(), this._update(!1))
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), e.prototype.initialize = function () {
             this._update(!1)
         }, e.prototype.activate = function () {

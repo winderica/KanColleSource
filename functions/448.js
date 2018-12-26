@@ -1,7 +1,10 @@
 const function448 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,13 +13,23 @@ const function448 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(5), r = i(0), s = i(45), a = i(2), _ = i(28), l = i(6), u = i(138), c = i(449), h = i(449),
-        p = i(1344), d = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(5),
+        r = i(0),
+        s = i(45),
+        a = i(2),
+        _ = i(28),
+        l = i(6),
+        u = i(138),
+        c = i(449),
+        h = i(449),
+        p = i(1344),
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._current = -1, e._next = function (t) {
@@ -30,11 +43,12 @@ const function448 = function (t, e, i) {
                     })
                 }, e._tasks = new Array, e._view = new c.CutinCanvasFunnel, e
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
                     return this._view
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "preload_task", {
                 get: function () {
                     for (var t = new _.SerialTask, e = 0, i = this._tasks; e < i.length; e++) {
@@ -42,14 +56,18 @@ const function448 = function (t, e, i) {
                         t.add(n.preload_task)
                     }
                     return t
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype.addCutin = function (t, e, i, n, o, r) {
                 void 0 === o && (o = -1), void 0 === r && (r = -1);
                 var s = new f(t, e, i, n, o, r);
                 this._tasks.push(s)
             }, e.prototype.addCutinFromModel = function (t, e) {
                 if (null != t) {
-                    var i, n = t.friend, o = t.mst_id, r = t.isDamaged();
+                    var i, n = t.friend,
+                        o = t.mst_id,
+                        r = t.isDamaged();
                     i = 0 == e ? s.PlaneConst.getPlaneType(!0) : s.PlaneConst.getJetPlaneType();
                     for (var a = t.slots, _ = new Array, l = 0; l < a.length; l++) {
                         var u = a[l];
@@ -80,8 +98,9 @@ const function448 = function (t, e, i) {
             var u = t.call(this) || this;
             return u._anim2 = function () {
                 var t = function (t, e, i) {
-                    u._view.laser_effect.position.set(t, e), u._view.laser_effect.rotation = i / 180 * Math.PI
-                }, e = u._friend ? 1 : -1;
+                        u._view.laser_effect.position.set(t, e), u._view.laser_effect.rotation = i / 180 * Math.PI
+                    },
+                    e = u._friend ? 1 : -1;
                 u._view.laser_effect.scale.x = e, t(o.default.width / 2 - 330 * e, 150, 9), u._view.laser_effect.visible = !0, l.SE.play("111"), createjs.Tween.get(null).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(function () {
                     u._view.laser_effect.visible = !1
                 }).wait(100).call(u._anim3)
@@ -90,7 +109,11 @@ const function448 = function (t, e, i) {
                 var t;
                 u._plane1 > 0 && (t = u._createTweenPlane1(), u._tweens.push(t), t.call(u._onComplete, [t])), u._plane2 > 0 && (t = u._createTweenPlane2(), u._tweens.push(t), t.call(u._onComplete, [t])), u._plane3 > 0 && (t = u._createTweenPlane3(), u._tweens.push(t), t.call(u._onComplete, [t]));
                 var e;
-                e = u._friend ? { x: -606, y: -252, alpha: 0 } : {
+                e = u._friend ? {
+                    x: -606,
+                    y: -252,
+                    alpha: 0
+                } : {
                     x: 1049,
                     y: -251,
                     alpha: 0
@@ -100,19 +123,24 @@ const function448 = function (t, e, i) {
                 e >= 0 && u._tweens.splice(e, 1), 0 == u._tweens.length && u._endTask()
             }, u._friend = e, u._ship_mstid = i, u._ship_damaged = n, u._plane1 = s, u._plane2 = a, u._plane3 = _, u._view = new h.CutinCanvasFunnelOnce, u._preload_task = new p.PreloadCutinFunnel(i, n, s, a, _), u
         }
-
         return n(e, t), Object.defineProperty(e.prototype, "friend", {
             get: function () {
                 return this._friend
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), Object.defineProperty(e.prototype, "view", {
             get: function () {
                 return this._view
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), Object.defineProperty(e.prototype, "preload_task", {
             get: function () {
                 return this._preload_task
-            }, enumerable: !0, configurable: !0
+            },
+            enumerable: !0,
+            configurable: !0
         }), e.prototype._start = function () {
             this._ready()
         }, e.prototype._ready = function () {
@@ -126,15 +154,23 @@ const function448 = function (t, e, i) {
             }
             this._view.ship.alpha = 0, this._friend ? this._view.ship.position.set(1010, 165) : this._view.ship.position.set(1049, -251), this._view.ship.addChild(this._ship_sprite), this._ship_sprite.mask = this._view.ship_mask, this._anim1()
         }, e.prototype._anim1 = function () {
-            createjs.Tween.get(this._view.telop_bg).to({ x: o.default.width / 2, y: 435 }, 300);
+            createjs.Tween.get(this._view.telop_bg).to({
+                x: o.default.width / 2,
+                y: 435
+            }, 300);
             var t, e = this._friend;
-            t = e ? { x: 17, y: -44, alpha: 1 } : {
+            t = e ? {
+                x: 17,
+                y: -44,
+                alpha: 1
+            } : {
                 x: 447,
                 y: -15,
                 alpha: 1
             }, createjs.Tween.get(this._view.ship).wait(200).to(t, 200).call(this._anim2)
         }, e.prototype._createTweenPlane1 = function () {
-            var t = this._friend ? 1 : -1, e = new u.Plane;
+            var t = this._friend ? 1 : -1,
+                e = new u.Plane;
             e.initialize(this._plane1, this._friend);
             var i = this._view.plane1;
             return i.addChild(e), i.position.set(o.default.width / 2 - 926 * t, 411), i.scale.set(1.52), i.visible = !1, createjs.Tween.get(this._view.plane1).wait(200).call(function () {
@@ -151,11 +187,15 @@ const function448 = function (t, e, i) {
                 scaleY: 1
             }, 200).wait(500).call(function () {
                 l.SE.play("115")
-            }).to({ x: o.default.width / 2 + 809 * t, y: 525 }, 600, createjs.Ease.quadIn).call(function () {
+            }).to({
+                x: o.default.width / 2 + 809 * t,
+                y: 525
+            }, 600, createjs.Ease.quadIn).call(function () {
                 e.deactivate(), i.visible = !1
             })
         }, e.prototype._createTweenPlane2 = function () {
-            var t = this._friend ? 1 : -1, e = new u.Plane;
+            var t = this._friend ? 1 : -1,
+                e = new u.Plane;
             e.initialize(this._plane2, this._friend);
             var i = this._view.plane2;
             return i.addChild(e), i.position.set(o.default.width / 2 - 780 * t, 459), i.scale.set(1.16), e.activate(), l.SE.play("107"), createjs.Tween.get(this._view.plane2).to({
@@ -170,11 +210,15 @@ const function448 = function (t, e, i) {
                 scaleY: .88
             }, 200).wait(1e3).call(function () {
                 l.SE.play("115")
-            }).to({ x: o.default.width / 2 + 840 * t, y: 405 }, 400, createjs.Ease.quadIn).call(function () {
+            }).to({
+                x: o.default.width / 2 + 840 * t,
+                y: 405
+            }, 400, createjs.Ease.quadIn).call(function () {
                 e.deactivate(), i.visible = !1
             })
         }, e.prototype._createTweenPlane3 = function () {
-            var t = this._friend ? 1 : -1, e = new u.Plane;
+            var t = this._friend ? 1 : -1,
+                e = new u.Plane;
             e.initialize(this._plane3, this._friend);
             var i = this._view.plane3;
             return i.addChild(e), i.position.set(o.default.width / 2 - 618 * t, -221), i.scale.set(.87), i.visible = !1, createjs.Tween.get(this._view.plane3).wait(100).call(function () {
@@ -186,7 +230,10 @@ const function448 = function (t, e, i) {
                 scaleY: .6
             }, 400).wait(500).call(function () {
                 l.SE.play("115")
-            }).to({ x: o.default.width / 2 + 900 * t, y: 23 }, 800, createjs.Ease.quadIn).call(function () {
+            }).to({
+                x: o.default.width / 2 + 900 * t,
+                y: 23
+            }, 800, createjs.Ease.quadIn).call(function () {
                 e.deactivate(), i.visible = !1
             })
         }, e.prototype._endTask = function () {

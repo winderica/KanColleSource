@@ -1,11 +1,12 @@
 const function330 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 });
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
     var n = function () {
         function t() {
             this.memShipIds = []
         }
-
         return t.prototype.getMemShipIds = function () {
             return this.memShipIds
         }, t.prototype.containts = function (t) {

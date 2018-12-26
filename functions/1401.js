@@ -1,7 +1,10 @@
 const function1401 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,25 +13,39 @@ const function1401 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(76), r = i(1402), s = i(93), a = i(94), _ = i(95), l = i(64), u = i(102), c = i(98), h = i(97),
-        p = i(99), d = i(96), f = i(100), y = i(77), m = i(101), v = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(76),
+        r = i(1402),
+        s = i(93),
+        a = i(94),
+        _ = i(95),
+        l = i(64),
+        u = i(102),
+        c = i(98),
+        h = i(97),
+        p = i(99),
+        d = i(96),
+        f = i(100),
+        y = i(77),
+        m = i(101),
+        v = function (t) {
             function e(e, i) {
                 var n = t.call(this, e, !1) || this;
                 return n._record = i, n
             }
-
             return n(e, t), e.prototype._start = function () {
                 var t = this;
                 this.scene.bg.setDay(function () {
                     t._shutterOpen()
                 })
             }, e.prototype._shutterOpen = function () {
-                var t = this, e = this.scene.view;
+                var t = this,
+                    e = this.scene.view;
                 1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
                     e.shutter.once("opened", function () {
                         t._moveBanner()

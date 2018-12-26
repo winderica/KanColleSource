@@ -1,7 +1,10 @@
 const function1108 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,30 +13,53 @@ const function1108 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(2), s = i(18), a = i(31), _ = i(164), l = i(126), u = i(104), c = i(152), h = i(199),
-        p = i(6), d = i(400), f = i(1113), y = i(1115), m = i(1120), v = i(1124), g = i(1128), b = i(1132),
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(2),
+        s = i(18),
+        a = i(31),
+        _ = i(164),
+        l = i(126),
+        u = i(104),
+        c = i(152),
+        h = i(199),
+        p = i(6),
+        d = i(400),
+        f = i(1113),
+        y = i(1115),
+        m = i(1120),
+        v = i(1124),
+        g = i(1128),
+        b = i(1132),
         w = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._target = i, n
             }
-
             return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
                     return null != this._api_result
-                }, enumerable: !0, configurable: !0
+                },
+                enumerable: !0,
+                configurable: !0
             }), e.prototype._start = function () {
                 if (null == this._target) return void this._endTask();
                 this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
             }, e.prototype._startTask = function () {
                 var t, e = this._target.mstID;
-                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target); else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target); else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target); else if (61 == e) t = new v.TaskUseKouMedal(this._fade, this._target); else if (62 == e) t = new g.TaskUseHishimochi(this._fade, this._target); else if (63 == e) {
-                    var i = o.default.model.const.quest_max, n = o.default.model.basic.getDutyExecutableCount();
+                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
+                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
+                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
+                else if (61 == e) t = new v.TaskUseKouMedal(this._fade, this._target);
+                else if (62 == e) t = new g.TaskUseHishimochi(this._fade, this._target);
+                else if (63 == e) {
+                    var i = o.default.model.const.quest_max,
+                        n = o.default.model.basic.getDutyExecutableCount();
                     n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
                 } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || (t = new d.TaskUseNormalItem(this._fade, this._target)));
                 null != t ? this._showFade(t) : this._endTask()

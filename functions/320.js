@@ -1,7 +1,10 @@
 const function320 = function (t, e, i) {
     "use strict";
     var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (t, e) {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
             t.__proto__ = e
         } || function (t, e) {
             for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
@@ -10,18 +13,40 @@ const function320 = function (t, e, i) {
             function n() {
                 this.constructor = e
             }
-
             t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
         }
     }();
-    Object.defineProperty(e, "__esModule", { value: !0 });
-    var o = i(0), r = i(30), s = i(213), a = i(110), _ = i(70), l = i(83), u = i(4), c = i(282), h = i(196),
-        p = i(37), d = i(21), f = i(9), y = function (t) {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    });
+    var o = i(0),
+        r = i(30),
+        s = i(213),
+        a = i(110),
+        _ = i(70),
+        l = i(83),
+        u = i(4),
+        c = i(282),
+        h = i(196),
+        p = i(37),
+        d = i(21),
+        f = i(9),
+        y = function (t) {
             function e() {
-                var e = t.call(this) || this, i = new PIXI.Sprite, n = new PIXI.Sprite, o = new PIXI.Sprite,
-                    r = new PIXI.Sprite, p = new h.BannerSmoke, f = new c.BannerKirakira, y = new a.HpGaugeView,
-                    m = new l.StarRateView, v = new u.TextBox(27, 16777215), g = new u.TextBox(30, 16777215),
-                    b = new s.DeckIndexEmblem, w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(18)), x = new _.RingSmall;
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite,
+                    o = new PIXI.Sprite,
+                    r = new PIXI.Sprite,
+                    p = new h.BannerSmoke,
+                    f = new c.BannerKirakira,
+                    y = new a.HpGaugeView,
+                    m = new l.StarRateView,
+                    v = new u.TextBox(27, 16777215),
+                    g = new u.TextBox(30, 16777215),
+                    b = new s.DeckIndexEmblem,
+                    w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(18)),
+                    x = new _.RingSmall;
                 o.x = 12, o.y = 6, x.initialize(), x.activate(), x.position.set(215, 33), y.position.set(14, 42), m.position.set(122, 39), g.anchor.x = 1, b.position.set(15, 18), w.position.set(251, 6), g.position.set(212, 2);
                 var I = new PIXI.Graphics;
                 I.beginFill(0, 0), I.drawRect(0, 0, 105, 36), I.endFill();
@@ -30,7 +55,6 @@ const function320 = function (t, e, i) {
                 var O = new PIXI.Container;
                 return O.width = 240, O.height = 60, O.addChild(p, f), e.addChild(i, o, n, O, w, r, b, x), e.shipBanner = i, e.burned = n, e.state = o, e.tired = r, e.smoke = p, e.textLevel = g, e.textName = v, e.starRateView = m, e.hpGaugeView = y, e.kirakira = f, e.ring = x, e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e.containerName = T, e.containerEffect = O, e.deckIndexEmblem = b, e
             }
-
             return n(e, t), e.prototype.dispose = function () {
                 this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerEffect.removeChildren(), this.hpGaugeView.dispose(), this.starRateView.dispose(), this.smoke.dispose(), this.kirakira.dispose(), this.ring.dispose(), this.textLevel.destroy(), this.textName.destroy(), this.containerName.mask = null, this.containerName = null, this.containerEffect = null, this.shipBanner = null, this.hpGaugeView = null, this.starRateView = null, this.deckIndexEmblem = null, this.textLevel = null, this.textName = null, this.burned = null, this.state = null, this.tired = null, this.smoke = null, this.kirakira = null, this.ring = null, this.removeChildren()
             }, e.prototype._updateName_ = function (t, e) {
@@ -40,10 +64,14 @@ const function320 = function (t, e, i) {
             }, e.prototype._updateRing_ = function (t) {
                 this.ring.visible = !1, t && (this.ring.visible = !0)
             }, e.prototype.update = function (t, e, i) {
-                var n = e.isRepair(), o = r.ShipUtil.getDamageType(e.hpNow, e.hpMax), s = e.isMarriage();
+                var n = e.isRepair(),
+                    o = r.ShipUtil.getDamageType(e.hpNow, e.hpMax),
+                    s = e.isMarriage();
                 this.hpGaugeView.update(e.hpNow, e.hpMax), this.starRateView.update(e.starNum), this.textLevel.text = e.level.toString(), this._updateTexture_(e.mstID, e.isDamaged()), this._updateName_(e.name, s), this._updateRing_(s), this._updateStatus_(n, i, o), this._updateBurned_(o), this._updateTired_(e.tired), this.deckIndexEmblem.update(t)
             }, e.prototype._updateStatus_ = function (t, e, i) {
-                if (this.smoke.stop(), t) this.updateState(5); else if (e) this.updateState(4); else switch (this.smoke.play(i), i) {
+                if (this.smoke.stop(), t) this.updateState(5);
+                else if (e) this.updateState(4);
+                else switch (this.smoke.play(i), i) {
                     case 75:
                         this.updateState(1);
                         break;

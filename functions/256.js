@@ -1,6 +1,8 @@
 const function256 = function (t, e, i) {
     "use strict";
-    Object.defineProperty(e, "__esModule", { value: !0 }), e.ITEMUP_REPLACE = {
+    Object.defineProperty(e, "__esModule", {
+        value: !0
+    }), e.ITEMUP_REPLACE = {
         516: 516,
         517: 517,
         518: 518,
