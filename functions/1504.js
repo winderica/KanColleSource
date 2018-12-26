@@ -23,47 +23,40 @@ const function1504 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._items = [], e
+                return e._items = new Array, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "items", {
-                get: function () {
-                    return this._items
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
+            return n(e, t), e.prototype.initialize = function (t) {
                 this._resetItems();
                 var e = 0;
                 e = 7 == t.length ? 0 : 68;
                 for (var i = 0; i < t.length; i++) {
                     var n = t[i];
                     if (null != n) {
-                        var r = new o.BannerInfoFriend;
-                        r.y = e + 68 * i;
+                        var r = new o.BannerInfoEnemy;
+                        r.alpha = 0, r.y = e + 68 * i, this._items.push(r);
                         var s = n.name,
-                            a = n.level;
-                        r.name_and_level.alpha = 0, r.name_and_level.initialize(s, a), this.addChild(r), this._items.push(r)
+                            a = 0;
+                        "elite" == n.yomi ? a = 1 : "flagship" == n.yomi && (a = 2), r.initialize(s, a), this.addChild(r)
                     }
                 }
             }, e.prototype.dispose = function () {
                 this._resetItems(), this.removeChildren(), this._items = null
             }, e.prototype.createShowTweens = function (t) {
                 for (var e = [], i = 0; i < this._items.length; i++) {
-                    var n = this._items[i],
-                        o = n.name_and_level;
-                    o.x -= 15;
-                    var r = createjs.Tween.get(o).wait(t + 100 * i).to({
-                        x: o.x + 15,
+                    var n = this._items[i];
+                    n.x += 15;
+                    var o = createjs.Tween.get(n).wait(t + 100 * i).to({
+                        x: n.x - 15,
                         alpha: 1
                     }, 300);
-                    e.push(r)
+                    e.push(o)
                 }
                 return e
             }, e.prototype.createHideTweens = function (t) {
                 for (var e = [], i = 0; i < this._items.length; i++) {
                     var n = this._items[i],
                         o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
-                            x: n.x - 15,
+                            x: n.x + 15,
                             alpha: 0
                         }, 300);
                     e.push(o)
@@ -76,5 +69,5 @@ const function1504 = function (t, e, i) {
                 }
             }, e
         }(PIXI.Container);
-    e.BannerInfoFriendCanvas = r
+    e.BannerInfoEnemyCanvas = r
 }

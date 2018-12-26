@@ -66,19 +66,19 @@ const function120 = function (t, e, i) {
         }), e.prototype.initialize = function (t) {
             switch (t) {
                 case 1:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(141), this._img.position.set(-45, -21);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(143), this._img.position.set(-45, -21);
                     break;
                 case 2:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(140), this._img.position.set(-53, -24);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(142), this._img.position.set(-53, -24);
                     break;
                 case 3:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(138), this._img.position.set(-45, -21);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(140), this._img.position.set(-45, -21);
                     break;
                 case 4:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(139), this._img.position.set(-35, -24);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(141), this._img.position.set(-35, -24);
                     break;
                 case 5:
-                    this._img.texture = s.BATTLE_MAIN.getTexture(142), this._img.position.set(-45, -26);
+                    this._img.texture = s.BATTLE_MAIN.getTexture(144), this._img.position.set(-45, -26);
                     break;
                 default:
                     this._img.texture = PIXI.Texture.EMPTY

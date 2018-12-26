@@ -19,12 +19,13 @@ const function1226 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(135),
-        s = function (t) {
+    var o = i(18),
+        r = i(147),
+        s = i(51),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
+                return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
@@ -32,19 +33,21 @@ const function1226 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
+            }), Object.defineProperty(e.prototype, "black", {
                 get: function () {
-                    return this._text
+                    return this._black
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
-            }, e.prototype.update = function (t) {
-                this._text.text = t
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._shutter.initializeLight()
             }, e
         }(PIXI.Container);
-    e.PracticeTitleBar = s
+    e.ViewMain = a
 }

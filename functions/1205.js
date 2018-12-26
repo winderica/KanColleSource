@@ -1,10 +1,29 @@
 const function1205 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(1206)), n(i(1207)), n(i(424)), n(i(423)), n(i(1208)), n(i(1209)), n(i(426)), n(i(427)), n(i(425)), n(i(428)), n(i(429))
+    });
+    var o = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e
+    }(PIXI.Container);
+    e.ViewMainBase = o
 }

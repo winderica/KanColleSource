@@ -54,7 +54,7 @@ const function512 = function (t, e, i) {
             }), t.prototype.getAllowedDeckType = function () {
                 var t = new o.AllowedDeckTypeModel,
                     e = n.ObjUtil.getNumArray(this._o, "api_sally_flag");
-                return null != e && (e.length > 0 && (t.normal = e[0]), e.length > 1 && (t.rengo = e[1]), e.length > 2 && (t.yugeki = e[2])), t
+                return t.init(e), t
             }, t
         }();
     e.MapMstModel = r

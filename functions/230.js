@@ -72,22 +72,27 @@ const function230 = function (t, e, i) {
             }, e.prototype.updateAirUnitEnabled = function (t) {
                 this._airUnitBanner.enabled = t
             }, e.prototype.updateGauge = function (t) {
-                if (null != t && (0 != t.defeat_required || 0 != t.gauge_max) && 0 != t.isOpened()) {
-                    var e = t.area_id,
-                        i = t.map_no,
-                        n = t.getGaugeNum(),
-                        r = s.GaugeSetModel.createKey(e, i, n),
-                        a = o.default.resources.gauge.getGaugeInfo(r);
-                    if (null != a)
-                        if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {
-                            var _ = t.defeat_required,
-                                l = _ - t.defeat_count;
-                            this._gauge.update(l, _)
-                        } else {
-                            var l = t.gauge_now,
-                                _ = t.gauge_max;
-                            this._gauge.update(l, _)
-                        }
+                if (null != t) {
+                    if (t.gauge_max > 0) {
+                        if (t.gauge_now <= 0) return
+                    } else if (t.defeat_required <= 0) return;
+                    if (0 != t.isOpened()) {
+                        var e = t.area_id,
+                            i = t.map_no,
+                            n = t.getGaugeNum(),
+                            r = s.GaugeSetModel.createKey(e, i, n),
+                            a = o.default.resources.gauge.getGaugeInfo(r);
+                        if (null != a)
+                            if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {
+                                var _ = t.defeat_required,
+                                    l = _ - t.defeat_count;
+                                this._gauge.update(l, _)
+                            } else {
+                                var l = t.gauge_now,
+                                    _ = t.gauge_max;
+                                this._gauge.update(l, _)
+                            }
+                    }
                 }
             }, e.prototype._initClearBadge = function (t) {
                 if (null == t || 0 == t.isOpened() || 0 == t.isCleared()) return void this._clear.hide();

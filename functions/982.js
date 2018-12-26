@@ -90,7 +90,10 @@ const function982 = function (t, e, i) {
         } : 7 == o && 1 != i && 2 != i && 3 != i ? {
             result: !1,
             reason: 29
-        } : null : {
+        } : null : 432 == t.mst_id || 433 == t.mst_id ? {
+            result: !1,
+            reason: 46
+        } : {
             result: !1,
             reason: 22
         }

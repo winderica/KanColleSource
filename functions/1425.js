@@ -27,7 +27,7 @@ const function1425 = function (t, e, i) {
                 return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._splash1.texture = r.BATTLE_MAIN.getTexture(112), this._splash2.texture = r.BATTLE_MAIN.getTexture(113), this._splash3.texture = r.BATTLE_MAIN.getTexture(114)
+                this._splash1.texture = r.BATTLE_MAIN.getTexture(114), this._splash2.texture = r.BATTLE_MAIN.getTexture(115), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
             }, e.prototype.play = function () {
                 var t = this;
                 createjs.Tween.get(this._splash1).to({

@@ -26,7 +26,7 @@ const function1438 = function (t, e, i) {
             }
             return n(e, t), e.prototype.showSanshiki = function (t, e) {
                 var i = this,
-                    n = o.BATTLE_MAIN.getTexture(134),
+                    n = o.BATTLE_MAIN.getTexture(136),
                     r = new PIXI.Sprite(n);
                 r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
                     alpha: 1
@@ -37,7 +37,7 @@ const function1438 = function (t, e, i) {
                 })
             }, e.prototype.showDanmaku = function (t, e) {
                 var i = this,
-                    n = o.BATTLE_MAIN.getTexture(132),
+                    n = o.BATTLE_MAIN.getTexture(134),
                     r = new PIXI.Sprite(n);
                 r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
                     alpha: 1

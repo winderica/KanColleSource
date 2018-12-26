@@ -25,15 +25,30 @@ const function1069 = function (t, e, i) {
             function e(e) {
                 return t.call(this, e) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "sType", {
+            return n(e, t), Object.defineProperty(e.prototype, "cardType", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_stype")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length <= 1 ? 0 : t[1]
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
+            }), Object.defineProperty(e.prototype, "equipType", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_sinfo")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length <= 2 ? 0 : t[2]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "iconType", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length <= 3 ? 0 : t[3]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "soukou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_souk")
                 },
                 enumerable: !0,
                 configurable: !0
@@ -49,45 +64,55 @@ const function1069 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
+            }), Object.defineProperty(e.prototype, "baku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_baku")
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "taiku", {
                 get: function () {
                     return o.ObjUtil.getNumber(this._o, "api_tyku")
                 },
                 enumerable: !0,
                 configurable: !0
+            }), Object.defineProperty(e.prototype, "taisen", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tais")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "meichu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houm")
+                },
+                enumerable: !0,
+                configurable: !0
             }), Object.defineProperty(e.prototype, "kaihi", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_kaih")
+                    return o.ObjUtil.getNumber(this._o, "api_houk")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "taikyu", {
+            }), Object.defineProperty(e.prototype, "sakuteki", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_taik")
+                    return o.ObjUtil.getNumber(this._o, "api_saku")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.hasTaiha = function (t) {
-                var e = this.mst_ids.indexOf(t);
-                if (e < 0) return !1;
-                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
-                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
-            }, e.prototype.isMarriage = function (t) {
-                var e = this.mst_ids.indexOf(t);
-                if (e < 0) return !1;
-                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
-                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
-            }, e.prototype.hasMarriage = function () {
-                var t = o.ObjUtil.getObjectArray(this._o, "api_state");
-                if (null == t) return !1;
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e];
-                    if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
-                }
-                return !1
-            }, e.prototype.extraVoices = function () {
-                return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
-            }, e
+            }), Object.defineProperty(e.prototype, "syatei", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_leng")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_info")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
         }(r.AlbumModelBase);
-    e.AlbumShipModel = s
+    e.AlbumSlotModel = s
 }

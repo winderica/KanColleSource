@@ -29,17 +29,18 @@ const function63 = function (t, e, i) {
                 1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() ? this._endTask() : this._enterEnemies()
             }, e.prototype._enterEnemies = function () {
                 var t = this;
-                this._scene.view.layer_info2.once("complete", function () {
-                    t._showed_telop = !0, t._preEnd()
-                }), this._scene.view.layer_info2.showCenter(5), this._scene.view.bannerGroupLayer.createEnemyEnterTask().start(function () {
+                this._scene.view.bannerGroupLayer.createEnemyEnterTask().start(function () {
                     t._entered = !0, t._preEnd()
                 });
                 var e = this._scene.data.model.deck_e,
                     i = e.formation,
                     n = e.type,
                     o = e.getCountMainDeck(),
-                    r = e.getCountSubDeck();
-                this._scene.view.raderLayer.rader_e.show(i, n, o, r)
+                    r = e.getCountSubDeck(),
+                    s = this._scene.view.raderLayer.rader_e;
+                this._scene.data.model.map_info.isLongRangeFires() ? (this._showed_telop = !0, s.show(i, n, 0, 0, !0)) : (this._scene.view.layer_info2.once("complete", function () {
+                    t._showed_telop = !0, t._preEnd()
+                }), this._scene.view.layer_info2.showCenter(5), s.show(i, n, o, r, !1))
             }, e.prototype._preEnd = function () {
                 var t = this;
                 0 != this._entered && 0 != this._showed_telop && setTimeout(function () {

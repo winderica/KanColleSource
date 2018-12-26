@@ -27,7 +27,7 @@ const function1431 = function (t, e, i) {
             }
             return n(e, t), e.prototype.show = function () {
                 var t = this,
-                    e = r.BATTLE_MAIN.getTexture(107);
+                    e = r.BATTLE_MAIN.getTexture(109);
                 this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, {
                     loop: !0
                 }).to({

@@ -276,7 +276,7 @@ const function1427 = function (t, e, i) {
         _ = function (t) {
             function e(e) {
                 var i = this,
-                    n = o.BATTLE_MAIN.getTexture(113);
+                    n = o.BATTLE_MAIN.getTexture(115);
                 return i = t.call(this, n) || this, i.anchor.set(.5, 1), i.scale.set(.18 * (e ? 1 : -1), .18), i
             }
             return n(e, t), e.prototype.play = function (t, e) {

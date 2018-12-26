@@ -19,55 +19,27 @@ const function1506 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1507),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._items = new Array, e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._resetItems();
-                var e = 0;
-                e = 7 == t.length ? 0 : 68;
-                for (var i = 0; i < t.length; i++) {
-                    var n = t[i];
-                    if (null != n) {
-                        var r = new o.BannerInfoEnemy;
-                        r.alpha = 0, r.y = e + 68 * i, this._items.push(r);
-                        var s = n.name,
-                            a = 0;
-                        "elite" == n.yomi ? a = 1 : "flagship" == n.yomi && (a = 2), r.initialize(s, a), this.addChild(r)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                this._resetItems(), this.removeChildren(), this._items = null
-            }, e.prototype.createShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._items.length; i++) {
-                    var n = this._items[i];
-                    n.x += 15;
-                    var o = createjs.Tween.get(n).wait(t + 100 * i).to({
-                        x: n.x - 15,
-                        alpha: 1
-                    }, 300);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype.createHideTweens = function (t) {
-                for (var e = [], i = 0; i < this._items.length; i++) {
-                    var n = this._items[i],
-                        o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
-                            x: n.x + 15,
-                            alpha: 0
-                        }, 300);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype._resetItems = function () {
-                for (null == this._items && (this._items = []); this._items.length > 0;) {
-                    var t = this._items.pop();
-                    null != t.parent && t.parent.removeChild(t), t.dispose()
-                }
-            }, e
-        }(PIXI.Container);
-    e.BannerInfoEnemyCanvas = r
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+        }
+        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
+            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({
+                alpha: 1
+            }, i)
+        }, e.prototype.createHideTween = function (t, e) {
+            var i = this;
+            void 0 === e && (e = 0);
+            var n = createjs.Tween.get(this._img).wait(e);
+            return 1 == this._img.visible && n.to({
+                alpha: 0
+            }, t).call(function () {
+                i._img.visible = !1
+            }), n
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._img = null
+        }, e
+    }(PIXI.Container);
+    e.LayerMVP = o
 }

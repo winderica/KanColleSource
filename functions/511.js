@@ -75,8 +75,13 @@ const function511 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), t.prototype.getAllowedDeckType = function () {
-                var t = this._mst;
-                return null == t ? new s.AllowedDeckTypeModel : t.getAllowedDeckType()
+                var t = r.ObjUtil.getNumArray(this._o, "api_sally_flag");
+                if (t) {
+                    var e = new s.AllowedDeckTypeModel;
+                    return e.init(t), e
+                }
+                var i = this._mst;
+                return null == i ? new s.AllowedDeckTypeModel : i.getAllowedDeckType()
             }, Object.defineProperty(t.prototype, "gauge_type", {
                 get: function () {
                     return r.ObjUtil.getNumber(this._o, "api_gauge_type", 0)
@@ -149,6 +154,13 @@ const function511 = function (t, e, i) {
             var r = this._evene_data;
             if (null != r) {
                 this.getSelectedOperationType() != t && (r.api_selected_rank = t, r.api_gauge_num = e, r.api_gauge_type = i, r.api_max_maphp = n, r.api_now_maphp = o)
+            }
+        }, e.prototype.changeAllowedDeckType = function (t) {
+            if (null != t) {
+                var e = "api_sally_flag",
+                    i = this._o;
+                0 == i.hasOwnProperty(e) && (i[e] = []);
+                for (var n = 0; n < 3; n++) i[e][n] = t[n]
             }
         }, e
     }(a);

@@ -24,7 +24,7 @@ const function964 = function (t, e, i) {
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._board = new a, e._board.position.set(732, 366), e._chara = new PIXI.Sprite, e._chara.position.set(14, 74), e.addChild(e._board), e.addChild(e._chara), e
+                return e._board = new a, e._board.position.set(732, 366), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "board", {
                 get: function () {
@@ -49,7 +49,7 @@ const function964 = function (t, e, i) {
             return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
         }
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(29)
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-355, -215), this._content.texture = r.SALLY_EVENT.getTexture(32)
         }, e
     }(o.Sprite)
 }

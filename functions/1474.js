@@ -32,11 +32,9 @@ const function1474 = function (t, e, i) {
         d = i(1475),
         f = i(1476),
         y = i(1477),
-        m = i(1478),
-        v = i(1479),
-        g = i(435),
-        b = i(13),
-        w = function (t) {
+        m = i(435),
+        v = i(13),
+        g = function (t) {
             function e(e, i, n, o, r, s) {
                 var a = t.call(this) || this;
                 return a._shutter = e, a._area_id = i, a._map_no = n, a._ship_mst_id = o, a._ship_damaged = r, a._file_suffix = s, a
@@ -46,7 +44,7 @@ const function1474 = function (t, e, i) {
             }, e.prototype._hideEnemy = function () {
                 var t = this,
                     e = this._mapscene;
-                if (e instanceof g.MapScene == 0) return void this._endTask();
+                if (e instanceof m.MapScene == 0) return void this._endTask();
                 e.view.map.enemy_layer.hide(function () {
                     e.view.map.plane_layer.hideAll(), t._loadShipResources()
                 })
@@ -80,7 +78,7 @@ const function1474 = function (t, e, i) {
                     n.view.chara_layer.removeChild(e)
                 });
                 var s = h.MapUtil.toMapID(this._area_id, this._map_no),
-                    a = new x,
+                    a = new b,
                     _ = new l.Container;
                 a.update(s, this._file_suffix, function () {
                     a.alpha = 0, _.scale.set(2), _.position.set(o.default.width / 2, o.default.height / 2), _.addChild(a), n.view.chara_layer.addChild(_), createjs.Tween.get(_).wait(3e3).to({
@@ -123,14 +121,14 @@ const function1474 = function (t, e, i) {
             }, Object.defineProperty(e.prototype, "_mapscene", {
                 get: function () {
                     var t = r.default.view.getNowScene();
-                    return t instanceof g.MapScene ? t : null
+                    return t instanceof m.MapScene ? t : null
                 },
                 enumerable: !0,
                 configurable: !0
             }), e
         }(_.TaskBase);
-    e.TaskEventClear = w;
-    var x = function (t) {
+    e.TaskEventClear = g;
+    var b = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._img1 = new PIXI.Sprite, e.addChild(e._img1), e._img2 = new PIXI.Sprite, e.addChild(e._img2), e
@@ -138,35 +136,23 @@ const function1474 = function (t, e, i) {
         return n(e, t), e.prototype.update = function (t, e, i) {
             var n = this;
             switch (t) {
-                case 421:
-                    var o = new b.UIImageLoader("battle_result");
+                case 431:
+                    var o = new v.UIImageLoader("battle_result");
                     o.add("battle_result_event_e1_" + e + ".json"), o.load(function () {
-                        n._img1.texture = d.BATTLE_RESULT_EVENT_E1_ZSHJDPZAHSWJBYTW.getTexture(0), n._img2.texture = d.BATTLE_RESULT_EVENT_E1_ZSHJDPZAHSWJBYTW.getTexture(1), i()
-                    }), this._img1.position.set(-419, -135), this._img2.position.set(-422, -47);
+                        n._img1.texture = d.BATTLE_RESULT_EVENT_E1_COPEUFURQDKOMJWY.getTexture(0), n._img2.texture = d.BATTLE_RESULT_EVENT_E1_COPEUFURQDKOMJWY.getTexture(1), i()
+                    }), this._img1.position.set(-428, -135), this._img2.position.set(-427, -47);
                     break;
-                case 422:
-                    var o = new b.UIImageLoader("battle_result");
+                case 432:
+                    var o = new v.UIImageLoader("battle_result");
                     o.add("battle_result_event_e2_" + e + ".json"), o.load(function () {
-                        n._img1.texture = f.BATTLE_RESULT_EVENT_E2_JEXXEXRRAIAHJYDB.getTexture(0), n._img2.texture = f.BATTLE_RESULT_EVENT_E2_JEXXEXRRAIAHJYDB.getTexture(1), i()
-                    }), this._img1.position.set(-460, -171), this._img2.position.set(-459, -9);
+                        n._img1.texture = f.BATTLE_RESULT_EVENT_E2_SSNQISBVPMRFJHEW.getTexture(0), n._img2.texture = f.BATTLE_RESULT_EVENT_E2_SSNQISBVPMRFJHEW.getTexture(1), i()
+                    }), this._img1.position.set(-458, -167), this._img2.position.set(-467, -5);
                     break;
-                case 423:
-                    var o = new b.UIImageLoader("battle_result");
+                case 433:
+                    var o = new v.UIImageLoader("battle_result");
                     o.add("battle_result_event_e3_" + e + ".json"), o.load(function () {
-                        n._img1.texture = y.BATTLE_RESULT_EVENT_E3_KFWTCXPASNHTBRFP.getTexture(0), n._img2.texture = y.BATTLE_RESULT_EVENT_E3_KFWTCXPASNHTBRFP.getTexture(1), i()
-                    }), this._img1.position.set(-498, -164), this._img2.position.set(-498, -9);
-                    break;
-                case 424:
-                    var o = new b.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e4_" + e + ".json"), o.load(function () {
-                        n._img1.texture = m.BATTLE_RESULT_EVENT_E4_MTEXIPTEABHJBKAX.getTexture(0), n._img2.texture = m.BATTLE_RESULT_EVENT_E4_MTEXIPTEABHJBKAX.getTexture(1), i()
-                    }), this._img1.position.set(-427, -136), this._img2.position.set(-385, -47);
-                    break;
-                case 425:
-                    var o = new b.UIImageLoader("battle_result");
-                    o.add("battle_result_event_e5_" + e + ".json"), o.load(function () {
-                        n._img1.texture = v.BATTLE_RESULT_EVENT_E5_JGKFZTHFKFJACRCM.getTexture(0), n._img2.texture = v.BATTLE_RESULT_EVENT_E5_JGKFZTHFKFJACRCM.getTexture(1), i()
-                    }), this._img1.position.set(-389, -167), this._img2.position.set(-462, -6);
+                        n._img1.texture = y.BATTLE_RESULT_EVENT_E3_OMRRDWSBMSBCGWWM.getTexture(0), n._img2.texture = y.BATTLE_RESULT_EVENT_E3_OMRRDWSBMSBCGWWM.getTexture(1), i()
+                    }), this._img1.position.set(-509, -172), this._img2.position.set(-398, -9);
                     break;
                 default:
                     this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY, i()

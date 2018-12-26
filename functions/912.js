@@ -28,8 +28,8 @@ const function912 = function (t, e, i) {
         u = i(920),
         c = i(921),
         h = i(923),
-        p = i(1005),
-        d = i(1026),
+        p = i(1004),
+        d = i(1025),
         f = function (t) {
             function e() {
                 return t.call(this) || this

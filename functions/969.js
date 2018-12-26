@@ -31,7 +31,7 @@ const function969 = function (t, e, i) {
                 }, e._title = new PIXI.Sprite, e._title.position.set(-350, -201), e.addChild(e._title), e._btn_kou = new _(4, e._onSelect), e._btn_kou.position.set(-353, -53), e._btn_otsu = new _(3, e._onSelect), e._btn_otsu.position.set(-183, -53), e._btn_hei = new _(2, e._onSelect), e._btn_hei.position.set(-15, -53), e._btn_tei = new _(1, e._onSelect), e._btn_tei.position.set(152, -53), e._btn_back = new l(e._onBack), e.addChild(e._btn_kou), e.addChild(e._btn_otsu), e.addChild(e._btn_hei), e.addChild(e._btn_tei), e.addChild(e._btn_back), e
             }
             return n(e, t), e.prototype.initialize = function (t, e) {
-                this._title.texture = o.SALLY_EVENT.getTexture(28), this._btn_kou.initialize(), this._btn_kou.enabled = this._getEnabled(4, t, e), this._btn_otsu.initialize(), this._btn_otsu.enabled = this._getEnabled(3, t, e), this._btn_hei.initialize(), this._btn_hei.enabled = this._getEnabled(2, t, e), this._btn_tei.initialize(), this._btn_tei.enabled = this._getEnabled(1, t, e), this._btn_back.initialize(t), this._btn_back.x = 263 - this._btn_back.width / 2, this._btn_back.y = 152 - this._btn_back.height / 2
+                this._title.texture = o.SALLY_EVENT.getTexture(31), this._btn_kou.initialize(), this._btn_kou.enabled = this._getEnabled(4, t, e), this._btn_otsu.initialize(), this._btn_otsu.enabled = this._getEnabled(3, t, e), this._btn_hei.initialize(), this._btn_hei.enabled = this._getEnabled(2, t, e), this._btn_tei.initialize(), this._btn_tei.enabled = this._getEnabled(1, t, e), this._btn_back.initialize(t), this._btn_back.x = 263 - this._btn_back.width / 2, this._btn_back.y = 152 - this._btn_back.height / 2
             }, e.prototype.activate = function (t, e) {
                 this._cb_onSelect = t, this._cb_onBack = e, this._btn_kou.activate(), this._btn_otsu.activate(), this._btn_hei.activate(), this._btn_tei.activate(), this._btn_back.activate()
             }, e.prototype.deactivate = function () {
@@ -59,17 +59,17 @@ const function969 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._update(!1), this._label.texture = this._getTextureLabel(), this._circle.texture = o.SALLY_EVENT.getTexture(44)
+                this._update(!1), this._label.texture = this._getTextureLabel(), this._circle.texture = o.SALLY_EVENT.getTexture(47)
             }, e.prototype._update = function (t) {
                 0 == this._enabled ? this._content.texture = this._getTextureOff() : this._content.texture = 1 == t ? this._getTextureOn() : this._getTexture()
             }, e.prototype._getTexture = function () {
-                return 4 == this._type ? o.SALLY_EVENT.getTexture(41) : 3 == this._type ? o.SALLY_EVENT.getTexture(45) : 2 == this._type ? o.SALLY_EVENT.getTexture(38) : 1 == this._type ? o.SALLY_EVENT.getTexture(48) : PIXI.Texture.EMPTY
+                return 4 == this._type ? o.SALLY_EVENT.getTexture(44) : 3 == this._type ? o.SALLY_EVENT.getTexture(48) : 2 == this._type ? o.SALLY_EVENT.getTexture(41) : 1 == this._type ? o.SALLY_EVENT.getTexture(51) : PIXI.Texture.EMPTY
             }, e.prototype._getTextureOn = function () {
-                return 4 == this._type ? o.SALLY_EVENT.getTexture(43) : 3 == this._type ? o.SALLY_EVENT.getTexture(47) : 2 == this._type ? o.SALLY_EVENT.getTexture(40) : 1 == this._type ? o.SALLY_EVENT.getTexture(50) : PIXI.Texture.EMPTY
+                return 4 == this._type ? o.SALLY_EVENT.getTexture(46) : 3 == this._type ? o.SALLY_EVENT.getTexture(50) : 2 == this._type ? o.SALLY_EVENT.getTexture(43) : 1 == this._type ? o.SALLY_EVENT.getTexture(53) : PIXI.Texture.EMPTY
             }, e.prototype._getTextureOff = function () {
-                return 4 == this._type ? o.SALLY_EVENT.getTexture(42) : 3 == this._type ? o.SALLY_EVENT.getTexture(46) : 2 == this._type ? o.SALLY_EVENT.getTexture(39) : 1 == this._type ? o.SALLY_EVENT.getTexture(49) : PIXI.Texture.EMPTY
+                return 4 == this._type ? o.SALLY_EVENT.getTexture(45) : 3 == this._type ? o.SALLY_EVENT.getTexture(49) : 2 == this._type ? o.SALLY_EVENT.getTexture(42) : 1 == this._type ? o.SALLY_EVENT.getTexture(52) : PIXI.Texture.EMPTY
             }, e.prototype._getTextureLabel = function () {
-                return 4 == this._type ? (this._label.position.set(0, 111), o.SALLY_EVENT.getTexture(34)) : 3 == this._type ? (this._label.position.set(6, 111), o.SALLY_EVENT.getTexture(33)) : 2 == this._type ? (this._label.position.set(23, 111), o.SALLY_EVENT.getTexture(32)) : 1 == this._type ? (this._label.position.set(0, 111), o.SALLY_EVENT.getTexture(35)) : PIXI.Texture.EMPTY
+                return 4 == this._type ? (this._label.position.set(0, 111), o.SALLY_EVENT.getTexture(37)) : 3 == this._type ? (this._label.position.set(6, 111), o.SALLY_EVENT.getTexture(36)) : 2 == this._type ? (this._label.position.set(23, 111), o.SALLY_EVENT.getTexture(35)) : 1 == this._type ? (this._label.position.set(0, 111), o.SALLY_EVENT.getTexture(38)) : PIXI.Texture.EMPTY
             }, e
         }(PIXI.Container),
         _ = function (t) {
@@ -129,7 +129,7 @@ const function969 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this.deactivate(), this._stoptAnim()
             }, e.prototype._update = function (t) {
-                1 == t ? (this._stoptAnim(), 0 == this._selected_type ? this.texture = o.SALLY_EVENT.getTexture(31) : this.texture = o.SALLY_EVENT.getTexture(37)) : 0 == this._selected_type ? (this.texture = o.SALLY_EVENT.getTexture(30), this._startAnim()) : this.texture = o.SALLY_EVENT.getTexture(36)
+                1 == t ? (this._stoptAnim(), 0 == this._selected_type ? this.texture = o.SALLY_EVENT.getTexture(34) : this.texture = o.SALLY_EVENT.getTexture(40)) : 0 == this._selected_type ? (this.texture = o.SALLY_EVENT.getTexture(33), this._startAnim()) : this.texture = o.SALLY_EVENT.getTexture(39)
             }, e.prototype._startAnim = function () {
                 null == this._t && (this.alpha = 1, this._t = createjs.Tween.get(this, {
                     loop: !0

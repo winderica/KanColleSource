@@ -19,52 +19,71 @@ const function1295 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(61),
-        r = i(1296),
+    var o = i(23),
+        r = i(20),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
+            function e() {
+                var e = t.call(this) || this;
+                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "no", {
+            return n(e, t), Object.defineProperty(e.prototype, "color", {
                 get: function () {
-                    return this._no
+                    return this._color
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "route", {
-                get: function () {
-                    return this._route
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "point", {
-                get: function () {
-                    return this._point
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.isAddedSpot = function () {
-                return null != this._route
-            }, e.prototype.showLine = function () {
-                null != this._line && (this._line.visible = !0)
-            }, e.prototype.hideLine = function () {
-                null != this._line && (this._line.visible = !1)
-            }, e.prototype.setColor = function (t) {
-                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
-            }, e.prototype.getColor = function () {
-                return this._point.color
-            }, e.prototype.setRoute = function (t, e, i, n) {
-                null != this._route && (this.removeChild(this._route), this._route = null);
-                var r = new o.CenteringSprite(t);
-                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
-            }, e.prototype.setLine = function (t, e, i, n) {
-                null != this._line && (this.removeChild(this._line), this._line = null);
-                var o = new PIXI.Sprite(t);
-                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
+            }), e.prototype.initialize = function (t) {
+                this.update(t)
+            }, e.prototype.update = function (t) {
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(143), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
             }, e.prototype.dispose = function () {
-                this._point.dispose()
+                this._stopTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 300).to({
+                    alpha: 1
+                }, 300))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case -1:
+                        return r.MAP_COMMON.getTexture(149);
+                    case 1:
+                        return r.MAP_COMMON.getTexture(142);
+                    case 2:
+                    case 6:
+                        return r.MAP_COMMON.getTexture(145);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(147);
+                    case 4:
+                        return r.MAP_COMMON.getTexture(148);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(136);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(101);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(135);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(146);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(96);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(150);
+                    case 12:
+                        return r.MAP_COMMON.getTexture(151);
+                    case 13:
+                        return r.MAP_COMMON.getTexture(81);
+                    case -2:
+                        return r.MAP_COMMON.getTexture(144);
+                    case -3:
+                        return r.MAP_COMMON.getTexture(141)
+                }
+                return PIXI.Texture.EMPTY
             }, e
-        }(PIXI.Container);
-    e.CompSpot = s
+        }(o.Container);
+    e.SpotPointImage = s
 }

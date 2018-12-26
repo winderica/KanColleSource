@@ -25,7 +25,7 @@ const function967 = function (t, e, i) {
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._board = new r.MapIntroBoard, e._board.position.set(522, 369), e._chara = new PIXI.Sprite, e._chara.position.set(822, 36), e._operation = new _, e._operation.position.set(363, 51), e._change_btn = new l, e._change_btn.position.set(648, 69), e.addChild(e._board), e.addChild(e._chara), e.addChild(e._operation), e.addChild(e._change_btn), e
+                return e._board = new r.MapIntroBoard, e._board.position.set(522, 369), e._chara = new PIXI.Sprite, e._chara.position.set(825, 0), e._operation = new _, e._operation.position.set(363, 51), e._change_btn = new l, e._change_btn.position.set(648, 69), e.addChild(e._board), e.addChild(e._chara), e.addChild(e._operation), e.addChild(e._change_btn), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "board", {
                 get: function () {

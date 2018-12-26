@@ -43,7 +43,7 @@ const function1348 = function (t, e, i) {
                 this._slotIcons = null, this._ship_name.dispose(), this._ship_name = null, this._level.destroy(), this._level = null, this._karyoku.destroy(), this._karyoku = null, this._raisou.destroy(), this._raisou = null, this._taiku.destroy(), this._taiku = null, this._soukou.destroy(), this._soukou = null, this._ring.dispose(), this._ring = null
             }, e.prototype._updateBackground = function (t, e) {
                 var i;
-                i = e.length >= 5 ? t ? 118 : 116 : t ? 117 : 115, this._bg.texture = _.BATTLE_MAIN.getTexture(i)
+                i = e.length >= 5 ? t ? 120 : 118 : t ? 119 : 117, this._bg.texture = _.BATTLE_MAIN.getTexture(i)
             }, e.prototype._updateHPGauge = function (t, e, i) {
                 this._gauge.x = t ? 192 : 267, this._gauge.y = 81, this._gauge.initialize(e / i)
             }, e.prototype._updateShipNameText = function (t, e, i, n) {

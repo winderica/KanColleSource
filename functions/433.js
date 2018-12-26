@@ -19,11 +19,11 @@ const function433 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1220),
+    var o = i(1219),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.KEIKAIJIN = !1, e._count = 0, e._boxes = [];
+                e.KEIKAIJIN = !0, e._count = 0, e._boxes = [];
                 for (var i = 0; i < (e.KEIKAIJIN ? 6 : 5); i++) {
                     var n = new o.FormationBox(!0);
                     e.addChild(n), e._boxes.push(n)

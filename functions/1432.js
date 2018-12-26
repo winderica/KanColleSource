@@ -71,7 +71,7 @@ const function1432 = function (t, e, i) {
                 this._img.update(t, e), this._frame.updateHp(t, e)
             }, e.prototype.waveOver = function (t) {
                 var e = this,
-                    i = new s.Sprite(a.BATTLE_MAIN.getTexture(82));
+                    i = new s.Sprite(a.BATTLE_MAIN.getTexture(84));
                 i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
                     scaleX: .75,
                     scaleY: .75

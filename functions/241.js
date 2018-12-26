@@ -3,7 +3,7 @@ const function241 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1216),
+    var n = i(1215),
         o = function () {
             function t(t) {
                 this._supplied = -1, this._use_ration = -1, this._gauge_now = 0, this._gauge_max = 0, this._stage = 1, this.m1 = 0, this._gekimetsu_data = null, this._practice = t, this._map_info = new r, this._ship_info = new s
@@ -147,6 +147,8 @@ const function241 = function (t, e, i) {
                 return 5 == this._type || 7 == this._type
             }, t.prototype.isAirRaid = function () {
                 return 6 == this._type
+            }, t.prototype.isLongRangeFires = function () {
+                return 8 == this._type
             }, t
         }(),
         s = function () {

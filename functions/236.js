@@ -14,5 +14,5 @@ const function236 = function (t, e, i) {
     }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.POSTER_TYPE = "xmas", e.POSTER_KEY_1 = "item_poster_1", e.POSTER_KEY_2 = "item_poster_2", e.getPosterOffsetWelcome = n, e.getPosterOffsetPurchased = o
+    }), e.POSTER_TYPE = "", e.POSTER_KEY_1 = "item_poster_1", e.POSTER_KEY_2 = "item_poster_2", e.getPosterOffsetWelcome = n, e.getPosterOffsetPurchased = o
 }

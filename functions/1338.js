@@ -48,7 +48,7 @@ const function1338 = function (t, e, i) {
     var _ = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(144)), e._img.position.set(-44, -63), e.addChild(e._img), e
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(146)), e._img.position.set(-44, -63), e.addChild(e._img), e
         }
         return n(e, t), e
     }(r.Container)

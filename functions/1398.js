@@ -42,13 +42,13 @@ const function1398 = function (t, e, i) {
                         a = n.type,
                         _ = n.getCountMainDeck(),
                         l = n.getCountSubDeck();
-                    this._scene.view.raderLayer.rader_f.show(s, a, _, l);
+                    this._scene.view.raderLayer.rader_f.show(s, a, _, l, !1);
                     var u = this._scene.data.model.deck_e,
                         c = u.formation,
                         h = u.type,
                         p = u.getCountMainDeck(),
                         d = u.getCountSubDeck();
-                    return void this._scene.view.raderLayer.rader_e.show(c, h, p, d)
+                    return void this._scene.view.raderLayer.rader_e.show(c, h, p, d, !1)
                 }
                 var f = new r.TweenTask;
                 if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {

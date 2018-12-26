@@ -58,7 +58,7 @@ const function983 = function (t, e, i) {
                 }
                 this._btn = new l.BtnDicision, this._btn.position.set(33, 638), this._btn.initialize(), this._btn.on("dicision", this._onClick), this.addChild(this._btn)
             }, e.prototype.update = function (t) {
-                this._selected_id = t.mst_id, 42 == t.area_id ? (this._map_name_txt.position.set(24, 152), this._areaText.position.set(18, 202), this._map_name_txt.text = t.name.replace(/ /g, "\n")) : (this._map_name_txt.position.set(24, 156), this._areaText.position.set(29, 185), this._map_name_txt.text = t.name), this._areaText.update(t.area_id), this._ope_name_txt.text = t.operation_name, this._ope_detail_txt.text = t.operation_detail.replace(/<br.*?>/g, "\n"), this._err_txt.text = "";
+                this._selected_id = t.mst_id, 43 == t.area_id ? (this._map_name_txt.position.set(24, 152), this._areaText.position.set(18, 202), this._map_name_txt.text = t.name.replace(/ /g, "\n").replace(/\//g, " /\n")) : (this._map_name_txt.position.set(24, 156), this._areaText.position.set(29, 185), this._map_name_txt.text = t.name), this._areaText.update(t.area_id), this._ope_name_txt.text = t.operation_name, this._ope_detail_txt.text = t.operation_detail.replace(/<br.*?>/g, "\n"), this._err_txt.text = "";
                 for (var e = t.item_ids, i = 0; i < this._items.length; i++) {
                     var n = this._items[i];
                     if (null != e && e.length > i && e[i] > 0) {

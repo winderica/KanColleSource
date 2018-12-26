@@ -23,7 +23,7 @@ const function1350 = function (t, e, i) {
         r = i(12),
         s = i(16),
         a = i(182),
-        _ = i(138),
+        _ = i(139),
         l = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -98,7 +98,7 @@ const function1350 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t) {
-                this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), this._telop.texture = s.BATTLE_MAIN.getTexture(136)
+                this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), this._telop.texture = s.BATTLE_MAIN.getTexture(138)
             }, e.prototype.dispose = function () {
                 this.removeChildren()
             }, e

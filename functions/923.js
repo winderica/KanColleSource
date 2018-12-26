@@ -42,7 +42,7 @@ const function923 = function (t, e, i) {
         T = i(975),
         O = i(983),
         P = i(985),
-        C = i(1001),
+        C = i(1e3),
         k = i(1),
         M = function (t) {
             function e(e, i) {

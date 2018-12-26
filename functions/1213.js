@@ -20,18 +20,16 @@ const function1213 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(13),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new r.UIImageLoader("prac");
-                e.add("prac_main.json"), e.load(function () {
-                    t._endTask()
-                })
+                this._scene.start(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskLoadResourcesPractice = s
+    e.TaskInit = r
 }

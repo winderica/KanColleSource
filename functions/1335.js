@@ -76,7 +76,7 @@ const function1335 = function (t, e, i) {
     var f = function (t) {
         function e() {
             var e = t.call(this) || this,
-                i = a.BATTLE_MAIN.getTexture(120);
+                i = a.BATTLE_MAIN.getTexture(122);
             return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
         }
         return n(e, t), e.prototype.activate = function () {

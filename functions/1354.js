@@ -119,14 +119,14 @@ const function1354 = function (t, e, i) {
         }(PIXI.Container),
         h = function (t) {
             function e() {
-                return t.call(this, l.BATTLE_MAIN.getTexture(111)) || this
+                return t.call(this, l.BATTLE_MAIN.getTexture(113)) || this
             }
             return n(e, t), e
         }(s.CenteringSprite),
         p = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(l.BATTLE_MAIN.getTexture(110));
+                    i = new PIXI.Sprite(l.BATTLE_MAIN.getTexture(112));
                 return i.x = -33, i.y = -89, e.addChild(i), e
             }
             return n(e, t), e

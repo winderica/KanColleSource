@@ -19,44 +19,42 @@ const function1194 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(1195),
-        s = i(1197),
-        a = i(1198),
-        _ = i(1205),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._dispose = function () {
-                    null != e._topTask && (e._topTask.dispose(), e._topTask = null), null != e._viewList && (e._viewList.dispose(), e._viewList = null), null != e._viewTop && (e._viewTop.dispose(), e._viewTop = null)
-                }, e
+    var o = i(0),
+        r = i(2),
+        s = i(1195),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewList", {
-                get: function () {
-                    return this._viewList
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new r.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new r.InitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new s.TaskItemSceneFinalize(this._dispose)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new _.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewList = new _.ViewSlotitemList, this._viewList.initialize(), this._viewList.position.set(1219, 102), this.addChild(this._viewList)
-            }, e.prototype.startTopTask = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
                 var t = this;
-                this._topTask = new a.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
+                (new s.TaskLoadResources).start(function () {
+                    t._showTopView()
                 })
+            }, e.prototype._showTopView = function () {
+                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
-        }(o.SceneBase);
-    e.RevampScene = l
+        }(r.TaskBase);
+    e.PreInitializeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            var t = this._getBGMID();
+            o.default.sound.bgm.play(t), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e.prototype._getBGMID = function () {
+            var t = o.default.model.deck.get(1).getShipModel(1);
+            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = _
 }

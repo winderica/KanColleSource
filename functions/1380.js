@@ -182,7 +182,7 @@ const function1380 = function (t, e, i) {
                 return e._w1 = new _.Sprite, e._w2 = new _.Sprite, e._w3 = new _.Sprite, e._w1.anchor.set(.5), e._w2.anchor.set(.5), e._w3.anchor.set(.5), e._w1.scale.set(0), e._w2.scale.set(0), e._w3.scale.set(0), e.addChild(e._w1), e.addChild(e._w2), e.addChild(e._w3), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this.scale.x = t ? 1 : -1, this._w1.position.set(479, 141), this._w2.position.set(215, 516), this._w3.position.set(-146, 278), this._w1.texture = u.BATTLE_MAIN.getTexture(106), this._w2.texture = u.BATTLE_MAIN.getTexture(106), this._w3.texture = u.BATTLE_MAIN.getTexture(106)
+                this.scale.x = t ? 1 : -1, this._w1.position.set(479, 141), this._w2.position.set(215, 516), this._w3.position.set(-146, 278), this._w1.texture = u.BATTLE_MAIN.getTexture(108), this._w2.texture = u.BATTLE_MAIN.getTexture(108), this._w3.texture = u.BATTLE_MAIN.getTexture(108)
             }, e.prototype.show = function (t) {
                 createjs.Tween.get(this._w1).wait(t).to({
                     scaleX: 2.27,

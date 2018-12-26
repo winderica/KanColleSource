@@ -20,7 +20,7 @@ const function1446 = function (t, e, i) {
         value: !0
     });
     var o = i(16),
-        r = i(138),
+        r = i(139),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -63,7 +63,7 @@ const function1446 = function (t, e, i) {
             return e.alpha = 0, e
         }
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.BATTLE_MAIN.getTexture(130)
+            this.texture = o.BATTLE_MAIN.getTexture(132)
         }, e.prototype.activate = function () {
             null == this._t && (this._t = createjs.Tween.get(this, {
                 loop: !0

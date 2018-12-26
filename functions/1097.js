@@ -19,20 +19,17 @@ const function1097 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = function (t) {
+    var o = i(11),
+        r = i(13),
+        s = i(395),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._scene_activate_delegate = e, i
+                return i._scene_dispose_delegate = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                o.default.sound.bgm.play(102), this._startScene()
-            }, e.prototype._startScene = function () {
-                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("item"), s.AkashiPicture.clearCache(), this._endTask()
             }, e
-        }(r.TaskBase);
-    e.TaskItemSceneInitialize = s
+        }(o.TaskBase);
+    e.TaskItemSceneFinalize = a
 }

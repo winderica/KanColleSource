@@ -26,7 +26,7 @@ const function1441 = function (t, e, i) {
                 return e.anchor.set(.5), e.alpha = 0, e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.BATTLE_MAIN.getTexture(108)
+                this.texture = o.BATTLE_MAIN.getTexture(110)
             }, e.prototype.play = function () {
                 var t = this,
                     e = {

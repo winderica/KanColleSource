@@ -19,45 +19,57 @@ const function1489 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(231),
-        r = i(23),
-        s = i(27),
-        a = i(1490),
-        _ = function (t) {
+    var o = i(1490),
+        r = i(1491),
+        s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                e._value = 0, e._lights = [], e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.ResultDialogNumLight;
+                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
+                }
+                for (var i = 0; i < 4; i++) {
+                    var s = new r.ResultDialogNum;
+                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
+                }
+                return e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
-            }, e.prototype.update = function (t, e) {
-                if (null == this._gauge) return null;
-                this._gauge.update(t, e)
-            }, e.prototype.explode = function (t) {
-                var e = this,
-                    i = new s.ParallelTask,
-                    n = new a.TaskExplosion(this, 107, 20);
-                i.add(n);
-                var o = new a.TaskExplosion(this, 209, 57, 250);
-                i.add(o);
-                var r = new a.TaskExplosion(this, 309, 24, 450);
-                i.add(r), i.start(function () {
-                    null != t && t()
-                }), createjs.Tween.get(this._gauge).wait(200).to({
-                    alpha: 0
-                }, 400).call(function () {
-                    e.removeChild(e._gauge), e._gauge = null
-                })
-            }, e.prototype.changeNextGauge = function (t, e) {
-                null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
-                var i = new r.Container;
-                i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
-                    null != e && e()
-                })
+            return n(e, t), e.prototype.setValue = function (t) {
+                this._value = Math.min(t, 9999);
+                for (var e = this._value, i = 0; i < this._nums.length; i++) {
+                    var n = this._nums[i],
+                        o = this._lights[i],
+                        r = e % 10;
+                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+                }
+            }, e.prototype.startLightAnimation = function () {
+                this.stopLightAnimation(), this._light_tweens = [];
+                for (var t = 0; t < this._lights.length; t++) {
+                    var e = this._nums[t],
+                        i = this._lights[t];
+                    if (0 == e.visible) i.visible = !1;
+                    else {
+                        i.alpha = 0, i.visible = !0;
+                        var n = createjs.Tween.get(i, {
+                            loop: !0
+                        }).to({
+                            alpha: 1
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 500).wait(500);
+                        this._light_tweens.push(n)
+                    }
+                }
+            }, e.prototype.stopLightAnimation = function () {
+                if (null != this._light_tweens) {
+                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
+                        var i = e[t];
+                        i.setPaused(!0), i = null
+                    }
+                    this._light_tweens = null
+                }
             }, e
         }(PIXI.Container);
-    e.ResultDialogGauge = _
+    e.ResultDialogNumSet = s
 }

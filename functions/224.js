@@ -4,7 +4,7 @@ const function224 = function (t, e, i) {
         value: !0
     });
     var n = i(257),
-        o = i(166),
+        o = i(167),
         r = function () {
             function t(t, e, i, o, r, s, a, _, l) {
                 if (void 0 === _ && (_ = -1), void 0 === l && (l = ""), this._medal_num = 0, this._id_second = -1, this._name_second = "", this._practice = e, this._medal_num = i, this._user_name = o, t instanceof n.DeckModel) {

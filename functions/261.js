@@ -7,7 +7,9 @@ const function261 = function (t, e, i) {
         function t() {
             this.normal = 0, this.rengo = 0, this.yugeki = 0
         }
-        return t
+        return t.prototype.init = function (t) {
+            this.normal = 0, this.rengo = 0, this.yugeki = 0, null != t && (t.length < 1 || (this.normal = t[0], t.length < 2 || (this.rengo = t[1], t.length < 3 || (this.yugeki = t[2]))))
+        }, t
     }();
     e.AllowedDeckTypeModel = n
 }

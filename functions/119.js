@@ -106,7 +106,7 @@ const function119 = function (t, e, i) {
                 }
             }, e.prototype._flyPlane = function (t) {
                 var e = this,
-                    i = new PIXI.Sprite(d.BATTLE_MAIN.getTexture(83));
+                    i = new PIXI.Sprite(d.BATTLE_MAIN.getTexture(85));
                 i.anchor.set(.5), i.rotation = -Math.PI / 3, i.scale.set(0), i.position.set(o.default.width / 2, o.default.height / 2);
                 var n = new c.FadeBox(.5);
                 n.hide(0), t.position.set(-99, 789), this._scene.view.layer_title.addChild(i, n, t), createjs.Tween.get(i.scale).to({
@@ -134,7 +134,7 @@ const function119 = function (t, e, i) {
                         l = a.type,
                         u = a.getCountMainDeck(),
                         c = a.getCountSubDeck();
-                    s.show(_, l, u, c)
+                    this._scene.data.model.map_info.isLongRangeFires() ? s.show(_, l, 0, 0, !0) : s.show(_, l, u, c, !1)
                 }
                 this._scene.view.layer_info2.once("complete", function () {
                     r.resetChildren()
@@ -152,7 +152,7 @@ const function119 = function (t, e, i) {
             }, e.prototype._showLastTelop = function () {
                 var t = this;
                 if (1 == this._record.raw.sakuteki.isSuccess_f()) {
-                    this._scene.view.layer_info2.showCenter(5);
+                    this._scene.data.model.map_info.isLongRangeFires() || this._scene.view.layer_info2.showCenter(5);
                     var e = new u.TweenTask;
                     e.addTweens(this._scene.view.bannerGroupLayer.enemies.createSakutekiTweens()), e.addTweens(this._scene.view.bannerGroupLayer.enemies_combined.createSakutekiTweens()), e.start(function () {
                         t._endTask()

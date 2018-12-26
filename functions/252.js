@@ -27,7 +27,7 @@ const function252 = function (t, e, i) {
                 return e._wave1 = new o.Sprite, e._wave1.scale.set(0), e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.scale.set(0), e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._wave1.texture = r.BATTLE_MAIN.getTexture(106), this._wave2.texture = r.BATTLE_MAIN.getTexture(106)
+                this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
             }, e.prototype.play = function () {
                 var t = this;
                 createjs.Tween.get(this._wave1).to({

@@ -46,23 +46,23 @@ const function1448 = function (t, e, i) {
             }, e.prototype._getTexture = function (t) {
                 switch (t) {
                     case 0:
-                        return r.BATTLE_MAIN.getTexture(127);
-                    case 1:
-                        return r.BATTLE_MAIN.getTexture(123);
-                    case 2:
-                        return r.BATTLE_MAIN.getTexture(128);
-                    case 3:
-                        return r.BATTLE_MAIN.getTexture(126);
-                    case 4:
-                        return r.BATTLE_MAIN.getTexture(122);
-                    case 5:
-                        return r.BATTLE_MAIN.getTexture(121);
-                    case 6:
-                        return r.BATTLE_MAIN.getTexture(125);
-                    case 7:
-                        return r.BATTLE_MAIN.getTexture(124);
-                    case 8:
                         return r.BATTLE_MAIN.getTexture(129);
+                    case 1:
+                        return r.BATTLE_MAIN.getTexture(125);
+                    case 2:
+                        return r.BATTLE_MAIN.getTexture(130);
+                    case 3:
+                        return r.BATTLE_MAIN.getTexture(128);
+                    case 4:
+                        return r.BATTLE_MAIN.getTexture(124);
+                    case 5:
+                        return r.BATTLE_MAIN.getTexture(123);
+                    case 6:
+                        return r.BATTLE_MAIN.getTexture(127);
+                    case 7:
+                        return r.BATTLE_MAIN.getTexture(126);
+                    case 8:
+                        return r.BATTLE_MAIN.getTexture(131);
                     default:
                         return PIXI.Texture.EMPTY
                 }

@@ -105,7 +105,7 @@ const function1373 = function (t, e, i) {
                 return e.anchor.set(.5), e.scale.set(0), e.alpha = 0, e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = a.BATTLE_MAIN.getTexture(109)
+                this.texture = a.BATTLE_MAIN.getTexture(111)
             }, e.prototype.getTween = function (t) {
                 return createjs.Tween.get(this).wait(t).to({
                     scaleX: 1,

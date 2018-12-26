@@ -100,6 +100,8 @@ const function524 = function (t, e, i) {
                         return 40;
                     case 313:
                         return 50;
+                    case 562:
+                        return 80;
                     default:
                         return 0 != e && -1 == this._USE_DEVKIT_GROUP_.indexOf(t) ? 0 : i < 4500 ? 0 : i < 5500 ? 10 : i < 6500 ? 15 : 20
                 }
@@ -126,6 +128,8 @@ const function524 = function (t, e, i) {
                         return 8;
                     case 313:
                         return 20;
+                    case 562:
+                        return 10;
                     default:
                         return 0
                 }

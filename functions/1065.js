@@ -4,8 +4,10 @@ const function1065 = function (t, e, i) {
         value: !0
     });
     var n = function () {
-        function t() {}
-        return t.BGM_ID_FOR_SHIP = 123, t.BGM_ID_FOR_SLOT = 102, t.COUNT_INTAB = 7, t.COUNT_INPAGE = 10, t
+        function t() {
+            this.takao_flag = 1, this.atago_flag = 1
+        }
+        return t
     }();
-    e.AlbumConst = n
+    e.AlbumSceneOptionModel = n
 }

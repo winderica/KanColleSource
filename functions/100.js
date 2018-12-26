@@ -70,6 +70,11 @@ const function100 = function (t, e, i) {
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
                         })
+                    } else if (i.data.model.map_info.isLongRangeFires()) {
+                        var y = new a.PhaseAttackNormal(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
                     } else if (0 == p) {
                         var y = new a.PhaseAttackNormal(i, n, o, r, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {

@@ -36,6 +36,7 @@ const function99 = function (t, e, i) {
                 var t = this;
                 if (null != this._scene.data.model.gekimetsu_data) this._endTask();
                 else if (this._scene.data.model.map_info.isAirRaid()) this._endTask();
+                else if (this._scene.data.model.map_info.isLongRangeFires()) this._endTask();
                 else {
                     var e = new c.PhaseEnemyEnter(this._scene, this._record);
                     e.start(function () {
