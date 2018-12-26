@@ -76,3 +76,4 @@ typings/
 .idea
 .vscode
 .git
+yarn.lock
