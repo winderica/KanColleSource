@@ -28,7 +28,7 @@ const function987 = function (t, e, i) {
                 return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
             }
             return n(e, t), e.prototype.update = function (t, e) {
-                t != o.EVENT_AREA_ID ? (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0) : (e >= 3 ? (this._content.position.set(1022, 348), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)) : (this._content.position.set(1014, 330), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)), this._light.position.set(1015, 330), this._light.alpha = 0)
+                t != o.EVENT_AREA_ID ? (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0) : (e >= 3 ? (this._content.position.set(1022, 348), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)) : (this._content.position.set(1015, 330), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)), this._light.position.set(1015, 330), this._light.alpha = 0)
             }, e.prototype.show = function () {
                 this._activate(), this.visible = !0
             }, e.prototype.hide = function () {

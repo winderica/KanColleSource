@@ -24,7 +24,7 @@ const detector = cron.job("0 0 * * * *", async () => {
             chunker(eval(functions)); // haven't find a better way to parse array of functions
             const start = /=\s*(\d*)\)\s*}\(\[/.exec(script)[1];
             await fs.writeFile('../tree.json', beautify(JSON.stringify(searcher(start)), jsonStyle));
-            exec(`git add ..;git commit -m -a "Update: 'main.js' v${version}";git push`, (err, stdout, stderr) => {
+            exec(`git add ..;git commit -m -a "Update: main.js v${version}";git push`, (err, stdout, stderr) => {
                 console.error(err);
                 console.log(stdout);
                 console.error(stderr);

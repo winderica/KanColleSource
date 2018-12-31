@@ -89,7 +89,7 @@ const function1311 = function (t, e, i) {
             }, e.prototype._loadBannerImage = function (t, e) {
                 if (null != e) {
                     var i = e.mst_id;
-                    i >= 0 && (t.add(i, !1, "banner"), t.add(i, !0, "banner"), t.add(i, !0, "banner_g"), t.add(i, !1, "full"), t.add(i, !0, "full")), e.index >= 6 && (e.friend ? (t.add(i, !1, "banner2"), t.add(i, !0, "banner2"), t.add(i, !0, "banner2_g")) : (t.add(i, !1, "banner3"), t.add(i, !0, "banner3_g")))
+                    i >= 0 && (t.add(i, !1, "banner"), t.add(i, !0, "banner"), t.add(i, !0, "banner_g"), t.add(i, !1, "full"), t.add(i, !0, "full")), e.index >= 6 && (e.friend ? (t.add(i, !1, "banner2"), t.add(i, !0, "banner2"), t.add(i, !0, "banner2_g")) : (t.add(i, !1, "banner3"), t.add(i, !0, "banner3_g"), 1587 != i && 1588 != i && 1589 != i && 1590 != i || t.add(i, !0, "banner3")))
                 }
             }, e.prototype._initializeView = function () {
                 var t = (this._scene.data.getFirstRecord(), this._scene.data.model.deck_f),

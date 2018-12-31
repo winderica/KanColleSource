@@ -153,7 +153,11 @@ const function511 = function (t, e, i) {
         }, e.prototype.changeOperation = function (t, e, i, n, o) {
             var r = this._evene_data;
             if (null != r) {
-                this.getSelectedOperationType() != t && (r.api_selected_rank = t, r.api_gauge_num = e, r.api_gauge_type = i, r.api_max_maphp = n, r.api_now_maphp = o)
+                if (this.getSelectedOperationType() != t) {
+                    r.api_selected_rank = t, r.api_max_maphp = n, r.api_now_maphp = o;
+                    var s = this._o;
+                    s.api_gauge_num = e, s.api_gauge_type = i
+                }
             }
         }, e.prototype.changeAllowedDeckType = function (t) {
             if (null != t) {
