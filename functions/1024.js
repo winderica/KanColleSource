@@ -19,34 +19,37 @@ const function1024 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
+    var o = i(38),
+        r = i(1),
         s = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._enabled = !0, i._activated = !1, i._mouseover = !1, i._onMouseOver = function () {
+                    i._mouseover = !0, i._updateTexture()
+                }, i._onMouseOut = function () {
+                    i._mouseover = !1, i._updateTexture()
+                }, i._cb_onClick = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
                 get: function () {
-                    return this._res_model
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled != t && (this._enabled = t, this._enabled ? this._activated && this._activate() : this.deactivate(), this._updateTexture())
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            }), e.prototype.initialize = function () {
+                this.interactive = !0, this._updateTexture()
+            }, e.prototype.activate = function () {
+                1 != this._activated && this._activate()
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._cb_onClick)
+            }, e.prototype._activate = function () {
+                this._activated = !0, 0 != this._enabled && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._cb_onClick))
+            }, e.prototype._updateTexture = function () {
+                0 == this._enabled ? this.texture = o.SALLY_EXPEDITION.getTexture(22) : this._mouseover ? this.texture = o.SALLY_EXPEDITION.getTexture(23) : this.texture = o.SALLY_EXPEDITION.getTexture(21)
             }, e
-        }(o.APIBase);
-    e.ChangeMatchingAPI = s;
-    var a = function () {
-        function t() {}
-        return t.prototype.setData = function (t) {
-            this._o = t
-        }, t.prototype.isSucceed = function () {
-            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
-        }, t
-    }();
-    e.ChangeMatchingAPIResultModel = a
+        }(PIXI.Sprite);
+    e.BtnCancel = s
 }

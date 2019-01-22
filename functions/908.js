@@ -19,27 +19,42 @@ const function908 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(0),
-        s = function (t) {
+    var o = i(0),
+        r = i(17),
+        s = i(2),
+        a = i(909),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_kousyou/destroyitem2", i.api_slotitem_ids = e, i
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_slotitem_ids = this.api_slotitem_ids.toString(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = 0; e < this.api_slotitem_ids.length; e++) {
-                    var i = this.api_slotitem_ids[e];
-                    r.default.model.slot.delete(i)
-                }
-                var n = this._raw_data.api_get_material,
-                    o = r.default.model.useItem.get(31),
-                    s = r.default.model.useItem.get(32),
-                    a = r.default.model.useItem.get(33),
-                    _ = r.default.model.useItem.get(34);
-                o.__setCount__(o.count + n[0]), s.__setCount__(s.count + n[1]), a.__setCount__(a.count + n[2]), _.__setCount__(_.count + n[3]), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this,
+                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
+                    i = null != e;
+                new a.TaskLoadResourcesSally(i).start(function () {
+                    t._showTopView()
+                })
+            }, e.prototype._showTopView = function () {
+                var t = o.default.model.deck.num > 1;
+                this._scene.initialize(t), this._scene = null, this._endTask()
             }, e
-        }(o.APIBase);
-    e.DestroyItem2API = s
+        }(s.TaskBase);
+    e.PreInitializeTask = _;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(103), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._scene.startTopTask(), this._endTask()
+        }, e
+    }(s.TaskBase);
+    e.InitializeTask = l
 }

@@ -19,27 +19,51 @@ const function879 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(35),
         r = i(1),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.limitShip = !1, e.limitSlot = !1, e._onClick = function () {
-                    0 == (e.limitShip || e.limitSlot) && e.onClick()
-                }, e._onMouseOver = function () {
-                    e.popup.visible = !1, e.limitShip ? e.popup.visible = !0 : e.limitSlot && (e.popup.visible = !0)
-                }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e.popup = new PIXI.Sprite, e.buttonSprite = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(41)), e.popup.visible = !1;
-                var i = Math.floor(100 - e.buttonSprite.width / 2),
-                    n = Math.floor(50 - e.buttonSprite.height / 2);
-                return e.area = new PIXI.Graphics, e.area.beginFill(0, 0), e.area.drawRect(-i, -n, 200, 100), e.area.endFill(), e.area.interactive = e.area.buttonMode = !0, e.area.on(r.EventType.CLICK, e._onClick), e.area.on(r.EventType.MOUSEOVER, e._onMouseOver), e.area.on(r.EventType.MOUSEOUT, e._onMouseOut), e.addChild(e.area, e.buttonSprite, e.popup), e
+                return e._state = !1, e.animationParams = {
+                    progress: 0
+                }, e._onClick = function () {
+                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
+                    var t = 0;
+                    switch (e._state) {
+                        case !1:
+                            e._state = !0, t = 0;
+                            break;
+                        case !0:
+                            e._state = !1, t = 1
+                    }
+                    var i = createjs.Tween.get(e.animationParams);
+                    i.to({
+                        progress: t
+                    }, 300).on("change", function () {
+                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
+                    }), i.play(null), e.tween = i
+                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(150)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(151)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(152)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(106, 0), e.addChild(e.background_off, e.background_on, e.toggle), e
             }
-            return n(e, t), e.prototype.updateCondition = function (t, e) {
-                this.popup.visible = !1, t ? (this.popup.texture = o.ARSENAL_MAIN.getTexture(2), this.popup.position.set(-61, -90)) : e && (this.popup.texture = o.ARSENAL_MAIN.getTexture(68), this.popup.position.set(49, -33)), this.limitShip = t, this.limitSlot = e
+            return n(e, t), Object.defineProperty(e.prototype, "state", {
+                get: function () {
+                    return this._state
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.update = function (t) {
+                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(106, 0), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
+            }, e.prototype.changeToggleState = function (t) {
+                switch (null != this.tween && this.tween.setPaused(!0), this.tween = null, this.toggle.x = 3, this.background_on.visible = !1, t) {
+                    case !0:
+                        this.toggle.x = 3, this.animationParams.progress = 0, this.background_on.visible = !0;
+                        break;
+                    case !1:
+                        this.toggle.x = 106, this.animationParams.progress = 1, this.background_on.visible = !1
+                }
+                this._state = t
             }, e.prototype.dispose = function () {
-                this.area.off(r.EventType.CLICK), this.area.off(r.EventType.MOUSEOVER), this.area.off(r.EventType.MOUSEOUT), this.onClick = null, this.popup = null, this.buttonSprite = null, this.limitShip = null, this.limitSlot = null, this.area = null, this.removeChildren()
+                null != this.tween && this.tween.setPaused(!0), this.removeChildren(), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null
             }, e
         }(PIXI.Container);
-    e.SelectButton = s
+    e.HighSpeedToggle = s
 }

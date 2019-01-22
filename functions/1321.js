@@ -21,17 +21,14 @@ const function1321 = function (t, e, i) {
     });
     var o = i(10),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                return s = null != o ? o.isCombined() : e.model.map_info.isVS12(), i._url = 1 == s ? "api_req_combined_battle/ec_midnight_battle" : 0 == r ? "api_req_battle_midnight/battle" : "api_req_combined_battle/midnight_battle", i._data = e, i
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/midnight_battle", n._data = e, n._debug = i, n
             }
             return n(e, t), e.prototype._completedEnd = function () {
                 this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIBattleDayToNight = r
+    e.APIPracticeDayToNight = r
 }

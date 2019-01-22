@@ -19,45 +19,25 @@ const function761 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(762),
-        a = i(304),
-        _ = i(210),
-        l = i(307),
-        u = i(306),
-        c = i(71),
-        h = i(127),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.phasePreInitialize = function () {
-                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
-                }, i._scene = e, i
+    var o = i(10),
+        r = i(0),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this;
-                (new s.TaskLoadResourcesRemodel).start(function () {
-                    t._uploadToGPU()
-                })
-            }, e.prototype._uploadToGPU = function () {
-                var t, e = this;
-                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                        t = u.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                            t = l.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                        e.phasePreInitialize()
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data.api_ship_data;
+                r.default.model.ship.updateData(e), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    r.default.model.useItem.get(34).__setCount__(t)
+                }
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = p
+        }(o.APIBase);
+    e.SlotExchangeIndexAPI = a
 }

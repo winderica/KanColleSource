@@ -19,43 +19,87 @@ const function268 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(8),
-        s = function (t) {
-            function e() {
-                for (var e = t.call(this, 0, 0, o.default.width, o.default.height) || this, i = 0; i < 20; i++) {
-                    var n = 4.5 * i;
-                    e.beginFill(0, .8 * Math.cos(n * Math.PI / 180)), e.drawRect(0, o.default.height - 3 * i, o.default.width, 3), e.endFill()
-                }
-                return e._arc = PIXI.Sprite.fromImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA1ElEQVQ4jaWUzRGCMBBGv8x4xw60Ay3BDrQDSqEFO4gl2IF0gFagHUQreB5EHcku4PBu7LBvfxKQOgALIAKJnAYouzkZQGUkWzTAaqrkzdWSlH9KUtYRr51Mk7SiOFnSijyuQNEZ35b0iPzKDjMnfg4hXIyihaS18f7dE82d+EbS0YjXfTv6ucFAwesiWsSZpJukpVHlAMwlndvnvTPWp6Oqp6sxJKAYankM3xUAK+yvfYiYDdnK/umscvb1OZnTgCBh/JOCI9xK2hmnWUvahxAe3ZwnVxLPxY8eTuoAAAAASUVORK5CYII="), e._arc.anchor.set(.5, .5), e._arc.x = o.default.width - 23, e._arc.y = o.default.height - 23, e._arc.scale.set(1.5), e._arc.alpha = .8, e.addChild(e._arc), e
+    var o = i(0),
+        r = i(2),
+        s = i(148),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._before = e, o._after = i, o._model = n, o
             }
-            return n(e, t), e.prototype.show = function (t, e) {
-                var i = this;
-                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), this._setVisiblity(!0), t <= 0 ? (this.alpha = 1, null != e && e()) : this._tween = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, t).call(function () {
-                    i._tween = null, null != e && e()
+            return n(e, t), Object.defineProperty(e.prototype, "before", {
+                get: function () {
+                    return this._before
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "after", {
+                get: function () {
+                    return this._after
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                o.default.view.clickGuard = !0, this._doPrefinalize()
+            }, e.prototype._doPrefinalize = function () {
+                var t = this;
+                s.TaskLoadBase.abortAll();
+                var e = o.default.view.getNowScene(),
+                    i = e.getPreFinalizeTask();
+                null != i ? i.start(function () {
+                    t._fadeOn()
+                }) : this._fadeOn()
+            }, e.prototype._fadeOn = function () {
+                var t = this,
+                    e = this._getFadeBox(this._before, this._after);
+                e.visible = !0, e.show(300, function () {
+                    t._doFinalize()
                 })
-            }, e.prototype.hide = function (t, e) {
-                var i = this;
-                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), t <= 0 ? (this.alpha = 0, this._setVisiblity(!1), null != e && e()) : this._tween = createjs.Tween.get(this).to({
-                    alpha: 0
-                }, t).call(function () {
-                    i._setVisiblity(!1), i._tween = null, null != e && e()
+            }, e.prototype._doFinalize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getFinalizeTask();
+                null != i ? i.start(function () {
+                    t._loadBackground()
+                }) : this._loadBackground()
+            }, e.prototype._loadBackground = function () {
+                var t = this;
+                o.default.view.bg.setImage(this._after, function () {
+                    t._change()
                 })
-            }, e.prototype._setVisiblity = function (t) {
-                this.visible = t, 1 == t ? this._startArcTween() : this._stopArcTween()
-            }, e.prototype._startArcTween = function () {
-                null == this._tween_arc && (this._arc.rotation = 0, this._tween_arc = createjs.Tween.get(this._arc, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 1200))
-            }, e.prototype._stopArcTween = function () {
-                null != this._tween_arc && (this._tween_arc.setPaused(!0), this._tween_arc = null)
-            }, e.prototype._stopTween = function () {
-                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+            }, e.prototype._change = function () {
+                if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null);
+                else {
+                    var t = e.__factory__(this._after);
+                    33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null))
+                }
+                this._doPreInitialize()
+            }, e.prototype._doPreInitialize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getPreInitializeTask(this._before, this._model);
+                null != i ? i.start(function () {
+                    t._fadeOff()
+                }) : this._fadeOff()
+            }, e.prototype._fadeOff = function () {
+                var t = this,
+                    e = this._getFadeBox(this._before, this._after),
+                    i = 0 == this._after;
+                i && o.default.view.portMain.ringMenu.prePosition(), e.hide(300, function () {
+                    e.visible = !1, t._doInitialize(), i && o.default.view.portMain.ringMenu.startAnimation()
+                })
+            }, e.prototype._doInitialize = function () {
+                var t = this,
+                    e = o.default.view.getNowScene(),
+                    i = e.getInitializeTask(this._before);
+                null != i ? i.start(function () {
+                    t._preEnd()
+                }) : this._preEnd()
+            }, e.prototype._preEnd = function () {
+                o.default.view.clickGuard = !1, this._endTask()
+            }, e.prototype._getFadeBox = function (t, e) {
+                return 23 == t || 23 == e ? o.default.view.fadeLayer : 25 == t || 25 == e ? o.default.view.fadeLayer : 33 == t || 33 == e ? o.default.view.fadeLayer : 32 == t || 32 == e ? o.default.view.fadeLayer : o.default.view.portMain.fadeLayer
             }, e
-        }(r.AreaBox);
-    e.LoadingBox = s
+        }(r.TaskBase);
+    e.TaskSceneChange = a
 }

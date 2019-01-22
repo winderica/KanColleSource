@@ -5,8 +5,8 @@ const function422 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("revamp_revamp_" + t)
+            return PIXI.Texture.fromFrame("revamp_pager_" + t)
         }
         t.getTexture = e
-    }(e.REVAMP_REVAMP || (e.REVAMP_REVAMP = {}))
+    }(e.REVAMP_PAGER || (e.REVAMP_PAGER = {}))
 }

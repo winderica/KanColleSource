@@ -1,51 +1,53 @@
 const function677 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(9),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = o.ORGANIZE_MAIN.getTexture(43),
-                    a = new PIXI.Sprite(r.COMMON_MISC.getTexture(75));
-                i.icon_d2_on = new PIXI.Sprite(r.COMMON_MISC.getTexture(77));
-                var _ = new PIXI.Sprite(n);
-                return _.position.set(-39, -21), i.addChild(a, _, i.icon_d2_on), i.tween = createjs.Tween.get(_).to({
-                    x: -39,
-                    y: -21,
-                    alpha: 1
-                }).to({
-                    x: -57
-                }, 600, createjs.Ease.cubicIn).wait(200).to({
-                    alpha: 0
-                }, 300).wait(400), i.tween.loop = !0, i.tween.play(null), i.icon_d2_on.on(s.EventType.MOUSEDOWN, e), i.icon_d2_on.interactive = !0, i.icon_d2_on.buttonMode = !0, i
+    var n = i(5),
+        o = i(0),
+        r = i(1),
+        s = i(31),
+        a = i(8),
+        _ = i(37),
+        l = i(6),
+        u = i(678),
+        c = function () {
+            function t(t) {
+                var e = this;
+                this._onClickBack = function () {
+                    e.onClickBack()
+                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new u.ShipDetailView
             }
-            return n(e, t), e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.tween.target), this.tween.setPaused(!0), this.icon_d2_on.removeAllListeners(s.EventType.MOUSEDOWN), this.icon_d2_on = null, this.tween = null, this.removeChildren()
-            }, e.prototype.hideOn = function () {
-                this.icon_d2_on.visible = !1
-            }, e.prototype.showOn = function () {
-                this.icon_d2_on.visible = !0
-            }, e
-        }(PIXI.Container);
-    e.CombineGuideView = a
+            return t.prototype.start = function (t) {
+                var e = o.default.model.ship.get(t),
+                    i = o.default.model.ship.getMst(e.mstID),
+                    a = s.ShipUtil.isMaxGradeUp(e, i, !1),
+                    _ = o.default.model.deck.isInDeck(e.memID);
+                this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
+                var u = !1;
+                if (_) {
+                    u = null != o.default.model.deck.get(_[0]).expedition
+                }
+                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, u), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, l.SE.play("249");
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 1
+                }, 125), createjs.Tween.get(this.shipDetailView).to({
+                    x: 471
+                }, 125).call(function () {
+                    o.default.sound.voice.playAtRandom(e.mstID.toString(), [2, 3], [50, 50]), o.default.view.clickGuard = !1
+                })
+            }, t.prototype.hide = function (t) {
+                _.TaskLoadShipResource.abortBy(this.shipDetailView), o.default.view.clickGuard = !0;
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125), createjs.Tween.get(this.shipDetailView).to({
+                    x: n.default.width
+                }, 125).call(function () {
+                    o.default.view.clickGuard = !1, t()
+                })
+            }, t.prototype.dispose = function () {
+                this.dialogBackground.off(r.EventType.CLICK, this._onClickBack), this.shipDetailView.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipDetailView), this.onClickBack = null, this.dialogBackground = null, this.mainView = null, this.shipDetailView = null
+            }, t
+        }();
+    e.TaskShipDetail = c
 }

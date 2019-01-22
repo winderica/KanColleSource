@@ -20,73 +20,44 @@ const function1468 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(205),
-        a = i(478),
-        _ = i(244),
-        l = i(1470),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        r = i(8),
+        s = i(59),
+        a = i(81),
+        _ = i(209),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._useitemBonus()
-            }, e.prototype._useitemBonus = function () {
-                var t = this,
-                    e = this._scene.data.getBonusUseitem();
-                if (null != e) {
-                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                    var i = this._scene.view.layer_cutin,
-                        n = e.mst_id;
-                    new l.TaskBonusTelop(i, 6, n).start(function () {
-                        var e = new _.TaskBonusUseItem(i, n, 1, !1);
-                        e.start(function () {
-                            t._slotitemBonus(e)
-                        })
-                    })
-                } else this._slotitemBonus(null)
-            }, e.prototype._slotitemBonus = function (t) {
-                var e = this,
-                    i = this._scene.data.getBonusSlot();
-                if (null != i) {
-                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                    var n = this._scene.view.layer_cutin,
-                        r = i.mst_id;
-                    new l.TaskBonusTelop(n, 2, r).start(function () {
-                        var i = new a.TaskBonusSlot(n, r, 1, 1, !1, t);
-                        i.start(function () {
-                            e._shipBonus(i)
-                        })
-                    })
-                } else this._shipBonus(t)
-            }, e.prototype._shipBonus = function (t) {
-                var e = this,
-                    i = this._scene.data.getBonusShip();
-                if (null != i) {
-                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
-                    var n = this._scene.view.layer_cutin,
-                        r = i.mst_id,
-                        a = this._scene.data.battle_model.map_info.area_id,
-                        _ = this._scene.data.battle_model.map_info.map_no,
-                        u = 1 == a && (1 == _ || 2 == _ || 3 == _);
-                    new l.TaskBonusTelop(n, 3, r, u).start(function () {
-                        var i = new s.TaskBonusShip(n, r, !1, t);
-                        i.start(function () {
-                            e._closeShutter(i)
-                        })
-                    })
-                } else this._closeShutter(null)
-            }, e.prototype._closeShutter = function (t) {
-                var e = this;
-                this._play_bgm && o.default.sound.bgm.fadeOut(1200);
-                var i = this._scene.view.shutter;
-                i.close(), i.once("closed", function () {
-                    null != t && t.dispose(), e._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._play_bgm = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(n, e, i)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
-        }(r.TaskBase);
-    e.TaskNormalBonus = u
+        }(PIXI.Container);
+    e.BonusSlot = l
 }

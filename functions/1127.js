@@ -19,61 +19,29 @@ const function1127 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(90),
-        s = i(33),
-        a = i(91),
-        _ = i(1128),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+    var o = i(1),
+        r = i(74),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClickYes = function () {
+                    null != i._cb_onClick && i._cb_onClick(!0)
+                }, i._onClickNo = function () {
+                    null != i._cb_onClick && i._cb_onClick(!1)
+                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showDialog()
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                this._dialog = new _.HishimochiUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
-                    s = n.result;
-                n.start(function () {
-                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new a.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new r.UseItemUseAPI(e, !0, i),
-                            s = n.result;
-                        n.start(function () {
-                            t._result = s, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
+                var e = new PIXI.Sprite(t),
+                    i = Math.min(135 / e.width, 135 / e.height);
+                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
+            }, e.prototype.activate = function () {
+                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseHishimochi = l
+        }(PIXI.Sprite);
+    e.RewardSelectConfirm = s
 }

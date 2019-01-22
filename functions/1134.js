@@ -22,42 +22,25 @@ const function1134 = function (t, e, i) {
     var o = i(74),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e.alpha = 0, e.visible = !1, e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (null == this._star && (this._star = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(13)), this.addChild(this._star)), null == this._plus && (this._plus = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(23)), this._plus.position.set(21, 5), this.addChild(this._plus)), null == this._level && (this._level = new PIXI.Sprite, this._level.position.set(39, 2), this.addChild(this._level)), t < 1 || 9 < t) this._star.visible = !1, this._plus.visible = !1, this._level.visible = !1;
-                else {
-                    switch (t) {
-                        case 1:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(14);
-                            break;
-                        case 2:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(15);
-                            break;
-                        case 3:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(16);
-                            break;
-                        case 4:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(17);
-                            break;
-                        case 5:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(18);
-                            break;
-                        case 6:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(19);
-                            break;
-                        case 7:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(20);
-                            break;
-                        case 8:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(21);
-                            break;
-                        case 9:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(22)
-                    }
-                    this._star.visible = !0, this._plus.visible = !0, this._level.visible = !0
-                }
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(12)
+            }, e.prototype.show = function () {
+                var t = this;
+                this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 300).wait(2e3).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.visible = !1
+                })
+            }, e.prototype.hide = function () {
+                this._stopTween(), this.alpha = 0, this.visible = !1
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Container);
-    e.LevelStar = r
+        }(PIXI.Sprite);
+    e.RewardSelectDialogFurnitureAlert = r
 }

@@ -19,39 +19,76 @@ const function1135 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(74),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._num = new PIXI.Sprite, e._num.position.set(29, 15), e.addChild(e._num), e
+    var o = i(0),
+        r = i(239),
+        s = i(401),
+        a = i(27),
+        _ = i(173),
+        l = i(1136),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
-            }, e.prototype.update = function (t) {
-                this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
-            }, e.prototype._getNumImage = function (t) {
-                switch (t) {
-                    case 1:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
-                    case 2:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
-                    case 3:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
-                    case 4:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
-                    case 5:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
-                    case 6:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
-                    case 7:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
-                    case 8:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
-                    case 9:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
-                }
-                return PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this,
+                    e = new r.TaskLoadResources;
+                e.addUseitem(4), e.addSlotitem(169), e.addSlotitem(187), e.addFurniture(412), e.start(function () {
+                    t._showDialog()
+                })
+            }, e.prototype._showDialog = function () {
+                this._dialog = new l.SetsubunUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 1, this._layer.addChild(this._dialog), this._dialog.activate()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new s.UseItemUseAPI(e, !1, i)),
+                    r = n.result;
+                n.start(function () {
+                    if (1 == r.hasCaution()) t._hideDialog(!0);
+                    else {
+                        if (82 == i) {
+                            o.default.model.furniture.getData(412).updateHasFlag(!0)
+                        }
+                        if (83 == i) {
+                            var e = o.default.model.useItem.getMaterialCounts(),
+                                n = e.devKit - 10,
+                                s = o.default.model.useItem.get(3);
+                            s.__setCount__(n)
+                        }
+                        if (84 == i) {
+                            var e = o.default.model.useItem.getMaterialCounts(),
+                                n = e.devKit - 40,
+                                s = o.default.model.useItem.get(3);
+                            s.__setCount__(n), o.default.model.basic.setCFlag(1)
+                        }
+                        t._result = r, t._hideDialog(!1)
+                    }
+                })
+            }, e.prototype._hideDialog = function (t) {
+                this._dialog.dispose(), this._layer.removeChild(this._dialog), this._dialog = null, 1 == t ? this._confirm() : this._endTask()
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = this._layer,
+                    o = new _.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new s.UseItemUseAPI(e, !0, i),
+                            r = n.result;
+                        n.start(function () {
+                            t._result = r, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectDialogCount = r
+        }(a.TaskWithResult);
+    e.TaskUseSetsubun = u
 }

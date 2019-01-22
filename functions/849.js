@@ -20,40 +20,21 @@ const function849 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(15),
-        a = i(13),
-        _ = i(850),
-        l = i(338),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._updateNDock = function () {
-                    (new l.NDockAPI).start(i._loadAtlas)
-                }, i._loadAtlas = function () {
-                    var t = new a.UIImageLoader("repair");
-                    t.add("repair_main.json"), t.load(i._loadShipBanner)
-                }, i._loadShipBanner = function () {
-                    var t = o.default.model.ndock.getShipMemIDs();
-                    if (0 < t.length) {
-                        for (var e = new s.ShipLoader, n = 0; n < t.length; n++) {
-                            var r = t[n],
-                                a = o.default.model.ship.get(r);
-                            e.add(a.mstID, a.isDamaged(), "banner")
-                        }
-                        e.load(function () {
-                            i._onCompleteLoad()
-                        })
-                    } else i._onCompleteLoad()
-                }, i._onCompleteLoad = function () {
-                    var t = o.default.model.ndock.getAll(),
-                        e = new _.MainView(t);
-                    i.repairScene.start(e), i.repairScene.updateNDocks(t), i.repairScene.startNDockTimer(), i._endTask()
-                }, i.repairScene = e, i
+        r = i(70),
+        s = i(9),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite(s.COMMON_MISC.getTexture(108)),
+                    o = new r.RingSmall;
+                return o.position.set(207, 28), o.initialize(), o.activate(), n.anchor.x = 1, n.x = n.width, e.addChild(i, n, o), e.shipBanner = i, e.ring = o, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._updateNDock()
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.shipBanner.texture = o.default.resources.getShip(t, e, "banner"), this.ring.visible = !1, i && (this.ring.visible = !0)
+            }, e.prototype.dispose = function () {
+                this.removeChild(this.shipBanner), this.shipBanner.texture = PIXI.Texture.EMPTY, this.ring.deactivate(), this.ring.dispose(), this.ring = null, this.shipBanner = null, this.removeChildren()
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = u
+        }(PIXI.Container);
+    e.RepairShipBanner = a
 }

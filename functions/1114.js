@@ -21,32 +21,33 @@ const function1114 = function (t, e, i) {
     });
     var o = i(0),
         r = i(90),
-        s = i(33),
+        s = i(27),
         a = i(91),
         _ = i(1115),
         l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
                 }, n._layer = e, n._target = i, n
             }
             return n(e, t), e.prototype._start = function () {
                 this._showDialog()
             }, e.prototype._showDialog = function () {
                 var t = this;
-                this._dialog = new _.MedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                this._dialog = new _.PresentBoxUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
                     alpha: 1
                 }, 150).call(function () {
                     t._dialog.activate()
                 })
-            }, e.prototype._connectAPI = function (t) {
-                var e = this,
-                    i = this._target.mstID,
-                    n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
                     s = n.result;
                 n.start(function () {
-                    1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
+                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
                 })
             }, e.prototype._hideDialog = function (t) {
                 var e = this;
@@ -58,7 +59,7 @@ const function1114 = function (t, e, i) {
             }, e.prototype._confirm = function () {
                 var t = this,
                     e = this._target.mstID,
-                    i = this._selected_exchange_type,
+                    i = this._seleced_use_type,
                     n = this._layer,
                     o = new a.TaskItemOverflowConfirm(n);
                 o.start(function () {
@@ -74,5 +75,5 @@ const function1114 = function (t, e, i) {
                 this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskWithResult);
-    e.TaskUseMedal = l
+    e.TaskUsePresentBox = l
 }

@@ -20,14 +20,16 @@ const function1033 = function (t, e, i) {
         value: !0
     });
     var o = i(38),
-        r = i(366),
-        s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
             }
-            return n(e, t), e.prototype._updateTexture = function () {
-                0 == this._enabled ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(19) : 1 == this._overed ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(20) : this._btn.texture = o.SALLY_EXPEDITION.getTexture(18)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
+            }, e.prototype.update = function (t) {
+                this._beek.x = t - 16, this._beek.visible = !0
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(PIXI.Sprite);
+    e.ExpeditionListFrame = r
 }

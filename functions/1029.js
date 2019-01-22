@@ -19,37 +19,35 @@ const function1029 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
-        r = i(1),
+    var o = i(147),
+        r = i(38),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !0, i._activated = !1, i._mouseover = !1, i._onMouseOver = function () {
-                    i._mouseover = !0, i._updateTexture()
-                }, i._onMouseOut = function () {
-                    i._mouseover = !1, i._updateTexture()
-                }, i._cb_onClick = e, i
+            function e() {
+                var e = t.call(this) || this;
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, this._enabled ? this._activated && this._activate() : this.deactivate(), this._updateTexture())
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.interactive = !0, this._updateTexture()
-            }, e.prototype.activate = function () {
-                1 != this._activated && this._activate()
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._cb_onClick)
-            }, e.prototype._activate = function () {
-                this._activated = !0, 0 != this._enabled && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._cb_onClick))
-            }, e.prototype._updateTexture = function () {
-                0 == this._enabled ? this.texture = o.SALLY_EXPEDITION.getTexture(22) : this._mouseover ? this.texture = o.SALLY_EXPEDITION.getTexture(23) : this.texture = o.SALLY_EXPEDITION.getTexture(21)
+            return n(e, t), e.prototype.initialize = function () {
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(34)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(PIXI.Sprite);
-    e.BtnCancel = s
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

@@ -19,17 +19,25 @@ const function920 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
+    var o = i(10),
+        r = i(921),
         s = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/mission", i._debug = e, i
+            function e(e, i, n, o) {
+                void 0 === o && (o = !1);
+                var s = t.call(this) || this;
+                return s._url = "api_req_map/start", s._map = e, s._deck_id = i, s._serial_id = n, s._debug = o, s._model = new r.SortieModelEdit, s
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.expedition.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_maparea_id = this._map.area_id, this._post_data.api_mapinfo_no = this._map.map_no, this._post_data.api_deck_id = this._deck_id, this._post_data.api_serial_cid = this._serial_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._model.__init__(this._map, this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.APIBase);
-    e.ExpeditionAPI = s
+        }(o.APIBase);
+    e.APIMapStart = s
 }

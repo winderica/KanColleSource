@@ -19,44 +19,46 @@ const function612 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(287),
-        a = i(288),
-        _ = i(289),
-        l = i(290),
-        u = i(152),
-        c = i(1),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mouse_down = !1, i._cb_onRelateOpen = null, i._cb_onRelateClose = null, i._onMouseOver = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._showWaves(), i._description.show(), null != i._cb_onRelateOpen && i._cb_onRelateOpen()
-                }, i._onMouseOut = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !1, i._bg_on.deactivate(), i._img.visible = !0, i._img_on.visible = !1, i._setScale(1), i._hideWaves(), i._description.hide(), null != i._cb_onRelateClose && i._cb_onRelateClose()
-                }, i._onMouseDown = function () {
-                    i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
-                }, i._onMouseUp = function () {
-                    i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
-                }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new l.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new u.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+    var o = i(613),
+        r = i(614),
+        s = i(615),
+        a = i(154),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onRevampOpen = function () {
+                    null != e._revamp && e._revamp.open()
+                }, e._onRevampClose = function () {
+                    null != e._revamp && e._revamp.close()
+                }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()
+            return n(e, t), e.prototype.initialize = function () {
+                this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
             }, e.prototype.activate = function () {
-                1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
+                this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
             }, e.prototype.deactivate = function () {
-                this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
-            }, e.prototype.interactiveApply = function (t) {
-                this._hit_area.interactive = t
+                this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
+            }, e.prototype.prePosition = function () {
+                this.x = this._presetX, this.alpha = 0
+            }, e.prototype.startAnimation = function () {
+                var t = this;
+                this._interactive(!1), createjs.Tween.get(this).wait(200).to({
+                    x: this._baseX,
+                    alpha: 1
+                }, 300, createjs.Ease.quadOut).call(function () {
+                    t._interactive(!0)
+                })
             }, e.prototype.dispose = function () {
-                this._cb_onRelateOpen = null, this._cb_onRelateClose = null, this.deactivate(), this._hideWaves(), this._bg_on.dispose()
-            }, e.prototype._showWaves = function () {
-                null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
-            }, e.prototype._hideWaves = function () {
-                null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
-            }, e.prototype._setScale = function (t) {
-                this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+                this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
+            }, e.prototype.setRevampFlg = function (t) {
+                1 == t ? this._addRevampBtn() : this._removeRevampBtn()
+            }, e.prototype._addRevampBtn = function () {
+                null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
+            }, e.prototype._removeRevampBtn = function () {
+                null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
+            }, e.prototype._interactive = function (t) {
+                this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
             }, e
         }(PIXI.Container);
-    e.RingMenuBtn = h
+    e.RingMenuLayer = _
 }

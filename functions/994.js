@@ -19,15 +19,18 @@ const function994 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(370),
-        r = i(371),
+    var o = i(371),
+        r = i(372),
         s = function (t) {
             function e(e, i, n) {
-                var o = t.call(this, e, n) || this,
-                    s = new r.EventMapThumbnail(1, i, n, o._onMouseOver, o._onMouseOut);
-                return s.position.set(501, 207), o.addChild(s), o._maps.push(s), o
+                for (var o = t.call(this, e, n) || this, s = 0; s < 2; s++) {
+                    var a = new r.EventMapThumbnail(2, i, n, o._onMouseOver, o._onMouseOut),
+                        _ = 207 + 216 * s;
+                    a.position.set(501, _), o.addChild(a), o._maps.push(a)
+                }
+                return o
             }
             return n(e, t), e
         }(o.EventLayoutBase);
-    e.LayoutEventMap1 = s
+    e.LayoutEventMap2 = s
 }

@@ -32,7 +32,7 @@ const function1406 = function (t, e, i) {
         d = i(100),
         f = i(97),
         y = i(77),
-        m = i(119),
+        m = i(120),
         v = i(102),
         g = function (t) {
             function e(e, i, n) {
@@ -123,5 +123,5 @@ const function1406 = function (t, e, i) {
                 })
             }, e
         }(o.PhaseCombatBase);
-    e.PhaseDay_Suijo_vs12 = g
+    e.PhaseDay_Suijo = g
 }

@@ -19,22 +19,32 @@ const function285 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
+    var o = i(286),
+        r = i(21),
         s = function (t) {
             function e() {
-                return t.call(this) || this
+                for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
+                    var l = new PIXI.Sprite,
+                        u = i[_];
+                    l.position.x = u[0], l.position.y = u[1], l.alpha = 1;
+                    var c = new o.KiraAnimation(l, n, s);
+                    a.push(c), e.addChild(l)
+                }
+                return e.kiraAnimations = a, e.visible = !1, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._check()
-            }, e.prototype._check = function () {
-                var t = o.default.model.deck.getAll();
-                t = t.filter(function (t, e, i) {
-                    return null != t.expedition && 2 == t.expedition.state
-                });
-                var e = o.default.view.portMain.expedition_alert;
-                t.length > 0 ? (e.initialize(t[0].mstID), e.activate(), e.visible = !0) : (e.deactive(), e.visible = !1), this._endTask()
+            return n(e, t), e.prototype.play = function () {
+                this.visible = !0;
+                for (var t = 0; t < this.kiraAnimations.length; t++) {
+                    var e = Math.floor(3 * Math.random());
+                    this.kiraAnimations[t].play(e)
+                }
+            }, e.prototype.stop = function () {
+                this.visible = !1;
+                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].stop()
+            }, e.prototype.dispose = function () {
+                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].dispose(), this.kiraAnimations[t] = null;
+                this.kiraAnimations = null, this.removeChildren()
             }, e
-        }(r.TaskBase);
-    e.TaskExpeditionAlertUpdate = s
+        }(PIXI.Container);
+    e.BaseKirakira = s
 }

@@ -20,46 +20,39 @@ const function495 = function (t, e, i) {
         value: !0
     });
     var o = function () {
-        function t(t) {
-            this._a = t
+        function t() {
+            this._type = 0
         }
-        return Object.defineProperty(t.prototype, "state", {
+        return Object.defineProperty(t.prototype, "type", {
             get: function () {
-                return null != this._a && this._a.length > 0 ? this._a[0] : 0
+                return this._type
             },
             enumerable: !0,
             configurable: !0
-        }), Object.defineProperty(t.prototype, "expedition_id", {
+        }), Object.defineProperty(t.prototype, "deck_id_main", {
             get: function () {
-                return null != this._a && this._a.length > 1 ? this._a[1] : -1
+                return 1 == this.isCombined() ? 1 : 0
             },
             enumerable: !0,
             configurable: !0
-        }), Object.defineProperty(t.prototype, "complete_unixtime", {
+        }), Object.defineProperty(t.prototype, "deck_id_sub", {
             get: function () {
-                return null != this._a && this._a.length > 2 ? this._a[2] : -1
+                return 1 == this.isCombined() ? 2 : 0
             },
             enumerable: !0,
             configurable: !0
-        }), t
+        }), t.prototype.isCombined = function () {
+            return 1 == this._type || 2 == this._type || 3 == this._type
+        }, t
     }();
-    e.DeckExpeditionModel = o;
+    e.DeckCombinedModel = o;
     var r = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
+        function e() {
+            return t.call(this) || this
         }
         return n(e, t), e.prototype.__update__ = function (t) {
-            this._a = t
-        }, e.prototype.__update_state__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 0;) this._a.push(0);
-            this._a[0] = t
-        }, e.prototype.__update_id__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 1;) this._a.push(0);
-            this._a[1] = t
-        }, e.prototype.__update_time__ = function (t) {
-            for (null == this._a && (this._a = []); this._a.length <= 2;) this._a.push(0);
-            this._a[2] = t
+            this._type = t
         }, e
     }(o);
-    e.DeckExpeditionModelEdit = r
+    e.DeckCombinedModelEdit = r
 }

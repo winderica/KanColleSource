@@ -1,110 +1,120 @@
 const function1422 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(473),
-        r = i(475),
-        s = i(474),
-        a = function () {
-            function t(t) {
-                this._o = t
+    var o = i(51),
+        r = i(1423),
+        s = i(1427),
+        a = i(477),
+        _ = i(1437),
+        l = i(1438),
+        u = i(1441),
+        c = i(1446),
+        h = i(1447),
+        p = i(1448),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new l.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new u.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
             }
-            return Object.defineProperty(t.prototype, "ration", {
+            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
-                    return null == t ? [] : t
+                    return this._layer_torpedo
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_combined", {
+            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
-                    return null == t ? [] : t
+                    return this._bannerGroupLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "support_air", {
+            }), Object.defineProperty(e.prototype, "layer_explosion", {
                 get: function () {
-                    if (1 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
+                    return this._layer_explosion
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "support_hou", {
+            }), Object.defineProperty(e.prototype, "layer_damage", {
                 get: function () {
-                    if (2 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
+                    return this._layer_damage
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "support_rai", {
+            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
                 get: function () {
-                    if (3 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
+                    return this._bannerInfoLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "support_taisen", {
+            }), Object.defineProperty(e.prototype, "layer_content", {
                 get: function () {
-                    if (4 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
+                    return this._layer_content
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki", {
+            }), Object.defineProperty(e.prototype, "raderLayer", {
                 get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_hougeki");
-                    return null == t ? null : new r.HougekiListNightData(t)
+                    return this._raderLayer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki1", {
+            }), Object.defineProperty(e.prototype, "layer_gauge", {
                 get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki1");
-                    return null == t ? null : new r.HougekiListNightData(t)
+                    return this._layer_gauge
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki2", {
+            }), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki2");
-                    return null == t ? null : new r.HougekiListNightData(t)
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.getTouchPlaneFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 1 ? -1 : t[0]
-            }, t.prototype.getTouchPlaneEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 2 ? -1 : t[1]
-            }, t.prototype.getFlareLightFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 1 ? -1 : t[0]
-            }, t.prototype.getFlareLightEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 2 ? -1 : t[1]
-            }, t.prototype.hasDayBattle = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_day_flag")
-            }, t
-        }();
-    e.RawNightBattleData = a
+            }), Object.defineProperty(e.prototype, "layer_info", {
+                get: function () {
+                    return this._layer_info
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_title", {
+                get: function () {
+                    return this._layer_title
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info2", {
+                get: function () {
+                    return this._layer_info2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
+            }, e
+        }(PIXI.Container);
+    e.ViewMain = d
 }

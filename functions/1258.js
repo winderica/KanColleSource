@@ -19,121 +19,87 @@ const function1258 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(122),
-        r = i(174),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
+    var o = i(2),
+        r = i(6),
+        s = i(20),
+        a = i(437),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
-            }, e.prototype.activate = function () {
-                1 == this._enabled && this._btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn.dispose()
-            }, e.prototype._getTexture = function (t, e) {
-                switch (t) {
-                    case 1:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(14);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(15);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(16);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(17)
-                        }
-                        break;
-                    case 2:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(34);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(35);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(36);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(37)
-                        }
-                        break;
-                    case 3:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(39);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(40);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(41);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(42)
-                        }
-                }
-                return PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new l;
+                var e = this._scene.view.map.ship_icon;
+                e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
+                var i = {
+                    rad: 0,
+                    a: 36
+                };
+                createjs.Tween.get(i, {
+                    onChange: function () {
+                        e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
+                    }
+                }).to({
+                    a: 0
+                }, 2400).call(function () {
+                    e.stopWave(), t._animItem()
+                })
+            }, e.prototype._animItem = function () {
+                var t = this,
+                    e = this._data.getUseitemMstID(),
+                    i = this._data.lost_count,
+                    n = new a.CompDropItem;
+                n.initialize(e, i);
+                var o = this._scene.view.map.ship_icon;
+                o.under.addChild(n), createjs.Tween.get(n).to({
+                    x: -120
+                }, 1400), createjs.Tween.get(n).to({
+                    y: -60
+                }, 400, createjs.Ease.quadOut).to({
+                    y: 150
+                }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    o.under.removeChild(n), n.dispose(), t._hideUzu()
+                })
+            }, e.prototype._hideUzu = function () {
+                var t = this,
+                    e = this._scene.view.map.ship_icon;
+                createjs.Tween.get(this._uzu).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
+                })
+            }, e.prototype._showText = function () {
+                var t = this,
+                    e = this._data.getUseitemMstID(),
+                    i = this._data.lost_count,
+                    n = this._data.isDentan();
+                this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.FormationBoxCombined = a;
-    var _ = function (t) {
+        }(o.TaskBase);
+    e.CellTaskHappening = _;
+    var l = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._update(!0)
-            }, e._onMouseOut = function () {
-                e._update(!1)
-            }, e._onClick = function () {
-                null != e._cb_onClick && e._cb_onClick(e._type)
-            }, e.interactive = !0, e
+            e.scale.y = .5;
+            var i = s.MAP_COMMON.getTexture(171);
+            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
         }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._type = t, this._cb_onClick = e, this._update(!1)
-        }, e.prototype.activate = function () {
-            if (1 != this.buttonMode) {
-                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
-                var t = o.InteractiveUtil.isOnMouse(this);
-                this._update(t)
-            }
+        return n(e, t), e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this._content, {
+                loop: !0
+            }).to({
+                rotation: 2 * Math.PI
+            }, 3e3))
         }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
-        }, e.prototype._update = function (t) {
-            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(19);
-                case 12:
-                    return r.SALLY_JIN.getTexture(21);
-                case 13:
-                    return r.SALLY_JIN.getTexture(23);
-                case 14:
-                    return r.SALLY_JIN.getTexture(25);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e.prototype._getTextureOn = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(20);
-                case 12:
-                    return r.SALLY_JIN.getTexture(22);
-                case 13:
-                    return r.SALLY_JIN.getTexture(24);
-                case 14:
-                    return r.SALLY_JIN.getTexture(26);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
+            null != this._t && (this._t.setPaused(!0), this._t = null)
         }, e
-    }(PIXI.Sprite)
+    }(PIXI.Container)
 }

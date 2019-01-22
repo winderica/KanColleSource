@@ -20,50 +20,57 @@ const function943 = function (t, e, i) {
         value: !0
     });
     var o = i(26),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._star = new PIXI.Sprite, e.addChild(e._star), e._plus = new PIXI.Sprite, e._plus.position.set(20, 3), e.addChild(e._plus), e._num = new PIXI.Sprite, e._num.position.set(33, 0), e.addChild(e._num), e._max = new PIXI.Sprite, e._max.position.set(8, -3), e.addChild(e._max), e
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._activated = !1, i._selected = !1, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._airunit_id)
+                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i._label.position.set(8, 11), i.addChild(i._label), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._star.visible = !1, this._plus.visible = !1, this._max.visible = !1, this._star.texture = o.SALLY_AIRUNIT.getTexture(59), this._plus.texture = o.SALLY_AIRUNIT.getTexture(58), this._max.texture = o.SALLY_AIRUNIT.getTexture(57)
-            }, e.prototype.update = function (t) {
-                var e;
-                switch (t) {
+            return n(e, t), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), 1 == this.visible && this.update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "airunit_id", {
+                get: function () {
+                    return this._airunit_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                if (this._airunit_id = t, t > e) return void(this.visible = !1);
+                if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(119);
+                else switch (t) {
                     case 1:
-                        e = 48;
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(120);
                         break;
                     case 2:
-                        e = 49;
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(121);
                         break;
                     case 3:
-                        e = 50;
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(122);
                         break;
-                    case 4:
-                        e = 51;
-                        break;
-                    case 5:
-                        e = 52;
-                        break;
-                    case 6:
-                        e = 53;
-                        break;
-                    case 7:
-                        e = 54;
-                        break;
-                    case 8:
-                        e = 55;
-                        break;
-                    case 9:
-                        e = 56;
-                        break;
-                    case 10:
-                        return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !0);
                     default:
-                        return this._star.visible = !1, this._plus.visible = !1, this._num.visible = !1, void(this._max.visible = !1)
+                        this._label.texture = PIXI.Texture.EMPTY
                 }
-                this._star.visible = !0, this._plus.visible = !0, this._num.texture = o.SALLY_AIRUNIT.getTexture(e), this._num.visible = !0, this._max.visible = !1
+                this.update(), this.visible = !0
+            }, e.prototype.update = function () {
+                1 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(125) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(124)
+            }, e.prototype.activate = function () {
+                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
+            }, e.prototype.dispose = function () {
+                this._deactivate(), this._cb_onClick = null
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItemLevelIcon = r
+    e.AirUnitPanelTab = s
 }

@@ -20,43 +20,48 @@ const function1252 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(28),
-        s = i(20),
-        a = i(1253),
+        r = i(12),
+        s = i(6),
+        a = i(20),
         _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._buff = function () {
-                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
-                    e.start(o._hideBalloon)
-                }, o._hideBalloon = function () {
-                    var t = o._balloon.y + 23;
-                    createjs.Tween.get(o._balloon).to({
-                        y: t,
-                        alpha: 0
-                    }, 100).call(function () {
-                        o._balloon.parent.removeChild(o._balloon), o._endTask()
-                    })
-                }, o._scene = e, o._buff_count = i, o._offset = n, o
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showBalloon()
-            }, e.prototype._showBalloon = function () {
-                var t = this._scene.view.map.ship_icon;
-                this._balloon = new l, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
-                    y: this._balloon.y - 23,
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(132)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(133)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(134)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+            }, e.prototype._anim = function () {
+                var t = this;
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
                     alpha: 1
-                }, 100).wait(200).call(this._buff)
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskReplenishmentBalloonEffect = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.MAP_COMMON.getTexture(49), this._icon.texture = s.MAP_COMMON.getTexture(77), this._label.texture = s.MAP_COMMON.getTexture(172)
-        }, e
-    }(PIXI.Container)
+    e.TaskReplenishmentBuff = _
 }

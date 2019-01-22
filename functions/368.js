@@ -19,28 +19,32 @@ const function368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(1),
-        s = function (t) {
+    var o = i(0),
+        r = i(17),
+        s = i(14),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = o.SALLY_COMMON.getTexture(19)
-                }, e._onMouseOut = function () {
-                    e.texture = o.SALLY_COMMON.getTexture(18)
-                }, e._onClick = function () {
-                    e.emit("dicision")
-                }, e.interactive = !0, e
+                return e._area_id = -1, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_COMMON.getTexture(18)
-            }, e.prototype.activate = function () {
-                0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._setTextture = function (t) {
-                this.texture = t
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
+                }
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
+            }, e.prototype.dispose = function () {
+                this.clear()
             }, e
-        }(PIXI.Sprite);
-    e.BtnDicision = s
+        }(PIXI.Container);
+    e.AreaTextImage = a
 }

@@ -19,15 +19,25 @@ const function942 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.position.set(11, 0), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(0, 20), e.addChild(e._icon), e
+    var o = i(17),
+        r = i(353),
+        s = i(944),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
             }
-            return n(e, t), e.prototype.update = function (t) {
-                3 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(37), this._icon.texture = o.SALLY_AIRUNIT.getTexture(43), this.visible = !0) : 2 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(36), this._icon.texture = o.SALLY_AIRUNIT.getTexture(42), this.visible = !0) : this.visible = !1
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._btn_extend.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._btn_extend.dispose()
+            }, e.prototype.updateExtendBtn = function (t, e) {
+                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemFatigueIcon = r
+        }(r.AirUnitPanelTabContainer);
+    e.AirUnitPanelTabContainerWithExtend = a
 }

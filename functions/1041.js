@@ -19,16 +19,22 @@ const function1041 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(10),
+        s = i(7),
+        a = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
-                0 == t ? (this._setTexture(38), this.visible = !0) : 2 == t ? (this._setTexture(32), this.visible = !0) : this.visible = !1
-            }, e.prototype.dispose = function () {}, e.prototype._setTexture = function (t) {
-                this.texture = o.SALLY_EXPEDITION.getTexture(t)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.deck.get(this._deck_id).expedition,
+                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
+                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.ExpeditionStateIcon = r
+        }(r.APIBase);
+    e.ExpeditionCancelAPI = a
 }

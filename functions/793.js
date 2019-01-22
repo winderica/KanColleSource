@@ -19,25 +19,23 @@ const function793 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(10),
-        a = function (t) {
-            function e(e, i, n, o, r, s) {
-                var a = t.call(this) || this;
-                return a._url = "api_req_kaisou/slot_deprive", a.api_unset_idx = e, a.api_set_slot_kind = i, a.api_unset_slot_kind = n, a.api_unset_ship = o, a.api_set_idx = r, a.api_set_ship = s, a
+    var o = i(4),
+        r = i(128),
+        s = i(794),
+        a = i(14),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(16));
+                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
+                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
+                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_unset_idx = this.api_unset_idx, this._post_data.api_set_slot_kind = this.api_set_slot_kind, this._post_data.api_unset_slot_kind = this.api_unset_slot_kind, this._post_data.api_unset_ship = this.api_unset_ship, this._post_data.api_set_idx = this.api_set_idx, this._post_data.api_set_ship = this.api_set_ship, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.ObjUtil.getObject(this._raw_data, "api_ship_data"),
-                    i = r.ObjUtil.getObject(e, "api_set_ship"),
-                    n = r.ObjUtil.getObject(e, "api_unset_ship"),
-                    s = r.ObjUtil.getObject(this._raw_data, "api_unset_list"),
-                    a = r.ObjUtil.getNumber(s, "api_type3No"),
-                    _ = r.ObjUtil.getNumArray(s, "api_slot_list");
-                o.default.model.ship.get(i.api_id).__update__(i), o.default.model.ship.get(n.api_id).__update__(n), o.default.model.slot.updateUnsetData(a, _), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
             }, e
-        }(s.APIBase);
-    e.SlotDepriveAPI = a
+        }(PIXI.Container);
+    e.ShipInfoBox = _
 }

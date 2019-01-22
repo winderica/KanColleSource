@@ -10,11 +10,11 @@ const function1453 = function (t, e, i) {
             }
             return Object.defineProperty(t.prototype, "mst_id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_ship_id")
+                    return n.ObjUtil.getNumber(this._o, "api_slotitem_id")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.BonusShipModel = o
+    e.BonusSlotModel = o
 }

@@ -20,66 +20,80 @@ const function1319 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(1),
-        s = i(2),
-        a = i(8),
-        _ = i(81),
-        l = i(15),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClick = function () {
-                    n._messagebox.deactivate(), n._layer.removeChild(n._click_area), createjs.Tween.get(n._fade).to({
-                        alpha: 0
-                    }, 500).wait(300).call(function () {
-                        n._layer.removeChild(n._messagebox), n._layer.removeChild(n._chara), n._layer.removeChild(n._fade), n._endTask()
-                    }), createjs.Tween.get(n._chara).to({
-                        y: n._chara.y + 327,
-                        alpha: 0
-                    }, 300), createjs.Tween.get(n._messagebox).to({
-                        y: n._messagebox.y + 98,
-                        alpha: 0
-                    }, 100)
-                }, n._layer = e, n._model = i, n
+        r = i(2),
+        s = i(13),
+        a = i(178),
+        _ = i(1320),
+        l = i(1321),
+        u = i(1322),
+        c = i(1366),
+        h = i(1402),
+        p = i(1403),
+        d = i(1404),
+        f = i(1405),
+        y = i(1406),
+        m = i(1407),
+        v = (i(1408), function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._log = null, i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new a.AreaBox(1), this._fade.alpha = 0, this._layer.addChild(this._fade), createjs.Tween.get(this._fade).to({
-                    alpha: 1
-                }, 500), this._loadResource()
+                var t = this._scene.data.getFirstRecord();
+                "day" == t.phase ? this._combatDay(t) : this._combatNight(t)
+            }, e.prototype._combatDay = function (t) {
+                var e, i = this,
+                    n = this._scene.data.model.deck_f,
+                    o = this._scene.data.model.deck_e;
+                0 == n.isCombined() ? e = 1 == o.isCombined() ? new h.PhaseDay_06vs12(this._scene, t, !1) : new u.PhaseDay(this._scene, t, !1) : e = this._createDayPhaseCombinedDeck(t);
+                e.start(function () {
+                    i._scene.shutter2.once("closed", function () {
+                        i._judgement(t)
+                    }), i._scene.shutter2.close()
+                })
+            }, e.prototype._createDayPhaseCombinedDeck = function (t) {
+                var e = this._scene.data.model.deck_f,
+                    i = this._scene.data.model.deck_e,
+                    n = i.isCombined();
+                return 2 == e.type ? 0 == n ? new y.PhaseDay_Suijo(this._scene, t, !1) : new f.PhaseDay_Suijo_vs12(this._scene, t, !1) : 0 == n ? new d.PhaseDay_Kido(this._scene, t, !1) : new p.PhaseDay_Kido_vs12(this._scene, t, !1)
+            }, e.prototype._judgement = function (t) {
+                var e = this;
+                if (t.raw.isNightBattle()) {
+                    var i = new m.TaskGoNightBattleSelect(this._scene);
+                    i.start(function () {
+                        0 == i.result ? (1 == o.default.sound.bgm.playing && o.default.sound.bgm.fadeOut(500), e._endTask()) : e._dayToNight()
+                    })
+                } else this._endTask()
+            }, e.prototype._dayToNight = function () {
+                var t, e = this;
+                t = 1 == this._scene.data.model.isPractice() ? new l.APIPracticeDayToNight(this._scene.data) : new _.APIBattleDayToNight(this._scene.data), t.start(function () {
+                    var t = 0;
+                    if (1 == e._scene.data.model.isPractice()) t = 2;
+                    else {
+                        var i = e._scene.data.model.map_info.area_id,
+                            n = e._scene.data.model.map_info.map_no,
+                            r = e._scene.data.model.map_info.isBoss();
+                        t = o.default.model.mst_bgm.getCombatBGM(i, n, !0, r)
+                    }
+                    o.default.sound.bgm.playBattleBGM(t), e._loadResource()
+                })
             }, e.prototype._loadResource = function () {
                 var t = this,
-                    e = this._model.mst_id,
-                    i = new l.ShipLoader;
-                i.add(e, !1, "full"), i.load(function () {
-                    t._showChara()
+                    e = new s.UIImageLoader("battle");
+                e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e"), e.load(function () {
+                    o.default.settings.renderer.plugins.prepare.upload(a.BATTLE_NIGHT.getTexture(0).baseTexture, function () {
+                        var e = t._scene.data.getLastRecord();
+                        t._combatNight(e)
+                    })
                 })
-            }, e.prototype._showChara = function () {
-                var t = this,
-                    e = this._model.mst_id,
-                    i = o.default.resources.getShip(e, !1, "full");
-                this._chara = new PIXI.Sprite(i), this._chara.x = this._model.offset_x, this._chara.y = this._model.offset_y + 327, this._chara.alpha = 0, this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
-                    y: this._model.offset_y,
-                    alpha: 1
-                }, 800).call(function () {
-                    t._showMessageBox()
-                })
-            }, e.prototype._showMessageBox = function () {
-                var t = this,
-                    e = this._model.stype,
-                    i = this._model.name,
-                    n = this._model.message;
-                this._messagebox = new _.MessageBox(!1), this._messagebox.initializeForShip(e, i, n), this._messagebox.y = 578, this._layer.addChild(this._messagebox);
-                var s = this._messagebox.y - 98;
-                createjs.Tween.get(this._messagebox).to({
-                    y: s
-                }, 200).call(function () {
-                    t._messagebox.activate(), o.default.sound.voice.play("9998", t._model.voice_id), t._click_area = new a.AreaBox(0), t._click_area.buttonMode = !0, t._layer.addChild(t._click_area), t._click_area.once(r.EventType.CLICK, t._onClick)
+            }, e.prototype._combatNight = function (t) {
+                var e = this;
+                new c.PhaseNight(this._scene, t, !0).start(function () {
+                    e._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._fade = null, this._chara = null, this._messagebox.dispose(), this._messagebox = null, this._click_area = null, t.prototype._endTask.call(this)
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.TaskBossCutin = u
+        }(r.TaskBase));
+    e.TaskMain = v
 }

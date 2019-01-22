@@ -19,30 +19,29 @@ const function1037 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(375),
+    var o = i(33),
+        r = i(9),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, i) || this;
-                return n._light = new PIXI.Sprite, n.addChild(n._light), n
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
-            }, e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
-            }, e.prototype._update = function (t) {
-                this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 700).to({
-                    alpha: 1
-                }, 700))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
+                var e = this._getTexture(t);
+                null == e ? this.visible = !1 : (this._img.texture = e, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.visible = !0)
+            }, e.prototype.dispose = function () {}, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case 1:
+                        return r.COMMON_MISC.getTexture(74);
+                    case 2:
+                        return r.COMMON_MISC.getTexture(77);
+                    case 3:
+                        return r.COMMON_MISC.getTexture(80);
+                    case 4:
+                        return r.COMMON_MISC.getTexture(83)
+                }
+                return null
             }, e
-        }(r.ExpeditionAreaIconBtnBase);
-    e.ExpeditionEventAreaIconBtn = s
+        }(o.Container);
+    e.ExpeditionDeckIcon = s
 }

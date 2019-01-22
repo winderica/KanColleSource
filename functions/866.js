@@ -19,30 +19,106 @@ const function866 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(4),
-        s = i(21),
-        a = i(35),
-        _ = function (t) {
+    var o = i(3),
+        r = i(114),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._onClickYes = function () {
-                    i._cb_onComplete(!0)
-                }, i._onClickNo = function () {
-                    i._cb_onComplete(!1)
-                }, i._cb_onComplete = e;
-                var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
-                    _ = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(83)),
-                    l = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(3));
-                i.labelUse = new r.TextBox(21, 16777215), i.labelName = new r.TextBox(21, 1949120), i.beforeCount = new r.TextBox(22, 16777215), i.afterCount = new r.TextBox(22, 16777215);
-                var u = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(0));
-                return i.labelName.text = "\u9ad8\u901f\u5efa\u9020", i.labelUse.text = "\u4f7f\u7528\u3059\u308b", i.beforeCount.anchor.x = 1, i.beforeCount.position.set(630, 217), i.afterCount.position.set(664, 217), i.labelName.position.set(307, 166), i.labelUse.position.set(513, 166), u.position.set(730, 297), l.position.set(432, -43), _.position.set(498, 210), u.position.set(639, 226), i.addChild(n, l), i._btn_yes = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(44)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(540, 484), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(36)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(273, 484), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i.addChild(i._btn_no), i.addChild(i.beforeCount, i.afterCount, u, _, i.labelName, i.labelUse), i
+                return i.DEFAULT_IN_X = 507, i.DEFAULT_OUT_X = 825, i.COMPLETION = [107, 108], i.WALK = [102, 103, 104], i.BUILD = [106, 105], i.ANIMATION_KEY_MOVE = {}, i.ANIMATION_KEY_BUILDING = {}, i.ANIMATION_KEY_COMPLETE = {}, i.y = 91, i.x = i.DEFAULT_OUT_X, i.sprite = new PIXI.Sprite, i.star_0 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(142)), i.star_1 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(142)), i.effect = new PIXI.Container, i.sprite.anchor.set(.5, 1), i.star_0.anchor.set(.5, .5), i.star_1.anchor.set(.5, .5), i.star_0.scale.set(0, 0), i.star_1.scale.set(0, 0), i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.effect.position.x = 46, i.effect.addChild(i.star_1, i.star_0), i.sprite.addChild(i.effect), i.addChild(i.sprite), i.syncAnimationKey = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this.beforeCount.destroy(), this.afterCount.destroy(), this.labelName.destroy(), this.labelUse.destroy(), this._cb_onComplete = null, this._btn_yes = null, this._btn_no = null, this.beforeCount = null, this.afterCount = null, this.labelName = null, this.labelUse = null
-            }, e.prototype.update = function (t, e) {
-                this.beforeCount.text = t.toString(), this.afterCount.text = e.toString()
+            return n(e, t), e.prototype.build = function () {
+                var t = this;
+                this.stopAllAnimation(), this.sprite.y = 0, this.sprite.scale.x = 1, this.__AnimationMove__(this.DEFAULT_OUT_X, this.DEFAULT_IN_X, 3e3, function () {
+                    t.__AnimationBuilding__()
+                })
+            }, e.prototype.resume = function () {
+                this.x = this.DEFAULT_IN_X, this.sprite.y = 0, this.stopAllAnimation(), this.__AnimationBuilding__()
+            }, e.prototype.complete = function () {
+                this.sprite.scale.x = 1, this.effect.visible = !1, this.x = this.DEFAULT_IN_X, this.stopAllAnimation(), this.__AnimationComplete__()
+            }, e.prototype.useBurner = function () {
+                this.stopAllAnimation(), this.sprite.y = 0, this.effect.visible = !1, this.sprite.scale.x = -1, this.__AnimationMove__(this.x, this.DEFAULT_OUT_X, 1e3, function () {})
+            }, e.prototype.received = function () {
+                this.stopAllAnimation(), this.sprite.y = 0, this.sprite.scale.x = -1, this.__AnimationMove__(this.x, this.DEFAULT_OUT_X, 1e3, function () {})
+            }, e.prototype.useBurnerd = function () {
+                var t = this;
+                this.sprite.scale.x = 1, this.sprite.y = 0, this.__AnimationMove__(this.x, this.DEFAULT_IN_X, 1e3, function () {
+                    t.__AnimationComplete__()
+                })
+            }, e.prototype.stopAllAnimation = function () {
+                createjs.Tween.removeTweens(this.ANIMATION_KEY_BUILDING), createjs.Tween.removeTweens(this.ANIMATION_KEY_COMPLETE), createjs.Tween.removeTweens(this.ANIMATION_KEY_MOVE)
+            }, e.prototype.__AnimationMove__ = function (t, e, i, n) {
+                var r = this;
+                this.ANIMATION_KEY_MOVE.x = this.x = t, this.ANIMATION_KEY_MOVE.progress = 0;
+                var s = createjs.Tween.get(this.ANIMATION_KEY_MOVE, {
+                    loop: !0
+                });
+                s.to({
+                    progress: 0
+                }).to({
+                    progress: 1
+                }, 250).to({
+                    progress: 0
+                }, 250).addEventListener("change", function () {
+                    var t = r.ANIMATION_KEY_MOVE.progress,
+                        e = Math.round((r.WALK.length - 1) * t),
+                        i = r.WALK[e];
+                    r.sprite.texture = o.ARSENAL_MAIN.getTexture(i)
+                });
+                var a = createjs.Tween.get(this.ANIMATION_KEY_MOVE);
+                a.to({
+                    x: e,
+                    progress: 1
+                }, i).call(function () {
+                    createjs.Tween.removeTweens(r.ANIMATION_KEY_MOVE), a.setPaused(!0), s.setPaused(!0), a.removeAllEventListeners("change"), s.removeAllEventListeners("change"), n()
+                }).addEventListener("change", function () {
+                    var t = r.ANIMATION_KEY_MOVE.x;
+                    r.x = t
+                })
+            }, e.prototype.__AnimationBuilding__ = function () {
+                var t = this;
+                this.ANIMATION_KEY_BUILDING.progress_A = 0, this.ANIMATION_KEY_BUILDING.progress_B = 0;
+                var e = function (t, e, i, n) {
+                    return {
+                        x: (1 - n) * (1 - n) * t.x + 2 * (1 - n) * n * e.x + n * n * i.x,
+                        y: (1 - n) * (1 - n) * t.y + 2 * (1 - n) * n * e.y + n * n * i.y
+                    }
+                };
+                createjs.Tween.get(this.ANIMATION_KEY_BUILDING, {
+                    loop: !0
+                }).to({
+                    progress_A: 1
+                }, 500).to({
+                    progress_B: 1
+                }, 500).addEventListener("change", function () {
+                    var i = t.ANIMATION_KEY_BUILDING.progress_A,
+                        n = t.ANIMATION_KEY_BUILDING.progress_B;
+                    t.sprite.texture = o.ARSENAL_MAIN.getTexture(t.BUILD[Math.round((t.BUILD.length - 1) * i)]), t.sprite.position.x = 2 * Math.sin(Math.PI / 90 * (360 * n)) * 1.5;
+                    var r = {
+                            x: -18,
+                            y: 6
+                        },
+                        s = {
+                            x: -24,
+                            y: -45
+                        },
+                        a = {
+                            x: -37,
+                            y: 0
+                        },
+                        _ = e(r, s, a, n);
+                    t.star_0.x = _.x, t.star_0.y = _.y, t.star_0.alpha = t.star_1.alpha = n < .9 ? n : 0, t.star_0.scale.set(n, n), t.star_1.position.set(30, -19), t.star_1.scale.set(n, n)
+                })
+            }, e.prototype.__AnimationComplete__ = function () {
+                var t = this;
+                createjs.Tween.get(this.ANIMATION_KEY_COMPLETE, {
+                    loop: !0
+                }).wait(1e3).addEventListener("change", function () {
+                    var e = t.syncAnimationKey.getNumber(r.SYNC_KEY_JUMP);
+                    t.sprite.y = -10 * e, t.sprite.texture = .4 < e ? o.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : o.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
+                })
+            }, e.prototype.dispose = function () {
+                createjs.Tween.removeTweens(this.ANIMATION_KEY_MOVE), createjs.Tween.removeTweens(this.ANIMATION_KEY_BUILDING), createjs.Tween.removeTweens(this.ANIMATION_KEY_COMPLETE), this.effect.removeChildren(), this.star_0 = null, this.star_1 = null, this.sprite = null, this.effect = null, this.syncAnimationKey = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.HighSpeedConfirmView = _
+    e.Spanner = s
 }

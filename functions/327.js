@@ -19,38 +19,56 @@ const function327 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !0);
-                var o = t.call(this) || this;
-                return o._usedBauxite = !1, o._url = "api_req_hokyu/charge", o._kind = e, o._id_items = i, o._onslot = n, o
+    var o = i(9),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite;
+                return n.position.set(-29, -27), n.alpha = 0, e.addChild(n, i), e.meter = i, e.meterLight = n, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "usedBauxite", {
-                get: function () {
-                    return this._usedBauxite
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_kind = this._kind, this._post_data.api_id_items = this._id_items.join(","), this._post_data.api_onslot = this._onslot ? 1 : 0, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = s.ObjUtil.getNumArray(this._raw_data, "api_material");
-                o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]), o.default.view.portMain.updateInfo();
-                for (var i = s.ObjUtil.getObjectArray(this._raw_data, "api_ship"), n = 0; n < i.length; n++) {
-                    var r = i[n],
-                        a = s.ObjUtil.getNumber(r, "api_id"),
-                        _ = s.ObjUtil.getNumber(r, "api_fuel"),
-                        l = s.ObjUtil.getNumber(r, "api_bull"),
-                        u = s.ObjUtil.getNumArray(r, "api_onslot", []),
-                        c = o.default.model.ship.get(a);
-                    c.__updateFuel__(_), c.__updateAmmo__(l), c.__updateOnSlot__(u)
+            return n(e, t), e.prototype.update = function (t, e) {
+                this.meter.texture = o.COMMON_MISC.getTexture(121), this.meterLight.texture = o.COMMON_MISC.getTexture(132), null != this.meterLightTween && (this.meterLightTween.setPaused(!0), this.meterLightTween = null);
+                var i;
+                0 == t ? i = 0 : t == e ? i = 10 : (i = Math.floor(9 * t / e) + 1, 10 < i && (i = 10), i < 0 && (i = 0));
+                var n;
+                n = 0 == i ? 1 : 10 == i ? 0 : (11 - i) / 11;
+                var r = this.getTextureNoProgressImage(i);
+                this.meter.texture = o.COMMON_MISC.getTexture(r), this.meterLightTween = createjs.Tween.get(this.meterLight).to({
+                    alpha: 0
+                }).to({
+                    alpha: n
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3), this.meterLightTween.loop = !0, this.meterLightTween.play(null)
+            }, e.prototype.dispose = function () {
+                null != this.meterLightTween && this.meterLightTween.setPaused(!0), createjs.Tween.removeTweens(this.meterLight), this.removeChild(this.meter), this.removeChild(this.meterLight), this.meterLightTween = null, this.meter = null, this.meterLight = null
+            }, e.prototype.getTextureNoProgressImage = function (t) {
+                switch (t) {
+                    case 0:
+                        return 121;
+                    case 1:
+                        return 122;
+                    case 2:
+                        return 124;
+                    case 3:
+                        return 125;
+                    case 4:
+                        return 126;
+                    case 5:
+                        return 127;
+                    case 6:
+                        return 128;
+                    case 7:
+                        return 129;
+                    case 8:
+                        return 130;
+                    case 9:
+                        return 131;
+                    case 10:
+                        return 123
                 }
-                var h = s.ObjUtil.getNumber(this._raw_data, "api_use_bou");
-                this._usedBauxite = !!h, t.prototype._completedEnd.call(this)
             }, e
-        }(r.APIBase);
-    e.ChargeAPI = a
+        }(PIXI.Container);
+    e.MaterialMeterView = r
 }

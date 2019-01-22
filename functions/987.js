@@ -19,33 +19,39 @@ const function987 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(53),
-        s = i(41),
-        a = function (t) {
+    var o = i(53),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+                var e = t.call(this) || this,
+                    i = createjs.Ticker.framerate;
+                return e._cloud1 = new s(3, 60 / i * .0035), e._cloud2 = new s(2, 60 / i * .0025), e._cloud3 = new s(0, 60 / i * .005), e._cloud1.anchor.set(.5, .5), e._cloud2.anchor.set(.5, .5), e._cloud3.anchor.set(.5, .5), e.addChild(e._cloud1), e.addChild(e._cloud2), e.addChild(e._cloud3), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                t != o.EVENT_AREA_ID ? (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0) : (e >= 3 ? (this._content.position.set(1022, 348), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)) : (this._content.position.set(1015, 330), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)), this._light.position.set(1015, 330), this._light.alpha = 0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1500).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            return n(e, t), e.prototype.initialize = function () {
+                this._cloud1.texture = o.SALLY_SORTIE.getTexture(27), this._cloud2.texture = o.SALLY_SORTIE.getTexture(28), this._cloud3.texture = o.SALLY_SORTIE.getTexture(29)
+            }, e.prototype.activate = function () {
+                var t = this;
+                if (null == this._t) {
+                    var e = function (e) {
+                        t._cloud1.update(), t._cloud2.update(), t._cloud3.update()
+                    };
+                    this._t = createjs.Tween.get(this, {
+                        loop: !0,
+                        onChange: e
+                    })
+                }
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
         }(PIXI.Container);
-    e.BtnNext = a
+    e.MapThumbnailLockedCloud = r;
+    var s = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._tmp = 150 * Math.random(), n._offset = e, n._speed = i, n
+        }
+        return n(e, t), e.prototype.update = function () {
+            var t = createjs.Ticker.framerate;
+            this.x = 90 * Math.cos(this._tmp + this._offset), this.y = 15 * Math.cos(.9 * this._tmp * (60 / t) + this._offset), this._tmp += this._speed
+        }, e
+    }(PIXI.Sprite)
 }

@@ -1,69 +1,99 @@
 const function834 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(8),
-        r = i(1),
-        s = i(52),
-        a = i(3),
-        _ = i(835),
-        l = function (t) {
-            function e(e, i, n, o, r, s, a) {
-                var _ = t.call(this, 0) || this;
-                return _._onMove = function (t) {
-                    var e = t.data.global;
-                    _._dragSlotItem.position.set(e.x, e.y);
-                    var i = -1;
-                    _._slotArea.forEach(function (e, n) {
-                        var o = t.data.getLocalPosition(e),
-                            r = e.getChildByName("over");
-                        1 == e.hitArea.contains(o.x, o.y) ? (r.alpha = _._beforeIndex == n || n >= _._availSlotNumber ? 0 : 1, i = n) : r.alpha = 0
-                    }), _._afterIndex = i
-                }, _._onUp = function () {
-                    _._cbDrop(_._beforeIndex, _._afterIndex, _._equipmentList), _._cbEnd()
-                }, _._onOut = function () {
-                    _._cbEnd()
-                }, _._afterIndex = -1, _._beforeIndex = n, _._slotItems = o, _._equipmentList = r, _._cbDrop = s, _._cbEnd = a, _.interactive = !1, _._slotArea = [], _._delayRun = createjs.Tween.get(null).wait(500).call(function () {
-                    _._activate(e, i)
-                }), _
+    var n = i(5),
+        o = i(0),
+        r = i(31),
+        s = i(168),
+        a = i(835),
+        _ = i(3),
+        l = i(1),
+        u = function () {
+            function t(t, e, i, n, o) {
+                var a = this;
+                this._pageIndex = 0, this._onClickPage = function (t) {
+                    if (a._pageIndex != t) {
+                        var e = a.ships.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                        a.repairShipChoiceView.update(e, a.repairingIds), a._pageIndex = t
+                    }
+                }, this._onClickBack = function () {
+                    a.onComplete(!1)
+                }, this._onClickListItem = function (t) {
+                    a._memShipId = t, a.onComplete(!0)
+                }, this._onClickSort = function () {
+                    var t;
+                    switch (a._shipSortKeyType) {
+                        case 1:
+                            t = 2;
+                            break;
+                        case 2:
+                            t = 3;
+                            break;
+                        case 3:
+                            t = 4;
+                            break;
+                        case 4:
+                            t = 1
+                    }
+                    r.ShipUtil.sort(a.ships, t);
+                    var e = a.ships.slice(a._pageIndex * s.RepairConst.ITEM_IN_COUNT, a._pageIndex * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                    a.repairShipChoiceView.update(e, a.repairingIds), a.shipSortButton.update(t), a._shipSortKeyType = t
+                }, n.onClick = this._onClickSort, i.onChangePage = this._onClickPage, e.onClickListItem = this._onClickListItem, o.interactive = !0, o.addListener(l.EventType.CLICK, this._onClickBack), o.alpha = 0, t.addChild(o, e), e.addChild(i, n), e.position.set(1200, 142), n.position.set(585, 6), i.position.set(69, 528), this.repairShipChoiceView = e, this.shipSortButton = n, this.pagerView = i, this.mainView = t, this.background = o
             }
-            return n(e, t), e.prototype.inDraggingEventWaiting = function () {
-                return null == this._drag
-            }, e.prototype.cancel = function () {
-                this._delayRun.setPaused(!0), this._cbEnd()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEUP, this._onUp), this.off(r.EventType.MOUSEOUT, this._onOut), this._dragSlotItem && this._dragSlotItem.dispose(), null != this._drag && (this._slotItems[this._beforeIndex].alpha = 1, this._drag.removeChildren(), this._slotArea.forEach(function (t) {
-                    t.removeChildren()
-                })), this._drag = null, this._slotArea = null, this._delayRun = null, this._dragSlotItem = null, this._afterIndex = null, this._availSlotNumber = null, this._beforeIndex = null, this._slotItems = null, this._equipmentList = null, this._cbEnd = null, this._cbDrop = null
-            }, e.prototype._activate = function (t, e) {
+            return Object.defineProperty(t.prototype, "memShipId", {
+                get: function () {
+                    return this._memShipId
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "pageIndex", {
+                get: function () {
+                    return this._pageIndex
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "shipSortKeyType", {
+                get: function () {
+                    return this._shipSortKeyType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.start = function (t, e) {
                 var i = this;
-                this.interactive = !0, this._availSlotNumber = this._equipmentList.length, this._afterIndex = this._beforeIndex, this._drag = new PIXI.Container, this._slotItems[this._beforeIndex].alpha = .5, this._slotItems.forEach(function (e, n) {
-                    var r = new o.AreaBox(0, 16777215, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
-                    r.hitArea = new PIXI.Rectangle(0, 0, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
-                    var _ = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(22));
-                    _.alpha = 0, _.name = "over", _.position.set(-30, 0), r.addChild(_);
-                    var l = t.x + i._slotItems[n].x,
-                        u = t.y + i._slotItems[n].y;
-                    r.position.set(l, u), i._slotArea.push(r), i._drag.addChild(r)
-                }), this._dragSlotItem = new _.SimpleSlotItemSlot, this._dragSlotItem.update(this._equipmentList[this._beforeIndex]), this._dragSlotItem.pivot.set(Math.round(this._dragSlotItem.width / 2), Math.round(this._dragSlotItem.height / 2)), this._dragSlotItem.position.set(e.x, e.y), this._drag.addChild(this._dragSlotItem), this.addChild(this._drag), a.SE.play("237"), this.on(r.EventType.MOUSEMOVE, this._onMove), this.on(r.EventType.MOUSEUP, this._onUp), this.on(r.EventType.MOUSEOUT, this._onOut)
-            }, e
-        }(o.AreaBox);
-    e.SlotItemDragging = l
+                _.SE.play("249"), o.default.view.clickGuard = !0;
+                var n = o.default.model.ndock.getAll(),
+                    l = [];
+                n.forEach(function (t) {
+                    l.push(t.shipMemID)
+                });
+                var u = o.default.model.ship.getAll(),
+                    c = a.RepairUtil.calcPageCount(u.length);
+                r.ShipUtil.sort(u, e);
+                var h = u.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                this.repairShipChoiceView.update(h, l), this.shipSortButton.update(e), this.ships = u, this._pageIndex = t, this._shipSortKeyType = e, this.pagerView.init(c), this.pagerView.changePage(t), this.repairingIds = l;
+                var p = createjs.Tween.get(this.repairShipChoiceView);
+                createjs.Tween.get(this.background).to({
+                    alpha: 1
+                }, 150).play(null), p.to({
+                    x: 532
+                }, 150).call(function () {
+                    o.default.view.clickGuard = !1, i.background.width = 568
+                }).play(null)
+            }, t.prototype.hide = function (t) {
+                var e = createjs.Tween.get(this.repairShipChoiceView),
+                    i = createjs.Tween.get(this.background);
+                this.background.width = n.default.width, i.to({
+                    alpha: 0
+                }, 150).play(null), e.to({
+                    x: 1200
+                }, 150).call(function () {
+                    t()
+                }).play(null)
+            }, t.prototype.dispose = function () {
+                this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipChoiceView), this.repairShipChoiceView.removeChild(this.shipSortButton), this.repairShipChoiceView.removeChild(this.pagerView), this.background.removeAllListeners(l.EventType.CLICK), this.onComplete = null, this._memShipId = null, this.repairShipChoiceView = null, this.shipSortButton = null, this.pagerView = null, this.ships = null, this._shipSortKeyType = null, this._pageIndex = null
+            }, t
+        }();
+    e.PhaseRepairShipChoice = u
 }

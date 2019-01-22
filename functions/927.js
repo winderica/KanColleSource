@@ -8,37 +8,23 @@ const function927 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "id", {
+            return Object.defineProperty(t.prototype, "lost_mstid", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_mst_id", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "no", {
+            }), Object.defineProperty(t.prototype, "lost_count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
+                    return n.ObjUtil.getNumber(this._o, "api_count", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "color", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_color_no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "passed", {
-                get: function () {
-                    return 1 == n.ObjUtil.getNumber(this._o, "api_passed")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "distance", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_distance")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.isDentan = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_dentan", 0)
+            }, t.prototype.getUseitemMstID = function () {
+                return [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.lost_mstid]
+            }, t
         }();
-    e.CellModel = o
+    e.HappeningModel = o
 }

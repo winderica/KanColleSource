@@ -19,42 +19,23 @@ const function913 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(2),
-        a = i(914),
-        _ = function (t) {
+    var o = i(10),
+        r = i(914),
+        s = function (t) {
             function e(e) {
+                void 0 === e && (e = !1);
                 var i = t.call(this) || this;
-                return i._scene = e, i
+                return i._url = "api_get_member/practice", i._res_model = new r.PracticeAPIModel, i._debug = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this,
-                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
-                    i = null != e;
-                new a.TaskLoadResourcesSally(i).start(function () {
-                    t._showTopView()
-                })
-            }, e.prototype._showTopView = function () {
-                var t = o.default.model.deck.num > 1;
-                this._scene.initialize(t), this._scene = null, this._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._completedEnd = function () {
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(s.TaskBase);
-    e.PreInitializeTask = _;
-    var l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(103), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._scene.startTopTask(), this._endTask()
-        }, e
-    }(s.TaskBase);
-    e.InitializeTask = l
+        }(o.APIBase);
+    e.PracticeAPI = s
 }

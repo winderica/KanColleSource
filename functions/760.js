@@ -19,30 +19,15 @@ const function760 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(47),
-        s = i(13),
-        a = i(761),
-        _ = i(763),
-        l = i(764),
-        u = i(72),
-        c = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(10),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kaisou/unsetslot_all", i.api_id = e, i
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new a.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new _.InitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                var t = this;
-                return new u.FuncTask(function () {
-                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
-                })
-            }, e.prototype.start = function () {
-                var t = o.default.model.deck.get(1).getShipMemID(0);
-                this.taskIdleMain = new l.TaskIdleMain(this), this.taskIdleMain.start(1, t)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
             }, e
-        }(r.SceneBase);
-    e.RemodelScene = c
+        }(o.APIBase);
+    e.UnsetSlotAll = r
 }

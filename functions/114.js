@@ -20,23 +20,23 @@ const function114 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(223),
+        r = i(225),
         s = i(80),
-        a = i(31),
+        a = i(32),
         _ = i(69),
         l = i(35),
-        u = i(865),
-        c = i(867),
-        h = i(881),
-        p = i(883),
-        d = i(885),
-        f = i(887),
-        y = i(888),
-        m = i(889),
-        v = i(890),
-        g = i(891),
-        b = i(343),
-        w = i(893);
+        u = i(860),
+        c = i(862),
+        h = i(876),
+        p = i(878),
+        d = i(880),
+        f = i(882),
+        y = i(883),
+        m = i(884),
+        v = i(885),
+        g = i(886),
+        b = i(344),
+        w = i(888);
     e.SYNC_KEY_JUMP = "sync_key_jump";
     var x, I = function () {
         function t() {
@@ -226,18 +226,18 @@ const function114 = function (t, e, i) {
                 T = new PIXI.Container;
             i.layerBases = new Array, i.layerBuilds = new Array, i.layerInteractives = new Array, s.position.set(34, 4), b.position.set(214, 4), w.position.set(661, 4);
             for (var O = 0; O < i.KDOCK_IDS.length; O++) {
-                var P = 51 + 117 * O,
-                    C = new PIXI.Container,
+                var C = 51 + 117 * O,
+                    P = new PIXI.Container,
                     k = new PIXI.Container,
                     M = new PIXI.Container;
-                C.position.set(0, P), k.position.set(0, P), M.position.set(0, P), i.layerBases.push(C), i.layerBuilds.push(k), i.layerInteractives.push(M)
+                P.position.set(0, C), k.position.set(0, C), M.position.set(0, C), i.layerBases.push(P), i.layerBuilds.push(k), i.layerInteractives.push(M)
             }
             for (var O = 0; O < i.KDOCK_IDS.length; O++) {
                 var S = i.KDOCK_IDS[O],
-                    C = i.layerBases[O],
+                    P = i.layerBases[O],
                     k = i.layerBuilds[O],
                     M = i.layerInteractives[O],
-                    A = new c.KDockView(S, C, k, M, i.syncAnimationKey);
+                    A = new c.KDockView(S, P, k, M, i.syncAnimationKey);
                 A.updateCondition(!0, !0), A.onClickGet = i._onClickGet, A.onClickSelect = i._onClickDock, A.onClickHighSpeed = i._onClickHighSpeed, A.onClickNoDock = i._onClickNoDock;
                 var j = S.toString();
                 i.kDockViews[j] = A

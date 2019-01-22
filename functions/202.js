@@ -19,15 +19,23 @@ const function202 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(32),
+    var o = i(46),
+        r = i(125),
         s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._rewards = [], e
             }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? o.COMMON_MISC.getTexture(20) : o.COMMON_MISC.getTexture(21)
+            return n(e, t), Object.defineProperty(e.prototype, "rewards", {
+                get: function () {
+                    return this._rewards
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.add = function (t, e) {
+                var i = new r.RewardModelUseitem(t, e);
+                return this._rewards.push(i), this
             }, e
-        }(r.BtnBase);
-    e.BackBtn = s
+        }(o.RewardModel);
+    e.RewardModelMultiUseitem = s
 }

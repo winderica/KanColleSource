@@ -19,77 +19,110 @@ const function1291 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1292),
-        r = i(1294),
-        s = i(1296),
-        a = i(1297),
-        _ = i(1299),
-        l = i(1300),
-        u = i(1302),
-        c = i(14),
-        h = function (t) {
+    var o = i(12),
+        r = i(6),
+        s = i(20),
+        a = i(1292),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
+                return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "direction", {
                 get: function () {
-                    return this._bg
+                    return this._direction
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "ship_icon", {
+            }), Object.defineProperty(e.prototype, "under", {
                 get: function () {
-                    return this._ship_icon
+                    return this._under
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "spotLayer", {
+            }), Object.defineProperty(e.prototype, "ship", {
                 get: function () {
-                    return this._spotLayer
+                    return this._ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "airbaseLayer", {
-                get: function () {
-                    return this._airbaseLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy_layer", {
-                get: function () {
-                    return this._enemy_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane_layer", {
-                get: function () {
-                    return this._plane_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
-            }, e.prototype.addSpot = function (t, e, i) {
-                var n = i.getSpot(e),
-                    o = new r.CompSpot(e, n.offsetDic);
-                if (o.position.set(n.x, n.y), null != n.route) {
-                    var s = n.route,
-                        a = c.MapUtil.toResKey(t),
-                        _ = "map" + a + "_" + s.img,
-                        l = PIXI.Texture.fromFrame(_);
-                    o.setRoute(l, s.x, s.y, s.r)
+            }), e.prototype.initialize = function (t) {
+                var e;
+                e = 1 == t ? 138 : 2 == t ? 139 : 3 == t ? 140 : 137, this._ship.texture = s.MAP_COMMON.getTexture(e)
+            }, e.prototype.startWaveWhite = function () {
+                this._startWave(48)
+            }, e.prototype.startWaveRed = function (t) {
+                var e = this;
+                this._startWave(47);
+                var i = new l;
+                i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
+                    y: -75,
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
+                    y: -78,
+                    scaleX: 1.3,
+                    scaleY: .6
+                }, 200).to({
+                    y: -59,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    e._over.removeChild(i), t()
+                })
+            }, e.prototype.stopWave = function () {
+                this._wave.deactivate()
+            }, e.prototype.turn = function (t, e, i) {
+                if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e();
+                else {
+                    this._direction = t;
+                    var n = 2 == t ? 1 : -1,
+                        o = createjs.Tween.get(this._ship);
+                    o.to({
+                        scaleX: n
+                    }, i), null != e && o.call(e)
                 }
-                var u = n.line;
-                if (null != u) {
-                    var a = c.MapUtil.toResKey(t),
-                        h = void 0;
-                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
-                    var l = PIXI.Texture.fromFrame(h);
-                    o.setLine(l, u.x, u.y, u.r)
-                }
-                this._spotLayer.addSpot(o)
+            }, e.prototype._startWave = function (t) {
+                this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
+                    r.SE.play("252")
+                }).wait(2e3).call(function () {
+                    r.SE.play("252")
+                })
             }, e
         }(PIXI.Container);
-    e.MapView = h
+    e.CompShipIcon = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
+            get: function () {
+                return this.scale.x
+            },
+            set: function (t) {
+                this.scale.x = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "scaleY", {
+            get: function () {
+                return this.scale.y
+            },
+            set: function (t) {
+                this.scale.y = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.MAP_COMMON.getTexture(94)
+        }, e
+    }(PIXI.Sprite)
 }

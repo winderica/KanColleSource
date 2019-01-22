@@ -19,55 +19,60 @@ const function1346 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(445),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+    var o = i(2),
+        r = i(62),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._record = i, n._damage_cutin = new r.PhaseDamageCutin(e), n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
-                    x: 90,
-                    alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).to({
-                    x: -150,
-                    alpha: 0
-                }, 500), createjs.Tween.get(this._telop.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._telop), t._endTask()
+            return n(e, t), e.prototype._createAttackData_f = function () {
+                return this._createAttackData(this._scene.data.model.deck_f.ships, this._scene.data.model.deck_e.ships)
+            }, e.prototype._createAttackData_e = function () {
+                return this._createAttackData(this._scene.data.model.deck_e.ships, this._scene.data.model.deck_f.ships)
+            }, e.prototype._createAttackData = function (t, e) {
+                for (var i = new Array, n = 0; n < t.length; n++) {
+                    var o = t[n];
+                    if (null != o) {
+                        var r = o.friend ? this._data.getAttackTo_f(n) : this._data.getAttackTo_e(n);
+                        if (!(r < 0)) {
+                            var s = {
+                                attacker: o,
+                                defender: e[r],
+                                damage: o.friend ? this._data.getDamage_f(n) : this._data.getDamage_e(n),
+                                hit: o.friend ? this._data.getHitType_f(n) : this._data.getHitType_e(n),
+                                shield: o.friend ? this._data.isShield_f(n) : this._data.isShield_e(n)
+                            };
+                            i.push(s)
+                        }
+                    }
+                }
+                return i
+            }, e.prototype._shootBase = function (t, e, i) {
+                var n = this._scene.view.bannerGroupLayer.getBanner(t.attacker),
+                    o = this._scene.view.bannerGroupLayer.getBanner(t.defender),
+                    r = n.getGlobalPos(!0),
+                    s = o.getGlobalPos(!0);
+                this._scene.view.layer_torpedo.playTorpedo(r, s, e, function () {
+                    null != i && i()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+            }, e.prototype._damageBase = function (t, e) {
+                1 == this._scene.data.model.isPractice() && (e.damage = Math.min(e.damage, t.hp_now - 1));
+                var i = this._scene.view.bannerGroupLayer.getBanner(t),
+                    n = i.getGlobalPos(!0);
+                this._scene.view.layer_torpedo.playTorpedoWaterColumn(i), this._scene.view.layer_explosion.playDamageExplosion(n.x, n.y, e.damage), i.moveAtDamage(e.shield)
+            }, e.prototype._showDamageBase = function (t, e) {
+                for (var i = 0, n = t; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = e[o.index];
+                        if (null != r) {
+                            var s = this._scene.view.bannerGroupLayer.getBanner(o);
+                            this._scene.view.layer_damage.showAtBanner(s, r.damage, r.hit), this._damage_cutin.causeDamage(o, r.damage), s.updateHp(o.hp_now)
+                        }
+                    }
+                }
             }, e
-        }(r.TaskBase);
-    e.TaskAirUnitAttackStartTelop = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Container;
-            var i = PIXI.Sprite.fromFrame("battle_telop_mes_bg_f");
-            return i.x = -Math.round(i.width / 2), i.y = -Math.round(i.height / 2), e._bg.addChild(i), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_AIRUNIT.getTexture(0)), e._text.anchor.set(.5), e.addChild(e._text), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e
-    }(PIXI.Container)
+        }(o.TaskBase);
+    e.PhaseRaigekiBase = s
 }

@@ -19,21 +19,26 @@ const function848 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
+    var o = i(3),
+        r = i(1),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_nyukyo/speedchange", i.api_ndock_id = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e._onMouseOver = function () {
+                    e.texture = o.REPAIR_MAIN.getTexture(4)
+                }, e._onMouseOut = function () {
+                    e.texture = o.REPAIR_MAIN.getTexture(2)
+                }, e.texture = o.REPAIR_MAIN.getTexture(2), e.on(r.EventType.CLICK, e._onClick).on(r.EventType.MOUSEOVER, e._onMouseOver).on(r.EventType.MOUSEOUT, e._onMouseOut), e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_ndock_id = this.api_ndock_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(1),
-                    i = o.default.model.ndock.get(this.api_ndock_id),
-                    n = o.default.model.ship.get(i.shipMemID);
-                n.__updateNowHp__(n.hpMax), n.__updateNDockTime__(0), n.__updateNDockItem__([0, 0]), n.tired < 40 && n.__updateCond__(40), i.__updateCompleteTime__(0), i.__updateShipId__(-1), i.__updateState__(0), e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.active = function () {
+                this.texture = o.REPAIR_MAIN.getTexture(2), this.interactive = !0
+            }, e.prototype.disable = function () {
+                this.texture = o.REPAIR_MAIN.getTexture(3), this.interactive = !1
+            }, e.prototype.dispose = function () {
+                this.onClick = null, this.off(r.EventType.CLICK, this._onClick).off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOut), this.texture = PIXI.Texture.EMPTY, this.interactive = this.buttonMode = !1
             }, e
-        }(r.APIBase);
-    e.SpeedChangeAPI = s
+        }(PIXI.Sprite);
+    e.UseItemButton = s
 }

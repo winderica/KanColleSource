@@ -19,17 +19,17 @@ const function1038 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
-            }, e.prototype.update = function (t) {
-                this._beek.x = t - 16, this._beek.visible = !0
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.ExpeditionListFrame = r
+        }(r.APIBase);
+    e.ExpeditionStartAPI = s
 }

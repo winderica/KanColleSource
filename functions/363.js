@@ -19,19 +19,29 @@ const function363 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(364),
-        r = function (t) {
+    var o = i(17),
+        r = i(13),
+        s = i(30),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._rader = new o.Rader, e._rader.x = -188, e._rader.y = -225, e.addChild(e._rader), e
+                return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._rader.initialize()
+                this.alpha = 0, this.visible = !1
             }, e.prototype.update = function (t) {
-                this._rader.update(t)
-            }, e.prototype.dispose = function () {
-                this._rader.dispose()
+                var e = this;
+                if (0 == t) return this.texture = PIXI.Texture.EMPTY, void(this.visible = !1);
+                this.texture = s.SALLY_COMMON.getTexture(0), this.visible = !0, this._type = t;
+                var i = new r.UIImageLoader("sally"),
+                    n = "sally_alert_alert_" + t;
+                i.add("alert/alert_" + t + ".png?" + o.START_TIME, n), i.load(function () {
+                    e._type == t && (e.texture = PIXI.Texture.fromFrame(n))
+                })
+            }, e.prototype.activate = function () {
+                0 == this.alpha && createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 300)
             }, e
-        }(PIXI.Container);
-    e.RaderCanvas = r
+        }(PIXI.Sprite);
+    e.AlertBalloon = a
 }

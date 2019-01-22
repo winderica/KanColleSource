@@ -1,97 +1,59 @@
 const function1174 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(8),
-        a = i(9),
-        _ = i(3),
-        l = i(409),
-        u = i(117),
-        c = i(75),
-        h = i(75),
-        p = i(75),
-        d = i(75),
-        f = i(75),
-        y = i(75),
-        m = i(75),
-        v = i(75),
-        g = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onInitialize = function () {
-                    var t = _.DUTY_COMMON.getTexture(46),
-                        i = new PIXI.Sprite(t);
-                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
-                    var n = o.default.model.basic.getDutyExecutableCount();
-                    e._view.initialize(n, e._onBack), e._view.update(e._data)
-                }, e._onActivate = function () {
-                    if (null != e._girl_layer) {
-                        new d.TaskPosterGirl(e._girl_layer).start(function () {
-                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
-                        })
-                    }
-                    e._view.activate()
-                }, e._onDispose = function () {
-                    e._view.dispose()
-                }, e._onChangeType = function (t) {
-                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
-                        e._view.update(e._data)
-                    })
-                }, e._onChangePage = function (t) {
-                    var i = e._data.selected_type;
-                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
-                        e._view.update(e._data)
-                    })
-                }, e._onSelectDuty = function (t) {
-                    if (3 == t.status) {
-                        if (0 == t.alert) {
-                            var i = o.default.view.overLayer,
-                                n = new v.TaskTasseiDutySelect(i, t, e._data);
-                            n.start(function () {
-                                e._view.update(e._data)
-                            })
-                        }
-                    } else if (2 == t.status) {
-                        var n = new m.TaskExecutedDutySelect(t, e._data);
-                        n.start(function () {
-                            e._view.update(e._data)
-                        })
-                    } else {
-                        var n = new y.TaskWaitedDutySelect(t, e._data);
-                        n.start(function () {
-                            e._view.update(e._data)
-                        })
-                    }
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
+    var n = i(14),
+        o = i(410),
+        r = function () {
+            function t() {
+                this._models = []
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
-            }, e.prototype.getFinalizeTask = function () {
-                return new p.TaskDutySceneFinalize(this._onDispose)
-            }, e
-        }(r.SceneBase);
-    e.DutyScene = g
+            return Object.defineProperty(t.prototype, "selected_type", {
+                get: function () {
+                    return this._selected_type
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "selected_page_no", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_disp_page", 1)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "page_max", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_page_count", 0)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "models", {
+                get: function () {
+                    return this._models
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.update = function (t, e) {
+                this._selected_type = t, this._o = e, this._models = [];
+                var i = n.ObjUtil.getObjectArray(this._o, "api_list");
+                if (null != i)
+                    for (var r = 0, s = i; r < s.length; r++) {
+                        var a = s[r];
+                        "number" == typeof a && -1 == a || this._models.push(new o.DutyModel_(a))
+                    }
+            }, t.prototype.getExecCount = function () {
+                return n.ObjUtil.getNumber(this._o, "api_exec_count")
+            }, t.prototype.hasComplete = function () {
+                if (1 == (1 == n.ObjUtil.getNumber(this._o, "api_completed_kind"))) return !0;
+                var t = n.ObjUtil.getObjectArray(this._o, "api_c_list");
+                if (null != t)
+                    for (var e = 0, i = t; e < i.length; e++) {
+                        var r = i[e],
+                            s = new o.DutyModel_(r);
+                        if (3 == s.status) return !0
+                    }
+                return !1
+            }, t
+        }();
+    e.DutyDataHolder = r
 }

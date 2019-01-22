@@ -19,15 +19,20 @@ const function1161 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(32),
+    var o = i(4),
         r = i(3),
         s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._text = new o.TextBox(28, 5010027), e._text.anchor.x = 1, e._text.position.set(174, 27), e.addChild(e._text), e
             }
-            return n(e, t), e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_FSHOP.getTexture(37), this.update(0)
+            }, e.prototype.update = function (t) {
+                t = Math.max(t, 0), this._text.text = t.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
             }, e
-        }(o.BtnBase);
-    e.ExchangeBtn = s
+        }(PIXI.Sprite);
+    e.CoinBox = s
 }

@@ -19,48 +19,85 @@ const function1013 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(8),
-        s = i(37),
-        a = i(1014),
-        _ = i(1015),
-        l = i(372),
-        u = i(1016),
-        c = i(1017),
-        h = i(373),
-        p = i(1),
-        d = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClose = function () {
-                    null != n._cb_onClose && n._cb_onClose()
-                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
+    var o = i(0),
+        r = i(4),
+        s = i(109),
+        a = i(37),
+        _ = i(9),
+        l = i(54),
+        u = i(230),
+        c = i(361),
+        h = i(231),
+        p = i(365),
+        d = i(1014),
+        f = i(374),
+        y = i(1015),
+        m = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._selected_deck_id = 1, i._onChangeDeck = function (t) {
+                    i.update(t)
+                }, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._ship_container = new PIXI.Container, i._ship_container.position.set(270, 160), i.addChild(i._ship_container), i._ships = [], i._btn_close = new f.CloseBtn(e), i._btn_close.position.set(1108, 27), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.initialize(), this._detail.initialize();
-                for (var t = 0; t < 6; t++) {
-                    var e = new u.CompRivalShip;
-                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
+            return n(e, t), Object.defineProperty(e.prototype, "selected_deck_id", {
+                get: function () {
+                    return this._selected_deck_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._bg.texture = l.SALLY_PRACTICE.getTexture(35);
+                var a = new PIXI.Sprite(l.SALLY_PRACTICE.getTexture(29));
+                a.position.set(40, 57), this._bg.addChild(a), a = new PIXI.Sprite(l.SALLY_PRACTICE.getTexture(33)), a.position.set(102, 64), this._bg.addChild(a);
+                for (var f = 0; f < 6; f++) {
+                    var m = new c.CompBannerAndLack;
+                    m.initialize(), m.position.set(0, 76 * f), this._ship_container.addChild(m), this._ships.push(m)
                 }
-                this._btn.initialize(), this._btn_close.initialize()
+                if (this._deck_selection = new h.CompDeckBtns(this._onChangeDeck), this._deck_selection.initialize(t), this._btn_back = new d.BackBtn(n), this._btn_back.initialize(), this._btn = new y.StartPracticeBtn(i), this._btn.initialize(), this._rader = new p.Rader, this._rader.initialize(), this._arrow = new u.CompArrow2, this._arrow.initialize(), this._err_message = new r.TextBox(16, 16724736), this._deck_selection.position.set(270, 120), this._btn_back.position.set(306, 615), this._btn.position.set(558, 615), this._rader.position.set(556, 138), this._arrow.position.set(823, 616), this._err_message.anchor.set(.5, 0), this._err_message.position.set(750, 576), this.addChild(this._deck_selection), this.addChild(this._rader), this.addChild(this._arrow), this.addChild(this._btn_back), this.addChild(this._btn), this.addChild(this._err_message), o.default.model.deck.exist3rdUnit) {
+                    var v = new PIXI.Sprite(_.COMMON_MISC.getTexture(183));
+                    v.position.set(346, 98), this.addChild(v)
+                }
+                1 == e && (this._deck_combined_frame = new s.CombinedView, this._deck_combined_frame.position.set(263, 110), this._deck_combined_frame.adjustFramePosition(0, 1), this.addChild(this._deck_combined_frame)), this._btn_close.initialize(), this.addChild(this._btn_close)
             }, e.prototype.update = function (t) {
-                this._detail.update(t), this._flag.update(t.flag_type);
-                for (var e = 0; e < this._ships.length; e++) {
-                    var i = this._ships[e],
-                        n = t.ships[e];
-                    i.update(n)
+                if (this._selected_deck_id != t) {
+                    var e = o.default.model.deck.get(t);
+                    null != e && (this._selected_deck_id = t, this._update(e))
                 }
+            }, e.prototype._update = function (t) {
+                a.TaskLoadShipResource.abortBy(this._ship_container), this._deck_selection.setSelected(t.mstID);
+                for (var e = t.getShipListAll(), i = t.getShipList(), n = 0; n < this._ships.length; n++) {
+                    var o = i[n];
+                    this._ships[n].update(o, !1)
+                }
+                this._rader.update(e), this._checkCondition(t, e)
             }, e.prototype.activate = function () {
-                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
+                this._arrow.activate(), this._btn_back.activate(), this._btn.activate(), null != this._deck_combined_frame && this._deck_combined_frame.activate();
+                var t = this._selected_deck_id;
+                this._selected_deck_id = 0, this.update(t), this._btn_close.activate()
             }, e.prototype.deactivate = function () {
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
+                a.TaskLoadShipResource.abortBy(this._ship_container), this._arrow.deactivate(), this._btn.deactivate(), this._btn_back.deactivate(), this._rader.update(null), null != this._deck_combined_frame && this._deck_combined_frame.deactivate(), this._btn_close.deactivate()
             }, e.prototype.dispose = function () {
-                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
+                this.removeChildren(), this._deck_selection.dispose(), null != this._deck_combined_frame && this._deck_combined_frame.dispose();
                 for (var t = 0, e = this._ships; t < e.length; t++) {
                     e[t].dispose()
                 }
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
+                this._rader.dispose(), this._arrow.dispose(), this._btn.dispose(), this._btn_back.dispose(), this._btn_close.dispose(), this._err_message.destroy()
+            }, e.prototype._checkCondition = function (t, e) {
+                var i = t.getCount();
+                if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
+                if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                for (var n = o.default.model.ndock.getShipMemIDs(), r = !1, s = !1, a = !0, _ = 0, l = e; _ < l.length; _++) {
+                    var u = l[_];
+                    null != u && (-1 != n.indexOf(u.memID) && (r = !0), (u.fuelNow <= 0 || u.ammoNow <= 0) && (s = !0), (u.fuelNow < u.fuelMax || u.ammoNow < u.ammoMax) && (a = !1))
+                }
+                if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
+                if (1 == r) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u8266\u968a\u5185\u306b\u5165\u6e20\u4e2d\u306e\u8266\u304c\u3042\u308a\u307e\u3059\uff01");
+                if (1 == s) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u71c3\u6599\u30fb\u5f3e\u85ac\u306e\u88dc\u7d66\u4e0d\u8db3\u3067\u3059\uff01");
+                var c = e[0].getDamageType();
+                if (25 == c || 0 == c) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u65d7\u8266\u304c\u5927\u7834\u3057\u3066\u304a\u308a\u3001\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
+                this._arrow.enabled = !0, this._btn.setEnabled(!0), this._err_message.text = ""
             }, e
         }(PIXI.Container);
-    e.UserinfoPanel = d
+    e.PanelDeckSelect = m
 }

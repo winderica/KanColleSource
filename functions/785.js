@@ -19,58 +19,21 @@ const function785 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(50),
-        s = i(113),
-        a = i(4),
-        _ = i(84),
-        l = i(21),
-        u = i(71),
-        c = i(86),
-        h = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClick = function () {
-                    e.onClick()
-                };
-                var i = new PIXI.Sprite(l.COMMON_MAIN.getTexture(12)),
-                    n = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(52)),
-                    o = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(51));
-                return e.downArrowAnimationView = new s.DownArrowAnimationView, e.fromSlotItemChangeSummly = new d, e.toSlotItemChangeSummly = new d, e.changeButton = new p, e.headerHenkouKakunin = new c.TitleBar, e.headerHenkouKakunin.initialize(l.COMMON_MAIN.getTexture(3), 26), i.interactive = !0, e.changeButton.onClick = e._onClick, n.position.set(266, 18), e.fromSlotItemChangeSummly.position.set(27, 41), o.position.set(266, 267), e.toSlotItemChangeSummly.position.set(27, 288), e.changeButton.position.set(92, 486), e.downArrowAnimationView.position.set(170, 242), e.headerHenkouKakunin.position.set(0, -39), e.addChild(i, n, e.fromSlotItemChangeSummly, o, e.toSlotItemChangeSummly, e.changeButton, e.downArrowAnimationView, e.headerHenkouKakunin), e
+                return e.btnSoubi3Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)), e.btnSoubi3 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16)), e.btnSoubi3Light.position.set(-14, -14), e.btnSoubi3Light.alpha = 0, e.addChild(e.btnSoubi3Light, e.btnSoubi3), e.tween = createjs.Tween.get(e.btnSoubi3Light).to({
+                    alpha: 0
+                }).to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3), e.tween.loop = !0, e.tween.play(null), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.fromSlotItemChangeSummly.dispose(), this.toSlotItemChangeSummly.dispose(), this.downArrowAnimationView.dispose(), this.changeButton.dispose(), this.headerHenkouKakunin.dispose(), this.downArrowAnimationView = null, this.fromSlotItemChangeSummly = null, this.toSlotItemChangeSummly = null, this.changeButton = null, this.onClick = null
-            }, e.prototype.update = function (t, e) {
-                t ? this.fromSlotItemChangeSummly.update(t) : this.fromSlotItemChangeSummly.clear(), e ? this.toSlotItemChangeSummly.update(e) : this.toSlotItemChangeSummly.clear()
+                this.tween.setPaused(!0), createjs.Tween.removeTweens(this.btnSoubi3Light), this.btnSoubi3 = null, this.btnSoubi3Light = null, this.tween = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ChangeConfirm = h;
-    var p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = e.textureBtnSelectOn
-                }, e._onMouseOut = function () {
-                    e.texture = e.textureBtnSelectOff
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.textureBtnSelectOff = u.REMODEL_MAIN.getTexture(10), e.textureBtnSelectOn = u.REMODEL_MAIN.getTexture(11), e.on(o.EventType.MOUSEOVER, e._onMouseOver), e.on(o.EventType.MOUSEOUT, e._onMouseOut), e.on(o.EventType.CLICK, e._onClick), e.texture = e.textureBtnSelectOff, e.interactive = e.buttonMode = !0, e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.off(o.EventType.MOUSEOVER), this.off(o.EventType.MOUSEOUT), this.off(o.EventType.CLICK), this.onClick = null, this.textureBtnSelectOff = null, this.textureBtnSelectOn = null, this.removeChildren()
-            }, e
-        }(PIXI.Sprite),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.textureCon2Bg2 = u.REMODEL_MAIN.getTexture(19), e.background = new PIXI.Sprite(e.textureCon2Bg2), e.textSpec = new a.TextBox(19, 5523516), e.textSpec.position.set(17, 42), e.addChild(e.background, e.textSpec), e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.textSpec.destroy(), this.textSpec = null, this.textureCon2Bg2 = null, this.background = null
-            }, e.prototype.update = function (t) {
-                this.background.texture = this.textureCon2Bg2, this.textSpec.text = r.SlotUtil.genSummaryText(t, "+", "\n", !1, 5), new _.TaskLoadSlotResource("remodel", this.background, t.mstID).start()
-            }, e.prototype.clear = function () {
-                this.textSpec.text = "", this.background.texture = this.textureCon2Bg2
-            }, e
-        }(PIXI.Container)
+    e.InUseMarker = r
 }

@@ -21,50 +21,82 @@ const function691 = function (t, e, i) {
     });
     var o = i(3),
         r = i(4),
-        s = i(692),
+        s = i(34),
         a = i(1),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.animation = {
-                    light: 0
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e._onMouseOver_Light = function () {
-                    e._stop(), e.hokyuLight.texture = e.textureHover
-                }, e._onMouseOut_Light = function () {
-                    e._play()
+                e._onClickYES = function () {
+                    e.onClickYES()
+                }, e._onClickNO = function () {
+                    e.onClickNO()
                 };
-                var i = o.ORGANIZE_MAIN.getTexture(17),
-                    n = o.ORGANIZE_MAIN.getTexture(18),
-                    _ = o.ORGANIZE_MAIN.getTexture(19);
-                return e.textCount = new r.TextBox(30, 5523516), e.tween = createjs.Tween.get(e.animation), e.hokyuLight = new PIXI.Sprite, e.hokyuNormal = new PIXI.Sprite(i), e.hokyuNone = new PIXI.Sprite(n), e.hokyuDisable = new PIXI.Sprite(_), e.crossCharacter = new s.CrossCharacter, e.crossCharacter.position.set(48, 15), e.hokyuLight.texture = n, e.tween.to({
-                    light: 0
-                }), e.tween.to({
-                    light: 1
-                }, 500), e.tween.to({
-                    light: 0
-                }, 500), e.tween.loop = !0, e.tween.addEventListener("change", function () {
-                    .5 <= e.animation.light ? e.hokyuLight.texture = e.textureDefault : e.hokyuLight.texture = e.textureHover
-                }), e.tween.setPaused(!0), e.hokyuLight.on(a.EventType.CLICK, e._onClick), e.hokyuLight.on(a.EventType.MOUSEOVER, e._onMouseOver_Light), e.hokyuLight.on(a.EventType.MOUSEOUT, e._onMouseOut_Light), e.hokyuNormal.on(a.EventType.CLICK, e._onClick), e.hokyuLight.interactive = e.hokyuLight.buttonMode = !0, e.hokyuNormal.interactive = e.hokyuNormal.buttonMode = !0, e.hokyuNone.visible = e.hokyuNormal.visible = e.hokyuLight.visible = !1, e.textCount.position.set(e.crossCharacter.width + 48, -1), e.addChild(e.hokyuDisable, e.hokyuNone, e.hokyuNormal, e.hokyuLight, e.textCount, e.crossCharacter), e.textureDefault = n, e.textureHover = i, e._play(), e
+                var i = new PIXI.Container;
+                i.position.set(69, 153), e.firstShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
+                }
+                var l = new PIXI.Container;
+                l.position.set(678, 153), e.secondShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), l.addChild(_)
+                }
+                e.background = new PIXI.Sprite;
+                var u = o.ORGANIZE_MAIN.getTexture(15);
+                e.buttonOrganize = new PIXI.Sprite(u);
+                var c = o.ORGANIZE_MAIN.getTexture(8);
+                return e.buttonBack = new PIXI.Sprite(c), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(18, 16777215), e.secondDeckName = new r.TextBox(18, 16777215), e.firstDeckName.position.set(60, 122), e.secondDeckName.position.set(667, 122), e.buttonOrganize.position.set(300, 420), e.buttonBack.position.set(480, 420), e.buttonOrganize.interactive = e.buttonOrganize.buttonMode = !0, e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonOrganize.addListener(a.EventType.CLICK, e._onClickYES), e.buttonBack.addListener(a.EventType.CLICK, e._onClickNO), e.addChild(e.background, e.message, e.buttonOrganize, e.buttonBack, e.firstDeckName, e.secondDeckName, i, l), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.tween && (this.tween.setPaused(!0), createjs.Tween.removeTweens(this.tween.target)), this.hokyuLight.off(a.EventType.CLICK), this.hokyuLight.off(a.EventType.MOUSEOVER), this.hokyuLight.off(a.EventType.MOUSEOUT), this.hokyuNormal.off(a.EventType.CLICK), this._onClick = this._onMouseOut_Light = this._onMouseOver_Light = null, this.crossCharacter.dispose(), this.textCount.destroy(), this.onClick = null, this.textureDefault = null, this.textureHover = null, this.textCount = null, this.animation = null, this.tween = null, this.hokyuLight = null, this.hokyuNormal = null, this.hokyuNone = null, this.hokyuDisable = null, this.crossCharacter = null
-            }, e.prototype.update = function (t, e, i, n) {
-                void 0 === i && (i = 0), this.hokyuNone.visible = !1, this.hokyuLight.visible = !1, this.hokyuNormal.visible = !1, this.textCount.visible = !1, this.hokyuDisable.visible = !1, this.crossCharacter.visible = !1;
-                var o = t + e;
-                if (0 < o) {
-                    if (this.crossCharacter.visible = !0, this.textCount.text = o.toString(), this.textCount.visible = !0, 0 < i) {
-                        if (n) return void(this.hokyuLight.visible = !0);
-                        if (0 < e) return void(this.hokyuNormal.visible = !0)
-                    }
-                    return void(this.hokyuDisable.visible = !0)
+                this.removeChildren();
+                for (var t = 0; t < this.firstShipInDeckBanners.length; t++) this.firstShipInDeckBanners[t].dispose(), this.firstShipInDeckBanners[t] = null;
+                for (var t = 0; t < this.secondShipInDeckBanners.length; t++) this.secondShipInDeckBanners[t].dispose(), this.secondShipInDeckBanners[t] = null;
+                this.firstDeckName.destroy(), this.secondDeckName.destroy(), this.onClickYES = null, this.onClickNO = null, this.background = null, this.buttonOrganize = null, this.buttonBack = null, this.message = null, this.firstDeckName = null, this.secondDeckName = null, this.firstShipInDeckBanners = null, this.secondShipInDeckBanners = null
+            }, e.prototype.updateFirstDeck = function (t) {
+                this.firstDeckName.text = t.name;
+                for (var e = t.getShipList(), i = 0; i < e.length; i++) {
+                    var n = this.firstShipInDeckBanners[i],
+                        o = e[i];
+                    n.visible = !1, o && (n.update(o, !1), n.visible = !0)
                 }
-            }, e.prototype._play = function () {
-                this.tween.setPosition(0, createjs.Tween.LOOP), this.tween.setPaused(!1)
-            }, e.prototype._stop = function () {
-                this.tween.setPaused(!0)
+            }, e.prototype.updateSecondDeck = function (t) {
+                this.secondDeckName.text = t.name;
+                for (var e = null != t.expedition, i = t.getShipList(), n = 0; n < i.length; n++) {
+                    var o = this.secondShipInDeckBanners[n],
+                        r = i[n];
+                    o.visible = !1, r && (o.update(r, e), o.visible = !0)
+                }
+            }, e.prototype.updateCombineDeck = function (t, e) {
+                this.updateFirstDeck(t), this.updateSecondDeck(e)
+            }, e.prototype.updateViewType = function (t) {
+                switch (t) {
+                    case 1:
+                        this.initKidoView();
+                        break;
+                    case 2:
+                        this.initSuijoView();
+                        break;
+                    case 3:
+                        this.initYusoView()
+                }
+            }, e.prototype.initKidoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(13);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(14);
+                this.message.texture = e, this.message.position.set(213, 49)
+            }, e.prototype.initSuijoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(19);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(20);
+                this.message.texture = e, this.message.position.set(213, 49)
+            }, e.prototype.initYusoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(22);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(23);
+                this.message.texture = e, this.message.position.set(183, 49)
             }, e
         }(PIXI.Container);
-    e.SweetsButton = _
+    e.CombineConfirmDialog = _
 }

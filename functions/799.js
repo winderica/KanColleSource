@@ -19,23 +19,32 @@ const function799 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
+    var o = i(222),
+        r = i(4),
+        s = i(133),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.MAX = 5, e.stars = new Array;
-                for (var i = o.REMODEL_POWERUP.getTexture(29), n = 0; n < e.MAX; n++) {
-                    var r = new PIXI.Sprite(i);
-                    r.position.set(45 * n, 0), e.stars.push(r), e.addChild(r)
+                e.powerNums = [], e.iconCategories = new Array;
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.IconCategory;
+                    n.position.set(90 * i, 0), n.update(s.PowerUpCategory.EMPTY), e.iconCategories.push(n);
+                    var a = new r.TextBox(21, 16777215);
+                    a.position.set(45 + 90 * i, 9), e.powerNums.push(a), e.addChild(n), e.addChild(a)
                 }
                 return e
             }
             return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < this.MAX; e++) this.stars[e].visible = !1, e < t && (this.stars[e].visible = !0)
+                for (var e = 0; e < 4; e++) this.powerNums[e].visible = !1, this.iconCategories[e].visible = !1;
+                var i = 0,
+                    n = t[s.PowerUpCategory.Karyoku];
+                0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Karyoku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Raisou], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Raisou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Taiku], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Taiku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), 0 < (n = t[s.PowerUpCategory.Soukou]) && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Soukou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++)
             }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.MAX; t++) this.removeChild(this.stars[t]), this.stars[t] = null;
-                this.stars = null, this.removeChildren()
+                this.removeChildren();
+                for (var t = 0; t < this.iconCategories.length; t++) this.iconCategories[t].dispose(), this.iconCategories[t] = null;
+                for (var t = 0; t < this.powerNums.length; t++) this.powerNums[t].destroy(), this.powerNums[t] = null;
+                this.iconCategories = null, this.powerNums = null
             }, e
         }(PIXI.Container);
-    e.StarRate = r
+    e.IconCategories = a
 }

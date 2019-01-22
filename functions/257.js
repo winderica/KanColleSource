@@ -19,134 +19,66 @@ const function257 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(495),
-        a = function () {
-            function t(t) {
-                if (this._o = t, this._expedition = null, null != this._o) {
-                    var e = r.ObjUtil.getNumArray(this._o, "api_mission"),
-                        i = new s.DeckExpeditionModelEdit(e);
-                    i.expedition_id > 0 && (this._expedition = i)
-                }
+    var o = i(24),
+        r = i(28),
+        s = i(141),
+        a = i(121),
+        _ = i(1353),
+        l = i(1354),
+        u = i(43),
+        c = function (t) {
+            function e(e, i, n, l, u, c) {
+                var h = t.call(this, e, i, -1, l, u, c) || this;
+                h._fire = function (t, e) {
+                    var i = h._scene.view.layer_content,
+                        n = t.getGlobalPos(),
+                        s = 1;
+                    1 == t.friend ? n.x += o.BannerSize.W / 2 : (n.x -= o.BannerSize.W / 2, s = -1);
+                    var l = new _.TaskRocketFire(i, n.x, n.y, s, 0);
+                    if (0 == h._daihatsu_eff) l.start(function () {
+                        h._impact(t, e)
+                    });
+                    else {
+                        var u = new a.TaskDaihatsuEff(i, t, e, h._daihatsu_eff),
+                            c = new r.ParallelTask;
+                        c.add(l), c.add(u), c.start(function () {
+                            h._impact(t, e)
+                        })
+                    }
+                }, h._defender = n;
+                var p = h._scene.data.isNight();
+                return h._cutin = new s.CutinAttack(h._attacker, h._slot, p, !0, !0), h
             }
-            return Object.defineProperty(t.prototype, "mstID", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
-                get: function () {
-                    return r.ObjUtil.getString(this._o, "api_name")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "nameID", {
-                get: function () {
-                    return r.ObjUtil.getString(this._o, "api_name_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.__updateName__ = function (t, e) {
-                this._o.api_name = t, this._o.api_name_id = e
-            }, Object.defineProperty(t.prototype, "expedition", {
-                get: function () {
-                    return this._expedition
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getCount = function () {
-                return this._getShipMemIDArray().filter(function (t, e, i) {
-                    return t >= 0
-                }).length
-            }, t.prototype.getShipMemID = function (t) {
-                var e = this._getShipMemIDArray();
-                return null != e && e.length > t ? e[t] : -1
-            }, t.prototype.getShipMemIDList = function () {
-                return this._getShipMemIDArray().concat().filter(function (t, e, i) {
-                    return t > 0
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
                 })
-            }, t.prototype.getShipModel = function (t) {
-                var e = this.getShipMemID(t);
-                return e > 0 ? o.default.model.ship.get(e) : null
-            }, t.prototype.getShipList = function () {
-                var t = [],
-                    e = this._getShipMemIDArray();
-                if (null == e) return t;
-                for (var i = 0; i < e.length; i++) {
-                    var n = e[i],
-                        r = o.default.model.ship.get(n);
-                    t.push(r)
-                }
-                return t
-            }, t.prototype.getShipListAll = function () {
-                var t = o.default.model.deck.combined;
-                if (0 == t.isCombined()) return this.getShipList();
-                if (t.deck_id_main != this.mstID && t.deck_id_sub != this.mstID) return this.getShipList();
-                for (var e = [], i = o.default.model.deck.get(t.deck_id_main), n = i.getShipList(), r = 0, s = n; r < s.length; r++) {
-                    var a = s[r];
-                    e.push(a)
-                }
-                for (var _ = o.default.model.deck.get(t.deck_id_sub), l = _.getShipList(), u = 0, c = l; u < c.length; u++) {
-                    var a = c[u];
-                    e.push(a)
-                }
-                return e
-            }, t.prototype.isInDeck = function (t) {
-                return this._getShipMemIDArray().indexOf(t)
-            }, t.prototype.getCombinedType = function () {
-                return this.isCombined_Main() || this.isCombined_Sub() ? o.default.model.deck.combined.type : 0
-            }, t.prototype.isCombined_Main = function () {
-                return o.default.model.deck.combined.deck_id_main == this.mstID
-            }, t.prototype.isCombined_Sub = function () {
-                return o.default.model.deck.combined.deck_id_sub == this.mstID
-            }, t.prototype.getSubDeckID = function () {
-                return 1 == this.isCombined_Main() ? o.default.model.deck.combined.deck_id_sub : -1
-            }, t.prototype.getSubDeckName = function () {
-                if (1 == this.isCombined_Main()) {
-                    var t = o.default.model.deck.combined.deck_id_sub,
-                        e = o.default.model.deck.get(t);
-                    return null == e ? "" : e.name
-                }
-                return ""
-            }, t.prototype._getShipMemIDArray = function () {
-                return r.ObjUtil.getNumArray(this._o, "api_ship")
-            }, t
-        }();
-    e.DeckModel = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.updateName = function (t, e) {
-            this.__updateName__(t, e)
-        }, e.prototype.__change__ = function (t, e, i) {
-            void 0 === i && (i = !1);
-            var n = this._getShipMemIDArray(),
-                r = o.default.model.ship.get(e),
-                s = o.default.model.deck.isInDeck(r.memID),
-                a = null;
-            if (null != s) {
-                a = o.default.model.deck.get(s[0])._getShipMemIDArray()
-            }
-            if (null != s) {
-                var _ = n[t];
-                s[1]; - 1 == _ ? (a.splice(s[1], 1), a.push(-1)) : a[s[1]] = _
-            }
-            n[t] = r.memID;
-            for (var l = n.filter(function (t) {
-                    return t > 0
-                }), u = 0; u < n.length; u++) u >= l.length ? n[u] = -1 : n[u] = l[u]
-        }, e.prototype.__remove__ = function (t, e) {
-            void 0 === e && (e = !1);
-            var i = this._getShipMemIDArray(),
-                n = i.length;
-            for (i.splice(t, 1); i.length < n;) i.push(-1)
-        }, e.prototype.__removeAll__ = function (t) {
-            void 0 === t && (t = !1);
-            for (var e = this._getShipMemIDArray(), i = 1; i < e.length; i++) e[i] = -1
-        }, e
-    }(a);
-    e.DeckModelEdit = _
+            }, e.prototype._completePreload = function () {
+                var t, e, i = this,
+                    n = this._attacker.friend,
+                    o = this._attacker.index,
+                    r = this._defender.index;
+                1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, r)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, r)), t.moveFront(), 0 == this._shield && e.moveFront(), this._cutin.view.once("attack", function () {
+                    i._playVoice(), i._fire(t, e)
+                }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+            }, e.prototype._impact = function (t, e) {
+                var i = this,
+                    n = this._scene.view.layer_content,
+                    r = e.getGlobalPos();
+                1 == e.friend ? r.x += o.BannerSize.W / 2 : r.x -= o.BannerSize.W / 2;
+                new l.TaskRocketHit(n, r.x, r.y, 300).start(function () {
+                    i._damageEffect(t, e)
+                })
+            }, e.prototype._damageEffect = function (t, e) {
+                var i = this;
+                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+                var n = e.getGlobalPos(!0);
+                this._scene.view.layer_explosion.playExplosionMiddle(n.x - o.BannerSize.W / 4 * (e.friend ? -1 : 1), n.y), createjs.Tween.get(this).wait(500).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
+            }, e
+        }(u.PhaseAttackBase);
+    e.PhaseAttackRocket = c
 }

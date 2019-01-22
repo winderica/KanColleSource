@@ -20,26 +20,38 @@ const function873 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.clickable = !1, i.hasKey = !1, i._onMouseOver = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.hasKey ? i.confirm_dock_key_sprite.visible = !0 : i.alert_dock_key_sprite.visible = !0
-                }, i._onClick = function () {
-                    i.hasKey || o.SE.play("248"), i.onClick()
-                }, i._onMouseOut = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1
-                }, i.steelFrame_noDock_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(147)), i.alert_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(71)), i.confirm_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(72)), i.alert_dock_key_sprite.position.set(255, -15), i.confirm_dock_key_sprite.position.set(255, -15), i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.steelFrame_noDock_sprite.interactive = i.steelFrame_noDock_sprite.buttonMode = !0, i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOVER, i._onMouseOver), i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOUT, i._onMouseOut), i.steelFrame_noDock_sprite.on(s.EventType.CLICK, i._onClick), i.addChild(i.steelFrame_noDock_sprite), e.addChild(i.alert_dock_key_sprite, i.confirm_dock_key_sprite), i.overlayer = e, i
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.limitShip = !1, e.limitSlot = !1, e.animation = {
+                    progress: 0
+                }, e._onClick = function () {
+                    0 == (e.limitShip || e.limitSlot) && e.onClick(e.kDockId)
+                }, e._onMouseOver = function () {
+                    e.popup.visible = !1, e.limitShip ? e.popup.visible = !0 : e.limitSlot && (e.popup.visible = !0)
+                }, e._onMouseOut = function () {
+                    e.popup.visible = !1
+                }, e.popup = new PIXI.Sprite, e.buttonSprite = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(40)), e.popup.visible = !1;
+                var i = Math.floor(100 - e.buttonSprite.width / 2),
+                    n = Math.floor(50 - e.buttonSprite.height / 2);
+                return e.area = new PIXI.Graphics, e.area.beginFill(0, 0), e.area.drawRect(-i, -n, 200, 100), e.area.endFill(), e.area.interactive = e.area.buttonMode = !0, e.area.on(r.EventType.CLICK, e._onClick), e.area.on(r.EventType.MOUSEOVER, e._onMouseOver), e.area.on(r.EventType.MOUSEOUT, e._onMouseOut), e.tween = createjs.Tween.get(e.animation, {
+                    loop: !0
+                }).to({
+                    progress: 0
+                }).to({
+                    progress: 1
+                }, 750, createjs.Ease.quintOut).to({
+                    progress: 0
+                }, 850, createjs.Ease.quintIn), e.tween.addEventListener("change", function () {
+                    e.buttonSprite.alpha = .2 + .8 * e.animation.progress
+                }), e.addChild(e.area, e.buttonSprite, e.popup), e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                this.steelFrame_noDock_sprite.interactive = !1, t && (this.steelFrame_noDock_sprite.interactive = !0), this.clickable = t, this.hasKey = e
-            }, e.prototype.hidePop = function () {
-                this.alert_dock_key_sprite.visible = this.confirm_dock_key_sprite.visible = !1
+            return n(e, t), e.prototype.updateCondition = function (t, e) {
+                this.popup.visible = !1, t ? (this.popup.texture = o.ARSENAL_MAIN.getTexture(1), this.popup.position.set(-118, -72)) : e && (this.popup.texture = o.ARSENAL_MAIN.getTexture(69), this.popup.position.set(49, -33)), this.limitShip = t, this.limitSlot = e
             }, e.prototype.dispose = function () {
-                this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOVER), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOUT), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.CLICK), this.overlayer.removeChildren(), this.onClick = null, this.steelFrame_noDock_sprite = null, this.alert_dock_key_sprite = null, this.confirm_dock_key_sprite = null, this.overlayer = null, this.removeChildren()
+                createjs.Tween.removeTweens(this.tween.target), this.area.off(r.EventType.CLICK), this.area.off(r.EventType.MOUSEOVER), this.area.off(r.EventType.MOUSEOUT), this.tween = null, this.onClick = null, this.popup = null, this.buttonSprite = null, this.kDockId = null, this.limitShip = null, this.limitSlot = null, this.animation = null, this.tween = null, this.area = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.NoDockView = a
+    e.GetButton = s
 }

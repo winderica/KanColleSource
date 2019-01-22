@@ -6,11 +6,11 @@ const function663 = function (t, e, i) {
     ! function (t) {
         function e(t) {
             try {
-                return PIXI.Texture.fromFrame("album_slot3_id_" + t)
+                return PIXI.Texture.fromFrame("album_slot2_id_" + t)
             } catch (t) {
                 return PIXI.Texture.EMPTY
             }
         }
         t.getTextureFromMstID = e
-    }(e.ALBUM_SLOT3 || (e.ALBUM_SLOT3 = {}))
+    }(e.ALBUM_SLOT2 || (e.ALBUM_SLOT2 = {}))
 }

@@ -1,43 +1,26 @@
 const function924 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(197),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._sortie_data = e, n._deck_f = i, n
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "sortie", {
+            return Object.defineProperty(t.prototype, "plane_type", {
                 get: function () {
-                    return this._sortie_data
+                    return n.ObjUtil.getNumber(this._o, "api_plane_type")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_f", {
+            }), Object.defineProperty(t.prototype, "result", {
                 get: function () {
-                    return this._deck_f
+                    return n.ObjUtil.getNumber(this._o, "api_result")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e
-        }(o.SceneModel);
-    e.MapSceneModel = r
+            }), t
+        }();
+    e.AirReconnaissanceModel = o
 }

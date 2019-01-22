@@ -19,36 +19,28 @@ const function414 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(410),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_quest/clearitemget", n._duty_id = e, n._selected_no_list = i, n._result = new a(e), n
+    var o = i(2),
+        r = i(13),
+        s = i(240),
+        a = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                if (this._post_data.api_quest_id = this._duty_id, null != this._selected_no_list && this._selected_no_list.length > 0) {
-                    this._post_data.api_select_no = this._selected_no_list[0];
-                    for (var e = 1; e < this._selected_no_list.length; e++) this._post_data["api_select_no" + (e + 1)] = this._selected_no_list[e]
-                }
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.initialize(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("duty");
+                e.add("duty_common.json"), e.load(function () {
+                    t._loadPosterGirlResoueces()
+                })
+            }, e.prototype._loadPosterGirlResoueces = function () {
+                var t = this,
+                    e = new r.UIImageLoader("duty");
+                e.add("poster_girl/" + s.POSTER_GIRL + "1.png", s.POSTER_KEY_1), e.add("poster_girl/" + s.POSTER_GIRL + "2.png", s.POSTER_KEY_2), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.APIBase);
-    e.DutyEndAPI = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function (t) {
-            this._o = t, this._initialize()
-        }, e
-    }(r.DutyEndModel)
+        }(o.TaskBase);
+    e.TaskLoadResources = a
 }

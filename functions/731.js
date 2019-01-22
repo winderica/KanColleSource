@@ -20,18 +20,21 @@ const function731 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(216),
+        r = i(11),
+        s = i(14),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+            function e(e, i) {
+                void 0 === e && (e = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_hensei/lock", n._debug = e, n.api_ship_id = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked"),
+                    i = o.default.model.ship.get(this.api_ship_id);
+                null != i && i.__setLocked__(e), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.InitializeTask = a
+        }(r.APIBase);
+    e.ShipLockAPI = a
 }

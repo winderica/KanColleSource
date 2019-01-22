@@ -4,10 +4,10 @@ const function87 = function (t, e, i) {
         value: !0
     });
     var n = i(52),
-        o = i(132),
-        r = i(30),
+        o = i(133),
+        r = i(31),
         s = i(0),
-        a = i(781);
+        a = i(776);
     ! function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);
@@ -53,11 +53,11 @@ const function87 = function (t, e, i) {
             }
             var O = !1;
             I && i.gradeUpTaikyu < i.VHP && (O = !0), l = Math.floor(1.2 * l + .3), u = Math.floor(1.2 * u + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3);
-            var P = i.gradeUpHoug + l,
-                C = i.gradeUpRaig + u,
+            var C = i.gradeUpHoug + l,
+                P = i.gradeUpRaig + u,
                 k = i.gradeUpTyku + c,
                 M = i.gradeUpSouk + h;
-            o <= P && (l = o - i.gradeUpHoug), r <= C && (u = r - i.gradeUpRaig), s <= k && (c = s - i.gradeUpTyku), _ <= M && (h = _ - i.gradeUpSouk);
+            o <= C && (l = o - i.gradeUpHoug), r <= P && (u = r - i.gradeUpRaig), s <= k && (c = s - i.gradeUpTyku), _ <= M && (h = _ - i.gradeUpSouk);
             var S = Math.max(n.luckMax - n.luckMin - i.gradeUpLuck, 0);
             p = Math.min(p, S);
             var A = !1,

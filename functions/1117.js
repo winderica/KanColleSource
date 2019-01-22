@@ -21,19 +21,23 @@ const function1117 = function (t, e, i) {
     });
     var o = i(4),
         r = i(3),
-        s = i(33),
-        a = i(401),
-        _ = i(402),
-        l = function (t) {
+        s = i(27),
+        a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._message = new o.TextBox(18, 4999235), n._message.position.set(230, 33), n.addChild(n._message), n._icon = new _.MedalIcon, n._icon.position.set(308, 116), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(179, 215), n.addChild(n._btn_yes), n._btn_no = new s.BtnBase(-1, i), n._btn_no.position.set(389, 215), n.addChild(n._btn_no), 0 == e ? n._message.text = "\u52f2\u7ae0\u3092\u300c\u8cc7\u6e90\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f" : 2 == e && (n._message.text = "\u52f2\u7ae0\u3092\u300c\u6539\u4fee\u8cc7\u6750\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"), n
+                return n._message1 = new o.TextBox(22, 1381651), n._message1.position.set(92, 81), n.addChild(n._message1), n._message2 = new o.TextBox(22, 1381651), n._message2.position.set(92, 111), n.addChild(n._message2), n._icon = new PIXI.Sprite, n._icon.position.set(152, 165), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 267), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 267), n.addChild(n._btn_back), n
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_MEDAL.getTexture(7), this._initialize(t, 1)
+                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(10), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 264 - this._message1.width / 2, this._message2.text = "\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f", this._message2.x = 264 - this._message2.width / 2, 11 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(7) : 13 == t ? this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(6) : 12 == t && (this._icon.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(8));
+                var e = r.ITEM_ILIST_PRESENTBOX.getTexture(2);
+                this._btn_yes.initialize(e), e = r.ITEM_ILIST_PRESENTBOX.getTexture(1), this._btn_back.initialize(e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_back.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._message.destroy()
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(a.ConfirmViewBase);
-    e.ConfirmView = l
+        }(PIXI.Sprite);
+    e.ConfirmView = a
 }

@@ -1,47 +1,97 @@
 const function647 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(106),
-        r = function () {
-            function t(t) {
-                void 0 === t && (t = null), this.path = "img/tutorial", this.prefix = "tutorial_", this._loader = new PIXI.loaders.Loader(n.default.settings.path_root);
-                for (var e = function (t) {
-                        for (var e = [], i = 0, n = t.length; i < n; i++) {
-                            var o = t[i];
-                            e.push([o + ".png", o])
-                        }
-                        return e.push(["tutorial_main.json", null]), e
-                    }([o.IMAGE_FILE.BG, o.IMAGE_FILE.CRUMB, o.IMAGE_FILE.TITLE_BG, o.IMAGE_FILE.MSG_BOX]), i = 0, r = e.length; i < r; i++) {
-                    var s = e[i];
-                    this.add(s[0], s[1])
-                }
-                this.load(t)
+    var o = i(269),
+        r = i(270),
+        s = i(32),
+        a = i(155),
+        _ = i(211),
+        l = i(126),
+        u = i(106),
+        c = i(648),
+        h = i(649),
+        p = i(650),
+        d = i(651),
+        f = i(652),
+        y = i(653),
+        m = i(654),
+        v = i(656),
+        g = i(658),
+        b = function (t) {
+            function e(e) {
+                void 0 === e && (e = 0);
+                var i = t.call(this) || this;
+                return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
+                    switch (i._isStart) {
+                        case !0:
+                            return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
+                        case !1:
+                            return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
+                    }
+                }, i._onNextScene = function () {
+                    if (i._loader.show(), i._sceneId++, i._NextScene = i._createNextScene(), i._SoundManager.voice.stopAll(), null == i._NextScene) return i.dispose(), !1;
+                    i._NextScene.initialize(), i._ViewScene.addChild(i._NextScene), i._CurrentScene.dispose(), i._CurrentScene = i._NextScene
+                }, i._onRemoveScene = function () {
+                    i._ViewScene.removeChildAt(0), i._CurrentScene = i._NextScene
+                }, i._onPlayVoice = function (t, e, n) {
+                    void 0 === n && (n = null), i._SoundManager.voice.play(t, e, n)
+                }, i._saveShipId = function (t) {
+                    i._shipId = t
+                }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
             }
-            return t.prototype.add = function (t, e) {
-                void 0 === e && (e = null);
-                var i = this.path + "/" + t;
-                null != e ? this._loader.add(this.prefix + e, i) : this._loader.add(i)
-            }, t.prototype.load = function (t) {
-                void 0 === t && (t = null), this._loader.load(function (e, i) {
-                    null != t && t()
-                })
-            }, t.prototype.use = function (t) {
-                return PIXI.Texture.from(this.prefix + t)
-            }, t.prototype.charaImagesList = function () {
-                for (var t = [o.CHARA.FUBUKI, o.CHARA.MURAKUMO, o.CHARA.SAZANAMI, o.CHARA.INADUMA, o.CHARA.SAMIDARE], e = [], i = 0, n = t.length; i < n; i++) ! function (i, n) {
-                    var r = t[i];
-                    Object.keys(o.CHARA_SUFFIX).forEach(function (t) {
-                        var i = o.CHARA_SUFFIX[t];
-                        e.push(["chara/c" + r + "_" + i + ".png", o.CHARA_PREFIX + "_" + r + "_" + i])
+            return n(e, t), e.prototype.start = function () {
+                this._ViewMain.start(), this._CurrentScene.start()
+            }, e.prototype._create = function () {
+                var t = new PIXI.Sprite(this._ImageManager.use(u.IMAGE_FILE.BG));
+                this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
+            }, e.prototype._createNextScene = function () {
+                switch (this._sceneId) {
+                    case 0:
+                        return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
+                    case 1:
+                        return this._isGoNextPath = !0, new v.SceneSelectShip(this._ImageManager, this._ev);
+                    case 2:
+                        return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
+                    case 3:
+                        return this._isGoNextPath = !0, new d.SceneExplain2(this._ev);
+                    case 4:
+                        return this._isGoNextPath = !0, new f.SceneExplain3(this._ev);
+                    case 5:
+                        return this._isGoNextPath = !1, new y.SceneFinal(this._ImageManager, this._ev, this._shipId);
+                    default:
+                        return null
+                }
+            }, e.prototype.dispose = function () {
+                var t = this;
+                this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
+                var e = new s.APIConnector,
+                    i = parseInt(this._shipId, 10);
+                e.add(new g.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
+                    t._loader.hide(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 400, createjs.Ease.linear).call(function () {
+                        t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
                     })
-                }(i);
-                return e
-            }, t.prototype.dispose = function () {
-                this._loader.destroy()
-            }, t
-        }();
-    e.ImageManager = r
+                })
+            }, e
+        }(PIXI.Container);
+    e.TutorialScene = b
 }

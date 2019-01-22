@@ -19,46 +19,86 @@ const function201 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._activated = !1, e._enabled = !0, e.__onMouseOver = function () {
-                    e._update(!0)
-                }, e.__onMouseOut = function () {
-                    e._update(!1)
-                }, e.__onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(18),
+        _ = i(293),
+        l = i(294),
+        u = i(295),
+        c = i(145),
+        h = i(296),
+        p = i(297),
+        d = i(298),
+        f = i(202),
+        y = i(188),
+        m = i(146),
+        v = i(125),
+        g = i(299),
+        b = i(617),
+        w = i(618),
+        x = i(629),
+        I = i(630),
+        T = i(631),
+        O = i(632),
+        C = i(633),
+        P = i(634),
+        k = i(635),
+        M = i(636),
+        S = i(637),
+        A = i(638),
+        j = i(639),
+        E = i(207),
+        N = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._layer = e, o._rewards = i, o._quest_id = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._enabled && 1 == this._activated ? this._activate() : this._deactivate(), this._update(!1))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                void 0 === t && (t = null), this._deactivate(), this._cb_onClick = t, 1 == this._enabled && 1 == this._activated && this.activate(), this._update(!1)
-            }, e.prototype.activate = function () {
-                this._activated = !0, 1 != this.buttonMode && 0 != this.enabled && this._activate()
-            }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e.prototype._activate = function () {
-                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick)
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
-            }, e.prototype._onMouseOver = function () {
-                this.__onMouseOver()
-            }, e.prototype._onMouseOut = function () {
-                this.__onMouseOut()
-            }, e.prototype._onClick = function () {
-                this.__onClick()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._fade = new a.FadeBox(.6), this._layer.addChild(this._fade), this._fade.show(300, function () {
+                    t._addDialog()
+                })
+            }, e.prototype._addDialog = function () {
+                this._dialog = new b.RewardDialog, this._dialog.position.set(o.default.width / 2, o.default.height / 2), this._dialog.initialize(), this._layer.addChild(this._dialog), this._showReward()
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._rewards || 0 == this._rewards.length) return void this._removeDialog();
+                var e = this._rewards.shift(),
+                    i = this._getTask(e);
+                null == i ? this._removeDialog() : i.start(function () {
+                    t._showReward()
+                })
+            }, e.prototype._removeDialog = function () {
+                this._layer.removeChild(this._dialog), this._dialog.dispose(), this._dialog = null, this._hideFade()
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(200, function () {
+                    t._layer.removeChild(t._fade), t._fade = null, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._rewards = null, t.prototype._endTask.call(this)
+            }, e.prototype._getTask = function (t) {
+                return t instanceof y.RewardModelShip ? 682 == this._quest_id || 882 == this._quest_id || 883 == this._quest_id ? new L(this._layer, t.mst_id) : new M.TaskRewardDialogShip(this._dialog, t) : t instanceof m.RewardModelSlotitem ? new S.TaskRewardDialogSlotitem(this._dialog, t) : t instanceof v.RewardModelUseitem ? new A.TaskRewardDialogUseitem(this._dialog, t) : t instanceof f.RewardModelMultiUseitem ? new k.TaskRewardDialogMultiUseitem(this._dialog, t) : t instanceof c.RewardModelFurniture ? new T.TaskRewardDialogFurniture(this._dialog, t) : t instanceof l.RewardModelDeck ? new x.TaskRewardDialogDeck(this._dialog, t) : t instanceof u.RewardModelExtraSupply ? new I.TaskRewardDialogExtraSupply(this._dialog, t) : t instanceof h.RewardModelLargeBuild ? new O.TaskRewardDialogLargeBuild(this._dialog, t) : t instanceof d.RewardModelModelChange ? new P.TaskRewardDialogModelChange(this._dialog, t, this._quest_id, this._fade) : t instanceof _.RewardModelAirUnit ? new w.TaskRewardDialogAirUnit(this._dialog, t) : t instanceof g.RewardModelWarResult ? new j.TaskRewardDialogWarResult(this._dialog, t) : t instanceof p.RewardModelMap ? new C.TaskRewardDialogMap(this._dialog, t) : void 0
             }, e
-        }(PIXI.Sprite);
-    e.BtnBase = r
+        }(s.TaskBase);
+    e.TaskReward = N;
+    var L = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i, !0) || this
+        }
+        return n(e, t), e.prototype._finalize = function (t) {
+            var e = this;
+            r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({
+                alpha: 0
+            }, 300).call(function () {
+                t.deactivate(), e._bonus.removeChild(t)
+            }), createjs.Tween.get(this._bonus).wait(100).to({
+                alpha: 0
+            }, 300).call(function () {
+                e.dispose(), e._endTask()
+            })
+        }, e
+    }(E.TaskBonusShip)
 }

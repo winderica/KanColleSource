@@ -19,63 +19,92 @@ const function921 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(922),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._btn_sortie = new _, e._btn_sortie.position.set(179, 174), e._btn_practice = new _, e._btn_practice.position.set(516, 174), e._btn_expedition = new _, e._btn_expedition.position.set(852, 174), e
+    var o = i(68),
+        r = i(7),
+        s = i(922),
+        a = i(923),
+        _ = function () {
+            function t() {
+                this._start_cell_no = 0, this._obtained_items = new Array
             }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_sortie", {
+            return Object.defineProperty(t.prototype, "map", {
                 get: function () {
-                    return this._btn_sortie
+                    return this._map
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_practice", {
+            }), Object.defineProperty(t.prototype, "cells", {
                 get: function () {
-                    return this._btn_practice
+                    return this._cells
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_expedition", {
+            }), Object.defineProperty(t.prototype, "area_id", {
                 get: function () {
-                    return this._btn_expedition
+                    return this._area_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(50));
-                e.position.set(0, 102);
-                var i = new PIXI.Sprite(r.SALLY_TOP.getTexture(0));
-                i.position.set(188, 113);
-                var n = new PIXI.Sprite(r.SALLY_TOP.getTexture(10));
-                n.position.set(246, 575);
-                var s = new PIXI.Sprite(r.SALLY_TOP.getTexture(3));
-                s.position.set(572, 575);
-                var a = new PIXI.Sprite(r.SALLY_TOP.getTexture(7));
-                a.position.set(909, 575), this._btn_sortie.initialize(8, 9), this._btn_practice.initialize(1, 2), 1 == t ? this._btn_expedition.initialize(4, 6) : this._btn_expedition.initialize(5, null), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(s), this.addChild(a), this.addChild(this._btn_sortie), this.addChild(this._btn_practice), this.addChild(this._btn_expedition)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._btn_sortie.dispose(), this._btn_practice.dispose(), this._btn_expedition.dispose()
-            }, e
-        }(PIXI.Container);
-    e.ViewTop = a;
-    var _ = function (t) {
+            }), Object.defineProperty(t.prototype, "map_no", {
+                get: function () {
+                    return this._map_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "map_id", {
+                get: function () {
+                    return 10 * this.area_id + this._map_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "now_cell_no", {
+                get: function () {
+                    return this._data.length <= 1 ? this._start_cell_no : this._data[this._data.length - 2].no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "obtained_items", {
+                get: function () {
+                    return this._obtained_items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getCellInfo = function (t) {
+                for (var e = 0, i = this._cells; e < i.length; e++) {
+                    var n = i[e];
+                    if (n.no == t) return n
+                }
+                return null
+            }, t.prototype.getCellNoAll = function () {
+                for (var t = [], e = 0, i = this._cells; e < i.length; e++) {
+                    var n = i[e];
+                    t.push(n.no)
+                }
+                return t
+            }, t.prototype.getNextCell = function () {
+                return this._data[this._data.length - 1]
+            }, t.prototype.getGaugeKey = function () {
+                var t = this.map.getGaugeNum();
+                return o.GaugeSetModel.createKey(this._area_id, this._map_no, t)
+            }, t
+        }();
+    e.SortieModel = _;
+    var l = function (t) {
         function e() {
-            var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._setTexture(e._texture_no_on)
-            }, e._onMouseOut = function () {
-                e._setTexture(e._texture_no)
-            }, e
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._texture_no = t, this._texture_no_on = e, this._setTexture(this._texture_no), null != this._texture_no_on && (this.interactive = this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut))
-        }, e.prototype.dispose = function () {
-            this.interactive = this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut)
-        }, e.prototype._setTexture = function (t) {
-            this.texture = r.SALLY_TOP.getTexture(t)
+        return n(e, t), e.prototype.__init__ = function (t, e) {
+            this._map = t;
+            var i = e.api_cell_data;
+            delete e.api_cell_data, this._cells = new Array;
+            for (var n = 0, o = i; n < o.length; n++) {
+                var _ = o[n];
+                this._cells.push(new s.CellModel(_))
+            }
+            this._data = [], this._area_id = r.ObjUtil.getNumber(e, "api_maparea_id"), this._map_no = r.ObjUtil.getNumber(e, "api_mapinfo_no"), this._start_cell_no = r.ObjUtil.getNumber(e, "api_from_no"), this._data.push(new a.NextModel(e))
+        }, e.prototype.__add__ = function (t) {
+            this._data.push(new a.NextModel(t))
         }, e
-    }(PIXI.Sprite)
+    }(_);
+    e.SortieModelEdit = l
 }

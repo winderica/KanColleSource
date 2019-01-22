@@ -19,42 +19,21 @@ const function1194 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(1195),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(2),
+        r = i(13),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("revamp");
+                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    t._endTask()
                 })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            var t = this._getBGMID();
-            o.default.sound.bgm.play(t), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e.prototype._getBGMID = function () {
-            var t = o.default.model.deck.get(1).getShipModel(1);
-            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

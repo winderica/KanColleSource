@@ -22,42 +22,13 @@ const function1035 = function (t, e, i) {
     var o = i(38),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._icons = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
-                }
-                return e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._icons.length; t++) {
-                    this._icons[t].visible = !1
-                }
-            }, e.prototype.update = function (t) {
-                var e = [];
-                if (null != t) {
-                    var i = t.getSlotitems();
-                    i = i.concat(t.getSlotitemEx());
-                    for (var n = 0, o = i; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.equipType;
-                            24 == s ? e.push(r) : 46 == s && e.push(r)
-                        }
-                    }
-                }
-                this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e];
-                    if (e >= t.length) i.visible = !1;
-                    else {
-                        var n = t[e].equipType;
-                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(33) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(37)), i.visible = !0
-                    }
-                }
+            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
+                this.visible = !0, 1 == t ? this._setTexture(29) : 2 == t ? this._setTexture(28) : 3 == t ? this._setTexture(27) : 4 == t ? this._setTexture(26) : 5 == t ? this._setTexture(25) : 6 == t ? this._setTexture(30) : t > 6 ? this._setTexture(30) : this.visible = !1
+            }, e.prototype.dispose = function () {}, e.prototype._setTexture = function (t) {
+                this.texture = o.SALLY_EXPEDITION.getTexture(t)
             }, e
-        }(PIXI.Container);
-    e.CompSupportBoatCount = r
+        }(PIXI.Sprite);
+    e.ExpeditionDifficulty = r
 }

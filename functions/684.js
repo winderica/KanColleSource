@@ -19,33 +19,28 @@ const function684 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(283),
-        r = function (t) {
+    var o = i(83),
+        r = i(110),
+        s = i(4),
+        a = i(34),
+        _ = i(56),
+        l = i(313),
+        u = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this,
+                    i = _.ORGANIZE_MAIN.getTexture(30);
+                e.background = new PIXI.Sprite(i);
+                e.textHp = new s.TextBox(15, "white"), e.textLv = new s.TextBox(21, "white"), e.textHougeki = new s.TextBox(15, "white"), e.textTaiku = new s.TextBox(15, "white"), e.textRaigeki = new s.TextBox(15, "white"), e.textSoukou = new s.TextBox(15, "white"), e.shipBanner = new a.ShipBanner, e.rateView = new o.StarRateView, e.hpGaugeView = new r.HpGaugeView, e.expGaugeView = new l.ExpGaugeView, e.textHp.anchor.set(1, 0), e.textHp.position.set(229, 64), e.textLv.anchor.set(1, 0), e.textLv.position.set(237, 20), e.shipBanner.position.set(244, 18), e.textHougeki.anchor.set(1, 0), e.textHougeki.position.set(117, 90), e.textRaigeki.position.set(117, 120), e.textRaigeki.anchor.set(1, 0), e.textTaiku.position.set(232, 90), e.textTaiku.anchor.set(1, 0), e.textSoukou.position.set(232, 120), e.textSoukou.anchor.set(1, 0), e.rateView.position.set(18, 63), e.hpGaugeView.position.set(132, 54), e.expGaugeView.position.set(241, 87), e.containerName = new PIXI.Container;
+                var n = new PIXI.Graphics;
+                return e.textName = new s.TextBox(35, "white"), n.beginFill(0, 0), n.drawRect(0, 0, 105, 72), n.endFill(), e.containerName.position.set(23, 18), e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.background.interactive = !0, e.addChild(e.background, e.hpGaugeView, e.expGaugeView, e.rateView, e.textHp, e.textLv, e.containerName, e.textHougeki, e.textTaiku, e.textRaigeki, e.textSoukou, e.shipBanner), e
             }
-            return n(e, t), e.prototype.__getPositions__ = function () {
-                return [
-                    [48, 0],
-                    [12, 50],
-                    [29, 86],
-                    [87, 86],
-                    [0, 140],
-                    [20, 224],
-                    [0, 381],
-                    [96, 426],
-                    [132, 390],
-                    [219, 395],
-                    [266, 426],
-                    [309, 381],
-                    [284, 320],
-                    [302, 120],
-                    [284, 84],
-                    [293, 48],
-                    [257, 26],
-                    [293, 0]
-                ]
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.rateView.dispose(), this.shipBanner.dispose(), this.containerName.removeChildren(), this.containerName.mask = null, this.textHp.destroy(), this.textLv.destroy(), this.textName.destroy(), this.textHougeki.destroy(), this.textTaiku.destroy(), this.textRaigeki.destroy(), this.textSoukou.destroy(), this.containerName = null, this.hpGaugeView = null, this.expGaugeView = null, this.rateView = null, this.shipBanner = null, this.textHp = null, this.textLv = null, this.textName = null, this.textHougeki = null, this.textTaiku = null, this.textRaigeki = null, this.textSoukou = null, this.background = null
+            }, e.prototype._updateName_ = function (t, e) {
+                this.containerName.cacheAsBitmap = !1, this.textName.style.fill = e ? 16766947 : "white", this.textName.text = t, this.containerName.cacheAsBitmap = !0
+            }, e.prototype.update = function (t, e) {
+                this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label), this.textHougeki.text = t.karyoku.toString(), this.textTaiku.text = t.taiku.toString(), this.textRaigeki.text = t.raisou.toString(), this.textSoukou.text = t.soukou.toString(), this._updateName_(t.name, t.isMarriage()), this.textHp.text = t.hpNow + "/" + t.hpMax, this.background.interactive = !0, this.textLv.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.rateView.update(t.starNum), this.hpGaugeView.update(t.hpNow, t.hpMax), this.expGaugeView.update(t.expNowRate)
             }, e
-        }(o.BaseKirakira);
-    e.CardKirakira = r
+        }(PIXI.Container);
+    e.ShipInfo = u
 }

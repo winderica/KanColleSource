@@ -21,13 +21,14 @@ const function90 = function (t, e, i) {
     });
     var o = i(7),
         r = i(10),
-        s = i(200),
-        a = i(144),
-        _ = i(124),
-        l = function (t) {
+        s = i(202),
+        a = i(146),
+        _ = i(125),
+        l = i(145),
+        u = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
-                return o._url = "api_req_member/itemuse", o._result = new c, o._mst_id = e, o._force = i, o._exchange_type = n, o
+                return o._url = "api_req_member/itemuse", o._result = new h, o._mst_id = e, o._force = i, o._exchange_type = n, o
             }
             return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
@@ -41,10 +42,10 @@ const function90 = function (t, e, i) {
                 this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.UseItemUseAPI = l;
-    var u = function () {
+    e.UseItemUseAPI = u;
+    var c = function () {
         function t() {
-            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._rewards = null
+            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._has_furniture_reward = !1, this._rewards = null
         }
         return Object.defineProperty(t.prototype, "rewards", {
             get: function () {
@@ -68,6 +69,8 @@ const function90 = function (t, e, i) {
             return this._has_coin_reward
         }, t.prototype.hasUseitemReward = function () {
             return this._has_useitem_reward
+        }, t.prototype.hasFurnitureReward = function () {
+            return this._has_furniture_reward
         }, t.prototype.getSlotitemObjects = function () {
             var t = [];
             if (null != this._o && this._o.hasOwnProperty("api_getitem")) {
@@ -82,8 +85,8 @@ const function90 = function (t, e, i) {
             return t
         }, t
     }();
-    e.UseItemUseResult = u;
-    var c = function (t) {
+    e.UseItemUseResult = c;
+    var h = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -95,19 +98,20 @@ const function90 = function (t, e, i) {
                 for (var e = 0, i = t; e < i.length; e++) {
                     var n = i[e],
                         r = o.ObjUtil.getNumber(n, "api_usemst"),
-                        l = o.ObjUtil.getNumber(n, "api_mst_id"),
-                        u = o.ObjUtil.getNumber(n, "api_getcount");
-                    if (0 != u)
+                        u = o.ObjUtil.getNumber(n, "api_mst_id"),
+                        c = o.ObjUtil.getNumber(n, "api_getcount");
+                    if (0 != c)
                         if (2 == r) {
                             this._has_slotitem_reward = !0;
-                            for (var c = 0; c < u; c++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
-                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, u));
+                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(u, 1))
+                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(u, c));
                     else if (6 == r)
-                        if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, u));
+                        if (10 == u || 11 == u || 12 == u) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(u, c));
                         else {
                             this._has_useitem_reward = !0;
-                            for (var c = 0; c < u; c++) this._rewards.push(new _.RewardModelUseitem(l, 1))
+                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(u, 1))
                         }
+                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new l.RewardModelFurniture(u)))
                 }
         }, e.prototype._initMaterialReward = function () {
             var t = o.ObjUtil.getNumArray(this._o, "api_material");
@@ -121,5 +125,5 @@ const function90 = function (t, e, i) {
                     }
                 }
         }, e
-    }(u)
+    }(c)
 }

@@ -1,120 +1,155 @@
 const function529 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(530),
-        a = function () {
-            function t() {
-                this._USEITEM_FROM_SLOTITEM = {
-                    50: 42,
-                    51: 43,
-                    66: 145,
-                    67: 146,
-                    69: 150,
-                    76: 241
-                }, this._MATERIALS_ = [31, 32, 33, 34, 2, 1, 3, 4]
+    var n = i(45),
+        o = i(7),
+        r = function () {
+            function t(t) {
+                this._o = t
             }
-            return t.prototype.getCount = function (t) {
-                var e = this.get(t);
-                return null == e ? 0 : e.count
-            }, t.prototype.get = function (t) {
-                var e = t.toString();
-                return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-            }, t.prototype.getMaterialCounts = function () {
+            return Object.defineProperty(t.prototype, "mstID", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cardType", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipType", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[2]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipTypeSp", {
+                get: function () {
+                    return 128 == this.mstID ? 38 : 142 == this.mstID ? 93 : 151 == this.mstID ? 94 : 281 == this.mstID ? 38 : this.equipType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "iconType", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[3]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "planeIconType", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 5 ? -1 : t[4]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "range", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_leng")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "karyoku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houg")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "raisou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_raig")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taiku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tyku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taisen", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tais")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "bakusou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_baku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "meichu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houm")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "kaihi", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houk")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sakuteki", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_saku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "soukou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_souk")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rarity", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_rare", 0)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "version", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_version", "1")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "distance", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_distance")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cost", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_cost")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isPlane = function () {
+                return -1 != n.PlaneConst.PLANE.indexOf(this.cardType)
+            }, t.prototype.getMaterialsFromBroken = function () {
+                var t = o.ObjUtil.getNumArray(this._o, "api_broken");
                 return {
-                    fuel: this.getCount(31),
-                    ammo: this.getCount(32),
-                    steel: this.getCount(33),
-                    baux: this.getCount(34),
-                    repairKit: this.getCount(1),
-                    buildKit: this.getCount(2),
-                    devKit: this.getCount(3),
-                    revKit: this.getCount(4)
+                    fuel: t[0],
+                    ammo: t[1],
+                    steel: t[2],
+                    baux: t[3]
                 }
-            }, t.prototype._isMaterial = function (t) {
-                return this._MATERIALS_.indexOf(t) >= 0
             }, t
         }();
-    e.UseItemModelHolder = a;
-    var _ = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-        return n(e, t), e.prototype.setMstData = function (t) {
-            if (this._map = {}, null != t)
-                for (var e = 0; e < t.length; e++) {
-                    var i = t[e],
-                        n = new s.UseItemModel(i),
-                        o = n.mstID;
-                    if (o > 0 && "" != n.name) {
-                        var r = o.toString();
-                        this._map[r] = n
-                    }
-                }
-        }, e.prototype.setMemData = function (t) {
-            if (null != t) {
-                for (var e in this._map) {
-                    var i = this._map[e],
-                        n = i.mstID;
-                    0 == this._isMaterial(n) && 44 != n && i.__setCount__(0)
-                }
-                for (var o = 0; o < t.length; o++) {
-                    var s = t[o],
-                        a = r.ObjUtil.getNumber(s, "api_id");
-                    if (a > 0) {
-                        var _ = this.get(a);
-                        if (null != _) {
-                            var l = r.ObjUtil.getNumber(s, "api_count");
-                            _.__setCount__(l)
-                        }
-                    }
-                }
-            }
-        }, e.prototype.setMaterialData = function (t) {
-            for (var e = [-1].concat(this._MATERIALS_), i = 0; i < t.length; i++) {
-                var n = t[i];
-                if (null != n) {
-                    var o = r.ObjUtil.getNumber(n, "api_id"),
-                        s = r.ObjUtil.getNumber(n, "api_value"),
-                        a = this.get(e[o]);
-                    null != a && a.__setCount__(s)
-                }
-            }
-        }, e.prototype.updateMaterials = function (t) {
-            for (var e in t) {
-                var i = this.get(e);
-                if (null != i) {
-                    var n = t[e];
-                    i.__setCount__(n)
-                }
-            }
-        }, e.prototype.updateCount = function () {
-            var t = this._USEITEM_FROM_SLOTITEM;
-            for (var e in t) {
-                var i = t[e],
-                    n = o.default.model.slot.getCount(i);
-                this.get(e).__setCount__(n)
-            }
-        }, e
-    }(a);
-    e.UseItemModelHolderEdit = _
+    e.SlotitemMstModel = r
 }

@@ -19,44 +19,34 @@ const function1077 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(202),
-        r = i(156),
-        s = i(1078),
-        a = i(383),
-        _ = i(384),
-        l = i(386),
-        u = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._bg = new PIXI.Sprite, r._bg.position.set(147, 60), r.addChild(r._bg), r._pager = new _.PagerContainer(i), r._pager.position.set(195, 14), r.addChild(r._pager), r._content = new s.MainContainer(n), r._content.position.set(126, 66), r.addChild(r._content), r._tab_container = new l.TabBtnContainer(e), r._tab_container.position.set(0, 60), r.addChild(r._tab_container), r._mini_chara = new a.MiniChara, r._mini_chara.position.set(104, 564), r.addChild(r._mini_chara), r._back_btn = new o.BackBtn, r._back_btn.position.set(0, 659), r.addChild(r._back_btn), r
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "pager", {
-                get: function () {
-                    return this._pager
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "tab_container", {
-                get: function () {
-                    return this._tab_container
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._bg.texture = r.ALBUM_MAIN.getTexture(20), this._pager.initialize(), this._tab_container.initialize(), this._content.initialize(), this._pager.update(0, 0), this._content.update(1, 0, null), this._tab_container.update(1, 0), this._mini_chara.initialize(), this._back_btn.initialize(t)
-            }, e.prototype.activate = function () {
-                this._pager.activate(), this._content.activate(), this._tab_container.activate(), this._mini_chara.activate(), this._back_btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._pager.deactivate(), this._content.deactivate(), this._tab_container.deactivate(), this._mini_chara.deactivate(), this._back_btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._pager.dispose(), this._content.dispose(), this._tab_container.dispose(), this._mini_chara.dispose(), this._back_btn.dispose(), this._bg = null, this._pager = null, this._content = null, this._tab_container = null, this._mini_chara = null, this._back_btn = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
+            }, e.prototype.update = function (t) {
+                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
+                else {
+                    this._n100.update(Math.floor(t / 100));
+                    var e = t % 100;
+                    this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
+                }
             }, e
         }(PIXI.Container);
-    e.MainView = u
+    e.DetailPanelNumbers = r;
+    var s = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
+            else {
+                var e = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106][t];
+                this.texture = o.ALBUM_MAIN.getTexture(e)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

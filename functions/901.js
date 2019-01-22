@@ -19,25 +19,34 @@ const function901 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                for (var e = t.call(this) || this, i = new Array, n = 0; n < 13; n++) {
-                    var r = new PIXI.Sprite(o.ARSENAL_ANIMATION.getTexture(3));
-                    r.alpha = 0, i.push(r), e.addChild(r)
-                }
-                return e.leaf_dashes = i, e
+    var o = i(0),
+        r = i(10),
+        s = i(7),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_kousyou/destroyship", n.api_ship_ids = e, n.type = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "dashes", {
-                get: function () {
-                    return this.leaf_dashes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                for (var t = 0; t < this.leaf_dashes.length; t++) this.leaf_dashes[t].texture = PIXI.Texture.EMPTY, this.leaf_dashes[t] = null;
-                this.leaf_dashes = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_ship_id = this.api_ship_ids.join(","), this._post_data.api_slot_dest_flag = this.type, o.default.model.basic.setDestroyShipSlotType(this.type), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data.api_material;
+                o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]);
+                var i = 0 === this.type;
+                i && o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unset_list"));
+                for (var n = 0, r = this.api_ship_ids.length; n < r; n++) {
+                    var a = this.api_ship_ids[n],
+                        _ = o.default.model.ship.get(a),
+                        l = o.default.model.deck.isInDeck(a);
+                    if (l) {
+                        var u = l[0],
+                            c = l[1];
+                        o.default.model.deck.get(u).__remove__(c)
+                    }
+                    o.default.model.ship.delete(_.memID, i)
+                }
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.LeafDashes = r
+        }(r.APIBase);
+    e.DestroyShipAPI = a
 }

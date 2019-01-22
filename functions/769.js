@@ -20,91 +20,54 @@ const function769 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(4),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.HIT_AREA_SIZE = 30, e.COLOR_ON = 1949120, e.COLOR_OFF = 5523516, e.COLOR_NO = 16774898, e.BASE = 68, e.NUMBEROFFSET = 10, e.PADDING = 60, e._onClickPrev3 = function () {
-                    var t = e.focusIndex - 3;
-                    t < 0 && (t = 0), e.notifyChangeIndex(t)
-                }, e._onClickNext3 = function () {
-                    var t = e.focusIndex + 3;
-                    if (e.pageCount <= 3) switch (e.pageCount) {
-                        case 0:
-                        case 1:
-                            t = 0;
-                            break;
-                        case 2:
-                            t = 1;
-                            break;
-                        case 3:
-                            t = 2
-                    } else e.pageCount - 1 < t && (t = e.pageCount - 1, e.pageCount <= 2 && e.pageCount++);
-                    e.notifyChangeIndex(t)
-                }, e._onClickChange0 = function () {
-                    var t = 0;
-                    t = e.focusIndex < 2 || 2 == e.pageCount ? 0 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 3 : e.focusIndex - 1, e.notifyChangeIndex(t)
-                }, e._onClickChange1 = function () {
-                    var t = 0;
-                    t = e.focusIndex < 2 || e.pageCount <= 2 ? 1 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 2 : e.focusIndex, e.notifyChangeIndex(t)
-                }, e._onClickChange2 = function () {
-                    var t = 0;
-                    t = e.focusIndex < 2 || 2 == e.pageCount ? 2 : e.pageCount - 3 < e.focusIndex ? e.pageCount - 1 : e.focusIndex + 1, e.notifyChangeIndex(t)
-                }, e.focusIndex = 0;
-                return e.textChange_0 = new r.TextBox(24, e.COLOR_NO), e.textChange_1 = new r.TextBox(24, e.COLOR_NO), e.textChange_2 = new r.TextBox(24, e.COLOR_NO), e.buttonPrev_3 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(8)), e.buttonChange_0 = new PIXI.Graphics, e.buttonChange_1 = new PIXI.Graphics, e.buttonChange_2 = new PIXI.Graphics, e.buttonNext_3 = new PIXI.Sprite(o.COMMON_MAIN.getTexture(7)), e.buttonChange_0.beginFill(0, 0), e.buttonChange_0.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_0.endFill(), e.buttonChange_0.renderable = !1, e.buttonChange_1.beginFill(0, 0), e.buttonChange_1.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_1.endFill(), e.buttonChange_1.renderable = !1, e.buttonChange_2.beginFill(0, 0), e.buttonChange_2.drawRect(0, 0, e.HIT_AREA_SIZE, e.HIT_AREA_SIZE), e.buttonChange_2.endFill(), e.buttonChange_2.renderable = !1, e.buttonPrev_3.position.set(20, 0), e.buttonChange_0.position.x = e.BASE, e.buttonChange_1.position.x = e.BASE + e.PADDING, e.buttonChange_2.position.x = e.BASE + 2 * e.PADDING, e.buttonChange_0.position.y = -Math.floor(e.buttonChange_0.height / 2), e.buttonChange_1.position.y = -Math.floor(e.buttonChange_1.height / 2), e.buttonChange_2.position.y = -Math.floor(e.buttonChange_2.height / 2), e.buttonNext_3.position.set(233.7, 0), e.buttonPrev_3.anchor.set(0, .5), e.buttonNext_3.anchor.set(0, .5), e.textChange_0.anchor.set(0, 0), e.textChange_1.anchor.set(0, 0), e.textChange_2.anchor.set(0, 0), e.buttonChange_0.interactive = e.buttonPrev_3.interactive = e.buttonNext_3.interactive = e.buttonChange_1.interactive = e.buttonChange_2.interactive = !0, e.addChild(e.buttonPrev_3, e.buttonChange_0, e.buttonChange_1, e.buttonChange_2, e.buttonNext_3, e.textChange_0, e.textChange_1, e.textChange_2), e
+        r = i(159),
+        s = i(160),
+        a = i(60),
+        _ = i(4),
+        l = i(3),
+        u = i(332),
+        c = i(52),
+        h = i(1),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._mousedown = function (t) {
+                    i.mousedown(i._index, t.data.global)
+                }, i._mouseover = function () {
+                    i.focusItem.alpha = 1
+                }, i._mouseout = function () {
+                    i.focusItem.alpha = 0, i.onMouseOut()
+                }, i._onClickDetach = function () {
+                    i.onClickDetach(i._index)
+                }, i._mouseup = function () {
+                    i.onMouseUp(i._index)
+                }, i._index = e, i._background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), i._background.texture = o.COMMON_MAIN.getTexture(45), i.focusItem = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(22)), i.clickAreaSlot = new PIXI.Graphics, i.clickAreaSlot.renderable = !1, i.clickAreaSlot.beginFill(0, 0), i.clickAreaSlot.drawRect(0, 0, c.RemodelConst.DETAIL_LISTITEM.WIDTH, c.RemodelConst.DETAIL_LISTITEM.HEIGHT), i.clickAreaSlot.endFill(), i._textItemName = new _.TextBox(19, 5523516), i._textItemNameMask = new PIXI.Graphics, i._textItemNameMask.beginFill(0), i._textItemNameMask.drawRect(0, 0, 240, 30), i._textItemNameMask.endFill();
+                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(44));
+                return n.position.set(120, -2), i.containerItemName = new PIXI.Container, i.containerItemName.position.set(50, 11), i.containerItemName.mask = i._textItemNameMask, i.containerItemName.addChild(i._textItemName, i._textItemNameMask, n), i.textTousai = new _.TextBox(21, 5523516), i.textTousai.position.set(-2, 23), i.textTousai.anchor.set(1, .5), i.slotItemLevel = new s.SlotItemLevel, i.airPlaneLevel = new r.AirPlaneLevel, i.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), i.iconWeapon = new a.IconWeapon, i.detachButton = new u.DetachButton, i.detachButton.onClick = i._onClickDetach, i.detachButton.position.set(292, 15), i.slotItemLevel.position.set(247, 14), i.airPlaneLevel.position.set(219, 3), i.lockIcon.position.set(293, 2), i.focusItem.scale.x = 1, i.focusItem.position.x = -30, i.focusItem.alpha = 0, i.focusItem.visible = !1, i.addChild(i._background, i.containerItemName, i.textTousai, i.slotItemLevel, i.airPlaneLevel, i.lockIcon, i.iconWeapon, i.focusItem, i.clickAreaSlot, i.detachButton), i.clickAreaSlot.interactive = i.clickAreaSlot.buttonMode = !0, i.clickAreaSlot.on(h.EventType.MOUSEDOWN, i._mousedown), i.clickAreaSlot.on(h.EventType.MOUSEUP, i._mouseup), i.clickAreaSlot.on(h.EventType.MOUSEOVER, i._mouseover), i.clickAreaSlot.on(h.EventType.MOUSEOUT, i._mouseout), i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.buttonPrev_3.off(s.EventType.CLICK), this.buttonNext_3.off(s.EventType.CLICK), this.buttonChange_0.off(s.EventType.CLICK), this.buttonChange_1.off(s.EventType.CLICK), this.buttonChange_2.off(s.EventType.CLICK), this.textChange_0.destroy(), this.textChange_1.destroy(), this.textChange_2.destroy(), this.buttonPrev_3 = null, this.buttonChange_0 = null, this.buttonChange_1 = null, this.buttonChange_2 = null, this.buttonNext_3 = null, this.textChange_0 = null, this.textChange_1 = null, this.textChange_2 = null, this.focusIndex = null, this.pageCount = null, this.onClick = null, this.removeChildren()
-            }, e.prototype.init = function (t) {
-                switch (this.buttonPrev_3.off(s.EventType.CLICK), this.buttonNext_3.off(s.EventType.CLICK), this.buttonChange_0.off(s.EventType.CLICK), this.buttonChange_1.off(s.EventType.CLICK), this.buttonChange_2.off(s.EventType.CLICK), t) {
-                    case 0:
-                    case 1:
-                        break;
-                    case 2:
-                        this.buttonPrev_3.on(s.EventType.CLICK, this._onClickPrev3), this.buttonChange_0.on(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.on(s.EventType.CLICK, this._onClickChange1), this.buttonNext_3.on(s.EventType.CLICK, this._onClickNext3);
-                        break;
-                    default:
-                        this.buttonPrev_3.on(s.EventType.CLICK, this._onClickPrev3), this.buttonNext_3.on(s.EventType.CLICK, this._onClickNext3), this.buttonChange_0.on(s.EventType.CLICK, this._onClickChange0), this.buttonChange_1.on(s.EventType.CLICK, this._onClickChange1), this.buttonChange_2.on(s.EventType.CLICK, this._onClickChange2)
-                }
-                this.pageCount = t
-            }, e.prototype.focus = function (t) {
-                if (this.focusIndex = t, this.textChange_0.style.fill = this.COLOR_NO, this.textChange_1.style.fill = this.COLOR_NO, this.textChange_2.style.fill = this.COLOR_NO, this.textChange_0.style.fontSize = 24, this.textChange_1.style.fontSize = 24, this.textChange_2.style.fontSize = 24, t < 2 || this.pageCount <= 2) {
-                    switch (this.textChange_0.text = "1", this.textChange_1.text = "2", this.textChange_2.text = "3", this.pageCount) {
-                        case 0:
-                        case 1:
-                            this.textChange_0.style.fill = this.COLOR_NO, this.textChange_1.style.fill = this.COLOR_NO, this.textChange_2.style.fill = this.COLOR_NO;
-                            break;
-                        case 2:
-                            this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_NO;
-                            break;
-                        default:
-                            this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_OFF
-                    }
-                    switch (t) {
-                        case 0:
-                            this.textChange_0.style.fill = this.COLOR_ON, this.textChange_0.style.fontSize = 30;
-                            break;
-                        case 1:
-                            this.textChange_1.style.fill = this.COLOR_ON, this.textChange_1.style.fontSize = 30;
-                            break;
-                        case 2:
-                            this.textChange_2.style.fill = this.COLOR_ON, this.textChange_2.style.fontSize = 30
-                    }
-                } else if (this.pageCount - 3 < t) switch (this.textChange_0.text = "" + (this.pageCount - 3 + 1), this.textChange_1.text = "" + (this.pageCount - 2 + 1), this.textChange_2.text = "" + (this.pageCount - 1 + 1), this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_OFF, this.textChange_2.style.fill = this.COLOR_OFF, this.focusIndex) {
-                    case this.pageCount - 3:
-                        this.textChange_0.style.fill = this.COLOR_ON, this.textChange_0.style.fontSize = 30;
-                        break;
-                    case this.pageCount - 2:
-                        this.textChange_1.style.fill = this.COLOR_ON, this.textChange_1.style.fontSize = 30;
-                        break;
-                    case this.pageCount - 1:
-                        this.textChange_2.style.fill = this.COLOR_ON, this.textChange_2.style.fontSize = 30
-                } else this.textChange_0.text = "" + (this.focusIndex - 1 + 1), this.textChange_1.text = "" + (this.focusIndex + 1), this.textChange_2.text = "" + (this.focusIndex + 1 + 1), this.textChange_0.style.fill = this.COLOR_OFF, this.textChange_1.style.fill = this.COLOR_ON, this.textChange_2.style.fill = this.COLOR_OFF, this.textChange_1.style.fontSize = 37;
-                this.textChange_0.position.set(this.BASE - Math.floor(this.textChange_0.width / 2) + this.NUMBEROFFSET + 0 * this.PADDING, -Math.floor(this.textChange_0.height / 2)), this.textChange_1.position.set(this.BASE - Math.floor(this.textChange_1.width / 2) + this.NUMBEROFFSET + 1 * this.PADDING, -Math.floor(this.textChange_1.height / 2)), this.textChange_2.position.set(this.BASE - Math.floor(this.textChange_2.width / 2) + this.NUMBEROFFSET + 2 * this.PADDING, -Math.floor(this.textChange_2.height / 2))
-            }, e.prototype.notifyChangeIndex = function (t) {
-                this.onClick(t)
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this._update_(t.name, t.iconType, t.isPlane(), e, t.skillLevel, t.isLocked(), t.level, i, n)
+            }, e.prototype.empty = function (t) {
+                this._updateLock(!1), this._updateAirPlane(!1, 0, 0), this._updateSlotItemLevel(0), this._updateIconType(0), this._updateItemName(""), this._updateDetachButton(!1), this._updateFocusItem(t)
+            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _) {
+                this._updateLock(r), this._updateAirPlane(i, n, o), this._updateSlotItemLevel(s), this._updateIconType(e), this._updateItemName(t), this._updateDetachButton(a), this._updateFocusItem(_)
+            }, e.prototype._updateDetachButton = function (t) {
+                this.detachButton.visible = !1, t && (this.detachButton.visible = !0)
+            }, e.prototype._updateFocusItem = function (t) {
+                this.focusItem.alpha = 0, this.focusItem.visible = !1, this.clickAreaSlot.interactive = this.clickAreaSlot.buttonMode = !1, t && (this.focusItem.visible = !0, this.clickAreaSlot.interactive = this.clickAreaSlot.buttonMode = !0)
+            }, e.prototype._updateItemName = function (t) {
+                this.containerItemName.cacheAsBitmap = !1, this._textItemName.text = t, this.containerItemName.cacheAsBitmap = !0
+            }, e.prototype._updateLock = function (t) {
+                this.lockIcon.visible = !1, t && (this.lockIcon.visible = !0)
+            }, e.prototype._updateIconType = function (t) {
+                this.iconWeapon.update(t)
+            }, e.prototype._updateSlotItemLevel = function (t) {
+                this.slotItemLevel.update(t)
+            }, e.prototype._updateAirPlane = function (t, e, i) {
+                this.textTousai.visible = !1, this.airPlaneLevel.visible = !1, t && (this.textTousai.text = "" + e, this.airPlaneLevel.update(i), this.textTousai.visible = !0, this.airPlaneLevel.visible = !0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.clickAreaSlot.off(h.EventType.MOUSEDOWN, this._mousedown), this.clickAreaSlot.off(h.EventType.MOUSEOVER, this._mouseover), this.clickAreaSlot.off(h.EventType.MOUSEOUT, this._mouseout), this.clickAreaSlot.off(h.EventType.MOUSEUP, this._mouseup), this.clickAreaSlot.clear(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.detachButton.dispose(), this.containerItemName.cacheAsBitmap = !1, this.containerItemName.mask = null, this.containerItemName.removeChildren(), this._textItemName.destroy(), this.textTousai.destroy(), this.mousedown = null, this.onClickDetach = null, this.onMouseUp = null, this.onMouseOut = null, this._background = null, this._textItemNameMask = null, this.focusItem = null, this.detachButton = null, this.containerItemName = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.iconWeapon = null, this.lockIcon = null, this._textItemName = null, this.textTousai = null, this.clickAreaSlot = null
             }, e
         }(PIXI.Container);
-    e.MiniPager = a
+    e.SlotItemSlot = p
 }

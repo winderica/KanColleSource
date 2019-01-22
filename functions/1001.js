@@ -19,138 +19,24 @@ const function1001 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(2),
-        a = i(1002),
-        _ = i(1003),
-        l = function () {
-            function t() {}
-            return t.prototype.getPreLoadTask = function () {
-                return this._model = new a.EventSortieConditionModel, new u(this._model)
-            }, t.prototype.update = function (t) {
-                this._map = t
-            }, t.prototype.check = function (t, e) {
-                if (this._map.area_id != r.EVENT_AREA_ID) return {
-                    result: !0,
-                    reason: 0
-                };
-                var i = this._checkCommon();
-                return null != i ? i : (i = this._check(t, e), null != i ? i : {
-                    result: !0,
-                    reason: 0
-                })
-            }, t.prototype._checkCommon = function () {
-                var t = this._model.win_count,
-                    e = this._model.lose_count;
-                if (0 == t && 0 == e) return {
-                    result: !1,
-                    reason: 13
-                };
-                if (this._model.win_rate < .75) return {
-                    result: !1,
-                    reason: 15
-                };
-                var i = o.default.model.basic.shipMax,
-                    n = o.default.model.ship.num;
-                return i - n < 5 ? {
-                    result: !1,
-                    reason: 16
-                } : (i = o.default.model.basic.slotMax, n = o.default.model.slot.num, i - n < 20 ? {
-                    result: !1,
-                    reason: 17
-                } : 0 == this._map.getSelectedOperationType() ? {
-                    result: !1,
-                    reason: 18
-                } : null)
-            }, t.prototype._check = function (t, e) {
-                var i = this._map.mst_id;
-                if (431 == i)
-                    for (var n = 0, o = e; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.shipTypeID;
-                            if ([8, 9, 10, 11, 18, 7, 17].indexOf(s) > -1) return {
-                                result: !1,
-                                reason: 45
-                            }
-                        }
-                    } else if (432 == i)
-                        for (var a = 0, _ = e; a < _.length; a++) {
-                            var r = _[a];
-                            if (null != r) {
-                                var s = r.shipTypeID;
-                                if ([11, 18].indexOf(s) > -1) return {
-                                    result: !1,
-                                    reason: 38
-                                }
-                            }
-                        }
-                var l = this._map.getSelectedOperationType(),
-                    u = [3, 4].indexOf(l) > -1;
-                if (431 == i && u)
-                    for (var c = 0, h = e; c < h.length; c++) {
-                        var r = h[c];
-                        if (null != r) {
-                            var p = r.label;
-                            if (0 != p && 1 != p) return {
-                                result: !1,
-                                reason: 19
-                            }
-                        }
-                    }
-                if (432 == i && u) {
-                    if (1 == this._map.getGaugeNum() || [0, 3].indexOf(t) > -1)
-                        for (var d = 0, f = e; d < f.length; d++) {
-                            var r = f[d];
-                            if (null != r) {
-                                var p = r.label;
-                                if (0 != p && 2 != p) return {
-                                    result: !1,
-                                    reason: 19
-                                }
-                            }
-                        } else
-                            for (var y = 0, m = e; y < m.length; y++) {
-                                var r = m[y];
-                                if (null != r) {
-                                    var p = r.label;
-                                    if (0 != p && 3 != p) return {
-                                        result: !1,
-                                        reason: 19
-                                    }
-                                }
-                            }
-                }
-                if (433 == i && u)
-                    for (var v = 0, g = e; v < g.length; v++) {
-                        var r = g[v];
-                        if (null != r) {
-                            var p = r.label;
-                            if (0 != p && 4 != p) return {
-                                result: !1,
-                                reason: 19
-                            }
-                        }
-                    }
-                return {
-                    result: !0,
-                    reason: 0
-                }
-            }, t
-        }();
-    e.EventSortieCondition = l;
-    var u = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onComplete = function () {
-                i._endTask()
-            }, i._model = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            new _.APIEventSortieCondition(this._model).start(this._onComplete)
-        }, e.prototype._endTask = function () {
-            this._model = null, t.prototype._endTask.call(this)
-        }, e
-    }(s.TaskBase)
+    var o = i(4),
+        r = i(1002),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._enabled = !1, i._btn1 = new r.BtnMatchingSelect(e), i._btn2 = new r.BtnMatchingSelect(e), i._btn3 = new r.BtnMatchingSelect(e), i._txt1 = new o.TextBox(19, 4999235), i._txt = new o.TextBox(15, 4999235), i
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._btn1.initialize(0), this._btn2.initialize(1), this._btn3.initialize(2), this._txt1.text = "\u3088\u308a\u6b21\u56de\u6f14\u7fd2\u5019\u88dc\u3092\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u3002", this._txt1.position.set(141, 7), this.addChild(this._btn1), this.addChild(this._btn2), this.addChild(this._btn3), this.addChild(this._txt1), this.addChild(this._txt)
+            }, e.prototype.update = function (t, e) {
+                this._enabled = t, 1 == t ? (this._btn1.position.set(0, 0), this._btn2.position.set(150, 0), this._btn3.position.set(300, 0), this._txt1.visible = !1, this._txt.position.set(445, 9), 0 == e ? (this._btn1.setSelected(!0), this._btn2.setSelected(!1), this._btn3.setSelected(!1)) : 1 == e ? (this._btn1.setSelected(!1), this._btn2.setSelected(!0), this._btn3.setSelected(!1)) : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!0)), this._txt.text = "\u6f14\u7fd2\u76f8\u624b\u306f\u4e00\u65e5\u4e8c\u56de\u66f4\u65b0\u3055\u308c\u307e\u3059\u3002") : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!1), this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate(), this._btn1.visible = !1, this._btn2.visible = !1, this._btn3.visible = !1, 0 == e ? (this._btn1.visible = !0, this._btn1.position.set(0, 0)) : 1 == e ? (this._btn2.visible = !0, this._btn2.position.set(0, 0)) : (this._btn3.visible = !0, this._btn3.position.set(0, 0)), this._txt1.visible = !0, this._txt.position.set(490, 10), this._txt.text = "\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u5909\u66f4\u53ef\u80fd\u3067\u3059\u3002")
+            }, e.prototype.activate = function () {
+                1 == this._enabled && (this._btn1.activate(), this._btn2.activate(), this._btn3.activate())
+            }, e.prototype.deactivate = function () {
+                this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._btn1.dispose(), this._btn2.dispose(), this._btn3.dispose(), this._txt1.destroy(), this._txt.destroy()
+            }, e
+        }(PIXI.Container);
+    e.CompMatchingSelectBtns = s
 }

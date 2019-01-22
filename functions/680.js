@@ -19,55 +19,20 @@ const function680 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(57),
-        s = i(14),
-        a = i(4),
-        _ = function (t) {
+    var o = i(213),
+        r = i(21),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._onClickUpdate = function () {
-                    e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
-                }, e._onKeyDown = function () {
-                    var t = s.EditTextBoxUtil.text;
-                    e._mirrorText.text = t;
-                    var i = s.EditTextBoxUtil.validation(t, e.baseText);
-                    e.__updateButton__(i, e._editable)
-                };
-                var i = o.ORGANIZE_MAIN.getTexture(27),
-                    n = o.ORGANIZE_MAIN.getTexture(57),
-                    _ = o.ORGANIZE_MAIN.getTexture(58),
-                    l = o.ORGANIZE_MAIN.getTexture(59),
-                    u = new PIXI.Sprite(i);
-                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, l), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(u.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(u.width, 1), e.addChild(u, e.editButton, e.updateButton, e._mirrorText), e
+                var e = r.COMMON_MAIN.getTexture(15);
+                return t.call(this, e) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return s.EditTextBoxUtil.text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.__updateButton__ = function (t, e) {
-                this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
-            }, e.prototype.reload = function (t) {
-                this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
-                var e = s.EditTextBoxUtil.validation(t, this.baseText);
-                this.__updateButton__(e, this._editable)
-            }, Object.defineProperty(e.prototype, "writable", {
-                set: function (t) {
-                    s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "editable", {
-                set: function (t) {
-                    this.editButton.visible = this._editable = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(PIXI.Container);
-    e.EditNameArea = _
+            return n(e, t), e.prototype.dispose = function () {
+                this.cacheAsBitmap = !1, t.prototype.dispose.call(this)
+            }, e.prototype.update = function (t, e, i, n, o, r, s, a, _, l, u, c) {
+                this.cacheAsBitmap = !1, this._sokuryoku.update(o), this._textHp.text = t.toString(), this._textSoukou.text = e.toString(), this._textKaihi.text = i.toString(), this._textTousai.text = n.toString(), this._shatei.update(r), this._textKaryoku.text = s.toString(), this._textRaisou.text = a.toString(), this._textTaiku.text = _.toString(), this._textTaisen.text = l.toString(), this._textSakuteki.text = u.toString(), this._textLucky.text = c.toString(), this.cacheAsBitmap = !0, this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(137, 3), this._textSoukou.position.set(137, 38), this._textKaihi.position.set(137, 72), this._textTousai.position.set(137, 107), this._sokuryoku.position.set(116, 143), this._shatei.position.set(116, 177), this._textKaryoku.position.set(285, 3), this._textRaisou.position.set(285, 38), this._textTaiku.position.set(285, 72), this._textTaisen.position.set(285, 107), this._textSakuteki.position.set(285, 141), this._textLucky.position.set(285, 176)
+            }, e
+        }(o.ShipParameterViewBase);
+    e.ShipParameterView = s
 }

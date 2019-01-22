@@ -20,49 +20,41 @@ const function773 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(774),
-        s = i(52),
-        a = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._mousedown = function (t, i) {
-                    e.mousedown(t, i)
-                }, e._onClickDetach = function (t) {
-                    e.onClickDetach(t)
-                }, e._onMouseUp = function (t) {
-                    e.onMouseUp(t)
+                return e._onMouseOver = function () {
+                    e.gauge_on.visible = !0, e.huki.visible = !0
                 }, e._onMouseOut = function () {
-                    e.onMouseOut()
-                };
-                e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
-                for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
-                    var a = new r.SlotItemSlot(n);
-                    a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
-                    var _ = new PIXI.Sprite(i);
-                    _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
-                }
-                return e
+                    e.gauge_on.visible = !1, e.huki.visible = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.textureGauge1 = o.REMODEL_MAIN.getTexture(23), e.textureGauge1_on = o.REMODEL_MAIN.getTexture(24), e.textureGauge2 = o.REMODEL_MAIN.getTexture(25), e.textureGauge2_on = o.REMODEL_MAIN.getTexture(26), e.textureGauge3 = o.REMODEL_MAIN.getTexture(27), e.textureGauge3_on = o.REMODEL_MAIN.getTexture(28), e.textureGauge4 = o.REMODEL_MAIN.getTexture(29), e.textureGauge4_on = o.REMODEL_MAIN.getTexture(30), e.textureGauge5 = o.REMODEL_MAIN.getTexture(31), e.textureGauge5_on = o.REMODEL_MAIN.getTexture(32), e.gauge = new PIXI.Sprite, e.gauge_on = new PIXI.Sprite, e.gauge_on.visible = !1, e.huki = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(35)), e.huki.position.x = -6, e.huki.visible = !1, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.slotIconDelete.on(r.EventType.MOUSEOVER, e._onMouseOver), e.slotIconDelete.on(r.EventType.MOUSEOUT, e._onMouseOut), e.slotIconDelete.on(r.EventType.CLICK, e._onClick), e.slotIconDelete.interactive = e.slotIconDelete.buttonMode = !0, e.slotIconDelete.anchor.x = .5, e.slotIconDelete.x = 11, e.addChild(e.gauge, e.gauge_on, e.slotIconDelete, e.huki), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
-                get: function () {
-                    return this._slotItemSlots
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.clean = function () {
-                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
-                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
-            }, e.prototype.update = function (t, e, i, n, o) {
-                var r = this._slotItemSlots[t],
-                    s = this._clearSlotItemSlots[t];
-                r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
-            }, e.prototype.hide = function (t) {
-                for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
-            }, e.prototype.dispose = function () {
-                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
-                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
-                this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.slotIconDelete.off(r.EventType.CLICK), this.slotIconDelete.off(r.EventType.MOUSEOUT), this.slotIconDelete.off(r.EventType.MOUSEOVER), this.onClick = null, this.gauge = null, this.gauge_on = null, this.slotIconDelete = null, this.huki = null, this.textureGauge1 = null, this.textureGauge1_on = null, this.textureGauge2 = null, this.textureGauge2_on = null, this.textureGauge3 = null, this.textureGauge3_on = null, this.textureGauge4 = null, this.textureGauge4_on = null, this.textureGauge5 = null, this.textureGauge5_on = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.visible = !1;
+                        break;
+                    case 1:
+                        this.gauge.texture = this.textureGauge1, this.gauge_on.texture = this.textureGauge1_on, this.slotIconDelete.y = 32 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 35;
+                        break;
+                    case 2:
+                        this.gauge.texture = this.textureGauge2, this.gauge_on.texture = this.textureGauge2_on, this.slotIconDelete.y = 81 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 84;
+                        break;
+                    case 3:
+                        this.gauge.texture = this.textureGauge3, this.gauge_on.texture = this.textureGauge3_on, this.slotIconDelete.y = 131 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 134;
+                        break;
+                    case 4:
+                        this.gauge.texture = this.textureGauge4, this.gauge_on.texture = this.textureGauge4_on, this.slotIconDelete.y = 180 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 183;
+                        break;
+                    case 5:
+                        this.gauge.texture = this.textureGauge5, this.gauge_on.texture = this.textureGauge5_on, this.slotIconDelete.y = 230 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 233
+                }
             }, e
         }(PIXI.Container);
-    e.SlotItemSlotBox = a
+    e.DetachAllButton = s
 }

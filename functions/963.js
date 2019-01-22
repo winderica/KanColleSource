@@ -19,41 +19,45 @@ const function963 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(964),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
-                }, i._layer = e, i
+    var o = i(12),
+        r = i(41),
+        s = i(964),
+        a = i(0),
+        _ = i(13),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
-            }, e.prototype._open = function () {
-                var t = this;
-                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
-                    scaleY: 1
-                }, 250).call(function () {
-                    t._wait()
-                })
-            }, e.prototype._wait = function () {
-                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
-            }, e.prototype._close = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 0
-                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
-                    scaleY: 0
-                }, 150).call(function () {
-                    t._layer.removeChild(t._dialog), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
+                get: function () {
+                    return this._createSelectView(), this._selectView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 431:
+                        this._content.position.set(-303, -225), this._content.texture = PIXI.Texture.fromImage(e + "/230_c3ce4.png" + i);
+                        break;
+                    case 432:
+                        this._content.position.set(-286, -229), this._content.texture = PIXI.Texture.fromImage(e + "/231_b88bd.png" + i);
+                        break;
+                    case 433:
+                        this._content.position.set(-342, -223), this._content.texture = PIXI.Texture.fromImage(e + "/232_5b7cd.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
+            }, e.prototype.dispose = function () {
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(o.TaskBase);
-    e.ShowIntroAlertDialogTask = a
+        }(o.Sprite);
+    e.MapIntroBoard = l
 }

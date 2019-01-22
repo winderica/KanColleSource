@@ -19,45 +19,20 @@ const function1009 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(18),
-        a = i(1010),
-        _ = i(1011),
-        l = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._hideDetailInfo = function () {
-                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
-                    })
-                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+    var o = i(54),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
-                e.start(function () {
-                    t._showDetailInfo(e.res_model)
-                })
-            }, e.prototype._showDetailInfo = function (t) {
-                var e = this;
-                this._detail = new _.ContainerOverlay;
-                var i = o.default.model.deck.getIDs(),
-                    n = o.default.model.deck.isCombined();
-                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_PRACTICE.getTexture(28);
+                var t = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(29));
+                t.position.set(40, 57), this.addChild(t);
+                var e = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(30));
+                e.position.set(102, 64), this.addChild(e);
+                var i = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(32));
+                i.position.set(132, 64), this.addChild(i)
             }, e
-        }(r.TaskBase);
-    e.TaskDetailInfo = l
+        }(PIXI.Sprite);
+    e.UserinfoPanelBG = r
 }

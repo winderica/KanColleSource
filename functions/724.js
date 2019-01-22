@@ -21,45 +21,32 @@ const function724 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(725),
-        a = i(130),
-        _ = i(21),
-        l = i(56),
-        u = i(305),
-        c = i(726),
-        h = function (t) {
+        s = i(13),
+        a = i(218),
+        _ = i(725),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._loadPreset = function () {
-                    var t = new c.PresetDeckAPI;
-                    t.start(function () {
-                        var e = t.result;
-                        i.organizeScene.preInitialize(e), i._endTask()
-                    })
-                }, i.organizeScene = e, i
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResource()
-            }, e.prototype._loadResource = function () {
                 var t = this;
-                (new s.TaskLoadResourcesOrganize).start(function () {
-                    t._uploadToGPU_common()
-                })
-            }, e.prototype._uploadToGPU_common = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
-                        t._uploadToGPU_organize()
+                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
+                    var e = a.OrganizeSceneMemory.filterStatus,
+                        i = a.OrganizeSceneMemory.japanese;
+                    new _.UpdateListStatusAPI(e, i).start(function () {
+                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
                     })
-                })
-            }, e.prototype._uploadToGPU_organize = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
-                        t._loadPreset()
-                    })
-                })
+                } else this._endTask()
+            }, e.prototype._isChangeListStatus = function () {
+                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
+                var t = o.default.model.basic.getFilterStatusOrganizeList(),
+                    e = a.OrganizeSceneMemory.filterStatus;
+                if (t.length != e.length) return !0;
+                for (var i = 0; i < t.length; i++)
+                    if (t[i] != e[i]) return !0;
+                return !1
             }, e
         }(r.TaskBase);
-    e.PreInitializeTask = h
+    e.FinalizeTask = l
 }

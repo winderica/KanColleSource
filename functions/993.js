@@ -19,19 +19,23 @@ const function993 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(230),
-        r = i(232),
+    var o = i(41),
+        r = i(370),
         s = function (t) {
-            function e(e, i, n) {
-                for (var r = t.call(this, e) || this, s = 0; s < 4; s++) {
-                    var a = new o.MapThumbnail(4, i, n, null, null),
-                        _ = s % 2 == 0 ? 188 : 689,
-                        l = s < 2 ? 207 : 422;
-                    a.position.set(_, l), r.addChild(a), r._maps.push(a)
-                }
-                return r
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e
-        }(r.LayoutBase);
-    e.LayoutMap4 = s
+            return n(e, t), e.prototype._getBlackTexture = function () {
+                switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(24);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(25)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._setPositions = function () {
+                1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
+            }, e
+        }(r.MapThumbnailLocked);
+    e.EventMapThumbnailLocked = s
 }

@@ -5,8 +5,8 @@ const function306 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("remodel_gradeup_" + t)
+            return PIXI.Texture.fromFrame("common_animation_" + t)
         }
         t.getTexture = e
-    }(e.REMODEL_GRADEUP || (e.REMODEL_GRADEUP = {}))
+    }(e.COMMON_ANIMATION || (e.COMMON_ANIMATION = {}))
 }

@@ -19,30 +19,23 @@ const function1128 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(1129),
-        s = i(1130),
+    var o = i(0),
+        r = i(74),
+        s = i(175),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
-            }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getFurniture(e, "reward"),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(o.DialogBase);
-    e.HishimochiUseDialog = a
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogFurnitureBtn = a
 }

@@ -21,15 +21,37 @@ const function1043 = function (t, e, i) {
     });
     var o = i(0),
         r = i(11),
-        s = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
+        s = i(1044),
+        a = i(14),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new s.TaskLoadResources).start(function () {
+                    t._showTopView()
+                })
+            }, e.prototype._showTopView = function () {
+                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = s
+        }(r.TaskBase);
+    e.PreInitializeTask = _;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = l
 }

@@ -19,44 +19,48 @@ const function1087 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(4),
-        a = i(3),
-        _ = i(42),
-        l = i(42),
-        u = i(42),
-        c = i(42),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    null != i._cb_onClose && i._cb_onClose()
-                }, i._cb_onClose = e, i._title = new p, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(20, 5523516), i._message.position.set(94, 136), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 598, i._message.style.lineHeight = 33.6, i.addChild(i._message), i._statusBox = new _.SlotDetailStatusBox, i._statusBox.position.set(93, 355), i.addChild(i._statusBox), i._etype = new u.SlotTypeView, i._etype.position.set(873, 37), i.addChild(i._etype), i._content = new c.SlotDetailContent, i._content.position.set(699, 34), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
+    var o = i(11),
+        r = i(25),
+        s = i(42),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._panel.deactivate(), o._hideFade()
+                }, o._layer = e, o._model = i, o._mainView = n, o
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(88);
-                var e = t.no,
-                    i = t.mst_ids[0];
-                this._title.initialize(e, i), this._message.text = t.message.replace(/<br>/g, "\n"), this._statusBox.initialize(t), this._etype.update(t.cardType), this._content.initialize(t), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this._content.activate(), this.on(r.EventType.CLICK, this._onClose))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._title.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._etype = null, this._content = null, this._close_btn = null, this._cb_onClose = null
+            return n(e, t), e.prototype._start = function () {
+                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+            }, e.prototype._loadImages = function () {
+                var t = this,
+                    e = this._model.mst_ids,
+                    i = new r.SlotLoader;
+                i.add(e[0], "statustop_item");
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n];
+                    i.add(s, "card"), i.add(s, "item_up"), i.add(s, "item_on"), i.add(s, "item_character")
+                }
+                i.load(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = new s.SlotDetailPanel(this._onClose);
+                this._panel = e, e.initialize(this._model), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.activate(), t._mainView.visible = !1
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
+                    alpha: 0
+                }, 300), this._layer.hide(500, function () {
+                    t._layer.visible = !1, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.SlotDetailPanel = h;
-    var p = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._nums = new l.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
-        }, e.prototype.initialize = function (t, e) {
-            this.texture = a.ALBUM_MAIN.getTexture(87), this._nums.update(t), this._img.texture = o.default.resources.getSlotitem(e, "statustop_item")
-        }, e
-    }(PIXI.Sprite)
+        }(o.TaskBase);
+    e.TaskShowSlotDetail = a
 }

@@ -19,30 +19,24 @@ const function220 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(132),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.textureRemodelCategory1 = r.REMODEL_POWERUP.getTexture(23), e.textureRemodelCategory2 = r.REMODEL_POWERUP.getTexture(24), e.textureRemodelCategory3 = r.REMODEL_POWERUP.getTexture(25), e.textureRemodelCategory4 = r.REMODEL_POWERUP.getTexture(26), e
+    var o = i(10),
+        r = i(0),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kaisou/slotset", o.api_id = e, o.api_item_id = i, o.api_slot_idx = n, o
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (this.texture = PIXI.Texture.EMPTY, t) {
-                    case o.PowerUpCategory.Karyoku:
-                        this.texture = this.textureRemodelCategory1;
-                        break;
-                    case o.PowerUpCategory.Raisou:
-                        this.texture = this.textureRemodelCategory2;
-                        break;
-                    case o.PowerUpCategory.Taiku:
-                        this.texture = this.textureRemodelCategory3;
-                        break;
-                    case o.PowerUpCategory.Soukou:
-                        this.texture = this.textureRemodelCategory4
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, this._post_data.api_item_id = this.api_item_id, this._post_data.api_slot_idx = this.api_slot_idx, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                r.default.model.ship.get(this.api_id).__updateSlot__(this.api_slot_idx, this.api_item_id), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    r.default.model.useItem.get(34).__setCount__(t)
                 }
-            }, e.prototype.dispose = function () {
-                this.textureRemodelCategory1 = null, this.textureRemodelCategory2 = null, this.textureRemodelCategory3 = null, this.textureRemodelCategory4 = null
             }, e
-        }(PIXI.Sprite);
-    e.IconCategory = s
+        }(o.APIBase);
+    e.SlotSetAPI = a
 }

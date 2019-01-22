@@ -5,8 +5,8 @@ const function310 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("duty_common_" + t)
+            return PIXI.Texture.fromFrame("arsenal_animation_" + t)
         }
         t.getTexture = e
-    }(e.DUTY_COMMON || (e.DUTY_COMMON = {}))
+    }(e.ARSENAL_ANIMATION || (e.ARSENAL_ANIMATION = {}))
 }

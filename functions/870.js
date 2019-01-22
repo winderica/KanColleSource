@@ -23,44 +23,28 @@ const function870 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.STAR = 5, e.SHOOTING_STAR_DISTANCE = 45;
-                var i = Math.random();
-                e.stars = [], e.starTables = new Array;
-                for (var n = 0; n < e.STAR; n++) {
-                    var r = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(143));
-                    r.anchor.set(.5, .5), r.alpha = 0, r.position.set(0, 0);
-                    var s = Math.sin(Math.PI / 180 * (360 * i)),
-                        a = Math.cos(Math.PI / 180 * (360 * i)),
-                        _ = {
-                            x: 0,
-                            y: 0
-                        };
-                    _.x = s, _.y = a, e.stars.push(r), e.starTables.push(_), e.addChild(r)
-                }
-                return e
+                return e.build_ship_00 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(52)), e.build_ship_01 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(53)), e.build_ship_02 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(54)), e.build_ship_03 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(55)), e.build_ship_04 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(56)), e.build_ship_00.alpha = 0, e.build_ship_01.alpha = 0, e.build_ship_02.alpha = 0, e.build_ship_03.alpha = 0, e.build_ship_04.alpha = 0, e.addChild(e.build_ship_00, e.build_ship_01, e.build_ship_02, e.build_ship_03, e.build_ship_04), e
             }
-            return n(e, t), e.prototype.updateStarPosition = function () {
-                for (var t = 0; t < this.stars.length; t++) {
-                    var e = Math.PI / 180 * (360 * Math.random()),
-                        i = Math.sin(e),
-                        n = Math.cos(e);
-                    this.starTables[t].x = i, this.starTables[t].y = n
-                }
-            }, e.prototype.updateAlpha = function (t) {
-                void 0 === t && (t = 0);
-                for (var e = 0; e < this.stars.length; e++) {
-                    this.stars[e].alpha = t
-                }
-            }, e.prototype.updateAnimation = function (t) {
-                for (var e = Math.PI / 180 * (180 * t), i = 0; i < this.stars.length; i++) {
-                    var n = this.stars[i],
-                        o = this.starTables[i];
-                    n.rotation = e, n.position.set(o.x * this.SHOOTING_STAR_DISTANCE * t, o.y * this.SHOOTING_STAR_DISTANCE * t)
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.build_ship_00.alpha = 0, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0, t) {
+                    case 1:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 2:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 3:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 4:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 0;
+                        break;
+                    case 5:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 1
                 }
             }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.stars.length; t++) this.stars[t] = null;
-                this.starTables = null, this.stars = null, this.removeChildren()
+                this.build_ship_00 = null, this.build_ship_01 = null, this.build_ship_02 = null, this.build_ship_03 = null, this.build_ship_04 = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.GreenStarParticle = r
+    e.NormalBuildShip = r
 }

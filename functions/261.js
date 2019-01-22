@@ -3,13 +3,12 @@ const function261 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t() {
-            this.normal = 0, this.rengo = 0, this.yugeki = 0
+    ! function (t) {
+        function e(t, e) {
+            e || (e = "YYYY/MM/DD hh:mm:ss");
+            var i = new Date(t);
+            return e = e.replace(/YYYY/g, i.getFullYear().toString()), e = e.replace(/MM/g, ("0" + (i.getMonth() + 1)).slice(-2)), e = e.replace(/DD/g, ("0" + i.getDate()).slice(-2)), e = e.replace(/hh/g, ("0" + i.getHours()).slice(-2)), e = e.replace(/mm/g, ("0" + i.getMinutes()).slice(-2)), e = e.replace(/ss/g, ("0" + i.getSeconds()).slice(-2))
         }
-        return t.prototype.init = function (t) {
-            this.normal = 0, this.rengo = 0, this.yugeki = 0, null != t && (t.length < 1 || (this.normal = t[0], t.length < 2 || (this.rengo = t[1], t.length < 3 || (this.yugeki = t[2]))))
-        }, t
-    }();
-    e.AllowedDeckTypeModel = n
+        t.format = e
+    }(e.DateUtil || (e.DateUtil = {}))
 }

@@ -19,19 +19,29 @@ const function1070 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
-        s = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_get_member/picture_book", o._type = e, o._no = i, o._modelManager = n, o
+    var o = i(0),
+        r = i(2),
+        s = i(25),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._mst_id = e, n._target = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_type = this._type, this._post_data.api_no = this._no + 1, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_list");
-                null != e && (1 == this._type ? this._modelManager.addShipData(this._no, e) : this._modelManager.addSlotData(this._no, e)), this._modelManager = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.cancel = function () {
+                this._target = null
+            }, e.prototype._start = function () {
+                var t = this,
+                    e = new s.SlotLoader;
+                e.add(this._mst_id, "card"), e.load(function () {
+                    if (null != t._target) {
+                        var e = o.default.resources.getSlotitem(t._mst_id, "card");
+                        t._target.texture = e
+                    }
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.AlbumAPI = s
+        }(r.TaskBase);
+    e.TaskShowSlotCard = a
 }

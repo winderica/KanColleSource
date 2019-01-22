@@ -21,21 +21,21 @@ const function1133 = function (t, e, i) {
     });
     var o = i(0),
         r = i(74),
-        s = i(172),
+        s = i(175),
         a = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
                 var t = new PIXI.Graphics;
-                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
                 var e = this._candidate.mst_id,
-                    i = o.default.resources.getFurniture(e, "reward"),
+                    i = o.default.resources.getUseitem(e, 1),
                     n = new PIXI.Sprite(i),
                     s = Math.min(195 / n.width, 195 / n.height);
                 n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
         }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogFurnitureBtn = a
+    e.RewardSelectDialogUseitemBtn = a
 }

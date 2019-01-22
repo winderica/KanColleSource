@@ -1,98 +1,52 @@
 const function812 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(37),
-        s = i(31),
-        a = i(165),
-        _ = i(125),
-        l = i(8),
-        u = i(3),
-        c = i(87),
-        h = i(813),
-        p = i(162),
-        d = i(814),
-        f = i(815),
-        y = i(820),
-        m = i(821),
-        v = i(49),
-        g = function () {
-            function t(t) {
-                var e = this;
-                this._onCancel = function () {
-                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard);
-                    var t = v.UISettings.DIALOG_FADETIME;
-                    e._kaizoDetailBG.width = n.default.width, createjs.Tween.get(e._kaizoDetailBG).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e._kaizoDetail).to({
-                        x: n.default.width
-                    }, t).call(function () {
-                        r.TaskLoadShipResource.abortBy(e._kaizoDetail), e._container.removeChild(e._kaizoDetailBG), e._container.removeChild(e._kaizoDetail), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, null != e._cb_onComplete && e._cb_onComplete()
-                    })
-                }, this._onStart = function () {
-                    var t = v.UISettings.DIALOG_FADETIME;
-                    e._kaizoConfirmBG = new l.AreaBox(1), e._kaizoConfirmBG.alpha = 0, e._kaizoConfirm = new y.KaizoConfirm, e._kaizoConfirm.activate(e._onConfirmYES, e._onConfirmNo);
-                    var i = o.default.model.ship.get(e._ship_memid),
-                        n = o.default.model.ship_upgrade.getRequires(i.mstID);
-                    e._kaizoConfirm.update(i, n.ammo, n.steel), e._kaizoConfirm.alpha = 0, o.default.view.overLayer.addChild(e._kaizoConfirmBG), o.default.view.overLayer.addChild(e._kaizoConfirm), e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("106"), createjs.Tween.get(e._kaizoConfirmBG).to({
-                        alpha: 1
-                    }, t), createjs.Tween.get(e._kaizoConfirm).to({
-                        alpha: 1
-                    }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e._clickGuard), e._container.visible = !1, e._clickGuard = null
-                    })
-                }, this._onConfirmNo = function () {
-                    var t = v.UISettings.DIALOG_FADETIME;
-                    e._container.visible = !0, e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), createjs.Tween.get(e._kaizoConfirmBG).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e._kaizoConfirm).to({
-                        alpha: 0
-                    }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e._kaizoConfirmBG), o.default.view.overLayer.removeChild(e._kaizoConfirm), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
-                    })
-                }, this._onConfirmYES = function () {
-                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("215"), (new s.APIConnector).add(new h.RemodelingAPI(e._ship_memid)).add(new p.Ship3API(e._ship_memid)).add(new a.MaterialAPI).add(new _.UserSlotItemAPI).start(e._onCompleteAPI)
-                }, this._onCompleteAPI = function () {
-                    var t = new m.KaizoAnimationMain,
-                        i = o.default.model.ship.get(e._ship_memid),
-                        n = i.mstID,
-                        r = i.isDamaged(),
-                        s = o.default.model.ship_graph.get(n).getCenterOffset(r);
-                    t.preload(n, r, s, function () {
-                        e._onCompleteResources(t)
-                    })
-                }, this._container = t
+    var o = i(4),
+        r = i(3),
+        s = i(14),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(10)),
+                    n = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(20));
+                n.position.set(204, 23);
+                var a = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(12));
+                a.position.set(164, 143);
+                var _ = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(13));
+                _.position.set(21, 101);
+                var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(14));
+                l.position.set(21, 143);
+                var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(15));
+                u.position.set(162, 101), e.addChild(i, n, a, _, l, u), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
+                var c = s.CreateRect.gradientLeftToRight(200, 55, .9, .97);
+                e._textName.mask = c, e._containerName.addChild(e._textName, c), e.addChild(e._containerName), e._textShipType = new o.TextBox(22, 4999235), e._textShipType.position.set(14, 60), e.addChild(e._textShipType), e._textLevel = new o.TextBox(29, 4999235), e._textLevel.position.set(231, 16), e.addChild(e._textLevel);
+                return e._textKaryoku = new o.TextBox(24, 4999235), e._textKaryoku.position.set(141, 99), e._textKaryoku.anchor.x = 1, e.addChild(e._textKaryoku), e._textRaiso = new o.TextBox(24, 4999235), e._textRaiso.position.set(141, 142), e._textRaiso.anchor.x = 1, e.addChild(e._textRaiso), e._textTaiku = new o.TextBox(24, 4999235), e._textTaiku.position.set(284, 99), e._textTaiku.anchor.x = 1, e.addChild(e._textTaiku), e._textSouko = new o.TextBox(24, 4999235), e._textSouko.position.set(284, 142), e._textSouko.anchor.x = 1, e.addChild(e._textSouko), e
             }
-            return t.prototype.start = function (t, e, i) {
-                var r = this;
-                if (null == this._kaizoDetail) {
-                    this._ship_memid = t, this._cb_onUpdateShip = e, this._cb_onComplete = i, this._kaizoDetailBG = new l.AreaBox(.5), this._kaizoDetailBG.alpha = 0, this._container.addChild(this._kaizoDetailBG), this._kaizoDetail = new f.KaizoDetail;
-                    var s = o.default.model.ship.get(t),
-                        a = o.default.model.ship_upgrade.getRequires(s.mstID),
-                        _ = new d.KaizoValidateModel(a),
-                        u = c.RemodelUtil.canKaizo(s.mstID, s.level),
-                        h = !0;
-                    o.default.model.basic.slotMax - o.default.model.slot.num < 4 && (h = !1), this._kaizoDetail.update(s, _, u, h), this._kaizoDetail.position.set(n.default.width, 143), this._kaizoDetail.activate(this._onStart, this._onCancel), this._container.addChild(this._kaizoDetail), this._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard);
-                    var p = v.UISettings.DIALOG_FADETIME;
-                    createjs.Tween.get(this._kaizoDetailBG).to({
-                        alpha: 1
-                    }, p), createjs.Tween.get(this._kaizoDetail).to({
-                        x: 204
-                    }, p).call(function () {
-                        r._kaizoDetailBG.width = 240, o.default.view.overLayer.removeChild(r._clickGuard), r._clickGuard = null
-                    })
-                }
-            }, t.prototype._onCompleteResources = function (t) {
-                var e = this;
-                null != this._cb_onUpdateShip && this._cb_onUpdateShip(), this._container.removeChild(this._kaizoDetailBG), this._container.removeChild(this._kaizoDetail), o.default.view.overLayer.removeChild(this._kaizoConfirmBG), o.default.view.overLayer.removeChild(this._kaizoConfirm), o.default.view.overLayer.addChild(t), t.play(function () {
-                    o.default.view.portMain.updateInfo(), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, o.default.view.overLayer.removeChild(t), t.dispose(), e._container.visible = !0, null != e._cb_onComplete && e._cb_onComplete()
-                })
-            }, t.prototype.dispose = function () {
-                this._container = null, this._kaizoDetailBG = null, this._kaizoDetail.dispose(), this._kaizoDetail = null, null != this._kaizoConfirm && (this._kaizoConfirm.dispose(), this._kaizoConfirm = null), this._cb_onUpdateShip = null, this._cb_onComplete = null, this._clickGuard = null
-            }, t
-        }();
-    e.TaskKaizo = g
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                void 0 === e && (e = null), void 0 === i && (i = null), this._textLevel.text = t.toString(), null == e || "" == e ? (this._unknown.texture = r.REMODEL_GRADEUP.getTexture(28), this._unknown.visible = !0, this._textName.visible = !1, this._textShipType.visible = !1) : (this._unknown.visible = !1, this._containerName.cacheAsBitmap = !1, this._textName.text = e, this._containerName.cacheAsBitmap = !0, this._textName.visible = !0, this._textShipType.text = i, this._textShipType.visible = !0)
+            }, e.prototype.updateStatus = function (t, e, i, n) {
+                void 0 === t && (t = -1), void 0 === e && (e = -1), void 0 === i && (i = -1), void 0 === n && (n = -1), this._textKaryoku.text = t >= 0 ? t.toString() : "??", this._textRaiso.text = e >= 0 ? e.toString() : "??", this._textTaiku.text = i >= 0 ? i.toString() : "??", this._textSouko.text = n >= 0 ? n.toString() : "??"
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._containerName.cacheAsBitmap = !1, this._containerName.removeChildren(), this._textName.destroy(), this._textShipType.destroy(), this._textLevel.destroy(), this._textKaryoku.destroy(), this._textRaiso.destroy(), this._textTaiku.destroy(), this._textSouko.destroy(), this._unknown = null, this._containerName = null, this._textName = null, this._textShipType = null, this._textLevel = null, this._textKaryoku = null, this._textRaiso = null, this._textTaiku = null, this._textSouko = null
+            }, e
+        }(PIXI.Container);
+    e.KaizoDetailShipPanel = a
 }

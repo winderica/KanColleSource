@@ -19,50 +19,17 @@ const function433 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1219),
+    var o = i(135),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e.KEIKAIJIN = !0, e._count = 0, e._boxes = [];
-                for (var i = 0; i < (e.KEIKAIJIN ? 6 : 5); i++) {
-                    var n = new o.FormationBox(!0);
-                    e.addChild(n), e._boxes.push(n)
-                }
-                return e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "count", {
-                get: function () {
-                    return this._count
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                void 0 === i && (i = -1), i <= 0 && (i = t), this._count = 0;
-                for (var n = 0; n < this._boxes.length; n++) {
-                    var o = this._boxes[n];
-                    o.initialize(n + 1, t, e, i), 1 == o.enabled && this._count++
-                }
-                var r, s;
-                1 == this.KEIKAIJIN ? 6 == this._count ? (r = [581, 776, 974, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [680, 876, 1073, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [581, 776, 974, 683, 879], s = [92, 92, 92, 330, 330]);
-                for (var n = 0; n < this._boxes.length; n++) {
-                    var o = this._boxes[n],
-                        a = r[n],
-                        _ = s[n];
-                    o.position.set(a, _)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].dispose()
-                }
+            return n(e, t), e.prototype.update = function (t) {
+                this.texture = this._getTexture(t)
+            }, e.prototype._getTexture = function (t) {
+                var e = -1;
+                return 31 == t ? e = 3 : 32 == t ? e = 9 : 33 == t ? e = 10 : 34 == t ? e = 11 : 2 == t ? e = 4 : 1 == t ? e = 12 : 3 == t ? e = 13 : 4 == t ? e = 8 : 44 == t ? e = 14 : 10 == t ? e = 5 : 11 == t ? e = 6 : 12 == t && (e = 7), e < 0 ? PIXI.Texture.EMPTY : o.SALLY_MAP_PARTS.getTexture(e)
             }, e
-        }(PIXI.Container);
-    e.FormationBoxContainer = r
+        }(PIXI.Sprite);
+    e.CompDropItemIcon = r
 }

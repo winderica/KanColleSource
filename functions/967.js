@@ -19,68 +19,34 @@ const function967 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(968),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._board = new r.MapIntroBoard, e._board.position.set(522, 369), e._chara = new PIXI.Sprite, e._chara.position.set(825, 0), e._operation = new _, e._operation.position.set(363, 51), e._change_btn = new l, e._change_btn.position.set(648, 69), e.addChild(e._board), e.addChild(e._chara), e.addChild(e._operation), e.addChild(e._change_btn), e
+    var o = i(26),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._flash = new PIXI.Sprite(o.SALLY_AIRUNIT.getTexture(7)), i._flash.position.set(-14, -14), i._flash.alpha = 0, i.addChild(i._flash), i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "board", {
-                get: function () {
-                    return this._board
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "operation", {
-                get: function () {
-                    return this._operation
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "change_btn", {
-                get: function () {
-                    return this._change_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._board.initialize(t), this._chara.texture = o.SALLY_EVENT.getTexture(21), this._type = e, this._operation.update(e), this._change_btn.initialize()
-            }, e.prototype.dispose = function () {
-                this._board.dispose(), this._change_btn.dispose()
-            }, e
-        }(PIXI.Container);
-    e.MapIntroDialog = a;
-    var _ = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                this.texture = 1 == t ? o.SALLY_EVENT.getTexture(20) : 2 == t ? o.SALLY_EVENT.getTexture(17) : 3 == t ? o.SALLY_EVENT.getTexture(19) : 4 == t ? o.SALLY_EVENT.getTexture(18) : PIXI.Texture.EMPTY
-            }, e
-        }(PIXI.Sprite),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function (t) {
-                    t.stopPropagation(), null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EVENT.getTexture(14)
-            }, e.prototype.activate = function (t) {
-                this._cb_onClick = t, this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._cb_onClick = null, this._flash = null
+            }, e.prototype.initialize = function () {
+                this.texture = o.SALLY_AIRUNIT.getTexture(6)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this.playFlash())
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this._cb_onClick = null, this.deactivate()
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this.stopFlash()
+            }, e.prototype.playFlash = function () {
+                this.stopFlash(), this._tween = createjs.Tween.get(this._flash, {
+                    loop: !0
+                }), this._tween.to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3)
+            }, e.prototype.stopFlash = function () {
+                this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._flash), this._tween = null, this._flash.alpha = 0)
             }, e
-        }(PIXI.Sprite)
+        }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

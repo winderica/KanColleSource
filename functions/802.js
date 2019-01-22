@@ -19,47 +19,95 @@ const function802 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(211),
-        r = i(127),
-        s = function (t) {
+    var o = i(162),
+        r = i(124),
+        s = i(85),
+        a = i(132),
+        _ = i(223),
+        l = i(4),
+        u = i(21),
+        c = i(128),
+        h = i(52),
+        p = i(87),
+        d = i(86),
+        f = i(222),
+        y = i(1),
+        m = function (t) {
             function e() {
-                var e = this,
-                    i = r.REMODEL_POWERUP.getTexture(13);
-                e = t.call(this, i) || this;
-                var n = r.REMODEL_POWERUP.getTexture(22);
-                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
+                var e = t.call(this) || this;
+                e._onClick = function (t, i) {
+                    e.onClick(t, i)
+                };
+                var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
+                    n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)),
+                    o = new s.PagerView,
+                    r = new _.ShipSortButton,
+                    a = new Array,
+                    l = new PIXI.Container,
+                    p = new d.TitleBar;
+                p.initialize(u.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), l.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
+                for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
+                    var y = new v(f);
+                    y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
+                }
+                return e.addChild(p), p.position.set(0, -37), e._pagerView = o, e._shipSortButton = r, e.listItems = a, e.headerKansenSentaku = p, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
-            }, e.prototype.clear = function () {
-                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
-            }, e.prototype.updateKaryoku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
-            }, e.prototype.updateRaisou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
-            }, e.prototype.updateSoukou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
-            }, e.prototype.updateTaiku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
-            }, e.prototype.updateLucky = function (t, e, i) {
-                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
-                var n = 5523516,
-                    o = "",
-                    r = t != e;
-                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
-            }, e.prototype.updateTaikyu = function (t, e) {
-                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
-            }, e.prototype.updateTaisen = function (t, e) {
-                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
-            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
-                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
+            return n(e, t), Object.defineProperty(e.prototype, "shipSortButton", {
+                get: function () {
+                    return this._shipSortButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "pagerView", {
+                get: function () {
+                    return this._pagerView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.clear = function () {
+                this.listItems.forEach(function (t) {
+                    return t.visible = !1
+                })
+            }, e.prototype.update = function (t, e, i, n) {
+                var o = this.listItems[t];
+                o.update(e, i, n), o.visible = !0
+            }, e.prototype.dispose = function () {
+                this._shipSortButton.dispose(), this._pagerView.dispose(), this.headerKansenSentaku.dispose(), this.listItems.forEach(function (t) {
+                    t.dispose()
+                }), this.onClick = null, this._onClick = null, this._shipSortButton = null, this._pagerView = null, this.headerKansenSentaku = null, this.listItems = null
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameterChecker = s
+        }(PIXI.Container);
+    e.ShipList = m;
+    var v = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onMouseOver = function () {
+                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 1, i.textType.style.fill = i.textName.style.fill = i.textLevel.style.fill = 16777215, i.containerTypeAndName.cacheAsBitmap = !0
+            }, i._onMouseOut = function () {
+                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 0, i.textType.style.fill = i.textName.style.fill = 5523516, i.textLevel.style.fill = i.mouseoutColor, i.containerTypeAndName.cacheAsBitmap = !0
+            }, i._onClick = function () {
+                i.onClick(i.index, i.memId)
+            };
+            var n = Math.floor(22.5) + 1,
+                o = new PIXI.Sprite(u.COMMON_MAIN.getTexture(17)),
+                s = new PIXI.Container,
+                _ = new l.TextBox(18, 5523516),
+                c = new l.TextBox(20, 5523516),
+                h = new l.TextBox(20, 5523516),
+                p = new f.IconCategory,
+                d = new f.IconCategory,
+                m = new f.IconCategory,
+                v = new f.IconCategory,
+                g = new a.ShipInDeckFlag,
+                b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
+            return g.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.on(y.EventType.MOUSEOVER, i._onMouseOver), o.on(y.EventType.MOUSEOUT, i._onMouseOut), o.on(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), m.position.set(401, 0), v.position.set(446, 0), g.anchor.set(0, .5), g.position.set(-15, n), g.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, m, v, g), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = m, i.iconCategory_3 = v, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = g, i.containerTypeAndName = s, i.maskTextAndName = b, i
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.mask = null, this.containerTypeAndName.removeChildren(), this.iconCategory_0.dispose(), this.iconCategory_1.dispose(), this.iconCategory_2.dispose(), this.iconCategory_3.dispose(), this.background.off(y.EventType.MOUSEOVER), this.background.off(y.EventType.MOUSEOUT), this.background.off(y.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.onClick = null, this.memId = null, this.textType = null, this.textName = null, this.textLevel = null, this.iconCategory_0 = null, this.iconCategory_1 = null, this.iconCategory_2 = null, this.iconCategory_3 = null, this.background = null, this.shipInDeckFlag = null, this.maskTextAndName = null, this.containerTypeAndName = null, this.mouseoutColor = null
+        }, e.prototype.update = function (t, e, i) {
+            this.containerTypeAndName.cacheAsBitmap = !1, this.shipInDeckFlag.visible = !1, i && (this.shipInDeckFlag.update(i), this.shipInDeckFlag.visible = !0), this.textLevel.style.fill = this.mouseoutColor = o.ColorUtil.getLevelColor(t.level), this.memId = t.memID;
+            var n = p.RemodelUtil.genPowUpCategories(e);
+            this.textLevel.text = t.level.toString(), this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.iconCategory_0.update(n[0]), this.iconCategory_1.update(n[1]), this.iconCategory_2.update(n[2]), this.iconCategory_3.update(n[3]), this.containerTypeAndName.cacheAsBitmap = !0
+        }, e
+    }(PIXI.Container)
 }

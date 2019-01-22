@@ -1,120 +1,402 @@
 const function867 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(35),
-        r = i(868),
-        s = i(869),
-        a = i(871),
-        _ = i(872),
-        l = i(873),
-        u = i(874),
-        c = i(876),
-        h = i(878),
-        p = i(879),
-        d = i(880),
-        f = i(1),
-        y = function () {
-            function t(t, e, i, n, y) {
-                var m = this;
-                this.hammerMotivation = !1, this.spannerMotivation = !1, this.ANIMATION_KEY_UNLOCK = {
-                    alpha: 0,
-                    y: 0
-                }, this._onClickGet = function () {
-                    m.onClickGet(m.memDockId)
-                }, this._onClickSelect = function () {
-                    m.onClickSelect(m.memDockId)
-                }, this._onClickHighSpeed = function () {
-                    m.onClickHighSpeed(m.memDockId)
-                }, this._onMouseOverHighSpeed = function () {
-                    m.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(24)
-                }, this._onMouseOutHighSpeed = function () {
-                    m.buttonHighSpeed.texture = o.ARSENAL_MAIN.getTexture(22)
-                }, this._onClickNoDock = function () {
-                    m.hasKey && m.focusableNoDock && m.onClickNoDock(m.memDockId)
-                }, this.great_steelFrame_bg = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(65)), this.spanner = new a.Spanner(y), this.hammer = new s.Hammer(y), this.carry = new r.Carry(y), this.kDockStateView = new d.KDockStateView, this.buttonGet = new h.GetButton, this.buttonSelect = new p.SelectButton, this.iconHighSpeedDisable = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(23)), this.buttonHighSpeed = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(22)), this.normalBuildStage = new u.NormalBuildStage, this.largeBuildStage = new c.LargeBuildStage, this.noDockView = new l.NoDockView(n), this.burner = new _.Burner(y), this.steelFrame_mask_door = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(146)), this.txt_open = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(155)), this.txt_open.alpha = 0, this.txt_open.visible = !1, this.txt_open.position.set(285, 54), this.normalBuildStage.visible = !1, this.largeBuildStage.visible = !1, this.great_steelFrame_bg.visible = !1, this.spanner.visible = !1, this.hammer.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.iconHighSpeedDisable.x = this.buttonHighSpeed.x = 531, this.kDockStateView.position.set(63, 0), this.buttonGet.position.set(345, 28), this.great_steelFrame_bg.position.set(239, 0), this.buttonSelect.position.set(345, 28), this.normalBuildStage.position.set(238, -3), this.largeBuildStage.position.set(238, -3), this.steelFrame_mask_door.x = 637, this.noDockView.position.set(6, -15), this.buttonGet.onClick = this._onClickGet, this.buttonSelect.onClick = this._onClickSelect, this.noDockView.onClick = this._onClickNoDock, this.buttonHighSpeed.on(f.EventType.CLICK, this._onClickHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOUT, this._onMouseOutHighSpeed), this.buttonHighSpeed.on(f.EventType.MOUSEOVER, this._onMouseOverHighSpeed), this.buttonHighSpeed.interactive = this.buttonHighSpeed.buttonMode = !0, e.addChild(this.great_steelFrame_bg, this.kDockStateView, this.noDockView), i.addChild(this.carry, this.normalBuildStage, this.largeBuildStage, this.spanner, this.hammer, this.burner, this.steelFrame_mask_door), n.addChild(this.iconHighSpeedDisable, this.buttonSelect, this.buttonGet, this.buttonHighSpeed, this.txt_open), this.completeTime = 0, this.layerBase = e, this.layerBuild = i, this.layerInteractive = n, this.syncAnimationKey = y, this.memDockId = t, this._state = 0
+    var o = i(3),
+        r = i(286),
+        s = i(114),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i.WALK = [116, 117, 118, 117], i.BURNER = [119, 120], i.COMPLETION = [121, 122], i.RANGE = {
+                    fx: -300,
+                    fy: -75,
+                    tx: -135,
+                    ty: 0
+                }, i.FPS = 60, i.ANIMATION_BUILD_KEY = {}, i.ANIMATION_COMPLETE_KEY = {}, i.ANIMATION_ENTER_KEY = {}, i.sprite = new PIXI.Sprite, i.burner_1_l = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(57)), i.kiraAnimations = new Array, i.kiras = new Array;
+                var n = o.COMMON_MAIN.getTexture(33),
+                    s = o.COMMON_MAIN.getTexture(34);
+                i.effect = new PIXI.Container, i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.position.set(45, 0), i.sprite.anchor.set(.5, 1), i.burner_1_l.anchor.set(1, .69), i.burner_1_l.position.set(-40, -9), i.burner_1_l.scale.set(0, 0), i.effect.position.x = -45, i.effect.addChild(i.burner_1_l), i.sprite.addChild(i.effect), i.addChild(i.sprite);
+                for (var a = 0; a < 5; a++) {
+                    var _ = new PIXI.Sprite,
+                        l = new r.KiraAnimation(_, n, s);
+                    i.kiraAnimations.push(l), i.kiras.push(_), i.effect.addChild(_), _.x = i.RANGE.fx + (i.RANGE.tx - i.RANGE.fx) * Math.random(), _.y = i.RANGE.fy + (i.RANGE.ty - i.RANGE.fy) * Math.random(), _.alpha = 0
+                }
+                return i.syncAnimationKey = e, i
             }
-            return Object.defineProperty(t.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.showHighSpeedButton = function (t) {
-                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1, t ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0
-            }, t.prototype.hideHighSpeedButton = function () {
-                this.buttonHighSpeed.visible = !1, this.iconHighSpeedDisable.visible = !1
-            }, t.prototype.Build = function (t, e, i, o, r, s, a, _, l) {
-                var u = this;
-                this._state = t ? 3 : 2, this.steelFrame_mask_door.visible = !0, this.hammerMotivation = o, this.spannerMotivation = r, this.great_steelFrame_bg.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.noDockView.visible = !1, this.kDockStateView.build(a), this.kDockStateView.update(_), this.normalBuildStage.updatePhaseMax(l), this.largeBuildStage.updatePhaseMax(l), this.normalBuildStage.update(.1), this.largeBuildStage.update(.1), this.hideHighSpeedButton(), t ? (this.burner.visible = !0, this.burner.useBurner(function (t) {
-                    u.kDockStateView.updateProgress(a, _, t), u.normalBuildStage.update(t), u.largeBuildStage.update(t)
-                }, function () {
-                    u.kDockStateView.updateProgress(a, _, 1), u.burner.complete(), u.hammerMotivation && (u.hammer.visible = !0, u.hammer.x = 825, u.hammer.useBurnerd()), u.spannerMotivation && (u.spanner.visible = !0, u.spanner.x = 825, u.spanner.useBurnerd()), u._buildComplete();
-                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
-                    n.default.sound.voice.play(t.toString(), 5)
-                })) : (i ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, o && (this.hammer.visible = !0, this.hammer.build()), r && (this.spanner.visible = !0, this.spanner.build()), this.carry.build(), this.carry.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.totalRequireTime = 60 * s * 1e3, this.completeTime = a
-            }, t.prototype.changeState = function (t) {
-                this._state = t
-            }, t.prototype.Standby = function () {
-                this.__Standby__()
-            }, t.prototype.__Standby__ = function () {
-                this._state = 0, this.iconHighSpeedDisable.visible = !0, this.steelFrame_mask_door.visible = !0, this.kDockStateView.standby(), this.normalBuildStage.update(0), this.largeBuildStage.update(0), this.kDockStateView.visible = !0, this.buttonSelect.visible = !0, this.buttonGet.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !0, this.great_steelFrame_bg.visible = !1, this.noDockView.visible = !1
-            }, t.prototype.UnLockDock = function () {
-                var t = this;
-                createjs.Tween.removeTweens(this.ANIMATION_KEY_UNLOCK), this.txt_open.alpha = 0, this.txt_open.visible = !0, this.txt_open.alpha = this.ANIMATION_KEY_UNLOCK.alpha = 0, this.txt_open.y = this.ANIMATION_KEY_UNLOCK.y = 54;
-                var e = createjs.Tween.get(this.ANIMATION_KEY_UNLOCK);
-                e.to({
-                    alpha: 1,
-                    y: -26.25
-                }, 500).to({
-                    alpha: 0,
-                    y: -52
-                }, 400).call(function () {
-                    e.removeAllEventListeners("change"), e.setPaused(!0), t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha = 0, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y = -105
-                }).addEventListener("change", function () {
-                    t.txt_open.alpha = t.ANIMATION_KEY_UNLOCK.alpha, t.txt_open.y = t.ANIMATION_KEY_UNLOCK.y
-                }), e.play(null), this.noDockView.hidePop(), this.noDockView.visible = !1, this.__Standby__()
-            }, t.prototype.updateMotivation = function (t, e) {
-                this.hammerMotivation = t, this.spannerMotivation = e
-            }, t.prototype.Resume = function (t, e, i, n, o, r, s, a) {
-                this._state = 2, this.hammerMotivation = i, this.spannerMotivation = n, this.steelFrame_mask_door.visible = !0, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.hammer.visible = !1, this.spanner.visible = !1, this.burner.visible = !1, this.carry.visible = !1, this.noDockView.visible = !1, this.normalBuildStage.updatePhaseMax(a), this.largeBuildStage.updatePhaseMax(a), i && (this.hammer.visible = !0, this.hammer.resume()), n && (this.spanner.visible = !0, this.spanner.resume()), t ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0) : this.normalBuildStage.visible = !0, this.hideHighSpeedButton(), e ? this.buttonHighSpeed.visible = !0 : this.iconHighSpeedDisable.visible = !0, this.kDockStateView.build(r), this.kDockStateView.update(s), this.carry.visible = !0, this.carry.resume(), this.totalRequireTime = 60 * o * 1e3, this.completeTime = r
-            }, t.prototype.Complete = function () {
-                this.hammer.visible = !1, this.spanner.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), this.__Complete__()
-            }, t.prototype.NoDock = function (t, e) {
-                this._state = -1, this.steelFrame_mask_door.visible = !1, this.noDockView.visible = !0, this.kDockStateView.visible = !1, this.buttonGet.visible = !1, this.buttonSelect.visible = !1, this.noDockView.update(t, e), this.focusableNoDock = t, this.hasKey = e
-            }, t.prototype.forceComplete = function (t) {
-                t ? this.largeBuildStage.forceComplete() : this.normalBuildStage.forceComplete()
-            }, t.prototype.Completed = function (t, e) {
-                this.steelFrame_mask_door.visible = !0, this.hammer.visible = !1, this.spanner.visible = !1, this.great_steelFrame_bg.visible = !1, this.largeBuildStage.visible = !1, this.normalBuildStage.visible = !1, this.hammerMotivation && (this.hammer.visible = !0), this.spannerMotivation && (this.spanner.visible = !0), e ? (this.great_steelFrame_bg.visible = !0, this.largeBuildStage.visible = !0, this.largeBuildStage.updatePhaseMax(t), this.largeBuildStage.update(1)) : (this.normalBuildStage.visible = !0, this.normalBuildStage.updatePhaseMax(t), this.normalBuildStage.update(1)), this.__Complete__()
-            }, t.prototype.__Complete__ = function () {
-                this._buildComplete(), this.hammer.visible && this.hammer.complete(), this.spanner.visible && this.spanner.complete(), this.carry.visible && this.carry.complete(), this.burner.visible && this.burner.complete()
-            }, t.prototype._buildComplete = function () {
-                this._state = 3, this.buttonSelect.visible = !1, this.buttonGet.visible = !0, this.kDockStateView.complete()
-            }, t.prototype.UseBanner = function (t, e) {
+            return n(e, t), e.prototype.useBurner = function (t, e) {
                 var i = this;
-                this.hammer.visible && this.hammer.useBurner(), this.spanner.visible && this.spanner.useBurner(), this.carry.visible && this.carry.useBurner(), this.burner.visible = !0, this.burner.useBurner(function (n) {
-                    i.kDockStateView.updateProgress(t, e, n), i.normalBuildStage.update(n), i.largeBuildStage.update(n)
-                }, function () {
-                    i.buttonSelect.visible = !1, i.buttonGet.visible = !0, i.burner.complete(), i.hammerMotivation && i.hammer.useBurnerd(), i.spannerMotivation && i.spanner.useBurnerd(), i.kDockStateView.complete();
-                    var t = n.default.model.deck.get(1).getShipList()[0].mstID;
-                    n.default.sound.voice.play(t.toString(), 5)
+                this.x = 825, this.sprite.y = 0, this.sprite.scale.x = 1, this.__AnimationWalk__(552, function () {
+                    i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.BURNER[0]), i.__AnimationBuild__(t, function () {
+                        e()
+                    })
                 })
-            }, t.prototype.Receive = function () {
-                this.burner.visible && this.burner.receive()
-            }, t.prototype.Received = function () {
-                this.hammer.visible && this.hammer.received(), this.spanner.visible && this.spanner.received(), this.carry.visible && this.carry.received(), this.__Standby__()
-            }, t.prototype.onUpdateTime = function (t) {
-                this.kDockStateView.update(t);
-                var e = this.completeTime - t,
-                    i = 1 - e / this.totalRequireTime;
-                this.normalBuildStage.update(i), this.largeBuildStage.update(i)
-            }, t.prototype.updateCondition = function (t, e) {
-                this.buttonGet.updateCondition(t, e), this.buttonSelect.updateCondition(t, e)
-            }, t.prototype.dispose = function () {
-                this.normalBuildStage.dispose(), this.largeBuildStage.dispose(), this.buttonGet.dispose(), this.buttonSelect.dispose(), this.kDockStateView.dispose(), this.noDockView.dispose(), this.burner.dispose(), this.spanner.dispose(), this.hammer.dispose(), this.carry.dispose(), this.layerBase.removeChildren(), this.layerBuild.removeChildren(), this.layerInteractive.removeChildren(), this.onClickGet = null, this.onClickSelect = null, this.onClickHighSpeed = null, this.onClickNoDock = null, this.completeTime = null, this.totalRequireTime = null, this.memDockId = null, this.syncAnimationKey = null, this.great_steelFrame_bg = null, this.normalBuildStage = null, this.largeBuildStage = null, this.buttonGet = null, this.buttonSelect = null, this.buttonHighSpeed = null, this.iconHighSpeedDisable = null, this.kDockStateView = null, this.noDockView = null, this.burner = null, this.spanner = null, this.hammer = null, this.carry = null, this.txt_open = null, this.steelFrame_mask_door = null, this.layerBase = null, this.layerBuild = null, this.layerInteractive = null, this.hammerMotivation = null, this.spannerMotivation = null, this.focusableNoDock = null, this.hasKey = null, this._state = null
-            }, t
-        }();
-    e.KDockView = y
+            }, e.prototype.__AnimationBuild__ = function (t, e) {
+                var i = this;
+                this.burner_1_l.scale.set(0, 0);
+                for (var n = 0; n < this.kiraAnimations.length; n++) this.kiraAnimations[n].stop();
+                this.__AnimationFireStart__(function () {
+                    i.__AnimationFireWave__(2500, t, function () {
+                        i.__AnimationFireEnd__(e)
+                    })
+                })
+            }, e.prototype.__AnimationComplete__ = function () {
+                var t = this;
+                this.stopTweenAll(), createjs.Tween.get(this.ANIMATION_COMPLETE_KEY, {
+                    loop: !0
+                }).wait(1e3).addEventListener("change", function () {
+                    var e = t.syncAnimationKey.getNumber(s.SYNC_KEY_JUMP);
+                    t.sprite.y = -15 * e, t.sprite.texture = .4 < e ? o.ARSENAL_MAIN.getTexture(t.COMPLETION[0]) : o.ARSENAL_MAIN.getTexture(t.COMPLETION[1])
+                })
+            }, e.prototype.complete = function () {
+                this.__AnimationComplete__()
+            }, e.prototype.stopTweenAll = function () {
+                createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY)
+            }, e.prototype.receive = function () {
+                var t = this;
+                this.stopTweenAll(), this.sprite.y = 0, this.__AnimationTurng__(-.5, 250, function () {
+                    t.sprite.texture = o.ARSENAL_MAIN.getTexture(t.WALK[0]), t.__AnimationTurng__(-1, 250, function () {
+                        t.__AnimationWalk__(550, function () {})
+                    })
+                })
+            }, e.prototype.__AnimationTurng__ = function (t, e, i) {
+                var n = this;
+                this.stopTweenAll(), this.ANIMATION_BUILD_KEY.direction = this.sprite.scale.x;
+                var o = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
+                o.to({
+                    direction: t
+                }, e).call(function () {
+                    createjs.Tween.removeTweens(n.ANIMATION_BUILD_KEY), o.setPaused(!0), i()
+                }).addEventListener("change", function () {
+                    var t = n.ANIMATION_BUILD_KEY.direction;
+                    n.sprite.scale.x = t
+                })
+            }, e.prototype.__AnimationWalk__ = function (t, e) {
+                var i = this;
+                this.stopTweenAll(), this.ANIMATION_BUILD_KEY.x = this.x, this.ANIMATION_BUILD_KEY.walk = 0, this.y = 96, this.burner_1_l.scale.set(0, 0);
+                var n = createjs.Tween.get(this.ANIMATION_BUILD_KEY, {
+                    loop: !0
+                });
+                n.to({
+                    walk: 1
+                }, 500).addEventListener("change", function () {
+                    var t = i.ANIMATION_BUILD_KEY.walk,
+                        e = Math.round((i.WALK.length - 1) * t),
+                        n = i.WALK[e];
+                    i.sprite.texture = o.ARSENAL_MAIN.getTexture(n)
+                });
+                var r = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
+                r.to({
+                    x: t,
+                    walk: 1
+                }, 2e3).call(function () {
+                    createjs.Tween.removeTweens(i.ANIMATION_BUILD_KEY), n.removeAllEventListeners("change"), r.removeAllEventListeners("change"), n.setPaused(!0), r.setPaused(!0), e()
+                }).addEventListener("change", function () {
+                    i.x = i.ANIMATION_BUILD_KEY.x
+                })
+            }, e.prototype.__AnimationFireStart__ = function (t) {
+                var e = this;
+                this.ANIMATION_BUILD_KEY.x = 0, this.ANIMATION_BUILD_KEY.y = 0, this.ANIMATION_BUILD_KEY.scale = 0, this.ANIMATION_BUILD_KEY.rotation = 0;
+                var i = 1e3 / this.FPS,
+                    n = (Math.PI, createjs.Tween.get(this.ANIMATION_BUILD_KEY));
+                n.call(function () {
+                    e.sprite.texture = o.ARSENAL_MAIN.getTexture(e.BURNER[0])
+                }).to({
+                    x: 3.3,
+                    y: -10.65,
+                    scale: 0,
+                    rotation: 0
+                }).to({
+                    x: 3.3,
+                    y: -10.65,
+                    width: 57.9,
+                    height: 25.725,
+                    scale: .18,
+                    rotation: 0
+                }, 2 * i).call(function () {
+                    e.sprite.texture = o.ARSENAL_MAIN.getTexture(e.BURNER[1]), e.burner_1_l.x = 3.15, e.burner_1_l.y = -12.075, e.burner_1_l.scale.set(0, 0), e.burner_1_l.rotation = 0;
+                    for (var t = 0; t < e.kiraAnimations.length; t++) {
+                        var i = e.kiraAnimations[t],
+                            n = Math.floor(3 * Math.random());
+                        i.play(n)
+                    }
+                }).to({
+                    x: 4.5,
+                    y: -8.25,
+                    width: 321,
+                    height: 142,
+                    scale: 1
+                }, 2 * i).call(function () {
+                    createjs.Tween.removeTweens(e.ANIMATION_BUILD_KEY), n.setPaused(!0), t()
+                }), n.addEventListener("change", function () {
+                    for (var t = 0; t < e.kiraAnimations.length; t++) {
+                        var i = e.kiras[t];
+                        i.x = e.RANGE.fx + (e.RANGE.tx - e.RANGE.fx) * Math.random(), i.y = e.RANGE.fy + (e.RANGE.ty - e.RANGE.fy) * Math.random()
+                    }
+                    var n = e.ANIMATION_BUILD_KEY.scale;
+                    e.burner_1_l.x = e.ANIMATION_BUILD_KEY.x, e.burner_1_l.y = e.ANIMATION_BUILD_KEY.y, e.burner_1_l.scale.set(n, n), e.burner_1_l.rotation = e.ANIMATION_BUILD_KEY.rotation
+                })
+            }, e.prototype.__AnimationFireEnd__ = function (t) {
+                for (var e = this, i = 0; i < this.kiraAnimations.length; i++) this.kiraAnimations[i].stop();
+                var n = 1e3 / this.FPS,
+                    o = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
+                o.to({
+                    x: 3.3,
+                    y: -10.65,
+                    width: 38.6,
+                    height: 17.15,
+                    scale: .18,
+                    rotation: 0
+                }, 2 * n).to({
+                    x: 3.3,
+                    y: -10.65,
+                    scale: 0,
+                    rotation: 0
+                }).call(function () {
+                    o.removeAllEventListeners("change"), o.setPaused(!0), e.burner_1_l.scale.set(0, 0), t()
+                }).addEventListener("change", function () {
+                    var t = e.ANIMATION_BUILD_KEY.scale;
+                    e.burner_1_l.scale.set(t, t)
+                })
+            }, e.prototype.__AnimationFireWave__ = function (t, e, i) {
+                var n = this,
+                    o = 2e3 / this.FPS,
+                    r = Math.PI / 180;
+                this.ANIMATION_BUILD_KEY.fireProgress = 0;
+                var s = createjs.Tween.get(this.ANIMATION_BUILD_KEY);
+                s.to({
+                    fireProgress: 1
+                }, t).call(function () {
+                    createjs.Tween.removeTweens(n.ANIMATION_BUILD_KEY), s.setPaused(!0), i()
+                }).addEventListener("change", function () {
+                    var t = n.ANIMATION_BUILD_KEY.fireProgress;
+                    e(t)
+                }), createjs.Tween.get(this.ANIMATION_BUILD_KEY, {
+                    loop: !0
+                }).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.4841 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.25,
+                    rotation: 0 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.4,
+                    rotation: -5.5 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.325,
+                    rotation: -.3 * r
+                }, 2 * o).to({
+                    x: 4.5,
+                    y: -8.025,
+                    rotation: 4.7 * r
+                }, 2 * o).to({
+                    x: 4.425,
+                    y: -8.625,
+                    rotation: 1.5 * r
+                }, 2 * o).addEventListener("change", function () {
+                    for (var t = 0; t < n.kiraAnimations.length; t++) {
+                        var e = n.kiras[t];
+                        e.x = n.RANGE.fx + (n.RANGE.tx - n.RANGE.fx) * Math.random(), e.y = n.RANGE.fy + (n.RANGE.ty - n.RANGE.fy) * Math.random()
+                    }
+                    var i = n.ANIMATION_BUILD_KEY.scale;
+                    n.burner_1_l.x = n.ANIMATION_BUILD_KEY.x, n.burner_1_l.y = n.ANIMATION_BUILD_KEY.y, n.burner_1_l.scale.set(i, i), n.burner_1_l.rotation = n.ANIMATION_BUILD_KEY.rotation
+                })
+            }, e.prototype.dispose = function () {
+                createjs.Tween.removeTweens(this.ANIMATION_BUILD_KEY), createjs.Tween.removeTweens(this.ANIMATION_COMPLETE_KEY), createjs.Tween.removeTweens(this.ANIMATION_ENTER_KEY), this.effect.removeChildren(), this.kiraAnimations.forEach(function (t) {
+                    t.dispose(), t = null
+                }), this.kiras.forEach(function (t) {
+                    null
+                }), this.sprite = null, this.effect = null, this.burner_1_l = null, this.kiraAnimations = null, this.kiras = null, this.RANGE = null, this.syncAnimationKey = null, this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.Burner = a
 }

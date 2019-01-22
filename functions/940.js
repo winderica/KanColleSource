@@ -19,21 +19,41 @@ const function940 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(25),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mstid = e, i
+    var o = i(26),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new r.SlotLoader).add(this._mstid, "airunit_banner").add(this._mstid, "airunit_name").load(function () {
-                    t._endTask()
-                })
-            }, e.prototype.cancel = function () {
-                this._cb = null, this._cb_failed = null
+            return n(e, t), e.prototype.update = function (t) {
+                var e;
+                switch (t) {
+                    case 1:
+                        e = 98;
+                        break;
+                    case 2:
+                        e = 99;
+                        break;
+                    case 3:
+                        e = 100;
+                        break;
+                    case 4:
+                        e = 101;
+                        break;
+                    case 5:
+                        e = 102;
+                        break;
+                    case 6:
+                        e = 103;
+                        break;
+                    case 7:
+                        e = 104;
+                        break;
+                    default:
+                        return void(this.visible = !1)
+                }
+                this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
             }, e
-        }(o.TaskBase);
-    e.TaskAirUnitImageLoader = s
+        }(PIXI.Container);
+    e.AirUnitPanelItemSkillLevelIcon = r
 }

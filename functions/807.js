@@ -1,113 +1,98 @@
 const function807 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(160),
-        r = i(123),
-        s = i(85),
-        a = i(131),
-        _ = i(221),
-        l = i(4),
-        u = i(21),
-        c = i(127),
-        h = i(52),
-        p = i(87),
-        d = i(86),
-        f = i(220),
-        y = i(1),
-        m = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t, i) {
-                    e.onClick(t, i)
-                };
-                var i = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(12)),
-                    n = new PIXI.Sprite(c.REMODEL_POWERUP.getTexture(28)),
-                    o = new s.PagerView,
-                    r = new _.ShipSortButton,
-                    a = new Array,
-                    l = new PIXI.Container,
-                    p = new d.TitleBar;
-                p.initialize(u.COMMON_MAIN.getTexture(0), 38), i.interactive = !0, n.position.set(51, 12), o.position.set(39, 521), l.position.set(51, 48), r.position.set(488, 6), e.addChild(i, n, o, r);
-                for (var f = 0; f < h.RemodelConst.ITEM_NUM; f++) {
-                    var y = new v(f);
-                    y.visible = !1, y.onClick = e._onClick, y.x = 51, y.y = 48 + 45 * f, a.push(y), e.addChild(y)
-                }
-                return e.addChild(p), p.position.set(0, -37), e._pagerView = o, e._shipSortButton = r, e.listItems = a, e.headerKansenSentaku = p, e
+    var n = i(5),
+        o = i(0),
+        r = i(37),
+        s = i(32),
+        a = i(167),
+        _ = i(126),
+        l = i(8),
+        u = i(3),
+        c = i(87),
+        h = i(808),
+        p = i(164),
+        d = i(809),
+        f = i(810),
+        y = i(815),
+        m = i(816),
+        v = i(49),
+        g = function () {
+            function t(t) {
+                var e = this;
+                this._onCancel = function () {
+                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard);
+                    var t = v.UISettings.DIALOG_FADETIME;
+                    e._kaizoDetailBG.width = n.default.width, createjs.Tween.get(e._kaizoDetailBG).to({
+                        alpha: 0
+                    }, t), createjs.Tween.get(e._kaizoDetail).to({
+                        x: n.default.width
+                    }, t).call(function () {
+                        r.TaskLoadShipResource.abortBy(e._kaizoDetail), e._container.removeChild(e._kaizoDetailBG), e._container.removeChild(e._kaizoDetail), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, null != e._cb_onComplete && e._cb_onComplete()
+                    })
+                }, this._onStart = function () {
+                    var t = v.UISettings.DIALOG_FADETIME;
+                    e._kaizoConfirmBG = new l.AreaBox(1), e._kaizoConfirmBG.alpha = 0, e._kaizoConfirm = new y.KaizoConfirm, e._kaizoConfirm.activate(e._onConfirmYES, e._onConfirmNo);
+                    var i = o.default.model.ship.get(e._ship_memid),
+                        n = o.default.model.ship_upgrade.getRequires(i.mstID);
+                    e._kaizoConfirm.update(i, n.ammo, n.steel), e._kaizoConfirm.alpha = 0, o.default.view.overLayer.addChild(e._kaizoConfirmBG), o.default.view.overLayer.addChild(e._kaizoConfirm), e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("106"), createjs.Tween.get(e._kaizoConfirmBG).to({
+                        alpha: 1
+                    }, t), createjs.Tween.get(e._kaizoConfirm).to({
+                        alpha: 1
+                    }, t).call(function () {
+                        o.default.view.overLayer.removeChild(e._clickGuard), e._container.visible = !1, e._clickGuard = null
+                    })
+                }, this._onConfirmNo = function () {
+                    var t = v.UISettings.DIALOG_FADETIME;
+                    e._container.visible = !0, e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), createjs.Tween.get(e._kaizoConfirmBG).to({
+                        alpha: 0
+                    }, t), createjs.Tween.get(e._kaizoConfirm).to({
+                        alpha: 0
+                    }, t).call(function () {
+                        o.default.view.overLayer.removeChild(e._kaizoConfirmBG), o.default.view.overLayer.removeChild(e._kaizoConfirm), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null
+                    })
+                }, this._onConfirmYES = function () {
+                    e._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(e._clickGuard), u.SE.play("215"), (new s.APIConnector).add(new h.RemodelingAPI(e._ship_memid)).add(new p.Ship3API(e._ship_memid)).add(new a.MaterialAPI).add(new _.UserSlotItemAPI).start(e._onCompleteAPI)
+                }, this._onCompleteAPI = function () {
+                    var t = new m.KaizoAnimationMain,
+                        i = o.default.model.ship.get(e._ship_memid),
+                        n = i.mstID,
+                        r = i.isDamaged(),
+                        s = o.default.model.ship_graph.get(n).getCenterOffset(r);
+                    t.preload(n, r, s, function () {
+                        e._onCompleteResources(t)
+                    })
+                }, this._container = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "shipSortButton", {
-                get: function () {
-                    return this._shipSortButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "pagerView", {
-                get: function () {
-                    return this._pagerView
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.clear = function () {
-                this.listItems.forEach(function (t) {
-                    return t.visible = !1
+            return t.prototype.start = function (t, e, i) {
+                var r = this;
+                if (null == this._kaizoDetail) {
+                    this._ship_memid = t, this._cb_onUpdateShip = e, this._cb_onComplete = i, this._kaizoDetailBG = new l.AreaBox(.5), this._kaizoDetailBG.alpha = 0, this._container.addChild(this._kaizoDetailBG), this._kaizoDetail = new f.KaizoDetail;
+                    var s = o.default.model.ship.get(t),
+                        a = o.default.model.ship_upgrade.getRequires(s.mstID),
+                        _ = new d.KaizoValidateModel(a),
+                        u = c.RemodelUtil.canKaizo(s.mstID, s.level),
+                        h = !0;
+                    o.default.model.basic.slotMax - o.default.model.slot.num < 4 && (h = !1), this._kaizoDetail.update(s, _, u, h), this._kaizoDetail.position.set(n.default.width, 143), this._kaizoDetail.activate(this._onStart, this._onCancel), this._container.addChild(this._kaizoDetail), this._clickGuard = new l.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard);
+                    var p = v.UISettings.DIALOG_FADETIME;
+                    createjs.Tween.get(this._kaizoDetailBG).to({
+                        alpha: 1
+                    }, p), createjs.Tween.get(this._kaizoDetail).to({
+                        x: 204
+                    }, p).call(function () {
+                        r._kaizoDetailBG.width = 240, o.default.view.overLayer.removeChild(r._clickGuard), r._clickGuard = null
+                    })
+                }
+            }, t.prototype._onCompleteResources = function (t) {
+                var e = this;
+                null != this._cb_onUpdateShip && this._cb_onUpdateShip(), this._container.removeChild(this._kaizoDetailBG), this._container.removeChild(this._kaizoDetail), o.default.view.overLayer.removeChild(this._kaizoConfirmBG), o.default.view.overLayer.removeChild(this._kaizoConfirm), o.default.view.overLayer.addChild(t), t.play(function () {
+                    o.default.view.portMain.updateInfo(), o.default.view.overLayer.removeChild(e._clickGuard), e._clickGuard = null, o.default.view.overLayer.removeChild(t), t.dispose(), e._container.visible = !0, null != e._cb_onComplete && e._cb_onComplete()
                 })
-            }, e.prototype.update = function (t, e, i, n) {
-                var o = this.listItems[t];
-                o.update(e, i, n), o.visible = !0
-            }, e.prototype.dispose = function () {
-                this._shipSortButton.dispose(), this._pagerView.dispose(), this.headerKansenSentaku.dispose(), this.listItems.forEach(function (t) {
-                    t.dispose()
-                }), this.onClick = null, this._onClick = null, this._shipSortButton = null, this._pagerView = null, this.headerKansenSentaku = null, this.listItems = null
-            }, e
-        }(PIXI.Container);
-    e.ShipList = m;
-    var v = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onMouseOver = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 1, i.textType.style.fill = i.textName.style.fill = i.textLevel.style.fill = 16777215, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onMouseOut = function () {
-                i.containerTypeAndName.cacheAsBitmap = !1, i.background.alpha = 0, i.textType.style.fill = i.textName.style.fill = 5523516, i.textLevel.style.fill = i.mouseoutColor, i.containerTypeAndName.cacheAsBitmap = !0
-            }, i._onClick = function () {
-                i.onClick(i.index, i.memId)
-            };
-            var n = Math.floor(22.5) + 1,
-                o = new PIXI.Sprite(u.COMMON_MAIN.getTexture(17)),
-                s = new PIXI.Container,
-                _ = new l.TextBox(18, 5523516),
-                c = new l.TextBox(20, 5523516),
-                h = new l.TextBox(20, 5523516),
-                p = new f.IconCategory,
-                d = new f.IconCategory,
-                m = new f.IconCategory,
-                v = new f.IconCategory,
-                g = new a.ShipInDeckFlag,
-                b = r.CreateRect.gradientLeftToRight(270, 45, .75, .85);
-            return g.scale.set(.8, .8), o.position.x = -33, o.scale.x = 1.2, o.interactive = o.buttonMode = !0, o.alpha = 0, o.on(y.EventType.MOUSEOVER, i._onMouseOver), o.on(y.EventType.MOUSEOUT, i._onMouseOut), o.on(y.EventType.CLICK, i._onClick), _.anchor.y = 0, _.position.y = Math.floor(n - _.height / 2), c.anchor.y = 0, c.position.y = Math.floor(n - c.height / 2) + 0, h.anchor.y = 0, h.position.set(293, Math.floor(n - h.height / 2) + 0), s.position.set(17, 0), p.position.set(311, 0), d.position.set(356, 0), m.position.set(401, 0), v.position.set(446, 0), g.anchor.set(0, .5), g.position.set(-15, n), g.visible = !1, h.anchor.x = 1, s.mask = b, s.addChild(_, c, b), i.addChild(o, s, h, p, d, m, v, g), i.textType = _, i.textName = c, i.textLevel = h, i.iconCategory_0 = p, i.iconCategory_1 = d, i.iconCategory_2 = m, i.iconCategory_3 = v, i.background = o, i.index = e, i.memId = -1, i.shipInDeckFlag = g, i.containerTypeAndName = s, i.maskTextAndName = b, i
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.mask = null, this.containerTypeAndName.removeChildren(), this.iconCategory_0.dispose(), this.iconCategory_1.dispose(), this.iconCategory_2.dispose(), this.iconCategory_3.dispose(), this.background.off(y.EventType.MOUSEOVER), this.background.off(y.EventType.MOUSEOUT), this.background.off(y.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.onClick = null, this.memId = null, this.textType = null, this.textName = null, this.textLevel = null, this.iconCategory_0 = null, this.iconCategory_1 = null, this.iconCategory_2 = null, this.iconCategory_3 = null, this.background = null, this.shipInDeckFlag = null, this.maskTextAndName = null, this.containerTypeAndName = null, this.mouseoutColor = null
-        }, e.prototype.update = function (t, e, i) {
-            this.containerTypeAndName.cacheAsBitmap = !1, this.shipInDeckFlag.visible = !1, i && (this.shipInDeckFlag.update(i), this.shipInDeckFlag.visible = !0), this.textLevel.style.fill = this.mouseoutColor = o.ColorUtil.getLevelColor(t.level), this.memId = t.memID;
-            var n = p.RemodelUtil.genPowUpCategories(e);
-            this.textLevel.text = t.level.toString(), this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.iconCategory_0.update(n[0]), this.iconCategory_1.update(n[1]), this.iconCategory_2.update(n[2]), this.iconCategory_3.update(n[3]), this.containerTypeAndName.cacheAsBitmap = !0
-        }, e
-    }(PIXI.Container)
+            }, t.prototype.dispose = function () {
+                this._container = null, this._kaizoDetailBG = null, this._kaizoDetail.dispose(), this._kaizoDetail = null, null != this._kaizoConfirm && (this._kaizoConfirm.dispose(), this._kaizoConfirm = null), this._cb_onUpdateShip = null, this._cb_onComplete = null, this._clickGuard = null
+            }, t
+        }();
+    e.TaskKaizo = g
 }

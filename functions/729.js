@@ -19,34 +19,32 @@ const function729 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = i(216),
-        _ = i(730),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(326),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
-                    var e = a.OrganizeSceneMemory.filterStatus,
-                        i = a.OrganizeSceneMemory.japanese;
-                    new _.UpdateListStatusAPI(e, i).start(function () {
-                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._isChangeListStatus = function () {
-                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
-                var t = o.default.model.basic.getFilterStatusOrganizeList(),
-                    e = a.OrganizeSceneMemory.filterStatus;
-                if (t.length != e.length) return !0;
-                for (var i = 0; i < t.length; i++)
-                    if (t[i] != e[i]) return !0;
-                return !1
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeAllListeners(r.EventType.CLICK), this.onClick = null
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 1:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(6);
+                        break;
+                    case 4:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(7);
+                        break;
+                    case 3:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(8);
+                        break;
+                    case 2:
+                        this.texture = o.ORGANIZE_FILTER.getTexture(9)
+                }
             }, e
-        }(r.TaskBase);
-    e.FinalizeTask = l
+        }(PIXI.Sprite);
+    e.ShipSortButton = s
 }

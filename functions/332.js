@@ -19,20 +19,18 @@ const function332 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(14),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
-                o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
             }, e
-        }(r.APIBase);
-    e.SlotItemLockAPI = a
+        }(PIXI.Container);
+    e.DetachButton = s
 }

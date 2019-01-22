@@ -4,11 +4,10 @@ const function15 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(30),
-        r = i(22),
-        s = i(103),
-        a = i(79),
-        _ = function () {
+        o = i(22),
+        r = i(103),
+        s = i(79),
+        a = function () {
             function t() {
                 null == t._queue && (t._queue = []), this._url_list = []
             }
@@ -22,18 +21,18 @@ const function15 = function (t, e, i) {
                     default:
                         return ""
                 }
-            }, t.getPath = function (e, i, _) {
-                "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && 1587 != e && 1588 != e && 1589 != e && 1590 != e && (i = !1);
-                var l = _ + (i ? "_dmg" : ""),
-                    u = "ship_" + l,
-                    c = s.SuffixUtil.create(e, u),
-                    h = r.MathUtil.zeroPadding(e, 4),
-                    p = "";
-                if ("full" == _) {
-                    var d = n.default.model.ship_graph.get(e);
-                    null != d && (p = "_" + d.unique_key)
+            }, t.getPath = function (e, i, a) {
+                "album_status" == a ? i = !1 : "banner_g" == a ? i = !0 : "banner2_g" == a ? i = !0 : "banner3_g" == a && (i = !0);
+                var _ = a + (i ? "_dmg" : ""),
+                    l = "ship_" + _,
+                    u = r.SuffixUtil.create(e, l),
+                    c = o.MathUtil.zeroPadding(e, 4),
+                    h = "";
+                if ("full" == a) {
+                    var p = n.default.model.ship_graph.get(e);
+                    null != p && (h = "_" + p.unique_key)
                 }
-                return n.default.settings.path_root + "resources/ship/" + l + "/" + (h + t.hSuffix(e, _)) + "_" + c + p + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
+                return n.default.settings.path_root + "resources/ship/" + _ + "/" + (c + t.hSuffix(e, a)) + "_" + u + h + ".png" + s.VersionUtil.getResourceVersion(0, parseInt(c))
             }, t.prototype.add = function (e, i, n) {
                 var o = t.getPath(e, i, n);
                 return this._url_list.push(o), this
@@ -123,5 +122,5 @@ const function15 = function (t, e, i) {
                 t._queue.length > 0 && t._queue[0]._load()
             }, t.hasai = null, t
         }();
-    e.ShipLoader = _
+    e.ShipLoader = a
 }

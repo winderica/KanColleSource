@@ -19,26 +19,19 @@ const function853 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
+    var o = i(2),
+        r = i(0),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e._onMouseOver = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(4)
-                }, e._onMouseOut = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(2)
-                }, e.texture = o.REPAIR_MAIN.getTexture(2), e.on(r.EventType.CLICK, e._onClick).on(r.EventType.MOUSEOVER, e._onMouseOver).on(r.EventType.MOUSEOUT, e._onMouseOut), e.buttonMode = !0, e
+            function e(e) {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.active = function () {
-                this.texture = o.REPAIR_MAIN.getTexture(2), this.interactive = !0
-            }, e.prototype.disable = function () {
-                this.texture = o.REPAIR_MAIN.getTexture(3), this.interactive = !1
-            }, e.prototype.dispose = function () {
-                this.onClick = null, this.off(r.EventType.CLICK, this._onClick).off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOut), this.texture = PIXI.Texture.EMPTY, this.interactive = this.buttonMode = !1
+            return n(e, t), e.prototype._start = function () {
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                r.default.sound.bgm.play(102), this._startScene()
+            }, e.prototype._startScene = function () {
+                this._endTask()
             }, e
-        }(PIXI.Sprite);
-    e.UseItemButton = s
+        }(o.TaskBase);
+    e.InitializeTask = s
 }

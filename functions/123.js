@@ -3,33 +3,36 @@ const function123 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t() {}
-        return t._getRectItem = function (t, e) {
-            if (!1 === this._items.hasOwnProperty(t)) return void(this._items[t] = []);
-            var i = this._items[t].filter(function (t) {
-                for (var i = t.data, n = !0, o = 0, r = i.length; o < r; o++)
-                    if (i[o] !== e[o]) {
-                        n = !1;
-                        break
-                    } return n
-            });
-            if (0 !== i.length) return i[0].sprite
-        }, t.gradientLeftToRight = function (t, e, i, n) {
-            var o = this._getRectItem("L2R", [t, e, i, n]);
-            if (void 0 !== o) return new PIXI.Sprite(o);
-            var r = document.createElement("canvas");
-            r.width = t, r.height = e;
-            var s = r.getContext("2d");
-            s.beginPath();
-            var a = s.createLinearGradient(0, 0, t, 0);
-            a.addColorStop(0, "#ffffff"), a.addColorStop(i, "#ffffff"), a.addColorStop(n, "#000000"), a.addColorStop(1, "#000000"), s.fillStyle = a, s.rect(0, 0, t, e), s.fill();
-            var _ = PIXI.Texture.fromCanvas(r);
-            return this._items.L2R.push({
-                data: [t, e, i, n],
-                sprite: _
-            }), new PIXI.Sprite(_)
-        }, t._items = {}, t
-    }();
-    e.CreateRect = n
+    var n = i(0),
+        o = function () {
+            function t() {}
+            return t.getMouseGlobalPos = function () {
+                var t = this._getMouse();
+                return null == t ? null : t.global
+            }, t.getMouseLocalPos = function (t) {
+                var e = this._getMouse();
+                return null == e ? null : e.getLocalPosition(t)
+            }, t.isOnMouse = function (t) {
+                if (null == t) return !1;
+                if (null != t.hitArea) {
+                    var e = this.getMouseLocalPos(t);
+                    return null != e && t.hitArea.contains(e.x, e.y)
+                }
+                var e = this.getMouseGlobalPos();
+                return null != e && (t instanceof PIXI.Sprite ? t.containsPoint(e) : void this._containsPoint(t, e))
+            }, t._containsPoint = function (t, e) {
+                if (t instanceof PIXI.Sprite) return t.containsPoint(e);
+                for (var i = 0, n = t.children; i < n.length; i++) {
+                    var o = n[i];
+                    if (this._containsPoint(o, e)) return !0
+                }
+                return !1
+            }, t._getMouse = function () {
+                var t = n.default.settings.renderer;
+                if (null == t) return null;
+                var e = t.plugins.interaction;
+                return null == e ? null : e.mouse
+            }, t
+        }();
+    e.InteractiveUtil = o
 }

@@ -19,22 +19,17 @@ const function413 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(238),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(10),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_get_member/questlist", o._page_no = e, o._type = i, o._data_holder = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("duty");
-                e.add("duty_common.json"), 0 == s.POSTER_GIRL ? e.add("duty_poster_girl.json") : 1 == s.POSTER_GIRL ? e.add("duty_poster_girl_gyudon.json") : 2 == s.POSTER_GIRL ? e.add("duty_poster_girl_newyear.json") : 3 == s.POSTER_GIRL ? e.add("duty_poster_girl_sanma.json") : 4 == s.POSTER_GIRL ? e.add("duty_poster_girl_summer.json") : 5 == s.POSTER_GIRL && e.add("duty_poster_girl_xmas.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_page_no = this._page_no, this._post_data.api_tab_id = this._type, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data_holder.update(this._type, this._raw_data), this._data_holder = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = a
+        }(o.APIBase);
+    e.DutyListAPI = r
 }

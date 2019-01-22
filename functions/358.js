@@ -19,30 +19,51 @@ const function358 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
+    var o = i(30),
         r = i(1),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onGo = function (t, e) {
-                    void 0 === t && (t = 0), null != i._cb && i._cb(t, e)
-                }, i._onCancel = function () {
-                    null != i._cb && 1 == i._cancelArea.buttonMode && i._cb(0, -1)
-                }, i._cb = e, i._cancelArea = new o.FadeBox(.2), i._cancelArea.hide(0), i._cancelArea.interactive = !0, i.addChild(i._cancelArea), i
+                return i._selected = !1, i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i)
+                }, i._area_id = e, i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "cancelArea", {
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
                 get: function () {
-                    return this._cancelArea
+                    return this._area_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.activate = function () {
-                this._cancelArea.buttonMode = !0, this._cancelArea.on(r.EventType.CLICK, this._onCancel)
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._cb_onClick = t, this._update(!1)
+            }, e.prototype.activate = function () {
+                0 == this.buttonMode && 0 == this._selected && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                this._cancelArea.buttonMode = !1, this._cancelArea.off(r.EventType.CLICK, this._onCancel)
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._cancelArea = null, this._cb = null
+                this.interactive = !1, this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                if (1 == t || 1 == this._selected) {
+                    var e = [-1, 2, 4, 6, 10, 12, 14, 8];
+                    this._area_id > 0 && this._area_id < e.length ? this.texture = o.SALLY_COMMON.getTexture(e[this._area_id]) : this.texture = PIXI.Texture.EMPTY
+                } else {
+                    var e = [-1, 1, 3, 5, 9, 11, 13, 7];
+                    this._area_id > 0 && this._area_id < e.length ? this.texture = o.SALLY_COMMON.getTexture(e[this._area_id]) : this.texture = PIXI.Texture.EMPTY
+                }
             }, e
-        }(PIXI.Container);
-    e.ContainerDeckSelectBase = s
+        }(PIXI.Sprite);
+    e.AreaIconBtn = s
 }

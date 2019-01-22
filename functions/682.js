@@ -1,53 +1,54 @@
 const function682 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(1),
-        s = i(30),
-        a = i(8),
-        _ = i(37),
-        l = i(6),
-        u = i(683),
-        c = function () {
-            function t(t) {
-                var e = this;
-                this._onClickBack = function () {
-                    e.onClickBack()
-                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new u.ShipDetailView
+    var o = i(0),
+        r = i(159),
+        s = i(60),
+        a = i(160),
+        _ = i(4),
+        l = i(21),
+        u = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this,
+                    n = new PIXI.Sprite,
+                    u = new _.TextBox(19, 5523516),
+                    c = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
+                    h = new _.TextBox(21, 5523516),
+                    p = new a.SlotItemLevel,
+                    d = new PIXI.Sprite,
+                    f = new r.AirPlaneLevel,
+                    y = new PIXI.Sprite(l.COMMON_MAIN.getTexture(42)),
+                    m = new s.IconWeapon;
+                n.texture = l.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
+                var v = new PIXI.Container;
+                return v.mask = c, v.addChild(u, c), v.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, v, h, d, p, f, y, m), i.background = n, i.textName = u, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = v, i
             }
-            return t.prototype.start = function (t) {
-                var e = o.default.model.ship.get(t),
-                    i = o.default.model.ship.getMst(e.mstID),
-                    a = s.ShipUtil.isMaxGradeUp(e, i, !1),
-                    _ = o.default.model.deck.isInDeck(e.memID);
-                this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
-                var u = !1;
-                if (_) {
-                    u = null != o.default.model.deck.get(_[0]).expedition
-                }
-                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, u), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, l.SE.play("249");
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 1
-                }, 125), createjs.Tween.get(this.shipDetailView).to({
-                    x: 471
-                }, 125).call(function () {
-                    o.default.sound.voice.playAtRandom(e.mstID.toString(), [2, 3], [50, 50]), o.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                _.TaskLoadShipResource.abortBy(this.shipDetailView), o.default.view.clickGuard = !0;
-                createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 0
-                }, 125), createjs.Tween.get(this.shipDetailView).to({
-                    x: n.default.width
-                }, 125).call(function () {
-                    o.default.view.clickGuard = !1, t()
-                })
-            }, t.prototype.dispose = function () {
-                this.dialogBackground.off(r.EventType.CLICK, this._onClickBack), this.shipDetailView.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipDetailView), this.onClickBack = null, this.dialogBackground = null, this.mainView = null, this.shipDetailView = null
-            }, t
-        }();
-    e.TaskShipDetail = c
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
+            }, e.prototype.clear = function () {
+                this.update(0, "", !1, 0, 0, 0, !1)
+            }, e.prototype.update = function (t, e, i, n, o, r, s) {
+                void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
+            }, e
+        }(PIXI.Container);
+    e.SlotItemSlotView = u
 }

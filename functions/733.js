@@ -1,115 +1,120 @@
 const function733 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n, o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(30),
-        _ = i(8),
-        l = i(85),
-        u = i(734),
-        c = i(6),
-        h = i(216),
-        p = i(735),
-        d = i(736);
-    ! function (t) {
-        t[t.CANCEL = 0] = "CANCEL", t[t.DETACH = 1] = "DETACH", t[t.CHOICE = 2] = "CHOICE"
-    }(n = e.TaskChoiceShipResult || (e.TaskChoiceShipResult = {}));
-    var f = function () {
-        function t(t) {
-            var e = this;
-            this.ITEM_NUM = 10, this._onChangePage = function (t) {
-                if (e._pageIndex != t) {
-                    var i = e.ships.slice(t * e.ITEM_NUM, t * e.ITEM_NUM + e.ITEM_NUM);
-                    e._updateShips_(i, e.detachable), h.OrganizeSceneMemory.pageIndex = e._pageIndex = t
-                }
-            }, this._onClickBackground = function () {
-                e.onComplete(n.CANCEL)
-            }, this._onClickLock = function (t) {
-                r.default.view.clickGuard = !0, new d.ShipLockAPI(!1, t).start(function () {
-                    r.default.view.clickGuard = !1, a.ShipUtil.sort(e.ships, e._shipSortKeyType);
-                    var i = e.ships.slice(e._pageIndex * e.ITEM_NUM, e._pageIndex * e.ITEM_NUM + e.ITEM_NUM);
-                    r.default.model.ship.get(t).isLocked() ? c.SE.play("242") : c.SE.play("255"), e._updateShips_(i, e.detachable)
-                })
-            }, this._onClickDetach = function () {
-                e.onComplete(n.DETACH)
-            }, this._onClickItem = function (t) {
-                e._memShipId = t, e.onComplete(n.CHOICE)
-            }, this._onClickSort = function () {
-                var t;
-                switch (e._shipSortKeyType) {
-                    case 1:
-                        t = 2;
-                        break;
-                    case 2:
-                        t = 3;
-                        break;
-                    case 3:
-                        t = 4;
-                        break;
-                    case 4:
-                        t = 1
-                }
-                e.shipSortButton.update(t), a.ShipUtil.sort(e.ships, t);
-                var i = e.ships.slice(e._pageIndex * e.ITEM_NUM, e._pageIndex * e.ITEM_NUM + e.ITEM_NUM);
-                e._updateShips_(i, e.detachable), h.OrganizeSceneMemory.shipSortKeyType = e._shipSortKeyType = t
-            }, this._onFilter = function (t) {
-                var i = r.default.model.ship.getAll();
-                a.ShipUtil.sort(i, e._shipSortKeyType), e.ships = a.ShipUtil.filterByShipFilterType(i, t);
-                var n = e._calcPageCount(e.ships.length),
-                    o = e.ships.slice(0 * e.ITEM_NUM, 0 * e.ITEM_NUM + e.ITEM_NUM);
-                h.OrganizeSceneMemory.pageIndex = e._pageIndex = 0, 0 == o.length ? e.pagerView.visible = !1 : (e.pagerView.visible = !0, e.pagerView.init(n), e.pagerView.changePage(0)), e.shipChoiceView.setExistLineUI(o.length), e._updateShips_(o, e.detachable)
-            }, this.mainView = t;
-            var i = h.OrganizeSceneMemory.filterStatus,
-                o = h.OrganizeSceneMemory.japanese;
-            this.shipChoiceView = new p.ShipChoiceView(i, o, this._onFilter), this.dialogBackground = new _.AreaBox(.5), this.pagerView = new l.PagerView, this.shipSortButton = new u.ShipSortButton
-        }
-        return Object.defineProperty(t.prototype, "memShipId", {
-            get: function () {
-                return this._memShipId
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.start = function (t) {
-            var e = (h.OrganizeSceneMemory.pageIndex, h.OrganizeSceneMemory.shipSortKeyType);
-            r.default.view.clickGuard = !0, this.dialogBackground.on(s.EventType.CLICK, this._onClickBackground), this.pagerView.onChangePage = this._onChangePage, this.shipChoiceView.onClickLock = this._onClickLock, this.shipChoiceView.onClickItem = this._onClickItem, this.shipChoiceView.onClickDetach = this._onClickDetach, this.shipSortButton.onClick = this._onClickSort, this.shipSortButton.interactive = this.shipSortButton.buttonMode = !0, this.pagerView.position.set(90, 528), this.shipChoiceView.position.set(1200, 138), this.shipSortButton.position.set(592, 41), this.dialogBackground.alpha = 0, this.shipChoiceView.addChild(this.pagerView, this.shipSortButton), this.mainView.addChild(this.dialogBackground, this.shipChoiceView), this.shipSortButton.update(e), this._shipSortKeyType = e, this.detachable = t;
-            var i = r.default.model.ship.getAll();
-            a.ShipUtil.sort(i, this._shipSortKeyType), this._pageIndex = h.OrganizeSceneMemory.pageIndex, this.ships = a.ShipUtil.filterByShipFilterType(i, this.shipChoiceView.getOnFilter());
-            var n = this._calcPageCount(this.ships.length),
-                o = this.ships.slice(this._pageIndex * this.ITEM_NUM, this._pageIndex * this.ITEM_NUM + this.ITEM_NUM);
-            0 == o.length ? this.pagerView.visible = !1 : (this.pagerView.visible = !0, this.pagerView.init(n), this.pagerView.changePage(this._pageIndex)), this.shipChoiceView.setExistLineUI(o.length), this._updateShips_(o, this.detachable);
-            createjs.Tween.get(this.dialogBackground).to({
-                alpha: 1
-            }, 125), createjs.Tween.get(this.shipChoiceView).to({
-                x: 528
-            }, 125).call(function () {
-                r.default.view.clickGuard = !1
-            })
-        }, t.prototype._updateShips_ = function (t, e) {
-            this.shipChoiceView.hideDetach(), e && this.shipChoiceView.showDetach();
-            for (var i = 0; i < this.shipChoiceView.ITEM_NUM; i++) {
-                var n = t[i];
-                if (n) {
-                    var o = r.default.model.deck.isInDeck(n.memID);
-                    this.shipChoiceView.update(i, n, o)
-                } else this.shipChoiceView.hide(i)
+    var o = i(1),
+        r = i(110),
+        s = i(327),
+        a = i(34),
+        _ = i(83),
+        l = i(4),
+        u = i(21),
+        c = i(9),
+        h = i(56),
+        p = i(314),
+        d = i(14),
+        f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._positionType = 0, e.onMouseOver = function () {
+                    e.changeButton.texture = u.COMMON_MAIN.getTexture(11)
+                }, e.onMouseOut = function () {
+                    e.changeButton.texture = u.COMMON_MAIN.getTexture(10)
+                }, e.onClickChange = function () {
+                    e.onClick()
+                };
+                var i = new PIXI.Sprite(u.COMMON_MAIN.getTexture(12)),
+                    n = new PIXI.Sprite(u.COMMON_MAIN.getTexture(64)),
+                    f = h.ORGANIZE_MAIN.getTexture(0),
+                    y = new PIXI.Sprite(f),
+                    m = new PIXI.Sprite(c.COMMON_MISC.getTexture(182));
+                m.name = "img_lv";
+                var v = new PIXI.Sprite(u.COMMON_MAIN.getTexture(23));
+                v.name = "img_houg";
+                var g = new PIXI.Sprite(u.COMMON_MAIN.getTexture(24));
+                g.name = "img_raig";
+                var b = new PIXI.Sprite(c.COMMON_MISC.getTexture(86));
+                b.name = "img_fuel";
+                var w = new PIXI.Sprite(c.COMMON_MISC.getTexture(87));
+                w.name = "img_ammo";
+                var x = new PIXI.Sprite(u.COMMON_MAIN.getTexture(22));
+                x.name = "img_souk";
+                var I = new PIXI.Sprite(u.COMMON_MAIN.getTexture(25));
+                I.name = "img_taik", e.shipBanner = new a.ShipBanner, e.shipBanner.name = "ship", e.starRateView = new _.StarRateView, e.starRateView.name = "rate", e.textLevel = new l.TextBox(30, 5523516), e.textLevel.name = "lv", e.textHp = new l.TextBox(16, 5523516), e.textHp.name = "hp", e.hpGaugeView = new r.HpGaugeView, e.hpGaugeView.name = "gauge";
+                e.textHoug = new l.TextBox(23, 5523516), e.textHoug.name = "txt_houg", e.textRaig = new l.TextBox(23, 5523516), e.textRaig.name = "txt_raig", e.textTaiku = new l.TextBox(23, 5523516), e.textTaiku.name = "txt_taiku", e.textSoukou = new l.TextBox(23, 5523516), e.textSoukou.name = "txt_souku", e.fuelMeterView = new s.MaterialMeterView, e.fuelMeterView.name = "fuel", e.ammoMeterView = new s.MaterialMeterView, e.ammoMeterView.name = "ammo", e.slotItemSlotContainer = new p.SlotItemSlotContainer(5, !0), e.slotItemSlotContainer.name = "slot", e.changeButton = new PIXI.Sprite, e.changeButton.on(o.EventType.MOUSEOVER, e.onMouseOver), e.changeButton.on(o.EventType.MOUSEOUT, e.onMouseOut), e.changeButton.on(o.EventType.CLICK, e.onClickChange), y.position.set(22, 10), e.changeButton.position.set(70, 501), e.textHoug.anchor.x = 1, e.textRaig.anchor.x = 1, e.textTaiku.anchor.x = 1, e.textSoukou.anchor.x = 1, n.position.set(0, -34), i.interactive = !0, e.textName = new l.TextBox(27, 5523516), e.textName.name = "txt_name", e.containerName = new PIXI.Container, e.containerName.name = "name";
+                var T = d.CreateRect.gradientLeftToRight(180, 42, .5, .98);
+                return e.containerName.mask = T, e.containerName.addChild(e.textName, T), n.addChild(y), e.addChild(i, e.starRateView, e.containerName, m, e.textLevel, v, e.textHoug, g, e.textRaig, I, e.textTaiku, x, e.textSoukou, b, e.fuelMeterView, w, e.ammoMeterView, e.hpGaugeView, e.slotItemSlotContainer, e.textHp, e.shipBanner, e.changeButton, n), e._defaultPosition(), e
             }
-        }, t.prototype.hide = function (t) {
-            createjs.Tween.get(this.dialogBackground).to({
-                alpha: 1
-            }, 125), createjs.Tween.get(this.shipChoiceView).to({
-                x: o.default.width
-            }, 125).call(function () {
-                t()
-            })
-        }, t.prototype.dispose = function () {
-            h.OrganizeSceneMemory.filterStatus = this.shipChoiceView.getFilterStatus(), h.OrganizeSceneMemory.japanese = this.shipChoiceView.isJapanese(), this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.shipChoiceView.dispose(), this.pagerView.dispose(), this.shipSortButton.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipChoiceView), this.shipSortButton.onClick = null, this.onComplete = null, this.mainView = null, this.shipChoiceView = null, this.dialogBackground = null, this.pagerView = null, this.shipSortButton = null, this._onChangePage = null, this._onClickBackground = null, this._onClickDetach = null, this._onClickItem = null, this._onClickLock = null, this._onClickSort = null, this.ships = null, this._memShipId = null, this.detachable = null, this._pageIndex = null, this._shipSortKeyType = null
-        }, t.prototype._calcPageCount = function (t) {
-            var e = 0 == t ? 0 : t / this.ITEM_NUM;
-            return e += 0 == t ? 0 : 0 < t % this.ITEM_NUM ? 1 : 0, e = parseInt(e.toString())
-        }, t
-    }();
-    e.TaskChoiceShip = f
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.fuelMeterView.dispose(), this.ammoMeterView.dispose(), this.hpGaugeView.dispose(), this.shipBanner.dispose(), this.starRateView.dispose(), this.slotItemSlotContainer.dispose(), this.changeButton.off(o.EventType.MOUSEOVER), this.changeButton.off(o.EventType.MOUSEOUT), this.changeButton.off(o.EventType.CLICK), this.textHp.destroy(), this.textLevel.destroy(), this.textHoug.destroy(), this.textRaig.destroy(), this.textTaiku.destroy(), this.textSoukou.destroy(), this.textName.destroy(), this.onClick = null, this.containerName = null, this.fuelMeterView = null, this.ammoMeterView = null, this.hpGaugeView = null, this.shipBanner = null, this.starRateView = null, this.slotItemSlotContainer = null, this.changeButton = null, this.textHp = null, this.textLevel = null, this.textHoug = null, this.textRaig = null, this.textTaiku = null, this.textSoukou = null, this.textName = null, this._positionType = null
+            }, e.prototype.updateChangable = function (t) {
+                t ? (this.changeButton.texture = u.COMMON_MAIN.getTexture(10), this.changeButton.interactive = !0, this.changeButton.buttonMode = !0) : (this.changeButton.texture = u.COMMON_MAIN.getTexture(9), this.changeButton.interactive = !1, this.changeButton.buttonMode = !1)
+            }, e.prototype.updateMaterial = function (t, e, i, n) {
+                this.fuelMeterView.update(t, e), this.ammoMeterView.update(i, n)
+            }, e.prototype.updateParams = function (t, e, i, n) {
+                this.textHoug.text = t.toString(), this.textRaig.text = e.toString(), this.textTaiku.text = i.toString(), this.textSoukou.text = n.toString()
+            }, e.prototype.updateShip = function (t, e, i, n, o, r, s, a) {
+                this.containerName.cacheAsBitmap = !1, this.textName.text = i, this.textLevel.text = n.toString(), this.starRateView.update(o), this.textHp.text = r + "/" + s, this.hpGaugeView.update(r, s), this.containerName.cacheAsBitmap = !0
+            }, e.prototype.updateBanner = function (t, e) {
+                this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label)
+            }, e.prototype.updateSlots = function (t, e) {
+                this.slotItemSlotContainer.update(t, e, !1)
+            }, e.prototype.updatePosition = function (t) {
+                var e = 5 === t ? 1 : 0;
+                if (this._positionType !== e) {
+                    switch (e) {
+                        case 0:
+                            this._defaultPosition();
+                            break;
+                        case 1:
+                            this._fiveSlotPosition()
+                    }
+                    this._positionType = e
+                }
+            }, e.prototype._defaultPosition = function () {
+                this.getChildByName("rate").position.set(210, 69);
+                var t = this.getChildByName("lv");
+                t.style.fontSize = 30, t.position.set(240, 24), this.getChildByName("hp").position.set(137, 69), this.getChildByName("gauge").position.set(33, 75), this.getChildByName("ship").position.set(35, 100), this.getChildByName("img_lv").position.set(210, 33), this.getChildByName("slot").position.set(16, 172);
+                var e = this.getChildByName("txt_houg");
+                e.style.fontSize = 23, e.position.set(153, 358);
+                var i = this.getChildByName("txt_raig");
+                i.style.fontSize = 23, i.position.set(153, 393);
+                var n = this.getChildByName("txt_taiku");
+                n.style.fontSize = 23, n.position.set(153, 430);
+                var o = this.getChildByName("txt_souku");
+                o.style.fontSize = 23, o.position.set(153, 465);
+                this.getChildByName("img_houg").position.set(30, 360), this.getChildByName("img_raig").position.set(30, 396), this.getChildByName("img_taik").position.set(30, 432), this.getChildByName("img_souk").position.set(30, 468), this.getChildByName("img_fuel").position.set(210, 373), this.getChildByName("fuel").position.set(210, 373), this.getChildByName("img_ammo").position.set(210, 448), this.getChildByName("ammo").position.set(210, 448), this.getChildByName("name").position.set(32, 31)
+            }, e.prototype._fiveSlotPosition = function () {
+                this.getChildByName("rate").position.set(210, 46);
+                var t = this.getChildByName("lv");
+                t.style.fontSize = 25, t.position.set(260, 13), this.getChildByName("hp").position.set(137, 43), this.getChildByName("gauge").position.set(33, 49), this.getChildByName("ship").position.set(35, 68), this.getChildByName("img_lv").position.set(232, 18), this.getChildByName("slot").position.set(16, 135);
+                var e = this.getChildByName("txt_houg");
+                e.style.fontSize = 18, e.position.set(163, 377);
+                var i = this.getChildByName("txt_raig");
+                i.style.fontSize = 18, i.position.set(163, 407);
+                var n = this.getChildByName("txt_taiku");
+                n.style.fontSize = 18, n.position.set(163, 438);
+                var o = this.getChildByName("txt_souku");
+                o.style.fontSize = 18, o.position.set(163, 469);
+                this.getChildByName("img_houg").position.set(40, 375), this.getChildByName("img_raig").position.set(40, 406), this.getChildByName("img_taik").position.set(40, 436), this.getChildByName("img_souk").position.set(40, 468), this.getChildByName("img_fuel").position.set(200, 373), this.getChildByName("fuel").position.set(200, 373), this.getChildByName("img_ammo").position.set(200, 448), this.getChildByName("ammo").position.set(200, 448), this.getChildByName("name").position.set(32, 12)
+            }, e
+        }(PIXI.Container);
+    e.ShipChangeConfirm = f
 }

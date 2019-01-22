@@ -20,19 +20,19 @@ const function822 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(0));
-                e.addChild(i);
-                var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(1));
-                e.addChild(n);
-                var r = new PIXI.Graphics;
-                return r.beginFill(16711935, .5), r.drawRect(-i.width / 2, -i.height / 2, i.width, i.height), r.endFill(), r.position.set(i.width / 2, i.height / 2), e.addChild(r), e.mask = r, e
+                var e = t.call(this) || this;
+                e._onClickBack = function () {
+                    e.onClickBack()
+                };
+                var i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(48));
+                return e.buttonBack = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(0)), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.on(r.EventType.CLICK, e._onClickBack), e.buttonBack.position.set(221, 206), e.addChild(i, e.buttonBack), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.mask = null
+                this.buttonBack.off(r.EventType.CLICK), this.onClickBack = null, this.buttonBack = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.CutinBar = r
+    e.MarriageAlert = s
 }

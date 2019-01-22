@@ -20,88 +20,49 @@ const function768 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(213),
-        s = function (t) {
+        r = i(769),
+        s = i(52),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.select_bg_crane01 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)), e.select_bg_crane02 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44)), e.select_bg_crane01.position.set(275, -3), e.select_bg_crane02.position.set(0, 0), e.addChild(e.select_bg_crane01, e.select_bg_crane02), e
+                e._mousedown = function (t, i) {
+                    e.mousedown(t, i)
+                }, e._onClickDetach = function (t) {
+                    e.onClickDetach(t)
+                }, e._onMouseUp = function (t) {
+                    e.onMouseUp(t)
+                }, e._onMouseOut = function () {
+                    e.onMouseOut()
+                };
+                e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
+                for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
+                    var a = new r.SlotItemSlot(n);
+                    a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
+                    var _ = new PIXI.Sprite(i);
+                    _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
+                }
+                return e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.select_bg_crane01 = null, this.select_bg_crane02 = null, this.removeChildren()
+            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
+                get: function () {
+                    return this._slotItemSlots
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.clean = function () {
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
+            }, e.prototype.update = function (t, e, i, n, o) {
+                var r = this._slotItemSlots[t],
+                    s = this._clearSlotItemSlots[t];
+                r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
+            }, e.prototype.hide = function (t) {
+                for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
+            }, e.prototype.dispose = function () {
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
+                this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.OtherShipFrame = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this,
-                i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)),
-                n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44));
-            e.crane = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(46)), e.focus_card = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(21)), i.position.set(275, -3), n.position.set(0, 0);
-            var s = [62, 143, 224, 305, 386, 467];
-            e.addChild(e.focus_card, e.crane);
-            for (var a = 0; a < s.length; a++) {
-                var _ = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(45));
-                _.position.set(9, s[a]), e.addChild(_)
-            }
-            e.addChild(i, n), e.indexEmblems = new Array;
-            for (var l = 0; l < s.length; l++) {
-                var u = new r.DeckIndexEmblem;
-                u.position.set(-15, s[l] + 30), e.indexEmblems.push(u), e.addChild(u)
-            }
-            return e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            createjs.Tween.removeTweens(this.crane);
-            for (var t = 0; t < this.indexEmblems.length; t++) this.indexEmblems[t].dispose(), this.indexEmblems[t] = null;
-            this.indexEmblems = null, this.focus_card = null, this.crane = null, this.removeChildren()
-        }, e.prototype.focus = function (t) {
-            var e = this.getFocusPoint(t);
-            this.focus_card.position.set(e[0], e[1]), this.focus_card.visible = !0
-        }, e.prototype.updateEmblems = function (t, e) {
-            var i = this.indexEmblems[t];
-            i.visible = !0, i.update(e)
-        }, e.prototype.hideEmblem = function (t) {
-            this.indexEmblems[t].visible = !1
-        }, e.prototype.moveCrane = function (t) {
-            createjs.Tween.removeTweens(this.crane);
-            var e = this.getFocusPoint(t);
-            createjs.Tween.get(this.crane).to({
-                x: 278
-            }, 300, createjs.Ease.cubicIn).to({
-                y: e[1] - 8
-            }).to({
-                x: e[0] + 23
-            }, 500, createjs.Ease.cubicOut).play(null)
-        }, e.prototype.insertCrane = function () {
-            createjs.Tween.removeTweens(this.crane);
-            var t = this.getFocusPoint(0);
-            this.crane.x = 278, this.crane.y = t[1] - 8, createjs.Tween.get(this.crane).to({
-                x: t[0] + 23
-            }, 500, createjs.Ease.cubicOut).play(null)
-        }, e.prototype.hideCraneImmidiate = function () {
-            createjs.Tween.removeTweens(this.crane), this.crane.x = 278
-        }, e.prototype.moveCraneImmidiate = function (t) {
-            var e = this.getFocusPoint(t);
-            createjs.Tween.removeTweens(this.crane), this.crane.x = e[0] + 23, this.crane.y = e[1] - 8
-        }, e.prototype.deFocus = function () {
-            this.focus_card.visible = !1
-        }, e.prototype.getFocusPoint = function (t) {
-            switch (t) {
-                case 0:
-                    return [27, 76];
-                case 1:
-                    return [27, 157];
-                case 2:
-                    return [27, 238];
-                case 3:
-                    return [27, 319];
-                case 4:
-                    return [27, 400];
-                case 5:
-                    return [27, 481]
-            }
-            return [0, 0]
-        }, e
-    }(PIXI.Container);
-    e.DeckCraneFrame = a
+    e.SlotItemSlotBox = a
 }

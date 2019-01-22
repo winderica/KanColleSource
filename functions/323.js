@@ -19,23 +19,28 @@ const function323 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(56),
         r = function (t) {
             function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_hensei/preset_delete", i.presetNo = e, i
+                var i = t.call(this) || this,
+                    n = null,
+                    r = null;
+                switch (e) {
+                    case 1:
+                        n = o.ORGANIZE_MAIN.getTexture(55), r = o.ORGANIZE_MAIN.getTexture(56);
+                        break;
+                    case 2:
+                        n = o.ORGANIZE_MAIN.getTexture(51), r = o.ORGANIZE_MAIN.getTexture(52)
+                }
+                return i.txt_txt1 = new PIXI.Sprite(n), i.txt_txt2 = new PIXI.Sprite(r), i.txt_txt2.anchor.set(1, 1), i.txt_txt2.position.set(540, 42), i.addChild(i.txt_txt1, i.txt_txt2), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_preset_no = this.presetNo, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result = this._raw_data, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.hideTxt2 = function () {
+                this.txt_txt2.visible = !1
+            }, e.prototype.showTxt2 = function () {
+                this.txt_txt2.visible = !0
+            }, e.prototype.dispose = function () {
+                this.txt_txt1 = null, this.txt_txt2 = null, this.removeChildren()
             }, e
-        }(o.APIBase);
-    e.PresetDeleteAPI = r
+        }(PIXI.Container);
+    e.PresetTitle = r
 }

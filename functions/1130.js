@@ -19,25 +19,39 @@ const function1130 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(33),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._message = new o.TextBox(22, 1381651), n._message.position.set(123, 77), n.addChild(n._message), n._icon = new PIXI.Sprite, n._icon.position.set(152, 144), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 260), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 260), n.addChild(n._btn_back), n
+    var o = i(74),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._num = new PIXI.Sprite, e._num.position.set(29, 15), e.addChild(e._num), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(10), this._message.text = "\u300c\u83f1\u9905\u300d\u3092\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f", 21 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(7) : 23 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(6) : 22 == t && (this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(8));
-                var e = r.ITEM_ILIST_HISHIMOCHI.getTexture(2);
-                this._btn_yes.initialize(e), e = r.ITEM_ILIST_HISHIMOCHI.getTexture(1), this._btn_back.initialize(e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
+            }, e.prototype.update = function (t) {
+                this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+            }, e.prototype._getNumImage = function (t) {
+                switch (t) {
+                    case 1:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
+                    case 2:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
+                    case 3:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
+                    case 4:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
+                    case 5:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
+                    case 6:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
+                    case 7:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
+                    case 8:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
+                    case 9:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
+                }
+                return PIXI.Texture.EMPTY
             }, e
         }(PIXI.Sprite);
-    e.ConfirmView = a
+    e.RewardSelectDialogCount = r
 }

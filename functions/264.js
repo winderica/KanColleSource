@@ -1,117 +1,167 @@
 const function264 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(68),
-        a = i(7),
-        _ = i(28),
-        l = i(13),
-        u = function () {
-            function t(t, e) {
-                var i = this;
-                this._onImageLoadComplete = function (t, e) {
-                    null != t && i._cb_onLoadCompleteResources(t.resources), null != i._cb_onTaskComplete && i._cb_onTaskComplete(), i._cb_onLoadCompleteInfo = null, i._cb_onLoadCompleteResources = null, i._cb_onTaskComplete = null, i._keys = null, i._version_map = null
-                }, this._cb_onLoadCompleteInfo = t, this._cb_onLoadCompleteResources = e, this._keys = [], this._version_map = {}
+    var n = i(0),
+        o = i(7),
+        r = function () {
+            function t(t) {
+                this._o = t
             }
-            return Object.defineProperty(t.prototype, "count", {
+            return Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
-                    return this._keys.length
+                    return o.ObjUtil.getNumber(this._o, "api_slotitem_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.add = function (t) {
-                if (-1 == this._keys.indexOf(t)) {
-                    this._keys.push(t);
-                    var e = s.GaugeSetModel.getMapId(t);
-                    this._version_map[t] = l.UIImageLoader.getResourceVersionMap(e)
-                }
-                return this
-            }, t.prototype.load = function (t) {
-                var e = this;
-                void 0 === t && (t = null), this._cb_onTaskComplete = t;
-                for (var i = {}, n = new _.SerialTask, o = 0, r = this._keys; o < r.length; o++) {
-                    var s = r[o],
-                        a = this._version_map[s];
-                    n.add(new p(s, a, i))
-                }
-                n.start(function () {
-                    e._onInfoLoadComplete(i)
-                })
+            }), Object.defineProperty(t.prototype, "memID", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "level", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_level")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "skillLevel", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_alv")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cardType", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.cardType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipType", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.equipType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equipTypeSp", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.equipTypeSp
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "iconType", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.iconType
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "range", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.range
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "karyoku", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.karyoku
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "raisou", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.raisou
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taiku", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.taiku
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taisen", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.taisen
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "bakusou", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.bakusou
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "meichu", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.meichu
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "kaihi", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.kaihi
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sakuteki", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.sakuteki
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "soukou", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.soukou
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "distance", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.distance
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cost", {
+                get: function () {
+                    var t = n.default.model.slot.getMst(this.mstID);
+                    return null == t ? 0 : t.cost
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isLocked = function () {
+                return 1 == o.ObjUtil.getNumber(this._o, "api_locked")
+            }, t.prototype.__setLocked__ = function (t) {
+                this._o.api_locked = t ? 1 : 0
+            }, t.prototype.__updateObject__ = function (t) {
+                this._o = t
+            }, t.prototype.isPlane = function () {
+                var t = n.default.model.slot.getMst(this.mstID);
+                return null != t && t.isPlane()
             }, t
         }();
-    e.GaugeLoader = u;
-    var c = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
-            var e = new PIXI.loaders.Loader(o.default.settings.path_root),
-                i = [];
-            for (var n in t) {
-                var r = t[n];
-                this._cb_onLoadCompleteInfo(n, r);
-                var s = this._version_map[n] ? "?version=" + this._version_map[n] : "",
-                    a = r.image_path; - 1 == i.indexOf(a) && null == PIXI.utils.TextureCache[a] && (i.push(a), e.add(a, "resources/gauge/" + a + ".png" + s)), a = r.image_light_path, -1 == i.indexOf(a) && null == PIXI.utils.TextureCache[a] && (i.push(a), e.add(a, "resources/gauge/" + a + ".png" + s))
-            }
-            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
-        }, e
-    }(u);
-    e.HorizontalGaugeLoader = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
-            var e = new PIXI.loaders.Loader(o.default.settings.path_root),
-                i = [];
-            for (var n in t) {
-                var r = t[n];
-                this._cb_onLoadCompleteInfo(n, r);
-                var s = r.vertical;
-                if (null != s) {
-                    var a = this._version_map[n] ? "?version=" + this._version_map[n] : "",
-                        _ = s.image_path; - 1 == i.indexOf(_) && null == PIXI.utils.TextureCache[_] && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png" + a)), _ = r.vertical.image_light_path, -1 == i.indexOf(_) && null == PIXI.utils.TextureCache[_] && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png?" + a))
-                }
-            }
-            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
-        }, e
-    }(u);
-    e.VerticalGaugeLoader = h;
-    var p = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._onLoadComplete = function (t) {
-                if (200 == a.ObjUtil.getNumber(t, "status")) {
-                    var e = a.ObjUtil.getObject(t, "data");
-                    null != e && (o._dic[o._key] = new s.GaugeSetModel(e)), o._endTask()
-                } else o._failedEnd()
-            }, o._onLoadFailed = function (t) {
-                o._failedEnd()
-            }, o._key = e, o._version = i, o._dic = n, o
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this._version ? "?version=" + this._version : "",
-                e = o.default.settings.path_root + "resources/gauge/" + this._key + ".json" + t;
-            axios.get(e).then(this._onLoadComplete).catch(this._onLoadFailed)
-        }, e
-    }(r.TaskBase)
+    e.SlotitemModel = r
 }

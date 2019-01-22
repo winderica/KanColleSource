@@ -19,22 +19,30 @@ const function755 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(4),
-        s = function (t) {
+    var o = i(0),
+        r = i(47),
+        s = i(13),
+        a = i(756),
+        _ = i(758),
+        l = i(759),
+        u = i(72),
+        c = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new r.TextBox(24, 5523516),
-                    n = new r.TextBox(24, 5523516),
-                    s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(21)),
-                    a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(22));
-                return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.textFuel.destroy(), this.textFuel = null, this.textAmmo.destroy(), this.textAmmo = null
-            }, e.prototype.update = function (t, e) {
-                this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new a.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new _.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                var t = this;
+                return new u.FuncTask(function () {
+                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
+                })
+            }, e.prototype.start = function () {
+                var t = o.default.model.deck.get(1).getShipMemID(0);
+                this.taskIdleMain = new l.TaskIdleMain(this), this.taskIdleMain.start(1, t)
             }, e
-        }(PIXI.Container);
-    e.MaterialCounterView = s
+        }(r.SceneBase);
+    e.RemodelScene = c
 }

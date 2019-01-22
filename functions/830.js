@@ -19,25 +19,28 @@ const function830 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n._onClickYes = function () {
-                    n._cb_onYes && n._cb_onYes()
-                }, n._onClickNo = function () {
-                    n._cb_onNo && n._cb_onNo()
-                }, n._cb_onYes = e, n._cb_onNo = i;
-                var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(49));
-                return n.addChild(a), n._btnYes = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(13)), n._btnYes.position.set(78, 210), n._btnYes.interactive = !0, n._btnYes.buttonMode = !0, n.addChild(n._btnYes), n._btnNo = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._btnNo.position.set(351, 210), n._btnNo.interactive = !0, n._btnNo.buttonMode = !0, n.addChild(n._btnNo), n._beforeCount = new o.TextBox(25, 5523516), n._beforeCount.anchor.x = 1, n._beforeCount.position.set(395, 119), n.addChild(n._beforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.text = "\u2192", n._arrow.position.set(404, 122), n.addChild(n._arrow), n._afterCount = new o.TextBox(25, 5523516), n._afterCount.position.set(438, 119), n.addChild(n._afterCount), n._btnYes.on(s.EventType.CLICK, n._onClickYes), n._btnNo.on(s.EventType.CLICK, n._onClickNo), n
+    var o = i(3),
+        r = i(60),
+        s = i(4),
+        a = i(14),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), e.containerItemName = new PIXI.Container, e.containerItemName.position.set(50, 11), e.textItemName = new s.TextBox(19, 5523516), e.maskItemName = a.CreateRect.gradientLeftToRight(244, 35, .65, .7), e.iconWeapon = new r.IconWeapon, e.containerItemName.mask = e.maskItemName, e.containerItemName.addChild(e.textItemName, e.maskItemName), e.addChild(e.background, e.containerItemName, e.iconWeapon), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btnYes.off(s.EventType.CLICK), this._btnNo.off(s.EventType.CLICK), this._beforeCount.destroy(), this._afterCount.destroy(), this._arrow.destroy(), this._cb_onYes = null, this._cb_onNo = null, this._btnYes = null, this._btnNo = null, this._beforeCount = null, this._afterCount = null, this._arrow = null
-            }, e.prototype.update = function (t) {
-                this._beforeCount.text = t.toString(), this._afterCount.text = (t - 1).toString()
+            return n(e, t), e.prototype.update = function (t) {
+                this._update_(t.name, t.iconType)
+            }, e.prototype.empty = function () {
+                this._updateIconType_(0), this._updateItemName_("")
+            }, e.prototype._update_ = function (t, e) {
+                this._updateIconType_(e), this._updateItemName_(t)
+            }, e.prototype._updateItemName_ = function (t) {
+                this.textItemName.text = t
+            }, e.prototype._updateIconType_ = function (t) {
+                this.iconWeapon.update(t)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.iconWeapon.dispose(), this.containerItemName.removeChildren(), this.containerItemName.mask = null, this.textItemName.destroy(), this.iconWeapon = null, this.background = null, this.textItemName = null, this.background = null, this.containerItemName = null
             }, e
         }(PIXI.Container);
-    e.ExtensionConfirm = a
+    e.SimpleSlotItemSlot = _
 }

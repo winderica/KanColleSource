@@ -19,192 +19,39 @@ const function741 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(30),
-        a = i(47),
-        _ = i(109),
-        l = i(31),
-        u = i(327),
-        c = i(69),
-        h = i(217),
-        p = i(742),
-        d = i(743),
-        f = i(744),
-        y = i(745),
-        m = i(749),
-        v = i(752),
-        g = i(753),
-        b = i(754),
-        w = i(755),
-        x = i(756),
-        I = i(759),
-        T = i(155),
-        O = i(21),
-        P = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = i(8),
+        a = i(0),
+        _ = function (t) {
             function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e.combinedView = null, e._onClickDeck = function (t) {
-                    if (e.deckId != t) {
-                        if (e.viewMode != p.ViewMode.DECK) {
-                            var i = e.taskEditSupplyOther.pageIndex;
-                            e.memoryOtherPageIndex = i, e.taskEditSupplyOther.dispose(), e.taskEditSupplyOther = null, e._startTaskEditSupplyDeck(t)
-                        } else e.taskEditSupplyDeck.changeDeck(t);
-                        e.deckSelectView.focusDeck(t), e.viewMode = p.ViewMode.DECK, e.deckId = t
-                    }
-                }, e.memoryOtherPageIndex = 0, e._onClickOther = function () {
-                    null != e.deckId && e.viewMode != p.ViewMode.OTHER && (e.taskEditSupplyDeck.dispose(), e.taskEditSupplyDeck = null, e.layerTaskMain.removeChildren(), e.deckSelectView.focusOther(), e._startTaskEditSupplyOther(), e.deckId = null, e.viewMode = p.ViewMode.OTHER)
-                }, e._onUpdateCheckForDeck = function () {
-                    var t = e.taskEditSupplyDeck.getSupplyEdit(),
-                        i = t.getMemShipIds(),
-                        n = h.SupplyUtil.CalcRequireMaterials(i),
-                        o = n.ammo,
-                        r = n.fuel;
-                    e._updateShowcase(o, r)
-                }, e._onUpdateCheckForOther = function () {
-                    var t = e.taskEditSupplyOther.getSupplyEdit(),
-                        i = t.getMemShipIds(),
-                        n = h.SupplyUtil.CalcRequireMaterials(i),
-                        o = n.ammo,
-                        r = n.fuel;
-                    e._updateShowcase(o, r)
-                }, e
+                var e = t.call(this) || this;
+                return e._canMouseOver = !1, e._onMouseOver = function () {
+                    e._canMouseOver = !0, e.onMouseOver(), e._supplyAllOn.alpha = 1, e._clickArea.interactive = e._clickArea.buttonMode = !0
+                }, e._onMouseOut = function () {
+                    e.onMouseOut(), e._supplyAllOn.alpha = 0, e._clickArea.interactive = e._clickArea.buttonMode = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onTouchDown = function () {
+                    e._canMouseOver || (e._touchActivate(), e.onMouseOver(), e._supplyAllOn.alpha = 1)
+                }, e._touchActivate = function () {
+                    e._guardLayer = new s.AreaBox(0), e._touchArea = new s.AreaBox(0, 0, e._clickArea.width, e._clickArea.height), e._touchArea.hitArea = new PIXI.Rectangle(0, 0, e._clickArea.width, e._clickArea.height);
+                    var t = e._clickArea.getGlobalPosition();
+                    e._touchArea.position.set(t.x, t.y), e._guardLayer.addChild(e._touchArea), a.default.view.overLayer.addChild(e._guardLayer), e._guardLayer.on(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.on(r.EventType.MOUSEUP, e._onTouchUp)
+                }, e._onTouchMove = function (t) {
+                    var i = t.data.getLocalPosition(e._touchArea);
+                    1 === e._supplyAllOn.alpha && !1 === e._touchArea.hitArea.contains(i.x, i.y) && (e.onMouseOut(), e._supplyAllOn.alpha = 0)
+                }, e._onTouchUp = function () {
+                    1 === e._supplyAllOn.alpha && e.onClick(), e._touchDeactivate()
+                }, e._touchDeactivate = function () {
+                    e._guardLayer.off(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.off(r.EventType.MOUSEUP, e._onTouchUp), e._guardLayer.removeChildren(), e._touchArea = null, a.default.view.overLayer.removeChild(e._guardLayer), e._guardLayer = null
+                }, e._supplyAllOff = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(23)), e._supplyAllOn = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(24)), e._clickArea = new PIXI.Graphics, e._clickArea.beginFill(0, 0), e._clickArea.drawRect(0, 0, 62, 62), e._clickArea.endFill(), e._supplyAllOn.position.set(-26, -26), e._clickArea.position.set(-15, -15), e.addChild(e._supplyAllOff, e._supplyAllOn, e._clickArea), e._supplyAllOff.on(r.EventType.MOUSEOVER, e._onMouseOver), e._supplyAllOff.on(r.EventType.MOUSEDOWN, e._onTouchDown), e._clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e._clickArea.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype.preInitialize = function () {
-                this.layerBase = new PIXI.Container, this.con_bg1 = new PIXI.Sprite(O.COMMON_MAIN.getTexture(12)), this.con_bg1.position.set(150, 135), this.con_bg1.alpha = .6, this.layerBase.addChild(this.con_bg1), this.deckSelectView = new v.DeckSelectView, this.deckSelectView.position.set(203, 164), this.layerBase.addChild(this.deckSelectView), this.materialCounterView = new w.MaterialCounterView, this.materialCounterView.position.set(595, 158), this.layerBase.addChild(this.materialCounterView), this.headerMain = new g.HeaderMain, this.headerMain.position.set(0, 102), this.layerBase.addChild(this.headerMain), r.default.model.deck.isCombined() && (this.combinedView = new _.CombinedView, this.combinedView.position.set(196, 155), this.layerBase.addChild(this.combinedView)), this.layerTaskOverlay = new PIXI.Container, this.supplyShowcaseView = new x.SupplyShowcaseView, this.supplyShowcaseView.position.set(900, 135), this.layerTaskOverlay.addChild(this.supplyShowcaseView), this.supplyTypeSelectButton = new I.SupplyTypeSelectButton, this.supplyTypeSelectButton.position.set(14, 501), this.supplyShowcaseView.addChild(this.supplyTypeSelectButton), this.headerSupply = new b.HeaderSupply, this.headerSupply.position.set(900, 102), this.layerTaskOverlay.addChild(this.headerSupply), this.txt_supply = new PIXI.Sprite(T.SUPPLY_MAIN.getTexture(26)), this.layerTaskOverlay.addChild(this.txt_supply), this.layerTaskMain = new PIXI.Container, this.otherShips = r.default.model.ship.getAllOther(), s.ShipUtil.sort(this.otherShips, 1), this.addChild(this.layerBase, this.layerTaskMain, this.layerTaskOverlay)
-            }, e.prototype.initialize = function () {
-                var t = r.default.model.deck.getAll().length,
-                    e = r.default.model.ship.getAllOther(),
-                    i = e.length;
-                this.deckSelectView.initDeckCount(t), this.deckSelectView.initOtherShipCount(i)
-            }, e.prototype._startTaskEditSupplyDeck = function (t) {
-                var e = this,
-                    i = function () {
-                        r.default.view.clickGuard = !0;
-                        var t, i = e.taskEditSupplyDeck.getSupplyEdit(),
-                            n = i.getMemShipIds();
-                        if (1 == n.length) t = r.default.model.ship.get(n[0]).mstID;
-                        else {
-                            var o = r.default.model.deck.get(e.deckId);
-                            if (o.getCount() == n.length) t = o.getShipModel(0).mstID;
-                            else {
-                                var s = Math.floor(Math.random() * n.length);
-                                t = r.default.model.ship.get(n[s]).mstID
-                            }
-                        }
-                        e._CallSupplyAll(n, t, function () {
-                            e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
-                        })
-                    },
-                    n = function () {
-                        r.default.view.clickGuard = !0;
-                        var t = e.taskEditSupplyDeck.getSupplyEdit(),
-                            i = t.getMemShipIds();
-                        e._CallSupplyFuel(i, function () {
-                            e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
-                        })
-                    },
-                    o = function () {
-                        r.default.view.clickGuard = !0;
-                        var t = e.taskEditSupplyDeck.getSupplyEdit(),
-                            i = t.getMemShipIds();
-                        e._CallSupplyAmmo(i, function () {
-                            e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
-                        })
-                    };
-                this.taskEditSupplyDeck = new y.TaskEditSupplyDeck(this.layerTaskMain), this.taskEditSupplyDeck.onUpdateSupplyEdit = this._onUpdateCheckForDeck, this.taskEditSupplyDeck.onClickSupplyAll = i, this.supplyTypeSelectButton.onClickAmmo = o, this.supplyTypeSelectButton.onClickFuel = n, this.supplyTypeSelectButton.onClickAll = i, this.taskEditSupplyDeck.start(t)
-            }, e.prototype._startTaskEditSupplyOther = function () {
-                var t = this;
-                this.taskEditSupplyOther = new m.TaskEditSupplyOther(this.layerTaskMain), this.taskEditSupplyOther.onUpdateSupplyEdit = this._onUpdateCheckForOther;
-                var e = this.taskEditSupplyOther.getSupplyEdit(),
-                    i = function () {
-                        r.default.view.clickGuard = !0;
-                        var i = e.getMemShipIds(),
-                            n = r.default.model.ship.get(i[0]).mstID;
-                        t._CallSupplyAll(i, n, function () {
-                            t.taskEditSupplyOther.reload(), r.default.view.clickGuard = !1
-                        })
-                    },
-                    n = function () {
-                        r.default.view.clickGuard = !0;
-                        var i = e.getMemShipIds();
-                        t._CallSupplyAmmo(i, function () {
-                            t.taskEditSupplyOther.reload(), r.default.view.clickGuard = !1
-                        })
-                    },
-                    o = function () {
-                        r.default.view.clickGuard = !0;
-                        var i = e.getMemShipIds();
-                        t._CallSupplyFuel(i, function () {
-                            t.taskEditSupplyOther.reload(), r.default.view.clickGuard = !1
-                        })
-                    };
-                this.supplyTypeSelectButton.onClickAll = i, this.supplyTypeSelectButton.onClickAmmo = n, this.supplyTypeSelectButton.onClickFuel = o, this.taskEditSupplyOther.start(this.otherShips, this.memoryOtherPageIndex)
-            }, e.prototype.finalize = function () {
-                this.taskEditSupplyDeck && this.taskEditSupplyDeck.dispose(), this.taskEditSupplyDeck = null, this.taskEditSupplyOther && this.taskEditSupplyOther.dispose(), this.taskEditSupplyOther = null, this.layerBase.removeChildren(), this.layerTaskMain.removeChildren(), this.layerTaskOverlay.removeChildren(), this.con_bg1 = null, this.deckSelectView.dispose(), this.deckSelectView = null, this.materialCounterView.dispose(), this.materialCounterView = null, this.headerMain.dispose(), this.headerMain = null, this.combinedView && (this.combinedView.dispose(), this.combinedView = null), this.supplyTypeSelectButton.dispose(), this.supplyTypeSelectButton = null, this.supplyShowcaseView.dispose(), this.supplyShowcaseView = null, this.headerSupply.dispose(), this.headerSupply = null, this.txt_supply = null, this.layerBase = null, this.layerTaskMain = null, this.layerTaskOverlay = null, this.otherShips = null, this.removeChildren()
-            }, e.prototype.start = function () {
-                this.viewMode = p.ViewMode.DECK, this.deckSelectView.onClickDeck = this._onClickDeck, this.deckSelectView.onClickOther = this._onClickOther;
-                var t = r.default.model.useItem.get(31).count,
-                    e = r.default.model.useItem.get(32).count;
-                this.materialCounterView.update(t, e), this.deckSelectView.focusDeck(1), this._startTaskEditSupplyDeck(1), this.deckId = 1, this.combinedView && this.combinedView.activate()
-            }, e.prototype._animationBauxTelop = function () {
-                createjs.Tween.get(this.txt_supply).to({
-                    alpha: 0,
-                    x: o.default.width,
-                    y: 90
-                }).to({
-                    alpha: 1,
-                    x: o.default.width / 2
-                }, 1500).to({
-                    alpha: 0,
-                    x: 525
-                }, 1e3)
-            }, e.prototype._CallSupplyAll = function (t, e, i) {
-                var n = this,
-                    o = h.SupplyUtil.CalcRequireMaterials(t),
-                    s = r.default.model.useItem.get(32).count;
-                0 < o.ammo && o.ammo <= s && this.supplyShowcaseView.playSupplyAmmo(function () {});
-                var a = r.default.model.useItem.get(31).count;
-                0 < o.fuel && o.fuel <= a && this.supplyShowcaseView.playSupplyFuel(function () {});
-                var _ = new l.APIConnector,
-                    p = new u.ChargeAPI(3, t);
-                _.add(p), 40 == r.default.model.basic.getTutorialProgress() && _.add(new c.UpdateTutorialAPI(50)), _.start(function () {
-                    r.default.sound.voice.play(e.toString(), 27);
-                    var t = r.default.model.useItem.get(31).count,
-                        o = r.default.model.useItem.get(32).count;
-                    n.materialCounterView.update(t, o), p.usedBauxite && n._animationBauxTelop(), i()
-                })
-            }, e.prototype._CallSupplyAmmo = function (t, e) {
-                var i = this;
-                this.supplyShowcaseView.playSupplyAmmo(function () {});
-                var n = new l.APIConnector,
-                    o = new u.ChargeAPI(2, t);
-                n.add(o), 40 == r.default.model.basic.getTutorialProgress() && n.add(new c.UpdateTutorialAPI(50)), n.start(function () {
-                    var t = r.default.model.useItem.get(31).count,
-                        n = r.default.model.useItem.get(32).count;
-                    i.materialCounterView.update(t, n), o.usedBauxite && i._animationBauxTelop(), e()
-                })
-            }, e.prototype._CallSupplyFuel = function (t, e) {
-                var i = this;
-                r.default.view.clickGuard = !0, this.supplyShowcaseView.playSupplyFuel(function () {});
-                var n = new l.APIConnector,
-                    o = new u.ChargeAPI(1, t);
-                n.add(o), 40 == r.default.model.basic.getTutorialProgress() && n.add(new c.UpdateTutorialAPI(50)), n.start(function () {
-                    var t = r.default.model.useItem.get(31).count,
-                        n = r.default.model.useItem.get(32).count;
-                    i.materialCounterView.update(t, n), o.usedBauxite && i._animationBauxTelop(), e()
-                })
-            }, e.prototype._updateShowcase = function (t, e) {
-                var i = r.default.model.useItem.get(31).count,
-                    n = r.default.model.useItem.get(32).count,
-                    o = t <= n,
-                    s = e <= i;
-                this.supplyTypeSelectButton.update(0 < e && s, 0 < t && o), this.supplyShowcaseView.updateAmmoCount(t, o), this.supplyShowcaseView.updateFuelCount(e, s), this.supplyShowcaseView.playAnimationAmmo(t), this.supplyShowcaseView.playAnimationFuel(e), this.supplyShowcaseView.hideAlert(), 0 == o && 0 == s ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u30fb\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == s ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == o && this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093")
-            }, e.prototype.getPreInitializeTask = function (t) {
-                return new d.PreInitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new f.FinalizeTask(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
+            }, e.prototype.updateClickable = function (t) {
+                this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
             }, e
-        }(a.SceneBase);
-    e.SupplyScene = P
+        }(PIXI.Container);
+    e.SupplyAllButton = _
 }

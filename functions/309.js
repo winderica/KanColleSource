@@ -5,8 +5,8 @@ const function309 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_mini_" + t)
+            return PIXI.Texture.fromFrame("remodel_animation_" + t)
         }
         t.getTexture = e
-    }(e.ITEM_MINI || (e.ITEM_MINI = {}))
+    }(e.REMODEL_ANIMATION || (e.REMODEL_ANIMATION = {}))
 }

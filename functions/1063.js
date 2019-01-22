@@ -19,70 +19,75 @@ const function1063 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(18),
-        a = i(112),
-        _ = i(169),
-        l = i(73),
-        u = i(73),
-        c = i(73),
-        h = i(73),
-        p = i(380),
-        d = i(133),
-        f = i(133),
-        y = i(133),
-        m = i(133),
-        v = i(133),
-        g = i(42),
-        b = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._selected_state = 1, e._selected_tab_no = 0, e._onChangeTab = function (t, i) {
-                    if (1 == t) {
-                        var n = _.AlbumConst.BGM_ID_FOR_SHIP;
-                        o.default.sound.bgm.play(n)
-                    } else {
-                        var n = _.AlbumConst.BGM_ID_FOR_SLOT;
-                        o.default.sound.bgm.play(n)
-                    }
-                    e._selected_state = t;
-                    var r = i * _.AlbumConst.COUNT_INTAB * _.AlbumConst.COUNT_INPAGE;
-                    if (e._selected_tab_no = r, e._view.tab_container.update(t, i), 0 == e._model.hasData(t, i)) {
-                        new p.AlbumAPI(t, i, e._model).start(function () {
-                            e._update(t, r)
-                        })
-                    } else e._update(t, r)
-                }, e._onChangePage = function (t) {
-                    var i = e._selected_state;
-                    e._update(i, t)
-                }, e._onSelect = function (t) {
-                    if (t instanceof c.AlbumShipModel) {
-                        var i = new m.TaskShowShipDetail(e._over, t, e._option, e._view);
-                        i.start()
-                    } else if (t instanceof h.AlbumSlotModel) {
-                        var i = new v.TaskShowSlotDetail(e._over, t, e._view);
-                        i.start()
-                    }
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._option = new l.AlbumSceneOptionModel, e._model = new u.AlbumModelManager, e._view = new g.MainView(e._onChangeTab, e._onChangePage, e._onSelect), e.addChild(e._view), e._over = new s.FadeBox(1, 0, 1200, 720), e._over.hide(0), e._over.visible = !1, e.addChild(e._over), e
+    var o = i(14),
+        r = i(73),
+        s = function (t) {
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new d.TaskScenePreInitialize(t, this._model, this._view, this._onBack)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new f.TaskSceneInitialize(t, this._view)
-            }, e.prototype.getFinalizeTask = function () {
-                return a.TaskLoadBase.abortAll(), new y.TaskSceneFinalize(this._view)
-            }, e.prototype._update = function (t, e) {
-                a.TaskLoadBase.abortAll();
-                var i = _.AlbumConst.COUNT_INPAGE,
-                    n = this._model.getData(t, e, i),
-                    o = this._selected_tab_no;
-                this._view.pager.update(o, e);
-                var r = this._view.content;
-                r.deactivate(), r.update(t, e, n), r.activate()
+            return n(e, t), Object.defineProperty(e.prototype, "sType", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_stype")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_sinfo")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "karyoku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houg")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raisou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_raig")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taiku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tyku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kaihi", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_kaih")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taikyu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_taik")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.hasTaiha = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
+            }, e.prototype.isMarriage = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
+            }, e.prototype.hasMarriage = function () {
+                var t = o.ObjUtil.getObjectArray(this._o, "api_state");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e];
+                    if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
+                }
+                return !1
+            }, e.prototype.extraVoices = function () {
+                return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
             }, e
-        }(r.SceneBase);
-    e.AlbumScene = b
+        }(r.AlbumModelBase);
+    e.AlbumShipModel = s
 }

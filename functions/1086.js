@@ -19,41 +19,89 @@ const function1086 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(32),
+    var o = i(4),
         r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function (t) {
-                    null != i._cb_onClick && i._cb_onClick(t, i._voice_id)
-                }, i._bg = new PIXI.Sprite, i._bg.position.set(0, 0), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i.addChild(i._icon), i._category = new PIXI.Sprite, i._category.position.set(0, 0), i.addChild(i._category), i._t = createjs.Tween.get(i._icon, {
-                    loop: !0
-                }).to({
-                    scaleX: 1.5,
-                    scaleY: 1.5
-                }, 1e3).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i._bg.interactive = !0, i
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._items = [];
+                for (var i = 0; i < 6; i++) {
+                    var n = new a;
+                    n.x = i % 2 * 225, n.y = 39 * Math.floor(i / 2), e.addChild(n), e._items.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._voice_id = null === t ? -1 : t.api_voice_id, this._icon.texture = r.ALBUM_MAIN.getTexture(12);
-                var e = 4;
-                this._category.position.set(23, 20), null !== t && 2 === t.api_icon_id && (e = 3, this._category.position.set(20, 20)), this._category.texture = r.ALBUM_MAIN.getTexture(e), this._update(!1)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(1), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(13), this._icon.visible = !1, this._t.setPaused(!0))
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this._bg.buttonMode = !0, this._bg.on(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.on(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.on(s.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.off(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._category = null, this._t = null, this._cb_onClick = null, this._voice_id = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this._items.length; t++) this._items[t].dispose(), this._items[t] = null;
+                this._items = null
+            }, e.prototype.update = function (t) {
+                var e = [];
+                this._addParamData(e, 0, t.soukou), this._addParamData(e, 1, t.karyoku), this._addParamData(e, 2, t.raisou), this._addParamData(e, 3, t.baku), this._addParamData(e, 4, t.taiku), this._addParamData(e, 5, t.taisen), this._addParamData(e, 6, t.meichu), this._addParamData(e, 7, t.kaihi), this._addParamData(e, 8, t.sakuteki), this._addParamData(e, 9, t.syatei);
+                for (var i = t.equipType, n = 0; n < this._items.length; n++)
+                    if (e.length <= n) this._items[n].visible = !1;
+                    else {
+                        var o = e[n];
+                        this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
+                    }
+            }, e.prototype._addParamData = function (t, e, i) {
+                null != t && 0 != i && t.push({
+                    type: e,
+                    value: i
+                })
             }, e
         }(PIXI.Container);
-    e.extraVoiceBtn = a
+    e.SlotParamsContainer = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._value_text = new o.TextBox(19, 16774898), e._value_text.position.set(189, 2), e._value_text.anchor.x = 1, e.addChild(e._value_text), e._value_img = new PIXI.Sprite, e._value_img.position.set(184, 13), e._value_img.anchor.set(1, .5), e.addChild(e._value_img), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._value_text.destroy(), this._value_text = null, this._value_img = null
+        }, e.prototype.update = function (t, e, i) {
+            if (this.texture = this._getTexture(t, i), 9 == t) {
+                this._value_text.visible = !1;
+                var n = [91, 92, 90, 89, 93][e];
+                this._value_img.texture = r.ALBUM_MAIN.getTexture(n), this._value_img.visible = !0
+            } else this._value_img.visible = !1, this._value_text.text = e > 0 ? "+" + e : e.toString(), this._value_text.visible = !0
+        }, e.prototype._getTexture = function (t, e) {
+            var i;
+            switch (t) {
+                case 0:
+                    i = 30;
+                    break;
+                case 1:
+                    i = 33;
+                    break;
+                case 2:
+                    i = 34;
+                    break;
+                case 3:
+                    i = 27;
+                    break;
+                case 4:
+                    i = 35;
+                    break;
+                case 5:
+                    i = 24;
+                    break;
+                case 6:
+                    i = 48 == e ? 28 : 26;
+                    break;
+                case 7:
+                    i = 48 == e ? 29 : 31;
+                    break;
+                case 8:
+                    i = 25;
+                    break;
+                case 9:
+                    i = 32;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return r.ALBUM_MAIN.getTexture(i)
+        }, e
+    }(PIXI.Sprite)
 }

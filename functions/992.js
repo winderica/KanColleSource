@@ -19,39 +19,24 @@ const function992 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(53),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = createjs.Ticker.framerate;
-                return e._cloud1 = new s(3, 60 / i * .0035), e._cloud2 = new s(2, 60 / i * .0025), e._cloud3 = new s(0, 60 / i * .005), e._cloud1.anchor.set(.5, .5), e._cloud2.anchor.set(.5, .5), e._cloud3.anchor.set(.5, .5), e.addChild(e._cloud1), e.addChild(e._cloud2), e.addChild(e._cloud3), e
+    var o = i(26),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._cloud1.texture = o.SALLY_SORTIE.getTexture(27), this._cloud2.texture = o.SALLY_SORTIE.getTexture(28), this._cloud3.texture = o.SALLY_SORTIE.getTexture(29)
+                this.texture = o.SALLY_AIRUNIT.getTexture(5)
             }, e.prototype.activate = function () {
-                var t = this;
-                if (null == this._t) {
-                    var e = function (e) {
-                        t._cloud1.update(), t._cloud2.update(), t._cloud3.update()
-                    };
-                    this._t = createjs.Tween.get(this, {
-                        loop: !0,
-                        onChange: e
-                    })
-                }
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(PIXI.Container);
-    e.MapThumbnailLockedCloud = r;
-    var s = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._tmp = 150 * Math.random(), n._offset = e, n._speed = i, n
-        }
-        return n(e, t), e.prototype.update = function () {
-            var t = createjs.Ticker.framerate;
-            this.x = 90 * Math.cos(this._tmp + this._offset), this.y = 15 * Math.cos(.9 * this._tmp * (60 / t) + this._offset), this._tmp += this._speed
-        }, e
-    }(PIXI.Sprite)
+        }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }
