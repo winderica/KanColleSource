@@ -19,52 +19,55 @@ const function1472 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1473),
-        s = i(1477),
-        a = i(1482),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(6),
+        r = i(9),
+        s = i(36),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._anim2 = function () {
+                    o.SE.play("222"), e._t = createjs.Tween.get(e._message).to({
+                        x: 38,
+                        alpha: 1
+                    }, 200).to({
+                        x: 0
+                    }, 66).wait(700).to({
+                        x: -38
+                    }, 66).to({
+                        x: -132,
+                        alpha: 0
+                    }, 200).call(function () {
+                        e._t = null, e.emit("complete")
+                    })
+                }, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.alpha = 0, e._message = new PIXI.Sprite, e._message.anchor.set(.5), e._message.alpha = 0, e._message.x = 132, e.addChild(e._bg), e.addChild(e._message), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._mapClear()
-            }, e.prototype._mapClear = function () {
+            return n(e, t), e.prototype.initializeForShip = function (t) {
+                void 0 === t && (t = !1), this._bg.texture = r.COMMON_MISC.getTexture(120);
+                var e = 31;
+                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(e), 1 == t && (this._message.y = -30, e = 25, this._sub_message = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(e)), this._sub_message.anchor.set(.5), this._sub_message.position.y = 80, this._message.addChild(this._sub_message))
+            }, e.prototype.initializeForSlot = function () {
+                this._bg.texture = r.COMMON_MISC.getTexture(120);
+                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(26)
+            }, e.prototype.initializeForUseitem = function (t) {
+                this._bg.texture = r.COMMON_MISC.getTexture(120);
+                var e = -1;
+                60 == t ? e = 27 : 62 == t ? e = 28 : 68 == t ? e = 29 : 72 == t ? e = 30 : 85 != t && 86 != t && 87 != t && 88 != t || (e = 21), this._message.texture = -1 == e ? PIXI.Texture.EMPTY : s.BATTLE_RESULT_MAIN.getTexture(e)
+            }, e.prototype.dispose = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype.play = function () {
                 var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.shutter,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.battle_model.deck_f.ships[0],
-                        s = o.mst_id,
-                        a = o.isDamaged(),
-                        _ = this._scene.data.getClearMapSuffix();
-                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
-                        t._ending()
-                    })
-                } else this._ending()
-            }, e.prototype._ending = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.layer_bonus,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.getClearOperationSuffix();
-                    new s.TaskEventEnding(e, i, n, o).start(function () {
-                        t._mapOpen()
-                    })
-                } else this._mapOpen()
-            }, e.prototype._mapOpen = function () {
-                var t = this,
-                    e = this._scene.data.getOpenedMapIDs();
-                if (e.length > 0) {
-                    var i = this._scene.layer_bonus;
-                    new a.TaskMapOpen(i, e).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
+                if (null == this._t) {
+                    var e = s.BATTLE_RESULT_MAIN.getTexture(24),
+                        i = new PIXI.Sprite(e);
+                    i.anchor.set(.5), i.alpha = 0, this.addChild(i), this._t = createjs.Tween.get(i).to({
+                        alpha: 1
+                    }, 200).call(function () {
+                        t._bg.alpha = 1
+                    }).to({
+                        alpha: 0
+                    }, 266).call(this._anim2)
+                }
             }, e
-        }(o.TaskBase);
-    e.PhaseClear = _
+        }(PIXI.Container);
+    e.BonusTelop = a
 }

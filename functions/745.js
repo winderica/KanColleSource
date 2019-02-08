@@ -43,14 +43,14 @@ const function745 = function (t, e, i) {
                     d = new a.TextBox(21, 5523516),
                     f = new a.TextBox(21, 5523516),
                     y = r.CreateRect.gradientLeftToRight(310, 44, .7, .9),
-                    m = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(18));
+                    m = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(24));
                 m.scale.x = 1.45, m.visible = !1, f.anchor.set(1, 0), f.position.set(417, Math.floor(n - f.height / 2) + 0), c.anchor.set(0, 0), c.position.set(0, Math.floor(n - c.height / 2)), h.anchor.set(0, 0), h.position.set(65, Math.floor(n - h.height / 2) + 0), p.position.set(53, 0), d.anchor.set(0, 0), d.position.set(351, Math.floor(n - d.height / 2) + 0), d.text = "Lv", p.mask = y, p.addChild(c, h, y);
-                var v = new u.SupplyCheckBox;
-                v.position.set(11, 11);
-                var g = new PIXI.Graphics;
-                g.lineStyle(1, 13945534, 1), g.moveTo(30, 45), g.lineTo(713, 44), g.endFill(), i.line = g;
+                var g = new u.SupplyCheckBox;
+                g.position.set(11, 11);
+                var v = new PIXI.Graphics;
+                v.lineStyle(1, 13945534, 1), v.moveTo(30, 45), v.lineTo(713, 44), v.endFill(), i.line = v;
                 var b = new l.MaterialViewS;
-                return b.position.set(446, 11), i.supplyCheckBox = v, i.index = e, i.materialView = b, i.clickArea = new s.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT), i.clickArea.renderable = !1, i.clickArea.buttonMode = !0, i.clickArea.on(o.EventType.CLICK, i._onClick), i.clickArea.on(o.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(o.EventType.MOUSEOUT, i._onMouseOut), i.textType = c, i.textName = h, i.typeAndNameContainer = p, i.labelLevel = d, i.textLevel = f, i.maskTypeAndName = y, i.focus = m, i
+                return b.position.set(446, 11), i.supplyCheckBox = g, i.index = e, i.materialView = b, i.clickArea = new s.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT), i.clickArea.renderable = !1, i.clickArea.buttonMode = !0, i.clickArea.on(o.EventType.CLICK, i._onClick), i.clickArea.on(o.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(o.EventType.MOUSEOUT, i._onMouseOut), i.textType = c, i.textName = h, i.typeAndNameContainer = p, i.labelLevel = d, i.textLevel = f, i.maskTypeAndName = y, i.focus = m, i
             }
             return n(e, t), e.prototype.update = function (t, e, i) {
                 this.removeChildren(), this.addChild(this.focus, this.line, this.typeAndNameContainer, this.labelLevel, this.textLevel, this.supplyCheckBox, this.materialView), i && this.addChild(this.clickArea), this.typeAndNameContainer.cacheAsBitmap = !1, this.textType.text = e.shipTypeName + " ", this.textName.text = e.name, this.textName.x = this.textType.x + this.textType.width, this.typeAndNameContainer.cacheAsBitmap = !0, this.textLevel.text = e.level.toString(), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax);

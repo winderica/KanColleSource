@@ -20,39 +20,26 @@ const function1419 = function (t, e, i) {
         value: !0
     });
     var o = i(7),
-        r = i(472),
-        s = i(471),
-        a = i(473),
-        _ = i(1420),
-        l = i(1421),
-        u = function (t) {
+        r = i(187),
+        s = function (t) {
             function e(e) {
-                var i = t.call(this) || this;
-                return i._o = e, i._raw = new l.RawNightBattleData(e), i._common = new a.BattleCommonModel(e), i
+                var i = t.call(this, e) || this;
+                return i._initPlaneFrom(), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "phase", {
+            return n(e, t), Object.defineProperty(e.prototype, "squadrons", {
                 get: function () {
-                    return "night"
+                    for (var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_air_base_data"), i = 0, n = e; i < n.length; i++) {
+                        var r = n[i];
+                        t.push({
+                            mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
+                            count: o.ObjUtil.getNumber(r, "api_count")
+                        })
+                    }
+                    return t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "raw", {
-                get: function () {
-                    return this._raw
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getAllyAttack = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_friendly_info"),
-                    e = o.ObjUtil.getObject(this._o, "api_friendly_battle");
-                return null == t || null == e ? null : new _.AllyAttackModel(t, e)
-            }, e.prototype.getRation = function () {
-                return this._raw.ration
-            }, e.prototype.getRationCombined = function () {
-                return this._raw.ration_combined
-            }, e.prototype.getDayRecord = function () {
-                return 1 == this.raw.hasDayBattle() ? new s.BattleRecordDay(this._o) : null
-            }, e
-        }(r.BattleRecord);
-    e.BattleRecordNight = u
+            }), e
+        }(r.AirWarDataBase);
+    e.AirUnitJetData = s
 }

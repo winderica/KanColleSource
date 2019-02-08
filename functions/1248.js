@@ -1,6 +1,10 @@
 const function1248 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
+
+    function n(t) {
+        return t * Math.PI / 180
+    }
+    var o = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
             __proto__: []
         }
@@ -19,100 +23,282 @@ const function1248 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(20),
-        a = i(1),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
-                }, n._scene = e, n._model = i, n
-            }
-            return n(e, t), e.prototype._start = function () {
-                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
-            }, e.prototype._showConfirmDialog = function () {
-                var t = this,
-                    e = this._model.sortie.now_cell_no,
-                    i = this._scene.resInfo.getRationConfirmOffset(e),
-                    n = this._scene.view.map.ship_icon;
-                this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
-                    y: n.y,
-                    alpha: 1
-                }, 300).call(function () {
-                    t._confirm.activate()
+    var r = i(5),
+        s = i(1),
+        a = i(4),
+        _ = i(6),
+        l = i(135),
+        u = i(1249);
+    e.COMPASS_FADEIN = 500, e.PIN_SWING_VOL = n(2), e.getRad = n;
+    var c = function (t) {
+        function i() {
+            var i = t.call(this) || this;
+            return i.Dispose = function () {
+                i.removeChildren(), i._callBack = null, i._runTween = null, i._bg = null, i._clickLayer = null, i._girl = null, i._compass = null, i._txtBox = null, i._light = null, i._pin = null, i._text.destroy(), i._text = null, i._type = null, i._isPin = null, i._isSwing = null, i._vibrateR = null, i._vibrateWidth = null, i._pini = null, i._span = null, i._targetR = null, i._step = null, i._message1 = null, i._message2 = null, i._message3 = null
+            }, i.Play = function (t, e, n) {
+                i._callBack = n;
+                var o = -Math.atan2(e.y - t.y, e.x - t.x) / Math.PI * 180 + 270;
+                i._targetR = o, i.startAnimation()
+            }, i.startAnimation = function () {
+                var t;
+                switch (i._type) {
+                    case 1:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                y: 368,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        };
+                        break;
+                    case 2:
+                    case 3:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                y: 353,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        };
+                        break;
+                    case 4:
+                        t = function () {
+                            createjs.Tween.get(i._girl).to({
+                                x: 960,
+                                y: 353,
+                                alpha: 1
+                            }, e.COMPASS_FADEIN)
+                        }
+                }
+                createjs.Tween.get(null).call(function () {
+                    createjs.Tween.get(i._compass).to({
+                        alpha: 1
+                    }, 300), createjs.Tween.get(i._compass.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._pin).to({
+                        alpha: 1
+                    }, 300), createjs.Tween.get(i._pin.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._light).to({
+                        alpha: .8
+                    }, 300), createjs.Tween.get(i._light.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300), createjs.Tween.get(i._bg).to({
+                        alpha: .3
+                    }, 300)
+                }).wait(300).call(function () {
+                    t()
+                }).wait(e.COMPASS_FADEIN).call(function () {
+                    i.phase1End()
                 })
-            }, e.prototype._hideConfirmDialog = function () {
-                var t = this;
-                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
-                    alpha: 0
-                }, 200);
-                var e = this._confirm.y;
-                createjs.Tween.get(this._confirm).wait(200).to({
-                    y: e,
-                    alpha: 0
-                }, 300).call(function () {
-                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
-                })
-            }, e
-        }(o.TaskBase);
-    e.TaskConfirmRation = _;
-    var l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClickYes = function () {
-                    null != n._cb_onSelect && n._cb_onSelect(!0)
-                }, n._onClickNo = function () {
-                    null != n._cb_onSelect && n._cb_onSelect(!1)
-                }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e && (n._box.x += e[0].x, n._box.y += e[0].y, n._beak.x += e[0].x, n._beak.y += e[0].y, n._btn_yes.x += e[1].x, n._btn_yes.y += e[1].y, n._btn_no.x += e[1].x, n._btn_no.y += e[1].y), n
+            }, i.run = function () {
+                i._isPin && i.updatePinMove(), i._isSwing && i.updateGirlSwing()
+            }, i.phase1End = function () {
+                switch (i._clickLayer.interactive = !0, i._clickLayer.buttonMode = !0, i._clickLayer.on(s.EventType.CLICK, i.clickCompass), i._runTween = createjs.Tween.get({}), i._runTween.wait(500).loop = !0, i._runTween.play(null), i._runTween.addEventListener("change", i.run), i._isPin = !0, i._txtBox.alpha = 1, i._text.alpha = 1, i._type) {
+                    case 4:
+                        i._isSwing = !0
+                }
+            }, i.clickCompass = function () {
+                i._clickLayer.interactive = !1, i._clickLayer.buttonMode = !1;
+                var t = function (t) {
+                    i._girl.texture = u.MAP_COMPASS.getTexture(t), i._text.text = i._message2, i.playRashinbanSE(), i.updateRotate()
+                };
+                switch (i._type) {
+                    case 1:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(1), createjs.Tween.get(null).wait(500).call(function () {
+                            t(0)
+                        });
+                        break;
+                    case 2:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(3), createjs.Tween.get(null).wait(500).call(function () {
+                            t(2)
+                        });
+                        break;
+                    case 3:
+                        i._girl.texture = u.MAP_COMPASS.getTexture(5), createjs.Tween.get(null).wait(500).call(function () {
+                            t(4)
+                        });
+                        break;
+                    case 4:
+                        i._step = 0, i._isSwing = !1, i._text.text = i._message2;
+                        var e = function () {
+                            i.playRashinbanSE(), i._isSwing = !0, i.updateRotate()
+                        };
+                        createjs.Tween.get(i._girl).to({
+                            y: 363
+                        }, 33).to({
+                            y: 321
+                        }, 133).to({
+                            y: 384
+                        }, 133).to({
+                            y: 351
+                        }, 33).wait(100).call(function () {
+                            e()
+                        })
+                }
+            }, i
+        }
+        return o(i, t), i.prototype.initialize = function (t) {
+            switch (this._type = t, this._vibrateR = 4, this._vibrateWidth = 6, this._pini = 0, this._isPin = !1, this._isSwing = !1, this._clickLayer = new PIXI.Graphics, this._clickLayer.beginFill(0, 0), this._clickLayer.drawRect(0, 0, r.default.width, r.default.height), this._clickLayer.endFill(), this._bg = new PIXI.Graphics, this._bg.beginFill(0, 1), this._bg.drawRect(0, 0, r.default.width, r.default.height), this._bg.endFill(), this._bg.alpha = 0, this._compass = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(15)), this._compass.anchor.set(.5), this._compass.position.set(600, 360), this._compass.alpha = 0, this._compass.scale.set(1.36, 1.36), this._light = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(16)), this._light.anchor.set(.5), this._light.position.set(600, 360), this._light.alpha = 0, this._light.scale.set(1.36, 1.36), this._pin = new PIXI.Sprite(l.SALLY_MAP_PARTS.getTexture(17)), this._pin.anchor.set(.5), this._pin.position.set(600, 360), this._pin.alpha = 0, this._pin.scale.set(1.36, 1.36), this._txtBox = this.createSprite(7, .5, .5, 915, 585, 0), this._text = new a.TextBox(27, "black"), this._text.position.set(705, 573), this._text.alpha = 0, this.addChild(this._bg), this.addChild(this._compass), this.addChild(this._pin), this.addChild(this._light), this.addChild(this._txtBox), this.addChild(this._text), this._type) {
+                case 1:
+                    this._step = 16, this._message1 = "\u3048\u30fc\uff1f\u3089\u3057\u3093\u3070\u3093\u3001\u307e\u308f\u3059\u306e\u30fc\uff1f", this._message2 = "\u2026\u2026\u3093", this._message3 = "\u2026\u2026\u3042\u3044", this._girl = this.createSprite(0, .5, .5, 915, 450, 0);
+                    break;
+                case 2:
+                    this._step = 15, this._message1 = "\u3088\u30fc\u3057\u3001\u3089\u3057\u3093\u3070\u3093\u307e\u308f\u3059\u3088\u30fc\uff01", this._message2 = "\u3048\u3044\u3063", this._message3 = "\u3053\u3053\u3063", this._girl = this.createSprite(2, .5, .5, 915, 450, 0);
+                    break;
+                case 3:
+                    this._step = 0, this._message1 = "\u306f\u3084\u304f\u306f\u3084\u304f\u30fc\uff01", this._message2 = "\u3048\u3044\u3048\u3044\u3048\u30fc\u3044\u3063", this._message3 = "\u3068\u307e\u308c\u30fc\u3063", this._girl = this.createSprite(4, .5, .5, 915, 450, 0);
+                    break;
+                case 4:
+                    this._step = 0, this._message1 = "\u3089\u3057\u3093\u3070\u3093\u3092\u307e\u308f\u3057\u3066\u306d\uff01", this._message2 = "\u3048\u3044\u3063", this._message3 = "\u305d\u308c\u3063", this._girl = this.createSprite(6, .5, .5, 1185, 315, 0)
             }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
-                get: function () {
-                    return this._btn_yes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_no", {
-                get: function () {
-                    return this._btn_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._box.texture = s.MAP_COMMON.getTexture(74), this._beak.texture = s.MAP_COMMON.getTexture(75);
-                var t = s.MAP_COMMON.getTexture(97),
-                    e = s.MAP_COMMON.getTexture(98);
-                this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(83), e = s.MAP_COMMON.getTexture(84), this._btn_no.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_no.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_no.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_yes.dispose(), this._btn_no.dispose()
-            }, e
-        }(PIXI.Container),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    r.SE.play("225"), i._over.alpha = 1
-                }, i._onMouseOut = function () {
-                    i._over.alpha = 0
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+            this._text.text = this._message1, this.addChild(this._girl), this.addChild(this._clickLayer)
+        }, i.prototype.playRashinbanSE = function () {
+            _.SE.play("250")
+        }, i.prototype.updateGirlSwing = function () {
+            this._step += .5, this._girl.position.y = 353 + 10 * Math.sin(this._step / 6)
+        }, i.prototype.updateRotate = function () {
+            var t = this;
+            switch (this._type) {
+                case 1:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(360)
+                    }, 700).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    });
+                    break;
+                case 2:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(720 + this._targetR)
+                    }, 1e3).call(function () {
+                        t._text.text = t._message3, t.vibrateCompass()
+                    });
+                    break;
+                case 3:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(1080)
+                    }, 700).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    }), createjs.Tween.get(null).wait(700).addEventListener("change", function () {
+                        t._step % 12 < 6 ? t._girl.texture = u.MAP_COMPASS.getTexture(5) : t._girl.texture = u.MAP_COMPASS.getTexture(4), t._step++
+                    });
+                    break;
+                case 4:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(2160)
+                    }, 900).call(function () {
+                        t._text.text = t._message3, t.speedDown()
+                    })
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e
-        }(PIXI.Container)
+        }, i.prototype.speedDown = function () {
+            var t = this;
+            this._compass.rotation, Math.PI;
+            switch (this._type) {
+                case 1:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(360 + this._targetR)
+                    }, 600, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    });
+                    break;
+                case 3:
+                    this._span = 0, createjs.Tween.get(this._compass).to({
+                        rotation: n(1440 + this._targetR)
+                    }, 1300, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    }), createjs.Tween.get(null).wait(1300).addEventListener("change", function () {
+                        2 == ++t._span && (t._girl.position.y += t._vibrateWidth, t._vibrateWidth *= -.98, t._span = 0)
+                    });
+                    break;
+                case 4:
+                    createjs.Tween.get(this._compass).to({
+                        rotation: n(2520 + this._targetR)
+                    }, 700, createjs.Ease.quadOut).call(function () {
+                        t.outAnimation()
+                    })
+            }
+        }, i.prototype.vibrateCompass = function () {
+            var t = this;
+            this._span = 0, this._girl.texture = u.MAP_COMPASS.getTexture(3), createjs.Tween.get(null).wait(400).addEventListener("change", function () {
+                2 == ++t._span && (t._compass.rotation += n(t._vibrateR), t._vibrateR *= -1, t._span = 0)
+            }), createjs.Tween.get(null).wait(400).call(function () {
+                t._compass.rotation = n(t._targetR), t.outAnimation()
+            })
+        }, i.prototype.updatePinMove = function () {
+            if (6 == ++this._pini) {
+                var t = 41 * Math.random() / 10 - 2;
+                this._pin.rotation += n(t), this._pin.rotation > e.PIN_SWING_VOL ? this._pin.rotation = e.PIN_SWING_VOL : this._pin.rotation < -e.PIN_SWING_VOL && (this._pin.rotation = -e.PIN_SWING_VOL), this._pini = 0
+            }
+        }, i.prototype.outAnimation = function () {
+            var t = this,
+                e = function () {
+                    switch (t._type) {
+                        case 1:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(0);
+                            break;
+                        case 2:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(2);
+                            break;
+                        case 3:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(4);
+                            break;
+                        case 4:
+                            t._girl.texture = u.MAP_COMPASS.getTexture(6)
+                    }
+                },
+                i = null;
+            switch (this._type) {
+                case 1:
+                case 2:
+                case 3:
+                    i = function () {
+                        createjs.Tween.get(t._girl).to({
+                            alpha: 0
+                        }, 433)
+                    };
+                    break;
+                case 4:
+                    i = function () {
+                        createjs.Tween.get(t._girl).to({
+                            x: 1185,
+                            y: t._girl.y - 53,
+                            alpha: 0
+                        }, 433)
+                    }
+            }
+            createjs.Tween.get(null).wait(800).call(function () {
+                t._isSwing = !1, e(), createjs.Tween.get(t._compass).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._compass.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._pin).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._pin.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._light).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._light.scale).to({
+                    x: 1.36,
+                    y: 1.36
+                }, 300), createjs.Tween.get(t._text).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._txtBox).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(t._bg).to({
+                    alpha: 0
+                }, 300), i()
+            }).wait(433).call(function () {
+                t.animateEnd()
+            })
+        }, i.prototype.animateEnd = function () {
+            this._isPin = !1, this._runTween.removeAllEventListeners("change"), this._runTween.setPaused(!0), createjs.Tween.removeTweens(this._runTween.target), null != this._callBack && this._callBack()
+        }, i.prototype.createSprite = function (t, e, i, n, o, r) {
+            var s = new PIXI.Sprite(u.MAP_COMPASS.getTexture(t));
+            return s.anchor.x = e, s.anchor.y = i, s.position.x = n, s.position.y = o, s.alpha = r, s
+        }, i
+    }(PIXI.Container);
+    e.AnimCompass = c
 }

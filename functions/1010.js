@@ -19,25 +19,48 @@ const function1010 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(170),
-        r = i(4),
-        s = i(33),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._name = new r.TextBox(30, 4999235), e._name.position.set(193, 129), e.addChild(e._name), e._level = new r.TextBox(26, 4999235), e._level.anchor.set(1, 0), e._level.position.set(319, 192), e.addChild(e._level), e._rank_name = new r.TextBox(19, 4999235), e._rank_name.position.set(324, 198), e.addChild(e._rank_name), e._exp = new r.TextBox(19, 4999235), e._exp.position.set(363, 235), e.addChild(e._exp), e._comment = new r.TextBox(16, 4999235), e._comment.position.set(151, 286), e.addChild(e._comment), e._friend_num = new r.TextBox(20, 4999235), e._friend_num.anchor.set(1, 0), e._friend_num.position.set(645, 344), e.addChild(e._friend_num), e._ship_num = new r.TextBox(20, 4999235), e._ship_num.anchor.set(1, 0), e._ship_num.position.set(645, 375), e.addChild(e._ship_num), e._slot_num = new r.TextBox(20, 4999235), e._slot_num.anchor.set(1, 0), e._slot_num.position.set(645, 407), e.addChild(e._slot_num), e._furniture_num = new r.TextBox(20, 4999235), e._furniture_num.anchor.set(1, 0), e._furniture_num.position.set(645, 438), e.addChild(e._furniture_num), e._rank_icon = new s.RankIcon, e._rank_icon.position.set(135, 181), e.addChild(e._rank_icon), e._medal = new o.MedalIcon, e._medal.position.set(594, 543), e.addChild(e._medal), e
+    var o = i(4),
+        r = i(8),
+        s = i(37),
+        a = i(1011),
+        _ = i(1012),
+        l = i(373),
+        u = i(1013),
+        c = i(1014),
+        h = i(374),
+        p = i(1),
+        d = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClose = function () {
+                    null != n._cb_onClose && n._cb_onClose()
+                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._medal.initialize()
+                this._bg.initialize(), this._detail.initialize();
+                for (var t = 0; t < 6; t++) {
+                    var e = new u.CompRivalShip;
+                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
+                }
+                this._btn.initialize(), this._btn_close.initialize()
             }, e.prototype.update = function (t) {
-                this._name.text = t.name, this._level.text = t.level.toString(), this._rank_name.text = t.rank_name, this._exp.text = t.exp_now + "/" + t.exp_next, this._comment.text = t.comment, this._friend_num.text = t.friend_num.toString();
-                var e = t.ship_nums;
-                this._ship_num.text = e[0] + "/" + e[1];
-                var i = t.slot_nums;
-                this._slot_num.text = i[0] + "/" + i[1], this._furniture_num.text = t.furniture_num.toString(), this._rank_icon.update(t.rank), this._medal.update(t.medal_num, 9466926)
+                this._detail.update(t), this._flag.update(t.flag_type);
+                for (var e = 0; e < this._ships.length; e++) {
+                    var i = this._ships[e],
+                        n = t.ships[e];
+                    i.update(n)
+                }
+            }, e.prototype.activate = function () {
+                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
+            }, e.prototype.deactivate = function () {
+                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._name = null, this._level.destroy(), this._level = null, this._rank_name.destroy(), this._rank_name = null, this._exp.destroy(), this._exp = null, this._comment.destroy(), this._comment = null, this._friend_num.destroy(), this._friend_num = null, this._ship_num.destroy(), this._ship_num = null, this._slot_num.destroy(), this._slot_num = null, this._furniture_num.destroy(), this._furniture_num = null, this._rank_icon = null, this._medal.dispose(), this._medal = null
+                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
+                for (var t = 0, e = this._ships; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
             }, e
         }(PIXI.Container);
-    e.UserinfoPanelInfoDetail = a
+    e.UserinfoPanel = d
 }

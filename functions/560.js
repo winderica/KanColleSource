@@ -33,8 +33,8 @@ const function560 = function (t, e, i) {
         f = i(607),
         y = i(608),
         m = i(611),
-        v = i(612),
-        g = i(616),
+        g = i(612),
+        v = i(616),
         b = i(643),
         w = i(646),
         x = i(1),
@@ -45,7 +45,7 @@ const function560 = function (t, e, i) {
                     1 == e._flagShip_layer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : 1 == e.furnitureLayer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : e._underLayer.buttonMode = !1
                 }, e._onClick = function (t) {
                     e._flagShip_layer.onClick(t.data) || e._furniture_layer.onClick(t.data) || e._only_furniture && e.showPortUI(!0)
-                }, e._flagShip_layer = new y.FlagShipLayer, e.addChild(e._flagShip_layer), e._underLayer = new r.AreaBox(0), e.addChild(e._underLayer), e._ringMenu = new v.RingMenuLayer, e.addChild(e._ringMenu), e.addChild(e._contentLayer), e.addChild(e._fadeLayer), e._logBox = new u.LogBox, e.addChild(e._logBox), e._upperBar = new d.UpperBar, e.addChild(e._upperBar), e._frame_layer = new m.FrameLayer, e.addChild(e._frame_layer), e._sideMenu = new h.SideMenu, e.addChild(e._sideMenu), e._tutorial = new p.Tutorial(function () {
+                }, e._flagShip_layer = new y.FlagShipLayer, e.addChild(e._flagShip_layer), e._underLayer = new r.AreaBox(0), e.addChild(e._underLayer), e._ringMenu = new g.RingMenuLayer, e.addChild(e._ringMenu), e.addChild(e._contentLayer), e.addChild(e._fadeLayer), e._logBox = new u.LogBox, e.addChild(e._logBox), e._upperBar = new d.UpperBar, e.addChild(e._upperBar), e._frame_layer = new m.FrameLayer, e.addChild(e._frame_layer), e._sideMenu = new h.SideMenu, e.addChild(e._sideMenu), e._tutorial = new p.Tutorial(function () {
                     new a.UpdateTutorialAPI(100).start(), e._tutorial.dispose(), e.removeChild(e._tutorial), e._tutorial = null
                 }), e.addChild(e._tutorial), e._clock_layer = new f.ClockLayer, e.addChild(e._clock_layer), e._circle = new _.Circle, e.addChild(e._circle), e.addChild(e._overLayer), e._expedition_alert = new l.ExpeditionAlert, e._expedition_alert.visible = !1, e.addChild(e._expedition_alert), e._option = new c.Option, e.addChild(e._option), e._underLayer.on(x.EventType.MOUSEMOVE, e._onMouseMove), e._underLayer.on(x.EventType.CLICK, e._onClick), e
             }
@@ -126,7 +126,7 @@ const function560 = function (t, e, i) {
             }, e.prototype.changeSkin = function (t) {
                 this._upperBar.changeSkin(t), this._frame_layer.changeSkin(t), this._circle.changeSkin(t)
             }, e.prototype.getPreInitializeTask = function (t) {
-                return new g.PreInitializeTask(t)
+                return new v.PreInitializeTask(t)
             }, e.prototype.getInitializeTask = function (t) {
                 return new b.InitializeTask(t)
             }, e.prototype.getFinalizeTask = function () {

@@ -76,10 +76,10 @@ const function455 = function (t, e, i) {
                         f = Math.pow(d, 3) * l.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
                         y = Math.pow(d, 3) * l.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
                         m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        v = t.x - f,
-                        g = (e - t.x) / v,
-                        b = i / (100 + g) * 100,
-                        w = i / (100 + g) * g;
+                        g = t.x - f,
+                        v = (e - t.x) / g,
+                        b = i / (100 + v) * 100,
+                        w = i / (100 + v) * v;
                     this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
                         x: e,
                         y: m

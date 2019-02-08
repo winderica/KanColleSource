@@ -377,6 +377,10 @@ const function45 = function (t, e, i) {
                 y: -5,
                 r: 10,
                 sx: -1
+            },
+            316: {
+                r: -25,
+                sx: -1
             }
         }, t
     }();

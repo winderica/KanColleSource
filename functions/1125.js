@@ -19,25 +19,30 @@ const function1125 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(27),
+    var o = i(27),
+        r = i(1126),
+        s = i(1127),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._message = new o.TextBox(22, 1381651), n._message.position.set(123, 77), n.addChild(n._message), n._icon = new PIXI.Sprite, n._icon.position.set(152, 144), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 260), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 260), n.addChild(n._btn_back), n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(10), this._message.text = "\u300c\u83f1\u9905\u300d\u3092\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f", 21 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(7) : 23 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(6) : 22 == t && (this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(8));
-                var e = r.ITEM_ILIST_HISHIMOCHI.getTexture(2);
-                this._btn_yes.initialize(e), e = r.ITEM_ILIST_HISHIMOCHI.getTexture(1), this._btn_back.initialize(e)
+            return n(e, t), e.prototype.initialize = function () {
+                this._top_view.initialize()
             }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_back.activate()
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
             }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_back.deactivate()
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(PIXI.Sprite);
-    e.ConfirmView = a
+        }(o.DialogBase);
+    e.HishimochiUseDialog = a
 }

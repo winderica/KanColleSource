@@ -18,15 +18,15 @@ const function486 = function (t, e, i) {
         f = i(514),
         y = i(516),
         m = i(518),
-        v = i(519),
-        g = i(521),
+        g = i(519),
+        v = i(521),
         b = i(523),
         w = i(525),
         x = i(527),
         I = i(530),
         T = function () {
             function t() {
-                this._const = new m.ServerConstModelEdit, this._basic = new o.BasicModelEdit, this._incentive = new c.IncentiveModelHolderEdit, this._log = new p.LogModelHolder, this._furniture = new u.FurnitureModelHolderEdit, this._furniture_graph = new l.FurnitureGraphModelHolder, this._deck = new s.DeckModelHolder, this._shiptype = new b.ShipTypeModelHolderEdit, this._ship = new g.ShipModelHolder, this._ship_graph = new v.ShipGraphModelHolder, this._ship_upgrade = new w.ShipUpgradeModelHolderEdit, this._slot = new x.SlotitemModelHolderEdit, this._useItem = new I.UseItemModelHolderEdit, this._kdock = new h.KDockModelHolderEdit, this._ndock = new f.NDockModelHolder, this._map = new d.MapModelHolderEdit, this._airunit = new n.AirUnitModelHolderEdit, this._mst_bgm = new r.BGMMstModelHolderEdit, this._expedition = new _.ExpeditionModelHolderEdit, this._payitem = new y.PayItemModelHolderEdit, this._equip = new a.EquipModelHolder
+                this._const = new m.ServerConstModelEdit, this._basic = new o.BasicModelEdit, this._incentive = new c.IncentiveModelHolderEdit, this._log = new p.LogModelHolder, this._furniture = new u.FurnitureModelHolderEdit, this._furniture_graph = new l.FurnitureGraphModelHolder, this._deck = new s.DeckModelHolder, this._shiptype = new b.ShipTypeModelHolderEdit, this._ship = new v.ShipModelHolder, this._ship_graph = new g.ShipGraphModelHolder, this._ship_upgrade = new w.ShipUpgradeModelHolderEdit, this._slot = new x.SlotitemModelHolderEdit, this._useItem = new I.UseItemModelHolderEdit, this._kdock = new h.KDockModelHolderEdit, this._ndock = new f.NDockModelHolder, this._map = new d.MapModelHolderEdit, this._airunit = new n.AirUnitModelHolderEdit, this._mst_bgm = new r.BGMMstModelHolderEdit, this._expedition = new _.ExpeditionModelHolderEdit, this._payitem = new y.PayItemModelHolderEdit, this._equip = new a.EquipModelHolder
             }
             return Object.defineProperty(t.prototype, "const", {
                 get: function () {

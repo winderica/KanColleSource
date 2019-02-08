@@ -59,12 +59,12 @@ const function625 = function (t, e, i) {
                     e.x = n, e.y = 720, t._layer.addChild(e);
                     var s = new c.MeltIntoSlotitemFilter(o, e.width, t._direction);
                     e.filters = [s];
-                    for (var a = new PIXI.Point(n, 720), h = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, h, p, 1e3, d), y = createjs.Tween.get(e), m = 0, v = f; m < v.length; m++) {
-                        var g = v[m];
+                    for (var a = new PIXI.Point(n, 720), h = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, h, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
+                        var v = g[m];
                         y.to({
-                            x: g.x,
-                            y: g.y
-                        }, g.t)
+                            x: v.x,
+                            y: v.y
+                        }, v.t)
                     }
                     var b = {
                         rate: 1,
@@ -107,12 +107,12 @@ const function625 = function (t, e, i) {
                     e.x = n, e.y = 720, t._layer.addChild(e);
                     var s = new h.MeltIntoUseitemFilter(o, 240, e.width, e.height, t._direction);
                     e.filters = [s];
-                    for (var a = new PIXI.Point(n, 720), c = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, c, p, 1e3, d), y = createjs.Tween.get(e), m = 0, v = f; m < v.length; m++) {
-                        var g = v[m];
+                    for (var a = new PIXI.Point(n, 720), c = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, c, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
+                        var v = g[m];
                         y.to({
-                            x: g.x,
-                            y: g.y
-                        }, g.t)
+                            x: v.x,
+                            y: v.y
+                        }, v.t)
                     }
                     var b = {
                         rate: 1,

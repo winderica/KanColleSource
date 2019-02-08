@@ -19,37 +19,28 @@ const function1136 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(27),
-        s = i(1137),
-        a = i(1138),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new a.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(327, 192), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate()
-                }, i._onSelectFromConfirm = function (t) {
-                    if (-1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._confirm_view.deactivate(), i._top_view.activate()
-                    } else {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t), o.SE.play("215")
-                    }
-                }, i._cb_onResult = e, i._top_view = new s.TopView(i._onSelectFromTop), i._top_view.position.set(293, 205), i.addChild(i._top_view), i
+    var o = i(74),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.alpha = 0, e.visible = !1, e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._count = t, this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
-            }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(12)
+            }, e.prototype.show = function () {
+                var t = this;
+                this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({
+                    alpha: 1
+                }, 300).wait(2e3).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.visible = !1
+                })
+            }, e.prototype.hide = function () {
+                this._stopTween(), this.alpha = 0, this.visible = !1
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(r.DialogBase);
-    e.SetsubunUseDialog = _
+        }(PIXI.Sprite);
+    e.RewardSelectDialogFurnitureAlert = r
 }

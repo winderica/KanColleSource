@@ -19,40 +19,37 @@ const function1138 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(406),
-        s = i(27),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n.texture = r.ITEM_ILIST_SETSUBUN.getTexture(22), n._img = new PIXI.Sprite, n._img.position.set(198, 116), n.addChild(n._img);
-                var o = r.ITEM_ILIST_SETSUBUN.getTexture(8),
-                    a = r.ITEM_ILIST_SETSUBUN.getTexture(9);
-                return n._btn_yes = new s.BtnBase(e, i), n._btn_yes.initialize(o, a), n._btn_yes.position.set(200, 274), n.addChild(n._btn_yes), o = r.ITEM_ILIST_SETSUBUN.getTexture(7), n._btn_back = new s.BtnBase(-1, i), n._btn_back.initialize(o), n._btn_back.position.set(394, 274), n.addChild(n._btn_back), n
+    var o = i(6),
+        r = i(27),
+        s = i(1139),
+        a = i(1140),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new a.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(327, 192), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate()
+                }, i._onSelectFromConfirm = function (t) {
+                    if (-1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._confirm_view.deactivate(), i._top_view.activate()
+                    } else {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t), o.SE.play("215")
+                    }
+                }, i._cb_onResult = e, i._top_view = new s.TopView(i._onSelectFromTop), i._top_view.position.set(293, 205), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btn_yes.dispose(), this._btn_back.dispose()
-            }, e.prototype.initialize = function (t, e) {
-                var i = o.default.model.useItem.getMaterialCounts(),
-                    n = i.devKit;
-                switch (t) {
-                    case 81:
-                        e < 2 && (this._btn_yes.enabled = !1), this._img.texture = r.ITEM_ILIST_SETSUBUN.getTexture(23), this._img.position.set(169, 50);
-                        break;
-                    case 82:
-                        e < 4 && (this._btn_yes.enabled = !1), this._img.texture = r.ITEM_ILIST_SETSUBUN.getTexture(24), this._img.position.set(165, 50);
-                        break;
-                    case 83:
-                        (e < 8 || n < 10) && (this._btn_yes.enabled = !1), this._img.texture = r.ITEM_ILIST_SETSUBUN.getTexture(25), this._img.position.set(154, 50);
-                        break;
-                    case 84:
-                        (e < 20 || n < 40) && (this._btn_yes.enabled = !1), this._img.texture = r.ITEM_ILIST_SETSUBUN.getTexture(26), this._img.position.set(154, 50)
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize()
             }, e.prototype.activate = function () {
-                this.visible = !0, this._btn_yes.activate(), this._btn_back.activate()
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
             }, e.prototype.deactivate = function () {
-                this.visible = !1, this._btn_yes.deactivate(), this._btn_back.deactivate()
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(PIXI.Sprite);
-    e.ConfirmView = a
+        }(r.DialogBase);
+    e.SetsubunUseDialog = _
 }

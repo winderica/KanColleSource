@@ -42,13 +42,13 @@ const function463 = function (t, e, i) {
                             i.add(y);
                             var m = new h(this._scene, this._data, this._damage_cutin, _, 1500);
                             if (i.add(m), 1 == this._data.isShield(a)) {
-                                var v = this._scene.view.bannerGroupLayer.getShieldTargetBanner(l); - 1 == n.indexOf(v) && n.push(v)
+                                var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(l); - 1 == n.indexOf(g) && n.push(g)
                             }
                         }
                     }
                 }
-                for (var g = 0, b = n; g < b.length; g++) {
-                    var w = b[g];
+                for (var v = 0, b = n; v < b.length; v++) {
+                    var w = b[v];
                     i.add(new p(this._scene, w, 1500))
                 }
                 s.SE.play("112"), i.start(function () {

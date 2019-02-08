@@ -279,6 +279,9 @@ const function522 = function (t, e, i) {
                 }
             }, t.prototype.getClassType = function () {
                 return o.ObjUtil.getNumber(this._o, "api_ctype")
+            }, t.prototype.getSlotitemTousaiMax = function (t) {
+                var e = o.ObjUtil.getNumArray(this._o, "api_maxeq");
+                return null == e ? 0 : e[t]
             }, t
         }();
     e.ShipMstModel = r

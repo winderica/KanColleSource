@@ -19,45 +19,29 @@ const function1129 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(74),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(1),
+        r = i(74),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClickYes = function () {
+                    null != i._cb_onClick && i._cb_onClick(!0)
+                }, i._onClickNo = function () {
+                    null != i._cb_onClick && i._cb_onClick(!1)
+                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (null == this._star && (this._star = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(13)), this.addChild(this._star)), null == this._plus && (this._plus = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(23)), this._plus.position.set(21, 5), this.addChild(this._plus)), null == this._level && (this._level = new PIXI.Sprite, this._level.position.set(39, 2), this.addChild(this._level)), t < 1 || 9 < t) this._star.visible = !1, this._plus.visible = !1, this._level.visible = !1;
-                else {
-                    switch (t) {
-                        case 1:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(14);
-                            break;
-                        case 2:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(15);
-                            break;
-                        case 3:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(16);
-                            break;
-                        case 4:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(17);
-                            break;
-                        case 5:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(18);
-                            break;
-                        case 6:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(19);
-                            break;
-                        case 7:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(20);
-                            break;
-                        case 8:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(21);
-                            break;
-                        case 9:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(22)
-                    }
-                    this._star.visible = !0, this._plus.visible = !0, this._level.visible = !0
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
+                var e = new PIXI.Sprite(t),
+                    i = Math.min(135 / e.width, 135 / e.height);
+                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
+            }, e.prototype.activate = function () {
+                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(PIXI.Container);
-    e.LevelStar = r
+        }(PIXI.Sprite);
+    e.RewardSelectConfirm = s
 }

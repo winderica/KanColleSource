@@ -33,8 +33,8 @@ const function736 = function (t, e, i) {
         f = i(739),
         y = i(740),
         m = i(744),
-        v = i(747),
-        g = i(748),
+        g = i(747),
+        v = i(748),
         b = i(749),
         w = i(750),
         x = i(751),
@@ -46,32 +46,51 @@ const function736 = function (t, e, i) {
                 var e = null !== t && t.apply(this, arguments) || this;
                 return e.combinedView = null, e._onClickDeck = function (t) {
                     if (e.deckId != t) {
-                        if (e.viewMode != p.ViewMode.DECK) {
+                        if (e.deckId = t, e.viewMode != p.ViewMode.DECK) {
                             var i = e.taskEditSupplyOther.pageIndex;
                             e.memoryOtherPageIndex = i, e.taskEditSupplyOther.dispose(), e.taskEditSupplyOther = null, e._startTaskEditSupplyDeck(t)
                         } else e.taskEditSupplyDeck.changeDeck(t);
-                        e.deckSelectView.focusDeck(t), e.viewMode = p.ViewMode.DECK, e.deckId = t
+                        e.deckSelectView.focusDeck(t), e.viewMode = p.ViewMode.DECK
                     }
                 }, e.memoryOtherPageIndex = 0, e._onClickOther = function () {
-                    null != e.deckId && e.viewMode != p.ViewMode.OTHER && (e.taskEditSupplyDeck.dispose(), e.taskEditSupplyDeck = null, e.layerTaskMain.removeChildren(), e.deckSelectView.focusOther(), e._startTaskEditSupplyOther(), e.deckId = null, e.viewMode = p.ViewMode.OTHER)
-                }, e._onUpdateCheckForDeck = function () {
+                    null != e.deckId && e.viewMode != p.ViewMode.OTHER && (e.deckId = null, e.taskEditSupplyDeck.dispose(), e.taskEditSupplyDeck = null, e.layerTaskMain.removeChildren(), e.deckSelectView.focusOther(), e._startTaskEditSupplyOther(), e.viewMode = p.ViewMode.OTHER)
+                }, e._onUpdateCheckForDeck = function (t) {
+                    var i = e.taskEditSupplyDeck.getSupplyEdit(),
+                        n = i.getMemShipIds(),
+                        o = h.SupplyUtil.CalcRequireMaterials(n),
+                        s = o.ammo,
+                        a = o.fuel,
+                        _ = r.default.model.useItem.get(31).count,
+                        l = r.default.model.useItem.get(32).count,
+                        u = s <= l,
+                        c = a <= _;
+                    e._updateTypeSelectButton(u, c, s, a), e._updateButtonAlls(), t && e._updateShowcase(u, c, s, a)
+                }, e._onUpdateCheckFoShowcase = function () {
                     var t = e.taskEditSupplyDeck.getSupplyEdit(),
                         i = t.getMemShipIds(),
                         n = h.SupplyUtil.CalcRequireMaterials(i),
                         o = n.ammo,
-                        r = n.fuel;
-                    e._updateShowcase(o, r)
+                        s = n.fuel,
+                        a = r.default.model.useItem.get(31).count,
+                        _ = r.default.model.useItem.get(32).count,
+                        l = o <= _,
+                        u = s <= a;
+                    e._updateShowcase(l, u, o, s)
                 }, e._onUpdateCheckForOther = function () {
                     var t = e.taskEditSupplyOther.getSupplyEdit(),
                         i = t.getMemShipIds(),
                         n = h.SupplyUtil.CalcRequireMaterials(i),
                         o = n.ammo,
-                        r = n.fuel;
-                    e._updateShowcase(o, r)
+                        s = n.fuel,
+                        a = r.default.model.useItem.get(31).count,
+                        _ = r.default.model.useItem.get(32).count,
+                        l = o <= _,
+                        u = s <= a;
+                    e._updateShowcase(l, u, o, s), e._updateTypeSelectButton(l, u, o, s), e.supplyTypeSelectButton.updateButton(!1, !1)
                 }, e
             }
             return n(e, t), e.prototype.preInitialize = function () {
-                this.layerBase = new PIXI.Container, this.con_bg1 = new PIXI.Sprite(O.COMMON_MAIN.getTexture(12)), this.con_bg1.position.set(150, 135), this.con_bg1.alpha = .6, this.layerBase.addChild(this.con_bg1), this.deckSelectView = new v.DeckSelectView, this.deckSelectView.position.set(203, 164), this.layerBase.addChild(this.deckSelectView), this.materialCounterView = new w.MaterialCounterView, this.materialCounterView.position.set(595, 158), this.layerBase.addChild(this.materialCounterView), this.headerMain = new g.HeaderMain, this.headerMain.position.set(0, 102), this.layerBase.addChild(this.headerMain), r.default.model.deck.isCombined() && (this.combinedView = new _.CombinedView, this.combinedView.position.set(196, 155), this.layerBase.addChild(this.combinedView)), this.layerTaskOverlay = new PIXI.Container, this.supplyShowcaseView = new x.SupplyShowcaseView, this.supplyShowcaseView.position.set(900, 135), this.layerTaskOverlay.addChild(this.supplyShowcaseView), this.supplyTypeSelectButton = new I.SupplyTypeSelectButton, this.supplyTypeSelectButton.position.set(14, 501), this.supplyShowcaseView.addChild(this.supplyTypeSelectButton), this.headerSupply = new b.HeaderSupply, this.headerSupply.position.set(900, 102), this.layerTaskOverlay.addChild(this.headerSupply), this.txt_supply = new PIXI.Sprite(T.SUPPLY_MAIN.getTexture(26)), this.layerTaskOverlay.addChild(this.txt_supply), this.layerTaskMain = new PIXI.Container, this.otherShips = r.default.model.ship.getAllOther(), s.ShipUtil.sort(this.otherShips, 1), this.addChild(this.layerBase, this.layerTaskMain, this.layerTaskOverlay)
+                this.layerBase = new PIXI.Container, this.con_bg1 = new PIXI.Sprite(O.COMMON_MAIN.getTexture(12)), this.con_bg1.position.set(150, 135), this.con_bg1.alpha = .6, this.layerBase.addChild(this.con_bg1), this.deckSelectView = new g.DeckSelectView, this.deckSelectView.position.set(203, 164), this.layerBase.addChild(this.deckSelectView), this.materialCounterView = new w.MaterialCounterView, this.materialCounterView.position.set(595, 158), this.layerBase.addChild(this.materialCounterView), this.headerMain = new v.HeaderMain, this.headerMain.position.set(0, 102), this.layerBase.addChild(this.headerMain), r.default.model.deck.isCombined() && (this.combinedView = new _.CombinedView, this.combinedView.position.set(196, 155), this.layerBase.addChild(this.combinedView)), this.layerTaskOverlay = new PIXI.Container, this.supplyShowcaseView = new x.SupplyShowcaseView, this.supplyShowcaseView.position.set(900, 135), this.layerTaskOverlay.addChild(this.supplyShowcaseView), this.supplyTypeSelectButton = new I.SupplyTypeSelectButton, this.supplyTypeSelectButton.position.set(18, 506), this.supplyShowcaseView.addChild(this.supplyTypeSelectButton), this.headerSupply = new b.HeaderSupply, this.headerSupply.position.set(900, 102), this.layerTaskOverlay.addChild(this.headerSupply), this.txt_supply = new PIXI.Sprite(T.SUPPLY_MAIN.getTexture(32)), this.layerTaskOverlay.addChild(this.txt_supply), this.layerTaskMain = new PIXI.Container, this.otherShips = r.default.model.ship.getAllOther(), s.ShipUtil.sort(this.otherShips, 1), this.addChild(this.layerBase, this.layerTaskMain, this.layerTaskOverlay)
             }, e.prototype.initialize = function () {
                 var t = r.default.model.deck.getAll().length,
                     e = r.default.model.ship.getAllOther(),
@@ -97,6 +116,32 @@ const function736 = function (t, e, i) {
                         })
                     },
                     n = function () {
+                        e.taskEditSupplyDeck.onMouseOverSupplyAll2(), e._onUpdateCheckFoShowcase()
+                    },
+                    o = function () {
+                        e.taskEditSupplyDeck.onMouseOutSupplyAll2()
+                    },
+                    s = function () {
+                        r.default.view.clickGuard = !0, e.taskEditSupplyDeck.onClickSupplyAll2(), e._onUpdateCheckForDeck(!0);
+                        var t, i = e.taskEditSupplyDeck.getSupplyEdit(),
+                            n = i.getMemShipIds(),
+                            o = r.default.model.deck.get(e.deckId),
+                            s = e.getDeckSupllyShip(),
+                            a = h.SupplyUtil.CalcRequireMaterials(s);
+                        t = 0 == a.ammo && 0 == a.fuel && a.baux > 0 ? r.default.model.ship.get(n[0]).mstID : o.getShipModel(0).mstID, e._CallSupplyAll(n, t, function () {
+                            e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
+                        })
+                    },
+                    a = function () {
+                        r.default.view.clickGuard = !0, e.taskEditSupplyDeck.onClickSupplyBaux();
+                        var t = e.taskEditSupplyDeck.getSupplyEdit(),
+                            i = t.getMemShipIds(),
+                            n = r.default.model.ship.get(i[0]).mstID;
+                        e._CallSupplyBaux(i, n, function () {
+                            e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
+                        })
+                    },
+                    _ = function () {
                         r.default.view.clickGuard = !0;
                         var t = e.taskEditSupplyDeck.getSupplyEdit(),
                             i = t.getMemShipIds();
@@ -104,7 +149,7 @@ const function736 = function (t, e, i) {
                             e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
                         })
                     },
-                    o = function () {
+                    l = function () {
                         r.default.view.clickGuard = !0;
                         var t = e.taskEditSupplyDeck.getSupplyEdit(),
                             i = t.getMemShipIds();
@@ -112,7 +157,7 @@ const function736 = function (t, e, i) {
                             e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
                         })
                     };
-                this.taskEditSupplyDeck = new y.TaskEditSupplyDeck(this.layerTaskMain), this.taskEditSupplyDeck.onUpdateSupplyEdit = this._onUpdateCheckForDeck, this.taskEditSupplyDeck.onClickSupplyAll = i, this.supplyTypeSelectButton.onClickAmmo = o, this.supplyTypeSelectButton.onClickFuel = n, this.supplyTypeSelectButton.onClickAll = i, this.taskEditSupplyDeck.start(t)
+                this.taskEditSupplyDeck = new y.TaskEditSupplyDeck(this.layerTaskMain), this.taskEditSupplyDeck.onUpdateSupplyEdit = this._onUpdateCheckForDeck, this.taskEditSupplyDeck.onClickSupplyAll = i, this.supplyTypeSelectButton.onClickAmmo = l, this.supplyTypeSelectButton.onClickFuel = _, this.supplyTypeSelectButton.onClickAll = i, this.supplyTypeSelectButton.onMouseOverAll2 = n, this.supplyTypeSelectButton.onMouseOutAll2 = o, this.supplyTypeSelectButton.onClickAll2 = s, this.supplyTypeSelectButton.onClickBaux = a, this.taskEditSupplyDeck.start(t)
             }, e.prototype._startTaskEditSupplyOther = function () {
                 var t = this;
                 this.taskEditSupplyOther = new m.TaskEditSupplyOther(this.layerTaskMain), this.taskEditSupplyOther.onUpdateSupplyEdit = this._onUpdateCheckForOther;
@@ -146,7 +191,15 @@ const function736 = function (t, e, i) {
                 this.viewMode = p.ViewMode.DECK, this.deckSelectView.onClickDeck = this._onClickDeck, this.deckSelectView.onClickOther = this._onClickOther;
                 var t = r.default.model.useItem.get(31).count,
                     e = r.default.model.useItem.get(32).count;
-                this.materialCounterView.update(t, e), this.deckSelectView.focusDeck(1), this._startTaskEditSupplyDeck(1), this.deckId = 1, this.combinedView && this.combinedView.activate()
+                this.materialCounterView.update(t, e), this.deckSelectView.focusDeck(1), this.deckId = 1, this._startTaskEditSupplyDeck(1), this.combinedView && this.combinedView.activate()
+            }, e.prototype.getDeckSupllyShip = function () {
+                for (var t = r.default.model.deck.get(this.deckId), e = t.getShipList(), i = [], n = 0; n < e.length; n++) {
+                    var o = e[n];
+                    if (o) {
+                        h.SupplyUtil.CheckRequireSupplyShipAll(o.memID) && i.push(o.memID)
+                    }
+                }
+                return i
             }, e.prototype._animationBauxTelop = function () {
                 createjs.Tween.get(this.txt_supply).to({
                     alpha: 0,
@@ -194,12 +247,38 @@ const function736 = function (t, e, i) {
                         n = r.default.model.useItem.get(32).count;
                     i.materialCounterView.update(t, n), o.usedBauxite && i._animationBauxTelop(), e()
                 })
-            }, e.prototype._updateShowcase = function (t, e) {
-                var i = r.default.model.useItem.get(31).count,
-                    n = r.default.model.useItem.get(32).count,
-                    o = t <= n,
-                    s = e <= i;
-                this.supplyTypeSelectButton.update(0 < e && s, 0 < t && o), this.supplyShowcaseView.updateAmmoCount(t, o), this.supplyShowcaseView.updateFuelCount(e, s), this.supplyShowcaseView.playAnimationAmmo(t), this.supplyShowcaseView.playAnimationFuel(e), this.supplyShowcaseView.hideAlert(), 0 == o && 0 == s ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u30fb\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == s ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == o && this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093")
+            }, e.prototype._CallSupplyBaux = function (t, e, i) {
+                var n = this;
+                r.default.view.clickGuard = !0;
+                var o = new l.APIConnector,
+                    s = new u.ChargeAPI(0, t);
+                o.add(s), 40 == r.default.model.basic.getTutorialProgress() && o.add(new c.UpdateTutorialAPI(50)), o.start(function () {
+                    r.default.sound.voice.play(e.toString(), 27), s.usedBauxite && n._animationBauxTelop(), i()
+                })
+            }, e.prototype._updateTypeSelectButton = function (t, e, i, n) {
+                this.supplyTypeSelectButton.update(0 < n && e, 0 < i && t), this.supplyShowcaseView.hideAlert(), 0 == t && 0 == e ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u30fb\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == e ? this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u71c3\u6599\u304c\u8db3\u308a\u307e\u305b\u3093") : 0 == t && this.supplyShowcaseView.showAlert("\u88dc\u7d66\u306b\u5fc5\u8981\u306a\u5f3e\u85ac\u304c\u8db3\u308a\u307e\u305b\u3093")
+            }, e.prototype._updateButtonAlls = function () {
+                if (null != r.default.model.deck.get(this.deckId).expedition) this.supplyTypeSelectButton.updateButton(!1, !1);
+                else {
+                    var t = this.getDeckSupllyShip(),
+                        e = h.SupplyUtil.CalcRequireMaterials(t),
+                        i = e.ammo,
+                        n = e.fuel,
+                        o = e.baux,
+                        s = r.default.model.useItem.get(31).count,
+                        a = r.default.model.useItem.get(32).count,
+                        _ = r.default.model.useItem.get(34).count,
+                        l = 0 < n || 0 < i || 0 < o,
+                        u = 0 < o,
+                        c = i <= a,
+                        p = n <= s,
+                        d = o <= _,
+                        f = u && d,
+                        y = l && p && c && d;
+                    this.supplyTypeSelectButton.updateButton(f, y)
+                }
+            }, e.prototype._updateShowcase = function (t, e, i, n) {
+                this.supplyShowcaseView.updateAmmoCount(i, t), this.supplyShowcaseView.updateFuelCount(n, e), this.supplyShowcaseView.playAnimationAmmo(i), this.supplyShowcaseView.playAnimationFuel(n)
             }, e.prototype.getPreInitializeTask = function (t) {
                 return new d.PreInitializeTask(this)
             }, e.prototype.getFinalizeTask = function () {

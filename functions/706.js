@@ -33,8 +33,8 @@ const function706 = function (t, e, i) {
         f = i(57),
         y = i(324),
         m = i(711),
-        v = i(712),
-        g = function (t) {
+        g = i(712),
+        v = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i.headIndex = 0, i.PAGE_NUM = 5, i.OPEN_KEY_ITEMID = 49, i._onClickBack = function () {
@@ -58,7 +58,7 @@ const function706 = function (t, e, i) {
                     })
                 }, i._onClickSave = function (t) {
                     var e = o.default.model.deck.get(i.deckId),
-                        n = new v.PresetRegisterAPI(i.deckId, t, e.name);
+                        n = new g.PresetRegisterAPI(i.deckId, t, e.name);
                     o.default.view.clickGuard = !0, _.SE.play("240"), n.start(function () {
                         _.SE.play("235");
                         var e = new Array,
@@ -152,7 +152,7 @@ const function706 = function (t, e, i) {
                 this.presetEditContainer.update(r, s, n, a), this.deckId = t
             }, e
         }(PIXI.Container);
-    e.PresetEditLayer = g;
+    e.PresetEditLayer = v;
     var b = function () {
         function t(t) {
             var e = this;

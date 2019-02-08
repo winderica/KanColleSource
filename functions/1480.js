@@ -28,35 +28,35 @@ const function1480 = function (t, e, i) {
             }
             return n(e, t), e.prototype._initializeMapImages = function () {
                 this._maps = [];
-                for (var t = 0; t < 3; t++) {
+                for (var t = 0; t < 2; t++) {
                     var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 93, e.alpha = 0, 2 == t && (e.y = 73), this._layer.addChild(e), this._maps.push(e)
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(3)][t], e.x = 339 + 287 * t, e.y = 84, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
                 }
             }, e.prototype._createMapShowTweens = function () {
                 return this.__createMapShowTweens(700)
             }, e.prototype._initializeStampImages = function () {
                 this._stamps = [];
-                for (var t = 0; t < 2; t++) {
+                for (var t = 0; t < 1; t++) {
                     var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(0), e.x = 432.5 + 225 * t, e.y = 245.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(0), e.x = 547.5 + 287 * t, e.y = 288.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
                 }
             }, e.prototype._createStampShowTweens = function () {
                 return this.__createStampShowTweens(700)
             }, e.prototype._showText = function () {
                 this.__showText(new _)
             }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(1),
+                var t = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(1),
                     e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(1003.5, 294.5), e.alpha = 0, e
+                return e.anchor.set(.5), e.position.set(929.5, 329.5), e.alpha = 0, e
             }, e
         }(s.TaskEventEndingBase);
-    e.TaskEventEnding433 = a;
+    e.TaskEventEnding432 = a;
     var _ = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(5), this._text1.position.set(111, 258), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_SZKOLGJHITSDENAT.getTexture(6), this._text2.position.set(210, 518)
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(4), this._text1.position.set(147, 290), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(5), this._text2.position.set(298, 535), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(7), this._text3.position.set(319, 596)
         }, e
     }(s.TextsBase)
 }

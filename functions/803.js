@@ -19,42 +19,19 @@ const function803 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(147),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
+    var o = i(5),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onClick = function () {
+                    e.onClick()
+                };
+                return e.beginFill(0, .5), e.drawRect(0, 103, o.default.width, o.default.height - 103), e.endFill(), e.interactive = !0, e.addListener(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
-                get: function () {
-                    return 1 == this._raw_data.api_powerup_flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_ship", {
-                get: function () {
-                    return this._raw_data.api_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_deck", {
-                get: function () {
-                    return this._raw_data.api_deck
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = 0; e < this.api_id_items.length; e++) {
-                    var i = this.api_id_items[e];
-                    o.default.model.ship.delete(i, !1)
-                }
-                var n = new s.ShipModelEdit(this.api_ship);
-                o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.onClick = this._onClick = null, this.clear(), this.removeAllListeners(r.EventType.CLICK)
             }, e
-        }(r.APIBase);
-    e.PowerUpAPI = a
+        }(PIXI.Graphics);
+    e.BackAreaChoiceShip = s
 }

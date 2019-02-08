@@ -19,115 +19,73 @@ const function806 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(335),
         r = i(19),
         s = i(8),
-        a = i(40),
-        _ = i(12),
-        l = i(6),
-        u = i(3),
-        c = i(337),
-        h = i(1),
-        p = function (t) {
+        a = i(336),
+        _ = i(40),
+        l = i(81),
+        u = i(6),
+        c = i(3),
+        h = i(337),
+        p = i(1),
+        d = function (t) {
             function e(e, i) {
                 var n = t.call(this, e) || this;
-                return n._mainView = i, n._telopBG = new PIXI.Sprite, n._telopLineTop = new PIXI.Sprite, n._telopLineBottom = new PIXI.Sprite, n._telopText = new PIXI.Sprite, n._particles = new d, n
+                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new l.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
             }
             return n(e, t), e.prototype._03_link = function () {
-                this._04_showTelop()
-            }, e.prototype._04_showTelop = function () {
+                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
+            }, e.prototype._04_whiteInOut = function () {
                 var t = this;
-                this._telopBG.texture = u.REMODEL_ANIMATION.getTexture(2), this._telopBG.alpha = .35, this._telopBG.anchor.set(.5), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.scale.y = 0, this.addChild(this._telopBG);
-                var e = u.REMODEL_ANIMATION.getTexture(3);
-                this._telopLineTop.texture = e, this._telopLineTop.anchor.set(.5), this._telopLineTop.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineTop), this._telopLineBottom.texture = e, this._telopLineBottom.anchor.set(.5), this._telopLineBottom.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineBottom);
-                var i, n = new r.TweenTask;
-                i = createjs.Tween.get(this._telopBG.scale).to({
-                    y: 1
-                }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineTop).to({
-                    y: o.default.height / 2 - 155
-                }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineBottom).to({
-                    y: o.default.height / 2 + 155
-                }, 300), n.addTween(i), n.start(function () {
-                    t._telopText.texture = u.REMODEL_ANIMATION.getTexture(9), t._telopText.x = o.default.width, t._telopText.y = Math.round(o.default.height / 2 - t._telopText.height / 2), t.addChild(t._telopText), createjs.Tween.get(t._telopText).to({
-                        x: 178
-                    }, 400).call(function () {
-                        l.SE.play("226"), t.addChild(t._particles), t._particles.play()
-                    }).to({
-                        x: 63
-                    }, 1700).call(function () {
-                        t._05_waitClick()
-                    })
-                })
-            }, e.prototype._05_waitClick = function () {
-                var t = this,
-                    e = new a.GearBtnHome;
-                e.initialize(), e.activate(), e.position.set(1140, 660), this.addChild(e);
-                var i = new s.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(h.EventType.CLICK, function () {
-                    t.removeChild(i), t._06_whiteInOut(e)
-                })
-            }, e.prototype._06_whiteInOut = function (t) {
-                var e = this;
                 this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
                     alpha: 1
-                }, 500).call(function () {
-                    e.removeChild(e._background), e.removeChild(e._ship), e.removeChild(e._telopBG), e.removeChild(e._telopLineTop), e.removeChild(e._telopLineBottom), e.removeChild(e._telopText), e.removeChild(e._particles), e.removeChild(t), t.dispose(), e._mainView.visible = !0
+                }, 400).call(function () {
+                    t.removeChild(t._background), t.removeChild(t._ship)
                 }).to({
                     alpha: 0
                 }, 500).call(function () {
-                    e.removeChild(e._white), null != e._cb_onComplete && e._cb_onComplete()
+                    t.removeChild(t._white), t._05_showFailedPenguin()
+                })
+            }, e.prototype._05_showFailedPenguin = function () {
+                var t, e = this,
+                    i = new r.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({
+                    alpha: 1
+                }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({
+                    alpha: 1
+                }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
+                })
+            }, e.prototype._06_typeMessage = function () {
+                var t = this;
+                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 500, createjs.Ease.quadOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), u.SE.play("247"), t._messageBox.activate(function () {
+                        t._07_waitClick()
+                    })
+                })
+            }, e.prototype._07_waitClick = function () {
+                var t = this,
+                    e = new s.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
+                    t.removeChild(e), t._08_whiteInOut()
+                })
+            }, e.prototype._08_whiteInOut = function () {
+                var t = this;
+                this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({
+                        alpha: 0
+                    }, 500).call(function () {
+                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    })
                 })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), t.prototype.dispose.call(this), this._telopBG = null, this._telopLineTop = null, this._telopLineBottom = null, this._telopText = null, this._particles.dispose(), this._particles = null
+                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
             }, e
-        }(c.PowerUpAnimation);
-    e.PowerUpAnimationSuccess = p;
-    var d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._particles = [];
-            for (var i = [
-                    [-459, -59],
-                    [-392, -74],
-                    [-332, 51],
-                    [-237, -89],
-                    [-158, 66],
-                    [-96, -54],
-                    [-8, 60],
-                    [39, -65],
-                    [141, -35],
-                    [239, 63],
-                    [308, -54],
-                    [420, 45]
-                ], n = u.REMODEL_ANIMATION.getTexture(8), o = 0; o < 12; o++) {
-                var r = new _.Sprite(n);
-                r.anchor.set(.5), r.scale.set(0), r.x = i[o][0] + 600, r.y = i[o][1] + 360, e.addChild(r), e._particles.push(r)
-            }
-            return e
-        }
-        return n(e, t), e.prototype.play = function () {
-            this._removeTweens(), this._tweens = [];
-            for (var t = 0; t < this._particles.length; t++) {
-                var e = this._particles[t];
-                e.scale.set(0);
-                var i = createjs.Tween.get(e).wait(100 * t).to({
-                    scaleX: 1.5,
-                    scaleY: 1.5
-                }, 100).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100);
-                this._tweens.push(i)
-            }
-        }, e.prototype.dispose = function () {
-            this._removeTweens(), this.removeChildren(), this._particles = null
-        }, e.prototype._removeTweens = function () {
-            if (null != this._tweens) {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null
-            }
-        }, e
-    }(PIXI.Container)
+        }(h.PowerUpAnimation);
+    e.PowerUpAnimationFailed = d
 }

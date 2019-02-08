@@ -19,84 +19,34 @@ const function1153 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(1154),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onBtnMouseOver = function (t) {
-                    i._illust.update(t)
-                }, i._onBtnMouseOut = function (t) {
-                    i._illust.update()
-                }, i._onBtnClick = function (t) {
-                    null != i._cb_onSelect && i._cb_onSelect(t)
-                }, i._cb_onSelect = e, i._header = new PIXI.Sprite, i._header.position.set(561, 169), i.addChild(i._header), i._illust = new _, i._illust.position.set(387, 210), i.addChild(i._illust), i._footer = new o.TextBox(16, 0), i._footer.position.set(670, 679), i._footer.text = "\u5bb6\u5177\u30b3\u30a4\u30f3\u306f\u9060\u5f81\u306a\u3069\u3067\u5165\u624b\u3067\u304d\u307e\u3059\u3002", i.addChild(i._footer), i._btns = [];
-                for (var n = [1, 0, 5, 2, 3, 4], r = 0; r < n.length; r++) {
-                    var a = n[r],
-                        l = new s.FurnitureTypeBtn(a);
-                    l.x = 204, l.y = 241 + 70 * r, i.addChild(l), i._btns.push(l)
-                }
-                return i
+    var o = i(0),
+        r = i(2),
+        s = i(8),
+        a = i(1),
+        _ = i(238),
+        l = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
+                        y: 450,
+                        alpha: 0
+                    }, 300).call(function () {
+                        o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
+                    })
+                }, o._layer = e, o._page_no = i, o._count = n, o
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = r.ITEM_FSHOP.getTexture(51), this._illust.initiatize();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].initialize(this._onBtnMouseOver, this._onBtnMouseOut, this._onBtnClick)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                this._illust.update();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._footer.destroy();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._cb_onSelect = null
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
+                var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1),
+                    i = _.getPosterOffsetWelcome();
+                null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({
+                    x: 660
+                }, 300).call(function () {
+                    t._t = null
+                })
             }, e
-        }(PIXI.Container);
-    e.FurnitureShopMainView = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._over = new PIXI.Sprite, e.addChild(e._over), e
-        }
-        return n(e, t), e.prototype.initiatize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(38)
-        }, e.prototype.update = function (t) {
-            if (void 0 === t && (t = -1), -1 == t) this._over.visible = !1;
-            else {
-                var e = void 0;
-                switch (t) {
-                    case 0:
-                        e = 39, this._over.position.set(16, 258);
-                        break;
-                    case 1:
-                        e = 40, this._over.position.set(16, 16);
-                        break;
-                    case 2:
-                        e = 41, this._over.position.set(196, 15);
-                        break;
-                    case 3:
-                        e = 42, this._over.position.set(16, 16);
-                        break;
-                    case 4:
-                        e = 43, this._over.position.set(577, 16);
-                        break;
-                    case 5:
-                        e = 44, this._over.position.set(39, 114);
-                        break;
-                    default:
-                        return void(this._over.visible = !1)
-                }
-                this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
-            }
-        }, e
-    }(PIXI.Sprite)
+        }(r.TaskBase);
+    e.TaskWelcomeCutin = l
 }

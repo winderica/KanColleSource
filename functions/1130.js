@@ -19,39 +19,23 @@ const function1130 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(74),
-        r = function (t) {
+    var o = i(0),
+        r = i(74),
+        s = i(175),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._num = new PIXI.Sprite, e._num.position.set(29, 15), e.addChild(e._num), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
-            }, e.prototype.update = function (t) {
-                this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
-            }, e.prototype._getNumImage = function (t) {
-                switch (t) {
-                    case 1:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
-                    case 2:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
-                    case 3:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
-                    case 4:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
-                    case 5:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
-                    case 6:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
-                    case 7:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
-                    case 8:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
-                    case 9:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
-                }
-                return PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getFurniture(e, "reward"),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectDialogCount = r
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogFurnitureBtn = a
 }

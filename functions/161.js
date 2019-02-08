@@ -159,7 +159,7 @@ const function161 = function (t, e, i) {
         d = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
-                return e._DIALOG = _.ORGANIZE_HOKYU_DIALOG_SUMMER, e._ANIMATION = c.ORGANIZE_MAMIYA_ANIMATION_SUMMER, e
+                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_info3", {
                 get: function () {

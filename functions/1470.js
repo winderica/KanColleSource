@@ -19,55 +19,45 @@ const function1470 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(9),
-        s = i(36),
-        a = function (t) {
+    var o = i(0),
+        r = i(8),
+        s = i(59),
+        a = i(81),
+        _ = i(209),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._anim2 = function () {
-                    o.SE.play("222"), e._t = createjs.Tween.get(e._message).to({
-                        x: 38,
-                        alpha: 1
-                    }, 200).to({
-                        x: 0
-                    }, 66).wait(700).to({
-                        x: -38
-                    }, 66).to({
-                        x: -132,
-                        alpha: 0
-                    }, 200).call(function () {
-                        e._t = null, e.emit("complete")
-                    })
-                }, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.alpha = 0, e._message = new PIXI.Sprite, e._message.anchor.set(.5), e._message.alpha = 0, e._message.x = 132, e.addChild(e._bg), e.addChild(e._message), e
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype.initializeForShip = function (t) {
-                void 0 === t && (t = !1), this._bg.texture = r.COMMON_MISC.getTexture(120);
-                var e = 31;
-                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(e), 1 == t && (this._message.y = -30, e = 25, this._sub_message = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(e)), this._sub_message.anchor.set(.5), this._sub_message.position.y = 80, this._message.addChild(this._sub_message))
-            }, e.prototype.initializeForSlot = function () {
-                this._bg.texture = r.COMMON_MISC.getTexture(120);
-                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(26)
-            }, e.prototype.initializeForUseitem = function (t) {
-                this._bg.texture = r.COMMON_MISC.getTexture(120);
-                var e = -1;
-                60 == t ? e = 27 : 62 == t ? e = 28 : 68 == t ? e = 29 : 72 == t ? e = 30 : 85 != t && 86 != t && 87 != t && 88 != t || (e = 21), this._message.texture = -1 == e ? PIXI.Texture.EMPTY : s.BATTLE_RESULT_MAIN.getTexture(e)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._item.texture = o.default.resources.getSlotitem(t, "card"), this._item.position.set(600, 255), this._message_box.initializeForSlot(n, e, i)
             }, e.prototype.dispose = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.play = function () {
-                var t = this;
-                if (null == this._t) {
-                    var e = s.BATTLE_RESULT_MAIN.getTexture(24),
-                        i = new PIXI.Sprite(e);
-                    i.anchor.set(.5), i.alpha = 0, this.addChild(i), this._t = createjs.Tween.get(i).to({
-                        alpha: 1
-                    }, 200).call(function () {
-                        t._bg.alpha = 1
-                    }).to({
-                        alpha: 0
-                    }, 266).call(this._anim2)
-                }
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.BonusTelop = a
+    e.BonusSlot = l
 }

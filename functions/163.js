@@ -38,10 +38,10 @@ const function163 = function (t, e, i) {
                             if (!1 !== d.hasOwnProperty(f)) {
                                 var y = i.clone(),
                                     m = d[f],
-                                    v = m.x,
-                                    g = m.y,
+                                    g = m.x,
+                                    v = m.y,
                                     b = m.r;
-                                y.x = v, y.y = g, y.rotation = Math.PI / 180 * b, _[f] = y, l[f] = createjs.Tween.get(y), u.addChild(y), c.push("m" + (h + 1)), h++
+                                y.x = g, y.y = v, y.rotation = Math.PI / 180 * b, _[f] = y, l[f] = createjs.Tween.get(y), u.addChild(y), c.push("m" + (h + 1)), h++
                             }
                     } var w = new PIXI.Sprite(o),
                     x = new PIXI.Sprite(s.COMMON_MISC.getTexture(18)),

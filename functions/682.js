@@ -39,8 +39,8 @@ const function682 = function (t, e, i) {
                     y = new PIXI.Sprite(l.COMMON_MAIN.getTexture(42)),
                     m = new s.IconWeapon;
                 n.texture = l.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
-                var v = new PIXI.Container;
-                return v.mask = c, v.addChild(u, c), v.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, v, h, d, p, f, y, m), i.background = n, i.textName = u, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = v, i
+                var g = new PIXI.Container;
+                return g.mask = c, g.addChild(u, c), g.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, g, h, d, p, f, y, m), i.background = n, i.textName = u, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = g, i
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null

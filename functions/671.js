@@ -33,8 +33,8 @@ const function671 = function (t, e, i) {
         f = i(676),
         y = i(686),
         m = i(216),
-        v = i(217),
-        g = i(688),
+        g = i(217),
+        v = i(688),
         b = i(689),
         w = i(693),
         x = i(694),
@@ -42,7 +42,7 @@ const function671 = function (t, e, i) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i.SLOT_MAX = 6, i._shipInDeckOrigin = 0, i.onClickBreakCombined = function () {
-                    var t = new v.CombinedAPI(0);
+                    var t = new g.CombinedAPI(0);
                     o.default.view.clickGuard = !0, t.start(function () {
                         i.update(), o.default.view.clickGuard = !1
                     })
@@ -185,7 +185,7 @@ const function671 = function (t, e, i) {
                     r = function (s) {
                         if (window.removeEventListener("message", r), s.origin == n) {
                             var a = s.data;
-                            new g.UpdateDeckNameAPI(t, i, a).start(function () {
+                            new v.UpdateDeckNameAPI(t, i, a).start(function () {
                                 o.default.model.deck.get(t).updateName(i, a), u.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
                             })
                         }

@@ -20,17 +20,33 @@ const function1068 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = i(13),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._view = e, i
+        r = i(171),
+        s = i(381),
+        a = i(382),
+        _ = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._model = i, r._view = n, r._onBack = o, r
             }
             return n(e, t), e.prototype._start = function () {
-                this._view.dispose(), r.UIImageLoader.clearMemoryCache("album"), this._endTask()
+                var t = this;
+                (new a.TaskLoadResources).start(function () {
+                    t._initView()
+                })
+            }, e.prototype._initView = function () {
+                this._view.initialize(this._onBack), this._connectAPI()
+            }, e.prototype._connectAPI = function () {
+                var t = this;
+                new s.AlbumAPI(1, 0, this._model).start(function () {
+                    t._showImage()
+                })
+            }, e.prototype._showImage = function () {
+                var t = r.AlbumConst.COUNT_INPAGE,
+                    e = this._model.getData(1, 0, t);
+                this._view.content.update(1, 0, e), this._endTask()
             }, e.prototype._endTask = function () {
-                this._view = null, t.prototype._endTask.call(this)
+                this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskSceneFinalize = s
+    e.TaskScenePreInitialize = _
 }

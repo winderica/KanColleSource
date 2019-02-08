@@ -20,48 +20,53 @@ const function1145 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(4),
+        r = i(6),
         s = i(130),
         a = i(89),
-        _ = i(407),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOn = function (t, e) {
-                    i._description.x = 0 == t ? 202 : 1 == t ? 535 : 865, i._description.text = e.replace(/<br>/g, "\n")
-                }, i._onMouseOff = function () {
-                    i._description.text = ""
-                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(18, 16777215), i._description.y = 217, i.addChild(i._description), i
+        _ = i(1146),
+        l = i(1147),
+        u = i(1148),
+        c = i(1149),
+        h = i(1153),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._count = 0, n._onChangePage = function () {
+                    var t = n._views.indexOf(n._current);
+                    n._showView(t ? 0 : 1)
+                }, n._onSelect = function (t, e) {
+                    r.SE.play("214");
+                    var i = 10;
+                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
+                    var s = new c.TaskPurchaseConfirm(t, e, i);
+                    n.addChild(s.layer), s.start(function () {
+                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
+                    })
+                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(29));
-                t.position.set(186, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(13)), t.position.set(184, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(28)), t.position.set(516, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(17)), t.position.set(516, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(27)), t.position.set(846, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(15)), t.position.set(846, 204), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(25)), t.position.set(1176, 144), this._bg_layer.addChild(t), this._icons = [];
-                for (var e = 0; e < 12; e++) {
-                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
-                    i.x = 204 + 330 * Math.floor(e / 4) + e % 2 * 150, i.y = 289 + (Math.floor(e % 4) <= 1 ? 0 : 180), i.initialize(Math.floor(e / 4)), this.addChild(i), this._icons.push(i)
+                this._header.texture = s.ITEM_ISHOP.getTexture(35);
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].initialize()
                 }
             }, e.prototype.update = function () {
-                for (var t = o.default.model.payitem.getOrder(0), e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e],
-                        n = t[e],
-                        r = o.default.model.payitem.getData(n);
-                    i.update(r)
-                }
+                this._count = 0, this._showView(0)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
+                null != this._current && this._current.activate(), this._tab.activate()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                null != this._current && this._current.deactivate(), this._tab.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._icons; t < e.length; t++) {
+                this._purchasedItems = null, this._tab.dispose(), this._removeView();
+                for (var t = 0, e = this._views; t < e.length; t++) {
                     e[t].dispose()
                 }
-                this._description.destroy(), this._cb_onSelect = null
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
+            }, e.prototype._showView = function (t) {
+                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
+                var e = o.default.view.overLayer;
+                new h.TaskWelcomeCutin(e, t, this._count).start()
             }, e
         }(a.ViewBase);
-    e.NormalItemShopMain = l
+    e.ItemShopMain = p
 }

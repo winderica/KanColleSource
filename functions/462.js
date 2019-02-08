@@ -46,8 +46,8 @@ const function462 = function (t, e, i) {
                         }
                     }
                 }
-                for (var v = 0, g = l; v < g.length; v++) {
-                    var b = g[v];
+                for (var g = 0, v = l; g < v.length; g++) {
+                    var b = v[g];
                     i.add(new c(this._scene, b, 1e3))
                 }
                 s.SE.play("101"), i.start(function () {

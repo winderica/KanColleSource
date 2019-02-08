@@ -33,8 +33,8 @@ const function647 = function (t, e, i) {
         f = i(652),
         y = i(653),
         m = i(654),
-        v = i(656),
-        g = i(658),
+        g = i(656),
+        v = i(658),
         b = function (t) {
             function e(e) {
                 void 0 === e && (e = 0);
@@ -67,7 +67,7 @@ const function647 = function (t, e, i) {
                     case 0:
                         return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
                     case 1:
-                        return this._isGoNextPath = !0, new v.SceneSelectShip(this._ImageManager, this._ev);
+                        return this._isGoNextPath = !0, new g.SceneSelectShip(this._ImageManager, this._ev);
                     case 2:
                         return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
                     case 3:
@@ -84,7 +84,7 @@ const function647 = function (t, e, i) {
                 this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
                 var e = new s.APIConnector,
                     i = parseInt(this._shipId, 10);
-                e.add(new g.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
+                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
                     t._loader.hide(), createjs.Tween.get(t).to({
                         alpha: 0
                     }, 400, createjs.Ease.linear).call(function () {

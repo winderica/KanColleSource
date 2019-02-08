@@ -172,10 +172,10 @@ const function139 = function (t, e, i) {
                         f = Math.pow(p, 3) * s.y + 3 * Math.pow(p, 2) * h * o.y + 3 * p * h * h * r.y + h * h * h * a.y,
                         y = a.y + (e - a.x) * (a.y - f) / (a.x - d),
                         m = a.x - d,
-                        v = (e - a.x) / m,
-                        g = i / (100 + v) * 100,
-                        b = i / (100 + v) * v;
-                    this._tween = l.TweenUtil.create3BezierTween(this, s, o, r, a, g), this._tween.call(function () {
+                        g = (e - a.x) / m,
+                        v = i / (100 + g) * 100,
+                        b = i / (100 + g) * g;
+                    this._tween = l.TweenUtil.create3BezierTween(this, s, o, r, a, v), this._tween.call(function () {
                         n.emit("attacked")
                     }), this._tween.to({
                         x: e,

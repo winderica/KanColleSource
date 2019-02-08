@@ -19,75 +19,48 @@ const function1269 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(143),
-        a = i(7),
-        _ = i(2),
-        l = i(243),
-        u = i(51),
-        c = i(6),
-        h = i(1270),
-        p = i(1271),
-        d = function (t) {
-            function e(e, i, n, o, r, s, a, _, l, u) {
-                var c = t.call(this) || this;
-                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = l, c._battle_cls = u, c
+    var o = i(23),
+        r = i(20),
+        s = i(1270),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
             }
-            return n(e, t), e.prototype._start = function () {
-                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
-            }, e.prototype._flightEnemyAirUnit = function () {
-                var t = this,
-                    e = this._mapinfo.getAirBaseRaidOption();
-                this._plane_layer.show(this._PLANEKEY, e, 2e3, function () {
-                    t._showTelop()
-                })
-            }, e.prototype._showTelop = function () {
-                var t = this,
-                    e = new h.AirRaidTelop;
-                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
-                    t._telop_layer.removeChild(e), t._fadeoutBGM()
-                })
-            }, e.prototype._fadeoutBGM = function () {
-                var t = this;
-                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._startBattle()
-                })) : this._startBattle()
-            }, e.prototype._startBattle = function () {
-                var t = this,
-                    e = new l.BattleSceneModel(!1);
-                e.setGekimetsuData(this._battle_obj);
-                var i = new u.Shutter;
-                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
-                var n = new this._battle_cls;
-                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 200), createjs.Tween.get(n).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    n.once("complete", function () {
-                        t._hideBattle(i, n)
-                    }), n.start()
-                })
-            }, e.prototype._hideBattle = function (t, e) {
-                var i = this;
-                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
-                    alpha: 0
-                }, 300).wait(400).call(function () {
-                    i._battle_layer.removeChild(t), i._showResultTelop()
-                })
-            }, e.prototype._showResultTelop = function () {
-                var t = this,
-                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
-                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
-                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
-                    n = new p.AirRaidResultTelop;
-                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
-                    t._telop_layer.removeChild(n), t._endTask()
-                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
-            }, e.prototype._endTask = function () {
-                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
-            }, e
-        }(_.TaskBase);
-    e.AirRaidTask = d
+            return n(e, t), e
+        }(o.Container);
+    e.LandingBalloonBase = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(51), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-86, -92))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType1 = _;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(55), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-63, 0))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType2 = l;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(59), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-99, -12))
+        }, e.prototype.update = function (t) {
+            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
+        }, e
+    }(a);
+    e.LandingBalloonType3 = u
 }

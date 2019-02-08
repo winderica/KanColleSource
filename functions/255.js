@@ -22,23 +22,23 @@ const function255 = function (t, e, i) {
     var o = i(0),
         r = i(6),
         s = i(457),
-        a = i(1350),
-        _ = i(1351),
-        l = i(1352),
+        a = i(1352),
+        _ = i(1353),
+        l = i(1354),
         u = i(43),
         c = function (t) {
-            function e(e, i, n, u, c, h, p, d, f, y, m, v) {
-                var g = t.call(this, e, i, u, c, h, p) || this;
-                g._completeDamageEffect = function () {
-                    g._cutin.resume(), g._cutin.view.once("attack", function () {
-                        r.SE.play("102"), g._a_banner.attack(function () {
-                            g._2ndDamageEffect()
+            function e(e, i, n, u, c, h, p, d, f, y, m, g) {
+                var v = t.call(this, e, i, u, c, h, p) || this;
+                v._completeDamageEffect = function () {
+                    v._cutin.resume(), v._cutin.view.once("attack", function () {
+                        r.SE.play("102"), v._a_banner.attack(function () {
+                            v._2ndDamageEffect()
                         })
                     })
-                }, g._defender = n, g._defender2 = d, g._slot2 = o.default.model.slot.getMst(f), g._damage2 = y, g._hit2 = m, g._shield2 = v;
-                var b = g._scene.data.isNight(),
+                }, v._defender = n, v._defender2 = d, v._slot2 = o.default.model.slot.getMst(f), v._damage2 = y, v._hit2 = m, v._shield2 = g;
+                var b = v._scene.data.isNight(),
                     w = Math.floor(4 * Math.random());
-                return g._cutin = 0 == w ? new s.CutinDouble1(g._attacker, g._slot, g._slot2, b) : 1 == w ? new a.CutinDouble2(g._attacker, g._slot, g._slot2, b) : 2 == w ? new _.CutinDouble3(g._attacker, g._slot, g._slot2, b) : new l.CutinDouble4(g._attacker, g._slot, g._slot2, b), g
+                return v._cutin = 0 == w ? new s.CutinDouble1(v._attacker, v._slot, v._slot2, b) : 1 == w ? new a.CutinDouble2(v._attacker, v._slot, v._slot2, b) : 2 == w ? new _.CutinDouble3(v._attacker, v._slot, v._slot2, b) : new l.CutinDouble4(v._attacker, v._slot, v._slot2, b), v
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;

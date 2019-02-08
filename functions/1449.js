@@ -19,51 +19,54 @@ const function1449 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(276),
-        r = i(1450),
-        s = i(1457),
-        a = i(1461),
-        _ = i(1491),
-        l = i(1492),
-        u = function (t) {
+    var o = i(247),
+        r = i(16),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._view = new l.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bonus", {
-                get: function () {
-                    return this._layer_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (e) {
-                var i = this;
-                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
-                    i._main()
-                })
-            }, e.prototype._main = function () {
-                var t = this;
-                new a.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
-                var t = this;
-                new _.TaskEnd(this).start(function () {
-                    t.emit("complete")
-                })
+            return n(e, t), e.prototype.show = function (t, e) {
+                void 0 === e && (e = null), this.hide(), this._current = new o.PhaseTitle, this._current.y = 16, this._current.alpha = 0, this._current.initialize(8 == t);
+                var i = this._getTexture(t);
+                this._current.update(i), this._current.activate(), null != e ? e.addChild(this._current) : this.addChild(this._current), createjs.Tween.get(this._current).to({
+                    alpha: 1
+                }, 800)
+            }, e.prototype.hide = function (t) {
+                if (void 0 === t && (t = null), null == this._current) null != t && t();
+                else {
+                    var e = this._current;
+                    this._current = null, createjs.Tween.get(e).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e.deactivate();
+                        var i = e.parent;
+                        null != i && i.removeChild(e), e.dispose(), null != t && t()
+                    })
+                }
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case 0:
+                        return r.BATTLE_MAIN.getTexture(129);
+                    case 1:
+                        return r.BATTLE_MAIN.getTexture(125);
+                    case 2:
+                        return r.BATTLE_MAIN.getTexture(130);
+                    case 3:
+                        return r.BATTLE_MAIN.getTexture(128);
+                    case 4:
+                        return r.BATTLE_MAIN.getTexture(124);
+                    case 5:
+                        return r.BATTLE_MAIN.getTexture(123);
+                    case 6:
+                        return r.BATTLE_MAIN.getTexture(127);
+                    case 7:
+                        return r.BATTLE_MAIN.getTexture(126);
+                    case 8:
+                        return r.BATTLE_MAIN.getTexture(131);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
             }, e
-        }(o.BattleResultSceneBase);
-    e.BattleResultScene = u
+        }(PIXI.Container);
+    e.LayerTitle = s
 }

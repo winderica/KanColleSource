@@ -19,20 +19,63 @@ const function767 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(213),
-        r = i(21),
-        s = function (t) {
-            function e() {
-                var e = r.COMMON_MAIN.getTexture(15);
-                return t.call(this, e) || this
+    var o = i(3),
+        r = i(0),
+        s = i(4),
+        a = i(31),
+        _ = i(3),
+        l = i(14),
+        u = i(1),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClickListItem = function (t, e) {
+                    i.onClick(e)
+                };
+                var n = o.COMMON_MAIN.getTexture(37);
+                i.otherShipListItems = new Array;
+                for (var r = 0; r < e; r++) {
+                    var s = new h(r);
+                    s.y = 45 * r, s.onClick = i._onClickListItem, i.otherShipListItems.push(s);
+                    var a = new PIXI.Sprite(n);
+                    a.y = 45 * r + 42, i.addChild(a, s)
+                }
+                return i.itemCount = e, i
             }
-            return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this._update_(t, e, i, n, o, r, s, a, _, l, u, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
-            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + l, this._textSakuteki.text = "" + u, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.otherShipListItems.length; t++) this.otherShipListItems[t].dispose(), this.otherShipListItems[t] = null;
+                this.otherShipListItems = null, this.onClick = null
+            }, e.prototype.update = function (t) {
+                for (var e = 0; e < this.itemCount; e++) {
+                    var i = this.otherShipListItems[e];
+                    if (i.visible = !1, e < t.length) {
+                        var n = t[e];
+                        i.update(n), i.visible = !0
+                    }
+                }
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameter = s
+        }(PIXI.Container);
+    e.OtherShipList = c;
+    var h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i._onClick = function () {
+                i.onClick(i.index, i.memId)
+            }, i._onMouseOver = function () {
+                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !0, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 16777215, i.textContainer.cacheAsBitmap = !0
+            }, i._onMouseOut = function () {
+                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !1, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 5523516, i.textContainer.cacheAsBitmap = !0
+            }, i.index = e;
+            var n = Math.floor(22.5) + 1;
+            i.clickArea = new PIXI.Graphics, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, 268, 44), i.clickArea.endFill(), i.textContainer = new PIXI.Container, i.textType = new s.TextBox(18, 5523516), i.textName = new s.TextBox(20, 5523516), i.textLevel = new s.TextBox(19, 5523516), i.focus = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17)), i.focus.width = i.clickArea.width, i.focus.height = i.clickArea.height;
+            var r = l.CreateRect.gradientLeftToRight(210, 45, .88, .95);
+            return i.icon_max = new PIXI.Sprite(_.REMODEL_POWERUP.getTexture(27)), i.textContainer.mask = r, i.textType.anchor.set(0, 0), i.textType.position.set(6, Math.floor(n - i.textType.height / 2)), i.textName.anchor.set(0, 0), i.textName.position.y = Math.floor(n - i.textName.height / 2) + 0, i.textLevel.anchor.set(1, 0), i.textLevel.position.set(263, Math.floor(n - i.textLevel.height / 2)), i.icon_max.position.set(213, 3), i.focus.visible = !1, i.icon_max.visible = !1, i.textContainer.addChild(i.textType, i.textName, r), i.clickArea.on(u.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(u.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.on(u.EventType.CLICK, i._onClick), i.clickArea.interactive = i.clickArea.buttonMode = !0, i.addChild(i.clickArea, i.focus, i.textContainer, i.textLevel, i.icon_max), i
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.clickArea.off(u.EventType.MOUSEOVER), this.clickArea.off(u.EventType.MOUSEOUT), this.clickArea.off(u.EventType.CLICK), this.textContainer.cacheAsBitmap = !1, this.textContainer.removeChildren(), this.textName.destroy(), this.textType.destroy(), this.textLevel.destroy(), this.onClick = null, this.clickArea = null, this.focus = null, this.textContainer = null, this.textName = null, this.textType = null, this.textLevel = null, this.index = null, this.memId = null, this.icon_max = null
+        }, e.prototype.update = function (t) {
+            this.textContainer.cacheAsBitmap = !1, this.memId = t.memID, this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.icon_max.visible = !1, this.textLevel.visible = !1, a.ShipUtil.isMaxGradeUp(t, r.default.model.ship.getMst(t.mstID), !1) ? this.icon_max.visible = !0 : (this.textLevel.text = "Lv" + t.level, this.textLevel.visible = !0), this.textContainer.cacheAsBitmap = !0
+        }, e
+    }(PIXI.Container)
 }

@@ -19,72 +19,343 @@ const function1177 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(33),
-        s = i(117),
-        a = i(118),
-        _ = i(118),
-        l = i(118),
-        u = i(118),
-        c = i(118),
-        h = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._list = new p(n), o._list.position.set(216, 165), o.addChild(o._list), o._tab = new _.TabContainer(e), o._tab.position.set(9, 184), o.addChild(o._tab), o._back_btn = new r.BackBtn, o._back_btn.position.set(2, 652), o.addChild(o._back_btn), o._minichara = new c.MiniChara, o._minichara.position.set(36, 498), o.addChild(o._minichara), o._header = new d, o._header.position.set(0, 105), o.addChild(o._header), o._pager = new l.Pager(i), o._pager.position.set(369, 681), o.addChild(o._pager), o
-            }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._list.initialize(), this._tab.initialize(), this._back_btn.initialize(e), this._minichara.initialize(), this._header.initialize(t), this._pager.initialize()
-            }, e.prototype.activate = function () {
-                this._tab.activate(), this._back_btn.activate(), this._minichara.activate()
-            }, e.prototype.deactivate = function () {
-                this._tab.deactivate(), this._back_btn.deactivate(), this._minichara.deactivate()
-            }, e.prototype.update = function (t) {
-                this._list.update(t), this._tab.update(t.selected_type), this._pager.update(t.selected_page_no, t.page_max)
-            }, e.prototype.dispose = function () {
-                this._list.dispose(), this._tab.dispose(), this._back_btn.dispose(), this._minichara.dispose(), this._header.dispose(), this._pager.dispose()
-            }, e
-        }(PIXI.Container);
-    e.DutyMainView = h;
-    var p = function (t) {
+    var o = i(0),
+        r = i(412),
+        s = function (t) {
             function e(e) {
-                var i = t.call(this) || this;
-                i._onMouseOver = function (t) {
-                    0 != t.model.alert && i._alert_later.showAlert(t)
-                }, i._onMouseOut = function (t) {
-                    i._alert_later.hideAlert(t)
-                }, i._items = [];
-                for (var n = 0; n < 5; n++) {
-                    var o = new a.ListItem(e, i._onMouseOver, i._onMouseOut);
-                    o.y = 102 * n, i.addChild(o), i._items.push(o)
+                var i = t.call(this, e) || this;
+                switch (i.id) {
+                    case 506:
+                        i._statusUpdate506();
+                        break;
+                    case 641:
+                        i._statusUpdate641();
+                        break;
+                    case 642:
+                        i._statusUpdate642();
+                        break;
+                    case 643:
+                        i._statusUpdate643();
+                        break;
+                    case 644:
+                        i._statusUpdate644();
+                        break;
+                    case 645:
+                        i._statusUpdate645();
+                        break;
+                    case 646:
+                        i._statusUpdate646();
+                        break;
+                    case 647:
+                        i._statusUpdate647();
+                        break;
+                    case 648:
+                        i._statusUpdate648();
+                        break;
+                    case 649:
+                        i._statusUpdate649();
+                        break;
+                    case 650:
+                        i._statusUpdate650();
+                        break;
+                    case 651:
+                        i._statusUpdate651();
+                        break;
+                    case 652:
+                        i._statusUpdate652();
+                        break;
+                    case 653:
+                        i._statusUpdate653();
+                        break;
+                    case 654:
+                        i._statusUpdate654();
+                        break;
+                    case 655:
+                        i._statusUpdate655();
+                        break;
+                    case 657:
+                        i._statusUpdate657();
+                        break;
+                    case 658:
+                        i._statusUpdate658();
+                        break;
+                    case 666:
+                        i._statusUpdate666();
+                        break;
+                    case 668:
+                        i._statusUpdate668()
                 }
-                return i._message = new PIXI.Sprite, i._message.position.set(285, 221), i._message.visible = !1, i.addChild(i._message), i._alert_later = new u.AlertLayer, i.addChild(i._alert_later), i
+                return i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].initialize()
+            return n(e, t), e.prototype._statusUpdate506 = function () {
+                var t = this._getRawProgress(),
+                    e = this._getUnsetSlotCount(145);
+                if (t >= 3 && e.all >= 3) {
+                    2 == this._getRawStatus() ? (this._updateTassei(), e.unlocked < 3 && (this._alert = 4)) : this._updateProgress(2)
+                } else t >= 2 && e.all >= 2 ? this._updateProgress(2) : t >= 1 && e.all >= 1 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate641 = function () {
+                if (0 != this._getRawProgress()) {
+                    var t = this._getUnsetSlotCount(37),
+                        e = this._getUnsetSlotCount(19),
+                        i = t.all >= 2 && e.all >= 2,
+                        n = t.unlocked >= 2 && e.unlocked >= 2;
+                    if (1 == i) {
+                        var o = this._getRawStatus();
+                        2 == o ? (this._updateTassei(), 0 == n && (this._alert = 4)) : 1 == o && this._updateProgress(2)
+                    }
                 }
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this._items.length; e++) {
-                    var i = this._items[e],
-                        n = e < t.models.length ? t.models[e] : null;
-                    i.update(n)
+            }, e.prototype._statusUpdate642 = function () {
+                var t = this._getUnsetSlotCount(37),
+                    e = this._getUnsetSlotCount(23),
+                    i = t.all >= 2 && e.all >= 2,
+                    n = t.unlocked >= 2 && e.unlocked >= 2;
+                if (1 == i) {
+                    var o = this._getRawStatus();
+                    2 == o ? (this._updateTassei(), 0 == n && (this._alert = 4)) : 1 == o && this._updateProgress(2)
+                } else t.all >= 2 || e.all >= 2 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate643 = function () {
+                if (0 != this._getRawProgress()) {
+                    var t = this._getUnsetSlotCount(16),
+                        e = this._getUnsetSlotCount(168),
+                        i = t.all >= 2 && e.all >= 1,
+                        n = t.unlocked >= 2 && e.unlocked >= 1;
+                    if (1 == i) {
+                        var o = this._getRawStatus();
+                        2 == o ? (this._updateTassei(), 0 == n && (this._alert = 4)) : 1 == o && this._updateProgress(2)
+                    }
                 }
-                t.models.length > 0 ? this._message.visible = !1 : (9 == t.selected_type ? this._message.texture = s.DUTY_COMMON.getTexture(52) : this._message.texture = s.DUTY_COMMON.getTexture(51), this._message.visible = !0)
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
+            }, e.prototype._statusUpdate644 = function () {
+                var t = this._getUnsetSlotCount(17),
+                    e = this._getUnsetSlotCount(169),
+                    i = t.all >= 2 && e.all >= 1,
+                    n = t.unlocked >= 2 && e.unlocked >= 1;
+                if (1 == i) {
+                    var o = this._getRawStatus();
+                    2 == o ? (this._updateTassei(), 0 == n && (this._alert = 4)) : 1 == o && this._updateProgress(2)
+                } else e.all >= 1 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate645 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(31),
+                    i = o.default.model.useItem.getCount(32),
+                    n = e >= 750 && i >= 750,
+                    r = new a;
+                if (r.add(75, 2), r.add(36, 1), 2 == t && 1 == n && 1 == r.isFulfill()) {
+                    var s = this._getRawStatus();
+                    2 == s ? (this._updateTassei(), 0 == r.isFulfillUnlocked() && (this._alert = 4)) : 1 == s && this._updateProgress(2)
+                } else 2 == t && 1 == n && r.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate646 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(44),
+                    i = e >= 5e3,
+                    n = new a;
+                if (n.add(39, 2), n.add(40, 2), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate647 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(31),
+                    i = o.default.model.useItem.getCount(34),
+                    n = e >= 1200 && i >= 3e3,
+                    r = o.default.model.useItem.getCount(73),
+                    s = r >= 1;
+                if (2 == t && 1 == n && 1 == s) {
+                    var a = this._getRawStatus();
+                    2 == a ? this._updateTassei() : 1 == a && this._updateProgress(2)
+                } else 1 == n && 1 == s ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate648 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(44),
+                    i = e >= 5e3,
+                    n = new a;
+                if (n.add(4, 2), n.add(11, 2), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(2) : 1 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate649 = function () {
+                var t = this._getRawProgress(),
+                    e = this._getUnsetSlotCount(169),
+                    i = this._getUnsetSlotCount(54),
+                    n = e.all >= 1 && i.all >= 2,
+                    o = e.unlocked >= 1 && i.unlocked >= 2;
+                if (2 == t && 1 == n) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == o && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 0 == n ? this._updateProgress(1) : 1 == n ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate650 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(74),
+                    i = o.default.model.useItem.getCount(71),
+                    n = e >= 2 && i >= 1;
+                if (2 == t && 1 == n) {
+                    var r = this._getRawStatus();
+                    2 == r ? this._updateTassei() : 1 == r && this._updateProgress(2)
+                } else 2 == t && 0 == n ? this._updateProgress(2) : 1 == t ? this._updateProgress(1) : 1 == n ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate651 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(33),
+                    i = this._getUnsetSlotCount(18),
+                    n = this._getUnsetSlotCount(22),
+                    r = i.all >= 2 && n.all >= 2 && e >= 8e3,
+                    s = i.unlocked >= 2 && n.unlocked >= 2 && e >= 8e3;
+                if (2 == t && 1 == r) {
+                    var a = this._getRawStatus();
+                    2 == a ? (this._updateTassei(), 0 == s && (this._alert = 4)) : 1 == a && this._updateProgress(2)
+                } else 2 == t ? this._updateProgress(2) : 1 == t ? this._updateProgress(1) : 1 == r ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate652 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(44),
+                    i = e >= 5e3,
+                    n = new a;
+                if (n.add(19, 2), n.add(37, 2), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(2) : 1 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate653 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(44),
+                    i = e >= 5e3,
+                    n = new a;
+                if (n.add(1, 2), n.add(25, 2), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(2) : 1 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate654 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(3),
+                    i = e >= 10,
+                    n = this._getUnsetSlotCount(16),
+                    r = n.all >= 1,
+                    s = n.unlocked >= 1;
+                if (2 == t && 1 == i && 1 == r) {
+                    var a = this._getRawStatus();
+                    2 == a ? (this._updateTassei(), 0 == s && (this._alert = 4)) : 1 == a && this._updateProgress(2)
+                } else 2 == t && 1 == i ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate655 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(3),
+                    i = e >= 20,
+                    n = this._getUnsetSlotCount(54),
+                    r = n.all >= 1,
+                    s = n.unlocked >= 1;
+                if (2 == t && 1 == i && 1 == r) {
+                    var a = this._getRawStatus();
+                    2 == a ? (this._updateTassei(), 0 == s && (this._alert = 4)) : 1 == a && this._updateProgress(2)
+                } else 2 == t && 1 == i ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate657 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(44),
+                    i = e >= 5e3,
+                    n = new a;
+                if (n.add(23, 2), n.add(13, 2), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(2) : 1 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate658 = function () {
+                var t = this._getRawProgress(),
+                    e = o.default.model.useItem.getCount(3),
+                    i = e >= 120,
+                    n = new a;
+                if (n.add(15, 3), n.add(46, 3), 2 == t && 1 == i && 1 == n.isFulfill()) {
+                    var r = this._getRawStatus();
+                    2 == r ? (this._updateTassei(), 0 == n.isFulfillUnlocked() && (this._alert = 4)) : 1 == r && this._updateProgress(2)
+                } else 2 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(2) : 1 == t && 1 == i && n.fulfill_count > 0 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._statusUpdate666 = function () {
+                var t = this._getRawProgress(),
+                    e = new a;
+                e.add(23, 2), e.add(26, 2);
+                var i = o.default.model.useItem.getCount(70),
+                    n = i >= 1;
+                if (1 == t)
+                    if (1 == e.isFulfill())
+                        if (1 == n) {
+                            var r = this._getRawStatus();
+                            2 == r ? (this._updateTassei(), 0 == e.isFulfillUnlocked() && (this._alert = 4)) : this._updateProgress(2)
+                        } else this._updateProgress(2);
+                else this._updateProgress(1);
+                else this._updateProgress(0)
+            }, e.prototype._statusUpdate668 = function () {
+                var t = this._getUnsetSlotCount(145),
+                    e = o.default.model.useItem.get(31).count,
+                    i = o.default.model.useItem.get(34).count,
+                    n = e >= 800 && i >= 150;
+                if (1 == n && t.all >= 2) {
+                    2 == this._getRawStatus() ? (this._updateTassei(), t.unlocked < 2 && (this._alert = 4)) : this._updateProgress(2)
+                } else 1 == n && t.all >= 1 ? this._updateProgress(1) : this._updateProgress(0)
+            }, e.prototype._getUnsetSlotCount = function (t) {
+                for (var e = o.default.model.slot.createUnsetList([], [t]), i = e.length, n = 0, r = 0, s = e; r < s.length; r++) {
+                    0 == s[r].isLocked() && n++
                 }
+                return {
+                    all: i,
+                    unlocked: n
+                }
+            }, e.prototype._updateTassei = function () {
+                this._o.api_state_ = 3, this._updateProgress(0)
+            }, e.prototype._updateProgress = function (t) {
+                this._o.api_progress_flag_ = t
             }, e
-        }(PIXI.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._gear = new PIXI.Sprite, e._gear.position.set(186, 7), e.addChild(e._gear), e._title = new PIXI.Sprite, e._title.position.set(222, 6), e.addChild(e._title), e._message1 = new o.TextBox(21, 16777215), e._message1.y = 8, e.addChild(e._message1), e._message2 = new o.TextBox(21, 4565413), e._message2.y = 8, e.addChild(e._message2), e._message3 = new o.TextBox(21, 16777215), e._message3.y = 8, e.addChild(e._message3), e
+        }(r.DutyModel);
+    e.DutyModel_ = s;
+    var a = function () {
+            function t() {
+                this._conds = []
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = s.DUTY_COMMON.getTexture(48), this._gear.texture = s.DUTY_COMMON.getTexture(49), this._title.texture = s.DUTY_COMMON.getTexture(50), this._message1.text = "\u73fe\u5728\u767a\u751f\u4e2d\u306e\u4efb\u52d9\u4e00\u89a7\u3067\u3059\u3002\u540c\u6642\u306b", this._message2.text = t.toString(), this._message3.text = "\u500b\u307e\u3067\u9042\u884c\u3059\u308b\u3053\u3068\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message3.x = 1200 - this._message3.width, this._message2.x = this._message3.x - this._message2.width, this._message1.x = this._message2.x - this._message1.width
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy()
-            }, e
-        }(PIXI.Sprite)
+            return Object.defineProperty(t.prototype, "fulfill_count", {
+                get: function () {
+                    for (var t = 0, e = 0, i = this._conds; e < i.length; e++) {
+                        var n = i[e];
+                        n.count < n.need && t++
+                    }
+                    return t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.add = function (t, e) {
+                var i = new _(t, e);
+                this._conds.push(i)
+            }, t.prototype.isFulfill = function () {
+                for (var t = 0, e = this._conds; t < e.length; t++) {
+                    var i = e[t];
+                    if (i.count < i.need) return !1
+                }
+                return !0
+            }, t.prototype.isFulfillUnlocked = function () {
+                for (var t = 0, e = this._conds; t < e.length; t++) {
+                    var i = e[t];
+                    if (i.count_unlocked < i.need) return !1
+                }
+                return !0
+            }, t
+        }(),
+        _ = function () {
+            function t(t, e) {
+                this._count = 0, this._count_unlocked = 0, this._need = 0;
+                var i = o.default.model.slot.createUnsetList([], [t]);
+                this._count = i.length, this._count_unlocked = 0;
+                for (var n = 0, r = i; n < r.length; n++) {
+                    0 == r[n].isLocked() && this._count_unlocked++
+                }
+                this._need = e
+            }
+            return Object.defineProperty(t.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "count_unlocked", {
+                get: function () {
+                    return this._count_unlocked
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "need", {
+                get: function () {
+                    return this._need
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }()
 }

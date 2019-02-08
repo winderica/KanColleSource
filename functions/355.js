@@ -28,12 +28,12 @@ const function355 = function (t, e, i) {
         c = i(6),
         h = i(26),
         p = i(356),
-        d = i(945),
-        f = i(946),
-        y = i(948),
-        m = i(949),
-        v = i(950),
-        g = i(1);
+        d = i(947),
+        f = i(948),
+        y = i(950),
+        m = i(951),
+        g = i(952),
+        v = i(1);
     ! function (t) {
         t[t.NONE = 0] = "NONE", t[t.RELOCATION = 1] = "RELOCATION", t[t.DEPLOYMENT = 2] = "DEPLOYMENT"
     }(o = e.ListType || (e.ListType = {}));
@@ -63,12 +63,12 @@ const function355 = function (t, e, i) {
                 }
                 this._deployments = [];
                 for (var l = r.default.model.airunit.getAirUnitList(), h = 0, d = l; h < d.length; h++)
-                    for (var f = d[h], y = f.squadrons, m = 0, v = y; m < v.length; m++) {
-                        var g = v[m];
-                        if (!g.isRelocation()) {
-                            var _ = r.default.model.slot.get(g.mem_id);
+                    for (var f = d[h], y = f.squadrons, m = 0, g = y; m < g.length; m++) {
+                        var v = g[m];
+                        if (!v.isRelocation()) {
+                            var _ = r.default.model.slot.get(v.mem_id);
                             if (null == _) continue;
-                            this._deployments.push(g.mem_id), n.indexOf(_.equipTypeSp) >= 0 && this._items.push(_)
+                            this._deployments.push(v.mem_id), n.indexOf(_.equipTypeSp) >= 0 && this._items.push(_)
                         }
                     }
                 u.SlotUtil.sort(this._items, 0, !1)
@@ -126,7 +126,7 @@ const function355 = function (t, e, i) {
         x = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._name = new a.TextBox(21, 3355443), i._name.position.set(104, 9), i.addChild(i._name), i._name_mask = l.CreateRect.gradientLeftToRight(270, 30, .7, .88), i._name.mask = i._name_mask, i._name.addChild(i._name_mask), i._distance = new a.TextBox(18, 3355443), i._distance.position.set(434, 11), i.addChild(i._distance), i._status = new I, i._status.position.set(477, 5), i.addChild(i._status), i._skill_level = new m.AirPlaneSkillLevel, i._skill_level.position.set(344, 0), i.addChild(i._skill_level), i._level = new v.SlotitemLevel, i._level.position.set(390, 11), i.addChild(i._level), i._icon = new _.IconWeapon, i._icon.position.set(51, -3), i.addChild(i._icon), i._over = new T(e), i._over.position.set(42, 0), i.addChild(i._over), i._extra_layer = new y.AirUnitListItemExtraLayer, i._extra_layer.position.set(42, 0), i.addChild(i._extra_layer), i
+                return i._name = new a.TextBox(21, 3355443), i._name.position.set(104, 9), i.addChild(i._name), i._name_mask = l.CreateRect.gradientLeftToRight(270, 30, .7, .88), i._name.mask = i._name_mask, i._name.addChild(i._name_mask), i._distance = new a.TextBox(18, 3355443), i._distance.position.set(434, 11), i.addChild(i._distance), i._status = new I, i._status.position.set(477, 5), i.addChild(i._status), i._skill_level = new m.AirPlaneSkillLevel, i._skill_level.position.set(344, 0), i.addChild(i._skill_level), i._level = new g.SlotitemLevel, i._level.position.set(390, 11), i.addChild(i._level), i._icon = new _.IconWeapon, i._icon.position.set(51, -3), i.addChild(i._icon), i._over = new T(e), i._over.position.set(42, 0), i.addChild(i._over), i._extra_layer = new y.AirUnitListItemExtraLayer, i._extra_layer.position.set(42, 0), i.addChild(i._extra_layer), i
             }
             return n(e, t), e.prototype.initialize = function () {
                 this._status.initialize(), this._level.initialize(), this._over.initialize(), this._extra_layer.initialize()
@@ -220,13 +220,13 @@ const function355 = function (t, e, i) {
                 }, i._cb_onSelect = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._lockicon = new PIXI.Sprite, i._lockicon.position.set(638, -3), i.addChild(i._lockicon), i._img.alpha = 0, i.interactive = !0, i._lockicon.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = h.SALLY_AIRUNIT.getTexture(38), this._img.width = 681, this._img.height = 42, this.on(g.EventType.MOUSEOVER, this._onMouseOver), this.on(g.EventType.MOUSEOUT, this._onMouseOut)
+                this._img.texture = h.SALLY_AIRUNIT.getTexture(38), this._img.width = 681, this._img.height = 42, this.on(v.EventType.MOUSEOVER, this._onMouseOver), this.on(v.EventType.MOUSEOUT, this._onMouseOut)
             }, e.prototype.update = function (t) {
                 this._data = t, this._locked = t.isLocked(), 1 == this._locked ? (this._lockicon.texture = h.SALLY_AIRUNIT.getTexture(64), this._lockicon.position.set(638, -2), this._lockicon.alpha = 1) : (this._lockicon.texture = h.SALLY_AIRUNIT.getTexture(63), this._lockicon.position.set(638, -3), this._lockicon.alpha = this._img.alpha)
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(g.EventType.CLICK, this._onClick), this._lockicon.on(g.EventType.CLICK, this._onClickLockIcon))
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(v.EventType.CLICK, this._onClick), this._lockicon.on(v.EventType.CLICK, this._onClickLockIcon))
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(g.EventType.MOUSEOVER, this._onMouseOver), this.off(g.EventType.MOUSEOUT, this._onMouseOut), this.off(g.EventType.CLICK, this._onClick), this._lockicon.off(g.EventType.CLICK, this._onClickLockIcon)
+                this.buttonMode = !1, this.off(v.EventType.MOUSEOVER, this._onMouseOver), this.off(v.EventType.MOUSEOUT, this._onMouseOut), this.off(v.EventType.CLICK, this._onClick), this._lockicon.off(v.EventType.CLICK, this._onClickLockIcon)
             }, e.prototype.dispose = function () {
                 this.deactivate(), this._cb_onSelect = null
             }, e

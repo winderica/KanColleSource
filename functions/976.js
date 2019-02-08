@@ -19,35 +19,24 @@ const function976 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(80),
-        s = i(30),
-        a = i(1),
+    var o = i(4),
+        r = i(163),
+        s = i(163),
+        a = i(30),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
-                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(41) : e._icon.texture = s.SALLY_COMMON.getTexture(40)
-                }, e._onMouseOver = function () {
-                    e._overed = !0, e._updateTexture(), e._over.visible = !0
-                }, e._onMouseOut = function () {
-                    e._overed = !1, e._updateTexture(), e._over.visible = !1
-                }, e._onClick = function () {
-                    o.default.scene.change(24, new r.ItemSceneModel)
-                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(30, -55), e._over.visible = !1, e._icon.interactive = !0, e
+                return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._icon.texture = s.SALLY_COMMON.getTexture(40), this._over.texture = s.SALLY_COMMON.getTexture(43), this.addChild(this._over), this.addChild(this._icon)
-            }, e.prototype.activate = function () {
-                var t = this;
-                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(300).call(function () {
-                    t._updateTexture()
-                }))
-            }, e.prototype.deactivate = function () {
-                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
+                this._fuelTitle.texture = a.SALLY_COMMON.getTexture(17), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(16)
+            }, e.prototype.update = function (t, e) {
+                this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
+            }, e.prototype.play = function (t, e, i) {
+                1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {})) : 1 == e ? this._ammoBox.playSupply(i) : i()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._fuelBox.dispose(), this._ammoBox.dispose(), this._fuelText.destroy(), this._ammoText.destroy()
             }, e
         }(PIXI.Container);
-    e.BtnShop = _
+    e.TempSupplyBox = _
 }

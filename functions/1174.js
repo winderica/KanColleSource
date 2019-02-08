@@ -1,59 +1,44 @@
 const function1174 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(14),
-        o = i(410),
-        r = function () {
-            function t() {
-                this._models = []
+    var o = i(11),
+        r = i(13),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._view = e, i
             }
-            return Object.defineProperty(t.prototype, "selected_type", {
-                get: function () {
-                    return this._selected_type
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "selected_page_no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_disp_page", 1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "page_max", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_page_count", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "models", {
-                get: function () {
-                    return this._models
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.update = function (t, e) {
-                this._selected_type = t, this._o = e, this._models = [];
-                var i = n.ObjUtil.getObjectArray(this._o, "api_list");
-                if (null != i)
-                    for (var r = 0, s = i; r < s.length; r++) {
-                        var a = s[r];
-                        "number" == typeof a && -1 == a || this._models.push(new o.DutyModel_(a))
-                    }
-            }, t.prototype.getExecCount = function () {
-                return n.ObjUtil.getNumber(this._o, "api_exec_count")
-            }, t.prototype.hasComplete = function () {
-                if (1 == (1 == n.ObjUtil.getNumber(this._o, "api_completed_kind"))) return !0;
-                var t = n.ObjUtil.getObjectArray(this._o, "api_c_list");
-                if (null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var r = i[e],
-                            s = new o.DutyModel_(r);
-                        if (3 == s.status) return !0
-                    }
-                return !1
-            }, t
-        }();
-    e.DutyDataHolder = r
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, this._endTask()
+            }, e
+        }(o.TaskBase);
+    e.PreFinalizeTask = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, r.UIImageLoader.clearMemoryCache("interior"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = a
 }

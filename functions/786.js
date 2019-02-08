@@ -20,22 +20,25 @@ const function786 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.TYPE_SET = "typeset", e.TYPE_UNSET = "typeunset", e.listItem = o.COMMON_MAIN.getTexture(35), e.listItemInUse = o.COMMON_MAIN.getTexture(36), e
+                return e.TYPE_UNEQUIPS = "uniquips", e.TYPE_EQUIPS_OTHER = "equipsother", e._onClick = function () {
+                    e.onClick()
+                }, e.btnSoubi1 = o.REMODEL_MAIN.getTexture(14), e.btnSoubi2 = o.REMODEL_MAIN.getTexture(15), e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
             }
             return n(e, t), e.prototype.update = function (t) {
                 switch (this.texture = PIXI.Texture.EMPTY, t) {
-                    case this.TYPE_SET:
-                        this.texture = this.listItemInUse;
+                    case this.TYPE_UNEQUIPS:
+                        this.texture = this.btnSoubi1;
                         break;
-                    case this.TYPE_UNSET:
-                        this.texture = this.listItem
+                    case this.TYPE_EQUIPS_OTHER:
+                        this.texture = this.btnSoubi2
                 }
             }, e.prototype.dispose = function () {
-                this.listItem = null, this.listItemInUse = null, this.removeChildren()
+                this.onClick = null, this.btnSoubi1 = null, this.btnSoubi2 = null, this.off(r.EventType.CLICK), this.removeChildren()
             }, e
         }(PIXI.Sprite);
-    e.ListHeader = r
+    e.ChangeListSwitch = s
 }

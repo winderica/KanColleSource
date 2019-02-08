@@ -19,25 +19,41 @@ const function942 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(353),
-        s = i(944),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e) || this;
-                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
+    var o = i(26),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
-            }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._btn_extend.activate()
-            }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._btn_extend.dispose()
-            }, e.prototype.updateExtendBtn = function (t, e) {
-                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
+            return n(e, t), e.prototype.update = function (t) {
+                var e;
+                switch (t) {
+                    case 1:
+                        e = 98;
+                        break;
+                    case 2:
+                        e = 99;
+                        break;
+                    case 3:
+                        e = 100;
+                        break;
+                    case 4:
+                        e = 101;
+                        break;
+                    case 5:
+                        e = 102;
+                        break;
+                    case 6:
+                        e = 103;
+                        break;
+                    case 7:
+                        e = 104;
+                        break;
+                    default:
+                        return void(this.visible = !1)
+                }
+                this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
             }, e
-        }(r.AirUnitPanelTabContainer);
-    e.AirUnitPanelTabContainerWithExtend = a
+        }(PIXI.Container);
+    e.AirUnitPanelItemSkillLevelIcon = r
 }

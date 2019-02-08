@@ -19,21 +19,37 @@ const function1166 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = function (t) {
+    var o = i(47),
+        r = i(1167),
+        s = i(1169),
+        a = i(1171),
+        _ = i(1174),
+        l = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("interior");
-                e.add("interior_parts.json"), e.load(function () {
-                    t._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+                get: function () {
+                    return this._viewTop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new r.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new r.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new _.FinalizeTask(this)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+            }, e.prototype.startTopTask = function () {
+                var t = this;
+                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
                 })
+            }, e.prototype.dispose = function () {
+                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(o.SceneBase);
+    e.InteriorScene = l
 }

@@ -33,8 +33,8 @@ const function659 = function (t, e, i) {
         f = i(216),
         y = i(717),
         m = i(718),
-        v = i(719),
-        g = i(724),
+        g = i(719),
+        v = i(724),
         b = i(726),
         w = i(727),
         x = i(734),
@@ -189,13 +189,13 @@ const function659 = function (t, e, i) {
                 }, e
             }
             return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new v.PreInitializeTask(this)
+                return new g.PreInitializeTask(this)
             }, e.prototype.getInitializeTask = function (t) {
                 return new b.InitializeTask(this)
             }, e.prototype.getPreFinalizeTask = function () {
                 return new m.PreFinalizeTask(this)
             }, e.prototype.getFinalizeTask = function () {
-                return new g.FinalizeTask(this)
+                return new v.FinalizeTask(this)
             }, e.prototype.preInitialize = function (t) {
                 this.presetList = t, this.backgroundLayer = new u.BackgroundLayer, this.backgroundLayer.init(), this.addChild(this.backgroundLayer), this.deckLayer = new c.DeckLayer(this._onClickDeckFlag), this.deckLayer.init(this._onClickBreakDeck), this.deckLayer.ShipSlotLayer.init(this._onDragging, this._onClickShipChange, this._onClickShipDetail), this.addChild(this.deckLayer), this.deckLayer.updateDeck(1), this.presetExpansionLayer = new d.PresetExpansionLayer(this._onClickPresetBack, this._onClickExpand), this.presetExpansionLayer.hide(), this.addChild(this.presetExpansionLayer), this.presetEditLayer = new p.PresetEditLayer(this._onClickPresetBack), this.presetEditLayer.hide(), this.addChild(this.presetEditLayer), this.presetButtonLayer = new h.PresetButtonLayer, this.presetButtonLayer.position.set(66, 514), this.presetButtonLayer.onClick = this._onClickPresetChange, this.presetButtonLayer.hide(), o.default.view.overLayer.addChild(this.presetButtonLayer), this._changeMode(0)
             }, e.prototype.initialize = function () {

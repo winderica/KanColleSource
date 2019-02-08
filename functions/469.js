@@ -23,18 +23,18 @@ const function469 = function (t, e, i) {
         r = i(251),
         s = i(252),
         a = i(253),
-        _ = i(1377),
-        l = i(1380),
+        _ = i(1379),
+        l = i(1382),
         u = i(255),
-        c = i(1383),
-        h = i(1386),
-        p = i(1389),
-        d = i(1392),
+        c = i(1385),
+        h = i(1388),
+        p = i(1391),
+        d = i(1394),
         f = i(458),
         y = i(257),
         m = i(460),
-        v = i(461),
-        g = i(1395),
+        g = i(461),
+        v = i(1397),
         b = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
@@ -142,7 +142,7 @@ const function469 = function (t, e, i) {
                 var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
                     s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
                     a = [t.isShield(0), t.isShield(1), t.isShield(2)];
-                new v.PhaseNagatoAttack(this._scene, i, r, s, a).start(function () {
+                new g.PhaseNagatoAttack(this._scene, i, r, s, a).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuchiku_special = function (t) {
@@ -202,6 +202,6 @@ const function469 = function (t, e, i) {
             }, e.prototype._getDShip = function (t, e) {
                 return 0 == e ? this._ships_e[t] : this._ships_f[t]
             }, e
-        }(g.PhaseHougekiBase);
+        }(v.PhaseHougekiBase);
     e.PhaseHougeki = b
 }

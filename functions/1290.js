@@ -19,18 +19,16 @@ const function1290 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1291),
-        r = i(1293),
-        s = i(1295),
-        a = i(1296),
-        _ = i(1298),
-        l = i(1299),
-        u = i(1301),
-        c = i(14),
-        h = function (t) {
+    var o = i(149),
+        r = i(51),
+        s = i(432),
+        a = i(1291),
+        _ = i(1292),
+        l = i(1304),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new l.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
@@ -38,58 +36,61 @@ const function1290 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "ship_icon", {
+            }), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    return this._ship_icon
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "spotLayer", {
+            }), Object.defineProperty(e.prototype, "map", {
                 get: function () {
-                    return this._spotLayer
+                    return this._map
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "airbaseLayer", {
+            }), Object.defineProperty(e.prototype, "upper", {
                 get: function () {
-                    return this._airbaseLayer
+                    return this._upper
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy_layer", {
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
                 get: function () {
-                    return this._enemy_layer
+                    return this._gauge_layer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "plane_layer", {
+            }), Object.defineProperty(e.prototype, "chara_layer", {
                 get: function () {
-                    return this._plane_layer
+                    return this._chara_layer
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.dispose = function () {
-                this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
-            }, e.prototype.addSpot = function (t, e, i) {
-                var n = i.getSpot(e),
-                    o = new r.CompSpot(e, n.offsetDic);
-                if (o.position.set(n.x, n.y), null != n.route) {
-                    var s = n.route,
-                        a = c.MapUtil.toResKey(t),
-                        _ = "map" + a + "_" + s.img,
-                        l = PIXI.Texture.fromFrame(_);
-                    o.setRoute(l, s.x, s.y, s.r)
-                }
-                var u = n.line;
-                if (null != u) {
-                    var a = c.MapUtil.toResKey(t),
-                        h = void 0;
-                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
-                    var l = PIXI.Texture.fromFrame(h);
-                    o.setLine(l, u.x, u.y, u.r)
-                }
-                this._spotLayer.addSpot(o)
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
         }(PIXI.Container);
-    e.MapView = h
+    e.ViewMain = u
 }

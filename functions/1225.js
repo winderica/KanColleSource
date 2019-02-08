@@ -19,35 +19,20 @@ const function1225 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(149),
-        s = i(51),
-        a = function (t) {
+    var o = i(4),
+        r = i(136),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new r.MapBG, e._black = new o.FadeBox(1), e._shutter = new s.Shutter, e.addChild(e._bg), e.addChild(e._black), e.addChild(e._shutter), e
+                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "black", {
-                get: function () {
-                    return this._black
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._shutter.initializeLight()
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
             }, e
         }(PIXI.Container);
-    e.ViewMain = a
+    e.ShipElement = s
 }

@@ -115,15 +115,15 @@ const function556 = function (t, e, i) {
         function m(t) {
             return t.a++,
                 function () {
-                    t.a--, g(t)
+                    t.a--, v(t)
                 }
         }
 
-        function v(t, e) {
-            t.c = e, g(t)
+        function g(t, e) {
+            t.c = e, v(t)
         }
 
-        function g(t) {
+        function v(t) {
             0 == t.a && t.c && (t.c(), t.c = null)
         }
 
@@ -467,7 +467,7 @@ const function556 = function (t, e, i) {
                 if (n = o[e].split(":"), n[1])
                     for (var _ = n[1].split(","), l = 0; l < _.length; l += 1) a.push(new w(n[0], _[l]));
                 else a.push(new w(n[0]));
-            v(s, function () {
+            g(s, function () {
                 t(a, r)
             })
         };
@@ -524,7 +524,7 @@ const function556 = function (t, e, i) {
                 o = this.a.families;
             Z(n, o);
             var r = new $(o);
-            tt(r), d(i, Q(n), m(e)), v(e, function () {
+            tt(r), d(i, Q(n), m(e)), g(e, function () {
                 t(r.a, r.c, dt)
             })
         }, it.prototype.load = function (t) {

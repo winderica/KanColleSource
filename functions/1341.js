@@ -20,64 +20,38 @@ const function1341 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(28),
-        s = function (t) {
-            function e(e, i, n, o, r, s) {
-                var a = t.call(this) || this;
-                return a._scene = e, a._data = i, a._ships_f = o, a._ships_e = r, a._hunshin_danmaku = s, a._damage_cutin = n, a
+        r = i(61),
+        s = i(16),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._ships_f,
-                    i = this._data.stage3_f,
-                    n = this._createParallel(e, i, this._hunshin_danmaku);
-                e = this._ships_e, i = this._data.stage3_e;
-                var o = this._createParallel(e, i, this._hunshin_danmaku);
-                new r.ParallelTask(n, o).start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._createParallel = function (t, e, i) {
-                for (var n = new r.ParallelTask, o = 0, s = t; o < s.length; o++) {
-                    var _ = s[o];
-                    if (null != _) {
-                        if (i.indexOf(_) >= 0) {
-                            if (Math.floor(e.getDamage(_.index)) <= 0) continue
-                        }
-                        var l = new a(this._scene, _, e, this._damage_cutin);
-                        n.add(l)
+                var t = this;
+                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke1.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke2.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700);
+                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
+                    i = new PIXI.extras.AnimatedSprite(e);
+                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
+                    i.play(), i.onComplete = function () {
+                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
                     }
-                }
-                return n
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._data = null, this._ships_f = null, this._ships_e = null, this._damage_cutin = null, t.prototype._endTask.call(this)
+                })
             }, e
         }(o.TaskBase);
-    e.TaskAirWarDamageNumber = s;
-    var a = function (t) {
-        function e(e, i, n, o) {
-            var r = t.call(this) || this;
-            return r._scene = e, r._ship = i, r._data = n, r._damage_cutin = o, r
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = this._ship,
-                i = this._data,
-                n = e.index,
-                o = e.friend,
-                r = i.getRai(n),
-                s = i.getBak(n),
-                a = i.getDamage(n);
-            if (r || s || a > 0) {
-                1 == this._scene.data.model.isPractice() && (a = Math.min(a, e.hp_now - 1));
-                var _ = i.getHitType(n),
-                    l = this._scene.view.bannerGroupLayer.getBanner(o, n);
-                this._scene.view.layer_damage.showAtBanner(l, a, _, function () {
-                    t._endTask()
-                }), this._damage_cutin.causeDamage(e, a), l.updateHp(e.hp_now)
-            } else this._endTask()
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._ship = null, this._data = null, this._damage_cutin = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase);
-    e.TaskAirWarDamageNumberOnce = a
+    e.AnimAntiAircraftSanshikidan2 = a
 }

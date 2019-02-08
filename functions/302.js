@@ -33,7 +33,7 @@ const function302 = function (t, e, i) {
         f = i(623),
         y = i(624),
         m = i(625),
-        v = function (t) {
+        g = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._model = i, n
@@ -173,5 +173,5 @@ const function302 = function (t, e, i) {
                 this._layer = null, this._model = null, this._bg = null, this._item_from = null, this._item_tobe = null, this._particle_layer = null, this._messagebox = null, this._white = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.ModelChangeTask = v
+    e.ModelChangeTask = g
 }

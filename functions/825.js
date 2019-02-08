@@ -25,19 +25,21 @@ const function825 = function (t, e, i) {
         a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                n._onClickYes = function () {
-                    n._cb_onYes && n._cb_onYes()
-                }, n._onClickNo = function () {
-                    n._cb_onNo && n._cb_onNo()
-                }, n._cb_onYes = e, n._cb_onNo = i;
-                var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(49));
-                return n.addChild(a), n._btnYes = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(13)), n._btnYes.position.set(78, 210), n._btnYes.interactive = !0, n._btnYes.buttonMode = !0, n.addChild(n._btnYes), n._btnNo = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._btnNo.position.set(351, 210), n._btnNo.interactive = !0, n._btnNo.buttonMode = !0, n.addChild(n._btnNo), n._beforeCount = new o.TextBox(25, 5523516), n._beforeCount.anchor.x = 1, n._beforeCount.position.set(395, 119), n.addChild(n._beforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.text = "\u2192", n._arrow.position.set(404, 122), n.addChild(n._arrow), n._afterCount = new o.TextBox(25, 5523516), n._afterCount.position.set(438, 119), n.addChild(n._afterCount), n._btnYes.on(s.EventType.CLICK, n._onClickYes), n._btnNo.on(s.EventType.CLICK, n._onClickNo), n
+                n._onClickSign = function () {
+                    n._cb_onSign && n._cb_onSign()
+                }, n._onClickBack = function () {
+                    n._cb_onBack && n._cb_onBack()
+                }, n._cb_onSign = e, n._cb_onBack = i;
+                var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(47));
+                n.addChild(a);
+                var _ = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(33));
+                return _.position.set(18, -117), a.addChild(_), n._buttonSign = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(12)), n._buttonSign.position.set(48, 212), n._buttonSign.interactive = !0, n._buttonSign.buttonMode = !0, n.addChild(n._buttonSign), n._buttonBack = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._buttonBack.position.set(384, 212), n._buttonBack.interactive = !0, n._buttonBack.buttonMode = !0, n.addChild(n._buttonBack), n._textBeforeCount = new o.TextBox(25, 5523516), n._textBeforeCount.position.set(386, 78), n._textBeforeCount.anchor.x = 1, n.addChild(n._textBeforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.position.set(393, 83), n._arrow.text = "\u2192", n.addChild(n._arrow), n._textAfterCount = new o.TextBox(25, 5523516), n._textAfterCount.position.set(417, 78), n.addChild(n._textAfterCount), n._buttonSign.on(s.EventType.CLICK, n._onClickSign), n._buttonBack.on(s.EventType.CLICK, n._onClickBack), n
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btnYes.off(s.EventType.CLICK), this._btnNo.off(s.EventType.CLICK), this._beforeCount.destroy(), this._afterCount.destroy(), this._arrow.destroy(), this._cb_onYes = null, this._cb_onNo = null, this._btnYes = null, this._btnNo = null, this._beforeCount = null, this._afterCount = null, this._arrow = null
+                this._buttonSign.off(s.EventType.CLICK), this._buttonBack.off(s.EventType.CLICK), this._textBeforeCount.destroy(), this._textAfterCount.destroy(), this._arrow.destroy(), this._cb_onSign = null, this._cb_onBack = null, this._buttonSign = null, this._buttonBack = null, this._textBeforeCount = null, this._textAfterCount = null, this._arrow = null, this.removeChildren()
             }, e.prototype.update = function (t) {
-                this._beforeCount.text = t.toString(), this._afterCount.text = (t - 1).toString()
+                this._textBeforeCount.text = "" + t, this._textAfterCount.text = "" + (t - 1)
             }, e
         }(PIXI.Container);
-    e.ExtensionConfirm = a
+    e.MarriageConfirm = a
 }

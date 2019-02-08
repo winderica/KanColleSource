@@ -25,8 +25,8 @@ const function751 = function (t, e, i) {
         a = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(17)),
-                    n = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(25)),
+                    i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(23)),
+                    n = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(31)),
                     a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(2)),
                     _ = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(1)),
                     l = new r.TextBox(28, 5523516),

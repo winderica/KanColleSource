@@ -19,29 +19,63 @@ const function970 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(359),
-        s = i(971),
-        a = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this, n) || this;
-                return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
+    var o = i(0),
+        r = i(17),
+        s = i(53),
+        a = i(358),
+        _ = i(971),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
+                    null != i._cb && i._cb(t.area_id)
+                }, i._cb = e, i._btns = new Array;
+                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
+                    var r = new a.AreaIconBtn(o + 1);
+                    r.position.set(n[o], 0), i._btns.push(r)
+                }
+                return i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._panel.initialize(t, e, i)
+            return n(e, t), e.prototype.initialize = function () {
+                if (1 != this._initialized) {
+                    this._initialized = !0;
+                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
+                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
+                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
+                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
+                            e.position.set(866, -4), this._btns.push(e)
+                        }
+                    }
+                    for (var i = 0, n = this._btns; i < n.length; i++) {
+                        var e = n[i];
+                        e.initialize(this._onSelectArea), this.addChild(e)
+                    }
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.area_id == t;
+                    n.selected = o, o ? n.deactivate() : n.activate()
+                }
             }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._panel.activate()
+                if (0 == this._activated) {
+                    for (var t = 0, e = this._btns; t < e.length; t++) {
+                        e[t].activate()
+                    }
+                    this._activated = !0
+                }
             }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._panel.deactivate()
+                this._activated = !1;
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
+                this._cb = null, this.removeChildren();
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._btns = null
             }, e
-        }(r.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = a
+        }(PIXI.Container);
+    e.CompAreaIcons = l
 }

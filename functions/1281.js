@@ -19,15 +19,45 @@ const function1281 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/start_air_base", o._airunit1 = e, o._airunit2 = i, o._airunit3 = n, o
+    var o = i(0),
+        r = i(40),
+        s = i(20),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                null != this._airunit1 && this._airunit1.length > 0 && (this._post_data.api_strike_point_1 = this._airunit1.join(",")), null != this._airunit2 && this._airunit2.length > 0 && (this._post_data.api_strike_point_2 = this._airunit2.join(",")), null != this._airunit3 && this._airunit3.length > 0 && (this._post_data.api_strike_point_3 = this._airunit3.join(",")), t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
+                get: function () {
+                    return this._content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gearBtn", {
+                get: function () {
+                    return this._gearBtn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._bg.texture = s.MAP_COMMON.getTexture(158), this._content.initialize(t), this._gearBtn.initialize()
             }, e
-        }(o.APIBase);
-    e.AirUnitGoAPI = r
+        }(PIXI.Container);
+    e.MapEndView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (this._title.texture = s.MAP_COMMON.getTexture(177), null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = o.default.resources.getUseitem(i, 0),
+                        r = new PIXI.Sprite(n);
+                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
+                }
+        }, e
+    }(PIXI.Container);
+    e.MapEndContentView = _
 }

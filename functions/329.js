@@ -24,7 +24,7 @@ const function329 = function (t, e, i) {
         s = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
+                    i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(25)),
                     n = new r.MaterialMeterView,
                     s = new r.MaterialMeterView;
                 return n.position.set(12, 8), s.position.set(119, 8), e.addChild(i, n, s), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = s, e

@@ -19,63 +19,63 @@ const function968 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(53),
-        a = i(358),
-        _ = i(969),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
-                    null != i._cb && i._cb(t.area_id)
-                }, i._cb = e, i._btns = new Array;
-                for (var n = [0, 96, 191, 383, 478, 574, 287], o = 0; o < n.length; o++) {
-                    var r = new a.AreaIconBtn(o + 1);
-                    r.position.set(n[o], 0), i._btns.push(r)
-                }
-                return i
+    var o = i(18),
+        r = i(41),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._fade = new o.FadeBox(.3), e._bg = new PIXI.Sprite, e._bg.position.set(219, 207), e.addChild(e._fade), e.addChild(e._bg), e._btn_no = new _(!1), e._btn_no.position.set(168, 216), e._btn_yes = new _(!0), e._btn_yes.position.set(417, 216), e.bg.addChild(e._btn_no), e.bg.addChild(e._btn_yes), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                if (1 != this._initialized) {
-                    this._initialized = !0;
-                    var t = new PIXI.Sprite(s.SALLY_SORTIE.getTexture(32));
-                    if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
-                        if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
-                            var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                            e.position.set(866, -4), this._btns.push(e)
-                        }
-                    }
-                    for (var i = 0, n = this._btns; i < n.length; i++) {
-                        var e = n[i];
-                        e.initialize(this._onSelectArea), this.addChild(e)
-                    }
-                }
-            }, e.prototype.update = function (t) {
-                for (var e = 0, i = this._btns; e < i.length; e++) {
-                    var n = i[e],
-                        o = n.area_id == t;
-                    n.selected = o, o ? n.deactivate() : n.activate()
-                }
-            }, e.prototype.activate = function () {
-                if (0 == this._activated) {
-                    for (var t = 0, e = this._btns; t < e.length; t++) {
-                        e[t].activate()
-                    }
-                    this._activated = !0
-                }
-            }, e.prototype.deactivate = function () {
-                this._activated = !1;
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                this._cb = null, this.removeChildren();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._btns = null
+            return n(e, t), Object.defineProperty(e.prototype, "fade", {
+                get: function () {
+                    return this._fade
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_yes", {
+                get: function () {
+                    return this._btn_yes
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.SALLY_EVENT.getTexture(23), this._btn_no.initialize(), this._btn_yes.initialize()
             }, e
         }(PIXI.Container);
-    e.CompAreaIcons = l
+    e.OperationSelectConfirmDialog = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._update(!0)
+            }, i._onMouseOut = function () {
+                i._update(!1)
+            }, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._is_yes = e, i
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._update(!1)
+        }, e.prototype.activate = function (t) {
+            this._cb_onClick = t, 1 != this.interactive && (this.interactive = !0, this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this._cb_onClick = null, this.interactive = !1, this.buttonMode = !1, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick)
+        }, e.prototype._update = function (t) {
+            var e;
+            e = 1 == t ? this._is_yes ? 16 : 13 : this._is_yes ? 15 : 12, this.texture = r.SALLY_EVENT.getTexture(e)
+        }, e
+    }(PIXI.Sprite)
 }

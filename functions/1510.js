@@ -20,24 +20,48 @@ const function1510 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(5),
+        r = i(36),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._name = new o.TextBox(24, 1949120), e._name.anchor.set(0, 0), e._name.position.set(r.default.width / 2, 48), e._name.alpha = 0, e.addChild(e._name), e
+                return e._extra_war_result = new a, e._extra_war_result.position.set(227, 177), e._extra_war_result.visible = !1, e.addChild(e._extra_war_result), e._useitem_icon = new PIXI.Sprite, e._useitem_icon.position.set(324, 290), e._useitem_icon.visible = !1, e.addChild(e._useitem_icon), e._map_incentive = new PIXI.Sprite, e._map_incentive.position.set(270, 525), e._map_incentive.visible = !1, e.addChild(e._map_incentive), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._name.text = t, this._name.position.x = r.default.width / 2 - Math.floor(this._name.width / 2)
-            }, e.prototype.show = function () {
-                var t = this;
-                createjs.Tween.get(this._name).to({
-                    alpha: 1
-                }, 100).call(function () {
-                    t.emit("complete")
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "extra_war_result", {
+                get: function () {
+                    return this._extra_war_result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "useitem_icon", {
+                get: function () {
+                    return this._useitem_icon
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "map_incentive", {
+                get: function () {
+                    return this._map_incentive
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._extra_war_result.initialize(), this._map_incentive.texture = r.BATTLE_RESULT_MAIN.getTexture(77)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy()
+                this.removeChildren(), this._extra_war_result.dispose()
             }, e
         }(PIXI.Container);
-    e.LayerMapName = s
+    e.ExtraResultPanel = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._title = new PIXI.Sprite, e.addChild(e._title), e._plus = new PIXI.Sprite, e._plus.position.set(153, 47), e.addChild(e._plus), e._label = new o.TextBox(28, 16777215), e._label.anchor.x = 1, e._label.position.set(267, 36), e.addChild(e._label), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._title.texture = r.BATTLE_RESULT_MAIN.getTexture(87), this._plus.texture = r.BATTLE_RESULT_MAIN.getTexture(86)
+        }, e.prototype.update = function (t) {
+            this._label.text = t.toString()
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._label.destroy()
+        }, e
+    }(PIXI.Container)
 }

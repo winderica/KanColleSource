@@ -36,14 +36,14 @@ const function544 = function (t, e, i) {
         f = i(557),
         y = i(558),
         m = i(13),
-        v = i(560),
-        g = i(647),
+        g = i(560),
+        v = i(647),
         b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
                     i._TutorialScene.emitter.off("tutorial-event-end", i._tutorialEnd), r.default.view.removeChild(i._TutorialScene), i._isTutorialEnd = !0, i._preInitPort()
-                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.view.initialize(new v.PortScene), i
+                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.view.initialize(new g.PortScene), i
             }
             return o(e, t), e.prototype._start = function () {
                 this._loadVersionFile()
@@ -99,7 +99,7 @@ const function544 = function (t, e, i) {
             }, e.prototype._connectAPI = function () {
                 var t = this;
                 (new a.APIConnector).add(new u.GetIncentiveAPI).add(new _.GetDataAPI).add(new l.RequireInfoAPI).start(function () {
-                    t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new g.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
+                    t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new v.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
                 })
             }, e.prototype._preInitPort = function () {
                 var t = this;
@@ -134,19 +134,19 @@ const function544 = function (t, e, i) {
     e.AppInitializeTask = b;
     var w = i(659),
         x = i(736),
-        I = i(755),
-        T = i(831),
-        O = i(856),
-        C = i(907),
-        P = i(1042),
-        k = i(1058),
-        M = i(1088),
-        S = i(1164),
-        A = i(1173),
-        j = i(1192),
-        E = i(1208),
+        I = i(757),
+        T = i(833),
+        O = i(858),
+        C = i(909),
+        P = i(1044),
+        k = i(1060),
+        M = i(1090),
+        S = i(1166),
+        A = i(1175),
+        j = i(1194),
+        E = i(1210),
         N = i(436),
-        L = i(1309),
-        B = i(1449),
+        L = i(1311),
+        B = i(1451),
         R = i(17)
 }

@@ -19,53 +19,100 @@ const function1368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(19),
-        s = i(2),
-        a = i(1369),
-        _ = i(1376),
-        l = i(469),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(92),
+        r = i(76),
+        s = i(1369),
+        a = i(1370),
+        _ = i(1398),
+        l = i(1399),
+        u = i(1400),
+        c = i(469),
+        h = i(1401),
+        p = i(1402),
+        d = i(184),
+        f = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
+                this._opening()
             }, e.prototype._opening = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
-                    })
+                var t = this;
+                new s.PhaseOpening(this.scene, this._record).start(function () {
+                    t._allyAttack()
                 })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
-                })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new l.PhaseHougeki(this._scene, e, i, n).start(function () {
+            }, e.prototype._allyAttack = function () {
+                var t = this;
+                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
                     t._moveShips()
                 })
             }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
+                var t = this;
+                new l.PhaseMoveShips(this.scene, this._record).start(function () {
+                    t._showTouchPlane()
                 })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
+            }, e.prototype._showTouchPlane = function () {
+                var t = this,
+                    e = this._record.raw.getTouchPlaneFriend(),
+                    i = this._record.raw.getTouchPlaneEnemy();
+                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new o.PhaseRation(this.scene, this._record).start(function () {
+                    t._light()
+                })
+            }, e.prototype._light = function () {
+                var t = this;
+                new _.PhaseLighting(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new u.PhaseSupport(this.scene, this._record).start(function () {
+                    t._attack()
+                })
+            }, e.prototype._attack = function () {
+                var t = this,
+                    e = this._record.raw.hougeki,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this,
+                    e = this._record.raw.hougeki1,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this,
+                    e = this._record.raw.hougeki2,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new h.PhaseEnding(this.scene, this._record).start(function () {
+                    t._dayBattle()
+                })
+            }, e.prototype._dayBattle = function () {
+                var t = this;
+                if (1 == this._record.raw.hasDayBattle()) {
+                    var e = this.scene,
+                        i = this._record.getDayRecord();
+                    new p.PhaseDayFromNight(e, i).start(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
             }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = u
+        }(r.PhaseCombatBase);
+    e.PhaseNight = f
 }

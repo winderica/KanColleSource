@@ -248,6 +248,15 @@ const function147 = function (t, e, i) {
             }, t.prototype.getAmmoForSupply = function () {
                 var t = this.ammoMax - this.ammoNow;
                 return t = Math.max(0, t), t > 0 && this.isMarriage() && (t = Math.floor(.85 * t), t = Math.max(t, 1)), t
+            }, t.prototype.getBauxForSupply = function () {
+                for (var t = 0, e = 0; e < this.slotNum; e++) {
+                    var i = this.getSlotitemTousai(e),
+                        n = this.getSlotitemTousaiMax(e),
+                        o = this.getSlotitems()[e];
+                    o && 41 == o.equipTypeSp && (n = 1);
+                    t += 5 * (n - i)
+                }
+                return t
             }, Object.defineProperty(t.prototype, "sortNo", {
                 get: function () {
                     return o.default.model.ship.getMst(this.mstID).sortNo
@@ -324,6 +333,8 @@ const function147 = function (t, e, i) {
             }, t.prototype.getSlotitemTousai = function (t) {
                 var e = r.ObjUtil.getNumArray(this._o, "api_onslot");
                 return null != e && e.length > t ? e[t] : 0
+            }, t.prototype.getSlotitemTousaiMax = function (t) {
+                return o.default.model.ship.getMst(this.mstID).getSlotitemTousaiMax(t)
             }, t.prototype.isExtraSlot = function () {
                 return 0 != r.ObjUtil.getNumber(this._o, "api_slot_ex")
             }, t.prototype.getSlotitemEx = function () {

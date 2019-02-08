@@ -16,9 +16,9 @@ const function476 = function (t, e, i) {
                             f = e[c],
                             y = a[c],
                             m = _[c],
-                            v = l[c],
-                            g = 1 == u[c],
-                            b = new r(h, p, d, f, y, m, v, g);
+                            g = l[c],
+                            v = 1 == u[c],
+                            b = new r(h, p, d, f, y, m, g, v);
                         this._list.push(b)
                     }
             }

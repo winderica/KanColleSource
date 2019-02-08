@@ -21,7 +21,7 @@ const function372 = function (t, e, i) {
     });
     var o = i(41),
         r = i(232),
-        s = i(993),
+        s = i(995),
         a = function (t) {
             function e(e, i, n, o, r) {
                 return t.call(this, e, i, n, o, r) || this

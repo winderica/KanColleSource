@@ -26,14 +26,14 @@ const function338 = function (t, e, i) {
         _ = i(40),
         l = i(15),
         u = i(13),
-        c = i(819),
-        h = i(820),
+        c = i(821),
+        h = i(822),
         p = 18,
         d = 20,
         f = 8,
         y = 3,
         m = 1.75,
-        v = function (t) {
+        g = function (t) {
             function e(e, i) {
                 void 0 === i && (i = null);
                 var n = t.call(this) || this;
@@ -509,5 +509,5 @@ const function338 = function (t, e, i) {
                 return [9, 12, 13, 14, 15, 16, 17, 18, 19, 10, 11][t]
             }, e
         }(PIXI.Container);
-    e.MarriageAnimation = v
+    e.MarriageAnimation = g
 }

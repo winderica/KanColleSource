@@ -19,53 +19,71 @@ const function1158 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(78),
-        r = i(303),
-        s = i(79),
-        a = i(3),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
+    var o = i(1),
+        r = i(4),
+        s = i(108),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onMouseOverListItem = function (t) {
+                    i._focusTo = t, i._focus.x = t.x - 6, i._focus.y = t.y - 4, i._focus.visible = !0
+                }, i._onMouseOutListItem = function (t) {
+                    i._focusTo == t && (i._focusTo = null, i._focus.visible = !1)
+                }, i._items = [];
+                for (var n = 0; n < 10; n++) {
+                    var o = new _(i._onMouseOverListItem, i._onMouseOutListItem, e);
+                    o.y = 45 * n, i.addChild(o), i._items.push(o)
+                }
+                return i._focus = new PIXI.Sprite, i.addChild(i._focus), i
             }
             return n(e, t), e.prototype.initialize = function () {
-                t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
-            }, e.prototype.updateFromModel = function (e) {
-                if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
-                    this._img.scale.set(1), this._img.position.set(0, 0);
-                    var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
-                        n = o.FurnitureLoader.getVersionQuery(e.mstID),
-                        r = i + ("" == n ? "" : "?" + n),
-                        a = PIXI.Texture.fromImage(r);
-                    t.prototype.update.call(this, a)
-                } else {
-                    switch (e.type) {
-                        case 0:
-                            this._img.scale.set(1.45), this._img.position.set(-757, -99);
-                            break;
-                        case 1:
-                            this._img.scale.set(.64), this._img.position.set(-96, 3);
-                            break;
-                        case 2:
-                            this._img.scale.set(.64), this._img.position.set(3, 3);
-                            break;
-                        case 3:
-                            this._img.scale.set(1), this._img.position.set(0, 0);
-                            break;
-                        case 4:
-                            this._img.scale.set(.73), this._img.position.set(1, -90);
-                            break;
-                        case 5:
-                            this._img.scale.set(.56), this._img.position.set(-34, 9)
-                    }
-                    var _ = e.mstID,
-                        r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
-                        a = PIXI.Texture.fromImage(r);
-                    t.prototype.update.call(this, a)
+                this.texture = s.ITEM_FSHOP.getTexture(22);
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].initialize()
                 }
-            }, e.prototype.clean = function () {
-                this._soldout.visible = !1, t.prototype.clean.call(this)
+                this._focus.texture = s.ITEM_FSHOP.getTexture(23)
+            }, e.prototype.update = function (t) {
+                for (var e = 0; e < this._items.length; e++) {
+                    var i = this._items[e];
+                    e < t.length ? (i.update(t[e]), i.visible = !0) : i.visible = !1
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._items = null
             }, e
-        }(r.FurnitureThumbnail);
-    e.Thumbnail = _
+        }(PIXI.Sprite);
+    e.FShopListPanel = a;
+    var _ = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._onMouseOver = function () {
+                null != o._cb_onMouseOver && o._cb_onMouseOver(o)
+            }, o._onMouseOut = function () {
+                null != o._cb_onMouseOut && o._cb_onMouseOut(o)
+            }, o._onClick = function () {
+                null != o._cb_onClick && o._cb_onClick(o._model)
+            }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o._coin = new PIXI.Sprite, o._coin.position.set(316, 12), o.addChild(o._coin), o._name = new r.TextBox(20, 16774898), o._name.position.set(6, 10), o.addChild(o._name), o._price = new r.TextBox(18, 16774898), o._price.anchor.x = 1, o._price.position.set(433, 10), o.addChild(o._price), o._soldout = new PIXI.Sprite, o._soldout.x = 1, o._soldout.alpha = 0, o.addChild(o._soldout), o.interactive = !0, o
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._coin.texture = s.ITEM_FSHOP.getTexture(14), this._soldout.texture = s.ITEM_FSHOP.getTexture(24)
+        }, e.prototype.update = function (t) {
+            this._model = t, this._name.text = t.name, this._price.text = t.price.toString(), this._soldout.alpha = 1 == t.has() ? 1 : 0
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this.removeChildren(), this._name.destroy(), this._price.destroy(), this._model = null, this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onClick = null
+        }, e
+    }(PIXI.Container)
 }

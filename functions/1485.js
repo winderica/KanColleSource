@@ -19,116 +19,44 @@ const function1485 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(8),
-        s = i(23),
-        a = i(61),
-        _ = i(36),
-        l = i(1486),
-        u = i(1488),
-        c = i(478),
-        h = i(1),
-        p = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                o._data = e, o._gauge_info = i, o._gauge_info_next = n;
-                var r = e.isSuccess();
-                return o._back = new PIXI.Sprite, o._back.position.set(282, 231), o._back.texture = 1 == r ? _.BATTLE_RESULT_MAIN.getTexture(5) : _.BATTLE_RESULT_MAIN.getTexture(6), o.addChild(o._back), o._sub_title = new PIXI.Sprite, 1 == r ? (o._sub_title.texture = _.BATTLE_RESULT_MAIN.getTexture(64), o._sub_title.position.set(381, 407)) : (o._sub_title.texture = _.BATTLE_RESULT_MAIN.getTexture(3), o._sub_title.position.set(366, 405)), o.addChild(o._sub_title), o._numset = new u.ResultDialogNumSet, o._numset.position.set(696, 393), o.addChild(o._numset), o._title = new f, o._title.initialize(r), o._title.position.set(603, 290), o.addChild(o._title), o._gauge = new l.ResultDialogGauge, o._gauge.position.set(407, 317), o._gauge.initialize(o._gauge_info, o._data.nowHP, o._data.maxHP), o.addChild(o._gauge), o
-            }
-            return n(e, t), e.prototype.startAnimation = function (t) {
-                var e = this,
-                    i = this._data.subValue / 25 * 1e3;
-                i = Math.min(i, 8e3);
-                var n = {
-                        value: this._data.nowHP,
-                        sub: 0
-                    },
-                    o = function (t) {
-                        var i = t.target.target,
-                            n = (i.value, i.sub);
-                        e._numset.setValue(Math.round(n));
-                        var o = Math.max(e._data.nowHP - n, 0),
-                            r = e._data.maxHP;
-                        e._gauge.update(o, r)
-                    };
-                createjs.Tween.get(n, {
-                    onChange: o
-                }).to({
-                    sub: this._data.subValue
-                }, i).call(function () {
-                    e._numset.startLightAnimation(), e._explodeGauge(t)
-                })
-            }, e.prototype._explodeGauge = function (t) {
-                var e = this;
-                this._data.nowHP - this._data.subValue <= 0 ? createjs.Tween.get(null).wait(250).call(function () {
-                    e._gauge.explode(function () {
-                        null == e._gauge_info_next ? e._showOperationComplete(t) : e._showNextGauge(t)
-                    })
-                }) : this._wait(t)
-            }, e.prototype._showNextGauge = function (t) {
-                var e = this;
-                this._gauge.changeNextGauge(this._gauge_info_next, function () {
-                    e._wait(t)
-                })
-            }, e.prototype._showOperationComplete = function (t) {
-                var e = this;
-                createjs.Tween.get(this._title).wait(1e3).to({
-                    y: 345
-                }, 500, createjs.Ease.sineInOut).to({
-                    scaleX: 1.4,
-                    scaleY: 1.4
-                }, 1500, createjs.Ease.sineInOut).wait(600).call(function () {
-                    e._showOperationComplete2(t)
-                })
-            }, e.prototype._showOperationComplete2 = function (t) {
-                var e = this;
-                createjs.Tween.get(this._title).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 0
-                }, 1e3, createjs.Ease.cubicIn).wait(1e3).call(function () {
-                    e._wait(t)
-                });
-                var i = new a.CenteringSprite(_.BATTLE_RESULT_MAIN.getTexture(0));
-                i.position.set(608, 350), i.scale.set(1.4), i.alpha = 0, this.addChild(i), createjs.Tween.get(i).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 1e3, createjs.Ease.cubicIn), this._kamihubuki = new c.KamihubukiLayer, this.addChild(this._kamihubuki), createjs.Tween.get(null).wait(400).call(function () {
-                    e._kamihubuki.startKamihubuki(60)
-                })
-            }, e.prototype._wait = function (t) {
-                new d(this).start(function () {
-                    t()
-                })
-            }, e.prototype.dispose = function () {
-                this._numset.stopLightAnimation(), null != this._kamihubuki && this._kamihubuki.dispose()
-            }, e
-        }(PIXI.Container);
-    e.ResultDialog = p;
-    var d = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    i._wait_tween.setPaused(!0), i._wait_tween = null, i._endTask()
-                }, i._layer = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._area = new r.AreaBox(0), this._area.buttonMode = !0, this._layer.addChild(this._area), this._area.once(h.EventType.CLICK, this._onClick), this._wait_tween = createjs.Tween.get(null), this._wait_tween.wait(3e3), this._wait_tween.call(function () {
-                    t._area.off(h.EventType.CLICK, t._onClick), t._wait_tween = null, t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer.removeChild(this._area), this._layer = null, this._area = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase),
-        f = function (t) {
+    var o = i(17),
+        r = i(23),
+        s = i(30),
+        a = i(41),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.x = -167, e._img.y = -30, e.addChild(e._img), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = 1 == t ? _.BATTLE_RESULT_MAIN.getTexture(63) : _.BATTLE_RESULT_MAIN.getTexture(4)
+                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
+                else switch (t) {
+                    case 1:
+                        this._img.texture = s.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        this._img.texture = s.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        this._img.texture = s.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        this._img.texture = s.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        this._img.texture = s.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        this._img.texture = s.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        this._img.texture = s.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
+                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(s.Container)
+        }(r.Container);
+    e.AreaIcon = _
 }

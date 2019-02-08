@@ -97,7 +97,7 @@ const function277 = function (t, e, i) {
                 var y = r.ObjUtil.getObjectArray(t.standard, "data"),
                     m = [];
                 m.push(p + "_" + s + "_A.png");
-                for (var v = 1; v < y.length && !(v > h); v++) m.push(p + "_" + s + "_B" + v + ".png");
+                for (var g = 1; g < y.length && !(g > h); g++) m.push(p + "_" + s + "_B" + g + ".png");
                 return m
             }, t
         }();

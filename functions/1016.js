@@ -20,15 +20,29 @@ const function1016 = function (t, e, i) {
         value: !0
     });
     var o = i(54),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._result = new PIXI.Sprite, this._rank = new PIXI.Sprite, this._rank.position.set(66, 7), this.addChild(this._result), this.addChild(this._rank)
-            }, e.prototype.update = function (t) {
-                this.visible = !0, 6 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(25)) : 5 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(20)) : 4 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(21)) : 3 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(22)) : 2 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(23)) : 1 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(24)) : this.visible = !1
-            }, e.prototype.dispose = function () {}, e
-        }(PIXI.Container);
-    e.CompRank = r
+                this._update(!1)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(2) : o.SALLY_PRACTICE.getTexture(1)
+            }, e
+        }(PIXI.Sprite);
+    e.BackBtn = s
 }

@@ -19,45 +19,31 @@ const function963 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(41),
-        s = i(964),
-        a = i(0),
-        _ = i(13),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+    var o = i(7),
+        r = i(10),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
-                get: function () {
-                    return this._createSelectView(), this._selectView
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
-                    i = "?version=" + _.UIImageLoader.getVersion("sally");
-                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
-                    case 431:
-                        this._content.position.set(-303, -225), this._content.texture = PIXI.Texture.fromImage(e + "/230_c3ce4.png" + i);
-                        break;
-                    case 432:
-                        this._content.position.set(-286, -229), this._content.texture = PIXI.Texture.fromImage(e + "/231_b88bd.png" + i);
-                        break;
-                    case 433:
-                        this._content.position.set(-342, -223), this._content.texture = PIXI.Texture.fromImage(e + "/232_5b7cd.png" + i);
-                        break;
-                    default:
-                        this._content.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._model.getGaugeNum(),
+                    i = this._model.gauge_type,
+                    n = this._model.gauge_max,
+                    r = this._model.gauge_now,
+                    s = this._raw_data;
+                if (null != s) {
+                    if (s.hasOwnProperty("api_maphp")) {
+                        var a = s.api_maphp;
+                        a.hasOwnProperty("api_gauge_num") && (e = a.api_gauge_num), a.hasOwnProperty("api_gauge_type") && (i = a.api_gauge_type), 1 == a.hasOwnProperty("api_max_maphp") && (n = a.api_max_maphp), 1 == a.hasOwnProperty("api_now_maphp") && (r = a.api_now_maphp)
+                    }
+                    this._model.changeOperation(this._selected, e, i, n, r);
+                    var _ = o.ObjUtil.getNumArray(s, "api_sally_flag");
+                    _ && this._model.changeAllowedDeckType(_), t.prototype._completedEnd.call(this)
                 }
-            }, e.prototype.showSelectView = function () {
-                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
-            }, e.prototype.dispose = function () {
-                null != this._selectView && this._selectView.dispose()
-            }, e.prototype._createSelectView = function () {
-                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(o.Sprite);
-    e.MapIntroBoard = l
+        }(r.APIBase);
+    e.APIOperationChange = s
 }

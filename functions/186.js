@@ -25,8 +25,8 @@ const function186 = function (t, e, i) {
         a = i(18),
         _ = i(6),
         l = i(44),
-        u = i(1348),
-        c = i(1349),
+        u = i(1350),
+        c = i(1351),
         h = i(65),
         p = i(254),
         d = function (t) {
@@ -186,11 +186,11 @@ const function186 = function (t, e, i) {
         return n(e, t), e
     }(f);
     e.CutinDanchaku3 = m;
-    var v = function (t) {
+    var g = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e
     }(d);
-    e.CutinDanchaku4 = v
+    e.CutinDanchaku4 = g
 }

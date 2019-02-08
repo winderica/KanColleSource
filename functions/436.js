@@ -23,24 +23,24 @@ const function436 = function (t, e, i) {
         r = i(143),
         s = i(47),
         a = i(51),
-        _ = i(1226),
-        l = i(1227),
-        u = i(1228),
-        c = i(1233),
-        h = i(1234),
-        p = i(1236),
-        d = i(1239),
-        f = i(1240),
-        y = i(1272),
-        m = i(1273),
-        v = i(1274),
+        _ = i(1228),
+        l = i(1229),
+        u = i(1230),
+        c = i(1235),
+        h = i(1236),
+        p = i(1238),
+        d = i(1241),
+        f = i(1242),
+        y = i(1274),
+        m = i(1275),
         g = i(1276),
-        b = i(1278),
+        v = i(1278),
+        b = i(1280),
         w = i(438),
-        x = i(1280),
+        x = i(1282),
         I = i(440),
-        T = i(1288),
-        O = i(1304),
+        T = i(1290),
+        O = i(1306),
         C = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -167,7 +167,7 @@ const function436 = function (t, e, i) {
                     s = n.hasMegami();
                 if (1 == o && 0 == r && 0 == s) {
                     var a = e.deck_f.name;
-                    return void new g.TaskFlagShipDamaged(this._view, a, n.mst_id).start(function () {
+                    return void new v.TaskFlagShipDamaged(this._view, a, n.mst_id).start(function () {
                         i._endScene(t)
                     })
                 }
@@ -278,7 +278,7 @@ const function436 = function (t, e, i) {
                     t.getSelectableRoutes();
                     this._viewNext(e, i, function () {
                         n._view.map.plane_layer.hideAll();
-                        var t = new v.TaskBranchRoute(n, n._model);
+                        var t = new g.TaskBranchRoute(n, n._model);
                         t.start(function () {
                             var e = t.selected_no;
                             new _.APIMapNext(n._model.sortie, i, e).start(function () {

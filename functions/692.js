@@ -51,10 +51,10 @@ const function692 = function (t, e, i) {
                 var f = o.ORGANIZE_RENGO.getTexture(1),
                     y = new PIXI.Sprite(f),
                     m = o.ORGANIZE_RENGO.getTexture(4),
-                    v = new PIXI.Sprite(m),
-                    g = o.ORGANIZE_RENGO.getTexture(7),
-                    b = new PIXI.Sprite(g);
-                return e.buttonKido.onClick = e._onClickKido, e.buttonSuijo.onClick = e._onClickSuijo, e.buttonYuso.onClick = e._onClickYuso, e.buttonBack.onClick = e._onClickBack, a.position.set(189, 25), e.buttonKido.position.set(84, 61), e.buttonSuijo.position.set(298, 61), e.buttonYuso.position.set(84, 124), e.buttonBack.position.set(211, 192), y.position.set(84, 61), v.position.set(298, 61), b.position.set(84, 124), e.buttonSuijo.visible = e.buttonYuso.visible = e.buttonKido.visible = !1, e.addChild(s, y, v, b, e.buttonKido, e.buttonSuijo, e.buttonYuso, e.buttonBack, a), e
+                    g = new PIXI.Sprite(m),
+                    v = o.ORGANIZE_RENGO.getTexture(7),
+                    b = new PIXI.Sprite(v);
+                return e.buttonKido.onClick = e._onClickKido, e.buttonSuijo.onClick = e._onClickSuijo, e.buttonYuso.onClick = e._onClickYuso, e.buttonBack.onClick = e._onClickBack, a.position.set(189, 25), e.buttonKido.position.set(84, 61), e.buttonSuijo.position.set(298, 61), e.buttonYuso.position.set(84, 124), e.buttonBack.position.set(211, 192), y.position.set(84, 61), g.position.set(298, 61), b.position.set(84, 124), e.buttonSuijo.visible = e.buttonYuso.visible = e.buttonKido.visible = !1, e.addChild(s, y, g, b, e.buttonKido, e.buttonSuijo, e.buttonYuso, e.buttonBack, a), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.buttonKido.onClick = this._onClickKido = null, this.buttonSuijo.onClick = this._onClickSuijo = null, this.buttonYuso.onClick = this._onClickYuso = null, this.buttonBack.onClick = this._onClickBack = null, this.buttonKido.dispose(), this.buttonSuijo.dispose(), this.buttonYuso.dispose(), this.buttonBack.dispose(), this.buttonKido = null, this.buttonSuijo = null, this.buttonYuso = null, this.buttonBack = null, this.removeChildren()

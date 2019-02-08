@@ -22,99 +22,145 @@ const function957 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(17),
-        a = i(2),
-        _ = i(18),
-        l = i(958),
-        u = i(960),
-        c = i(349),
-        h = i(357),
-        p = function (t) {
-            function e(e, i, n, o, s) {
-                var a = t.call(this) || this;
-                return a._showBeginnerAlert = function () {
-                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
-                }, a._showMapIntro = function () {
-                    var t = r.default.model.basic.level,
-                        e = [];
-                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
-                    var i = a._model.getSelectedOperationType();
-                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
-                        var t = a._model.getSelectedOperationType(),
-                            e = 0 == t;
-                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
-                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
-                        }) : a._hideFade(e)
-                    })
-                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
+        a = i(1),
+        _ = i(2),
+        l = i(23),
+        u = i(8),
+        c = i(4),
+        h = i(22),
+        p = i(67),
+        d = i(6),
+        f = i(9),
+        y = i(26),
+        m = i(958),
+        g = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onSelect = function (t) {
+                    if (o._dialog.deactivate(), 0 == t) o._removeDialog(), o._endTask();
+                    else {
+                        new m.AirUnitExtendAPI(o._area_id).start(function () {
+                            o._removeDialog(), o._loadItemCard()
+                        })
+                    }
+                }, o._layer = e, o._area_id = i, o._cb_onUpdateInAnimation = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                if (this._model.area_id == s.EVENT_AREA_ID) {
-                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
-                    var t = this._model.map_no,
-                        e = r.default.model.basic.level;
-                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
-                    var i = this._voicePlayList(t);
-                    null != i && this._voicePlay(i)
-                } else this._showDetailPanel()
-            }, e.prototype._voicePlayList = function (t) {
-                switch (t) {
-                    case 1:
-                        return {
-                            voice: [411, 415, 423],
-                            delay: [0, 200, 200]
-                        };
-                    case 2:
-                        return {
-                            voice: [411, 416, 424],
-                            delay: [0, 200, 200]
-                        };
-                    case 3:
-                        return {
-                            voice: [412, 421, 423, 424],
-                            delay: [0, 200, 200, 200]
-                        };
-                    case 4:
-                        return {
-                            voice: [412, 418, 423, 424],
-                            delay: [0, 200, 200, 200]
-                        };
-                    case 5:
-                        return {
-                            voice: [412, 421, 422, 424],
-                            delay: [0, 200, 200, 200]
-                        };
-                    default:
-                        return null
-                }
-            }, e.prototype._voicePlay = function (t) {
-                var e = this,
-                    i = t.voice,
-                    n = t.delay;
-                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
-                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
-                })
-            }, e.prototype._voiceNextDelay = function (t) {
-                var e = this,
-                    i = t.delay;
-                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
-                    e._voicePlay(t)
-                })
-            }, e.prototype._hideFade = function (t) {
-                var e = this;
-                this._fade.hide(300, function () {
-                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
-                })
-            }, e.prototype._showDetailPanel = function () {
+                this._bg = new u.AreaBox(.6), this._layer.addChild(this._bg), this._dialog = new v(this._onSelect), this._dialog.initialize();
+                var t = this._area_id,
+                    e = r.default.model.useItem.getCount(73);
+                this._dialog.update(t, e), this._dialog.activate(), this._layer.addChild(this._dialog)
+            }, e.prototype._removeDialog = function () {
+                this._layer.removeChild(this._dialog), this._dialog.dispose(), this._dialog = null
+            }, e.prototype._loadItemCard = function () {
                 var t = this,
-                    e = this._detailPanel;
-                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
-                    x: 840
-                }, 200).call(function () {
-                    e.activate(), t._endTask()
+                    e = new p.UseitemLoader;
+                e.add(73, 1), e.load(function () {
+                    t._loadTextImage()
                 })
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
+            }, e.prototype._loadTextImage = function () {
+                var t = this,
+                    e = h.MathUtil.zeroPadding(this._area_id, 3),
+                    i = r.default.settings.path_root + "resources/area/airunit_extend_confirm/" + e + "_.png";
+                i = i + "?" + s.START_TIME;
+                var n = new PIXI.loaders.Loader;
+                n.add(i), n.load(function () {
+                    t._message = new PIXI.Container;
+                    var e = n.resources[i].texture,
+                        r = new PIXI.Sprite(e);
+                    t._message.addChild(r);
+                    var s = new PIXI.Sprite(y.SALLY_AIRUNIT.getTexture(134));
+                    t._message.addChild(s), r.x = o.default.width / 2 - Math.round(r.width / 2), s.x = o.default.width / 2 - Math.round(s.width / 2);
+                    var a = r.height / 2 + s.height;
+                    r.y = o.default.height / 2 - Math.round(a / 2), s.y = r.y + Math.round(r.height / 2), t._showCard()
+                })
+            }, e.prototype._showCard = function () {
+                var t = this;
+                this._card = new l.Container, this._card.position.set(o.default.width / 2, o.default.height / 2), this._card.scale.set(0), this._layer.addChild(this._card);
+                var e = r.default.resources.getUseitem(73, 1),
+                    i = new PIXI.Sprite(e);
+                i.position.set(-i.width / 2, -i.height / 2), this._card.addChild(i), d.SE.play("230"), createjs.Tween.get(this._card).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 250).wait(1300).call(function () {
+                    t._shakeCard()
+                })
+            }, e.prototype._shakeCard = function () {
+                for (var t = this, e = createjs.Tween.get(null), i = 0; i < 20; i++) e.call(function () {
+                    t._card.x = o.default.width / 2 + 16 * Math.random() - 8, t._card.y = o.default.height / 2 + 16 * Math.random() - 8
+                }), e.wait(50);
+                e.call(function () {
+                    t._card.x = o.default.width / 2, t._card.y = o.default.height / 2, t._showFlash()
+                })
+            }, e.prototype._showFlash = function () {
+                var t = this,
+                    e = new l.Container;
+                e.position.set(o.default.width / 2, o.default.height / 2), e.scale.set(1.25), e.alpha = 0, this._layer.addChild(e);
+                var i = new PIXI.Sprite(f.COMMON_MISC.getTexture(68));
+                i.position.set(-i.width / 2, -i.height / 2), e.addChild(i), createjs.Tween.get(e).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 1
+                }, 350).to({
+                    scaleX: 2.8,
+                    scaleY: 2.8
+                }, 300), this._white = new u.AreaBox(1, 16777215), this._white.alpha = 0, this._layer.addChild(this._white), createjs.Tween.get(this._white).wait(200).to({
+                    alpha: 1
+                }, 450).call(function () {
+                    null != t._cb_onUpdateInAnimation && t._cb_onUpdateInAnimation(), t._layer.removeChild(t._card), t._card = null, t._layer.removeChild(e), t._showText()
+                })
+            }, e.prototype._showText = function () {
+                var t = this;
+                this._message.x = o.default.width, this._white.addChild(this._message), d.SE.play("216"), createjs.Tween.get(this._message).to({
+                    x: 0
+                }, 500).wait(500).call(function () {
+                    t._waitClick()
+                })
+            }, e.prototype._waitClick = function () {
+                var t = this;
+                this._white.buttonMode = !0, this._white.once(a.EventType.CLICK, function () {
+                    t._bg.alpha = 0, createjs.Tween.get(t._white).to({
+                        alpha: 0
+                    }, 1e3).call(function () {
+                        t._layer.removeChild(t._white), t._white = null, t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._layer.removeChild(this._bg), this._bg = null, t.prototype._endTask.call(this)
             }, e
-        }(a.TaskBase);
-    e.TaskShowDetailPanel = p
+        }(_.TaskBase);
+    e.TaskExtendAirUnit = g;
+    var v = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClickYes = function () {
+                null != i._cb_onResult && i._cb_onResult(!0)
+            }, i._onClickNo = function () {
+                null != i._cb_onResult && i._cb_onResult(!1)
+            }, i._cb_onResult = e, i._bg = new PIXI.Sprite, i._bg.position.set(231, 185), i.addChild(i._bg), i._area_name = new PIXI.Sprite, i._area_name.position.set(0, 219), i.addChild(i._area_name), i._title = new PIXI.Sprite, i._title.position.set(437, 260), i.addChild(i._title), i._icon = new PIXI.Sprite, i._icon.position.set(533, 327), i.addChild(i._icon), i._item_num = new c.TextBox(20, 1381651), i._item_num.position.set(621, 351), i.addChild(i._item_num), i._logo = new PIXI.Sprite, i._logo.position.set(761, 96), i.addChild(i._logo), i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(387, 455), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(642, 455), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = y.SALLY_AIRUNIT.getTexture(90), this._title.texture = y.SALLY_AIRUNIT.getTexture(141), this._icon.texture = r.default.resources.getUseitem(73, 0), this._item_num.text = "1\u21920", this._logo.texture = y.SALLY_AIRUNIT.getTexture(47), this._btn_yes.texture = y.SALLY_AIRUNIT.getTexture(33), this._btn_no.texture = y.SALLY_AIRUNIT.getTexture(16)
+        }, e.prototype.update = function (t, e) {
+            var i = this,
+                n = h.MathUtil.zeroPadding(t, 3),
+                o = r.default.settings.path_root + "resources/area/airunit_extend_confirm/" + n + ".png";
+            o = o + "?" + s.START_TIME;
+            var a = new PIXI.loaders.Loader;
+            a.add(o), a.load(function () {
+                var t = a.resources[o].texture;
+                i._area_name.texture = t;
+                var e = i._title.x + i._title.width / 2 - i._area_name.width / 2;
+                i._area_name.x = Math.round(e)
+            });
+            var _ = e;
+            this._item_num.text = _ + "\u2192" + Math.max(0, _ - 1)
+        }, e.prototype.activate = function () {
+            0 == this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(a.EventType.CLICK, this._onClickYes)), 0 == this._btn_no.buttonMode && (this._btn_no.buttonMode = !0, this._btn_no.on(a.EventType.CLICK, this._onClickNo))
+        }, e.prototype.deactivate = function () {
+            this._btn_yes.buttonMode = !1, this._btn_yes.off(a.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(a.EventType.CLICK, this._onClickNo)
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this.removeChildren(), this._item_num.destroy(), this._cb_onResult = null
+        }, e
+    }(PIXI.Container)
 }

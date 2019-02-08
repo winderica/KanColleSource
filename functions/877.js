@@ -19,22 +19,31 @@ const function877 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(35),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClickYes = function () {
-                    i._cb_onComplete(!0)
-                }, i._onClickNo = function () {
-                    i._cb_onComplete(!1)
-                }, i._cb_onComplete = e;
-                var n = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(79));
-                return n.position.set(271, 87), i.addChild(n), i._btn_yes = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(39)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(435, 505), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(35)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(615, 505), i.addChild(i._btn_no), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i
+    var o = i(35),
+        r = i(4),
+        s = i(22),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.completeTime = 0, e.now = 0, e.timeCounter = new r.TextBox(31, 5523516), e.textBuildState = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(60));
+                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(154));
+                return i.anchor.x = .5, i.position.set(75, 10), e.textBuildState.position.set(21, -33), e.timeCounter.position.set(5, 39), e.timeCounter.text = s.MathUtil.timeToString(0), e.addChild(e.timeCounter, e.textBuildState, i), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this._cb_onComplete = null, this.removeChildren()
+            return n(e, t), e.prototype.build = function (t) {
+                this.timeCounter.alpha = 1, this.completeTime = t, this.textBuildState.texture = o.ARSENAL_MAIN.getTexture(58)
+            }, e.prototype.standby = function () {
+                this.timeCounter.alpha = .5, this.textBuildState.texture = o.ARSENAL_MAIN.getTexture(60)
+            }, e.prototype.complete = function () {
+                this.timeCounter.text = s.MathUtil.timeToString(0), this.textBuildState.texture = o.ARSENAL_MAIN.getTexture(59)
+            }, e.prototype.update = function (t) {
+                var e = this.completeTime - t;
+                e < 0 && (e = 0), this.timeCounter.text = s.MathUtil.timeToString(e)
+            }, e.prototype.updateProgress = function (t, e, i) {
+                var n = t - e;
+                n < 0 && (n = 0), n *= 1 - i, this.timeCounter.text = s.MathUtil.timeToString(n)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.timeCounter.destroy(), this.textBuildState = null, this.timeCounter = null, this.completeTime = null, this.now = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.LargeBuildConfirm = s
+    e.KDockStateView = a
 }

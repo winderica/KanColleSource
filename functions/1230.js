@@ -3,141 +3,177 @@ const function1230 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(1231),
-        r = function () {
-            function t(t) {
-                this._offsetDic = null, this._line = null, this._route = null, this._branch = null, this._o = t
+    var n = i(1231),
+        o = function () {
+            function t() {
+                this._data = []
             }
-            return Object.defineProperty(t.prototype, "no", {
+            return Object.defineProperty(t.prototype, "backgrounds", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "x", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "x")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "y", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "y")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "color", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "color")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "offsetDic", {
-                get: function () {
-                    return 0 == this._o.hasOwnProperty("offsets") ? {} : this._o.offsets
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "line", {
-                get: function () {
-                    if (null == this._line && 1 == this._o.hasOwnProperty("line")) {
-                        var t = this._o.line;
-                        this._line = {
-                            x: n.ObjUtil.getNumber(t, "x"),
-                            y: n.ObjUtil.getNumber(t, "y"),
-                            r: n.ObjUtil.getNumber(t, "r"),
-                            img: n.ObjUtil.getString(t, "img")
+                    if (null == this._backgrounds) {
+                        this._backgrounds = [];
+                        for (var t = 0, e = this._data; t < e.length; t++) {
+                            var i = e[t];
+                            (n = this._backgrounds).push.apply(n, i.backgrounds)
                         }
                     }
-                    return this._line
+                    return this._backgrounds;
+                    var n
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "route", {
+            }), Object.defineProperty(t.prototype, "labels", {
                 get: function () {
-                    if (null == this._route && 1 == this._o.hasOwnProperty("route")) {
-                        var t = this._o.route;
-                        this._route = {
-                            x: t.hasOwnProperty("x") ? t.x : null == this.line ? 0 : this.line.x,
-                            y: t.hasOwnProperty("y") ? t.y : null == this.line ? 0 : this.line.y,
-                            r: t.hasOwnProperty("r") ? t.r : null == this.line ? 0 : this.line.r,
-                            img: n.ObjUtil.getString(t, "img")
+                    if (null == this._labels) {
+                        this._labels = [];
+                        for (var t = 0, e = this._data; t < e.length; t++) {
+                            var i = e[t];
+                            (n = this._labels).push.apply(n, i.labels)
                         }
                     }
-                    return this._route
+                    return this._labels;
+                    var n
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "landing", {
+            }), Object.defineProperty(t.prototype, "spots", {
                 get: function () {
-                    if (0 == this._o.hasOwnProperty("landing")) return null;
-                    var t = this._o.landing;
-                    return {
-                        x: n.ObjUtil.getNumber(t, "x"),
-                        y: n.ObjUtil.getNumber(t, "y"),
-                        type: n.ObjUtil.getNumber(t, "type")
+                    if (null == this._spots) {
+                        this._spots = [];
+                        for (var t = 0, e = this._data; t < e.length; t++) {
+                            var i = e[t];
+                            (n = this._spots).push.apply(n, i.spots)
+                        }
                     }
+                    return this._spots;
+                    var n
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "branch", {
-                get: function () {
-                    if (null == this._branch) {
-                        if (0 == this._o.hasOwnProperty("branch")) return null;
-                        var t = this._o.branch;
-                        this._branch = new o.BranchBalloonData(t)
+            }), t.prototype.add = function (t) {
+                var e = new n.MapInfoModel(t);
+                this._data.push(e), this._backgrounds = null, this._labels = null, this._spots = null, this._airraids = null, this._recce = null
+            }, t.prototype.getSpot = function (t) {
+                for (var e = 0, i = this.spots; e < i.length; e++) {
+                    var n = i[e];
+                    if (n.no == t) return n
+                }
+                return null
+            }, t.prototype.getEnemyOption = function (t) {
+                for (var e = this.getSameSpotData(t), i = e.map(function (t, e, i) {
+                        return t.no
+                    }), n = 0, o = this._data; n < o.length; n++)
+                    for (var r = o[n], s = r.enemies, a = 0, _ = s; a < _.length; a++) {
+                        var l = _[a];
+                        if (i.indexOf(l.no) >= 0) return l
                     }
-                    return this._branch
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "direction", {
-                get: function () {
-                    if (0 == this._o.hasOwnProperty("direction")) return 0;
-                    var t = n.ObjUtil.getString(this._o, "direction");
-                    return "R" == t ? 2 : "L" == t ? 1 : 0
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "controll_point", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "cpoint");
-                    return null == t ? null : new PIXI.Point(n.ObjUtil.getNumber(t, "x"), n.ObjUtil.getNumber(t, "y"))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "replenish_confirm_offsets", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "replenish");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "box"),
-                        i = new PIXI.Point(n.ObjUtil.getNumber(e, "x"), n.ObjUtil.getNumber(e, "y")),
-                        o = n.ObjUtil.getObject(t, "button"),
-                        r = new PIXI.Point(n.ObjUtil.getNumber(o, "x"), n.ObjUtil.getNumber(o, "y")),
-                        s = n.ObjUtil.getObject(t, "balloon");
-                    return {
-                        box: i,
-                        btn: r,
-                        bln: new PIXI.Point(n.ObjUtil.getNumber(s, "x"), n.ObjUtil.getNumber(s, "y"))
+                return null
+            }, t.prototype.getAirRaidOption = function (t) {
+                if (null == this._airraids) {
+                    this._airraids = [];
+                    for (var e = 0, i = this._data; e < i.length; e++) {
+                        var n = i[e];
+                        (p = this._airraids).push.apply(p, n.airraids)
                     }
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_confirm_offset", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "ration");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getNumber(t, "box"),
-                        i = new PIXI.Point;
-                    i.x = n.ObjUtil.getNumber(e, "x"), i.y = n.ObjUtil.getNumber(e, "y");
-                    var o = n.ObjUtil.getNumber(t, "button"),
-                        r = new PIXI.Point;
-                    return r.x = n.ObjUtil.getNumber(o, "x"), r.y = n.ObjUtil.getNumber(o, "y"), [i, r]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+                }
+                for (var o = 0, r = this._airraids; o < r.length; o++) {
+                    var s = r[o];
+                    if (s.no == t) return s
+                }
+                for (var a = this.getSameSpotData(t), _ = 0, l = a; _ < l.length; _++) {
+                    var u = l[_];
+                    if (u.no != t)
+                        for (var c = 0, h = this._airraids; c < h.length; c++) {
+                            var s = h[c];
+                            if (s.no == u.no) return s
+                        }
+                }
+                return null;
+                var p
+            }, t.prototype.getAirBaseRaidOption = function () {
+                for (var t = 0, e = this._data; t < e.length; t++) {
+                    var i = e[t],
+                        n = i.airbaseraid;
+                    if (null != n) return n
+                }
+                return null
+            }, t.prototype.getAirBasePos = function () {
+                for (var t = 0, e = this._data; t < e.length; t++) {
+                    var i = e[t],
+                        n = i.airbase;
+                    if (null != n) return n
+                }
+                return null
+            }, t.prototype.getShipDirection = function (t) {
+                var e = this.getSpot(t);
+                return null == e ? 0 : e.direction
+            }, t.prototype.getControlPoint = function (t) {
+                var e = this.getSpot(t);
+                return null == e ? null : e.controll_point
+            }, t.prototype.getBranchOption = function (t) {
+                var e = this.getSpot(t);
+                if (null != e.branch) return e.branch;
+                for (var i = this.getSameSpotData(t), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    if (r != e && null != r.branch) return r.branch
+                }
+                return null
+            }, t.prototype.getReplenishConfirmOffsets = function (t) {
+                var e = this.getSpot(t);
+                return null == e ? null : e.replenish_confirm_offsets
+            }, t.prototype.getRationConfirmOffset = function (t) {
+                var e = this.getSpot(t);
+                return null == e ? null : e.ration_confirm_offset
+            }, t.prototype.getAirReconnaissancePoint = function (t) {
+                if (null == this._recce) {
+                    this._recce = [];
+                    for (var e = 0, i = this._data; e < i.length; e++) {
+                        var n = i[e];
+                        (c = this._recce).push.apply(c, n.recce)
+                    }
+                }
+                for (var o = 0, r = this._recce; o < r.length; o++) {
+                    var s = r[o];
+                    if (s.no == t) return new PIXI.Point(s.x, s.y)
+                }
+                for (var a = this.getSameSpotData(t), _ = a.map(function (t, e, i) {
+                        return t.no
+                    }), l = 0, u = this._recce; l < u.length; l++) {
+                    var s = u[l];
+                    if (_.indexOf(s.no) >= 0) return new PIXI.Point(s.x, s.y)
+                }
+                return null;
+                var c
+            }, t.prototype.hasAirReconnaissancePoint = function () {
+                if (null == this._recce) {
+                    this._recce = [];
+                    for (var t = 0, e = this._data; t < e.length; t++) {
+                        var i = e[t];
+                        (n = this._recce).push.apply(n, i.recce)
+                    }
+                }
+                return this._recce.length > 0;
+                var n
+            }, t.prototype.getLandingBalloonType = function (t) {
+                var e = this.getSpot(t);
+                return null == e ? 0 : null == e.landing ? 0 : e.landing.type
+            }, t.prototype.getSameSpotData = function (t) {
+                for (var e = [], i = this.spots, n = null, o = 0, r = i; o < r.length; o++) {
+                    var s = r[o];
+                    if (s.no == t) {
+                        n = s;
+                        break
+                    }
+                }
+                if (null == n) return e;
+                for (var a = 0, _ = i; a < _.length; a++) {
+                    var s = _[a];
+                    s.x == n.x && s.y == n.y && e.push(s)
+                }
+                return e.sort(function (t, e) {
+                    return t.no < e.no ? -1 : t.no > e.no ? 1 : 0
+                })
+            }, t
         }();
-    e.SpotData = r
+    e.MapResourceInfo = o
 }

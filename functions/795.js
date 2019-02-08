@@ -19,26 +19,23 @@ const function795 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
+    var o = i(4),
+        r = i(128),
+        s = i(796),
+        a = i(14),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = e.textureBtnStartIntensifyOn
-                }, e._onMouseOut = function () {
-                    e.texture = e.textureBtnStartIntensifyOff
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.textureBtnStartIntensifyNone = o.REMODEL_POWERUP.getTexture(6), e.textureBtnStartIntensifyOn = o.REMODEL_POWERUP.getTexture(8), e.textureBtnStartIntensifyOff = o.REMODEL_POWERUP.getTexture(7), e.texture = e.textureBtnStartIntensifyNone, e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.on(r.EventType.CLICK, e._onClick), e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(16));
+                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
+                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
+                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._updateClickable_(t)
-            }, e.prototype._updateClickable_ = function (t) {
-                this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
             }, e.prototype.dispose = function () {
-                this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this.interactive = this.buttonMode = !1, this.removeChildren()
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
             }, e
-        }(PIXI.Sprite);
-    e.StartButton = s
+        }(PIXI.Container);
+    e.ShipInfoBox = _
 }

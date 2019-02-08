@@ -27,13 +27,13 @@ const function330 = function (t, e, i) {
             return n(e, t), e.prototype.update = function (t) {
                 switch (t) {
                     case 1:
-                        this.texture = o.SUPPLY_MAIN.getTexture(14);
+                        this.texture = o.SUPPLY_MAIN.getTexture(20);
                         break;
                     case 2:
-                        this.texture = o.SUPPLY_MAIN.getTexture(15);
+                        this.texture = o.SUPPLY_MAIN.getTexture(21);
                         break;
                     case 3:
-                        this.texture = o.SUPPLY_MAIN.getTexture(16);
+                        this.texture = o.SUPPLY_MAIN.getTexture(22);
                         break;
                     case 0:
                         this.texture = PIXI.Texture.EMPTY

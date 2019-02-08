@@ -19,61 +19,89 @@ const function1088 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(47),
-        s = i(204),
-        a = i(9),
-        _ = i(393),
-        l = i(394),
-        u = i(395),
-        c = i(237),
-        h = i(1089),
-        p = i(1090),
-        d = i(1092),
-        f = i(1093),
-        y = i(1094),
-        m = i(396),
-        v = i(398),
-        g = i(1097),
-        b = i(1143),
-        w = i(1152),
-        x = function (t) {
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._initialize = function (t) {
-                    e._selected_state = t;
-                    var i, n = o.default.model.basic.getUISkinID();
-                    101 == n || 102 == n ? (i = new PIXI.Sprite(_.ITEM_MENU_1.getTexture(6)), e._tabs.y = 193) : 201 == n ? (i = new PIXI.Sprite(l.ITEM_MENU_2.getTexture(6)), e._tabs.y = 190) : 301 != n && 311 != n || (i = new PIXI.Sprite(u.ITEM_MENU_3.getTexture(12)), e._tabs.y = 187), e._bg.addChild(i), i = new PIXI.Sprite(a.COMMON_MISC.getTexture(48)), i.position.set(171, 103), e._bg.addChild(i), e._tabs.initialize(n), e._mini_chara.initialize(), e._back_btn.initialize(e._onBack), e._showView(e._selected_state)
-                }, e._activate = function () {
-                    e._tabs.activate(), e._mini_chara.activate(), e._back_btn.activate()
-                }, e._dispose = function () {
-                    e._removeView(), null != e._ilist && (e._ilist.dispose(), e._ilist = null), null != e._ishop && (e._ishop.dispose(), e._ishop = null), null != e._fshop && (e._fshop.dispose(), e._fshop = null), e._tabs.dispose(), e._tabs = null, e._mini_chara.dispose(), e._mini_chara = null, e._back_btn.dispose(), e._back_btn = null, e._purchasedItems = null, e.removeChildren()
-                }, e._onChangeSceneState = function (t) {
-                    e._showView(t)
-                }, e._onPurchased = function () {
-                    new c.PayItemAPI(e._purchasedItems).start(function () {
-                        e._showView(0, !0)
-                    })
-                }, e._onBack = function () {
-                    o.default.scene.change(0)
-                }, e._purchasedItems = new h.PurchasedItemModelHolder, e._bg = new PIXI.Container, e.addChild(e._bg), e._tabs = new m.TabContainer(e._onChangeSceneState), e.addChild(e._tabs), e._mini_chara = new v.MiniChara, e._mini_chara.position.set(-16, 444), e.addChild(e._mini_chara), e._back_btn = new s.BackBtn, e._back_btn.position.set(0, 653), e.addChild(e._back_btn), e
+                e._items = [];
+                for (var i = 0; i < 6; i++) {
+                    var n = new a;
+                    n.x = i % 2 * 225, n.y = 39 * Math.floor(i / 2), e.addChild(n), e._items.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t, e) {
-                return new p.TaskItemScenePreInitialize(this._purchasedItems, e, this._initialize)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new d.TaskItemSceneInitialize(this._activate)
-            }, e.prototype.getFinalizeTask = function () {
-                return new f.TaskItemSceneFinalize(this._dispose)
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null)
-            }, e.prototype._showView = function (t, e) {
-                if (void 0 === e && (e = !1), this._removeView(), this._tabs.update(t), 0 == t ? (null == this._ilist && (this._ilist = new g.ItemListMain(this._purchasedItems), this._ilist.initialize()), this._current = this._ilist) : 1 == t ? (null == this._ishop && (this._ishop = new b.ItemShopMain(this._purchasedItems, this._onPurchased), this._ishop.initialize()), this._current = this._ishop) : 2 == t && (null == this._fshop && (this._fshop = new w.FurnitureShopMain, this._fshop.initialize()), this._current = this._fshop), 0 == t && 1 == e) {
-                    this._ilist.updateForPurchasedView();
-                    var i = o.default.view.overLayer;
-                    new y.TaskPurchased(i).start()
-                } else this._current.update();
-                this._current.activate(), this.addChild(this._current)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this._items.length; t++) this._items[t].dispose(), this._items[t] = null;
+                this._items = null
+            }, e.prototype.update = function (t) {
+                var e = [];
+                this._addParamData(e, 0, t.soukou), this._addParamData(e, 1, t.karyoku), this._addParamData(e, 2, t.raisou), this._addParamData(e, 3, t.baku), this._addParamData(e, 4, t.taiku), this._addParamData(e, 5, t.taisen), this._addParamData(e, 6, t.meichu), this._addParamData(e, 7, t.kaihi), this._addParamData(e, 8, t.sakuteki), this._addParamData(e, 9, t.syatei);
+                for (var i = t.equipType, n = 0; n < this._items.length; n++)
+                    if (e.length <= n) this._items[n].visible = !1;
+                    else {
+                        var o = e[n];
+                        this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
+                    }
+            }, e.prototype._addParamData = function (t, e, i) {
+                null != t && 0 != i && t.push({
+                    type: e,
+                    value: i
+                })
             }, e
-        }(r.SceneBase);
-    e.ItemScene = x
+        }(PIXI.Container);
+    e.SlotParamsContainer = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._value_text = new o.TextBox(19, 16774898), e._value_text.position.set(189, 2), e._value_text.anchor.x = 1, e.addChild(e._value_text), e._value_img = new PIXI.Sprite, e._value_img.position.set(184, 13), e._value_img.anchor.set(1, .5), e.addChild(e._value_img), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._value_text.destroy(), this._value_text = null, this._value_img = null
+        }, e.prototype.update = function (t, e, i) {
+            if (this.texture = this._getTexture(t, i), 9 == t) {
+                this._value_text.visible = !1;
+                var n = [91, 92, 90, 89, 93][e];
+                this._value_img.texture = r.ALBUM_MAIN.getTexture(n), this._value_img.visible = !0
+            } else this._value_img.visible = !1, this._value_text.text = e > 0 ? "+" + e : e.toString(), this._value_text.visible = !0
+        }, e.prototype._getTexture = function (t, e) {
+            var i;
+            switch (t) {
+                case 0:
+                    i = 30;
+                    break;
+                case 1:
+                    i = 33;
+                    break;
+                case 2:
+                    i = 34;
+                    break;
+                case 3:
+                    i = 27;
+                    break;
+                case 4:
+                    i = 35;
+                    break;
+                case 5:
+                    i = 24;
+                    break;
+                case 6:
+                    i = 48 == e ? 28 : 26;
+                    break;
+                case 7:
+                    i = 48 == e ? 29 : 31;
+                    break;
+                case 8:
+                    i = 25;
+                    break;
+                case 9:
+                    i = 32;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return r.ALBUM_MAIN.getTexture(i)
+        }, e
+    }(PIXI.Sprite)
 }

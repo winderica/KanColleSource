@@ -19,40 +19,42 @@ const function1244 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(55),
-        r = i(2),
-        s = i(1245),
-        a = function (t) {
+    var o = i(2),
+        r = i(20),
+        s = function (t) {
             function e(e, i, n) {
-                void 0 === n && (n = 0);
                 var o = t.call(this) || this;
-                return o._scene = e, o._model = i, o._delay = n, o
+                return o._wait = function () {
+                    o._layer.removeChild(o._plane), createjs.Tween.get(null).wait(200).call(function () {
+                        o._endTask()
+                    })
+                }, o.run = function () {
+                    o._timer <= 0 && o._isTurn || (o._movePlane(), o._timer -= 1e3 / 60, o._timer <= 0 && !o._isTurn && (o._timer = o._baseTime, o._isTurn = !o._isTurn))
+                }, o._layer = e, o._from = i, o._to = n, o._baseTime = 1500, o._timer = o._baseTime, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell().no,
-                    i = this._scene.resInfo.getEnemyOption(e);
-                null == i ? this._endTask() : this._delay <= 0 ? this._showEnemy(i.img, i.x, i.y) : createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._showEnemy(i.img, i.x, i.y)
+                var t = this;
+                this._plane = new PIXI.Sprite;
+                var e = this._to.x > this._from.x ? 1 : -1,
+                    i = this._to.x > this._from.x ? -.1 : .1;
+                this._plane.texture = r.MAP_COMMON.getTexture(99), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
+                    x: -1 * this._plane.scale.x,
+                    y: 1
+                }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({
+                    x: i,
+                    y: .1
+                }, 200).call(function () {
+                    t._wait()
+                }), this._bezierTween = createjs.Tween.get(null).wait(3e3).addEventListener("change", function () {
+                    t.run()
                 })
-            }, e.prototype._showEnemy = function (t, e, i) {
-                var n, r = this,
-                    a = this._model.sortie.area_id,
-                    _ = this._model.sortie.map_no,
-                    l = this._model.sortie.getNextCell().no,
-                    u = this._model.sortie.map.getGaugeNum();
-                if (42 == a && 3 == _ && 25 == l && 3 == u) n = new s.MapEnemy(PIXI.Texture.fromFrame("map04203_icon_E3boss_2"), 5), n.x = 130, n.y = 230;
-                else {
-                    var c = this._model.sortie.map_id,
-                        h = o.MapUtil.toResKey(c);
-                    n = new s.MapEnemy(PIXI.Texture.fromFrame("map" + h + "_" + t), 5), n.x = e, n.y = i
-                }
-                this._scene.view.map.enemy_layer.show(n, function () {
-                    r._endTask()
-                })
+            }, e.prototype._movePlane = function () {
+                var t = (this._baseTime - this._timer) / this._baseTime,
+                    e = this._isTurn ? 1 * t : 1 * t - 1;
+                this._plane.position.x = this._from.x + .9 * this._to.x - .9 * this._to.x * e * e, this._plane.position.y = this._from.y + .9 * this._to.y - .9 * this._to.y * e * e, 0 != e && (this._plane.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
             }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                this._bezierTween = null, this._plane = null, this._layer = null, this._from = null, this._to = null, this._baseTime = null, this._timer = null, this._isTurn = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.AnimShowMapEnemy = a
+        }(o.TaskBase);
+    e.AnimPlane = s
 }

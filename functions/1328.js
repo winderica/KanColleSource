@@ -21,137 +21,68 @@ const function1328 = function (t, e, i) {
     });
     var o = i(5),
         r = i(0),
-        s = i(2),
-        a = i(8),
-        _ = i(23),
-        l = i(12),
-        u = i(15),
-        c = i(25),
-        h = i(6),
-        p = i(9),
-        d = i(180),
-        f = function (t) {
-            function e(e, i, n, s) {
-                void 0 === s && (s = null);
-                var u = t.call(this) || this;
-                return u._preLoadSlotitemCard = function () {
-                    var t = new c.SlotLoader,
-                        e = u._getSlotitemMstID(u._repairitem);
-                    t.add(e, "card"), t.load(u._showCard)
-                }, u._showCard = function () {
-                    var t = u._getSlotitemMstID(u._repairitem),
-                        e = r.default.resources.getSlotitem(t, "card");
-                    u._card = new l.Sprite(e), u._card.anchor.set(.5), u._card.scale.set(2), u._card.position.set(600, 360), u._card.alpha = 0;
-                    var i = new l.Sprite(e);
-                    i.anchor.set(.5), i.scale.set(2), i.position.set(600, 360), i.alpha = 0, u._layer.addChild(u._card), u._layer.addChild(i), createjs.Tween.get(u._card).to({
-                        scaleX: 1,
-                        scaleY: 1,
-                        alpha: 1
-                    }, 700), createjs.Tween.get(i).wait(200).to({
-                        scaleX: 1,
-                        scaleY: 1,
-                        alpha: 1
-                    }, 500).call(function () {
-                        u._layer.removeChild(i), h.SE.play("229")
-                    }).wait(1100).call(u._showFlash)
-                }, u._showFlash = function () {
-                    var t = new l.Sprite(p.COMMON_MISC.getTexture(68));
-                    t.anchor.set(.5), t.position.set(600, 360), t.alpha = 0, u._layer.addChild(t), createjs.Tween.get(t).to({
-                        scaleX: 1.5,
-                        scaleY: 1.5,
-                        alpha: 1
-                    }, 800).to({
-                        scaleX: 2.3,
-                        scaleY: 2.3,
-                        alpha: 1
-                    }, 900).call(function () {
-                        u._layer.removeChild(t)
-                    }), u._white = new a.AreaBox(1, 16777215), u._white.alpha = 0, u._layer.addChild(u._white), createjs.Tween.get(u._white).wait(500).to({
-                        alpha: 1
-                    }, 1200).call(function () {
-                        u._layer.removeChild(u._card)
-                    });
-                    var e = d.BATTLE_CUTIN_GOUCHIN.getTexture(10);
-                    u._text = new PIXI.Sprite(e), u._text.anchor.set(.5), u._text.position.set(o.default.width + u._text.width / 2, 360), u._layer.addChild(u._text);
-                    var i = createjs.Tween.get(u._text).to({
-                        x: 600
-                    }, 600);
-                    2 == u._repairitem ? u._showSubText() : i.wait(1100).call(u._hideText)
-                }, u._hideText = function () {
-                    createjs.Tween.get(u._text).to({
-                        x: -u._text.width / 2
-                    }, 600).call(function () {
-                        u._layer.removeChild(u._text)
-                    }).wait(500).call(u._showShip)
-                }, u._showShip = function () {
-                    var t = 2 != u._repairitem,
-                        e = new PIXI.Sprite;
-                    e.texture = r.default.resources.getShip(u._mst_id, t, "full");
-                    var i = r.default.model.ship_graph.get(u._mst_id).getBattleOffset(t);
-                    e.position.set(i.x - 120 - 252, i.y - 120 - 518), e.alpha = 0;
-                    var n = new _.Container;
-                    n.addChild(e), n.position.set(o.default.width / 2, o.default.height / 2), n.scale.set(.4), u._layer.addChild(n), createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 600).wait(500).to({
-                        alpha: 0
-                    }, 600), createjs.Tween.get(n).to({
-                        scaleX: .7,
-                        scaleY: .7
-                    }, 300).to({
-                        scaleX: .8,
-                        scaleY: .8
-                    }, 1100).to({
-                        scaleX: 1.2,
-                        scaleY: 1.2
-                    }, 300).wait(300).call(function () {
-                        u._layer.removeChild(n), u._endAnim()
-                    })
-                }, u._layer = e, u._mst_id = i, u._repairitem = n, u._preEnd = s, u
+        s = i(180),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.count = 50, e.col = 16777215, e._updateMask = function (t) {
+                    e._circleMask.clear(), e._circleMask.beginFill(e.col);
+                    for (var i = 0; i < e.count; i++) e._circle_list[i].radius = e.rndScale[i] * t.target.target.val, e._circleMask.drawShape(e._circle_list[i]);
+                    e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !0)
+                }, e._bg = new PIXI.Sprite, e._bg.alpha = 0, e._layer_effect = new PIXI.Container, e._card_bg = new PIXI.Sprite, e._card_bg.anchor.set(.5), e._card_bg.alpha = 1, e._layer_ship = new PIXI.Container, e._grad = new PIXI.Sprite, e._layer_text = new PIXI.Container, e._layer_mask = new PIXI.Container, e._layer_mask.alpha = 0, e._renderTex = PIXI.RenderTexture.create(327, 450), e._renderSprite = new PIXI.Sprite(e._renderTex), e._renderSprite.anchor.set(.5), e._card_bg.mask = e._renderSprite, e._layer_mask.addChild(e._card_bg), e._layer_mask.addChild(e._renderSprite), e.rndPos = [], e.rndScale = [];
+                for (var i = 0; i < e.count; i++) e.rndPos.push(new PIXI.Point(Math.floor(327 * Math.random()), Math.floor(450 * Math.random()))), e.rndScale.push(100 * Math.floor(2 * Math.random()));
+                e.addChild(e._bg), e.addChild(e._layer_effect), e.addChild(e._layer_mask), e.addChild(e._layer_ship), e.addChild(e._grad), e.addChild(e._layer_text), e._circle_list = [];
+                for (var i = 0; i < e.count; i++) e._circle_list.push(new PIXI.Circle(e.rndPos[i].x, e.rndPos[i].y, e.rndScale[i]));
+                return e._circleMask = new PIXI.Graphics, e._circleMask.beginFill(e.col), e._circleMask.drawRect(0, 0, 327, 450), e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !1), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._preLoadShip()
-            }, e.prototype._preLoadShip = function () {
-                var t = new u.ShipLoader,
-                    e = 2 != this._repairitem;
-                t.add(this._mst_id, e, "full"), t.load(this._preLoadSlotitemCard)
-            }, e.prototype._showSubText = function () {
-                var t = this,
-                    e = new l.Sprite(d.BATTLE_CUTIN_GOUCHIN.getTexture(3));
-                e.anchor.set(.5), e.position.set(600, 486), e.scale.y = 0, this._layer.addChild(e), createjs.Tween.get(e).to({
-                    scaleY: 1
-                }, 200).wait(2600).to({
-                    scaleY: 0
-                }, 200).call(function () {
-                    t._layer.removeChild(e)
-                });
-                var i = new PIXI.Sprite(d.BATTLE_CUTIN_GOUCHIN.getTexture(8));
-                i.anchor.set(.5), i.position.set(o.default.width + i.width / 2, o.default.height / 2 + 126), this._layer.addChild(i), createjs.Tween.get(i).wait(200).to({
-                    x: o.default.width / 2
-                }, 300).wait(700).to({
-                    x: -i.width / 2
-                }, 300).call(function () {
-                    t._layer.removeChild(i)
-                });
-                var n = new PIXI.Sprite(d.BATTLE_CUTIN_GOUCHIN.getTexture(9));
-                n.anchor.set(.5), n.position.set(o.default.width + n.width / 2, o.default.height / 2 + 126), this._layer.addChild(n), createjs.Tween.get(n).wait(1500).to({
-                    x: o.default.width / 2
-                }, 300).wait(400).call(this._hideText).to({
-                    x: -n.width / 2
-                }, 300).call(function () {
-                    t._layer.removeChild(n)
-                })
-            }, e.prototype._endAnim = function () {
-                var t = this;
-                null != this._preEnd && this._preEnd(), createjs.Tween.get(this._white).to({
-                    alpha: 0
-                }, 500).call(function () {
-                    t._layer.removeChild(t._white), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._card = null, this._white = null, this._text = null, t.prototype._endTask.call(this)
-            }, e.prototype._getSlotitemMstID = function (t) {
-                return 1 == t ? 42 : 2 == t ? 43 : -1
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_effect", {
+                get: function () {
+                    return this._layer_effect
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "card_bg", {
+                get: function () {
+                    return this._card_bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_ship", {
+                get: function () {
+                    return this._layer_ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_text", {
+                get: function () {
+                    return this._layer_text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_mask", {
+                get: function () {
+                    return this._layer_mask
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(0), this._grad.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(1), this._grad.y = o.default.height - this._grad.height
+            }, e.prototype.playMask = function () {
+                var t = {
+                    val: 1
+                };
+                createjs.Tween.get(t, {
+                    onChange: this._updateMask
+                }).to({
+                    val: 0
+                }, 1800)
             }, e
-        }(s.TaskBase);
-    e.TaskGouchinCutinRepair = f
+        }(PIXI.Container);
+    e.GouchinCutinView = a
 }

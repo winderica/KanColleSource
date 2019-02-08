@@ -1,66 +1,141 @@
 const function818 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(8),
-        r = i(338),
-        s = i(52),
-        a = i(821),
-        _ = i(822),
-        l = i(823),
-        u = function () {
-            function t(t) {
-                var e = this;
-                this._onClickSign = function () {
-                    n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.addChild(e.clickGuardMarriageConfirm);
-                    var t = new a.MarriageAPI(e.memShipId);
-                    n.default.view.clickGuard = !0, t.start(function () {
-                        n.default.view.clickGuard = !1;
-                        var t = new r.MarriageAnimation(n.default.model.ship.get(e.memShipId).mstID);
-                        n.default.view.overLayer.addChild(t), t.PreLoad(function () {
-                            t.Initialize(), t.Play(!1, function () {
-                                n.default.view.overLayer.removeChild(e.marriageConfirm), n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(t), t.Dispose(), n.default.sound.bgm.play(102), e.onUpdateShip(), e.onComplete()
-                            })
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(19),
+        _ = i(8),
+        l = i(40),
+        u = i(59),
+        c = i(15),
+        h = i(3),
+        p = i(819),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new u.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this._cb_onComplete = null, this._offset = null, this._white = null, this._commonBG.dispose(), this._commonBG = null, this._holoBG.dispose(), this._holoBG = null, this._textKaiso = null, this._cutinBar = null, this._shipFull = null, this._shipCard = null, this.removeChildren()
+            }, e.prototype.preload = function (t, e, i, n) {
+                var o = this;
+                this._ship_mstid = t, this._offset = i;
+                var s = new c.ShipLoader;
+                s.add(t, e, "full"), s.add(t, e, "card"), s.load(function () {
+                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new u.RarityBG, o._commonBG.initiailzeForShip(3, function () {
+                        o._holoBG.initiailzeForShip(6, function () {
+                            null != n && n()
                         })
                     })
-                }, this._onClickConfirmBack = function () {
-                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
-                        alpha: 0
-                    }, 250), createjs.Tween.get(e.marriageConfirm).to({
-                        alpha: 0
-                    }, 250).call(function () {
-                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageConfirm), e.onComplete()
+                })
+            }, e.prototype.play = function (t) {
+                var e = this;
+                this._cb_onComplete = t, this.removeChildren(), this.addChild(this._commonBG, this._textKaiso, this._cutinBar, this._white), r.default.settings.renderer.plugins.prepare.upload(this._shipFull, function () {
+                    r.default.settings.renderer.plugins.prepare.upload(e._shipCard, function () {
+                        createjs.Tween.get(null).wait(200).call(function () {
+                            e._00_intro()
+                        })
                     })
-                }, this._onClickAlertBack = function () {
-                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
-                        alpha: 0
-                    }, 250), createjs.Tween.get(e.marriageAlert).to({
-                        alpha: 0
-                    }, 250).call(function () {
-                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageAlert), e.onComplete()
-                    })
-                }, this.mainView = t, this.marriageConfirm = new l.MarriageConfirm(this._onClickSign, this._onClickConfirmBack), this.marriageAlert = new _.MarriageAlert, this.clickGuardMarriageConfirm = new o.AreaBox(.5)
-            }
-            return t.prototype.start = function (t) {
-                var e = n.default.model.useItem.get(s.RemodelConst.MARRIAGE_RING_ITEMID).count;
-                this.marriageConfirm.position.set(294, 212), this.marriageAlert.position.set(294, 212), this.clickGuardMarriageConfirm.alpha = 0, this.marriageConfirm.alpha = 0, this.marriageAlert.alpha = 0, 0 < e ? (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageConfirm), this.marriageConfirm.update(e), n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
+                })
+            }, e.prototype._00_intro = function () {
+                var t, e = this,
+                    i = new a.TweenTask;
+                this._textKaiso.x = -288, this._textKaiso.y = 395, t = createjs.Tween.get(this._textKaiso).set({
+                    visible: !0
+                }).to({
+                    x: 756
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    x: 1122
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), this._cutinBar.x = 0, this._cutinBar.y = 270, this._cutinBar.mask.scale.y = 0, t = createjs.Tween.get(this._cutinBar.mask.scale).to({
+                    y: 1
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    y: 0
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), t = createjs.Tween.get(this._white).to({
+                    alpha: 0
+                }, 700, createjs.Ease.cubicOut).set({
+                    visible: !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._textKaiso), e.removeChild(e._cutinBar), e._cutinBar.dispose(), e.removeChild(e._white), e._01_showShip()
+                })
+            }, e.prototype._01_showShip = function () {
+                var t, e = this,
+                    i = new a.TweenTask,
+                    n = new PIXI.Container;
+                n.addChild(this._holoBG), n.addChild(this._shipFull), this.addChild(n);
+                var r = new PIXI.Graphics;
+                r.beginFill(0, 0), r.drawRect(-o.default.width / 2, -o.default.height / 2, o.default.width, o.default.height), r.endFill(), r.x = o.default.width / 2, r.y = o.default.height / 2, r.scale.y = 0, this.addChild(r), n.mask = r, this._holoBG.visible = !0, this._shipFull.x = 201 + this._offset.x, this._shipFull.y = 342 + this._offset.y, t = createjs.Tween.get(this._shipFull).set({
+                    visible: !0
+                }).to({
+                    y: -66 + this._offset.y
+                }, 2400), i.addTween(t), t = createjs.Tween.get(r.scale).to({
+                    y: 1
+                }, 500).call(function () {
+                    e._commonBG.visible = !1, n.mask.visible = !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._commonBG), e.removeChild(e.mask), n.mask = null, e._02_changeToCard(n)
+                })
+            }, e.prototype._02_changeToCard = function (t) {
+                var e = this;
+                r.default.sound.voice.play(this._ship_mstid.toString(), 10);
+                var i, n = new a.TweenTask;
+                i = createjs.Tween.get(this._shipFull).wait(600).to({
+                    x: -147 + this._offset.x,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 201 + this._offset.x,
+                    alpha: 0
+                }, 900, createjs.Ease.sineIn).set({
+                    visible: !1
+                }), n.addTween(i), this._shipCard.x = 443, this._shipCard.y = 135, this._shipCard.alpha = 0, t.addChild(this._shipCard), i = createjs.Tween.get(this._shipCard).wait(600).set({
+                    visible: !0
+                }).to({
+                    x: 770,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 443,
                     alpha: 1
-                }, 250), createjs.Tween.get(this.marriageConfirm).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    n.default.view.clickGuard = !1
-                })) : (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageAlert), this.marriageAlert.onClickBack = this._onClickAlertBack, n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this.marriageAlert).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    n.default.view.clickGuard = !1
-                })), this.memShipId = t
-            }, t.prototype.dispose = function () {
-                this.marriageAlert.onClickBack = this._onClickAlertBack = null, this.onUpdateShip = null, this.onComplete = null, this.mainView = null, this.marriageConfirm && this.marriageConfirm.dispose(), this.marriageAlert && this.marriageAlert.dispose(), this.marriageConfirm = null, this.marriageAlert = null, this.clickGuardMarriageConfirm = null, this.memShipId = null
-            }, t
-        }();
-    e.TaskMarriage = u
+                }, 900, createjs.Ease.sineIn), n.addTween(i), n.start(function () {
+                    t.removeChild(e._shipFull), e._03_waitClick()
+                })
+            }, e.prototype._03_waitClick = function () {
+                var t = this,
+                    e = new l.GearBtnHome;
+                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
+                var i = new _.AreaBox(0);
+                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
+                    t.removeChild(i), t._04_fadeOut(e)
+                })
+            }, e.prototype._04_fadeOut = function (t) {
+                var e = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
+                })
+            }, e
+        }(PIXI.Container);
+    e.KaizoAnimationMain = d
 }

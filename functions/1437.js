@@ -19,34 +19,17 @@ const function1437 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
+    var o = i(14),
         r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.showSanshiki = function (t, e) {
-                var i = this,
-                    n = o.BATTLE_MAIN.getTexture(136),
-                    r = new PIXI.Sprite(n);
-                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
-                    alpha: 1
-                }, 300).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    i.removeChild(r)
-                })
-            }, e.prototype.showDanmaku = function (t, e) {
-                var i = this,
-                    n = o.BATTLE_MAIN.getTexture(134),
-                    r = new PIXI.Sprite(n);
-                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
-                    alpha: 1
-                }, 300).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    i.removeChild(r)
-                })
-            }, e.prototype.dispose = function () {}, e
-        }(PIXI.Container);
-    e.BannerInfoLayer = r
+            return n(e, t), e.prototype.draw = function (t) {
+                t = Math.max(t, 0), t = Math.min(t, 1), this.clear();
+                var e = o.MathUtil.getColor(t),
+                    i = 60 * t;
+                this.beginFill(e), this.drawRect(0, 60 - i, 10, i), this.endFill()
+            }, e
+        }(PIXI.Graphics);
+    e.BannerHPBar = r
 }
