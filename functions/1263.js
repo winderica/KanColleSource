@@ -20,105 +20,106 @@ const function1263 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(23),
-        s = i(6),
-        a = i(20),
-        _ = i(1264),
+        r = i(28),
+        s = i(39),
+        a = i(1264),
+        _ = i(437),
         l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n.run = function () {
-                    n._timer <= 0 && n._isTurn || (n._movePlane(), n._timer -= 1e3 / 60, n._timer <= 0 && !n._isTurn && (n._timer = n._baseTime, n._isTurn = !n._isTurn))
-                }, n._scene = e, n._model = i, n
+                return n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._data = this._model.sortie.getNextCell().getAirReconnaissanceData(), this._showMessage()
-            }, e.prototype._showMessage = function () {
-                var t = this,
-                    e = this._data.plane_type;
-                this._data.result;
-                1 == e ? (this._scene.view.message_box.text = "\u5927\u578b\u98db\u884c\u8247\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : 2 == e ? (this._scene.view.message_box.text = "\u6c34\u4e0a\u5075\u5bdf\u6a5f\u306b\u3088\u308b\n\u822a\u7a7a\u5075\u5bdf\u3092\u5b9f\u65bd\u3057\u307e\u3059\u3002", this._flyPlane(e)) : (this._scene.view.message_box.text = "\u822a\u7a7a\u5075\u5bdf\u4e88\u5b9a\u5730\u70b9\u306b\u5230\u7740\u3057\u307e\u3057\u305f\u304c\u3001\n\u7a3c\u50cd\u5075\u5bdf\u6a5f\u304c\u306a\u3044\u305f\u3081\u3001\u5075\u5bdf\u3092\u4e2d\u6b62\u3057\u307e\u3059\u3002", createjs.Tween.get(null).wait(2e3).call(function () {
-                    t._scene.view.message_box.text = "", t._endTask()
-                }))
-            }, e.prototype._flyPlane = function (t) {
-                var e = this,
-                    i = this._scene.view.map.ship_icon;
-                this._from = new PIXI.Point(i.x, i.y);
-                var n = this._model.sortie.getNextCell().no;
-                this._to = this._scene.resInfo.getAirReconnaissancePoint(n), null == this._to && (this._to = new PIXI.Point(this._from.x, this._from.y));
-                var o = this._to.x > this._from.x ? 1 : -1;
-                this._baseTime = 1500, this._timer = 1500, this._isTurn = !1;
-                var r = new u;
-                r.initialize(t), r.scale.set(0);
-                var a = this._scene.view.universal_layer;
-                this._container = new PIXI.Container, this._container.x = this._from.x, this._container.y = this._from.y, a.addChild(this._container), this._container.addChild(r), this._c1 = new PIXI.Point(this._from.x - .3 * (this._to.y - this._from.y), this._from.y + .3 * (this._to.x - this._from.x)), this._c2 = new PIXI.Point(this._to.x - .3 * (this._from.y - this._to.y), this._to.y + .3 * (this._from.x - this._to.x)), createjs.Tween.get(this._container).wait(200).call(function () {
-                    e._bezierTween = createjs.Tween.get({}), e._bezierTween.wait(3e3), e._bezierTween.addEventListener("change", function () {
-                        e.run()
-                    })
-                }).wait(3e3).wait(300).call(function () {
-                    a.removeChild(e._container), e._showBalloon()
-                }), createjs.Tween.get(r).to({
-                    scaleX: o,
-                    scaleY: 1
-                }, 200).wait(100).call(function () {
-                    s.SE.play("228")
-                }).wait(1200).to({
-                    scaleX: -o
-                }, 400).wait(1200).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100)
-            }, e.prototype._movePlane = function () {
-                var t = (this._baseTime - this._timer) / this._baseTime,
-                    e = this._isTurn ? 1 * t : 1 * t - 1,
-                    i = this._isTurn ? this._to : this._from,
-                    n = this._isTurn ? this._from : this._to,
-                    o = this._isTurn ? this._c2 : this._c1;
-                this._container.position.x = (1 - t) * (1 - t) * i.x + 2 * (1 - t) * t * o.x + t * t * n.x, this._container.position.y = (1 - t) * (1 - t) * i.y + 2 * (1 - t) * t * o.y + t * t * n.y, 0 != e && (this._container.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
-            }, e.prototype._showBalloon = function () {
+                var t = this._model.sortie.map;
+                1 == t.isCleared() ? this._startNoLanding("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u672c\u6d77\u57df\u306e\u8f38\u9001\u4f5c\u6226\u306f\u7121\u4e8b\u5b8c\u4e86\u3057\u3066\u3044\u307e\u3059\u3002") : 3 == t.gauge_type ? this._startWithLanding() : this._startNoLanding("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u540c\u5730\u70b9\u4ed8\u8fd1\u306e\u6575\u8266\u968a\u3092\u635c\u7d22\u3001\u3053\u308c\u3092\u6483\u6ec5\u305b\u3088\uff01")
+            }, e.prototype._startWithLanding = function () {
                 var t = this;
-                this._scene.view.message_box.text = "";
-                var e = this._data.result,
-                    i = this._model.sortie.getNextCell().getDropItems(),
-                    n = 0,
-                    o = 0;
-                if (null != i && i.length > 0) {
-                    var r = i[0];
-                    n = r.icon_id, o = r.count
-                }
-                var s = new _.AirReconnaissanceBalloon;
-                s.x = 21, s.y = -6, s.alpha = 0, s.initialize(e, n, o);
-                var a = this._scene.view.map.ship_icon;
-                a.addChild(s), createjs.Tween.get(s).to({
-                    y: -29,
-                    alpha: 1
-                }, 100).wait(4e3).to({
-                    y: -6,
-                    alpha: 0
-                }, 100).call(function () {
-                    a.removeChild(s), t._endTask()
+                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                    t._showMessage("\u8f38\u9001\u7269\u8cc7\u306e\u63da\u9678\u5730\u70b9\u306b\u5230\u9054\u3057\u307e\u3057\u305f\u3002\n\u7269\u8cc7\u306e\u63da\u9678\u3092\u958b\u59cb\u3057\u307e\u3059\u3002")
+                }).wait(3e3).call(function () {
+                    t._showMessage("")
+                }).wait(600).call(function () {
+                    t._taskLanding()
                 })
+            }, e.prototype._taskLanding = function () {
+                var t = this,
+                    e = new r.SerialTask,
+                    i = this._scene.view,
+                    n = this._scene.view.map.ship_icon.getGlobalPosition(),
+                    o = this._createShipList(),
+                    _ = this._getDrumAndDaihatsuCount(o),
+                    l = _.drum_count,
+                    c = _.daihatsu_count,
+                    h = this._model.sortie.getNextCell().no,
+                    p = this._scene.resInfo.getLandingBalloonType(h),
+                    d = new a.TaskLandingBalloon(i, n, l, c, p);
+                e.add(d), e.add(new s.WaitTask(200)), e.add(new u(this._scene, this._model)), e.add(new s.WaitTask(1e3)), e.start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._startNoLanding = function (t) {
+                var e = this;
+                this._showWave(), createjs.Tween.get(null).wait(500).call(function () {
+                    e._showMessage(t)
+                }).wait(3e3).call(function () {
+                    e._showMessage("")
+                }).wait(1e3).call(function () {
+                    e._endTask()
+                })
+            }, e.prototype._showWave = function () {
+                var t = this._model.sortie.getNextCell().no,
+                    e = this._scene.view.map.spotLayer.getSpot(t);
+                this._wave = new _.CellWave, this._wave.x = e.x, this._wave.y = e.y, this._scene.view.map.spotLayer.addChild(this._wave), this._wave.activate()
+            }, e.prototype._showMessage = function (t) {
+                this._scene.view.message_box.text = t
+            }, e.prototype._createShipList = function () {
+                for (var t = this._model.deck_f.ships.concat(), e = [], i = 0, n = t; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = o.damageType;
+                        0 != r && 25 != r && 1 != o.isTaihi() && e.push(o)
+                    }
+                }
+                return e
+            }, e.prototype._getDrumAndDaihatsuCount = function (t) {
+                for (var e = 0, i = 0, n = 0, o = t; n < o.length; n++)
+                    for (var r = o[n], s = 0, a = r.slots; s < a.length; s++) {
+                        var _ = a[s];
+                        null != _ && (75 == _.mst_id ? e++ : 24 == _.equipType ? i++ : 46 == _.equipType && i++)
+                    }
+                return {
+                    drum_count: e,
+                    daihatsu_count: i
+                }
             }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, this._data = null, this._container = null, this._from = null, this._to = null, this._c1 = null, this._c2 = null, this._baseTime = null, this._timer = null, this._bezierTween = null, this._isTurn = null, t.prototype._endTask.call(this)
+                null != this._wave && (null != this._wave.parent && this._wave.parent.removeChild(this._wave), this._wave.dispose(), this._wave = null), this._scene = null, this._model = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.CellTaskAirReconnaissance = l;
+    e.CellTaskLanding = l;
     var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e.addChild(e._img), e
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._scene = e, n._model = i, n
         }
-        return n(e, t), e.prototype.initialize = function (t) {
-            switch (t) {
-                case 2:
-                    this._img.texture = a.MAP_COMMON.getTexture(99), this._img.position.set(-74, -84);
-                    break;
-                case 1:
-                    this._img.texture = a.MAP_COMMON.getTexture(100), this._img.position.set(-74, -101);
-                    break;
-                default:
-                    this._img.texture = null
-            }
+        return n(e, t), e.prototype._start = function () {
+            var t = this,
+                e = this._model.sortie.getNextCell().no,
+                i = this._scene.view.map.spotLayer.getFlag(e);
+            if (null == i)
+                for (var n = this._scene.resInfo.getSameSpotData(e), o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != (i = this._scene.view.map.spotLayer.getFlag(s.no))) break
+                }
+            null == i ? this._endTask() : createjs.Tween.get(i).to({
+                scaleX: 1.6,
+                scaleY: 1.6
+            }, 200, createjs.Ease.sineOut).to({
+                scaleX: 1,
+                scaleY: 1
+            }, 800, createjs.Ease.sineIn).call(function () {
+                t._endTask()
+            })
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._model = null, t.prototype._endTask.call(this)
         }, e
-    }(r.Container)
+    }(o.TaskBase)
 }

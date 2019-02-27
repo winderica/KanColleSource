@@ -1,42 +1,45 @@
 const function610 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = function () {
-            function t(t) {
-                var e = this;
-                this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
-                    e._timerBeLeftVoice.enabled_byTimeSignal = !0
-                }, this._timerBeLeftVoice = t
+    var o = i(193),
+        r = i(194),
+        s = i(195),
+        a = i(196),
+        _ = i(287),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
             }
-            return t.prototype.initialize = function (t) {
-                this._mst_id = t;
-                var e = n.default.model.ship.getMst(this._mst_id);
-                this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
-            }, t.prototype.stop = function () {
-                -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
-            }, t.prototype.reset = function () {
-                var t = this;
-                if (this.stop(), 0 != this._enabled_timeSignal) {
-                    var e = new Date,
-                        i = e.getMinutes(),
-                        n = e.getSeconds();
-                    this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
-                        t._play()
-                    }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
-                        t._preload()
-                    }, 1e3 * this._Preload_sec)
-                }
-            }, t.prototype._preload = function () {
-                n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
-            }, t.prototype._play = function () {
-                var t = this;
-                1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
-                    t.reset()
-                }, 61e3))
-            }, t
-        }();
-    e.TimeSignal = o
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.changeSkin(t), this._gear.activate()
+            }, e.prototype.changeSkin = function (t) {
+                101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
+                var e = PIXI.Texture.EMPTY;
+                e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
+            }, e.prototype.update = function (t) {
+                0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
+            }, e.prototype.dispose = function () {
+                this._gear.dispose()
+            }, e
+        }(PIXI.Container);
+    e.FrameLayer = l
 }

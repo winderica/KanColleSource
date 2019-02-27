@@ -19,20 +19,50 @@ const function769 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(213),
-        r = i(21),
-        s = function (t) {
+    var o = i(3),
+        r = i(770),
+        s = i(52),
+        a = function (t) {
             function e() {
-                var e = r.COMMON_MAIN.getTexture(15);
-                return t.call(this, e) || this
+                var e = t.call(this) || this;
+                e._mousedown = function (t, i) {
+                    e.mousedown(t, i)
+                }, e._onClickDetach = function (t) {
+                    e.onClickDetach(t)
+                }, e._onMouseUp = function (t) {
+                    e.onMouseUp(t)
+                }, e._onMouseOut = function () {
+                    e.onMouseOut()
+                };
+                e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
+                for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
+                    var a = new r.SlotItemSlot(n);
+                    a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
+                    var _ = new PIXI.Sprite(i);
+                    _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
+                }
+                return e
             }
-            return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this._update_(t, e, i, n, o, r, s, a, _, l, u, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
-            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + l, this._textSakuteki.text = "" + u, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
+            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
+                get: function () {
+                    return this._slotItemSlots
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.clean = function () {
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
+            }, e.prototype.update = function (t, e, i, n, o) {
+                var r = this._slotItemSlots[t],
+                    s = this._clearSlotItemSlots[t];
+                r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
+            }, e.prototype.hide = function (t) {
+                for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
+            }, e.prototype.dispose = function () {
+                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
+                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
+                this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameter = s
+        }(PIXI.Container);
+    e.SlotItemSlotBox = a
 }

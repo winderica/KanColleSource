@@ -19,42 +19,16 @@ const function400 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(401),
-        s = i(27),
-        a = i(173),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._target = i, n
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
-                    n = i.result;
-                i.start(function () {
-                    1 == n.hasCaution() ? t._confirm() : (t._result = n, t._endTask())
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._layer,
-                    n = new a.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new r.UseItemUseAPI(e, !0, 0),
-                            o = i.result;
-                        i.start(function () {
-                            t._result = o, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._icon && this._icon.dispose(), this._btn_yes.dispose(), this._btn_no.dispose()
+            }, e.prototype._initialize = function (t, e) {
+                this._icon.initialize(t, e), this._btn_yes.initialize(o.ITEM_ILIST_MEDAL.getTexture(6)), this._btn_no.initialize(o.ITEM_ILIST_MEDAL.getTexture(0)), this._btn_yes.activate(), this._btn_no.activate()
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseNormalItem = _
+        }(PIXI.Sprite);
+    e.ConfirmViewBase = r
 }

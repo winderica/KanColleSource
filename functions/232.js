@@ -20,101 +20,112 @@ const function232 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(55),
-        s = i(68),
-        a = i(233),
-        _ = i(206),
-        l = i(53),
-        u = i(986),
-        c = i(987),
-        h = i(988),
-        p = i(370),
-        d = i(1),
-        f = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._mst_id = 0, s._enabled = !1, s._onMouseOver = function () {
-                    s._update(!0), null != s._cb_onMouseOver && s._cb_onMouseOver(s._mst_id)
-                }, s._onMouseOut = function () {
-                    s._update(!1), null != s._cb_onMouseOut && s._cb_onMouseOut(s._mst_id)
-                }, s._onClick = function (t) {
-                    if (null != s._cb_onClick) {
-                        var e = t.data.global,
-                            i = new PIXI.Point(e.x, e.y);
-                        s._cb_onClick(s._mst_id, i)
-                    }
-                }, s._onClickAirUnitBadge = function () {
-                    null != s._cb_onClickAirUnitBadge && s._cb_onClickAirUnitBadge()
-                }, s._type = e, s._cb_onClick = i, s._cb_onClickAirUnitBadge = n, s._cb_onMouseOver = o, s._cb_onMouseOut = r, s._image = new _.MapThumbnailImage, s._clear = new c.ClearBadge, s._focus = new PIXI.Sprite, s._focus.visible = !1, s._lock = s._createLock(), s._gauge = new a.GaugeHorizontal, s._airUnitBanner = new h.AirUnitBadge(s._onClickAirUnitBadge), s._setPositions(), s.interactive = !0, s
+        r = i(9),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._now = -1, e._max = 100, e._tp_visible = !0, e._bar = new a, e._img = new PIXI.Sprite, e._light = new PIXI.Sprite, e._tp = new _, e.addChild(e._bar), e.addChild(e._img), e.addChild(e._light), e.addChild(e._tp), e.visible = !1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "tp_visible", {
                 get: function () {
-                    return this._mst_id
+                    return this._tp_visible
+                },
+                set: function (t) {
+                    this._tp_visible = t, this._tp.visible = this._tp.enabled && this._tp_visible
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t) {
-                if (this._focus.visible = !1, this._airUnitBanner.visible = !1, null == t) this._enabled = !1, this._mst_id = 0, this._image.setTexture(this._getNoneTexture()), this._lock.initialize(1), this._lock.visible = !0;
-                else {
-                    this._mst_id = t.mst_id;
-                    var e = r.MapUtil.toAreaID(this._mst_id),
-                        i = r.MapUtil.toMapNo(this._mst_id);
-                    if (this._image.setImage(e, i), 1 == t.isOpened()) {
-                        if (this._enabled = !0, this._focus.texture = this._getFocusTexture(), this._lock.visible = !1, t.availableAirUnitCount > 0) {
-                            var n = u.getType(this._mst_id);
-                            this._airUnitBanner.initialize(n), this._airUnitBanner.update(t.availableAirUnitCount);
-                            var o = u.getPosition(this._mst_id);
-                            null != o ? this._airUnitBanner.position.set(o.x, o.y) : this._airUnitBanner.position.set(0, 0), this._airUnitBanner.visible = !0
-                        }
-                    } else this._enabled = !1, 65 == t.mst_id ? this._lock.initialize(3) : this._lock.initialize(0), this._lock.visible = !0
-                }
-                this._initClearBadge(t), this.updateGauge(t), this.addChild(this._image), this.addChild(this._focus), this.addChild(this._clear), this.addChild(this._lock), this.addChild(this._gauge), this.addChild(this._airUnitBanner)
-            }, e.prototype.updateAirUnitEnabled = function (t) {
-                this._airUnitBanner.enabled = t
-            }, e.prototype.updateGauge = function (t) {
-                if (null != t) {
-                    if (t.gauge_max > 0) {
-                        if (t.gauge_now <= 0) return
-                    } else if (t.defeat_required <= 0) return;
-                    if (0 != t.isOpened()) {
-                        var e = t.area_id,
-                            i = t.map_no,
-                            n = t.getGaugeNum(),
-                            r = s.GaugeSetModel.createKey(e, i, n),
-                            a = o.default.resources.gauge.getGaugeInfo(r);
-                        if (null != a)
-                            if (this._gauge.initialize(a), this._gauge.x = a.x, this._gauge.y = a.y, this._gauge.tp_visible = 0 != t.getSelectedOperationType(), t.defeat_required > 0) {
-                                var _ = t.defeat_required,
-                                    l = _ - t.defeat_count;
-                                this._gauge.update(l, _)
-                            } else {
-                                var l = t.gauge_now,
-                                    _ = t.gauge_max;
-                                this._gauge.update(l, _)
-                            }
-                    }
-                }
-            }, e.prototype._initClearBadge = function (t) {
-                if (null == t || 0 == t.isOpened() || 0 == t.isCleared()) return void this._clear.hide();
-                var e = t.getSelectedOperationType();
-                this._clear.show(e)
-            }, e.prototype._setPositions = function () {
-                3 == this._type ? this._clear.position.set(930, 8) : 4 == this._type && this._clear.position.set(434, 8)
-            }, e.prototype._getNoneTexture = function () {
-                return 3 == this._type ? l.SALLY_SORTIE.getTexture(40) : 4 == this._type ? l.SALLY_SORTIE.getTexture(39) : PIXI.Texture.EMPTY
-            }, e.prototype._getFocusTexture = function () {
-                return 3 == this._type ? l.SALLY_SORTIE.getTexture(38) : 4 == this._type ? l.SALLY_SORTIE.getTexture(37) : PIXI.Texture.EMPTY
-            }, e.prototype.activate = function () {
-                0 == this.buttonMode && 1 == this._enabled && (this.buttonMode = !0, this.on(d.EventType.MOUSEOVER, this._onMouseOver), this.on(d.EventType.MOUSEOUT, this._onMouseOut), this.on(d.EventType.CLICK, this._onClick)), 1 == this._lock.visible && this._lock.activate()
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(d.EventType.MOUSEOVER, this._onMouseOver), this.off(d.EventType.MOUSEOUT, this._onMouseOut), this.off(d.EventType.CLICK, this._onClick), this._lock.deactivate()
+                if (null == t) return this._stopTween(), this._tp.enabled = !1, void(this.visible = !1);
+                this._img.texture = o.default.resources.gauge.getTexture(t.image_path), this._light.texture = o.default.resources.gauge.getTexture(t.image_light_path), this._light.x = t.lightX, this._light.y = t.lightY, this._bar.x = t.barX, this._bar.y = t.barY, this._bar.initialize(t.barColor, t.barW, t.barH), this._tp.visible = !1, 1 == t.isTransport() ? (this._tp.initialize(), this._tp.x = t.transportX, this._tp.y = t.transportY, this._tp.enabled = !0) : this._tp.enabled = !1, this.visible = !0, this._startTween()
+            }, e.prototype.update = function (t, e, i) {
+                void 0 === i && (i = null), this._now = t, this._max = e;
+                var n = this._now / this._max;
+                n = Math.max(n, 0), n = Math.min(n, 1), this._bar.update(n, i), 1 == this._tp.enabled ? (this._tp.update(t, e), this._tp.visible = this._tp_visible) : this._tp.visible = !1
             }, e.prototype.dispose = function () {
-                this.interactive = !1, this.deactivate(), this._gauge.dispose(), this._airUnitBanner.dispose(), this._cb_onClick = null, this._cb_onClickAirUnitBadge = null
-            }, e.prototype._createLock = function () {
-                return new p.MapThumbnailLocked(this._type)
-            }, e.prototype._update = function (t) {
-                this._focus.visible = 1 == t
+                this._stopTween(), this._bar.dispose()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._light.alpha = 0, this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 500).to({
+                    alpha: 0
+                }, 500))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null), this._light.alpha = 0
             }, e
         }(PIXI.Container);
-    e.MapThumbnail = f
+    e.GaugeHorizontal = s;
+    var a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this.clear(), this.beginFill(t), this.drawRect(0, 0, e, i), this.endFill()
+            }, e.prototype.update = function (t, e) {
+                if (void 0 === e && (e = null), this._stopAnimation(), null == e) this.scale.x = t;
+                else {
+                    var i = this.width - this.width * t,
+                        n = i / 2 / 30 * 1e3;
+                    this._t = createjs.Tween.get(this.scale).to({
+                        x: t
+                    }, n).call(function () {
+                        null != e && e()
+                    })
+                }
+            }, e.prototype.dispose = function () {
+                this._stopAnimation()
+            }, e.prototype._stopAnimation = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e
+        }(PIXI.Graphics),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new l, e._now.x = 30, e._max = new l, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._title.texture = r.COMMON_MISC.getTexture(66), this._slash.texture = r.COMMON_MISC.getTexture(65)
+            }, e.prototype.update = function (t, e) {
+                this._now.update(t), this._max.update(e)
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new u;
+                    n.x = 8 * i, e.addChild(n), e._nums.push(n)
+                }
+                return e
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                if (t = Math.floor(t), t = Math.max(0, t), 0 != (t = Math.min(9999, t)))
+                    for (var e = !1, i = 0; i < this._nums.length; i++) {
+                        var n = Math.pow(10, this._nums.length - i - 1),
+                            o = Math.floor(t / n);
+                        o > 0 || 1 == e ? (this._nums[i].update(o), e = !0) : this._nums[i].update(-1), t %= n
+                    } else
+                        for (var i = 0; i < this._nums.length; i++) i == this._nums.length - 1 ? this._nums[i].update(0) : this._nums[i].update(-1)
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                t >= 0 && t <= 9 ? (this.texture = r.COMMON_MISC.getTexture(e._TEXTURES[t]), this.visible = !0) : this.visible = !1
+            }, e._TEXTURES = [55, 56, 57, 58, 59, 60, 61, 62, 63, 64], e
+        }(PIXI.Sprite)
 }

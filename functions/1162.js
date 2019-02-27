@@ -19,15 +19,37 @@ const function1162 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(3),
-        s = function (t) {
+    var o = i(47),
+        r = i(1163),
+        s = i(1165),
+        a = i(1167),
+        _ = i(1170),
+        l = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = r.ITEM_FSHOP.getTexture(17) : this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(16) : r.ITEM_FSHOP.getTexture(18)
+            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
+                get: function () {
+                    return this._viewTop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.getPreInitializeTask = function (t) {
+                return new r.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new r.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                return new _.FinalizeTask(this)
+            }, e.prototype.initialize = function () {
+                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
+            }, e.prototype.startTopTask = function () {
+                var t = this;
+                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
+                    t._topTask = null
+                })
+            }, e.prototype.dispose = function () {
+                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
             }, e
-        }(o.BtnBase);
-    e.ExchangeBtn = s
+        }(o.SceneBase);
+    e.InteriorScene = l
 }

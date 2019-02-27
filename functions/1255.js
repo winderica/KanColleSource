@@ -19,55 +19,121 @@ const function1255 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(1256),
-        a = i(1257),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._selectFormation = function () {
-                    if (0 == r._model.deck_f.type) {
-                        var t = new s.TaskFormationSelect(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        t.start(function () {
-                            r._fadeoutBGM(t.selected_formation)
-                        })
-                    } else {
-                        var e = new a.TaskFormationSelectCombined(r._scene.view, r._model.deck_f, r._model.map_info.isLongRangeFires());
-                        e.start(function () {
-                            r._fadeoutBGM(e.selected_formation)
-                        })
-                    }
-                }, r._scene = e, r._model = i, r._battle_cls = n, r._battle_result_cls = o, r
+    var o = i(123),
+        r = i(176),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._scene.view.map.ship_icon.startWaveRed(this._selectFormation)
-            }, e.prototype._fadeoutBGM = function (t) {
-                var e = this;
-                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    e._startBattle(t)
-                })) : this._startBattle(t)
-            }, e.prototype._startBattle = function (t) {
-                var e = this;
-                this._model.deck_f.formation = t;
-                var i = new this._battle_cls;
-                i.initialize(this._model), this._scene.addChild(i), i.once("complete", function () {
-                    e._startBattleResult(i, e._model)
-                }), i.start()
-            }, e.prototype._startBattleResult = function (t, e) {
-                var i = this,
-                    n = new this._battle_result_cls;
-                n.initialize(), n.shutter.close(0), this._scene.addChild(n), this._scene.removeChild(t), t.dispose(), n.once("complete", function () {
-                    i._completeBattleResult(n)
-                }), n.start(e)
-            }, e.prototype._completeBattleResult = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._scene.removeChild(t), t.dispose(), e._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
+            }, e.prototype.activate = function () {
+                1 == this._enabled && this._btn.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn.dispose()
+            }, e.prototype._getTexture = function (t, e) {
+                switch (t) {
+                    case 1:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(14);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(15);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(16);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(17)
+                        }
+                        break;
+                    case 2:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(34);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(35);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(36);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(37)
+                        }
+                        break;
+                    case 3:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(39);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(40);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(41);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(42)
+                        }
+                }
+                return PIXI.Texture.EMPTY
             }, e
-        }(r.TaskBase);
-    e.CellTaskBattle = _
+        }(PIXI.Container);
+    e.FormationBoxCombined = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._update(!0)
+            }, e._onMouseOut = function () {
+                e._update(!1)
+            }, e._onClick = function () {
+                null != e._cb_onClick && e._cb_onClick(e._type)
+            }, e.interactive = !0, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._type = t, this._cb_onClick = e, this._update(!1)
+        }, e.prototype.activate = function () {
+            if (1 != this.buttonMode) {
+                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
+                var t = o.InteractiveUtil.isOnMouse(this);
+                this._update(t)
+            }
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
+        }, e.prototype._update = function (t) {
+            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
+        }, e.prototype._getTexture = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(19);
+                case 12:
+                    return r.SALLY_JIN.getTexture(21);
+                case 13:
+                    return r.SALLY_JIN.getTexture(23);
+                case 14:
+                    return r.SALLY_JIN.getTexture(25);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e.prototype._getTextureOn = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(20);
+                case 12:
+                    return r.SALLY_JIN.getTexture(22);
+                case 13:
+                    return r.SALLY_JIN.getTexture(24);
+                case 14:
+                    return r.SALLY_JIN.getTexture(26);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e
+    }(PIXI.Sprite)
 }

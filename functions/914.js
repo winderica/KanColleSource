@@ -19,20 +19,23 @@ const function914 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/mapinfo", e
+    var o = i(10),
+        r = i(915),
+        s = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i._url = "api_get_member/practice", i._res_model = new r.PracticeAPIModel, i._debug = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
-                o.default.model.map.setMapMem(e);
-                var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
-                o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
+                get: function () {
+                    return this._res_model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._completedEnd = function () {
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.APIBase);
-    e.MapInfoAPI = a
+        }(o.APIBase);
+    e.PracticeAPI = s
 }

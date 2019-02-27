@@ -19,21 +19,24 @@ const function828 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(52),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/open_exslot", i.api_id = e, i
+    var o = i(1),
+        r = i(8),
+        s = i(34),
+        a = i(71),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e.onClick(e.index, e.memId)
+                }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(s.RemodelConst.REINFORCEMENT_WORK_ITEMID),
-                    i = e.count - 1;
-                e.__setCount__(i), o.default.model.ship.get(this.api_id).__updateExtraSlot__(-1), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
+            }, e.prototype.update = function (t, e, i) {
+                this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
+            }, e.prototype.empty = function () {
+                this.removeChildren(), this.addChild(this.emptyShipBanner)
             }, e
-        }(r.APIBase);
-    e.OpenExSlotAPI = a
+        }(PIXI.Container);
+    e.ShipSlot = _
 }

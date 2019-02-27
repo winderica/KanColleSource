@@ -5,8 +5,8 @@ const function821 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("wedding_marriage_bg_" + t)
+            return PIXI.Texture.fromFrame("wedding_marriage_" + t)
         }
         t.getTexture = e
-    }(e.WEDDING_MARRIAGE_BG || (e.WEDDING_MARRIAGE_BG = {}))
+    }(e.WEDDING_MARRIAGE || (e.WEDDING_MARRIAGE = {}))
 }

@@ -19,31 +19,35 @@ const function977 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(53),
-        r = i(367),
-        s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+    var o = i(0),
+        r = i(80),
+        s = i(29),
+        a = i(1),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
+                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(41) : e._icon.texture = s.SALLY_COMMON.getTexture(40)
+                }, e._onMouseOver = function () {
+                    e._overed = !0, e._updateTexture(), e._over.visible = !0
+                }, e._onMouseOut = function () {
+                    e._overed = !1, e._updateTexture(), e._over.visible = !1
+                }, e._onClick = function () {
+                    o.default.scene.change(24, new r.ItemSceneModel)
+                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(30, -55), e._over.visible = !1, e._icon.interactive = !0, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "air_unit", {
-                get: function () {
-                    return null != this._airunit
-                },
-                set: function (t) {
-                    if (t != this.air_unit) {
-                        if (1 == t) {
-                            this._btn.position.set(0, -8);
-                            var e = o.SALLY_SORTIE.getTexture(7);
-                            this._airunit = new PIXI.Sprite(e), this._airunit.position.set(6, 33), this.addChild(this._airunit)
-                        } else this.removeChild(this._airunit), this._airunit = null, this._btn.position.set(0, 0);
-                        this._updateTexture()
-                    }
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._updateTexture = function () {
-                1 == this.air_unit ? 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(18) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(19) : this._btn.texture = o.SALLY_SORTIE.getTexture(17) : 0 == this._enabled ? this._btn.texture = o.SALLY_SORTIE.getTexture(21) : 1 == this._overed ? this._btn.texture = o.SALLY_SORTIE.getTexture(22) : this._btn.texture = o.SALLY_SORTIE.getTexture(20)
+            return n(e, t), e.prototype.initialize = function () {
+                this._icon.texture = s.SALLY_COMMON.getTexture(40), this._over.texture = s.SALLY_COMMON.getTexture(43), this.addChild(this._over), this.addChild(this._icon)
+            }, e.prototype.activate = function () {
+                var t = this;
+                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
+                    loop: !0
+                }).wait(300).call(function () {
+                    t._updateTexture()
+                }))
+            }, e.prototype.deactivate = function () {
+                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(PIXI.Container);
+    e.BtnShop = _
 }

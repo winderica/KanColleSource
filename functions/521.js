@@ -4,80 +4,285 @@ const function521 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(31),
-        r = i(147),
-        s = i(522),
-        a = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "num", {
+        o = i(7),
+        r = function () {
+            function t(t) {
+                this._o = t
+            }
+            return Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
-                    var t = 0;
-                    for (var e in this._map) t++;
-                    return t
+                    return o.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.setData = function (t) {
-                if (this._map = {}, null != t)
-                    for (var e = 0; e < t.length; e++) {
-                        var i = t[e],
-                            n = new r.ShipModelEdit(i),
-                            o = n.memID;
-                        if (o > 0) {
-                            var s = o.toString();
-                            this._map[s] = n
-                        }
-                    }
-            }, t.prototype.get = function (t) {
-                var e = t.toString();
-                return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-            }, t.prototype.delete = function (t, e) {
-                void 0 === e && (e = !1);
-                var i = this.get(t),
-                    o = i.getSlotitems(),
-                    r = i.getSlotitemEx(),
-                    s = i.memID.toString();
-                if (1 == this._map.hasOwnProperty(s) && delete this._map[s], !1 === e) {
-                    for (var a = 0; a < o.length; a++) {
-                        var _ = o[a];
-                        null != _ && n.default.model.slot.delete(_.memID)
-                    }
-                    null != r && n.default.model.slot.delete(r.memID)
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "yomi", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_yomi")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sortNo", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_sort_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "slotNum", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_slot_num")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "shipTypeID", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_stype", -1)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "shipTypeName", {
+                get: function () {
+                    if (553 == this.mstID) return "\u6539\u88c5\u822a\u7a7a\u6226\u8266";
+                    if (574 == this.mstID) return "\u8efd(\u822a\u7a7a)\u5de1\u6d0b\u8266";
+                    var t = n.default.model.shipType.get(this.shipTypeID);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "fuelMax", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_fuel_max")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ammoMax", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_bull_max")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "tousai", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_maxeq");
+                    return null == t ? 0 : t.reduce(function (t, e, i, n) {
+                        return t + e
+                    })
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "speed", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_soku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "remodeling_level", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_afterlv")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "remodeling_ammo", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_afterbull")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "remodeling_steel", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_afterfuel")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "remodeled_mst_id", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_aftershipid")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "availableBeLeftVoice", {
+                get: function () {
+                    return (1 & this._voiceFlag) > 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "availableBeLeftVoices", {
+                get: function () {
+                    return (4 & this._voiceFlag) > 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "availableTimeSignalVoice", {
+                get: function () {
+                    return (2 & this._voiceFlag) > 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_voiceFlag", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_voicef")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "powUp", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_powup");
+                    return "\u307e\u308b\u3086" == this.yomi ? t.push(1) : t.push(0), t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "hougMax", {
+                get: function () {
+                    return this._houg[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "hougMin", {
+                get: function () {
+                    return this._houg[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_houg", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_houg")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "raigMax", {
+                get: function () {
+                    return this._raig[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "raigMin", {
+                get: function () {
+                    return this._raig[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_raig", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_raig")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "tykuMax", {
+                get: function () {
+                    return this._tyku[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "tykuMin", {
+                get: function () {
+                    return this._tyku[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_tyku", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_tyku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "soukMax", {
+                get: function () {
+                    return this._souk[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "soukMin", {
+                get: function () {
+                    return this._souk[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_souk", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_souk")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "luckMax", {
+                get: function () {
+                    return this._luck[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "luckMin", {
+                get: function () {
+                    return this._luck[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_luck", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_luck")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taikyuMin", {
+                get: function () {
+                    return this._taikyu[0]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taikyuMax", {
+                get: function () {
+                    return this._taikyu[1]
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_taikyu", {
+                get: function () {
+                    return o.ObjUtil.getNumArray(this._o, "api_taik")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "taisen_base", {
+                get: function () {
+                    var t = o.ObjUtil.getNumArray(this._o, "api_tais");
+                    return null != t && t.length > 0 ? t[0] : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rarity", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_backs")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "build_time", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_buildtime")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message_text", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_getmes")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getMaterialForBroken = function () {
+                var t = o.ObjUtil.getNumArray(this._o, "api_broken");
+                return {
+                    fuel: t[0],
+                    ammo: t[1],
+                    steel: t[2],
+                    baux: t[3]
                 }
-            }, t.prototype.getAll = function () {
-                var t = new Array;
-                for (var e in this._map) {
-                    var i = this._map[e];
-                    t.push(i)
-                }
-                return t
-            }, t.prototype.getAllOther = function () {
-                var t = o.ShipUtil.getMemIDsInAllDeck(),
-                    e = new Array;
-                for (var i in this._map) {
-                    var n = this._map[i]; - 1 == t.indexOf(n.memID) && e.push(n)
-                }
-                return e
-            }, t.prototype.setMstData = function (t) {
-                if (this._mapMst = {}, null != t)
-                    for (var e = 0; e < t.length; e++) {
-                        var i = t[e],
-                            n = new s.ShipMstModel(i),
-                            o = n.mstID;
-                        if (o > 0) {
-                            var r = o.toString();
-                            this._mapMst[r] = n
-                        }
-                    }
-            }, t.prototype.getMst = function (t) {
-                var e = t.toString();
-                return 1 == this._mapMst.hasOwnProperty(e) ? this._mapMst[e] : null
-            }, t.prototype.updateData = function (t) {
-                if (null == this._map) return null;
-                var e = new r.ShipModelEdit(t),
-                    i = e.memID.toString();
-                return 1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e, e
+            }, t.prototype.getClassType = function () {
+                return o.ObjUtil.getNumber(this._o, "api_ctype")
+            }, t.prototype.getSlotitemTousaiMax = function (t) {
+                var e = o.ObjUtil.getNumArray(this._o, "api_maxeq");
+                return null == e ? 0 : e[t]
             }, t
         }();
-    e.ShipModelHolder = a
+    e.ShipMstModel = r
 }

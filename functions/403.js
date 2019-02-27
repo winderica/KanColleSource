@@ -19,18 +19,27 @@ const function403 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._arrow = new r.TextBox(22, 4999235), e._arrow.position.set(152, 20), e.addChild(e._arrow), e._from = new r.TextBox(24, 4999235), e._from.y = 20, e.addChild(e._from), e._tobe = new r.TextBox(24, 4999235), e._tobe.position.set(188, 20), e.addChild(e._tobe), e
+    var o = i(2),
+        r = i(8),
+        s = i(1129),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._result = !1, n._onSelected = function (t) {
+                    n._result = t, n._dialog.dispose(), n._layer.removeChild(n._dialog), n._layer.removeChild(n._click_guard), n._endTask()
+                }, n._layer = e, n._texture = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                void 0 === e && (e = 1), this.texture = o.default.resources.getUseitem(57, 0), this._arrow.text = "\u2192", this._from.text = t.toString(), this._from.x = 147 - this._from.width, this._tobe.text = (t - e).toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._click_guard = new r.AreaBox(0), this._layer.addChild(this._click_guard), this._dialog = new s.RewardSelectConfirm(this._onSelected), this._dialog.position.set(465, 495), this._dialog.initialize(this._texture), this._layer.addChild(this._dialog), this._dialog.activate()
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._texture = null, this._click_guard = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.MedalIcon = s
+        }(o.TaskBase);
+    e.TaskRewardSelectConfirm = a
 }

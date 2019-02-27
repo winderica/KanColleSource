@@ -1,181 +1,103 @@
 const function1409 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(123),
-        s = i(2),
-        a = i(12),
-        _ = i(6),
-        l = i(16),
-        u = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._result = !1, i._onSelect = function (t) {
-                    _.SE.play("106"), i._result = t, i._hide()
-                }, i._scene = e, i
+    var n = i(225),
+        o = i(169),
+        r = i(226),
+        s = i(470),
+        a = i(1419),
+        _ = function () {
+            function t(t) {
+                this._model = t, this._records = []
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
+            return Object.defineProperty(t.prototype, "model", {
                 get: function () {
-                    return this._result
+                    return this._model
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._start = function () {
-                this._layer = new h(this._onSelect), this._layer.position.set(o.default.width / 2, o.default.height / 2), this._layer.alpha = 0, this._scene.addChild(this._layer), this._scene.view.layer_title.show(7, this._scene), this._showBtns()
-            }, e.prototype._showBtns = function () {
-                var t = this;
-                this._layer.initialize(), createjs.Tween.get(this._layer).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    t._layer.activate()
-                })
-            }, e.prototype._hide = function () {
-                var t = this;
-                this._layer.deactivate(), this._scene.view.layer_title.hide(), createjs.Tween.get(this._layer.btn_not_night).to({
-                    x: -o.default.width / 2
-                }, 500), createjs.Tween.get(this._layer.btn_go_night).to({
-                    x: o.default.width / 2
-                }, 500).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._layer), this._layer.dispose(), this._scene = null, this._layer = null, t.prototype._endTask.call(this)
-            }, e
-        }(s.TaskBase);
-    e.TaskGoNightBattleSelect = c;
-    var h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._btn_not_night = new f(e), i._btn_not_night.position.set(-162, 0), i._btn_go_night = new y(e), i._btn_go_night.position.set(162, 0), i.addChild(i._btn_not_night), i.addChild(i._btn_go_night), i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_not_night", {
-                get: function () {
-                    return this._btn_not_night
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_go_night", {
-                get: function () {
-                    return this._btn_go_night
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._btn_not_night.initialize(), this._btn_go_night.initialize()
-            }, e.prototype.activate = function () {
-                this._btn_not_night.activate(), this._btn_go_night.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_not_night.deactivate(), this._btn_go_night.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_not_night.dispose(), this._btn_go_night.dispose()
-            }, e
-        }(PIXI.Container),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    n._setTexture(!0), n._wave.start()
-                }, n._onMouseOut = function () {
-                    n._setTexture(!1), n._wave.stop()
-                }, n._onClick = function () {
-                    0 != n.buttonMode && null != n._cb_onClick && n._cb_onClick(n._value)
-                }, n._value = e, n._cb_onClick = i, n._wave = new d, n._btn = new PIXI.Sprite, n.interactive = !0, n.addChild(n._wave), n.addChild(n._btn), n
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = [new PIXI.Point(-21, -71), new PIXI.Point(78, -60), new PIXI.Point(96, 14), new PIXI.Point(17, 77), new PIXI.Point(-81, 65), new PIXI.Point(-99, -8)];
-                this.hitArea = new PIXI.Polygon(t), this._wave.initialize(), this._setTexture(!1)
-            }, e.prototype._drawHitArea = function (t) {
-                if (null != t) {
-                    var e = new PIXI.Graphics;
-                    e.beginFill(65280, .3), e.moveTo(t[0].x, t[0].y);
-                    for (var i = 1; i < t.length; i++) e.lineTo(t[i].x, t[i].y);
-                    e.endFill(), this.addChildAt(e, 0)
+            }), t.prototype.addDayRecord = function (t) {
+                var e = new s.BattleRecordDay(t);
+                this._records.push(e);
+                var i = this._model.deck_f;
+                i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+                var n = this._createDeckEnemy(this._model.deck_e, e);
+                this._model.updateDeckData(i, n)
+            }, t.prototype.addNightRecord = function (t) {
+                var e = new a.BattleRecordNight(t);
+                this._records.push(e);
+                var i = this._model.deck_f;
+                i = null != i ? this._createDeckFriend(i, e) : this._createAirBase(e);
+                var n = this._createDeckEnemy(this._model.deck_e, e);
+                this._model.updateDeckData(i, n)
+            }, t.prototype.getFirstRecord = function () {
+                return 0 == this._records.length ? null : this._records[0]
+            }, t.prototype.getLastRecord = function () {
+                if (0 == this._records.length) return null;
+                var t = this._records.length;
+                return this._records[t - 1]
+            }, t.prototype.isNight = function () {
+                var t = this.getLastRecord();
+                return null != t && "day" != t.phase
+            }, t.prototype.isBossDamaged = function () {
+                var t = this.getFirstRecord();
+                if (null != t) return t.common.isBossDamaged()
+            }, t.prototype._createDeckFriend = function (t, e) {
+                for (var i = t.practice, o = e.common.deck_id, r = t.medal_num, s = t.user_name, a = t.type, _ = t.name, l = e.common.getTaihiShipIndexes(), u = new Array, c = 0; c < t.ships.length; c++) {
+                    var h = t.ships[c];
+                    if (null == h) u.push(null);
+                    else {
+                        var p = h.clone(),
+                            d = e.common.getHPNowFriend(c);
+                        i && (d = Math.max(1, d));
+                        var f = e.common.getHPMaxFriend(c);
+                        p.initializeHPInfo(d, f);
+                        var y = e.common.getParamsFriend(c);
+                        p.initializeParams(y.karyoku, y.raisou, y.taiku, y.soukou);
+                        var m = -1 != l.indexOf(c);
+                        p.initializeTaihi(m), u.push(p)
+                    }
                 }
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(u.EventType.MOUSEOVER, this._onMouseOver), this.on(u.EventType.MOUSEOUT, this._onMouseOut), this.on(u.EventType.CLICK, this._onClick), 1 == r.InteractiveUtil.isOnMouse(this) && this._onMouseOver())
-            }, e.prototype.deactivate = function () {
-                this.off(u.EventType.MOUSEOVER, this._onMouseOver), this.off(u.EventType.MOUSEOUT, this._onMouseOut), this.off(u.EventType.CLICK, this._onClick), this.buttonMode = !1
-            }, e.prototype.dispose = function () {
-                this._wave.dispose(), this.deactivate(), this._cb_onClick = null
-            }, e
-        }(PIXI.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._wave1 = new a.Sprite, e._wave1.anchor.set(.5), e._initWave(e._wave1), e._wave2 = new a.Sprite, e._wave2.anchor.set(.5), e._initWave(e._wave2), e._wave_tweens = new Array(2), e.addChild(e._wave1), e.addChild(e._wave2), e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._wave1.texture = l.BATTLE_MAIN.getTexture(3), this._wave2.texture = l.BATTLE_MAIN.getTexture(3)
-            }, e.prototype.dispose = function () {
-                this.stop()
-            }, e.prototype._initWave = function (t) {
-                t.scale.set(0), t.alpha = 0
-            }, e.prototype.start = function () {
-                this.stop(), this._wave_tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1,
-                    scaleX: .4,
-                    scaleY: .4
-                }, 400).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 400).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 0).wait(200), this._wave_tweens[1] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(200).to({
-                    alpha: 1,
-                    scaleX: .4,
-                    scaleY: .4
-                }, 400).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 400).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 0)
-            }, e.prototype.stop = function () {
-                for (var t = 0; t < this._wave_tweens.length; t++) null != this._wave_tweens[t] && (this._wave_tweens[t].setPaused(!0), this._wave_tweens[t] = null);
-                this._initWave(this._wave1), this._initWave(this._wave2)
-            }, e
-        }(PIXI.Container),
-        f = function (t) {
-            function e(e) {
-                return t.call(this, !1, e) || this
-            }
-            return n(e, t), e.prototype._setTexture = function (t) {
-                1 == t ? (this._btn.texture = l.BATTLE_MAIN.getTexture(5), this._btn.position.set(-128, -105)) : (this._btn.texture = l.BATTLE_MAIN.getTexture(4), this._btn.position.set(-99, -78))
-            }, e
-        }(p),
-        y = function (t) {
-            function e(e) {
-                return t.call(this, !0, e) || this
-            }
-            return n(e, t), e.prototype._setTexture = function (t) {
-                1 == t ? (this._btn.texture = l.BATTLE_MAIN.getTexture(7), this._btn.position.set(-129, -105)) : (this._btn.texture = l.BATTLE_MAIN.getTexture(6), this._btn.position.set(-101, -78))
-            }, e
-        }(p)
+                var v = t.id_second,
+                    g = t.name_second,
+                    b = new n.DeckModelReplica(o, i, r, s, a, _, u, v, g);
+                return b.formation = e.common.formation_id_f, b
+            }, t.prototype._createAirBase = function (t) {
+                for (var e = [], i = 0; i < 6; i++) {
+                    var r = t.common.getHPMaxFriend(i);
+                    if (r <= 0) break;
+                    var s = -(i + 1),
+                        a = s,
+                        _ = new o.ShipModelReplica(0, !1, i, s, a, 1, 0),
+                        l = t.common.getHPNowFriend(i);
+                    _.initializeHPInfo(l, r);
+                    var u = t.common.getParamsFriend(i);
+                    _.initializeParams(u.karyoku, u.raisou, u.taiku, u.soukou), e.push(_)
+                }
+                var c = new n.DeckModelReplica(0, !1, 0, "", 0, "", e, 0, "");
+                return c.formation = t.common.formation_id_f, c
+            }, t.prototype._createDeckEnemy = function (t, e) {
+                for (var i = null != t && t.practice, s = null == t ? 0 : t.id, a = null == t ? 0 : t.medal_num, _ = null == t ? "" : t.user_name, l = null == t ? "" : t.name, u = [], c = e.common.isCombinedEnemy(), h = 0; h < (c ? 12 : 6); h++) {
+                    var p = e.common.getMstIDEnemy(h);
+                    if (p <= 0) u.push(null);
+                    else {
+                        var d = e.common.getLevelEnemy(h),
+                            f = new o.ShipModelReplica(1, i, h, p, -h, d),
+                            y = e.common.getHPNowEnemy(h);
+                        i && (y = Math.max(1, y));
+                        var m = e.common.getHPMaxEnemy(h);
+                        f.initializeHPInfo(y, m);
+                        for (var v = e.common.getSlotMstIDsEnemy(h), g = r.SlotitemModelReplica.convertFromMstIDs(v), b = [], w = 0; w < g.length; w++) b.push(0);
+                        f.initializeSlots(g, null, b);
+                        var x = e.common.getParamsEnemy(h);
+                        f.initializeParams(x.karyoku, x.raisou, x.taiku, x.soukou), u.push(f)
+                    }
+                }
+                var I;
+                return I = 0 == c ? new n.DeckModelReplica(s, i, a, _, 0, l, u) : new n.DeckModelReplica(s, i, a, _, 1, l, u, 0, ""), I.formation = e.common.formation_id_e, I
+            }, t
+        }();
+    e.BattleData = _
 }

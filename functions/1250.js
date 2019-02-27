@@ -20,99 +20,48 @@ const function1250 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(6),
-        s = i(20),
-        a = i(1),
+        r = i(12),
+        s = i(6),
+        a = i(20),
         _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    n._scene.user_select.ration = 1 == t ? 1 : 0, n._hideConfirmDialog()
-                }, n._scene = e, n._model = i, n
-            }
-            return n(e, t), e.prototype._start = function () {
-                1 == this._model.sortie.getNextCell().isUsableRation() ? this._showConfirmDialog() : (this._scene.user_select.ration = -1, this._endTask())
-            }, e.prototype._showConfirmDialog = function () {
-                var t = this,
-                    e = this._model.sortie.now_cell_no,
-                    i = this._scene.resInfo.getRationConfirmOffset(e),
-                    n = this._scene.view.map.ship_icon;
-                this._confirm = new l(i, this._onSelect), this._confirm.x = n.x, this._confirm.y = n.y + 15, this._confirm.alpha = 0, this._confirm.initialize(), this._scene.view.universal_layer.addChild(this._confirm), r.SE.play("212"), createjs.Tween.get(this._confirm).to({
-                    y: n.y,
-                    alpha: 1
-                }, 300).call(function () {
-                    t._confirm.activate()
-                })
-            }, e.prototype._hideConfirmDialog = function () {
-                var t = this;
-                this._confirm.deactivate(), createjs.Tween.get(this._confirm.btn_yes).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._confirm.btn_no).to({
-                    alpha: 0
-                }, 200);
-                var e = this._confirm.y;
-                createjs.Tween.get(this._confirm).wait(200).to({
-                    y: e,
-                    alpha: 0
-                }, 300).call(function () {
-                    t._scene.view.universal_layer.removeChild(t._confirm), t._confirm.dispose(), t._endTask()
-                })
-            }, e
-        }(o.TaskBase);
-    e.TaskConfirmRation = _;
-    var l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClickYes = function () {
-                    null != n._cb_onSelect && n._cb_onSelect(!0)
-                }, n._onClickNo = function () {
-                    null != n._cb_onSelect && n._cb_onSelect(!1)
-                }, n._cb_onSelect = i, n._box = new PIXI.Sprite, n._box.position.set(-120, -135), n.addChild(n._box), n._beak = new PIXI.Sprite, n._beak.position.set(30, -59), n.addChild(n._beak), n._btn_yes = new u(n._onClickYes), n._btn_yes.position.set(-65, 42), n.addChild(n._btn_yes), n._btn_no = new u(n._onClickNo), n._btn_no.position.set(68, 42), n.addChild(n._btn_no), null != e && (n._box.x += e[0].x, n._box.y += e[0].y, n._beak.x += e[0].x, n._beak.y += e[0].y, n._btn_yes.x += e[1].x, n._btn_yes.y += e[1].y, n._btn_no.x += e[1].x, n._btn_no.y += e[1].y), n
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
-                get: function () {
-                    return this._btn_yes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_no", {
-                get: function () {
-                    return this._btn_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._box.texture = s.MAP_COMMON.getTexture(74), this._beak.texture = s.MAP_COMMON.getTexture(75);
-                var t = s.MAP_COMMON.getTexture(97),
-                    e = s.MAP_COMMON.getTexture(98);
-                this._btn_yes.initialize(t, e), t = s.MAP_COMMON.getTexture(83), e = s.MAP_COMMON.getTexture(84), this._btn_no.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._btn_yes.activate(), this._btn_no.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.deactivate(), this._btn_no.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_yes.dispose(), this._btn_no.dispose()
-            }, e
-        }(PIXI.Container),
-        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    r.SE.play("225"), i._over.alpha = 1
-                }, i._onMouseOut = function () {
-                    i._over.alpha = 0
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._over = new PIXI.Sprite, i._over.alpha = 0, i.addChild(i._over), i.interactive = !0, i
+                return i._layer = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this._over.texture = e, this._over.x = -Math.round(this._over.width / 2), this._over.y = -Math.round(this._over.height / 2)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut), this.on(a.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut), this.off(a.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
+            return n(e, t), e.prototype._start = function () {
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(132)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(133)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(134)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+            }, e.prototype._anim = function () {
+                var t = this;
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container)
+        }(o.TaskBase);
+    e.TaskReplenishmentBuff = _
 }

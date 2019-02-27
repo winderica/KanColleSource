@@ -20,35 +20,40 @@ const function950 = function (t, e, i) {
         value: !0
     });
     var o = i(26),
-        r = i(355),
-        s = function (t) {
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._txt = new PIXI.Sprite, e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.alpha = 0, e.addChild(e._txt_on), e
+                return e.texture = PIXI.Texture.EMPTY, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_AIRUNIT.getTexture(61)
-            }, e.prototype.update = function (t, e) {
-                switch (this.visible = t, this._deactivate(), e) {
-                    case r.ListType.RELOCATION:
-                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(128), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(129), this._txt.position.set(479, 12), this._txt_on.position.set(467, -2), 1 == t && this._activate();
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 1:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(91);
                         break;
-                    case r.ListType.DEPLOYMENT:
-                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(131), this._txt.position.set(577, 2)
+                    case 2:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(92);
+                        break;
+                    case 3:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(93);
+                        break;
+                    case 4:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(94);
+                        break;
+                    case 5:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(95);
+                        break;
+                    case 6:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(96);
+                        break;
+                    case 7:
+                        this.texture = o.SALLY_AIRUNIT.getTexture(97);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
                 }
             }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 800).to({
-                    alpha: 0
-                }, 400))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
+                this.texture = PIXI.Texture.EMPTY
             }, e
         }(PIXI.Sprite);
-    e.AirUnitListItemExtraLayer = s
+    e.AirPlaneSkillLevel = r
 }

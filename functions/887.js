@@ -19,16 +19,18 @@ const function887 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
+    var o = i(10),
+        r = i(0),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/kdock", e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kousyou/open_new_dock", i.kDockId = e, i
             }
             return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.kdock.__setData__(this._raw_data), t.prototype._completedEnd.call(this)
+                var e = r.default.model.kdock.get(this.kDockId),
+                    i = r.default.model.useItem.get(49);
+                e.__open__(), i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(r.APIBase);
-    e.KDockAPI = s
+        }(o.APIBase);
+    e.OpenNewDockAPI = s
 }

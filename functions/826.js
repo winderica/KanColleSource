@@ -1,56 +1,43 @@
 const function826 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(8),
-        r = i(6),
-        s = i(52),
-        a = i(827),
-        _ = i(828),
-        l = function () {
-            function t(t) {
-                var e = this;
-                this._onClickNo = function () {
-                    n.default.view.clickGuard = !0;
-                    createjs.Tween.get(e.clickGuardConfirm).to({
-                        alpha: 0
-                    }, 250), createjs.Tween.get(e.extensionConfirm).to({
-                        alpha: 0
-                    }, 250).call(function () {
-                        e.mainView.removeChild(e.clickGuardConfirm), e.mainView.removeChild(e.extensionConfirm), n.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickYes = function () {
-                    n.default.view.clickGuard = !0, new _.OpenExSlotAPI(e.memShipId).start(function () {
-                        r.SE.play("203");
-                        var t = new o.AreaBox(1, 16777215);
-                        t.alpha = 0, e.mainView.addChild(t), createjs.Tween.get(t).to({
-                            alpha: 1
-                        }, 2e3).call(function () {
-                            e.mainView.removeChild(e.clickGuardConfirm), e.mainView.removeChild(e.extensionConfirm), e.onUpdateShip()
-                        }).to({
-                            alpha: 0
-                        }, 1e3).call(function () {
-                            e.mainView.removeChild(t), n.default.view.clickGuard = !1, e.onComplete()
-                        })
-                    })
-                }, this.extensionConfirm = new a.ExtensionConfirm(this._onClickYes, this._onClickNo), this.clickGuardConfirm = new o.AreaBox(.5), this.mainView = t
+    var o = i(4),
+        r = i(3),
+        s = i(1),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._onClickYes = function () {
+                    n._cb_onYes && n._cb_onYes()
+                }, n._onClickNo = function () {
+                    n._cb_onNo && n._cb_onNo()
+                }, n._cb_onYes = e, n._cb_onNo = i;
+                var a = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(49));
+                return n.addChild(a), n._btnYes = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(13)), n._btnYes.position.set(78, 210), n._btnYes.interactive = !0, n._btnYes.buttonMode = !0, n.addChild(n._btnYes), n._btnNo = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(0)), n._btnNo.position.set(351, 210), n._btnNo.interactive = !0, n._btnNo.buttonMode = !0, n.addChild(n._btnNo), n._beforeCount = new o.TextBox(25, 5523516), n._beforeCount.anchor.x = 1, n._beforeCount.position.set(395, 119), n.addChild(n._beforeCount), n._arrow = new o.TextBox(18, 5523516), n._arrow.text = "\u2192", n._arrow.position.set(404, 122), n.addChild(n._arrow), n._afterCount = new o.TextBox(25, 5523516), n._afterCount.position.set(438, 119), n.addChild(n._afterCount), n._btnYes.on(s.EventType.CLICK, n._onClickYes), n._btnNo.on(s.EventType.CLICK, n._onClickNo), n
             }
-            return t.prototype.start = function (t) {
-                n.default.view.clickGuard = !0;
-                var e = n.default.model.useItem.get(s.RemodelConst.REINFORCEMENT_WORK_ITEMID).count;
-                this.extensionConfirm.alpha = 0, this.clickGuardConfirm.alpha = 0, this.extensionConfirm.position.set(294, 212), this.extensionConfirm.update(e), this.mainView.addChild(this.clickGuardConfirm, this.extensionConfirm), this.memShipId = t;
-                createjs.Tween.get(this.clickGuardConfirm).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this.extensionConfirm).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    n.default.view.clickGuard = !1
-                })
-            }, t.prototype.dispose = function () {
-                this.extensionConfirm.dispose(), this.onUpdateShip = null, this.onComplete = null, this.extensionConfirm = null, this.clickGuardConfirm = null, this.mainView = null, this.memShipId = null
-            }, t
-        }();
-    e.TaskExtension = l
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._btnYes.off(s.EventType.CLICK), this._btnNo.off(s.EventType.CLICK), this._beforeCount.destroy(), this._afterCount.destroy(), this._arrow.destroy(), this._cb_onYes = null, this._cb_onNo = null, this._btnYes = null, this._btnNo = null, this._beforeCount = null, this._afterCount = null, this._arrow = null
+            }, e.prototype.update = function (t) {
+                this._beforeCount.text = t.toString(), this._afterCount.text = (t - 1).toString()
+            }, e
+        }(PIXI.Container);
+    e.ExtensionConfirm = a
 }

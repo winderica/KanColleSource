@@ -19,132 +19,144 @@ const function1473 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(207),
-        a = i(479),
-        _ = i(246),
-        l = i(6),
-        u = i(36),
-        c = i(480),
-        h = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._list = i, n
+    var o = i(5),
+        r = i(0),
+        s = i(17),
+        a = i(1),
+        _ = i(2),
+        l = i(24),
+        u = i(8),
+        c = i(59),
+        h = i(55),
+        p = i(14),
+        d = i(1474),
+        f = i(1475),
+        y = i(1476),
+        m = i(434),
+        v = i(13),
+        g = function (t) {
+            function e(e, i, n, o, r, s) {
+                var a = t.call(this) || this;
+                return a._shutter = e, a._area_id = i, a._map_no = n, a._ship_mst_id = o, a._ship_damaged = r, a._file_suffix = s, a
             }
             return n(e, t), e.prototype._start = function () {
-                null == this._list || 0 == this._list.length ? this._endTask() : this._showTelop()
-            }, e.prototype._showTelop = function () {
-                var t = this;
-                this._canvas = new PIXI.Container, this._layer.addChild(this._canvas);
-                var e = new p;
-                e.initialize(), e.alpha = 0, e.text.alpha = 0, e.text.position.set(3, 243), this._canvas.addChild(e), createjs.Tween.get(e).to({
+                this._area_id == s.EVENT_AREA_ID ? this._hideEnemy() : this._endTask()
+            }, e.prototype._hideEnemy = function () {
+                var t = this,
+                    e = this._mapscene;
+                if (e instanceof m.MapScene == 0) return void this._endTask();
+                e.view.map.enemy_layer.hide(function () {
+                    e.view.map.plane_layer.hideAll(), t._loadShipResources()
+                })
+            }, e.prototype._loadShipResources = function () {
+                var t = this,
+                    e = new p.ShipLoader;
+                e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
+                    t._openShutter()
+                })
+            }, e.prototype._openShutter = function () {
+                var t = this,
+                    e = this._mapscene;
+                e.view.shutter.alpha = 0, e.view.map.alpha = 1, e.view.upper.alpha = 1, createjs.Tween.get(null).wait(1300).call(function () {
+                    t._shutter.open(), t._shutter.once("opened", function () {
+                        t._showShip()
+                    })
+                })
+            }, e.prototype._showShip = function () {
+                var t = this,
+                    e = new PIXI.Sprite;
+                e.texture = r.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full");
+                var i = r.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
+                e.x = -80 + i.x, e.y = -93 + i.y, e.scale.set(1.15), e.alpha = 0;
+                var n = r.default.view.getNowScene();
+                n.view.chara_layer.addChild(e), createjs.Tween.get(e).to({
                     alpha: 1
-                }, 200).call(function () {
-                    t._showTelop2(e)
-                })
-            }, e.prototype._showTelop2 = function (t) {
-                var e = this;
-                createjs.Tween.get(t.white).to({
+                }, 300).wait(2e3).to({
+                    x: e.x - 45,
                     alpha: 0
-                }, 200).call(function () {
-                    e._showTelop3(t)
+                }, 1500).call(function () {
+                    n.view.chara_layer.removeChild(e)
+                });
+                var s = h.MapUtil.toMapID(this._area_id, this._map_no),
+                    a = new b,
+                    _ = new l.Container;
+                a.update(s, this._file_suffix, function () {
+                    a.alpha = 0, _.scale.set(2), _.position.set(o.default.width / 2, o.default.height / 2), _.addChild(a), n.view.chara_layer.addChild(_), createjs.Tween.get(_).wait(3e3).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 700, createjs.Ease.bounceOut).call(function () {
+                        t._waitClick(_)
+                    }), createjs.Tween.get(a).wait(3e3).to({
+                        alpha: 1
+                    }, 600, createjs.Ease.circOut)
                 })
-            }, e.prototype._showTelop3 = function (t) {
-                var e = this;
-                l.SE.play("222");
-                var i = t.text.x;
-                t.text.x = i + 132, createjs.Tween.get(t.text).to({
-                    x: i + 38,
-                    alpha: 1
-                }, 200).to({
-                    x: i
-                }, 100).wait(700).to({
-                    x: i - 38
-                }, 100).to({
-                    x: i - 132,
+            }, e.prototype._waitClick = function (t) {
+                var e = this,
+                    i = new u.AreaBox(0);
+                i.buttonMode = !0;
+                var n = new c.GearBtnNext;
+                n.position.set(1140, 660), n.initialize(), n.activate(), i.addChild(n), this._mapscene.view.addChild(i), i.once(a.EventType.CLICK, function () {
+                    e._mapscene.view.removeChild(i), n.dispose(), e._removeRed(t)
+                })
+            }, e.prototype._removeRed = function (t) {
+                var e = this,
+                    i = this._mapscene.view.map.bg.getBGLayer("red");
+                null != i && createjs.Tween.get(i).to({
                     alpha: 0
-                }, 200).call(function () {
-                    e._showTelop4(t)
+                }, 3e3).call(function () {
+                    e._hideTelop(t)
                 })
-            }, e.prototype._showTelop4 = function (t) {
+            }, e.prototype._hideTelop = function (t) {
                 var e = this;
                 createjs.Tween.get(t).to({
                     alpha: 0
                 }, 300).call(function () {
-                    t.parent.removeChild(t), o.default.sound.bgm.play(132, !0, 1e3), e._bonus(null)
+                    e._mapscene.view.chara_layer.removeChild(t), e._closeShutter()
                 })
-            }, e.prototype._bonus = function (t) {
-                var e = this;
-                if (0 == this._list.length) return o.default.sound.bgm.fadeOut(1200), void(null == t ? this._endTask() : createjs.Tween.get(this._canvas).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._canvas.parent.removeChild(e._canvas), t.dispose(), e._endTask()
-                }));
-                var i = this._list.shift();
-                if (1 == i.isUseitem()) {
-                    var n = this._canvas,
-                        r = i.mst_id,
-                        l = new _.TaskBonusUseItem(n, r, i.count, !1, t);
-                    l.start(function () {
-                        e._bonus(l)
-                    })
-                } else if (1 == i.isShip()) {
-                    var n = this._canvas,
-                        r = i.mst_id,
-                        u = new s.TaskBonusShip(n, r, !1, t);
-                    u.start(function () {
-                        e._bonus(u)
-                    })
-                } else {
-                    if (1 != i.isSlotitem()) throw new Error("TaskEventBonus");
-                    var n = this._canvas,
-                        r = i.mst_id,
-                        c = new a.TaskBonusSlot(n, r, i.count, i.level, !1, t);
-                    c.start(function () {
-                        e._bonus(c)
-                    })
-                }
-            }, e
-        }(r.TaskBase);
-    e.TaskEventBonus = h;
-    var p = function (t) {
+            }, e.prototype._closeShutter = function () {
+                var t = this;
+                this._shutter.close(), this._shutter.once("closed", function () {
+                    t._mapscene.view.shutter.alpha = 1, t._mapscene.view.map.alpha = 0, t._mapscene.view.upper.alpha = 0, t._endTask()
+                })
+            }, Object.defineProperty(e.prototype, "_mapscene", {
+                get: function () {
+                    var t = r.default.view.getNowScene();
+                    return t instanceof m.MapScene ? t : null
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(_.TaskBase);
+    e.TaskEventClear = g;
+    var b = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._upper = new PIXI.Sprite, e.addChild(e._upper), e._down = new PIXI.Sprite, e.addChild(e._down), e._text = new PIXI.Sprite, e.addChild(e._text), e._white = new PIXI.Sprite, e.addChild(e._white), e
+            return e._img1 = new PIXI.Sprite, e.addChild(e._img1), e._img2 = new PIXI.Sprite, e.addChild(e._img2), e
         }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "upper", {
-            get: function () {
-                return this._upper
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "down", {
-            get: function () {
-                return this._down
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "white", {
-            get: function () {
-                return this._white
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this._bg.texture = c.BATTLE_RESULT_EVENT_BASE.getTexture(1), this._bg.position.set(0, 210), this._upper.texture = c.BATTLE_RESULT_EVENT_BASE.getTexture(4), this._upper.position.set(219, 138), this._down.texture = c.BATTLE_RESULT_EVENT_BASE.getTexture(4), this._down.rotation = Math.PI, this._down.position.set(984, 576), this._white.texture = u.BATTLE_RESULT_MAIN.getTexture(24), this._white.position.set(0, 140), this._text.texture = c.BATTLE_RESULT_EVENT_BASE.getTexture(2)
+        return n(e, t), e.prototype.update = function (t, e, i) {
+            var n = this;
+            switch (t) {
+                case 431:
+                    var o = new v.UIImageLoader("battle_result");
+                    o.add("battle_result_event_e1_" + e + ".json"), o.load(function () {
+                        n._img1.texture = d.BATTLE_RESULT_EVENT_E1_COPEUFURQDKOMJWY.getTexture(0), n._img2.texture = d.BATTLE_RESULT_EVENT_E1_COPEUFURQDKOMJWY.getTexture(1), i()
+                    }), this._img1.position.set(-428, -135), this._img2.position.set(-427, -47);
+                    break;
+                case 432:
+                    var o = new v.UIImageLoader("battle_result");
+                    o.add("battle_result_event_e2_" + e + ".json"), o.load(function () {
+                        n._img1.texture = f.BATTLE_RESULT_EVENT_E2_SSNQISBVPMRFJHEW.getTexture(0), n._img2.texture = f.BATTLE_RESULT_EVENT_E2_SSNQISBVPMRFJHEW.getTexture(1), i()
+                    }), this._img1.position.set(-458, -167), this._img2.position.set(-467, -5);
+                    break;
+                case 433:
+                    var o = new v.UIImageLoader("battle_result");
+                    o.add("battle_result_event_e3_" + e + ".json"), o.load(function () {
+                        n._img1.texture = y.BATTLE_RESULT_EVENT_E3_OMRRDWSBMSBCGWWM.getTexture(0), n._img2.texture = y.BATTLE_RESULT_EVENT_E3_OMRRDWSBMSBCGWWM.getTexture(1), i()
+                    }), this._img1.position.set(-509, -172), this._img2.position.set(-398, -9);
+                    break;
+                default:
+                    this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY, i()
+            }
         }, e
     }(PIXI.Container)
 }

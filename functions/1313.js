@@ -19,35 +19,20 @@ const function1313 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = function (t) {
-            function e(e, i) {
-                void 0 === e && (e = !1), void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._night = e, n._combined = i, n
+    var o = i(10),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this,
+                    n = e.model.deck_f,
+                    o = 0 != n.type,
+                    r = e.model.map_info.isVS12();
+                return 1 == e.model.map_info.isNightToDayStart() ? i._url = 1 == r ? "api_req_combined_battle/ec_night_to_day" : "api_req_sortie/night_to_day" : i._url = 1 == o ? "api_req_combined_battle/sp_midnight" : "api_req_battle_midnight/sp_midnight", i._data = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadCommon()
-            }, e.prototype._loadCommon = function () {
-                var t = this,
-                    e = new r.UIImageLoader("common");
-                e.add("common_explosion.json"), e.load(function () {
-                    t._loadImage()
-                })
-            }, e.prototype._loadImage = function () {
-                var t = this,
-                    e = new r.UIImageLoader("battle");
-                e.add("battle_telop/txt_start.png", "battle_telop_txt_start"), e.add("battle_telop/mes_bg_f.png", "battle_telop_mes_bg_f"), e.add("battle_telop/mes_bg_e.png", "battle_telop_mes_bg_e"), e.add("battle_telop/mes2_f_hbg.png", "battle_telop_mes2_f_hbg"), e.add("battle_telop/mes2_e_hbg.png", "battle_telop_mes2_e_hbg"), e.add("battle_telop/mes2_f_ybg.png", "battle_telop_mes2_f_ybg"), e.add("battle_telop/mes2_e_ybg.png", "battle_telop_mes2_e_ybg"), e.add("battle_telop/mes_f_hbg.png", "battle_telop_mes_f_hbg"), e.add("battle_telop/mes_f_ybg.png", "battle_telop_mes_f_ybg"), e.add("battle_telop/mes_e_hbg.png", "battle_telop_mes_e_hbg"), e.add("battle_telop/mes_e_ybg.png", "battle_telop_mes_e_ybg"), e.add("battle_telop/mes_f_hbg3.png", "battle_telop_kkcutin_f"), e.add("battle_telop/mes_e_hbg3.png", "battle_telop_kkcutin_e"), e.load(function () {
-                    t._loadSpriteSheet()
-                })
-            }, e.prototype._loadSpriteSheet = function () {
-                var t = this,
-                    e = new r.UIImageLoader("battle");
-                e.add("battle_main.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_main2.json"), e.add("battle_airunit.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesBattle = s
+        }(o.APIBase);
+    e.APIBattleStartNight = r
 }

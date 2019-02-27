@@ -19,32 +19,36 @@ const function681 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(21),
-        r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(0),
+        r = i(159),
+        s = i(61),
+        a = i(160),
+        _ = i(4),
+        l = i(21),
+        u = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this,
+                    n = new PIXI.Sprite,
+                    u = new _.TextBox(19, 5523516),
+                    c = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
+                    h = new _.TextBox(21, 5523516),
+                    p = new a.SlotItemLevel,
+                    d = new PIXI.Sprite,
+                    f = new r.AirPlaneLevel,
+                    y = new PIXI.Sprite(l.COMMON_MAIN.getTexture(42)),
+                    m = new s.IconWeapon;
+                n.texture = l.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
+                var v = new PIXI.Container;
+                return v.mask = c, v.addChild(u, c), v.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, v, h, d, p, f, y, m), i.background = n, i.textName = u, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = v, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 0:
-                        this.texture = o.COMMON_MAIN.getTexture(58);
-                        break;
-                    case 1:
-                        this.texture = o.COMMON_MAIN.getTexture(61);
-                        break;
-                    case 2:
-                        this.texture = o.COMMON_MAIN.getTexture(57);
-                        break;
-                    case 3:
-                        this.texture = o.COMMON_MAIN.getTexture(55);
-                        break;
-                    case 4:
-                        this.texture = o.COMMON_MAIN.getTexture(62);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
-                }
-            }, e.prototype.dispose = function () {}, e
-        }(PIXI.Sprite);
-    e.ShateiImage = r
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
+            }, e.prototype.clear = function () {
+                this.update(0, "", !1, 0, 0, 0, !1)
+            }, e.prototype.update = function (t, e, i, n, o, r, s) {
+                void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
+            }, e
+        }(PIXI.Container);
+    e.SlotItemSlotView = u
 }

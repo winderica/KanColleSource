@@ -20,16 +20,33 @@ const function1040 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = function (t) {
+        r = i(2),
+        s = i(321),
+        a = function (t) {
             function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
+                var r = t.call(this) || this;
+                return r._updateView = function (t) {
+                    var e = o.default.model.expedition.get(r._expedition_id);
+                    0 == e.state && e.__setState__(1);
+                    var i = o.default.model.deck.get(r._deck_id);
+                    t.update(e, i.mstID), r._view.detail_view.update(e, i), r._showCutin(i)
+                }, r._view = e, r._expedition_id = i, r._deck_id = n, r
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._getTargetListItem();
+                e.getDeckIconTween(this._deck_id, function () {
+                    t._updateView(e)
+                })
+            }, e.prototype._getTargetListItem = function () {
+                for (var t, e = this._view.items, i = 0, n = e; i < n.length && (t = n[i], t.target_id != this._expedition_id); i++);
+                return t
+            }, e.prototype._showCutin = function (t) {
+                var e = this;
+                new s.TaskExpeditionStartCutin(t.mstID).start(function () {
+                    e._endTask()
+                })
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = s
+        }(r.TaskBase);
+    e.GoExpeditionTask = a
 }

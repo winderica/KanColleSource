@@ -19,30 +19,16 @@ const function720 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(2),
-        s = i(13),
-        a = function (t) {
+    var o = i(10),
+        r = i(721),
+        s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/preset_deck", e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.UIImageLoader("organize");
-                switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
-                    case 2:
-                        e.add("organize_hokyu_dialog_xmas.json");
-                        break;
-                    case 4:
-                        e.add("organize_hokyu_dialog_summer.json");
-                        break;
-                    default:
-                        e.add("organize_hokyu_dialog_default.json")
-                }
-                e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._completedEnd = function () {
+                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskLoadResourcesOrganize = a
+        }(o.APIBase);
+    e.PresetDeckAPI = s
 }

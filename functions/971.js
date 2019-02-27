@@ -19,26 +19,29 @@ const function971 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
+    var o = i(5),
         r = i(358),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._overlay = new PIXI.Sprite, i.addChild(i._overlay), i._t = createjs.Tween.get(i._overlay, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 600).to({
-                    alpha: 1
-                }, 600), i._t.setPaused(!0), i
+        s = i(972),
+        a = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this, n) || this;
+                return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                this._overlay.texture = o.SALLY_EVENT.getTexture(1), this.texture = o.SALLY_EVENT.getTexture(0), t.prototype.initialize.call(this, e)
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._t.setPaused(!0), this._t = null
-            }, e.prototype._update = function (t) {
-                1 == this.selected ? (this._t.setPaused(!0), this._overlay.alpha = 1) : 1 == t ? (this._t.setPaused(!0), this._overlay.alpha = 1) : this._t.setPaused(!1)
+                t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
             }, e
-        }(r.AreaIconBtn);
-    e.EventAreaIconBtn = s
+        }(r.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = a
 }

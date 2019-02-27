@@ -3,11 +3,15 @@ const function1050 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t(t) {
-            this._o = t
-        }
-        return t
-    }();
-    e.RecordModelBase = n
+    var n = i(235),
+        o = function () {
+            function t() {}
+            return t.prototype.addInfoData = function (t) {
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var o = i[e];
+                    new n.RecordInfoModel(o)
+                }
+            }, t
+        }();
+    e.RecordModelManager = o
 }

@@ -20,22 +20,25 @@ const function796 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.MAX = 5, e.stars = new Array;
-                for (var i = o.REMODEL_POWERUP.getTexture(29), n = 0; n < e.MAX; n++) {
-                    var r = new PIXI.Sprite(i);
-                    r.position.set(45 * n, 0), e.stars.push(r), e.addChild(r)
-                }
-                return e
+                return e._onMouseOver = function () {
+                    e.texture = e.textureBtnStartIntensifyOn
+                }, e._onMouseOut = function () {
+                    e.texture = e.textureBtnStartIntensifyOff
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.textureBtnStartIntensifyNone = o.REMODEL_POWERUP.getTexture(6), e.textureBtnStartIntensifyOn = o.REMODEL_POWERUP.getTexture(8), e.textureBtnStartIntensifyOff = o.REMODEL_POWERUP.getTexture(7), e.texture = e.textureBtnStartIntensifyNone, e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.on(r.EventType.CLICK, e._onClick), e
             }
             return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < this.MAX; e++) this.stars[e].visible = !1, e < t && (this.stars[e].visible = !0)
+                this._updateClickable_(t)
+            }, e.prototype._updateClickable_ = function (t) {
+                this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
             }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.MAX; t++) this.removeChild(this.stars[t]), this.stars[t] = null;
-                this.stars = null, this.removeChildren()
+                this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this.interactive = this.buttonMode = !1, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.StarRate = r
+        }(PIXI.Sprite);
+    e.StartButton = s
 }

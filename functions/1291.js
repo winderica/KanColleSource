@@ -19,74 +19,52 @@ const function1291 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(17),
-        s = i(4),
-        a = i(30),
-        _ = i(41),
-        l = i(20),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+    var o = i(62),
+        r = i(1292),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "no", {
                 get: function () {
-                    return this._bg
+                    return this._no
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "icon", {
+            }), Object.defineProperty(e.prototype, "route", {
                 get: function () {
-                    return this._icon
+                    return this._route
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
+            }), Object.defineProperty(e.prototype, "point", {
                 get: function () {
-                    return this._text
+                    return this._point
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = l.MAP_COMMON.getTexture(25)
-            }, e.prototype.update = function (t, e) {
-                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+            }), e.prototype.isAddedSpot = function () {
+                return null != this._route
+            }, e.prototype.showLine = function () {
+                null != this._line && (this._line.visible = !0)
+            }, e.prototype.hideLine = function () {
+                null != this._line && (this._line.visible = !1)
+            }, e.prototype.setColor = function (t) {
+                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
+            }, e.prototype.getColor = function () {
+                return this._point.color
+            }, e.prototype.setRoute = function (t, e, i, n) {
+                null != this._route && (this.removeChild(this._route), this._route = null);
+                var r = new o.CenteringSprite(t);
+                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
+            }, e.prototype.setLine = function (t, e, i, n) {
+                null != this._line && (this.removeChild(this._line), this._line = null);
+                var o = new PIXI.Sprite(t);
+                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e.prototype._update = function (t, e) {
-                void 0 === e && (e = "");
-                var i;
-                switch (t) {
-                    case 1:
-                        i = a.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        i = a.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        i = a.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        i = a.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        i = a.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        i = a.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        i = a.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        i = PIXI.Texture.EMPTY
-                }
-                this._icon.texture = i, this._text.text = e
-            }, e.prototype._updateForEventMap = function (t) {
-                void 0 === t && (t = "");
-                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
+                this._point.dispose()
             }, e
         }(PIXI.Container);
-    e.CompUpperBar = u
+    e.CompSpot = s
 }

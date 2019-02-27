@@ -19,46 +19,63 @@ const function967 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(968),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._cancel = !0, n._waitClick = function () {
-                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
-                }, n._onNo = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
-                }, n._onYes = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
-                }, n._layer = e, n._model = i, n
+    var o = i(18),
+        r = i(41),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._fade = new o.FadeBox(.3), e._bg = new PIXI.Sprite, e._bg.position.set(219, 207), e.addChild(e._fade), e.addChild(e._bg), e._btn_no = new _(!1), e._btn_no.position.set(168, 216), e._btn_yes = new _(!0), e._btn_yes.position.set(417, 216), e.bg.addChild(e._btn_no), e.bg.addChild(e._btn_yes), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+            return n(e, t), Object.defineProperty(e.prototype, "fade", {
                 get: function () {
-                    return this._cancel
+                    return this._fade
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._start = function () {
-                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
-            }, e.prototype._openDialog = function () {
-                var t = this;
-                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
-                    createjs.Tween.get(t._dialog.bg).to({
-                        alpha: 1
-                    }, 300).call(t._waitClick)
-                })
-            }, e.prototype._closeDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._dialog.fade.hide(100, function () {
-                        t._layer.removeChild(t._dialog), t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
+            }), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_no", {
+                get: function () {
+                    return this._btn_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_yes", {
+                get: function () {
+                    return this._btn_yes
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.SALLY_EVENT.getTexture(23), this._btn_no.initialize(), this._btn_yes.initialize()
             }, e
-        }(o.TaskBase);
-    e.ChangeConfirmTask = s
+        }(PIXI.Container);
+    e.OperationSelectConfirmDialog = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onMouseOver = function () {
+                i._update(!0)
+            }, i._onMouseOut = function () {
+                i._update(!1)
+            }, i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._is_yes = e, i
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._update(!1)
+        }, e.prototype.activate = function (t) {
+            this._cb_onClick = t, 1 != this.interactive && (this.interactive = !0, this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            this._cb_onClick = null, this.interactive = !1, this.buttonMode = !1, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick)
+        }, e.prototype._update = function (t) {
+            var e;
+            e = 1 == t ? this._is_yes ? 16 : 13 : this._is_yes ? 15 : 12, this.texture = r.SALLY_EVENT.getTexture(e)
+        }, e
+    }(PIXI.Sprite)
 }

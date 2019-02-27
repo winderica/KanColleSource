@@ -19,74 +19,86 @@ const function466 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(72),
-        s = i(28),
-        a = i(19),
-        _ = i(29),
-        l = i(39),
-        u = i(6),
-        c = i(138),
-        h = i(181),
-        p = i(139),
-        d = i(465),
-        f = i(183),
-        y = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(5),
+        r = i(0),
+        s = i(22),
+        a = i(2),
+        _ = i(14),
+        l = i(1365),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._ships = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                this._canvas = new c.AirWarCanvas(!1), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new s.ParallelTask,
-                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
-                e.add((new a.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
-                    t._fireDogFight()
-                }, 750)), e.add(new r.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new r.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new _.SerialTask).add(new l.WaitTask(1700)).add((new s.ParallelTask).add(new d.TaskAirSupportTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new f.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new r.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                for (var t = this, e = new _.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
+                    var o = n[i];
+                    null != o && e.add(o.mst_id, o.damaged, "banner")
+                }
+                e.load(function () {
+                    t._initCutin()
                 })
-            }, e.prototype._createFriendPlanes = function () {
-                for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
-                    var r = n[i],
-                        s = r.mem_id,
-                        a = o.default.model.ship.get(s);
-                    if (null != a)
-                        for (var _ = a.getSlotitems(), l = 0; l < _.length; l++) {
-                            var u = _[l];
-                            if (null != u) {
-                                var c = a.getSlotitemTousai(l);
-                                u.taisen > 0 && c > 0 && t++
-                            }
-                        }
+            }, e.prototype._initCutin = function () {
+                this._cutin = new l.SupportDeckCutin, this._cutin.initialize(), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
+            }, e.prototype._playCutin = function () {
+                var t = this;
+                this._layer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({
+                    y: 2
+                }, 300).wait(1500).to({
+                    y: 0
+                }, 300).call(function () {
+                    t._endTask()
+                }), createjs.Tween.get(this._cutin.message).wait(400).to({
+                    x: 660
+                }, 400).to({
+                    x: 525
+                }, 800).to({
+                    x: 420,
+                    alpha: 0
+                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: o.default.width / 2 - this._cutin.banner_top.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: o.default.width - this._cutin.banner_top.width,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: o.default.width / 2 - this._cutin.banner_bottom.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: 0,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
+                    t._cutin.particles.startAnim()
+                })
+            }, e.prototype._createShipContainerU = function () {
+                var t, e = this._ships[0],
+                    i = this._ships[2],
+                    n = this._ships[4];
+                t = null == i ? [e] : null == n ? [e, i] : [n, e, i];
+                for (var o = 0; o < t.length; o++) {
+                    var a = t[o],
+                        _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
+                        l = new PIXI.Sprite(_);
+                    l.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(l)
                 }
-                for (var h = [], l = 0; l < t; l++) {
-                    var d = new p.Plane,
-                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * l + 150 + (45 * Math.random() - 23)),
-                        y = new PIXI.Point;
-                    d.initialize(16, !0, f, y), h.push(d)
+            }, e.prototype._createShipContainerB = function () {
+                var t, e = this._ships[1],
+                    i = this._ships[3],
+                    n = this._ships[5];
+                t = null == n ? null == i ? null == e ? [] : [e] : [i, e] : [i, e, n];
+                for (var o = 0; o < t.length; o++) {
+                    var a = t[o],
+                        _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
+                        l = new PIXI.Sprite(_);
+                    l.position.x = s.BannerSize.W * o, this._cutin.banner_bottom.addChild(l)
                 }
-                this._canvas.addPlanes_f(h)
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._layer.removeChild(this._cutin), this._cutin.dispose(), t.prototype._endTask.call(this)
             }, e
-        }(h.TaskAircraftFlightBase);
-    e.TaskSupportTaisen = y
+        }(a.TaskBase);
+    e.TaskSupportDeckCutin = u
 }

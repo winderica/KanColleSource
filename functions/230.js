@@ -19,48 +19,88 @@ const function230 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._activated = !1, e._enabled = !0, e._supply_max = !1, e
+    var o = i(9),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._activated = !1, i._onClick = function (t) {
+                    null != i._cb && i._cb(t)
+                }, i._cb = e, i._btns = new Array;
+                var n = new a(1, i._onClick);
+                return i._btns.push(n), n = new a(2, i._onClick), n.x = 45, i._btns.push(n), n = new a(3, i._onClick), n.x = 90, i._btns.push(n), n = new a(4, i._onClick), n.x = 135, i._btns.push(n), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                set: function (t) {
-                    this._enabled != t && (this._enabled = t, 1 == this._activated && (1 == this._enabled ? this.activate() : (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, this._deactivate())))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(24));
-                this._on1 = new PIXI.Sprite, this._on2 = new PIXI.Sprite, this._on3 = new PIXI.Sprite, this._on1.position.set(4, 16), this._on2.position.set(33, 16), this._on3.position.set(61, 4), this.addChild(t), this.addChild(this._on1), this.addChild(this._on2), this.addChild(this._on3), this.update(!0)
-            }, e.prototype.update = function (t) {
-                this._supply_max != t && (this._supply_max = t, 1 == t ? (this._on1.texture = o.SALLY_COMMON.getTexture(21), this._on2.texture = o.SALLY_COMMON.getTexture(21), this._on3.texture = o.SALLY_COMMON.getTexture(20)) : (this._on1.texture = o.SALLY_COMMON.getTexture(23), this._on2.texture = o.SALLY_COMMON.getTexture(23), this._on3.texture = o.SALLY_COMMON.getTexture(22)))
+            return n(e, t), e.prototype.initialize = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e];
+                    n.initialize(), n.setEnabled(-1 != t.indexOf(n.id)), this.addChild(n)
+                }
             }, e.prototype.activate = function () {
-                var t = this;
-                this._activated = !0, null == this._t && (this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1, 0 != this._enabled && (this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(300).call(function () {
-                    t._on1.visible = !0
-                }).wait(300).call(function () {
-                    t._on1.visible = !1, t._on2.visible = !0
-                }).wait(300).call(function () {
-                    t._on2.visible = !1, t._on3.visible = !0
-                }).wait(300).call(function () {
-                    t._on3.visible = !1
-                })))
+                if (1 != this._activated) {
+                    for (var t = 0, e = this._btns; t < e.length; t++) {
+                        e[t].activate()
+                    }
+                    this._activated = !0
+                }
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+                this._activated = !1
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
-            }, e.prototype._deactivate = function () {
-                this._stopAnimation(), this._on1.visible = !1, this._on2.visible = !1, this._on3.visible = !1
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._cb = null
+            }, e.prototype.setSelected = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e];
+                    n.setSelected(t == n.id)
+                }
             }, e
         }(PIXI.Container);
-    e.CompArrow2 = r
+    e.CompDeckBtns = s;
+    var a = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._enabled = !0, n._selected = !1, n._activated = !1, n._texture_no = -1, n._texture_no_on = -1, n._texture_no_off = -1, n._onClick = function () {
+                null != n._cb && n._cb(n._id)
+            }, n._id = e, n._cb = i, n
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "id", {
+            get: function () {
+                return this._id
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "enabled", {
+            get: function () {
+                return this._enabled
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "selected", {
+            get: function () {
+                return this._selected
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            1 == this._id ? (this._texture_no = 73, this._texture_no_on = 74, this._texture_no_off = 72) : 2 == this._id ? (this._texture_no = 76, this._texture_no_on = 77, this._texture_no_off = 75) : 3 == this._id ? (this._texture_no = 79, this._texture_no_on = 80, this._texture_no_off = 78) : 4 == this._id && (this._texture_no = 82, this._texture_no_on = 83, this._texture_no_off = 81), this._updateTexture()
+        }, e.prototype.setEnabled = function (t) {
+            this._enabled = t, this._updateTexture(), this.deactivate()
+        }, e.prototype.setSelected = function (t) {
+            this._selected = t, this._updateTexture(), 1 == this._selected ? this.deactivate() : this.activate()
+        }, e.prototype.activate = function () {
+            1 != this._activated && 0 != this._enabled && 1 != this._selected && (this.interactive = this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this._activated = !0)
+        }, e.prototype.deactivate = function () {
+            this.interactive = this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._activated = !1
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._cb = null
+        }, e.prototype._updateTexture = function () {
+            -1 != this._texture_no && (0 == this._enabled ? this._setTexture(this._texture_no_off) : 1 == this._selected ? this._setTexture(this._texture_no_on) : this._setTexture(this._texture_no))
+        }, e.prototype._setTexture = function (t) {
+            this.texture = o.COMMON_MISC.getTexture(t)
+        }, e
+    }(PIXI.Sprite)
 }

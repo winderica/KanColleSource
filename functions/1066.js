@@ -19,100 +19,19 @@ const function1066 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(14),
-        r = i(73),
+    var o = i(10),
+        r = i(7),
         s = function (t) {
-            function e(e) {
-                return t.call(this, e) || this
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_get_member/picture_book", o._type = e, o._no = i, o._modelManager = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "cardType", {
-                get: function () {
-                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                    return null == t || t.length <= 1 ? 0 : t[1]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "equipType", {
-                get: function () {
-                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                    return null == t || t.length <= 2 ? 0 : t[2]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "iconType", {
-                get: function () {
-                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
-                    return null == t || t.length <= 3 ? 0 : t[3]
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "soukou", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_souk")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "karyoku", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_houg")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raisou", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_raig")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "baku", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_baku")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "taiku", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_tyku")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "taisen", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_tais")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "meichu", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_houm")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "kaihi", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_houk")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "sakuteki", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_saku")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "syatei", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_leng")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_info")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(r.AlbumModelBase);
-    e.AlbumSlotModel = s
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_type = this._type, this._post_data.api_no = this._no + 1, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_list");
+                null != e && (1 == this._type ? this._modelManager.addShipData(this._no, e) : this._modelManager.addSlotData(this._no, e)), this._modelManager = null, t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.AlbumAPI = s
 }

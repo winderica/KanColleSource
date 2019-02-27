@@ -19,19 +19,28 @@ const function299 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(46),
+    var o = i(9),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._value = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e.SWING = .1, e.R_SPEED = 30 / createjs.Ticker.framerate * .12, e._init_scale = 1, e._rad = 0, e._onChange = function () {
+                    e._rad += e.R_SPEED;
+                    var t = e._init_scale + e.SWING * Math.sin(e._rad);
+                    e.scale.set(t)
+                }, e.anchor.set(.5), e.visible = !1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "value", {
-                get: function () {
-                    return this._value
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(o.RewardModel);
-    e.RewardModelWarResult = r
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_MISC.getTexture(70)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
+                    loop: !0,
+                    onChange: this._onChange
+                }), this.visible = !0)
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Sprite);
+    e.GetIcon = r
 }

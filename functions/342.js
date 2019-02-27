@@ -20,26 +20,38 @@ const function342 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                e.animation = {
+                    light: 0
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onMouseOver = function () {
+                    e.stop(), e.texture = e.textureHover, e.popup.visible = !0
+                }, e._onMouseOut = function () {
+                    e.play(), e.popup.visible = !1
+                };
+                var i = o.ARSENAL_MAIN.getTexture(75),
+                    n = o.ARSENAL_MAIN.getTexture(76);
+                return e.popup = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(67)), e.tween = createjs.Tween.get(e.animation), e.popup.position.set(-346, -37), e.popup.visible = !1, e.tween.to({
+                    light: 0
+                }), e.tween.to({
+                    light: 1
+                }, 300), e.tween.to({
+                    light: 0
+                }, 300), e.tween.loop = !0, e.tween.addEventListener("change", function () {
+                    .5 <= e.animation.light ? e.texture = e.textureDefault : e.texture = e.textureHover
+                }), e.addChild(e.popup), e.textureDefault = i, e.textureHover = n, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.interactive = e.buttonMode = !0, e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = this.getMaterialIconTextResourceid(t);
-                this.texture = o.ARSENAL_MAIN.getTexture(e)
-            }, e.prototype.getMaterialIconTextResourceid = function (t) {
-                switch (t) {
-                    case 31:
-                        return 158;
-                    case 32:
-                        return 160;
-                    case 33:
-                        return 162;
-                    case 34:
-                        return 164
-                }
-                throw new Error("unsupported param")
+            return n(e, t), e.prototype.play = function () {
+                this.tween.setPosition(0, createjs.Tween.LOOP), this.tween.setPaused(!1)
+            }, e.prototype.stop = function () {
+                this.tween.setPaused(!0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), createjs.Tween.removeTweens(this.tween.target), this.onClick = null, this.popup = null, this.textureDefault = null, this.textureHover = null, this.animation = null, this.tween = null
             }, e
         }(PIXI.Sprite);
-    e.MaterialIconText = r
+    e.ShopButton = s
 }

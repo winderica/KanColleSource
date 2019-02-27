@@ -19,48 +19,35 @@ const function253 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(141),
-        s = i(121),
-        a = i(43),
-        _ = function (t) {
-            function e(e, i, n, o, s, a, _) {
-                var l = t.call(this, e, i, o, s, a, _) || this;
-                l._defender = n;
-                var u = l._scene.data.isNight();
-                return l._cutin = new r.CutinAttack(l._attacker, l._slot, u, !1, !0), l
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new o.Sprite, e._wave1.scale.set(0), e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.scale.set(0), e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), e.prototype.initialize = function () {
+                this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
+            }, e.prototype.play = function () {
                 var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
+                createjs.Tween.get(this._wave1).to({
+                    scaleX: 1.83,
+                    scaleY: 1.83
+                }, 233).to({
+                    scaleX: 6,
+                    scaleY: 6,
+                    alpha: 0
+                }, 500, createjs.Ease.sineIn), createjs.Tween.get(this._wave2).wait(66).to({
+                    scaleX: 1.83,
+                    scaleY: 1.83
+                }, 233).to({
+                    scaleX: 6,
+                    scaleY: 6,
+                    alpha: 0
+                }, 500, createjs.Ease.sineIn).call(function () {
+                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
                 })
-            }, e.prototype._completePreload = function () {
-                var t = this,
-                    e = this._attacker.friend,
-                    i = this._attacker.index,
-                    n = this._defender.index;
-                1 == e ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, n)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, n)), this._cutin.view.once("attack", function () {
-                    t._playVoice(), t._attack()
-                }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function () {
-                var t = this,
-                    e = this._scene.view.layer_content,
-                    i = this._a_banner,
-                    n = this._d_banner;
-                new s.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start(), this._a_banner.moveShoot(function () {
-                    o.SE.play("112");
-                    var e = t._a_banner.getGlobalPos(!0),
-                        i = t._d_banner.getGlobalPos(!0);
-                    t._scene.view.layer_torpedo.playTorpedo(e, i, 1900, function () {
-                        t._damageEffect(t._a_banner, t._d_banner)
-                    })
-                })
-            }, e.prototype._damageEffect = function (t, e) {
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var i = this._getDamage(this._defender);
-                this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
             }, e
-        }(a.PhaseAttackBase);
-    e.PhaseAttackRaigeki = _
+        }(PIXI.Container);
+    e.Wave = s
 }

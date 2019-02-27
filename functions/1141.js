@@ -20,95 +20,53 @@ const function1141 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(32),
-        s = i(127),
-        a = i(167),
-        _ = i(155),
-        l = i(126),
-        u = i(104),
-        c = i(6),
-        h = i(129),
-        p = i(1142),
-        d = i(89),
-        f = i(116),
-        y = i(116),
-        m = i(116),
-        g = i(116),
-        v = i(116),
-        b = i(173),
-        w = i(399),
-        x = i(1143),
-        I = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelect = function (t) {
-                    var e = i._purchasedItems.getData(t);
-                    i._detail_panel.update(e)
-                }, i._onPickup = function (t) {
-                    if (16 == t.id) {
-                        var e = o.default.model.const.boko_max_ships,
-                            n = o.default.model.basic.shipMax;
-                        if (n >= e) return void c.SE.play("248");
-                        c.SE.play("244")
-                    } else c.SE.play("243");
-                    var r = new p.PurchasedItemPickupAPI(t.id, !1),
-                        s = r.result;
-                    r.start(function () {
-                        i._detail_panel.update(null), 1 == s.hasCaution() ? i._confirm(t) : i._AfterPickup(t)
+        r = i(6),
+        s = i(130),
+        a = i(89),
+        _ = i(1142),
+        l = i(1143),
+        u = i(1144),
+        c = i(1145),
+        h = i(1149),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._count = 0, n._onChangePage = function () {
+                    var t = n._views.indexOf(n._current);
+                    n._showView(t ? 0 : 1)
+                }, n._onSelect = function (t, e) {
+                    r.SE.play("214");
+                    var i = 10;
+                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
+                    var s = new c.TaskPurchaseConfirm(t, e, i);
+                    n.addChild(s.layer), s.start(function () {
+                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
                     })
-                }, i._purchasedItems = e, i._bg = new PIXI.Sprite, i._bg.position.set(202, 201), i.addChild(i._bg), i._detail_panel = new x.PurchasedItemDetailPanel(i._onPickup), i._detail_panel.position.set(904, 201), i.addChild(i._detail_panel), i._icon_layer = new PIXI.Container, i.addChild(i._icon_layer), i
+                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = h.ITEM_ILIST.getTexture(14), this._detail_panel.initialize(), this._icons = [];
-                for (var t = f.PAYITEMLIST_ORDER.length, e = 0; e < t; e++) {
-                    var i = new w.PayItemIcon(this._onSelect);
-                    i.x = 238 + e % 7 * 84, e % 7 >= 3 && (i.x += 54), i.y = 265 + 112 * Math.floor(e / 7), i.initialize(), this._icon_layer.addChild(i), this._icons.push(i)
+                this._header.texture = s.ITEM_ISHOP.getTexture(35);
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].initialize()
                 }
             }, e.prototype.update = function () {
-                this._detail_panel.update(null);
-                for (var t = 0; t < this._icons.length; t++) {
-                    var e = this._icons[t],
-                        i = f.PAYITEMLIST_ORDER[t],
-                        n = this._purchasedItems.getData(i),
-                        o = null == n ? 0 : n.count;
-                    e.update(i, o)
-                }
+                this._count = 0, this._showView(0)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
+                null != this._current && this._current.activate(), this._tab.activate()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                null != this._current && this._current.deactivate(), this._tab.deactivate()
             }, e.prototype.dispose = function () {
-                this._icon_layer.removeChildren(), this._icon_layer = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate(), i.dispose()
+                this._purchasedItems = null, this._tab.dispose(), this._removeView();
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].dispose()
                 }
-                this._icons = null, this._detail_panel.dispose(), this._detail_panel = null, this._purchasedItems = null, this.removeChildren()
-            }, e.prototype._confirm = function (t) {
-                var e = this,
-                    i = o.default.view.overLayer,
-                    n = new b.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new p.PurchasedItemPickupAPI(t.id, !0);
-                        i.result;
-                        i.start(function () {
-                            e._AfterPickup(t)
-                        })
-                    }
-                })
-            }, e.prototype._AfterPickup = function (t) {
-                var e = this,
-                    i = t.id,
-                    n = new r.APIConnector;
-                m.RELATED_USERDATA_PAYITEM.indexOf(i) >= 0 && n.add(new _.UserDataAPI), g.RELATED_SLOTITEM_PAYITEM.indexOf(i) >= 0 && (n.add(new l.UserSlotItemAPI), n.add(new s.UnsetSlotAPI)), v.RELATED_USEITEM_PAYITEM.indexOf(i) >= 0 && n.add(new u.UseItemAPI), y.RELATED_MATERIAL_PAYITEM.indexOf(i) >= 0 && n.add(new a.MaterialAPI), n.start(function () {
-                    t.setCount(t.count - 1), e.update(), o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo()
-                })
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
+            }, e.prototype._showView = function (t) {
+                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
+                var e = o.default.view.overLayer;
+                new h.TaskWelcomeCutin(e, t, this._count).start()
             }, e
-        }(d.ViewBase);
-    e.PurchasedItemListMain = I
+        }(a.ViewBase);
+    e.ItemShopMain = p
 }

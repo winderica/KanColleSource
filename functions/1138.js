@@ -19,37 +19,45 @@ const function1138 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(27),
-        s = i(1139),
-        a = i(1140),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new a.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(327, 192), i.addChild(i._confirm_view), i._confirm_view.initialize(t, i._count), i._confirm_view.activate()
-                }, i._onSelectFromConfirm = function (t) {
-                    if (-1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._confirm_view.deactivate(), i._top_view.activate()
-                    } else {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t), o.SE.play("215")
-                    }
-                }, i._cb_onResult = e, i._top_view = new s.TopView(i._onSelectFromTop), i._top_view.position.set(293, 205), i.addChild(i._top_view), i
+    var o = i(10),
+        r = i(7),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._count = t, this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
-            }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.DialogBase);
-    e.SetsubunUseDialog = _
+        }(o.APIBase);
+    e.PurchasedItemPickupAPI = s;
+    var a = function () {
+        function t() {}
+        return Object.defineProperty(t.prototype, "cautionFlg", {
+            get: function () {
+                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t.prototype.hasCaution = function () {
+            return this.cautionFlg >= 1
+        }, t
+    }();
+    e.PurchasedItemPickupResult = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.setData = function (t) {
+            this._o = t
+        }, e
+    }(a)
 }

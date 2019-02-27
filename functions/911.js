@@ -19,22 +19,25 @@ const function911 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = function (t) {
+    var o = i(11),
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._event = e, i
+                return i._view = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("sally");
-                e.add("sally_common.json"), e.add("sally_top.json"), e.add("sally_sortie.json"), e.add("sally_practice.json"), e.add("sally_expedition.json"), e.add("sally_airunit.json"), e.add("sally_jin.json"), e.add("sally_map_parts.json"), this._event && (e.add("sally_event.json"), e.add("sally_strategymap.json"), e.add("sally_strategymap_s.json")), e.load(function () {
-                    t._endTask()
-                })
+                this._view = null, this._endTask()
             }, e
         }(o.TaskBase);
-    e.TaskLoadResourcesSally = s
+    e.PreFinalizeTask = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = s
 }

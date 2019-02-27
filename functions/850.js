@@ -19,26 +19,22 @@ const function850 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
+    var o = i(0),
+        r = i(70),
+        s = i(9),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e._onMouseOver = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(4)
-                }, e._onMouseOut = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(2)
-                }, e.texture = o.REPAIR_MAIN.getTexture(2), e.on(r.EventType.CLICK, e._onClick).on(r.EventType.MOUSEOVER, e._onMouseOver).on(r.EventType.MOUSEOUT, e._onMouseOut), e.buttonMode = !0, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite(s.COMMON_MISC.getTexture(108)),
+                    o = new r.RingSmall;
+                return o.position.set(207, 28), o.initialize(), o.activate(), n.anchor.x = 1, n.x = n.width, e.addChild(i, n, o), e.shipBanner = i, e.ring = o, e
             }
-            return n(e, t), e.prototype.active = function () {
-                this.texture = o.REPAIR_MAIN.getTexture(2), this.interactive = !0
-            }, e.prototype.disable = function () {
-                this.texture = o.REPAIR_MAIN.getTexture(3), this.interactive = !1
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.shipBanner.texture = o.default.resources.getShip(t, e, "banner"), this.ring.visible = !1, i && (this.ring.visible = !0)
             }, e.prototype.dispose = function () {
-                this.onClick = null, this.off(r.EventType.CLICK, this._onClick).off(r.EventType.MOUSEOVER, this._onMouseOver).off(r.EventType.MOUSEOUT, this._onMouseOut), this.texture = PIXI.Texture.EMPTY, this.interactive = this.buttonMode = !1
+                this.removeChild(this.shipBanner), this.shipBanner.texture = PIXI.Texture.EMPTY, this.ring.deactivate(), this.ring.dispose(), this.ring = null, this.shipBanner = null, this.removeChildren()
             }, e
-        }(PIXI.Sprite);
-    e.UseItemButton = s
+        }(PIXI.Container);
+    e.RepairShipBanner = a
 }

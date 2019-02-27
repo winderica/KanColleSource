@@ -23,17 +23,19 @@ const function787 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.btnSoubi3Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)), e.btnSoubi3 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16)), e.btnSoubi3Light.position.set(-14, -14), e.btnSoubi3Light.alpha = 0, e.addChild(e.btnSoubi3Light, e.btnSoubi3), e.tween = createjs.Tween.get(e.btnSoubi3Light).to({
-                    alpha: 0
-                }).to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3), e.tween.loop = !0, e.tween.play(null), e
+                return e.TYPE_SET = "typeset", e.TYPE_UNSET = "typeunset", e.listItem = o.COMMON_MAIN.getTexture(35), e.listItemInUse = o.COMMON_MAIN.getTexture(36), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.tween.setPaused(!0), createjs.Tween.removeTweens(this.btnSoubi3Light), this.btnSoubi3 = null, this.btnSoubi3Light = null, this.tween = null, this.removeChildren()
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.texture = PIXI.Texture.EMPTY, t) {
+                    case this.TYPE_SET:
+                        this.texture = this.listItemInUse;
+                        break;
+                    case this.TYPE_UNSET:
+                        this.texture = this.listItem
+                }
+            }, e.prototype.dispose = function () {
+                this.listItem = null, this.listItemInUse = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.InUseMarker = r
+        }(PIXI.Sprite);
+    e.ListHeader = r
 }

@@ -1,44 +1,30 @@
 const function1212 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1213),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var n = i(1213),
+        o = function () {
+            function t() {
+                this._dic = {}
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new r.TaskLoadResourcesPractice).start(function () {
-                    t._initView()
-                })
-            }, e.prototype._initView = function () {
-                var t = this;
-                this._scene.view.bg.setDay(function () {
-                    t._scene.view.initialize(), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.TaskInitPre = s
+            return t.prototype.add = function (t) {
+                null != t && (this._dic[t.mem_id] = new n.ShipInstantModel(t))
+            }, t.prototype.addList = function (t) {
+                if (null != t)
+                    for (var e = 0, i = t; e < i.length; e++) {
+                        var n = i[e];
+                        this.add(n)
+                    }
+            }, t.prototype.get = function (t) {
+                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
+            }, t.prototype.getTotalHP = function () {
+                var t = 0;
+                for (var e in this._dic) {
+                    t += this._dic[e].hp
+                }
+                return t
+            }, t
+        }();
+    e.DeckInstantModel = o
 }

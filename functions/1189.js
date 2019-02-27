@@ -19,16 +19,30 @@ const function1189 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/furniture", e
+    var o = i(11),
+        r = i(6),
+        s = i(240),
+        a = i(175),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._model = e, n._holder = i, n
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
+                    t._update()
+                })
+            }, e.prototype._update = function () {
+                var t = this,
+                    e = this._holder.selected_page_no,
+                    i = this._holder.selected_type;
+                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._model = null, this._holder = null, t.prototype._endTask.call(this)
             }, e
-        }(r.APIBase);
-    e.UserFurnitureAPI = s
+        }(o.TaskBase);
+    e.TaskExecutedDutySelect = _
 }

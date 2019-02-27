@@ -19,19 +19,33 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                return s = null != o ? o.isCombined() : e.model.map_info.isVS12(), i._url = 1 == s ? "api_req_combined_battle/ec_midnight_battle" : 0 == r ? "api_req_battle_midnight/battle" : "api_req_combined_battle/midnight_battle", i._data = e, i
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new o.Sprite, e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._wave1.scale.set(0), this._wave2.scale.set(0), this._wave1.alpha = 0, this._wave2.alpha = 0, this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
+            }, e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.get(this._wave1).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._wave2).wait(600).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
+                })
             }, e
-        }(o.APIBase);
-    e.APIBattleDayToNight = r
+        }(PIXI.Container);
+    e.SubMarineWave = s
 }

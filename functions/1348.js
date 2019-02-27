@@ -19,60 +19,60 @@ const function1348 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(62),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new r.PhaseDamageCutin(e), n
+    var o = i(5),
+        r = i(0),
+        s = i(12),
+        a = i(255),
+        _ = i(44),
+        l = function (t) {
+            function e(e, i, n, o) {
+                return t.call(this, e, i, n, o) || this
             }
-            return n(e, t), e.prototype._createAttackData_f = function () {
-                return this._createAttackData(this._scene.data.model.deck_f.ships, this._scene.data.model.deck_e.ships)
-            }, e.prototype._createAttackData_e = function () {
-                return this._createAttackData(this._scene.data.model.deck_e.ships, this._scene.data.model.deck_f.ships)
-            }, e.prototype._createAttackData = function (t, e) {
-                for (var i = new Array, n = 0; n < t.length; n++) {
-                    var o = t[n];
-                    if (null != o) {
-                        var r = o.friend ? this._data.getAttackTo_f(n) : this._data.getAttackTo_e(n);
-                        if (!(r < 0)) {
-                            var s = {
-                                attacker: o,
-                                defender: e[r],
-                                damage: o.friend ? this._data.getDamage_f(n) : this._data.getDamage_e(n),
-                                hit: o.friend ? this._data.getHitType_f(n) : this._data.getHitType_e(n),
-                                shield: o.friend ? this._data.isShield_f(n) : this._data.isShield_e(n)
-                            };
-                            i.push(s)
-                        }
-                    }
+            return n(e, t), e.prototype.resume = function () {
+                var t = this;
+                null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
+                    t._resume()
+                })) : this._resume()
+            }, e.prototype._start = function () {
+                var t = this,
+                    e = this._attacker.mst_id,
+                    i = this._attacker.isDamaged();
+                this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
+                var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
+                this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
+                var a = this._base_pos;
+                this._view.chara.position.set(a.x, a.y);
+                var l = 344 - n.x,
+                    u = 597 - n.y;
+                if (this._ship_sprite.x += l, this._ship_sprite.y += u, this._ship_sprite.anchor.set(l / this._ship_sprite.width, u / this._ship_sprite.height), this._ship_sprite.scale.set(1.25), this._ship_sprite.alpha = 0, this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._ship_sprite).wait(235).to({
+                        scaleX: 1,
+                        scaleY: 1,
+                        alpha: 1
+                    }, 533, createjs.Ease.sineOut).call(function () {
+                        t._view.emit("attack"), t._shipFlash.scale = t._ship_sprite.scale, t._shipFlash.play()
+                    }).wait(135), null != this._slot1 || null != this._slot2) {
+                    var c = this._view.box;
+                    c.initilize(this._attacker);
+                    var h = 0;
+                    1 == this._attacker.friend ? c.x = -60 : (h = o.default.width - c.width, c.x = h + 60), c.y = o.default.height - c.height, c.alpha = 0, createjs.Tween.get(c).wait(365).to({
+                        x: h,
+                        alpha: 1
+                    }, 165).wait(900).to({
+                        alpha: 0
+                    }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
                 }
-                return i
-            }, e.prototype._shootBase = function (t, e, i) {
-                var n = this._scene.view.bannerGroupLayer.getBanner(t.attacker),
-                    o = this._scene.view.bannerGroupLayer.getBanner(t.defender),
-                    r = n.getGlobalPos(!0),
-                    s = o.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedo(r, s, e, function () {
-                    null != i && i()
+            }, e.prototype._resume = function () {
+                var t = this;
+                createjs.Tween.get(this._ship_sprite).call(function () {
+                    t._view.emit("attack"), t._shipFlash.play()
+                }).wait(135).wait(200).to({
+                    scaleX: 1.25,
+                    scaleY: 1.25,
+                    alpha: 0
+                }, 466).call(function () {
+                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
                 })
-            }, e.prototype._damageBase = function (t, e) {
-                1 == this._scene.data.model.isPractice() && (e.damage = Math.min(e.damage, t.hp_now - 1));
-                var i = this._scene.view.bannerGroupLayer.getBanner(t),
-                    n = i.getGlobalPos(!0);
-                this._scene.view.layer_torpedo.playTorpedoWaterColumn(i), this._scene.view.layer_explosion.playDamageExplosion(n.x, n.y, e.damage), i.moveAtDamage(e.shield)
-            }, e.prototype._showDamageBase = function (t, e) {
-                for (var i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = e[o.index];
-                        if (null != r) {
-                            var s = this._scene.view.bannerGroupLayer.getBanner(o);
-                            this._scene.view.layer_damage.showAtBanner(s, r.damage, r.hit), this._damage_cutin.causeDamage(o, r.damage), s.updateHp(o.hp_now)
-                        }
-                    }
-                }
             }, e
-        }(o.TaskBase);
-    e.PhaseRaigekiBase = s
+        }(a.CutinDouble);
+    e.CutinDouble2 = l
 }

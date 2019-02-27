@@ -5,12 +5,8 @@ const function665 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            try {
-                return PIXI.Texture.fromFrame("album_slot4_id_" + t)
-            } catch (t) {
-                return PIXI.Texture.EMPTY
-            }
+            return PIXI.Texture.fromFrame("item_common_" + t)
         }
-        t.getTextureFromMstID = e
-    }(e.ALBUM_SLOT4 || (e.ALBUM_SLOT4 = {}))
+        t.getTexture = e
+    }(e.ITEM_COMMON || (e.ITEM_COMMON = {}))
 }

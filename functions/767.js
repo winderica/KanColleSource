@@ -19,63 +19,103 @@ const function767 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(0),
-        s = i(4),
-        a = i(31),
-        _ = i(3),
-        l = i(14),
-        u = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClickListItem = function (t, e) {
-                    i.onClick(e)
-                };
-                var n = o.COMMON_MAIN.getTexture(37);
-                i.otherShipListItems = new Array;
-                for (var r = 0; r < e; r++) {
-                    var s = new h(r);
-                    s.y = 45 * r, s.onClick = i._onClickListItem, i.otherShipListItems.push(s);
-                    var a = new PIXI.Sprite(n);
-                    a.y = 45 * r + 42, i.addChild(a, s)
-                }
-                return i.itemCount = e, i
+    var o = i(9),
+        r = i(3),
+        s = i(3),
+        a = i(4),
+        _ = i(83),
+        l = i(110),
+        u = i(311),
+        c = i(768),
+        h = i(769),
+        p = i(771),
+        d = i(772),
+        f = i(773),
+        y = i(774),
+        m = i(775),
+        v = i(776),
+        g = i(86),
+        b = i(15),
+        w = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.headerKansenStatus = new g.TitleBar, e.headerKansenStatus.initialize(s.COMMON_MAIN.getTexture(1), 35), e.background = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.starRateView = new _.StarRateView, e.hpGaugeView = new l.HpGaugeView, e.textImageLv = new PIXI.Sprite(o.COMMON_MISC.getTexture(182)), e.remodelMaxMedal = new PIXI.Sprite(s.COMMON_MAIN.getTexture(28)), e._shipCard = new u.ShipCard(!1, !1), e._shipParameter = new c.ShipParameter, e._slotItemSlotBox = new h.SlotItemSlotBox, e._kaizoButton = new p.KaizoButton, e._kindaikaButton = new d.KindaikaButton, e._extraSlotItemSlot = new f.ExtraSlotItemSlot, e._detachAllButton = new y.DetachAllButton, e._extensionButton = new m.ExtensionButton, e._marriageButton = new v.MarriageButton, e.containerName = new PIXI.Container, e.containerName.position.set(42, 20), e.textName = new a.TextBox(27, 5523516), e.maskTextName = b.CreateRect.gradientLeftToRight(210, 45, .88, .91), e.containerName.mask = e.maskTextName, e.containerName.addChild(e.textName, e.maskTextName), e.headerKansenStatus.position.set(0, -39), e._detachAllButton.position.set(6, 101), e._slotItemSlotBox.position.set(57, 101), e._kaizoButton.position.set(546, 483), e._kindaikaButton.position.set(372, 483), e._extraSlotItemSlot.position.set(636, 311), e.textImageLv.position.set(238, 30), e.hpGaugeView.position.set(44, 72), e.textHp.position.set(152, 68), e.starRateView.position.set(228, 72), e.remodelMaxMedal.position.set(323, 20), e._shipCard.position.set(369, 26), e._extensionButton.position.set(369, 301), e._shipParameter.position.set(51, 351), e._marriageButton.position.set(212, 6), e.addChild(e.background, e._shipCard, e.hpGaugeView, e.textHp, e.starRateView, e._shipParameter, e._slotItemSlotBox, e._kaizoButton, e._kindaikaButton, e._detachAllButton, e._extraSlotItemSlot, e._extensionButton, e.remodelMaxMedal, e._marriageButton, e.textImageLv, e.textLevel, e.headerKansenStatus, e.containerName), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0; t < this.otherShipListItems.length; t++) this.otherShipListItems[t].dispose(), this.otherShipListItems[t] = null;
-                this.otherShipListItems = null, this.onClick = null
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this.itemCount; e++) {
-                    var i = this.otherShipListItems[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e];
-                        i.update(n), i.visible = !0
-                    }
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlotBox", {
+                get: function () {
+                    return this._slotItemSlotBox
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kaizoButton", {
+                get: function () {
+                    return this._kaizoButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kindaikaButton", {
+                get: function () {
+                    return this._kindaikaButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipCard", {
+                get: function () {
+                    return this._shipCard
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "extraSlotItemSlot", {
+                get: function () {
+                    return this._extraSlotItemSlot
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "detachAllButton", {
+                get: function () {
+                    return this._detachAllButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipParameter", {
+                get: function () {
+                    return this._shipParameter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "extensionButton", {
+                get: function () {
+                    return this._extensionButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "marriageButton", {
+                get: function () {
+                    return this._marriageButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.update = function (t, e, i, n, o, r) {
+                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.starRateView.update(o), this._updateRemodelMax_(r), this._updateLevel_(e)
+            }, e.prototype._updateRemodelMax_ = function (t) {
+                this.remodelMaxMedal.visible = !1, t && (this.remodelMaxMedal.visible = !0)
+            }, e.prototype._updateLevel_ = function (t) {
+                this.textLevel.position.set(324, 24), this.textLevel.anchor.x = 1, this.textLevel.text = "" + t, 99 == t && (this.textLevel.anchor.x = 0, this.textLevel.position.x = this.textImageLv.x + 9 + this.textImageLv.width)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._shipCard.dispose(), this.textName.mask = null, this.starRateView.dispose(), this.hpGaugeView.dispose(), this._shipParameter.dispose(), this._slotItemSlotBox.dispose(), this._kaizoButton.dispose(), this._kindaikaButton.dispose(), this._extraSlotItemSlot.dispose(), this._detachAllButton.dispose(), this._extensionButton.dispose(), this._marriageButton.dispose(), this.headerKansenStatus.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.textLevel.destroy(), this.textHp.destroy(), this.textName.destroy(), this.headerKansenStatus = null, this.background = null, this._shipCard = null, this.textName = null, this.maskTextName = null, this.textLevel = null, this.remodelMaxMedal = null, this.starRateView = null, this.textHp = null, this.hpGaugeView = null, this.textImageLv = null, this._shipParameter = null, this._slotItemSlotBox = null, this._kaizoButton = null, this._kindaikaButton = null, this._extraSlotItemSlot = null, this._detachAllButton = null, this._extensionButton = null, this._marriageButton = null
             }, e
         }(PIXI.Container);
-    e.OtherShipList = c;
-    var h = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i.index, i.memId)
-            }, i._onMouseOver = function () {
-                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !0, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 16777215, i.textContainer.cacheAsBitmap = !0
-            }, i._onMouseOut = function () {
-                i.textContainer.cacheAsBitmap = !1, i.focus.visible = !1, i.textName.style.fill = i.textLevel.style.fill = i.textType.style.fill = 5523516, i.textContainer.cacheAsBitmap = !0
-            }, i.index = e;
-            var n = Math.floor(22.5) + 1;
-            i.clickArea = new PIXI.Graphics, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, 268, 44), i.clickArea.endFill(), i.textContainer = new PIXI.Container, i.textType = new s.TextBox(18, 5523516), i.textName = new s.TextBox(20, 5523516), i.textLevel = new s.TextBox(19, 5523516), i.focus = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17)), i.focus.width = i.clickArea.width, i.focus.height = i.clickArea.height;
-            var r = l.CreateRect.gradientLeftToRight(210, 45, .88, .95);
-            return i.icon_max = new PIXI.Sprite(_.REMODEL_POWERUP.getTexture(27)), i.textContainer.mask = r, i.textType.anchor.set(0, 0), i.textType.position.set(6, Math.floor(n - i.textType.height / 2)), i.textName.anchor.set(0, 0), i.textName.position.y = Math.floor(n - i.textName.height / 2) + 0, i.textLevel.anchor.set(1, 0), i.textLevel.position.set(263, Math.floor(n - i.textLevel.height / 2)), i.icon_max.position.set(213, 3), i.focus.visible = !1, i.icon_max.visible = !1, i.textContainer.addChild(i.textType, i.textName, r), i.clickArea.on(u.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(u.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.on(u.EventType.CLICK, i._onClick), i.clickArea.interactive = i.clickArea.buttonMode = !0, i.addChild(i.clickArea, i.focus, i.textContainer, i.textLevel, i.icon_max), i
+    e.ShipDetail = w;
+    var x = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)),
+                n = new PIXI.Sprite(r.REMODEL_MAIN.getTexture(53));
+            return n.position.set(210, 258), e.addChild(i, n), e
         }
         return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.clickArea.off(u.EventType.MOUSEOVER), this.clickArea.off(u.EventType.MOUSEOUT), this.clickArea.off(u.EventType.CLICK), this.textContainer.cacheAsBitmap = !1, this.textContainer.removeChildren(), this.textName.destroy(), this.textType.destroy(), this.textLevel.destroy(), this.onClick = null, this.clickArea = null, this.focus = null, this.textContainer = null, this.textName = null, this.textType = null, this.textLevel = null, this.index = null, this.memId = null, this.icon_max = null
-        }, e.prototype.update = function (t) {
-            this.textContainer.cacheAsBitmap = !1, this.memId = t.memID, this.textName.text = t.name, this.textType.text = t.shipTypeName + " ", this.textName.position.x = this.textType.x + this.textType.width, this.icon_max.visible = !1, this.textLevel.visible = !1, a.ShipUtil.isMaxGradeUp(t, r.default.model.ship.getMst(t.mstID), !1) ? this.icon_max.visible = !0 : (this.textLevel.text = "Lv" + t.level, this.textLevel.visible = !0), this.textContainer.cacheAsBitmap = !0
+            this.removeChildren()
         }, e
-    }(PIXI.Container)
+    }(PIXI.Container);
+    e.ShipDetailEmpty = x
 }

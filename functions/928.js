@@ -3,30 +3,28 @@ const function928 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
+    var n = i(15),
         o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "type", {
+            return Object.defineProperty(t.prototype, "lost_mstid", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_usemst")
+                    return n.ObjUtil.getNumber(this._o, "api_mst_id", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "id", {
+            }), Object.defineProperty(t.prototype, "lost_count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_count", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_getcount")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.isDentan = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_dentan", 0)
+            }, t.prototype.getUseitemMstID = function () {
+                return [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.lost_mstid]
+            }, t
         }();
-    e.EOItemModel = o
+    e.HappeningModel = o
 }

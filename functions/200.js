@@ -19,33 +19,86 @@ const function200 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(78),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.floor_id = 0, i.wall_id = 0, i.window_id = 0, i.object_id = 0, i.desk_id = 0, i.chest_id = 0, i._animationFlag = !1, i._animationFlag = e, i
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(18),
+        _ = i(292),
+        l = i(293),
+        u = i(294),
+        c = i(145),
+        h = i(295),
+        p = i(296),
+        d = i(297),
+        f = i(201),
+        y = i(187),
+        m = i(146),
+        v = i(125),
+        g = i(298),
+        b = i(616),
+        w = i(617),
+        x = i(628),
+        I = i(629),
+        T = i(630),
+        O = i(631),
+        C = i(632),
+        P = i(633),
+        k = i(634),
+        M = i(635),
+        S = i(636),
+        A = i(637),
+        j = i(638),
+        E = i(206),
+        N = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._layer = e, o._rewards = i, o._quest_id = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = !1,
-                    i = new s.FurnitureLoader;
-                e = this._addLoader(i, this.floor_id) || e, e = this._addLoader(i, this.wall_id) || e, e = this._addLoader(i, this.window_id) || e, e = this._addLoader(i, this.object_id) || e, e = this._addLoader(i, this.desk_id) || e, e = this._addLoader(i, this.chest_id) || e, 1 == e ? i.load(function () {
-                    t._loadOutside()
-                }) : this._loadOutside()
-            }, e.prototype._loadOutside = function () {
                 var t = this;
-                o.default.view.portMain.furnitureLayer.outside.load(this.window_id, function () {
-                    t._onComplete()
+                this._fade = new a.FadeBox(.6), this._layer.addChild(this._fade), this._fade.show(300, function () {
+                    t._addDialog()
                 })
-            }, e.prototype._onComplete = function () {
-                var t = o.default.view.portMain.furnitureLayer,
-                    e = [this.floor_id, this.wall_id, this.window_id, this.object_id, this.desk_id, this.chest_id];
-                t.updateAll(e), t.animationFlag = this._animationFlag, this._endTask()
-            }, e.prototype._addLoader = function (t, e) {
-                return e > 0 && (t.add(e, "normal"), !0)
+            }, e.prototype._addDialog = function () {
+                this._dialog = new b.RewardDialog, this._dialog.position.set(o.default.width / 2, o.default.height / 2), this._dialog.initialize(), this._layer.addChild(this._dialog), this._showReward()
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._rewards || 0 == this._rewards.length) return void this._removeDialog();
+                var e = this._rewards.shift(),
+                    i = this._getTask(e);
+                null == i ? this._removeDialog() : i.start(function () {
+                    t._showReward()
+                })
+            }, e.prototype._removeDialog = function () {
+                this._layer.removeChild(this._dialog), this._dialog.dispose(), this._dialog = null, this._hideFade()
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(200, function () {
+                    t._layer.removeChild(t._fade), t._fade = null, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._rewards = null, t.prototype._endTask.call(this)
+            }, e.prototype._getTask = function (t) {
+                return t instanceof y.RewardModelShip ? 682 == this._quest_id || 882 == this._quest_id || 883 == this._quest_id ? new L(this._layer, t.mst_id) : new M.TaskRewardDialogShip(this._dialog, t) : t instanceof m.RewardModelSlotitem ? new S.TaskRewardDialogSlotitem(this._dialog, t) : t instanceof v.RewardModelUseitem ? new A.TaskRewardDialogUseitem(this._dialog, t) : t instanceof f.RewardModelMultiUseitem ? new k.TaskRewardDialogMultiUseitem(this._dialog, t) : t instanceof c.RewardModelFurniture ? new T.TaskRewardDialogFurniture(this._dialog, t) : t instanceof l.RewardModelDeck ? new x.TaskRewardDialogDeck(this._dialog, t) : t instanceof u.RewardModelExtraSupply ? new I.TaskRewardDialogExtraSupply(this._dialog, t) : t instanceof h.RewardModelLargeBuild ? new O.TaskRewardDialogLargeBuild(this._dialog, t) : t instanceof d.RewardModelModelChange ? new P.TaskRewardDialogModelChange(this._dialog, t, this._quest_id, this._fade) : t instanceof _.RewardModelAirUnit ? new w.TaskRewardDialogAirUnit(this._dialog, t) : t instanceof g.RewardModelWarResult ? new j.TaskRewardDialogWarResult(this._dialog, t) : t instanceof p.RewardModelMap ? new C.TaskRewardDialogMap(this._dialog, t) : void 0
             }, e
-        }(r.TaskBase);
-    e.FurnitureLoadTask = a
+        }(s.TaskBase);
+    e.TaskReward = N;
+    var L = function (t) {
+        function e(e, i) {
+            return t.call(this, e, i, !0) || this
+        }
+        return n(e, t), e.prototype._finalize = function (t) {
+            var e = this;
+            r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({
+                alpha: 0
+            }, 300).call(function () {
+                t.deactivate(), e._bonus.removeChild(t)
+            }), createjs.Tween.get(this._bonus).wait(100).to({
+                alpha: 0
+            }, 300).call(function () {
+                e.dispose(), e._endTask()
+            })
+        }, e
+    }(E.TaskBonusShip)
 }

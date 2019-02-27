@@ -19,55 +19,55 @@ const function1284 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1285),
-        r = i(1286),
-        s = i(1287),
-        a = i(1),
-        _ = function (t) {
+    var o = i(6),
+        r = i(1285),
+        s = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
-                        x: 831
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }) : n._move_tween = createjs.Tween.get(n).to({
-                        x: 0
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }))
-                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+                return n._onClick = function (t) {
+                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+                }, n._onDoubleClick = function (t) {
+                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "title", {
-                get: function () {
-                    return this._title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "cancel_btn", {
-                get: function () {
-                    return this._cancel_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                var i = null == e ? 0 : e.length;
-                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.deactivate = function () {
-                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.update = function (t) {
-                this._title.update(t), this._panel.update(t, !0)
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._clear(), e = this._dedupeCells(e);
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = s.no,
+                        _ = i.getCellInfo(a);
+                    if (!(_.distance <= 0)) {
+                        var l = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                        l.initialize(a, _, t), l.x = s.x + s.point.x, l.y = s.y + s.point.y, this.addChild(l), this._points[a] = l
+                    }
+                }
+            }, e.prototype.update = function () {
+                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+                for (var i in this._points) {
+                    var n = this._points[i];
+                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+                }
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+            }, e.prototype._clear = function () {
+                for (var t in this._points) this._points[t].dispose();
+                this.removeChildren(), this._points = []
+            }, e.prototype._dedupeCells = function (t) {
+                for (var e = [], i = t.concat(); i.length > 0;) {
+                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                        var a = s[r],
+                            _ = n.x - a.x,
+                            l = n.y - a.y;
+                        if (Math.sqrt(_ * _ + l * l) <= 10) {
+                            o = !0;
+                            break
+                        }
+                    }
+                    0 == o && e.push(n)
+                }
+                return e
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    e.AirUnitAppointmentLayer = s
 }

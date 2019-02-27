@@ -19,45 +19,27 @@ const function758 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(759),
-        a = i(306),
-        _ = i(212),
-        l = i(309),
-        u = i(308),
-        c = i(71),
-        h = i(128),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.phasePreInitialize = function () {
-                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
-                }, i._scene = e, i
+    var o = i(2),
+        r = i(13),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this;
-                (new s.TaskLoadResourcesRemodel).start(function () {
-                    t._uploadToGPU()
+                this._load01()
+            }, e.prototype._load01 = function () {
+                var t = this,
+                    e = new r.UIImageLoader("remodel");
+                e.add("6slot_huki1_c.png"), e.add("6slot_huki1_r.png"), e.add("6slot_huki1_l.png"), e.add("6slot_huki2.png"), e.load(function () {
+                    t._load02()
                 })
-            }, e.prototype._uploadToGPU = function () {
-                var t, e = this;
-                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                        t = u.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                            t = l.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
-                                        e.phasePreInitialize()
-                                    })
-                                })
-                            })
-                        })
-                    })
+            }, e.prototype._load02 = function () {
+                var t = this,
+                    e = new r.UIImageLoader("remodel");
+                e.add("remodel_main.json"), e.add("remodel_powerup.json"), e.add("remodel_gradeup.json"), e.add("remodel_animation.json"), e.load(function () {
+                    t._endTask()
                 })
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = p
+        }(o.TaskBase);
+    e.TaskLoadResourcesRemodel = s
 }

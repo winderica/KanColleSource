@@ -19,23 +19,32 @@ const function1371 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(468),
-        r = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this, e, i) || this;
-                return r._model = n, r._bannerGroup = o, r
+    var o = i(22),
+        r = i(2),
+        s = i(1372),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._banner = e, i
             }
-            return n(e, t), e.prototype._getShips_f = function () {
-                return this._model.ships
-            }, e.prototype._getShips_e = function () {
-                return this._scene.data.model.deck_e.ships
-            }, e.prototype._getFlareBanner_f = function () {
-                var t = this._model.getFlareIndex_f();
-                return this._bannerGroup.getBanner(t)
-            }, e.prototype._getFlareBanner_e = function () {
-                var t = this._model.getFlareIndex_e();
-                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (null == this._banner) return void this._endTask();
+                this._banner.moveFront(function () {
+                    t._antiAircraft()
+                })
+            }, e.prototype._antiAircraft = function () {
+                var t = this,
+                    e = this._banner.friend,
+                    i = new s.AntiAircraftFire;
+                i.initialize(), i.x = e ? o.BannerSize.W : 0, i.rotation = (e ? -60 : 240) / 180 * Math.PI, this._banner.addChild(i), i.getAnimationTask().start(function () {
+                    t._banner.removeChild(i), t._banner.moveDefault(), t._banner.once("complete_moveDefault", function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._banner = null, t.prototype._endTask.call(this)
             }, e
-        }(o.PhaseLightingBase);
-    e.PhaseAllyLighting = r
+        }(r.TaskBase);
+    e.TaskBannerFlareFire = a
 }

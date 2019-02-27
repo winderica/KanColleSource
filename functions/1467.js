@@ -21,81 +21,72 @@ const function1467 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(28),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ParallelTask;
-                e.add(new _(this._scene)), e.add(new l(this._scene)), e.add(new u(this._scene)), e.start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase);
-    e.TaskShowExtraResults = a;
-    var _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_war_results;
-                if (e > 0) {
-                    var i = this._scene.view.panel_exp.extra_result.extra_war_result;
-                    i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_useitem_mst_id;
-                if (e > 0) {
-                    var i = o.default.resources.getUseitem(e, 0),
-                        n = this._scene.view.panel_exp.extra_result.useitem_icon;
-                    n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
+        s = i(206),
+        a = i(478),
+        _ = i(245),
+        l = i(1469),
         u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (1 == this._scene.data.extra_result) {
-                    var e = this._scene.view.panel_exp.extra_result.map_incentive;
-                    e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
+                this._useitemBonus()
+            }, e.prototype._useitemBonus = function () {
+                var t = this,
+                    e = this._scene.data.getBonusUseitem();
+                if (null != e) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var i = this._scene.view.layer_cutin,
+                        n = e.mst_id;
+                    new l.TaskBonusTelop(i, 6, n).start(function () {
+                        var e = new _.TaskBonusUseItem(i, n, 1, !1);
+                        e.start(function () {
+                            t._slotitemBonus(e)
+                        })
                     })
-                } else this._endTask()
+                } else this._slotitemBonus(null)
+            }, e.prototype._slotitemBonus = function (t) {
+                var e = this,
+                    i = this._scene.data.getBonusSlot();
+                if (null != i) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var n = this._scene.view.layer_cutin,
+                        r = i.mst_id;
+                    new l.TaskBonusTelop(n, 2, r).start(function () {
+                        var i = new a.TaskBonusSlot(n, r, 1, 1, !1, t);
+                        i.start(function () {
+                            e._shipBonus(i)
+                        })
+                    })
+                } else this._shipBonus(t)
+            }, e.prototype._shipBonus = function (t) {
+                var e = this,
+                    i = this._scene.data.getBonusShip();
+                if (null != i) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var n = this._scene.view.layer_cutin,
+                        r = i.mst_id,
+                        a = this._scene.data.battle_model.map_info.area_id,
+                        _ = this._scene.data.battle_model.map_info.map_no,
+                        u = 1 == a && (1 == _ || 2 == _ || 3 == _);
+                    new l.TaskBonusTelop(n, 3, r, u).start(function () {
+                        var i = new s.TaskBonusShip(n, r, !1, t);
+                        i.start(function () {
+                            e._closeShutter(i)
+                        })
+                    })
+                } else this._closeShutter(null)
+            }, e.prototype._closeShutter = function (t) {
+                var e = this;
+                this._play_bgm && o.default.sound.bgm.fadeOut(1200);
+                var i = this._scene.view.shutter;
+                i.close(), i.once("closed", function () {
+                    null != t && t.dispose(), e._endTask()
+                })
             }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+                this._scene = null, this._play_bgm = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase)
+        }(r.TaskBase);
+    e.TaskNormalBonus = u
 }

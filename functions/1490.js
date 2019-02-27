@@ -19,57 +19,47 @@ const function1490 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1491),
-        r = i(1492),
-        s = function (t) {
+    var o = i(36),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._value = 0, e._lights = [], e._nums = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new o.ResultDialogNumLight;
-                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
-                }
-                for (var i = 0; i < 4; i++) {
-                    var s = new r.ResultDialogNum;
-                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
-                }
-                return e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.setValue = function (t) {
-                this._value = Math.min(t, 9999);
-                for (var e = this._value, i = 0; i < this._nums.length; i++) {
-                    var n = this._nums[i],
-                        o = this._lights[i],
-                        r = e % 10;
-                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
-                }
-            }, e.prototype.startLightAnimation = function () {
-                this.stopLightAnimation(), this._light_tweens = [];
-                for (var t = 0; t < this._lights.length; t++) {
-                    var e = this._nums[t],
-                        i = this._lights[t];
-                    if (0 == e.visible) i.visible = !1;
-                    else {
-                        i.alpha = 0, i.visible = !0;
-                        var n = createjs.Tween.get(i, {
-                            loop: !0
-                        }).to({
-                            alpha: 1
-                        }, 500).wait(500).to({
-                            alpha: 0
-                        }, 500).wait(500);
-                        this._light_tweens.push(n)
-                    }
-                }
-            }, e.prototype.stopLightAnimation = function () {
-                if (null != this._light_tweens) {
-                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
-                        var i = e[t];
-                        i.setPaused(!0), i = null
-                    }
-                    this._light_tweens = null
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(43);
+                        break;
+                    case 1:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(45);
+                        break;
+                    case 2:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(47);
+                        break;
+                    case 3:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(49);
+                        break;
+                    case 4:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(51);
+                        break;
+                    case 5:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(53);
+                        break;
+                    case 6:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(55);
+                        break;
+                    case 7:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(57);
+                        break;
+                    case 8:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(59);
+                        break;
+                    case 9:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(61);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
                 }
             }, e
-        }(PIXI.Container);
-    e.ResultDialogNumSet = s
+        }(PIXI.Sprite);
+    e.ResultDialogNum = r
 }

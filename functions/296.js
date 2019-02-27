@@ -21,10 +21,23 @@ const function296 = function (t, e, i) {
     });
     var o = i(46),
         r = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._area_id = e, n._map_no = i, n
             }
-            return n(e, t), e
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
+                get: function () {
+                    return this._area_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "map_no", {
+                get: function () {
+                    return this._map_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
         }(o.RewardModel);
-    e.RewardModelLargeBuild = r
+    e.RewardModelMap = r
 }

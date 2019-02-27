@@ -19,59 +19,17 @@ const function1210 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(47),
-        s = i(1211),
-        a = i(1212),
-        _ = i(1214),
-        l = i(1215),
-        u = i(1227),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._startBattleResult = function () {
-                    n._result.initialize(), n.addChild(n._result), n._result.shutter.close(), n._result.once("complete", n._endBattleResult);
-                    var t = n._taskMain.model;
-                    n._result.start(t)
-                }, n._endBattleResult = function () {
-                    o.default.scene.change(0)
-                }, n._battle = e, n._result = i, n._view = new u.ViewMain, n._battle.alpha = 0, n.addChild(n._view), n.addChild(n._battle), n
+    var o = i(2),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "battle", {
-                get: function () {
-                    return this._battle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function () {
-                var t = this;
-                this._taskMain.start(function () {
-                    t._startBattle()
-                })
-            }, e.prototype._startBattle = function () {
-                this._battle.once("complete", this._startBattleResult), this._battle.start()
-            }, e.prototype.getPreInitializeTask = function (t, e) {
-                return this._model = e, this._taskMain = new l.TaskMain(this, this._model), new a.TaskInitPre(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new _.TaskInit(this)
-            }, e.prototype.getFinalizeTask = function () {
-                var t = this;
-                return new s.TaskFinalize(function () {
-                    t.removeChild(t._battle), t._battle.dispose(), t.removeChild(t._result), t._result.dispose()
-                })
+            return n(e, t), e.prototype._start = function () {
+                this._scene.start(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(r.SceneBase);
-    e.PracticeScene = c
+        }(o.TaskBase);
+    e.TaskInit = r
 }

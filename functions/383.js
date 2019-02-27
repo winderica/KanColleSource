@@ -19,49 +19,97 @@ const function383 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(4),
-        a = i(3),
-        _ = i(42),
-        l = i(42),
-        u = i(42),
-        c = i(42),
-        h = i(42),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    null != i._cb_onClose && i._cb_onClose()
-                }, i._cb_onClose = e, i._title = new d, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(23, 5523516), i._message.position.set(106, 138), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 585, i._message.style.lineHeight = 34.5, i.addChild(i._message), i._statusBox = new _.ShipDetailStatusBox, i._statusBox.position.set(107, 354), i.addChild(i._statusBox), i._stype = new u.EngStypeView, i._stype.position.set(873, 37), i.addChild(i._stype), i._rader = new c.RaderGraph, i._rader.position.set(255, 513), i.addChild(i._rader), i._content = new h.ShipDetailContent, i._content.position.set(706, 33), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
+    var o = i(62),
+        r = i(158),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._startWait = function () {
+                    e._stopWait();
+                    var t = 3e3 * Math.random() + 1e3;
+                    e._wait_tween = createjs.Tween.get(null).wait(t).call(function () {
+                        e._caterpillar.buttonMode = !1, 0 == Math.floor(5 * Math.random()) ? e._action2() : e._action1()
+                    })
+                }, e._onClick = function () {
+                    if (0 != e._caterpillar.buttonMode) {
+                        e._caterpillar.buttonMode = !1;
+                        0 == Math.floor(5 * Math.random()) ? e._action3() : e._action1()
+                    }
+                }, e._shadow = new o.CenteringSprite, e._shadow.position.set(60, 92), e.addChild(e._shadow), e._frown = new PIXI.Sprite, e.addChild(e._frown), e._caterpillar = new o.CenteringSprite, e._caterpillar.position.set(63, 77), e._caterpillar.interactive = !0, e.addChild(e._caterpillar), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(88);
-                var i = t.no,
-                    n = t.mst_ids[0];
-                this._title.initialize(i, n), this._message.text = t.message.replace(/<br>/g, "\n").replace(/\u2019/g, "'"), this._statusBox.initialize(t);
-                var o = t.sType;
-                this._stype.update(n, o), this._rader.update(null), this._content.initialize(t, e), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
-            }, e.prototype.preactivate = function () {
-                this._content.preactivate()
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ALBUM_MAIN.getTexture(111), this._shadow.texture = r.ALBUM_MAIN.getTexture(110), this._frown.texture = r.ALBUM_MAIN.getTexture(108);
+                var t = new PIXI.Sprite(r.ALBUM_MAIN.getTexture(109));
+                t.position.set(71, 21), this._frown.addChild(t), this._caterpillar.texture = r.ALBUM_MAIN.getTexture(107), this._caterpillar.buttonMode = !0, this._caterpillar.on(s.EventType.CLICK, this._onClick)
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this._rader.update(this._model), this._content.activate(), this.on(r.EventType.CLICK, this._onClose))
+                this._startWait()
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
+                this._stopWait(), null != this._action_tween && (this._action_tween.setPaused(!0), this._action_tween = null)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._title.dispose(), this._stype.dispose(), this._rader.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._stype = null, this._rader = null, this._content = null, this._close_btn = null, this._cb_onClose = null
+                this.removeChildren(), this.deactivate(), this._caterpillar.off(s.EventType.CLICK, this._onClick), this._shadow = null, this._frown = null, this._caterpillar = null, this._wait_tween = null, this._action_tween = null
+            }, e.prototype._stopWait = function () {
+                null != this._wait_tween && (this._wait_tween.setPaused(!0), this._wait_tween = null)
+            }, e.prototype._action1 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    y: -105
+                }, 400, createjs.Ease.sineOut).to({
+                    y: 77
+                }, 400, createjs.Ease.sineIn).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }), createjs.Tween.get(this._shadow).to({
+                    alpha: .4,
+                    scaleX: .9,
+                    scaleY: .9
+                }, 400).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400))
+            }, e.prototype._action2 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    rotation: -30 * Math.PI / 180
+                }, 200).to({
+                    rotation: 25 * Math.PI / 180
+                }, 400).to({
+                    rotation: 0
+                }, 200).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }))
+            }, e.prototype._action3 = function () {
+                var t = this;
+                null == this._action_tween && (this._stopWait(), this._action_tween = createjs.Tween.get(this._caterpillar).to({
+                    y: -584
+                }, 500, createjs.Ease.sineOut).call(function () {
+                    createjs.Tween.get(t._frown).to({
+                        alpha: 0
+                    }, 100)
+                }).wait(700).to({
+                    y: 77
+                }, 500, createjs.Ease.sineIn).to({
+                    y: 80,
+                    scaleY: .8
+                }, 100).to({
+                    y: 77,
+                    scaleY: 1
+                }, 100).call(function () {
+                    createjs.Tween.get(t._frown).to({
+                        alpha: 1
+                    }, 100)
+                }).call(function () {
+                    t._action_tween = null, t._caterpillar.buttonMode = !0, t._startWait()
+                }), createjs.Tween.get(this._shadow).to({
+                    alpha: 0,
+                    scaleX: .7,
+                    scaleY: .7
+                }, 600).wait(400).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 400))
             }, e
         }(PIXI.Sprite);
-    e.ShipDetailPanel = p;
-    var d = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._nums = new l.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
-        }, e.prototype.initialize = function (t, e) {
-            this.texture = a.ALBUM_MAIN.getTexture(87), this._nums.update(t), this._img.texture = o.default.resources.getShip(e, !1, "album_status")
-        }, e
-    }(PIXI.Sprite)
+    e.MiniChara = a
 }

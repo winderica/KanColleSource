@@ -19,8 +19,8 @@ const function163 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(752),
-        r = i(753),
+    var o = i(751),
+        r = i(752),
         s = i(9),
         a = function (t) {
             function e(e, i, n, o) {
@@ -38,10 +38,10 @@ const function163 = function (t, e, i) {
                             if (!1 !== d.hasOwnProperty(f)) {
                                 var y = i.clone(),
                                     m = d[f],
-                                    g = m.x,
-                                    v = m.y,
+                                    v = m.x,
+                                    g = m.y,
                                     b = m.r;
-                                y.x = g, y.y = v, y.rotation = Math.PI / 180 * b, _[f] = y, l[f] = createjs.Tween.get(y), u.addChild(y), c.push("m" + (h + 1)), h++
+                                y.x = v, y.y = g, y.rotation = Math.PI / 180 * b, _[f] = y, l[f] = createjs.Tween.get(y), u.addChild(y), c.push("m" + (h + 1)), h++
                             }
                     } var w = new PIXI.Sprite(o),
                     x = new PIXI.Sprite(s.COMMON_MISC.getTexture(18)),

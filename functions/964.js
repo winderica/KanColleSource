@@ -19,68 +19,45 @@ const function964 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(965),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._board = new r.MapIntroBoard, e._board.position.set(522, 369), e._chara = new PIXI.Sprite, e._chara.position.set(825, 0), e._operation = new _, e._operation.position.set(363, 51), e._change_btn = new l, e._change_btn.position.set(648, 69), e.addChild(e._board), e.addChild(e._chara), e.addChild(e._operation), e.addChild(e._change_btn), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "board", {
-                get: function () {
-                    return this._board
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "operation", {
-                get: function () {
-                    return this._operation
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "change_btn", {
-                get: function () {
-                    return this._change_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._board.initialize(t), this._chara.texture = o.SALLY_EVENT.getTexture(21), this._type = e, this._operation.update(e), this._change_btn.initialize()
-            }, e.prototype.dispose = function () {
-                this._board.dispose(), this._change_btn.dispose()
-            }, e
-        }(PIXI.Container);
-    e.MapIntroDialog = a;
-    var _ = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                this.texture = 1 == t ? o.SALLY_EVENT.getTexture(20) : 2 == t ? o.SALLY_EVENT.getTexture(17) : 3 == t ? o.SALLY_EVENT.getTexture(19) : 4 == t ? o.SALLY_EVENT.getTexture(18) : PIXI.Texture.EMPTY
-            }, e
-        }(PIXI.Sprite),
+    var o = i(12),
+        r = i(41),
+        s = i(965),
+        a = i(0),
+        _ = i(13),
         l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClick = function (t) {
-                    t.stopPropagation(), null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EVENT.getTexture(14)
-            }, e.prototype.activate = function (t) {
-                this._cb_onClick = t, this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick)
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(s.EventType.CLICK, this._onClick)
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
+                get: function () {
+                    return this._createSelectView(), this._selectView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 431:
+                        this._content.position.set(-303, -225), this._content.texture = PIXI.Texture.fromImage(e + "/230_c3ce4.png" + i);
+                        break;
+                    case 432:
+                        this._content.position.set(-286, -229), this._content.texture = PIXI.Texture.fromImage(e + "/231_b88bd.png" + i);
+                        break;
+                    case 433:
+                        this._content.position.set(-342, -223), this._content.texture = PIXI.Texture.fromImage(e + "/232_5b7cd.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
             }, e.prototype.dispose = function () {
-                this._cb_onClick = null, this.deactivate()
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(PIXI.Sprite)
+        }(o.Sprite);
+    e.MapIntroBoard = l
 }

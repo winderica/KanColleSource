@@ -19,157 +19,85 @@ const function906 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(0),
         r = i(1),
-        s = function (t) {
+        s = i(142),
+        a = i(50),
+        _ = i(159),
+        l = i(61),
+        u = i(160),
+        c = i(4),
+        h = i(21),
+        p = i(35),
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.maxDuration = 125, e.shown = !1, e._onClickSlotItemFilterKeyType = function (t) {
-                    e.onClick(t)
-                }, e._onMouseOutHideArea = function (t) {
-                    var i = t.data.getLocalPosition(e);
-                    i.x >= e.startPoint.x && i.x <= e.endPoint.x && i.y >= e.startPoint.y && i.y <= e.endPoint.y || (e.hideFilterList(), e.shown = !1)
-                }, e._onClick = function () {
-                    e.switchShown()
-                }, e.slotItemFilterButton = new l, e.slotItemFilterButton.onClick = e._onClick, e.slotItemFilterList = new a, e.slotItemFilterListMask = new PIXI.Graphics, e.slotItemFilterListMask.beginFill(0, 0), e.slotItemFilterListMask.drawRect(0, 0, e.slotItemFilterList.width, e.slotItemFilterList.height), e.slotItemFilterListMask.endFill(), e.slotItemFilterListMask.position.set(0, -(e.slotItemFilterListMask.height + 2)), e.slotItemFilterList.position.set(29, 30), e.slotItemFilterList.mask = e.slotItemFilterListMask, e.slotItemFilterList.onClick = e._onClickSlotItemFilterKeyType, e.slotItemFilterList.addChild(e.slotItemFilterListMask), e.startPoint = new PIXI.Point(-38, -38), e.endPoint = new PIXI.Point(157, -38 + e.slotItemFilterList.height + 76), e.filterListArea = new PIXI.Graphics, e.filterListArea.beginFill(0, 0), e.filterListArea.position.set(-246, -12), e.filterListArea.drawRect(0, 0, 700, 560), e.filterListArea.endFill(), e.filterListArea.on(r.EventType.MOUSEMOVE, e._onMouseOutHideArea), e.filterListArea.interactive = !0, e.filterListArea.visible = !1, e.slotItemFilterList.renderable = !1, e.addChild(e.filterListArea, e.slotItemFilterButton, e.slotItemFilterList), e
+                e.ITEM_NUM = 10, e._onClick = function (t) {
+                    e.onClickSlot(t)
+                };
+                var i = new PIXI.Sprite(h.COMMON_MAIN.getTexture(13));
+                i.interactive = !0, e.addChild(i);
+                var n = new PIXI.Sprite(h.COMMON_MAIN.getTexture(35));
+                e.iconEmpty = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(140)), e.listItems = new Array, n.position.set(90, 12), e.addChild(e.iconEmpty, n);
+                e.iconEmpty.position.set(93, 58), e.iconEmpty.visible = !1;
+                for (var o = 0; o < e.ITEM_NUM; o++) {
+                    var r = new y,
+                        s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(37));
+                    r.onClick = e._onClick, s.position.set(48, 43 + 46 * o + 43), r.position.set(0, 43 + 46 * o), e.addChild(s, r), e.listItems.push(r)
+                }
+                return e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.slotItemFilterList.mask = null, this.slotItemFilterList.dispose(), this.slotItemFilterButton.dispose(), this.slotItemFilterListMask.clear(), this.filterListArea.clear(), this.onClick = null, this.shown = null, this.slotItemFilterButton = null, this.slotItemFilterList = null, this.slotItemFilterListMask = null, this.filterListArea = null, this.startPoint = null, this.endPoint = null, this.removeChildren()
-            }, e.prototype.updateFilterType = function (t) {
-                this.slotItemFilterButton.update(t)
-            }, e.prototype.switchShown = function () {
-                this.shown = !this.shown, this.shown ? this.showFilterList() : this.hideFilterList()
-            }, e.prototype.showFilterList = function () {
-                this.filterListArea.visible = !0, this.slotItemFilterList.renderable = !0, createjs.Tween.removeTweens(this.slotItemFilterListMask);
-                var t = this.slotItemFilterListMask.height + this.slotItemFilterListMask.y + 1,
-                    e = 0 == t ? 0 : t / this.slotItemFilterListMask.height,
-                    i = this.maxDuration * (1 - e);
-                createjs.Tween.get(this.slotItemFilterListMask).to({
-                    y: 0
-                }, i).play(null)
-            }, e.prototype.hideFilterList = function () {
-                var t = this;
-                this.filterListArea.visible = !1, createjs.Tween.removeTweens(this.slotItemFilterListMask);
-                var e = this.slotItemFilterListMask.height + this.slotItemFilterListMask.y + 2,
-                    i = 0 == e ? 0 : e / this.slotItemFilterListMask.height,
-                    n = -(this.slotItemFilterListMask.height + 2),
-                    o = this.maxDuration * i;
-                createjs.Tween.get(this.slotItemFilterListMask).to({
-                    y: n
-                }, o).call(function () {
-                    t.slotItemFilterList.renderable = !1
-                }).play(null)
-            }, e.prototype.hideFilterListImmidiate = function () {
-                this.filterListArea.visible = !1, createjs.Tween.removeTweens(this.slotItemFilterListMask), this.slotItemFilterListMask.y = -(this.slotItemFilterListMask.height + 2), this.shown = !1
+                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose(), this.listItems[t] = null;
+                this.listItems = null, this.iconEmpty = null, this.onClickSlot = null, this.removeChildren()
+            }, e.prototype.update = function (t, e) {
+                for (var i = 0; i < this.listItems.length; i++) {
+                    var n = this.listItems[i];
+                    if (n.visible = !1, !(i >= t.length)) {
+                        var r = t[i],
+                            s = o.default.model.slot.getMst(r.mstID),
+                            _ = a.SlotUtil.genSummaryText(r, "+", "/", !0),
+                            l = f.DISABLE;
+                        l = r.isLocked() ? f.DISABLE : e.indexOf(r.memID) > -1 ? f.ON : f.OFF, n.update(r.memID, r.iconType, r.name, r.skillLevel, r.level, s.rarity, _, r.isLocked(), l), n.visible = !0
+                    }
+                }
+                this.iconEmpty.visible = !1, 0 == t.length && (this.iconEmpty.visible = !0)
             }, e
         }(PIXI.Container);
-    e.SlotItemFilterView = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClick = function (t) {
-                e.onClick(t)
-            };
-            for (var i = new PIXI.Sprite(o.COMMON_SORT.getTexture(53)), n = [
-                    [0, 21, 22],
-                    [1, 23, 24],
-                    [2, 25, 26],
-                    [3, 27, 28],
-                    [4, 29, 30],
-                    [5, 31, 32],
-                    [6, 33, 34],
-                    [7, 35, 36],
-                    [8, 43, 44],
-                    [9, 45, 46],
-                    [10, 47, 48],
-                    [11, 49, 50],
-                    [12, 37, 38],
-                    [13, 39, 40],
-                    [14, 41, 42]
-                ], r = [], s = 0; s < n.length; s++) {
-                var a = n[s],
-                    l = a[0],
-                    u = a[1],
-                    c = a[2],
-                    h = new _(l, u, c);
-                h.onClick = e._onClick, h.y = 28.5 * s, r.push(h)
-            }
-            e.addChild(i);
-            for (var s = 0; s < r.length; s++) e.addChild(r[s]);
-            return e.slotItemFilterListItems = r, e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            for (var t = 0; t < this.slotItemFilterListItems.length; t++) this.removeChild(this.slotItemFilterListItems[t]), this.slotItemFilterListItems[t].dispose(), this.slotItemFilterListItems[t] = null;
-            this.slotItemFilterListItems = null, this.onClick = null, this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.SlotItemFilterList = a;
-    var _ = function (t) {
-        function e(e, i, n) {
-            var s = t.call(this) || this;
-            return s._onMouseOver = function () {
-                s.status.texture = o.COMMON_SORT.getTexture(s.rIdMouseover), s.hover.visible = !0
-            }, s._onMouseOut = function () {
-                s.status.texture = o.COMMON_SORT.getTexture(s.rIdMouseout), s.hover.visible = !1
-            }, s._onClick = function () {
-                s.onClick(s.slotItemFilterKeyType)
-            }, s.rIdMouseover = n, s.rIdMouseout = i, s.slotItemFilterKeyType = e, s.status = new PIXI.Sprite(o.COMMON_SORT.getTexture(i)), s.hover = new PIXI.Sprite(o.COMMON_SORT.getTexture(20)), s.hover.visible = !1, s.interactive = !0, s.on(r.EventType.MOUSEOVER, s._onMouseOver), s.on(r.EventType.MOUSEOUT, s._onMouseOut), s.on(r.EventType.CLICK, s._onClick), s.addChild(s.hover, s.status), s
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.rIdMouseover = null, this.rIdMouseout = null, this.status = null, this.hover = null, this.slotItemFilterKeyType = null, this.onClick = null
-        }, e
-    }(PIXI.Container);
-    e.SlotItemFilterListItem = _;
-    var l = function (t) {
+    e.SlotDisassemblyChoice = d;
+    var f;
+    ! function (t) {
+        t[t.DISABLE = 0] = "DISABLE", t[t.OFF = 1] = "OFF", t[t.ON = 2] = "ON"
+    }(f || (f = {}));
+    var y = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._onClick = function () {
-                e.onClick()
-            };
-            var i = new PIXI.Sprite(o.COMMON_SORT.getTexture(19)),
-                n = new PIXI.Sprite(o.COMMON_SORT.getTexture(2));
-            return e.state = new PIXI.Sprite(o.COMMON_SORT.getTexture(3)), e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, i.position.set(0, 0), n.position.set(29, 0), e.state.position.set(29, 0), e.addChild(i, n, e.state), e
+                e.onClick(e.memSlotId)
+            }, e._onMouseOver = function () {
+                e.containerName.cacheAsBitmap = !1, e.containerSummary.cacheAsBitmap = !1, e.background.visible = !0, e.textRarity.style.fill = e.textSummary.style.fill = e.textName.style.fill = 16777215, e.maskName.texture = h.COMMON_MAIN.getTexture(16), e.maskSummary.texture = h.COMMON_MAIN.getTexture(16), e.containerName.cacheAsBitmap = !0, e.containerSummary.cacheAsBitmap = !0
+            }, e._onMouseOut = function () {
+                e.containerName.cacheAsBitmap = !1, e.containerSummary.cacheAsBitmap = !1, e.background.visible = !1, e.textRarity.style.fill = e.textSummary.style.fill = e.textName.style.fill = 5523516, e.maskName.texture = h.COMMON_MAIN.getTexture(38), e.maskSummary.texture = h.COMMON_MAIN.getTexture(38), e.containerName.cacheAsBitmap = !0, e.containerSummary.cacheAsBitmap = !0
+            }, e.background = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), e.clickArea = new PIXI.Graphics, e.iconCheckState = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(12)), e.iconWeapon = new l.IconWeapon, e.airPlaneLevel = new _.AirPlaneLevel, e.textRarity = new c.TextBox(21, 5523516), e.textSummary = new c.TextBox(21, 5523516), e.textName = new c.TextBox(21, 5523516), e.slotItemLevel = new u.SlotItemLevel, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskSummary = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.iconLock = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(80)), e.maskName.anchor.set(1, 0), e.maskName.position.set(360, 0), e.maskSummary.anchor.set(1, 0), e.maskSummary.position.set(700, 0), e.iconCheckState.position.set(15, 24), e.iconCheckState.anchor.set(0, .5), e.airPlaneLevel.position.set(270, 3), e.textRarity.anchor.x = 0, e.slotItemLevel.position.set(307, 15), e.iconWeapon.position.set(45, 0), e.iconLock.position.set(618, 0), e.background.position.set(90, 0), e.background.scale.x = 1.22, e.background.visible = !1, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 645, 45), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.interactive = e.clickArea.buttonMode = !0, e.containerSummary = new PIXI.Container, e.containerName = new PIXI.Container, e.containerSummary.position.set(450, 10), e.containerName.position.set(96, 10);
+            var i = new PIXI.Graphics;
+            i.beginFill(0, 0), i.drawRect(0, 0, 245, 45), i.endFill();
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), e.containerSummary.mask = n, e.containerSummary.addChild(e.textSummary, n), e.containerName.mask = i, e.containerName.addChild(e.textName, i), e.addChild(e.background, e.iconCheckState, e.iconWeapon, e.containerName, e.maskName, e.airPlaneLevel, e.slotItemLevel, e.textRarity, e.containerSummary, e.maskSummary, e.iconLock, e.clickArea), e
         }
         return n(e, t), e.prototype.dispose = function () {
-            this.off(r.EventType.CLICK), this.removeChildren(), this.onClick = null, this.state = null
-        }, e.prototype.update = function (t) {
-            var e = this.keyToRid(t);
-            this.state.texture = o.COMMON_SORT.getTexture(e)
-        }, e.prototype.keyToRid = function (t) {
-            switch (t) {
-                case 0:
-                    return 3;
-                case 1:
-                    return 4;
-                case 2:
-                    return 5;
-                case 3:
-                    return 6;
-                case 4:
-                    return 7;
-                case 5:
-                    return 8;
-                case 6:
-                    return 9;
-                case 7:
-                    return 10;
-                case 8:
-                    return 14;
-                case 9:
-                    return 15;
-                case 10:
-                    return 16;
-                case 11:
-                    return 17;
-                case 12:
-                    return 11;
-                case 13:
-                    return 12;
-                case 14:
-                    return 13
+            this.removeChildren(), this.containerName.mask = null, this.containerSummary.mask = null, this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerSummary.cacheAsBitmap = !1, this.containerSummary.removeChildren(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.clickArea.clear(), this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.textRarity.destroy(), this.textSummary.destroy(), this.textName.destroy(), this.onClick = null, this.iconCheckState = null, this.iconWeapon = null, this.textName = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.textRarity = null, this.textSummary = null, this.iconLock = null, this.background = null, this.clickArea = null, this.containerName = null, this.containerSummary = null, this.maskName = null, this.maskSummary = null
+        }, e.prototype.update = function (t, e, i, n, o, r, a, _, l) {
+            switch (this.containerName.cacheAsBitmap = !1, this.containerSummary.cacheAsBitmap = !1, this.memSlotId = t, this.iconWeapon.update(e), this.textName.text = i, this.airPlaneLevel.update(n), this.slotItemLevel.update(o), this.iconLock.visible = !1, _ && (this.iconLock.visible = !0), this.textRarity.text = s.SlotConst.SLOTITEM_RARITY_NAMES[r], this.textSummary.text = a, l) {
+                case f.DISABLE:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(12);
+                    break;
+                case f.OFF:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13);
+                    break;
+                case f.ON:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14)
             }
-            return null
+            this.textRarity.position.set(391 - Math.floor(this.textRarity.width / 2), 10), this.containerName.cacheAsBitmap = !0, this.containerSummary.cacheAsBitmap = !0
         }, e
-    }(PIXI.Container);
-    e.SlotItemFilterButton = l
+    }(PIXI.Container)
 }

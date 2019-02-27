@@ -19,21 +19,34 @@ const function885 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(0),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kousyou/createship_speedchange", n.api_kdock_id = e, n.isLarge = i, n
+    var o = i(0),
+        r = i(7),
+        s = i(10),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kousyou/getship", i.api_kdock_id = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_highspeed = 1, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "ship", {
+                get: function () {
+                    return this._ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kDocks", {
+                get: function () {
+                    return this._kDocks
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_kdock_id = this.api_kdock_id, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e = r.default.model.useItem.get(2),
-                    i = r.default.model.kdock.get(this.api_kdock_id),
-                    n = this.isLarge ? 10 : 1;
-                e.__setCount__(e.count - n), i.__complete__(), t.prototype._completedEnd.call(this)
+                var e = r.ObjUtil.getObject(this._raw_data, "api_ship");
+                this._ship = o.default.model.ship.updateData(e);
+                var i = r.ObjUtil.getObjectArray(this._raw_data, "api_slotitem");
+                o.default.model.slot.addMemData(i), this._kDocks = r.ObjUtil.getObjectArray(this._raw_data, "api_kdock"), t.prototype._completedEnd.call(this)
             }, e
-        }(o.APIBase);
-    e.CreateShipSpeedChangeAPI = s
+        }(s.APIBase);
+    e.GetShipAPI = a
 }

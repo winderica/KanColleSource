@@ -4,30 +4,11 @@ const function260 = function (t, e, i) {
         value: !0
     });
     ! function (t) {
-        function e(e) {
-            return e && t.hasItem(e) ? decodeURI(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + encodeURI(e).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1")) : null
+        function e(t, e) {
+            e || (e = "YYYY/MM/DD hh:mm:ss");
+            var i = new Date(t);
+            return e = e.replace(/YYYY/g, i.getFullYear().toString()), e = e.replace(/MM/g, ("0" + (i.getMonth() + 1)).slice(-2)), e = e.replace(/DD/g, ("0" + i.getDate()).slice(-2)), e = e.replace(/hh/g, ("0" + i.getHours()).slice(-2)), e = e.replace(/mm/g, ("0" + i.getMinutes()).slice(-2)), e = e.replace(/ss/g, ("0" + i.getSeconds()).slice(-2))
         }
-
-        function i(t, e, i, n, o, r) {
-            if (t && !/^(?:expires|max\-age|path|domain|secure)$/i.test(t)) {
-                var s = "";
-                if (i) switch (i.constructor) {
-                    case Number:
-                        s = i === 1 / 0 ? "; expires=Tue, 19 Jan 2038 03:14:07 GMT" : "; max-age=" + i;
-                        break;
-                    case String:
-                        s = "; expires=" + i;
-                        break;
-                    case Date:
-                        s = "; expires=" + i.toUTCString()
-                }
-                document.cookie = encodeURI(t) + "=" + encodeURI(e) + s + (o ? "; domain=" + o : "") + (n ? "; path=" + n : "") + (r ? "; secure" : "")
-            }
-        }
-
-        function n(t) {
-            return new RegExp("(?:^|;\\s*)" + encodeURI(t).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=").test(document.cookie)
-        }
-        t.getItem = e, t.setItem = i, t.hasItem = n
-    }(e.CookieUtil || (e.CookieUtil = {}))
+        t.format = e
+    }(e.DateUtil || (e.DateUtil = {}))
 }

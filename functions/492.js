@@ -8,40 +8,19 @@ const function492 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mapID", {
+            return Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
                     return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "areaID", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_maparea_id")
+                    return n.ObjUtil.getNumber(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "mapNo", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "mapBGMID", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_moving_bgm")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getBGM = function (t, e) {
-                var i;
-                i = 0 == e ? n.ObjUtil.getNumArray(this._o, "api_map_bgm") : n.ObjUtil.getNumArray(this._o, "api_boss_bgm");
-                var o = t ? 1 : 0;
-                return null == i || i.length <= o ? t ? 2 : 1 : i[o]
-            }, t.prototype.getDayBGM = function (t) {
-                return this.getBGM(!1, t)
-            }, t.prototype.getNightBGM = function (t) {
-                return this.getBGM(!0, t)
-            }, t
+            }), t
         }();
-    e.BattleBGMMstModel = o
+    e.BGMMstModel = o
 }

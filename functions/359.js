@@ -19,30 +19,34 @@ const function359 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onGo = function (t, e) {
-                    void 0 === t && (t = 0), null != i._cb && i._cb(t, e)
-                }, i._onCancel = function () {
-                    null != i._cb && 1 == i._cancelArea.buttonMode && i._cb(0, -1)
-                }, i._cb = e, i._cancelArea = new o.FadeBox(.2), i._cancelArea.hide(0), i._cancelArea.interactive = !0, i.addChild(i._cancelArea), i
+    var o = i(37),
+        r = i(360),
+        s = i(974),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._banners = [], e._levels = [], e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "cancelArea", {
-                get: function () {
-                    return this._cancelArea
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.activate = function () {
-                this._cancelArea.buttonMode = !0, this._cancelArea.on(r.EventType.CLICK, this._onCancel)
-            }, e.prototype.deactivate = function () {
-                this._cancelArea.buttonMode = !1, this._cancelArea.off(r.EventType.CLICK, this._onCancel)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._cancelArea = null, this._cb = null
+            return n(e, t), e.prototype.dispose = function () {
+                for (var t = 0, e = this._banners; t < e.length; t++) {
+                    e[t].dispose()
+                }
+            }, e.prototype.update = function (t) {
+                for (o.TaskLoadShipResource.abortBy(this); this._banners.length > 0;) {
+                    var e = this._banners.pop();
+                    null != e.parent && e.parent.removeChild(e), e.dispose()
+                }
+                for (; this._levels.length > 0;) {
+                    var i = this._levels.pop();
+                    null != i.parent && i.parent.removeChild(i)
+                }
+                for (var n = 0; n < t.length; n++) {
+                    var a = new r.CompBannerAndLack;
+                    a.position.set(0, 75 * n), a.initialize(), a.update(t[n], !0), this.addChild(a), this._banners.push(a);
+                    var _ = new s.CompBannerLevel;
+                    _.position.set(201, 75 * n), _.initialize(), _.update(t[n]), this.addChild(_), this._levels.push(_)
+                }
             }, e
         }(PIXI.Container);
-    e.ContainerDeckSelectBase = s
+    e.PanelDeckSelectBanners = a
 }

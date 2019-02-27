@@ -1,178 +1,118 @@
 const function791 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(37),
-        s = i(8),
-        a = i(6),
-        _ = i(87),
-        l = i(792),
-        u = i(800),
-        c = i(802),
-        h = i(805),
-        p = i(806),
-        d = i(808),
-        f = i(49),
-        y = function () {
-            function t(t) {
-                var e = this;
-                this._onClickEmpty = function (t) {
-                    var i = [];
-                    i.push(e.memShipId), e.targetShips.forEach(function (t) {
-                        i.push(t.memID)
-                    });
-                    var n = new c.TaskShipChoice(e.mainView);
-                    n.onClickShip = function (t) {
-                        var i = o.default.model.ship.get(e.memShipId),
-                            n = o.default.model.ship.getMst(i.mstID),
-                            r = [],
-                            s = o.default.model.ship.get(t);
-                        e.targetShips.push(s), e.targetShips.forEach(function (t) {
-                            var e = o.default.model.ship.getMst(t.mstID);
-                            r.push(e)
-                        });
-                        var a = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                        e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, a.karyoku, a.raiso, a.taiku, a.souko, a.lucky, a.checkBonusLucky, a.checkBonusTaikyu, a.checkBonusTaisen)
-                    }, n.onComplete = function () {
-                        n.dispose(), e.taskShipChoice = null
-                    }, e.taskShipChoice = n, n.start(i, 0)
-                }, this._onClickCancel = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.clickGuardKindaika.width = n.default.width, o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardKindaika).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e.powerUpEdit).to({
-                        x: n.default.width
-                    }, t).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickStart = function () {
-                    e.clickGuardConfirm.alpha = 0, e.powerUpStartConfirm.alpha = 0;
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0;
-                    var i = o.default.model.ship.get(e.memShipId),
-                        n = o.default.model.ship.getMst(i.mstID),
-                        r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpStartConfirm.update(i, e.targetShips, s), createjs.Tween.get(e.clickGuardConfirm).to({
-                        alpha: 1
-                    }, t), createjs.Tween.get(e.powerUpStartConfirm).to({
-                        alpha: 1
-                    }, t).call(function () {
-                        e.mainView.visible = !1, o.default.view.clickGuard = !1
-                    })
-                }, this._onClickPowerUpStartYES = function () {
-                    o.default.view.clickGuard = !0;
-                    var t = o.default.model.ship.get(e.memShipId),
-                        i = o.default.model.ship.getMst(t.mstID),
-                        n = new Array;
-                    e.targetShips.forEach(function (t) {
-                        n.push(t.memID)
-                    });
-                    var r = new h.PowerUpAPI(e.memShipId, n);
-                    o.default.sound.voice.playAtRandom(t.mstID.toString(), [9, 10], [50, 50]), r.start(function () {
-                        e.powerUpEdit.shipInfoBox.update(t.shipTypeName, t.name, t.level, t.starNum), e.onUpdateShip();
-                        var s, a = r.api_powerup_flag,
-                            _ = n.length;
-                        s = 1 == a ? new d.PowerUpAnimationSuccess(_, e.mainView) : new p.PowerUpAnimationFailed(_, e.mainView);
-                        var l = t.mstID,
-                            u = t.isDamaged(),
-                            c = o.default.model.ship_graph.get(l).getCenterOffset(u);
-                        s.preload(l, u, c, function () {
-                            o.default.view.clickGuard = !1, o.default.view.overLayer.addChild(e.animationClickGuard, s), s.play(function () {
-                                e.targetShips.length = 0, e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(t, i, 0, 0, 0, 0, 0, !1, !1, !1), o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm)
-                            }, function () {
-                                s.dispose(), o.default.view.overLayer.removeChild(e.animationClickGuard), o.default.view.overLayer.removeChild(s), o.default.view.portMain.updateInfo()
-                            })
-                        })
-                    })
-                }, this._onClickPowerUpStartNO = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.mainView.visible = !0, o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardConfirm).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e.powerUpStartConfirm).to({
-                        alpha: 0
-                    }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm), o.default.view.clickGuard = !1
-                    })
-                }, this._onClickSlotIn = function (t) {
-                    e.targetShips.splice(t, 1);
-                    var i = o.default.model.ship.get(e.memShipId),
-                        n = o.default.model.ship.getMst(i.mstID),
-                        r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, s.karyoku, s.raiso, s.taiku, s.souko, s.lucky, s.checkBonusLucky, s.checkBonusTaikyu, s.checkBonusTaisen)
-                }, this.mainView = t;
-                this.clickGuardKindaika = new s.AreaBox(.5), this.clickGuardKindaika.height = n.default.height - 103, this.clickGuardKindaika.position.set(0, 103), this.clickGuardConfirm = new s.AreaBox(1), this.clickGuardConfirm.height = n.default.height, this.clickGuardConfirm.position.set(0, 0), this.animationClickGuard = new s.AreaBox(0), this.animationClickGuard.renderable = !1, this.powerUpStartConfirm = new u.PowerUpStartConfirm, this.powerUpEdit = new l.PowerUpEdit
+    var o = i(21),
+        r = i(333),
+        s = i(792),
+        a = i(793),
+        _ = i(794),
+        l = i(796),
+        u = i(797),
+        c = i(798),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.headerKindaika = new a.PowerUpHeader;
+                var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(12));
+                i.interactive = !0, e._containerShipFull = new PIXI.Container;
+                var n = new PIXI.Graphics;
+                return e._shipFull = new PIXI.Sprite, e._containerShipFull.position.set(-1, -1), e._containerShipFull.mask = n, e._containerShipFull.addChild(e._shipFull, n), e._cancelButton = new r.CancelButton, e._shipInfoBox = new _.ShipInfoBox, e._karyokuBeforeAfterConfirm = new s.KaryokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm = new s.RaisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm = new s.SoukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm = new s.TaikuBeforeAfterConfirm, e._shipParameterChecker = new c.ShipParameterChecker, e._targetShipBox = new u.TargetShipBox, e._startButton = new l.StartButton, n.beginFill(0, 0), n.moveTo(0, 30), n.lineTo(30, 0), n.lineTo(1050, 0), n.lineTo(1050, 569), n.lineTo(29, 569), n.lineTo(0, 537), n.lineTo(0, 30), n.endFill(), n.renderable = !1, e._cancelButton.width = 198, e._cancelButton.height = 56, e._cancelButton.position.set(543, 498), e._startButton.position.set(755, 483), e._targetShipBox.position.set(534, 11), e._shipInfoBox.position.set(11, 334), e.headerKindaika.position.set(0, -41), e._shipParameterChecker.position.set(255, 343), e.addChild(i, e._containerShipFull, e._shipInfoBox, e._cancelButton, e._startButton, e._karyokuBeforeAfterConfirm, e._raisouBeforeAfterConfirm, e._soukouBeforeAfterConfirm, e._taikuBeforeAfterConfirm, e._shipParameterChecker, e.headerKindaika, e._targetShipBox), e
             }
-            return t.prototype.start = function (t) {
-                var e = this;
-                o.default.view.clickGuard = !0, a.SE.play("249"), this.targetShips = [];
-                var i = o.default.model.ship.get(t),
-                    r = o.default.model.ship.getMst(i.mstID);
-                this.powerUpEdit.targetShipBox.onClickEmpty = this._onClickEmpty, this.powerUpEdit.targetShipBox.onClickSlotIn = this._onClickSlotIn, this.powerUpEdit.cancelButton.initialize(this._onClickCancel), this.powerUpEdit.startButton.onClick = this._onClickStart, this.powerUpStartConfirm.onClickNO = this._onClickPowerUpStartNO, this.powerUpStartConfirm.onClickYES = this._onClickPowerUpStartYES, this.memShipId = t, this.powerUpEdit.shipInfoBox.update(i.shipTypeName, i.name, i.level, i.starNum), this._updatePowerUp_(i, r, 0, 0, 0, 0, 0, !1, !1, !1), this._updateShipFull_(i.mstID, i.isDamaged()), this.powerUpEdit.targetShipBox.update(this.targetShips), this.clickGuardKindaika.alpha = 0, this.powerUpEdit.position.set(n.default.width, 140), this.mainView.addChild(this.clickGuardKindaika, this.powerUpEdit);
-                var s = f.UISettings.DIALOG_FADETIME;
-                createjs.Tween.get(this.clickGuardKindaika).to({
-                    alpha: 1
-                }, s), createjs.Tween.get(this.powerUpEdit).to({
-                    x: 174
-                }, s).call(function () {
-                    e.clickGuardKindaika.width = 212, o.default.view.clickGuard = !1
-                })
-            }, t.prototype.dispose = function () {
-                this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null, this.mainView.removeChild(this.clickGuardKindaika), this.mainView.removeChild(this.powerUpEdit), this._onClickEmpty = null, this._onClickSlotIn = null, this.onComplete = null, this.onUpdateShip = null, this.mainView = null, this.powerUpEdit && (this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, this.powerUpEdit.dispose()), this.powerUpEdit = null, this.clickGuardKindaika = null, this.animationClickGuard = null, this.powerUpStartConfirm && this.powerUpStartConfirm.dispose(), this.powerUpStartConfirm = null, this.clickGuardConfirm = null, this.targetShips = null, this.memShipId = null, this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null
-            }, t.prototype._updatePowerUp_ = function (t, e, i, n, o, r, s, a, _, l) {
-                var u = t.karyoku - (e.hougMin + t.gradeUpHoug),
-                    c = t.raisou - (e.raigMin + t.gradeUpRaig),
-                    h = t.taiku - (e.tykuMin + t.gradeUpTyku),
-                    p = t.soukou - (e.soukMin + t.gradeUpSouk),
-                    d = t.lucky - (e.luckMin + t.gradeUpLuck),
-                    f = e.hougMax + u <= t.karyoku,
-                    y = e.raigMax + c <= t.raisou,
-                    m = e.tykuMax + h <= t.taiku,
-                    g = e.soukMax + p <= t.soukou,
-                    v = e.luckMax + d <= t.lucky,
-                    b = Math.min(t.gradeUpHoug + e.hougMin + i, e.hougMax),
-                    w = Math.min(t.gradeUpRaig + e.raigMin + n, e.raigMax),
-                    x = Math.min(t.gradeUpTyku + e.tykuMin + o, e.tykuMax),
-                    I = Math.min(t.gradeUpSouk + e.soukMin + r, e.soukMax),
-                    T = Math.min(t.gradeUpLuck + e.luckMin + s, e.luckMax),
-                    O = b + u,
-                    C = w + c,
-                    P = x + h,
-                    k = I + p,
-                    M = T + d;
-                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, M, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, l);
-                var S = [a, _, l].some(function (t) {
-                        return 1 == t
-                    }),
-                    A = [f, y, m, g, v].some(function (t) {
-                        return 0 == t
-                    }),
-                    j = !1;
-                (A || S) && (O > t.karyoku || C > t.raisou || P > t.taiku || k > t.soukou || M > t.lucky || S) && (j = !0), this.powerUpEdit.startButton.update(j)
-            }, t.prototype._updateShipFull_ = function (t, e) {
-                this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, r.TaskLoadShipResource.abortBy(this.powerUpEdit.shipFull);
-                var i = new PIXI.Point(-173, -139),
-                    n = o.default.model.ship_graph.get(t).getRemodelPowupUIOffset(e),
-                    s = n.x + (e ? 51 : 75) + i.x,
-                    a = n.y + (e ? 95 : 110) + i.y;
-                if (this.powerUpEdit.shipFull.position.set(s, a), 1 == o.default.resources.isLoadedShip(t, e, "character_full")) this.powerUpEdit.shipFull.texture = o.default.resources.getShip(t, e, "character_full"), this.powerUpEdit.containerShipFull.cacheAsBitmap = !0;
-                else {
-                    this.powerUpEdit.shipFull.texture = PIXI.Texture.EMPTY;
-                    new r.TaskLoadShipResource("character_full", this.powerUpEdit.shipFull, t, e).start()
-                }
-            }, t
-        }();
-    e.TaskKindaika = y
+            return n(e, t), Object.defineProperty(e.prototype, "shipFull", {
+                get: function () {
+                    return this._shipFull
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "containerShipFull", {
+                get: function () {
+                    return this._containerShipFull
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipInfoBox", {
+                get: function () {
+                    return this._shipInfoBox
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "karyokuBeforeAfterConfirm", {
+                get: function () {
+                    return this._karyokuBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raisouBeforeAfterConfirm", {
+                get: function () {
+                    return this._raisouBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "soukouBeforeAfterConfirm", {
+                get: function () {
+                    return this._soukouBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taikuBeforeAfterConfirm", {
+                get: function () {
+                    return this._taikuBeforeAfterConfirm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shipParameterChecker", {
+                get: function () {
+                    return this._shipParameterChecker
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "targetShipBox", {
+                get: function () {
+                    return this._targetShipBox
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "startButton", {
+                get: function () {
+                    return this._startButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "cancelButton", {
+                get: function () {
+                    return this._cancelButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.SetPos_karyokuBeforeAfterConfirm = function (t) {
+                this._karyokuBeforeAfterConfirm.position.set(252, 26 - (t ? 3 : 0))
+            }, e.prototype.SetPos_raisouBeforeAfterConfirm = function (t) {
+                this._raisouBeforeAfterConfirm.position.set(252, 100 - (t ? 3 : 0))
+            }, e.prototype.SetPos_taikuBeforeAfterConfirm = function (t) {
+                this._taikuBeforeAfterConfirm.position.set(252, 170 - (t ? 3 : 0))
+            }, e.prototype.SetPos_soukouBeforeAfterConfirm = function (t) {
+                this._soukouBeforeAfterConfirm.position.set(252, 242 - (t ? 3 : 0))
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._containerShipFull.removeChildren(), this._containerShipFull.mask = null, this.headerKindaika.dispose(), this._shipInfoBox.dispose(), this._karyokuBeforeAfterConfirm.dispose(), this._raisouBeforeAfterConfirm.dispose(), this._soukouBeforeAfterConfirm.dispose(), this._taikuBeforeAfterConfirm.dispose(), this._shipParameterChecker.dispose(), this._targetShipBox.dispose(), this._startButton.dispose(), this._cancelButton.dispose(), this.headerKindaika = null, this._shipFull = null, this._containerShipFull = null, this._shipInfoBox = null, this._karyokuBeforeAfterConfirm = null, this._raisouBeforeAfterConfirm = null, this._soukouBeforeAfterConfirm = null, this._taikuBeforeAfterConfirm = null, this._shipParameterChecker = null, this._targetShipBox = null, this._startButton = null, this._cancelButton = null
+            }, e
+        }(PIXI.Container);
+    e.PowerUpEdit = h
 }

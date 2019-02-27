@@ -19,11 +19,33 @@ const function278 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e
-    }(PIXI.Container);
-    e.CircleContent = o
+    var o = i(0),
+        r = i(1),
+        s = i(194),
+        a = i(277),
+        _ = i(279),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    0 == o.default.scene.now ? o.default.view.portMain.showPortUI(!1) : o.default.scene.change(0)
+                }, e._background = new PIXI.Sprite, e.addChild(e._background), e._content = new _.CircleContentWithSwitching, e.addChild(e._content), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._background.texture = s.PORT_SKIN_2.getTexture(0), this._background.position.set(-46, -55), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(r.EventType.CLICK, this._onClick), this._startAnimation()
+            }, e.prototype.dispose = function () {
+                this._hit_area.interactive = !1, this._hit_area.buttonMode = !1, this._hit_area.off(r.EventType.CLICK, this._onClick), this._content.dispose(), this._stopAnimation(), this._content_tween = null
+            }, e.prototype.startMoveAnimation = function (t) {
+                this._content.startAnimation(t)
+            }, e.prototype._startAnimation = function () {
+                null == this._content_tween ? this._content_tween = createjs.Tween.get(this._content, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 3e4) : this._content_tween.play(null)
+            }, e.prototype._stopAnimation = function () {
+                null != this._content_tween && this._content_tween.setPaused(!0)
+            }, e
+        }(a.CircleContent);
+    e.CircleContentSkin2 = l
 }

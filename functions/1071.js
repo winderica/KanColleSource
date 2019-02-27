@@ -21,7 +21,7 @@ const function1071 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(15),
+        s = i(25),
         a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -31,10 +31,10 @@ const function1071 = function (t, e, i) {
                 this._target = null
             }, e.prototype._start = function () {
                 var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._mst_id, !1, "card"), e.load(function () {
+                    e = new s.SlotLoader;
+                e.add(this._mst_id, "card"), e.load(function () {
                     if (null != t._target) {
-                        var e = o.default.resources.getShip(t._mst_id, !1, "card");
+                        var e = o.default.resources.getSlotitem(t._mst_id, "card");
                         t._target.texture = e
                     }
                     t._endTask()
@@ -43,5 +43,5 @@ const function1071 = function (t, e, i) {
                 this._target = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskShowShipCard = a
+    e.TaskShowSlotCard = a
 }

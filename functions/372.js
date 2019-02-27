@@ -19,36 +19,14 @@ const function372 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(232),
-        s = i(995),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                return t.call(this, e, i, n, o, r) || this
+    var o = i(54),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._setPositions = function () {
-                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-            }, e.prototype._getNoneTexture = function () {
-                switch (this._type) {
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(29);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(30)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._getFocusTexture = function () {
-                switch (this._type) {
-                    case 1:
-                        return o.SALLY_EVENT.getTexture(28);
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(26);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(27)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._createLock = function () {
-                return new s.EventMapThumbnailLocked(this._type)
+            return n(e, t), e.prototype.update = function (t) {
+                this.visible = !0, 3 == t ? this.texture = o.SALLY_PRACTICE.getTexture(17) : 2 == t ? this.texture = o.SALLY_PRACTICE.getTexture(18) : 1 == t ? this.texture = o.SALLY_PRACTICE.getTexture(16) : this.visible = !1
             }, e
-        }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+        }(PIXI.Sprite);
+    e.CompFlag = r
 }

@@ -19,48 +19,20 @@ const function1010 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(8),
-        s = i(37),
-        a = i(1011),
-        _ = i(1012),
-        l = i(373),
-        u = i(1013),
-        c = i(1014),
-        h = i(374),
-        p = i(1),
-        d = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClose = function () {
-                    null != n._cb_onClose && n._cb_onClose()
-                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
+    var o = i(54),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.initialize(), this._detail.initialize();
-                for (var t = 0; t < 6; t++) {
-                    var e = new u.CompRivalShip;
-                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
-                }
-                this._btn.initialize(), this._btn_close.initialize()
-            }, e.prototype.update = function (t) {
-                this._detail.update(t), this._flag.update(t.flag_type);
-                for (var e = 0; e < this._ships.length; e++) {
-                    var i = this._ships[e],
-                        n = t.ships[e];
-                    i.update(n)
-                }
-            }, e.prototype.activate = function () {
-                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
-            }, e.prototype.deactivate = function () {
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
-            }, e.prototype.dispose = function () {
-                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
-                for (var t = 0, e = this._ships; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
+                this.texture = o.SALLY_PRACTICE.getTexture(28);
+                var t = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(29));
+                t.position.set(40, 57), this.addChild(t);
+                var e = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(30));
+                e.position.set(102, 64), this.addChild(e);
+                var i = new PIXI.Sprite(o.SALLY_PRACTICE.getTexture(32));
+                i.position.set(132, 64), this.addChild(i)
             }, e
-        }(PIXI.Container);
-    e.UserinfoPanel = d
+        }(PIXI.Sprite);
+    e.UserinfoPanelBG = r
 }

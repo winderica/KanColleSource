@@ -20,27 +20,29 @@ const function414 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(13),
-        s = i(240),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+        r = i(415),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._result = [], n._layer = e, n._candidates_list = null == i ? [] : i.concat(), n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("duty");
-                e.add("duty_common.json"), e.load(function () {
-                    t._loadPosterGirlResoueces()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                if (0 == this._candidates_list.length) return void this._endTask();
+                var e = this._candidates_list.shift(),
+                    i = new r.TaskRewardSelect(this._layer, e);
+                i.start(function () {
+                    t._result.push(i.result), t._start()
                 })
-            }, e.prototype._loadPosterGirlResoueces = function () {
-                var t = this,
-                    e = new r.UIImageLoader("duty");
-                e.add("poster_girl/" + s.POSTER_GIRL + "1.png", s.POSTER_KEY_1), e.add("poster_girl/" + s.POSTER_GIRL + "2.png", s.POSTER_KEY_2), e.load(function () {
-                    t._endTask()
-                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._candidates_list = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskLoadResources = a
+    e.TaskRewardSelectMulti = s
 }

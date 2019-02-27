@@ -19,45 +19,51 @@ const function1142 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
+    var o = i(3),
+        r = i(1),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._btn = new a(e), i.addChild(i._btn), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._btn.initialize()
+            }, e.prototype.activate = function () {
+                this._btn.activate()
+            }, e.prototype.update = function (t) {
+                this._btn.update(t), 0 == t ? this._btn.position.set(801, 667) : this._btn.position.set(207, 666)
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn.dispose()
             }, e
-        }(o.APIBase);
-    e.PurchasedItemPickupAPI = s;
-    var a = function () {
-        function t() {}
-        return Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t
-    }();
-    e.PurchasedItemPickupResult = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+        }(PIXI.Container);
+    e.TabContainer = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onClick = function () {
+                null != i._cb_onClick && i._cb_onClick()
+            }, i._cb_onClick = e, i._over = new PIXI.Sprite, i.addChild(i._over), i.interactive = !0, i
         }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
+        return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
+            0 == t ? (this._texture = o.ITEM_ISHOP.getTexture(6), this._over.texture = o.ITEM_ISHOP.getTexture(7)) : (this._texture = o.ITEM_ISHOP.getTexture(4), this._over.texture = o.ITEM_ISHOP.getTexture(5))
+        }, e.prototype.activate = function () {
+            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this._startTween())
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._stopTween()
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e.prototype._startTween = function () {
+            null == this._t && (this._over.alpha = 0, this._t = createjs.Tween.get(this._over, {
+                loop: !0
+            }).to({
+                alpha: 1
+            }, 500).to({
+                alpha: 0
+            }, 500))
+        }, e.prototype._stopTween = function () {
+            null != this._t && (this._over.alpha = 0, this._t.setPaused(!0), this._t = null)
         }, e
-    }(a)
+    }(PIXI.Sprite)
 }

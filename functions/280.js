@@ -19,48 +19,57 @@ const function280 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(586),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(17),
+        s = i(10),
+        a = i(7),
+        _ = function (t) {
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i._url = "api_port/port", i._debug = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._skipTween(), null == this._content && (this._content = new s, this._content.initialize(this._getTexture(0), this._getTextureOver(0)), this.addChild(this._content))
-            }, e.prototype.dispose = function () {
-                this._stopTween(), null != this._content && this._content.dispose(), null != this._content_tmp && this._content_tmp.dispose()
-            }, e.prototype.startAnimation = function (t) {
-                var e = this;
-                this._skipTween(), this._content_tmp = new s, this._content_tmp.initialize(this._getTexture(t), this._getTextureOver(t)), this._content_tmp.alpha = 0, this.addChild(this._content_tmp), this._tween = createjs.Tween.get(this._content_tmp).to({
-                    alpha: 1
-                }, 600).call(function () {
-                    e._content.dispose(), e.removeChild(e._content), e._content = e._content_tmp, e._content_tmp = null
-                })
-            }, e.prototype._stopTween = function () {
-                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-            }, e.prototype._skipTween = function () {
-                this._stopTween(), null != this._content_tmp && (this._content.dispose(), this.removeChild(this._content), this._content_tmp.alpha = 1, this._content = this._content_tmp, this._content_tmp = null)
-            }, e.prototype._getTexture = function (t) {
-                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(4) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(6) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(8) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(12) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(10) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(0) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(14) : o.PORT_SKIN_CIRCLE_2.getTexture(2)
-            }, e.prototype._getTextureOver = function (t) {
-                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(5) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(7) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(9) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(13) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(11) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(1) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(15) : o.PORT_SKIN_CIRCLE_2.getTexture(3)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, this._post_data.api_port = this._createKey(o.default.model.basic.member_id), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.setUserData(a.ObjUtil.getObject(this._raw_data, "api_basic")), e.setPortBGMID(a.ObjUtil.getNumber(this._raw_data, "api_p_bgm_id")), e.setDutyExcutableCount(a.ObjUtil.getNumber(this._raw_data, "api_parallel_quest_count")), e.setDestroyShipSlotType(a.ObjUtil.getNumber(this._raw_data, "api_dest_ship_slot")), e.setEventData(a.ObjUtil.getObject(this._raw_data, "api_event_object")), e.setCFlag(a.ObjUtil.getNumber(this._raw_data, "api_c_flag")), o.default.model.deck.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_deck_port")), o.default.model.deck.combined.__update__(a.ObjUtil.getNumber(this._raw_data, "api_combined_flag")), o.default.model.log.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_log")), o.default.model.ship.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ship")), o.default.model.useItem.setMaterialData(a.ObjUtil.getObjectArray(this._raw_data, "api_material")), o.default.model.ndock.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ndock"));
+                var i = o.default.model.slot,
+                    n = a.ObjUtil.getObject(this._raw_data, "api_plane_info");
+                if (null != n) {
+                    var r = a.ObjUtil.getNumArray(n, "api_base_convert_slot");
+                    null != r ? i.setAirUnitRelocation(r) : i.setAirUnitRelocation(null);
+                    var s = a.ObjUtil.getObjectArray(n, "api_unset_slot");
+                    if (null != s)
+                        for (var _ = 0, l = s; _ < l.length; _++) {
+                            var u = l[_],
+                                c = a.ObjUtil.getNumber(u, "api_type3No"),
+                                h = a.ObjUtil.getNumArray(u, "api_slot_list");
+                            i.updateUnsetData(c, h)
+                        }
+                } else i.setAirUnitRelocation(null);
+                t.prototype._completedEnd.call(this)
+            }, e.prototype._getSeed = function (t) {
+                return r.PORT_API_SEED[t % 10]
+            }, e.prototype._createKey = function (t) {
+                var e = this._getSeed(t),
+                    i = Math.floor(Date.now() / 1e3),
+                    n = 1e3 * (Math.floor(9 * Math.random()) + 1) + t % 1e3,
+                    o = Math.floor(8999 * Math.random()) + 1e3,
+                    r = Math.floor(32767 * Math.random()) + 32768,
+                    s = Math.floor(10 * Math.random()),
+                    a = Math.floor(10 * Math.random()),
+                    _ = Math.floor(10 * Math.random()),
+                    l = parseInt(t.toString().substr(0, 4)),
+                    u = (4132653 + r) * (l + 1e3) - i + (1875979 + 9 * r),
+                    c = u - t,
+                    h = c * e,
+                    p = n.toString() + h.toString() + o.toString();
+                p = s.toString() + p;
+                var d = p.substr(0, 8),
+                    f = p.substr(8);
+                return p = d + a + f, d = p.substr(0, 18), f = p.substr(18), (p = d + _ + f) + r.toString()
             }, e
-        }(PIXI.Container);
-    e.CircleContentWithSwitching = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._under = new PIXI.Sprite, e.addChild(e._under), e._over = new PIXI.Sprite, e.addChild(e._over), e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._under.texture = t, this._over.texture = e, this.pivot.x = Math.round(this._under.width / 2), this.pivot.y = Math.round(this._under.height / 2), this._over.alpha = 0, this._tween = createjs.Tween.get(this._over, {
-                loop: !0
-            }).to({
-                alpha: .6
-            }, 1e3, createjs.Ease.getPowOut(4)).to({
-                alpha: 0
-            }, 1e3, createjs.Ease.getPowIn(4))
-        }, e.prototype.dispose = function () {
-            null != this._tween && this._tween.setPaused(!0), this._tween = null
-        }, e
-    }(PIXI.Container)
+        }(s.APIBase);
+    e.PortAPI = _
 }

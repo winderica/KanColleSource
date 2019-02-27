@@ -20,75 +20,95 @@ const function1137 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(239),
-        s = i(401),
-        a = i(27),
-        _ = i(173),
-        l = i(1138),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onResult = function (t) {
-                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
-                }, n._layer = e, n._target = i, n
+        r = i(31),
+        s = i(127),
+        a = i(167),
+        _ = i(155),
+        l = i(126),
+        u = i(104),
+        c = i(6),
+        h = i(129),
+        p = i(1138),
+        d = i(89),
+        f = i(116),
+        y = i(116),
+        m = i(116),
+        v = i(116),
+        g = i(116),
+        b = i(238),
+        w = i(398),
+        x = i(1139),
+        I = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelect = function (t) {
+                    var e = i._purchasedItems.getData(t);
+                    i._detail_panel.update(e)
+                }, i._onPickup = function (t) {
+                    if (16 == t.id) {
+                        var e = o.default.model.const.boko_max_ships,
+                            n = o.default.model.basic.shipMax;
+                        if (n >= e) return void c.SE.play("248");
+                        c.SE.play("244")
+                    } else c.SE.play("243");
+                    var r = new p.PurchasedItemPickupAPI(t.id, !1),
+                        s = r.result;
+                    r.start(function () {
+                        i._detail_panel.update(null), 1 == s.hasCaution() ? i._confirm(t) : i._AfterPickup(t)
+                    })
+                }, i._purchasedItems = e, i._bg = new PIXI.Sprite, i._bg.position.set(202, 201), i.addChild(i._bg), i._detail_panel = new x.PurchasedItemDetailPanel(i._onPickup), i._detail_panel.position.set(904, 201), i.addChild(i._detail_panel), i._icon_layer = new PIXI.Container, i.addChild(i._icon_layer), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this,
-                    e = new r.TaskLoadResources;
-                e.addUseitem(4), e.addSlotitem(169), e.addSlotitem(187), e.addFurniture(412), e.start(function () {
-                    t._showDialog()
-                })
-            }, e.prototype._showDialog = function () {
-                this._dialog = new l.SetsubunUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 1, this._layer.addChild(this._dialog), this._dialog.activate()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = (o.default.view.overLayer, new s.UseItemUseAPI(e, !1, i)),
-                    r = n.result;
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = h.ITEM_ILIST.getTexture(14), this._detail_panel.initialize(), this._icons = [];
+                for (var t = f.PAYITEMLIST_ORDER.length, e = 0; e < t; e++) {
+                    var i = new w.PayItemIcon(this._onSelect);
+                    i.x = 238 + e % 7 * 84, e % 7 >= 3 && (i.x += 54), i.y = 265 + 112 * Math.floor(e / 7), i.initialize(), this._icon_layer.addChild(i), this._icons.push(i)
+                }
+            }, e.prototype.update = function () {
+                this._detail_panel.update(null);
+                for (var t = 0; t < this._icons.length; t++) {
+                    var e = this._icons[t],
+                        i = f.PAYITEMLIST_ORDER[t],
+                        n = this._purchasedItems.getData(i),
+                        o = null == n ? 0 : n.count;
+                    e.update(i, o)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this._icon_layer.removeChildren(), this._icon_layer = null;
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    i.deactivate(), i.dispose()
+                }
+                this._icons = null, this._detail_panel.dispose(), this._detail_panel = null, this._purchasedItems = null, this.removeChildren()
+            }, e.prototype._confirm = function (t) {
+                var e = this,
+                    i = o.default.view.overLayer,
+                    n = new b.TaskItemOverflowConfirm(i);
                 n.start(function () {
-                    if (1 == r.hasCaution()) t._hideDialog(!0);
-                    else {
-                        if (82 == i) {
-                            o.default.model.furniture.getData(412).updateHasFlag(!0)
-                        }
-                        if (83 == i) {
-                            var e = o.default.model.useItem.getMaterialCounts(),
-                                n = e.devKit - 10,
-                                s = o.default.model.useItem.get(3);
-                            s.__setCount__(n)
-                        }
-                        if (84 == i) {
-                            var e = o.default.model.useItem.getMaterialCounts(),
-                                n = e.devKit - 40,
-                                s = o.default.model.useItem.get(3);
-                            s.__setCount__(n), o.default.model.basic.setCFlag(1)
-                        }
-                        t._result = r, t._hideDialog(!1)
+                    if (1 == n.result) {
+                        var i = new p.PurchasedItemPickupAPI(t.id, !0);
+                        i.result;
+                        i.start(function () {
+                            e._AfterPickup(t)
+                        })
                     }
                 })
-            }, e.prototype._hideDialog = function (t) {
-                this._dialog.dispose(), this._layer.removeChild(this._dialog), this._dialog = null, 1 == t ? this._confirm() : this._endTask()
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced_use_type,
-                    n = this._layer,
-                    o = new _.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new s.UseItemUseAPI(e, !0, i),
-                            r = n.result;
-                        n.start(function () {
-                            t._result = r, t._endTask()
-                        })
-                    } else t._endTask()
+            }, e.prototype._AfterPickup = function (t) {
+                var e = this,
+                    i = t.id,
+                    n = new r.APIConnector;
+                m.RELATED_USERDATA_PAYITEM.indexOf(i) >= 0 && n.add(new _.UserDataAPI), v.RELATED_SLOTITEM_PAYITEM.indexOf(i) >= 0 && (n.add(new l.UserSlotItemAPI), n.add(new s.UnsetSlotAPI)), g.RELATED_USEITEM_PAYITEM.indexOf(i) >= 0 && n.add(new u.UseItemAPI), y.RELATED_MATERIAL_PAYITEM.indexOf(i) >= 0 && n.add(new a.MaterialAPI), n.start(function () {
+                    t.setCount(t.count - 1), e.update(), o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo()
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(a.TaskWithResult);
-    e.TaskUseSetsubun = u
+        }(d.ViewBase);
+    e.PurchasedItemListMain = I
 }

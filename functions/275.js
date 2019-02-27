@@ -21,35 +21,24 @@ const function275 = function (t, e, i) {
     });
     var o = i(13),
         r = i(51),
-        s = i(149),
-        a = function (t) {
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.MapBG, e.addChild(e._bg), e._content = new PIXI.Container, e._shutter2 = new r.Shutter, e.addChild(e._content), e.addChild(e._shutter2), e
+                return e._shutter = new r.Shutter, e.addChild(e._shutter), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    return this._bg
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter2", {
-                get: function () {
-                    return this._shutter2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._shutter2.initializeDark()
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeDark(), this.shutter.close(0)
+            }, e.prototype.start = function (t) {
+                this._model = t
             }, e.prototype.dispose = function () {
-                o.UIImageLoader.clearMemoryCache("battle")
-            }, e.prototype.start = function () {}, e
+                o.UIImageLoader.clearMemoryCache("battle_result")
+            }, e
         }(PIXI.Container);
-    e.BattleSceneBase = a
+    e.BattleResultSceneBase = s
 }

@@ -20,81 +20,34 @@ const function174 = function (t, e, i) {
         value: !0
     });
     var o = i(1),
-        r = i(74),
-        s = i(1130),
-        a = i(1133),
-        _ = i(1134),
-        l = i(1135),
-        u = i(1136),
-        c = function (t) {
+        r = i(1131),
+        s = i(1132),
+        a = function (t) {
             function e(e) {
-                void 0 === e && (e = !1);
                 var i = t.call(this) || this;
-                return i._title = new PIXI.Sprite, i.addChild(i._title), e && (i._backBtn = new PIXI.Sprite, i._backBtn.interactive = !0, i._backBtn.buttonMode = !0, i._backBtn.position.set(705, 26), i.addChild(i._backBtn)), i._btns = [], i
+                return i._onMouseOver = function () {
+                    i._canvas.scale.set(1), i._level.position.set(175, 34)
+                }, i._onMouseOut = function () {
+                    i._canvas.scale.set(.9), i._level.position.set(165, 44)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._candidate)
+                }, i._cb_onClick = e, i._canvas = new PIXI.Sprite, i._canvas.position.set(113, 147), i.addChild(i._canvas), i._icon = new PIXI.Sprite, i.addChild(i._icon), i._level = new r.LevelStar, i.addChild(i._level), i._count = new s.RewardSelectDialogCount, i._count.position.set(158, 192), i.addChild(i._count), i._canvas.interactive = !0, i._onMouseOut(), i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._backBtn ? (this._title.texture = r.COMMON_SELECTABLE_REWARD.getTexture(10), this._backBtn.texture = r.COMMON_SELECTABLE_REWARD.getTexture(2), this._backBtn.on(o.EventType.CLICK, function () {
-                    e(null)
-                })) : this._title.texture = r.COMMON_SELECTABLE_REWARD.getTexture(11), this._btns = [];
-                for (var i = 0, n = t; i < n.length; i++) {
-                    var s = n[i],
-                        a = this._createBtn(s, e);
-                    this.addChild(a), this._btns.push(a)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "candidate", {
+                get: function () {
+                    return this._candidate
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._candidate = t, this._initialize(), t.level > 0 && this._level.update(t.level), this._count.initialize(), t.count > 1 ? (this._count.update(t.count), this._count.visible = !0) : this._count.visible = !1
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].activate()
-                }
+                1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(o.EventType.MOUSEOVER, this._onMouseOver), this._canvas.on(o.EventType.MOUSEOUT, this._onMouseOut), this._canvas.on(o.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.showAlert = function (t) {
-                var e = this._getBtn(t);
-                null != e && (null == this._alert && (this._alert = new u.RewardSelectDialogFurnitureAlert, this._alert.initialize(), this.addChild(this._alert)), this._alert.x = e.x + 71, this._alert.y = e.y - 20, this._alert.show())
-            }, e.prototype._createBtn = function (t, e) {
-                if (11 == t.type) {
-                    var i = new a.RewardSelectDialogShipBtn(e);
-                    return i.initialize(t), i
-                }
-                if (12 == t.type) {
-                    var i = new _.RewardSelectDialogSlotitemBtn(e);
-                    return i.initialize(t), i
-                }
-                if (13 == t.type) {
-                    var i = new l.RewardSelectDialogUseitemBtn(e);
-                    return i.initialize(t), i
-                }
-                if (14 == t.type) {
-                    var i = new s.RewardSelectDialogFurnitureBtn(e);
-                    return i.initialize(t), i
-                }
-                return null
-            }, e.prototype._getBtn = function (t) {
-                for (var e = 0, i = this._btns; e < i.length; e++) {
-                    var n = i[e];
-                    if (n.candidate == t) return n
-                }
-                return null
+                this._canvas.buttonMode = !1, this._canvas.off(o.EventType.MOUSEOVER, this._onMouseOver), this._canvas.off(o.EventType.MOUSEOUT, this._onMouseOut), this._canvas.off(o.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._candidate = null, this._cb_onClick = null
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectDialog = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function (e, i) {
-            t.prototype.initialize.call(this, e, i), this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(8), this._btns[0].position.set(130, 86), this._btns[1].position.set(407, 86), this._title.x = Math.round(this.width - this._title.width) / 2, this._title.y = 38
-        }, e
-    }(c);
-    e.RewardSelectDialog2 = h;
-    var p = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function (e, i) {
-            t.prototype.initialize.call(this, e, i), this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(9), this._btns[0].position.set(78, 86), this._btns[1].position.set(326, 86), this._btns[2].position.set(578, 86), this._title.x = Math.round(this.width - this._title.width) / 2, this._title.y = 38
-        }, e
-    }(h);
-    e.RewardSelectDialog3 = p
+        }(PIXI.Container);
+    e.RewardSelectDialogBtnBase = a
 }

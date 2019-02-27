@@ -19,27 +19,32 @@ const function871 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(872),
-        r = i(3),
-        s = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(45));
-                return e.ship = new o.NormalBuildShip, i.position.set(57, 82), e.ship.position.set(69, 15), e.addChild(i, e.ship), e
+                var e = t.call(this) || this;
+                return e.build_ship_00 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(52)), e.build_ship_01 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(53)), e.build_ship_02 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(54)), e.build_ship_03 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(55)), e.build_ship_04 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(56)), e.build_ship_00.alpha = 0, e.build_ship_01.alpha = 0, e.build_ship_02.alpha = 0, e.build_ship_03.alpha = 0, e.build_ship_04.alpha = 0, e.addChild(e.build_ship_00, e.build_ship_01, e.build_ship_02, e.build_ship_03, e.build_ship_04), e
             }
             return n(e, t), e.prototype.update = function (t) {
-                if (t <= 0) this.ship.update(0);
-                else {
-                    var e = Math.floor(this.phaseMax * t);
-                    0 == e && (e = 1), this.ship.update(e)
+                switch (this.build_ship_00.alpha = 0, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0, t) {
+                    case 1:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 0, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 2:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 0, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 3:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 0, this.build_ship_04.alpha = 0;
+                        break;
+                    case 4:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 0;
+                        break;
+                    case 5:
+                        this.build_ship_00.alpha = 1, this.build_ship_01.alpha = 1, this.build_ship_02.alpha = 1, this.build_ship_03.alpha = 1, this.build_ship_04.alpha = 1
                 }
-            }, e.prototype.updatePhaseMax = function (t) {
-                this.phaseMax = t
-            }, e.prototype.forceComplete = function () {
-                this.ship.update(this.phaseMax)
             }, e.prototype.dispose = function () {
-                this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
+                this.build_ship_00 = null, this.build_ship_01 = null, this.build_ship_02 = null, this.build_ship_03 = null, this.build_ship_04 = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.NormalBuildStage = s
+    e.NormalBuildShip = r
 }

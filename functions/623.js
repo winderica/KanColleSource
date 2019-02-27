@@ -19,35 +19,49 @@ const function623 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(9),
-        s = function (t) {
+    var o = i(9),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
+                return e._onUpdate = function () {
+                    if (e.children.length < 20 && Math.random() < .1) {
+                        var t = new s;
+                        e.addChild(t)
+                    }
+                    for (var i = 0, n = e.children; i < n.length; i++) {
+                        var o = n[i],
+                            t = o;
+                        null != t && t.update()
+                    }
+                }, e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
-            }, e.prototype.changeText = function (t) {
-                var e = this;
-                createjs.Tween.get(this._text).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._startAnimation(t)
-                })
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._text.destroy()
-            }, e.prototype._startAnimation = function (t) {
-                var e = this;
-                null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, {
+            return n(e, t), e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
                     loop: !0
-                }).wait(100).call(function () {
-                    var t = e._message.substr(0, 1);
-                    " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
-                }))
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                }).wait(35).call(this._onUpdate))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.removeChildren())
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
-        }(PIXI.Sprite);
-    e.ModelChangeMessageBox = s
+        }(PIXI.Container);
+    e.ModelChangeParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this, o.COMMON_MISC.getTexture(51)) || this;
+            return e._state = 0, e.anchor.set(.5), e.x = 600, e.y = 360 + 300 * Math.random() - 225, e.scale.set(.1), e.alpha = 0, e._dir = Math.random() < .5 ? 1 : -1, e._life = 60 * Math.random() + 30, e._xspd = 1.2 * (7 * Math.random() + 6) * e._dir, e._yspd = 1.2 * -9, e._gg = .36, e
+        }
+        return n(e, t), e.prototype.update = function () {
+            switch (this.x += this._xspd, this.y += this._yspd, this._yspd += this._gg, this.scale.x < .6 && (this.scale.x = this.scale.x + .1, this.scale.y = this.scale.y + .1), this.rotation += 3 * this._dir / 180 * Math.PI, this._state) {
+                case 0:
+                    this.alpha += .1, this.alpha >= 1 && (this._state = 1);
+                    break;
+                case 1:
+                    this._life--, this._life <= 0 && (this._state = 2);
+                    break;
+                case 2:
+                    this.parent.removeChild(this)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

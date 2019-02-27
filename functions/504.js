@@ -20,100 +20,41 @@ const function504 = function (t, e, i) {
         value: !0
     });
     var o = i(7),
-        r = function () {
-            function t(t) {
-                this._hasFlag = !1, this._o = t
+        r = i(145),
+        s = i(146),
+        a = i(187),
+        _ = i(125),
+        l = function () {
+            function t() {
+                this._arr = []
             }
-            return Object.defineProperty(t.prototype, "mstID", {
-                get: function () {
-                    return this._o.api_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "no", {
-                get: function () {
-                    return this._o.api_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "type", {
-                get: function () {
-                    return this._o.api_type
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
-                get: function () {
-                    return this._o.api_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "outside", {
-                get: function () {
-                    return this._o.hasOwnProperty("api_outside_id") ? this._o.api_outside_id : 4
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "description", {
-                get: function () {
-                    return this._o.api_description
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "price", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_price")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "rarity", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_rarity")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "seasonID", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_season")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "version", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_version", "1")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.has = function () {
-                return this._hasFlag
-            }, t.prototype.isOnSale = function () {
-                return 1 == o.ObjUtil.getNumber(this._o, "api_saleflg")
-            }, t.prototype.isNeedCraftsman = function () {
-                return this.price >= 2e3 && this.price < 2e4
-            }, t.prototype.isHighGrade = function () {
-                return this.price >= 1e5
-            }, t.prototype.isActive = function () {
-                return 1 == this._o.api_active_flag
-            }, t.prototype.getDiscountPrice = function () {
-                if (0 == this.isHighGrade()) return this.price;
-                var t = .1 * (this.price - 1e5);
-                return t = Math.max(t, 0), Math.floor(t)
-            }, Object.defineProperty(t.prototype, "getVersion", {
-                get: function () {
-                    return this._o.api_version
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            return t.prototype.hasIncentive = function () {
+                return this._arr.length > 0
+            }, t.prototype.getRewards = function () {
+                return this._arr.concat()
+            }, t.prototype.clearData = function () {
+                this._arr = []
+            }, t
         }();
-    e.FurnitureModel = r;
-    var s = function (t) {
+    e.IncentiveModelHolder = l;
+    var u = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.updateHasFlag = function (t) {
-            this._hasFlag = t
+        return n(e, t), e.prototype.setData = function (t) {
+            if (this._arr = [], null != t) {
+                var e = o.ObjUtil.getObjectArray(t, "api_item");
+                if (null != e)
+                    for (var i = 0, n = e; i < n.length; i++) {
+                        var l = n[i],
+                            u = (o.ObjUtil.getNumber(l, "api_mode"), o.ObjUtil.getNumber(l, "api_type")),
+                            c = o.ObjUtil.getNumber(l, "api_mst_id"),
+                            h = o.ObjUtil.getString(l, "api_getmes"),
+                            p = void 0;
+                        1 == u ? p = new a.RewardModelShip(c, h) : 2 == u ? p = new s.RewardModelSlotitem(c, 1, h) : 3 == u ? p = new _.RewardModelUseitem(c, 1, h) : 4 == u || 5 == u && (p = new r.RewardModelFurniture(c, "", h)), null != p && this._arr.push(p)
+                    }
+            }
         }, e
-    }(r);
-    e.FurnitureModelEdit = s
+    }(l);
+    e.IncentiveModelHolderEdit = u
 }

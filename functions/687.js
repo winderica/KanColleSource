@@ -19,31 +19,18 @@ const function687 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this,
-                i = [5.5, 5.15],
-                n = [
-                    [9.1, 0],
-                    [7.25, 0],
-                    [4.6, 4.1],
-                    [1.95, 0],
-                    [.05, 0],
-                    [3.55, 5.25],
-                    [0, 10.4],
-                    [1.85, 10.4],
-                    [4.5, 6.3],
-                    [7.25, 10.4],
-                    [9.15, 10.4],
-                    [5.5, 5.15]
-                ];
-            return e.beginFill(4999235, 1), e.moveTo(i[0], i[1]), n.forEach(function (t) {
-                e.lineTo(t[0], t[1])
-            }), e.endFill(), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.clear()
-        }, e
-    }(PIXI.Graphics);
-    e.CrossCharacter = o
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_member/updatedeckname", o.api_deck_id = e, o.api_name = i, o.api_name_id = n, o
+            }
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this.api_deck_id, this._post_data.api_name = this.api_name, this._post_data.api_name_id = this.api_name_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                o.default.model.deck.get(this.api_deck_id).updateName(this.api_name, this.api_name_id), t.prototype._completedEnd.call(this)
+            }, e
+        }(r.APIBase);
+    e.UpdateDeckNameAPI = s
 }

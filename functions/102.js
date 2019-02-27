@@ -21,16 +21,16 @@ const function102 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(29),
+        s = i(28),
         a = i(39),
-        _ = i(15),
-        l = i(62),
+        _ = i(14),
+        l = i(58),
         u = i(63),
-        c = i(462),
-        h = i(463),
-        p = i(464),
-        d = i(466),
-        f = i(467),
+        c = i(461),
+        h = i(462),
+        p = i(463),
+        d = i(465),
+        f = i(466),
         y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -64,11 +64,11 @@ const function102 = function (t, e, i) {
                         d = new f.TaskSupportDeckCutin(i, r);
                     h.add(d);
                     var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    h.add(new m(i, y, g));
-                    var v = e._scene.data.model.deck_f.ships,
+                        v = r[0].damaged;
+                    h.add(new m(i, y, v));
+                    var g = e._scene.data.model.deck_f.ships,
                         b = e._scene.data.model.deck_e.ships;
-                    h.add(new p.TaskSupportAir(e._scene, t, v, b, e._damage_cutin, null)), h.start(function () {
+                    h.add(new p.TaskSupportAir(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -94,8 +94,8 @@ const function102 = function (t, e, i) {
                         d = new f.TaskSupportDeckCutin(i, r);
                     p.add(d);
                     var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    p.add(new m(i, y, g)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
+                        v = r[0].damaged;
+                    p.add(new m(i, y, v)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -121,8 +121,8 @@ const function102 = function (t, e, i) {
                         d = new f.TaskSupportDeckCutin(i, r);
                     p.add(d);
                     var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    p.add(new m(i, y, g)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
+                        v = r[0].damaged;
+                    p.add(new m(i, y, v)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
                         e._scene.view.layer_title.hide(function () {
                             new a.WaitTask(800).start(function () {
                                 e._endTask()
@@ -147,11 +147,11 @@ const function102 = function (t, e, i) {
                         p = new f.TaskSupportDeckCutin(i, r);
                     h.add(p);
                     var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    h.add(new m(i, y, g));
-                    var v = e._scene.data.model.deck_f.ships,
+                        v = r[0].damaged;
+                    h.add(new m(i, y, v));
+                    var g = e._scene.data.model.deck_f.ships,
                         b = e._scene.data.model.deck_e.ships;
-                    h.add(new d.TaskSupportTaisen(e._scene, t, v, b, e._damage_cutin, null)), h.start(function () {
+                    h.add(new d.TaskSupportTaisen(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
                         new a.WaitTask(800).start(function () {
                             e._endTask()
                         })

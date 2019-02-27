@@ -19,38 +19,22 @@ const function641 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(59),
-        s = i(81),
-        a = i(209),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.RarityBG, e._ship = new PIXI.Sprite, e._particle = new a.BonusParticle, e._message_box = new s.MessageBox, e._message_box.y = 721, e.addChild(e._bg), e.addChild(e._ship), e.addChild(e._particle), e.addChild(e._message_box), e
+    var o = i(2),
+        r = i(13),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._skinID = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particle", {
-                get: function () {
-                    return this._particle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
-                get: function () {
-                    return this._message_box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n, r) {
-                this._ship.texture = o.default.resources.getShip(t, !1, "full"), this._message_box.initializeForShip(i, e, n), this._ship.x = r.x + 221, this._ship.y = r.y - 59
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg = null, this._ship = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("port");
+                e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.BonusShip = _
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

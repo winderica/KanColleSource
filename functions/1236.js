@@ -19,33 +19,36 @@ const function1236 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(1237),
-        a = function (t) {
+    var o = i(2),
+        r = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+                return n._anim = function () {
+                    var t = n._scene.view.map.ship_icon;
+                    createjs.Tween.get(t).to({
+                        alpha: 1
+                    }, 300), createjs.Tween.get(t.scale).to({
+                        x: 1,
+                        y: 1
+                    }, 300).call(function () {
+                        n._endTask()
+                    })
+                }, n._scene = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResourcesMap).start(function () {
-                    t._showViewMain()
-                })
-            }, e.prototype._showViewMain = function () {
-                var t = this;
-                this._scene.view.bg.setDay(function () {
-                    t._initialize()
-                })
+                this._initialize()
             }, e.prototype._initialize = function () {
-                this._scene.view.initialize();
-                var t = this._model.sortie.area_id,
-                    e = this._model.sortie.map_id,
-                    i = o.default.model.map.getMapMst(e.toString()).name;
-                this._scene.view.upper.update(t, i), this._endTask()
+                var t = this._scene.view.map.ship_icon;
+                t.alpha = 0, t.scale.set(1.7);
+                var e = this._model.deck_f.type;
+                t.initialize(e);
+                var i = this._model.sortie.now_cell_no,
+                    n = this._scene.view.map.spotLayer.getSpot(i);
+                t.position.set(n.x, n.y);
+                var o = t.direction,
+                    r = this._scene.resInfo.getShipDirection(i);
+                1 == r ? o = 1 : 2 == r && (o = 2), t.turn(o, this._anim, 0)
             }, e
-        }(r.TaskBase);
-    e.TaskInitPre = a
+        }(o.TaskBase);
+    e.AnimShipInit = r
 }

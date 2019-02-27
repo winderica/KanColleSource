@@ -19,22 +19,15 @@ const function938 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(26),
-        s = function (t) {
+    var o = i(26),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._img = [];
-                var i = new PIXI.Sprite;
-                return e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(0, 27), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 0), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 27), e.addChild(i), e._img.push(i), e._kadou = new o.TextBox(24, 0), e._kadou.y = -5, e.addChild(e._kadou), e._teisu = new o.TextBox(24, 0), e._teisu.y = 21, e.addChild(e._teisu), e
+                return e._bg = new PIXI.Sprite, e._bg.position.set(11, 0), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(0, 20), e.addChild(e._icon), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img[0].texture = r.SALLY_AIRUNIT.getTexture(135), this._img[1].texture = r.SALLY_AIRUNIT.getTexture(143), this._img[2].texture = r.SALLY_AIRUNIT.getTexture(136), this._img[3].texture = r.SALLY_AIRUNIT.getTexture(136)
-            }, e.prototype.update = function (t, e) {
-                this._kadou.text = t.toString(), this._kadou.x = 72 - this._kadou.width, this._teisu.text = e.toString(), this._teisu.x = 72 - this._teisu.width
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._img = null, this._kadou.destroy(), this._kadou = null, this._teisu.destroy(), this._teisu = null
+            return n(e, t), e.prototype.update = function (t) {
+                3 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(37), this._icon.texture = o.SALLY_AIRUNIT.getTexture(43), this.visible = !0) : 2 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(36), this._icon.texture = o.SALLY_AIRUNIT.getTexture(42), this.visible = !0) : this.visible = !1
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItemDetailInfoPanel = s
+    e.AirUnitPanelItemFatigueIcon = r
 }

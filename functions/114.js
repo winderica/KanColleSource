@@ -20,23 +20,23 @@ const function114 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(225),
+        r = i(224),
         s = i(80),
-        a = i(32),
+        a = i(31),
         _ = i(69),
         l = i(35),
-        u = i(862),
-        c = i(864),
-        h = i(878),
-        p = i(880),
-        d = i(882),
-        f = i(884),
-        y = i(885),
-        m = i(886),
+        u = i(861),
+        c = i(863),
+        h = i(877),
+        p = i(879),
+        d = i(881),
+        f = i(883),
+        y = i(884),
+        m = i(885),
+        v = i(886),
         g = i(887),
-        v = i(888),
-        b = i(344),
-        w = i(890);
+        b = i(343),
+        w = i(889);
     e.SYNC_KEY_JUMP = "sync_key_jump";
     var x, I = function () {
         function t() {
@@ -77,7 +77,7 @@ const function114 = function (t, e, i) {
                     i._getShipAnimation(t, r, e.kDocks)
                 })
             }, i._onClickNoDock = function (t) {
-                o.default.view.clickGuard = !0, new v.OpenNewDockAPI(t).start(function () {
+                o.default.view.clickGuard = !0, new g.OpenNewDockAPI(t).start(function () {
                     i.unLockDock(t), o.default.model.kdock.get(t).__open__();
                     var e = o.default.model.kdock.getAll().filter(function (t) {
                         return -1 == t.state
@@ -140,7 +140,7 @@ const function114 = function (t, e, i) {
                             h = i._materialAmountContainer.devKit,
                             p = 0 < c,
                             d = new f.CreateShipAPI(e, 0, s, n, l, u, h, p ? 1 : 0),
-                            y = new g.KDockAPI,
+                            y = new v.KDockAPI,
                             m = new a.APIConnector;
                         0 == o.default.model.basic.getTutorialProgress() && m.add(new _.UpdateTutorialAPI(10)), m.add(d), m.add(y), o.default.view.clickGuard = !0, m.start(function () {
                             i._materialAmountContainer.dispose(), i._materialAmountContainer = null;
@@ -193,9 +193,9 @@ const function114 = function (t, e, i) {
                                         h = _.devKit,
                                         y = 0 < c,
                                         m = new f.CreateShipAPI(s, 1, n, e, l, u, h, y ? 1 : 0),
-                                        v = new g.KDockAPI,
+                                        g = new v.KDockAPI,
                                         b = new a.APIConnector;
-                                    b.add(m), b.add(v), o.default.view.clickGuard = !0, b.start(function () {
+                                    b.add(m), b.add(g), o.default.view.clickGuard = !0, b.start(function () {
                                         o.default.view.portMain.updateInfo();
                                         var t = o.default.model.kdock.get(s),
                                             e = o.default.model.ship.getMst(t.ship_mst_id),

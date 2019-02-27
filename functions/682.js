@@ -19,36 +19,57 @@ const function682 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(159),
-        s = i(60),
-        a = i(160),
-        _ = i(4),
-        l = i(21),
+    var o = i(3),
+        r = i(683),
+        s = i(684),
+        a = i(214),
+        _ = i(57),
+        l = i(1),
         u = function (t) {
             function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this,
-                    n = new PIXI.Sprite,
-                    u = new _.TextBox(19, 5523516),
-                    c = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
-                    h = new _.TextBox(21, 5523516),
-                    p = new a.SlotItemLevel,
-                    d = new PIXI.Sprite,
-                    f = new r.AirPlaneLevel,
-                    y = new PIXI.Sprite(l.COMMON_MAIN.getTexture(42)),
-                    m = new s.IconWeapon;
-                n.texture = l.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
-                var g = new PIXI.Container;
-                return g.mask = c, g.addChild(u, c), g.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, g, h, d, p, f, y, m), i.background = n, i.textName = u, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = g, i
+                var i = t.call(this) || this;
+                i._onMouseDown = function () {
+                    i.onDragging(i.slotPosition, i.memShipId)
+                }, i.___onMouseDown = function (t) {
+                    i.onMouseDown(i.slotPosition, i.slotNo, i.memShipId)
+                }, i._onClickChange = function () {
+                    i.onClickChange(i.slotPosition, i.slotNo)
+                }, i._onClickDetail = function () {
+                    i.onClickDetail(i.memShipId)
+                }, i.shipSlotShutter = new s.ShipSlotShutter, i.shipInfo = new r.ShipInfo, i.deckIndexEmblem = new a.DeckIndexEmblem;
+                var n = o.ORGANIZE_MAIN.getTexture(23),
+                    u = o.ORGANIZE_MAIN.getTexture(24),
+                    c = o.ORGANIZE_MAIN.getTexture(25),
+                    h = o.ORGANIZE_MAIN.getTexture(9),
+                    p = o.ORGANIZE_MAIN.getTexture(10);
+                return i.disableChangeButton = new PIXI.Sprite(n), i.changeButton = new _.SimpleButton(u, c), i.detailButton = new _.SimpleButton(h, p), i.shipBannerDragArea = new PIXI.Graphics, i.shipBannerDragArea.beginFill(0, 0), i.shipBannerDragArea.drawRect(0, 0, 240, 60), i.shipBannerDragArea.endFill(), i.shipBannerDragArea.position.set(245, 18), i.shipBannerDragArea.interactive = !0, i.shipBannerDragArea.buttonMode = !0, i.shipBannerDragArea.renderable = !1, i.shipBannerDragArea.on(l.EventType.MOUSEDOWN, i._onMouseDown), i.changeButton.onClick = i._onClickChange, i.detailButton.onClick = i._onClickDetail, i.disableChangeButton.position.set(379, 103), i.changeButton.position.set(379, 103), i.detailButton.position.set(250, 103), i.deckIndexEmblem.position.set(-15, 0), i.slotPosition = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
-            }, e.prototype.clear = function () {
-                this.update(0, "", !1, 0, 0, 0, !1)
-            }, e.prototype.update = function (t, e, i, n, o, r, s) {
-                void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
+            return n(e, t), e.prototype.activate = function (t, e, i) {
+                this.deactivate(), this.onDragging = t, this.onClickChange = e, this.onClickDetail = i
+            }, e.prototype.deactivate = function () {
+                this.onDragging = null, this.onClickChange = null, this.onClickDetail = null
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.shipBannerDragArea.off(l.EventType.MOUSEDOWN, this._onMouseDown), this.shipSlotShutter.dispose(), this.shipInfo.dispose(), this.deckIndexEmblem.dispose(), this.changeButton.dispose(), this.shipSlotShutter = null, this.shipInfo = null, this.deckIndexEmblem = null, this.changeButton = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i) {
+                this.removeChildren();
+                var n = e.memID;
+                this.shipInfo.update(e, i), this.deckIndexEmblem.update(t), i ? this.addChild(this.shipInfo, this.deckIndexEmblem, this.disableChangeButton, this.detailButton, this.shipSlotShutter) : this.addChild(this.shipInfo, this.deckIndexEmblem, this.changeButton, this.detailButton, this.shipBannerDragArea, this.shipSlotShutter), this.memShipId = n, this.slotNo = t
+            }, e.prototype.close = function () {
+                this.shipSlotShutter.close(), this.deckIndexEmblem.visible = !1
+            }, e.prototype.closeAnimation = function (t, e) {
+                void 0 === e && (e = 250), this.deckIndexEmblem.visible = !1, this.shipSlotShutter.closeAnimation(function () {
+                    t()
+                }, e)
+            }, e.prototype.open = function () {
+                this.deckIndexEmblem.visible = !0, this.shipSlotShutter.open()
+            }, e.prototype.openAnimation = function (t, e) {
+                var i = this;
+                void 0 === e && (e = 250), this.shipSlotShutter.openAnimation(function () {
+                    i.deckIndexEmblem.visible = !0, t()
+                }, e)
+            }, e.prototype.updateEmpty = function (t, e) {
+                this.removeChildren(), this.memShipId = null, this.slotNo = t, e ? this.addChild(this.shipSlotShutter, this.changeButton) : this.addChild(this.shipSlotShutter)
             }, e
         }(PIXI.Container);
-    e.SlotItemSlotView = u
+    e.ShipSlot = u
 }

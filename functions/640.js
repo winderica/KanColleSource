@@ -19,50 +19,38 @@ const function640 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(9),
-        s = function (t) {
+    var o = i(0),
+        r = i(60),
+        s = i(81),
+        a = i(208),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onChange = function () {
-                    for (var t = 0, i = e.children; t < i.length; t++) {
-                        i[t].update()
-                    }
-                };
-                for (var i = 0; i < 30; i++) {
-                    var n = new a;
-                    e.addChild(n)
-                }
-                return e.visible = !1, e
+                return e._bg = new r.RarityBG, e._ship = new PIXI.Sprite, e._particle = new a.BonusParticle, e._message_box = new s.MessageBox, e._message_box.y = 721, e.addChild(e._bg), e.addChild(e._ship), e.addChild(e._particle), e.addChild(e._message_box), e
             }
-            return n(e, t), e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(null, {
-                    loop: !0,
-                    onChange: this._onChange
-                }), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.visible = !1)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, r) {
+                this._ship.texture = o.default.resources.getShip(t, !1, "full"), this._message_box.initializeForShip(i, e, n), this._ship.x = r.x + 221, this._ship.y = r.y - 59
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren()
+                this.removeChildren(), this._bg = null, this._ship = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null
             }, e
         }(PIXI.Container);
-    e.BonusInsertParticle = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._vx = 0, e._vy = 0, e._vr = 0, e._vscale = 0;
-            return e.texture = r.COMMON_MISC.getTexture(114), e._init(), e
-        }
-        return n(e, t), e.prototype.update = function () {
-            if (--this._life < 0 && (this.alpha -= .1 * Math.random() + .1, this.alpha <= 0)) return void this._init();
-            this.x += this._vx, this.y += this._vy, this.rotation += this._vr, this.scale.x += this._vscale, this.scale.y += this._vscale;
-            var t = 60 / createjs.Ticker.framerate;
-            this._vx *= 1 + .01 * t, this._vy += .01 * t
-        }, e.prototype._init = function () {
-            var t = 60 / createjs.Ticker.framerate;
-            this.x = o.default.width / 2, this.y = o.default.height / 2 - 45, this.alpha = 1, this.scale.set(0), this._life = 100 * t, this._life += 100 * Math.random() * t, this._vx = 6 * Math.random() * t, Math.random() < .5 && (this._vx *= -1), this._vy = (12 * Math.random() - 9) * t;
-            var e = 50 / 180 * Math.PI * t;
-            this._vr = (Math.random() * e + 1) / 100, this._vscale = (.0025 * Math.random() + .005) * t
-        }, e
-    }(PIXI.Sprite)
+    e.BonusShip = _
 }

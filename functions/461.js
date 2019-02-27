@@ -19,79 +19,114 @@ const function461 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(2),
-        s = i(24),
-        a = i(1365),
-        _ = i(62),
+    var o = i(2),
+        r = i(27),
+        s = i(6),
+        a = i(16),
+        _ = i(58),
         l = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNagatoAttack(s._attackers), s
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o.DELAYS = [0, 266, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._completePreload = function () {
-                for (var t = this, e = this._attackers[0].friend, i = [], n = [], o = 0; o < this._attackers.length; o++) {
-                    var r = this._attackers[o].index,
-                        s = this._scene.view.bannerGroupLayer.getBanner(!!e, r);
-                    i.push(s), s.moveFront()
+                for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = 0; n < 6; n++) {
+                    var o = new PIXI.Point(180 - 24 * n, -60),
+                        a = (18 + 3 * n) / 180 * Math.PI,
+                        _ = new h(e, o, a, this.DELAYS[n]);
+                    i.add(_)
                 }
-                for (var o = 0; o < this._defenders.length; o++) {
-                    var a = this._defenders[o].index,
-                        _ = this._scene.view.bannerGroupLayer.getBanner(!e, a);
-                    n.push(_)
+                for (var l = [], p = this._ships_e, n = 0; n < p.length; n++) {
+                    var d = p[n];
+                    if (null != d && !(d.hp_now <= 0)) {
+                        var f = new u(this._scene, this._data, this._damage_cutin, d, 1e3);
+                        if (i.add(f), 1 == this._data.isShield(n)) {
+                            var y = this._scene.view.bannerGroupLayer.getBanner(d),
+                                m = this._scene.view.bannerGroupLayer.getShieldTargetBanner(y); - 1 == l.indexOf(m) && l.push(m)
+                        }
+                    }
                 }
-                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    t._explosion(i, n, 0)
+                for (var v = 0, g = l; v < g.length; v++) {
+                    var b = g[v];
+                    i.add(new c(this._scene, b, 1e3))
+                }
+                s.SE.play("101"), i.start(function () {
+                    t._endTask()
                 })
-            }, e.prototype._explosion = function (t, e, i) {
-                var n = this,
-                    o = e[i].getGlobalPos(!0),
-                    r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                    a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
-                    _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                    l = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
-                createjs.Tween.get(null).wait(200).call(function () {
-                    e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
-                }).wait(150).call(function () {
-                    n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
-                }).wait(100).call(function () {
-                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + l, function () {
-                        n._attack(t, e, i)
-                    })
-                })
-            }, e.prototype._attack = function (t, e, i) {
-                o.SE.play("102"), this._damageEffect(t, e, i)
-            }, e.prototype._damageEffect = function (t, e, i) {
-                1 == this._shields[i] && this._showShield(e[i]), e[i].moveAtDamage(this._shields[i]), this._playExplosion(e[i], this._damages[i]), this._playDamageEffect(t, e, i)
-            }, e.prototype._showShield = function (t) {
-                var e = this._scene.view.bannerGroupLayer.getShieldTargetBanner(t);
-                this._scene.view.layer_damage.showShieldAtBanner(e)
-            }, e.prototype._playExplosion = function (t, e) {
-                var i = t.getGlobalPos(!0);
-                this._scene.view.layer_explosion.playDamageExplosion(i.x, i.y, e)
-            }, e.prototype._playDamageEffect = function (t, e, i) {
-                var n = this;
-                this._scene.view.layer_damage.showAtBanner(e[i], this._damages[i], this._hits[i]);
-                var o = createjs.Tween.get(null);
-                o.wait(200), o.call(function () {
-                    if (n._damage_cutin.causeDamage(n._defenders[i], n._damages[i]), e[i].updateHp(n._defenders[i].hp_now), i + 1 >= n._defenders.length)
-                        for (var o = 0; o < n._attackers.length; o++) t[o].moveDefault()
-                }), i + 1 >= this._defenders.length ? (o.wait(1e3), o.call(function () {
-                    n._endTask()
-                })) : (o.wait(150), o.call(function () {
-                    n._explosion(t, e, i + 1)
-                }))
             }, e.prototype._endTask = function () {
-                var e = this;
-                this._damage_cutin.start(function () {
-                    t.prototype._endTask.call(e)
-                })
-            }, e.prototype._log = function (t) {}, e
-        }(r.TaskBase);
-    e.PhaseNagatoAttack = l
+                this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.PhaseSupportHou = l;
+    var u = function (t) {
+            function e(e, i, n, o, r) {
+                void 0 === r && (r = 0);
+                var s = t.call(this) || this;
+                return s.__start = function () {
+                    var t = s._scene.view.bannerGroupLayer.getBanner(s._defender),
+                        e = s._defender.index,
+                        i = s._data.getDamage(e),
+                        n = s._data.getHitType(e),
+                        o = s._data.isShield(e);
+                    t.moveAtDamage(o);
+                    var r = t.getGlobalPos();
+                    s._scene.view.layer_explosion.playExplosionLarge(r.x, r.y), s._scene.view.layer_damage.showAtBanner(t, i, n), createjs.Tween.get(null).wait(200).call(function () {
+                        s._damage_cutin.causeDamage(s._defender, i), t.updateHp(s._defender.hp_now)
+                    }).wait(600).call(function () {
+                        s._endTask()
+                    })
+                }, s._scene = e, s._data = i, s._damage_cutin = n, s._defender = o, s._delay = r, s
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._damage_cutin = null, this._defender = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase),
+        c = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = 0);
+                var o = t.call(this) || this;
+                return o.__start = function () {
+                    o._scene.view.layer_damage.showShieldAtBanner(o._target), o._endTask()
+                }, o._scene = e, o._target = i, o._delay = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._target = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase),
+        h = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r.__start = function () {
+                    r._layer.addChild(r._canvas), r._canvas.rotation = r._rotate, r._createBulletTween(0, 0, 0, 318, -2, 441, -2), r._createBulletTween(0, -3, 100, 318, -6, 441, -8), r._createBulletTween(0, 2, 200, 326, 0, 452, -2), r._createBulletTween(0, -6, 233, 333, 0, 462, 3), r._createBulletTween(0, 0, 300, 333, -5, 500, -6), r._createBulletTween(0, 3, 400, 302, -5, 452, -8), r._createBulletTween(0, 2, 433, 327, 5, 491, 6).call(function () {
+                        r._layer.removeChild(r._canvas), r._endTask()
+                    })
+                }, r._canvas = new PIXI.Container, r._layer = e, r._pos = i, r._rotate = n, r._delay = o, r
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+            }, e.prototype._createBulletTween = function (t, e, i, n, o, r, s) {
+                var a = new p;
+                return a.position.set(this._pos.x + t, this._pos.y + e), a.scale.set(.36), a.initialize(), this._canvas.addChild(a), createjs.Tween.get(a).wait(i).to({
+                    x: this._pos.x + n,
+                    y: this._pos.y + o
+                }, 500).to({
+                    x: this._pos.x + r,
+                    y: this._pos.y + s,
+                    alpha: 0
+                }, 200)
+            }, e
+        }(o.TaskBase),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._img.x = -27, e._img.y = -15, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = a.BATTLE_MAIN.getTexture(41)
+            }, e
+        }(PIXI.Container)
 }

@@ -21,7 +21,7 @@ const function120 = function (t, e, i) {
     });
     var o = i(5),
         r = i(0),
-        s = i(24),
+        s = i(22),
         a = i(45),
         _ = i(2),
         l = i(7),
@@ -30,7 +30,7 @@ const function120 = function (t, e, i) {
         h = i(25),
         p = i(6),
         d = i(16),
-        f = i(1326),
+        f = i(1322),
         y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;

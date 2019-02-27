@@ -20,7 +20,7 @@ const function637 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(25),
+        r = i(67),
         s = i(48),
         a = function (t) {
             function e(e, i) {
@@ -35,14 +35,14 @@ const function637 = function (t, e, i) {
             }), e.prototype._createContent = function () {
                 var t = this,
                     e = this.model.mst_id,
-                    i = new r.SlotLoader;
-                i.add(e, "card"), i.load(function () {
-                    var i = o.default.resources.getSlotitem(e, "card");
+                    i = new r.UseitemLoader;
+                i.add(e, 1), i.load(function () {
+                    var i = o.default.resources.getUseitem(e, 1);
                     t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
                 })
             }, e.prototype._removeContent = function () {
                 this._dialog.container.removeChild(this._card), this._card = null
             }, e
         }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogSlotitem = a
+    e.TaskRewardDialogUseitem = a
 }

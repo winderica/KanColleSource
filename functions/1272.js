@@ -19,45 +19,83 @@ const function1272 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(61),
-        s = i(20),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(6),
+        _ = i(437),
+        l = i(1273),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._selected_no = -1, n._onClick = function (t) {
+                    n._selected_no = t;
+                    for (var e = n._scene.view.map, i = 0, o = n._cellWaves; i < o.length; i++) {
+                        var r = o[i];
+                        e.spotLayer.removeChild(r), r.dispose()
+                    }
+                    n._balloon.close(function () {
+                        n._scene.view.map.ship_icon.removeChild(n._balloon), createjs.Tween.get(null).wait(1e3).call(function () {
+                            n._endTask()
+                        })
+                    })
+                }, n._scene = e, n._model = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(105), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(110), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(112) : s.MAP_COMMON.getTexture(111)
-            }, e.prototype.playAnimation = function (t) {
-                this._animation1(t)
-            }, e.prototype._animation1 = function (t) {
-                var e = this,
-                    i = new o.TweenTask;
-                i.addTween(createjs.Tween.get(this._bg).to({
-                    alpha: 1,
-                    scaleY: 1
-                }, 500)), i.addTween(createjs.Tween.get(this._txt1).wait(300).to({
-                    x: 30,
-                    alpha: 1
-                }, 700)), i.addTween(createjs.Tween.get(this._txt2).wait(300).to({
-                    alpha: 1
-                }, 700)), i.start(function () {
-                    e._animation2(t)
+            return n(e, t), Object.defineProperty(e.prototype, "selected_no", {
+                get: function () {
+                    return this._selected_no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._scene.view.message_box.text = "\u8266\u968a\u306e\u91dd\u8def\u3092\u9078\u629e\u3067\u304d\u307e\u3059\u3002\n\u63d0\u7763\u3001\u3069\u3061\u3089\u306e\u91dd\u8def\u3092\u3068\u3089\u308c\u307e\u3059\u304b\uff1f", this._showHukidashi()
+            }, e.prototype._showHukidashi = function () {
+                var t = this,
+                    e = this._model.sortie.getNextCell(),
+                    i = this._scene.resInfo.getBranchOption(e.no);
+                if (this._balloon = new l.BranchBalloon, null == i) {
+                    var n = this._model.sortie.map_id,
+                        o = e.no,
+                        r = 1;
+                    425 == n && 6 == o && (r = 2), 432 == n && (7 != o && 17 != o || (r = 0)), 433 == n && (1 == o ? r = 0 : 7 != o && 21 != o || (r = 2, this._balloon.position.set(-6, 27))), this._balloon.initialize(r, 0)
+                } else this._balloon.initialize(i.type, i.beak, i.offset);
+                this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
+                    t._showWaves()
                 })
-            }, e.prototype._animation2 = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(createjs.Tween.get(this._bg).wait(1200).to({
-                    scaleY: 0
-                }, 200)), e.addTween(createjs.Tween.get(this._txt1).wait(800).to({
-                    x: -40,
-                    alpha: 0
-                }, 300)), e.addTween(createjs.Tween.get(this._txt2).wait(1100).to({
-                    alpha: 0
-                }, 100)), e.start(function () {
-                    null != t && t()
-                })
+            }, e.prototype._showWaves = function () {
+                this._cellWaves = [];
+                for (var t = this._model.sortie.getNextCell().getSelectableRoutes(), e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = this._scene.view.map,
+                        r = o.spotLayer.getSpot(n),
+                        s = new c(r, this._onClick);
+                    s.position.set(r.x, r.y), o.spotLayer.addChild(s), this._cellWaves.push(s), s.activate()
+                }
+            }, e.prototype._endTask = function () {
+                this._scene.view.message_box.text = "";
+                var e = this._model.deck_f.ships[0],
+                    i = e.mst_id;
+                o.default.sound.voice.play(i.toString(), 26), this._scene = null, this._model = null, this._balloon = null, this._cellWaves = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirRaidTelop = a
+        }(s.TaskBase);
+    e.TaskBranchRoute = u;
+    var c = function (t) {
+        function e(e, i) {
+            var n = t.call(this) || this;
+            return n._onMouseOver = function () {
+                n._stopTween(), n._wave.scale.set(1), n._wave.alpha = 1, n._target.showLine(), a.SE.play("242")
+            }, n._onMouseOut = function () {
+                n._startTween(), n._target.hideLine()
+            }, n._onClick = function () {
+                null != n._cb_onClick && n._cb_onClick(n._target.no)
+            }, n._target = e, n._cb_onClick = i, n.beginFill(16711680, 0), n.drawCircle(0, 0, 38), n.endFill(), n
+        }
+        return n(e, t), e.prototype.activate = function () {
+            1 != this._activated && (t.prototype.activate.call(this), this.buttonMode = !0, this.interactive = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+        }, e.prototype.deactivate = function () {
+            t.prototype.deactivate.call(this), this.buttonMode = !1, this.interactive = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            t.prototype.dispose.call(this), this._target = null, this._cb_onClick = null
+        }, e
+    }(_.CellWave)
 }

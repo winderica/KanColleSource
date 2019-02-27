@@ -19,49 +19,41 @@ const function1254 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(12),
-        s = i(6),
-        a = i(20),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+    var o = i(1255),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(132)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(133)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(134)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
-            }, e.prototype._anim = function () {
-                var t = this;
-                s.SE.play("213"), createjs.Tween.get(this._img1).to({
-                    sceleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 200).to({
-                    sceleX: 1.2,
-                    scaleY: 1.2,
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._img2).wait(133).to({
-                    sceleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 200).to({
-                    sceleX: 1.2,
-                    scaleY: 1.2,
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._img3).wait(266).to({
-                    sceleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 200).to({
-                    sceleX: 1.3,
-                    scaleY: 1.3,
-                    alpha: 0
-                }, 300).wait(300).call(function () {
-                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var l = n[r];
+                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(o.TaskBase);
-    e.TaskReplenishmentBuff = _
+        }(PIXI.Container);
+    e.FormationBoxContainerCombined = r
 }

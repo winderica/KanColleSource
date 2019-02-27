@@ -19,29 +19,17 @@ const function1039 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(9),
+    var o = i(0),
+        r = i(11),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
             }
-            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
-                var e = this._getTexture(t);
-                null == e ? this.visible = !1 : (this._img.texture = e, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.visible = !0)
-            }, e.prototype.dispose = function () {}, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case 1:
-                        return r.COMMON_MISC.getTexture(74);
-                    case 2:
-                        return r.COMMON_MISC.getTexture(77);
-                    case 3:
-                        return r.COMMON_MISC.getTexture(80);
-                    case 4:
-                        return r.COMMON_MISC.getTexture(83)
-                }
-                return null
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
             }, e
-        }(o.Container);
-    e.ExpeditionDeckIcon = s
+        }(r.APIBase);
+    e.ExpeditionStartAPI = s
 }
