@@ -1,6 +1,19 @@
 {
   "name": "kancolle-source",
   "version": "1.0.0",
+  "description": "Try to analyse source code of KanColle just for my own curiosity",
+  "author": "@winderica",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winderica/KanColleSource.git"
+  },
+  "contributors": [
+    {
+      "name": "winderica",
+      "email": "winderica@gmail.com"
+    }
+  ],
   "dependencies": {
     "cron": "^1.6.0",
     "js-beautify": "^1.8.9",
