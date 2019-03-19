@@ -1,7 +1,8 @@
 const cron = require('cron');
 const fetch = require('node-fetch');
+const { promisify } = require('util');
 const fs = require('fs').promises;
-const { exec } = require('child_process');
+const exec = promisify(require('child_process').exec);
 const beautify = require('js-beautify').js;
 const chunker = require('./chunker');
 const searcher = require('./searcher');
@@ -26,8 +27,9 @@ const detector = cron.job("0 */30 * * * *", async () => {
             chunker(eval(functions)); // haven't find a better way to parse array of functions
             const start = /=\s*(\d*)\)\s*}\(\[/.exec(script)[1];
             await fs.writeFile('../tree.json', beautify(JSON.stringify(searcher(start)), jsonStyle));
-            exec(`"../pull.sh" Update: main.js v${version}`);
-            logger.info(`Pushed main.js v${version}`);
+            const { stdout, stderr } = await exec(`"../pull.sh" Update: main.js v${version}`);
+            logger.info(stdout);
+            logger.error(stderr);
         }
     } catch (err) {
         logger.error(err);
