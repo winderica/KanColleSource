@@ -12,7 +12,6 @@ const jsonStyle = {
     "indent_size": "2",
     "eol": "\r\n",
 };
-exec(`"../push.sh" "Fix: fix typo"`);
 const detector = cron.job("0 */30 * * * *", async () => {
     try {
         const gameConsts = await (await fetch('http://203.104.209.7/gadget_html5/js/kcs_const.js')).text();
