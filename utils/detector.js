@@ -12,6 +12,7 @@ const jsonStyle = {
     "indent_size": "2",
     "eol": "\r\n",
 };
+exec(`"../push.sh" "Fix: fix typo"`);
 const detector = cron.job("0 */30 * * * *", async () => {
     try {
         const gameConsts = await (await fetch('http://203.104.209.7/gadget_html5/js/kcs_const.js')).text();
@@ -27,7 +28,7 @@ const detector = cron.job("0 */30 * * * *", async () => {
             chunker(eval(functions)); // haven't find a better way to parse array of functions
             const start = /=\s*(\d*)\)\s*}\(\[/.exec(script)[1];
             await fs.writeFile('../tree.json', beautify(JSON.stringify(searcher(start)), jsonStyle));
-            const { stdout, stderr } = await exec(`"../pull.sh" "Update: main.js v${version}"`);
+            const { stdout, stderr } = await exec(`"../push.sh" "Update: main.js v${version}"`);
             logger.info(stdout);
             logger.error(stderr);
         }
