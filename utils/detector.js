@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const beautify = require('js-beautify').js;
 const chunker = require('./chunker');
 const searcher = require('./searcher');
-const logger = require('logger');
+const logger = require('./logger');
 const jsStyle = require('../style');
 const jsonStyle = {
     "indent_size": "2",
