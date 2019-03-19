@@ -39,7 +39,7 @@ const function1361 = function (t, e, i) {
                             i._ships[t].texture = r.default.resources.getShip(e, n, "full");
                             var s = r.default.model.ship_graph.get(e).getBattleOffset(n);
                             i._ships[t].position.set(s.x, s.y), i._canvas.chara[t].position.set(-1e3, -134)
-                        } else if (1 == t && 573 == i._attackers[t].mst_id) i._ships[t].texture = r.default.resources.getShip(e, !1, "special"), i._ships[t].position.set(67, 138), i._canvas.chara[t].position.set(-800, 0);
+                        } else if (1 == t && 573 == i._attackers[t].mst_id && 0 == n) i._ships[t].texture = r.default.resources.getShip(e, !1, "special"), i._ships[t].position.set(67, 138), i._canvas.chara[t].position.set(-800, 0);
                         else {
                             i._ships[t].texture = r.default.resources.getShip(e, n, "full");
                             var a = r.default.model.ship_graph.get(e).getFaceRect(n);
@@ -124,7 +124,10 @@ const function1361 = function (t, e, i) {
             var t = this,
                 e = new l.ShipLoader;
             e.add(this._attackers[0].mst_id, !1, "full"), e.add(this._attackers[0].mst_id, !1, "special");
-            for (var i = 1; i < this._attackers.length; i++) 1 == i && 573 == this._attackers[i].mst_id ? e.add(this._attackers[i].mst_id, this._attackers[i].isDamaged(), "special") : e.add(this._attackers[i].mst_id, this._attackers[i].isDamaged(), "full");
+            for (var i = 1; i < this._attackers.length; i++) {
+                var n = this._attackers[i].isDamaged();
+                1 == i && 573 == this._attackers[i].mst_id && 0 == n ? e.add(this._attackers[i].mst_id, n, "special") : e.add(this._attackers[i].mst_id, n, "full")
+            }
             e.load(function () {
                 t._endTask()
             })
