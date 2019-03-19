@@ -1,4 +1,5 @@
 const fs = require('fs');
+const logger = require('logger');
 
 const searcher = (index) => {
     const searched = [];
@@ -23,13 +24,13 @@ const searcher = (index) => {
             results.map(i => tree[index] ? tree[index][Object.keys(i)[0]] = Object.values(i)[0] : tree[index] = i);
             return tree;
         } catch (err) {
-            console.log(err);
+            logger.error(err);
         }
     };
 
     for (let i = 0; i < searched.length; i++) {
         if (!searched[i]) {
-            console.log(i)
+            logger.error(`Function ${i} not searched`)
         }
     }
     return searchHelper(index);
