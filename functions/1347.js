@@ -97,8 +97,17 @@ const function1347 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), this._telop.texture = s.BATTLE_MAIN.getTexture(138)
+            }), e.prototype.initialize = function (t, e) {
+                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
+                    case 1:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
+                        break;
+                    case 2:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
+                        break;
+                    default:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
+                }
             }, e.prototype.dispose = function () {
                 this.removeChildren()
             }, e

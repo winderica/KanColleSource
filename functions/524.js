@@ -44,7 +44,8 @@ const function524 = function (t, e, i) {
                     blueprint: 0,
                     catapult: 0,
                     battlereport: 0,
-                    newhokohesosizai: 0
+                    newhokohesosizai: 0,
+                    newkokuhesosizai: 0
                 };
                 var i = e.remodeling_ammo,
                     n = e.remodeling_steel;
@@ -58,7 +59,8 @@ const function524 = function (t, e, i) {
                         battlereport: o.battlereport,
                         devkit: this._getRequiredDevkitNum(t, o.blueprint, n),
                         buildkit: this._getRequiredBuildKitNum(t),
-                        newhokohesosizai: o.newkohohesosizai
+                        newhokohesosizai: o.newhokohesosizai,
+                        newkokuhesosizai: o.newkokuhesosizai
                     }
                 }
                 return {
@@ -69,7 +71,8 @@ const function524 = function (t, e, i) {
                     battlereport: 0,
                     devkit: this._getRequiredDevkitNum(t, 0, n),
                     buildkit: this._getRequiredBuildKitNum(t),
-                    newhokohesosizai: 0
+                    newhokohesosizai: 0,
+                    newkokuhesosizai: 0
                 }
             }, t.prototype._getRequiredDevkitNum = function (t, e, i) {
                 switch (t) {
@@ -90,6 +93,8 @@ const function524 = function (t, e, i) {
                         return 20;
                     case 82:
                         return 80;
+                    case 88:
+                        return 181;
                     case 227:
                         return 20;
                     case 242:

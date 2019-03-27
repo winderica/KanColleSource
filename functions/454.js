@@ -33,9 +33,11 @@ const function454 = function (t, e, i) {
                 if (y._slot2 = o.default.model.slot.getMst(c), y._slot3 = o.default.model.slot.getMst(h), y._defender = r, 3 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3);
                 else if (4 == i) y._cutin = new _.CutinDanchaku2(n, y._slot, y._slot2, y._slot3);
                 else if (5 == i) y._cutin = new l.CutinDanchaku3(n, y._slot, y._slot2, y._slot3);
+                else if (6 == i) y._cutin = new u.CutinDanchaku4(n, y._slot, y._slot2, y._slot3);
+                else if (200 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3, 1);
                 else {
-                    if (6 != i) throw new Error;
-                    y._cutin = new u.CutinDanchaku4(n, y._slot, y._slot2, y._slot3)
+                    if (201 != i) throw new Error;
+                    y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3, 2)
                 }
                 return y
             }

@@ -22,7 +22,7 @@ const function633 = function (t, e, i) {
     var o = i(0),
         r = i(300),
         s = i(301),
-        a = i(48),
+        a = i(49),
         _ = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this, e, i) || this;
@@ -220,6 +220,20 @@ const function633 = function (t, e, i) {
                         id: 33,
                         type: 6
                     }], 2, 0), e
+                }
+                if (695 == t) {
+                    var e = new r.ModelChangeModelEdit;
+                    e.setItemFrom(this.model.mst_id_from), e.setItemTobe(this.model.mst_id_to);
+                    var i = "\u300c\u5f57\u661f\u300d\u8266\u7206\u306b\u3088\u308b\u4e09\u53f7\u7206\u5f3e\u904b\u7528\u3092\u7814\u7a76\u4e2d\u2026\u2026",
+                        n = this.model.message2;
+                    return e.setMessage(i, n), e.addMeltIntoUseitem([77], 1), e.addMeltIntoUseitem([32, 34], 2), e
+                }
+                if (696 == t) {
+                    var e = new r.ModelChangeModelEdit;
+                    e.setItemFrom(this.model.mst_id_from), e.setItemTobe(this.model.mst_id_to);
+                    var i = "\u6700\u7cbe\u92ed\u300c\u745e\u96f2\u300d\u968a\u306e\u7de8\u6210\u4e2d\u2026",
+                        n = this.model.message2;
+                    return e.setMessage(i, n), e.addMeltIntoUseitem([77], 1), e.addMeltIntoUseitem([70, 70], 2), e
                 }
                 return null
             }, e

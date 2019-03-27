@@ -14,7 +14,8 @@ const function810 = function (t, e, i) {
                     blueprint: n.default.model.useItem.getCount(58),
                     catapult: n.default.model.useItem.getCount(65),
                     battlereport: n.default.model.useItem.getCount(78),
-                    newhokohesosizai: n.default.model.useItem.getCount(75)
+                    newhokohesosizai: n.default.model.useItem.getCount(75),
+                    newkokuhesosizai: n.default.model.useItem.getCount(77)
                 }
             }
             return t.prototype.getCount = function (t) {
@@ -30,7 +31,7 @@ const function810 = function (t, e, i) {
                 }
                 return !0
             }, t.prototype.validateAll = function () {
-                return this.validate(32) && this.validate(33) && this.validate(3) && this.validate(2) && this.validate(58) && this.validate(65) && this.validate(78) && this.validate(75)
+                return this.validate(32) && this.validate(33) && this.validate(3) && this.validate(2) && this.validate(58) && this.validate(65) && this.validate(78) && this.validate(75) && this.validate(77)
             }, t.prototype._get = function (t, e) {
                 switch (t) {
                     case 32:
@@ -48,7 +49,9 @@ const function810 = function (t, e, i) {
                     case 78:
                         return e.battlereport;
                     case 75:
-                        return e.newhokohesosizai
+                        return e.newhokohesosizai;
+                    case 77:
+                        return e.newkokuhesosizai
                 }
                 return 0
             }, t

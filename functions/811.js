@@ -63,17 +63,18 @@ const function811 = function (t, e, i) {
                     r = e.getRequire(65),
                     s = e.getRequire(78),
                     a = e.getRequire(75),
-                    _ = e.getRequire(3),
-                    l = e.getRequire(2),
-                    u = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), u = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), u = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), u = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), u = !0) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, _, l) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, _, l) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, _, l) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, _, l) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, _, l) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, _, l) : _ > 0 || l > 0 ? this._alertPanel.showMessageKits(_, l) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == u) {
-                    var c = e.validate(32),
-                        h = e.validate(33),
-                        p = !(l > 0) || e.validate(2),
-                        d = !(_ > 0) || e.validate(3),
-                        f = c && h,
-                        y = p && d;
-                    0 == f && 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == f ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
+                    _ = e.getRequire(77),
+                    l = e.getRequire(3),
+                    u = e.getRequire(2),
+                    c = !1;
+                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, l, u) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, l, u) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, l, u) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, l, u) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, l, u) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, l, u) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, l, u) : l > 0 || u > 0 ? this._alertPanel.showMessageKits(l, u) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
+                    var h = e.validate(32),
+                        p = e.validate(33),
+                        d = !(u > 0) || e.validate(2),
+                        f = !(l > 0) || e.validate(3),
+                        y = h && p,
+                        m = d && f;
+                    0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
                 }
             }, e.prototype.dispose = function () {
                 this.removeChildren(), this._shipPanelBefore.dispose(), this._shipPanelAfter.dispose(), this._cancelBtn.dispose(), this._startBtn.dispose(), this._arrow.dispose(), this._alertPanel.dispose(), this._header.dispose(), this._titleBar.dispose(), this._textAmmoNow.destroy(), this._textSteelNow.destroy(), this._textAmmoNeed.destroy(), this._textSteelNeed.destroy(), this._alertMessage.destroy(), this._cb_onStart = null, this._cb_onCancel = null, this._shipPanelBefore = null, this._shipPanelAfter = null, this._textAmmoNow = null, this._textAmmoNeed = null, this._textSteelNow = null, this._textSteelNeed = null, this._cancelBtn = null, this._startBtn = null, this._arrow = null, this._alertPanel = null, this._alertMessage = null, this._alertOverLimit = null, this._header = null, this._titleBar = null

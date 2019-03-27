@@ -167,12 +167,13 @@ const function760 = function (t, e, i) {
                     e._slotDragging && e._slotDragging.inDraggingEventWaiting() && e._slotDragging.cancel(), e._onClickShipDetailSlot(t)
                 }, this._onDropSlotItem = function (t, i, o) {
                     if (t != i && !(t < o.length - 1 && null == o[t + 1] && i > t || i >= o.length)) {
-                        if (553 === n.default.model.ship.get(e.memShipId).mstID && i > -1) {
-                            var r = [2, 3],
-                                s = o[t].equipType,
-                                a = null == o[i] ? null : o[i].equipType;
-                            if (r.indexOf(s) > -1 && i >= 2) return !1;
-                            if (r.indexOf(a) > -1 && t >= 2) return !1
+                        var r = n.default.model.ship.get(e.memShipId);
+                        if ((553 === r.mstID || 554 === r.mstID) && i > -1) {
+                            var s = [2, 3],
+                                a = o[t].equipType,
+                                _ = null == o[i] ? null : o[i].equipType;
+                            if (s.indexOf(a) > -1 && i >= 2) return !1;
+                            if (s.indexOf(_) > -1 && t >= 2) return !1
                         }
                         i > -1 ? e._changeSlotItem(t, i) : e._removeSlotItem(t)
                     }

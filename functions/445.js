@@ -28,7 +28,7 @@ const function445 = function (t, e, i) {
             }
             return n(e, t), e.prototype._start = function () {
                 var t = -1;
-                if (1 == this._seiku ? t = 135 : 2 == this._seiku ? t = 139 : 4 == this._seiku && (t = 137), t < 0) this._endTask();
+                if (1 == this._seiku ? t = 136 : 2 == this._seiku ? t = 140 : 4 == this._seiku && (t = 138), t < 0) this._endTask();
                 else {
                     var e = r.BATTLE_MAIN.getTexture(t);
                     this._content = new PIXI.Sprite(e), this._anim()

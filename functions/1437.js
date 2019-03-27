@@ -26,7 +26,7 @@ const function1437 = function (t, e, i) {
             }
             return n(e, t), e.prototype.showSanshiki = function (t, e) {
                 var i = this,
-                    n = o.BATTLE_MAIN.getTexture(136),
+                    n = o.BATTLE_MAIN.getTexture(137),
                     r = new PIXI.Sprite(n);
                 r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
                     alpha: 1

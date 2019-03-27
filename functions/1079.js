@@ -28,7 +28,7 @@ const function1079 = function (t, e, i) {
             }
             return n(e, t), e.prototype.update = function (t, e) {
                 var i;
-                if (553 == t) i = o.default.settings.path_root + "resources/stype/etext/sp001.png?" + r.START_TIME;
+                if (553 == t || 554 == t) i = o.default.settings.path_root + "resources/stype/etext/sp001.png?" + r.START_TIME;
                 else {
                     8 == e ? e = 9 : 15 == e && (e = 22);
                     var n = s.MathUtil.zeroPadding(e, 3);

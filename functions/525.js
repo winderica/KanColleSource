@@ -44,9 +44,15 @@ const function525 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "newkohohesosizai", {
+            }), Object.defineProperty(t.prototype, "newhokohesosizai", {
                 get: function () {
                     return 546 == this.mst_id_after ? 3 : 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "newkokuhesosizai", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_aviation_mat_count")
                 },
                 enumerable: !0,
                 configurable: !0

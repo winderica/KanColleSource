@@ -31,7 +31,7 @@ const function814 = function (t, e, i) {
             }
             return o(e, t), e.prototype.showMessageOneItem = function (t, e, i, n) {
                 if (this.hideAll(), i > 0 || n > 0) {
-                    var o = new c;
+                    var o = new h;
                     o.update(t, e, i, n), this._current = o
                 } else {
                     var o = new _;
@@ -46,13 +46,17 @@ const function814 = function (t, e, i) {
                 this.hideAll();
                 var _ = new u;
                 _.update(t, e, i, n, o, r, s, a), this.addChild(_), this._current = _
+            }, e.prototype.showMessageFourItems = function (t, e, i, n, o, r, s, a, _, l) {
+                this.hideAll();
+                var u = new c;
+                u.update(t, e, i, n, o, r, s, a, _, l), this.addChild(u), this._current = u
             }, e.prototype.showMessageKits = function (t, e) {
                 this.hideAll();
-                var i = new h;
+                var i = new p;
                 i.update(t, e), this.addChild(i), this._current = i
             }, e.prototype.showAlertLackOfItem = function (t, e) {
                 this.hideAll();
-                var i = new p;
+                var i = new d;
                 i.update(t, e), this.addChild(i), this._current = i
             }, e.prototype.hideAll = function () {
                 null != this._current && (null != this._current.parent && this._current.parent.removeChild(this._current), this._current.dispose(), this._current = null)
@@ -148,6 +152,48 @@ const function814 = function (t, e, i) {
         }(PIXI.Container),
         c = function (t) {
             function e() {
+                var e = t.call(this) || this,
+                    i = 5;
+                return e._icon1 = new PIXI.Sprite, e._icon1.width = 60, e._icon1.height = 60, e._icon1.position.set(i, 8), e.addChild(e._icon1), i += 65, e._icon2 = new PIXI.Sprite, e._icon2.width = 60, e._icon2.height = 60, e._icon2.position.set(i, 8), e.addChild(e._icon2), i += 65, e._icon3 = new PIXI.Sprite, e._icon3.width = 60, e._icon3.height = 60, e._icon3.position.set(i, 8), e.addChild(e._icon3), i += 65, e._icon4 = new PIXI.Sprite, e._icon4.width = 60, e._icon4.height = 60, e._icon4.position.set(i, 8), e.addChild(e._icon4), e._message1 = new r.TextBox(17, 1644567), e._message1.position.set(2, 74), e.addChild(e._message1), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(2, 153), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, l, u, c) {
+                this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r), this._icon4.texture = s.COMMON_ITEMICONS.getTextureFromMstID(_);
+                var h = "\u672c\u6539\u88c5\u306b\u306f";
+                switch (t) {
+                    case 58:
+                        h += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (i) {
+                    case 65:
+                        h += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (r) {
+                    case 78:
+                        h += "\uff62\u6226\u95d8\u8a73\u5831\uff63\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (_) {
+                    case 77:
+                        h += "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                this._message1.text = h + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(u, c)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._icon4 = null, this._message1 = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        h = function (t) {
+            function e() {
                 var e = t.call(this) || this;
                 return e._icon = new PIXI.Sprite, e._icon.position.set(0, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(77, 11), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 105), e.addChild(e._message2), e
             }
@@ -167,7 +213,7 @@ const function814 = function (t, e, i) {
                 this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon = null, this._message1 = null, this._message2 = null
             }, e
         }(PIXI.Container),
-        h = function (t) {
+        p = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._message = new r.TextBox(18, 1644567), e._message.position.set(0, 0), e.addChild(e._message), e
@@ -178,7 +224,7 @@ const function814 = function (t, e, i) {
                 this.removeChildren(), this._message.destroy(), this._message = null
             }, e
         }(PIXI.Container),
-        p = function (t) {
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(0, 81), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 81), e.addChild(e._message2), e._message3 = new r.TextBox(18, 1644567), e.addChild(e._message3), e
@@ -195,6 +241,9 @@ const function814 = function (t, e, i) {
                             break;
                         case 75:
                             this._message1.text = "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63";
+                            break;
+                        case 77:
+                            this._message1.text = "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750\uff63";
                             break;
                         default:
                             this._message1.text = ""

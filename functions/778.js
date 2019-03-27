@@ -5,7 +5,7 @@ const function778 = function (t, e, i) {
     });
     var n = i(5),
         o = i(0),
-        r = i(50),
+        r = i(46),
         s = i(31),
         a = i(332),
         _ = i(84),
@@ -257,7 +257,9 @@ const function778 = function (t, e, i) {
                     })), this.setList = r
                 }
             }, t.prototype._excludeEquipList = function (t, e, i) {
-                return i ? [] : 553 === o.default.model.ship.get(t).mstID && e >= 2 ? [2, 3] : []
+                if (i) return [];
+                var n = o.default.model.ship.get(t);
+                return (553 === n.mstID || 554 === n.mstID) && e >= 2 ? [2, 3] : []
             }, t.prototype._updateMode_ = function (t) {
                 switch (this.slotItemList.inUseMarker.visible = !1, t) {
                     case h.SlotListMode.SET:

@@ -23,7 +23,7 @@ const function562 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._texture = null, e._caches = {}, e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e._mask_shape = new PIXI.Graphics, e._mask_shape.visible = !1, e.addChild(e._mask_shape), e
+                return e._texture = null, e._caches = {}, e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
             }
             return n(e, t), e.prototype.load = function (t, e) {
                 var i = this,
@@ -42,28 +42,10 @@ const function562 = function (t, e, i) {
             }, e.prototype.update = function () {
                 null != this._texture && (this._img.texture = this._texture), this._texture = null, this._img.visible = !0
             }, e.prototype._createID = function (t) {
-                var e = (new Date).getHours(),
-                    i = t.outside;
-                if (i > 4) {
-                    if (5 == i) {
-                        var n = [
-                            [127, 0, 127, 174, 255, 180, 255, 0],
-                            [375, 0, 375, 183, 517, 193, 517, 0]
-                        ];
-                        this._createOutsideMask(n), this._img.mask = this._mask_shape
-                    }
-                    i = 4
-                } else this._img.mask = null;
-                var o = 0;
-                return o = e < 4 ? 4 : e < 8 ? 5 : e < 16 ? 1 : e < 18 ? 2 : e < 20 ? 3 : 4, "window_bg_" + i + "-" + o
+                var e, i = (new Date).getHours();
+                return e = 20 <= i || i < 4 ? 4 : i < 8 ? 5 : i < 16 ? 1 : i < 18 ? 2 : 3, "window_bg_" + t.outside + "-" + e
             }, e.prototype._createURL = function (t) {
                 return o.default.settings.path_root + "resources/furniture/outside/" + t + ".png"
-            }, e.prototype._createOutsideMask = function (t) {
-                for (var e = 0; e < t.length; e++)
-                    for (var i = 0; i < t[e].length; i += 2) t[e][i] += 294;
-                this._mask_shape.clear(), this._mask_shape.beginFill(16777215);
-                for (var e = 0; e < t.length; e++) this._mask_shape.drawPolygon(t[e]);
-                this._mask_shape.endFill()
             }, e
         }(PIXI.Container);
     e.FurnitureOutside = r

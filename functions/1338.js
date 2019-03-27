@@ -94,7 +94,7 @@ const function1338 = function (t, e, i) {
     var _ = function (t) {
         function e(e) {
             var i, n = t.call(this) || this;
-            return 5 == e ? (i = 145, n.anchor.set(.5, .91)) : 2 == e ? (i = 146, n.anchor.set(.5, .85)) : 3 == e && (i = 145, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
+            return 5 == e ? (i = 147, n.anchor.set(.5, .91)) : 2 == e ? (i = 148, n.anchor.set(.5, .85)) : 3 == e && (i = 147, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
         }
         return n(e, t), e
     }(r.Sprite)

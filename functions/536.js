@@ -130,9 +130,9 @@ const function536 = function (t, e, i) {
             return n._onLoad = function () {
                 null != n._howl && n._howl.play()
             }, n._onLoadError = function (t, e) {
-                n._cb_onEndToManager(n)
+                n._cb_onEndToManager && n._cb_onEndToManager(n)
             }, n._onEnd = function (t) {
-                n._cb_onEndToManager(n)
+                n._cb_onEndToManager && n._cb_onEndToManager(n)
             }, n._cb_onEndToManager = e, n._cb_onEnd = i, n
         }
         return s(e, t), Object.defineProperty(e.prototype, "cb_onEnd", {
