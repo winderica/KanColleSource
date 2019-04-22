@@ -3,30 +3,32 @@ const function929 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
+    var n = i(7),
         o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "ship_mem_id", {
+            return Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_supply_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_usemst")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
+            }), Object.defineProperty(t.prototype, "count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_given_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_getcount")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "num_of_use", {
+            }), Object.defineProperty(t.prototype, "icon_id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_use_num")
+                    return n.ObjUtil.getNumber(this._o, "api_icon_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t
+            }), t.prototype.getUseitemMstID = function () {
+                return 4 == this.type ? [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.icon_id] : 5 == this.type ? this.icon_id : 0
+            }, t
         }();
-    e.ReplenishmentModel = o
+    e.DropItemModel = o
 }

@@ -22,7 +22,7 @@ const function799 = function (t, e, i) {
     var o = i(3),
         r = i(0),
         s = i(4),
-        a = i(34),
+        a = i(32),
         _ = i(133),
         l = i(3),
         u = i(800),
@@ -36,7 +36,7 @@ const function799 = function (t, e, i) {
                     e.onClickNO()
                 };
                 var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(63));
-                e.btn_no = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(2)), e.btn_yes = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(6));
+                e.btn_no = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(3)), e.btn_yes = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(8));
                 var n = new PIXI.Sprite(l.REMODEL_POWERUP.getTexture(0));
                 e.shipBanner = new a.ShipBanner, e.label1 = new s.TextBox(19, 1949120), e.label2 = new s.TextBox(19, 1949120), e.label3 = new s.TextBox(19, 1949120), e.containerName = new PIXI.Container, e.containerNames = new PIXI.Container;
                 var _ = new PIXI.Sprite(r.default.resources.getUIImage("mask")),

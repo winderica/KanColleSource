@@ -20,32 +20,15 @@ const function1188 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = i(6),
-        a = i(240),
-        _ = i(175),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+        r = i(10),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/furniture", e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.default.model.basic.getDutyExecutableCount();
-                if (this._holder.getExecCount() >= e) return void this._endTask();
-                s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
-                    t._update()
-                })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskWaitedDutySelect = l
+        }(r.APIBase);
+    e.UserFurnitureAPI = s
 }

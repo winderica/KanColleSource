@@ -19,22 +19,17 @@ const function937 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(26),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._img = [];
-                var i = new PIXI.Sprite;
-                return e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(0, 27), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 0), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 27), e.addChild(i), e._img.push(i), e._kadou = new o.TextBox(24, 0), e._kadou.y = -5, e.addChild(e._kadou), e._teisu = new o.TextBox(24, 0), e._teisu.y = 21, e.addChild(e._teisu), e
+    var o = i(10),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_air_corps/change_name", o._area_id = e, o._airunit_id = i, o._changed_name = n, o
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img[0].texture = r.SALLY_AIRUNIT.getTexture(135), this._img[1].texture = r.SALLY_AIRUNIT.getTexture(143), this._img[2].texture = r.SALLY_AIRUNIT.getTexture(136), this._img[3].texture = r.SALLY_AIRUNIT.getTexture(136)
-            }, e.prototype.update = function (t, e) {
-                this._kadou.text = t.toString(), this._kadou.x = 72 - this._kadou.width, this._teisu.text = e.toString(), this._teisu.x = 72 - this._teisu.width
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._img = null, this._kadou.destroy(), this._kadou = null, this._teisu.destroy(), this._teisu = null
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_area_id = this._area_id, this._post_data.api_base_id = this._airunit_id, this._post_data.api_name = this._changed_name, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemDetailInfoPanel = s
+        }(o.APIBase);
+    e.AirUnitChangeNameAPI = r
 }

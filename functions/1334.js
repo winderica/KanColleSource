@@ -19,52 +19,38 @@ const function1334 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(62),
-        s = i(16),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(309, 32), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(297, 5), i._smoke3 = new r.CenteringSprite, i._smoke3.position.set(272, 47), i
+    var o = i(5),
+        r = i(444),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = s.BATTLE_MAIN.getTexture(36);
-                this._smoke1.texture = e, this._smoke2.texture = e, this._smoke3.texture = e, this._smoke1.scale.set(.5), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke1.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke1)
-                }), this._smoke2.scale.set(.5), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(100).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke2.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke2)
-                }), this._smoke3.scale.set(.5), this._smoke3.alpha = 0, this._layer.addChild(this._smoke3), createjs.Tween.get(this._smoke3).wait(300).to({
-                    alpha: .7,
-                    scaleX: .7,
-                    scaleY: .7
-                }, 100).to({
-                    x: this._smoke3.x - 12,
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 600).call(function () {
-                    t._layer.removeChild(t._smoke3), t._endTask()
-                })
+            return n(e, t), e.prototype._initialize = function (t, e) {
+                if (0 == e) this._img.texture = r.BATTLE_AIRUNIT.getTexture(3);
+                else {
+                    var i = e / t;
+                    if (i < .25) this._img.texture = r.BATTLE_AIRUNIT.getTexture(2);
+                    else {
+                        if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
+                        this._img.texture = r.BATTLE_AIRUNIT.getTexture(1)
+                    }
+                }
+                return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
+            }, e.prototype.play = function (t, e, i, n) {
+                var r = this;
+                return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+                    x: o.default.width / 2 + 12,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2 - 12
+                }, 1500).to({
+                    x: o.default.width / 2 - 24,
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChild(r), null != n && n()
+                })))
             }, e
-        }(o.TaskBase);
-    e.AnimAntiAircraftFunshinKai2 = a
+        }(PIXI.Container);
+    e.AirUnitAttackResultTelop = s
 }

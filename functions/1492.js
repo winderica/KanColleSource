@@ -19,76 +19,45 @@ const function1492 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(51),
-        r = i(1493),
-        s = i(1494),
-        a = i(1497),
-        _ = i(1505),
-        l = i(1506),
-        u = i(1507),
-        c = i(1509),
-        h = function (t) {
+    var o = i(232),
+        r = i(24),
+        s = i(27),
+        a = i(1493),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new l.LayerTitle, e._map_name = new c.LayerMapName, e._panel_exp = new u.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._map_name), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
-                get: function () {
-                    return this._layer_mvp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bg", {
-                get: function () {
-                    return this._layer_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_deck_info", {
-                get: function () {
-                    return this._layer_deck_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_banner", {
-                get: function () {
-                    return this._layer_banner
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel_exp", {
-                get: function () {
-                    return this._panel_exp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_map_name", {
-                get: function () {
-                    return this._map_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg.dispose(), this._layer_bg = null, this._layer_deck_info.dispose(), this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null, this._map_name.dispose(), this._map_name = null
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
+            }, e.prototype.update = function (t, e) {
+                if (null == this._gauge) return null;
+                this._gauge.update(t, e)
+            }, e.prototype.explode = function (t) {
+                var e = this,
+                    i = new s.ParallelTask,
+                    n = new a.TaskExplosion(this, 107, 20);
+                i.add(n);
+                var o = new a.TaskExplosion(this, 209, 57, 250);
+                i.add(o);
+                var r = new a.TaskExplosion(this, 309, 24, 450);
+                i.add(r), i.start(function () {
+                    null != t && t()
+                }), createjs.Tween.get(this._gauge).wait(200).to({
+                    alpha: 0
+                }, 400).call(function () {
+                    e.removeChild(e._gauge), e._gauge = null
+                })
+            }, e.prototype.changeNextGauge = function (t, e) {
+                null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
+                var i = new r.Container;
+                i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
+                    null != e && e()
+                })
             }, e
         }(PIXI.Container);
-    e.ViewMain = h
+    e.ResultDialogGauge = _
 }

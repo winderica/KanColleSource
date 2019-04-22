@@ -19,15 +19,28 @@ const function1029 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
-        r = i(366),
+    var o = i(358),
+        r = i(1030),
         s = function (t) {
             function e(e) {
-                return t.call(this, e) || this
+                var i = t.call(this, e) || this;
+                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
             }
-            return n(e, t), e.prototype._updateTexture = function () {
-                0 == this._enabled ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(19) : 1 == this._overed ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(20) : this._btn.texture = o.SALLY_EXPEDITION.getTexture(18)
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._panel.dispose()
             }, e
-        }(r.BtnGoBase);
-    e.BtnGo = s
+        }(o.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = s
 }

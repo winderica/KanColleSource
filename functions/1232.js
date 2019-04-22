@@ -1,51 +1,59 @@
 const function1232 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(1233),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResourcesMap).start(function () {
-                    t._showViewMain()
-                })
-            }, e.prototype._showViewMain = function () {
-                var t = this;
-                this._scene.view.bg.setDay(function () {
-                    t._initialize()
-                })
-            }, e.prototype._initialize = function () {
-                this._scene.view.initialize();
-                var t = this._model.sortie.area_id,
-                    e = this._model.sortie.map_id,
-                    i = o.default.model.map.getMapMst(e.toString()).name;
-                this._scene.view.upper.update(t, i), this._endTask()
-            }, e
-        }(r.TaskBase);
-    e.TaskInitPre = a
+            return Object.defineProperty(t.prototype, "offset", {
+                get: function () {
+                    return this._o.hasOwnProperty("x") || this._o.hasOwnProperty("y") ? new PIXI.Point(n.ObjUtil.getNumber(this._o, "x"), n.ObjUtil.getNumber(this._o, "y")) : null
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "type", {
+                get: function () {
+                    switch (n.ObjUtil.getString(this._o, "type")) {
+                        case "R":
+                            return 2;
+                        case "L":
+                            return 6;
+                        case "T":
+                            return 0;
+                        case "B":
+                            return 4;
+                        case "RT":
+                        case "TR":
+                            return 1;
+                        case "RB":
+                        case "BR":
+                            return 3;
+                        case "LT":
+                        case "TL":
+                            return 7;
+                        case "LB":
+                        case "BL":
+                            return 5
+                    }
+                    return 1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "beak", {
+                get: function () {
+                    switch (n.ObjUtil.getString(this._o, "beak")) {
+                        case "s":
+                        case "straight":
+                            return 1
+                    }
+                    return 0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.BranchBalloonData = o
 }

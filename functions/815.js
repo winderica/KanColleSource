@@ -30,7 +30,7 @@ const function815 = function (t, e, i) {
                     e.texture = e._textureOff
                 }, e._onClick = function () {
                     null != e._cb_onClick && e._cb_onClick()
-                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(3), e._textureOff = o.REMODEL_GRADEUP.getTexture(4), e._textureOn = o.REMODEL_GRADEUP.getTexture(5), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
                 this._cb_onClick = t

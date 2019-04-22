@@ -19,36 +19,29 @@ const function1269 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(62),
-        s = i(20),
-        a = function (t) {
+    var o = i(244),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
+                return e._imgs = [], e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                switch (t) {
-                    case 1:
-                        this._bg.texture = s.MAP_COMMON.getTexture(102), this._txt.texture = s.MAP_COMMON.getTexture(113);
-                        break;
-                    case 2:
-                        this._bg.texture = s.MAP_COMMON.getTexture(105), this._txt.texture = s.MAP_COMMON.getTexture(115);
-                        break;
-                    case 3:
-                        this._bg.texture = s.MAP_COMMON.getTexture(102), this._txt.texture = s.MAP_COMMON.getTexture(114);
-                        break;
-                    case 4:
-                        this._bg.texture = s.MAP_COMMON.getTexture(103), this._txt.texture = s.MAP_COMMON.getTexture(116)
+            return n(e, t), e.prototype.update = function (t) {
+                if (this._imgs = [], t <= 0) {
+                    var e = new o.NumericalDisplay(0);
+                    this.addChild(e), this._imgs.push(e)
+                } else
+                    for (; t > 0;) {
+                        var i = t % 10,
+                            e = new o.NumericalDisplay(i);
+                        this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
+                    }
+                var n = new o.NumericalDisplay(-1);
+                this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
+                for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
+                    var _ = a[s];
+                    _.x = r, r += _.width
                 }
-                this._container.y = -o.default.height / 2 - this._container.height
-            }, e.prototype.playAnimation = function (t) {
-                createjs.Tween.get(this._container).to({
-                    y: 0
-                }, 600, createjs.Ease.sineOut).wait(1e3).to({
-                    y: o.default.height / 2 + this.height
-                }, 600, createjs.Ease.sineIn).call(t)
             }, e
         }(PIXI.Container);
-    e.AirRaidResultTelop = a
+    e.NumericalDisplaySet = r
 }

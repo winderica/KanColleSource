@@ -19,33 +19,35 @@ const function983 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(53),
-        s = i(41),
-        a = function (t) {
+    var o = i(0),
+        r = i(80),
+        s = i(30),
+        a = i(1),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
+                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(41) : e._icon.texture = s.SALLY_COMMON.getTexture(40)
+                }, e._onMouseOver = function () {
+                    e._overed = !0, e._updateTexture(), e._over.visible = !0
+                }, e._onMouseOut = function () {
+                    e._overed = !1, e._updateTexture(), e._over.visible = !1
+                }, e._onClick = function () {
+                    o.default.scene.change(24, new r.ItemSceneModel)
+                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(-187, -40), e._over.visible = !1, e._icon.interactive = !0, e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                t != o.EVENT_AREA_ID ? (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0) : (e >= 3 ? (this._content.position.set(1022, 348), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)) : (this._content.position.set(1015, 330), this._content.texture = s.SALLY_EVENT.getTexture(9), this._light.texture = s.SALLY_EVENT.getTexture(11)), this._light.position.set(1015, 330), this._light.alpha = 0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
+            return n(e, t), e.prototype.initialize = function () {
+                this._icon.texture = s.SALLY_COMMON.getTexture(40), this._over.texture = s.SALLY_COMMON.getTexture(44), this.addChild(this._over), this.addChild(this._icon)
+            }, e.prototype.activate = function () {
+                var t = this;
+                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
                     loop: !0
-                }).to({
-                    alpha: 1
-                }, 1500).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+                }).wait(300).call(function () {
+                    t._updateTexture()
+                }))
+            }, e.prototype.deactivate = function () {
+                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
             }, e
         }(PIXI.Container);
-    e.BtnNext = a
+    e.BtnShop2 = _
 }

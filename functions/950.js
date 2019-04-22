@@ -19,41 +19,40 @@ const function950 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
+    var o = i(951),
         r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.texture = PIXI.Texture.EMPTY, e
+            function e(e) {
+                var i = t.call(this) || this;
+                i._tabs = [];
+                for (var n = 0; n < 5; n++) {
+                    var r = new o.AirUnitListTab(e);
+                    r.x = 69 * n, i.addChild(r), i._tabs.push(r)
+                }
+                return i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (t) {
-                    case 1:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(91);
-                        break;
-                    case 2:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(92);
-                        break;
-                    case 3:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(93);
-                        break;
-                    case 4:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(94);
-                        break;
-                    case 5:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(95);
-                        break;
-                    case 6:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(96);
-                        break;
-                    case 7:
-                        this.texture = o.SALLY_AIRUNIT.getTexture(97);
-                        break;
-                    default:
-                        this.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._tabs.length; t++) {
+                    var e = this._tabs[t];
+                    0 == t && (e.selected = !0), e.initialize(t)
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._tabs; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = n.category == t
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].deactivate()
                 }
             }, e.prototype.dispose = function () {
-                this.texture = PIXI.Texture.EMPTY
+                for (var t = 0, e = this._tabs; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(PIXI.Sprite);
-    e.AirPlaneSkillLevel = r
+        }(PIXI.Container);
+    e.AirUnitListTabContainer = r
 }

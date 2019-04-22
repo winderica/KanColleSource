@@ -46,7 +46,14 @@ const function525 = function (t, e, i) {
                 configurable: !0
             }), Object.defineProperty(t.prototype, "newhokohesosizai", {
                 get: function () {
-                    return 546 == this.mst_id_after ? 3 : 0
+                    switch (this.mst_id_after) {
+                        case 546:
+                            return 3;
+                        case 591:
+                            return 2;
+                        default:
+                            return 0
+                    }
                 },
                 enumerable: !0,
                 configurable: !0

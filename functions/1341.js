@@ -20,28 +20,82 @@ const function1341 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(14),
-        s = i(25),
+        r = i(12),
+        s = i(16),
         a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._ship_mst_id = e, s._damaged = i, s._plane1 = n, s._plane2 = o, s._plane3 = r, s
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._type = i, o._plane = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadShipImage()
-            }, e.prototype._loadShipImage = function () {
+                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
+            }, e.prototype._animSanshiki = function () {
                 var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._ship_mst_id, this._damaged, "full"), e.load(function () {
-                    t._loadPlaneImage()
+                    e = new _(5);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
                 })
-            }, e.prototype._loadPlaneImage = function () {
+            }, e.prototype._animKoukaku = function () {
                 var t = this,
-                    e = new s.SlotLoader;
-                this._plane1 > 0 && e.add(this._plane1, "item_up"), this._plane2 > 0 && e.add(this._plane2, "item_up"), this._plane3 > 0 && e.add(this._plane3, "item_up"), e.load(function () {
-                    t._endTask()
+                    e = new _(2);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
                 })
+            }, e.prototype._animFunshin = function () {
+                var t = this,
+                    e = new _(3);
+                e.position.set(0, -15), this._plane.addChild(e);
+                var i = new _(3);
+                i.position.set(-15, 0), this._plane.addChild(i);
+                var n = new _(3);
+                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(i).wait(100).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(n).wait(200).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.PreloadCutinFunnel = a
+    e.TaskAirWarAntiAircraftExplosion = a;
+    var _ = function (t) {
+        function e(e) {
+            var i, n = t.call(this) || this;
+            return 5 == e ? (i = 147, n.anchor.set(.5, .91)) : 2 == e ? (i = 148, n.anchor.set(.5, .85)) : 3 == e && (i = 147, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
+        }
+        return n(e, t), e
+    }(r.Sprite)
 }

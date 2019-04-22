@@ -19,54 +19,29 @@ const function1447 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(246),
-        r = i(16),
-        s = function (t) {
+    var o = i(1448),
+        r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
             }
-            return n(e, t), e.prototype.show = function (t, e) {
-                void 0 === e && (e = null), this.hide(), this._current = new o.PhaseTitle, this._current.y = 16, this._current.alpha = 0, this._current.initialize(8 == t);
-                var i = this._getTexture(t);
-                this._current.update(i), this._current.activate(), null != e ? e.addChild(this._current) : this.addChild(this._current), createjs.Tween.get(this._current).to({
-                    alpha: 1
-                }, 800)
-            }, e.prototype.hide = function (t) {
-                if (void 0 === t && (t = null), null == this._current) null != t && t();
-                else {
-                    var e = this._current;
-                    this._current = null, createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        e.deactivate();
-                        var i = e.parent;
-                        null != i && i.removeChild(e), e.dispose(), null != t && t()
-                    })
-                }
-            }, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case 0:
-                        return r.BATTLE_MAIN.getTexture(129);
-                    case 1:
-                        return r.BATTLE_MAIN.getTexture(125);
-                    case 2:
-                        return r.BATTLE_MAIN.getTexture(130);
-                    case 3:
-                        return r.BATTLE_MAIN.getTexture(128);
-                    case 4:
-                        return r.BATTLE_MAIN.getTexture(124);
-                    case 5:
-                        return r.BATTLE_MAIN.getTexture(123);
-                    case 6:
-                        return r.BATTLE_MAIN.getTexture(127);
-                    case 7:
-                        return r.BATTLE_MAIN.getTexture(126);
-                    case 8:
-                        return r.BATTLE_MAIN.getTexture(131);
-                    default:
-                        return PIXI.Texture.EMPTY
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
+                get: function () {
+                    return this._rader_f
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "rader_e", {
+                get: function () {
+                    return this._rader_e
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
+            }, e.prototype.resetChildren = function () {
+                this.addChild(this._rader_f), this.addChild(this._rader_e)
             }, e
         }(PIXI.Container);
-    e.LayerTitle = s
+    e.RaderLayer = r
 }

@@ -39,21 +39,21 @@ const function811 = function (t, e, i) {
                 };
                 var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12));
                 i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(23));
+                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
                 n.position.set(275, 194), e.addChild(n);
-                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(21));
+                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
                 d.position.set(653, 194), e.addChild(d), e._shipPanelBefore = new c.KaizoDetailShipPanel, e._shipPanelBefore.position.set(35, 218), e.addChild(e._shipPanelBefore), e._shipPanelAfter = new c.KaizoDetailShipPanel, e._shipPanelAfter.position.set(408, 218), e.addChild(e._shipPanelAfter);
-                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
+                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(30));
                 f.position.set(32, 416), e.addChild(f);
-                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(24));
+                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(28));
                 y.position.set(413, 418), e.addChild(y);
-                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
+                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(31));
                 m.position.set(32, 471), e.addChild(m);
-                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
+                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(29));
                 v.position.set(413, 473), e.addChild(v);
                 e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
-                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(22));
-                return g.position.set(720, 446), e.addChild(g), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(11)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(1), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
+                return g.position.set(720, 446), e.addChild(g), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
             }
             return n(e, t), e.prototype.activate = function (t, e) {
                 this._cb_onStart = t, this._cb_onCancel = e

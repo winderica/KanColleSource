@@ -21,172 +21,270 @@ const function141 = function (t, e, i) {
     });
     var o = i(5),
         r = i(0),
-        s = i(2),
-        a = i(12),
-        _ = i(14),
-        l = i(25),
-        u = i(45),
-        c = i(450),
-        h = i(451),
+        s = i(44),
+        a = i(23),
+        _ = i(46),
+        l = i(66),
+        u = i(6),
+        c = i(16),
+        h = i(181),
         p = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                s._attacker = e, s._slot = i, s._showStatus = o, s._showTelop = r, s._friend = s._attacker.friend;
-                var a = s._friend ? -162 : 435;
-                s._base_pos = new PIXI.Point(a, -131), s._view = new c.CutinCanvas;
-                var _ = Math.floor(3 * Math.random());
-                return s._telop = new h.CutinTelop(_, n), 1 == s._showTelop ? s._preload_task = new d(e, i) : s._preload_task = new d(e, null), s
+            function e() {
+                var e = t.call(this) || this;
+                return e._damaged = !1, e._crashed = !1, e.power = 1, e._img = new d, e._img.position.set(1, 1), e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "view", {
+            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
                 get: function () {
-                    return this._view
+                    return this._mst_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.getPreloadTask = function () {
-                return this._preload_task
-            }, e.prototype._start = function () {
-                var t = this._attacker.mst_id,
-                    e = this._attacker.isDamaged(),
-                    i = r.default.resources.getShip(t, e, "full"),
-                    n = new a.Sprite(i),
-                    o = new u.ShipFlash(i),
-                    s = r.default.model.ship_graph.get(t),
-                    _ = s.getBattleOffset(e);
-                n.x = o.x = _.x, n.y = o.y = _.y;
-                var l = this._friend ? 1 : -1,
-                    c = Math.floor(4 * Math.random());
-                0 == c ? this.play_type1(n, o, l) : 1 == c ? this.play_type2(n, o, l, _) : 2 == c ? this.play_type3(n, o, l) : this.play_type4(n, o, l, _), this._view.chara.addChild(n), this._view.chara.addChild(o), this._animBox(this._attacker, this._slot), this._animTelop(this._slot, this._attacker.friend)
-            }, e.prototype.play_type1 = function (t, e, i) {
-                var n = this;
-                this._view.chara.position.set(this._base_pos.x - 180 * i, this._base_pos.y + 120), this._view.chara.alpha = 0;
-                var o = createjs.Tween.get(this._view.chara).to({
-                    x: this._base_pos.x - 30 * i,
-                    y: this._base_pos.y + 15,
-                    alpha: 1
-                }, 300).to({
-                    x: this._base_pos.x,
-                    y: this._base_pos.y
-                }, 250);
-                this._addAttackTween(e, o), o.to({
-                    x: this._base_pos.x + 38 * i,
-                    y: this._base_pos.y - 23
-                }, 135), o.to({
-                    x: this._base_pos.x + 135 * i,
-                    y: this._base_pos.y - 75,
-                    alpha: 0
-                }, 335), o.call(function () {
-                    n._tweenEnd(e)
-                })
-            }, e.prototype.play_type2 = function (t, e, i, n) {
-                var o = this;
-                this._view.chara.position.set(this._base_pos.x, this._base_pos.y);
-                var r = 344 - n.x,
-                    s = 597 - n.y;
-                t.x += r, t.y += s, t.anchor.set(r / t.width, s / t.height), t.scale.set(1.25), t.alpha = 0, e.position = t.position, e.anchor = t.anchor, e.scale = t.scale, e.alpha = t.alpha;
-                var a = createjs.Tween.get(t).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 533, createjs.Ease.sineOut);
-                a.call(function () {
-                    e.scale.x = 1, e.scale.y = 1
-                }), this._addAttackTween(e, a), a.call(function () {
-                    createjs.Tween.get(e).to({
-                        scaleX: 1.25,
-                        scaleY: 1.25
-                    }, 466)
-                }), a.to({
-                    scaleX: 1.25,
-                    scaleY: 1.25,
-                    alpha: 0
-                }, 466), a.call(function () {
-                    o._tweenEnd(e)
-                })
-            }, e.prototype.play_type3 = function (t, e, i) {
-                var n = this;
-                this._view.chara.position.set(this._base_pos.x - 180 * i, this._base_pos.y), this._view.chara.alpha = 0;
-                var o = createjs.Tween.get(this._view.chara).to({
-                    x: this._base_pos.x - 30 * i,
-                    alpha: 1
-                }, 300).to({
-                    x: this._base_pos.x
-                }, 250);
-                this._addAttackTween(e, o), o.to({
-                    x: this._base_pos.x + 78 * i,
-                    alpha: 0
-                }, 466), o.call(function () {
-                    n._tweenEnd(e)
-                })
-            }, e.prototype.play_type4 = function (t, e, i, n) {
-                var o = this;
-                this._view.chara.position.set(this._base_pos.x - 180 * i, this._base_pos.y), this._view.chara.alpha = 0;
-                var r = 344 - n.x,
-                    s = 597 - n.y;
-                t.x += r, t.y += s, t.anchor.set(r / t.width, s / t.height), e.position = t.position, e.anchor = t.anchor;
-                var a = createjs.Tween.get(this._view.chara).to({
-                    x: this._base_pos.x - 30 * i,
-                    alpha: 1
-                }, 300).to({
-                    x: this._base_pos.x
-                }, 250);
-                this._addAttackTween(e, a), a.call(function () {
-                    createjs.Tween.get(t).to({
-                        scaleY: 1.66,
-                        alpha: 0
-                    }, 466), createjs.Tween.get(e).to({
-                        scaleY: 1.66
-                    }, 466).call(function () {
-                        o._tweenEnd(e)
+            }), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "damaged", {
+                get: function () {
+                    return this._damaged
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "crashed", {
+                get: function () {
+                    return this._crashed
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._mst_id = t, this._friend = e, this.x = i.x + n.x, this.y = i.y + n.y, this._offset = n.clone(), this._img.initialize(t, e)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._offset = null, this._end = null, null != this._img && (this._img.dispose(), this._img = null), null != this._tween && (this._tween.setPaused(!0), this._tween = null), this._state = null
+            }, e.prototype.startFluctuations = function () {
+                this._img.startFluctuations()
+            }, e.prototype.stopFluctuations = function () {
+                this._img.stopFluctuations()
+            }, e.prototype.fire = function () {
+                this._img.fire.play()
+            }, e.prototype.damage = function () {
+                var t = this;
+                if (1 != this._damaged) {
+                    this._damaged = !0;
+                    var e = new h.Explosion;
+                    this.addChild(e), u.SE.play("102"), e.play(function () {
+                        t.removeChild(e)
+                    }), createjs.Tween.get(null).wait(200).call(function () {
+                        if (null != t._img && (t._img.smoke.activate(), null != t._tween)) {
+                            t._tween.setPaused(!0);
+                            var e = createjs.Ticker.framerate,
+                                i = Math.pow(.95, 1 / e);
+                            Math.abs(t._state.diff_x) > 5 && (i = Math.pow(.5, 1 / e));
+                            var n = Math.pow(5.3, 1 / e);
+                            t._tween = createjs.Tween.get(null, {
+                                loop: !0,
+                                onChange: function () {
+                                    t._state.diff_x *= i, t._state.diff_y *= n, t.x += t._state.diff_x, t.y += t._state.diff_y, (t.x < -150 || t.x > o.default.width + 150 || t.y > o.default.height + 150) && (t._tween.setPaused(!0), t.emit("complete"))
+                                }
+                            })
+                        }
                     })
-                })
-            }, e.prototype._tweenEnd = function (t) {
-                t.parent.removeChild(t), this._endTask()
-            }, e.prototype._addAttackTween = function (t, e) {
-                var i = this;
-                return e.call(function () {
-                    i._view.emit("attack"), t.play()
-                }), e.wait(135), e
-            }, e.prototype._animBox = function (t, e) {
-                if (null != t && null != e && 0 != this._showStatus) {
-                    var i = this._view.box;
-                    i.initilize(t);
-                    var n = 0;
-                    1 == t.friend ? i.x = -60 : (n = o.default.width - i.width, i.x = n + 60), i.y = o.default.height - i.height, i.alpha = 0, createjs.Tween.get(i).wait(220).to({
-                        x: n,
-                        alpha: 1
-                    }, 165).wait(900).to({
-                        alpha: 0
-                    }, 200)
                 }
-            }, e.prototype._animTelop = function (t, e) {
-                null != t && 0 != this._showTelop && (this._telop.initialize(t.mstID, e), this._view.addChildAt(this._telop, 0), this._telop.play())
-            }, e.prototype._endTask = function () {
-                this._attacker = null, this._slot = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop = null, this._preload_task = null, t.prototype._endTask.call(this)
+            }, e.prototype.crash = function () {
+                var t = this;
+                if (1 != this._crashed) {
+                    this._crashed = !0;
+                    var e = new h.Explosion;
+                    this.addChild(e), u.SE.play("102"), e.play(function () {
+                        t.removeChild(e)
+                    }), createjs.Tween.get(null).wait(200).call(function () {
+                        null != t._img && (t._img.visible = !1), null != t._tween && (t._tween.setPaused(!0), t._tween = null), t.emit("complete")
+                    })
+                }
+            }, e.prototype.play = function (t, e) {
+                var i, n, o = this,
+                    r = new PIXI.Point(this.x, this.y),
+                    s = new PIXI.Point(t.x + this._offset.x, t.y + this._offset.y),
+                    a = r.x <= s.x,
+                    _ = s.x - r.x,
+                    u = Math.max(s.y, r.y) + 150;
+                1 == a ? (i = new PIXI.Point(Math.min(r.x, s.x) + _ / 3, u), n = new PIXI.Point(Math.min(r.x, s.x) + _ / 3 * 2, u)) : (i = new PIXI.Point(Math.max(r.x, s.x) + _ / 3, u), n = new PIXI.Point(Math.max(r.x, s.x) + _ / 3 * 2, u));
+                var c = {
+                    onChange: function (t) {
+                        null != o._state && (o._state.diff_x = o.x - o._state.pre_x, o._state.diff_y = Math.abs(o.y - o._state.pre_y) + .01, o._state.diff_t = t.timeStamp - o._state.pre_t, o._state.pre_x = o.x, o._state.pre_y = o.y, o._state.pre_t = t.timeStamp)
+                    }
+                };
+                return this._state = {
+                    pre_x: this.x,
+                    pre_y: this.y,
+                    pre_t: Date.now(),
+                    diff_x: 0,
+                    diff_y: 0,
+                    diff_t: 0
+                }, this._tween = l.TweenUtil.create3BezierTween(this, r, i, n, s, e, c), this._tween.call(function () {
+                    o.emit("complete")
+                }), this._end = s, {
+                    s: r,
+                    c1: i,
+                    c2: n,
+                    e: s
+                }
+            }, e.prototype.playForJet = function (t, e) {
+                var i, n, o = this,
+                    r = new PIXI.Point(this.x, this.y),
+                    s = new PIXI.Point(t.x + this._offset.x, t.y + this._offset.y),
+                    a = (r.x, s.x, Math.min(r.x, s.x)),
+                    _ = s.x - r.x,
+                    u = Math.max(s.y, r.y) + 75;
+                i = new PIXI.Point(a + _ / 3, u), n = new PIXI.Point(a + _ / 3 * 2, u);
+                var c = {
+                    onChange: function (t) {
+                        null != o._state && (o._state.diff_x = o.x - o._state.pre_x, o._state.diff_y = Math.abs(o.y - o._state.pre_y) + .01, o._state.diff_t = t.timeStamp - o._state.pre_t, o._state.pre_x = o.x, o._state.pre_y = o.y, o._state.pre_t = t.timeStamp)
+                    }
+                };
+                return this._state = {
+                    pre_x: this.x,
+                    pre_y: this.y,
+                    pre_t: Date.now(),
+                    diff_x: 0,
+                    diff_y: 0,
+                    diff_t: 0
+                }, this._tween = l.TweenUtil.create3BezierTween(this, r, i, n, s, e, c), this._tween.call(function () {
+                    o.emit("complete")
+                }), this._end = s, {
+                    s: r,
+                    c1: i,
+                    c2: n,
+                    e: s
+                }
+            }, e.prototype.play2 = function (t, e, i) {
+                var n = this;
+                void 0 === e && (e = NaN);
+                var o, r, s = new PIXI.Point(this.x, this.y),
+                    a = new PIXI.Point(t.x + this._offset.x, t.y + this._offset.y),
+                    _ = s.x <= a.x;
+                1 == _ ? (o = new PIXI.Point(Math.min(s.x, a.x) + (a.x - s.x) / 3, Math.max(a.y, s.y) + 150), r = new PIXI.Point(Math.min(s.x, a.x) + (a.x - s.x) / 3 * 2, Math.max(a.y, s.y) + 150)) : (o = new PIXI.Point(Math.max(s.x, a.x) + (a.x - s.x) / 3, Math.max(a.y, s.y) + 150), r = new PIXI.Point(Math.max(s.x, a.x) + (a.x - s.x) / 3 * 2, Math.max(a.y, s.y) + 150));
+                var c;
+                if (0 == isNaN(e)) {
+                    var h = .99,
+                        p = 1 - h,
+                        d = Math.pow(p, 3) * s.x + 3 * Math.pow(p, 2) * h * o.x + 3 * p * h * h * r.x + h * h * h * a.x,
+                        f = Math.pow(p, 3) * s.y + 3 * Math.pow(p, 2) * h * o.y + 3 * p * h * h * r.y + h * h * h * a.y,
+                        y = a.y + (e - a.x) * (a.y - f) / (a.x - d),
+                        m = a.x - d,
+                        v = (e - a.x) / m,
+                        g = i / (100 + v) * 100,
+                        b = i / (100 + v) * v;
+                    this._tween = l.TweenUtil.create3BezierTween(this, s, o, r, a, g), this._tween.call(function () {
+                        n.emit("attacked")
+                    }), this._tween.to({
+                        x: e,
+                        y: y
+                    }, b), c = new PIXI.Point(e, y)
+                } else this._tween = l.TweenUtil.create3BezierTween(this, s, o, r, a, i), this._tween.call(function () {
+                    n.emit("attacked")
+                }), c = new PIXI.Point(a.x, a.y);
+                return this._tween.call(function () {
+                    n.emit("complete")
+                }), createjs.Tween.get(null).wait(.7 * i).call(function () {
+                    u.SE.play("116"), n.fire()
+                }), this._end = a, {
+                    s: s,
+                    c1: o,
+                    c2: r,
+                    e: a,
+                    ex: c
+                }
             }, e
-        }(s.TaskBase);
-    e.CutinAttack = p;
+        }(PIXI.Container);
+    e.Plane = p;
     var d = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._attacker = e, n._slot = i, n
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._loadShipImage()
-        }, e.prototype._loadShipImage = function () {
-            var t = this,
-                e = new _.ShipLoader;
-            e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
-                t._loadSlotTextImage()
-            })
-        }, e.prototype._loadSlotTextImage = function () {
-            var t = this;
-            if (null != this._slot) {
-                var e = new l.SlotLoader;
-                e.add(this._slot.mstID, "btxt_flat"), e.load(function () {
-                    t._endTask()
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(.5), e.scale.set(.75), e._fire = new f, e._smoke = new y, e.addChild(e._fire), e.addChild(e._smoke), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "fire", {
+                get: function () {
+                    return this._fire
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "smoke", {
+                get: function () {
+                    return this._smoke
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                var i;
+                if (1 == _.SlotUtil.isEnemyItem(t)) {
+                    var n = s.PlaneConst.getEnemyPlaneGraphicsType(t);
+                    i = "e" + a.MathUtil.zeroPadding(n, 3), this.scale.x *= e ? -1 : 1
+                } else {
+                    var o = r.default.model.slot.getMst(t),
+                        l = o.planeIconType;
+                    l = Math.max(1, l), i = a.MathUtil.zeroPadding(l, 3), i = (e ? "" : "r") + i, this.scale.x *= e ? 1 : -1
+                }
+                this.texture = PIXI.Texture.fromImage(r.default.settings.path_root + "resources/plane/" + i + ".png"), this._fire.initialize(), this._smoke.initialize()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._fire = null, this._smoke.dispose(), this._smoke = null, this.stopFluctuations()
+            }, e.prototype.startFluctuations = function () {
+                null == this._t && this._tween()
+            }, e.prototype.stopFluctuations = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._tween = function () {
+                var t = this,
+                    e = Math.round(46 * Math.random() - 23),
+                    i = Math.round(46 * Math.random() - 23),
+                    n = 100 * Math.sqrt(Math.pow(e - this.x, 2) + Math.pow(i - this.y, 2));
+                this._t = createjs.Tween.get(this).to({
+                    y: i,
+                    x: e
+                }, n).call(function () {
+                    t._tween()
                 })
-            } else this._endTask()
-        }, e
-    }(s.TaskBase)
+            }, e
+        }(PIXI.Sprite),
+        f = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.visible = !1, e._fire1 = new PIXI.Sprite, e._fire2 = new PIXI.Sprite, e._fire1.position.set(-17, -27), e._fire2.position.set(0, -54), e._fire2.scale.set(.8), e.addChild(e._fire1), e.addChild(e._fire2), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._fire1.texture = c.BATTLE_MAIN.getTexture(79), this._fire2.texture = c.BATTLE_MAIN.getTexture(79)
+            }, e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.get(this).wait(200 * Math.random()).call(function () {
+                    t.visible = !0
+                }).wait(100).call(function () {
+                    t.visible = !1
+                }).wait(100).call(function () {
+                    t.visible = !0
+                }).wait(100).call(function () {
+                    t.visible = !1
+                })
+            }, e
+        }(PIXI.Container),
+        y = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._reverseImage = function () {
+                    e._content.scale.x = -1 * e._content.scale.x, e._content.scale.y = -1 * e._content.scale.y, -1 == e._content.scale.x ? e._content.position.y = -65 : e._content.position.y = -54
+                }, e.visible = !1, e._content = new PIXI.Sprite, e._content.anchor.set(.5), e._content.position.set(-57, -54), e.addChild(e._content), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._content.texture = c.BATTLE_MAIN.getTexture(80)
+            }, e.prototype.activate = function () {
+                null == this._t && (this.scale.set(0), this.visible = !0, createjs.Tween.get(this.scale).to({
+                    x: 1,
+                    y: 1
+                }, 300), this._t = createjs.Tween.get(this._content, {
+                    loop: !0
+                }).wait(100).call(this._reverseImage))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this.visible = !1, this._t.setPaused(!0), this._t = null)
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e
+        }(PIXI.Container)
 }

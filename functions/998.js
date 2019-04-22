@@ -1,38 +1,36 @@
 const function998 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "win_count", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._war, "api_win")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "lose_count", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._war, "api_lose")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "win_rate", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._war, "api_rate")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.update = function (t) {
-                this._o = t
-            }, Object.defineProperty(t.prototype, "_war", {
-                get: function () {
-                    return n.ObjUtil.getObject(this._o, "api_war")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
-        }();
-    e.EventSortieConditionModel = o
+    var o = i(370),
+        r = i(371),
+        s = function (t) {
+            function e(e, i, n) {
+                for (var o = t.call(this, e, n) || this, s = 0; s < 2; s++) {
+                    var a = new r.EventMapThumbnail(2, i, n, o._onMouseOver, o._onMouseOut),
+                        _ = 207 + 216 * s;
+                    a.position.set(501, _), o.addChild(a), o._maps.push(a)
+                }
+                return o
+            }
+            return n(e, t), e
+        }(o.EventLayoutBase);
+    e.LayoutEventMap2 = s
 }

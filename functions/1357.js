@@ -25,26 +25,32 @@ const function1357 = function (t, e, i) {
         a = i(6),
         _ = i(45),
         l = i(457),
-        u = i(1358),
+        u = i(1359),
         c = i(65),
         h = function (t) {
             function e(e, i, n, o, r) {
-                var s = t.call(this, i, n, o, r, !0) || this;
+                var s = t.call(this, i, n, o, r, !1) || this;
                 return s._layer = e, s._friend = s._attacker.friend, s
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this,
                     e = this._friend ? 1 : -1;
-                this._canvas = new u.CutinKuboNightCanvas, this._canvas.bg.alpha = 0;
+                this._canvas = new u.CutinKuboDayCanvas, this._canvas.bg.alpha = 0;
                 var i = this._attacker.mst_id,
                     n = this._attacker.isDamaged(),
                     r = o.default.resources.getShip(i, n, "full"),
                     l = new PIXI.Sprite(r),
                     c = new _.ShipFlash(r),
                     h = o.default.model.ship_graph.get(i).getBattleOffset(n);
-                l.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.addChild(l), this._canvas.chara.addChild(c), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
-                var p, d = new s.TweenTask;
-                this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), p = 1600, d.addTweens(this._canvas.bar1.createTween(p)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), p = 1600, d.addTweens(this._canvas.bar2.createTween(p)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), p = 1600, d.addTweens(this._canvas.bar3.createTween(p)), d.start(function () {
+                l.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.chara.addChild(l), this._canvas.chara.addChild(c), this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
+                var p = 0,
+                    d = this._attacker.slots;
+                if (null != d && d.length > 0 && null != d[0]) {
+                    var f = d[0].mst_id;
+                    f == this._slot_mst_id1 ? p = 1 : f == this._slot_mst_id2 ? p = 2 : f == this._slot_mst_id3 && (p = 3)
+                }
+                var y, m = new s.TweenTask;
+                this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), y = 1 == p ? 1300 : 1600, m.addTweens(this._canvas.bar1.createTween(y)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), y = 2 == p ? 1300 : 1600, m.addTweens(this._canvas.bar2.createTween(y)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), y = 3 == p ? 1300 : 1600, m.addTweens(this._canvas.bar3.createTween(y)), m.start(function () {
                     var e = new s.TweenTask;
                     e.addTweens(t._canvas.bar1.createTween2(1300)), e.addTweens(t._canvas.bar2.createTween2(1300)), e.addTweens(t._canvas.bar3.createTween2(1300)), e.start()
                 }), this._layer.addChild(this._canvas), createjs.Tween.get(this._canvas.bg).to({
@@ -102,5 +108,5 @@ const function1357 = function (t, e, i) {
                 this._layer = null, this._canvas = null, t.prototype._endTask.call(this)
             }, e
         }(l.CutinKuboBase);
-    e.CutinKuboNight = h
+    e.CutinKuboDay = h
 }

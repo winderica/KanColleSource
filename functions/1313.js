@@ -20,19 +20,27 @@ const function1313 = function (t, e, i) {
         value: !0
     });
     var o = i(10),
-        r = function (t) {
+        r = i(139),
+        s = i(13),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this,
                     n = e.model.deck_f,
-                    o = 0 != n.type,
-                    r = e.model.map_info.isVS12();
-                return 1 == e.model.map_info.isNightToDayStart() ? i._url = 1 == r ? "api_req_combined_battle/ec_night_to_day" : "api_req_sortie/night_to_day" : i._url = 1 == o ? "api_req_combined_battle/sp_midnight" : "api_req_battle_midnight/sp_midnight", i._data = e, i
+                    o = e.model.deck_e,
+                    r = n.isCombined(),
+                    s = !1;
+                if (s = null != o ? o.isCombined() : e.model.map_info.isVS12(), 0 == r) i._url = 0 == s ? "api_req_sortie/battle" : "api_req_combined_battle/ec_battle";
+                else {
+                    var a = n.type;
+                    1 == a || 3 == a ? i._url = 0 == s ? "api_req_combined_battle/battle" : "api_req_combined_battle/each_battle" : 2 == a && (i._url = 0 == s ? "api_req_combined_battle/battle_water" : "api_req_combined_battle/each_battle_water")
+                }
+                return i._data = e, i
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), t.prototype._connect.call(this)
+                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+                this._data.addDayRecord(this._raw_data), this._data.isBossDamaged() ? s.ShipLoader.hasai = this._data.model.deck_e.ships_main[0].mst_id : s.ShipLoader.hasai = null, this._data = null, t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIBattleStartNight = r
+    e.APIBattleStart = a
 }

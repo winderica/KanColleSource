@@ -20,26 +20,47 @@ const function869 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.clickable = !1, i.hasKey = !1, i._onMouseOver = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.hasKey ? i.confirm_dock_key_sprite.visible = !0 : i.alert_dock_key_sprite.visible = !0
-                }, i._onClick = function () {
-                    i.hasKey || o.SE.play("248"), i.onClick()
-                }, i._onMouseOut = function (t) {
-                    i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1
-                }, i.steelFrame_noDock_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(147)), i.alert_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(71)), i.confirm_dock_key_sprite = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(72)), i.alert_dock_key_sprite.position.set(255, -15), i.confirm_dock_key_sprite.position.set(255, -15), i.alert_dock_key_sprite.visible = i.confirm_dock_key_sprite.visible = !1, i.steelFrame_noDock_sprite.interactive = i.steelFrame_noDock_sprite.buttonMode = !0, i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOVER, i._onMouseOver), i.steelFrame_noDock_sprite.on(s.EventType.MOUSEOUT, i._onMouseOut), i.steelFrame_noDock_sprite.on(s.EventType.CLICK, i._onClick), i.addChild(i.steelFrame_noDock_sprite), e.addChild(i.alert_dock_key_sprite, i.confirm_dock_key_sprite), i.overlayer = e, i
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.STAR = 5, e.SHOOTING_STAR_DISTANCE = 45;
+                var i = Math.random();
+                e.stars = [], e.starTables = new Array;
+                for (var n = 0; n < e.STAR; n++) {
+                    var r = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(143));
+                    r.anchor.set(.5, .5), r.alpha = 0, r.position.set(0, 0);
+                    var s = Math.sin(Math.PI / 180 * (360 * i)),
+                        a = Math.cos(Math.PI / 180 * (360 * i)),
+                        _ = {
+                            x: 0,
+                            y: 0
+                        };
+                    _.x = s, _.y = a, e.stars.push(r), e.starTables.push(_), e.addChild(r)
+                }
+                return e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                this.steelFrame_noDock_sprite.interactive = !1, t && (this.steelFrame_noDock_sprite.interactive = !0), this.clickable = t, this.hasKey = e
-            }, e.prototype.hidePop = function () {
-                this.alert_dock_key_sprite.visible = this.confirm_dock_key_sprite.visible = !1
+            return n(e, t), e.prototype.updateStarPosition = function () {
+                for (var t = 0; t < this.stars.length; t++) {
+                    var e = Math.PI / 180 * (360 * Math.random()),
+                        i = Math.sin(e),
+                        n = Math.cos(e);
+                    this.starTables[t].x = i, this.starTables[t].y = n
+                }
+            }, e.prototype.updateAlpha = function (t) {
+                void 0 === t && (t = 0);
+                for (var e = 0; e < this.stars.length; e++) {
+                    this.stars[e].alpha = t
+                }
+            }, e.prototype.updateAnimation = function (t) {
+                for (var e = Math.PI / 180 * (180 * t), i = 0; i < this.stars.length; i++) {
+                    var n = this.stars[i],
+                        o = this.starTables[i];
+                    n.rotation = e, n.position.set(o.x * this.SHOOTING_STAR_DISTANCE * t, o.y * this.SHOOTING_STAR_DISTANCE * t)
+                }
             }, e.prototype.dispose = function () {
-                this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOVER), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.MOUSEOUT), this.steelFrame_noDock_sprite.removeAllListeners(s.EventType.CLICK), this.overlayer.removeChildren(), this.onClick = null, this.steelFrame_noDock_sprite = null, this.alert_dock_key_sprite = null, this.confirm_dock_key_sprite = null, this.overlayer = null, this.removeChildren()
+                for (var t = 0; t < this.stars.length; t++) this.stars[t] = null;
+                this.starTables = null, this.stars = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.NoDockView = a
+    e.GreenStarParticle = r
 }

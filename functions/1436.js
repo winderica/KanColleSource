@@ -19,84 +19,69 @@ const function1436 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = function (t) {
+    var o = i(12),
+        r = i(16),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._friend = !1, e._combined = !1, e.visible = !1, e
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "combined", {
-                set: function (t) {
-                    this._combined = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend = t, this._combined = e
-            }, e.prototype.show = function (t, e) {
-                void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
-            }, e.prototype.playDamageAnimation = function () {
-                var t = this;
-                this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300).to({
-                    alpha: 0
-                }, 500).call(function () {
-                    t.visible = !1, t._t = null
-                })
-            }, e.prototype.playShieldAnimation = function () {
-                var t = this;
-                this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
-                var e = {
-                        r: 255,
-                        g: 255,
-                        b: 128,
-                        a: 0
-                    },
-                    i = function (e) {
-                        var i = e.target.target,
-                            n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t._draw(n, i.a)
-                    };
-                this._t = createjs.Tween.get(e, {
-                    onChange: i
+            return n(e, t), e.prototype.show = function () {
+                var t = this,
+                    e = r.BATTLE_MAIN.getTexture(109);
+                this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, {
+                    loop: !0
                 }).to({
-                    a: .75
-                }, 233).to({
-                    r: 128,
-                    g: 255,
-                    b: 255
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    r: 255,
-                    g: 255,
-                    b: 255
-                }, 166).call(function () {
-                    t.visible = !1, t._t = null
+                    x: 5,
+                    y: -7,
+                    scaleX: .14,
+                    scaleY: .14
+                }, 200).to({
+                    x: 7,
+                    y: -15,
+                    scaleX: .25,
+                    scaleY: .25
+                }, 200).to({
+                    x: 12,
+                    y: -21,
+                    scaleX: .35,
+                    scaleY: .35
+                }, 200).to({
+                    x: 14,
+                    y: -29,
+                    scaleX: .46,
+                    scaleY: .46
+                }, 200).to({
+                    x: 15,
+                    y: -36,
+                    scaleX: .57,
+                    scaleY: .57
+                }, 200).to({
+                    x: 17,
+                    y: -42,
+                    scaleX: .68,
+                    scaleY: .68
+                }, 200).to({
+                    x: 17,
+                    y: -50,
+                    scaleX: .78,
+                    scaleY: .78
+                }, 200).to({
+                    x: 21,
+                    y: -57,
+                    scaleX: .89,
+                    scaleY: .89
+                }, 200).to({
+                    x: 24,
+                    y: -65,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 0
+                }, 200).call(function () {
+                    t._content.scale.set(0), t._content.alpha = 1, t._content.position.set(0, 0)
                 })
-            }, e.prototype._stop = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype._draw = function (t, e) {
-                if (this.clear(), this._combined)
-                    if (this._friend) {
-                        for (var i = o.BannerSize.W / 5 * 2 - Math.ceil(e / .025), n = i; n < o.BannerSize.W / 5 * 2; n++) {
-                            var r = Math.min(.025 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                        this.beginFill(t, e), this.drawRect(o.BannerSize.W / 5 * 2, 0, o.BannerSize.W - o.BannerSize.W / 5 * 2, o.BannerSize.H), this.endFill()
-                    } else {
-                        var i = o.BannerSize.W / 5 * 3;
-                        this.beginFill(t, e), this.drawRect(0, 0, i, o.BannerSize.H), this.endFill();
-                        for (var n = i; n < o.BannerSize.W; n++) {
-                            var r = Math.min(1 - .05 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                    }
-                else this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(PIXI.Graphics);
-    e.BannerOverlay = r
+        }(PIXI.Container);
+    e.BannerBabble = s
 }

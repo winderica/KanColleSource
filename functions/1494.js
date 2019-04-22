@@ -19,36 +19,57 @@ const function1494 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = i(1495),
-        s = i(1496),
-        a = function (t) {
+    var o = i(1495),
+        r = i(1496),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
+                e._value = 0, e._lights = [], e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.ResultDialogNumLight;
+                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
+                }
+                for (var i = 0; i < 4; i++) {
+                    var s = new r.ResultDialogNum;
+                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy", {
-                get: function () {
-                    return this._enemy
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n, o) {
-                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
-            }, e.prototype.show = function (t) {
-                var e = new o.TweenTask;
-                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
-                    null != t && t()
-                })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
+            return n(e, t), e.prototype.setValue = function (t) {
+                this._value = Math.min(t, 9999);
+                for (var e = this._value, i = 0; i < this._nums.length; i++) {
+                    var n = this._nums[i],
+                        o = this._lights[i],
+                        r = e % 10;
+                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+                }
+            }, e.prototype.startLightAnimation = function () {
+                this.stopLightAnimation(), this._light_tweens = [];
+                for (var t = 0; t < this._lights.length; t++) {
+                    var e = this._nums[t],
+                        i = this._lights[t];
+                    if (0 == e.visible) i.visible = !1;
+                    else {
+                        i.alpha = 0, i.visible = !0;
+                        var n = createjs.Tween.get(i, {
+                            loop: !0
+                        }).to({
+                            alpha: 1
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 500).wait(500);
+                        this._light_tweens.push(n)
+                    }
+                }
+            }, e.prototype.stopLightAnimation = function () {
+                if (null != this._light_tweens) {
+                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
+                        var i = e[t];
+                        i.setPaused(!0), i = null
+                    }
+                    this._light_tweens = null
+                }
             }, e
         }(PIXI.Container);
-    e.LayerDeckInfo = a
+    e.ResultDialogNumSet = s
 }

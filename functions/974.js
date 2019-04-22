@@ -19,27 +19,29 @@ const function974 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._label = new PIXI.Sprite, e._n001 = new PIXI.Sprite, e._n010 = new PIXI.Sprite, e._n100 = new PIXI.Sprite, e.addChild(e._bg), e.addChild(e._label), e.addChild(e._n001), e.addChild(e._n010), e.addChild(e._n100), e
+    var o = i(5),
+        r = i(358),
+        s = i(975),
+        a = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this, n) || this;
+                return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = o.SALLY_COMMON.getTexture(28), this._label.texture = o.SALLY_COMMON.getTexture(33), this._n001.position.set(44, 3), this._n010.position.set(33, 3), this._n100.position.set(23, 3)
-            }, e.prototype.update = function (t) {
-                if (null == t) this.visible = !1;
-                else {
-                    var e = t.level;
-                    e = Math.max(0, e), e = Math.min(999, e);
-                    var i = Math.floor(e / 100),
-                        n = e % 100,
-                        r = Math.floor(n / 10),
-                        s = n % 10,
-                        a = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67];
-                    e < 10 ? (this._bg.scale.x = .866, this._bg.position.x = 17, this._label.position.set(23, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.visible = !1, this._n100.visible = !1) : e < 100 ? (this._bg.scale.x = 1.067, this._bg.position.x = 8, this._label.position.set(12, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n010.visible = !0, this._n100.visible = !1) : (this._bg.scale.x = 1.233, this._bg.position.x = 0, this._label.position.set(3, 5), this._n001.texture = o.SALLY_COMMON.getTexture(a[s]), this._n010.texture = o.SALLY_COMMON.getTexture(a[r]), this._n100.texture = o.SALLY_COMMON.getTexture(a[i]), this._n010.visible = !0, this._n100.visible = !0), this.visible = !0
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._panel.initialize(t, e, i)
+            }, e.prototype.activate = function () {
+                t.prototype.activate.call(this), this._panel.activate()
+            }, e.prototype.deactivate = function () {
+                t.prototype.deactivate.call(this), this._panel.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
             }, e
-        }(PIXI.Container);
-    e.CompBannerLevel = r
+        }(r.ContainerDeckSelectBase);
+    e.ContainerDeckSelect = a
 }

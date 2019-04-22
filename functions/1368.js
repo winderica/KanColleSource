@@ -19,53 +19,67 @@ const function1368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(28),
-        r = i(19),
-        s = i(2),
+    var o = i(0),
+        r = i(22),
+        s = i(6),
         a = i(1369),
-        _ = i(1376),
-        l = i(468),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+        _ = i(41),
+        l = function (t) {
+            function e(e, i, n, s, _, l, u, c) {
+                var h = t.call(this, e, i, s, l, u, c) || this;
+                h._onCallAttackEffect = function () {
+                    var t = h._getDamage(h._defender),
+                        e = h._defenderBanner.getGlobalPos(!0),
+                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
+                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                    createjs.Tween.get(null).call(function () {
+                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
+                    }).wait(150).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
+                    }).wait(100).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
+                            h._attack(h._attackerBanner, h._defenderBanner)
+                        })
+                    })
+                }, h._finallize = function () {
+                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
+                };
+                var p, d, f = h._slot.mstID,
+                    y = o.default.model.slot.getMst(_),
+                    m = y.mstID,
+                    v = new a.CutinZRK(i, f, m),
+                    g = i.friend,
+                    b = i.index,
+                    w = n.index;
+                return g ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), v.onCallAttackEffect = h._onCallAttackEffect, v.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = v, h._defender = n, h._debug_slot_mst_id3 = _, h
             }
             return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-            }, e.prototype._opening = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
-                    })
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
                 })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
+            }, e.prototype._playVoice = function () {
+                if (this._attacker.friend) {
+                    var t = this._attacker.mst_id;
+                    o.default.sound.voice.play(t.toString(), 16)
+                }
+            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
+                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+            }, e.prototype._attack = function (t, e) {
+                var i = this;
+                s.SE.play("102"), t.attack(function () {
+                    i._damageEffect(t, e)
                 })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new l.PhaseHougeki(this._scene, e, i, n).start(function () {
-                    t._moveShips()
+            }, e.prototype._damageEffect = function (t, e) {
+                var i = this;
+                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+                var n = this._getDamage(this._defender);
+                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
+                    return i._finallize()
                 })
-            }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = u
+        }(_.PhaseAttackBase);
+    e.PhaseZRK = l
 }

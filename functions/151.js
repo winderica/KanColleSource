@@ -19,37 +19,32 @@ const function151 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
+    var o = i(0),
+        r = i(14),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._ground = !1, e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._ground = t
-            }, e.prototype.setDamagedIcon = function (t) {
-                if (25 == t) {
-                    var e = this._ground ? 107 : 109;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (50 == t) {
-                    var e = this._ground ? 106 : 99;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (75 == t) {
-                    var e = this._ground ? 104 : 105;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else if (0 == t) {
-                    var e = this._ground ? 103 : 102;
-                    this.texture = o.COMMON_MISC.getTexture(e), this.visible = !0
-                } else this.clear()
-            }, e.prototype.setExpeditionIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(100), this.visible = !0
-            }, e.prototype.setRepairIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(108), this.visible = !0
-            }, e.prototype.setTaihiIcon = function () {
-                this.texture = o.COMMON_MISC.getTexture(110), this.visible = !0
-            }, e.prototype.clear = function () {
-                this.texture = PIXI.Texture.EMPTY, this.visible = !1
+            return n(e, t), e.prototype.setDay = function (t) {
+                this._load("bg_h", t)
+            }, e.prototype.setNight = function (t) {
+                this._load("bg_y", t)
+            }, e.prototype.dispose = function () {
+                this._loader = null
+            }, e.prototype._load = function (t, e) {
+                var i = this,
+                    n = r.UIImageLoader.getVersion("map");
+                n = n ? "?version=" + n : "";
+                var s = o.default.settings.path_root + "img/common/bg_map/" + t + ".png" + n;
+                if (null != PIXI.utils.TextureCache[s] && (this.texture = PIXI.utils.TextureCache[s], null != e)) return void e();
+                this._loader = new PIXI.loaders.Loader, this._loader.add(s), this._loader.load(function (t) {
+                    if (i._loader == t) {
+                        i._loader = null;
+                        var n = t.resources[s];
+                        i.texture = n.texture, null != e && e()
+                    }
+                })
             }, e
         }(PIXI.Sprite);
-    e.BannerIcon = r
+    e.MapBG = s
 }

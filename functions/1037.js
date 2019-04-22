@@ -19,16 +19,17 @@ const function1037 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
+    var o = i(39),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
             }
-            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
-                0 == t ? (this._setTexture(38), this.visible = !0) : 2 == t ? (this._setTexture(32), this.visible = !0) : this.visible = !1
-            }, e.prototype.dispose = function () {}, e.prototype._setTexture = function (t) {
-                this.texture = o.SALLY_EXPEDITION.getTexture(t)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
+            }, e.prototype.update = function (t) {
+                this._beek.x = t - 16, this._beek.visible = !0
             }, e
         }(PIXI.Sprite);
-    e.ExpeditionStateIcon = r
+    e.ExpeditionListFrame = r
 }

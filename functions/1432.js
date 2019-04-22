@@ -19,83 +19,274 @@ const function1432 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(30),
-        a = i(151),
-        _ = i(152),
-        l = i(16),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
+    var o = i(16),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                switch (i.sprite = new PIXI.Sprite, i.type = e, e) {
+                    case 1:
+                        i.sprite.texture = o.BATTLE_MAIN.getTexture(58), i.sprite.anchor.set(.04, .5);
+                        break;
+                    case 2:
+                        i.sprite.texture = o.BATTLE_MAIN.getTexture(50), i.sprite.anchor.set(.04, .5);
+                        break;
+                    case 3:
+                    case 4:
+                        i.sprite.texture = o.BATTLE_MAIN.getTexture(49), i.sprite.anchor.set(.5)
+                }
+                return i
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
-                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
-                    var _ = new PIXI.Graphics;
-                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
+            return n(e, t), e.prototype.dispose = function () {
+                this.sprite = null, this.from = null, this.to = null, this.type = null, this.friend = null
+            }, e.prototype.initialize = function () {
+                var t = Math.atan2(this.to.y - this.from.y, this.to.x - this.from.x);
+                this.sprite.position.set(this.from.x, this.from.y), this.sprite.rotation = t, this.sprite.alpha = 0, this.setMask(), this.addChild(this.sprite)
+            }, e.prototype.setMask = function () {
+                var t = Math.min(this.sprite.width, this.sprite.height);
+                t = Math.pow(t, 2), t = Math.sqrt(t + t);
+                var e = new PIXI.Graphics;
+                e.beginFill(6710886, .5);
+                var i = Math.min(this.from.x, this.to.x),
+                    n = Math.min(this.from.y, this.to.y) - t,
+                    o = Math.abs(this.to.x - this.from.x),
+                    r = Math.abs(this.to.y - this.from.y) + 2 * t;
+                e.drawRect(i, n, o, r), e.endFill(), this.sprite.mask = e, this.addChild(e)
+            }, e.prototype.play = function (t, e, i, n) {
+                switch (void 0 === i && (i = 1800), void 0 === n && (n = null), this.from = new PIXI.Point(t.x, t.y), this.to = new PIXI.Point(e.x, e.y), this.friend = this.from.x <= this.to.x, this.type) {
+                    case 1:
+                    case 2:
+                        this.initialize(), this.move(i, n);
+                        break;
+                    case 3:
+                        this.position.set(this.from.x, this.from.y), this.sprite.scale.x = this.friend ? -1 : 1, this.addChild(this.sprite), this._aerial1();
+                        break;
+                    case 4:
+                        this.position.set(this.from.x, this.from.y), this._aerial1();
+                        break;
+                    case 5:
+                        this.position.set(this.from.x, this.from.y), this.addChild(this.sprite), this.sprite.scale.x = this.friend ? -1 : 1, this._aerial1()
                 }
-            }, e.prototype.update = function (t, e) {
-                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
-            }, e.prototype.getAnimationTweens = function (t) {
-                var e = this;
-                this._combined = !1;
-                var i = this._img.texture,
-                    n = new PIXI.Sprite(i);
-                n.x = this._img.x, n.y = this._img.y;
-                var o = this.getChildIndex(this._img);
-                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
-                var r = [createjs.Tween.get(this._img).wait(t).to({
+            }, e.prototype.move = function (t, e) {
+                var i = this;
+                void 0 === t && (t = 1800), void 0 === e && (e = null), createjs.Tween.get(this.sprite).to({
                     alpha: 1
-                }, 600).call(function () {
-                    e.removeChild(n);
-                    var t = e._img.mask;
-                    t && (t.parent.removeChild(t), e._img.mask = null)
-                })];
-                if (this._soot.mask) {
-                    var s = this._soot.mask;
-                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
-                    var a = new _.BannerSoot;
-                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
-                        alpha: 1
-                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.removeChild(a)
-                    }))
+                }, 200).wait(Math.max(t - 400, 0)).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    i.removeChildren(), null != e && e()
+                }), createjs.Tween.get(this.sprite).to({
+                    x: this.to.x,
+                    y: this.to.y
+                }, t)
+            }, e.prototype._aerial1 = function (t) {
+                var e = this;
+                switch (void 0 === t && (t = null), this.type) {
+                    case 3:
+                        createjs.Tween.get(this).to({
+                            y: this.from.y + 90
+                        }, 800, createjs.Ease.sineIn).call(function () {
+                            e.removeChildren(), e._aerial2(t)
+                        });
+                        break;
+                    case 5:
+                        var i = new s;
+                        i.initialize(), i.activate(), i.scale.x = this.friend ? -1 : 1, this.addChild(i), createjs.Tween.get(this).to({
+                            y: this.from.y + 90
+                        }, 500, createjs.Ease.sineIn).call(function () {
+                            e.removeChildren(), i.deactivate(), e._aerial2(t)
+                        });
+                        break;
+                    case 4:
+                        var n = this.from.x + (this.to.x - this.from.x) / 5;
+                        createjs.Tween.get(this).to({
+                            x: n,
+                            y: this.from.y + 90
+                        }, 400, createjs.Ease.sineIn).call(function () {
+                            e.removeChildren(), e._aerial2(t)
+                        })
                 }
-                return r
-            }, e.prototype._updateState = function (t, e) {
-                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
-            }, e.prototype._updateImage = function (t, e) {
-                if (this._mst_id < 0) switch (this._mst_id) {
-                    case -1:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(0);
+            }, e.prototype._aerial2 = function (t) {
+                var e = this;
+                void 0 === t && (t = null);
+                var i = 0,
+                    n = new _(this.friend);
+                switch (this.addChild(n), this.type) {
+                    case 3:
+                    case 5:
+                        i = 100;
                         break;
-                    case -2:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(1);
+                    case 4:
+                        i = 50
+                }
+                n.play(i, function () {
+                    e.removeChild(n), e._aerial3(t)
+                })
+            }, e.prototype._aerial3 = function (t) {
+                var e = this;
+                void 0 === t && (t = null);
+                var i = Math.atan2(this.to.y - this.y, this.to.x - this.x);
+                switch (this.type) {
+                    case 3:
+                        var n = new PIXI.Sprite(o.BATTLE_MAIN.getTexture(59));
+                        n.anchor.set(1, .5), n.scale.set(0, 1), n.rotation = i, this.addChild(n), createjs.Tween.get(n.scale).to({
+                            x: 1
+                        }, 100), createjs.Tween.get(this).to({
+                            x: this.to.x,
+                            y: this.to.y
+                        }, 700).to({
+                            alpha: 0
+                        }, 50).call(function () {
+                            e.removeChildren(), e.emit("complete")
+                        });
                         break;
-                    case -3:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(2)
-                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
-            }, e.prototype._getTexture = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner")
-            }, e.prototype._getTextureCombinedFriend = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner2")
-            }, e.prototype._getTextureCombinedEnemy = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner3")
-            }, e.prototype._updateIcon = function (t, e) {
-                if (0 == this._taihi) {
-                    var i = s.ShipUtil.getDamageType(t, e);
-                    this._icon.setDamagedIcon(i), this._soot.update(i)
-                } else this._icon.setTaihiIcon()
+                    case 5:
+                        var r = new a;
+                        r.scale.set(0, 1), r.initialize(), r.activate(), r.rotation = i, this.addChild(r), createjs.Tween.get(r.scale).to({
+                            x: 1
+                        }, 100), createjs.Tween.get(this).to({
+                            x: this.to.x,
+                            y: this.to.y
+                        }, 700).to({
+                            alpha: 0
+                        }, 50).call(function () {
+                            e.removeChildren(), r.deactivate(), e.emit("complete")
+                        });
+                        break;
+                    case 4:
+                        new PIXI.Sprite(o.BATTLE_MAIN.getTexture(59));
+                        n.anchor.set(1, .5), n.scale.set(0, 1), n.rotation = i, this.addChild(n), createjs.Tween.get(n.scale).to({
+                            x: 1
+                        }, 50), createjs.Tween.get(this).to({
+                            x: this.to.x,
+                            y: this.to.y
+                        }, 560).to({
+                            alpha: 0
+                        }, 50).call(function () {
+                            e.removeChildren(), null != t && t()
+                        })
+                }
             }, e
         }(PIXI.Container);
-    e.BannerImage = u
+    e.Torpedo = r;
+    var s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bullet1 = new PIXI.Sprite, e._bullet1.anchor.set(.5), e._bullet1.scale.set(.75), e.addChild(e._bullet1), e._bullet2 = new PIXI.Sprite, e._bullet2.anchor.set(.5), e._bullet2.scale.set(.58), e.addChild(e._bullet2), e._bullet3 = new PIXI.Sprite, e._bullet3.anchor.set(.5), e._bullet3.scale.set(.58), e.addChild(e._bullet3), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._bullet1.texture = o.BATTLE_MAIN.getTexture(49), this._bullet1.position.set(6, 6), this._bullet2.texture = o.BATTLE_MAIN.getTexture(49), this._bullet2.position.set(5, 17), this._bullet3.texture = o.BATTLE_MAIN.getTexture(49), this._bullet3.position.set(-8, -3)
+            }, e.prototype.activate = function () {
+                if (null == this._tweens) {
+                    this._tweens = [], this._bullet1.position.set(6, 6);
+                    var t = createjs.Tween.get(this._bullet1, {
+                        loop: !0
+                    }).to({
+                        x: 3,
+                        y: 9
+                    }, 300).to({
+                        x: 2,
+                        y: 8
+                    }, 300).to({
+                        x: 6,
+                        y: 6
+                    }, 200);
+                    this._tweens.push(t), this._bullet2.position.set(5, 17), t = createjs.Tween.get(this._bullet2, {
+                        loop: !0
+                    }).to({
+                        x: 6,
+                        y: 18
+                    }, 200).to({
+                        x: 3,
+                        y: 20
+                    }, 300).to({
+                        x: 53,
+                        y: 17
+                    }, 300), this._tweens.push(t), this._bullet3.position.set(-8, -3), t = createjs.Tween.get(this._bullet3, {
+                        loop: !0
+                    }).to({
+                        x: -6,
+                        y: -5
+                    }, 250).to({
+                        x: -5,
+                        y: 0
+                    }, 300).to({
+                        x: -8,
+                        y: -3
+                    }, 250), this._tweens.push(t)
+                }
+            }, e.prototype.deactivate = function () {
+                if (null != this._tweens) {
+                    for (var t = 0, e = this._tweens; t < e.length; t++) {
+                        e[t].setPaused(!0)
+                    }
+                    this._tweens = null
+                }
+            }, e
+        }(PIXI.Container),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bullet1 = new PIXI.Sprite, e._bullet1.anchor.set(1, .6), e._bullet1.scale.set(.5), e.addChild(e._bullet1), e._bullet2 = new PIXI.Sprite, e._bullet2.anchor.set(1, .6), e._bullet2.scale.set(.75), e.addChild(e._bullet2), e._bullet3 = new PIXI.Sprite, e._bullet3.anchor.set(1, .6), e._bullet3.scale.set(.5), e.addChild(e._bullet3), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._bullet1.texture = o.BATTLE_MAIN.getTexture(51), this._bullet1.position.set(-3, 11), this._bullet2.texture = o.BATTLE_MAIN.getTexture(51), this._bullet2.position.set(5, -2), this._bullet3.texture = o.BATTLE_MAIN.getTexture(51), this._bullet3.position.set(-14, -8)
+            }, e.prototype.activate = function () {
+                if (null == this._tweens) {
+                    this._tweens = [], this._bullet1.position.set(-3, 11);
+                    var t = createjs.Tween.get(this._bullet1, {
+                        loop: !0
+                    }).to({
+                        x: -8,
+                        y: 0
+                    }, 250).to({
+                        x: -2,
+                        y: -12
+                    }, 250).to({
+                        x: 6,
+                        y: 0
+                    }, 250).to({
+                        x: -3,
+                        y: 11
+                    }, 250);
+                    this._tweens.push(t), this._bullet3.position.set(-14, -8), t = createjs.Tween.get(this._bullet3, {
+                        loop: !0
+                    }).to({
+                        x: 3,
+                        y: 0
+                    }, 250).to({
+                        x: -14,
+                        y: 8
+                    }, 250).to({
+                        x: -21,
+                        y: 0
+                    }, 250).to({
+                        x: -14,
+                        y: -8
+                    }, 250), this._tweens.push(t)
+                }
+            }, e.prototype.deactivate = function () {
+                if (null != this._tweens) {
+                    for (var t = 0, e = this._tweens; t < e.length; t++) {
+                        e[t].setPaused(!0)
+                    }
+                    this._tweens = null
+                }
+            }, e
+        }(PIXI.Container),
+        _ = function (t) {
+            function e(e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(115);
+                return i = t.call(this, n) || this, i.anchor.set(.5, 1), i.scale.set(.18 * (e ? 1 : -1), .18), i
+            }
+            return n(e, t), e.prototype.play = function (t, e) {
+                void 0 === t && (t = 100), void 0 === e && (e = null), createjs.Tween.get(this.scale).to({
+                    x: 0,
+                    y: 0
+                }, t).call(function () {
+                    null != e && e()
+                })
+            }, e
+        }(PIXI.Sprite);
+    e.Splash = _
 }

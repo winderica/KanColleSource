@@ -21,7 +21,7 @@ const function347 = function (t, e, i) {
     });
     var o = i(9),
         r = i(3),
-        s = i(32),
+        s = i(33),
         a = function (t) {
             function e(e, i) {
                 void 0 === e && (e = 240), void 0 === i && (i = 60);

@@ -19,38 +19,36 @@ const function1296 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-        return n(e, t), e.prototype.isDisplaying = function () {
-            return null != this._enemy
-        }, e.prototype.show = function (t, e) {
-            void 0 === e && (e = null), null != this._enemy && this.hide(), this._enemy = t;
-            var i = t.y;
-            t.y += 30, t.alpha = 0, this.addChild(t), t.startAnimation();
-            var n = createjs.Tween.get(t);
-            n.to({
-                y: i,
-                alpha: 1
-            }, 500), n.wait(600), null != e && n.call(e)
-        }, e.prototype.hide = function (t) {
-            var e = this;
-            if (void 0 === t && (t = null), null == this._enemy) null != t && t();
-            else {
-                var i = this._enemy;
-                this._enemy = null;
-                var n = createjs.Tween.get(i);
-                n.to({
-                    y: i.y + 30,
-                    alpha: 0
-                }, 1e3), n.call(function () {
-                    e.removeChild(i), i.stopAnimation(), null != t && t()
-                })
+    var o = i(5),
+        r = i(62),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
             }
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._enemy && this._enemy.dispose(), this._enemy = null
-        }, e
-    }(PIXI.Container);
-    e.MapEnemyLayer = o
+            return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
+                get: function () {
+                    return this._extraLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.addBGLayer = function (t, e) {
+                var i = new PIXI.Sprite(t);
+                if (null != e && e.length > 0) {
+                    if (1 == this._bgDic.hasOwnProperty(e)) {
+                        var n = this._bgDic[e];
+                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
+                    }
+                    this._bgDic[e] = i
+                }
+                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
+            }, e.prototype.getBGLayer = function (t) {
+                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
+            }, e.prototype.addLabel = function (t, e, i) {
+                null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
+                var n = new r.CenteringSprite(t);
+                n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
+            }, e
+        }(PIXI.Container);
+    e.MapBackGround = s
 }

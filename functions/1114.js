@@ -19,21 +19,60 @@ const function1114 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(33),
-        a = i(400),
-        _ = i(401),
+    var o = i(0),
+        r = i(90),
+        s = i(34),
+        a = i(91),
+        _ = i(1115),
         l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._message = new o.TextBox(18, 4999235), n._message.position.set(230, 33), n.addChild(n._message), n._icon = new _.MedalIcon, n._icon.position.set(308, 116), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(179, 215), n.addChild(n._btn_yes), n._btn_no = new s.BtnBase(-1, i), n._btn_no.position.set(389, 215), n.addChild(n._btn_no), 0 == e ? n._message.text = "\u52f2\u7ae0\u3092\u300c\u8cc7\u6e90\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f" : 2 == e && (n._message.text = "\u52f2\u7ae0\u3092\u300c\u6539\u4fee\u8cc7\u6750\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"), n
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._selected_exchange_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI(t)
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_MEDAL.getTexture(7), this._initialize(t, 1)
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._message.destroy()
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.MedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function (t) {
+                var e = this,
+                    i = this._target.mstID,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(i, !1, t)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? e._hideDialog(!0) : (e._result = s, e._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._selected_exchange_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(a.ConfirmViewBase);
-    e.ConfirmView = l
+        }(s.TaskWithResult);
+    e.TaskUseMedal = l
 }

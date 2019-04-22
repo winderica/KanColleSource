@@ -19,89 +19,41 @@ const function1257 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = i(435),
-        _ = i(436),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._anim = function () {
-                    var t = n._getRandomShip(),
-                        e = t.mst_id;
-                    o.default.sound.voice.play(e.toString(), 26);
-                    var i = new _.AnimFlagShip(n._scene, e, t.isDamaged()),
-                        r = new u(n._scene, n._drop_items);
-                    new s.ParallelTask(i, r).start(function () {
-                        n._endTask()
-                    })
-                }, n._scene = e, n._model = i, n
+    var o = i(1258),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._count = 0, e._boxes = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._drop_items = this._model.sortie.getNextCell().getDropItems();
-                for (var t = 0, e = this._drop_items; t < e.length; t++) {
-                    var i = e[t];
-                    i.icon_id;
-                    if (4 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    } else if (5 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    }
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._count = 0;
+                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
+                    var s = new o.FormationBoxCombined,
+                        a = [626, 873, 626, 873][r],
+                        _ = [96, 96, 302, 302][r];
+                    s.position.set(a, _);
+                    var l = n[r];
+                    s.initialize(t, l, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
                 }
-                var o = this._drop_items.concat();
-                this._animItem(o, this._anim)
-            }, e.prototype._animItem = function (t, e) {
-                var i = this;
-                if (0 == t.length) return void(null != e && e());
-                var n = t.shift(),
-                    o = n.getUseitemMstID(),
-                    r = n.count,
-                    s = new a.CompDropItem;
-                s.initialize(o, r);
-                var _ = this._scene.view.map.ship_icon;
-                s.position.set(_.x, _.y), this._scene.view.addChild(s), createjs.Tween.get(s).to({
-                    y: _.y - 60
-                }, 400).to({
-                    y: _.y - 75,
-                    alpha: 0
-                }, 200).call(function () {
-                    i._scene.view.removeChild(s), s.dispose(), _.startWaveWhite(), i._animItem(t, e)
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.view.map.ship_icon.stopWave(), this._scene.view.message_box.text = "", t.prototype._endTask.call(this)
-            }, e.prototype._getRandomShip = function () {
-                for (var t = this._model.deck_f.ships, e = new Array, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && (0 != o.damageType && 1 != o.isTaihi() && e.push(o))
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
                 }
-                return e[Math.floor(Math.random() * e.length)]
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(r.TaskBase);
-    e.CellTaskItem = l;
-    var u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._items = i, n
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._current_index = 0, this._loop()
-        }, e.prototype._loop = function () {
-            if (this._current_index < this._items.length) {
-                var t = this._items[this._current_index];
-                this._current_index++, this._show(t)
-            } else this._endTask()
-        }, e.prototype._show = function (t) {
-            var e = this,
-                i = t.getUseitemMstID(),
-                n = t.count;
-            this._scene.view.message_box.showItemGetText(i, n), createjs.Tween.get(null).wait(2e3).call(function () {
-                e._loop()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._items = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase)
+        }(PIXI.Container);
+    e.FormationBoxContainerCombined = r
 }

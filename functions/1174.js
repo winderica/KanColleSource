@@ -19,39 +19,79 @@ const function1174 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(117),
-        r = function (t) {
+    var o = i(0),
+        r = i(11),
+        s = i(8),
+        a = i(9),
+        _ = i(117),
+        l = i(408),
+        u = i(118),
+        c = i(75),
+        h = i(75),
+        p = i(75),
+        d = i(75),
+        f = i(75),
+        y = i(75),
+        m = i(75),
+        v = i(75),
+        g = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._dic = {}, e
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(46),
+                        i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
+                    }
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer,
+                                n = new v.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
+                        }
+                    } else if (2 == t.status) {
+                        var n = new m.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new l.DutyDataHolder, e._view = new u.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
             }
-            return n(e, t), e.prototype.showAlert = function (t) {
-                var e, i = t.model.alert,
-                    n = 384,
-                    r = 0;
-                if (1 == i) e = 1, n = 444, r = -7;
-                else if (2 == i) e = 2;
-                else if (3 == i) e = 3;
-                else if (4 == i) e = 4;
-                else {
-                    if (5 != i) return;
-                    e = 5
-                }
-                var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
-                s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
-            }, e.prototype.hideAlert = function (t) {
-                if (void 0 === t && (t = null), null == t)
-                    for (var e in this._dic) this._hideAlert(e);
-                else {
-                    var i = t.model.id;
-                    this._hideAlert(i.toString())
-                }
-            }, e.prototype._hideAlert = function (t) {
-                if (1 == this._dic.hasOwnProperty(t)) {
-                    var e = this._dic[t];
-                    null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
-                }
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
             }, e
-        }(PIXI.Container);
-    e.AlertLayer = r
+        }(r.SceneBase);
+    e.DutyScene = g
 }

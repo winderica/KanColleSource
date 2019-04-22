@@ -19,37 +19,28 @@ const function1218 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(1219),
-        s = i(1222),
-        a = function (t) {
+    var o = i(137),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
+                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enemy", {
-                get: function () {
-                    return this._enemy
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
-                get: function () {
-                    return this._upper
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
+            }, e.prototype.activate = function () {
+                this._startMove()
+            }, e.prototype.deactivate = function () {
+                this._stopMove()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._enemy.dispose(), this._friend.dispose(), this._upper.dispose()
+                this._stopMove()
+            }, e.prototype._startMove = function () {
+                var t = this;
+                0 == this._interval_id && (this._interval_id = setInterval(function () {
+                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
+                }, 30))
+            }, e.prototype._stopMove = function () {
+                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
             }, e
         }(PIXI.Container);
-    e.PracticeAnimMainView = a
+    e.CompCompass = r
 }

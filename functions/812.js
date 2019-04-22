@@ -26,11 +26,11 @@ const function812 = function (t, e, i) {
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(7));
+                    i = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(10));
                 i.position.set(2, 2), e.addChild(i), e._shipCanvas = new PIXI.Sprite, e.addChild(e._shipCanvas), e._levelText = new r.TextBox(66, 16777215), e._levelText.position.set(809, 89), e.addChild(e._levelText);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(8));
+                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(11));
                 n.position.set(0, 3), e.addChild(n);
-                var o = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(9));
+                var o = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(12));
                 return o.position.set(705, 95), e.addChild(o), e._nameText = new r.TextBox(39, 16777215), e._nameText.anchor.x = 1, e._nameText.position.set(969, 17), e.addChild(e._nameText), e
             }
             return n(e, t), e.prototype.update = function (t) {

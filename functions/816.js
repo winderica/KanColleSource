@@ -20,12 +20,12 @@ const function816 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(34),
+        r = i(32),
         s = i(3),
         a = i(3),
-        _ = i(166),
+        _ = i(135),
         l = i(1),
-        u = i(165),
+        u = i(134),
         c = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -35,10 +35,10 @@ const function816 = function (t, e, i) {
                     null != e._cb_onNo && e._cb_onNo()
                 };
                 var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63));
-                e.btn_no = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(2)), e.btn_yes = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(6));
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(18));
+                e.btn_no = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(3)), e.btn_yes = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(8));
+                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(21));
                 e.textAmmo = new o.TextBox(20, 16777215);
-                var c = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(19));
+                var c = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(22));
                 e.textSteel = new o.TextBox(20, 16777215);
                 var h = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(0));
                 e.shipBanner = new r.ShipBanner;

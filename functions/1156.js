@@ -19,53 +19,78 @@ const function1156 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(78),
-        r = i(302),
-        s = i(79),
-        a = i(3),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._soldout = new PIXI.Sprite, e._soldout.x = 147, e._soldout.y = 207, e._soldout.visible = !1, e.addChild(e._soldout), e
+    var o = i(0),
+        r = i(6),
+        s = i(108),
+        a = i(1157),
+        _ = i(1158),
+        l = i(1160),
+        u = i(1161),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onSelect = function (t) {
+                    r.SE.play("239"), n._now_selected = t;
+                    var e = o.default.model.useItem.getCount(52);
+                    n._detail.update(t, e), n._exchange_btn.enabled = n._getExchangeBtnEnabled(t, e)
+                }, n._onBack = function () {
+                    n._now_selected = null, null != n._cb_onBack && n._cb_onBack()
+                }, n._onExchange = function () {
+                    null != n._cb_onExchange && n._cb_onExchange(n._now_selected)
+                }, n._cb_onBack = e, n._cb_onExchange = i, n._header = new h, n._header.position.set(648, 147), n.addChild(n._header), n._list = new a.FShopListPanel(n._onSelect), n._list.position.set(187, 183), n.addChild(n._list), n._detail = new _.FShopDetailPanel, n._detail.position.set(643, 213), n.addChild(n._detail), n._back_btn = new l.BackBtn, n._back_btn.position.set(202, 654), n.addChild(n._back_btn), n._exchange_btn = new u.ExchangeBtn, n._exchange_btn.position.set(666, 643), n.addChild(n._exchange_btn), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                t.prototype.initialize.call(this), this._soldout.texture = a.ITEM_FSHOP.getTexture(21)
-            }, e.prototype.updateFromModel = function (e) {
-                if (this.clean(), this._soldout.visible = e.has(), e.isActive()) {
-                    this._img.scale.set(1), this._img.position.set(0, 0);
-                    var i = o.FurnitureLoader.getPath(e.mstID, "thumbnail"),
-                        n = o.FurnitureLoader.getVersionQuery(e.mstID),
-                        r = i + ("" == n ? "" : "?" + n),
-                        a = PIXI.Texture.fromImage(r);
-                    t.prototype.update.call(this, a)
-                } else {
-                    switch (e.type) {
-                        case 0:
-                            this._img.scale.set(1.45), this._img.position.set(-757, -99);
-                            break;
-                        case 1:
-                            this._img.scale.set(.64), this._img.position.set(-96, 3);
-                            break;
-                        case 2:
-                            this._img.scale.set(.64), this._img.position.set(3, 3);
-                            break;
-                        case 3:
-                            this._img.scale.set(1), this._img.position.set(0, 0);
-                            break;
-                        case 4:
-                            this._img.scale.set(.73), this._img.position.set(1, -90);
-                            break;
-                        case 5:
-                            this._img.scale.set(.56), this._img.position.set(-34, 9)
-                    }
-                    var _ = e.mstID,
-                        r = o.FurnitureLoader.getPath(_, "normal") + s.VersionUtil.getResourceVersion(2, _),
-                        a = PIXI.Texture.fromImage(r);
-                    t.prototype.update.call(this, a)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._type = t, this._list.initialize(), this._detail.initialize(), this._back_btn.initialize(this._onBack), this._exchange_btn.initialize(this._onExchange), this.update()
+            }, e.prototype.update = function () {
+                this._header.update(this._type);
+                var t = o.default.model.furniture.getOnSaleList(this._type);
+                this._list.update(t), this._detail.update(null, 0), this._exchange_btn.enabled = !1
+            }, e.prototype.activate = function () {
+                this._list.activate(), this._back_btn.activate(), this._exchange_btn.activate()
+            }, e.prototype.deactivate = function () {
+                this._list.deactivate(), this._back_btn.deactivate(), this._exchange_btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._list.dispose(), this._detail.dispose(), this._back_btn.dispose(), this._exchange_btn.dispose(), this._cb_onBack = null, this._cb_onExchange = null
+            }, e.prototype._getExchangeBtnEnabled = function (t, e) {
+                if (1 == t.has()) return !1;
+                var i = o.default.model.useItem.getCount(44);
+                if (i < t.price) {
+                    if (1 != t.isHighGrade()) return !1;
+                    if (i < t.getDiscountPrice() || e < 1) return !1
                 }
-            }, e.prototype.clean = function () {
-                this._soldout.visible = !1, t.prototype.clean.call(this)
+                return !(1 == t.isNeedCraftsman() && e < 1)
             }, e
-        }(r.FurnitureThumbnail);
-    e.Thumbnail = _
+        }(PIXI.Container);
+    e.FShopListView = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            var e;
+            switch (t) {
+                case 0:
+                    e = 45;
+                    break;
+                case 1:
+                    e = 46;
+                    break;
+                case 2:
+                    e = 47;
+                    break;
+                case 3:
+                    e = 48;
+                    break;
+                case 4:
+                    e = 49;
+                    break;
+                case 5:
+                    e = 50;
+                    break;
+                default:
+                    return void(this.texture = PIXI.Texture.EMPTY)
+            }
+            this.texture = s.ITEM_FSHOP.getTexture(e)
+        }, e
+    }(PIXI.Sprite)
 }

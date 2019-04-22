@@ -5,7 +5,7 @@ const function87 = function (t, e, i) {
     });
     var n = i(52),
         o = i(133),
-        r = i(30),
+        r = i(28),
         s = i(0),
         a = i(777);
     ! function (t) {
@@ -32,37 +32,45 @@ const function87 = function (t, e, i) {
         }
 
         function u(t, e) {
-            for (var i = t[0], n = t[1], o = n.hougMax - n.hougMin, r = n.raigMax - n.raigMin, s = n.tykuMax - n.tykuMin, _ = n.soukMax - n.soukMin, l = 0, u = 0, c = 0, h = 0, p = 0, d = 0; d < e.length; d++) {
-                var f = e[d],
-                    y = f.powUp;
-                l += y[0], u += y[1], c += y[2], h += y[3], p += y[4]
+            function i(t, e, i, n) {
+                return t.getClassType() == e && (void 0 == i[t.yomi] && (i[t.yomi] = 0), ++i[t.yomi] >= n)
             }
-            for (var m = 0, v = {}, d = 0; d < e.length; d++) {
-                var g = e[d],
-                    b = g.shipTypeID,
-                    w = g.getClassType().toString();
-                if (1 == b) {
-                    var x = v[w];
-                    x || (v[w] = x = new Array), -1 == x.indexOf(g.yomi) && x.push(g.yomi), m++
+            for (var n = t[0], o = t[1], r = o.hougMax - o.hougMin, s = o.raigMax - o.raigMin, _ = o.tykuMax - o.tykuMin, l = o.soukMax - o.soukMin, u = 0, c = 0, h = 0, p = 0, d = 0, f = 0; f < e.length; f++) {
+                var y = e[f],
+                    m = y.powUp;
+                u += m[0], c += m[1], h += m[2], p += m[3], d += m[4]
+            }
+            for (var v = 0, g = {}, b = {}, w = {}, x = !1, I = !1, f = 0; f < e.length; f++) {
+                var T = e[f],
+                    O = T.shipTypeID,
+                    C = T.getClassType().toString();
+                if (1 == O) {
+                    var P = g[C];
+                    P || (g[C] = P = new Array), -1 == P.indexOf(T.yomi) && P.push(T.yomi), v++
                 }
+                0 == x && (x = i(e[f], 62, b, 2)), 0 == I && (I = i(e[f], 72, w, 2))
             }
-            var I = !1;
-            for (var T in v) {
-                var x = v[T];
-                2 <= x.length && (I = !0)
+            var k = o.getClassType(),
+                M = !1;
+            if (n.gradeUpTaikyu < n.VHP && n.taikyu < o.taikyuMax) {
+                var S = !1;
+                for (var A in g) {
+                    var P = g[A];
+                    2 <= P.length && (S = !0)
+                }
+                S ? M = !0 : x && [62, 72].indexOf(k) >= 0 ? M = !0 : I && [72, 62, 41, 37].indexOf(k) >= 0 && (M = !0)
             }
-            var O = !1;
-            I && i.gradeUpTaikyu < i.VHP && (O = !0), l = Math.floor(1.2 * l + .3), u = Math.floor(1.2 * u + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3);
-            var C = i.gradeUpHoug + l,
-                P = i.gradeUpRaig + u,
-                k = i.gradeUpTyku + c,
-                M = i.gradeUpSouk + h;
-            o <= C && (l = o - i.gradeUpHoug), r <= P && (u = r - i.gradeUpRaig), s <= k && (c = s - i.gradeUpTyku), _ <= M && (h = _ - i.gradeUpSouk);
-            var S = Math.max(n.luckMax - n.luckMin - i.gradeUpLuck, 0);
-            p = Math.min(p, S);
-            var A = !1,
-                j = !1;
-            return m >= 1 && (A = !0, j = !0, S <= 0 && (j = !1), i.gradeUpTaisen >= i.VAS ? A = !1 : i.taisenMax <= 0 && (A = !1)), new a.PowerUpCheckModel(l, u, c, h, p, j, O, A)
+            u = Math.floor(1.2 * u + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3), d = Math.floor(1.2 * d + .3);
+            var j = n.gradeUpHoug + u,
+                E = n.gradeUpRaig + c,
+                N = n.gradeUpTyku + h,
+                L = n.gradeUpSouk + p;
+            r <= j && (u = r - n.gradeUpHoug), s <= E && (c = s - n.gradeUpRaig), _ <= N && (h = _ - n.gradeUpTyku), l <= L && (p = l - n.gradeUpSouk);
+            var B = Math.max(o.luckMax - o.luckMin - n.gradeUpLuck, 0);
+            d = Math.min(d, B);
+            var R = !1,
+                D = !1;
+            return v >= 1 && (R = !0, D = !0, B <= 0 && (D = !1), n.gradeUpTaisen >= n.VAS ? R = !1 : n.taisenMax <= 0 && (R = !1)), new a.PowerUpCheckModel(u, c, h, p, d, D, M, R)
         }
 
         function c() {

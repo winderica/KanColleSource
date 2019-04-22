@@ -19,47 +19,42 @@ const function1095 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(11),
-        a = i(8),
-        _ = i(3),
-        l = i(1),
-        u = i(237),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    i._dialog.btn.buttonMode = !1, createjs.Tween.get(i._chara).to({
-                        x: o.default.width
-                    }, 300), createjs.Tween.get(i._dialog).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        i._layer.removeChild(i._bg), i._layer.removeChild(i._chara), i._layer.removeChild(i._dialog), i._endTask()
-                    })
-                }, i._layer = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(14),
+        a = i(237),
+        _ = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._bg = new a.AreaBox(0), this._layer.addChild(this._bg);
-                var t = PIXI.Sprite.fromFrame(u.POSTER_KEY_2),
-                    e = u.getPosterOffsetPurchased();
-                null != e && (t.x = e.x, t.y = e.y), this._chara = new PIXI.Sprite, this._chara.addChild(t), this._chara.position.set(681, 3), this._layer.addChild(this._chara), this._dialog = new h, this._dialog.initialize(), this._dialog.position.set(219, 207), this._layer.addChild(this._dialog), r.default.sound.voice.playAtRandom("9999", [316, 317], [60, 40]), this._dialog.btn.buttonMode = !0, this._dialog.btn.once(l.EventType.CLICK, this._onClose)
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
+                    t._load2()
+                })
+            }, e.prototype._load2 = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
+                    t._loadSkinResource()
+                })
+            }, e.prototype._loadSkinResource = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item"),
+                    i = o.default.model.basic.getUISkinID();
+                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
+                    t._loadAkashiResoueces()
+                })
+            }, e.prototype._loadAkashiResoueces = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(s.TaskBase);
-    e.TaskPurchased = c;
-    var h = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._btn = new PIXI.Sprite, e._btn.position.set(291, 201), e._btn.interactive = !0, e.addChild(e._btn), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "btn", {
-            get: function () {
-                return this._btn
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = _.ITEM_COMMON.getTexture(4), this._btn.texture = _.ITEM_COMMON.getTexture(3)
-        }, e
-    }(PIXI.Sprite)
+        }(r.TaskBase);
+    e.TaskLoadResources = _
 }

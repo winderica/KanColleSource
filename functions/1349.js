@@ -19,24 +19,30 @@ const function1349 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(455),
-        r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(13),
+        s = i(25),
+        a = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
             }
-            return n(e, t), e.prototype._resume = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._loadShipImage()
+            }, e.prototype._loadShipImage = function () {
                 var t = this,
-                    e = this._base_pos,
-                    i = this._friend ? 1 : -1;
-                createjs.Tween.get(this._view.chara).call(function () {
-                    t._view.emit("attack"), t._shipFlash.play()
-                }).wait(135).wait(200).to({
-                    x: e.x + 78 * i,
-                    alpha: 0
-                }, 466).call(function () {
-                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                    e = new r.ShipLoader;
+                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
+                    t._loadSlotTextImage()
+                })
+            }, e.prototype._loadSlotTextImage = function () {
+                var t = this;
+                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
+                var e = new s.SlotLoader;
+                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
+                    t._endTask()
                 })
             }, e
-        }(o.CutinDouble1);
-    e.CutinDouble3 = r
+        }(o.TaskBase);
+    e.PreloadCutinDanchaku = a
 }

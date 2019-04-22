@@ -21,15 +21,18 @@ const function916 = function (t, e, i) {
     });
     var o = i(0),
         r = i(10),
-        s = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/mission", i._debug = e, i
+        s = i(7),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/mapinfo", e
             }
             return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.expedition.setData(this._raw_data), t.prototype._completedEnd.call(this)
+                var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
+                o.default.model.map.setMapMem(e);
+                var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
+                o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.ExpeditionAPI = s
+    e.MapInfoAPI = a
 }

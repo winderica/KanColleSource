@@ -5,9 +5,9 @@ const function531 = function (t, e, i) {
     });
     var n = i(17),
         o = i(78),
-        r = i(14),
+        r = i(13),
         s = i(25),
-        a = i(13),
+        a = i(14),
         _ = i(67),
         l = i(532),
         u = i(9),

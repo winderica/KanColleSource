@@ -19,70 +19,102 @@ const function961 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(962),
-        s = i(963),
-        a = i(966),
-        _ = i(1),
-        l = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = !1);
-                var s = t.call(this) || this;
-                return s._onClick = function () {
-                    s._dialog.change_btn.deactivate(), s._dialog.interactive = !1, s._dialog.buttonMode = !1;
-                    var t = s._model.getSelectedOperationType();
-                    0 == t ? s._showSelectView(t) : s._close()
-                }, s._onClickChangeBtn = function () {
-                    s._dialog.change_btn.deactivate(), s._dialog.interactive = !1, s._dialog.buttonMode = !1, s._dialog.off(_.EventType.CLICK, s._onClick);
-                    var t = s._model.getSelectedOperationType();
-                    s._showSelectView(t)
-                }, s._onOperationSelect = function (t) {
-                    var e = new a.ChangeConfirmTask(s._layer, s._model);
-                    e.start(function () {
-                        0 == e.cancel && (s._dialog.board.selectView.deactivate(), s._dialog.board.selectView.showCircle(t, function () {
-                            if (1 == s._skip_api_connection) s._close();
-                            else {
-                                new r.APIOperationChange(s._model, t).start(function () {
-                                    s._close()
-                                })
-                            }
-                        }))
+    var o = i(5),
+        r = i(0),
+        s = i(17),
+        a = i(2),
+        _ = i(18),
+        l = i(962),
+        u = i(964),
+        c = i(348),
+        h = i(356),
+        p = function (t) {
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level,
+                        e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(),
+                            e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
                     })
-                }, s._onOperationSelectCancel = function () {
-                    s._dialog.board.selectView.deactivate(), s._close()
-                }, s._layer = e, s._model = i, s._selectable = n, s._skip_api_connection = o, s
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
             }
             return n(e, t), e.prototype._start = function () {
-                this._dialog = new s.MapIntroDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.operation.visible = !1, this._dialog.change_btn.visible = !1;
-                var t = this._model.mst_id,
-                    e = this._model.getSelectedOperationType();
-                this._dialog.initialize(t, e), this._open()
-            }, e.prototype._open = function () {
-                var t = this;
-                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
-                    scaleY: 1
-                }, 250).call(function () {
-                    0 != t._model.getSelectedOperationType() && 0 == t._model.isCleared() && (t._dialog.operation.visible = !0, t._dialog.change_btn.visible = !0, t._dialog.change_btn.activate(t._onClickChangeBtn)), t._wait()
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no,
+                        e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return {
+                            voice: [411, 415, 423],
+                            delay: [0, 200, 200]
+                        };
+                    case 2:
+                        return {
+                            voice: [411, 416, 424],
+                            delay: [0, 200, 200]
+                        };
+                    case 3:
+                        return {
+                            voice: [412, 421, 423, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    case 4:
+                        return {
+                            voice: [412, 418, 423, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    case 5:
+                        return {
+                            voice: [412, 421, 422, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    default:
+                        return null
+                }
+            }, e.prototype._voicePlay = function (t) {
+                var e = this,
+                    i = t.voice,
+                    n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
                 })
-            }, e.prototype._wait = function () {
-                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(_.EventType.CLICK, this._onClick)
-            }, e.prototype._showSelectView = function (t) {
-                var e = this._dialog.board.showSelectView();
-                e.initialize(t, this._selectable), e.activate(this._onOperationSelect, this._onOperationSelectCancel)
-            }, e.prototype._close = function () {
-                var t = this;
-                this._dialog.operation.visible = !1, this._dialog.change_btn.visible = !1, createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 0
-                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
-                    scaleY: 0
-                }, 150).call(function () {
-                    t._dialog.dispose(), t._layer.removeChild(t._dialog), t._endTask()
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this,
+                    i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
                 })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._selectable = null, this._dialog = null, t.prototype._endTask.call(this)
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
+                var t = this,
+                    e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
+                    x: 840
+                }, 200).call(function () {
+                    e.activate(), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
             }, e
-        }(o.TaskBase);
-    e.ShowMapIntroDialogTask = l
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

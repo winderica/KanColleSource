@@ -19,44 +19,52 @@ const function1478 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
+    var o = i(2),
         r = i(1479),
-        s = i(480),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+        s = i(1483),
+        a = i(1488),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._initializeMapImages = function () {
-                this._maps = [];
-                for (var t = 0; t < 2; t++) {
-                    var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(3)][t], e.x = 339 + 287 * t, e.y = 84, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
-                }
-            }, e.prototype._createMapShowTweens = function () {
-                return this.__createMapShowTweens(700)
-            }, e.prototype._initializeStampImages = function () {
-                this._stamps = [];
-                for (var t = 0; t < 1; t++) {
-                    var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(0), e.x = 547.5 + 287 * t, e.y = 288.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-                }
-            }, e.prototype._createStampShowTweens = function () {
-                return this.__createStampShowTweens(700)
-            }, e.prototype._showText = function () {
-                this.__showText(new _)
-            }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(1),
-                    e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(929.5, 329.5), e.alpha = 0, e
+            return n(e, t), e.prototype._start = function () {
+                this._mapClear()
+            }, e.prototype._mapClear = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.shutter,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.battle_model.deck_f.ships[0],
+                        s = o.mst_id,
+                        a = o.isDamaged(),
+                        _ = this._scene.data.getClearMapSuffix();
+                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
+                        t._ending()
+                    })
+                } else this._ending()
+            }, e.prototype._ending = function () {
+                var t = this;
+                if (1 == this._scene.data.isFirstClear()) {
+                    var e = this._scene.layer_bonus,
+                        i = this._scene.data.battle_model.map_info.area_id,
+                        n = this._scene.data.battle_model.map_info.map_no,
+                        o = this._scene.data.getClearOperationSuffix();
+                    new s.TaskEventEnding(e, i, n, o).start(function () {
+                        t._mapOpen()
+                    })
+                } else this._mapOpen()
+            }, e.prototype._mapOpen = function () {
+                var t = this,
+                    e = this._scene.data.getOpenedMapIDs();
+                if (e.length > 0) {
+                    var i = this._scene.layer_bonus;
+                    new a.TaskMapOpen(i, e).start(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
             }, e
-        }(s.TaskEventEndingBase);
-    e.TaskEventEnding432 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(4), this._text1.position.set(147, 290), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(5), this._text2.position.set(298, 535), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_NMHFCTIIVPILQGMX.getTexture(7), this._text3.position.set(319, 596)
-        }, e
-    }(s.TextsBase)
+        }(o.TaskBase);
+    e.PhaseClear = _
 }

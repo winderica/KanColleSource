@@ -19,28 +19,16 @@ const function889 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(14),
-        a = i(344),
-        _ = function (t) {
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._stype_name = "", e._ship_name = "", e
+                return e._url = "api_get_member/kdock", e
             }
-            return n(e, t), e.prototype.preloadFromMst = function (t, e) {
-                var i = r.default.model.ship_graph.get(t.mstID).getCenterOffset(!1);
-                this.preload(t.mstID, t.name, t.shipTypeName, t.message_text, t.rarity, i, e)
-            }, e.prototype.preload = function (t, e, i, n, a, _, l) {
-                var u = this;
-                this._mst_id = t, this._ship_name = e, this._stype_name = i, this._message = n, (new s.ShipLoader).add(t, !1, "full").load(function () {
-                    u._target.texture = r.default.resources.getShip(t, !1, "full"), u._target.x = o.default.width / 2 - 379 + _.x, u._target.y = o.default.height / 2 - 418 + _.y, u._rarityBG.initiailzeForShip(a, function () {
-                        u._messageBox.initializeForShip(u._stype_name, u._ship_name, u._message), null != l && l()
-                    })
-                })
-            }, e.prototype._03_waitClick = function () {
-                r.default.sound.voice.play(this._mst_id.toString(), 1), t.prototype._03_waitClick.call(this)
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.kdock.__setData__(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(a.RewardAnimation);
-    e.RewardAnimationShip = _
+        }(r.APIBase);
+    e.KDockAPI = s
 }

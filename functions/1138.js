@@ -19,45 +19,23 @@ const function1138 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
+    var o = i(0),
+        r = i(74),
+        s = i(174),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getUseitem(e, 1),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(o.APIBase);
-    e.PurchasedItemPickupAPI = s;
-    var a = function () {
-        function t() {}
-        return Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t
-    }();
-    e.PurchasedItemPickupResult = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
-        }, e
-    }(a)
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogUseitemBtn = a
 }

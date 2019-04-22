@@ -19,100 +19,56 @@ const function1027 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(109),
-        s = i(9),
-        a = i(29),
-        _ = i(38),
-        l = i(229),
-        u = i(230),
-        c = i(359),
-        h = i(363),
-        p = i(365),
-        d = i(361),
-        f = i(1028),
-        y = i(362),
-        m = i(1029),
-        v = i(1030),
-        g = i(1031),
-        b = function (t) {
+    var o = i(4),
+        r = (i(260), i(23)),
+        s = i(39),
+        a = i(1028),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._onDeckChange = function (t) {
-                    i._update(t)
-                }, i._onGo = function () {
-                    null != i._cb_onGo && i._cb_onGo(i._selected_id, i._deck_id)
-                }, i._onClickTempSupply = function () {
-                    var t = o.default.model.deck.get(i._deck_id).getShipList();
-                    new d.TaskTemporarySupply(t, i._rader, function () {
-                        i._update(i._deck_id)
-                    }).start()
-                }, i._cb_onGo = e, i._banners = new c.PanelDeckSelectBanners, i._banners.position.set(30, 94), i._decks = new u.CompDeckBtns(i._onDeckChange), i._decks.position.set(30, 54), i._rader = new h.RaderCanvas, i._rader.position.set(487, 292), i._arrow = new l.CompArrow2, i._arrow.position.set(567, 537), i._alert = new y.AlertBalloon, i._alert.anchor.set(1, .5), i._alert.position.set(298, 565), i._btn = new m.BtnGo(i._onGo), i._btn.position.set(301, 538), i._drum_counts = [];
-                for (var n = 0; n < 6; n++) {
-                    var r = new v.CompDrumCount;
-                    r.position.set(33, 136 + 75 * n), i._drum_counts.push(r)
-                }
-                i._support_boats = [];
-                for (var n = 0; n < 6; n++) {
-                    var s = new g.CompSupportBoatCount;
-                    s.position.set(55, 145 + 75 * n), i._support_boats.push(s)
-                }
-                return i._flagship_flag = new PIXI.Sprite, i._flagship_flag.position.set(31, 87), i._temp_supply_btn = new p.TempSupplyBtn, i._temp_supply_btn.position.set(210, 528), i._checker = new f.ExpeditionCondition, i.interactive = !0, i
+                return i._activated = !1, i._expedition_id = -1, i._deck_id = -1, i._remain_time = 0, i._timer_key = -1, i._onClick = function () {
+                    null != i._cancel_cb && i._cancel_cb(i._expedition_id, i._deck_id)
+                }, i._cancel_cb = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._selected_id = t;
-                var n = new PIXI.Sprite(a.SALLY_COMMON.getTexture(26));
-                n.position.set(-7, 36), this.addChild(n);
-                var l = new PIXI.Sprite(a.SALLY_COMMON.getTexture(50));
-                l.position.set(0, 0), this.addChild(l);
-                var u = new PIXI.Sprite(a.SALLY_COMMON.getTexture(15));
-                if (u.position.set(24, 10), this.addChild(u), this.addChild(this._banners), this._decks.initialize(e), this.addChild(this._decks), this._rader.initialize(), this.addChild(this._rader), this._arrow.initialize(), this.addChild(this._arrow), this._alert.initialize(), this.addChild(this._alert), o.default.model.deck.exist3rdUnit) {
-                    var c = new PIXI.Sprite(s.COMMON_MISC.getTexture(183));
-                    c.position.set(108, 33), this.addChild(c)
-                }
-                1 == i && (this._deck_combined_frame = new r.CombinedView, this._deck_combined_frame.position.set(22, 44), this.addChild(this._deck_combined_frame)), this._btn.initialize(), this.addChild(this._btn);
-                for (var h = 0, p = this._drum_counts; h < p.length; h++) {
-                    var d = p[h];
-                    d.initialize(), this.addChild(d)
-                }
-                for (var f = 0, y = this._support_boats; f < y.length; f++) {
-                    var m = y[f];
-                    m.initialize(), this.addChild(m)
-                }
-                this._flagship_flag.texture = _.SALLY_EXPEDITION.getTexture(36), this.addChild(this._flagship_flag), this._temp_supply_btn.initialize(this._onClickTempSupply), this.addChild(this._temp_supply_btn), this._update(e[0])
-            }, e.prototype.activate = function () {
-                this._decks.activate(), this._arrow.activate(), this._alert.activate(), null != this._deck_combined_frame && this._deck_combined_frame.activate(), this._btn.activate(), this._temp_supply_btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._decks.deactivate(), this._arrow.deactivate(), null != this._deck_combined_frame && this._deck_combined_frame.deactivate(), this._btn.deactivate(), this._temp_supply_btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this._banners.dispose(), this._decks.dispose(), this._rader.dispose(), this._arrow.dispose(), null != this._deck_combined_frame && this._deck_combined_frame.dispose(), this._btn.dispose(), this._temp_supply_btn.dispose(), this._checker = null
-            }, e.prototype._update = function (t) {
-                this._deck_id = t;
-                for (var e = o.default.model.deck.get(t), i = e.getShipListAll(), n = this._checker.check(this._selected_id, e), r = !0, s = 0; s < i.length; s++) {
-                    var a = i[s];
-                    null != a && 1 == r && (a.fuelNow < a.fuelMax || a.ammoNow < a.ammoMax) && (r = !1)
-                }
-                this._decks.setSelected(t), this._rader.update(i), this._arrow.enabled = n.result, this._arrow.update(r), this._arrow.activate(), this._alert.update(n.reason), this._btn.enabled = n.result;
-                for (var _ = e.getShipList(), s = 0; s < _.length; s++) {
-                    var a = _[s];
-                    this._drum_counts[s].update(a), this._support_boats[s].update(a)
-                }
-                if (this._flagship_flag.visible = null != _[0], 0 == o.default.model.basic.getExtraSupplyExpedition()) this._temp_supply_btn.visible = !1;
-                else if (r) this._temp_supply_btn.visible = !1;
-                else if (0 != n.reason && 2 != n.reason && 14 != n.reason) this._temp_supply_btn.visible = !1;
+            return n(e, t), Object.defineProperty(e.prototype, "deck_name", {
+                get: function () {
+                    return this._deck_name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                var t = new PIXI.Graphics;
+                t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 439), t.lineTo(336, 439), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
+                var e = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(42));
+                e.position.set(28, 579), this.addChild(e), this._deck_name = new o.TextBox(15, 4999235), this._deck_name.position.set(27, 186), this.addChild(this._deck_name), this._time_remaining = new o.TextBox(22, 4999235), this._time_remaining.anchor.set(1, 0), this._time_remaining.position.set(337, 576), this.addChild(this._time_remaining), this._remaining_none = new o.TextBox(19, 4999235), this._remaining_none.text = "\u307e\u3082\u306a\u304f\u5e30\u9084\u3057\u307e\u3059", this._remaining_none.position.set(127, 606), this.addChild(this._remaining_none), this._icon = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(35)), this._icon.position.set(31, 627), this.addChild(this._icon), this._btn = new a.BtnCancel(this._onClick), this._btn.initialize(), this._btn.position.set(87, 636), this._btn.visible = !1, this.addChild(this._btn)
+            }, e.prototype.update = function (t, e) {
+                if (null == t) this._expedition_id = -1, this._deck_id = -1, this._deck_name.text = "", this._time_remaining.text = "", this._remaining_none.visible = !1, this._btn.visible = !1, this._deactivate();
                 else {
-                    for (var l = 0, u = 0, s = 0; s < _.length; s++) {
-                        var a = _[s];
-                        null != a && (l += a.getFuelForSupply(), u += a.getAmmoForSupply())
-                    }
-                    var c = o.default.model.useItem.getCount(31),
-                        h = o.default.model.useItem.getCount(32),
-                        p = l > 0 && l <= c,
-                        d = u > 0 && u <= h;
-                    this._temp_supply_btn.enabled = 0 != p || 0 != d, this._temp_supply_btn.visible = !0
+                    this._expedition_id = t.mstID, this._deck_id = e.mstID, this._deck_name.text = e.name;
+                    var i = Date.now(),
+                        n = e.expedition.complete_unixtime,
+                        o = n - i;
+                    o = Math.max(o, 0) / 1e3, this._remain_time = o, this._updateRemainTime(), this._btn.visible = !0, 3 == e.expedition.state ? this._btn.enabled = !1 : 0 == t.isCancelable() ? this._btn.enabled = !1 : this._btn.enabled = !(o <= 0), this._activate()
                 }
-                this._banners.update(_)
+            }, e.prototype.dispose = function () {
+                this._deactivate(), this.removeChildren(), this._cancel_cb = null, this._deck_name.destroy(), this._time_remaining.destroy(), this._remaining_none.destroy()
+            }, e.prototype._activate = function () {
+                var t = this;
+                0 == this._activated && (this._activated = !0), this._remain_time > 0 && -1 == this._timer_key && (this._timer_key = setInterval(function () {
+                    t._remain_time--, t._remain_time <= 0 && (clearInterval(t._timer_key), t._timer_key = -1), t._updateRemainTime()
+                }, 1e3)), this._btn.activate()
+            }, e.prototype._deactivate = function () {
+                this._timer_key > 0 && (clearInterval(this._timer_key), this._timer_key = -1), this._btn.deactivate(), this._activated = !1
+            }, e.prototype._updateRemainTime = function () {
+                var t = this._remain_time;
+                if (t > 0) {
+                    var e = r.MathUtil.zeroPadding(Math.floor(t) % 60, 2),
+                        i = Math.floor(t / 60),
+                        n = r.MathUtil.zeroPadding(i % 60, 2),
+                        o = r.MathUtil.zeroPadding(Math.floor(i / 60), 2);
+                    this._time_remaining.text = o + ":" + n + ":" + e, this._time_remaining.visible = !0, this._remaining_none.visible = !1
+                } else this._time_remaining.visible = !1, this._remaining_none.visible = !0, this._btn.enabled = !1
             }, e
         }(PIXI.Container);
-    e.PanelDeckSelect = b
+    e.PanelDetailInExpe = _
 }

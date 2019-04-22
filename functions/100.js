@@ -33,7 +33,8 @@ const function100 = function (t, e, i) {
         f = i(458),
         y = i(459),
         m = i(460),
-        v = function (t) {
+        v = i(1368),
+        g = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -53,7 +54,7 @@ const function100 = function (t, e, i) {
                 } else this._endTask()
             }, e.prototype._hougeki = function (t) {
                 var e = t.type;
-                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : 102 == e ? this._mutsu_cutin(t) : this._special(t)
+                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : 102 == e ? this._mutsu_cutin(t) : 200 == e ? this._zuiunCutin(t) : this._special(t)
             }, e.prototype._normal = function (t) {
                 var e = this,
                     i = this._scene,
@@ -179,6 +180,18 @@ const function100 = function (t, e, i) {
                         e._hougekiCycle()
                     })
                 }
+            }, e.prototype._zuiunCutin = function (t) {
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = t.getSlotitem(0),
+                    r = t.getSlotitem(2),
+                    s = t.getDamage(0),
+                    a = t.getHitType(0),
+                    _ = t.isShield(0);
+                new v.PhaseZRK(this._scene, i, n, o, r, s, a, _).start(function () {
+                    e._hougekiCycle()
+                })
             }, e.prototype._getAShip = function (t, e) {
                 return 0 == e ? this._scene.data.model.deck_f.ships[t] : this._scene.data.model.deck_e.ships[t]
             }, e.prototype._getDShip = function (t, e) {
@@ -224,5 +237,5 @@ const function100 = function (t, e, i) {
                 return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e
         }(r.TaskBase);
-    e.PhaseHougeki = v
+    e.PhaseHougeki = g
 }
