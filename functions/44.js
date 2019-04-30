@@ -385,6 +385,9 @@ const function44 = function (t, e, i) {
             319: {
                 r: 12
             },
+            320: {
+                r: 12
+            },
             322: {
                 r: 50
             },
