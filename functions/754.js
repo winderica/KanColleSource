@@ -25,18 +25,18 @@ const function754 = function (t, e, i) {
             function e() {
                 var e = t.call(this) || this;
                 return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(17))
+                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(14), e.onMouseOver())
                 }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(15))
+                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(12), e.onMouseOut())
                 }, e._onClick = function () {
                     e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(16), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+                }, e.texture = o.SUPPLY_MAIN.getTexture(13), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
             }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(15) : o.SUPPLY_MAIN.getTexture(16)
+                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(12) : o.SUPPLY_MAIN.getTexture(13)
             }, e
         }(PIXI.Sprite);
-    e.SupplyAircraftButton = s
+    e.SupplyAllButton2 = s
 }

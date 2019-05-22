@@ -39,8 +39,7 @@ const function1241 = function (t, e, i) {
         w = i(1264),
         x = i(1266),
         I = i(1270),
-        T = i(438),
-        O = function (t) {
+        T = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
                 return s._scene = e, s._model = i, s._repair_item = n, s._battle_cls = o, s._battle_result_cls = r, s._cell_open = !1, s
@@ -157,29 +156,7 @@ const function1241 = function (t, e, i) {
                     c = this._scene,
                     h = this._scene.view.map.airbaseLayer;
                 new I.AirRaidTask(e, i, r, s, a, l, u, c, h, this._battle_cls).start(function () {
-                    var n = _.ObjUtil.getNumber(r, "api_m1");
-                    if (43 == e && 2 == i && 2 == t._model.sortie.map.getGaugeNum() && 1 == n) t._cell_open = !0, new T.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1).start(function () {
-                        t._endTask()
-                    });
-                    else if (43 == e && 2 == i && 2 == t._model.sortie.map.getGaugeNum() && 2 == n) {
-                        t._cell_open = !0;
-                        var o = new T.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1);
-                        o.start(function () {
-                            t._endTask()
-                        })
-                    } else if (43 == e && 2 == i && 2 == t._model.sortie.map.getGaugeNum() && 3 == n) {
-                        t._cell_open = !0;
-                        var s = new T.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1);
-                        s.start(function () {
-                            t._endTask()
-                        })
-                    } else if (43 == e && 3 == i && 2 == t._model.sortie.map.getGaugeNum() && 1 == n) {
-                        t._cell_open = !0;
-                        var a = new T.EventTaskCellOpen(t._model.sortie.map_id, t._scene.resInfo, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !1, !1);
-                        a.start(function () {
-                            t._endTask()
-                        })
-                    } else t._gimmickAfterAirraid()
+                    _.ObjUtil.getNumber(r, "api_m1"), t._gimmickAfterAirraid()
                 })
             }, e.prototype._gimmickAfterAirraid = function () {
                 this._cellEvent()
@@ -218,5 +195,5 @@ const function1241 = function (t, e, i) {
                 return new y.CellTaskBattle(this._scene, this._battle_model, this._battle_cls, this._battle_result_cls)
             }, e
         }(r.TaskBase);
-    e.TaskNextSpot = O
+    e.TaskNextSpot = T
 }

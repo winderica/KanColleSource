@@ -106,12 +106,16 @@ const function28 = function (t, e, i) {
 
         function d(t) {
             switch (t) {
-                case 6:
+                case 149:
                     return "\u91d1\u525b\u578b\u6226\u8266";
+                case 277:
+                    return "\u8d64\u57ce\u578b\u822a\u7a7a\u6bcd\u8266";
+                case 594:
+                    return "\u6539\u8d64\u57ce\u578b\u822a\u7a7a\u6bcd\u8266";
                 default:
                     return ""
             }
         }
-        t.isEnemy = e, t.getSpeedType = i, t.getDamageType = o, t.isDamaged = r, t.isMarriage = s, t.sort = a, t.filter = _, t.filterByShipFilterType = l, t.filterByShipType = u, t.getMemIDsInAllDeck = c, t.getMemIDsInExpedition = h, t.isMaxGradeUp = p, t.getShipClassTypeText = d
+        t.isEnemy = e, t.getSpeedType = i, t.getDamageType = o, t.isDamaged = r, t.isMarriage = s, t.sort = a, t.filter = _, t.filterByShipFilterType = l, t.filterByShipType = u, t.getMemIDsInAllDeck = c, t.getMemIDsInExpedition = h, t.isMaxGradeUp = p, t.getShipClassTypeSpRemodelText = d
     }(e.ShipUtil || (e.ShipUtil = {}))
 }

@@ -19,67 +19,32 @@ const function1368 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(6),
-        a = i(1369),
-        _ = i(41),
-        l = function (t) {
-            function e(e, i, n, s, _, l, u, c) {
-                var h = t.call(this, e, i, s, l, u, c) || this;
-                h._onCallAttackEffect = function () {
-                    var t = h._getDamage(h._defender),
-                        e = h._defenderBanner.getGlobalPos(!0),
-                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
-                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
-                    createjs.Tween.get(null).call(function () {
-                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
-                    }).wait(150).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
-                    }).wait(100).call(function () {
-                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
-                            h._attack(h._attackerBanner, h._defenderBanner)
-                        })
-                    })
-                }, h._finallize = function () {
-                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
-                };
-                var p, d, f = h._slot.mstID,
-                    y = o.default.model.slot.getMst(_),
-                    m = y.mstID,
-                    v = new a.CutinZRK(i, f, m),
-                    g = i.friend,
-                    b = i.index,
-                    w = n.index;
-                return g ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), v.onCallAttackEffect = h._onCallAttackEffect, v.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = v, h._defender = n, h._debug_slot_mst_id3 = _, h
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._chara = [];
+            for (var i = 0; i < 2; i++) {
+                var n = new PIXI.Container;
+                e._chara.push(n), e.addChild(n)
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id;
-                    o.default.sound.voice.play(t.toString(), 16)
-                }
-            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
-                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
-            }, e.prototype._attack = function (t, e) {
-                var i = this;
-                s.SE.play("102"), t.attack(function () {
-                    i._damageEffect(t, e)
-                })
-            }, e.prototype._damageEffect = function (t, e) {
-                var i = this;
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var n = this._getDamage(this._defender);
-                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
-                    return i._finallize()
-                })
-            }, e
-        }(_.PhaseAttackBase);
-    e.PhaseZRK = l
+            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "explosion", {
+            get: function () {
+                return this._explosion
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            for (var t = 0; t < 2; t++) this._chara[t].removeChildren(), this._chara[t] = null;
+            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
+        }, e
+    }(PIXI.Container);
+    e.CutinMutsuAttackCanvas = o
 }

@@ -3,48 +3,52 @@ const function530 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(7),
-        r = function () {
-            function t(t) {
-                this._o = t
+    var n = i(17),
+        o = i(78),
+        r = i(13),
+        s = i(25),
+        a = i(14),
+        _ = i(67),
+        l = i(531),
+        u = i(9),
+        c = i(266),
+        h = function () {
+            function t() {
+                this._gauge = new l.GaugeRManager
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "gauge", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_id")
+                    return this._gauge
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
-                get: function () {
-                    return o.ObjUtil.getString(this._o, "api_name")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "description", {
-                get: function () {
-                    var t = o.ObjUtil.getStrArray(this._o, "api_description");
-                    return null != t && t.length > 0 ? t[0] : ""
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return 44 == this.mstID ? n.default.model.basic.getCoinCount() : o.ObjUtil.getNumber(this._o, "api_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isUsable = function () {
-                return 4 == this._use_type
-            }, t.prototype.__setCount__ = function (t) {
-                44 == this.mstID ? n.default.model.basic.setCoinCount(t) : this._o.api_count = t
-            }, Object.defineProperty(t.prototype, "_use_type", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_usetype")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.getUIImage = function (t, e) {
+                var i;
+                if (void 0 === e) i = t;
+                else {
+                    var n = t,
+                        o = e;
+                    i = a.UIImageLoader.getPath(n, o)
+                }
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.isLoadedShip = function (t, e, i) {
+                var n = r.ShipLoader.getPath(t, e, i);
+                return PIXI.utils.TextureCache[n]
+            }, t.prototype.getShip = function (t, e, i) {
+                var n, o = r.ShipLoader.getPath(t, e, i);
+                return n = PIXI.utils.TextureCache[o] ? PIXI.utils.TextureCache[o] : PIXI.Texture.EMPTY, "banner" == i && n == PIXI.Texture.EMPTY && (n = u.COMMON_MISC.getTexture(2)), n
+            }, t.prototype.getSlotitem = function (t, e) {
+                "item_up" == e && (1 == n.ITEMUP_REPLACE.hasOwnProperty(t.toString()) ? t = n.ITEMUP_REPLACE[t] : t > 500 && (t -= 500));
+                var i = s.SlotLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.getUseitem = function (t, e) {
+                if (0 == e) return c.COMMON_ITEMICONS.getTextureFromMstID(t);
+                var i = _.UseitemLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t.prototype.getFurniture = function (t, e) {
+                var i = o.FurnitureLoader.getPath(t, e);
+                return PIXI.utils.TextureCache[i] ? PIXI.utils.TextureCache[i] : PIXI.Texture.EMPTY
+            }, t
         }();
-    e.UseItemModel = r
+    e.ResourceManager = h
 }

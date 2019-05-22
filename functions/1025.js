@@ -20,7 +20,7 @@ const function1025 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(23),
+        r = i(24),
         s = i(30),
         a = i(39),
         _ = i(367),
@@ -47,7 +47,7 @@ const function1025 = function (t, e, i) {
             }, e.prototype.update = function (t, e) {
                 if (null == t) this._title.text = "", this._areaText.clear(), this._description.text = "", this._time.text = "", this._panel_noexpe.visible = !0, this._panel_inexpe.visible = !1, this._panel_noexpe.update(null);
                 else {
-                    this._title.text = t.name, this._title.text = t.name.replace(/<br.*?>/g, "\n"), 42 == t.areaID ? this._areaText.x = 18 : this._areaText.x = 27, this._description.text = t.detail.replace(/<br\s*\/?>/g, "\n");
+                    this._title.text = t.name, this._title.text = t.name.replace(/<br.*?>/g, "\n"), 44 == t.areaID ? this._areaText.x = 18 : this._areaText.x = 27, this._description.text = t.detail.replace(/<br\s*\/?>/g, "\n");
                     var i = t.time,
                         n = r.MathUtil.zeroPadding(Math.floor(i / 60), 2),
                         o = r.MathUtil.zeroPadding(i % 60, 2);

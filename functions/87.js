@@ -7,7 +7,7 @@ const function87 = function (t, e, i) {
         o = i(133),
         r = i(28),
         s = i(0),
-        a = i(777);
+        a = i(776);
     ! function (t) {
         function e(t, e) {
             var i = s.default.model.ship_upgrade.getRequiredLevel(t);
@@ -15,15 +15,26 @@ const function87 = function (t, e, i) {
         }
 
         function i(t) {
+            switch (t) {
+                case 149:
+                case 277:
+                case 594:
+                    return !0;
+                default:
+                    return !1
+            }
+        }
+
+        function _(t) {
             var e = 0 == t ? 0 : t / n.RemodelConst.ITEM_NUM;
             return e += 0 == t ? 0 : 0 < t % n.RemodelConst.ITEM_NUM ? 1 : 0, e = Math.floor(e)
         }
 
-        function _(t, e) {
+        function l(t, e) {
             return 0 == t.isExtraSlot() && t.level >= n.RemodelConst.EXTRA_SLOT_LEVEL && 0 < e
         }
 
-        function l(t) {
+        function u(t) {
             var e = new Array,
                 i = t.powUp;
             0 < i[0] && e.push(o.PowerUpCategory.Karyoku), 0 < i[1] && e.push(o.PowerUpCategory.Raisou), 0 < i[2] && e.push(o.PowerUpCategory.Taiku), 0 < i[3] && e.push(o.PowerUpCategory.Soukou);
@@ -31,7 +42,7 @@ const function87 = function (t, e, i) {
             return e
         }
 
-        function u(t, e) {
+        function c(t, e) {
             function i(t, e, i, n) {
                 return t.getClassType() == e && (void 0 == i[t.yomi] && (i[t.yomi] = 0), ++i[t.yomi] >= n)
             }
@@ -73,14 +84,14 @@ const function87 = function (t, e, i) {
             return v >= 1 && (R = !0, D = !0, B <= 0 && (D = !1), n.gradeUpTaisen >= n.VAS ? R = !1 : n.taisenMax <= 0 && (R = !1)), new a.PowerUpCheckModel(u, c, h, p, d, D, M, R)
         }
 
-        function c() {
+        function h() {
             var t = new Array;
             t = r.ShipUtil.getMemIDsInExpedition(), t = t.concat(s.default.model.ndock.getShipMemIDs()), t.push(s.default.model.deck.get(1).getShipMemID(0));
             var e = s.default.model.ship.getAll();
             return r.ShipUtil.filter(e, !0, t)
         }
 
-        function h(t, e) {
+        function p(t, e) {
             var i = new Array,
                 n = s.default.model.shipType.getAllExId(),
                 o = s.default.model.slot.getExtraEquipShipData(t),
@@ -114,7 +125,7 @@ const function87 = function (t, e, i) {
             return i
         }
 
-        function p(t, e, i) {
+        function d(t, e, i) {
             var n = s.default.model.ship.get(t),
                 o = [],
                 r = n.getSlotitemEx(),
@@ -168,6 +179,6 @@ const function87 = function (t, e, i) {
                 delete u[t]
             }), [l, u]
         }
-        t.canKaizo = e, t.calcPageCount = i, t.testExtensionableExtraslot = _, t.genPowUpCategories = l, t.calcPowerUpParams = u, t.createShipListForPowerUp = c, t.createUnSetListEx = h, t.createSetListEx = p
+        t.canKaizo = e, t.isSpKaizo = i, t.calcPageCount = _, t.testExtensionableExtraslot = l, t.genPowUpCategories = u, t.calcPowerUpParams = c, t.createShipListForPowerUp = h, t.createUnSetListEx = p, t.createSetListEx = d
     }(e.RemodelUtil || (e.RemodelUtil = {}))
 }

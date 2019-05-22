@@ -20,7 +20,7 @@ const function1262 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(24),
+        r = i(23),
         s = i(6),
         a = i(20),
         _ = i(1263),

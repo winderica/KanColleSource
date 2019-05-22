@@ -81,8 +81,9 @@ const function1261 = function (t, e, i) {
                 })
             }, e.prototype._changeCellColor = function () {
                 var t = this,
-                    e = this._model.sortie.getNextCell();
-                (this._scene.view.map.spotLayer.getSpot(e.no).setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({
+                    e = this._model.sortie.getNextCell(),
+                    i = this._scene.view.map.spotLayer.getSpot(e.no);
+                (8 != this._model.sortie.getCellInfo(e.no).color && i.setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({
                     alpha: 0
                 }, 300).call(function () {
                     t._chara.parent.removeChild(t._chara), t._endTask()

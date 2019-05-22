@@ -24,7 +24,7 @@ const function1264 = function (t, e, i) {
         s = i(2),
         a = i(8),
         _ = i(51),
-        l = i(24),
+        l = i(23),
         u = i(38),
         c = i(59),
         h = i(245),
@@ -177,18 +177,18 @@ const function1264 = function (t, e, i) {
                 return e._bg = new PIXI.Sprite, e._bg.position.set(-369, -125), e.addChild(e._bg), e._txt1 = new PIXI.Sprite, e._txt1.position.set(-189, 6), e.addChild(e._txt1), e._txt2 = new PIXI.Sprite, e._txt2.position.set(12, 50), e.addChild(e._txt2), e._txt3 = new PIXI.Sprite, e._txt3.position.set(39, 48), e.addChild(e._txt3), e._img = new PIXI.Sprite, e._img.position.set(203, -48), e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = p.MAP_COMMON.getTexture(152), this._txt1.texture = p.MAP_COMMON.getTexture(155), this._txt2.texture = p.MAP_COMMON.getTexture(156), this._txt3.texture = p.MAP_COMMON.getTexture(157), this._img.texture = p.MAP_COMMON.getTexture(153)
+                this._bg.texture = p.MAP_COMMON.getTexture(155), this._txt1.texture = p.MAP_COMMON.getTexture(158), this._txt2.texture = p.MAP_COMMON.getTexture(159), this._txt3.texture = p.MAP_COMMON.getTexture(160), this._img.texture = p.MAP_COMMON.getTexture(156)
             }, e.prototype.activate = function () {
                 var t = this;
-                null == this._t && (this._img.texture = p.MAP_COMMON.getTexture(153), this._t = createjs.Tween.get(null, {
+                null == this._t && (this._img.texture = p.MAP_COMMON.getTexture(156), this._t = createjs.Tween.get(null, {
                     loop: !0
                 }).wait(300).call(function () {
-                    t._img.texture = p.MAP_COMMON.getTexture(154)
+                    t._img.texture = p.MAP_COMMON.getTexture(157)
                 }).wait(300).call(function () {
-                    t._img.texture = p.MAP_COMMON.getTexture(153)
+                    t._img.texture = p.MAP_COMMON.getTexture(156)
                 }))
             }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._img.texture = p.MAP_COMMON.getTexture(153))
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._img.texture = p.MAP_COMMON.getTexture(156))
             }, e.prototype.dispose = function () {
                 this.deactivate()
             }, e

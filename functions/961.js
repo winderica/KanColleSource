@@ -60,28 +60,28 @@ const function961 = function (t, e, i) {
                 switch (t) {
                     case 1:
                         return {
-                            voice: [411, 415, 423],
+                            voice: [411, 415, 424],
                             delay: [0, 200, 200]
                         };
                     case 2:
                         return {
-                            voice: [411, 416, 424],
-                            delay: [0, 200, 200]
+                            voice: [411, 416, 423, 424],
+                            delay: [0, 200, 200, 200]
                         };
                     case 3:
                         return {
-                            voice: [412, 421, 423, 424],
+                            voice: [411, 417, 422, 424],
                             delay: [0, 200, 200, 200]
                         };
                     case 4:
                         return {
-                            voice: [412, 418, 423, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [412, 418],
+                            delay: [0, 200]
                         };
                     case 5:
                         return {
-                            voice: [412, 421, 422, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [412, 421],
+                            delay: [0, 200]
                         };
                     default:
                         return null

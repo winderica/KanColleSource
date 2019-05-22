@@ -23,7 +23,7 @@ const function994 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._area_layer = new PIXI.Container, e.addChild(e._area_layer), e._arrow_layer = new PIXI.Container, e.addChild(e._arrow_layer), e._base = new PIXI.Container, e.addChild(e._base), e._plate = new PIXI.Container, e.addChild(e._plate), e._label_layer = new PIXI.Container, e.addChild(e._label_layer), e._mini_text_layer = new PIXI.Sprite, e.addChild(e._mini_text_layer), e._title1 = new PIXI.Sprite(o.SALLY_STRATEGYMAP.getTexture(38)), e._title2 = new PIXI.Sprite, e._title1.position.set(61, -47), e._title2.y = -26, e.addChild(e._title1), e.addChild(e._title2), e
+                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._area_layer = new PIXI.Container, e.addChild(e._area_layer), e._arrow_layer = new PIXI.Container, e.addChild(e._arrow_layer), e._base = new PIXI.Container, e.addChild(e._base), e._plate = new PIXI.Container, e.addChild(e._plate), e._label_layer = new PIXI.Container, e.addChild(e._label_layer), e._mini_text_layer = new PIXI.Sprite, e.addChild(e._mini_text_layer), e._title1 = new PIXI.Sprite(o.SALLY_STRATEGYMAP.getTexture(34)), e._title2 = new PIXI.Sprite, e._title1.position.set(0, -47), e._title2.y = -26, e.addChild(e._title1), e.addChild(e._title2), e
             }
             return n(e, t), e.prototype.update = function (t) {
                 this._bg.texture = this._getBGTexture(t), this._createAreaAnimation(t), this._createArrowAnimation(t), this._createAirBase(t), this._createPlate(t), this._createLabelAnimation(t), this._createMiniTextAnimation(t), this._title2.texture = this._getTitleTexture(t), this._title2.x = Math.round(141 - this._title2.width / 2)
@@ -31,18 +31,37 @@ const function994 = function (t, e, i) {
                 this._cleanArea(), this._cleanArrow(), this._cleanLabel()
             }, e.prototype._getBGTexture = function (t) {
                 switch (t) {
-                    case 431:
-                        return o.SALLY_STRATEGYMAP.getTexture(33);
-                    case 432:
-                    case 433:
-                        return o.SALLY_STRATEGYMAP.getTexture(34);
+                    case 441:
+                        return o.SALLY_STRATEGYMAP.getTexture(28);
+                    case 442:
+                        return o.SALLY_STRATEGYMAP.getTexture(29);
+                    case 443:
+                        return o.SALLY_STRATEGYMAP.getTexture(30);
                     default:
                         return PIXI.Texture.EMPTY
                 }
             }, e.prototype._createAreaAnimation = function (t) {
-                this._cleanArea(), 431 == t ? this._createArea(128, 136, o.SALLY_STRATEGYMAP.getTexture(0)) : 432 == t ? (this._createArea(147, 106, o.SALLY_STRATEGYMAP.getTexture(1)), this._createArea(163, 35, o.SALLY_STRATEGYMAP.getTexture(2)), this._createArea(109, 84, o.SALLY_STRATEGYMAP.getTexture(3)), this._createArea(26, 78, o.SALLY_STRATEGYMAP.getTexture(4))) : 433 == t && (this._createArea(148, 16, o.SALLY_STRATEGYMAP.getTexture(5)), this._createArea(82, 81, o.SALLY_STRATEGYMAP.getTexture(6)), this._createArea(30, 91, o.SALLY_STRATEGYMAP.getTexture(7)), this._createArea(81, 27, o.SALLY_STRATEGYMAP.getTexture(8)))
+                switch (this._cleanArea(), t) {
+                    case 441:
+                        return void this._createArea(195, 105, o.SALLY_STRATEGYMAP.getTexture(0));
+                    case 442:
+                        return this._createArea(25, 140, o.SALLY_STRATEGYMAP.getTexture(1)), this._createArea(70, 180, o.SALLY_STRATEGYMAP.getTexture(2)), this._createArea(70, 50, o.SALLY_STRATEGYMAP.getTexture(3)), void this._createArea(98, 80, o.SALLY_STRATEGYMAP.getTexture(4));
+                    case 443:
+                        return this._createArea(162, 37, o.SALLY_STRATEGYMAP.getTexture(5)), this._createArea(92, 58, o.SALLY_STRATEGYMAP.getTexture(6)), this._createArea(103, 150, o.SALLY_STRATEGYMAP.getTexture(7)), void this._createArea(195, 154, o.SALLY_STRATEGYMAP.getTexture(8));
+                    default:
+                        return
+                }
             }, e.prototype._createArrowAnimation = function (t) {
-                this._cleanArrow(), 431 == t ? this._createArrow(70, 80, o.SALLY_STRATEGYMAP.getTexture(9), o.SALLY_STRATEGYMAP.getTexture(10)) : 432 == t ? (this._createArrow(38, 105, o.SALLY_STRATEGYMAP.getTexture(11), o.SALLY_STRATEGYMAP.getTexture(12)), this._createArrow(111, 2, o.SALLY_STRATEGYMAP.getTexture(13), o.SALLY_STRATEGYMAP.getTexture(14))) : 433 == t && (this._createArrow(94, 8, o.SALLY_STRATEGYMAP.getTexture(15), o.SALLY_STRATEGYMAP.getTexture(16)), this._createArrow(24, 51, o.SALLY_STRATEGYMAP.getTexture(17), o.SALLY_STRATEGYMAP.getTexture(18)), this._createArrow(1, 144, o.SALLY_STRATEGYMAP.getTexture(19), o.SALLY_STRATEGYMAP.getTexture(20)))
+                switch (this._cleanArrow(), t) {
+                    case 441:
+                        return void this._createArrow(15, 135, o.SALLY_STRATEGYMAP.getTexture(9), o.SALLY_STRATEGYMAP.getTexture(10));
+                    case 442:
+                        return this._createArrow(65, 38, o.SALLY_STRATEGYMAP.getTexture(11), o.SALLY_STRATEGYMAP.getTexture(12)), void this._createArrow(115, 97, o.SALLY_STRATEGYMAP.getTexture(13), o.SALLY_STRATEGYMAP.getTexture(14));
+                    case 443:
+                        return void this._createArrow(5, 80, o.SALLY_STRATEGYMAP.getTexture(15), o.SALLY_STRATEGYMAP.getTexture(16));
+                    default:
+                        return
+                }
             }, e.prototype._createArea = function (t, e, i) {
                 var n = new s(i);
                 n.x = t, n.y = e, this._area_layer.addChild(n)
@@ -68,9 +87,27 @@ const function994 = function (t, e, i) {
                     var o = new PIXI.Sprite(t);
                     o.position.set(i, n), e._plate.addChild(o)
                 };
-                431 == t ? i(o.SALLY_STRATEGYMAP.getTexture(23), 101, 150) : 432 == t ? (i(o.SALLY_STRATEGYMAP.getTexture(24), 25, 121), i(o.SALLY_STRATEGYMAP.getTexture(25), 157, 19)) : 433 == t && i(o.SALLY_STRATEGYMAP.getTexture(26), 179, 37)
+                switch (t) {
+                    case 441:
+                        return void i(o.SALLY_STRATEGYMAP.getTexture(19), 132, 152);
+                    case 442:
+                        return void i(o.SALLY_STRATEGYMAP.getTexture(20), 102, 145);
+                    case 443:
+                        return void i(o.SALLY_STRATEGYMAP.getTexture(21), 75, 165);
+                    default:
+                        return
+                }
             }, e.prototype._createLabelAnimation = function (t) {
-                this._cleanLabel(), 431 == t ? this._createLabel(15, 116, o.SALLY_STRATEGYMAP.getTexture(27), o.SALLY_STRATEGYMAP.getTexture(28)) : 432 == t ? this._createLabel(75, 128, o.SALLY_STRATEGYMAP.getTexture(29), o.SALLY_STRATEGYMAP.getTexture(30)) : 433 == t && this._createLabel(56, 116, o.SALLY_STRATEGYMAP.getTexture(31), o.SALLY_STRATEGYMAP.getTexture(32))
+                switch (this._cleanLabel(), t) {
+                    case 441:
+                        return void this._createLabel(52, 80, o.SALLY_STRATEGYMAP.getTexture(22), o.SALLY_STRATEGYMAP.getTexture(23));
+                    case 442:
+                        return void this._createLabel(5, 110, o.SALLY_STRATEGYMAP.getTexture(24), o.SALLY_STRATEGYMAP.getTexture(25));
+                    case 443:
+                        return void this._createLabel(5, 110, o.SALLY_STRATEGYMAP.getTexture(26), o.SALLY_STRATEGYMAP.getTexture(27));
+                    default:
+                        return
+                }
             }, e.prototype._createLabel = function (t, e, i, n) {
                 var o = new _(i, n);
                 o.x = t, o.y = e, this._label_layer.addChild(o)
@@ -80,7 +117,7 @@ const function994 = function (t, e, i) {
                 }
                 this._label_layer.removeChildren()
             }, e.prototype._createMiniTextAnimation = function (t) {
-                this._cleanMiniText(), 432 != t && 433 != t || this._createLabel(192, 281, o.SALLY_STRATEGYMAP.getTexture(39), o.SALLY_STRATEGYMAP.getTexture(40))
+                this._cleanMiniText(), 443 == t && this._createLabel(192, 281, o.SALLY_STRATEGYMAP.getTexture(35), o.SALLY_STRATEGYMAP.getTexture(36))
             }, e.prototype._createMiniText = function (t, e, i, n) {
                 var o = new l(i, n);
                 o.x = t, o.y = e, this._mini_text_layer.addChild(o)
@@ -91,12 +128,12 @@ const function994 = function (t, e, i) {
                 this._mini_text_layer.removeChildren()
             }, e.prototype._getTitleTexture = function (t) {
                 switch (t) {
-                    case 431:
-                        return o.SALLY_STRATEGYMAP.getTexture(35);
-                    case 432:
-                        return o.SALLY_STRATEGYMAP.getTexture(36);
-                    case 433:
-                        return o.SALLY_STRATEGYMAP.getTexture(37);
+                    case 441:
+                        return o.SALLY_STRATEGYMAP.getTexture(31);
+                    case 442:
+                        return o.SALLY_STRATEGYMAP.getTexture(32);
+                    case 443:
+                        return o.SALLY_STRATEGYMAP.getTexture(33);
                     default:
                         return PIXI.Texture.EMPTY
                 }

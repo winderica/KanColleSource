@@ -19,26 +19,15 @@ const function592 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(21),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e.arrow = new PIXI.Sprite(o.COMMON_MAIN.getTexture(41)), e.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(40)), e.lockIcon.x = 9, e.addChild(e.lockIcon), e.addChild(e.arrow), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (this.clear(), t < 20) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(36)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(113));
-                    i.x = Math.floor(e.width - i.width / 2 - 3), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                } else if (t < 30) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(35)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(112));
-                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                }
-            }, e.prototype.clear = function () {
-                this.removeChildren()
-            }, e.prototype.dispose = function () {
-                this.clear()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.lockIcon = null, this.arrow = null
             }, e
         }(PIXI.Container);
-    e.BannerTired = r
+    e.BannerLockSlot = r
 }

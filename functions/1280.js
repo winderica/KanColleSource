@@ -40,7 +40,7 @@ const function1280 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t) {
-                this._bg.texture = s.MAP_COMMON.getTexture(158), this._content.initialize(t), this._gearBtn.initialize()
+                this._bg.texture = s.MAP_COMMON.getTexture(161), this._content.initialize(t), this._gearBtn.initialize()
             }, e
         }(PIXI.Container);
     e.MapEndView = a;
@@ -50,7 +50,7 @@ const function1280 = function (t, e, i) {
             return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
         }
         return n(e, t), e.prototype.initialize = function (t) {
-            if (this._title.texture = s.MAP_COMMON.getTexture(177), null != t)
+            if (this._title.texture = s.MAP_COMMON.getTexture(180), null != t)
                 for (var e = 0; e < t.length; e++) {
                     var i = t[e],
                         n = o.default.resources.getUseitem(i, 0),

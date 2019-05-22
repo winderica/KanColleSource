@@ -39,14 +39,14 @@ const function967 = function (t, e, i) {
                 var e = a.default.settings.path_root + "img/sally/event_maesetsu",
                     i = "?version=" + _.UIImageLoader.getVersion("sally");
                 switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
-                    case 431:
-                        this._content.position.set(-303, -225), this._content.texture = PIXI.Texture.fromImage(e + "/230_c3ce4.png" + i);
+                    case 441:
+                        this._content.position.set(-303, -227), this._content.texture = PIXI.Texture.fromImage(e + "/233_a4ce6.png" + i);
                         break;
-                    case 432:
-                        this._content.position.set(-286, -229), this._content.texture = PIXI.Texture.fromImage(e + "/231_b88bd.png" + i);
+                    case 442:
+                        this._content.position.set(-286, -228), this._content.texture = PIXI.Texture.fromImage(e + "/234_d6775.png" + i);
                         break;
-                    case 433:
-                        this._content.position.set(-342, -223), this._content.texture = PIXI.Texture.fromImage(e + "/232_5b7cd.png" + i);
+                    case 443:
+                        this._content.position.set(-295, -216), this._content.texture = PIXI.Texture.fromImage(e + "/235_5caf8.png" + i);
                         break;
                     default:
                         this._content.texture = PIXI.Texture.EMPTY

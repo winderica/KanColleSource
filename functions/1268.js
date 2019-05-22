@@ -19,7 +19,7 @@ const function1268 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(24),
+    var o = i(23),
         r = i(20),
         s = i(1269),
         a = function (t) {

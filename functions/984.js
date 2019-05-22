@@ -55,7 +55,7 @@ const function984 = function (t, e, i) {
             }, e.prototype._updateNormalArea = function (t, e, i) {
                 this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
             }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), this._content = e >= 2 ? new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap2(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
+                this._removePreContent(), this._content = e >= 1 ? new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._next_btn.hide(), this._back_btn.hide()
             }, e.prototype._removePreContent = function () {
                 null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
             }, e.prototype._updateBackBtn = function (t) {

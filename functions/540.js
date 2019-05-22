@@ -20,79 +20,38 @@ const function540 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(8),
-        s = i(18),
-        a = i(269),
-        _ = i(541),
-        l = i(542),
-        u = i(15),
-        c = function (t) {
+        r = i(24),
+        s = function (t) {
             function e() {
                 return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "portMain", {
-                get: function () {
-                    return this._portMain
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "mapLayer", {
-                get: function () {
-                    return this._mapLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "overLayer", {
-                get: function () {
-                    return this._overLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "fadeLayer", {
-                get: function () {
-                    return this._fadeLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "loading", {
-                get: function () {
-                    return this._loading
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "clickGuard", {
-                get: function () {
-                    return this._clickGuard.visible
-                },
-                set: function (t) {
-                    this._clickGuard.visible = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._bg = new _.Background, this._portMain = t, this._mapLayer = new l.ContainerScene, this._mapLayer.visible = !1, this._overLayer = new PIXI.Container, this._fadeLayer = new s.FadeBox(1), this._fadeLayer.visible = !1, this._clickGuard = new r.AreaBox(0), this._clickGuard.visible = !1, this._loading = new a.LoadingBox, this._loading.hide(), this.addChild(this._bg), this.addChild(this._portMain), this.addChild(this._mapLayer), this.addChild(this._overLayer), this.addChild(this._fadeLayer), this.addChild(this._clickGuard), this.addChild(this._loading)
-            }, e.prototype.getNowScene = function () {
-                var t = this._mapLayer.getContent();
-                return null != t ? t : (t = this._portMain.getContent(), null != t ? t : this._portMain)
-            }, e.prototype.showError = function (t) {
-                void 0 === t && (t = null), this._bg.visible = !1, this._portMain.visible = !1, this._mapLayer.visible = !1, this._overLayer.removeChildren(), this._overLayer.visible = !0, createjs.Tween.removeAllTweens(), u.EditTextBoxUtil.setVisibility(!1);
-                var e = o.default.resources.getUIImage("error");
-                if (e == PIXI.Texture.EMPTY) {
-                    var i = new r.AreaBox(1);
-                    this.addChild(i);
-                    var n = PIXI.Sprite.fromImage(o.default.settings.path_root + "img/common/error.png");
-                    this.addChild(n)
-                } else {
-                    var n = new PIXI.Sprite(e);
-                    this.addChild(n)
+            return n(e, t), e.prototype.setImage = function (t, e) {
+                switch (t) {
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 23:
+                    case 31:
+                        var i = r.MathUtil.zeroPadding(t, 3),
+                            n = o.default.settings.path_root + "img/common/bg/" + i + ".png";
+                        null != PIXI.utils.TextureCache[n] ? (this.texture = PIXI.utils.TextureCache[n], this.visible = !0, null != e && e()) : this._load(n, e);
+                        break;
+                    default:
+                        this.visible = !1, null != e && e()
                 }
+            }, e.prototype._load = function (t, e) {
+                var i = this;
+                this._loader = new PIXI.loaders.Loader, this._loader.add(t), this._loader.load(function (n) {
+                    if (i._loader == n) {
+                        i._loader = null;
+                        var o = n.resources[t];
+                        i.texture = o.texture, i.visible = !0, null != e && e()
+                    }
+                })
             }, e
-        }(PIXI.Container);
-    e.RootView = c
+        }(PIXI.Sprite);
+    e.Background = s
 }

@@ -20,25 +20,20 @@ const function785 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
-        s = function (t) {
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.TYPE_UNEQUIPS = "uniquips", e.TYPE_EQUIPS_OTHER = "equipsother", e._onClick = function () {
-                    e.onClick()
-                }, e.btnSoubi1 = o.REMODEL_MAIN.getTexture(14), e.btnSoubi2 = o.REMODEL_MAIN.getTexture(15), e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
+                return e.btnSoubi3Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)), e.btnSoubi3 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16)), e.btnSoubi3Light.position.set(-14, -14), e.btnSoubi3Light.alpha = 0, e.addChild(e.btnSoubi3Light, e.btnSoubi3), e.tween = createjs.Tween.get(e.btnSoubi3Light).to({
+                    alpha: 0
+                }).to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3), e.tween.loop = !0, e.tween.play(null), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (this.texture = PIXI.Texture.EMPTY, t) {
-                    case this.TYPE_UNEQUIPS:
-                        this.texture = this.btnSoubi1;
-                        break;
-                    case this.TYPE_EQUIPS_OTHER:
-                        this.texture = this.btnSoubi2
-                }
-            }, e.prototype.dispose = function () {
-                this.onClick = null, this.btnSoubi1 = null, this.btnSoubi2 = null, this.off(r.EventType.CLICK), this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.tween.setPaused(!0), createjs.Tween.removeTweens(this.btnSoubi3Light), this.btnSoubi3 = null, this.btnSoubi3Light = null, this.tween = null, this.removeChildren()
             }, e
-        }(PIXI.Sprite);
-    e.ChangeListSwitch = s
+        }(PIXI.Container);
+    e.InUseMarker = r
 }

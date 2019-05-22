@@ -43,7 +43,7 @@ const function972 = function (t, e, i) {
                     if (t.x = 65, t.y = 27, this.addChild(t), r.EVENT_AREA_ID > 0) {
                         if (null != o.default.model.map.getArea(r.EVENT_AREA_ID)) {
                             var e = new _.EventAreaIconBtn(r.EVENT_AREA_ID);
-                            e.position.set(866, -4), this._btns.push(e)
+                            e.position.set(875, -9), this._btns.push(e)
                         }
                     }
                     for (var i = 0, n = this._btns; i < n.length; i++) {

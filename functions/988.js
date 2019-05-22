@@ -6,7 +6,7 @@ const function988 = function (t, e, i) {
     }
 
     function o(t) {
-        return 64 == t ? new PIXI.Point(-26, 69) : 65 == t ? new PIXI.Point(-34, 47) : 432 == t ? new PIXI.Point(-20, 144) : 433 == t ? new PIXI.Point(-20, 272) : null
+        return 64 == t ? new PIXI.Point(-26, 69) : 65 == t ? new PIXI.Point(-34, 47) : 441 == t ? new PIXI.Point(-20, 68) : 442 == t ? new PIXI.Point(-20, 68) : 443 == t ? new PIXI.Point(-20, 68) : 444 == t ? new PIXI.Point(-20, 272) : 445 == t ? new PIXI.Point(-20, 272) : null
     }
     Object.defineProperty(e, "__esModule", {
         value: !0

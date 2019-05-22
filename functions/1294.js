@@ -19,52 +19,52 @@ const function1294 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(62),
-        r = i(1295),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
+    var o = i(20),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "no", {
-                get: function () {
-                    return this._no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "route", {
-                get: function () {
-                    return this._route
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "point", {
-                get: function () {
-                    return this._point
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.isAddedSpot = function () {
-                return null != this._route
-            }, e.prototype.showLine = function () {
-                null != this._line && (this._line.visible = !0)
-            }, e.prototype.hideLine = function () {
-                null != this._line && (this._line.visible = !1)
-            }, e.prototype.setColor = function (t) {
-                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
-            }, e.prototype.getColor = function () {
-                return this._point.color
-            }, e.prototype.setRoute = function (t, e, i, n) {
-                null != this._route && (this.removeChild(this._route), this._route = null);
-                var r = new o.CenteringSprite(t);
-                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
-            }, e.prototype.setLine = function (t, e, i, n) {
-                null != this._line && (this.removeChild(this._line), this._line = null);
-                var o = new PIXI.Sprite(t);
-                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
+            return n(e, t), e.prototype.update = function (t) {
+                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+            }, e.prototype.activate = function () {
+                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
+                    loop: !0
+                }).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(500).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
+                    loop: !0
+                }).wait(500).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400))
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
             }, e.prototype.dispose = function () {
-                this._point.dispose()
+                this._stopTween()
+            }, e.prototype._stopTween = function () {
+                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
             }, e
         }(PIXI.Container);
-    e.CompSpot = s
+    e.CompShipWave = r
 }

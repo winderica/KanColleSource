@@ -19,22 +19,33 @@ const function641 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(6),
+        a = i(642),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._skinID = e, i
+                return i._pre_scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("port");
-                e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
-                    t._endTask()
-                })
+                this._playVoice()
+            }, e.prototype._playVoice = function () {
+                var t = o.default.model.deck.get(1),
+                    e = t.getShipModel(0),
+                    i = e.mstID.toString();
+                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
+                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
+                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
+                else {
+                    var n = Math.random();
+                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
+                }
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                var t = o.default.model.basic.port_bgm_id;
+                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(r.TaskBase);
+    e.InitializeTask = _
 }

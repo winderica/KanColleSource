@@ -3,56 +3,46 @@ const function693 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(694),
-        o = i(699),
-        r = i(701),
-        s = i(703),
-        a = i(104),
-        _ = i(210),
-        l = i(31),
-        u = i(0),
-        c = function () {
-            function t(t, e) {
-                var i = this;
-                this.onCompleteConfirmUseMamiyaIrako = function (t) {
-                    switch (t) {
-                        case !1:
-                            u.default.view.clickGuard = !0, i.taskConfirmUseMamiyaIrako.hide(function () {
-                                i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, u.default.view.clickGuard = !1, i.onComplete()
-                            });
-                            break;
-                        case !0:
-                            u.default.view.clickGuard = !0;
-                            var e = new s.ItemUseCondAPI(!0, i.deckId, i.sweetType),
-                                n = new a.UseItemAPI,
-                                o = new _.UserShipAPI,
-                                r = new l.APIConnector;
-                            r.add(e), r.add(n), r.add(o), r.start(i.onCompleteCallAPI)
-                    }
-                }, this.onCompleteCallAPI = function () {
-                    i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, i.taskAnimationMamiyaIrako = new r.TaskAnimationMamiyaIrako(i.OrganizeView), u.default.view.overLayer.addChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.preLoad(function () {
-                        i.taskAnimationMamiyaIrako.play(i.sweetType, function () {
-                            i.onWhiteOut()
-                        }, function () {
-                            i.onCompleteAnimation()
-                        })
-                    })
-                }, this.onCompleteAnimation = function () {
-                    u.default.view.overLayer.removeChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.dispose(), i.taskAnimationMamiyaIrako = null, u.default.view.clickGuard = !1, i.onComplete()
-                }, this.mainView = t, this.OrganizeView = e
-            }
-            return t.prototype.start = function (t) {
+    var n = i(0),
+        o = i(8),
+        r = i(694),
+        s = function () {
+            function t(t) {
                 var e = this;
-                this.deckId = t, this.taskChoiceMamiyaIrako = new n.TaskChoiceMamiyaIrako(this.mainView), this.taskChoiceMamiyaIrako.onClickBack = function () {
-                    u.default.view.clickGuard = !0, e.taskChoiceMamiyaIrako.hide(function () {
-                        e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, u.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this.taskChoiceMamiyaIrako.onClickUse = function (t) {
-                    e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, e.taskConfirmUseMamiyaIrako = new o.TaskConfirmUseMamiyaIrako(e.mainView), e.taskConfirmUseMamiyaIrako.onComplete = e.onCompleteConfirmUseMamiyaIrako, e.sweetType = t, e.taskConfirmUseMamiyaIrako.start(t)
-                }, this.taskChoiceMamiyaIrako.start(this.deckId)
-            }, t.prototype.dispose = function () {
-                this.taskChoiceMamiyaIrako && (this.taskChoiceMamiyaIrako.dispose(), this.taskChoiceMamiyaIrako = null), this.taskConfirmUseMamiyaIrako && (this.taskConfirmUseMamiyaIrako.dispose(), this.taskConfirmUseMamiyaIrako = null), this.taskAnimationMamiyaIrako && (this.taskAnimationMamiyaIrako.dispose(), this.taskAnimationMamiyaIrako = null), this.onComplete = null, this.onWhiteOut = null, this.mainView = null, this.deckId = null, this.sweetType = null
+                this._onClickBack = function () {
+                    e.onClickBack()
+                }, this._onClickIrako = function () {
+                    e.onClickUse(2)
+                }, this._onClickMamiya = function () {
+                    e.onClickUse(1)
+                }, this._onClickMamiyaAndIrako = function () {
+                    e.onClickUse(3)
+                }, this.mainView = t, this.sweetsSelectView = new r.SweetsSelectView, this.dialogBackground = new o.AreaBox(.8)
+            }
+            return t.prototype.dispose = function () {
+                this.sweetsSelectView.dispose(), this.mainView.removeChild(this.sweetsSelectView), this.mainView.removeChild(this.dialogBackground), this.sweetsSelectView = null, this.mainView = null, this.dialogBackground = null, this.onClickBack = null, this.onClickUse = null
+            }, t.prototype.start = function (t) {
+                var e = this;
+                this.sweetsSelectView.position.set(147, 267), this.sweetsSelectView.onClickBack = this._onClickBack, this.sweetsSelectView.onClickIrako = this._onClickIrako, this.sweetsSelectView.onClickMamiya = this._onClickMamiya, this.sweetsSelectView.onClickMamiyaAndIrako = this._onClickMamiyaAndIrako;
+                for (var i = n.default.model.deck.get(t), o = i.getShipList(), r = n.default.model.useItem.get(54).count, s = n.default.model.useItem.get(59).count, a = !1, _ = 0; _ < o.length; _++) {
+                    var l = o[_];
+                    l && l.tired < 40 && (a = !0)
+                }
+                var u = 0 < r && a,
+                    c = 0 < s,
+                    h = 0 < r && 0 < s;
+                this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(u, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 1
+                }, 125).call(function () {
+                    e.sweetsSelectView.visible = !0, n.default.view.clickGuard = !1
+                })
+            }, t.prototype.hide = function (t) {
+                this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125).call(function () {
+                    t()
+                })
             }, t
         }();
-    e.TaskMamiyaIrako = c
+    e.TaskChoiceMamiyaIrako = s
 }

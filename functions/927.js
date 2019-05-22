@@ -113,6 +113,8 @@ const function927 = function (t, e, i) {
                 return null == t ? null : new o.AirReconnaissanceModel(t)
             }, t.prototype.isUsableRation = function () {
                 return 1 == n.ObjUtil.getNumber(this._o, "api_ration_flag")
+            }, t.prototype.getM1 = function () {
+                return n.ObjUtil.getNumber(this._o, "api_m1")
             }, t.prototype.hasEventMapData = function () {
                 return this._o.hasOwnProperty("api_eventmap")
             }, t.prototype.getAirraidDataObject = function () {

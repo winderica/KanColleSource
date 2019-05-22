@@ -19,47 +19,47 @@ const function741 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(8),
-        s = i(320),
-        a = i(21),
-        _ = i(159),
-        l = i(328),
-        u = i(329),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i.ITEM_WIDTH = 765, i.ITEM_HEIGHT = 77, i._onClick = function () {
-                    i.onClick(i.index, i.memShipId)
-                };
-                var n = new r.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT);
-                n.renderable = !1, n.buttonMode = !0, n.on(o.EventType.CLICK, i._onClick);
-                var c = new PIXI.Sprite;
-                c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
-                var h = new s.LongShipBanner;
-                h.position.x = 38;
-                var p = new u.SupplyCheckBox;
-                p.position.set(0, 24);
-                var d = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(26));
-                d.position.x = 33, d.position.y = -5;
-                var f = new l.MaterialView;
-                return f.position.set(517, 6), i.emptyBackground = c, i.supplyCheckBox = p, i.longShipBanner = h, i.clickArea = n, i.focusFrame = d, i.index = e, i.materialView = f, i
+    var o = i(9),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite,
+                    n = new PIXI.Sprite;
+                return n.position.set(-29, -27), n.alpha = 0, e.addChild(n, i), e.meter = i, e.meterLight = n, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea = null, this.materialView.dispose(), this.materialView = null, this.emptyBackground = null, this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.longShipBanner.dispose(), this.longShipBanner = null, this.focusFrame = null, this.onClick = this._onClick = null
-            }, e.prototype.update = function (t, e, i, n, o) {
-                this.removeChildren(), this.addChild(this.longShipBanner, this.supplyCheckBox, this.materialView, this.focusFrame), n ? (this.addChild(this.clickArea), this.isDisable = !1, o ? this.checkOn() : this.checkOff()) : (this.isDisable = !0, this.checkDisable()), this.longShipBanner.update(t, e, i), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
-            }, e.prototype.checkOn = function () {
-                this.supplyCheckBox.update(3), this.focusFrame.visible = !0
-            }, e.prototype.checkDisable = function () {
-                this.supplyCheckBox.update(1), this.focusFrame.visible = !1
-            }, e.prototype.checkOff = function () {
-                this.supplyCheckBox.update(2), this.focusFrame.visible = !1
-            }, e.prototype.setDefault = function () {
-                this.isDisable ? this.checkDisable() : this.checkOff()
-            }, e.prototype.empty = function () {
-                this.memShipId = null, this.removeChildren(), this.addChild(this.emptyBackground)
+            return n(e, t), e.prototype.update = function (t, e) {
+                this.meter.texture = o.COMMON_MISC.getTexture(133), this.meterLight.texture = o.COMMON_MISC.getTexture(145);
+                var i;
+                0 == t ? i = 0 : t == e ? i = 10 : (i = Math.floor(9 * t / e) + 1, 10 < i && (i = 10), i < 0 && (i = 0));
+                this.meter.texture = o.COMMON_MISC.getTexture(this.getResIDProgressImage(i))
+            }, e.prototype.getResIDProgressImage = function (t) {
+                switch (t) {
+                    case 0:
+                        return 133;
+                    case 1:
+                        return 134;
+                    case 2:
+                        return 136;
+                    case 3:
+                        return 137;
+                    case 4:
+                        return 138;
+                    case 5:
+                        return 139;
+                    case 6:
+                        return 140;
+                    case 7:
+                        return 141;
+                    case 8:
+                        return 142;
+                    case 9:
+                        return 143;
+                    case 10:
+                        return 135
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChild(this.meter), this.removeChild(this.meterLight), this.meter = null, this.meterLight = null
             }, e
         }(PIXI.Container);
-    e.DeckSupplyBanner = c
+    e.MaterialMeterViewS = r
 }

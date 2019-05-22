@@ -23,14 +23,14 @@ const function998 = function (t, e, i) {
         r = i(371),
         s = function (t) {
             function e(e, i, n) {
-                for (var o = t.call(this, e, n) || this, s = 0; s < 2; s++) {
-                    var a = new r.EventMapThumbnail(2, i, n, o._onMouseOver, o._onMouseOut),
-                        _ = 207 + 216 * s;
+                for (var o = t.call(this, e, n) || this, s = 0; s < 3; s++) {
+                    var a = new r.EventMapThumbnail(3, i, n, o._onMouseOver, o._onMouseOut),
+                        _ = 207 + 144 * s;
                     a.position.set(501, _), o.addChild(a), o._maps.push(a)
                 }
                 return o
             }
             return n(e, t), e
         }(o.EventLayoutBase);
-    e.LayoutEventMap2 = s
+    e.LayoutEventMap3 = s
 }

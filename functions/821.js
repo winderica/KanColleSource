@@ -1,148 +1,260 @@
 const function821 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(8),
-        _ = i(38),
-        l = i(13),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.bg = new a.AreaBox(1, 16777215), e.black = new a.AreaBox(1, 0), e.bgGrad = new PIXI.Sprite(r.default.resources.getUIImage("vignette_frame")), e.shipLayer = new PIXI.Container, e.ship = new PIXI.Sprite, e.overlay = new PIXI.Sprite, e.silhouette1 = new PIXI.Sprite, e.silhouette2 = new PIXI.Sprite, e.text1 = new PIXI.Sprite, e.text2 = new PIXI.Sprite, e.text1.position.set(0), e.text2.position.set(0, o.default.height), e.text2.anchor.set(0, 1), e.text1.visible = !1, e.text2.visible = !1, e.shipLayer.addChild(e.silhouette1, e.silhouette2, e.ship, e.overlay), e.addChild(e.bg, e.bgGrad, e.shipLayer, e.text1, e.text2, e.black), e
+    var n = function () {
+        function t() {}
+        return t.getObj = function (t) {
+            switch (t) {
+                case 591:
+                    return [{
+                        x: -1300,
+                        y: -1750,
+                        scale: 2
+                    }, {
+                        x: -900,
+                        y: -1700,
+                        scale: 1
+                    }, {
+                        x: -1830,
+                        y: -1270,
+                        scale: 2
+                    }, {
+                        x: -600,
+                        y: -900,
+                        scale: 1.6
+                    }, {
+                        x: -740,
+                        y: -235,
+                        scale: 1.2
+                    }];
+                case 594:
+                    return [{
+                        x: -1250,
+                        y: -2422,
+                        scale: 2.56
+                    }, {
+                        x: -1379,
+                        y: -2201,
+                        scale: 1.37
+                    }, {
+                        x: -1948,
+                        y: -677,
+                        scale: 3.36
+                    }, {
+                        x: -1307,
+                        y: -390,
+                        scale: 1.68
+                    }, {
+                        x: -784,
+                        y: -270,
+                        scale: 1.77
+                    }];
+                case 599:
+                    return [{
+                        x: 400,
+                        y: -3200,
+                        scale: 2.4
+                    }, {
+                        x: -550,
+                        y: -450,
+                        scale: 2
+                    }, {
+                        x: -700,
+                        y: -950,
+                        scale: 1.6
+                    }, {
+                        x: -600,
+                        y: -1250,
+                        scale: 1.2
+                    }, {
+                        x: -600,
+                        y: -260,
+                        scale: 1.4
+                    }];
+                default:
+                    return null
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._cb_onComplete = null, this._offset = null, this.removeChildren()
-            }, e.prototype.play = function (t, e) {
-                var i = this;
-                this._cb_onComplete = e, this.preload(t, function () {
-                    i._anim1()
-                })
-            }, e.prototype.preload = function (t, e) {
-                var i = this;
-                this._ship_mstid = t, this._offset = r.default.model.ship_graph.get(t).getCenterOffset(!1);
-                var n = new l.ShipLoader;
-                n.add(t, !1, "full_x2"), n.add(t, !1, "text_class"), n.add(t, !1, "text_name"), n.load(function () {
-                    i.text1.texture = r.default.resources.getShip(t, !1, "text_class"), i.text2.texture = r.default.resources.getShip(t, !1, "text_name");
-                    var n = r.default.resources.getShip(t, !1, "full_x2");
-                    i.ship.texture = n, i.overlay.texture = n, i.silhouette1.texture = n, i.silhouette2.texture = n, i.overlay.tint = 0, i.silhouette1.tint = 0, i.silhouette2.tint = 0, i.silhouette1.alpha = .4, i.silhouette2.alpha = .15, e()
-                })
-            }, e.prototype._anim1 = function () {
-                var t = this;
-                this.shipLayer.scale.set(2), this.shipLayer.position.set(-1300, -1750), createjs.Tween.get(this.black).to({
-                    alpha: 0
-                }, 600), createjs.Tween.get(this.shipLayer).wait(500).to({
-                    x: 100,
-                    y: -1070
-                }, 1e3, createjs.Ease.cubicOut).wait(400).call(function () {
-                    t._anim2()
-                }), createjs.Tween.get(this.shipLayer.scale).wait(500).to({
-                    x: 1.25,
-                    y: 1.25
-                }, 1e3, createjs.Ease.cubicOut), createjs.Tween.get(this.overlay).to({
-                    alpha: 0
-                }, 4500), createjs.Tween.get(this.silhouette2).wait(500).to({
-                    x: 35
-                }, 4e3)
-            }, e.prototype._anim2 = function () {
-                var t = this;
-                this.silhouette1.x += 5, this.shipLayer.scale.set(1), this.shipLayer.position.set(-900, -1700), createjs.Tween.get(this.silhouette1).wait(800).to({
-                    alpha: .2
-                }, 600), createjs.Tween.get(this.shipLayer).wait(200).to({
-                    x: -1500,
-                    y: -1990
-                }, 1200, createjs.Ease.cubicInOut), createjs.Tween.get(this.shipLayer.scale).wait(200).to({
-                    x: 1.6,
-                    y: 1.6
-                }, 1200, createjs.Ease.cubicInOut).wait(100).call(function () {
-                    t._anim3()
-                })
-            }, e.prototype._anim3 = function () {
-                var t = this;
-                this.silhouette1.visible = !1, this.shipLayer.scale.set(2), this.shipLayer.position.set(-1830, -1270), createjs.Tween.get(this.shipLayer).wait(300).to({
-                    x: -805,
-                    y: -290
-                }, 1e3, createjs.Ease.quadInOut), createjs.Tween.get(this.shipLayer.scale).wait(300).to({
-                    x: .75,
-                    y: .75
-                }, 1e3, createjs.Ease.quadInOut).wait(500).call(function () {
-                    t._anim4()
-                })
-            }, e.prototype._anim4 = function () {
-                var t = this;
-                this.shipLayer.scale.set(1.6), this.shipLayer.position.set(-600, -900), createjs.Tween.get(null).wait(1e3).call(function () {
-                    r.default.sound.voice.play(t._ship_mstid.toString(), 10)
-                }), createjs.Tween.get(this.shipLayer).to({
-                    x: -1230,
-                    y: -1570
-                }, 300, createjs.Ease.cubicOut), createjs.Tween.get(this.shipLayer.scale).to({
-                    x: 2.5,
-                    y: 2.5
-                }, 300, createjs.Ease.cubicOut).wait(300).call(function () {
-                    createjs.Tween.get(t.shipLayer).to({
-                        x: -3400,
-                        y: -360
-                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(t.shipLayer.scale).to({
-                        x: 2.6,
-                        y: 2.6
-                    }, 800, createjs.Ease.cubicOut).wait(300).call(function () {
-                        createjs.Tween.get(t.shipLayer).to({
+        }, t.getObject = function (t, e, i) {
+            var n;
+            switch (t) {
+                case 591:
+                    return n = [function () {
+                        i.wait(500).to({
+                            x: 100,
+                            y: -1070,
+                            scaleX: 1.25,
+                            scaleY: 1.25
+                        }, 1e3, createjs.Ease.cubicOut).wait(400)
+                    }, function () {
+                        i.wait(200).to({
+                            x: -1500,
+                            y: -1990,
+                            scaleX: 1.6,
+                            scaleY: 1.6
+                        }, 1200, createjs.Ease.cubicInOut).wait(100)
+                    }, function () {
+                        i.wait(300).to({
+                            x: -805,
+                            y: -290,
+                            scaleX: .75,
+                            scaleY: .75
+                        }, 1e3, createjs.Ease.quadInOut).wait(500)
+                    }, function () {
+                        i.to({
+                            x: -1230,
+                            y: -1570,
+                            scaleX: 2.5,
+                            scaleY: 2.5
+                        }, 300, createjs.Ease.cubicOut).wait(300)
+                    }, function () {
+                        i.to({
+                            x: -3400,
+                            y: -360,
+                            scaleX: 2.6,
+                            scaleY: 2.6
+                        }, 800, createjs.Ease.cubicOut).wait(300)
+                    }, function () {
+                        i.to({
                             x: -3820,
-                            y: -340
-                        }, 100), createjs.Tween.get(t.shipLayer.scale).to({
-                            x: 2.9,
-                            y: 2.9
-                        }, 100).call(function () {
-                            t._anim5()
-                        })
-                    })
-                })
-            }, e.prototype._anim5 = function () {
-                var t = this;
-                this.text1.visible = !0, this.text2.visible = !0, this.shipLayer.scale.set(1.2), this.shipLayer.position.set(-740, -235), createjs.Tween.get(this.shipLayer).to({
-                    x: -380,
-                    y: 10
-                }, 1e3, createjs.Ease.quartOut), createjs.Tween.get(this.shipLayer.scale).to({
-                    x: .85,
-                    y: .85
-                }, 1e3, createjs.Ease.quartOut).wait(1e3).call(function () {
-                    t._03_waitClick()
-                })
-            }, e.prototype._03_waitClick = function () {
-                var t = this,
-                    e = new _.GearBtnHome;
-                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
-                var i = new a.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
-                    t.removeChild(i), t._04_fadeOut(e)
-                })
-            }, e.prototype._04_fadeOut = function (t) {
-                var e = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 100).call(function () {
-                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
-                })
-            }, e
-        }(PIXI.Container);
-    e.SpKaizoAnimation = u
+                            y: -340,
+                            scaleX: 2.9,
+                            scaleY: 2.9
+                        }, 100)
+                    }, function () {
+                        i.to({
+                            x: -380,
+                            y: 10,
+                            scaleX: .85,
+                            scaleY: .85
+                        }, 1e3, createjs.Ease.quartOut)
+                    }], n[e];
+                case 594:
+                    return n = [function () {
+                        i.wait(500).to({
+                            x: -343,
+                            y: -2208,
+                            scaleX: 1.36,
+                            scaleY: 1.36
+                        }, 1e3, createjs.Ease.cubicInOut).wait(400)
+                    }, function () {
+                        i.wait(200).to({
+                            x: -799,
+                            y: -904,
+                            scaleX: 1.34,
+                            scaleY: 1.34
+                        }, 1200, createjs.Ease.cubicInOut)
+                    }, function () {
+                        i.wait(100).to({
+                            x: -764,
+                            y: -454,
+                            scaleX: 2.74,
+                            scaleY: 2.74
+                        }, 800, createjs.Ease.quadInOut).wait(300)
+                    }, function () {
+                        i.to({
+                            x: -2108,
+                            y: -692,
+                            scaleX: 2.4,
+                            scaleY: 2.4
+                        }, 300, createjs.Ease.cubicOut).wait(500)
+                    }, function () {
+                        i.to({
+                            x: -994,
+                            y: -569,
+                            scaleX: 2.7,
+                            scaleY: 2.7
+                        }, 600, createjs.Ease.cubicOut)
+                    }, function () {
+                        i.to({
+                            x: 425,
+                            y: -5175,
+                            scaleX: 3.5,
+                            scaleY: 3.5
+                        }, 600).wait(400).to({
+                            x: 484,
+                            y: -5955,
+                            scaleX: 3.97,
+                            scaleY: 3.97
+                        }, 100)
+                    }, function () {
+                        i.to({
+                            x: 53,
+                            y: 104,
+                            scaleX: .7,
+                            scaleY: .7
+                        }, 1e3, createjs.Ease.quartOut)
+                    }], n[e];
+                case 599:
+                    return n = [function () {
+                        i.wait(500).to({
+                            x: -550,
+                            y: -450,
+                            scaleX: 2,
+                            scaleY: 2
+                        }, 1e3, createjs.Ease.cubicOut).wait(100)
+                    }, function () {
+                        i.to({
+                            x: -700,
+                            y: -950,
+                            scaleX: 1.6,
+                            scaleY: 1.6
+                        }, 1200, createjs.Ease.cubicInOut)
+                    }, function () {
+                        i.wait(300).to({
+                            x: -600,
+                            y: -1250,
+                            scaleX: 1.2,
+                            scaleY: 1.2
+                        }, 800, createjs.Ease.cubicIn).wait(700)
+                    }, function () {
+                        i.to({
+                            x: -600,
+                            y: -260,
+                            scaleX: 1.4,
+                            scaleY: 1.4
+                        }, 2e3, createjs.Ease.circInOut).wait(400)
+                    }, function () {}, function () {}, function () {
+                        i.to({
+                            x: 50,
+                            y: 100,
+                            scaleX: .7,
+                            scaleY: .7
+                        }, 1e3, createjs.Ease.quartOut)
+                    }], n[e];
+                default:
+                    return function () {}
+            }
+        }, t.getSilhouetteAnim = function (t, e, i) {
+            var n;
+            switch (t) {
+                case 591:
+                    return n = [function () {
+                        i.x += 5, createjs.Tween.get(i).wait(800).to({
+                            alpha: .2
+                        }, 600)
+                    }, function () {
+                        i.visible = !1
+                    }], n[e];
+                case 594:
+                    return n = [function () {
+                        i.x += 5, createjs.Tween.get(i).wait(500).to({
+                            alpha: 0
+                        }, 1e3)
+                    }, function () {}], n[e];
+                case 599:
+                    return n = [function () {
+                        i.x += 5, i.alpha = 0, createjs.Tween.get(i).wait(300).to({
+                            alpha: .4
+                        }, 200).wait(500).to({
+                            alpha: 0
+                        }, 1e3)
+                    }, function () {}], n[e];
+                default:
+                    return function () {}
+            }
+        }, t
+    }();
+    e.SpKaizoConst = n
 }

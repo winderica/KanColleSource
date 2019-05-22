@@ -19,100 +19,99 @@ const function1372 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(92),
-        r = i(76),
-        s = i(1373),
-        a = i(1374),
-        _ = i(1402),
-        l = i(1403),
-        u = i(1404),
-        c = i(468),
-        h = i(1405),
-        p = i(1406),
-        d = i(183),
-        f = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
+    var o = i(5),
+        r = i(152),
+        s = i(16),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new u, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new l, e.addChild(e._particles), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._opening()
-            }, e.prototype._opening = function () {
-                var t = this;
-                new s.PhaseOpening(this.scene, this._record).start(function () {
-                    t._allyAttack()
-                })
-            }, e.prototype._allyAttack = function () {
-                var t = this;
-                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this;
-                new l.PhaseMoveShips(this.scene, this._record).start(function () {
-                    t._showTouchPlane()
-                })
-            }, e.prototype._showTouchPlane = function () {
-                var t = this,
-                    e = this._record.raw.getTouchPlaneFriend(),
-                    i = this._record.raw.getTouchPlaneEnemy();
-                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
-                    t._ration()
-                })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new o.PhaseRation(this.scene, this._record).start(function () {
-                    t._light()
-                })
-            }, e.prototype._light = function () {
-                var t = this;
-                new _.PhaseLighting(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new u.PhaseSupport(this.scene, this._record).start(function () {
-                    t._attack()
-                })
-            }, e.prototype._attack = function () {
-                var t = this,
-                    e = this._record.raw.hougeki,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this,
-                    e = this._record.raw.hougeki1,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this,
-                    e = this._record.raw.hougeki2,
-                    i = this.scene.data.model.deck_f.ships,
-                    n = this.scene.data.model.deck_e.ships;
-                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new h.PhaseEnding(this.scene, this._record).start(function () {
-                    t._dayBattle()
-                })
-            }, e.prototype._dayBattle = function () {
-                var t = this;
-                if (1 == this._record.raw.hasDayBattle()) {
-                    var e = this.scene,
-                        i = this._record.getDayRecord();
-                    new p.PhaseDayFromNight(e, i).start(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_top", {
+                get: function () {
+                    return this._banner_top
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_bottom", {
+                get: function () {
+                    return this._banner_bottom
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particles", {
+                get: function () {
+                    return this._particles
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
+            }, e.prototype.dispose = function () {
+                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
             }, e
-        }(r.PhaseCombatBase);
-    e.PhaseNight = f
+        }(PIXI.Container);
+    e.SupportDeckCutin = a;
+    var _ = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._particles = new Array;
+                for (var t in this.XPOS) {
+                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+                }
+            }, e.prototype.startAnim = function () {
+                if (null == this._tweens) {
+                    this._tweens = [];
+                    for (var t = 0; t < this._particles.length; t++) {
+                        var e = this._particles[t],
+                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
+                                x: 1,
+                                y: 1
+                            }, 100).to({
+                                x: 0,
+                                y: 0
+                            }, 100);
+                        this._tweens.push(i)
+                    }
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e
+        }(PIXI.Container)
 }

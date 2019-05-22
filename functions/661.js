@@ -5,8 +5,12 @@ const function661 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("repair_main_" + t)
+            try {
+                return PIXI.Texture.fromFrame("album_slot2_id_" + t)
+            } catch (t) {
+                return PIXI.Texture.EMPTY
+            }
         }
-        t.getTexture = e
-    }(e.REPAIR_MAIN || (e.REPAIR_MAIN = {}))
+        t.getTextureFromMstID = e
+    }(e.ALBUM_SLOT2 || (e.ALBUM_SLOT2 = {}))
 }

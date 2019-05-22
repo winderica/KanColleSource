@@ -65,74 +65,59 @@ const function1000 = function (t, e, i) {
                 } : null)
             }, t.prototype._check = function (t, e) {
                 var i = this._map.mst_id;
-                if (431 == i)
-                    for (var n = 0, o = e; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.shipTypeID;
-                            if ([8, 9, 10, 11, 18, 7, 17].indexOf(s) > -1) return {
+                if (441 == i)
+                    for (var n = [9, 10, 8, 11, 18, 7, 17], o = 0, r = e; o < r.length; o++) {
+                        var s = r[o];
+                        if (null != s) {
+                            var a = s.shipTypeID;
+                            if (n.indexOf(a) > -1) return {
                                 result: !1,
                                 reason: 45
                             }
                         }
-                    } else if (432 == i)
-                        for (var a = 0, _ = e; a < _.length; a++) {
-                            var r = _[a];
-                            if (null != r) {
-                                var s = r.shipTypeID;
-                                if ([11, 18].indexOf(s) > -1) return {
+                    } else if (442 == i)
+                        for (var n = [11, 18], _ = 0, l = e; _ < l.length; _++) {
+                            var s = l[_];
+                            if (null != s) {
+                                var a = s.shipTypeID;
+                                if (n.indexOf(a) > -1) return {
                                     result: !1,
                                     reason: 38
                                 }
                             }
                         }
-                var l = this._map.getSelectedOperationType(),
-                    u = [3, 4].indexOf(l) > -1;
-                if (431 == i && u)
-                    for (var c = 0, h = e; c < h.length; c++) {
-                        var r = h[c];
-                        if (null != r) {
-                            var p = r.label;
-                            if (0 != p && 1 != p) return {
-                                result: !1,
-                                reason: 19
-                            }
-                        }
-                    }
-                if (432 == i && u) {
-                    if (1 == this._map.getGaugeNum() || [0, 3].indexOf(t) > -1)
-                        for (var d = 0, f = e; d < f.length; d++) {
-                            var r = f[d];
-                            if (null != r) {
-                                var p = r.label;
-                                if (0 != p && 2 != p) return {
+                if ([3, 4].indexOf(this._map.getSelectedOperationType()) > -1)
+                    if (441 == i)
+                        for (var u = 0, c = e; u < c.length; u++) {
+                            var s = c[u];
+                            if (null != s) {
+                                var h = s.label;
+                                if (0 != h && 1 != h) return {
                                     result: !1,
                                     reason: 19
                                 }
                             }
-                        } else
-                            for (var y = 0, m = e; y < m.length; y++) {
-                                var r = m[y];
-                                if (null != r) {
-                                    var p = r.label;
-                                    if (0 != p && 3 != p) return {
+                        } else if (442 == i)
+                            for (var p = 0, d = e; p < d.length; p++) {
+                                var s = d[p];
+                                if (null != s) {
+                                    var h = s.label;
+                                    if (0 != h && 2 != h) return {
                                         result: !1,
                                         reason: 19
                                     }
                                 }
-                            }
-                }
-                if (433 == i && u)
-                    for (var v = 0, g = e; v < g.length; v++) {
-                        var r = g[v];
-                        if (null != r) {
-                            var p = r.label;
-                            if (0 != p && 4 != p) return {
-                                result: !1,
-                                reason: 19
-                            }
-                        }
-                    }
+                            } else if (443 == i)
+                                for (var f = 0, y = e; f < y.length; f++) {
+                                    var s = y[f];
+                                    if (null != s) {
+                                        var h = s.label;
+                                        if (0 != h && 3 != h) return {
+                                            result: !1,
+                                            reason: 19
+                                        }
+                                    }
+                                }
                 return {
                     result: !0,
                     reason: 0

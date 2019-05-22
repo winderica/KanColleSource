@@ -19,16 +19,16 @@ const function1290 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(17),
-        s = i(4),
-        a = i(30),
-        _ = i(42),
-        l = i(20),
+    var o = i(151),
+        r = i(51),
+        s = i(430),
+        a = i(1291),
+        _ = i(1292),
+        l = i(1304),
         u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new l.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
@@ -36,57 +36,61 @@ const function1290 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "icon", {
+            }), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    return this._icon
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
+            }), Object.defineProperty(e.prototype, "map", {
                 get: function () {
-                    return this._text
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
+                get: function () {
+                    return this._gauge_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara_layer", {
+                get: function () {
+                    return this._chara_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._bg.texture = l.MAP_COMMON.getTexture(25)
-            }, e.prototype.update = function (t, e) {
-                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e.prototype._update = function (t, e) {
-                void 0 === e && (e = "");
-                var i;
-                switch (t) {
-                    case 1:
-                        i = a.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        i = a.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        i = a.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        i = a.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        i = a.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        i = a.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        i = a.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        i = PIXI.Texture.EMPTY
-                }
-                this._icon.texture = i, this._text.text = e
-            }, e.prototype._updateForEventMap = function (t) {
-                void 0 === t && (t = "");
-                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
         }(PIXI.Container);
-    e.CompUpperBar = u
+    e.ViewMain = u
 }

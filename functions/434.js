@@ -38,9 +38,9 @@ const function434 = function (t, e, i) {
         b = i(1279),
         w = i(436),
         x = i(1281),
-        I = i(438),
-        T = i(1289),
-        O = i(1305),
+        I = i(1289),
+        T = i(1290),
+        O = i(1306),
         C = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -108,52 +108,37 @@ const function434 = function (t, e, i) {
                 if (1 == n.isDeadEnd()) {
                     var o = this._model.sortie.area_id,
                         r = this._model.sortie.map_no,
-                        s = null == t ? 0 : t.m1;
-                    if (7 == o && 2 == r && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
-                        return void a.start(function () {
+                        s = n.getM1(),
+                        a = null == t ? 0 : t.m1;
+                    if (7 == o && 2 == r && 1 == a) {
+                        var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
+                        return void _.start(function () {
                             i._endScene(n)
                         })
                     }
-                    if (43 == o && 1 == r && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
-                        return void a.start(function () {
+                    if (44 == o && 1 == r && (1 == a || 1 == s)) {
+                        var l = 1 == a,
+                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, l, !1);
+                        return void _.start(function () {
                             i._endScene(n)
                         })
                     }
-                    if (43 == o && 2 == r && 1 == this._model.sortie.map.getGaugeNum() && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
-                        return void a.start(function () {
+                    if (44 == o && 2 == r && 1 == a) {
+                        var u = 1 == this._model.sortie.map.getGaugeNum(),
+                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, u, !0, !0);
+                        return void _.start(function () {
                             i._endScene(n)
                         })
                     }
-                    if (43 == o && 2 == r && 2 == this._model.sortie.map.getGaugeNum() && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                        return void a.start(function () {
+                    if (44 == o && 2 == r && 2 == a) {
+                        var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !1, !0, !0, !0);
+                        return void _.start(function () {
                             i._endScene(n)
                         })
                     }
-                    if (43 == o && 2 == r && 2 == this._model.sortie.map.getGaugeNum() && 2 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                        return void a.start(function () {
-                            i._endScene(n)
-                        })
-                    }
-                    if (43 == o && 2 == r && 2 == this._model.sortie.map.getGaugeNum() && 3 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                        return void a.start(function () {
-                            i._endScene(n)
-                        })
-                    }
-                    if (43 == o && 3 == r && 1 == this._model.sortie.map.getGaugeNum() && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
-                        return void a.start(function () {
-                            i._endScene(n)
-                        })
-                    }
-                    if (43 == o && 3 == r && 2 == this._model.sortie.map.getGaugeNum() && 1 == s) {
-                        var a = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                        return void a.start(function () {
+                    if (44 == o && 3 == r && 1 == a) {
+                        var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !0, !0, !0, !1);
+                        return void _.start(function () {
                             i._endScene(n)
                         })
                     }
@@ -164,10 +149,29 @@ const function434 = function (t, e, i) {
                     n = e.deck_f.ships[0],
                     o = 25 == n.damageType || 0 == n.damageType,
                     r = n.hasYouin(),
-                    s = n.hasMegami();
+                    s = n.hasMegami(),
+                    a = this._model.sortie.area_id,
+                    _ = this._model.sortie.map_no,
+                    l = null == e ? 0 : e.m1;
+                if (44 == a && 1 == _ && 1 == l) {
+                    return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0, !1).start(function () {
+                        i._endScene(t)
+                    })
+                }
+                if (44 == a && 2 == _ && 1 == l) {
+                    var u = 1 == this._model.sortie.map.getGaugeNum();
+                    return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, u, !0, !0).start(function () {
+                        i._endScene(t)
+                    })
+                }
+                if (44 == a && 3 == _ && 2 == l) {
+                    return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0).start(function () {
+                        i._endScene(t)
+                    })
+                }
                 if (1 == o && 0 == r && 0 == s) {
-                    var a = e.deck_f.name;
-                    return void new g.TaskFlagShipDamaged(this._view, a, n.mst_id).start(function () {
+                    var c = e.deck_f.name;
+                    return void new g.TaskFlagShipDamaged(this._view, c, n.mst_id).start(function () {
                         i._endScene(t)
                     })
                 }
@@ -180,46 +184,19 @@ const function434 = function (t, e, i) {
                 })
             }, e.prototype._selectGoAhead = function (t, e) {
                 var i = this,
-                    n = this._model.sortie.area_id,
-                    s = this._model.sortie.map_no,
-                    a = null == e ? 0 : e.m1;
-                if (43 == n && 2 == s && 2 == this._model.sortie.map.getGaugeNum() && 1 == a) {
-                    var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                    return void _.start(function () {
-                        i._endScene(t)
-                    })
-                }
-                if (43 == n && 2 == s && 2 == this._model.sortie.map.getGaugeNum() && 2 == a) {
-                    var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                    return void _.start(function () {
-                        i._endScene(t)
-                    })
-                }
-                if (43 == n && 2 == s && 2 == this._model.sortie.map.getGaugeNum() && 3 == a) {
-                    var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                    return void _.start(function () {
-                        i._endScene(t)
-                    })
-                }
-                if (43 == n && 3 == s && 2 == this._model.sortie.map.getGaugeNum() && 1 == a) {
-                    var _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                    return void _.start(function () {
-                        i._endScene(t)
-                    })
-                }
-                var u = new y.TaskMarchRetreatSelect(this._view);
-                u.start(function () {
-                    if (0 == u.result) i._endScene(t);
+                    n = new y.TaskMarchRetreatSelect(this._view);
+                n.start(function () {
+                    if (0 == n.result) i._endScene(t);
                     else {
-                        var n = i._model.sortie.area_id,
-                            s = i._model.sortie.map_no,
-                            a = r.MapConst.getMapBGMID(n, s);
-                        1 == a.battle_bgm ? o.default.sound.bgm.playBattleBGM(a.id) : o.default.sound.bgm.play(a.id);
-                        var _ = i._model.deck_f,
-                            c = [_.id];
-                        0 != _.type && c.push(_.id_second);
+                        var s = i._model.sortie.area_id,
+                            a = i._model.sortie.map_no,
+                            _ = r.MapConst.getMapBGMID(s, a);
+                        1 == _.battle_bgm ? o.default.sound.bgm.playBattleBGM(_.id) : o.default.sound.bgm.play(_.id);
+                        var u = i._model.deck_f,
+                            c = [u.id];
+                        0 != u.type && c.push(u.id_second);
                         var h = i._model.sortie.getNextCell().no;
-                        new l.APIShipDeck(c, n, s, h).start(function () {
+                        new l.APIShipDeck(c, s, a, h).start(function () {
                             var n = i._model.deck_f.id,
                                 r = o.default.model.deck.get(n);
                             i._model.deck_f.updateShipList(r), i._preNext(t, e)
@@ -231,40 +208,17 @@ const function434 = function (t, e, i) {
                     a = new m.TaskTaihaShingunSelect(this._view, i, n);
                 a.start(function () {
                     var i = a.result;
-                    if (0 == i) {
+                    if (0 == i) s._endScene(t);
+                    else {
                         var n = s._model.sortie.area_id,
                             _ = s._model.sortie.map_no,
-                            u = null == e ? 0 : e.m1;
-                        if (43 == n && 2 == _ && 2 == s._model.sortie.map.getGaugeNum() && 1 == u) {
-                            new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !0).start(function () {
-                                s._endScene(t)
-                            })
-                        } else if (43 == n && 2 == _ && 2 == s._model.sortie.map.getGaugeNum() && 2 == u) {
-                            var c = new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                            c.start(function () {
-                                s._endScene(t)
-                            })
-                        } else if (43 == n && 2 == _ && 2 == s._model.sortie.map.getGaugeNum() && 3 == u) {
-                            var h = new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                            h.start(function () {
-                                s._endScene(t)
-                            })
-                        } else if (43 == n && 3 == _ && 2 == s._model.sortie.map.getGaugeNum() && 1 == u) {
-                            var p = new I.EventTaskCellOpen(s._model.sortie.map_id, s._resInfo, s._view, s._model.sortie.map.getGaugeNum(), !0, !1, !0, !0);
-                            p.start(function () {
-                                s._endScene(t)
-                            })
-                        } else s._endScene(t)
-                    } else {
-                        var n = s._model.sortie.area_id,
-                            _ = s._model.sortie.map_no,
-                            d = r.MapConst.getMapBGMID(n, _);
-                        1 == d.battle_bgm ? o.default.sound.bgm.playBattleBGM(d.id) : o.default.sound.bgm.play(d.id);
-                        var f = s._model.deck_f,
-                            y = [f.id];
-                        0 != f.type && y.push(f.id_second);
-                        var m = s._model.sortie.getNextCell().no;
-                        new l.APIShipDeck(y, n, _, m).start(function () {
+                            u = r.MapConst.getMapBGMID(n, _);
+                        1 == u.battle_bgm ? o.default.sound.bgm.playBattleBGM(u.id) : o.default.sound.bgm.play(u.id);
+                        var c = s._model.deck_f,
+                            h = [c.id];
+                        0 != c.type && h.push(c.id_second);
+                        var p = s._model.sortie.getNextCell().no;
+                        new l.APIShipDeck(h, n, _, p).start(function () {
                             var n = s._model.deck_f.id,
                                 r = o.default.model.deck.get(n);
                             s._model.deck_f.updateShipList(r), s._model.deck_f.ships[0].selectRepairItem(i);
@@ -311,11 +265,9 @@ const function434 = function (t, e, i) {
                     })
                 })
             }, e.prototype._endScene = function (t) {
-                var e = this,
-                    i = this._model.sortie.area_id,
-                    n = this._model.sortie.map_no,
-                    r = t.no;
-                39 != i || 1 != n || 13 != r && 18 != r ? 4 == t.event_id || 5 == t.event_id ? o.default.scene.change(0) : 8 == t.event_id ? o.default.scene.change(0) : (this._view.message_box.deactivate(), createjs.Tween.get(this._view.gauge_layer).to({
+                var e = this;
+                this._model.sortie.area_id, this._model.sortie.map_no, t.no;
+                4 == t.event_id || 5 == t.event_id ? o.default.scene.change(0) : 8 == t.event_id ? o.default.scene.change(0) : (this._view.message_box.deactivate(), createjs.Tween.get(this._view.gauge_layer).to({
                     alpha: 0
                 }, 300).call(function () {
                     var t = new a.Shutter;
@@ -323,15 +275,6 @@ const function434 = function (t, e, i) {
                     var i = e._model.sortie.obtained_items;
                     new b.TaskShowMapEndView(t, i).start(function () {
                         o.default.scene.change(0)
-                    })
-                })) : (this._view.message_box.deactivate(), createjs.Tween.get(this._view.gauge_layer).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    var t = new a.Shutter;
-                    t.initializeDark(), e._view.universal_layer.addChild(t), t.close(), t.once("closed", function () {
-                        createjs.Tween.get(null).wait(1e3).call(function () {
-                            o.default.scene.change(0)
-                        })
                     })
                 }))
             }, e.prototype.getPreInitializeTask = function (t, e) {

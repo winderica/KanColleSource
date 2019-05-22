@@ -20,80 +20,122 @@ const function712 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(21),
-        s = i(111),
-        a = i(713),
-        _ = i(57),
-        l = i(322),
-        u = i(319),
-        c = i(323),
-        h = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n.PAGE_NUM = 5, n.headIndex = 0, n._onClickBack = function () {
-                    n.hide(), n.clickBack && n.clickBack()
-                }, n._onClickExpand = function (t) {
-                    n.clickExpand && n.clickExpand(t)
-                }, n._onClickDelete = function (t) {
-                    var e = new c.PresetDeleteAPI(t);
-                    o.default.view.clickGuard = !0, e.start(function () {
-                        var e = new Array,
-                            i = o.default.model.deck.get(n.deckId),
-                            r = (i.getShipList(), null != i.expedition),
-                            s = (i.getShipMemIDList(), 0 < i.getCount());
-                        n.presetList.__deletePresetDeckData__(t);
-                        for (var a = 0; a < n.presetList.maxNum; a++) {
-                            var _ = n.presetList.getPresetDeckData(a + 1);
-                            0 < _.getRealShipCount() && e.push(_)
+        r = i(713),
+        s = i(714),
+        a = i(324),
+        _ = i(324),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.HEIGHT = 76, e._onMouseOver = function (t, i) {
+                    var n = e.presetExpansionSlots[t],
+                        o = i.target == n.FrameBg,
+                        r = i.currentTarget == n.FrameBg,
+                        s = i.target == n.ExpandButton,
+                        a = i.currentTarget == n.ExpandButton,
+                        l = (i.target, e.alertLostPopup.background, i.currentTarget == e.alertLostPopup.background),
+                        u = (i.target, e.alertOrganizedPopup.background, i.currentTarget == e.alertOrganizedPopup.background),
+                        c = o && r,
+                        h = s && a,
+                        p = l && u;
+                    if (h) {
+                        if (e.presetExpansionSlots[t].focus(), p) return;
+                        var d = e.presetExpansionSlots[t].PresetId,
+                            f = e.presetList.getPresetDeckData(d);
+                        if (e.alertOrganizedPopup.visible = !1, e.alertLostPopup.visible = !1, e.previewBalloon.visible = !1, f.hasLostShip()) e.setAlertLostPopup(t), e.updateAlert(f), e.alertLostPopup.visible = !0;
+                        else if (f.hasOtherDeckShip(e.memDeckId)) e.setAlertOrganizedPopup(t), e.updateAlert(f), e.alertOrganizedPopup.visible = !0;
+                        else {
+                            var y = t < 3 ? _.Direction.Top : _.Direction.Bottom;
+                            e.setPreviewBalloon(y, t), e.previewBalloon.update(e.memDeckId, y, e.presetList.getPresetDeckData(d)), e.previewBalloon.visible = !0
                         }
-                        var l = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
-                        n.presetExpansionContainer.update(n.deckId, n.presetList, l, s, r), o.default.view.clickGuard = !1, n.presets = e
-                    })
-                }, n._onClickNext = function () {
-                    n.arrowBottomButton.visible = !1;
-                    var t = n.headIndex + 1;
-                    n.presets.length < t + n.PAGE_NUM && (t = n.presets.length - n.PAGE_NUM), n.arrowBottomButton.visible = !1, n.arrowTopButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), 0 < t && (n.presetTitle.hideTxt2(), n.arrowTopButton.visible = !0);
-                    var e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n._onClickPrev = function () {
-                    var t = n.headIndex - 1,
-                        e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    t < 0 && (t = 0), n.arrowBottomButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), n.arrowTopButton.visible = !1, 0 < t && (n.arrowTopButton.visible = !0, n.presetTitle.hideTxt2()), n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new l.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new u.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
-                var h = r.COMMON_MAIN.getTexture(4);
-                return n.btnBack = new _.SimpleButton(h, h), n.btnBack.position.set(173, 638), n.btnBack.onClick = n._onClickBack, n.arrowTopButton = new s.ArrowButton, n.arrowTopButton.initialize(n._onClickPrev), n.arrowTopButton.position.set(446, 217), n.arrowBottomButton = new s.ArrowButton(!0), n.arrowBottomButton.initialize(n._onClickNext), n.arrowBottomButton.position.set(443, 667), n.presetExpansionContainer = new a.PresetExpansionContainer, n.presetExpansionContainer.position.set(168, 248), n.presetExpansionContainer.onClickExpand = n._onClickExpand, n.addChild(n.presetTitle, n.btnBack, n.presetExpansionContainer, n.longShipBannerContainer, n.arrowTopButton, n.arrowBottomButton), n
+                    } else if (c) {
+                        var d = e.presetExpansionSlots[t].PresetId,
+                            y = t < 3 ? _.Direction.Top : _.Direction.Bottom;
+                        e.setPreviewBalloon(y, t), e.previewBalloon.update(e.memDeckId, y, e.presetList.getPresetDeckData(d)), e.previewBalloon.visible = !0, e.presetExpansionSlots[t].focus()
+                    }
+                }, e._onMouseOut = function (t, i) {
+                    var n = e.presetExpansionSlots[t],
+                        o = i.target == n.FrameBg,
+                        r = i.currentTarget == n.FrameBg,
+                        s = i.target == n.ExpandButton,
+                        a = i.currentTarget == n.ExpandButton,
+                        _ = i.target == e.alertLostPopup.background,
+                        l = i.currentTarget == e.alertLostPopup.background,
+                        u = i.target == e.alertOrganizedPopup.background,
+                        c = i.currentTarget == e.alertOrganizedPopup.background,
+                        h = i.target == e.alertLostPopup.positiveButton,
+                        p = i.currentTarget == e.alertLostPopup.positiveButton,
+                        d = i.target == e.alertOrganizedPopup.positiveButton,
+                        f = i.currentTarget == e.alertOrganizedPopup.positiveButton;
+                    if (a) o || _ || u || h || d || (e.previewBalloon.visible = !1, e.alertLostPopup.visible = !1, e.alertOrganizedPopup.visible = !1, n.removeFocus());
+                    else if (r)
+                        if (s);
+                        else {
+                            var y = !0;
+                            if (e.presetExpansionSlots.forEach(function (t) {
+                                    t.IsOver && t.PresetId != n.PresetId && (y = !1)
+                                }), n.removeFocus(), !y) return;
+                            e.previewBalloon.visible = !1
+                        }
+                    else if (l || c) {
+                        if (_ || u || h || d || s) return;
+                        e.previewBalloon.visible = !1, e.alertLostPopup.visible = !1, e.alertOrganizedPopup.visible = !1;
+                        for (var m = 0; m < e.presetExpansionSlots.length; m++) e.presetExpansionSlots[m].removeFocus()
+                    } else if (p || f) {
+                        if (_ || u || h || d || s) return;
+                        e.previewBalloon.visible = !1, e.alertLostPopup.visible = !1, e.alertOrganizedPopup.visible = !1;
+                        for (var m = 0; m < e.presetExpansionSlots.length; m++) e.presetExpansionSlots[m].removeFocus()
+                    }
+                }, e._onClickExpand = function (t) {
+                    e.onClickExpand && e.onClickExpand(t)
+                }, e.updateAlert = function (t) {
+                    var i = t.hasLostShip(),
+                        n = t.hasOtherDeckShip(e.memDeckId),
+                        r = 0 < t.getShipsAfterExpanded(e.memDeckId).length;
+                    if (i) e.alertLostPopup.update(t.presetID, r);
+                    else if (n) {
+                        var s = t.getFirstOtherDeckShip(e.memDeckId),
+                            a = o.default.model.deck.isInDeck(s.memID),
+                            _ = o.default.model.deck.get(a[0]),
+                            l = "\u300c" + s.name + "\u300d\u304c\u73fe\u5728\u300c\u7b2c" + _.mstID + "\u8266\u968a(" + _.name + ")\u300d\u306b\u914d\u5099\u3055\u308c\u3066\u3044\u307e\u3059\u3002";
+                        e.alertOrganizedPopup.update(t.presetID, l, r)
+                    }
+                }, e.presetExpansionSlots = [];
+                for (var i = 0; i < 5; i++) {
+                    var n = new s.PresetExpansionSlot(i);
+                    n.onMouseOver = e._onMouseOver, n.onMouseOut = e._onMouseOut, n.onClickExpand = e._onClickExpand, n.position.y = e.HEIGHT * i, e.presetExpansionSlots.push(n)
+                }
+                for (var i = 4; i >= 0; i--) e.addChild(e.presetExpansionSlots[i]);
+                return e.previewBalloon = new a.PresetPreviewBalloon, e.previewBalloon.visible = !1, e.addChild(e.previewBalloon), e.alertLostPopup = new r.PresetAlertLostPopup(0), e.alertLostPopup.visible = !1, e.alertLostPopup.onClick = e._onClickExpand, e.alertLostPopup.onMouseOut = e._onMouseOut, e.alertLostPopup.onMouseOver = e._onMouseOver, o.default.view.overLayer.addChild(e.alertLostPopup), e.alertOrganizedPopup = new r.PresetAlertOrganizedPopup(0), e.alertOrganizedPopup.visible = !1, e.alertOrganizedPopup.onClick = e._onClickExpand, e.alertOrganizedPopup.onMouseOut = e._onMouseOut, o.default.view.overLayer.addChild(e.alertOrganizedPopup), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                if (this.removeChildren(), this.presetTitle.dispose(), this.presetExpansionContainer.hideAllPopupAndFocus(), this.presetExpansionContainer.dispose(), this.btnBack.dispose(), this.arrowTopButton.dispose(), this.arrowBottomButton.dispose(), this.longShipBannerContainer.dispose(), this.presets)
-                    for (var t = 0; t < this.presets.length; t++) this.presets[t] = null;
-                this.clickBack = null, this.clickExpand = null, this.presetTitle = null, this.deckId = null, this.headIndex = null, this.presetList = null, this.presets = null, this.presetExpansionContainer = null, this.btnBack = null, this.arrowTopButton = null, this.arrowBottomButton = null, this.longShipBannerContainer = null
-            }, e.prototype.show = function (t, e) {
-                this.visible = !0, o.default.view.portMain.playCraneAnimation(), this.deckId = t, this.presetList = e, this.arrowTopButton.activate(), this.arrowBottomButton.activate();
-                for (var i = (o.default.model.deck.get(t), new Array), n = 0; n < this.presetList.maxNum; n++) {
-                    var r = this.presetList.getPresetDeckData(n + 1);
-                    0 < r.getRealShipCount() && i.push(r)
+                o.default.view.overLayer.removeChild(this.alertOrganizedPopup), o.default.view.overLayer.removeChild(this.alertLostPopup);
+                for (var t = 0; t < 5; t++) this.presetExpansionSlots[t].dispose(), this.presetExpansionSlots[t] = null;
+                this.previewBalloon.dispose(), this.alertOrganizedPopup.dispose(), this.alertLostPopup.dispose(), this.presetExpansionSlots = null, this.previewBalloon = null, this.onClickExpand = null, this.memDeckId = null, this.presetList = null, this.alertOrganizedPopup = null, this.alertLostPopup = null, this.removeChildren()
+            }, e.prototype.hideAllPopupAndFocus = function () {
+                this.presetExpansionSlots.forEach(function (t) {
+                    t.hideFocus()
+                }), this.previewBalloon.visible = !1, this.alertOrganizedPopup.visible = !1, this.alertLostPopup.visible = !1
+            }, e.prototype.update = function (t, e, i, n, o) {
+                for (var r = 0; r < 5; r++) {
+                    var s = i[r];
+                    this.presetExpansionSlots[r].update(t, e, s, n, o)
                 }
-                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0), this.presets = i, this.headIndex = 0, this.updateDeck(t)
-            }, e.prototype.update = function (t) {
-                this.changeDeck(t)
-            }, e.prototype.hide = function () {
-                this.visible = !1
-            }, e.prototype.changeDeck = function (t) {
-                this.updateDeck(t)
-            }, e.prototype.updateDeck = function (t) {
-                var e = o.default.model.deck.get(t),
-                    i = e.getShipList(),
-                    n = null != e.expedition,
-                    r = this.presets.slice(this.headIndex, this.headIndex + this.PAGE_NUM),
-                    s = 0 < e.getCount();
-                this.longShipBannerContainer.update(i, n), this.presetExpansionContainer.update(t, this.presetList, r, s, n), this.deckId = t
+                this.presetList = e, this.memDeckId = t
+            }, e.prototype.setPreviewBalloon = function (t, e) {
+                switch (t) {
+                    case _.Direction.Top:
+                        this.previewBalloon.x = this.presetExpansionSlots[e].FrameBg.x + this.presetExpansionSlots[e].ExpandButton.x - 165, this.previewBalloon.y = this.presetExpansionSlots[e].FrameBg.y + this.presetExpansionSlots[e].ExpandButton.y + 31;
+                        break;
+                    case _.Direction.Bottom:
+                        this.previewBalloon.x = this.presetExpansionSlots[e].FrameBg.x + this.presetExpansionSlots[e].ExpandButton.x - 165, this.previewBalloon.y = this.presetExpansionSlots[e].FrameBg.y + this.presetExpansionSlots[e].ExpandButton.y - 150
+                }
+                this.previewBalloon.y += this.HEIGHT * e
+            }, e.prototype.setAlertLostPopup = function (t) {
+                this.alertLostPopup.x = 168 + this.presetExpansionSlots[t].FrameBg.x + 117, this.alertLostPopup.y = 247 + this.presetExpansionSlots[t].FrameBg.y + 60 + this.HEIGHT * t
+            }, e.prototype.setAlertOrganizedPopup = function (t) {
+                this.alertOrganizedPopup.x = 168 + this.presetExpansionSlots[t].FrameBg.x, this.alertOrganizedPopup.y = 247 + this.presetExpansionSlots[t].FrameBg.y + 60 + this.HEIGHT * t
             }, e
         }(PIXI.Container);
-    e.PresetExpansionLayer = h
+    e.PresetExpansionContainer = l
 }

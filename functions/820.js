@@ -19,69 +19,105 @@ const function820 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(14),
-        a = i(13),
-        _ = function (t) {
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(23),
+        _ = i(8),
+        l = i(38),
+        u = i(13),
+        c = i(821),
+        h = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.bg = new r.AreaBox(1, 16777215), e.black = new r.AreaBox(1), e.bgGrad = new PIXI.Sprite, e.ship = new PIXI.Sprite, e.silhouette = new PIXI.Sprite, e.shipLayer1 = new PIXI.Container, e.shipLayer2 = new PIXI.Container, e.bg.alpha = 0, e.black.alpha = 0, e.bgGrad.alpha = 0, e.shipLayer1.alpha = 0, e.shipLayer2.alpha = 0, e.shipLayer1.x = -290, e.shipLayer2.x = -290, e.shipLayer1.scale.set(.8), e.shipLayer2.scale.set(.8), e.shipLayer1.addChild(e.ship), e.shipLayer2.addChild(e.silhouette), e.addChild(e.bg, e.shipLayer1, e.shipLayer2, e.bgGrad, e.black), e
+                return e.bg = new _.AreaBox(1, 16777215), e.black = new _.AreaBox(1, 0), e.bgGrad = new PIXI.Sprite(r.default.resources.getUIImage("vignette_frame")), e.shipLayer = new a.Container, e.ship = new PIXI.Sprite, e.overlay = new PIXI.Sprite, e.silhouette1 = new PIXI.Sprite, e.silhouette2 = new PIXI.Sprite, e.text1 = new PIXI.Sprite, e.text2 = new PIXI.Sprite, e.text1.position.set(0), e.text2.position.set(0, o.default.height), e.text2.anchor.set(0, 1), e.text1.visible = !1, e.text2.visible = !1, e.shipLayer.addChild(e.silhouette1, e.silhouette2, e.ship, e.overlay), e.addChild(e.bg, e.bgGrad, e.shipLayer, e.text1, e.text2, e.black), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.bg = null, this.bgGrad = null, this.black = null, this.shipLayer1 = null, this.shipLayer2 = null, this.ship = null, this.silhouette = null, this._cb_onComplete = null
-            }, e.prototype.play = function (t, e, i) {
-                var n = this;
-                this._callback = e, this._cb_onComplete = i, this._preload(t, function () {
-                    createjs.Tween.get(n.bg).to({
-                        alpha: 1
-                    }, 500).call(function () {
-                        n.anim1()
-                    })
+                this._cb_onComplete = null, this._offset = null, this.removeChildren()
+            }, e.prototype.play = function (t, e) {
+                var i = this;
+                this._cb_onComplete = e, this.preload(t, function () {
+                    i._anim1()
                 })
-            }, e.prototype._preload = function (t, e) {
-                var i = this,
-                    n = new s.UIImageLoader("remodel");
-                n.add("bg/vignette_frame.png", "vignette_frame"), n.load(function () {
-                    var n = new a.ShipLoader;
-                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full"), n.load(function () {
-                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full"), i.silhouette.tint = 0;
-                        var n = o.default.model.ship_graph.get(t[0]).getCenterOffset(!1),
-                            r = o.default.model.ship_graph.get(t[1]).getCenterOffset(!1);
-                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
-                    })
+            }, e.prototype.preload = function (t, e) {
+                var i = this;
+                this._ship_mstid = t, this._offset = r.default.model.ship_graph.get(t).getCenterOffset(!1);
+                var n = new u.ShipLoader;
+                n.add(t, !1, "full_x2"), n.add(t, !1, "text_class"), n.add(t, !1, "text_name"), n.load(function () {
+                    i.text1.texture = r.default.resources.getShip(t, !1, "text_class"), i.text2.texture = r.default.resources.getShip(t, !1, "text_name");
+                    var n = r.default.resources.getShip(t, !1, "full_x2");
+                    i.ship.texture = n, i.overlay.texture = n, i.silhouette1.texture = n, i.silhouette2.texture = n, i.overlay.tint = 0, i.silhouette1.tint = 0, i.silhouette2.tint = 0, i.silhouette1.alpha = .4, i.silhouette2.alpha = .15, i._obj = c.SpKaizoConst.getObj(i._ship_mstid), e()
                 })
-            }, e.prototype.anim1 = function () {
-                var t = this;
-                createjs.Tween.get(this.bgGrad).to({
-                    alpha: 1
-                }, 1e3), createjs.Tween.get(this.shipLayer1).to({
-                    alpha: 1
-                }, 1e3).wait(300).call(function () {
-                    t.anim2()
-                })
-            }, e.prototype.anim2 = function () {
-                createjs.Tween.get(this.shipLayer1).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer1).wait(300).to({
+            }, e.prototype._anim1 = function () {
+                var t = this,
+                    e = this._obj[0];
+                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(this.black).to({
                     alpha: 0
-                }, 1500), createjs.Tween.get(this.shipLayer2).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer2).wait(300).to({
-                    alpha: 1
-                }, 1500), this.anim3()
-            }, e.prototype.anim3 = function () {
-                var t = this;
-                createjs.Tween.get(this.black).wait(1300).to({
-                    alpha: 1
-                }, 1e3).call(function () {
-                    t.bg.visible = !1, t.shipLayer2.visible = !1, t._callback(), createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 1e3).call(function () {
-                        t._cb_onComplete()
+                }, 600);
+                var i = createjs.Tween.get(this.shipLayer);
+                c.SpKaizoConst.getObject(this._ship_mstid, 0, i)(), i.call(function () {
+                    t._anim2()
+                }), createjs.Tween.get(this.overlay).to({
+                    alpha: 0
+                }, 4500), createjs.Tween.get(this.silhouette2).wait(500).to({
+                    x: 35
+                }, 4e3)
+            }, e.prototype._anim2 = function () {
+                var t = this,
+                    e = this._obj[1];
+                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 0, this.silhouette1)();
+                var i = createjs.Tween.get(this.shipLayer);
+                c.SpKaizoConst.getObject(this._ship_mstid, 1, i)(), i.call(function () {
+                    t._anim3()
+                })
+            }, e.prototype._anim3 = function () {
+                var t = this,
+                    e = this._obj[2];
+                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 1, this.silhouette1)();
+                var i = createjs.Tween.get(this.shipLayer);
+                c.SpKaizoConst.getObject(this._ship_mstid, 2, i)(), i.call(function () {
+                    t._anim4()
+                })
+            }, e.prototype._anim4 = function () {
+                var t = this,
+                    e = this._obj[3];
+                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(null).wait(1e3).call(function () {
+                    r.default.sound.voice.play(t._ship_mstid.toString(), 10)
+                });
+                var i = createjs.Tween.get(this.shipLayer);
+                c.SpKaizoConst.getObject(this._ship_mstid, 3, i)(), i.call(function () {
+                    var e = createjs.Tween.get(t.shipLayer);
+                    c.SpKaizoConst.getObject(t._ship_mstid, 4, e)(), e.call(function () {
+                        var e = createjs.Tween.get(t.shipLayer);
+                        c.SpKaizoConst.getObject(t._ship_mstid, 5, e)(), e.call(function () {
+                            t._anim5()
+                        })
                     })
+                })
+            }, e.prototype._anim5 = function () {
+                var t = this,
+                    e = this._obj[4];
+                this.text1.visible = !0, this.text2.visible = !0, this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y);
+                var i = createjs.Tween.get(this.shipLayer);
+                c.SpKaizoConst.getObject(this._ship_mstid, 6, i)(), i.wait(1e3).call(function () {
+                    t._03_waitClick()
+                })
+            }, e.prototype._03_waitClick = function () {
+                var t = this,
+                    e = new l.GearBtnHome;
+                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
+                var i = new _.AreaBox(0);
+                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
+                    t.removeChild(i), t._04_fadeOut(e)
+                })
+            }, e.prototype._04_fadeOut = function (t) {
+                var e = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
                 })
             }, e
         }(PIXI.Container);
-    e.SpKaizoIntro = _
+    e.SpKaizoAnimation = h
 }

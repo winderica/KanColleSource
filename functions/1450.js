@@ -25,27 +25,27 @@ const function1450 = function (t, e, i) {
                 var i = t.call(this) || this;
                 return i._friend = e, i._points = [], i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
                 if (this._clearPoints(), e <= 0) return !1;
-                var i;
+                var n;
                 switch (t) {
                     case 11:
-                        i = this._get11Points(e);
+                        n = this._get11Points(e);
                         break;
                     case 12:
-                        i = this._get12Points(e);
+                        n = this._get12Points(e);
                         break;
                     case 13:
-                        i = this._get13Points(e);
+                        n = this._get13Points(e);
                         break;
                     case 14:
-                        i = this._get14Points(e)
+                        n = this._get14Points(e)
                 }
-                if (null == i) return !1;
-                for (var n = 0; n < i.length; n++) {
-                    var r = new o.FormationPoint,
-                        s = i[n];
-                    r.position.set(s.x, s.y), r.initializeForCombinedSub(this._friend), r.visible = !1, this.addChild(r), this._points.push(r)
+                if (null == n) return !1;
+                for (var r = 0; r < n.length; r++) {
+                    var s = new o.FormationPoint,
+                        a = n[r];
+                    s.position.set(a.x, a.y), s.initializeForCombinedMain(this._friend, i), s.visible = !1, this.addChild(s), this._points.push(s)
                 }
                 return !0
             }, e.prototype.show = function (t) {
@@ -68,17 +68,17 @@ const function1450 = function (t, e, i) {
                 this._points = []
             }, e.prototype._get11Points = function (t) {
                 var e = [];
-                return t > 0 && e.push(new PIXI.Point(38, -12)), t > 1 && e.push(new PIXI.Point(23, -35)), t > 2 && e.push(new PIXI.Point(23, 12)), t > 3 && e.push(new PIXI.Point(8, -57)), t > 4 && e.push(new PIXI.Point(8, 35)), t > 5 && e.push(new PIXI.Point(0, -12)), e
+                return t > 0 && e.push(new PIXI.Point(-24, -20)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -20)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-24, -44)), t > 5 && e.push(new PIXI.Point(-24, 26)), e
             }, e.prototype._get12Points = function (t) {
                 var e = [];
-                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(17, -12)), t > 2 && e.push(new PIXI.Point(36, -38)), t > 3 && e.push(new PIXI.Point(36, 15)), t > 4 && e.push(new PIXI.Point(-3, -21)), t > 5 && e.push(new PIXI.Point(-3, 0)), e
+                return t > 0 && e.push(new PIXI.Point(-24, -21)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -21)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-63, -21)), t > 5 && e.push(new PIXI.Point(-63, 0)), e
             }, e.prototype._get13Points = function (t) {
                 var e = [];
-                return t > 0 && e.push(new PIXI.Point(36, -12)), t > 1 && e.push(new PIXI.Point(11, -54)), t > 2 && e.push(new PIXI.Point(11, 33)), t > 3 && e.push(new PIXI.Point(-32, -54)), t > 4 && e.push(new PIXI.Point(-32, 33)), t > 5 && e.push(new PIXI.Point(-57, -12)), e
+                return t > 0 && e.push(new PIXI.Point(-12, -21)), t > 1 && e.push(new PIXI.Point(-12, 0)), t > 2 && e.push(new PIXI.Point(-32, -21)), t > 3 && e.push(new PIXI.Point(-32, 0)), t > 4 && e.push(new PIXI.Point(11, -21)), t > 5 && e.push(new PIXI.Point(11, 0)), e
             }, e.prototype._get14Points = function (t) {
                 var e = [];
-                return t > 0 && e.push(new PIXI.Point(44, -12)), t > 1 && e.push(new PIXI.Point(26, -38)), t > 2 && e.push(new PIXI.Point(26, 15)), t > 3 && e.push(new PIXI.Point(26, -12)), t > 4 && e.push(new PIXI.Point(9, -21)), t > 5 && e.push(new PIXI.Point(9, 0)), e
+                return t > 0 && e.push(new PIXI.Point(-45, -21)), t > 1 && e.push(new PIXI.Point(-45, 0)), t > 2 && e.push(new PIXI.Point(-63, -21)), t > 3 && e.push(new PIXI.Point(-63, 0)), t > 4 && e.push(new PIXI.Point(-9, -12)), t > 5 && e.push(new PIXI.Point(-27, -12)), e
             }, e
         }(PIXI.Container);
-    e.FormationPointsCombinedSub = r
+    e.FormationPointsCombinedMain = r
 }

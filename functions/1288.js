@@ -97,6 +97,18 @@ const function1288 = function (t, e, i) {
                             this._effect.texture = o.MAP_COMMON.getTexture(117)
                     }
                     this._effect.x = -1, this._effect.y = 1
+                } else if (8 == e.color && e.passed) {
+                    switch (n) {
+                        case "red":
+                            this._effect.texture = o.MAP_COMMON.getTexture(134);
+                            break;
+                        case "yellow":
+                            this._effect.texture = o.MAP_COMMON.getTexture(133);
+                            break;
+                        case "blue":
+                            this._effect.texture = o.MAP_COMMON.getTexture(132)
+                    }
+                    this._effect.x = 0, this._effect.y = 0
                 } else {
                     switch (n) {
                         case "red":
@@ -115,13 +127,13 @@ const function1288 = function (t, e, i) {
             }, e.prototype.update = function (t) {
                 switch (t) {
                     case 1:
-                        this._img.texture = o.MAP_COMMON.getTexture(163);
+                        this._img.texture = o.MAP_COMMON.getTexture(166);
                         break;
                     case 2:
-                        this._img.texture = o.MAP_COMMON.getTexture(164);
+                        this._img.texture = o.MAP_COMMON.getTexture(167);
                         break;
                     case 3:
-                        this._img.texture = o.MAP_COMMON.getTexture(165);
+                        this._img.texture = o.MAP_COMMON.getTexture(168);
                         break;
                     default:
                         this._img.texture = PIXI.Texture.EMPTY

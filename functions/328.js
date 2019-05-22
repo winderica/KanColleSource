@@ -36,7 +36,7 @@ const function328 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.MaterialView = s;
-    var a = i(742),
+    var a = i(741),
         _ = i(9),
         l = function (t) {
             function e() {

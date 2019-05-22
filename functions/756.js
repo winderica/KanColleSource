@@ -20,29 +20,44 @@ const function756 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(48),
-        s = i(14),
-        a = i(757),
-        _ = i(759),
-        l = i(760),
-        u = i(72),
-        c = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+        r = i(2),
+        s = i(757),
+        a = i(305),
+        _ = i(211),
+        l = i(308),
+        u = i(307),
+        c = i(71),
+        h = i(128),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i.phasePreInitialize = function () {
+                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
+                }, i._scene = e, i
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new a.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new _.InitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
                 var t = this;
-                return new u.FuncTask(function () {
-                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
+                (new s.TaskLoadResourcesRemodel).start(function () {
+                    t._uploadToGPU()
                 })
-            }, e.prototype.start = function () {
-                var t = o.default.model.deck.get(1).getShipMemID(0);
-                this.taskIdleMain = new l.TaskIdleMain(this), this.taskIdleMain.start(1, t)
+            }, e.prototype._uploadToGPU = function () {
+                var t, e = this;
+                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                        t = u.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                            t = l.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                        e.phasePreInitialize()
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
             }, e
-        }(r.SceneBase);
-    e.RemodelScene = c
+        }(r.TaskBase);
+    e.PreInitializeTask = p
 }

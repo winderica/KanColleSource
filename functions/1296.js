@@ -19,36 +19,71 @@ const function1296 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(62),
+    var o = i(23),
+        r = i(20),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
+                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
+            return n(e, t), Object.defineProperty(e.prototype, "color", {
                 get: function () {
-                    return this._extraLayer
+                    return this._color
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.addBGLayer = function (t, e) {
-                var i = new PIXI.Sprite(t);
-                if (null != e && e.length > 0) {
-                    if (1 == this._bgDic.hasOwnProperty(e)) {
-                        var n = this._bgDic[e];
-                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
-                    }
-                    this._bgDic[e] = i
+            }), e.prototype.initialize = function (t) {
+                this.update(t)
+            }, e.prototype.update = function (t) {
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(146), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+            }, e.prototype.dispose = function () {
+                this._stopTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 300).to({
+                    alpha: 1
+                }, 300))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case -1:
+                        return r.MAP_COMMON.getTexture(152);
+                    case 1:
+                        return r.MAP_COMMON.getTexture(145);
+                    case 2:
+                    case 6:
+                        return r.MAP_COMMON.getTexture(148);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(150);
+                    case 4:
+                        return r.MAP_COMMON.getTexture(151);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(139);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(101);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(138);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(149);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(96);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(153);
+                    case 12:
+                        return r.MAP_COMMON.getTexture(154);
+                    case 13:
+                        return r.MAP_COMMON.getTexture(81);
+                    case -2:
+                        return r.MAP_COMMON.getTexture(147);
+                    case -3:
+                        return r.MAP_COMMON.getTexture(144)
                 }
-                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
-            }, e.prototype.getBGLayer = function (t) {
-                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
-            }, e.prototype.addLabel = function (t, e, i) {
-                null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
-                var n = new r.CenteringSprite(t);
-                n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
+                return PIXI.Texture.EMPTY
             }, e
-        }(PIXI.Container);
-    e.MapBackGround = s
+        }(o.Container);
+    e.SpotPointImage = s
 }

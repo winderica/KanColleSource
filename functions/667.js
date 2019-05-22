@@ -5,8 +5,8 @@ const function667 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ilist_medal_kou_" + t)
+            return PIXI.Texture.fromFrame("item_ilist_presentbox_" + t)
         }
         t.getTexture = e
-    }(e.ITEM_ILIST_MEDAL_KOU || (e.ITEM_ILIST_MEDAL_KOU = {}))
+    }(e.ITEM_ILIST_PRESENTBOX || (e.ITEM_ILIST_PRESENTBOX = {}))
 }

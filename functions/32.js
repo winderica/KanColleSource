@@ -22,18 +22,18 @@ const function32 = function (t, e, i) {
     var o = i(0),
         r = i(153),
         s = i(283),
-        a = i(590),
+        a = i(589),
         _ = i(197),
         l = i(154),
-        u = i(592),
-        c = i(593),
+        u = i(591),
+        c = i(592),
         h = i(70),
         p = i(37),
         d = i(9),
         f = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._image = new PIXI.Sprite, e.addChild(e._image), e._state = new r.BannerIcon, e.addChild(e._state), e._burned = new l.BannerSoot, e.addChild(e._burned), e._smoke = new _.BannerSmoke, e.addChild(e._smoke), e._tired = new u.BannerTired, e.addChild(e._tired), e._plate = new a.BannerPlate, e._plate.position.set(47, 3), e.addChild(e._plate), e._kira = new s.BannerKirakira, e.addChild(e._kira), e._ring = new h.RingSmall, e.addChild(e._ring), e._lockSlot = new c.BannerLockSlot, e._lockSlot.visible = !1, e.addChild(e._lockSlot), e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e
+                return e._image = new PIXI.Sprite, e.addChild(e._image), e._state = new r.BannerIcon, e.addChild(e._state), e._burned = new l.BannerSoot, e.addChild(e._burned), e._smoke = new _.BannerSmoke, e.addChild(e._smoke), e._tired = new u.BannerTired, e.addChild(e._tired), e._plate = new a.BannerPlate, e._plate.position.set(47, -4), e.addChild(e._plate), e._kira = new s.BannerKirakira, e.addChild(e._kira), e._ring = new h.RingSmall, e.addChild(e._ring), e._lockSlot = new c.BannerLockSlot, e._lockSlot.visible = !1, e.addChild(e._lockSlot), e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this._smoke.dispose(), this._tired.dispose(), this._kira.dispose(), this._ring.dispose(), this._lockSlot.dispose(), this._image = null, this._state = null, this._burned = null, this._smoke = null, this._tired = null, this._plate = null, this._kira = null, this._ring = null, this._lockSlot = null

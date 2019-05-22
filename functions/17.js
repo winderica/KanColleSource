@@ -6,7 +6,7 @@ const function17 = function (t, e, i) {
     }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(22)), n(i(144)), n(i(44)), n(i(257)), n(i(145)), e.START_TIME = (new Date).getTime(), e.RANK_NAME = ["", "\u5143\u5e25", "\u5927\u5c06", "\u4e2d\u5c06", "\u5c11\u5c06", "\u5927\u4f50", "\u4e2d\u4f50", "\u65b0\u7c73\u4e2d\u4f50", "\u5c11\u4f50", "\u4e2d\u5805\u5c11\u4f50", "\u65b0\u7c73\u5c11\u4f50"], e.PORT_API_SEED = [5412, 9314, 9018, 8015, 4160, 3879, 9431, 2543, 3560, 3892], e.COMBINABLE = !1, e.EVENT_AREA_ID = -1, e.MAMIYA_IRAKO_SEASON = 0;
+    }), n(i(22)), n(i(144)), n(i(44)), n(i(257)), n(i(145)), e.START_TIME = (new Date).getTime(), e.RANK_NAME = ["", "\u5143\u5e25", "\u5927\u5c06", "\u4e2d\u5c06", "\u5c11\u5c06", "\u5927\u4f50", "\u4e2d\u4f50", "\u65b0\u7c73\u4e2d\u4f50", "\u5c11\u4f50", "\u4e2d\u5805\u5c11\u4f50", "\u65b0\u7c73\u5c11\u4f50"], e.PORT_API_SEED = [5304, 2134, 8926, 9050, 4548, 2805, 4176, 8706, 2134, 6869], e.COMBINABLE = !0, e.EVENT_AREA_ID = 44, e.MAMIYA_IRAKO_SEASON = 0;
     var o = window.navigator.userAgent.toLowerCase(),
         r = /chrome/i.test(o) && !1 === /edge/i.test(o),
         s = /ip(hone|ad|od)/i.test(o);

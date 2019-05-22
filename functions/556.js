@@ -19,25 +19,22 @@ const function556 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(23),
-        r = i(2),
-        s = i(14),
-        a = function (t) {
-            function e(e) {
-                void 0 === e && (e = -1);
-                var i = t.call(this) || this;
-                i.rnd = 0, i._onComplete = function () {
-                    i._endTask()
-                };
-                return i.rnd = e >= 0 && e < 6 ? e : Math.floor(6 * Math.random()), i
+    var o = i(8),
+        r = i(557),
+        s = function (t) {
+            function e() {
+                var e = t.call(this, 1, 0) || this;
+                return e._pukapuka = new r.Pukapuka, e._pukapuka.position.set(600, 360), e.addChild(e._pukapuka), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.MathUtil.zeroPadding(this.rnd + 1, 2) + ".png";
-                new s.UIImageLoader("title").add(e, "title_bg1").add("title2.png", "title_bg2").add("title_main.json").load(function () {
-                    t._onComplete()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                this._pukapuka.initialize()
+            }, e.prototype.activate = function () {
+                this._pukapuka.activate()
+            }, e.prototype.deactivate = function () {
+                this._pukapuka.deactivate()
+            }, e.prototype.dispose = function () {
+                this._pukapuka.dispose()
             }, e
-        }(r.TaskBase);
-    e.TaskLoadResourcesTitle = a
+        }(o.AreaBox);
+    e.PukapukaLayer = s
 }
