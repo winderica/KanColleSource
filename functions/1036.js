@@ -19,30 +19,35 @@ const function1036 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(375),
+    var o = i(149),
+        r = i(39),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, i) || this;
-                return n._light = new PIXI.Sprite, n.addChild(n._light), n
+            function e() {
+                var e = t.call(this) || this;
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
-            }, e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(34)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
             }, e.prototype._update = function (t) {
-                this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 700).to({
-                    alpha: 1
-                }, 700))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(r.ExpeditionAreaIconBtnBase);
-    e.ExpeditionEventAreaIconBtn = s
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

@@ -3,30 +3,30 @@ const function932 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
+    var n = i(7),
         o = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "ship_mem_id", {
+            return Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_supply_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_usemst")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
+            }), Object.defineProperty(t.prototype, "id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_given_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "num_of_use", {
+            }), Object.defineProperty(t.prototype, "count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_use_num")
+                    return n.ObjUtil.getNumber(this._o, "api_getcount")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.ReplenishmentModel = o
+    e.EOItemModel = o
 }

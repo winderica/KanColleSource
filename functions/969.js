@@ -19,46 +19,51 @@ const function969 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(970),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._cancel = !0, n._waitClick = function () {
-                    n._dialog.btn_no.activate(n._onNo), n._dialog.btn_yes.activate(n._onYes)
-                }, n._onNo = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._closeDialog()
-                }, n._onYes = function () {
-                    n._dialog.btn_no.deactivate(), n._dialog.btn_yes.deactivate(), n._cancel = !1, n._closeDialog()
-                }, n._layer = e, n._model = i, n
+    var o = i(12),
+        r = i(42),
+        s = i(970),
+        a = i(0),
+        _ = i(14),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "cancel", {
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
                 get: function () {
-                    return this._cancel
+                    return this._createSelectView(), this._selectView
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype._start = function () {
-                0 == this._model.getSelectedOperationType() ? (this._cancel = !1, this._endTask()) : this._openDialog()
-            }, e.prototype._openDialog = function () {
-                var t = this;
-                this._dialog = new r.OperationSelectConfirmDialog, this._dialog.initialize(), this._dialog.fade.hide(0), this._dialog.bg.alpha = 0, this._layer.addChild(this._dialog), this._dialog.fade.show(200, function () {
-                    createjs.Tween.get(t._dialog.bg).to({
-                        alpha: 1
-                    }, 300).call(t._waitClick)
-                })
-            }, e.prototype._closeDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    t._dialog.fade.hide(100, function () {
-                        t._layer.removeChild(t._dialog), t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, this._dialog = null, t.prototype._endTask.call(this)
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 441:
+                        this._content.position.set(-303, -227), this._content.texture = PIXI.Texture.fromImage(e + "/233_a4ce6.png" + i);
+                        break;
+                    case 442:
+                        this._content.position.set(-286, -228), this._content.texture = PIXI.Texture.fromImage(e + "/234_d6775.png" + i);
+                        break;
+                    case 443:
+                        this._content.position.set(-295, -216), this._content.texture = PIXI.Texture.fromImage(e + "/235_5caf8.png" + i);
+                        break;
+                    case 444:
+                        this._content.position.set(-309, -223), this._content.texture = PIXI.Texture.fromImage(e + "/236_c9c552.png" + i);
+                        break;
+                    case 445:
+                        this._content.position.set(-307, -221), this._content.texture = PIXI.Texture.fromImage(e + "/237_d9557a.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
+            }, e.prototype.dispose = function () {
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(o.TaskBase);
-    e.ChangeConfirmTask = s
+        }(o.Sprite);
+    e.MapIntroBoard = l
 }

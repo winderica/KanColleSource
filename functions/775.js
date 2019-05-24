@@ -19,30 +19,42 @@ const function775 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(71),
+    var o = i(3),
         r = i(1),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e._onMouseOver = function () {
-                    e.marriagePopUp.visible = !0
+                return e._onMouseOver = function () {
+                    e.gauge_on.visible = !0, e.huki.visible = !0
                 }, e._onMouseOut = function () {
-                    e.marriagePopUp.visible = !1
-                }, e.level99Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(39)), e.addChild(e.level99Light), e.play(), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 119, 75), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.renderable = !1, e.clickArea.interactive = !0, e.clickArea.buttonMode = !0, e.addChild(e.clickArea), e.marriagePopUp = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(34)), e.marriagePopUp.position.set(-105, 48), e.marriagePopUp.visible = !1, e.addChild(e.marriagePopUp), e
+                    e.gauge_on.visible = !1, e.huki.visible = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.textureGauge1 = o.REMODEL_MAIN.getTexture(23), e.textureGauge1_on = o.REMODEL_MAIN.getTexture(24), e.textureGauge2 = o.REMODEL_MAIN.getTexture(25), e.textureGauge2_on = o.REMODEL_MAIN.getTexture(26), e.textureGauge3 = o.REMODEL_MAIN.getTexture(27), e.textureGauge3_on = o.REMODEL_MAIN.getTexture(28), e.textureGauge4 = o.REMODEL_MAIN.getTexture(29), e.textureGauge4_on = o.REMODEL_MAIN.getTexture(30), e.textureGauge5 = o.REMODEL_MAIN.getTexture(31), e.textureGauge5_on = o.REMODEL_MAIN.getTexture(32), e.gauge = new PIXI.Sprite, e.gauge_on = new PIXI.Sprite, e.gauge_on.visible = !1, e.huki = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(35)), e.huki.position.x = -6, e.huki.visible = !1, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.slotIconDelete.on(r.EventType.MOUSEOVER, e._onMouseOver), e.slotIconDelete.on(r.EventType.MOUSEOUT, e._onMouseOut), e.slotIconDelete.on(r.EventType.CLICK, e._onClick), e.slotIconDelete.interactive = e.slotIconDelete.buttonMode = !0, e.slotIconDelete.anchor.x = .5, e.slotIconDelete.x = 11, e.addChild(e.gauge, e.gauge_on, e.slotIconDelete, e.huki), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.clear(), null != this._loopTween && (this._loopTween.setPaused(!0), createjs.Tween.removeTweens(this.level99Light), this._loopTween = null), this.onClick = null, this.marriagePopUp = null, this.level99Light = null, this.clickArea = null, this.removeChildren()
-            }, e.prototype.play = function () {
-                null == this._loopTween && (this._loopTween = createjs.Tween.get(this.level99Light).to({
-                    alpha: 0
-                }, 0).to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3), this._loopTween.loop = !0)
+                this.slotIconDelete.off(r.EventType.CLICK), this.slotIconDelete.off(r.EventType.MOUSEOUT), this.slotIconDelete.off(r.EventType.MOUSEOVER), this.onClick = null, this.gauge = null, this.gauge_on = null, this.slotIconDelete = null, this.huki = null, this.textureGauge1 = null, this.textureGauge1_on = null, this.textureGauge2 = null, this.textureGauge2_on = null, this.textureGauge3 = null, this.textureGauge3_on = null, this.textureGauge4 = null, this.textureGauge4_on = null, this.textureGauge5 = null, this.textureGauge5_on = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.visible = !1;
+                        break;
+                    case 1:
+                        this.gauge.texture = this.textureGauge1, this.gauge_on.texture = this.textureGauge1_on, this.slotIconDelete.y = 32 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 35;
+                        break;
+                    case 2:
+                        this.gauge.texture = this.textureGauge2, this.gauge_on.texture = this.textureGauge2_on, this.slotIconDelete.y = 81 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 84;
+                        break;
+                    case 3:
+                        this.gauge.texture = this.textureGauge3, this.gauge_on.texture = this.textureGauge3_on, this.slotIconDelete.y = 131 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 134;
+                        break;
+                    case 4:
+                        this.gauge.texture = this.textureGauge4, this.gauge_on.texture = this.textureGauge4_on, this.slotIconDelete.y = 180 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 183;
+                        break;
+                    case 5:
+                        this.gauge.texture = this.textureGauge5, this.gauge_on.texture = this.textureGauge5_on, this.slotIconDelete.y = 230 + this.slotIconDelete.height, this.slotIconDelete.visible = !0, this.huki.position.y = 233
+                }
             }, e
         }(PIXI.Container);
-    e.MarriageButton = s
+    e.DetachAllButton = s
 }

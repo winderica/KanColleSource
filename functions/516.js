@@ -20,39 +20,37 @@ const function516 = function (t, e, i) {
         value: !0
     });
     var o = i(7),
-        r = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "boko_max_ships", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_boko_max_ships");
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "quest_max", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_parallel_quest_max");
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_server", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_voice_server_addr");
-                    return null == t ? "" : o.ObjUtil.getString(t, "api_string_value")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+        r = i(517),
+        s = function () {
+            function t() {
+                this._dic = {}
+            }
+            return t.prototype.getData = function (t) {
+                var e = t.toString();
+                return 1 == this._dic.hasOwnProperty(e) ? this._dic[e] : null
+            }, t.prototype.getOrder = function (t) {
+                return null == this._orders ? [] : this._orders.length <= t ? [] : this._orders[t]
+            }, t
         }();
-    e.ServerConstModel = r;
-    var s = function (t) {
+    e.PayItemModelHolder = s;
+    var a = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
         return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
+            if (this._dic = {}, null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = new r.PayItemModel(i),
+                        o = n.id;
+                    o > 0 && (this._dic[o] = n)
+                }
+        }, e.prototype.setOrders = function (t) {
+            if (this._orders = [], null != t) {
+                var e = o.ObjUtil.getNumArray(t, "api_cabinet_1");
+                null == e ? this._orders.push([]) : this._orders.push(e), e = o.ObjUtil.getNumArray(t, "api_cabinet_2"), null == e ? this._orders.push([]) : this._orders.push(e)
+            }
         }, e
-    }(r);
-    e.ServerConstModelEdit = s
+    }(s);
+    e.PayItemModelHolderEdit = a
 }

@@ -20,28 +20,21 @@ const function1074 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(25),
+        r = i(11),
+        s = i(171),
         a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._mst_id = e, n._target = i, n
+                return n._view = i, n
             }
-            return n(e, t), e.prototype.cancel = function () {
-                this._target = null
-            }, e.prototype._start = function () {
-                var t = this,
-                    e = new s.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    if (null != t._target) {
-                        var e = o.default.resources.getSlotitem(t._mst_id, "card");
-                        t._target.texture = e
-                    }
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._start = function () {
+                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
+                o.default.sound.bgm.play(t), this._startScene()
+            }, e.prototype._startScene = function () {
+                this._view.activate(), this._endTask()
             }, e.prototype._endTask = function () {
-                this._target = null, t.prototype._endTask.call(this)
+                this._view = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskShowSlotCard = a
+    e.TaskSceneInitialize = a
 }

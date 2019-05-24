@@ -19,154 +19,75 @@ const function510 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(262),
-        a = function () {
-            function t(t) {
-                this._mst_id = 0, this._o = t
-            }
-            return Object.defineProperty(t.prototype, "mst_id", {
-                get: function () {
-                    return null != this._o ? r.ObjUtil.getNumber(this._o, "api_id") : this._mst_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "area_id", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? 0 : t.area_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "map_no", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? 0 : t.map_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? "" : t.name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "operation_name", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? "" : t.operation_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "operation_detail", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? "" : t.operation_detail
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "item_ids", {
-                get: function () {
-                    var t = this._mst;
-                    return null == t ? [] : t.item_ids
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getAllowedDeckType = function () {
-                var t = r.ObjUtil.getNumArray(this._o, "api_sally_flag");
-                if (t) {
-                    var e = new s.AllowedDeckTypeModel;
-                    return e.init(t), e
+    var o = i(56),
+        r = i(511),
+        s = i(512),
+        a = i(513),
+        _ = function () {
+            function t() {}
+            return t.prototype.getArea = function (t) {
+                return null == this._area_msts ? null : this._area_msts[t]
+            }, t.prototype.getMapMst = function (t, e) {
+                void 0 === e && (e = -1);
+                var i = t;
+                return -1 != e && (i = o.MapUtil.toMapID(t, e)), null == this._map_msts || 0 == this._map_msts.hasOwnProperty(i.toString()) ? null : this._map_msts[i]
+            }, t.prototype.getMapMsts = function (t) {
+                if (null == this._map_msts) return null;
+                var e = new Array;
+                for (var i in this._map_msts) {
+                    var n = this._map_msts[i];
+                    n.area_id == t && e.push(n)
                 }
-                var i = this._mst;
-                return null == i ? new s.AllowedDeckTypeModel : i.getAllowedDeckType()
-            }, Object.defineProperty(t.prototype, "gauge_type", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_gauge_type", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getGaugeNum = function () {
-                return r.ObjUtil.getNumber(this._o, "api_gauge_num", 1)
-            }, Object.defineProperty(t.prototype, "defeat_required", {
-                get: function () {
-                    return null == this._o ? 0 : r.ObjUtil.getNumber(this._o, "api_required_defeat_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "defeat_count", {
-                get: function () {
-                    return null == this._o ? 0 : r.ObjUtil.getNumber(this._o, "api_defeat_count")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "gauge_now", {
-                get: function () {
-                    var t = this._evene_data;
-                    return r.ObjUtil.getNumber(t, "api_now_maphp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "gauge_max", {
-                get: function () {
-                    var t = this._evene_data;
-                    return r.ObjUtil.getNumber(t, "api_max_maphp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "availableAirUnitCount", {
-                get: function () {
-                    return r.ObjUtil.getNumber(this._o, "api_air_base_decks")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isCleared = function () {
-                return 1 == r.ObjUtil.getNumber(this._o, "api_cleared")
-            }, t.prototype.isOpened = function () {
-                return null != this._o
-            }, t.prototype.getSelectedOperationType = function () {
-                var t = this._evene_data;
-                return null == t ? 0 : r.ObjUtil.getNumber(t, "api_selected_rank", 0)
-            }, Object.defineProperty(t.prototype, "_mst", {
-                get: function () {
-                    return o.default.model.map.getMapMst(this.mst_id)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "_evene_data", {
-                get: function () {
-                    return r.ObjUtil.getObject(this._o, "api_eventmap")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+                return e.sort(function (t, e) {
+                    return t.map_no > e.map_no ? 1 : t.map_no < e.map_no ? -1 : 0
+                }), e
+            }, t.prototype.getMapMem = function (t) {
+                if (null != this._maps && 1 == this._maps.hasOwnProperty(t.toString())) return this._maps[t];
+                if (null != this.getMapMst(t)) {
+                    var e = new s.MapModelEdit(null);
+                    return e.setMstID(t), e
+                }
+                return null
+            }, t.prototype.getMapMems = function (t) {
+                for (var e = this.getMapMsts(t), i = [], n = 0, o = e; n < o.length; n++) {
+                    var r = o[n],
+                        s = r.mst_id,
+                        a = this.getMapMem(s);
+                    i.push(a)
+                }
+                return i
+            }, t
         }();
-    e.MapModel = a;
-    var _ = function (t) {
+    e.MapModelHolder = _;
+    var l = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            return t.call(this) || this
         }
-        return n(e, t), e.prototype.setMstID = function (t) {
-            this._mst_id = t
-        }, e.prototype.changeOperation = function (t, e, i, n, o) {
-            var r = this._evene_data;
-            if (null != r) {
-                if (this.getSelectedOperationType() != t) {
-                    r.api_selected_rank = t, r.api_max_maphp = n, r.api_now_maphp = o;
-                    var s = this._o;
-                    s.api_gauge_num = e, s.api_gauge_type = i
+        return n(e, t), e.prototype.setAreaMst = function (t) {
+            if (this._area_msts = {}, null != t)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = new r.MapAreaModel(n),
+                        s = o.mstID;
+                    s > 0 && (this._area_msts[s] = o)
                 }
-            }
-        }, e.prototype.changeAllowedDeckType = function (t) {
-            if (null != t) {
-                var e = "api_sally_flag",
-                    i = this._o;
-                0 == i.hasOwnProperty(e) && (i[e] = []);
-                for (var n = 0; n < 3; n++) i[e][n] = t[n]
-            }
+        }, e.prototype.setMapMst = function (t) {
+            if (this._map_msts = {}, null != t)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = new a.MapMstModel(n),
+                        r = o.mst_id;
+                    r > 0 && (this._map_msts[r] = o)
+                }
+        }, e.prototype.setMapMem = function (t) {
+            if (this._maps = {}, null != t)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = new s.MapModelEdit(n),
+                        r = o.mst_id;
+                    r > 0 && (this._maps[r] = o)
+                }
         }, e
-    }(a);
-    e.MapModelEdit = _
+    }(_);
+    e.MapModelHolderEdit = l
 }

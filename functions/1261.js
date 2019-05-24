@@ -19,81 +19,121 @@ const function1261 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
+    var o = i(123),
+        r = i(176),
+        s = i(1),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._additional_waittime = 0, n._scene = e, n._model = i, n
+            function e() {
+                var e = t.call(this) || this;
+                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this._model.sortie,
-                    e = t.getNextCell().isDeadEnd(),
-                    i = this._scene.resInfo.hasAirReconnaissancePoint();
-                1 == e && 1 == i ? (this._additional_waittime = 3e3, o.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(null).wait(1e3).call(function () {
-                    o.default.sound.bgm.play(4, !1, 1e3, "fanfare")
-                }), this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002\n\u672c\u4f5c\u6226\u5b8c\u9042\u5931\u6557\u3002")) : this._selectMessage()
-            }, e.prototype._selectMessage = function () {
-                var t = this._model.sortie.getNextCell().flavor_text;
-                if (null != t && t.length > 0) {
-                    var e = this._model.sortie.getNextCell().flavor_text_type;
-                    t = t.replace(/<br>/g, "\n"), 0 == e ? this._merefancy(t) : this._calm_sea(t)
-                } else {
-                    var i = this._model.sortie.getNextCell().event_detail_id;
-                    0 == i ? this._merefancy("\u6c17\u306e\u305b\u3044\u3060\u3063\u305f\u3002") : 1 == i ? this._merefancy("\u6575\u5f71\u3092\u898b\u305a\u3002") : 3 == i ? this._calm_sea("\u7a4f\u3084\u304b\u306a\u6d77\u3067\u3059\u3002") : 4 == i ? this._merefancy("\u7a4f\u3084\u304b\u306a\u6d77\u5ce1\u3067\u3059\u3002") : 5 == i ? this._merefancy("\u8b66\u6212\u304c\u5fc5\u8981\u3067\u3059\u3002") : 6 == i ? this._calm_sea("\u9759\u304b\u306a\u6d77\u3067\u3059\u3002") : this._merefancy("")
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
+            }, e.prototype.activate = function () {
+                1 == this._enabled && this._btn.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn.dispose()
+            }, e.prototype._getTexture = function (t, e) {
+                switch (t) {
+                    case 1:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(14);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(15);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(16);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(17)
+                        }
+                        break;
+                    case 2:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(34);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(35);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(36);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(37)
+                        }
+                        break;
+                    case 3:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(39);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(40);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(41);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(42)
+                        }
                 }
-            }, e.prototype._merefancy = function (t) {
-                var e = this;
-                this._scene.view.map.ship_icon.startWaveRed(function () {
-                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
-                })
-            }, e.prototype._calm_sea = function (t) {
-                var e, i = this,
-                    n = this._model.deck_f.ships;
-                if (n.length > 6) {
-                    e = n[Math.random() < .5 ? 0 : 6]
-                } else e = n[0];
-                var o = e.mst_id,
-                    r = e.isDamaged(),
-                    a = new s.ShipLoader;
-                a.add(o, r, "full"), a.load(function () {
-                    i._calm_sea2(o, r, t)
-                })
-            }, e.prototype._calm_sea2 = function (t, e, i) {
-                var n = this;
-                this._chara = new PIXI.Sprite, this._chara.alpha = 0, this._chara.texture = o.default.resources.getShip(t, e, "full");
-                var r = o.default.model.ship_graph.get(t).getMapOffset(e);
-                this._chara.x = -80 + r.x, this._chara.y = -93 + r.y, this._scene.view.chara_layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    n._calm_sea3(i)
-                })
-            }, e.prototype._calm_sea3 = function (t) {
-                var e = this;
-                this._scene.view.map.ship_icon.startWaveRed(function () {
-                    e._scene.view.message_box.text = t, e._stopShipWave(2e3)
-                })
-            }, e.prototype._stopShipWave = function (t) {
-                var e = this;
-                createjs.Tween.get(null).wait(t).call(function () {
-                    e._scene.view.map.ship_icon.stopWave(), e._changeCellColor()
-                })
-            }, e.prototype._changeCellColor = function () {
-                var t = this,
-                    e = this._model.sortie.getNextCell(),
-                    i = this._scene.view.map.spotLayer.getSpot(e.no);
-                (8 != this._model.sortie.getCellInfo(e.no).color && i.setColor(1), null != this._chara) ? (this._chara.x, createjs.Tween.get(this._chara).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._chara.parent.removeChild(t._chara), t._endTask()
-                })) : this._endTask()
-            }, e.prototype._endTask = function () {
-                var e = this;
-                createjs.Tween.get(null).wait(this._additional_waittime).call(function () {
-                    t.prototype._endTask.call(e)
-                })
+                return PIXI.Texture.EMPTY
             }, e
-        }(r.TaskBase);
-    e.CellTaskFancy = a
+        }(PIXI.Container);
+    e.FormationBoxCombined = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._update(!0)
+            }, e._onMouseOut = function () {
+                e._update(!1)
+            }, e._onClick = function () {
+                null != e._cb_onClick && e._cb_onClick(e._type)
+            }, e.interactive = !0, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._type = t, this._cb_onClick = e, this._update(!1)
+        }, e.prototype.activate = function () {
+            if (1 != this.buttonMode) {
+                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
+                var t = o.InteractiveUtil.isOnMouse(this);
+                this._update(t)
+            }
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
+        }, e.prototype._update = function (t) {
+            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
+        }, e.prototype._getTexture = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(19);
+                case 12:
+                    return r.SALLY_JIN.getTexture(21);
+                case 13:
+                    return r.SALLY_JIN.getTexture(23);
+                case 14:
+                    return r.SALLY_JIN.getTexture(25);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e.prototype._getTextureOn = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(20);
+                case 12:
+                    return r.SALLY_JIN.getTexture(22);
+                case 13:
+                    return r.SALLY_JIN.getTexture(24);
+                case 14:
+                    return r.SALLY_JIN.getTexture(26);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e
+    }(PIXI.Sprite)
 }

@@ -19,56 +19,21 @@ const function1083 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._progress = 0, e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "progress", {
-            get: function () {
-                return this._progress
-            },
-            set: function (t) {
-                this._progress = t, this._draw(this._progress)
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.update = function (t) {
-            if (this._model = t, null == t) return void this._clear();
-            this._startAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._clear = function () {
-            this._stopAnimation(), this.clear()
-        }, e.prototype._startAnimation = function () {
-            var t = this;
-            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
-                progress: 1
-            }, 1e3).call(function () {
-                t._t = null, t._progress = 0
-            })
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._draw = function (t) {
-            var e = [(this._model.karyoku > 100 ? 100 : this._model.karyoku) * t, (this._model.raisou > 100 ? 100 : this._model.raisou) * t, (this._model.taiku > 100 ? 100 : this._model.taiku) * t, (this._model.kaihi > 100 ? 100 : this._model.kaihi) * t, (this._model.taikyu > 100 ? 100 : this._model.taikyu) * t],
-                i = e.map(function (t, e, i) {
-                    var n = (72 * e - 90) / 180 * Math.PI;
-                    return [95 * t / 100 * Math.cos(n), 95 * t / 100 * Math.sin(n)]
-                });
-            this.clear(), this.lineStyle(1.4, 16774898), this.beginFill(1949120), this.moveTo(i[0][0], i[0][1]);
-            for (var n = 0; n < 5; n++) {
-                var o = (n + 1) % 5;
-                i[n][0] == i[o][0] && i[n][1] == i[o][1] || this.lineTo(i[o][0], i[o][1])
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
             }
-            this.endFill()
-        }, e
-    }(PIXI.Graphics);
-    e.RaderGraph = o;
-    var r = function () {
-        function t() {
-            this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
-        }
-        return t
-    }();
-    e.RaderGraphModel = r
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
+            }, e.prototype.initialize = function (t) {
+                this.texture = r.ALBUM_MAIN.getTexture(94), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
+            }, e.prototype._createTextBox = function (t) {
+                var e = new o.TextBox(23, 16777215);
+                return e.y = t - 3, this.addChild(e), e
+            }, e
+        }(PIXI.Sprite);
+    e.ShipDetailStatusBox = s
 }

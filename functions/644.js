@@ -19,15 +19,40 @@ const function644 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._view = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(645),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e._view.deactivate(), e._hideDialog()
+                }, e
             }
             return n(e, t), e.prototype._start = function () {
-                this._view.deactivate(), this._endTask()
+                -1 != o.default.model.deck.combined.type ? this._endTask() : this._breakCombined()
+            }, e.prototype._breakCombined = function () {
+                o.default.model.deck.combined.__update__(0), this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this,
+                    e = o.default.view.overLayer;
+                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._view.activate()
+                })
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._view.btn).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._view.parent.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(o.TaskBase);
-    e.FinalizeTask = r
+        }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

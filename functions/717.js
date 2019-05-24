@@ -19,47 +19,24 @@ const function717 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(718),
-        a = i(131),
-        _ = i(21),
-        l = i(56),
-        u = i(306),
-        c = i(719),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._loadPreset = function () {
-                    var t = new c.PresetDeckAPI;
-                    t.start(function () {
-                        var e = t.result;
-                        i.organizeScene.preInitialize(e), i._endTask()
-                    })
-                }, i.organizeScene = e, i
+    var o = i(11),
+        r = i(0),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_hensei/preset_select", n.presetNo = e, n.deckId = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResource()
-            }, e.prototype._loadResource = function () {
-                var t = this;
-                (new s.TaskLoadResourcesOrganize).start(function () {
-                    t._uploadToGPU_common()
-                })
-            }, e.prototype._uploadToGPU_common = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
-                        t._uploadToGPU_organize()
-                    })
-                })
-            }, e.prototype._uploadToGPU_organize = function () {
-                var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
-                        t._loadPreset()
-                    })
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_preset_no = this.presetNo, this._post_data.api_deck_id = this.deckId, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result = this._raw_data, r.default.model.deck.updateData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = h
+        }(o.APIBase);
+    e.PresetSelectAPI = s
 }

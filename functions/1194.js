@@ -20,41 +20,32 @@ const function1194 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(1195),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        r = i(11),
+        s = i(6),
+        a = i(240),
+        _ = i(175),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._model = e, n._holder = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
+                var t = this,
+                    e = o.default.model.basic.getDutyExecutableCount();
+                if (this._holder.getExecCount() >= e) return void this._endTask();
+                s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
+                    t._update()
                 })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            }, e.prototype._update = function () {
+                var t = this,
+                    e = this._holder.selected_page_no,
+                    i = this._holder.selected_type;
+                new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
+                    1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._model = null, this._holder = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            var t = this._getBGMID();
-            o.default.sound.bgm.play(t), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e.prototype._getBGMID = function () {
-            var t = o.default.model.deck.get(1).getShipModel(1);
-            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+    e.TaskWaitedDutySelect = l
 }

@@ -21,17 +21,32 @@ const function724 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(217),
-        a = function (t) {
+        s = i(14),
+        a = i(217),
+        _ = i(725),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+                var t = this;
+                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
+                    var e = a.OrganizeSceneMemory.filterStatus,
+                        i = a.OrganizeSceneMemory.japanese;
+                    new _.UpdateListStatusAPI(e, i).start(function () {
+                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._isChangeListStatus = function () {
+                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
+                var t = o.default.model.basic.getFilterStatusOrganizeList(),
+                    e = a.OrganizeSceneMemory.filterStatus;
+                if (t.length != e.length) return !0;
+                for (var i = 0; i < t.length; i++)
+                    if (t[i] != e[i]) return !0;
+                return !1
             }, e
         }(r.TaskBase);
-    e.InitializeTask = a
+    e.FinalizeTask = l
 }

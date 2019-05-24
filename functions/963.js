@@ -19,37 +19,102 @@ const function963 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(42),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._board = new a, e._board.position.set(726, 346), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
+    var o = i(5),
+        r = i(0),
+        s = i(17),
+        a = i(2),
+        _ = i(18),
+        l = i(964),
+        u = i(966),
+        c = i(348),
+        h = i(356),
+        p = function (t) {
+            function e(e, i, n, o, s) {
+                var a = t.call(this) || this;
+                return a._showBeginnerAlert = function () {
+                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                }, a._showMapIntro = function () {
+                    var t = r.default.model.basic.level,
+                        e = [];
+                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
+                    var i = a._model.getSelectedOperationType();
+                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                        var t = a._model.getSelectedOperationType(),
+                            e = 0 == t;
+                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
+                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
+                        }) : a._hideFade(e)
+                    })
+                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
             }
-            return n(e, t), Object.defineProperty(e.prototype, "board", {
-                get: function () {
-                    return this._board
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(22)
+            return n(e, t), e.prototype._start = function () {
+                if (this._model.area_id == s.EVENT_AREA_ID) {
+                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
+                    var t = this._model.map_no,
+                        e = r.default.model.basic.level;
+                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
+                    var i = this._voicePlayList(t);
+                    null != i && this._voicePlay(i)
+                } else this._showDetailPanel()
+            }, e.prototype._voicePlayList = function (t) {
+                switch (t) {
+                    case 1:
+                        return {
+                            voice: [411, 415, 424],
+                            delay: [0, 200, 200]
+                        };
+                    case 2:
+                        return {
+                            voice: [411, 416, 423, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    case 3:
+                        return {
+                            voice: [411, 417, 422, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    case 4:
+                        return {
+                            voice: [412, 418, 422, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    case 5:
+                        return {
+                            voice: [412, 421, 422, 424],
+                            delay: [0, 200, 200, 200]
+                        };
+                    default:
+                        return null
+                }
+            }, e.prototype._voicePlay = function (t) {
+                var e = this,
+                    i = t.voice,
+                    n = t.delay;
+                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
+                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
+                })
+            }, e.prototype._voiceNextDelay = function (t) {
+                var e = this,
+                    i = t.delay;
+                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
+                    e._voicePlay(t)
+                })
+            }, e.prototype._hideFade = function (t) {
+                var e = this;
+                this._fade.hide(300, function () {
+                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
+                })
+            }, e.prototype._showDetailPanel = function () {
+                var t = this,
+                    e = this._detailPanel;
+                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
+                    x: 840
+                }, 200).call(function () {
+                    e.activate(), t._endTask()
+                })
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
             }, e
-        }(PIXI.Container);
-    e.IntroAlertDialog = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(32)
-        }, e
-    }(o.Sprite)
+        }(a.TaskBase);
+    e.TaskShowDetailPanel = p
 }

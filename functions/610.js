@@ -1,64 +1,42 @@
 const function610 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(611),
-        r = i(612),
-        s = i(613),
-        a = i(156),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onRevampOpen = function () {
-                    null != e._revamp && e._revamp.open()
-                }, e._onRevampClose = function () {
-                    null != e._revamp && e._revamp.close()
-                }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
+    var n = i(0),
+        o = function () {
+            function t(t) {
+                var e = this;
+                this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
+                    e._timerBeLeftVoice.enabled_byTimeSignal = !0
+                }, this._timerBeLeftVoice = t
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
-            }, e.prototype.activate = function () {
-                this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
-            }, e.prototype.deactivate = function () {
-                this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
-            }, e.prototype.prePosition = function () {
-                this.x = this._presetX, this.alpha = 0
-            }, e.prototype.startAnimation = function () {
+            return t.prototype.initialize = function (t) {
+                this._mst_id = t;
+                var e = n.default.model.ship.getMst(this._mst_id);
+                this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
+            }, t.prototype.stop = function () {
+                -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
+            }, t.prototype.reset = function () {
                 var t = this;
-                this._interactive(!1), createjs.Tween.get(this).wait(200).to({
-                    x: this._baseX,
-                    alpha: 1
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    t._interactive(!0)
-                })
-            }, e.prototype.dispose = function () {
-                this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
-            }, e.prototype.setRevampFlg = function (t) {
-                1 == t ? this._addRevampBtn() : this._removeRevampBtn()
-            }, e.prototype._addRevampBtn = function () {
-                null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
-            }, e.prototype._removeRevampBtn = function () {
-                null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
-            }, e.prototype._interactive = function (t) {
-                this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
-            }, e
-        }(PIXI.Container);
-    e.RingMenuLayer = _
+                if (this.stop(), 0 != this._enabled_timeSignal) {
+                    var e = new Date,
+                        i = e.getMinutes(),
+                        n = e.getSeconds();
+                    this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
+                        t._play()
+                    }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
+                        t._preload()
+                    }, 1e3 * this._Preload_sec)
+                }
+            }, t.prototype._preload = function () {
+                n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
+            }, t.prototype._play = function () {
+                var t = this;
+                1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
+                    t.reset()
+                }, 61e3))
+            }, t
+        }();
+    e.TimeSignal = o
 }

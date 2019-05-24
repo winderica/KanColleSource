@@ -20,78 +20,41 @@ const function505 = function (t, e, i) {
         value: !0
     });
     var o = i(7),
-        r = function () {
-            function t(t) {
-                this._o = t
+        r = i(147),
+        s = i(148),
+        a = i(187),
+        _ = i(125),
+        l = function () {
+            function t() {
+                this._arr = []
             }
-            return Object.defineProperty(t.prototype, "id", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "state", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_state", -1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "ship_mst_id", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_created_ship_id", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "complete_time", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_complete_time", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "fuel", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_item1", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "ammo", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_item2", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "steel", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_item3", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "baux", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_item4", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "dev_kit", {
-                get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_item5", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isLargeBuild = function () {
-                return (2 == this.state || 3 == this.state) && this.fuel >= 1e3
+            return t.prototype.hasIncentive = function () {
+                return this._arr.length > 0
+            }, t.prototype.getRewards = function () {
+                return this._arr.concat()
+            }, t.prototype.clearData = function () {
+                this._arr = []
             }, t
         }();
-    e.KDockModel = r;
-    var s = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
+    e.IncentiveModelHolder = l;
+    var u = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
         }
-        return n(e, t), e.prototype.__open__ = function () {
-            -1 == this.state && (this._o.api_state = 0)
-        }, e.prototype.__complete__ = function (t) {
-            void 0 === t && (t = !1), (t || 2 == this.state) && (this._o.api_state = 3, this._o.api_complete_time = 0, this._o.api_complete_time_str = "")
+        return n(e, t), e.prototype.setData = function (t) {
+            if (this._arr = [], null != t) {
+                var e = o.ObjUtil.getObjectArray(t, "api_item");
+                if (null != e)
+                    for (var i = 0, n = e; i < n.length; i++) {
+                        var l = n[i],
+                            u = (o.ObjUtil.getNumber(l, "api_mode"), o.ObjUtil.getNumber(l, "api_type")),
+                            c = o.ObjUtil.getNumber(l, "api_mst_id"),
+                            h = o.ObjUtil.getString(l, "api_getmes"),
+                            p = void 0;
+                        1 == u ? p = new a.RewardModelShip(c, h) : 2 == u ? p = new s.RewardModelSlotitem(c, 1, h) : 3 == u ? p = new _.RewardModelUseitem(c, 1, h) : 4 == u || 5 == u && (p = new r.RewardModelFurniture(c, "", h)), null != p && this._arr.push(p)
+                    }
+            }
         }, e
-    }(r);
-    e.KDockModelEdit = s
+    }(l);
+    e.IncentiveModelHolderEdit = u
 }

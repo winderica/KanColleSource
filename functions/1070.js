@@ -19,34 +19,75 @@ const function1070 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(171),
-        s = i(380),
-        a = i(381),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._model = i, r._view = n, r._onBack = o, r
+    var o = i(15),
+        r = i(73),
+        s = function (t) {
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new a.TaskLoadResources).start(function () {
-                    t._initView()
-                })
-            }, e.prototype._initView = function () {
-                this._view.initialize(this._onBack), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new s.AlbumAPI(1, 0, this._model).start(function () {
-                    t._showImage()
-                })
-            }, e.prototype._showImage = function () {
-                var t = r.AlbumConst.COUNT_INPAGE,
-                    e = this._model.getData(1, 0, t);
-                this._view.content.update(1, 0, e), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "sType", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_stype")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_sinfo")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "karyoku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houg")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raisou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_raig")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taiku", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_tyku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "kaihi", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_kaih")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "taikyu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_taik")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.hasTaiha = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 1) && 1 == i[1])
+            }, e.prototype.isMarriage = function (t) {
+                var e = this.mst_ids.indexOf(t);
+                if (e < 0) return !1;
+                var i = o.ObjUtil.getObjectArray(this._o, "api_state");
+                return !(null == i || i.length <= e) && (!(null == (i = i[e]) || i.length <= 2) && 1 == i[2])
+            }, e.prototype.hasMarriage = function () {
+                var t = o.ObjUtil.getObjectArray(this._o, "api_state");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e];
+                    if (!(null == n || n.length <= 2) && 1 == n[2]) return !0
+                }
+                return !1
+            }, e.prototype.extraVoices = function () {
+                return o.ObjUtil.getObjectArray(this._o, "api_q_voice_info")
             }, e
-        }(o.TaskBase);
-    e.TaskScenePreInitialize = _
+        }(r.AlbumModelBase);
+    e.AlbumShipModel = s
 }

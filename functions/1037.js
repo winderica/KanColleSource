@@ -23,13 +23,41 @@ const function1037 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
+                e._icons = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
+                }
+                return e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
+                for (var t = 0; t < this._icons.length; t++) {
+                    this._icons[t].visible = !1
+                }
             }, e.prototype.update = function (t) {
-                this._beek.x = t - 16, this._beek.visible = !0
+                var e = [];
+                if (null != t) {
+                    var i = t.getSlotitems();
+                    i = i.concat(t.getSlotitemEx());
+                    for (var n = 0, o = i; n < o.length; n++) {
+                        var r = o[n];
+                        if (null != r) {
+                            var s = r.equipType;
+                            24 == s ? e.push(r) : 46 == s && e.push(r)
+                        }
+                    }
+                }
+                this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e];
+                    if (e >= t.length) i.visible = !1;
+                    else {
+                        var n = t[e].equipType;
+                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(33) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(37)), i.visible = !0
+                    }
+                }
             }, e
-        }(PIXI.Sprite);
-    e.ExpeditionListFrame = r
+        }(PIXI.Container);
+    e.CompSupportBoatCount = r
 }

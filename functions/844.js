@@ -19,124 +19,45 @@ const function844 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(223),
-        a = i(4),
-        _ = i(32),
-        l = i(24),
-        u = i(113),
-        c = i(1),
-        h = i(15),
-        p = function (t) {
+    var o = i(4),
+        r = i(32),
+        s = i(3),
+        a = i(24),
+        _ = i(1),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._state = !1, e._onClick = function () {
-                    e._state = e.hiSpeedToggle.state, e.onClick()
+                e._labelArr = [], e._onClickYES = function () {
+                    e.onClickYES()
+                }, e._onClickNO = function () {
+                    e.onClickNO()
                 };
-                var i = new PIXI.Sprite(r.COMMON_MAIN.getTexture(12)),
-                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(12)),
-                    l = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(46)),
-                    c = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(45)),
-                    p = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(43)),
-                    y = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(44)),
-                    m = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(42)),
-                    v = new d,
-                    g = new f,
-                    b = new s.RepairHpGaugeView,
-                    w = new _.ShipBanner,
-                    x = new a.TextBox(26, 5523516),
-                    I = new a.TextBox(19, 5523516),
-                    T = new a.TextBox(24, 5523516),
-                    O = new a.TextBox(24, 5523516),
-                    C = new a.TextBox(15, 12467003),
-                    P = new a.TextBox(24, 5523516),
-                    k = new u.DownArrowAnimationView,
-                    M = new u.DisableDownArrowAnimationView,
-                    S = new PIXI.Container,
-                    A = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
-                A.position.set(0, -34);
-                var j = new PIXI.Sprite(o.COMMON_MAIN.getTexture(1));
-                j.anchor.y = .5, j.position.set(22, 20), A.addChild(j), S.addChild(A), g.onClick = e._onClick, n.position.set(31, 31), l.position.set(15, 226), c.position.set(15, 280), p.position.set(15, 336), y.position.set(15, 390), v.position.set(178, 275), x.position.set(304, 42), m.position.set(229, 49), I.position.set(301, 151), T.position.set(318, 333), O.position.set(318, 389), C.position.set(40, 447), g.position.set(40, 477), b.position.set(61, 177), P.position.set(318, 225), w.position.set(60, 85), k.position.set(156, 441), M.position.set(156, 441), I.anchor.x = 1, x.anchor.x = 1;
-                var E = new PIXI.Container,
-                    N = new a.TextBox(30, 5523516);
-                E.position.set(57, 37);
-                var L = h.CreateRect.gradientLeftToRight(170, 42, .5, .98);
-                return E.mask = L, E.addChild(N, L), T.anchor.x = 1, O.anchor.x = 1, P.anchor.x = 1, i.interactive = !0, e.addChild(i, n, l, c, p, y, C, g, m, E, x, I, b, v, T, O, P, S, w, M, k), e.textName = N, e.textLevel = x, e.textHp = I, e.textSteel = T, e.textFuel = O, e.textAlert = C, e.hiSpeedToggle = v, e.startButton = g, e.textRequire = P, e.shipBanner = w, e.downArrowAnimationView = k, e.disableDownArrowAnimationView = M, e.hpGaugeView = b, e.headerContainer = S, e.containerName = E, e
+                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
+                    n = new o.TextBox(21, 1949120),
+                    a = new o.TextBox(21, 1949120),
+                    l = new o.TextBox(21, 1949120),
+                    u = new o.TextBox(21, 16777215),
+                    c = new o.TextBox(21, 1949120),
+                    h = new o.TextBox(24, 16777215),
+                    p = new o.TextBox(24, 16777215),
+                    d = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(9)),
+                    f = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(5)),
+                    y = new r.ShipBanner,
+                    m = new o.TextBox(21, 16777215),
+                    v = new o.TextBox(24, 16777215),
+                    g = new PIXI.Sprite(s.REPAIR_MAIN.getTexture(28)),
+                    b = new o.TextBox(24, 16777215),
+                    w = new o.TextBox(24, 16777215),
+                    x = new o.TextBox(24, 16777215);
+                return n.position.set(i.width / 2, -39), n.anchor.set(.5, 0), m.position.set(576, 147), a.position.set(310, 147), y.position.set(576, 180), l.position.set(310, 258), g.position.set(580, 288), u.position.set(577, 258), b.position.set(684, 298), w.position.set(718, 298), x.position.set(685, 294), c.position.set(310, 345), v.position.set(684, 345), p.position.set(687, 342), h.position.set(718, 345), f.position.set(297, 516), d.position.set(580, 516), b.anchor.x = 1, v.anchor.x = 1, n.text = "-\u8266\u8239\u3000\u5165\u6e20-", e._labelArr.push(n), a.text = "\u4fee\u5fa9\u3059\u308b\u8266\u8239", e._labelArr.push(a), l.text = "\u9ad8\u901f\u4fee\u5fa9", e._labelArr.push(l), u.text = "\u4f7f\u7528\u3059\u308b", e._labelArr.push(u), b.text = "9999", x.text = "\u2192", e._labelArr.push(x), w.text = "9999", c.text = "\u6240\u8981\u6642\u9593", e._labelArr.push(c), p.text = "\u2192", e._labelArr.push(p), h.text = "00:00:00", e._labelArr.push(h), d.addListener(_.EventType.CLICK, e._onClickYES), f.addListener(_.EventType.CLICK, e._onClickNO), f.interactive = f.buttonMode = !0, d.interactive = d.buttonMode = !0, e.addChild(i, n, a, l, c, m, v, g, u, p, h, f, d, y, b, x, w), e.textName = m, e.textRequireTime = v, e.buttonYes = d, e.buttonNo = f, e.shipBanner = y, e.beforeRepairKitCount = b, e.afterRepairKitCount = w, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t, e, i, n, o, r) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.textLevel.text = t.level.toString(), this.textHp.text = t.hpNow + "/" + t.hpMax, this.textSteel.text = t.getRepairSteel().toString(), this.textFuel.text = t.getRepairFuel().toString(), this.textRequire.text = l.MathUtil.timeToString(t.getRepairTime()), this.shipBanner.update(t, n), this.hpGaugeView.update(t.hpNow, t.hpMax), this.textAlert.visible = !1;
-                var s = r;
-                this.hiSpeedToggle.update(s);
-                var a = t.hpNow < t.hpMax;
-                this.disableDownArrowAnimationView.visible = !1, this.downArrowAnimationView.visible = !1;
-                var _ = i && e && 0 == n && a && 0 == o;
-                _ ? this.downArrowAnimationView.visible = !0 : 0 == (i && e) ? (this.textAlert.text = "\u4fee\u5fa9\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u8db3\u308a\u307e\u305b\u3093\uff01", this.textAlert.visible = !0) : this.disableDownArrowAnimationView.visible = !0, this.startButton.update(_), this.containerName.cacheAsBitmap = !0
+            return n(e, t), e.prototype.update = function (t, e) {
+                this.textName.text = t.name, this.textRequireTime.text = a.MathUtil.timeToString(t.getRepairTime()), this.beforeRepairKitCount.text = e.toString(), this.afterRepairKitCount.text = (e - 1).toString(), this.shipBanner.update(t, !1)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.hiSpeedToggle.dispose(), this.startButton.dispose(), this.shipBanner.dispose(), this.downArrowAnimationView.dispose(), this.hpGaugeView.dispose(), this.textName.destroy(), this.textLevel.destroy(), this.textHp.destroy(), this.textSteel.destroy(), this.textFuel.destroy(), this.textAlert.destroy(), this.textRequire.destroy(), this.onClick = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textRequire = null, this.textSteel = null, this.textFuel = null, this.textAlert = null, this.hiSpeedToggle = null, this.startButton = null, this.shipBanner = null, this.downArrowAnimationView = null, this.hpGaugeView = null, this.containerName = null
+                this.removeChildren(), this.buttonYes.texture = PIXI.Texture.EMPTY, this.buttonNo.texture = PIXI.Texture.EMPTY, this.shipBanner.dispose(), this.buttonYes.removeAllListeners(_.EventType.CLICK), this.buttonNo.removeAllListeners(_.EventType.CLICK), this.textName.destroy(), this.textRequireTime.destroy(), this.beforeRepairKitCount.destroy(), this.afterRepairKitCount.destroy(), this._labelArr.forEach(function (t) {
+                    t.destroy()
+                }), this._labelArr = null, this.buttonYes = null, this.buttonNo = null, this.shipBanner = null, this.onClickYES = null, this.onClickNO = null, this.textName = null, this.textRequireTime = null, this.beforeRepairKitCount = null, this.afterRepairKitCount = null
             }, e
         }(PIXI.Container);
-    e.RepairShipConfigView = p;
-    var d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._state = !1, e.animationParams = {
-                    progress: 0
-                }, e._onClick = function () {
-                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
-                    var t = 0;
-                    switch (e._state) {
-                        case !1:
-                            e._state = !0, t = 0;
-                            break;
-                        case !0:
-                            e._state = !1, t = 1
-                    }
-                    var i = createjs.Tween.get(e.animationParams);
-                    i.to({
-                        progress: t
-                    }, 300).on("change", function () {
-                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
-                    }), i.play(null), e.tween = i
-                };
-                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(39)),
-                    n = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(40)),
-                    r = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(41));
-                return n.addListener(c.EventType.CLICK, e._onClick), i.position.set(106, 0), e.addChild(n, r, i), e.background_off = n, e.background_on = r, e.toggle = i, e.update(!0), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t) {
-                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(106, 0), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
-            }, e.prototype.dispose = function () {
-                null != this.tween && this.tween.setPaused(!0), this.removeChild(this.background_off), this.removeChild(this.background_on), this.removeChild(this.toggle), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null
-            }, e
-        }(PIXI.Container),
-        f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(8)
-                }, e._onMouseOut = function () {
-                    e.texture = o.REPAIR_MAIN.getTexture(7)
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.addListener(c.EventType.MOUSEOVER, e._onMouseOver), e.addListener(c.EventType.MOUSEOUT, e._onMouseOut), e.addListener(c.EventType.CLICK, e._onClick), e.texture = o.REPAIR_MAIN.getTexture(6), e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                this.interactive = this.buttonMode = !1, t ? (this.interactive = this.buttonMode = !0, this.texture = o.REPAIR_MAIN.getTexture(7)) : this.texture = o.REPAIR_MAIN.getTexture(6)
-            }, e.prototype.dispose = function () {
-                this.onClick = null, this.removeListener(c.EventType.MOUSEOVER, this._onMouseOver), this.removeListener(c.EventType.MOUSEOUT, this._onMouseOut), this.removeListener(c.EventType.CLICK, this._onClick)
-            }, e
-        }(PIXI.Sprite)
+    e.UseHiSpeedRepairConfirmView = l
 }

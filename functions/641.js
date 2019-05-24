@@ -20,32 +20,37 @@ const function641 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(6),
-        a = i(642),
+        r = i(60),
+        s = i(81),
+        a = i(208),
         _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.RarityBG, e._ship = new PIXI.Sprite, e._particle = new a.BonusParticle, e._message_box = new s.MessageBox, e._message_box.y = 721, e.addChild(e._bg), e.addChild(e._ship), e.addChild(e._particle), e.addChild(e._message_box), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._playVoice()
-            }, e.prototype._playVoice = function () {
-                var t = o.default.model.deck.get(1),
-                    e = t.getShipModel(0),
-                    i = e.mstID.toString();
-                if (33 == this._pre_scene || 32 == this._pre_scene) o.default.model.basic.getMFlag2() ? (s.SE.play("215"), o.default.sound.voice.play(i, 26)) : o.default.sound.voice.play(i, 7);
-                else if (50 == o.default.model.basic.getTutorialProgress()) o.default.sound.voice.play(i, 26);
-                else if (0 == this._pre_scene) o.default.sound.voice.play(i, 1);
-                else {
-                    var n = Math.random();
-                    n <= .4 && (n <= .05 ? o.default.sound.voice.play(i, 4) : n <= .2 ? o.default.sound.voice.play(i, 3) : o.default.sound.voice.play(i, 2))
-                }
-                this._playBGM()
-            }, e.prototype._playBGM = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), (new a.TaskCombinedAlert).start(), this._endTask()
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, r) {
+                this._ship.texture = o.default.resources.getShip(t, !1, "full"), this._message_box.initializeForShip(i, e, n), this._ship.x = r.x + 221, this._ship.y = r.y - 59
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._ship = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null
             }, e
-        }(r.TaskBase);
-    e.InitializeTask = _
+        }(PIXI.Container);
+    e.BonusShip = _
 }

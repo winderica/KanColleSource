@@ -19,27 +19,41 @@ const function705 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(4),
-        s = i(57),
-        a = function (t) {
+    var o = i(57),
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickYes = function () {
-                    e.onClickYES()
-                }, e._onClickNo = function () {
-                    e.onClickNO()
-                }, e.text = new r.TextBox(24, 5523516);
-                var i = o.ORGANIZE_MAIN.getTexture(28),
-                    n = o.ORGANIZE_MAIN.getTexture(14),
-                    a = o.ORGANIZE_MAIN.getTexture(7);
-                return e.message = new PIXI.Sprite(i), e.buttonYes = new s.SimpleButton(n, n), e.buttonNo = new s.SimpleButton(a, a), e.text.position.set(Math.floor(435 - .5 * e.text.width), Math.floor(138 - .5 * e.text.height)), e.buttonYes.position.set(171, 213), e.buttonNo.position.set(385, 213), e.buttonYes.onClick = e._onClickYes, e.buttonNo.onClick = e._onClickNo, e.addChild(e.message, e.text, e.buttonYes, e.buttonNo), e
+                return e._onClickEdit = function () {
+                    e.onClick(1)
+                }, e._onClickExpansion = function () {
+                    e.onClick(2)
+                }, e.buttonSave = new PIXI.Sprite, e.buttonLoad = new PIXI.Sprite, e.buttonLoad.y = 43, e.buttonSave.interactive = e.buttonLoad.interactive = !0, e.buttonSave.buttonMode = e.buttonLoad.buttonMode = !0, e.buttonSave.addListener(r.EventType.CLICK, e._onClickEdit), e.buttonLoad.addListener(r.EventType.CLICK, e._onClickExpansion), e.addChild(e.buttonSave, e.buttonLoad), e.update(0), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this.text.text = t + " \u2192 " + (t - 1)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.buttonYes.dispose(), this.buttonNo.dispose(), this.text.destroy(), this.onClickYES = null, this.onClickNO = null, this.message = null, this.buttonYes = null, this.buttonNo = null, this.text = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.buttonLoad.removeAllListeners(r.EventType.CLICK), this.buttonSave.removeAllListeners(r.EventType.CLICK), this.onClick = null, this.buttonSave = null, this.buttonLoad = null, this.removeChildren()
+            }, e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        var e = o.ORGANIZE_MAIN.getTexture(48),
+                            i = o.ORGANIZE_MAIN.getTexture(45);
+                        this.buttonSave.texture = e, this.buttonLoad.texture = i;
+                        break;
+                    case 1:
+                        var n = o.ORGANIZE_MAIN.getTexture(50),
+                            r = o.ORGANIZE_MAIN.getTexture(46);
+                        this.buttonSave.texture = n, this.buttonLoad.texture = r;
+                        break;
+                    case 2:
+                        var s = o.ORGANIZE_MAIN.getTexture(49),
+                            a = o.ORGANIZE_MAIN.getTexture(47);
+                        this.buttonSave.texture = s, this.buttonLoad.texture = a
+                }
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
             }, e
         }(PIXI.Container);
-    e.ExtensionPresetConfirm = a
+    e.PresetButtonLayer = s
 }

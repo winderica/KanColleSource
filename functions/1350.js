@@ -19,30 +19,48 @@ const function1350 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(25),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
+    var o = i(44),
+        r = i(27),
+        s = i(29),
+        a = i(72),
+        _ = i(19),
+        l = i(40),
+        u = i(6),
+        c = i(449),
+        h = i(442),
+        p = i(446),
+        d = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadShipImage()
-            }, e.prototype._loadShipImage = function () {
+                this._log();
+                var t = this._scene.data.model.map_info.isAirRaid();
+                this._canvas = new h.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
                 var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
-                    t._loadSlotTextImage()
+                    e = new r.ParallelTask,
+                    i = createjs.Tween.get(null).call(u.SE.play, ["220"]).wait(1700);
+                e.add((new _.TweenTask).addTween(i)), e.add(new a.FuncTask(function () {
+                    t._fireDogFight()
+                }, 350)), e.add(new a.FuncTask(function () {
+                    t._showTaikuCutin()
+                }, 450)), e.add(new a.FuncTask(function () {
+                    t._damageAtStage1()
+                }, 500)), e.add(new a.FuncTask(function () {
+                    t._antiAircraft()
+                }, 600)), e.add(new a.FuncTask(function () {
+                    t._damageAtStage2()
+                }, 700)), e.add((new s.SerialTask).add(new l.WaitTask(850)).add((new r.ParallelTask).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new a.FuncTask(function () {
+                    t._showBakuExplosion()
+                }, 1500)), e.add(new a.FuncTask(function () {
+                    t._showDamage()
+                }, 1650)), this._main_task = e, this._main_task.start(function () {
+                    t._showDamageNumber()
                 })
-            }, e.prototype._loadSlotTextImage = function () {
-                var t = this;
-                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
-                var e = new s.SlotLoader;
-                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
-                    t._endTask()
-                })
+            }, e.prototype._showSeikuResult = function () {}, e.prototype._getPlaneType = function () {
+                return o.PlaneConst.getJetPlaneType()
             }, e
-        }(o.TaskBase);
-    e.PreloadCutinDanchaku = a
+        }(c.TaskAirWar);
+    e.TaskAirWarJet = d
 }

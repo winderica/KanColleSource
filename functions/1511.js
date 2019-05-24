@@ -19,77 +19,61 @@ const function1511 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(6),
-        s = i(36),
-        a = function (t) {
+    var o = i(29),
+        r = i(19),
+        s = i(40),
+        a = i(36),
+        _ = i(483),
+        l = i(484),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._name_and_level = new _, e._up_to_the_next_level = new l, e._up_to_the_next_level.position.set(0, 30), e.addChild(e._name_and_level), e.addChild(e._up_to_the_next_level), e
+                return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new _.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new l.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "name_and_level", {
-                get: function () {
-                    return this._name_and_level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "up_to_the_next_level", {
-                get: function () {
-                    return this._up_to_the_next_level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._name_and_level.dispose(), this._name_and_level = null, this._up_to_the_next_level.dispose(), this._up_to_the_next_level = null
-            }, e.prototype.levelup = function () {
-                this._name_and_level.levelup(), this._up_to_the_next_level.levelup()
+            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+                this._line.visible = !1, this._line.texture = a.BATTLE_RESULT_MAIN.getTexture(2), this._info.alpha = 0, this._info.user_name.text = t, this._info.level.initialize(), this._info.level.text = e.toString(), this._info.deck_name.initialize(), this._info.deck_name.text = i, this._gauge_label.texture = a.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(65298), this._gauge.alpha = 0, n && (this._gauge_label.visible = !1, this._gauge.visible = !1)
+            }, e.prototype.createShowTween = function () {
+                var t = this;
+                return createjs.Tween.get(this._info).call(function () {
+                    t._line.visible = !0
+                }).to({
+                    alpha: 1
+                }, 100)
+            }, e.prototype.createHideGaugeTweens = function (t) {
+                return [createjs.Tween.get(this._gauge_label).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._gauge).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._line).wait(200).to({
+                    x: t
+                }, 500), createjs.Tween.get(this._info).wait(200).to({
+                    x: t
+                }, 500)]
+            }, e.prototype.createTaskShowGauge = function (t, e, i) {
+                if (0 == this._gauge.visible) return new s.WaitTask(0);
+                var n, a = new r.TweenTask;
+                this._gauge_label.x += 15, n = createjs.Tween.get(this._gauge_label).wait(i).to({
+                    x: this._gauge_label.x - 15,
+                    alpha: 1
+                }, 200), a.addTween(n), this._gauge.x += 15, n = createjs.Tween.get(this._gauge).wait(i).to({
+                    x: this._gauge.x - 15,
+                    alpha: 1
+                }, 200), a.addTween(n);
+                var _ = new o.SerialTask;
+                _.add(a), n = this._gauge.createTween(t, e);
+                var l = new r.TweenTask;
+                return l.addTween(n), _.add(l), _
+            }, e.prototype.createShowDeckNameTween = function (t, e, i) {
+                return this._info.deck_name.text = t, createjs.Tween.get(this._info.deck_name).wait(i).to({
+                    alpha: 1
+                }, e)
+            }, e.prototype.createHideDeckNameTween = function (t, e) {
+                return createjs.Tween.get(this._info.deck_name).wait(e).to({
+                    alpha: 0
+                }, t)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._info.dispose()
             }, e
         }(PIXI.Container);
-    e.BannerInfoFriend = a;
-    var _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._level_label = new PIXI.Sprite, e._level_label.position.set(131, 3), e._level = new o.TextBox(16, 16774898), e._level.anchor.set(1, 0), e._level.position.set(200, 5), e.addChild(e._name), e.addChild(e._level_label), e.addChild(e._level), e
-            }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._level_label.texture = s.BATTLE_RESULT_MAIN.getTexture(68), this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 126, this._name.height), this._name_mask.endFill(), this._level.text = e.toString(), this._now_level = e
-            }, e.prototype.levelup = function () {
-                this._now_level++, this._level.text = this._now_level.toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._name = null, this._name_mask = null, this._level_label = null, this._level.destroy(), this._level = null
-            }, e
-        }(PIXI.Container),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._next_label = new PIXI.Sprite, e._next_label.position.set(0, 6), e._next = new o.TextBox(16, 16777215), e._next.anchor.set(1, 0), e._next.position.set(200, 5), e._next.alpha = 0, e.addChild(e._next_label), e.addChild(e._next), e
-            }
-            return n(e, t), e.prototype.showExpText = function () {
-                createjs.Tween.get(this._next).wait(10).to({
-                    alpha: 1
-                }, 0)
-            }, e.prototype.initialize = function (t) {
-                this._next_label.texture = s.BATTLE_RESULT_MAIN.getTexture(78), this.update(t)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._next_label = null, this._next.destroy(), this._next = null
-            }, e.prototype.update = function (t) {
-                this._next.text = t < 0 ? "" : Math.floor(t).toString()
-            }, e.prototype.levelup = function () {
-                var t = this,
-                    e = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(9));
-                e.anchor.set(.5), e.position.set(147, 18), e.alpha = 0, r.SE.play("221"), this.addChild(e), createjs.Tween.get(e).to({
-                    y: -6,
-                    alpha: 1
-                }, 200).to({
-                    y: 18
-                }, 0).to({
-                    y: -6,
-                    alpha: 1
-                }, 200).to({
-                    alpha: 0
-                }, 700).call(function () {
-                    t.removeChild(e)
-                })
-            }, e
-        }(PIXI.Container)
+    e.DeckInfoPanelFriend = u
 }

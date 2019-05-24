@@ -19,56 +19,166 @@ const function1027 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = (i(260), i(24)),
-        s = i(39),
-        a = i(1028),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._expedition_id = -1, i._deck_id = -1, i._remain_time = 0, i._timer_key = -1, i._onClick = function () {
-                    null != i._cancel_cb && i._cancel_cb(i._expedition_id, i._deck_id)
-                }, i._cancel_cb = e, i
+    var o = i(0),
+        r = i(111),
+        s = i(31),
+        a = i(374),
+        _ = i(30),
+        l = i(39),
+        u = i(227),
+        c = i(228),
+        h = i(1028),
+        p = i(1032),
+        d = i(1038),
+        f = i(1040),
+        y = i(1041),
+        m = i(1045),
+        v = i(1046),
+        g = i(1047),
+        b = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                for (n._list_offset = 0, n._onChangeArea = function (t) {
+                        n._areaIcons.selected = t, n._updateList(t), n._detailView.update(null, null)
+                    }, n._onSelect = function (t) {
+                        var e = o.default.model.expedition.get(t);
+                        if (null != e) {
+                            for (var i = o.default.model.deck.getAll(), r = null, s = 0, a = i; s < a.length; s++) {
+                                var _ = a[s];
+                                if (null != _.expedition && _.expedition.expedition_id == t) {
+                                    r = _;
+                                    break
+                                }
+                            }
+                            n._detailView.update(e, r)
+                        }
+                    }, n._onDecision = function (t) {
+                        if (null == n._deckSelect) {
+                            n._deckSelect = new p.ContainerDeckSelect(n._onGo);
+                            var e = o.default.model.deck.getIDs(),
+                                i = e.indexOf(1); - 1 != i && e.splice(i, 1);
+                            var r = o.default.model.deck.isCombined();
+                            n._deckSelect.initialize(t, e, r), n.addChild(n._deckSelect), n._deckSelect.cancelArea.show(300), createjs.Tween.get(n._detailView).to({
+                                x: 323
+                            }, 300), createjs.Tween.get(n._deckSelect.panel).to({
+                                x: 493
+                            }, 300).call(function () {
+                                n._deckSelect.activate()
+                            })
+                        }
+                    }, n._onGo = function (t, e) {
+                        if (-1 == e) n._deckSelect.deactivate(), n._deckSelect.cancelArea.hide(300), createjs.Tween.get(n._detailView).to({
+                            x: 840
+                        }, 300), createjs.Tween.get(n._deckSelect.panel).to({
+                            x: 1200
+                        }, 300).call(function () {
+                            n.removeChild(n._deckSelect), n._deckSelect.dispose(), n._deckSelect = null
+                        });
+                        else {
+                            o.default.view.clickGuard = !0, n._deckSelect.deactivate();
+                            var i = o.default.model.deck.get(e).getShipModel(0).mstID;
+                            o.default.sound.voice.play(i.toString(), 26), (new s.APIConnector).add(new m.ExpeditionStartAPI(t, e)).add(new a.DeckAPI).start(function () {
+                                n._deckSelect.cancelArea.hide(300), createjs.Tween.get(n._detailView).to({
+                                    x: 840
+                                }, 300), createjs.Tween.get(n._deckSelect.panel).to({
+                                    x: 1200
+                                }, 300).call(function () {
+                                    n.removeChild(n._deckSelect), n._deckSelect.dispose(), n._deckSelect = null, new v.GoExpeditionTask(n, t, e).start(function () {
+                                        o.default.view.clickGuard = !1
+                                    })
+                                })
+                            })
+                        }
+                    }, n._onCancel = function (t, e) {
+                        new g.CancelExpeditionTask(n, e).start(function () {
+                            var i = o.default.model.expedition.get(t),
+                                r = o.default.model.deck.get(e);
+                            n._detailView.update(i, r)
+                        })
+                    }, n._onScrollUp = function () {
+                        n._list_offset--, n.__updateList()
+                    }, n._onScrollDown = function () {
+                        n._list_offset++, n.__updateList()
+                    }, n._items = []; n._items.length < 8;) {
+                    var _ = new y.ExpeditionListItem(n._onSelect);
+                    _.position.set(171, 238 + 45 * n._items.length), n._items.push(_)
+                }
+                return n._list = new f.ExpeditionListFrame, n._list.position.set(165, 199), n._switch = new c.CompSwitchBtns(2, e, i), n._areaIcons = new d.ExpeditionAreaIconSet(n._onChangeArea), n._detailView = new h.ContainerDetail(n._onDecision, n._onCancel), n._switch.position.set(456, 151), n._areaIcons.position.set(167, 624), n._detailView.position.set(840, 0), n._arrowUp = new r.ArrowButton, n._arrowUp.scale.set(.85), n._arrowUp.position.set(470, 215), n._arrowBtm = new r.ArrowButton(!0), n._arrowBtm.scale.set(.85), n._arrowBtm.position.set(470, 614), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_name", {
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
                 get: function () {
-                    return this._deck_name
+                    return this._items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "detail_view", {
+                get: function () {
+                    return this._detailView
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                var t = new PIXI.Graphics;
-                t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 439), t.lineTo(336, 439), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
-                var e = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(42));
-                e.position.set(28, 579), this.addChild(e), this._deck_name = new o.TextBox(15, 4999235), this._deck_name.position.set(27, 186), this.addChild(this._deck_name), this._time_remaining = new o.TextBox(22, 4999235), this._time_remaining.anchor.set(1, 0), this._time_remaining.position.set(337, 576), this.addChild(this._time_remaining), this._remaining_none = new o.TextBox(19, 4999235), this._remaining_none.text = "\u307e\u3082\u306a\u304f\u5e30\u9084\u3057\u307e\u3059", this._remaining_none.position.set(127, 606), this.addChild(this._remaining_none), this._icon = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(35)), this._icon.position.set(31, 627), this.addChild(this._icon), this._btn = new a.BtnCancel(this._onClick), this._btn.initialize(), this._btn.position.set(87, 636), this._btn.visible = !1, this.addChild(this._btn)
-            }, e.prototype.update = function (t, e) {
-                if (null == t) this._expedition_id = -1, this._deck_id = -1, this._deck_name.text = "", this._time_remaining.text = "", this._remaining_none.visible = !1, this._btn.visible = !1, this._deactivate();
-                else {
-                    this._expedition_id = t.mstID, this._deck_id = e.mstID, this._deck_name.text = e.name;
-                    var i = Date.now(),
-                        n = e.expedition.complete_unixtime,
-                        o = n - i;
-                    o = Math.max(o, 0) / 1e3, this._remain_time = o, this._updateRemainTime(), this._btn.visible = !0, 3 == e.expedition.state ? this._btn.enabled = !1 : 0 == t.isCancelable() ? this._btn.enabled = !1 : this._btn.enabled = !(o <= 0), this._activate()
+                var t = new PIXI.Sprite(_.SALLY_COMMON.getTexture(26));
+                t.position.set(144, 139);
+                var e = new PIXI.Sprite(_.SALLY_COMMON.getTexture(50));
+                e.position.set(0, 102);
+                var i = new PIXI.Sprite(l.SALLY_EXPEDITION.getTexture(14));
+                i.position.set(198, 112);
+                var n = new PIXI.Sprite(l.SALLY_EXPEDITION.getTexture(24));
+                n.position.set(150, 138);
+                for (var o = 0, r = this._items; o < r.length; o++) {
+                    var s = r[o];
+                    s.initialize()
                 }
+                this._list.initialize(), this._switch.initialize(), this._areaIcons.initialize(), this._detailView.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n);
+                for (var a = 0, u = this._items; a < u.length; a++) {
+                    var s = u[a];
+                    this.addChild(s)
+                }
+                this.addChild(this._list), this.addChild(this._switch), this.addChild(this._areaIcons), this._arrowUp.initialize(this._onScrollUp), this.addChild(this._arrowUp), this._arrowBtm.initialize(this._onScrollDown), this.addChild(this._arrowBtm), this.addChild(this._detailView), this._updateList(1)
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].activate()
+                }
+                this._switch.activate(), this._areaIcons.activate(), this._arrowUp.activate(), this._arrowBtm.activate()
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+                this._switch.deactivate(), this._areaIcons.deactivate(), this._arrowUp.deactivate(), this._arrowBtm.deactivate()
             }, e.prototype.dispose = function () {
-                this._deactivate(), this.removeChildren(), this._cancel_cb = null, this._deck_name.destroy(), this._time_remaining.destroy(), this._remaining_none.destroy()
-            }, e.prototype._activate = function () {
-                var t = this;
-                0 == this._activated && (this._activated = !0), this._remain_time > 0 && -1 == this._timer_key && (this._timer_key = setInterval(function () {
-                    t._remain_time--, t._remain_time <= 0 && (clearInterval(t._timer_key), t._timer_key = -1), t._updateRemainTime()
-                }, 1e3)), this._btn.activate()
-            }, e.prototype._deactivate = function () {
-                this._timer_key > 0 && (clearInterval(this._timer_key), this._timer_key = -1), this._btn.deactivate(), this._activated = !1
-            }, e.prototype._updateRemainTime = function () {
-                var t = this._remain_time;
-                if (t > 0) {
-                    var e = r.MathUtil.zeroPadding(Math.floor(t) % 60, 2),
-                        i = Math.floor(t / 60),
-                        n = r.MathUtil.zeroPadding(i % 60, 2),
-                        o = r.MathUtil.zeroPadding(Math.floor(i / 60), 2);
-                    this._time_remaining.text = o + ":" + n + ":" + e, this._time_remaining.visible = !0, this._remaining_none.visible = !1
-                } else this._time_remaining.visible = !1, this._remaining_none.visible = !0, this._btn.enabled = !1
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._switch.dispose(), this._areaIcons.dispose(), this._arrowUp.dispose(), this._arrowBtm.dispose(), this._detailView.dispose(), this._deckSelect && this._deckSelect.dispose()
+            }, e.prototype._updateList = function (t) {
+                this._datalist = o.default.model.expedition.getInArea(t, !0);
+                var e = this._areaIcons.getSelectedIcon();
+                if (null != e) {
+                    var i = Math.round(e.x + e.width / 2);
+                    this._list.update(i)
+                }
+                this._arrowUp.resetInterval(), this._arrowBtm.resetInterval(), this._list_offset = 0, this.__updateList()
+            }, e.prototype.__updateList = function () {
+                for (var t = o.default.model.deck.getAll(), e = [], i = 0, n = t; i < n.length; i++) {
+                    var r = n[i];
+                    if (null != r.expedition && r.expedition.expedition_id > 0) {
+                        for (; e.length <= r.mstID;) e.push(0);
+                        e[r.mstID] = r.expedition.expedition_id
+                    }
+                }
+                for (var s = 0; s < this._items.length; s++) {
+                    var a = this._items[s],
+                        _ = s + this._list_offset;
+                    if (_ < 0 || _ >= this._datalist.length) a.update(null, -1);
+                    else {
+                        var l = this._datalist[_],
+                            u = e.indexOf(l.mstID);
+                        a.update(l, u)
+                    }
+                }
+                this._arrowUp.visible = 0 != this._list_offset, this._arrowBtm.visible = this._datalist.length - this._list_offset > this._items.length
             }, e
-        }(PIXI.Container);
-    e.PanelDetailInExpe = _
+        }(u.ViewMainBase);
+    e.ViewMain = b
 }

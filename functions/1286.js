@@ -19,62 +19,55 @@ const function1286 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(146),
-        s = i(26),
-        a = i(352),
-        _ = i(349),
-        l = i(353),
-        u = i(350),
-        c = i(351),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._selected_airunit_id = 0, e._onChangeTab = function (t) {
-                    e.update(t)
-                }, e._area = new PIXI.Graphics, e.addChild(e._area), e._tabs = new a.AirUnitPanelTabContainer(e._onChangeTab), e._tabs.x = 30, e.addChild(e._tabs), e._base = new PIXI.Sprite, e._base.position.set(0, 21), e.addChild(e._base), e._banner = new _.AirUnitPanelBanner, e._banner.position.set(26, 45), e.addChild(e._banner), e._name = new o.TextBox(21, 0), e._name.position.set(33, 119), e.addChild(e._name), e._tag = new l.AirUnitPanelWoodenTag, e._tag.position.set(314, 47), e.addChild(e._tag), e._items = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new u.AirUnitPanelItem(null, null);
-                    n.position.set(17, 164 + 90 * i), e.addChild(n), e._items.push(n)
-                }
-                return e._supply_btn = new c.AirUnitPanelSupplyAllBtn(null), e._supply_btn.position.set(287, 146), e.addChild(e._supply_btn), e.interactive = !0, e
+    var o = i(1287),
+        r = i(1288),
+        s = i(1289),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onMouseOver = function () {
+                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
+                        x: 831
+                    }, 300, createjs.Ease.quadOut).call(function () {
+                        n._move_tween = null
+                    }) : n._move_tween = createjs.Tween.get(n).to({
+                        x: 0
+                    }, 300, createjs.Ease.quadOut).call(function () {
+                        n._move_tween = null
+                    }))
+                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_airunit_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "title", {
                 get: function () {
-                    return this._selected_airunit_id
+                    return this._title
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "cancel_btn", {
+                get: function () {
+                    return this._cancel_btn
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "panel", {
+                get: function () {
+                    return this._panel
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e) {
-                this._models = e, this._tabs.initialize(this._models.length), this._base.texture = s.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
-                for (var i = 0; i < this._items.length; i++) {
-                    this._items[i].initialize(i)
-                }
-                this._supply_btn.initialize()
-            }, e.prototype.update = function (t, e) {
-                if (void 0 === e && (e = !1), (0 != e || this._selected_airunit_id != t) && !(t <= 0 || t > this._models.length)) {
-                    this._selected_airunit_id = t;
-                    for (var i = null, n = 0, o = this._models; n < o.length; n++) {
-                        var s = o[n];
-                        if (s.id == t) {
-                            i = s;
-                            break
-                        }
-                    }
-                    this._tabs.update(t), this._name.text = i.name, r.EditTextBoxUtil.text = i.name, this._tag.update(i.airUnitState, !1);
-                    for (var a = i.squadrons, _ = 0, l = !1, u = 0; u < this._items.length; u++) {
-                        var c = u < a.length ? a[u] : null;
-                        this._items[u].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), l = l || c.count < c.countMax
-                    }
-                    this._banner.update(t, _, i.distance_base, i.distance_bonus), this._supply_btn.update(l)
-                }
+                var i = null == e ? 0 : e.length;
+                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
+            }, e.prototype.activate = function () {
+                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
+            }, e.prototype.deactivate = function () {
+                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
+            }, e.prototype.update = function (t) {
+                this._title.update(t), this._panel.update(t, !0)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._tabs.dispose(), this._banner.dispose(), this._name.destroy(), this._tag.dispose();
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._supply_btn.dispose()
+                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
             }, e
         }(PIXI.Container);
-    e.AirUnitPanel = h
+    e.AirUnitPanelSet = _
 }

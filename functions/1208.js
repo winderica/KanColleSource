@@ -19,28 +19,11 @@ const function1208 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(419),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = o.REVAMP_BOX.getTexture(9)
-                }, e._onMouseOut = function () {
-                    e.texture = o.REVAMP_BOX.getTexture(9)
-                }, e._onClick = function () {
-                    e.emit("dicision")
-                }, e.interactive = !0, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.REVAMP_BOX.getTexture(9)
-            }, e.prototype.activate = function () {
-                0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._setTextture = function (t) {
-                this.texture = t
-            }, e
-        }(PIXI.Sprite);
-    e.BtnDicision = s
+    var o = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e
+    }(PIXI.Container);
+    e.ViewMainBase = o
 }

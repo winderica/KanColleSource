@@ -19,79 +19,58 @@ const function1336 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(40),
-        s = i(2),
-        a = i(16),
-        _ = i(1337),
-        l = i(1338),
-        u = i(1339),
-        c = i(1340),
-        h = i(1341),
-        p = i(1342),
-        d = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._ship = i, s._damage = n, s._type = o, s._plane = r, s
+    var o = i(441),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._CHUHA_ = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], e._TAIHA_ = [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], e.run = function (t) {
+                    for (var i = t.target.target.time, n = 0; n < e.txtParts.length; n++) e.txtParts[n].Update(i)
+                }, e.callBack = null, e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = 500 * Math.random();
-                this._banner = this._scene.view.bannerGroupLayer.getBanner(this._ship);
-                var i = null;
-                if (1 == this._type) i = new r.WaitTask(500);
-                else if (3 == this._type) i = new _.AnimAntiAircraftFunshin(this._banner);
-                else if (2 == this._type) i = new u.AnimAntiAircraftKoukaku(this._banner);
-                else if (5 == this._type) {
-                    var n = new o.ParallelTask;
-                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new h.AnimAntiAircraftSanshikidan2(this._banner)), i = n
-                } else if (4 == this._type) i = new l.AnimAntiAircraftFunshinKai2(this._banner);
-                else if (6 == this._type) {
-                    var n = new o.ParallelTask;
-                    n.add(new c.AnimAntiAircraftSanshikidan(this._banner)), n.add(new l.AnimAntiAircraftFunshinKai2(this._banner)), i = n
+            return n(e, t), e.prototype.Initialize = function (t) {
+                var e = [new PIXI.Point(0, 175), new PIXI.Point(375, 181), new PIXI.Point(262, 160), new PIXI.Point(246, 321), new PIXI.Point(307, 298), new PIXI.Point(291, 273), new PIXI.Point(445, 355), new PIXI.Point(399, 334), new PIXI.Point(400, 310), new PIXI.Point(364, 291), new PIXI.Point(384, 280), new PIXI.Point(405, 268), new PIXI.Point(429, 309), new PIXI.Point(441, 262), new PIXI.Point(439, 247), new PIXI.Point(439, 258), new PIXI.Point(466, 241), new PIXI.Point(468, 201), new PIXI.Point(433, 156), new PIXI.Point(426, 208), new PIXI.Point(408, 162), new PIXI.Point(406, 241), new PIXI.Point(363, 250), new PIXI.Point(357, 265), new PIXI.Point(351, 216), new PIXI.Point(339, 157), new PIXI.Point(342, 156), new PIXI.Point(246, 105), new PIXI.Point(432, 156), new PIXI.Point(168, 163), new PIXI.Point(216, 163), new PIXI.Point(247, 213), new PIXI.Point(172, 258), new PIXI.Point(177, 225), new PIXI.Point(142, 175), new PIXI.Point(69, 186), new PIXI.Point(0, 211), new PIXI.Point(49, 169), new PIXI.Point(139, 166), new PIXI.Point(157, 117), new PIXI.Point(133, 99), new PIXI.Point(1, 21), new PIXI.Point(4, 1), new PIXI.Point(124, 27), new PIXI.Point(163, 72), new PIXI.Point(213, 84), new PIXI.Point(169, 1), new PIXI.Point(121, 1), new PIXI.Point(261, 186)];
+                new PIXI.Point(0, 0), new PIXI.Point(378, 184), new PIXI.Point(259, 159), new PIXI.Point(247, 322), new PIXI.Point(310, 298), new PIXI.Point(294, 270), new PIXI.Point(445, 352), new PIXI.Point(400, 336), new PIXI.Point(405, 315), new PIXI.Point(366, 292), new PIXI.Point(385, 288), new PIXI.Point(406, 271), new PIXI.Point(430, 309), new PIXI.Point(444, 261), new PIXI.Point(442, 252), new PIXI.Point(442, 256), new PIXI.Point(0, 0), new PIXI.Point(396, 141), new PIXI.Point(436, 156), new PIXI.Point(427, 208), new PIXI.Point(411, 162), new PIXI.Point(408, 244), new PIXI.Point(364, 255), new PIXI.Point(355, 276), new PIXI.Point(354, 214), new PIXI.Point(336, 159), new PIXI.Point(343, 156), new PIXI.Point(244, 105), new PIXI.Point(198, 148), new PIXI.Point(168, 165), new PIXI.Point(217, 163), new PIXI.Point(247, 213), new PIXI.Point(172, 259), new PIXI.Point(0, 0), new PIXI.Point(142, 175), new PIXI.Point(70, 186), new PIXI.Point(3, 211), new PIXI.Point(49, 171), new PIXI.Point(139, 166), new PIXI.Point(157, 118), new PIXI.Point(135, 99), new PIXI.Point(0, 22), new PIXI.Point(0, 0), new PIXI.Point(124, 25), new PIXI.Point(165, 73), new PIXI.Point(211, 84), new PIXI.Point(169, 1), new PIXI.Point(121, 0), new PIXI.Point(261, 186);
+                this.txtParts = [];
+                for (var i = 0; i < 49; i++) {
+                    var n = t ? this._TAIHA_ : this._CHUHA_,
+                        r = n[i],
+                        a = o.BATTLE_CUTIN_DAMAGE.getTexture(r),
+                        _ = new PIXI.Sprite(a);
+                    _.x = e[i].x, _.y = e[i].y;
+                    var l = new s(_);
+                    this.txtParts.push(l), this.addChild(_)
                 }
-                if (null == i ? this._endTask() : (this._banner.moveFront(), this._createGuns(), this._banner.addChild(this._gun1), this._banner.addChild(this._gun2), this._gun1.activate(), this._gun2.activate(), this._planeExplosion(), createjs.Tween.get(null).wait(e).call(function () {
-                        i.start(function () {
-                            t._endTask()
-                        })
-                    })), Math.floor(this._damage) <= 0 && (4 == this._type || 6 == this._type)) {
-                    var s = this._banner.getGlobalPos(!1);
-                    this._scene.view.bannerInfoLayer.showDanmaku(s, e)
-                } else if (5 == this._type || 6 == this._type) {
-                    var s = this._banner.getGlobalPos(!1);
-                    this._scene.view.bannerInfoLayer.showSanshiki(s, e)
-                }
-            }, e.prototype._planeExplosion = function () {
-                var t = this._scene,
-                    e = this._type,
-                    i = this._plane;
-                new p.TaskAirWarAntiAircraftExplosion(t, e, i).start()
-            }, e.prototype._endTask = function () {
-                null != this._gun1 && (null != this._gun1.parent && this._gun1.parent.removeChild(this._gun1), this._gun1.deactivate()), null != this._gun2 && (null != this._gun2.parent && this._gun2.parent.removeChild(this._gun2), this._gun2.deactivate()), this._scene = null, this._ship = null, this._type = null, this._banner.moveDefault(), this._banner = null, this._gun1 = null, this._gun2 = null, t.prototype._endTask.call(this)
-            }, e.prototype._createGuns = function () {
-                this._gun1 = new f, this._gun1.position.set(26, 20), this._gun1.rotation = (45 * -Math.random() - 30) / 180 * Math.PI, this._gun2 = new f, this._gun2.position.set(35, 30), this._gun2.rotation = (45 * -Math.random() - 30) / 180 * Math.PI
+            }, e.prototype.Dispose = function () {
+                this.removeChildren(0, this.children.length);
+                for (var t = 0; t < this.txtParts.length; t++) this.txtParts[t].Dispose(), this.txtParts[t] = null;
+                this.txtParts = null, this.tween.setPaused(!0), this.tween.removeAllEventListeners("change"), this.tween = null
+            }, e.prototype.Play = function (t) {
+                var e = this;
+                this.callBack = t;
+                var i = {
+                    time: 0
+                };
+                this.tween = createjs.Tween.get(i, {
+                    onChange: this.run
+                }).to({
+                    time: 1
+                }, 2300).call(function () {
+                    null != e.callBack && e.callBack()
+                })
             }, e
-        }(s.TaskBase);
-    e.TaskAirWarAntiAircraft = d;
-    var f = function (t) {
-        function e() {
-            var e = t.call(this) || this,
-                i = a.BATTLE_MAIN.getTexture(122);
-            return e._content = new PIXI.Sprite(i), e._content.anchor.set(0, .5), e.addChild(e._content), e
+        }(PIXI.Container);
+    e.BreakText = r;
+    var s = function () {
+        function t(t) {
+            this.sprite = t, this.sprite.anchor.set(.5, .5), this.sprite.position.set(this.sprite.position.x + .5 * this.sprite.width, this.sprite.position.y + .5 * this.sprite.height), this.fromPos = new PIXI.Point(this.sprite.x, this.sprite.y), this.toRot = (720 * Math.random() - 360) * Math.PI / 180, this.toX = 2400 * Math.random() - 1200, this.ctrlY = this.sprite.y - 1400 * Math.random()
         }
-        return n(e, t), e.prototype.activate = function () {
-            var t = this;
-            null == this._t && (this._t = createjs.Tween.get(this._content, {
-                loop: !0
-            }).call(function () {
-                t._content.visible = !0, t._content.position.set(0, 0)
-            }).wait(33).call(function () {
-                t._content.position.set(30, 0)
-            }).wait(33).call(function () {
-                t._content.visible = !1
-            }).wait(33))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+        return t.prototype.Dispose = function () {
+            this.sprite = null, this.fromPos = null, this.toRot = null, this.toX = null, this.ctrlY = null
+        }, t.prototype.Update = function (t) {
+            this.sprite.rotation = 0 + this.toRot * t, this.sprite.x = this.fromPos.x + this.toX * t, this.sprite.y = this.setBezierPos(t, this.fromPos.y, 1050, this.ctrlY)
+        }, t.prototype.setBezierPos = function (t, e, i, n) {
+            return (1 - t) * (1 - t) * e + 2 * (1 - t) * t * n + t * t * i
+        }, t
+    }();
+    e.Parts = s
 }

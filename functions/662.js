@@ -5,12 +5,8 @@ const function662 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            try {
-                return PIXI.Texture.fromFrame("album_slot3_id_" + t)
-            } catch (t) {
-                return PIXI.Texture.EMPTY
-            }
+            return PIXI.Texture.fromFrame("repair_main_" + t)
         }
-        t.getTextureFromMstID = e
-    }(e.ALBUM_SLOT3 || (e.ALBUM_SLOT3 = {}))
+        t.getTexture = e
+    }(e.REPAIR_MAIN || (e.REPAIR_MAIN = {}))
 }

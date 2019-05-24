@@ -19,103 +19,86 @@ const function1455 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(6),
-        s = i(16),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(12),
+        r = i(433),
+        s = i(1456),
+        a = i(1457),
+        _ = i(16),
+        l = i(1458),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._wave1 = new o.Sprite, i._wave1.anchor.set(.5), i._wave1.scale.set(0), i._wave2 = new o.Sprite, i._wave2.anchor.set(.5), i._wave2.scale.set(0), i._bg = new o.Sprite, i._bg.anchor.set(.5), i._bg.scale.set(0), i._points = new PIXI.Sprite, i._longRange = new PIXI.Container, i._longRange.position.set(-100, -85), i._touch_plane = new l.TouchPlane(e), i.addChild(i._wave1), i.addChild(i._wave2), i.addChild(i._bg), i.addChild(i._points), i.addChild(i._longRange), i.addChild(i._touch_plane), i
             }
-            return n(e, t), e.prototype.showCenter = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2,
-                    s = o.default.height / 2;
-                i.position.set(n, s), i.bg.scale.y = 0, i.text.x += 150, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(300).to({
-                    x: 90,
+            return n(e, t), Object.defineProperty(e.prototype, "touch_plane", {
+                get: function () {
+                    return this._touch_plane
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._wave1.texture = _.BATTLE_MAIN.getTexture(84), this._wave2.texture = _.BATTLE_MAIN.getTexture(84), this._bg.texture = _.BATTLE_MAIN.getTexture(83)
+            }, e.prototype.show = function (t, e, i, n, o) {
+                null != this._lader_tweens && (this._lader_tweens.setPaused(!0), this._lader_tweens.removeAllEventListeners(), this._lader_tweens = null, this._longRange.removeChildren()), 0 == e ? this._show(t, i, o) : this._showCombined(t, e, i, n, o)
+            }, e.prototype.wave = function () {
+                var t = this;
+                null == this._wave_tweens && 0 != this._bg.scale.x && (this._wave_tweens = new Array(2), this._wave_tweens[0] = createjs.Tween.get(this._wave1).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 800).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 200).call(function () {
+                    t._wave1.scale.set(0), t._wave1.alpha = 1
+                }), this._wave_tweens[1] = createjs.Tween.get(this._wave2).wait(400).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 800).to({
+                    scaleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 200).call(function () {
+                    t._wave2.scale.set(0), t._wave2.alpha = 1, t._wave_tweens = null
+                }))
+            }, e.prototype._show = function (t, e, i) {
+                var n = this,
+                    o = createjs.Tween.get(this._bg);
+                o.to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 800), i && o.call(function () {
+                    n.showLongRangeRader()
+                }), e <= 0 || o.call(function () {
+                    var i = new r.FormationPoints(n._friend);
+                    i.scale.set(.65), i.initialize(t, e), n._points.addChild(i), 1 == n._friend && (i.rotation = Math.PI), i.show()
+                })
+            }, e.prototype._showCombined = function (t, e, i, n, o) {
+                var r = this,
+                    _ = createjs.Tween.get(this._bg);
+                _.to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 800), o && _.call(function () {
+                    r.showLongRangeRader()
+                }), i <= 0 || _.call(function () {
+                    var o = new s.FormationPointsCombinedMain(r._friend);
+                    o.initialize(t, i, e), r._points.addChild(o);
+                    var _ = new a.FormationPointsCombinedSub(r._friend);
+                    _.initialize(t, n), r._points.addChild(_), 0 == r._friend && (o.rotation = Math.PI, _.rotation = Math.PI), o.show(), _.show()
+                })
+            }, e.prototype.showLongRangeRader = function () {
+                var t = new o.Sprite;
+                t.texture = _.BATTLE_MAIN.getTexture(81);
+                var e = new o.Sprite;
+                e.texture = _.BATTLE_MAIN.getTexture(82), e.alpha = 0, this._longRange.addChild(e, t), this._longRange.alpha = 0, createjs.Tween.get(this._longRange).to({
                     alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: -150,
+                }, 800), this._lader_tweens = createjs.Tween.get(e), this._lader_tweens.loop = !0, this._lader_tweens.to({
+                    alpha: 1
+                }, 500).to({
                     alpha: 0
                 }, 500)
-            }, e.prototype.showTop = function (t) {
-                var e = this,
-                    i = new _(t),
-                    n = o.default.width / 2;
-                i.position.set(n, 117), i.bg.scale.y = 0, i.text.x = -n + i.text.width / 2 - 195, i.text.alpha = 0, this.addChild(i), r.SE.play("117"), createjs.Tween.get(i.bg.scale).to({
-                    y: 1
-                }, 300).wait(1450).to({
-                    y: 0
-                }, 300).call(function () {
-                    e.removeChild(i), e.emit("complete")
-                }), createjs.Tween.get(i.text).wait(250).to({
-                    alpha: 1
-                }, 100).to({
-                    x: -n + i.text.width / 2
-                }, 200).to({
-                    x: -n + i.text.width / 2 + 90
-                }, 750).call(function () {
-                    e.emit("showed")
-                }).to({
-                    x: 10,
-                    alpha: 0
-                }, 350), createjs.Tween.get(i.subText).wait(750).call(function () {
-                    i.subText.position.set(0, 110), i.subText.visible = !0
-                }).wait(700).to({
-                    x: -n,
-                    alpha: 0
-                }, 300)
             }, e
         }(PIXI.Container);
-    e.LayerInfo = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n, o, r = t.call(this) || this;
-            i = 4 == e || 3 == e ? PIXI.Texture.fromFrame("battle_telop_mes_bg_e") : PIXI.Texture.fromFrame("battle_telop_mes_bg_f"), n = r._getTextTextureNo(e), o = 1 == e || 2 == e ? s.BATTLE_MAIN.getTexture(64) : 4 == e || 3 == e ? s.BATTLE_MAIN.getTexture(65) : PIXI.Texture.EMPTY, r._bg = new PIXI.Container;
-            var a = new PIXI.Sprite(i);
-            return a.x = -Math.round(a.width / 2), a.y = -Math.round(a.height / 2), r._bg.addChild(a), r._text = new PIXI.Sprite(n), r._text.anchor.set(.5), r._subText = new PIXI.Sprite(o), r._subText.anchor.set(.5), r._subText.visible = !1, r.addChild(r._bg), r.addChild(r._text), r.addChild(r._subText), r
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "subText", {
-            get: function () {
-                return this._subText
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype._getTextTextureNo = function (t) {
-            var e = -1;
-            if (0 == t) e = 68;
-            else if (1 == t) e = 72;
-            else if (2 == t) e = 73;
-            else if (4 == t) e = 75;
-            else if (3 == t) e = 74;
-            else if (5 == t) e = 66;
-            else {
-                if (6 != t) return PIXI.Texture.EMPTY;
-                e = 67
-            }
-            return s.BATTLE_MAIN.getTexture(e)
-        }, e
-    }(PIXI.Container)
+    e.Rader = u
 }

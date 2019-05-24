@@ -1,67 +1,61 @@
 const function513 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
+    var n = i(7),
+        o = i(262),
         r = function () {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "mst_id", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "state", {
+            }), Object.defineProperty(t.prototype, "area_id", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_state", -1)
+                    return n.ObjUtil.getNumber(this._o, "api_maparea_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "shipMemID", {
+            }), Object.defineProperty(t.prototype, "map_no", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_ship_id")
+                    return n.ObjUtil.getNumber(this._o, "api_no")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "completeTime", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_complete_time")
+                    return n.ObjUtil.getString(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t
+            }), Object.defineProperty(t.prototype, "operation_name", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_opetext")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "operation_detail", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_infotext")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "item_ids", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_item")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getAllowedDeckType = function () {
+                var t = new o.AllowedDeckTypeModel,
+                    e = n.ObjUtil.getNumArray(this._o, "api_sally_flag");
+                return t.init(e), t
+            }, t
         }();
-    e.NDockModel = r;
-    var s = function (t) {
-        function e(e) {
-            return t.call(this, e) || this
-        }
-        return n(e, t), e.prototype.__updateState__ = function (t) {
-            this._o.api_state = t
-        }, e.prototype.__updateShipId__ = function (t) {
-            this._o.api_ship_id = t
-        }, e.prototype.__updateCompleteTime__ = function (t) {
-            this._o.api_complete_time = t
-        }, e
-    }(r);
-    e.NDockModelEdit = s
+    e.MapMstModel = r
 }

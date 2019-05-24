@@ -21,7 +21,7 @@ const function371 = function (t, e, i) {
     });
     var o = i(42),
         r = i(231),
-        s = i(997),
+        s = i(1e3),
         a = function (t) {
             function e(e, i, n, o, r) {
                 return t.call(this, e, i, n, o, r) || this
@@ -31,19 +31,19 @@ const function371 = function (t, e, i) {
             }, e.prototype._getNoneTexture = function () {
                 switch (this._type) {
                     case 2:
-                        return o.SALLY_EVENT.getTexture(29);
+                        return o.SALLY_EVENT.getTexture(32);
                     case 3:
-                        return o.SALLY_EVENT.getTexture(30)
+                        return o.SALLY_EVENT.getTexture(33)
                 }
                 return PIXI.Texture.EMPTY
             }, e.prototype._getFocusTexture = function () {
                 switch (this._type) {
                     case 1:
-                        return o.SALLY_EVENT.getTexture(28);
+                        return o.SALLY_EVENT.getTexture(31);
                     case 2:
-                        return o.SALLY_EVENT.getTexture(26);
+                        return o.SALLY_EVENT.getTexture(29);
                     case 3:
-                        return o.SALLY_EVENT.getTexture(27)
+                        return o.SALLY_EVENT.getTexture(30)
                 }
                 return PIXI.Texture.EMPTY
             }, e.prototype._createLock = function () {

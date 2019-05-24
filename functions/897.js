@@ -19,132 +19,146 @@ const function897 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o, r = i(5),
-        s = i(0),
+    var o = i(0),
+        r = i(3),
+        s = i(115),
         a = i(1),
-        _ = i(50),
-        l = i(8),
-        u = i(115),
-        c = i(4),
-        h = i(21),
-        p = i(35),
-        d = i(88),
-        f = i(340),
-        y = i(342);
-    ! function (t) {
-        t[t.CANCEL = 0] = "CANCEL", t[t.DEVELOP = 1] = "DEVELOP", t[t.GOTO_STORE = 2] = "GOTO_STORE"
-    }(o = e.Result || (e.Result = {}));
-    var m = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i.animation = {
-                progress: 0
-            }, i._onChangeValue = function () {
-                var t = i.fuel,
-                    e = i.ammo,
-                    n = i.steel,
-                    o = i.bauxite,
-                    r = i.devKit,
-                    s = d.Util.DevelopValidation(t, e, n, o, r);
-                i.update(s)
-            }, i._onClickShop = function () {
-                i.onComplete(o.GOTO_STORE)
-            }, i._onClickBuild = function () {
-                i.onComplete(o.DEVELOP)
-            }, i._onClickBackground = function () {
-                i.onComplete(o.CANCEL)
-            }, i.mainView = e;
-            i.configureMaterialView_fuel = new f.MaterialAmountView(31, 10, 300), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 10, 300), i.configureMaterialView_steel = new f.MaterialAmountView(33, 10, 300), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 10, 300), i.btn_kaihatsu = new u.SimpleButton(p.ARSENAL_MAIN.getTexture(25), p.ARSENAL_MAIN.getTexture(27));
-            var n = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(26)),
-                s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12)),
-                m = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(139)),
-                v = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(156)),
-                g = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(74)),
-                b = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(73));
-            i.textDevKitBefore = new c.TextBox(24, 5523516), i.textDevKitAfter = new c.TextBox(24, 12467003), i.shopButton = new y.ShopButton, i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kaihatsu.on(a.EventType.CLICK, i._onClickBuild), s.interactive = !0, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, n.position.set(532, 486), i.btn_kaihatsu.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), g.position.set(394, 441), b.position.set(594, 442), m.position.set(60, 426), v.position.set(424, 442), i.shopButton.position.set(473, 496), i.addChild(s, i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, n, v, g, b, i.textDevKitBefore, i.textDevKitAfter, i.btn_kaihatsu, i.shopButton), i.shopButton.play();
-            var w = new PIXI.Sprite(h.COMMON_MAIN.getTexture(64));
-            w.position.set(0, -37);
-            var x = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(7));
-            x.anchor.set(0, .5), x.position.set(22, Math.floor(w.height / 2 - 4)), w.addChild(x), i.addChild(w);
-            return i.dialogBackground = new l.AreaBox(_.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = r.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.position.set(1200, 139), i.dialogBackground.on(a.EventType.CLICK, i._onClickBackground), i
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "fuel", {
-            get: function () {
-                return this.configureMaterialView_fuel.value
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "ammo", {
-            get: function () {
-                return this.configureMaterialView_ammo.value
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "steel", {
-            get: function () {
-                return this.configureMaterialView_steel.value
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "bauxite", {
-            get: function () {
-                return this.configureMaterialView_bauxite.value
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "devKit", {
-            get: function () {
-                return 1
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.dialogBackground.off(a.EventType.CLICK, this._onClickBackground), this.configureMaterialView_fuel.dispose(), this.configureMaterialView_ammo.dispose(), this.configureMaterialView_steel.dispose(), this.configureMaterialView_bauxite.dispose(), this.btn_kaihatsu.dispose(), this.shopButton.dispose(), this.textDevKitBefore.destroy(), this.textDevKitAfter.destroy(), this.configureMaterialView_fuel = null, this.configureMaterialView_ammo = null, this.configureMaterialView_steel = null, this.configureMaterialView_bauxite = null, this.btn_kaihatsu = null, this.textDevKitBefore = null, this.textDevKitAfter = null, this.onChangeValue = null, this.shopButton = null, this.mainView = null, this.dialogBackground = null, this.animation = null
-        }, e.prototype.initialize = function (t, e, i, n, o) {
-            this.configureMaterialView_fuel.setAvail(t), this.configureMaterialView_ammo.setAvail(e), this.configureMaterialView_steel.setAvail(i), this.configureMaterialView_bauxite.setAvail(n), this.textDevKitBefore.text = o.toString(), this.textDevKitAfter.style.fill = 12467003, this.textDevKitAfter.text = "0", 0 <= o - 1 && (this.textDevKitAfter.style.fill = 5523516, this.textDevKitAfter.text = (o - 1).toString())
-        }, e.prototype.play = function (t, e, i, n) {
-            var o = s.default.model.useItem.get(31).count,
-                r = s.default.model.useItem.get(32).count,
-                a = s.default.model.useItem.get(33).count,
-                _ = s.default.model.useItem.get(34).count,
-                l = s.default.model.useItem.get(3).count,
-                u = d.Util.DevelopValidation(t, e, i, n, 1);
-            this.initialize(o, r, a, _, l), this.config(t, e, i, n, 1), this.update(u), this.onChangeValue = this._onChangeValue, s.default.view.clickGuard = !0, this.show(function () {
-                s.default.view.clickGuard = !1
-            })
-        }, e.prototype.show = function (t) {
-            var e = this;
-            this.animation.progress = 0;
-            var i = createjs.Tween.get(this.animation),
-                n = function () {
-                    e.x = 1200 - 788 * e.animation.progress, e.dialogBackground.alpha = e.animation.progress
+        _ = i(224),
+        l = i(898),
+        u = i(80),
+        c = i(899),
+        h = i(343),
+        p = i(900),
+        d = i(901),
+        f = i(345),
+        y = i(903),
+        m = i(908),
+        v = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.itemMemory = {
+                    ammo: 10,
+                    fuel: 10,
+                    steel: 10,
+                    bauxite: 10
+                }, e.shipShipPageIndex = 0, e.shipSortKeyType = f.ArsenalSceneMemory.shipSortKeyType, e._hasLimitOver = !1, e._onMouseOverDevelop = function () {
+                    e.alertDevelopPopup.visible = e._hasLimitOver
+                }, e._onMouseOutDevelop = function () {
+                    e.alertDevelopPopup.visible = !1
+                }, e._onClickMenuDevelop = function () {
+                    if (0 == e._hasLimitOver) {
+                        if (e.focusDevelop(), e._materialAmountContainer) return;
+                        e._materialAmountContainer = new c.MaterialAmountContainerSlot(e.parent), e._materialAmountContainer.onComplete = e._onCompletePhaseItemConfigureMaterial, e._materialAmountContainer.play(e.itemMemory.fuel, e.itemMemory.ammo, e.itemMemory.steel, e.itemMemory.bauxite)
+                    }
+                }, e._onCompletePhaseItemConfigureMaterial = function (t) {
+                    switch (t) {
+                        case c.Result.CANCEL:
+                            o.default.view.clickGuard = !0, e._materialAmountContainer.hide(function () {
+                                e.focusBuild(), e._materialAmountContainer.dispose(), e._materialAmountContainer = null, o.default.view.clickGuard = !1, _.ArsenalUtil.playVoiceOnBuildComplete()
+                            });
+                            break;
+                        case c.Result.DEVELOP:
+                            var i = e._materialAmountContainer.fuel,
+                                n = e._materialAmountContainer.ammo,
+                                r = e._materialAmountContainer.steel,
+                                s = e._materialAmountContainer.bauxite;
+                            e.itemMemory.fuel = i, e.itemMemory.ammo = n, e.itemMemory.steel = r, e.itemMemory.bauxite = s;
+                            var a = new l.CreateItemAPI(i, n, r, s);
+                            o.default.view.clickGuard = !0, a.start(function () {
+                                var t = 1 == a.api_create_flag,
+                                    i = a.api_slotitem_mstid;
+                                e.developAnimation(t, i), o.default.view.clickGuard = !1
+                            }), e._materialAmountContainer.dispose(), e._materialAmountContainer = null, e.focusBuild();
+                            break;
+                        case c.Result.GOTO_STORE:
+                            o.default.scene.change(24, new u.ItemSceneModel)
+                    }
+                }, e._onClickMenuShipDisassembly = function () {
+                    e.focusShipDisassembly(), o.default.view.clickGuard = !0, e.shipDisassembly && (e.shipDisassembly.dispose(), e.shipDisassembly = null), e.shipDisassembly = new y.ShipDisassemblyContainer(e.parent), e.shipDisassembly.onComplete = function () {
+                        e._onCompletePhaseShipDisassembly()
+                    }, e.shipDisassembly.start(e.shipSortKeyType, 0)
+                }, e._onClickMenuSlotDisassembly = function () {
+                    e.focusSlotDisassembly(), e.slotDisassembly && (e.slotDisassembly.dispose(), e.slotDisassembly = null), e.slotDisassembly = new m.SlotDisassemblyContainer(e.parent), e.slotDisassembly.onComplete = function () {
+                        e._onCompleteSlotDisassembly()
+                    }, e.slotDisassembly.start(0, 0)
                 };
-            n(), i.call(function () {
-                i.addEventListener("change", n)
-            }).to({
-                progress: 1
-            }, 200).call(function () {
-                i.removeAllEventListeners("change"), createjs.Tween.removeTweens(i.target), e.animation.progress = 1, e.dialogBackground.width = 444, n(), t()
-            }), i.play(null)
-        }, e.prototype.hide = function (t) {
-            var e = this;
-            this.animation.progress = 0, this.dialogBackground.width = r.default.width;
-            var i = createjs.Tween.get(this.animation),
-                n = function () {
-                    e.x = 1200 - 788 * (1 - e.animation.progress), e.dialogBackground.alpha = 1 - e.animation.progress
-                };
-            n(), i.call(function () {
-                i.addEventListener("change", n)
-            }).to({
-                progress: 1
-            }, 200).call(function () {
-                i.removeAllEventListeners("change"), createjs.Tween.removeTweens(i.target), e.animation.progress = 1, n(), t()
-            }), i.play(null)
-        }, e.prototype.config = function (t, e, i, n, o) {
-            this.configureMaterialView_fuel.updateValue(t), this.configureMaterialView_ammo.updateValue(e), this.configureMaterialView_steel.updateValue(i), this.configureMaterialView_bauxite.updateValue(n)
-        }, e.prototype.update = function (t) {
-            this.btn_kaihatsu.visible = !!t
-        }, e
-    }(PIXI.Container);
-    e.MaterialAmountContainerSlot = m
+                var i = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(95));
+                e.iconBuild = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(96));
+                var n = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(90));
+                e.buttonSlotDisassembly = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(89), r.ARSENAL_MAIN.getTexture(90));
+                var h = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(92));
+                e.buttonDevelop = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(91), r.ARSENAL_MAIN.getTexture(92));
+                var p = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(94));
+                e.buttonShipDisassembly = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(93), r.ARSENAL_MAIN.getTexture(94)), e.alertDevelopPopup = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(70));
+                return e.buttonDevelop.on(a.EventType.CLICK, e._onClickMenuDevelop), e.buttonDevelop.onMouseOver = e._onMouseOverDevelop, e.buttonDevelop.onMouseOut = e._onMouseOutDevelop, e.buttonSlotDisassembly.on(a.EventType.CLICK, e._onClickMenuSlotDisassembly), e.buttonShipDisassembly.on(a.EventType.CLICK, e._onClickMenuShipDisassembly), e.iconBuild.anchor.set(.5, 0), i.anchor.set(.5, 0), n.anchor.set(.5, 0), e.buttonSlotDisassembly.anchor.set(.5, 0), h.anchor.set(.5, 0), e.buttonDevelop.anchor.set(.5, 0), p.anchor.set(.5, 0), e.buttonShipDisassembly.anchor.set(.5, 0), e.iconBuild.position.set(342, 201), i.position.set(342, 201), p.position.set(342, 321), e.buttonShipDisassembly.position.set(342, 321), h.position.set(342, 435), e.buttonDevelop.position.set(342, 435), e.alertDevelopPopup.position.set(462, 435), n.position.set(342, 555), e.buttonSlotDisassembly.position.set(342, 555), e.alertDevelopPopup.visible = !1, e.addChild(i, p, h, n, e.iconBuild, e.buttonShipDisassembly, e.buttonDevelop, e.buttonSlotDisassembly, e.alertDevelopPopup), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "hasLimitOver", {
+                set: function (t) {
+                    this._hasLimitOver = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.buttonSlotDisassembly.dispose(), this.buttonDevelop.dispose(), this.buttonShipDisassembly.dispose(), this.shipDisassembly && this.shipDisassembly.dispose(), this.slotDisassembly && this.slotDisassembly.dispose(), this.onUpdateCondition = null, this.shipShipPageIndex = null, this.shipSortKeyType = null, this.iconBuild = null, this.buttonSlotDisassembly = null, this.buttonDevelop = null, this.buttonShipDisassembly = null, this.alertDevelopPopup = null, this.itemMemory = null, this._hasLimitOver = null, this.shipDisassembly = null, this.slotDisassembly = null, this._materialAmountContainer && (this._materialAmountContainer.dispose(), this._materialAmountContainer = null), this.removeChildren()
+            }, e.prototype.focusBuild = function () {
+                this.iconBuild.visible = !0, this.buttonShipDisassembly.visible = !0, this.buttonDevelop.visible = !0, this.buttonSlotDisassembly.visible = !0
+            }, e.prototype.focusShipDisassembly = function () {
+                this.iconBuild.visible = !1, this.buttonShipDisassembly.visible = !1, this.buttonDevelop.visible = !0, this.buttonSlotDisassembly.visible = !0
+            }, e.prototype.focusDevelop = function () {
+                this.iconBuild.visible = !1, this.buttonShipDisassembly.visible = !0, this.buttonDevelop.visible = !1, this.buttonSlotDisassembly.visible = !0
+            }, e.prototype.focusSlotDisassembly = function () {
+                this.iconBuild.visible = !1, this.buttonShipDisassembly.visible = !0, this.buttonDevelop.visible = !0, this.buttonSlotDisassembly.visible = !1
+            }, e.prototype.developAnimation = function (t, e) {
+                var i = this,
+                    n = new h.ReceiveAnimation(393);
+                o.default.view.overLayer.addChild(n), n.preload(function () {
+                    if (1 == t) {
+                        var r = o.default.model.slot.getMst(e),
+                            s = "",
+                            a = o.default.model.slot.getEquipTypeById(r.equipType);
+                        s = a.needsDisplayName() ? "\u300c" + a.name + "\u3000" + r.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01" : "\u300c" + r.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01";
+                        var l = new p.RewardAnimationSlot;
+                        l.preload(e, s, r.rarity, function () {
+                            n.play(function () {
+                                _.ArsenalUtil.playFlagshipVoice(26), n.dispose(), o.default.view.overLayer.removeChild(n), o.default.view.overLayer.addChild(l), l.play(function () {
+                                    o.default.view.portMain.updateInfo();
+                                    for (var t = _.ArsenalUtil.developLimit(), e = o.default.model.kdock.getAll(), n = 0; n < e.length; n++) {
+                                        var r = e[n];
+                                        i.onUpdateCondition(r.id, t.forShip, t.forSlot)
+                                    }
+                                }, function () {
+                                    l.dispose(), o.default.view.overLayer.removeChild(l), _.ArsenalUtil.playVoiceOnBuildComplete()
+                                })
+                            })
+                        })
+                    } else n.play(function () {
+                        n.dispose(), o.default.view.overLayer.removeChild(n);
+                        var t = new d.RewardAnimationSlotFailed;
+                        o.default.view.overLayer.addChild(t), t.play(function () {
+                            o.default.view.portMain.updateInfo(), t.dispose(), o.default.view.overLayer.removeChild(t), _.ArsenalUtil.playVoiceOnBuildComplete()
+                        })
+                    })
+                })
+            }, e.prototype._onCompletePhaseShipDisassembly = function () {
+                var t = this;
+                this.shipSortKeyType = this.shipDisassembly.useShipSortKeyType, this.shipShipPageIndex = this.shipDisassembly.pageIndex, o.default.view.clickGuard = !0, this.shipDisassembly.hide(function () {
+                    t.focusBuild();
+                    for (var e = _.ArsenalUtil.developLimit(), i = o.default.model.kdock.getAll(), n = 0; n < i.length; n++) {
+                        var r = i[n];
+                        t.onUpdateCondition(r.id, e.forShip, e.forSlot)
+                    }
+                    o.default.view.clickGuard = !1, _.ArsenalUtil.playVoiceOnBuildComplete(), t.shipDisassembly.dispose(), t.shipDisassembly = null
+                })
+            }, e.prototype._onCompleteSlotDisassembly = function () {
+                var t = this;
+                o.default.view.clickGuard = !0, this.slotDisassembly.hide(function () {
+                    for (var e = _.ArsenalUtil.developLimit(), i = o.default.model.kdock.getAll(), n = 0; n < i.length; n++) {
+                        var r = i[n];
+                        t.onUpdateCondition(r.id, e.forShip, e.forSlot)
+                    }
+                    o.default.view.clickGuard = !1, t.focusBuild(), _.ArsenalUtil.playVoiceOnBuildComplete(), t.slotDisassembly.dispose(), t.slotDisassembly = null
+                })
+            }, e
+        }(PIXI.Container);
+    e.MenuLayer = v
 }

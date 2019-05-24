@@ -19,55 +19,45 @@ const function1283 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1284),
-        r = i(1285),
-        s = i(1286),
-        a = i(1),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onMouseOver = function () {
-                    null == n._move_tween && 1 != n._title.complete && (0 == n.x ? n._move_tween = createjs.Tween.get(n).to({
-                        x: 831
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }) : n._move_tween = createjs.Tween.get(n).to({
-                        x: 0
-                    }, 300, createjs.Ease.quadOut).call(function () {
-                        n._move_tween = null
-                    }))
-                }, n._title = new r.AirUnitAppointmentTitle(e), n._title.position.set(14, 60), n.addChild(n._title), n._panel = new s.AirUnitPanel, n._panel.position.set(11, 123), n.addChild(n._panel), n._cancel_btn = new o.PanelCancelBtn(i), n._cancel_btn.position.set(285, 48), n.addChild(n._cancel_btn), n
+    var o = i(0),
+        r = i(38),
+        s = i(20),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "title", {
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
                 get: function () {
-                    return this._title
+                    return this._content
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "cancel_btn", {
+            }), Object.defineProperty(e.prototype, "gearBtn", {
                 get: function () {
-                    return this._cancel_btn
+                    return this._gearBtn
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                var i = null == e ? 0 : e.length;
-                this._title.initialize(i), this._cancel_btn.initialize(), this._panel.initialize(t, e)
-            }, e.prototype.activate = function () {
-                this._panel.on(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.deactivate = function () {
-                null != this._move_tween && (this._move_tween.setPaused(!0), this._move_tween = null), this._panel.off(a.EventType.MOUSEOVER, this._onMouseOver)
-            }, e.prototype.update = function (t) {
-                this._title.update(t), this._panel.update(t, !0)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._title.dispose(), this._cancel_btn.dispose(), this._panel.dispose()
+            }), e.prototype.initialize = function (t) {
+                this._bg.texture = s.MAP_COMMON.getTexture(161), this._content.initialize(t), this._gearBtn.initialize()
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelSet = _
+    e.MapEndView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (this._title.texture = s.MAP_COMMON.getTexture(180), null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = o.default.resources.getUseitem(i, 0),
+                        r = new PIXI.Sprite(n);
+                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
+                }
+        }, e
+    }(PIXI.Container);
+    e.MapEndContentView = _
 }

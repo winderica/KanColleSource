@@ -19,34 +19,49 @@ const function561 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = function (t) {
+    var o = i(48),
+        r = i(18),
+        s = i(562),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._texture = null, e._caches = {}, e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+                return e._initialized = !1, e._furniture_layer = new s.FurnitureView, e.addChild(e._furniture_layer), e._contentLayer = new PIXI.Container, e.addChild(e._contentLayer), e._fadeLayer = new r.FadeBox(1), e._fadeLayer.hide(), e._fadeLayer.visible = !1, e.addChild(e._fadeLayer), e._overLayer = new PIXI.Graphics, e.addChild(e._overLayer), e
             }
-            return n(e, t), e.prototype.load = function (t, e) {
-                var i = this,
-                    n = o.default.model.furniture.getData(t);
-                if (null == n || 2 != n.type) return void(null != e && e());
-                if (this._id = this._createID(n), 1 == this._caches.hasOwnProperty(this._id)) return this._texture = this._caches[this._id], void(null != e && e());
-                var r = this._createURL(this._id),
-                    s = new PIXI.loaders.Loader;
-                s.add(this._id, r), s.load(function () {
-                    if (i._img.texture = PIXI.Texture.EMPTY, 1 == s.resources.hasOwnProperty(i._id)) {
-                        var t = s.resources[i._id];
-                        null != t && null == t.error && null != t.texture && (i._caches[i._id] = t.texture, i._texture = t.texture)
-                    }
-                    e()
-                })
-            }, e.prototype.update = function () {
-                null != this._texture && (this._img.texture = this._texture), this._texture = null, this._img.visible = !0
-            }, e.prototype._createID = function (t) {
-                var e, i = (new Date).getHours();
-                return e = 20 <= i || i < 4 ? 4 : i < 8 ? 5 : i < 16 ? 1 : i < 18 ? 2 : 3, "window_bg_" + t.outside + "-" + e
-            }, e.prototype._createURL = function (t) {
-                return o.default.settings.path_root + "resources/furniture/outside/" + t + ".png"
+            return n(e, t), Object.defineProperty(e.prototype, "furnitureLayer", {
+                get: function () {
+                    return this._furniture_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "fadeLayer", {
+                get: function () {
+                    return this._fadeLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "overLayer", {
+                get: function () {
+                    return this._overLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.isInitialized = function () {
+                return this._initialized
+            }, e.prototype.initialize = function () {
+                1 != this._initialized && (this._initialized = !0, this.showPortUI(!0))
+            }, e.prototype.update = function (t) {
+                this._furniture_layer.visible = 0 == t || 25 == t
+            }, e.prototype.activate = function (t, e) {
+                this._furniture_layer.activate()
+            }, e.prototype.deactivate = function () {
+                this._furniture_layer.deactivate()
+            }, e.prototype.dispose = function () {}, e.prototype.showPortUI = function (t) {
+                this._overLayer.visible = !0
+            }, e.prototype.getContent = function () {
+                return this._contentLayer.children.length > 0 ? this._contentLayer.getChildAt(0) : null
+            }, e.prototype.setContent = function (t) {
+                this._contentLayer.removeChildren(), null != t && this._contentLayer.addChild(t)
             }, e
-        }(PIXI.Container);
-    e.FurnitureOutside = r
+        }(o.SceneBase);
+    e.MainView = a
 }

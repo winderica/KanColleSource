@@ -22,17 +22,20 @@ const function1390 = function (t, e, i) {
     var o = i(0),
         r = i(22),
         s = i(6),
-        a = i(1391),
-        _ = i(122),
-        l = i(41),
+        a = i(122),
+        _ = i(41),
+        l = i(1391),
         u = function (t) {
-            function e(e, i, n, r, s, a, _, l, u) {
-                var c = t.call(this, e, n, s, _, l, u) || this;
-                return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
+            function e(e, i, n, r, s, a, _, u, c) {
+                var h = t.call(this, e, i, r, _, u, c) || this;
+                return h._slot2 = o.default.model.slot.getMst(s), h._slot3 = o.default.model.slot.getMst(a), h._defender = n, h._cutin = new l.CutinSpRDJ(i, h._slot, h._slot2, h._slot3), h
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                this._cutin = new a.CutinSpSR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
-            }, e.prototype._start = function () {
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.preload(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._completePreload = function () {
                 var t, e, i = this._attacker.friend,
                     n = this._attacker.index,
                     o = this._defender.index;
@@ -42,7 +45,7 @@ const function1390 = function (t, e, i) {
                 if (this._attacker.hasSlot(129, !0)) {
                     var n = new PIXI.Point;
                     n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                    var o = new _.Picket;
+                    var o = new a.Picket;
                     o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
                         i._playCutin(t, e)
                     })
@@ -86,6 +89,6 @@ const function1390 = function (t, e, i) {
                     432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
                 }
             }, e.prototype._log = function (t) {}, e
-        }(l.PhaseAttackBase);
-    e.PhaseAttackSpSR = u
+        }(_.PhaseAttackBase);
+    e.PhaseAttackSpRDJ = u
 }

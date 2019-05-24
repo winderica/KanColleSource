@@ -19,34 +19,38 @@ const function1081 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
+    var o = i(1),
+        r = i(70),
+        s = i(37),
+        a = i(3),
+        _ = i(4),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._target)
+                }, i._cb_onClick = e;
+                var n = new PIXI.Container;
+                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new _.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
+                var o = new PIXI.Container;
+                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), i._img.scale.set(.5), o.addChild(i._img), i._ring = new r.RingMiddle, i._ring.position.set(114, 175), i._ring.visible = !1, o.addChild(i._ring), i.addChild(o), i._bg.interactive = !0, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
+            return n(e, t), e.prototype.initialize = function () {
+                this._no.texture = a.ALBUM_MAIN.getTexture(19), this._bg.texture = a.ALBUM_MAIN.getTexture(15)
             }, e.prototype.update = function (t) {
-                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
-                else {
-                    this._n100.update(Math.floor(t / 100));
-                    var e = t % 100;
-                    this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
+                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, this._ring.visible = !1, null != t) {
+                    var e = t.mst_ids[0];
+                    this._ring.initialize(), this._ring.visible = t.hasMarriage(), this._ring.deactivate(), 1 == this._ring.visible && this._ring.activate(), new s.TaskLoadShipResource("card", this._img, e, !1).start()
                 }
+            }, e.prototype.updateLabel = function (t) {
+                this._label.text = t
+            }, e.prototype.activate = function () {
+                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick), this._ring.activate())
+            }, e.prototype.deactivate = function () {
+                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick), this._ring.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._ring.dispose(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._ring = null, this._no = null, this._label = null, this._cb_onClick = null
             }, e
         }(PIXI.Container);
-    e.DetailPanelNumbers = r;
-    var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
-            else {
-                var e = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106][t];
-                this.texture = o.ALBUM_MAIN.getTexture(e)
-            }
-        }, e
-    }(PIXI.Sprite)
+    e.MainItemShip = l
 }

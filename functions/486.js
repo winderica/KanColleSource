@@ -1,133 +1,160 @@
 const function486 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(487),
-        s = function () {
-            function t(t) {
-                this.name_tmp = null, this._state_tmp = -1, this._o = t, this._squadrons = [];
-                for (var e = o.ObjUtil.getObjectArray(t, "api_plane_info"), i = 0, n = e; i < n.length; i++) {
-                    var s = n[i],
-                        a = new r.AirUnitSquadronModelEdit(s);
-                    this._squadrons.push(a)
-                }
+    var n = i(487),
+        o = i(490),
+        r = i(491),
+        s = i(494),
+        a = i(497),
+        _ = i(499),
+        l = i(501),
+        u = i(503),
+        c = i(505),
+        h = i(506),
+        p = i(508),
+        d = i(510),
+        f = i(514),
+        y = i(516),
+        m = i(518),
+        v = i(519),
+        g = i(521),
+        b = i(523),
+        w = i(525),
+        x = i(527),
+        I = i(530),
+        T = function () {
+            function t() {
+                this._const = new m.ServerConstModelEdit, this._basic = new o.BasicModelEdit, this._incentive = new c.IncentiveModelHolderEdit, this._log = new p.LogModelHolder, this._furniture = new u.FurnitureModelHolderEdit, this._furniture_graph = new l.FurnitureGraphModelHolder, this._deck = new s.DeckModelHolder, this._shiptype = new b.ShipTypeModelHolderEdit, this._ship = new g.ShipModelHolder, this._ship_graph = new v.ShipGraphModelHolder, this._ship_upgrade = new w.ShipUpgradeModelHolderEdit, this._slot = new x.SlotitemModelHolderEdit, this._useItem = new I.UseItemModelHolderEdit, this._kdock = new h.KDockModelHolderEdit, this._ndock = new f.NDockModelHolder, this._map = new d.MapModelHolderEdit, this._airunit = new n.AirUnitModelHolderEdit, this._mst_bgm = new r.BGMMstModelHolderEdit, this._expedition = new _.ExpeditionModelHolderEdit, this._payitem = new y.PayItemModelHolderEdit, this._equip = new a.EquipModelHolder
             }
-            return Object.defineProperty(t.prototype, "area_id", {
+            return Object.defineProperty(t.prototype, "const", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_area_id")
+                    return this._const
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "id", {
+            }), Object.defineProperty(t.prototype, "basic", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_rid")
+                    return this._basic
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name_raw", {
+            }), Object.defineProperty(t.prototype, "incentive", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_name")
+                    return this._incentive
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
+            }), Object.defineProperty(t.prototype, "log", {
                 get: function () {
-                    return null != this.name_tmp ? this.name_tmp : this.name_raw
+                    return this._log
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "state_tmp", {
+            }), Object.defineProperty(t.prototype, "furniture_graph", {
                 get: function () {
-                    return this._state_tmp
-                },
-                set: function (t) {
-                    this._state_tmp = t
+                    return this._furniture_graph
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "state_raw", {
+            }), Object.defineProperty(t.prototype, "furniture", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_action_kind")
+                    return this._furniture
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "airUnitState", {
+            }), Object.defineProperty(t.prototype, "deck", {
                 get: function () {
-                    return -1 != this._state_tmp ? this._state_tmp : this.state_raw
+                    return this._deck
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "distance_base", {
+            }), Object.defineProperty(t.prototype, "shipType", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_distance");
-                    return o.ObjUtil.getNumber(t, "api_base")
+                    return this._shiptype
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "distance_bonus", {
+            }), Object.defineProperty(t.prototype, "ship", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_distance");
-                    return o.ObjUtil.getNumber(t, "api_bonus")
+                    return this._ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "distance", {
+            }), Object.defineProperty(t.prototype, "ship_graph", {
                 get: function () {
-                    return this.distance_base + this.distance_bonus
+                    return this._ship_graph
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "squadrons", {
+            }), Object.defineProperty(t.prototype, "ship_upgrade", {
                 get: function () {
-                    return this._squadrons
+                    return this._ship_upgrade
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.updateStateFromTemporaryInfo = function () {
-                return -1 != this.state_tmp && (this.state_tmp != this.state_raw && (this._o.api_action_kind = this._state_tmp, this._state_tmp = -1, !0))
-            }, t.prototype.updateNameFromTemporaryInfo = function () {
-                return null != this.name_tmp && (this.name_tmp != this.name_raw && (this._o.api_name = this.name_tmp, this.name_tmp = null, !0))
-            }, t.prototype.hasActiveSquadron = function () {
-                if (null == this._squadrons) return !1;
-                for (var t = 0, e = this._squadrons; t < e.length; t++) {
-                    var i = e[t];
-                    if (1 == i.state && !(i.mem_id <= 0 || i.count <= 0)) return !0
-                }
-                return !1
-            }, t
+            }), Object.defineProperty(t.prototype, "slot", {
+                get: function () {
+                    return this._slot
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "equip", {
+                get: function () {
+                    return this._equip
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "useItem", {
+                get: function () {
+                    return this._useItem
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ndock", {
+                get: function () {
+                    return this._ndock
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "kdock", {
+                get: function () {
+                    return this._kdock
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "airunit", {
+                get: function () {
+                    return this._airunit
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_bgm", {
+                get: function () {
+                    return this._mst_bgm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "expedition", {
+                get: function () {
+                    return this._expedition
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "payitem", {
+                get: function () {
+                    return this._payitem
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
         }();
-    e.AirUnitModel = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.updateSquadronData = function (t, e) {
-            var i = this._o.api_distance;
-            if (e.api_base >= 0 && (i.api_base = e.api_base), i.api_bonus = e.api_bonus, null != t)
-                for (var n = 0, r = t; n < r.length; n++)
-                    for (var s = r[n], a = o.ObjUtil.getNumber(s, "api_squadron_id"), _ = 0, l = this.squadrons; _ < l.length; _++) {
-                        var u = l[_];
-                        u.id == a && u.update(s)
-                    }
-        }, e
-    }(s);
-    e.AirUnitModelEdit = a
+    e.ModelManager = T
 }

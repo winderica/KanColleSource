@@ -20,153 +20,74 @@ const function901 = function (t, e, i) {
         value: !0
     });
     var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(50),
-        _ = i(28),
-        l = i(8),
-        u = i(85),
-        c = i(222),
-        h = i(37),
-        p = i(6),
-        d = i(21),
-        f = i(35),
-        y = i(345),
-        m = i(88),
-        v = i(902),
-        g = i(903),
-        b = i(905),
-        w = i(347),
-        x = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._pageIndex = 0, i.animation = {
-                    progress: 0
-                }, i._onClickShip = function (t, e) {
-                    var n = r.default.model.ship.get(t),
-                        o = m.Util.ShipDisassemblyValidation(t);
-                    if (0 == o) return !(t == i.memShipId || i.checkedMemShipIdList.length > 0) && (i.shipDisassemblyConfirm.update(n, !1, o, [t]), i.shipDisassemblyConfirm.visibleContainer(!0), i.memShipId = t, !1);
-                    var s = i.checkedMemShipIdList.indexOf(t);
-                    s < 0 ? i.checkedMemShipIdList.push(t) : i.checkedMemShipIdList.splice(s, 1), i.shipDisassemblyChoice.toggleCheckBox(e);
-                    var a = r.default.model.deck.isInDeck(t),
-                        _ = !!a && null != r.default.model.deck.get(a[0]).expedition;
-                    i.shipDisassemblyConfirm.update(n, _, o, i.checkedMemShipIdList), i.memShipId = t
-                }, i._onChangePage = function (t) {
-                    if (i._pageIndex != t) {
-                        i.memShipId = null;
-                        var e = i._getShipsInPage(i.ships, t);
-                        i.shipDisassemblyChoice.update(e), i.shipDisassemblyConfirm.visibleContainer(!1), i._pageIndex = t, i.checkedMemShipIdList = []
-                    }
-                }, i._onClickDisassembly = function (t, e) {
-                    var n = new b.DestroyShipAPI(t, e),
-                        s = i.shipDisassemblyConfirm.shipBanner;
-                    i.disassemblyAnimation = new w.DisassemblyAnimation(240, 60), i.disassemblyAnimation.position.set(s.x, s.y), r.default.view.clickGuard = !0, n.start(function () {
-                        var t = new PIXI.Graphics;
-                        t.beginFill(0, .2), t.drawRect(0, 0, o.default.width, o.default.height), t.endFill(), r.default.view.overLayer.addChild(t), s.parent.addChild(i.disassemblyAnimation);
-                        var e = function () {
-                            p.SE.play("201")
-                        };
-                        createjs.Tween.get(s).call(function () {
-                            e(), i.disassemblyAnimation.play(5)
-                        }).to({
-                            alpha: .33
-                        }, 1e3).call(e).to({
-                            alpha: .66
-                        }, 1e3).call(e).to({
-                            alpha: 1
-                        }, 1e3).call(function () {
-                            t.clear(), r.default.view.overLayer.removeChild(t), s.parent.removeChild(i.disassemblyAnimation), i.disassemblyAnimation.dispose(), i.disassemblyAnimation = null, s.alpha = 1;
-                            var e = r.default.model.ship.getAll();
-                            _.ShipUtil.sort(e, i.shipSortKeyType);
-                            var n = i._getPage(e.length),
-                                o = i._pageIndex;
-                            n <= i._pageIndex && (o = n - 1) < 0 && (o = 0);
-                            var a = i._getShipsInPage(e, o);
-                            i.pagerView.init(n), i.pagerView.changePage(o), i.ships = e, i._pageIndex = o, i.shipDisassemblyChoice.update(a), i.shipDisassemblyConfirm.visibleContainer(!1), i.checkedMemShipIdList = [], r.default.view.portMain.updateInfo(), r.default.view.clickGuard = !1
-                        }).play(null)
-                    })
-                }, i._onClickBackground = function () {
-                    i.onComplete()
-                }, i._onClickSort = function () {
-                    i.memShipId = null, i.checkedMemShipIdList = [], i.shipDisassemblyConfirm.visibleContainer(!1);
-                    var t;
-                    switch (i.shipSortKeyType) {
-                        case 0:
-                            t = 2;
-                            break;
-                        case 2:
-                            t = 3;
-                            break;
-                        case 3:
-                            t = 4;
-                            break;
-                        case 4:
-                            t = 0
-                    }
-                    _.ShipUtil.sort(i.ships, t);
-                    var e = i._getShipsInPage(i.ships, i._pageIndex);
-                    i.shipDisassemblyChoice.update(e), i.shipSortButton.update(t), y.ArsenalSceneMemory.shipSortKeyType = i.shipSortKeyType = t
-                }, i.mainView = e, i.list_tit_bg_0 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.list_tit_bg_1 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.shipSortButton = new c.ShipSortButton, i.shipSortButton.position.set(582, 7), i.shipSortButton.onClick = i._onClickSort, i.pagerView = new u.PagerView, i.pagerView.position.set(42, 529), i.pagerView.onChangePage = i._onChangePage, i.shipDisassemblyChoice = new v.ShipDisassemblyChoice, i.shipDisassemblyChoice.onClickShip = i._onClickShip, i.shipDisassemblyChoice.addChild(i.shipSortButton, i.pagerView), i.shipDisassemblyConfirm = new g.ShipDisassemblyConfirm, i.shipDisassemblyConfirm.position.set(651, -16), i.shipDisassemblyConfirm.onClickStart = i._onClickDisassembly, i.blue_txt_01 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(0)), i.blue_txt_01.anchor.set(0, .5), i.blue_txt_01.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.blue_txt_11 = new PIXI.Sprite(f.ARSENAL_MAIN.getTexture(9)), i.blue_txt_11.anchor.set(0, .5), i.blue_txt_11.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.list_tit_bg_0.position.set(0, -37), i.list_tit_bg_1.position.set(654, -37), i.list_tit_bg_0.addChild(i.blue_txt_01), i.list_tit_bg_1.addChild(i.blue_txt_11), i.addChild(i.shipDisassemblyChoice, i.shipDisassemblyConfirm, i.list_tit_bg_0, i.list_tit_bg_1), i.position.set(1200, 139);
-                return i.dialogBackground = new l.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = o.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.checkedMemShipIdList = [], i.dialogBackground.on(s.EventType.CLICK, i._onClickBackground), i
+        r = i(334),
+        s = i(19),
+        a = i(8),
+        _ = i(335),
+        l = i(38),
+        u = i(81),
+        c = i(3),
+        h = i(3),
+        p = i(3),
+        d = i(902),
+        f = i(1),
+        y = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._clickGuard = new a.AreaBox(0), e._bg_itemlost = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(0)), e._penguin = new _.FailedPenguin, e._leafDashes = new d.LeafDashes, e._obj_leaf = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(1)), e._obj_leaf.anchor.set(.5, .5), e._messageBox = new u.MessageBox(!1), e._gearBtnHome = new l.GearBtnHome, e._gearBtnHome.initialize(), e._gearBtnHome.x = 1140, e._gearBtnHome.y = 660, e._white = new a.AreaBox(1, 16777215), e._leafTween = r.LeafAnimationUtil.LeafWithDashAnimation(e._obj_leaf, e._leafDashes.dashes, new PIXI.Point(0, 60)), e._leafTween.setPaused(!0), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "useShipSortKeyType", {
-                get: function () {
-                    return this.shipSortKeyType
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "pageIndex", {
-                get: function () {
-                    return this._pageIndex
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (t, e) {
-                var i = this;
-                r.default.view.clickGuard = !0;
-                var n = r.default.model.ship.getAll();
-                _.ShipUtil.sort(n, t);
-                var o = this._getShipsInPage(n, e),
-                    s = this._getPage(n.length);
-                this.pagerView.init(s), this.shipSortButton.update(t), this.shipSortKeyType = t, this._pageIndex = e, this.pagerView.changePage(e), this.ships = n, this.shipDisassemblyChoice.update(o), this.animation.progress = 0, this.x = 1200;
-                var a = function () {
-                    i.x = 1200 - 945 * i.animation.progress, i.dialogBackground.alpha = i.animation.progress
-                };
-                createjs.Tween.removeTweens(this.animation);
-                var l = createjs.Tween.get(this.animation);
-                l.call(function () {
-                    i.position.x = 1200, l.addEventListener("change", a)
-                }).to({
-                    progress: 1
-                }, 200).call(function () {
-                    l.removeAllEventListeners("change"), createjs.Tween.removeTweens(l.target), i.animation.progress = 1, a(), i.dialogBackground.width = 288, r.default.view.clickGuard = !1
+            return n(e, t), e.prototype.play = function (t) {
+                this._cb_onComplete = t, this.addChild(this._clickGuard), this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin);
+                for (var e = 0; e < this._leafDashes.dashes.length; e++) {
+                    this._leafDashes.dashes[e].alpha = 0
+                }
+                this.addChild(this._leafDashes), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._white), this._01_whiteOut()
+            }, e.prototype._01_whiteOut = function () {
+                var t = this;
+                createjs.Tween.get(this._white).to({
+                    alpha: 0
+                }, 1e3).call(function () {
+                    t.removeChild(t._white), t._02_showFailedPenguin()
                 })
-            }, e.prototype.hide = function (t) {
-                var e = this;
-                h.TaskLoadShipResource.abortBy(this.shipDisassemblyConfirm.shipBanner), this.dialogBackground.width = o.default.width, r.default.view.clickGuard = !0, this.animation.progress = 0;
-                var i = function () {
-                    e.x = 255 + 945 * e.animation.progress, e.dialogBackground.alpha = 1 - e.animation.progress
-                };
-                createjs.Tween.removeTweens(this.animation);
-                var n = createjs.Tween.get(this.animation);
-                n.call(function () {
-                    n.addEventListener("change", i)
+            }, e.prototype._02_showFailedPenguin = function () {
+                var t, e = this,
+                    i = new s.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({
+                    alpha: 1
+                }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({
+                    alpha: 1
+                }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e._leafTween.setPosition(0, 1), e._leafTween.setPaused(!1), e._03_typeMessage()
+                })
+            }, e.prototype._03_typeMessage = function () {
+                var t = this;
+                this._messageBox.initialize("\u88c5\u5099\u306e\u958b\u767a\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u2026\u2026\u3002\n\n\u3000"), this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 500, createjs.Ease.cubicOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), c.SE.play("247"), t._messageBox.activate(function () {
+                        t._icon_m8 = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(74)), t._icon_m8.position.set(249, 640), t.addChild(t._icon_m8), t._messageBox.append("\u300e\u958b\u767a\u8cc7\u6750\u300f\u306f\u6d88\u8017\u3057\u307e\u305b\u3093\u3067\u3057\u305f\u3002"), t._messageBox.activate()
+                    }), t._04_waitClick()
+                })
+            }, e.prototype._04_waitClick = function () {
+                var t = this,
+                    e = new a.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(f.EventType.CLICK, function () {
+                    t.removeChild(e), t._05_whiteInOut()
+                })
+            }, e.prototype._05_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 250).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._penguin), t.removeChild(t._leafDashes), t.removeChild(t._obj_leaf), t.removeChild(t._icon_m8), t._messageBox.deactivate(), t.removeChild(t._messageBox), t._gearBtnHome.deactivate(), t.removeChild(t._gearBtnHome)
                 }).to({
-                    progress: 1
-                }, 200).call(function () {
-                    n.removeAllEventListeners("change"), createjs.Tween.removeTweens(n.target), e.animation.progress = 1, i(), r.default.view.clickGuard = !1, t()
-                }), n.play(null)
+                    alpha: 0
+                }, 250).call(function () {
+                    t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                })
             }, e.prototype.dispose = function () {
-                if (this.dialogBackground.off(s.EventType.CLICK, this._onClickBackground), this.removeChildren(), createjs.Tween.removeTweens(this.animation), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.list_tit_bg_0.removeChild(this.blue_txt_01), this.list_tit_bg_1.removeChild(this.blue_txt_11), this.shipDisassemblyChoice.dispose(), this.shipDisassemblyConfirm.dispose(), this.pagerView.dispose(), this.shipSortButton.dispose(), this.disassemblyAnimation && this.disassemblyAnimation.dispose(), this.ships)
-                    for (var t = 0; t < this.ships.length; t++) this.ships[t] = null;
-                this.onComplete = null, this.ships = null, this.shipSortKeyType = null, this._pageIndex = null, this.mainView = null, this.dialogBackground = null, this.shipDisassemblyChoice = null, this.shipDisassemblyConfirm = null, this.disassemblyAnimation = null, this.pagerView = null, this.shipSortButton = null, this.memShipId = null, this.checkedMemShipIdList = null, this.list_tit_bg_0 = null, this.list_tit_bg_1 = null, this.blue_txt_01 = null, this.blue_txt_11 = null, this.animation = null
-            }, e.prototype._getShipsInPage = function (t, e) {
-                var i = this.shipDisassemblyChoice.ITEM_NUM;
-                return t.slice(e * i, e * i + i)
-            }, e.prototype._getPage = function (t) {
-                var e = this.shipDisassemblyChoice.ITEM_NUM;
-                return Math.ceil(t / e)
+                this._cb_onComplete = null, this.removeChildren(), createjs.Tween.removeTweens(this._leafTween.target), this._leafTween = null, this._clickGuard = null, this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._leafDashes.dispose(), this._leafDashes = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome.dispose(), this._gearBtnHome = null, this._icon_m8 = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.ShipDisassemblyContainer = x
+    e.RewardAnimationSlotFailed = y
 }

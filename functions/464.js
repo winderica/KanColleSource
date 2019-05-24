@@ -29,7 +29,7 @@ const function464 = function (t, e, i) {
         c = i(140),
         h = i(180),
         p = i(141),
-        d = i(463),
+        d = i(465),
         f = i(182),
         y = function (t) {
             function e() {
@@ -70,23 +70,17 @@ const function464 = function (t, e, i) {
                     var r = n[i],
                         s = r.mem_id,
                         a = o.default.model.ship.get(s);
-                    if (null != a)
-                        for (var _ = a.getSlotitems(), l = 0; l < _.length; l++) {
-                            var u = _[l];
-                            if (null != u) {
-                                var c = a.getSlotitemTousai(l);
-                                u.taisen > 0 && c > 0 && t++
-                            }
-                        }
+                    null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
                 }
-                for (var h = [], l = 0; l < t; l++) {
-                    var d = new p.Plane,
-                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * l + 150 + (45 * Math.random() - 23)),
-                        y = new PIXI.Point;
-                    d.initialize(16, !0, f, y), h.push(d)
+                t = Math.min(6, t);
+                for (var _ = [], l = 0; l < t; l++) {
+                    var u = new p.Plane,
+                        c = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * l + 150 + (45 * Math.random() - 23)),
+                        h = new PIXI.Point;
+                    u.initialize(16, !0, c, h), _.push(u)
                 }
-                this._canvas.addPlanes_f(h)
+                this._canvas.addPlanes_f(_)
             }, e
         }(h.TaskAircraftFlightBase);
-    e.TaskSupportTaisen = y
+    e.TaskSupportAir = y
 }

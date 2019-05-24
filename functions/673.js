@@ -20,54 +20,27 @@ const function673 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(57),
-        s = i(15),
-        a = i(4),
-        _ = function (t) {
+        r = i(58),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickUpdate = function () {
-                    e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
-                }, e._onKeyDown = function () {
-                    var t = s.EditTextBoxUtil.text;
-                    e._mirrorText.text = t;
-                    var i = s.EditTextBoxUtil.validation(t, e.baseText);
-                    e.__updateButton__(i, e._editable)
+                e._onMouseOver = function () {
+                    e.balloon.alpha = 1
+                }, e._onMouseOut = function () {
+                    e.balloon.alpha = 0
+                }, e._onClick = function () {
+                    e.onClick()
                 };
-                var i = o.ORGANIZE_MAIN.getTexture(27),
-                    n = o.ORGANIZE_MAIN.getTexture(57),
-                    _ = o.ORGANIZE_MAIN.getTexture(58),
-                    l = o.ORGANIZE_MAIN.getTexture(59),
-                    u = new PIXI.Sprite(i);
-                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, l), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(u.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(u.width, 1), e.addChild(u, e.editButton, e.updateButton, e._mirrorText), e
+                var i = o.ORGANIZE_MAIN.getTexture(53),
+                    n = o.ORGANIZE_MAIN.getTexture(54),
+                    s = o.ORGANIZE_MAIN.getTexture(38);
+                return e.iconText = new r.SimpleButton(i, n), e.balloon = new PIXI.Sprite(s), e.balloon.alpha = 0, e.balloon.x = -28, e.balloon.y = -37, e.iconText.onMouseOver = e._onMouseOver, e.iconText.onMouseOut = e._onMouseOut, e.iconText.onClick = e._onClick, e.addChild(e.iconText, e.balloon), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return s.EditTextBoxUtil.text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.__updateButton__ = function (t, e) {
-                this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
+            return n(e, t), e.prototype.update = function (t) {
+                this.iconText.interactive = !1, t && (this.iconText.interactive = !0)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
-            }, e.prototype.reload = function (t) {
-                this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
-                var e = s.EditTextBoxUtil.validation(t, this.baseText);
-                this.__updateButton__(e, this._editable)
-            }, Object.defineProperty(e.prototype, "writable", {
-                set: function (t) {
-                    s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "editable", {
-                set: function (t) {
-                    this.editButton.visible = this._editable = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
+                this.removeChildren(), this.iconText.onMouseOver = this._onMouseOver = null, this.iconText.onMouseOut = this._onMouseOut = null, this.iconText.onClick = this._onClick = null, this.iconText.dispose(), this.iconText = null, this.balloon = null, this.onClick = null
+            }, e
         }(PIXI.Container);
-    e.EditNameArea = _
+    e.BreakDeckView = s
 }

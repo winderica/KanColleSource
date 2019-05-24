@@ -19,51 +19,22 @@ const function883 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(35),
-        r = i(1),
+    var o = i(1),
+        r = i(35),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._state = !1, e.animationParams = {
-                    progress: 0
-                }, e._onClick = function () {
-                    null != e.tween && e.tween.setPaused(!0), e.tween = null;
-                    var t = 0;
-                    switch (e._state) {
-                        case !1:
-                            e._state = !0, t = 0;
-                            break;
-                        case !0:
-                            e._state = !1, t = 1
-                    }
-                    var i = createjs.Tween.get(e.animationParams);
-                    i.to({
-                        progress: t
-                    }, 300).on("change", function () {
-                        .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
-                    }), i.play(null), e.tween = i
-                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(150)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(151)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(152)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(106, 0), e.addChild(e.background_off, e.background_on, e.toggle), e
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClickYes = function () {
+                    i._cb_onComplete(!0)
+                }, i._onClickNo = function () {
+                    i._cb_onComplete(!1)
+                }, i._cb_onComplete = e;
+                var n = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(79));
+                return n.position.set(271, 87), i.addChild(n), i._btn_yes = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(39)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(435, 505), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(35)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(615, 505), i.addChild(i._btn_no), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t) {
-                null != this.tween && this.tween.setPaused(!0), this.tween = null, this._state = !1, this.toggle.position.set(106, 0), this.background_off.interactive = this.background_off.buttonMode = !!t, this.background_on.visible = !1, this.animationParams.progress = 1
-            }, e.prototype.changeToggleState = function (t) {
-                switch (null != this.tween && this.tween.setPaused(!0), this.tween = null, this.toggle.x = 3, this.background_on.visible = !1, t) {
-                    case !0:
-                        this.toggle.x = 3, this.animationParams.progress = 0, this.background_on.visible = !0;
-                        break;
-                    case !1:
-                        this.toggle.x = 106, this.animationParams.progress = 1, this.background_on.visible = !1
-                }
-                this._state = t
-            }, e.prototype.dispose = function () {
-                null != this.tween && this.tween.setPaused(!0), this.removeChildren(), this.background_off = null, this.background_on = null, this.toggle = null, this.tween = null
+            return n(e, t), e.prototype.dispose = function () {
+                this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this._cb_onComplete = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.HighSpeedToggle = s
+    e.LargeBuildConfirm = s
 }

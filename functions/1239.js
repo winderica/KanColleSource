@@ -20,35 +20,20 @@ const function1239 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._anim = function () {
-                    var t = n._scene.view.map.ship_icon;
-                    createjs.Tween.get(t).to({
-                        alpha: 1
-                    }, 300), createjs.Tween.get(t.scale).to({
-                        x: 1,
-                        y: 1
-                    }, 300).call(function () {
-                        n._endTask()
-                    })
-                }, n._scene = e, n._model = i, n
+        r = i(14),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._initialize()
-            }, e.prototype._initialize = function () {
-                var t = this._scene.view.map.ship_icon;
-                t.alpha = 0, t.scale.set(1.7);
-                var e = this._model.deck_f.type;
-                t.initialize(e);
-                var i = this._model.sortie.now_cell_no,
-                    n = this._scene.view.map.spotLayer.getSpot(i);
-                t.position.set(n.x, n.y);
-                var o = t.direction,
-                    r = this._scene.resInfo.getShipDirection(i);
-                1 == r ? o = 1 : 2 == r && (o = 2), t.turn(o, this._anim, 0)
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("map");
+                e.add("map_common.json"), e.add("map_compass.json"), e.add("map_flagship_damage.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.AnimShipInit = r
+    e.TaskLoadResourcesMap = s
 }

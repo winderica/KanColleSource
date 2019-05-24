@@ -19,34 +19,16 @@ const function1023 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
-        s = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
+    var o = i(54),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
-                get: function () {
-                    return this._res_model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
-            }, e
-        }(o.APIBase);
-    e.ChangeMatchingAPI = s;
-    var a = function () {
-        function t() {}
-        return t.prototype.setData = function (t) {
-            this._o = t
-        }, t.prototype.isSucceed = function () {
-            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
-        }, t
-    }();
-    e.ChangeMatchingAPIResultModel = a
+            return n(e, t), e.prototype.initialize = function () {
+                this._result = new PIXI.Sprite, this._rank = new PIXI.Sprite, this._rank.position.set(66, 7), this.addChild(this._result), this.addChild(this._rank)
+            }, e.prototype.update = function (t) {
+                this.visible = !0, 6 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(25)) : 5 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(20)) : 4 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(26), this._rank.texture = o.SALLY_PRACTICE.getTexture(21)) : 3 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(22)) : 2 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(23)) : 1 == t ? (this._result.texture = o.SALLY_PRACTICE.getTexture(19), this._rank.texture = o.SALLY_PRACTICE.getTexture(24)) : this.visible = !1
+            }, e.prototype.dispose = function () {}, e
+        }(PIXI.Container);
+    e.CompRank = r
 }

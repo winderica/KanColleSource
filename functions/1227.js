@@ -19,18 +19,20 @@ const function1227 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = -1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(4),
+        r = i(138),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
             }, e
-        }(o.APIBase);
-    e.APIMapNext = r
+        }(PIXI.Container);
+    e.ShipElement = s
 }

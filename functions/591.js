@@ -19,26 +19,35 @@ const function591 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
+    var o = i(592),
+        r = i(17),
+        s = function (t) {
             function e() {
                 return t.call(this) || this
             }
             return n(e, t), e.prototype.update = function (t) {
-                if (this.clear(), t < 20) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(36)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(113));
-                    i.x = Math.floor(e.width - i.width / 2 - 3), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                } else if (t < 30) {
-                    var e = new PIXI.Sprite(o.COMMON_MISC.getTexture(35)),
-                        i = new PIXI.Sprite(o.COMMON_MISC.getTexture(112));
-                    i.x = Math.floor(e.width - i.width / 2), i.y = Math.floor(e.height / 2 - i.height / 2), e.x = 240 - e.texture.width, e.addChild(i), this.addChild(e)
-                }
+                this.texture = this._getTexture(t), this.visible = this.texture != PIXI.Texture.EMPTY
             }, e.prototype.clear = function () {
-                this.removeChildren()
-            }, e.prototype.dispose = function () {
-                this.clear()
+                this.update(-1)
+            }, e.prototype._getTexture = function (t) {
+                if (-1 === r.EVENT_AREA_ID) return PIXI.Texture.EMPTY;
+                switch (t) {
+                    case 1:
+                        return o.COMMON_EVENT.getTexture(0);
+                    case 2:
+                        return o.COMMON_EVENT.getTexture(1);
+                    case 3:
+                        return o.COMMON_EVENT.getTexture(2);
+                    case 4:
+                        return o.COMMON_EVENT.getTexture(3);
+                    case 5:
+                        return o.COMMON_EVENT.getTexture(4);
+                    case 6:
+                        return o.COMMON_EVENT.getTexture(5);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
             }, e
-        }(PIXI.Container);
-    e.BannerTired = r
+        }(PIXI.Sprite);
+    e.BannerPlate = s
 }

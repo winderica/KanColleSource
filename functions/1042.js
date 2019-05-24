@@ -19,17 +19,16 @@ const function1042 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
+    var o = i(39),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
+            return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
+                this.visible = !0, 1 == t ? this._setTexture(29) : 2 == t ? this._setTexture(28) : 3 == t ? this._setTexture(27) : 4 == t ? this._setTexture(26) : 5 == t ? this._setTexture(25) : 6 == t ? this._setTexture(30) : t > 6 ? this._setTexture(30) : this.visible = !1
+            }, e.prototype.dispose = function () {}, e.prototype._setTexture = function (t) {
+                this.texture = o.SALLY_EXPEDITION.getTexture(t)
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = s
+        }(PIXI.Sprite);
+    e.ExpeditionDifficulty = r
 }

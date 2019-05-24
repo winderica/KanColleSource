@@ -19,90 +19,54 @@ const function745 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClickDeck = function (t) {
-                    e.onClickDeck(t)
-                }, e._onClickOther = function () {
-                    e.onClickOther()
-                }, e.deck1 = new PIXI.Sprite, e.deck2 = new PIXI.Sprite, e.deck3 = new PIXI.Sprite, e.deck4 = new PIXI.Sprite, e.deckOther = new PIXI.Sprite, e.deck1.position.set(0, 0), e.deck2.position.set(45, 0), e.deck3.position.set(90, 0), e.deck4.position.set(135, 0), e.deckOther.position.set(180, 0), e.deck1.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(1)
-                }), e.deck2.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(2)
-                }), e.deck3.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(3)
-                }), e.deck4.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(4)
-                }), e.deckOther.on(s.EventType.CLICK, function () {
-                    e._onClickOther()
-                }), e.addChild(e.deck1, e.deck2, e.deck3, e.deck4, e.deckOther), o.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(r.COMMON_MISC.getTexture(183)), e.icon3rdUnit.position.set(75, -21), e.addChild(e.icon3rdUnit)), e
+    var o = i(1),
+        r = i(124),
+        s = i(8),
+        a = i(4),
+        _ = i(159),
+        l = i(328),
+        u = i(329),
+        c = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i.ITEM_WIDTH = 711, i.ITEM_HEIGHT = 42, i._onClick = function () {
+                    i.onClick(i.index, i.memShipId)
+                }, i._onMouseOut = function () {
+                    i.focus.visible = !1, i.typeAndNameContainer.cacheAsBitmap = !1, i.labelLevel.style.fill = i.textLevel.style.fill = i.textType.style.fill = i.textName.style.fill = 5523516, i.typeAndNameContainer.cacheAsBitmap = !0
+                }, i._onMouseOver = function () {
+                    i.focus.visible = !0, i.typeAndNameContainer.cacheAsBitmap = !1, i.labelLevel.style.fill = i.textLevel.style.fill = i.textType.style.fill = i.textName.style.fill = 16774898, i.typeAndNameContainer.cacheAsBitmap = !0
+                };
+                var n = Math.floor(22) + 2,
+                    c = new a.TextBox(18, 5523516),
+                    h = new a.TextBox(20, 5523516),
+                    p = new PIXI.Container,
+                    d = new a.TextBox(21, 5523516),
+                    f = new a.TextBox(21, 5523516),
+                    y = r.CreateRect.gradientLeftToRight(310, 44, .7, .9),
+                    m = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(24));
+                m.scale.x = 1.45, m.visible = !1, f.anchor.set(1, 0), f.position.set(417, Math.floor(n - f.height / 2) + 0), c.anchor.set(0, 0), c.position.set(0, Math.floor(n - c.height / 2)), h.anchor.set(0, 0), h.position.set(65, Math.floor(n - h.height / 2) + 0), p.position.set(53, 0), d.anchor.set(0, 0), d.position.set(351, Math.floor(n - d.height / 2) + 0), d.text = "Lv", p.mask = y, p.addChild(c, h, y);
+                var v = new u.SupplyCheckBox;
+                v.position.set(11, 11);
+                var g = new PIXI.Graphics;
+                g.lineStyle(1, 13945534, 1), g.moveTo(30, 45), g.lineTo(713, 44), g.endFill(), i.line = g;
+                var b = new l.MaterialViewS;
+                return b.position.set(446, 11), i.supplyCheckBox = v, i.index = e, i.materialView = b, i.clickArea = new s.AreaBox(0, 0, i.ITEM_WIDTH, i.ITEM_HEIGHT), i.clickArea.renderable = !1, i.clickArea.buttonMode = !0, i.clickArea.on(o.EventType.CLICK, i._onClick), i.clickArea.on(o.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(o.EventType.MOUSEOUT, i._onMouseOut), i.textType = c, i.textName = h, i.typeAndNameContainer = p, i.labelLevel = d, i.textLevel = f, i.maskTypeAndName = y, i.focus = m, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.deck1.off(s.EventType.CLICK), this.deck2.off(s.EventType.CLICK), this.deck3.off(s.EventType.CLICK), this.deck4.off(s.EventType.CLICK), this.deckOther.off(s.EventType.CLICK), this.onClickDeck = null, this.onClickOther = null, this.deckCount = null, this.otherShipCount = null, this.deck1 = null, this.deck2 = null, this.deck3 = null, this.deck4 = null, this.deckOther = null, this.icon3rdUnit = null
-            }, e.prototype.initDeckCount = function (t) {
-                this._updateDeckCount(t)
-            }, e.prototype.initOtherShipCount = function (t) {
-                this._updateOtherShipCount(t)
-            }, e.prototype.focusDeck = function (t) {
-                switch (this._initializeDeckTexture(this.deckCount), this._initializeOtherDeckTextre(this.otherShipCount), t) {
-                    case 1:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(74);
-                        break;
-                    case 2:
-                        this.deck2.texture = r.COMMON_MISC.getTexture(77);
-                        break;
-                    case 3:
-                        this.deck3.texture = r.COMMON_MISC.getTexture(80);
-                        break;
-                    case 4:
-                        this.deck4.texture = r.COMMON_MISC.getTexture(83)
-                }
-            }, e.prototype.focusOther = function () {
-                this._initializeDeckTexture(this.deckCount), this._initializeOtherDeckTextre(this.otherShipCount), this.deckOther.texture = r.COMMON_MISC.getTexture(85)
-            }, e.prototype._updateDeckCount = function (t) {
-                this.deckCount = t, this._initializeDeckTexture(t), this._initializeDeckInteractive(t)
-            }, e.prototype._updateOtherShipCount = function (t) {
-                this._initializeOtherDeckTextre(t), this._initializeOtherDeckInteractive(t), this.otherShipCount = t
-            }, e.prototype._initializeDeckTexture = function (t) {
-                switch (t) {
-                    case 1:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(75), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 2:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 3:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(79), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 4:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(79), this.deck4.texture = r.COMMON_MISC.getTexture(82);
-                        break;
-                    default:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(72), this.deck2.texture = r.COMMON_MISC.getTexture(75), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81)
-                }
-            }, e.prototype._initializeDeckInteractive = function (t) {
-                switch (this.deck1.interactive = this.deck1.buttonMode = !1, this.deck2.interactive = this.deck2.buttonMode = !1, this.deck3.interactive = this.deck3.buttonMode = !1, this.deck4.interactive = this.deck4.buttonMode = !1, t) {
-                    case 1:
-                        this.deck1.interactive = this.deck1.buttonMode = !0;
-                        break;
-                    case 2:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0;
-                        break;
-                    case 3:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0, this.deck3.interactive = this.deck3.buttonMode = !0;
-                        break;
-                    case 4:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0, this.deck3.interactive = this.deck3.buttonMode = !0, this.deck4.interactive = this.deck4.buttonMode = !0
-                }
-            }, e.prototype._initializeOtherDeckTextre = function (t) {
-                0 < t ? (this.deckOther.texture = r.COMMON_MISC.getTexture(84), this.deckOther.visible = !0) : this.deckOther.visible = !1
-            }, e.prototype._initializeOtherDeckInteractive = function (t) {
-                0 < t ? (this.deckOther.interactive = !0, this.deckOther.buttonMode = !0) : (this.deckOther.interactive = !1, this.deckOther.buttonMode = !1)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.removeChildren(), this.addChild(this.focus, this.line, this.typeAndNameContainer, this.labelLevel, this.textLevel, this.supplyCheckBox, this.materialView), i && this.addChild(this.clickArea), this.typeAndNameContainer.cacheAsBitmap = !1, this.textType.text = e.shipTypeName + " ", this.textName.text = e.name, this.textName.x = this.textType.x + this.textType.width, this.typeAndNameContainer.cacheAsBitmap = !0, this.textLevel.text = e.level.toString(), this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax);
+                e.fuelMax, e.fuelNow, e.ammoMax, e.ammoNow;
+                this.materialView.update(e.fuelNow, e.fuelMax, e.ammoNow, e.ammoMax), this.memShipId = e.memID
+            }, e.prototype.checkOn = function () {
+                this.supplyCheckBox.update(3)
+            }, e.prototype.checkDisable = function () {
+                this.supplyCheckBox.update(1)
+            }, e.prototype.checkOff = function () {
+                this.supplyCheckBox.update(2)
+            }, e.prototype.empty = function () {
+                this.memShipId = null, this.removeChildren(), this.addChild(this.line)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.typeAndNameContainer.cacheAsBitmap = !1, this.typeAndNameContainer.removeChildren(), this.typeAndNameContainer = null, this.textType.destroy(), this.textName.destroy(), this.labelLevel.destroy(), this.textLevel.destroy(), this.supplyCheckBox.dispose(), this.supplyCheckBox = null, this.line = null, this.textType = null, this.labelLevel = null, this.textLevel = null, this.maskTypeAndName = null, this.textName = null, this.focus = null, this.clickArea.off(o.EventType.CLICK, this._onClick), this.clickArea.off(o.EventType.MOUSEOVER, this._onMouseOver), this.clickArea.off(o.EventType.MOUSEOUT, this._onMouseOut), this.clickArea = null, this.line = null, this.materialView.dispose(), this.materialView = null, this.onClick = this._onClick = null
             }, e
         }(PIXI.Container);
-    e.DeckSelectView = a
+    e.OtherSupplyListItem = c
 }

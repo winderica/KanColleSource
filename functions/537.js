@@ -1,110 +1,155 @@
 const function537 = function (t, e, i) {
     "use strict";
+
+    function n(t, e) {
+        var i = parseInt(t, 10);
+        if (1 == isNaN(i)) {
+            if ("tutorial" != t) {
+                var n = parseInt(e, 10);
+                e = l.MathUtil.zeroPadding(n, 3)
+            }
+            return a.default.settings.path_root + "resources/voice/" + t + "/" + e + ".mp3"
+        }
+        var o = a.default.settings.voice_root;
+        null == o && (o = a.default.settings.path_root + "resources/voice");
+        var r = t,
+            s = e;
+        if (9997 != i && 9998 != i && 9999 != i) {
+            var u = a.default.model.ship_graph.get(t);
+            if (null == u) return;
+            r = u.unique_key;
+            var c = _,
+                n = parseInt(e);
+            s = n <= 53 ? (17 * (i + 7) * c.voice[n - 1] % 99173 + 1e5).toString() : e
+        }
+        return o + "/kc" + r + "/" + s + ".mp3"
+    }
+
+    function o(t, e) {
+        var i = parseInt(t, 10);
+        if (1 == isNaN(i)) return "1";
+        var n = parseInt(e, 10);
+        return u.VersionUtil.get(3, i, n)
+    }
+
+    function r(t, e) {
+        var i = n(t, e);
+        if (null == i) return null;
+        var r = o(t, e);
+        return null == r || "" == r || "1" == r ? i : i + "?version=" + r
+    }
+    var s = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(259),
-        o = function () {
+    var a = i(0),
+        _ = i(264),
+        l = i(24),
+        u = i(79),
+        c = i(538),
+        h = function () {
             function t() {
-                this._KEY_VOL_BGM = "vol_bgm", this._KEY_VOL_SE = "vol_se", this._KEY_VOL_VOICE = "vol_voice", this._KEY_V_BELEFT = "v_be_left", this._KEY_V_DUTY = "v_duty"
+                var t = this;
+                this._num_of_simultaneous_playback = 1, this._onVoiceEnd = function (e) {
+                    var i = t._voices.indexOf(e);
+                    if (-1 != i) {
+                        var n = t._voices.splice(i, 1),
+                            o = n[0],
+                            r = o.cb_onEnd;
+                        o.dispose(), null != r && r()
+                    }
+                }, this._voices = []
             }
-            return Object.defineProperty(t.prototype, "vol_bgm", {
+            return Object.defineProperty(t.prototype, "num_of_simultaneous_playback", {
                 get: function () {
-                    return this._vol_bgm
+                    return this._num_of_simultaneous_playback
                 },
                 set: function (t) {
-                    this._vol_bgm = Math.min(100, Math.max(0, Math.round(t)))
+                    this._num_of_simultaneous_playback = t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "vol_se", {
-                get: function () {
-                    return this._vol_se
-                },
-                set: function (t) {
-                    this._vol_se = Math.min(100, Math.max(0, Math.round(t)))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "vol_voice", {
-                get: function () {
-                    return this._vol_voice
-                },
-                set: function (t) {
-                    this._vol_voice = Math.min(100, Math.max(0, Math.round(t)))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_be_left", {
-                get: function () {
-                    return this._voice_be_left
-                },
-                set: function (t) {
-                    this._voice_be_left = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_duty", {
-                get: function () {
-                    return this._voice_duty
-                },
-                set: function (t) {
-                    this._voice_duty = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.initialize = function () {
-                this.vol_bgm = this.__vol_bgm__, this.vol_se = this.__vol_se__, this.vol_voice = this.__vol_voice__, this.voice_be_left = this.__v_beleft__, this.voice_duty = this.__v_duty__
-            }, t.prototype.save = function () {
-                var t = this.__vol_bgm__;
-                t != this.vol_bgm && n.CookieUtil.setItem(this._KEY_VOL_BGM, this.vol_bgm.toString(), 1 / 0), t = this.__vol_se__, t != this.vol_se && n.CookieUtil.setItem(this._KEY_VOL_SE, this.vol_se.toString(), 1 / 0), (t = this.__vol_voice__) != this.vol_voice && n.CookieUtil.setItem(this._KEY_VOL_VOICE, this.vol_voice.toString(), 1 / 0);
-                var e = this.__v_beleft__;
-                e != this.voice_be_left && n.CookieUtil.setItem(this._KEY_V_BELEFT, this.voice_be_left ? "1" : "0", 1 / 0), (e = this.__v_duty__) != this.voice_duty && n.CookieUtil.setItem(this._KEY_V_DUTY, this.voice_duty ? "1" : "0", 1 / 0)
-            }, Object.defineProperty(t.prototype, "_log_string", {
-                get: function () {
-                    return "bgm:" + this.vol_bgm + " se:" + this.vol_se + " voice:" + this.vol_voice + " \u653e\u7f6e:" + this._voice_be_left + " \u4efb\u52d9:" + this._voice_duty
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_bgm__", {
-                get: function () {
-                    return this._getNumValue(this._KEY_VOL_BGM, 30)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_se__", {
-                get: function () {
-                    return this._getNumValue(this._KEY_VOL_SE, 40)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "__vol_voice__", {
-                get: function () {
-                    return this._getNumValue(this._KEY_VOL_VOICE, 60)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "__v_beleft__", {
-                get: function () {
-                    return this._getBoolValue(this._KEY_V_BELEFT, !0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "__v_duty__", {
-                get: function () {
-                    return this._getBoolValue(this._KEY_V_DUTY, !0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype._getNumValue = function (t, e) {
-                if (1 == n.CookieUtil.hasItem(t)) {
-                    var i = parseInt(n.CookieUtil.getItem(t));
-                    if (0 == isNaN(i)) return i
+            }), t.prototype.preload = function (t, e) {
+                if (0 != a.default.option.vol_voice) {
+                    var i = r(t, e.toString());
+                    if (null != i) {
+                        var n = {
+                            src: [i]
+                        };
+                        n.autoplay = !1, n.volume = 0;
+                        var o = new Howl(n);
+                        o.once("load", function () {
+                            o.unload()
+                        })
+                    }
                 }
-                return e
-            }, t.prototype._getBoolValue = function (t, e) {
-                return 1 == n.CookieUtil.hasItem(t) ? "1" == n.CookieUtil.getItem(t) : e
+            }, t.prototype.play = function (t, e, i) {
+                if (void 0 === i && (i = null), null == r(t, e.toString())) return null;
+                if (this._voices.length >= this._num_of_simultaneous_playback) {
+                    var n = this._voices.shift();
+                    n.dispose(), n = null
+                }
+                var o = new p(this._onVoiceEnd, i);
+                return this._voices.push(o), o.play(t, e), o
+            }, t.prototype.playAtRandom = function (t, e, i, n) {
+                void 0 === n && (n = null);
+                for (var o = 0, r = 0; r < i.length; r++) o += i[r];
+                for (var s = 0, a = Math.random() * o, r = 0; r < i.length; r++)
+                    if (s += i[r], a <= s) return this.play(t, e[r], n)
+            }, t.prototype.stop = function (t) {
+                var e = t,
+                    i = this._voices.indexOf(e);
+                return -1 != i && (this._voices.splice(i, 1), e.dispose(), !0)
+            }, t.prototype.stopAll = function () {
+                for (var t = 0, e = this._voices; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._voices = []
             }, t
         }();
-    e.OptionModel = o
+    e.VoiceManager = h;
+    var p = function (t) {
+        function e(e, i) {
+            void 0 === i && (i = null);
+            var n = t.call(this) || this;
+            return n._onLoad = function () {
+                null != n._howl && n._howl.play()
+            }, n._onLoadError = function (t, e) {
+                n._cb_onEndToManager && n._cb_onEndToManager(n)
+            }, n._onEnd = function (t) {
+                n._cb_onEndToManager && n._cb_onEndToManager(n)
+            }, n._cb_onEndToManager = e, n._cb_onEnd = i, n
+        }
+        return s(e, t), Object.defineProperty(e.prototype, "cb_onEnd", {
+            get: function () {
+                return this._cb_onEnd
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.play = function (t, e) {
+            if (this._mst_id = t, this._voice_id = e.toString(), 0 == a.default.option.vol_voice) return void this._cb_onEndToManager(this);
+            this._url = r(this._mst_id, this._voice_id);
+            var i = {
+                src: [this._url]
+            };
+            i.autoplay = !1, i.volume = a.default.option.vol_voice / 100, i.onload = this._onLoad, i.onloaderror = this._onLoadError, i.onend = this._onEnd, this._howl = new Howl(i)
+        }, e.prototype.dispose = function () {
+            null != this._howl && (this._howl.stop(), this._howl.unload()), this._howl = null, this._cb_onEndToManager = null, this._cb_onEnd = null
+        }, e
+    }(c.VoiceModel)
 }

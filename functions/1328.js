@@ -19,70 +19,109 @@ const function1328 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(179),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.count = 50, e.col = 16777215, e._updateMask = function (t) {
-                    e._circleMask.clear(), e._circleMask.beginFill(e.col);
-                    for (var i = 0; i < e.count; i++) e._circle_list[i].radius = e.rndScale[i] * t.target.target.val, e._circleMask.drawShape(e._circle_list[i]);
-                    e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !0)
-                }, e._bg = new PIXI.Sprite, e._bg.alpha = 0, e._layer_effect = new PIXI.Container, e._card_bg = new PIXI.Sprite, e._card_bg.anchor.set(.5), e._card_bg.alpha = 1, e._layer_ship = new PIXI.Container, e._grad = new PIXI.Sprite, e._layer_text = new PIXI.Container, e._layer_mask = new PIXI.Container, e._layer_mask.alpha = 0, e._renderTex = PIXI.RenderTexture.create(327, 450), e._renderSprite = new PIXI.Sprite(e._renderTex), e._renderSprite.anchor.set(.5), e._card_bg.mask = e._renderSprite, e._layer_mask.addChild(e._card_bg), e._layer_mask.addChild(e._renderSprite), e.rndPos = [], e.rndScale = [];
-                for (var i = 0; i < e.count; i++) e.rndPos.push(new PIXI.Point(Math.floor(327 * Math.random()), Math.floor(450 * Math.random()))), e.rndScale.push(100 * Math.floor(2 * Math.random()));
-                e.addChild(e._bg), e.addChild(e._layer_effect), e.addChild(e._layer_mask), e.addChild(e._layer_ship), e.addChild(e._grad), e.addChild(e._layer_text), e._circle_list = [];
-                for (var i = 0; i < e.count; i++) e._circle_list.push(new PIXI.Circle(e.rndPos[i].x, e.rndPos[i].y, e.rndScale[i]));
-                return e._circleMask = new PIXI.Graphics, e._circleMask.beginFill(e.col), e._circleMask.drawRect(0, 0, 327, 450), e._circleMask.endFill(), r.default.settings.renderer.render(e._circleMask, e._renderTex, !0, null, !1), e
+    var o = i(76),
+        r = i(92),
+        s = i(120),
+        a = i(93),
+        _ = i(94),
+        l = i(95),
+        u = i(64),
+        c = i(96),
+        h = i(97),
+        p = i(77),
+        d = i(98),
+        f = i(99),
+        y = i(100),
+        m = i(101),
+        v = i(102),
+        g = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_effect", {
-                get: function () {
-                    return this._layer_effect
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "card_bg", {
-                get: function () {
-                    return this._card_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_ship", {
-                get: function () {
-                    return this._layer_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_text", {
-                get: function () {
-                    return this._layer_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_mask", {
-                get: function () {
-                    return this._layer_mask
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(0), this._grad.texture = s.BATTLE_CUTIN_GOUCHIN.getTexture(1), this._grad.y = o.default.height - this._grad.height
-            }, e.prototype.playMask = function () {
-                var t = {
-                    val: 1
-                };
-                createjs.Tween.get(t, {
-                    onChange: this._updateMask
-                }).to({
-                    val: 0
-                }, 1800)
+            return n(e, t), e.prototype._start = function () {
+                this._sakuteki()
+            }, e.prototype._sakuteki = function () {
+                var t = this;
+                new s.PhaseSakuteki(this.scene, this._record).start(function () {
+                    t._ration()
+                })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new r.PhaseRation(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new _.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new l.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new v.PhaseSupport(this.scene, this._record).start(function () {
+                    t._openingAttack()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new d.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new f.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new c.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new p.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new m.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.GouchinCutinView = a
+        }(o.PhaseCombatBase);
+    e.PhaseDay = g
 }

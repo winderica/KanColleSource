@@ -19,20 +19,37 @@ const function1224 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(138),
-        s = function (t) {
+    var o = i(5),
+        r = i(1225),
+        s = i(1228),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
-                var i = new PIXI.Graphics;
-                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
+                return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            return n(e, t), Object.defineProperty(e.prototype, "enemy", {
+                get: function () {
+                    return this._enemy
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
+                this.removeChildren(), this._enemy.dispose(), this._friend.dispose(), this._upper.dispose()
             }, e
         }(PIXI.Container);
-    e.ShipElement = s
+    e.PracticeAnimMainView = a
 }

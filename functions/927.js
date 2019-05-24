@@ -1,134 +1,110 @@
 const function927 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(928),
-        r = i(929),
-        s = i(930),
-        a = i(931),
-        _ = i(932),
-        l = function () {
-            function t(t) {
-                this._o = t
+    var o = i(68),
+        r = i(7),
+        s = i(928),
+        a = i(929),
+        _ = function () {
+            function t() {
+                this._start_cell_no = 0, this._obtained_items = new Array
             }
-            return Object.defineProperty(t.prototype, "rashin_id", {
+            return Object.defineProperty(t.prototype, "map", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_rashin_id")
+                    return this._map
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "no", {
+            }), Object.defineProperty(t.prototype, "cells", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
+                    return this._cells
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "event_id", {
+            }), Object.defineProperty(t.prototype, "area_id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_event_id")
+                    return this._area_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "event_detail_id", {
+            }), Object.defineProperty(t.prototype, "map_no", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_event_kind")
+                    return this._map_no
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "flavor_text", {
+            }), Object.defineProperty(t.prototype, "map_id", {
                 get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_cell_flavor");
-                    return null == t ? "" : n.ObjUtil.getString(t, "api_message")
+                    return 10 * this.area_id + this._map_no
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "flavor_text_type", {
+            }), Object.defineProperty(t.prototype, "now_cell_no", {
                 get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_cell_flavor");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "api_type")
+                    return this._data.length <= 1 ? this._start_cell_no : this._data[this._data.length - 2].no
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "jakeID", {
+            }), Object.defineProperty(t.prototype, "obtained_items", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_production_kind")
+                    return this._obtained_items
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "balloonID", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_comment_kind")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "gauge_now", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._eventdata, "api_now_maphp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "gauge_max", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._eventdata, "api_max_maphp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.hasCompass = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_rashin_flg")
-            }, t.prototype.isDeadEnd = function () {
-                return 0 == n.ObjUtil.getNumber(this._o, "api_next")
-            }, t.prototype.isJunction = function () {
-                var t = this.getSelectableRoutes();
-                return null != t && !(t.length <= 1)
-            }, t.prototype.getDropItems = function () {
-                var t = n.ObjUtil.getObjectArray(this._o, "api_itemget");
-                if (null == t) return [];
-                if (1 == t.hasOwnProperty("length")) {
-                    return t.map(function (t, e, i) {
-                        return new r.DropItemModel(t)
-                    })
+            }), t.prototype.getCellInfo = function (t) {
+                for (var e = 0, i = this._cells; e < i.length; e++) {
+                    var n = i[e];
+                    if (n.no == t) return n
                 }
-                return [new r.DropItemModel(t)]
-            }, t.prototype.getHappeningData = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_happening");
-                return new a.HappeningModel(t)
-            }, t.prototype.getSelectableRoutes = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_select_route");
-                return null == t ? null : n.ObjUtil.getNumArray(t, "api_select_cells")
-            }, t.prototype.getEOSupplyItem = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_itemget_eo_comment");
-                return null == t ? null : new s.EOItemModel(t)
-            }, t.prototype.getEOSupplyBonusItem = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_itemget_eo_result");
-                return null == t ? null : new s.EOItemModel(t)
-            }, t.prototype.getEOSupplyWarResult = function () {
-                return n.ObjUtil.getNumber(this._o, "api_get_eo_rate")
-            }, t.prototype.getReplenishmentData = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_offshore_supply");
-                return null == t ? null : new _.ReplenishmentModel(t)
-            }, t.prototype.getAirReconnaissanceData = function () {
-                var t = n.ObjUtil.getObject(this._o, "api_airsearch");
-                return null == t ? null : new o.AirReconnaissanceModel(t)
-            }, t.prototype.isUsableRation = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_ration_flag")
-            }, t.prototype.getM1 = function () {
-                return n.ObjUtil.getNumber(this._o, "api_m1")
-            }, t.prototype.hasEventMapData = function () {
-                return this._o.hasOwnProperty("api_eventmap")
-            }, t.prototype.getAirraidDataObject = function () {
-                return n.ObjUtil.getObject(this._o, "api_destruction_battle")
-            }, t.prototype.hasBokuAirUnit = function () {
-                var t = this.getAirraidDataObject();
-                return null != t && null != n.ObjUtil.getObject(t, "api_map_squadron_plane")
-            }, Object.defineProperty(t.prototype, "_eventdata", {
-                get: function () {
-                    return n.ObjUtil.getObject(this._o, "api_eventmap")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+                return null
+            }, t.prototype.getCellNoAll = function () {
+                for (var t = [], e = 0, i = this._cells; e < i.length; e++) {
+                    var n = i[e];
+                    t.push(n.no)
+                }
+                return t
+            }, t.prototype.getNextCell = function () {
+                return this._data[this._data.length - 1]
+            }, t.prototype.getGaugeKey = function () {
+                var t = this.map.getGaugeNum();
+                return o.GaugeSetModel.createKey(this._area_id, this._map_no, t)
+            }, t
         }();
-    e.NextModel = l
+    e.SortieModel = _;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.__init__ = function (t, e) {
+            this._map = t;
+            var i = e.api_cell_data;
+            delete e.api_cell_data, this._cells = new Array;
+            for (var n = 0, o = i; n < o.length; n++) {
+                var _ = o[n];
+                this._cells.push(new s.CellModel(_))
+            }
+            this._data = [], this._area_id = r.ObjUtil.getNumber(e, "api_maparea_id"), this._map_no = r.ObjUtil.getNumber(e, "api_mapinfo_no"), this._start_cell_no = r.ObjUtil.getNumber(e, "api_from_no"), this._data.push(new a.NextModel(e))
+        }, e.prototype.__add__ = function (t) {
+            this._data.push(new a.NextModel(t))
+        }, e
+    }(_);
+    e.SortieModelEdit = l
 }

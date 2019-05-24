@@ -19,91 +19,28 @@ const function452 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(66),
+    var o = i(2),
         r = i(6),
-        s = i(141),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._planes = [], i
+        s = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onComplete = function () {
+                    r._layer.removeChild(r._planes), r._planes.stopFluctuations(), r._planes.dispose(), r._endTask()
+                }, r._layer = e, r._planes = i, r._to_pos = n, r._cb_onDamaged = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.addPlane = function (t, e) {
-                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
-                    var i = new s.Plane;
-                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
-                    for (var n = 0; n < this._planes.length; n++) {
-                        var o = this._planes[n];
-                        if (i.y < o.y) {
-                            var r = this.getChildIndex(o);
-                            this.addChildAt(i, r);
-                            break
-                        }
-                        n == this._planes.length - 1 && this.addChild(i)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.startFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].startFluctuations()
-                }
-            }, e.prototype.stopFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].stopFluctuations()
-                }
-            }, e.prototype.fire = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].fire()
-                }
-            }, e.prototype.play = function (t, e, i, n, s) {
-                var a = this;
-                void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, l = new PIXI.Point(this.x, this.y),
-                    u = this._createControllPoints(l, t),
-                    c = u.c1,
-                    h = u.c2;
-                if (0 == isNaN(e)) {
-                    var p = .99,
-                        d = 1 - p,
-                        f = Math.pow(d, 3) * l.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * l.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
-                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        v = t.x - f,
-                        g = (e - t.x) / v,
-                        b = i / (100 + g) * 100,
-                        w = i / (100 + g) * g;
-                    this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
-                        x: e,
-                        y: m
-                    }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
-                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
-                    r.SE.play("116"), a.fire()
-                }), {
-                    s: l,
-                    c1: c,
-                    c2: h,
-                    e: t,
-                    ex: _
-                }
-            }, e.prototype.debugLine = function (t) {
-                var e = new PIXI.Graphics;
-                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
-            }, e.prototype._createControllPoints = function (t, e) {
-                var i, n, o = t.x <= e.x;
-                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
-                    c1: i,
-                    c2: n
-                }
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._planes.startFluctuations(), this._planes.scale.set(0), this._layer.addChild(this._planes), r.SE.play("115"), createjs.Tween.get(this._planes.scale).to({
+                    x: 1,
+                    y: 1
+                }, 250).call(function () {
+                    var e = t._to_pos,
+                        i = t._planes.friend ? 1275 : -75;
+                    t._planes.play(e, i, 2500, t._cb_onDamaged, t._onComplete)
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._planes = null, this._to_pos = null, this._cb_onDamaged = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.PlaneTrio = a
+        }(o.TaskBase);
+    e.TaskPlane = s
 }

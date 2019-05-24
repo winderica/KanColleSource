@@ -19,16 +19,47 @@ const function719 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(720),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/preset_deck", e
+    var o = i(0),
+        r = i(2),
+        s = i(720),
+        a = i(131),
+        _ = i(21),
+        l = i(57),
+        u = i(306),
+        c = i(721),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._loadPreset = function () {
+                    var t = new c.PresetDeckAPI;
+                    t.start(function () {
+                        var e = t.result;
+                        i.organizeScene.preInitialize(e), i._endTask()
+                    })
+                }, i.organizeScene = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResource()
+            }, e.prototype._loadResource = function () {
+                var t = this;
+                (new s.TaskLoadResourcesOrganize).start(function () {
+                    t._uploadToGPU_common()
+                })
+            }, e.prototype._uploadToGPU_common = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
+                        t._uploadToGPU_organize()
+                    })
+                })
+            }, e.prototype._uploadToGPU_organize = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
+                        t._loadPreset()
+                    })
+                })
             }, e
-        }(o.APIBase);
-    e.PresetDeckAPI = s
+        }(r.TaskBase);
+    e.PreInitializeTask = h
 }
