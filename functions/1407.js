@@ -44,7 +44,7 @@ const function1407 = function (t, e, i) {
                 var s = new a.ShipLoader,
                     l = this._attacker.isDamaged(),
                     u = this._attacker.mst_id;
-                (571 != u && 576 != u || 0 != l) && (541 != u && 573 != u || 0 != l) ? s.add(u, l, "full"): s.add(u, !1, "special"), s.load(function () {
+                (571 != u && 576 != u || 0 != l) && (541 != u && 573 != u || 0 != l) && (601 != u && 1496 != u || 0 != l) ? s.add(u, l, "full"): s.add(u, !1, "special"), s.load(function () {
                     var t = null == r._slot1 ? 0 : r._slot1.mstID,
                         e = null == r._slot2 ? 0 : r._slot2.mstID,
                         i = null == r._slot3 ? 0 : r._slot3.mstID,
@@ -58,7 +58,7 @@ const function1407 = function (t, e, i) {
             }, e.prototype._ready = function () {
                 var t, e, i = this._attacker.mst_id,
                     n = this._attacker.isDamaged();
-                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 401 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -180, this._canvas.chara.y = -107) : (this._canvas.chara.x = 173, this._canvas.chara.y = -65), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -180, this._canvas.chara.y = -107) : (this._canvas.chara.x = 173, this._canvas.chara.y = -65), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
             }, e.prototype._anim1 = function () {
                 var t = this;
                 this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
