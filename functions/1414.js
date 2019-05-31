@@ -20,42 +20,61 @@ const function1414 = function (t, e, i) {
         value: !0
     });
     var o = i(27),
-        r = i(29),
-        s = i(19),
-        a = i(2),
-        _ = function (t) {
+        r = i(19),
+        s = i(2),
+        a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new o.ParallelTask;
-                e.add(this._createTween_f()), e.add(this._createTween_e()), e.start(function () {
+                this._enterBanners()
+            }, e.prototype._enterBanners = function () {
+                var t = this;
+                if (1 == this._scene.data.model.map_info.isNightStart()) {
+                    var e = this._scene.view.bannerGroupLayer,
+                        i = new o.ParallelTask;
+                    i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
+                        t._endTask()
+                    });
+                    var n = this._scene.data.model.deck_f,
+                        s = n.formation,
+                        a = n.type,
+                        _ = n.getCountMainDeck(),
+                        l = n.getCountSubDeck();
+                    this._scene.view.raderLayer.rader_f.show(s, a, _, l, !1);
+                    var u = this._scene.data.model.deck_e,
+                        c = u.formation,
+                        h = u.type,
+                        p = u.getCountMainDeck(),
+                        d = u.getCountSubDeck();
+                    return void this._scene.view.raderLayer.rader_e.show(c, h, p, d, !1)
+                }
+                var f = new r.TweenTask;
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
+                    var y = this._record.common.getActiveDeckFriend();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
+                    var y = this._record.common.getActiveDeckEnemy();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                f.start(function () {
                     t._endTask()
                 })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null
-            }, e.prototype._createTween_f = function () {
-                var t = this._scene.view.bannerGroupLayer;
-                if (0 == t.isEnteredFriend()) return t.createFriendEnterTask();
-                var e = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_f.isCombined()) {
-                    var i = this._record.common.getActiveDeckFriend();
-                    1 == i ? e.addTweens(t.friends_combined.createExitTweensUpDown()) : 2 == i && (e.addTweens(t.friends.createExitTweens()), e.addTweens(t.createFriendSubDeckMoveTween(200)))
-                }
-                return e
-            }, e.prototype._createTween_e = function () {
-                var t = this._record.common.getActiveDeckEnemy(),
-                    e = this._scene.view.bannerGroupLayer;
-                if (0 == e.isEnteredEnemy()) return 1 == t ? e.createEnemyEnterTask() : 2 == t ? new r.SerialTask(e.createEnemyEnterTask(), (new s.TweenTask).addTweens(e.enemies.createExitTweens()).addTweens(e.createEnemySubDeckMoveTween(200))) : e.createEnemyEnterTask();
-                var i = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_e.isCombined()) {
-                    var n = this._record.common.getActiveDeckEnemy();
-                    1 == n ? i.addTweens(e.enemies_combined.createExitTweensUpDown()) : 2 == n && (i.addTweens(e.enemies.createExitTweens()), i.addTweens(e.createEnemySubDeckMoveTween(200)))
-                }
-                return i
             }, e
-        }(a.TaskBase);
-    e.TaskMoveBannerDay = _
+        }(s.TaskBase);
+    e.PhaseMoveShips = a
 }

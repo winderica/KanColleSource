@@ -19,45 +19,117 @@ const function678 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(110),
-        r = i(311),
-        s = i(83),
-        a = i(4),
-        _ = i(21),
-        l = i(9),
-        u = i(312),
-        c = i(680),
-        h = i(313),
-        p = i(15),
-        d = function (t) {
+    var o = i(9),
+        r = i(0),
+        s = i(1),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite;
-                i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
-                var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
-                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new u.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
-                var d = new PIXI.Sprite(l.COMMON_MISC.getTexture(182));
-                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
-                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
-                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
-                var y = new PIXI.Sprite(_.COMMON_MAIN.getTexture(12));
-                e.containerName = new PIXI.Container, e.containerName.position.set(42, 23);
-                var m = p.CreateRect.gradientLeftToRight(185, 45, .94, .95);
-                return e.containerName.mask = m, e.containerName.addChild(e.textName, m), e.textLevel.anchor.x = 1, e.slotItemSlotContainer.position.set(51, 100), e.extraSlotItemViewContainer.position.set(405, 516), d.position.set(229, 30), f.position.set(364, 478), e.shipParameterView.position.set(51, 351), e.hpGaugeView.position.set(43, 72), e.textHp.position.set(152, 68), e.rateView.position.set(228, 72), e.expGaugeView.position.set(451, 481), e.textLevel.position.set(321, 24), e.remodelMaxMedal.position.set(322, 19), e.textExp.position.set(465, 493), e.textExp.anchor.x = 1, e.shipCard.position.set(369, 25), e.sixSlotMessage.position.set(531, 499), e.addChild(y, e.containerName, e.textLevel, e.hpGaugeView, e.textHp, e.expGaugeView, e.rateView, e.slotItemSlotContainer, e.extraSlotItemViewContainer, e.shipParameterView, e.shipCard, f, d, e.textExp, e.sixSlotMessage, e.remodelMaxMedal, i), e
+                var e = t.call(this) || this;
+                e._onClickDeckFlag = function (t) {
+                    e.onClickDeckFlag(t)
+                }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
+                var i = new l,
+                    n = new l,
+                    s = new l,
+                    a = new l;
+                return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(183)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.shipParameterView.dispose(), this.slotItemSlotContainer.dispose(), this.rateView.dispose(), this.extraSlotItemViewContainer.dispose(), this.shipCard.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.textName.destroy(), this.textLevel.destroy(), this.textHp.destroy(), this.textExp.destroy(), this.hpGaugeView = null, this.expGaugeView = null, this.shipParameterView = null, this.slotItemSlotContainer = null, this.rateView = null, this.extraSlotItemViewContainer = null, this.shipCard = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textExp = null, this.remodelMaxMedal = null, this.sixSlotMessage = null, this.containerName = null
-            }, e.prototype.updateBox1 = function (t, e, i, n, o, r) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
-            }, e.prototype.updateBox2 = function (t, e) {
-                this.slotItemSlotContainer.update(t, e, !1)
-            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, l, u, c)
-            }, e.prototype.updateBox4 = function (t, e, i) {
-                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.update(t, [e], !0), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
-            }, e.prototype.updateBox5 = function (t, e) {
-                this.shipCard.update(t, e)
+            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+                this.interactiveDeckFlag_1.visible = !1, this.interactiveDeckFlag_2.visible = !1, this.interactiveDeckFlag_3.visible = !1, this.interactiveDeckFlag_4.visible = !1, t && (this.interactiveDeckFlag_1.visible = !0), e && (this.interactiveDeckFlag_2.visible = !0), i && (this.interactiveDeckFlag_3.visible = !0), n && (this.interactiveDeckFlag_4.visible = !0)
+            }, e.prototype.update = function (t) {
+                switch (this.interactiveDeckFlag_1.normal(), this.interactiveDeckFlag_2.normal(), this.interactiveDeckFlag_3.normal(), this.interactiveDeckFlag_4.normal(), t) {
+                    case 1:
+                        this.interactiveDeckFlag_1.hover();
+                        break;
+                    case 2:
+                        this.interactiveDeckFlag_2.hover();
+                        break;
+                    case 3:
+                        this.interactiveDeckFlag_3.hover();
+                        break;
+                    case 4:
+                        this.interactiveDeckFlag_4.hover()
+                }
+            }, e.prototype.dispose = function () {
+                this.interactiveDeckFlag_1.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_2.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_3.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_4.onClick = this._onClickDeckFlag = null, this.interactiveDeckFlag_1.dispose(), this.interactiveDeckFlag_2.dispose(), this.interactiveDeckFlag_3.dispose(), this.interactiveDeckFlag_4.dispose(), this.onClickDeckFlag = null, this.interactiveDeckFlag_1 = null, this.interactiveDeckFlag_2 = null, this.interactiveDeckFlag_3 = null, this.interactiveDeckFlag_4 = null, this.icon3rdUnit = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ShipDetailView = d
+    e.DeckSelector = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onClick = function () {
+                e.onClick(e.memDeckId)
+            }, e.addListener(s.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.onClick = null, this.memDeckId = null, this._onClick = null, this.removeAllListeners(s.EventType.CLICK), this.removeChildren()
+        }, e.prototype.update = function (t) {
+            this.memDeckId = t
+        }, e.prototype.hover = function () {
+            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "on"));
+            this.texture = t
+        }, e.prototype.normal = function () {
+            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "off"));
+            this.texture = t
+        }, e
+    }(PIXI.Sprite);
+    e.InteractiveDeckFlag = _;
+    var l = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            this.texture = o.COMMON_MISC.getTexture(u.getResourceId(t, "no")), this.memDeckId = t
+        }, e
+    }(PIXI.Sprite);
+    e.DisableDeckFlag = l;
+    var u;
+    ! function (t) {
+        function e(t, e) {
+            switch (t) {
+                case 1:
+                    switch (e) {
+                        case "no":
+                            return 72;
+                        case "on":
+                            return 74;
+                        case "off":
+                            return 73
+                    }
+                    break;
+                case 2:
+                    switch (e) {
+                        case "no":
+                            return 75;
+                        case "on":
+                            return 77;
+                        case "off":
+                            return 76
+                    }
+                    break;
+                case 3:
+                    switch (e) {
+                        case "no":
+                            return 78;
+                        case "on":
+                            return 80;
+                        case "off":
+                            return 79
+                    }
+                    break;
+                case 4:
+                    switch (e) {
+                        case "no":
+                            return 81;
+                        case "on":
+                            return 83;
+                        case "off":
+                            return 82
+                    }
+            }
+            return -1
+        }
+        t.getResourceId = e
+    }(u || (u = {}))
 }

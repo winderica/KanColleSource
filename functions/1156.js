@@ -19,41 +19,37 @@ const function1156 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(108),
-        a = i(89),
-        _ = i(1157),
-        l = i(1159),
-        u = i(1165),
-        c = i(1166),
-        h = function (t) {
+    var o = i(11),
+        r = i(1157),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new l.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
-                }, e._onUnSelect = function () {
-                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
-                }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer,
-                        n = new c.TaskExchange(i, t);
-                    n.start(function () {
-                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
-                    })
-                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new u.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
+                return e._result = !1, e._api = null, e._retry_count = 0, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
-            }, e.prototype.update = function () {
-                var t = o.default.model.useItem.getCount(44);
-                this._coin.update(t)
-            }, e.prototype.activate = function () {
-                1 == this._main_view.visible && this._main_view.activate()
-            }, e.prototype.deactivate = function () {
-                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(500).call(function () {
+                    t._check()
+                })
+            }, e.prototype._check = function () {
+                var t = this;
+                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
+                    t._checked()
+                })
+            }, e.prototype._checked = function () {
+                var t = this;
+                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
+                    t._check()
+                })
+            }, e.prototype._endTask = function () {
+                this._api = null, t.prototype._endTask.call(this)
             }, e
-        }(a.ViewBase);
-    e.FurnitureShopMain = h
+        }(o.TaskBase);
+    e.TaskPayCheck = s
 }

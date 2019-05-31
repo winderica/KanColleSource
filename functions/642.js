@@ -19,22 +19,30 @@ const function642 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._skinID = e, i
+    var o = i(0),
+        r = i(67),
+        s = i(49),
+        a = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
                 var t = this,
-                    e = new r.UIImageLoader("port");
-                e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
-                    t._endTask()
+                    e = this.model.mst_id,
+                    i = new r.UseitemLoader;
+                i.add(e, 1), i.load(function () {
+                    var i = o.default.resources.getUseitem(e, 1);
+                    t._card = new PIXI.Sprite(i), t._card.x = -Math.round(t._card.width / 2), t._card.y = -Math.round(t._card.height / 2), t._dialog.container.addChild(t._card), t._showDialog()
                 })
+            }, e.prototype._removeContent = function () {
+                this._dialog.container.removeChild(this._card), this._card = null
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(s.TaskRewardDialogBase);
+    e.TaskRewardDialogUseitem = a
 }

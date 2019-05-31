@@ -19,27 +19,20 @@ const function1231 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._url = "api_get_member/ship_deck", r._deck_ids = e, r._area_id = i, r._map_no = n, r._cell_no = o, r
+    var o = i(4),
+        r = i(138),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_rid = this._deck_ids.join(","), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = s.ObjUtil.getObjectArray(this._raw_data, "api_deck_data"), i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    o.default.model.deck.updateData(r)
-                }
-                for (var a = s.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), _ = 0, l = a; _ < l.length; _++) {
-                    var r = l[_];
-                    o.default.model.ship.updateData(r)
-                }
-                t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
             }, e
-        }(r.APIBase);
-    e.APIShipDeck = a
+        }(PIXI.Container);
+    e.ShipElement = s
 }

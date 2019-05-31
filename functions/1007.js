@@ -19,35 +19,154 @@ const function1007 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(54),
-        s = i(227),
-        a = i(228),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._switch = new a.CompSwitchBtns(1, e, i), n._switch.position.set(807, 171), n
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(26));
-                t.position.set(144, 168);
-                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(50));
-                e.position.set(0, 102);
-                var i = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(0));
-                i.position.set(198, 112);
-                var n = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(31));
-                n.position.set(207, 177);
-                var s = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(15));
-                s.position.set(196, 228);
-                var a = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(27));
-                a.position.set(196, 228), this._switch.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(s), this.addChild(a), this.addChild(this._switch)
-            }, e.prototype.activate = function () {
-                this._switch.activate()
-            }, e.prototype.deactivate = function () {
-                this._switch.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._switch.dispose()
-            }, e
-        }(s.ViewMainBase);
-    e.ViewMainBase = _
+    var o = i(0),
+        r = i(17),
+        s = i(2),
+        a = i(1008),
+        _ = i(1009),
+        l = function () {
+            function t() {}
+            return t.prototype.getPreLoadTask = function () {
+                return this._model = new a.EventSortieConditionModel, new u(this._model)
+            }, t.prototype.update = function (t) {
+                this._map = t
+            }, t.prototype.check = function (t, e) {
+                if (this._map.area_id != r.EVENT_AREA_ID) return {
+                    result: !0,
+                    reason: 0
+                };
+                var i = this._checkCommon();
+                return null != i ? i : (i = this._check(t, e), null != i ? i : {
+                    result: !0,
+                    reason: 0
+                })
+            }, t.prototype._checkCommon = function () {
+                var t = this._model.win_count,
+                    e = this._model.lose_count;
+                if (0 == t && 0 == e) return {
+                    result: !1,
+                    reason: 13
+                };
+                if (this._model.win_rate < .75) return {
+                    result: !1,
+                    reason: 15
+                };
+                var i = o.default.model.basic.shipMax,
+                    n = o.default.model.ship.num;
+                return i - n < 5 ? {
+                    result: !1,
+                    reason: 16
+                } : (i = o.default.model.basic.slotMax, n = o.default.model.slot.num, i - n < 20 ? {
+                    result: !1,
+                    reason: 17
+                } : 0 == this._map.getSelectedOperationType() ? {
+                    result: !1,
+                    reason: 18
+                } : null)
+            }, t.prototype._check = function (t, e) {
+                var i = this._map.mst_id;
+                if (441 == i)
+                    for (var n = [9, 10, 8, 11, 18, 7, 17], o = 0, r = e; o < r.length; o++) {
+                        var s = r[o];
+                        if (null != s) {
+                            var a = s.shipTypeID;
+                            if (n.indexOf(a) > -1) return {
+                                result: !1,
+                                reason: 45
+                            }
+                        }
+                    } else if (442 == i)
+                        for (var n = [11, 18], _ = 0, l = e; _ < l.length; _++) {
+                            var s = l[_];
+                            if (null != s) {
+                                var a = s.shipTypeID;
+                                if (n.indexOf(a) > -1) return {
+                                    result: !1,
+                                    reason: 38
+                                }
+                            }
+                        }
+                if ([3, 4].indexOf(this._map.getSelectedOperationType()) > -1)
+                    if (441 == i)
+                        for (var u = 0, c = e; u < c.length; u++) {
+                            var s = c[u];
+                            if (null != s) {
+                                var h = s.label;
+                                if (0 != h && 1 != h) return {
+                                    result: !1,
+                                    reason: 19
+                                }
+                            }
+                        } else if (442 == i)
+                            for (var p = 0, d = e; p < d.length; p++) {
+                                var s = d[p];
+                                if (null != s) {
+                                    var h = s.label;
+                                    if (0 != h && 2 != h) return {
+                                        result: !1,
+                                        reason: 19
+                                    }
+                                }
+                            } else if (443 == i)
+                                for (var f = 0, y = e; f < y.length; f++) {
+                                    var s = y[f];
+                                    if (null != s) {
+                                        var h = s.label;
+                                        if (0 != h && 3 != h) return {
+                                            result: !1,
+                                            reason: 19
+                                        }
+                                    }
+                                } else if (444 == i)
+                                    if (1 == t)
+                                        for (var m = 0, v = e; m < v.length; m++) {
+                                            var s = v[m];
+                                            if (null != s) {
+                                                var h = s.label;
+                                                if (0 != h && 4 != h) return {
+                                                    result: !1,
+                                                    reason: 47
+                                                }
+                                            }
+                                        } else
+                                            for (var g = 0, b = e; g < b.length; g++) {
+                                                var s = b[g];
+                                                if (null != s) {
+                                                    var h = s.label;
+                                                    if (0 != h && 5 != h) return {
+                                                        result: !1,
+                                                        reason: 48
+                                                    }
+                                                }
+                                            } else if (445 == i && !this._map.isCleared())
+                                                for (var w = 0, x = e; w < x.length; w++) {
+                                                    var s = x[w];
+                                                    if (null != s) {
+                                                        var h = s.label;
+                                                        if (0 != h && 6 != h) return {
+                                                            result: !1,
+                                                            reason: 49
+                                                        }
+                                                    }
+                                                }
+                return {
+                    result: !0,
+                    reason: 0
+                }
+            }, t
+        }();
+    e.EventSortieCondition = l;
+    var u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onComplete = function () {
+                i._endTask()
+            }, i._model = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            new _.APIEventSortieCondition(this._model).start(this._onComplete)
+        }, e.prototype._endTask = function () {
+            this._model = null, t.prototype._endTask.call(this)
+        }, e
+    }(s.TaskBase)
 }

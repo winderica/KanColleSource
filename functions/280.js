@@ -34,20 +34,24 @@ const function280 = function (t, e, i) {
             }, e.prototype._completedEnd = function () {
                 var e = o.default.model.basic;
                 e.setUserData(a.ObjUtil.getObject(this._raw_data, "api_basic")), e.setPortBGMID(a.ObjUtil.getNumber(this._raw_data, "api_p_bgm_id")), e.setDutyExcutableCount(a.ObjUtil.getNumber(this._raw_data, "api_parallel_quest_count")), e.setDestroyShipSlotType(a.ObjUtil.getNumber(this._raw_data, "api_dest_ship_slot")), e.setEventData(a.ObjUtil.getObject(this._raw_data, "api_event_object")), e.setCFlag(a.ObjUtil.getNumber(this._raw_data, "api_c_flag")), o.default.model.deck.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_deck_port")), o.default.model.deck.combined.__update__(a.ObjUtil.getNumber(this._raw_data, "api_combined_flag")), o.default.model.log.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_log")), o.default.model.ship.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ship")), o.default.model.useItem.setMaterialData(a.ObjUtil.getObjectArray(this._raw_data, "api_material")), o.default.model.ndock.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ndock"));
-                var i = o.default.model.slot,
-                    n = a.ObjUtil.getObject(this._raw_data, "api_plane_info");
-                if (null != n) {
-                    var r = a.ObjUtil.getNumArray(n, "api_base_convert_slot");
-                    null != r ? i.setAirUnitRelocation(r) : i.setAirUnitRelocation(null);
-                    var s = a.ObjUtil.getObjectArray(n, "api_unset_slot");
-                    if (null != s)
-                        for (var _ = 0, l = s; _ < l.length; _++) {
-                            var u = l[_],
-                                c = a.ObjUtil.getNumber(u, "api_type3No"),
-                                h = a.ObjUtil.getNumArray(u, "api_slot_list");
-                            i.updateUnsetData(c, h)
+                var i = a.ObjUtil.getObject(this._raw_data, "api_friendly_setting"),
+                    n = a.ObjUtil.getNumber(i, "api_request_flag"),
+                    r = a.ObjUtil.getNumber(i, "api_request_type");
+                o.default.friendlyRequest.setData(n, r);
+                var s = o.default.model.slot,
+                    _ = a.ObjUtil.getObject(this._raw_data, "api_plane_info");
+                if (null != _) {
+                    var l = a.ObjUtil.getNumArray(_, "api_base_convert_slot");
+                    null != l ? s.setAirUnitRelocation(l) : s.setAirUnitRelocation(null);
+                    var u = a.ObjUtil.getObjectArray(_, "api_unset_slot");
+                    if (null != u)
+                        for (var c = 0, h = u; c < h.length; c++) {
+                            var p = h[c],
+                                d = a.ObjUtil.getNumber(p, "api_type3No"),
+                                f = a.ObjUtil.getNumArray(p, "api_slot_list");
+                            s.updateUnsetData(d, f)
                         }
-                } else i.setAirUnitRelocation(null);
+                } else s.setAirUnitRelocation(null);
                 t.prototype._completedEnd.call(this)
             }, e.prototype._getSeed = function (t) {
                 return r.PORT_API_SEED[t % 10]

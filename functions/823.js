@@ -1,260 +1,141 @@
 const function823 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t() {}
-        return t.getObj = function (t) {
-            switch (t) {
-                case 591:
-                    return [{
-                        x: -1300,
-                        y: -1750,
-                        scale: 2
-                    }, {
-                        x: -900,
-                        y: -1700,
-                        scale: 1
-                    }, {
-                        x: -1830,
-                        y: -1270,
-                        scale: 2
-                    }, {
-                        x: -600,
-                        y: -900,
-                        scale: 1.6
-                    }, {
-                        x: -740,
-                        y: -235,
-                        scale: 1.2
-                    }];
-                case 594:
-                    return [{
-                        x: -1250,
-                        y: -2422,
-                        scale: 2.56
-                    }, {
-                        x: -1379,
-                        y: -2201,
-                        scale: 1.37
-                    }, {
-                        x: -1948,
-                        y: -677,
-                        scale: 3.36
-                    }, {
-                        x: -1307,
-                        y: -390,
-                        scale: 1.68
-                    }, {
-                        x: -784,
-                        y: -270,
-                        scale: 1.77
-                    }];
-                case 599:
-                    return [{
-                        x: 400,
-                        y: -3200,
-                        scale: 2.4
-                    }, {
-                        x: -550,
-                        y: -450,
-                        scale: 2
-                    }, {
-                        x: -700,
-                        y: -950,
-                        scale: 1.6
-                    }, {
-                        x: -600,
-                        y: -1250,
-                        scale: 1.2
-                    }, {
-                        x: -600,
-                        y: -260,
-                        scale: 1.4
-                    }];
-                default:
-                    return null
+    var o = i(5),
+        r = i(0),
+        s = i(1),
+        a = i(19),
+        _ = i(8),
+        l = i(38),
+        u = i(60),
+        c = i(13),
+        h = i(3),
+        p = i(824),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new u.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
             }
-        }, t.getObject = function (t, e, i) {
-            var n;
-            switch (t) {
-                case 591:
-                    return n = [function () {
-                        i.wait(500).to({
-                            x: 100,
-                            y: -1070,
-                            scaleX: 1.25,
-                            scaleY: 1.25
-                        }, 1e3, createjs.Ease.cubicOut).wait(400)
-                    }, function () {
-                        i.wait(200).to({
-                            x: -1500,
-                            y: -1990,
-                            scaleX: 1.6,
-                            scaleY: 1.6
-                        }, 1200, createjs.Ease.cubicInOut).wait(100)
-                    }, function () {
-                        i.wait(300).to({
-                            x: -805,
-                            y: -290,
-                            scaleX: .75,
-                            scaleY: .75
-                        }, 1e3, createjs.Ease.quadInOut).wait(500)
-                    }, function () {
-                        i.to({
-                            x: -1230,
-                            y: -1570,
-                            scaleX: 2.5,
-                            scaleY: 2.5
-                        }, 300, createjs.Ease.cubicOut).wait(300)
-                    }, function () {
-                        i.to({
-                            x: -3400,
-                            y: -360,
-                            scaleX: 2.6,
-                            scaleY: 2.6
-                        }, 800, createjs.Ease.cubicOut).wait(300)
-                    }, function () {
-                        i.to({
-                            x: -3820,
-                            y: -340,
-                            scaleX: 2.9,
-                            scaleY: 2.9
-                        }, 100)
-                    }, function () {
-                        i.to({
-                            x: -380,
-                            y: 10,
-                            scaleX: .85,
-                            scaleY: .85
-                        }, 1e3, createjs.Ease.quartOut)
-                    }], n[e];
-                case 594:
-                    return n = [function () {
-                        i.wait(500).to({
-                            x: -343,
-                            y: -2208,
-                            scaleX: 1.36,
-                            scaleY: 1.36
-                        }, 1e3, createjs.Ease.cubicInOut).wait(400)
-                    }, function () {
-                        i.wait(200).to({
-                            x: -799,
-                            y: -904,
-                            scaleX: 1.34,
-                            scaleY: 1.34
-                        }, 1200, createjs.Ease.cubicInOut)
-                    }, function () {
-                        i.wait(100).to({
-                            x: -764,
-                            y: -454,
-                            scaleX: 2.74,
-                            scaleY: 2.74
-                        }, 800, createjs.Ease.quadInOut).wait(300)
-                    }, function () {
-                        i.to({
-                            x: -2108,
-                            y: -692,
-                            scaleX: 2.4,
-                            scaleY: 2.4
-                        }, 300, createjs.Ease.cubicOut).wait(500)
-                    }, function () {
-                        i.to({
-                            x: -994,
-                            y: -569,
-                            scaleX: 2.7,
-                            scaleY: 2.7
-                        }, 600, createjs.Ease.cubicOut)
-                    }, function () {
-                        i.to({
-                            x: 425,
-                            y: -5175,
-                            scaleX: 3.5,
-                            scaleY: 3.5
-                        }, 600).wait(400).to({
-                            x: 484,
-                            y: -5955,
-                            scaleX: 3.97,
-                            scaleY: 3.97
-                        }, 100)
-                    }, function () {
-                        i.to({
-                            x: 53,
-                            y: 104,
-                            scaleX: .7,
-                            scaleY: .7
-                        }, 1e3, createjs.Ease.quartOut)
-                    }], n[e];
-                case 599:
-                    return n = [function () {
-                        i.wait(500).to({
-                            x: -550,
-                            y: -450,
-                            scaleX: 2,
-                            scaleY: 2
-                        }, 1e3, createjs.Ease.cubicOut).wait(100)
-                    }, function () {
-                        i.to({
-                            x: -700,
-                            y: -950,
-                            scaleX: 1.6,
-                            scaleY: 1.6
-                        }, 1200, createjs.Ease.cubicInOut)
-                    }, function () {
-                        i.wait(300).to({
-                            x: -600,
-                            y: -1250,
-                            scaleX: 1.2,
-                            scaleY: 1.2
-                        }, 800, createjs.Ease.cubicIn).wait(700)
-                    }, function () {
-                        i.to({
-                            x: -600,
-                            y: -260,
-                            scaleX: 1.4,
-                            scaleY: 1.4
-                        }, 2e3, createjs.Ease.circInOut).wait(400)
-                    }, function () {}, function () {}, function () {
-                        i.to({
-                            x: 50,
-                            y: 100,
-                            scaleX: .7,
-                            scaleY: .7
-                        }, 1e3, createjs.Ease.quartOut)
-                    }], n[e];
-                default:
-                    return function () {}
-            }
-        }, t.getSilhouetteAnim = function (t, e, i) {
-            var n;
-            switch (t) {
-                case 591:
-                    return n = [function () {
-                        i.x += 5, createjs.Tween.get(i).wait(800).to({
-                            alpha: .2
-                        }, 600)
-                    }, function () {
-                        i.visible = !1
-                    }], n[e];
-                case 594:
-                    return n = [function () {
-                        i.x += 5, createjs.Tween.get(i).wait(500).to({
-                            alpha: 0
-                        }, 1e3)
-                    }, function () {}], n[e];
-                case 599:
-                    return n = [function () {
-                        i.x += 5, i.alpha = 0, createjs.Tween.get(i).wait(300).to({
-                            alpha: .4
-                        }, 200).wait(500).to({
-                            alpha: 0
-                        }, 1e3)
-                    }, function () {}], n[e];
-                default:
-                    return function () {}
-            }
-        }, t
-    }();
-    e.SpKaizoConst = n
+            return n(e, t), e.prototype.dispose = function () {
+                this._cb_onComplete = null, this._offset = null, this._white = null, this._commonBG.dispose(), this._commonBG = null, this._holoBG.dispose(), this._holoBG = null, this._textKaiso = null, this._cutinBar = null, this._shipFull = null, this._shipCard = null, this.removeChildren()
+            }, e.prototype.preload = function (t, e, i, n) {
+                var o = this;
+                this._ship_mstid = t, this._offset = i;
+                var s = new c.ShipLoader;
+                s.add(t, e, "full"), s.add(t, e, "card"), s.load(function () {
+                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new u.RarityBG, o._commonBG.initiailzeForShip(3, function () {
+                        o._holoBG.initiailzeForShip(6, function () {
+                            null != n && n()
+                        })
+                    })
+                })
+            }, e.prototype.play = function (t) {
+                var e = this;
+                this._cb_onComplete = t, this.removeChildren(), this.addChild(this._commonBG, this._textKaiso, this._cutinBar, this._white), r.default.settings.renderer.plugins.prepare.upload(this._shipFull, function () {
+                    r.default.settings.renderer.plugins.prepare.upload(e._shipCard, function () {
+                        createjs.Tween.get(null).wait(200).call(function () {
+                            e._00_intro()
+                        })
+                    })
+                })
+            }, e.prototype._00_intro = function () {
+                var t, e = this,
+                    i = new a.TweenTask;
+                this._textKaiso.x = -288, this._textKaiso.y = 395, t = createjs.Tween.get(this._textKaiso).set({
+                    visible: !0
+                }).to({
+                    x: 756
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    x: 1122
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), this._cutinBar.x = 0, this._cutinBar.y = 270, this._cutinBar.mask.scale.y = 0, t = createjs.Tween.get(this._cutinBar.mask.scale).to({
+                    y: 1
+                }, 700, createjs.Ease.cubicOut).wait(100).to({
+                    y: 0
+                }, 700, createjs.Ease.cubicIn).set({
+                    visible: !1
+                }), i.addTween(t), t = createjs.Tween.get(this._white).to({
+                    alpha: 0
+                }, 700, createjs.Ease.cubicOut).set({
+                    visible: !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._textKaiso), e.removeChild(e._cutinBar), e._cutinBar.dispose(), e.removeChild(e._white), e._01_showShip()
+                })
+            }, e.prototype._01_showShip = function () {
+                var t, e = this,
+                    i = new a.TweenTask,
+                    n = new PIXI.Container;
+                n.addChild(this._holoBG), n.addChild(this._shipFull), this.addChild(n);
+                var r = new PIXI.Graphics;
+                r.beginFill(0, 0), r.drawRect(-o.default.width / 2, -o.default.height / 2, o.default.width, o.default.height), r.endFill(), r.x = o.default.width / 2, r.y = o.default.height / 2, r.scale.y = 0, this.addChild(r), n.mask = r, this._holoBG.visible = !0, this._shipFull.x = 201 + this._offset.x, this._shipFull.y = 342 + this._offset.y, t = createjs.Tween.get(this._shipFull).set({
+                    visible: !0
+                }).to({
+                    y: -66 + this._offset.y
+                }, 2400), i.addTween(t), t = createjs.Tween.get(r.scale).to({
+                    y: 1
+                }, 500).call(function () {
+                    e._commonBG.visible = !1, n.mask.visible = !1
+                }), i.addTween(t), i.start(function () {
+                    e.removeChild(e._commonBG), e.removeChild(e.mask), n.mask = null, e._02_changeToCard(n)
+                })
+            }, e.prototype._02_changeToCard = function (t) {
+                var e = this;
+                r.default.sound.voice.play(this._ship_mstid.toString(), 10);
+                var i, n = new a.TweenTask;
+                i = createjs.Tween.get(this._shipFull).wait(600).to({
+                    x: -147 + this._offset.x,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 201 + this._offset.x,
+                    alpha: 0
+                }, 900, createjs.Ease.sineIn).set({
+                    visible: !1
+                }), n.addTween(i), this._shipCard.x = 443, this._shipCard.y = 135, this._shipCard.alpha = 0, t.addChild(this._shipCard), i = createjs.Tween.get(this._shipCard).wait(600).set({
+                    visible: !0
+                }).to({
+                    x: 770,
+                    alpha: .5
+                }, 900, createjs.Ease.sineOut).to({
+                    x: 443,
+                    alpha: 1
+                }, 900, createjs.Ease.sineIn), n.addTween(i), n.start(function () {
+                    t.removeChild(e._shipFull), e._03_waitClick()
+                })
+            }, e.prototype._03_waitClick = function () {
+                var t = this,
+                    e = new l.GearBtnHome;
+                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
+                var i = new _.AreaBox(0);
+                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
+                    t.removeChild(i), t._04_fadeOut(e)
+                })
+            }, e.prototype._04_fadeOut = function (t) {
+                var e = this;
+                createjs.Tween.get(this).to({
+                    alpha: 0
+                }, 100).call(function () {
+                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
+                })
+            }, e
+        }(PIXI.Container);
+    e.KaizoAnimationMain = d
 }

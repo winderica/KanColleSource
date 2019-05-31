@@ -19,23 +19,16 @@ const function1307 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = function (t) {
+    var o = i(23),
+        r = i(20),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype.create = function (t) {
-                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(82), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
-            }, e.prototype.shake = function () {
-                var t = this;
-                if (null != this._airbase)
-                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
-                        i.wait(50), i.call(function () {
-                            Math.random();
-                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
-                        })
-                    }(n)
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = r.MAP_COMMON.getTexture(95), this._img.y = -39
             }, e
-        }(PIXI.Container);
-    e.AirBaseLayer = r
+        }(o.Container);
+    e.LandingFlag = s
 }

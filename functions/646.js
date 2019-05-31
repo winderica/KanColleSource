@@ -20,14 +20,21 @@ const function646 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = function (t) {
+        r = i(14),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._view = e, i
+                return i._skinID = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._view.deactivate(), this._endTask()
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("port");
+                e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), e.add("port_friendly_request.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.FinalizeTask = r
+    e.TaskLoadResources = s
 }

@@ -19,66 +19,49 @@ const function628 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(25),
-        s = i(67),
-        a = function (t) {
+    var o = i(9),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._items = [], e._canvas = new PIXI.Container, e.addChild(e._canvas), e._images = [], e
-            }
-            return n(e, t), e.prototype.add = function (t) {
-                this._items.push(t)
-            }, e.prototype.initialize = function (t) {
-                this._loadUseitemResources(t)
-            }, e.prototype._loadUseitemResources = function (t) {
-                for (var e = this, i = new s.UseitemLoader, n = 0, o = this._items; n < o.length; n++) {
-                    var r = o[n];
-                    6 == r.type && i.add(r.id, 2)
-                }
-                i.load(function () {
-                    e._loadSlotitemResources(t)
-                })
-            }, e.prototype._loadSlotitemResources = function (t) {
-                for (var e = this, i = new r.SlotLoader, n = 0, o = this._items; n < o.length; n++) {
-                    var s = o[n];
-                    2 == s.type && i.add(s.id, "card")
-                }
-                i.load(function () {
-                    e._display(), t && t()
-                })
-            }, e.prototype._display = function () {
-                for (var t = 0, e = this._items; t < e.length; t++) {
-                    var i = e[t];
-                    if (6 == i.type) {
-                        var n = new PIXI.Sprite;
-                        n.texture = o.default.resources.getUseitem(i.id, 2), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(135 / n.width), this._canvas.addChild(n), this._images.push(n)
-                    } else {
-                        var n = new PIXI.Sprite;
-                        n.texture = o.default.resources.getSlotitem(i.id, "card"), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(168 / n.width), this._canvas.addChild(n), this._images.push(n)
+                return e._onUpdate = function () {
+                    if (e.children.length < 20 && Math.random() < .1) {
+                        var t = new s;
+                        e.addChild(t)
                     }
-                }
-                this._layout()
-            }, e.prototype._layout = function () {
-                for (var t = 0, e = 0, i = 0, n = this._images; i < n.length; i++) {
-                    var o = n[i];
-                    t = Math.max(t, o.width), e = Math.max(e, o.height)
-                }
-                switch (this._images.length) {
-                    case 1:
-                        this._images[0].x = 0, this._images[0].y = 0;
-                        break;
-                    case 2:
-                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height;
-                        break;
-                    case 3:
-                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height, this._images[2].x = this._images[1].x + this._images[1].width + 4, this._images[2].y = e - this._images[2].height;
-                        break;
-                    case 4:
-                        this._images[0].x = t - this._images[0].width - Math.round(2), this._images[0].y = e - this._images[0].height - Math.round(2), this._images[1].x = t + Math.round(2), this._images[1].y = e - this._images[1].height - Math.round(2), this._images[2].x = t - this._images[2].width - Math.round(2), this._images[2].y = e + Math.round(2), this._images[3].x = t + Math.round(2), this._images[3].y = e + Math.round(2)
-                }
-                this._canvas.x = -Math.round(this._canvas.width / 2), this._canvas.y = -Math.round(this._canvas.height / 2)
+                    for (var i = 0, n = e.children; i < n.length; i++) {
+                        var o = n[i],
+                            t = o;
+                        null != t && t.update()
+                    }
+                }, e
+            }
+            return n(e, t), e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(35).call(this._onUpdate))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.removeChildren())
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
         }(PIXI.Container);
-    e.MeltIntoSprite = a
+    e.ModelChangeParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this, o.COMMON_MISC.getTexture(51)) || this;
+            return e._state = 0, e.anchor.set(.5), e.x = 600, e.y = 360 + 300 * Math.random() - 225, e.scale.set(.1), e.alpha = 0, e._dir = Math.random() < .5 ? 1 : -1, e._life = 60 * Math.random() + 30, e._xspd = 1.2 * (7 * Math.random() + 6) * e._dir, e._yspd = 1.2 * -9, e._gg = .36, e
+        }
+        return n(e, t), e.prototype.update = function () {
+            switch (this.x += this._xspd, this.y += this._yspd, this._yspd += this._gg, this.scale.x < .6 && (this.scale.x = this.scale.x + .1, this.scale.y = this.scale.y + .1), this.rotation += 3 * this._dir / 180 * Math.PI, this._state) {
+                case 0:
+                    this.alpha += .1, this.alpha >= 1 && (this._state = 1);
+                    break;
+                case 1:
+                    this._life--, this._life <= 0 && (this._state = 2);
+                    break;
+                case 2:
+                    this.parent.removeChild(this)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

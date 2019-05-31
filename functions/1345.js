@@ -20,38 +20,46 @@ const function1345 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(62),
-        s = i(16),
-        a = function (t) {
+        r = i(23),
+        s = i(19),
+        a = i(16),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
+                return i._layer = e, i._smoke1 = new l, i._smoke1.position.set(45, 39), i._smoke2 = new l, i._smoke2.position.set(54, 48), i._smoke3 = new l, i._smoke3.position.set(36, 65), i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
-                    alpha: 1
-                }, 100).to({
-                    x: this._smoke1.x - 4,
+                var t = this,
+                    e = new s.TweenTask;
+                e.addTween(this._createTween(this._smoke1, 0)), e.addTween(this._createTween(this._smoke2, 100)), e.addTween(this._createTween(this._smoke3, 400)), e.start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._createTween = function (t, e) {
+                var i = this,
+                    n = t.x - 105,
+                    o = t.y - 8;
+                return t.scale.set(0), createjs.Tween.get(t).wait(e).call(function () {
+                    i._layer.addChild(t)
+                }).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    x: n,
+                    y: o,
                     alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
-                    alpha: 1
-                }, 100).to({
-                    x: this._smoke2.x - 4,
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 700);
-                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
-                    i = new PIXI.extras.AnimatedSprite(e);
-                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
-                    i.play(), i.onComplete = function () {
-                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
-                    }
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 400).call(function () {
+                    i._layer.removeChild(t)
                 })
             }, e
         }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan2 = a
+    e.AnimAntiAircraftFunshin = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(a.BATTLE_MAIN.getTexture(149)), e._img.position.set(-32, -42), e.addChild(e._img), e
+        }
+        return n(e, t), e
+    }(r.Container)
 }

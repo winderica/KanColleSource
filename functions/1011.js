@@ -19,45 +19,35 @@ const function1011 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(18),
-        a = i(1012),
-        _ = i(1013),
-        l = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._hideDetailInfo = function () {
-                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
-                        alpha: 0
-                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
-                        alpha: 0
-                    }, 300).call(function () {
-                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
-                    })
-                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
+    var o = i(30),
+        r = i(54),
+        s = i(227),
+        a = i(228),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._switch = new a.CompSwitchBtns(1, e, i), n._switch.position.set(807, 171), n
             }
-            return n(e, t), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
-                e.start(function () {
-                    t._showDetailInfo(e.res_model)
-                })
-            }, e.prototype._showDetailInfo = function (t) {
-                var e = this;
-                this._detail = new _.ContainerOverlay;
-                var i = o.default.model.deck.getIDs(),
-                    n = o.default.model.deck.isCombined();
-                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
-                })
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(o.SALLY_COMMON.getTexture(26));
+                t.position.set(144, 168);
+                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(50));
+                e.position.set(0, 102);
+                var i = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(0));
+                i.position.set(198, 112);
+                var n = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(31));
+                n.position.set(207, 177);
+                var s = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(15));
+                s.position.set(196, 228);
+                var a = new PIXI.Sprite(r.SALLY_PRACTICE.getTexture(27));
+                a.position.set(196, 228), this._switch.initialize(), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(s), this.addChild(a), this.addChild(this._switch)
+            }, e.prototype.activate = function () {
+                this._switch.activate()
+            }, e.prototype.deactivate = function () {
+                this._switch.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._switch.dispose()
             }, e
-        }(r.TaskBase);
-    e.TaskDetailInfo = l
+        }(s.ViewMainBase);
+    e.ViewMainBase = _
 }

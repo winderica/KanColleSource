@@ -5,5 +5,5 @@ const function380 = function (t, e, i) {
         }),
         function (t) {
             for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-        }(i(1072))
+        }(i(1076))
 }

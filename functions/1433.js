@@ -4,76 +4,49 @@ const function1433 = function (t, e, i) {
         value: !0
     });
     var n = i(7),
-        o = i(169),
-        r = i(226),
-        s = i(476),
-        a = function () {
-            function t(t, e) {
-                this._info = t, this._battle = e, this._initializeShipData()
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return Object.defineProperty(t.prototype, "ships", {
-                get: function () {
-                    return this._ships
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getDisplayList = function () {
-                for (var t = [], e = this._voice_p_no, i = this._voice_ids, n = 0; n < 3; n++) {
-                    var o = e.indexOf(n + 1);
-                    if (!(o >= 0)) break;
-                    var r = o < this._ships.length ? this._ships[o] : null,
-                        s = i[o];
-                    t.push({
-                        ship: r,
-                        voiceID: s.toString()
-                    })
+            return t.prototype.getAttackTo_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_frai");
+                return null == e || e.length <= t ? -1 : e[t]
+            }, t.prototype.getDamage_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return null == e || e.length <= t ? 0 : Math.floor(e[t])
+            }, t.prototype.isShield_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return !(null == e || e.length <= t) && e[t] % 1 != 0
+            }, t.prototype.getHitType_f = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fcl");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.hasShield_f = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_fdam");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    if (i[e] % 1 != 0) return !0
                 }
-                return t
-            }, t.prototype.getFlareIndex_f = function () {
-                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
-                return null == t || t.length < 1 ? -1 : t[0]
-            }, t.prototype.getFlareIndex_e = function () {
-                var t = n.ObjUtil.getNumArray(this._battle, "api_flare_pos");
-                return null == t || t.length < 2 ? -1 : t[1]
-            }, t.prototype.getHougekiData = function () {
-                var t = n.ObjUtil.getObject(this._battle, "api_hougeki");
-                return new s.HougekiListNightData(t)
-            }, t.prototype._initializeShipData = function () {
-                this._ships = [];
-                for (var t = n.ObjUtil.getNumArray(this._info, "api_ship_id"), e = n.ObjUtil.getNumArray(this._info, "api_ship_lv"), i = n.ObjUtil.getNumArray(this._info, "api_maxhps"), s = n.ObjUtil.getNumArray(this._info, "api_nowhps"), a = n.ObjUtil.getObjectArray(this._info, "api_Slot"), _ = n.ObjUtil.getObjectArray(this._info, "api_Param"), l = 0; l < t.length; l++) {
-                    var u = t[l],
-                        c = e[l],
-                        h = new o.ShipModelReplica(2, !1, l, u, 0, c),
-                        p = s[l],
-                        d = i[l];
-                    h.initializeHPInfo(p, d);
-                    for (var f = a[l], y = [], m = [], v = 0, g = f; v < g.length; v++) {
-                        var b = g[v];
-                        b > 0 && (y.push(new r.SlotitemModelReplica(b)), m.push(1))
-                    }
-                    h.initializeSlots(y, null, m);
-                    var w = _[l],
-                        x = w[0],
-                        I = w[1],
-                        T = w[2],
-                        O = w[3];
-                    h.initializeParams(x, I, T, O), this._ships.push(h)
+                return !1
+            }, t.prototype.getAttackTo_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_erai");
+                return null == e || e.length <= t ? -1 : e[t]
+            }, t.prototype.getDamage_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_eydam");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.isShield_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
+                return !(null == e || e.length <= t) && e[t] % 1 != 0
+            }, t.prototype.getHitType_e = function (t) {
+                var e = n.ObjUtil.getNumArray(this._o, "api_ecl");
+                return null == e || e.length <= t ? 0 : e[t]
+            }, t.prototype.hasShield_e = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_edam");
+                if (null == t) return !1;
+                for (var e = 0, i = t; e < i.length; e++) {
+                    if (i[e] % 1 != 0) return !0
                 }
-            }, Object.defineProperty(t.prototype, "_voice_p_no", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_p_no");
-                    return null == t ? [] : t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "_voice_ids", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._info, "api_voice_id");
-                    return null == t ? [] : t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+                return !1
+            }, t
         }();
-    e.AllyAttackModel = a
+    e.RaigekiData = o
 }

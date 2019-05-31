@@ -58,6 +58,12 @@ const function146 = function (t, e, i) {
             },
             enumerable: !0,
             configurable: !0
+        }), Object.defineProperty(t, "visible", {
+            get: function () {
+                return this._editArea.style.display
+            },
+            enumerable: !0,
+            configurable: !0
         }), t.onLengthCheck = function (t, e, i) {
             var n = this;
             void 0 === t && (t = 12);

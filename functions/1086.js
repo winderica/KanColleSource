@@ -19,56 +19,36 @@ const function1086 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._progress = 0, e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "progress", {
-            get: function () {
-                return this._progress
-            },
-            set: function (t) {
-                this._progress = t, this._draw(this._progress)
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.update = function (t) {
-            if (this._model = t, null == t) return void this._clear();
-            this._startAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._clear = function () {
-            this._stopAnimation(), this.clear()
-        }, e.prototype._startAnimation = function () {
-            var t = this;
-            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
-                progress: 1
-            }, 1e3).call(function () {
-                t._t = null, t._progress = 0
-            })
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._draw = function (t) {
-            var e = [(this._model.karyoku > 100 ? 100 : this._model.karyoku) * t, (this._model.raisou > 100 ? 100 : this._model.raisou) * t, (this._model.taiku > 100 ? 100 : this._model.taiku) * t, (this._model.kaihi > 100 ? 100 : this._model.kaihi) * t, (this._model.taikyu > 100 ? 100 : this._model.taikyu) * t],
-                i = e.map(function (t, e, i) {
-                    var n = (72 * e - 90) / 180 * Math.PI;
-                    return [95 * t / 100 * Math.cos(n), 95 * t / 100 * Math.sin(n)]
-                });
-            this.clear(), this.lineStyle(1.4, 16774898), this.beginFill(1949120), this.moveTo(i[0][0], i[0][1]);
-            for (var n = 0; n < 5; n++) {
-                var o = (n + 1) % 5;
-                i[n][0] == i[o][0] && i[n][1] == i[o][1] || this.lineTo(i[o][0], i[o][1])
+    var o = i(1),
+        r = i(84),
+        s = i(3),
+        a = i(4),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._target)
+                }, i._cb_onClick = e;
+                var n = new PIXI.Container;
+                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new a.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
+                var o = new PIXI.Container;
+                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), o.addChild(i._img), i.addChild(o), i.scale.set(1), i._bg.interactive = !0, i
             }
-            this.endFill()
-        }, e
-    }(PIXI.Graphics);
-    e.RaderGraph = o;
-    var r = function () {
-        function t() {
-            this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
-        }
-        return t
-    }();
-    e.RaderGraphModel = r
+            return n(e, t), e.prototype.initialize = function () {
+                this._no.texture = s.ALBUM_MAIN.getTexture(19), this._bg.texture = s.ALBUM_MAIN.getTexture(16)
+            }, e.prototype.update = function (t) {
+                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, null == t) return null;
+                var e = t.mst_ids[0];
+                new r.TaskLoadSlotResource("card_t", this._img, e).start()
+            }, e.prototype.updateLabel = function (t) {
+                this._label.text = t
+            }, e.prototype.activate = function () {
+                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._no = null, this._label = null, this._cb_onClick = null
+            }, e
+        }(PIXI.Container);
+    e.MainItemSlot = _
 }

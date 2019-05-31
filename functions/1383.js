@@ -19,65 +19,100 @@ const function1383 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(18),
-        s = i(27),
-        a = i(6),
-        _ = i(1384),
-        l = i(1386),
-        u = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+    var o = i(92),
+        r = i(76),
+        s = i(1384),
+        a = i(1385),
+        _ = i(1413),
+        l = i(1414),
+        u = i(1415),
+        c = i(469),
+        h = i(1416),
+        p = i(1417),
+        d = i(183),
+        f = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this, e, n) || this;
+                return o._record = i, o
             }
             return n(e, t), e.prototype._start = function () {
+                this._opening()
+            }, e.prototype._opening = function () {
+                var t = this;
+                new s.PhaseOpening(this.scene, this._record).start(function () {
+                    t._allyAttack()
+                })
+            }, e.prototype._allyAttack = function () {
+                var t = this;
+                new a.PhaseAllyAttack(this.scene, this._record).start(function () {
+                    t._moveShips()
+                })
+            }, e.prototype._moveShips = function () {
+                var t = this;
+                new l.PhaseMoveShips(this.scene, this._record).start(function () {
+                    t._showTouchPlane()
+                })
+            }, e.prototype._showTouchPlane = function () {
                 var t = this,
-                    e = this._banner_f,
-                    i = this._banner_e;
-                1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                    t._search_light_task = null, t._preEndTask()
+                    e = this._record.raw.getTouchPlaneFriend(),
+                    i = this._record.raw.getTouchPlaneEnemy();
+                new d.TaskShowTouchPlane(this.scene, e, i).start(function () {
+                    t._ration()
                 })
-            }, e.prototype._effectWithFlare = function (t, e) {
-                var i = this,
-                    n = new s.ParallelTask;
-                n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                    createjs.Tween.get(null).wait(1170).call(function () {
-                        i._flareAnimation(t, e)
-                    }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                        i._search_light_task.start(function () {
-                            i._search_light_task = null, i._preEndTask()
-                        })
+            }, e.prototype._ration = function () {
+                var t = this;
+                new o.PhaseRation(this.scene, this._record).start(function () {
+                    t._light()
+                })
+            }, e.prototype._light = function () {
+                var t = this;
+                new _.PhaseLighting(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new u.PhaseSupport(this.scene, this._record).start(function () {
+                    t._attack()
+                })
+            }, e.prototype._attack = function () {
+                var t = this,
+                    e = this._record.raw.hougeki,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this,
+                    e = this._record.raw.hougeki1,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this,
+                    e = this._record.raw.hougeki2,
+                    i = this.scene.data.model.deck_f.ships,
+                    n = this.scene.data.model.deck_e.ships;
+                new c.PhaseHougeki(this.scene, e, i, n).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new h.PhaseEnding(this.scene, this._record).start(function () {
+                    t._dayBattle()
+                })
+            }, e.prototype._dayBattle = function () {
+                var t = this;
+                if (1 == this._record.raw.hasDayBattle()) {
+                    var e = this.scene,
+                        i = this._record.getDayRecord();
+                    new p.PhaseDayFromNight(e, i).start(function () {
+                        t._endTask()
                     })
-                })
-            }, e.prototype._flareAnimation = function (t, e) {
-                var i = this;
-                this._flare_light_task = new s.ParallelTask;
-                var n = this._layer;
-                this._flare_light_task.add(new c(n));
-                var o;
-                null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new l.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                    i._flare_light_task = null, i._preEndTask()
-                })
-            }, e.prototype._preEndTask = function () {
-                null == this._search_light_task && null == this._flare_light_task && this._endTask()
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+                } else this._endTask()
             }, e
-        }(o.TaskBase);
-    e.TaskFlareEffect = u;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            })
-        }, e
-    }(o.TaskBase)
+        }(r.PhaseCombatBase);
+    e.PhaseNight = f
 }

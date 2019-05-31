@@ -19,46 +19,57 @@ const function1310 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1311),
-        s = i(1313),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var o = i(20),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer = new PIXI.Container, e._layer.y = -30, e.addChild(e._layer), e._img3 = new PIXI.Sprite, e._layer.addChild(e._img3), e._img2 = new PIXI.Sprite, e._layer.addChild(e._img2), e._img1 = new PIXI.Sprite, e._layer.addChild(e._img1), e._basePos1 = new PIXI.Point, e._basePos2 = new PIXI.Point, e._basePos3 = new PIXI.Point, e._tweens = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
-                var e = this._model.escape,
-                    i = e.getTargetShipIndexes(),
-                    n = e.getTowingShipIndexes(),
-                    o = null;
-                if (i.length > 0) {
-                    var a = i[0];
-                    o = this._model.deck_f.ships[a]
+            return n(e, t), e.prototype.initialize = function (t) {
+                switch (t) {
+                    case 1:
+                        this._img1.texture = o.MAP_COMMON.getTexture(85), this._img2.texture = o.MAP_COMMON.getTexture(86);
+                        break;
+                    case 0:
+                        this._img1.texture = o.MAP_COMMON.getTexture(87), this._img2.texture = o.MAP_COMMON.getTexture(89);
+                        break;
+                    case 2:
+                        this._img1.texture = o.MAP_COMMON.getTexture(88), this._img2.texture = o.MAP_COMMON.getTexture(90);
+                        break;
+                    case 3:
+                        this._img1.texture = o.MAP_COMMON.getTexture(91), this._img2.texture = o.MAP_COMMON.getTexture(92);
+                        break;
+                    default:
+                        this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY
                 }
-                var _ = null;
-                if (n.length > 0) {
-                    var l = n[0];
-                    _ = this._model.deck_f.ships[l]
+                3 != t ? (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 0, this._basePos1.y = 0, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0) : (this._img3.texture = o.MAP_COMMON.getTexture(93), this._basePos1.x = -5, this._basePos1.y = -25, this._basePos2.x = -40, this._basePos2.y = -50, this._basePos3.x = -45, this._basePos3.y = 0), this._img1.x = this._basePos1.x, this._img1.y = this._basePos1.y, this._img2.x = this._basePos2.x, this._img2.y = this._basePos2.y, this._img3.x = this._basePos3.x, this._img3.y = this._basePos3.y
+            }, e.prototype.activate = function () {
+                this._stopTweens(), this._startAnimation()
+            }, e.prototype.deactivate = function () {
+                this._stopTweens()
+            }, e.prototype._startAnimation = function () {
+                var t = this,
+                    e = 6 * Math.random() - 3,
+                    i = 6 * Math.random() - 3;
+                this._tweens.push(createjs.Tween.get(this._img3).to({
+                    x: this._basePos3.x + e,
+                    y: this._basePos3.y + i
+                }, 250, createjs.Ease.sineInOut)), e = 6 * Math.random() - 3, i = 6 * Math.random() - 3, this._tweens.push(createjs.Tween.get(this._img2).to({
+                    x: this._basePos2.x + e,
+                    y: this._basePos2.y + i
+                }, 250, createjs.Ease.sineInOut)), e = 6 * Math.random() - 3, i = 6 * Math.random() - 3, this._tweens.push(createjs.Tween.get(this._img1).to({
+                    x: this._basePos1.x + e,
+                    y: this._basePos1.y + i
+                }, 250, createjs.Ease.sineInOut).call(function () {
+                    t._startAnimation()
+                }))
+            }, e.prototype._stopTweens = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    var i = e[t];
+                    null != i && i.setPaused(!0)
                 }
-                if (null != o)
-                    if (null != _) {
-                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    } else {
-                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    }
-                else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                this._tweens = []
             }, e
-        }(o.TaskBase);
-    e.EscapeTask = a
+        }(PIXI.Container);
+    e.MapPlane = r
 }

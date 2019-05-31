@@ -19,76 +19,57 @@ const function1507 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(51),
-        r = i(1508),
-        s = i(1509),
-        a = i(1512),
-        _ = i(1520),
-        l = i(1521),
-        u = i(1522),
-        c = i(1524),
-        h = function (t) {
+    var o = i(1508),
+        r = i(1509),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new l.LayerTitle, e._map_name = new c.LayerMapName, e._panel_exp = new u.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._map_name), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
+                e._value = 0, e._lights = [], e._nums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.ResultDialogNumLight;
+                    n.x = 68 - 23 * i, n.visible = !1, e.addChild(n), e._lights.push(n)
+                }
+                for (var i = 0; i < 4; i++) {
+                    var s = new r.ResultDialogNum;
+                    s.x = 68 - 23 * i, s.visible = !1, e.addChild(s), e._nums.push(s)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
-                get: function () {
-                    return this._layer_mvp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bg", {
-                get: function () {
-                    return this._layer_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_deck_info", {
-                get: function () {
-                    return this._layer_deck_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_banner", {
-                get: function () {
-                    return this._layer_banner
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "panel_exp", {
-                get: function () {
-                    return this._panel_exp
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_map_name", {
-                get: function () {
-                    return this._map_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg.dispose(), this._layer_bg = null, this._layer_deck_info.dispose(), this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null, this._map_name.dispose(), this._map_name = null
+            return n(e, t), e.prototype.setValue = function (t) {
+                this._value = Math.min(t, 9999);
+                for (var e = this._value, i = 0; i < this._nums.length; i++) {
+                    var n = this._nums[i],
+                        o = this._lights[i],
+                        r = e % 10;
+                    n.update(r), o.update(r), n.visible = 0 != r || 0 != e, e = Math.floor(e / 10)
+                }
+            }, e.prototype.startLightAnimation = function () {
+                this.stopLightAnimation(), this._light_tweens = [];
+                for (var t = 0; t < this._lights.length; t++) {
+                    var e = this._nums[t],
+                        i = this._lights[t];
+                    if (0 == e.visible) i.visible = !1;
+                    else {
+                        i.alpha = 0, i.visible = !0;
+                        var n = createjs.Tween.get(i, {
+                            loop: !0
+                        }).to({
+                            alpha: 1
+                        }, 500).wait(500).to({
+                            alpha: 0
+                        }, 500).wait(500);
+                        this._light_tweens.push(n)
+                    }
+                }
+            }, e.prototype.stopLightAnimation = function () {
+                if (null != this._light_tweens) {
+                    for (var t = 0, e = this._light_tweens; t < e.length; t++) {
+                        var i = e[t];
+                        i.setPaused(!0), i = null
+                    }
+                    this._light_tweens = null
+                }
             }, e
         }(PIXI.Container);
-    e.ViewMain = h
+    e.ResultDialogNumSet = s
 }

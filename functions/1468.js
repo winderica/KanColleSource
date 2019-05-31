@@ -8,29 +8,19 @@ const function1468 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "nowHP", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_now_hp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "maxHP", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_max_hp")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "subValue", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_sub_value")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isLandingMap = function () {
-                return null != this._o
-            }, t.prototype.isSuccess = function () {
-                return this.subValue > 0
+            return t.prototype.getTargetShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
+            }, t.prototype.getTowingShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_tow_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
             }, t
         }();
-    e.LandingModel = o
+    e.EscapeCandidateModel = o
 }

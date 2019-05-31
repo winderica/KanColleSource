@@ -19,30 +19,28 @@ const function1146 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(3),
-        s = function (t) {
+    var o = i(74),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
+                return e.alpha = 0, e.visible = !1, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(10), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(11), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
-            }, e.prototype._activate = function () {
-                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
-            }, e.prototype._startTween = function () {
-                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(12)
+            }, e.prototype.show = function () {
+                var t = this;
+                this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({
                     alpha: 1
-                }, 3e3).to({
+                }, 300).wait(2e3).to({
                     alpha: 0
-                }, 3e3)
+                }, 300).call(function () {
+                    t.visible = !1
+                })
+            }, e.prototype.hide = function () {
+                this._stopTween(), this.alpha = 0, this.visible = !1
             }, e.prototype._stopTween = function () {
-                null != this._tween && this._tween.setPaused(!0), this._tween = null
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(o.BtnBase);
-    e.PickupBtn = s
+        }(PIXI.Sprite);
+    e.RewardSelectDialogFurnitureAlert = r
 }

@@ -19,57 +19,36 @@ const function1513 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1514),
-        r = function (t) {
+    var o = i(19),
+        r = i(1514),
+        s = i(1515),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._banners = [], e
+                return e._friend = new s.DeckInfoPanelFriend, e._friend.x = 129, e._friend.y = 116, e.addChild(e._friend), e._enemy = new r.DeckInfoPanelEnemy, e._enemy.x = 612, e._enemy.y = 116, e.addChild(e._enemy), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._resetBanners();
-                var e = 0;
-                e = 7 == t.length ? 0 : 68;
-                for (var i = 0; i < t.length; i++) {
-                    var n = t[i];
-                    if (null == n) return;
-                    var r = new o.ShipBannerClone(n.isTaihi());
-                    r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
-                    var s = n.mst_id,
-                        a = n.hp_now,
-                        _ = n.hp_max;
-                    r.updateTexture(s, a, _), r.updateIcon(n.damageType, n.isGround()), this.addChild(r)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy", {
+                get: function () {
+                    return this._enemy
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, o) {
+                this._friend.initialize(t, e, i, o), this._enemy.initialize(n, o)
+            }, e.prototype.show = function (t) {
+                var e = new o.TweenTask;
+                e.addTween(this._friend.createShowTween()), e.addTween(this._enemy.createShowTween()), e.start(function () {
+                    null != t && t()
+                })
             }, e.prototype.dispose = function () {
-                this._resetBanners(), this._banners = null, this.removeChildren()
-            }, e.prototype.createShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i];
-                    n.y += 30;
-                    var o = createjs.Tween.get(n).wait(t + 50 * i).to({
-                        y: n.y - 30,
-                        alpha: 1
-                    }, 150);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype.createHideTweens = function (t) {
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i],
-                        o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
-                            y: n.y + 30,
-                            alpha: 0
-                        }, 200);
-                    e.push(o)
-                }
-                return e
-            }, e.prototype.getBanner = function (t) {
-                return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
-            }, e.prototype._resetBanners = function () {
-                for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
-                    var t = this._banners.pop();
-                    null != t.parent && t.parent.removeChild(t), t.dispose()
-                }
+                this.removeChildren(), this._friend.dispose(), this._enemy.dispose()
             }, e
         }(PIXI.Container);
-    e.BannerSet = r
+    e.LayerDeckInfo = a
 }

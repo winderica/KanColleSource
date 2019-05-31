@@ -23,24 +23,37 @@ const function1142 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.alpha = 0, e.visible = !1, e
+                return e._num = new PIXI.Sprite, e.addChild(e._num), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(12)
-            }, e.prototype.show = function () {
-                var t = this;
-                this.hide(), this.visible = !0, this._t = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300).wait(2e3).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t.visible = !1
-                })
-            }, e.prototype.hide = function () {
-                this._stopTween(), this.alpha = 0, this.visible = !1
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
+            }, e.prototype.update = function (t) {
+                88 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+            }, e.prototype._getNumImage = function (t) {
+                switch (t) {
+                    case 1:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
+                    case 2:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
+                    case 3:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
+                    case 4:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
+                    case 5:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
+                    case 6:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
+                    case 7:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
+                    case 8:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
+                    case 9:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(33);
+                    case 88:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
+                }
+                return PIXI.Texture.EMPTY
             }, e
         }(PIXI.Sprite);
-    e.RewardSelectDialogFurnitureAlert = r
+    e.RewardSelectDialogCount = r
 }

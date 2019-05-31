@@ -19,46 +19,80 @@ const function612 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(613),
-        r = i(614),
-        s = i(615),
-        a = i(156),
+    var o = i(0),
+        r = i(190),
+        s = i(613),
+        a = i(614),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onRevampOpen = function () {
-                    null != e._revamp && e._revamp.open()
-                }, e._onRevampClose = function () {
-                    null != e._revamp && e._revamp.close()
-                }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
+                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new l, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
+            return n(e, t), Object.defineProperty(e.prototype, "marriageEff", {
+                get: function () {
+                    return this._marrigaeEff
+                },
+                set: function (t) {
+                    this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._touch_count = 0, this._ship_mst_id = t;
+                var n = o.default.resources.getShip(t, e, "full");
+                this._chara.texture = n;
+                var r = new PIXI.Sprite(n);
+                this._hit_area_map = o.default.settings.renderer.extract.pixels(r), this._container.position.set(491, -88);
+                var s = this._chara.width / 2,
+                    a = this._chara.height / 2,
+                    _ = o.default.model.ship_graph.get(t).getPortOffset(e);
+                this._chara.position.set(-s + _.x, -a + _.y), this._container.positionSet(491 + s, -88 + a), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
             }, e.prototype.activate = function () {
-                this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
+                null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
+                    loop: !0
+                }).to({
+                    anim_value: Math.PI
+                }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
             }, e.prototype.deactivate = function () {
-                this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
-            }, e.prototype.prePosition = function () {
-                this.x = this._presetX, this.alpha = 0
-            }, e.prototype.startAnimation = function () {
-                var t = this;
-                this._interactive(!1), createjs.Tween.get(this).wait(200).to({
-                    x: this._baseX,
-                    alpha: 1
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    t._interactive(!0)
-                })
-            }, e.prototype.dispose = function () {
-                this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
-            }, e.prototype.setRevampFlg = function (t) {
-                1 == t ? this._addRevampBtn() : this._removeRevampBtn()
-            }, e.prototype._addRevampBtn = function () {
-                null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
-            }, e.prototype._removeRevampBtn = function () {
-                null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
-            }, e.prototype._interactive = function (t) {
-                this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
+                null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
+            }, e.prototype.onMouseMove = function (t) {
+                var e = t.getLocalPosition(this._chara);
+                return this._isCharaHit(e)
+            }, e.prototype.onClick = function (t) {
+                var e = t.getLocalPosition(this._chara),
+                    i = this._isCharaHit(e);
+                return 1 == i && this._onClick(), i
+            }, e.prototype._showMarriageEff = function () {
+                var t = new PIXI.Rectangle(600, 0, 600, 720);
+                this._ship_is_marriage = !0, this._sakura.startAnimation(t)
+            }, e.prototype._hideMarriageEff = function () {
+                this._ship_is_marriage = !1, this._sakura.stopAnimation()
+            }, e.prototype._isCharaHit = function (t, e) {
+                if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
+                var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
+                return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
+            }, e.prototype._onClick = function () {
+                this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
             }, e
         }(PIXI.Container);
-    e.RingMenuLayer = _
+    e.FlagShipLayer = _;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
+            get: function () {
+                return 0
+            },
+            set: function (t) {
+                var e = Math.sin(t),
+                    i = 1 + .012 * (.5 + .5 * e);
+                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.positionSet = function (t, e) {
+            this.position.set(t, e), this._base_y = e
+        }, e
+    }(PIXI.Container)
 }

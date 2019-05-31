@@ -3,58 +3,86 @@ const function727 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(31),
-        r = i(69),
-        s = i(215),
-        a = i(728),
-        _ = i(732),
-        l = function () {
-            function t(t) {
-                var e = this;
-                this._onCompleteChoiceShip = function (t) {
-                    switch (t) {
-                        case a.TaskChoiceShipResult.CHOICE:
-                            e.memShipId = e.taskChoiceShip.memShipId, e.taskConfirmChangeShip = new _.TaskConfirmChangeShip(e.mainView), e.taskConfirmChangeShip.onComplete = e._onCompleteComfirm, e.taskConfirmChangeShip.start(e.deckId, e.slotIndex, e.memShipId);
-                            break;
-                        case a.TaskChoiceShipResult.CANCEL:
-                            n.default.view.clickGuard = !0, e.taskChoiceShip.hide(function () {
-                                e.taskChoiceShip.dispose(), e.taskChoiceShip = null, n.default.view.clickGuard = !1, e.onComplete()
-                            });
-                            break;
-                        case a.TaskChoiceShipResult.DETACH:
-                            n.default.view.clickGuard = !0;
-                            var i = new o.APIConnector;
-                            i.add(new s.ChangeAPI(!1, e.deckId, e.slotIndex, -1)), 10 == n.default.model.basic.getTutorialProgress() && i.add(new r.UpdateTutorialAPI(20)), i.start(function () {
-                                n.default.view.clickGuard = !1, e.onUpdateDeck(), e.onComplete()
-                            })
-                    }
-                }, this._onCompleteComfirm = function (t) {
-                    switch (t) {
-                        case !0:
-                            n.default.view.clickGuard = !0;
-                            var i = new o.APIConnector;
-                            i.add(new s.ChangeAPI(!1, e.deckId, e.slotIndex, e.memShipId)), 10 == n.default.model.basic.getTutorialProgress() && i.add(new r.UpdateTutorialAPI(20)), i.start(function () {
-                                n.default.view.clickGuard = !1, e.onUpdateDeck(), e.taskConfirmChangeShip.hide(function () {
-                                    e.taskChoiceShip.dispose(), e.taskChoiceShip = null, e.taskConfirmChangeShip.dispose(), e.taskConfirmChangeShip = null, e.onComplete()
-                                }), e.taskChoiceShip.hide(function () {})
-                            });
-                            break;
-                        case !1:
-                            n.default.view.clickGuard = !0, e.taskConfirmChangeShip.hide(function () {
-                                e.taskConfirmChangeShip.dispose(), e.taskConfirmChangeShip = null, n.default.view.clickGuard = !1
-                            })
-                    }
-                }, this.mainView = t
+    var n = i(15),
+        o = i(0),
+        r = function () {
+            function t(t, e) {
+                this._preset_id = -1, this._preset_id = t, this._o = e, this._createShipData()
             }
-            return t.prototype.dispose = function () {
-                this.taskChoiceShip && this.taskChoiceShip.dispose(), this.taskConfirmChangeShip && this.taskConfirmChangeShip.dispose(), this.taskChoiceShip = null, this.taskConfirmChangeShip = null, this.mainView = null, this.deckId = null, this.memShipId = null, this.slotIndex = null
-            }, t.prototype.start = function (t, e) {
-                this.deckId = t, this.slotIndex = e;
-                var i = n.default.model.deck.get(t),
-                    o = !1;
-                1 == i.mstID && 1 == i.getCount() ? o = !1 : i.getShipModel(e) && (o = !0), this.taskChoiceShip = new a.TaskChoiceShip(this.mainView), this.taskChoiceShip.onComplete = this._onCompleteChoiceShip, this.taskChoiceShip.start(o)
+            return Object.defineProperty(t.prototype, "presetID", {
+                get: function () {
+                    return this._preset_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "deckName", {
+                get: function () {
+                    return null == this._o ? "" : n.ObjUtil.getString(this._o, "api_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "ships", {
+                get: function () {
+                    return this._ships
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getShipCount = function () {
+                var t = 0,
+                    e = this._getShipMemIds();
+                if (null == e) return 0;
+                for (var i = 0; i < e.length; i++) - 1 != e[i] && t++;
+                return t
+            }, t.prototype.getRealShipCount = function () {
+                for (var t = 0, e = 0; e < this._ships.length; e++) null != this._ships[e] && t++;
+                return t
+            }, t.prototype.getFrontShip = function () {
+                for (var t = 0; t < this._ships.length; t++)
+                    if (null != this._ships[t]) return this._ships[t];
+                return null
+            }, t.prototype.hasOtherDeckShip = function (t) {
+                for (var e = 0; e < this._ships.length; e++)
+                    if (this.isOtherDeckShip(e, t)) return !0;
+                return !1
+            }, t.prototype.isOtherDeckShip = function (t, e) {
+                if (null != this._ships[t]) {
+                    var i = this._ships[t],
+                        n = o.default.model.deck.isInDeck(i.memID);
+                    return null != n && n[0] != e
+                }
+                return !1
+            }, t.prototype.getFirstOtherDeckShip = function (t) {
+                for (var e = 0; e < this._ships.length; e++)
+                    if (this.isOtherDeckShip(e, t)) return this._ships[e];
+                return null
+            }, t.prototype.hasLostShip = function () {
+                for (var t = 0; t < this._ships.length; t++)
+                    if (this.isLostShip(t)) return !0;
+                return !1
+            }, t.prototype.isLostShip = function (t) {
+                return null == this._ships[t] && -1 != this._getShipMemIds()[t]
+            }, t.prototype.getShipsAfterExpanded = function (t) {
+                for (var e = new Array, i = 0; i < this._ships.length; i++) {
+                    var n = this._ships[i];
+                    null != n && 0 == this.isOtherDeckShip(i, t) && 0 == this.isLostShip(i) && e.push(n)
+                }
+                return e
+            }, t.prototype.__deleteLostShips__ = function () {
+                for (var t = [], e = this._getShipMemIds(), i = 0; i < e.length; i++) 0 == this.isLostShip(i) && t.push(e[i]);
+                for (; t.length < 6;) t.push(-1);
+                this._o.api_ship = t
+            }, t.prototype._createShipData = function () {
+                this._ships = new Array;
+                var t = this._getShipMemIds();
+                if (null != t)
+                    for (var e = 0; e < t.length; e++) {
+                        var i = t[e],
+                            n = o.default.model.ship.get(i);
+                        this._ships.push(n)
+                    }
+            }, t.prototype._getShipMemIds = function () {
+                return n.ObjUtil.getObjectArray(this._o, "api_ship", [])
             }, t
         }();
-    e.TaskChangeShip = l
+    e.PresetModel = r
 }

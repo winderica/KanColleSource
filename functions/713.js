@@ -19,81 +19,72 @@ const function713 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(21),
-        s = i(111),
-        a = i(714),
-        _ = i(58),
-        l = i(322),
-        u = i(319),
-        c = i(323),
-        h = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n.PAGE_NUM = 5, n.headIndex = 0, n._onClickBack = function () {
-                    n.hide(), n.clickBack && n.clickBack()
-                }, n._onClickExpand = function (t) {
-                    n.clickExpand && n.clickExpand(t)
-                }, n._onClickDelete = function (t) {
-                    var e = new c.PresetDeleteAPI(t);
-                    o.default.view.clickGuard = !0, e.start(function () {
-                        var e = new Array,
-                            i = o.default.model.deck.get(n.deckId),
-                            r = (i.getShipList(), null != i.expedition),
-                            s = (i.getShipMemIDList(), 0 < i.getCount());
-                        n.presetList.__deletePresetDeckData__(t);
-                        for (var a = 0; a < n.presetList.maxNum; a++) {
-                            var _ = n.presetList.getPresetDeckData(a + 1);
-                            0 < _.getRealShipCount() && e.push(_)
-                        }
-                        var l = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
-                        n.presetExpansionContainer.update(n.deckId, n.presetList, l, s, r), o.default.view.clickGuard = !1, n.presets = e
-                    })
-                }, n._onClickNext = function () {
-                    n.arrowBottomButton.visible = !1;
-                    var t = n.headIndex + 1;
-                    n.presets.length < t + n.PAGE_NUM && (t = n.presets.length - n.PAGE_NUM), n.arrowBottomButton.visible = !1, n.arrowTopButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), 0 < t && (n.presetTitle.hideTxt2(), n.arrowTopButton.visible = !0);
-                    var e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n._onClickPrev = function () {
-                    var t = n.headIndex - 1,
-                        e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    t < 0 && (t = 0), n.arrowBottomButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), n.arrowTopButton.visible = !1, 0 < t && (n.arrowTopButton.visible = !0, n.presetTitle.hideTxt2()), n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new l.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new u.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
-                var h = r.COMMON_MAIN.getTexture(4);
-                return n.btnBack = new _.SimpleButton(h, h), n.btnBack.position.set(173, 638), n.btnBack.onClick = n._onClickBack, n.arrowTopButton = new s.ArrowButton, n.arrowTopButton.initialize(n._onClickPrev), n.arrowTopButton.position.set(446, 217), n.arrowBottomButton = new s.ArrowButton(!0), n.arrowBottomButton.initialize(n._onClickNext), n.arrowBottomButton.position.set(443, 667), n.presetExpansionContainer = new a.PresetExpansionContainer, n.presetExpansionContainer.position.set(168, 248), n.presetExpansionContainer.onClickExpand = n._onClickExpand, n.addChild(n.presetTitle, n.btnBack, n.presetExpansionContainer, n.longShipBannerContainer, n.arrowTopButton, n.arrowBottomButton), n
+    var o = i(1),
+        r = i(4),
+        s = i(37),
+        a = i(57),
+        _ = i(714),
+        l = i(58),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onMouseOut = function (t) {
+                    t.target != i.saveButton && t.target != i.deleteButton && i.removeFocus()
+                }, i._onClickSave = function () {
+                    i.onClickSave && i.onClickSave(i._presetId)
+                }, i._onClickDelete = function () {
+                    i.onClickDelete && i.onClickDelete(i._presetId)
+                }, i._onClickExtension = function () {
+                    i.onClickExtension && i.onClickExtension()
+                }, i._index = e, i.frame_bg = new PIXI.Sprite(a.ORGANIZE_MAIN.getTexture(29)), i.frame_bg.buttonMode = !1, i.frame_bg.interactive = !0, i.frame_bg.addListener(o.EventType.MOUSEOVER, function () {
+                    i._onMouseOver()
+                }), i.frame_bg.addListener(o.EventType.MOUSEOUT, function (t) {
+                    i._onMouseOut(t)
+                }), i.addChild(i.frame_bg);
+                var n = a.ORGANIZE_MAIN.getTexture(33);
+                i.presetFocuses = new PIXI.Sprite(n), i.presetFocuses.x = -6, i.presetFocuses.y = -3, i.presetFocuses.visible = !1, i.addChild(i.presetFocuses), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new r.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new r.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount);
+                var s = a.ORGANIZE_MAIN.getTexture(4),
+                    u = a.ORGANIZE_MAIN.getTexture(5),
+                    c = a.ORGANIZE_MAIN.getTexture(1);
+                return i.saveButton = new l.SimpleButton(s, s), i.deleteButton = new l.SimpleButton(c, c), i.offSaveButton = new PIXI.Sprite(u), i.deleteButton.interactive = i.deleteButton.buttonMode = !0, i.saveButton.interactive = i.saveButton.buttonMode = !0, i.deleteButton.position.set(490, 36), i.saveButton.x = i.offSaveButton.x = 250, i.saveButton.y = i.offSaveButton.y = 36, i.saveButton.onClick = function () {
+                    i._onClickSave()
+                }, i.deleteButton.onClick = function () {
+                    i._onClickDelete()
+                }, i.saveButton.onMouseOver = function () {
+                    i._onMouseOver()
+                }, i.deleteButton.onMouseOver = function () {
+                    i._onMouseOver()
+                }, i.saveButton.onMouseOut = function (t) {
+                    i._onMouseOut(t)
+                }, i.deleteButton.onMouseOut = function (t) {
+                    i._onMouseOut(t)
+                }, i.addChild(i.offSaveButton, i.saveButton, i.deleteButton), i.presetExtensions = new _.PresetExtensionView(e), i.presetExtensions.onClick = i._onClickExtension, i.addChild(i.presetExtensions), i
             }
             return n(e, t), e.prototype.dispose = function () {
-                if (this.removeChildren(), this.presetTitle.dispose(), this.presetExpansionContainer.hideAllPopupAndFocus(), this.presetExpansionContainer.dispose(), this.btnBack.dispose(), this.arrowTopButton.dispose(), this.arrowBottomButton.dispose(), this.longShipBannerContainer.dispose(), this.presets)
-                    for (var t = 0; t < this.presets.length; t++) this.presets[t] = null;
-                this.clickBack = null, this.clickExpand = null, this.presetTitle = null, this.deckId = null, this.headIndex = null, this.presetList = null, this.presets = null, this.presetExpansionContainer = null, this.btnBack = null, this.arrowTopButton = null, this.arrowBottomButton = null, this.longShipBannerContainer = null
-            }, e.prototype.show = function (t, e) {
-                this.visible = !0, o.default.view.portMain.playCraneAnimation(), this.deckId = t, this.presetList = e, this.arrowTopButton.activate(), this.arrowBottomButton.activate();
-                for (var i = (o.default.model.deck.get(t), new Array), n = 0; n < this.presetList.maxNum; n++) {
-                    var r = this.presetList.getPresetDeckData(n + 1);
-                    0 < r.getRealShipCount() && i.push(r)
-                }
-                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0), this.presets = i, this.headIndex = 0, this.updateDeck(t)
-            }, e.prototype.update = function (t) {
-                this.changeDeck(t)
-            }, e.prototype.hide = function () {
-                this.visible = !1
-            }, e.prototype.changeDeck = function (t) {
-                this.updateDeck(t)
-            }, e.prototype.updateDeck = function (t) {
-                var e = o.default.model.deck.get(t),
-                    i = e.getShipList(),
-                    n = null != e.expedition,
-                    r = this.presets.slice(this.headIndex, this.headIndex + this.PAGE_NUM),
-                    s = 0 < e.getCount();
-                this.longShipBannerContainer.update(i, n), this.presetExpansionContainer.update(t, this.presetList, r, s, n), this.deckId = t
+                this.removeChildren(), this.presetExtensions.dispose(), this.deleteButton.dispose(), this.saveButton.dispose(), this.deckName.destroy(), this.deckCount.destroy(), this.onClickSave = null, this.onClickDelete = null, this.onClickExtension = null, this.frame_bg = null, this.shipBanner = null, this.deckName = null, this.deckCount = null, this.saveButton = null, this.deleteButton = null, this.offSaveButton = null, this.presetFocuses = null, this.presetExtensions = null, this._index = null, this._presetId = null
+            }, e.prototype._onMouseOver = function () {
+                this.focus()
+            }, e.prototype.focus = function () {
+                this.presetFocuses.visible = !0
+            }, e.prototype.removeFocus = function () {
+                this.presetFocuses.visible = !1
+            }, e.prototype.update = function (t, e, i, n, o, r) {
+                void 0 === o && (o = null);
+                var s = t,
+                    a = null != s;
+                if (this.shipBanner.visible = !1, this.deckName.visible = !1, this.deckCount.visible = !1, this.saveButton.visible = !1, this.deleteButton.visible = !1, this.offSaveButton.visible = !1, this.presetExtensions.visible = !1, this.frame_bg.visible = !1, this.frame_bg.interactiveChildren = !1, !a) return 0 == r && (this.frame_bg.visible = !0, this.presetExtensions.update(n), this.presetExtensions.visible = !0), !0;
+                this.frame_bg.interactiveChildren = !0, this.frame_bg.visible = !0;
+                var _ = 0 == s.getShipCount();
+                return _ || (this.updateShip(s), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0), this.updateButton(s.presetID, e, i, _, o == s.presetID), !1
+            }, e.prototype.updateShip = function (t) {
+                this.deckName.text = t.deckName;
+                var e = t.getFrontShip();
+                new s.TaskLoadShipResource("banner", this.shipBanner, e.mstID, e.isDamaged()).start();
+                var i = t.getShipCount();
+                this.deckCount.text = i + "\u96bb \u7de8\u6210"
+            }, e.prototype.updateButton = function (t, e, i, n, o) {
+                this.offSaveButton.visible = !1, this.saveButton.visible = !1, e ? (this.offSaveButton.visible = o && !i, this.saveButton.visible = !o && !i) : (this.offSaveButton.visible = !0, this.saveButton.visible = !1), this.deleteButton.visible = !n, this._presetId = t
             }, e
         }(PIXI.Container);
-    e.PresetExpansionLayer = h
+    e.PresetEditSlot = u
 }

@@ -19,83 +19,115 @@ const function1445 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(28),
-        a = i(153),
-        _ = i(154),
-        l = i(16),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
+    var o = i(1446),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._entered = !1, n._friend = e, n._combined = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
-                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
-                    var _ = new PIXI.Graphics;
-                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
+            return n(e, t), e.prototype.isEntered = function () {
+                return this._entered
+            }, e.prototype.getBannerNum = function () {
+                return null == this._banners ? 0 : this._banners.length
+            }, e.prototype.hasBanner = function () {
+                return this.getBannerNum() > 0
+            }, e.prototype.initialize = function (t) {
+                if (this._banners = [], null != t)
+                    for (var e = 0; e < t.length; e++) {
+                        var i = t[e];
+                        if (null != i) {
+                            var n = i.mst_id,
+                                r = i.hp_now,
+                                s = i.hp_max,
+                                a = i.isTaihi(),
+                                _ = 0 == i.speed,
+                                l = new o.Banner(e, this._friend, this._combined);
+                            l.initialize(n, r, s, a, _), this._banners.push(l), this.addChild(l)
+                        }
+                    }
+            }, e.prototype.dispose = function () {
+                if (null != this._banners)
+                    for (var t = 0, e = this._banners; t < e.length; t++) {
+                        var i = e[t];
+                        i.dispose()
+                    }
+            }, e.prototype.getBanner = function (t) {
+                return null == this._banners ? null : t >= this._banners.length ? null : this._banners[t]
+            }, e.prototype.isContains = function (t) {
+                return null != this._banners && this._banners.indexOf(t) >= 0
+            }, e.prototype.enter = function () {
+                if (1 != this._entered && 0 != this.hasBanner()) {
+                    this._entered = !0;
+                    for (var t = 0, e = this._banners; t < e.length; t++) {
+                        var i = e[t];
+                        null != i && (0 == this._combined ? i.enter() : i.enterCombined())
+                    }
                 }
-            }, e.prototype.update = function (t, e) {
-                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
-            }, e.prototype.getAnimationTweens = function (t) {
-                var e = this;
-                this._combined = !1;
-                var i = this._img.texture,
-                    n = new PIXI.Sprite(i);
-                n.x = this._img.x, n.y = this._img.y;
-                var o = this.getChildIndex(this._img);
-                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
-                var r = [createjs.Tween.get(this._img).wait(t).to({
-                    alpha: 1
-                }, 600).call(function () {
-                    e.removeChild(n);
-                    var t = e._img.mask;
-                    t && (t.parent.removeChild(t), e._img.mask = null)
-                })];
-                if (this._soot.mask) {
-                    var s = this._soot.mask;
-                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
-                    var a = new _.BannerSoot;
-                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
-                        alpha: 1
-                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.removeChild(a)
-                    }))
+            }, e.prototype.createEnterTweens = function () {
+                var t = [];
+                if (1 == this._entered) return t;
+                if (0 == this.hasBanner()) return t;
+                this._entered = !0;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = 0 == this._combined ? o.createEnterTween(e) : o.createEnterTweenCombined(e);
+                        null != r && (t.push(r), e += 100)
+                    }
                 }
-                return r
-            }, e.prototype._updateState = function (t, e) {
-                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
-            }, e.prototype._updateImage = function (t, e) {
-                if (this._mst_id < 0) switch (this._mst_id) {
-                    case -1:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(0);
-                        break;
-                    case -2:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(1);
-                        break;
-                    case -3:
-                        this._img.texture = l.BATTLE_MAIN.getTexture(2)
-                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
-            }, e.prototype._getTexture = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner")
-            }, e.prototype._getTextureCombinedFriend = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner2")
-            }, e.prototype._getTextureCombinedEnemy = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner3")
-            }, e.prototype._updateIcon = function (t, e) {
-                if (0 == this._taihi) {
-                    var i = s.ShipUtil.getDamageType(t, e);
-                    this._icon.setDamagedIcon(i), this._soot.update(i)
-                } else this._icon.setTaihiIcon()
+                return t
+            }, e.prototype.createSakutekiTweens = function () {
+                var t = [];
+                if (1 == this._entered) return t;
+                if (0 == this.hasBanner()) return t;
+                this._entered = !0;
+                for (var e = 0, i = this._banners; e < i.length; e++) {
+                    var n = i[e];
+                    if (null != n) {
+                        var o = n.createEnterTweenBySakuteki();
+                        null != o && t.push(o)
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweens = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = o.createMainDeckExitTween(e);
+                        t.push(r), e += 100
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweensUpward = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
+                    var o = n[i];
+                    if (null != o) {
+                        var r = o.createSubDeckExitTween(e, !1);
+                        t.push(r), e += 100
+                    }
+                }
+                return t
+            }, e.prototype.createExitTweensUpDown = function () {
+                var t = [];
+                if (0 == this._entered) return t;
+                if (this._entered = !1, 0 == this.hasBanner()) return t;
+                for (var e = [], i = 0; i < this._banners.length; i++) {
+                    var n = this._banners[i];
+                    null != n && 0 != n.entered && e.push(n)
+                }
+                for (var o = 0; e.length > 0;) {
+                    var r = e.shift(),
+                        s = r.createSubDeckExitTween(o, !1);
+                    t.push(s), 0 != e.length && (r = e.pop(), s = r.createSubDeckExitTween(o, !0), t.push(s), o += 100)
+                }
+                return t
             }, e
         }(PIXI.Container);
-    e.BannerImage = u
+    e.BannerGroup = r
 }

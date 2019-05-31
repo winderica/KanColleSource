@@ -26,20 +26,14 @@ const function1430 = function (t, e, i) {
                 var i = t.call(this, e) || this;
                 return i._initPlaneFrom(), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "squadrons", {
+            return n(e, t), Object.defineProperty(e.prototype, "seiku", {
                 get: function () {
-                    for (var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_air_base_data"), i = 0, n = e; i < n.length; i++) {
-                        var r = n[i];
-                        t.push({
-                            mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
-                            count: o.ObjUtil.getNumber(r, "api_count")
-                        })
-                    }
-                    return t
+                    var t = this._stage1;
+                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_disp_seiku")
                 },
                 enumerable: !0,
                 configurable: !0
             }), e
         }(r.AirWarDataBase);
-    e.AirUnitJetData = s
+    e.AirWarData = s
 }

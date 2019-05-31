@@ -3,50 +3,85 @@ const function572 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(573),
-        o = i(7),
+    var n = i(7),
+        o = i(573),
         r = function () {
             function t() {
-                this._hitArea = null, this._timeTable = null
+                this._shift = null
             }
-            return Object.defineProperty(t.prototype, "layers", {
+            return Object.defineProperty(t.prototype, "reloadFlag", {
                 get: function () {
-                    return this._layers
+                    return n.ObjUtil.getBoolean(this._data, "reloadflag")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "hitArea", {
+            }), Object.defineProperty(t.prototype, "kaikyo", {
                 get: function () {
-                    return this._hitArea
+                    var t = n.ObjUtil.getObject(this._data, "kaikyo");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getNumber(t, "type"),
+                        i = n.ObjUtil.getNumArray(t, "pos");
+                    return null == i || i.length < 2 ? null : {
+                        type: e,
+                        pos: new PIXI.Point(i[0], i[1])
+                    }
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "timeTable", {
+            }), Object.defineProperty(t.prototype, "shogo", {
                 get: function () {
-                    return this._timeTable
+                    var t = n.ObjUtil.getObject(this._data, "shogo");
+                    if (null == t) return null;
+                    var e = n.ObjUtil.getNumArray(t, "pos");
+                    return null == e || e.length < 2 ? null : new PIXI.Point(e[0], e[1])
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.setJsonData = function (t) {
-                this._layers = [];
-                for (var e = o.ObjUtil.getObject(t, "setting"), i = o.ObjUtil.getNumArray(e, "loop"), r = o.ObjUtil.getObjectArray(t, "data"), s = 0; s < r.length; s++) {
-                    var a = r[s],
-                        _ = null != i && s < i.length ? i[s] : 0,
-                        l = new n.FurnitureLayerModel(a, _);
-                    this._layers.push(l)
+            }), t.prototype.setData = function (t) {
+                if (this._data = t, this._shift = [], t.hasOwnProperty("shift"))
+                    for (var e = 0; e < t.shift.length; e++) {
+                        var i = t.shift[e].filename,
+                            n = t.shift[e].pos[0],
+                            o = t.shift[e].pos[1],
+                            r = {
+                                filename: i,
+                                x: n,
+                                y: o
+                            };
+                        this._shift.push(r)
+                    }
+                this._stateCache = null
+            }, t.prototype.getState = function (t) {
+                if (null == this._stateCache && (this._stateCache = {}), this._stateCache.hasOwnProperty(t)) return this._stateCache[t];
+                if (null == this._data) return null;
+                if (this._data.hasOwnProperty(t)) {
+                    var e = this._data[t],
+                        i = new o.FurnitureStateModel;
+                    return i.setJsonData(e), this._stateCache[t] = i, i
                 }
-                var u = o.ObjUtil.getObject(t, "hitarea");
-                null != u && (this._hitArea = {
-                    filename: o.ObjUtil.getString(u, "filename"),
-                    offset: o.ObjUtil.getNumArray(u, "offset"),
-                    state: o.ObjUtil.getString(u, "state")
-                }), this._timeTable = o.ObjUtil.getObject(t, "timetable")
-            }, t.prototype.hasLoop = function () {
-                for (var t = 0, e = this._layers; t < e.length; t++) {
-                    if (0 != e[t].loopMax) return !0
+                return null
+            }, t.prototype.hasCategory = function (t) {
+                var e = n.ObjUtil.getStrArray(this._data, "category");
+                return null != e && e.indexOf(t) >= 0
+            }, t.prototype.getOffset = function (t) {
+                for (var e = 0, i = this._shift; e < i.length; e++) {
+                    var n = i[e];
+                    if (n.filename == t) return new PIXI.Point(n.x, n.y)
                 }
-                return !1
+                return null
+            }, t.prototype.__overwriteFileName__ = function (t, e, i, o) {
+                var r = n.ObjUtil.getObject(this._data, e);
+                if (null != r) {
+                    var s = n.ObjUtil.getObjectArray(r, "data");
+                    if (null != s) {
+                        var a = s[i];
+                        if (null != a) {
+                            var _ = a[o];
+                            null != _ && _.hasOwnProperty("filename") && (_.filename = t)
+                        }
+                    }
+                }
             }, t
         }();
-    e.FurnitureStateModel = r
+    e.FurnitureAnimationModel = r
 }

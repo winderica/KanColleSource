@@ -19,42 +19,32 @@ const function805 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(149),
+    var o = i(221),
+        r = i(4),
+        s = i(133),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
-                get: function () {
-                    return 1 == this._raw_data.api_powerup_flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_ship", {
-                get: function () {
-                    return this._raw_data.api_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_deck", {
-                get: function () {
-                    return this._raw_data.api_deck
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = 0; e < this.api_id_items.length; e++) {
-                    var i = this.api_id_items[e];
-                    o.default.model.ship.delete(i, !1)
+            function e() {
+                var e = t.call(this) || this;
+                e.powerNums = [], e.iconCategories = new Array;
+                for (var i = 0; i < 4; i++) {
+                    var n = new o.IconCategory;
+                    n.position.set(90 * i, 0), n.update(s.PowerUpCategory.EMPTY), e.iconCategories.push(n);
+                    var a = new r.TextBox(21, 16777215);
+                    a.position.set(45 + 90 * i, 9), e.powerNums.push(a), e.addChild(n), e.addChild(a)
                 }
-                var n = new s.ShipModelEdit(this.api_ship);
-                o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
+                return e
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                for (var e = 0; e < 4; e++) this.powerNums[e].visible = !1, this.iconCategories[e].visible = !1;
+                var i = 0,
+                    n = t[s.PowerUpCategory.Karyoku];
+                0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Karyoku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Raisou], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Raisou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Taiku], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Taiku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), 0 < (n = t[s.PowerUpCategory.Soukou]) && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Soukou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++)
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.iconCategories.length; t++) this.iconCategories[t].dispose(), this.iconCategories[t] = null;
+                for (var t = 0; t < this.powerNums.length; t++) this.powerNums[t].destroy(), this.powerNums[t] = null;
+                this.iconCategories = null, this.powerNums = null
             }, e
-        }(r.APIBase);
-    e.PowerUpAPI = a
+        }(PIXI.Container);
+    e.IconCategories = a
 }

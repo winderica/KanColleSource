@@ -19,48 +19,45 @@ const function1015 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(8),
-        s = i(37),
+    var o = i(0),
+        r = i(2),
+        s = i(18),
         a = i(1016),
         _ = i(1017),
-        l = i(372),
-        u = i(1018),
-        c = i(1019),
-        h = i(373),
-        p = i(1),
-        d = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClose = function () {
-                    null != n._cb_onClose && n._cb_onClose()
-                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
+        l = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                return r._hideDetailInfo = function () {
+                    r._detail.deactivate(), createjs.Tween.get(r._detail).to({
+                        alpha: 0
+                    }, 300), createjs.Tween.get(r._fade).wait(100).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        r._detail.dispose(), o.default.view.overLayer.removeChild(r._fade)
+                    })
+                }, r._rival_id = e, r._flag_type = i, r._medal_num = n, r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.initialize(), this._detail.initialize();
-                for (var t = 0; t < 6; t++) {
-                    var e = new u.CompRivalShip;
-                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
-                }
-                this._btn.initialize(), this._btn_close.initialize()
-            }, e.prototype.update = function (t) {
-                this._detail.update(t), this._flag.update(t.flag_type);
-                for (var e = 0; e < this._ships.length; e++) {
-                    var i = this._ships[e],
-                        n = t.ships[e];
-                    i.update(n)
-                }
-            }, e.prototype.activate = function () {
-                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
-            }, e.prototype.deactivate = function () {
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
-            }, e.prototype.dispose = function () {
-                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
-                for (var t = 0, e = this._ships; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
+            return n(e, t), e.prototype._start = function () {
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                this._fade = new s.FadeBox(1), this._fade.hide(0), o.default.view.overLayer.addChild(this._fade), this._fade.show(300), this._connectAPI()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = new a.RivalDetailAPI(this._rival_id, this._flag_type, this._medal_num);
+                e.start(function () {
+                    t._showDetailInfo(e.res_model)
+                })
+            }, e.prototype._showDetailInfo = function (t) {
+                var e = this;
+                this._detail = new _.ContainerOverlay;
+                var i = o.default.model.deck.getIDs(),
+                    n = o.default.model.deck.isCombined();
+                this._detail.initialize(i, n), this._detail.update(t), this._detail.alpha = 0, this._fade.addChild(this._detail), createjs.Tween.get(this._detail).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    e._detail.once("close", e._hideDetailInfo), e._detail.activate()
+                })
             }, e
-        }(PIXI.Container);
-    e.UserinfoPanel = d
+        }(r.TaskBase);
+    e.TaskDetailInfo = l
 }

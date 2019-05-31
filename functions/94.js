@@ -21,7 +21,7 @@ const function94 = function (t, e, i) {
     });
     var o = i(447),
         r = i(64),
-        s = i(1350),
+        s = i(1354),
         a = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this

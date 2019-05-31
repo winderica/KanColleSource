@@ -19,102 +19,31 @@ const function583 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(0),
         r = i(4),
         s = i(192),
-        a = i(1),
-        _ = function (t) {
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._tween = new Array(2), i._textScrollEnable = !0, i._onChibiClick = function () {
-                    i._textScrollEnable && !i._musicChibiJumping && (i._musicChibiJumping = !0, i._tween[4] = createjs.Tween.get(i._musicChibi).to({
-                        y: i._offset_y + 144.5
-                    }, 1).to({
-                        y: i._offset_y + 144.5 - 48
-                    }, 250, createjs.Ease.cubicOut).to({
-                        y: i._offset_y + 144.5
-                    }, 250, createjs.Ease.cubicIn).call(function () {
-                        i._tween[4] = null, i._musicChibiJumping = !1
-                    }))
-                }, i._furnitureJukeBoxBGMLineModel = e, i._textScrollEnable = !0, i
+                return i._coin = o.default.model.useItem.getCount(44), i._furnitureJukeBoxBGMLineModel = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "jukebox_close", {
+            return n(e, t), Object.defineProperty(e.prototype, "btn_kagu", {
                 get: function () {
-                    return this._close
+                    return this._btn_kagu
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "jukebox_btn_bgm", {
+            }), Object.defineProperty(e.prototype, "btn_back3", {
                 get: function () {
-                    return this._btn_bgm
+                    return this._btn_back3
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.init = function () {
-                this._offset_x = 148, this._offset_y = 264, this._bg = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(5)), this._bg.position.set(this._offset_x, this._offset_y), this.addChild(this._bg), this._close = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(9)), this._close.position.set(this._offset_x + 892, this._offset_y + 4), this._close.interactive = this._close.buttonMode = !0, this.addChild(this._close), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._btn_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(6)), this._btn_bgm.position.set(this._offset_x + 639, this._offset_y - 4), this._btn_bgm.interactive = this._btn_bgm.buttonMode = !0, this.addChild(this._btn_bgm)), this._text_mask = new PIXI.Graphics, this._text_mask.beginFill(11184810), this._text_mask.drawRect(this._offset_x + 216, this._offset_y + 52, 510, 22), this._text_mask.endFill(), this.addChild(this._text_mask), this._text = new r.TextBox(19, 4473924), this._text.mask = this._text_mask, this._text.position.set(o.default.width, this._offset_y + 51), this._text.anchor.set(.5, 0), this._text.text = "\u300c" + this._furnitureJukeBoxBGMLineModel.api_name + "\u300d\u3000\u30ea\u30af\u30a8\u30b9\u30c8\u4e2d\u266a", this.addChild(this._text), this._musicChibi = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(12)), this._musicChibi.position.set(this._offset_x + 36.5, this._offset_y + 144.5), this._musicChibi.anchor.set(.5, .5), this._musicChibi.interactive = !0, this.addChild(this._musicChibi)
-            }, e.prototype.text_scroll = function () {
-                this._textScrollEnable && (this._tween[0] = createjs.Tween.get(this._text, {
-                    loop: !0
-                }).to({
-                    x: 1138
-                }, 1).to({
-                    x: 613
-                }, 5e3).wait(1e3).to({
-                    x: 88
-                }, 5e3))
-            }, e.prototype.musicChibiAnime = function () {
-                this._musicChibiMove(), this._musicChibiTexture(), this._musicChibiRot(), this._musicChibi.on(a.EventType.CLICK, this._onChibiClick), this._musicChibiJumping = !1
-            }, e.prototype._musicChibiMove = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[1] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    x: 867,
-                    width: 94,
-                    height: 82
-                }, 1).to({
-                    x: 232
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = -1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500).to({
-                    x: 867
-                }, 5e3).to({
-                    width: 1
-                }, 500).call(function () {
-                    t._musicChibi.scale.x = 1, t._musicChibi.width = 1
-                }).to({
-                    width: 94
-                }, 500))
-            }, e.prototype._musicChibiTexture = function () {
-                var t = this;
-                this._textScrollEnable && (this._tween[2] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(12)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(14)
-                }).wait(250).call(function () {
-                    t._musicChibi.texture = s.JUKEBOX_COMMON.getTexture(13)
-                }))
-            }, e.prototype._musicChibiRot = function () {
-                this._textScrollEnable && (this._tween[3] = createjs.Tween.get(this._musicChibi, {
-                    loop: !0
-                }).to({
-                    rotation: .05
-                }, 1).wait(249).to({
-                    rotation: -.05
-                }, 1).wait(249))
+                this._pop_jukeboxbg2 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(18)), this._pop_jukeboxbg2.position.set(301, 232), this.addChild(this._pop_jukeboxbg2), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._jukebox_icon_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(10)), this._jukebox_icon_bgm.position.set(469, 305), this.addChild(this._jukebox_icon_bgm)), this._bgm_name = new r.TextBox(17, 4473924), this._bgm_name.position.set(658, 301), this._bgm_name.text = this._furnitureJukeBoxBGMLineModel.api_name + "", this.addChild(this._bgm_name), this._bgm_coin_price = new r.TextBox(17, 4473924), this._bgm_coin_price.position.set(746, 340), this._bgm_coin_price.anchor.set(1, 0), this._bgm_coin_price.text = this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_price), this._bgm_coin_now = new r.TextBox(17, 4473924), this._bgm_coin_now.position.set(746, 379), this._bgm_coin_now.anchor.set(1, 0), this._bgm_coin_now.text = this._coin + "", this.addChild(this._bgm_coin_now), this._coin < this._furnitureJukeBoxBGMLineModel.api_use_coin ? (this._bgm_coin_now.style.fill = 14483456, this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(3)), this._btn_kagu.interactive = !1) : (this._arrow_mini = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(0)), this._arrow_mini.position.set(751, 385), this.addChild(this._arrow_mini), this._bgm_coin_after = new r.TextBox(17, 4473924), this._bgm_coin_after.position.set(836, 379), this._bgm_coin_after.anchor.set(1, 0), this._bgm_coin_after.text = this._coin - this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_after), this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(2)), this._btn_kagu.interactive = this._btn_kagu.buttonMode = !0), this._btn_kagu.position.set(370, 412), this.addChild(this._btn_kagu), this._btn_back3 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(1)), this._btn_back3.interactive = this._btn_back3.buttonMode = !0, this._btn_back3.position.set(689, 412), this.addChild(this._btn_back3)
             }, e.prototype.discard = function () {
-                this._musicChibi.off(a.EventType.CLICK, this._onChibiClick), this._textScrollEnable = !1;
-                for (var t = 0; t < this._tween.length; t++) null != this._tween[t] && (this._tween[t].setPaused(!0), this._tween[t].removeAllEventListeners());
-                this.removeChildren(), this._text.destroy()
+                this.removeChildren(), this._bgm_name.destroy(), this._bgm_coin_price.destroy(), this._bgm_coin_now.destroy(), this._bgm_coin_after && this._bgm_coin_after.destroy()
             }, e
         }(PIXI.Container);
-    e.JukeBoxDisp = _
+    e.JukeBoxConfirm = a
 }

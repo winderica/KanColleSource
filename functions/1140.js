@@ -27,15 +27,15 @@ const function1140 = function (t, e, i) {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(6);
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
                 var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
                 var e = this._candidate.mst_id,
-                    i = o.default.resources.getSlotitem(e, "card"),
+                    i = o.default.resources.getFurniture(e, "reward"),
                     n = new PIXI.Sprite(i),
                     s = Math.min(195 / n.width, 195 / n.height);
                 n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
         }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogSlotitemBtn = a
+    e.RewardSelectDialogFurnitureBtn = a
 }

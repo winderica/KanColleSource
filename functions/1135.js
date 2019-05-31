@@ -19,29 +19,30 @@ const function1135 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(74),
-        s = function (t) {
+    var o = i(34),
+        r = i(1136),
+        s = i(1137),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onClickYes = function () {
-                    null != i._cb_onClick && i._cb_onClick(!0)
-                }, i._onClickNo = function () {
-                    null != i._cb_onClick && i._cb_onClick(!1)
-                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
-                var e = new PIXI.Sprite(t),
-                    i = Math.min(135 / e.width, 135 / e.height);
-                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
+            return n(e, t), e.prototype.initialize = function () {
+                this._top_view.initialize()
             }, e.prototype.activate = function () {
-                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
             }, e.prototype.deactivate = function () {
-                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectConfirm = s
+        }(o.DialogBase);
+    e.HishimochiUseDialog = a
 }

@@ -19,103 +19,81 @@ const function1329 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(19),
-        s = i(16),
-        a = [{
-            x: 0,
-            y: 0,
-            delay: 0
-        }, {
-            x: 0,
-            y: -23,
-            delay: 60
-        }, {
-            x: -45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 0,
-            y: 30,
-            delay: 120
-        }, {
-            x: -75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 0,
-            y: -53,
-            delay: 180
-        }, {
-            x: -98,
-            y: 45,
-            delay: 180
-        }, {
-            x: 98,
-            y: 45,
-            delay: 180
-        }],
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._pos = i, n
+    var o = i(0),
+        r = i(2),
+        s = i(14),
+        a = i(177),
+        _ = i(1330),
+        l = i(1331),
+        u = i(1332),
+        c = i(1383),
+        h = i(1419),
+        p = i(1420),
+        d = i(1421),
+        f = i(1422),
+        y = i(1423),
+        m = i(1424),
+        v = (i(1425), function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._log = null, i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._container = new PIXI.Container, this._container.x = this._pos.x, this._container.y = this._pos.y, this._layer.addChild(this._container);
-                for (var e = new r.TweenTask, i = 0, n = a; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        var n = new l;
-                        n.Initialize(), n.x = i.x + 24 * Math.random() - 12, n.y = i.y + 6 * Math.random() - 3, n.x -= 18, n.y -= 18, n.alpha = 0;
-                        var o = .6 * Math.random(),
-                            r = createjs.Tween.get(n);
-                        r.wait(i.delay), r.call(function () {
-                            n.activate(), t._container.addChild(n)
-                        }), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * o), r.to({
-                            alpha: 0
-                        }, 100), r.wait(100), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * (.6 - o)), r.to({
-                            alpha: 0
-                        }, 200), r.call(function () {
-                            t._container.removeChild(n), n.deactivate()
-                        }), e.addTween(r)
-                    }(o)
-                }
+                var t = this._scene.data.getFirstRecord();
+                "day" == t.phase ? this._combatDay(t) : this._combatNight(t)
+            }, e.prototype._combatDay = function (t) {
+                var e, i = this,
+                    n = this._scene.data.model.deck_f,
+                    o = this._scene.data.model.deck_e;
+                0 == n.isCombined() ? e = 1 == o.isCombined() ? new h.PhaseDay_06vs12(this._scene, t, !1) : new u.PhaseDay(this._scene, t, !1) : e = this._createDayPhaseCombinedDeck(t);
                 e.start(function () {
-                    t._layer.removeChild(t._container), t._endTask()
+                    i._scene.shutter2.once("closed", function () {
+                        i._judgement(t)
+                    }), i._scene.shutter2.close()
+                })
+            }, e.prototype._createDayPhaseCombinedDeck = function (t) {
+                var e = this._scene.data.model.deck_f,
+                    i = this._scene.data.model.deck_e,
+                    n = i.isCombined();
+                return 2 == e.type ? 0 == n ? new y.PhaseDay_Suijo(this._scene, t, !1) : new f.PhaseDay_Suijo_vs12(this._scene, t, !1) : 0 == n ? new d.PhaseDay_Kido(this._scene, t, !1) : new p.PhaseDay_Kido_vs12(this._scene, t, !1)
+            }, e.prototype._judgement = function (t) {
+                var e = this;
+                if (t.raw.isNightBattle()) {
+                    var i = new m.TaskGoNightBattleSelect(this._scene);
+                    i.start(function () {
+                        0 == i.result ? (1 == o.default.sound.bgm.playing && o.default.sound.bgm.fadeOut(500), e._endTask()) : e._dayToNight()
+                    })
+                } else this._endTask()
+            }, e.prototype._dayToNight = function () {
+                var t, e = this;
+                t = 1 == this._scene.data.model.isPractice() ? new l.APIPracticeDayToNight(this._scene.data) : new _.APIBattleDayToNight(this._scene.data), t.start(function () {
+                    var t = 0;
+                    if (1 == e._scene.data.model.isPractice()) t = 2;
+                    else {
+                        var i = e._scene.data.model.map_info.area_id,
+                            n = e._scene.data.model.map_info.map_no,
+                            r = e._scene.data.model.map_info.isBoss();
+                        t = o.default.model.mst_bgm.getCombatBGM(i, n, !0, r)
+                    }
+                    o.default.sound.bgm.playBattleBGM(t), e._loadResource()
+                })
+            }, e.prototype._loadResource = function () {
+                var t = this,
+                    e = new s.UIImageLoader("battle");
+                e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e"), e.load(function () {
+                    o.default.settings.renderer.plugins.prepare.upload(a.BATTLE_NIGHT.getTexture(0).baseTexture, function () {
+                        var e = t._scene.data.getLastRecord();
+                        t._combatNight(e)
+                    })
+                })
+            }, e.prototype._combatNight = function (t) {
+                var e = this;
+                new c.PhaseNight(this._scene, t, !0).start(function () {
+                    e._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._pos = null, this._container = null, t.prototype._endTask.call(this)
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskBannerParticle = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._update = function (t) {
-                e._img.texture = 1 == t ? s.BATTLE_MAIN.getTexture(62) : s.BATTLE_MAIN.getTexture(63), e._img.x = e._img.width / 2, e._img.y = e._img.height / 2
-            }, e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.Initialize = function () {
-            this._update(!0)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._update(!0), this._t = createjs.Tween.get(null, {
-                loop: !0
-            }).wait(300).call(this._update, [!1]).wait(300).call(this._update, [!0]))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+        }(r.TaskBase));
+    e.TaskMain = v
 }

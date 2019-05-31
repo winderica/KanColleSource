@@ -8,45 +8,39 @@ const function1429 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return t.prototype.getAttackTo_f = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_frai");
-                return null == e || e.length <= t ? -1 : e[t]
-            }, t.prototype.getDamage_f = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-                return null == e || e.length <= t ? 0 : Math.floor(e[t])
-            }, t.prototype.isShield_f = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-                return !(null == e || e.length <= t) && e[t] % 1 != 0
-            }, t.prototype.getHitType_f = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_fcl");
-                return null == e || e.length <= t ? 0 : e[t]
-            }, t.prototype.hasShield_f = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_fdam");
-                if (null == t) return !1;
-                for (var e = 0, i = t; e < i.length; e++) {
-                    if (i[e] % 1 != 0) return !0
-                }
-                return !1
-            }, t.prototype.getAttackTo_e = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_erai");
-                return null == e || e.length <= t ? -1 : e[t]
-            }, t.prototype.getDamage_e = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_eydam");
-                return null == e || e.length <= t ? 0 : e[t]
-            }, t.prototype.isShield_e = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_fydam");
-                return !(null == e || e.length <= t) && e[t] % 1 != 0
-            }, t.prototype.getHitType_e = function (t) {
-                var e = n.ObjUtil.getNumArray(this._o, "api_ecl");
-                return null == e || e.length <= t ? 0 : e[t]
-            }, t.prototype.hasShield_e = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_edam");
-                if (null == t) return !1;
-                for (var e = 0, i = t; e < i.length; e++) {
-                    if (i[e] % 1 != 0) return !0
-                }
-                return !1
+            return t.prototype.isSuccess_f = function () {
+                return this._isSuccess(this._data_f)
+            }, t.prototype.isSuccess_e = function () {
+                return this._isSuccess(this._data_e)
+            }, t.prototype.hasPlane_f = function () {
+                return this._hasPlane(this._data_f)
+            }, t.prototype.hasPlane_e = function () {
+                return this._hasPlane(this._data_e)
+            }, t.prototype.hasMikikan_f = function () {
+                return this._hasMikikan(this._data_f)
+            }, t.prototype.hasMikikan_e = function () {
+                return this._hasMikikan(this._data_e)
+            }, Object.defineProperty(t.prototype, "_data_f", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
+                    return null != t && t.length > 0 ? t[0] : -1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "_data_e", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
+                    return null != t && t.length > 1 ? t[1] : -1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype._isSuccess = function (t) {
+                return 1 == t || 2 == t || 5 == t
+            }, t.prototype._hasPlane = function (t) {
+                return 1 == t || 2 == t || 3 == t || 4 == t
+            }, t.prototype._hasMikikan = function (t) {
+                return 2 == t || 3 == t
             }, t
         }();
-    e.RaigekiData = o
+    e.SakutekiData = o
 }

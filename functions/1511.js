@@ -19,61 +19,76 @@ const function1511 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(19),
-        s = i(40),
-        a = i(36),
-        _ = i(483),
-        l = i(484),
-        u = function (t) {
+    var o = i(51),
+        r = i(1512),
+        s = i(1513),
+        a = i(1516),
+        _ = i(1524),
+        l = i(1525),
+        u = i(1526),
+        c = i(1528),
+        h = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._line = new PIXI.Sprite, e.addChild(e._line), e._info = new _.DeckInfo, e.addChild(e._info), e._gauge_label = new PIXI.Sprite, e._gauge_label.x = 11, e._gauge_label.y = 96, e.addChild(e._gauge_label), e._gauge = new l.Gauge, e._gauge.x = 11, e._gauge.y = 130, e.addChild(e._gauge), e
+                return e._layer_mvp = new _.LayerMVP, e._layer_mvp.position.set(474, -120), e._layer_bg = new r.LayerBG, e._layer_deck_info = new s.LayerDeckInfo, e._layer_banner = new a.LayerBanner, e._layer_title = new l.LayerTitle, e._map_name = new c.LayerMapName, e._panel_exp = new u.PanelExp, e._panel_exp.position.set(591, 116), e._panel_exp.visible = !1, e._layer_cutin = new PIXI.Container, e._shutter = new o.Shutter, e._shutter.initializeDark(), e._shutter.open(0), e.addChild(e._layer_mvp), e.addChild(e._layer_bg), e.addChild(e._layer_deck_info), e.addChild(e._layer_banner), e.addChild(e._layer_title), e.addChild(e._map_name), e.addChild(e._panel_exp), e.addChild(e._layer_cutin), e.addChild(e._shutter), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
-                this._line.visible = !1, this._line.texture = a.BATTLE_RESULT_MAIN.getTexture(2), this._info.alpha = 0, this._info.user_name.text = t, this._info.level.initialize(), this._info.level.text = e.toString(), this._info.deck_name.initialize(), this._info.deck_name.text = i, this._gauge_label.texture = a.BATTLE_RESULT_MAIN.getTexture(72), this._gauge_label.alpha = 0, this._gauge.initialize(65298), this._gauge.alpha = 0, n && (this._gauge_label.visible = !1, this._gauge.visible = !1)
-            }, e.prototype.createShowTween = function () {
-                var t = this;
-                return createjs.Tween.get(this._info).call(function () {
-                    t._line.visible = !0
-                }).to({
-                    alpha: 1
-                }, 100)
-            }, e.prototype.createHideGaugeTweens = function (t) {
-                return [createjs.Tween.get(this._gauge_label).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._gauge).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._line).wait(200).to({
-                    x: t
-                }, 500), createjs.Tween.get(this._info).wait(200).to({
-                    x: t
-                }, 500)]
-            }, e.prototype.createTaskShowGauge = function (t, e, i) {
-                if (0 == this._gauge.visible) return new s.WaitTask(0);
-                var n, a = new r.TweenTask;
-                this._gauge_label.x += 15, n = createjs.Tween.get(this._gauge_label).wait(i).to({
-                    x: this._gauge_label.x - 15,
-                    alpha: 1
-                }, 200), a.addTween(n), this._gauge.x += 15, n = createjs.Tween.get(this._gauge).wait(i).to({
-                    x: this._gauge.x - 15,
-                    alpha: 1
-                }, 200), a.addTween(n);
-                var _ = new o.SerialTask;
-                _.add(a), n = this._gauge.createTween(t, e);
-                var l = new r.TweenTask;
-                return l.addTween(n), _.add(l), _
-            }, e.prototype.createShowDeckNameTween = function (t, e, i) {
-                return this._info.deck_name.text = t, createjs.Tween.get(this._info.deck_name).wait(i).to({
-                    alpha: 1
-                }, e)
-            }, e.prototype.createHideDeckNameTween = function (t, e) {
-                return createjs.Tween.get(this._info.deck_name).wait(e).to({
-                    alpha: 0
-                }, t)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._info.dispose()
+            return n(e, t), Object.defineProperty(e.prototype, "layer_mvp", {
+                get: function () {
+                    return this._layer_mvp
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_bg", {
+                get: function () {
+                    return this._layer_bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_deck_info", {
+                get: function () {
+                    return this._layer_deck_info
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_banner", {
+                get: function () {
+                    return this._layer_banner
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_title", {
+                get: function () {
+                    return this._layer_title
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "panel_exp", {
+                get: function () {
+                    return this._panel_exp
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_map_name", {
+                get: function () {
+                    return this._map_name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._layer_mvp.dispose(), this._layer_mvp = null, this._layer_bg.dispose(), this._layer_bg = null, this._layer_deck_info.dispose(), this._layer_deck_info = null, null != this._layer_banner && (this._layer_banner.dispose(), this._layer_banner = null), null != this._layer_title && (this._layer_title.dispose(), this._layer_title = null), null != this._panel_exp && (this._panel_exp.dispose(), this._panel_exp = null), this._layer_cutin = null, this._shutter = null, this._map_name.dispose(), this._map_name = null
             }, e
         }(PIXI.Container);
-    e.DeckInfoPanelFriend = u
+    e.ViewMain = h
 }

@@ -19,49 +19,28 @@ const function1225 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(19),
-        s = i(138),
-        a = i(1226),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._friend = e, i._circle = new PIXI.Sprite, i._circle.anchor.set(.5, .5), i._circle.scale.set(.1), i._circle.visible = !1, i._content = new a.Content(e), i._content.alpha = 0, i.addChild(i._circle), i.addChild(i._content);
-                var n = new PIXI.Graphics;
-                return n.beginFill(65280, .5), i._drawGraphics(n), n.endFill(), i.addChild(n), i.mask = n, i._friend ? (i.circle.position.set(255, 311), i.content.position.set(-150, 0)) : (i.circle.position.set(345, 311), i.content.position.set(150, 0)), i
+    var o = i(137),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "circle", {
-                get: function () {
-                    return this._circle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend ? this._circle.texture = s.PRAC_MAIN.getTexture(3) : this._circle.texture = s.PRAC_MAIN.getTexture(4), this._content.initialize(t, e)
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
+            }, e.prototype.activate = function () {
+                this._startMove()
+            }, e.prototype.deactivate = function () {
+                this._stopMove()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._content.dispose()
-            }, e.prototype.getAnimationTask = function () {
-                var t = new r.TweenTask;
-                t.addTween(createjs.Tween.get(this._content.medal).to({
-                    alpha: 1
-                }, 100));
-                for (var e = this._content.elements, i = this._friend ? 0 : 173, n = 0; n < e.length; n++) {
-                    var o = e[n];
-                    0 != o.visible && t.addTween(createjs.Tween.get(o).wait(300 + 100 * n).to({
-                        x: i,
-                        alpha: 1
-                    }, 200, createjs.Ease.sineIn))
-                }
-                return t
-            }, e.prototype._drawGraphics = function (t) {
-                this._friend ? (t.moveTo(0, 0), t.lineTo(0, o.default.height), t.lineTo(o.default.width / 2 - 128, o.default.height), t.lineTo(o.default.width / 2 + 128, 0)) : (t.moveTo(128, 0), t.lineTo(o.default.width / 2, 0), t.lineTo(o.default.width / 2, o.default.height), t.lineTo(-128, o.default.height))
+                this._stopMove()
+            }, e.prototype._startMove = function () {
+                var t = this;
+                0 == this._interval_id && (this._interval_id = setInterval(function () {
+                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
+                }, 30))
+            }, e.prototype._stopMove = function () {
+                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
             }, e
         }(PIXI.Container);
-    e.Panel = _
+    e.CompCompass = r
 }

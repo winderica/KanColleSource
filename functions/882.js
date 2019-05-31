@@ -19,29 +19,32 @@ const function882 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(883),
-        a = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                var e = t.call(this, .8) || this;
-                return e.alpha = 0, e
+                var e = t.call(this) || this;
+                return e.build_ship3_00 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(47)), e.build_ship3_01 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(48)), e.build_ship3_02 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(49)), e.build_ship3_03 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(50)), e.build_ship3_04 = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(51)), e.build_ship3_00.alpha = 0, e.build_ship3_01.alpha = 0, e.build_ship3_02.alpha = 0, e.build_ship3_03.alpha = 0, e.build_ship3_04.alpha = 0, e.addChild(e.build_ship3_00, e.build_ship3_01, e.build_ship3_02, e.build_ship3_03, e.build_ship3_04), e
             }
-            return n(e, t), e.prototype.show = function (t) {
-                this.removeChildren(), this.largeBuildConfirm = new s.LargeBuildConfirm(t), this.addChild(this.largeBuildConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    o.default.view.clickGuard = !1
-                })
-            }, e.prototype.hide = function (t) {
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 250).call(function () {
-                    t()
-                })
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.build_ship3_00.alpha = 0, this.build_ship3_01.alpha = 0, this.build_ship3_02.alpha = 0, this.build_ship3_03.alpha = 0, this.build_ship3_04.alpha = 0, t) {
+                    case 1:
+                        this.build_ship3_00.alpha = 1, this.build_ship3_01.alpha = 0, this.build_ship3_02.alpha = 0, this.build_ship3_03.alpha = 0, this.build_ship3_04.alpha = 0;
+                        break;
+                    case 2:
+                        this.build_ship3_00.alpha = 1, this.build_ship3_01.alpha = 1, this.build_ship3_02.alpha = 0, this.build_ship3_03.alpha = 0, this.build_ship3_04.alpha = 0;
+                        break;
+                    case 3:
+                        this.build_ship3_00.alpha = 1, this.build_ship3_01.alpha = 1, this.build_ship3_02.alpha = 1, this.build_ship3_03.alpha = 0, this.build_ship3_04.alpha = 0;
+                        break;
+                    case 4:
+                        this.build_ship3_00.alpha = 1, this.build_ship3_01.alpha = 1, this.build_ship3_02.alpha = 1, this.build_ship3_03.alpha = 1, this.build_ship3_04.alpha = 0;
+                        break;
+                    case 5:
+                        this.build_ship3_00.alpha = 1, this.build_ship3_01.alpha = 1, this.build_ship3_02.alpha = 1, this.build_ship3_03.alpha = 1, this.build_ship3_04.alpha = 1
+                }
             }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this), this.removeChildren(), this.largeBuildConfirm.dispose(), this.largeBuildConfirm = null
+                this.build_ship3_00 = null, this.build_ship3_01 = null, this.build_ship3_02 = null, this.build_ship3_03 = null, this.build_ship3_04 = null, this.removeChildren()
             }, e
-        }(r.AreaBox);
-    e.LargeBuildConfirmContainer = a
+        }(PIXI.Container);
+    e.LargeBuildShip = r
 }

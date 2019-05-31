@@ -21,54 +21,15 @@ const function1049 = function (t, e, i) {
     });
     var o = i(0),
         r = i(11),
-        s = i(1050),
-        a = i(1052),
-        _ = i(1053),
-        l = i(1060),
-        u = i(1063),
-        c = i(1064),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._dispose = function () {
-                    null != e._viewTop && (e.removeChild(e._viewTop), e._viewTop.dispose(), e._viewTop = null, e._viewInfo.dispose(), e._viewInfo = null, e._viewRanking.dispose(), e._viewRanking = null), null != e._topTask && e._topTask.cancel(), null != e._viewSub && (e.removeChild(e._viewSub), e._viewSub.dispose(), e._viewSub = null)
-                }, e
+        s = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewInfo", {
-                get: function () {
-                    return this._viewInfo
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "viewRanking", {
-                get: function () {
-                    return this._viewRanking
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new s.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new s.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new a.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new a.FinalizeTask(this._dispose)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new l.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop), this._viewInfo = new u.ViewInfo, this._viewInfo.initialize(), this.addChild(this._viewInfo), this._viewRanking = new c.ViewRanking, this._viewRanking.initialize(), this._viewRanking.visible = !1, this.addChild(this._viewRanking)
-            }, e.prototype.startTopTask = function () {
-                var t = this,
-                    e = o.default.model.deck.get(1).getShipList()[0].mstID;
-                o.default.sound.voice.play(e.toString(), 8), this._topTask = new _.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
             }, e
-        }(r.SceneBase);
-    e.RecordScene = h
+        }(r.APIBase);
+    e.ExpeditionStartAPI = s
 }

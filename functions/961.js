@@ -19,148 +19,130 @@ const function961 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(17),
+    var o = i(165),
+        r = i(26),
+        s = i(962),
         a = i(1),
-        _ = i(2),
-        l = i(23),
-        u = i(8),
-        c = i(4),
-        h = i(24),
-        p = i(67),
-        d = i(6),
-        f = i(9),
-        y = i(26),
-        m = i(962),
-        v = function (t) {
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n.FUEL = 3, n.BAUX = 5, n._fuelNow = 0, n._bauxNow = 0, n._material_key = null, n._onMouseOverBtn = function () {
+                    var t = n._calcNeedMaterial([n._squadron]);
+                    n._title.show(t.fuel, t.baux, ""), n._materialShow(t.fuel, t.baux, "")
+                }, n._onMouseOutBtn = function () {
+                    n._title.hide(""), n._materialHide("")
+                }, n._onMouseOverBtnAll = function () {
+                    var t = n._calcNeedMaterial(n._airunit.squadrons);
+                    n._title.show(t.fuel, t.baux, "all"), n._materialShow(t.fuel, t.baux, "all")
+                }, n._onMouseOutBtnAll = function () {
+                    n._title.hide("all"), n._materialHide("all")
+                }, n._onClick = function () {
+                    if (null != n._cb_onSupply) {
+                        n._cb_onPreSupply();
+                        var t = n._airunit.area_id,
+                            e = n._airunit.id,
+                            i = [n._squadron.id];
+                        n._cb_onSupply(t, e, i), n.fuelContainer.playSupply(function () {}), n.bauxContainer.playSupply(function () {})
+                    }
+                }, n._onClickAll = function () {
+                    if (null != n._cb_onSupply) {
+                        n._cb_onPreSupply();
+                        for (var t = n._airunit.area_id, e = n._airunit.id, i = [], o = 0, r = n._airunit.squadrons; o < r.length; o++) {
+                            var s = r[o];
+                            1 == s.state && s.count < s.countMax && i.push(s.id)
+                        }
+                        n._cb_onSupply(t, e, i), n.fuelContainer.playSupply(function () {}), n.bauxContainer.playSupply(function () {})
+                    }
+                }, n._cb_onSupply = e, n._cb_onPreSupply = i, n._bg = new PIXI.Sprite, n.addChild(n._bg), n._title = new s.AirUnitSupplyPanelTitle, n.addChild(n._title), n._btn = new l(n._onMouseOverBtn, n._onMouseOutBtn, n._onClick), n._btn.position.set(32, 438), n._btn_all = new u(n._onMouseOverBtnAll, n._onMouseOutBtnAll, n._onClickAll), n._btn_all.position.set(32, 495), n.interactive = !0, n
+            }
+            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+                if (this._fuelNow = t, this._bauxNow = e, this._airunit = i, this._squadron = n, this._bg.texture = r.SALLY_AIRUNIT.getTexture(35), this._title.initialize(t, e), this.fuelContainer = new o.FuelContainer, this.fuelContainer.position.set(17, 206), this.addChild(this.fuelContainer), this.bauxContainer = new o.BauxContainer, this.bauxContainer.position.set(158, 206), this.addChild(this.bauxContainer), null == this._squadron) this._btn.initialize(!1), this._btn_all.initialize(!1);
+                else {
+                    var s = t >= this.FUEL && e >= this.BAUX;
+                    this._btn.initialize(s), this.addChild(this._btn), this._btn_all.initialize(s), this.addChild(this._btn_all)
+                }
+            }, e.prototype.activate = function () {
+                this._btn.activate(), this._btn_all.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate(), this._btn_all.deactivate()
+            }, e.prototype.dispose = function () {
+                this.fuelContainer.dispose(), this.bauxContainer.dispose(), this._title.dispose(), this._btn.dispose(), this._btn_all.dispose(), this._cb_onSupply = null, this._cb_onPreSupply = null
+            }, e.prototype.autoPlaySupplyAll = function () {
+                var t = this,
+                    e = this._calcNeedMaterial(this._airunit.squadrons);
+                this._title.show(e.fuel, e.baux, "all"), this._fuelNow >= e.fuel && this._bauxNow >= e.baux ? (this._materialShow(e.fuel, e.baux, "all"), createjs.Tween.get(null).wait(1e3).call(function () {
+                    t._onClickAll()
+                })) : createjs.Tween.get(null).wait(1e3).call(function () {
+                    if (null != t._cb_onSupply) {
+                        var e = t._airunit.area_id,
+                            i = t._airunit.id,
+                            n = [];
+                        t._cb_onSupply(e, i, n)
+                    }
+                })
+            }, e.prototype.playSupplyAnimation = function (t) {
+                this.deactivate(), createjs.Tween.get(null).wait(1500).call(t)
+            }, e.prototype._calcNeedMaterial = function (t) {
+                for (var e = {
+                        fuel: 0,
+                        baux: 0
+                    }, i = 0, n = t; i < n.length; i++) {
+                    var o = n[i],
+                        r = o.countMax - o.count;
+                    e.fuel += r * this.FUEL, e.baux += r * this.BAUX
+                }
+                return e
+            }, e.prototype._materialShow = function (t, e, i) {
+                void 0 === i && (i = null), this._material_key = i, this.fuelContainer.update(t), this.bauxContainer.update(e)
+            }, e.prototype._materialHide = function (t) {
+                void 0 === t && (t = null), null != t && t != this._material_key || (this._material_key = null, this.fuelContainer.update(0), this.bauxContainer.update(0))
+            }, e
+        }(PIXI.Container);
+    e.AirUnitSupplyPanel = _;
+    var l = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
-                return o._onSelect = function (t) {
-                    if (o._dialog.deactivate(), 0 == t) o._removeDialog(), o._endTask();
-                    else {
-                        new m.AirUnitExtendAPI(o._area_id).start(function () {
-                            o._removeDialog(), o._loadItemCard()
-                        })
-                    }
-                }, o._layer = e, o._area_id = i, o._cb_onUpdateInAnimation = n, o
+                return o._onMouseOver = function () {
+                    o._update(!0), null != o._cb_onMouseOver && o._cb_onMouseOver()
+                }, o._onMouseOut = function () {
+                    o._update(!1), null != o._cb_onMouseOut && o._cb_onMouseOut()
+                }, o._onClick = function () {
+                    null != o._cb_onClick && o._cb_onClick()
+                }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o.interactive = !0, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._bg = new u.AreaBox(.6), this._layer.addChild(this._bg), this._dialog = new g(this._onSelect), this._dialog.initialize();
-                var t = this._area_id,
-                    e = r.default.model.useItem.getCount(73);
-                this._dialog.update(t, e), this._dialog.activate(), this._layer.addChild(this._dialog)
-            }, e.prototype._removeDialog = function () {
-                this._layer.removeChild(this._dialog), this._dialog.dispose(), this._dialog = null
-            }, e.prototype._loadItemCard = function () {
-                var t = this,
-                    e = new p.UseitemLoader;
-                e.add(73, 1), e.load(function () {
-                    t._loadTextImage()
-                })
-            }, e.prototype._loadTextImage = function () {
-                var t = this,
-                    e = h.MathUtil.zeroPadding(this._area_id, 3),
-                    i = r.default.settings.path_root + "resources/area/airunit_extend_confirm/" + e + "_.png";
-                i = i + "?" + s.START_TIME;
-                var n = new PIXI.loaders.Loader;
-                n.add(i), n.load(function () {
-                    t._message = new PIXI.Container;
-                    var e = n.resources[i].texture,
-                        r = new PIXI.Sprite(e);
-                    t._message.addChild(r);
-                    var s = new PIXI.Sprite(y.SALLY_AIRUNIT.getTexture(134));
-                    t._message.addChild(s), r.x = o.default.width / 2 - Math.round(r.width / 2), s.x = o.default.width / 2 - Math.round(s.width / 2);
-                    var a = r.height / 2 + s.height;
-                    r.y = o.default.height / 2 - Math.round(a / 2), s.y = r.y + Math.round(r.height / 2), t._showCard()
-                })
-            }, e.prototype._showCard = function () {
-                var t = this;
-                this._card = new l.Container, this._card.position.set(o.default.width / 2, o.default.height / 2), this._card.scale.set(0), this._layer.addChild(this._card);
-                var e = r.default.resources.getUseitem(73, 1),
-                    i = new PIXI.Sprite(e);
-                i.position.set(-i.width / 2, -i.height / 2), this._card.addChild(i), d.SE.play("230"), createjs.Tween.get(this._card).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 250).wait(1300).call(function () {
-                    t._shakeCard()
-                })
-            }, e.prototype._shakeCard = function () {
-                for (var t = this, e = createjs.Tween.get(null), i = 0; i < 20; i++) e.call(function () {
-                    t._card.x = o.default.width / 2 + 16 * Math.random() - 8, t._card.y = o.default.height / 2 + 16 * Math.random() - 8
-                }), e.wait(50);
-                e.call(function () {
-                    t._card.x = o.default.width / 2, t._card.y = o.default.height / 2, t._showFlash()
-                })
-            }, e.prototype._showFlash = function () {
-                var t = this,
-                    e = new l.Container;
-                e.position.set(o.default.width / 2, o.default.height / 2), e.scale.set(1.25), e.alpha = 0, this._layer.addChild(e);
-                var i = new PIXI.Sprite(f.COMMON_MISC.getTexture(68));
-                i.position.set(-i.width / 2, -i.height / 2), e.addChild(i), createjs.Tween.get(e).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 1
-                }, 350).to({
-                    scaleX: 2.8,
-                    scaleY: 2.8
-                }, 300), this._white = new u.AreaBox(1, 16777215), this._white.alpha = 0, this._layer.addChild(this._white), createjs.Tween.get(this._white).wait(200).to({
-                    alpha: 1
-                }, 450).call(function () {
-                    null != t._cb_onUpdateInAnimation && t._cb_onUpdateInAnimation(), t._layer.removeChild(t._card), t._card = null, t._layer.removeChild(e), t._showText()
-                })
-            }, e.prototype._showText = function () {
-                var t = this;
-                this._message.x = o.default.width, this._white.addChild(this._message), d.SE.play("216"), createjs.Tween.get(this._message).to({
-                    x: 0
-                }, 500).wait(500).call(function () {
-                    t._waitClick()
-                })
-            }, e.prototype._waitClick = function () {
-                var t = this;
-                this._white.buttonMode = !0, this._white.once(a.EventType.CLICK, function () {
-                    t._bg.alpha = 0, createjs.Tween.get(t._white).to({
-                        alpha: 0
-                    }, 1e3).call(function () {
-                        t._layer.removeChild(t._white), t._white = null, t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._layer.removeChild(this._bg), this._bg = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._enabled = t, this._update(!1), this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut)
+            }, e.prototype.activate = function () {
+                0 != this._enabled && 1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut)
+            }, e.prototype._update = function (t) {
+                0 == this._enabled ? this.texture = r.SALLY_AIRUNIT.getTexture(18) : this.texture = 0 == t ? r.SALLY_AIRUNIT.getTexture(17) : r.SALLY_AIRUNIT.getTexture(19)
             }, e
-        }(_.TaskBase);
-    e.TaskExtendAirUnit = v;
-    var g = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClickYes = function () {
-                null != i._cb_onResult && i._cb_onResult(!0)
-            }, i._onClickNo = function () {
-                null != i._cb_onResult && i._cb_onResult(!1)
-            }, i._cb_onResult = e, i._bg = new PIXI.Sprite, i._bg.position.set(231, 185), i.addChild(i._bg), i._area_name = new PIXI.Sprite, i._area_name.position.set(0, 219), i.addChild(i._area_name), i._title = new PIXI.Sprite, i._title.position.set(437, 260), i.addChild(i._title), i._icon = new PIXI.Sprite, i._icon.position.set(533, 327), i.addChild(i._icon), i._item_num = new c.TextBox(20, 1381651), i._item_num.position.set(621, 351), i.addChild(i._item_num), i._logo = new PIXI.Sprite, i._logo.position.set(761, 96), i.addChild(i._logo), i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(387, 455), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(642, 455), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = y.SALLY_AIRUNIT.getTexture(90), this._title.texture = y.SALLY_AIRUNIT.getTexture(141), this._icon.texture = r.default.resources.getUseitem(73, 0), this._item_num.text = "1\u21920", this._logo.texture = y.SALLY_AIRUNIT.getTexture(47), this._btn_yes.texture = y.SALLY_AIRUNIT.getTexture(33), this._btn_no.texture = y.SALLY_AIRUNIT.getTexture(16)
-        }, e.prototype.update = function (t, e) {
-            var i = this,
-                n = h.MathUtil.zeroPadding(t, 3),
-                o = r.default.settings.path_root + "resources/area/airunit_extend_confirm/" + n + ".png";
-            o = o + "?" + s.START_TIME;
-            var a = new PIXI.loaders.Loader;
-            a.add(o), a.load(function () {
-                var t = a.resources[o].texture;
-                i._area_name.texture = t;
-                var e = i._title.x + i._title.width / 2 - i._area_name.width / 2;
-                i._area_name.x = Math.round(e)
-            });
-            var _ = e;
-            this._item_num.text = _ + "\u2192" + Math.max(0, _ - 1)
-        }, e.prototype.activate = function () {
-            0 == this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(a.EventType.CLICK, this._onClickYes)), 0 == this._btn_no.buttonMode && (this._btn_no.buttonMode = !0, this._btn_no.on(a.EventType.CLICK, this._onClickNo))
-        }, e.prototype.deactivate = function () {
-            this._btn_yes.buttonMode = !1, this._btn_yes.off(a.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(a.EventType.CLICK, this._onClickNo)
-        }, e.prototype.dispose = function () {
-            this.deactivate(), this.removeChildren(), this._item_num.destroy(), this._cb_onResult = null
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Sprite),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onMouseOver = function () {
+                    o._update(!0), null != o._cb_onMouseOver && o._cb_onMouseOver()
+                }, o._onMouseOut = function () {
+                    o._update(!1), null != o._cb_onMouseOut && o._cb_onMouseOut()
+                }, o._onClick = function () {
+                    null != o._cb_onClick && o._cb_onClick()
+                }, o._cb_onMouseOver = e, o._cb_onMouseOut = i, o._cb_onClick = n, o.interactive = !0, o
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._enabled = t, this._update(!1), this.on(a.EventType.MOUSEOVER, this._onMouseOver), this.on(a.EventType.MOUSEOUT, this._onMouseOut)
+            }, e.prototype.activate = function () {
+                0 != this._enabled && 1 != this.buttonMode && (this.buttonMode = !0, this.on(a.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(a.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.off(a.EventType.MOUSEOVER, this._onMouseOver), this.off(a.EventType.MOUSEOUT, this._onMouseOut)
+            }, e.prototype._update = function (t) {
+                0 == this._enabled ? this.texture = r.SALLY_AIRUNIT.getTexture(14) : this.texture = 0 == t ? r.SALLY_AIRUNIT.getTexture(13) : r.SALLY_AIRUNIT.getTexture(15)
+            }, e
+        }(PIXI.Sprite)
 }

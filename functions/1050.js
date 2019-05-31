@@ -20,38 +20,33 @@ const function1050 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(11),
-        s = i(1051),
-        a = i(15),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        r = i(2),
+        s = i(321),
+        a = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                return r._updateView = function (t) {
+                    var e = o.default.model.expedition.get(r._expedition_id);
+                    0 == e.state && e.__setState__(1);
+                    var i = o.default.model.deck.get(r._deck_id);
+                    t.update(e, i.mstID), r._view.detail_view.update(e, i), r._showCutin(i)
+                }, r._view = e, r._expedition_id = i, r._deck_id = n, r
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
+                var t = this,
+                    e = this._getTargetListItem();
+                e.getDeckIconTween(this._deck_id, function () {
+                    t._updateView(e)
                 })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            }, e.prototype._getTargetListItem = function () {
+                for (var t, e = this._view.items, i = 0, n = e; i < n.length && (t = n[i], t.target_id != this._expedition_id); i++);
+                return t
+            }, e.prototype._showCutin = function (t) {
+                var e = this;
+                new s.TaskExpeditionStartCutin(t.mstID).start(function () {
+                    e._endTask()
+                })
             }, e
         }(r.TaskBase);
-    e.PreInitializeTask = _;
-    var l = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(102), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = l
+    e.GoExpeditionTask = a
 }

@@ -10,9 +10,10 @@ const function0 = function (t, e, i) {
         a = i(539),
         _ = i(540),
         l = i(541),
-        u = function () {
+        u = i(544),
+        c = function () {
             function t() {
-                this._view = new l.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager
+                this._view = new l.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new u.FriendlyRequestModel
             }
             return t._getInstance = function () {
                 return null == this._instance && (this._instance = new t), this._instance
@@ -58,7 +59,13 @@ const function0 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
+            }), Object.defineProperty(t, "friendlyRequest", {
+                get: function () {
+                    return t._getInstance()._friendlyRequest
+                },
+                enumerable: !0,
+                configurable: !0
             }), t
         }();
-    e.default = u
+    e.default = c
 }

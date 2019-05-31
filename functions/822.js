@@ -19,105 +19,51 @@ const function822 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(23),
-        _ = i(8),
-        l = i(38),
-        u = i(13),
-        c = i(823),
-        h = function (t) {
+    var o = i(0),
+        r = i(28),
+        s = i(8),
+        a = i(4),
+        _ = i(32),
+        l = i(3),
+        u = i(3),
+        c = i(135),
+        h = i(1),
+        p = i(134),
+        d = i(13),
+        f = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.bg = new _.AreaBox(1, 16777215), e.black = new _.AreaBox(1, 0), e.bgGrad = new PIXI.Sprite(r.default.resources.getUIImage("vignette_frame")), e.shipLayer = new a.Container, e.ship = new PIXI.Sprite, e.overlay = new PIXI.Sprite, e.silhouette1 = new PIXI.Sprite, e.silhouette2 = new PIXI.Sprite, e.text1 = new PIXI.Sprite, e.text2 = new PIXI.Sprite, e.text1.position.set(0), e.text2.position.set(0, o.default.height), e.text2.anchor.set(0, 1), e.text1.visible = !1, e.text2.visible = !1, e.shipLayer.addChild(e.silhouette1, e.silhouette2, e.ship, e.overlay), e.addChild(e.bg, e.bgGrad, e.shipLayer, e.text1, e.text2, e.black), e
+                e._onYES = function () {
+                    null != e._cb_onYes && (c.SceneMemory.slotItemPage = 0, c.SceneMemory.slotItemFilter = 0, c.SceneMemory.listMode = p.SlotListMode.UNSET, e._cb_onYes())
+                }, e._onNO = function () {
+                    null != e._cb_onNo && e._cb_onNo()
+                }, e.bg = new s.AreaBox(1), e.frameBg = new PIXI.Sprite(o.default.resources.getUIImage("sp_kaizo_frame")), e.titleTxt = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(1)), e.message1 = new PIXI.Sprite, e.message2 = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(23)), e.text1 = new a.TextBox(19, 1949120), e.text2 = new a.TextBox(19, 1949120), e.text1.text = "\u5927\u898f\u6a21\u6539\u88c5\u3059\u308b\u8266\u8247", e.text2.text = "\u4f7f\u7528\u3059\u308b\u8cc7\u6750", e.textName = new a.TextBox(19, 16777215), e.shipBanner = new _.ShipBanner, e.iconLayer = new PIXI.Container, e.icons = [], e.textItems = [];
+                for (var i = 0, n = 0, r = 0; r < 7; r++) {
+                    r % 2 == 0 && 0 != r && i++, n = r % 2 == 0 ? 0 : 1;
+                    var u = new PIXI.Sprite;
+                    u.position.set(617 + 132 * n, 380 + 48 * i), u.scale.set(.5), u.visible = !1, e.icons.push(u), e.iconLayer.addChild(u);
+                    var d = new a.TextBox(19, 16777215);
+                    d.position.set(657 + 132 * n, 389 + 47 * i), d.visible = !1, e.textItems.push(d), e.iconLayer.addChild(d)
+                }
+                return e.btn_yes = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(9)), e.btn_no = new PIXI.Sprite(l.REMODEL_GRADEUP.getTexture(4)), e.btn_yes.on(h.EventType.CLICK, e._onYES), e.btn_no.on(h.EventType.CLICK, e._onNO), e.btn_yes.interactive = e.btn_yes.buttonMode = !0, e.btn_no.interactive = e.btn_no.buttonMode = !0, e.frameBg.position.set(40, 59), e.titleTxt.position.set(446, 19), e.text1.position.set(120, 255), e.text2.position.set(120, 377), e.message1.position.set(383, 85), e.message2.position.set(375, 130), e.textName.position.set(616, 255), e.shipBanner.position.set(616, 283), e.btn_yes.position.set(642, 587), e.btn_no.position.set(378, 587), e.addChild(e.bg, e.frameBg, e.titleTxt, e.text1, e.text2, e.message1, e.message2, e.textName, e.shipBanner, e.iconLayer, e.btn_yes, e.btn_no), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this._cb_onComplete = null, this._offset = null, this.removeChildren()
-            }, e.prototype.play = function (t, e) {
-                var i = this;
-                this._cb_onComplete = e, this.preload(t, function () {
-                    i._anim1()
+                this.removeChildren(), this.shipBanner.dispose(), this.btn_yes.off(h.EventType.CLICK), this.btn_no.off(h.EventType.CLICK), this.text1.destroy(), this.text2.destroy(), this.textName.destroy();
+                for (var t = 0; t < this.textItems.length; t++) this.textItems[t].destroy();
+                this.bg = null, this.frameBg = null, this.titleTxt = null, this.text1 = null, this.text2 = null, this.message1 = null, this.message2 = null, this.shipBanner = null, this.textName = null, this.iconLayer = null, this.icons = null, this.textItems = null, this.btn_yes = null, this.btn_no = null, this._cb_onYes = null, this._cb_onNo = null
+            }, e.prototype.update = function (t, e) {
+                var i = this,
+                    n = new d.ShipLoader;
+                n.add(t.mstID, !1, "text_remodel_mes"), n.load(function () {
+                    i.shipBanner.update(t, !1), i.message1.texture = o.default.resources.getShip(t.mstID, !1, "text_remodel_mes");
+                    t.getClassType();
+                    i.textName.text = r.ShipUtil.getShipClassTypeSpRemodelText(t.mstID) + "\u300c" + t.name + "\u300d";
+                    for (var n = 0; n < 7; n++) i.icons[n].visible = !1, i.textItems[n].visible = !1;
+                    for (var n = 0; n < e.length; n++) i.icons[n].visible = !0, i.textItems[n].visible = !0, i.icons[n].texture = u.COMMON_ITEMICONS.getTextureFromMstID(e[n].id), i.textItems[n].text = e[n].count
                 })
-            }, e.prototype.preload = function (t, e) {
-                var i = this;
-                this._ship_mstid = t, this._offset = r.default.model.ship_graph.get(t).getCenterOffset(!1);
-                var n = new u.ShipLoader;
-                n.add(t, !1, "full_x2"), n.add(t, !1, "text_class"), n.add(t, !1, "text_name"), n.load(function () {
-                    i.text1.texture = r.default.resources.getShip(t, !1, "text_class"), i.text2.texture = r.default.resources.getShip(t, !1, "text_name");
-                    var n = r.default.resources.getShip(t, !1, "full_x2");
-                    i.ship.texture = n, i.overlay.texture = n, i.silhouette1.texture = n, i.silhouette2.texture = n, i.overlay.tint = 0, i.silhouette1.tint = 0, i.silhouette2.tint = 0, i.silhouette1.alpha = .4, i.silhouette2.alpha = .15, i._obj = c.SpKaizoConst.getObj(i._ship_mstid), e()
-                })
-            }, e.prototype._anim1 = function () {
-                var t = this,
-                    e = this._obj[0];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(this.black).to({
-                    alpha: 0
-                }, 600);
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 0, i)(), i.call(function () {
-                    t._anim2()
-                }), createjs.Tween.get(this.overlay).to({
-                    alpha: 0
-                }, 4500), createjs.Tween.get(this.silhouette2).wait(500).to({
-                    x: 35
-                }, 4e3)
-            }, e.prototype._anim2 = function () {
-                var t = this,
-                    e = this._obj[1];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 0, this.silhouette1)();
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 1, i)(), i.call(function () {
-                    t._anim3()
-                })
-            }, e.prototype._anim3 = function () {
-                var t = this,
-                    e = this._obj[2];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 1, this.silhouette1)();
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 2, i)(), i.call(function () {
-                    t._anim4()
-                })
-            }, e.prototype._anim4 = function () {
-                var t = this,
-                    e = this._obj[3];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(null).wait(1e3).call(function () {
-                    r.default.sound.voice.play(t._ship_mstid.toString(), 10)
-                });
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 3, i)(), i.call(function () {
-                    var e = createjs.Tween.get(t.shipLayer);
-                    c.SpKaizoConst.getObject(t._ship_mstid, 4, e)(), e.call(function () {
-                        var e = createjs.Tween.get(t.shipLayer);
-                        c.SpKaizoConst.getObject(t._ship_mstid, 5, e)(), e.call(function () {
-                            t._anim5()
-                        })
-                    })
-                })
-            }, e.prototype._anim5 = function () {
-                var t = this,
-                    e = this._obj[4];
-                this.text1.visible = !0, this.text2.visible = !0, this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y);
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 6, i)(), i.wait(1e3).call(function () {
-                    t._03_waitClick()
-                })
-            }, e.prototype._03_waitClick = function () {
-                var t = this,
-                    e = new l.GearBtnHome;
-                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
-                var i = new _.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
-                    t.removeChild(i), t._04_fadeOut(e)
-                })
-            }, e.prototype._04_fadeOut = function (t) {
-                var e = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 100).call(function () {
-                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
-                })
+            }, e.prototype.activate = function (t, e) {
+                this._cb_onYes = t, this._cb_onNo = e
             }, e
         }(PIXI.Container);
-    e.SpKaizoAnimation = h
+    e.SpKaizoConfirm = f
 }

@@ -20,19 +20,41 @@ const function918 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/mapinfo", e
+        r = i(17),
+        s = i(2),
+        a = i(919),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
-                o.default.model.map.setMapMem(e);
-                var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
-                o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this,
+                    e = o.default.model.map.getArea(r.EVENT_AREA_ID),
+                    i = null != e;
+                new a.TaskLoadResourcesSally(i).start(function () {
+                    t._showTopView()
+                })
+            }, e.prototype._showTopView = function () {
+                var t = o.default.model.deck.num > 1;
+                this._scene.initialize(t), this._scene = null, this._endTask()
             }, e
-        }(r.APIBase);
-    e.MapInfoAPI = a
+        }(s.TaskBase);
+    e.PreInitializeTask = _;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM()
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(103), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._scene.startTopTask(), this._endTask()
+        }, e
+    }(s.TaskBase);
+    e.InitializeTask = l
 }

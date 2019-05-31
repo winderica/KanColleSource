@@ -19,15 +19,18 @@ const function1192 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
+    var o = i(2),
+        r = i(14),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_quest/start", i._duty_id = e, i
+                return i._scene_dispose_delegate = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
+            return n(e, t), e.prototype._start = function () {
+                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene_dispose_delegate = null, r.UIImageLoader.clearMemoryCache("duty"), t.prototype._endTask.call(this)
             }, e
-        }(o.APIBase);
-    e.DutyStartAPI = r
+        }(o.TaskBase);
+    e.TaskDutySceneFinalize = s
 }

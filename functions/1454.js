@@ -19,29 +19,34 @@ const function1454 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1455),
+    var o = i(16),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
-                get: function () {
-                    return this._rader_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "rader_e", {
-                get: function () {
-                    return this._rader_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
-            }, e.prototype.resetChildren = function () {
-                this.addChild(this._rader_f), this.addChild(this._rader_e)
-            }, e
+            return n(e, t), e.prototype.showSanshiki = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(137),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
+                })
+            }, e.prototype.showDanmaku = function (t, e) {
+                var i = this,
+                    n = o.BATTLE_MAIN.getTexture(134),
+                    r = new PIXI.Sprite(n);
+                r.x = t.x + 215, r.y = t.y + 14, r.alpha = 0, this.addChild(r), createjs.Tween.get(r).wait(e).to({
+                    alpha: 1
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    i.removeChild(r)
+                })
+            }, e.prototype.dispose = function () {}, e
         }(PIXI.Container);
-    e.RaderLayer = r
+    e.BannerInfoLayer = r
 }

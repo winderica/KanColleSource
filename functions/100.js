@@ -34,7 +34,7 @@ const function100 = function (t, e, i) {
         y = i(459),
         m = i(460),
         v = i(461),
-        g = i(1375),
+        g = i(1379),
         b = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;

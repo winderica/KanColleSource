@@ -20,183 +20,165 @@ const function1411 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(29),
-        a = i(40),
-        _ = i(13),
-        l = i(55),
-        u = i(63),
-        c = i(462),
-        h = i(463),
-        p = i(464),
-        d = i(466),
-        f = i(467),
-        y = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new l.PhaseDamageCutin(n._scene), n
+        r = i(18),
+        s = i(6),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.FadeBox(.9, 0), e._chara = new PIXI.Container, e._item1 = new _, e._item2 = new l, e._item3 = new u, e._name1 = new c, e._name2 = new c, e._name3 = new c, e._bg.hide(0), e.addChild(e._bg), e.addChild(e._chara), e.addChild(e._item3), e.addChild(e._item2), e.addChild(e._item1), e.addChild(e._name1), e.addChild(e._name2), e.addChild(e._name3), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this._record.raw.support_air;
-                if (null != t) return void this._supportAir(t);
-                var e = this._record.raw.support_hou;
-                if (null != e) return void this._supportHou(e);
-                var i = this._record.raw.support_rai;
-                if (null != i) return void this._supportRai(i);
-                var n = this._record.raw.support_taisen;
-                if (null != n) return void this._supportTaisen(n);
-                this._endTask()
-            }, e.prototype._supportAir = function (t) {
-                var e = this;
-                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(1);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
-                        var u = l[_];
-                        if (null != u) {
-                            var c = o.default.model.ship.get(u.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: u.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    h.add(d);
-                    var y = r[0].mst_id,
-                        v = r[0].damaged;
-                    h.add(new m(i, y, v));
-                    var g = e._scene.data.model.deck_f.ships,
-                        b = e._scene.data.model.deck_e.ships;
-                    h.add(new p.TaskSupportAir(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
-                })
-            }, e.prototype._supportHou = function (t) {
-                var e = this;
-                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(2);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
-                        var u = l[_];
-                        if (null != u) {
-                            var h = o.default.model.ship.get(u.mem_id);
-                            null != h ? r.push({
-                                mst_id: h.mstID,
-                                damaged: u.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var p = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id,
-                        v = r[0].damaged;
-                    p.add(new m(i, y, v)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
-                })
-            }, e.prototype._supportRai = function (t) {
-                var e = this;
-                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(3);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
-                        var u = l[_];
-                        if (null != u) {
-                            var c = o.default.model.ship.get(u.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: u.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var p = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id,
-                        v = r[0].damaged;
-                    p.add(new m(i, y, v)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
-                })
-            }, e.prototype._supportTaisen = function (t) {
-                var e = this;
-                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
-                        var u = l[_];
-                        if (null != u) {
-                            var c = o.default.model.ship.get(u.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: u.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask,
-                        p = new f.TaskSupportDeckCutin(i, r);
-                    h.add(p);
-                    var y = r[0].mst_id,
-                        v = r[0].damaged;
-                    h.add(new m(i, y, v));
-                    var g = e._scene.data.model.deck_f.ships,
-                        b = e._scene.data.model.deck_e.ships;
-                    h.add(new d.TaskSupportTaisen(e._scene, t, g, b, e._damage_cutin, null)), h.start(function () {
-                        new a.WaitTask(800).start(function () {
-                            e._endTask()
-                        })
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                var e = this;
-                this._damage_cutin.start(function () {
-                    e._scene = null, e._record = null, e._damage_cutin = null, t.prototype._endTask.call(e)
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "item1", {
+                get: function () {
+                    return this._item1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "item2", {
+                get: function () {
+                    return this._item2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "item3", {
+                get: function () {
+                    return this._item3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name1", {
+                get: function () {
+                    return this._name1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name2", {
+                get: function () {
+                    return this._name2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name3", {
+                get: function () {
+                    return this._name3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._item1.initialize(t, e), this._item2.initialize(t, i), this._item3.initialize(t, n), this._name1.initialize(t), this._name1.y = 570, this._name2.initialize(t), this._name2.y = 480, this._name3.initialize(t), this._name3.y = 390, this.name1.texture = o.default.resources.getSlotitem(e, "btxt_flat"), this.name2.texture = o.default.resources.getSlotitem(i, "btxt_flat"), this.name3.texture = o.default.resources.getSlotitem(n, "btxt_flat")
+            }, e.prototype.dispose = function () {
+                this.removeChildren()
             }, e
-        }(r.TaskBase);
-    e.PhaseSupport = y;
-    var m = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._layer = e, o._mst_id = i, o._damaged = n, o
+        }(PIXI.Container);
+    e.CutinCanvasSpSSS = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._bg = new PIXI.Sprite, e._bg.scale.x = -1, e._bg.anchor.set(.5), e._bg.alpha = 0, e.addChild(e._bg), e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._item.position.set(60, 15), e._item.scale.set(1.5), e._item.alpha = 0, e.addChild(e._item);
+            var i = new PIXI.Graphics;
+            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(-741, -392), new PIXI.Point(749, 75), new PIXI.Point(749, 395), new PIXI.Point(-741, -75)]), i.endFill(), e.addChild(i), e._item.mask = i, e
         }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new _.ShipLoader;
-            e.add(this._mst_id, this._damaged, "full"), e.load(function () {
-                t._show()
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            t ? (this.position.set(750, 674), this._to_pos = new PIXI.Point(565, 615)) : (this.position.set(450, 674), this._to_pos = new PIXI.Point(635, 615), this.scale.x = -1);
+            var i = t ? "battle_telop_mes_ybg3_f" : "battle_telop_mes_ybg3_e";
+            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
+        }, e.prototype.show = function (t) {
+            var e = this;
+            createjs.Tween.get(this).wait(t).call(function () {
+                e._play(e._to_pos.x, e._to_pos.y)
             })
-        }, e.prototype._show = function () {
-            var t = this,
-                e = o.default.model.ship_graph.get(this._mst_id).getBattleOffset(this._damaged),
-                i = -740 + e.x,
-                n = o.default.resources.getShip(this._mst_id, this._damaged, "full");
-            this._s = new PIXI.Sprite(n), this._s.x = i, this._s.y = -105 + e.y, this._s.alpha = 0, this._layer.addChild(this._s), createjs.Tween.get(this._s).to({
-                x: i + 665,
+        }, e.prototype._play = function (t, e) {
+            s.SE.play("105"), createjs.Tween.get(this).to({
+                x: t,
+                y: e
+            }, 200), createjs.Tween.get(this._bg).to({
                 alpha: 1
-            }, 500).to({
-                x: i + 740
-            }, 300).call(function () {
-                o.default.sound.voice.playAtRandom(t._mst_id.toString(), [16, 17, 18], [33, 33, 34])
-            }).wait(300).to({
-                x: i + 1070,
-                alpha: 0
-            }, 500).call(function () {
-                t._layer.removeChild(t._s), t._endTask()
+            }, 200), createjs.Tween.get(this._item).to({
+                alpha: 1
+            }, 133).call(function () {
+                s.SE.play("109")
             })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._s = null, t.prototype._endTask.call(this)
         }, e
-    }(r.TaskBase);
-    e.TaskFlagShip = m
+    }(PIXI.Container);
+    e.ItemBox1 = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._bg = new PIXI.Sprite, e._item = new PIXI.Sprite, e._item.position.set(77, -68), e._bg.anchor.set(.5), e._item.anchor.set(.5), e._item.scale.set(1.5), e._bg.alpha = 0, e._item.alpha = 0, e.addChild(e._bg), e.addChild(e._item);
+            var i = new PIXI.Graphics;
+            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(-756, 74), new PIXI.Point(749, -395), new PIXI.Point(749, -75), new PIXI.Point(-756, 395)]), i.endFill(), e.addChild(i), e._item.mask = i, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            t ? (this.position.set(300, 674), this._to_pos = new PIXI.Point(750, 492)) : (this.position.set(900, 674), this._to_pos = new PIXI.Point(450, 492), this.scale.x = -1);
+            var i = t ? "battle_telop_mes_ybg3_f" : "battle_telop_mes_ybg3_e";
+            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
+        }, e.prototype.show = function (t) {
+            var e = this;
+            createjs.Tween.get(this).wait(t).call(function () {
+                e._play(e._to_pos.x, e._to_pos.y)
+            })
+        }, e.prototype._play = function (t, e) {
+            s.SE.play("105"), createjs.Tween.get(this).to({
+                x: t,
+                y: e
+            }, 200), createjs.Tween.get(this._bg).to({
+                alpha: 1
+            }, 200), createjs.Tween.get(this._item).to({
+                alpha: 1
+            }, 133).call(function () {
+                s.SE.play("109")
+            })
+        }, e
+    }(PIXI.Container);
+    e.ItemBox2 = l;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._bg = new PIXI.Sprite, e._item = new PIXI.Sprite, e._item.position.set(-15, 5), e._bg.anchor.set(.5), e._item.anchor.set(.5), e._item.scale.set(1.5), e._bg.alpha = 0, e._item.alpha = 0, e.addChild(e._bg), e.addChild(e._item);
+            var i = new PIXI.Graphics;
+            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(402, -585), new PIXI.Point(867, -585), new PIXI.Point(-354, 537), new PIXI.Point(-813, 537)]), i.endFill(), e.addChild(i), e._item.mask = i, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            t ? (this.position.set(505, 585), this._to_pos = new PIXI.Point(993, 135)) : (this.position.set(695, 585), this._to_pos = new PIXI.Point(207, 135), this.scale.x = -1);
+            var i = t ? "battle_telop_mes_ybg4_f" : "battle_telop_mes_ybg4_e";
+            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
+        }, e.prototype.show = function (t) {
+            var e = this;
+            createjs.Tween.get(this).wait(t).call(function () {
+                e._play(e._to_pos.x, e._to_pos.y)
+            })
+        }, e.prototype._play = function (t, e) {
+            s.SE.play("105"), createjs.Tween.get(this).to({
+                x: t,
+                y: e
+            }, 200), createjs.Tween.get(this._bg).to({
+                alpha: 1
+            }, 200), createjs.Tween.get(this._item).to({
+                alpha: 1
+            }, 133).call(function () {
+                s.SE.play("109")
+            })
+        }, e
+    }(PIXI.Container);
+    e.ItemBox3 = u;
+    var c = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.scale.set(.76), e.alpha = 0, e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            1 == t ? (this.anchor.set(0, .5), this.position.x = -300) : (this.anchor.set(1, .5), this.position.x = 1500)
+        }, e
+    }(PIXI.Sprite)
 }

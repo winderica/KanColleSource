@@ -20,18 +20,19 @@ const function1326 = function (t, e, i) {
         value: !0
     });
     var o = i(10),
-        r = function (t) {
+        r = i(139),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this,
                     n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                return s = null != o ? o.isCombined() : e.model.map_info.isVS12(), i._url = 1 == s ? "api_req_combined_battle/ec_midnight_battle" : 0 == r ? "api_req_battle_midnight/battle" : "api_req_combined_battle/midnight_battle", i._data = e, i
+                    o = 0 != n.type;
+                return i._url = 0 == o ? "api_req_sortie/ld_shooting" : "api_req_combined_battle/ld_shooting", i._data = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIBattleDayToNight = r
+    e.APIBattleStartLongRangeFires = s
 }

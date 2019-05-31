@@ -21,66 +21,43 @@ const function1412 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(178),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "scene", {
-                get: function () {
-                    return this._scene
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "record", {
-                get: function () {
-                    return this._record
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._scene.view.layer_title.hide(), this._endTouchPlane()
-            }, e.prototype._endTouchPlane = function () {
-                var t = this._scene.view.raderLayer;
-                t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
-            }, e.prototype._waitGaugeExplodeAnimation = function () {
-                var t = this;
-                1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
-                    t._waitGaugeExplodeAnimation()
-                }) : this._fadeOutBGM()
-            }, e.prototype._fadeOutBGM = function () {
-                var t = this,
-                    e = this._scene.data.model.map_info.area_id,
-                    i = this._scene.data.model.map_info.map_no,
-                    n = this._scene.data.model.map_info.isBoss();
-                if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
-                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
-                    t._playBossLastGasp()
-                })) : this._playBossLastGasp()
-            }, e.prototype._playBossLastGasp = function () {
-                if (o.default.option.vol_voice <= 0) return void this._wait();
-                var t = this._scene.data.model.deck_e.ships[0];
-                if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
-                var e = this._scene.view.layer_gauge.isExploded(),
-                    i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
-                return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
-            }, e.prototype._playBossVoice = function (t) {
-                var e = this;
-                o.default.sound.voice.play("9998", t, function () {
-                    e._wait()
-                })
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._shutter_close()
-                })
-            }, e.prototype._shutter_close = function () {
-                var t = this;
-                this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._getNormalAttackType = function (t, e, i, n) {
+                if (1 == n) return 1;
+                var r = t.stype;
+                if (7 == r && 1 == e.isSubMarine()) return 2;
+                if (7 == r || 11 == r || 18 == r) {
+                    var s = t.mst_id,
+                        a = t.name;
+                    return 432 == s || 353 == s || 433 == s ? 0 : "\u30ea\u30b3\u30ea\u30b9\u68f2\u59eb" == a ? 0 : "\u6df1\u6d77\u6d77\u6708\u59eb" == a ? 0 : 1
+                }
+                if (t.isSubMarine()) return 3;
+                if (e.isSubMarine()) return 6 == r || 10 == r || 16 == r || 17 == r ? 1 : 2;
+                var _ = o.default.model.slot.getMst(i);
+                return null == _ || 5 != _.equipTypeSp && 32 != _.equipTypeSp ? 0 : 3
+            }, e.prototype._hasRocketEffect = function (t, e) {
+                if (0 == e.isGround()) return !1;
+                for (var i = t.slots, n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    if (null != r) {
+                        if (37 == r.equipType) return !0
+                    }
+                }
+                return !1
+            }, e.prototype._getDaihatsuEffectType = function (t, e) {
+                if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca", "\u98db\u884c\u5834\u59eb"];
+                if (1 == t.hasSlot(167)) {
+                    if (1 == t.isSubMarine()) {
+                        if (1 == e.isGround()) return 4
+                    } else if (i.indexOf(e.name) >= 0) return 4;
+                    return 0
+                }
+                return 1 == t.hasSlot(166) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(193) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(68) && i.indexOf(e.name) >= 0 ? 3 : 0
             }, e
         }(r.TaskBase);
-    e.PhaseEnding = a
+    e.PhaseHougekiBase = s
 }

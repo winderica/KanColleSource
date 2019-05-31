@@ -19,51 +19,61 @@ const function1462 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(275),
-        r = i(1463),
-        s = i(1470),
-        a = i(1474),
-        _ = i(1506),
-        l = i(1507),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._view = new l.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
+    var o = i(16),
+        r = i(142),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._mst_id = -1, i._friend = e, i._plane = new r.Plane, i._plane.scale.set(-.25, .25), i._label = new a, i._label.position.set(-56, 35), i.addChild(i._plane), i.addChild(i._label), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bonus", {
-                get: function () {
-                    return this._layer_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (e) {
-                var i = this;
-                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
-                    i._main()
-                })
-            }, e.prototype._main = function () {
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._mst_id = t, this._stopShowTween(), this._stopHideTween(), this._label.initialize()
+            }, e.prototype.show = function () {
                 var t = this;
-                new a.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
+                null == this._show_tween && (this._mst_id <= 0 || (this._stopHideTween(), this._label.activate(), this._plane.visible = !1, this._plane.initialize(this._mst_id, this._friend), this._plane.activate(), this._show_tween = createjs.Tween.get(this._plane).wait(133).call(function () {
+                    t._plane.alpha = .5, t._plane.visible = !0
+                }).wait(100).call(function () {
+                    t._plane.visible = !1
+                }).wait(500).call(function () {
+                    t._plane.alpha = .85, t._plane.visible = !0
+                }).wait(100).call(function () {
+                    t._plane.alpha = .6, t._plane.filters = null
+                }).to({
+                    alpha: .8
+                }, 166).call(function () {
+                    t._show_tween = null
+                })))
+            }, e.prototype.hide = function () {
                 var t = this;
-                new _.TaskEnd(this).start(function () {
-                    t.emit("complete")
-                })
+                null == this._hide_tween && (this._stopShowTween(), this._mst_id > 0 && (this._mst_id = -1, this._label.deactivate(), this._hide_tween = createjs.Tween.get(this._plane).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._plane.deactivate(), t._plane.visible = !1, t._hide_tween = null
+                })))
+            }, e.prototype._stopShowTween = function () {
+                null != this._show_tween && (this._show_tween.setPaused(!0), this._show_tween = null)
+            }, e.prototype._stopHideTween = function () {
+                null != this._hide_tween && (this._hide_tween.setPaused(!0), this._hide_tween = null)
             }, e
-        }(o.BattleResultSceneBase);
-    e.BattleResultScene = u
+        }(PIXI.Container);
+    e.TouchPlane = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.alpha = 0, e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.BATTLE_MAIN.getTexture(132)
+        }, e.prototype.activate = function () {
+            null == this._t && (this._t = createjs.Tween.get(this, {
+                loop: !0
+            }).to({
+                alpha: 1
+            }, 100).wait(700).to({
+                alpha: 0
+            }, 100).wait(200))
+        }, e.prototype.deactivate = function () {
+            null != this._t && (this._t.setPaused(!0), this._t = null, this.alpha = 0)
+        }, e
+    }(PIXI.Sprite)
 }

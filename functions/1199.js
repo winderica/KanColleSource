@@ -20,15 +20,29 @@ const function1199 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_dispose_delegate = e, i
+        r = i(6),
+        s = i(240),
+        a = i(175),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._model = e, n._holder = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
+                var t = this;
+                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
+                    t._update()
+                })
+            }, e.prototype._update = function () {
+                var t = this,
+                    e = this._holder.selected_page_no,
+                    i = this._holder.selected_type;
+                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._model = null, this._holder = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskItemSceneFinalize = s
+    e.TaskExecutedDutySelect = _
 }

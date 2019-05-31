@@ -19,71 +19,77 @@ const function1298 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(23),
-        r = i(20),
-        s = function (t) {
+    var o = i(1299),
+        r = i(1301),
+        s = i(1303),
+        a = i(1306),
+        _ = i(1308),
+        l = i(1309),
+        u = i(1311),
+        c = i(15),
+        h = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
+                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new u.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new l.MapPlaneLayer, e.addChild(e._plane_layer), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "color", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._color
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this.update(t)
-            }, e.prototype.update = function (t) {
-                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(146), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
-            }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 300).to({
-                    alpha: 1
-                }, 300))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
-            }, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case -1:
-                        return r.MAP_COMMON.getTexture(152);
-                    case 1:
-                        return r.MAP_COMMON.getTexture(145);
-                    case 2:
-                    case 6:
-                        return r.MAP_COMMON.getTexture(148);
-                    case 3:
-                        return r.MAP_COMMON.getTexture(150);
-                    case 4:
-                        return r.MAP_COMMON.getTexture(151);
-                    case 5:
-                        return r.MAP_COMMON.getTexture(139);
-                    case 7:
-                        return r.MAP_COMMON.getTexture(101);
-                    case 8:
-                        return r.MAP_COMMON.getTexture(138);
-                    case 9:
-                        return r.MAP_COMMON.getTexture(149);
-                    case 10:
-                        return r.MAP_COMMON.getTexture(96);
-                    case 11:
-                        return r.MAP_COMMON.getTexture(153);
-                    case 12:
-                        return r.MAP_COMMON.getTexture(154);
-                    case 13:
-                        return r.MAP_COMMON.getTexture(81);
-                    case -2:
-                        return r.MAP_COMMON.getTexture(147);
-                    case -3:
-                        return r.MAP_COMMON.getTexture(144)
+            }), Object.defineProperty(e.prototype, "ship_icon", {
+                get: function () {
+                    return this._ship_icon
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "spotLayer", {
+                get: function () {
+                    return this._spotLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "airbaseLayer", {
+                get: function () {
+                    return this._airbaseLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemy_layer", {
+                get: function () {
+                    return this._enemy_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane_layer", {
+                get: function () {
+                    return this._plane_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bg.dispose(), this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
+            }, e.prototype.addSpot = function (t, e, i) {
+                var n = i.getSpot(e),
+                    o = new r.CompSpot(e, n.offsetDic);
+                if (o.position.set(n.x, n.y), null != n.route) {
+                    var s = n.route,
+                        a = c.MapUtil.toResKey(t),
+                        _ = "map" + a + "_" + s.img,
+                        l = PIXI.Texture.fromFrame(_);
+                    o.setRoute(l, s.x, s.y, s.r)
                 }
-                return PIXI.Texture.EMPTY
+                var u = n.line;
+                if (null != u) {
+                    var a = c.MapUtil.toResKey(t),
+                        h = void 0;
+                    h = null != u.img && u.img.length > 0 ? "map" + a + "_" + u.img : "map" + a + "_route_" + e;
+                    var l = PIXI.Texture.fromFrame(h);
+                    o.setLine(l, u.x, u.y, u.r)
+                }
+                this._spotLayer.addSpot(o)
             }, e
-        }(o.Container);
-    e.SpotPointImage = s
+        }(PIXI.Container);
+    e.MapView = h
 }

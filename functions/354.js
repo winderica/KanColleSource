@@ -28,11 +28,11 @@ const function354 = function (t, e, i) {
         c = i(6),
         h = i(26),
         p = i(355),
-        d = i(951),
-        f = i(952),
-        y = i(954),
-        m = i(955),
-        v = i(956),
+        d = i(955),
+        f = i(956),
+        y = i(958),
+        m = i(959),
+        v = i(960),
         g = i(1);
     ! function (t) {
         t[t.NONE = 0] = "NONE", t[t.RELOCATION = 1] = "RELOCATION", t[t.DEPLOYMENT = 2] = "DEPLOYMENT"

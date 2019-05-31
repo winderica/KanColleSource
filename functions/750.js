@@ -20,21 +20,31 @@ const function750 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(4),
+        r = i(1),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new r.TextBox(24, 5523516),
-                    n = new r.TextBox(24, 5523516),
-                    s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(27)),
-                    a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(28));
-                return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
+                var e = t.call(this) || this;
+                e._onClick = function () {
+                    e.onClick()
+                };
+                var i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
+                    n = new PIXI.Sprite;
+                return n.position.set(3, 3), n.buttonMode = !0, n.addListener(r.EventType.CLICK, e._onClick), e.addChild(i, n), e.background = i, e.checkState = n, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.textFuel.destroy(), this.textFuel = null, this.textAmmo.destroy(), this.textAmmo = null
-            }, e.prototype.update = function (t, e) {
-                this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.checkState.interactive = !1, t) {
+                    case 1:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(18), this.checkState.texture = o.SUPPLY_MAIN.getTexture(20);
+                        break;
+                    case 2:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(21), this.checkState.interactive = !0;
+                        break;
+                    case 3:
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(22), this.checkState.interactive = !0
+                }
+            }, e.prototype.dispose = function () {
+                this.background = null, this.checkState.removeListener(r.EventType.CLICK, this._onClick), this.checkState = null, this.onClick = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.MaterialCounterView = s
+    e.SupplySelectAllButton = s
 }

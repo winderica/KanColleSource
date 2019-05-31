@@ -19,66 +19,115 @@ const function812 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(113),
-        s = i(3),
-        a = i(3),
-        _ = i(333),
-        l = i(86),
-        u = i(813),
-        c = i(814),
-        h = i(815),
-        p = i(816),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickStart = function () {
-                    null != e._cb_onStart && e._cb_onStart()
-                }, e._onClickCancel = function () {
-                    null != e._cb_onCancel && e._cb_onCancel()
-                };
-                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
-                n.position.set(275, 194), e.addChild(n);
-                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
-                d.position.set(653, 194), e.addChild(d), e._shipPanelBefore = new c.KaizoDetailShipPanel, e._shipPanelBefore.position.set(35, 218), e.addChild(e._shipPanelBefore), e._shipPanelAfter = new c.KaizoDetailShipPanel, e._shipPanelAfter.position.set(408, 218), e.addChild(e._shipPanelAfter);
-                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(30));
-                f.position.set(32, 416), e.addChild(f);
-                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(28));
-                y.position.set(413, 418), e.addChild(y);
-                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(31));
-                m.position.set(32, 471), e.addChild(m);
-                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(29));
-                v.position.set(413, 473), e.addChild(v);
-                e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
-                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
-                return g.position.set(720, 446), e.addChild(g), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+    var o = i(5),
+        r = i(19),
+        s = i(8),
+        a = i(38),
+        _ = i(12),
+        l = i(6),
+        u = i(3),
+        c = i(336),
+        h = i(1),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._mainView = i, n._telopBG = new PIXI.Sprite, n._telopLineTop = new PIXI.Sprite, n._telopLineBottom = new PIXI.Sprite, n._telopText = new PIXI.Sprite, n._particles = new d, n
             }
-            return n(e, t), e.prototype.activate = function (t, e) {
-                this._cb_onStart = t, this._cb_onCancel = e
-            }, e.prototype.update = function (t, e, i, n) {
-                this._shipPanelBefore.update(t.level, t.name, t.shipTypeName), this._shipPanelBefore.updateStatus(t.karyoku, t.raisou, t.taiku, t.soukou), this._shipPanelAfter.update(t.level), this._shipPanelAfter.updateStatus(), this._textAmmoNow.text = e.getCount(32).toString(), this._textSteelNow.text = e.getCount(33).toString(), this._textAmmoNeed.text = e.getRequire(32).toString(), this._textSteelNeed.text = e.getRequire(33).toString(), this._header.update(t), this._startBtn.update(!1), e.validateAll() && 1 == i && 1 == n && this._startBtn.update(!0);
-                var o = e.getRequire(58),
-                    r = e.getRequire(65),
-                    s = e.getRequire(78),
-                    a = e.getRequire(75),
-                    _ = e.getRequire(77),
-                    l = e.getRequire(3),
-                    u = e.getRequire(2),
-                    c = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, l, u) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, l, u) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, l, u) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, l, u) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, l, u) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, l, u) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, l, u) : l > 0 || u > 0 ? this._alertPanel.showMessageKits(l, u) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
-                    var h = e.validate(32),
-                        p = e.validate(33),
-                        d = !(u > 0) || e.validate(2),
-                        f = !(l > 0) || e.validate(3),
-                        y = h && p,
-                        m = d && f;
-                    0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
-                }
+            return n(e, t), e.prototype._03_link = function () {
+                this._04_showTelop()
+            }, e.prototype._04_showTelop = function () {
+                var t = this;
+                this._telopBG.texture = u.REMODEL_ANIMATION.getTexture(2), this._telopBG.alpha = .35, this._telopBG.anchor.set(.5), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.scale.y = 0, this.addChild(this._telopBG);
+                var e = u.REMODEL_ANIMATION.getTexture(3);
+                this._telopLineTop.texture = e, this._telopLineTop.anchor.set(.5), this._telopLineTop.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineTop), this._telopLineBottom.texture = e, this._telopLineBottom.anchor.set(.5), this._telopLineBottom.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineBottom);
+                var i, n = new r.TweenTask;
+                i = createjs.Tween.get(this._telopBG.scale).to({
+                    y: 1
+                }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineTop).to({
+                    y: o.default.height / 2 - 155
+                }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineBottom).to({
+                    y: o.default.height / 2 + 155
+                }, 300), n.addTween(i), n.start(function () {
+                    t._telopText.texture = u.REMODEL_ANIMATION.getTexture(9), t._telopText.x = o.default.width, t._telopText.y = Math.round(o.default.height / 2 - t._telopText.height / 2), t.addChild(t._telopText), createjs.Tween.get(t._telopText).to({
+                        x: 178
+                    }, 400).call(function () {
+                        l.SE.play("226"), t.addChild(t._particles), t._particles.play()
+                    }).to({
+                        x: 63
+                    }, 1700).call(function () {
+                        t._05_waitClick()
+                    })
+                })
+            }, e.prototype._05_waitClick = function () {
+                var t = this,
+                    e = new a.GearBtnHome;
+                e.initialize(), e.activate(), e.position.set(1140, 660), this.addChild(e);
+                var i = new s.AreaBox(0);
+                i.buttonMode = !0, this.addChild(i), i.once(h.EventType.CLICK, function () {
+                    t.removeChild(i), t._06_whiteInOut(e)
+                })
+            }, e.prototype._06_whiteInOut = function (t) {
+                var e = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.removeChild(e._background), e.removeChild(e._ship), e.removeChild(e._telopBG), e.removeChild(e._telopLineTop), e.removeChild(e._telopLineBottom), e.removeChild(e._telopText), e.removeChild(e._particles), e.removeChild(t), t.dispose(), e._mainView.visible = !0
+                }).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    e.removeChild(e._white), null != e._cb_onComplete && e._cb_onComplete()
+                })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._shipPanelBefore.dispose(), this._shipPanelAfter.dispose(), this._cancelBtn.dispose(), this._startBtn.dispose(), this._arrow.dispose(), this._alertPanel.dispose(), this._header.dispose(), this._titleBar.dispose(), this._textAmmoNow.destroy(), this._textSteelNow.destroy(), this._textAmmoNeed.destroy(), this._textSteelNeed.destroy(), this._alertMessage.destroy(), this._cb_onStart = null, this._cb_onCancel = null, this._shipPanelBefore = null, this._shipPanelAfter = null, this._textAmmoNow = null, this._textAmmoNeed = null, this._textSteelNow = null, this._textSteelNeed = null, this._cancelBtn = null, this._startBtn = null, this._arrow = null, this._alertPanel = null, this._alertMessage = null, this._alertOverLimit = null, this._header = null, this._titleBar = null
+                this.removeChildren(), t.prototype.dispose.call(this), this._telopBG = null, this._telopLineTop = null, this._telopLineBottom = null, this._telopText = null, this._particles.dispose(), this._particles = null
             }, e
-        }(PIXI.Container);
-    e.KaizoDetail = d
+        }(c.PowerUpAnimation);
+    e.PowerUpAnimationSuccess = p;
+    var d = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._particles = [];
+            for (var i = [
+                    [-459, -59],
+                    [-392, -74],
+                    [-332, 51],
+                    [-237, -89],
+                    [-158, 66],
+                    [-96, -54],
+                    [-8, 60],
+                    [39, -65],
+                    [141, -35],
+                    [239, 63],
+                    [308, -54],
+                    [420, 45]
+                ], n = u.REMODEL_ANIMATION.getTexture(8), o = 0; o < 12; o++) {
+                var r = new _.Sprite(n);
+                r.anchor.set(.5), r.scale.set(0), r.x = i[o][0] + 600, r.y = i[o][1] + 360, e.addChild(r), e._particles.push(r)
+            }
+            return e
+        }
+        return n(e, t), e.prototype.play = function () {
+            this._removeTweens(), this._tweens = [];
+            for (var t = 0; t < this._particles.length; t++) {
+                var e = this._particles[t];
+                e.scale.set(0);
+                var i = createjs.Tween.get(e).wait(100 * t).to({
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 100).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 100);
+                this._tweens.push(i)
+            }
+        }, e.prototype.dispose = function () {
+            this._removeTweens(), this.removeChildren(), this._particles = null
+        }, e.prototype._removeTweens = function () {
+            if (null != this._tweens) {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null
+            }
+        }, e
+    }(PIXI.Container)
 }

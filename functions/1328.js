@@ -19,109 +19,67 @@ const function1328 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(76),
-        r = i(92),
-        s = i(120),
-        a = i(93),
-        _ = i(94),
-        l = i(95),
-        u = i(64),
-        c = i(96),
-        h = i(97),
-        p = i(77),
-        d = i(98),
-        f = i(99),
-        y = i(100),
-        m = i(101),
-        v = i(102),
-        g = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this, e, n) || this;
-                return o._record = i, o
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(8),
+        _ = i(81),
+        l = i(13),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClick = function () {
+                    n._messagebox.deactivate(), n._layer.removeChild(n._click_area), createjs.Tween.get(n._fade).to({
+                        alpha: 0
+                    }, 500).wait(300).call(function () {
+                        n._layer.removeChild(n._messagebox), n._layer.removeChild(n._chara), n._layer.removeChild(n._fade), n._endTask()
+                    }), createjs.Tween.get(n._chara).to({
+                        y: n._chara.y + 327,
+                        alpha: 0
+                    }, 300), createjs.Tween.get(n._messagebox).to({
+                        y: n._messagebox.y + 98,
+                        alpha: 0
+                    }, 100)
+                }, n._layer = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._sakuteki()
-            }, e.prototype._sakuteki = function () {
-                var t = this;
-                new s.PhaseSakuteki(this.scene, this._record).start(function () {
-                    t._ration()
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                this._fade = new a.AreaBox(1), this._fade.alpha = 0, this._layer.addChild(this._fade), createjs.Tween.get(this._fade).to({
+                    alpha: 1
+                }, 500), this._loadResource()
+            }, e.prototype._loadResource = function () {
+                var t = this,
+                    e = this._model.mst_id,
+                    i = new l.ShipLoader;
+                i.add(e, !1, "full"), i.load(function () {
+                    t._showChara()
                 })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new r.PhaseRation(this.scene, this._record).start(function () {
-                    t._jetAirUnit()
+            }, e.prototype._showChara = function () {
+                var t = this,
+                    e = this._model.mst_id,
+                    i = o.default.resources.getShip(e, !1, "full");
+                this._chara = new PIXI.Sprite(i), this._chara.x = this._model.offset_x, this._chara.y = this._model.offset_y + 327, this._chara.alpha = 0, this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    y: this._model.offset_y,
+                    alpha: 1
+                }, 800).call(function () {
+                    t._showMessageBox()
                 })
-            }, e.prototype._jetAirUnit = function () {
-                var t = this;
-                new a.PhaseAirUnitJet(this.scene, this._record).start(function () {
-                    t._jetAirWar()
+            }, e.prototype._showMessageBox = function () {
+                var t = this,
+                    e = this._model.stype,
+                    i = this._model.name,
+                    n = this._model.message;
+                this._messagebox = new _.MessageBox(!1), this._messagebox.initializeForShip(e, i, n), this._messagebox.y = 578, this._layer.addChild(this._messagebox);
+                var s = this._messagebox.y - 98;
+                createjs.Tween.get(this._messagebox).to({
+                    y: s
+                }, 200).call(function () {
+                    t._messagebox.activate(), o.default.sound.voice.play("9998", t._model.voice_id), t._click_area = new a.AreaBox(0), t._click_area.buttonMode = !0, t._layer.addChild(t._click_area), t._click_area.once(r.EventType.CLICK, t._onClick)
                 })
-            }, e.prototype._jetAirWar = function () {
-                var t = this;
-                new _.PhaseAirWarJet(this.scene, this._record).start(function () {
-                    t._airUnit()
-                })
-            }, e.prototype._airUnit = function () {
-                var t = this;
-                new l.PhaseAirUnit(this.scene, this._record).start(function () {
-                    t._airWar()
-                })
-            }, e.prototype._airWar = function () {
-                var t = this;
-                new u.PhaseAirWar(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new v.PhaseSupport(this.scene, this._record).start(function () {
-                    t._openingAttack()
-                })
-            }, e.prototype._openingAttack = function () {
-                var t = this;
-                new d.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
-                    t._openingTorpedo()
-                })
-            }, e.prototype._openingTorpedo = function () {
-                var t = this;
-                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
-                    t._formation()
-                })
-            }, e.prototype._formation = function () {
-                var t = this;
-                new f.PhaseFormation(this.scene, this._record).start(function () {
-                    t._airWar2()
-                })
-            }, e.prototype._airWar2 = function () {
-                var t = this;
-                new c.PhaseAirWar2(this.scene, this._record).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this;
-                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this;
-                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new y.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
-                    t._torpedo()
-                })
-            }, e.prototype._torpedo = function () {
-                var t = this;
-                new p.PhaseRaigeki(this.scene, this._record).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new m.PhaseEnding(this.scene, this._record).start(function () {
-                    t._endTask()
-                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._fade = null, this._chara = null, this._messagebox.dispose(), this._messagebox = null, this._click_area = null, t.prototype._endTask.call(this)
             }, e
-        }(o.PhaseCombatBase);
-    e.PhaseDay = g
+        }(s.TaskBase);
+    e.TaskBossCutin = u
 }

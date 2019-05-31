@@ -25,18 +25,18 @@ const function114 = function (t, e, i) {
         a = i(31),
         _ = i(69),
         l = i(35),
-        u = i(866),
-        c = i(868),
-        h = i(882),
-        p = i(884),
-        d = i(886),
-        f = i(888),
-        y = i(889),
-        m = i(890),
-        v = i(891),
-        g = i(892),
+        u = i(870),
+        c = i(872),
+        h = i(886),
+        p = i(888),
+        d = i(890),
+        f = i(892),
+        y = i(893),
+        m = i(894),
+        v = i(895),
+        g = i(896),
         b = i(343),
-        w = i(894);
+        w = i(898);
     e.SYNC_KEY_JUMP = "sync_key_jump";
     var x, I = function () {
         function t() {
@@ -239,8 +239,8 @@ const function114 = function (t, e, i) {
                     M = i.layerInteractives[O],
                     A = new c.KDockView(S, P, k, M, i.syncAnimationKey);
                 A.updateCondition(!0, !0), A.onClickGet = i._onClickGet, A.onClickSelect = i._onClickDock, A.onClickHighSpeed = i._onClickHighSpeed, A.onClickNoDock = i._onClickNoDock;
-                var j = S.toString();
-                i.kDockViews[j] = A
+                var E = S.toString();
+                i.kDockViews[E] = A
             }
             i.addChild(n);
             for (var O = 0; O < i.KDOCK_IDS.length; O++) i.addChild(i.layerBases[O]);

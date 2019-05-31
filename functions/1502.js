@@ -19,29 +19,44 @@ const function1502 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(6),
-        s = i(181),
-        a = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = 0);
-                var r = t.call(this) || this;
-                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
+    var o = i(17),
+        r = i(23),
+        s = i(30),
+        a = i(42),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._wait()
-            }, e.prototype._wait = function () {
-                var t = this;
-                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._explode()
-                }) : this._explode()
-            }, e.prototype._explode = function () {
-                var t = this,
-                    e = new s.Explosion;
-                e.x = this._x, e.y = this._y, this._layer.addChild(e), r.SE.play("102"), e.play(function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
+            return n(e, t), e.prototype.initialize = function (t) {
+                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
+                else switch (t) {
+                    case 1:
+                        this._img.texture = s.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        this._img.texture = s.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        this._img.texture = s.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        this._img.texture = s.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        this._img.texture = s.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        this._img.texture = s.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        this._img.texture = s.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        this._img.texture = PIXI.Texture.EMPTY
+                }
+                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
             }, e
-        }(o.TaskBase);
-    e.TaskExplosion = a
+        }(r.Container);
+    e.AreaIcon = _
 }

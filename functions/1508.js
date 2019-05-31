@@ -19,26 +19,47 @@ const function1508 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(4),
-        s = i(36),
-        a = function (t) {
+    var o = i(36),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e._bg.scale.set(1, 0), e.addChild(e._bg), e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = s.BATTLE_RESULT_MAIN.getTexture(1), this._text1 = new r.TextBox(18, 16774898), this._text1.text = "FRIEND FLEET AREA", this._text1.position.set(-582, 300), this._text1.rotation = -Math.PI / 2, this._bg.addChild(this._text1), this._text2 = new r.TextBox(18, 16774898), this._text2.text = "ENEMY FLEET AREA", this._text2.position.set(578, -234), this._text2.rotation = Math.PI / 2, this._bg.addChild(this._text2)
-            }, e.prototype.show = function () {
-                var t = this;
-                createjs.Tween.get(this._bg.scale).to({
-                    y: 1
-                }, 300).call(function () {
-                    t.emit("complete")
-                })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text1.destroy(), this._text2.destroy()
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(44);
+                        break;
+                    case 1:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(46);
+                        break;
+                    case 2:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(48);
+                        break;
+                    case 3:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(50);
+                        break;
+                    case 4:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(52);
+                        break;
+                    case 5:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(54);
+                        break;
+                    case 6:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(56);
+                        break;
+                    case 7:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(58);
+                        break;
+                    case 8:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(60);
+                        break;
+                    case 9:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(62);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                }
             }, e
-        }(PIXI.Container);
-    e.LayerBG = a
+        }(PIXI.Sprite);
+    e.ResultDialogNumLight = r
 }

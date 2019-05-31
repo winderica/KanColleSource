@@ -19,34 +19,80 @@ const function1010 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(170),
-        r = i(4),
-        s = i(32),
-        a = i(54),
-        _ = i(1011),
-        l = i(372),
-        u = i(1023),
-        c = i(1),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._activated = !1, e._onClick = function () {
-                    new _.TaskDetailInfo(e._model.id, e._model.flag, e._model.medal_num).start()
-                }, e
+    var o = i(37),
+        r = i(1011),
+        s = i(1012),
+        a = i(1014),
+        _ = i(1028),
+        l = i(1029),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, i) || this;
+                n._timer_id = 0, n._onChangeMatching = function (t) {
+                    new l.TaskChangeMatching(t, n).start()
+                }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
+                for (var o = 0; o < 5; o++) {
+                    var r = new a.CompRivalDeck;
+                    r.position.set(211, 267 + 82 * o), n._rivals.push(r)
+                }
+                return n._matching_btns = new s.CompMatchingSelectBtns(n._onChangeMatching), n._matching_btns.position.set(460, 669), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(14)),
-                    e = new PIXI.Sprite(a.SALLY_PRACTICE.getTexture(34));
-                this._flag = new l.CompFlag, this._banner = new s.ShipBanner, this._name = new r.TextBox(18, 1949120), this._level = new r.TextBox(26, 4999235), this._comment = new r.TextBox(15, 4999235), this._rank_name = new r.TextBox(18, 4999235), this._medal = new o.MedalIcon, this._result_rank = new u.CompRank, this._hit_area = new PIXI.Graphics, this._hit_area.beginFill(0, 0), this._hit_area.drawRect(0, 0, 939, 79), this._hit_area.endFill(), this._medal.initialize(), this._result_rank.initialize(), t.position.set(295, 24), e.position.set(546, -3), this._flag.position.set(0, 16), this._banner.position.set(48, 0), this._name.position.set(294, 0), this._level.anchor.set(1, 0), this._level.position.set(624, -7), this._comment.position.set(310, 33), this._rank_name.position.set(637, 0), this._medal.position.set(750, 25), this._result_rank.position.set(817, 3), this._hit_area.position.set(-10, -7), this._hit_area.visible = !1, this.addChild(t), this.addChild(e), this.addChild(this._flag), this.addChild(this._banner), this.addChild(this._name), this.addChild(this._level), this.addChild(this._comment), this.addChild(this._rank_name), this.addChild(this._medal), this.addChild(this._result_rank), this.addChild(this._hit_area)
+            return n(e, t), Object.defineProperty(e.prototype, "rivals", {
+                get: function () {
+                    return this._rivals
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "matching_btns", {
+                get: function () {
+                    return this._matching_btns
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                t.prototype.initialize.call(this), this._sub_title.initialize(), this.addChild(this._sub_title);
+                for (var e = 0, i = this._rivals; e < i.length; e++) {
+                    var n = i[e];
+                    n.initialize(), this.addChild(n)
+                }
+                this._matching_btns.initialize(), this.addChild(this._matching_btns)
             }, e.prototype.update = function (t) {
-                this._model = t, this._flag.update(t.flag), this._banner.updateImage(t.flagShipMstID, !1), this._name.text = t.name, this._level.text = t.level.toString(), this._comment.text = t.comment, this._rank_name.text = "[" + t.rank_name + "]", this._medal.update(t.medal_num, 9466926), this._result_rank.update(t.state), this._enabled = t.isNoBattle()
+                o.TaskLoadShipResource.abortBy(this), this._sub_title.update(t.matching_type);
+                for (var e = t.rivals, i = 0; i < this._rivals.length; i++) {
+                    var n = this._rivals[i];
+                    e.length <= i ? n.visible = !1 : (n.update(e[i]), n.visible = !0)
+                }
+                this._selected_matching_type = t.matching_type_next;
+                var r = t.remain_time;
+                this._startTimer(1e3 * r), this._matching_btns.update(r > 0, t.matching_type_next)
+            }, e.prototype.updateMatchingState = function (t, e) {
+                this._selected_matching_type = e, this._matching_btns.update(t, e), this._matching_btns.activate()
             }, e.prototype.activate = function () {
-                0 == this._activated && 1 == this._enabled && (this._hit_area.interactive = this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.CLICK, this._onClick), this._hit_area.visible = !0, this._activated = !0)
+                t.prototype.activate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].activate()
+                }
+                this._matching_btns.activate()
             }, e.prototype.deactivate = function () {
-                this._hit_area.interactive = this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.CLICK, this._onClick), this._hit_area.visible = !1, this._activated = !1
+                t.prototype.deactivate.call(this);
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].deactivate()
+                }
+                this._matching_btns.deactivate(), o.TaskLoadShipResource.abortBy(this)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._banner.dispose(), this._name.destroy(), this._level.destroy(), this._comment.destroy(), this._rank_name.destroy(), this._medal.dispose(), this._result_rank.dispose()
+                t.prototype.dispose.call(this), this._sub_title.dispose();
+                for (var e = 0, i = this.rivals; e < i.length; e++) {
+                    i[e].dispose()
+                }
+                this._matching_btns.dispose(), this._stopTimer()
+            }, e.prototype._startTimer = function (t) {
+                var e = this;
+                this._stopTimer(), t > 0 && (this._timer_id = setTimeout(function () {
+                    e.updateMatchingState(!1, e._selected_matching_type), e._timer_id = 0
+                }, t))
+            }, e.prototype._stopTimer = function () {
+                this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
             }, e
-        }(PIXI.Container);
-    e.CompRivalDeck = h
+        }(r.ViewMainBase);
+    e.ViewMain = u
 }

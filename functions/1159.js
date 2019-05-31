@@ -20,77 +20,33 @@ const function1159 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(6),
-        s = i(108),
-        a = i(1160),
-        _ = i(1161),
-        l = i(1163),
-        u = i(1164),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    r.SE.play("239"), n._now_selected = t;
-                    var e = o.default.model.useItem.getCount(52);
-                    n._detail.update(t, e), n._exchange_btn.enabled = n._getExchangeBtnEnabled(t, e)
-                }, n._onBack = function () {
-                    n._now_selected = null, null != n._cb_onBack && n._cb_onBack()
-                }, n._onExchange = function () {
-                    null != n._cb_onExchange && n._cb_onExchange(n._now_selected)
-                }, n._cb_onBack = e, n._cb_onExchange = i, n._header = new h, n._header.position.set(648, 147), n.addChild(n._header), n._list = new a.FShopListPanel(n._onSelect), n._list.position.set(187, 183), n.addChild(n._list), n._detail = new _.FShopDetailPanel, n._detail.position.set(643, 213), n.addChild(n._detail), n._back_btn = new l.BackBtn, n._back_btn.position.set(202, 654), n.addChild(n._back_btn), n._exchange_btn = new u.ExchangeBtn, n._exchange_btn.position.set(666, 643), n.addChild(n._exchange_btn), n
+        r = i(2),
+        s = i(8),
+        a = i(1),
+        _ = i(237),
+        l = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
+                        y: 450,
+                        alpha: 0
+                    }, 300).call(function () {
+                        o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
+                    })
+                }, o._layer = e, o._page_no = i, o._count = n, o
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._type = t, this._list.initialize(), this._detail.initialize(), this._back_btn.initialize(this._onBack), this._exchange_btn.initialize(this._onExchange), this.update()
-            }, e.prototype.update = function () {
-                this._header.update(this._type);
-                var t = o.default.model.furniture.getOnSaleList(this._type);
-                this._list.update(t), this._detail.update(null, 0), this._exchange_btn.enabled = !1
-            }, e.prototype.activate = function () {
-                this._list.activate(), this._back_btn.activate(), this._exchange_btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._list.deactivate(), this._back_btn.deactivate(), this._exchange_btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this._list.dispose(), this._detail.dispose(), this._back_btn.dispose(), this._exchange_btn.dispose(), this._cb_onBack = null, this._cb_onExchange = null
-            }, e.prototype._getExchangeBtnEnabled = function (t, e) {
-                if (1 == t.has()) return !1;
-                var i = o.default.model.useItem.getCount(44);
-                if (i < t.price) {
-                    if (1 != t.isHighGrade()) return !1;
-                    if (i < t.getDiscountPrice() || e < 1) return !1
-                }
-                return !(1 == t.isNeedCraftsman() && e < 1)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
+                var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1),
+                    i = _.getPosterOffsetWelcome();
+                null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({
+                    x: 660
+                }, 300).call(function () {
+                    t._t = null
+                })
             }, e
-        }(PIXI.Container);
-    e.FShopListView = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            var e;
-            switch (t) {
-                case 0:
-                    e = 45;
-                    break;
-                case 1:
-                    e = 46;
-                    break;
-                case 2:
-                    e = 47;
-                    break;
-                case 3:
-                    e = 48;
-                    break;
-                case 4:
-                    e = 49;
-                    break;
-                case 5:
-                    e = 50;
-                    break;
-                default:
-                    return void(this.texture = PIXI.Texture.EMPTY)
-            }
-            this.texture = s.ITEM_FSHOP.getTexture(e)
-        }, e
-    }(PIXI.Sprite)
+        }(r.TaskBase);
+    e.TaskWelcomeCutin = l
 }

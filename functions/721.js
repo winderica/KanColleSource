@@ -19,16 +19,24 @@ const function721 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(722),
+    var o = i(11),
+        r = i(0),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/preset_deck", e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_hensei/preset_select", n.presetNo = e, n.deckId = i, n
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_preset_no = this.presetNo, this._post_data.api_deck_id = this.deckId, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result = this._raw_data, r.default.model.deck.updateData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.PresetDeckAPI = s
+    e.PresetSelectAPI = s
 }

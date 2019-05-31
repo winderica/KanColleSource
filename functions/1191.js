@@ -20,15 +20,23 @@ const function1191 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(10),
+        r = i(11),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/furniture", e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._data = e, n._scene_activate_delegate = i, n
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                o.default.sound.bgm.play(102), this._playVoice()
+            }, e.prototype._playVoice = function () {
+                1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
+            }, e.prototype._startScene = function () {
+                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
             }, e
-        }(r.APIBase);
-    e.UserFurnitureAPI = s
+        }(r.TaskBase);
+    e.TaskDutySceneInitialize = s
 }

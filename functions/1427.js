@@ -3,76 +3,68 @@ const function1427 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
+    var n = i(0),
         o = function () {
-            function t(t, e, i) {
-                this._friend = t, this._o = {};
-                for (var n in e) {
-                    var o = e[n];
-                    this._o[n] = [];
-                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                    for (; this._o[n].length < 6;) this._o[n].push(0)
-                }
-                if (null != i)
-                    for (var n in i) {
-                        var o = i[n];
-                        if (null != o) {
-                            0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
-                            for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
-                            for (; this._o[n].length < 12;) this._o[n].push(0)
-                        }
-                    }
+            function t(t, e, i, n) {
+                void 0 === i && (i = null), void 0 === n && (n = null), this._offset_x = 0, this._offset_y = 0, this._type = t, this._mst_id = e, this._name = n, this._stype = i
             }
-            return Object.defineProperty(t.prototype, "friend", {
+            return Object.defineProperty(t.prototype, "type", {
                 get: function () {
-                    return this._friend
+                    return this._type
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.hasDamage = function () {
-                var t = this._friend ? "api_fdam" : "api_edam";
-                return this._hasDamage(this._o, t)
-            }, t.prototype._hasDamage = function (t, e) {
-                var i = n.ObjUtil.getNumArray(t, e);
-                if (null != i)
-                    for (var o = 0, r = i; o < r.length; o++) {
-                        var s = r[o];
-                        if (s > 0) return !0
-                    }
-                return !1
-            }, t.prototype.beBombed = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = Math.min(e.length, 6), o = 0; o < i; o++)
-                    if (e[o] > 0) return !0;
-                return !1
-            }, t.prototype.beBombedCombined = function () {
-                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    e = n.ObjUtil.getNumArray(this._o, t);
-                if (null == e) return !1;
-                for (var i = 6; i < e.length; i++)
-                    if (e[i] > 0) return !0;
-                return !1
-            }, t.prototype.getDamage = function (t) {
-                var e = this._friend ? "api_fdam" : "api_edam",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : Math.floor(i[t])
-            }, t.prototype.getBak = function (t) {
-                var e = this._friend ? "api_fbak_flag" : "api_ebak_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getRai = function (t) {
-                var e = this._friend ? "api_frai_flag" : "api_erai_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return !(null == i || i.length <= t) && 1 == i[t]
-            }, t.prototype.getHitType = function (t) {
-                var e = this._friend ? "api_fcl_flag" : "api_ecl_flag",
-                    i = n.ObjUtil.getNumArray(this._o, e);
-                return null == i || i.length <= t ? 0 : i[t] + 1
-            }, t.prototype.isShield = function (t) {
-                return this.getDamage(t) % 1 != 0
+            }), Object.defineProperty(t.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice_id", {
+                get: function () {
+                    return this._voice_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    if (null != this._name) return this._name;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "stype", {
+                get: function () {
+                    if (null != this._stype) return this._stype;
+                    var t = n.default.model.ship.getMst(this._mst_id);
+                    return null == t ? "" : t.shipTypeName
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_x", {
+                get: function () {
+                    return this._offset_x
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "offset_y", {
+                get: function () {
+                    return this._offset_y
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.setMessage = function (t, e) {
+                return this._voice_id = t, this._message = e, this
+            }, t.prototype.setOffset = function (t, e) {
+                return this._offset_x = t, this._offset_y = e, this
             }, t
         }();
-    e.AirWarStage3Model = o
+    e.BossModel = o
 }
