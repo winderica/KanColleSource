@@ -113,6 +113,8 @@ const function490 = function (t, e, i) {
                 return this._skinID
             }, t.prototype.getMFlag2 = function () {
                 return null != this._event_data && (0 != this._event_data.hasOwnProperty("api_m_flag2") && 1 == this._event_data.api_m_flag2)
+            }, t.prototype.getCNum = function () {
+                return r.ObjUtil.getNumber(this._event_data, "api_c_num")
             }, t
         }();
     e.BasicModel = s;
