@@ -1,6 +1,10 @@
 const function816 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
+
+    function n(t, e) {
+        return t > 0 && 0 === e ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : t > 0 && e > 0 ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u3001\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : ""
+    }
+    var o = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
             __proto__: []
         }
@@ -19,66 +23,235 @@ const function816 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(113),
+    var r = i(4),
         s = i(3),
-        a = i(3),
-        _ = i(333),
-        l = i(86),
-        u = i(817),
-        c = i(818),
-        h = i(819),
-        p = i(820),
+        a = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return o(e, t), e.prototype.showMessageOneItem = function (t, e, i, n) {
+                if (this.hideAll(), i > 0 || n > 0) {
+                    var o = new h;
+                    o.update(t, e, i, n), this._current = o
+                } else {
+                    var o = new _;
+                    o.update(t, e, i, n), this._current = o
+                }
+                this.addChild(this._current)
+            }, e.prototype.showMessageTwoItems = function (t, e, i, n, o, r) {
+                this.hideAll();
+                var s = new u;
+                s.update(t, e, i, n, o, r), this.addChild(s), this._current = s
+            }, e.prototype.showMessageThreeItems = function (t, e, i, n, o, r, s, a) {
+                this.hideAll();
+                var _ = new l;
+                _.update(t, e, i, n, o, r, s, a), this.addChild(_), this._current = _
+            }, e.prototype.showMessageFourItems = function (t, e, i, n, o, r, s, a, _, u) {
+                this.hideAll();
+                var l = new c;
+                l.update(t, e, i, n, o, r, s, a, _, u), this.addChild(l), this._current = l
+            }, e.prototype.showMessageKits = function (t, e) {
+                this.hideAll();
+                var i = new p;
+                i.update(t, e), this.addChild(i), this._current = i
+            }, e.prototype.showAlertLackOfItem = function (t, e) {
+                this.hideAll();
+                var i = new d;
+                i.update(t, e), this.addChild(i), this._current = i
+            }, e.prototype.hideAll = function () {
+                null != this._current && (null != this._current.parent && this._current.parent.removeChild(this._current), this._current.dispose(), this._current = null)
+            }, e.prototype.dispose = function () {
+                this.hideAll(), this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.KaizoRequireItemPanel = a;
+    var _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message = new r.TextBox(18, 1644567), e._message.position.set(0, 95), e.addChild(e._message), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, n) {
+                switch (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), t) {
+                    case 58:
+                        this._message.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3092\n" + e + "\u679a\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6226\u95d8\u8a73\u5831\u300d" + e + "\u90e8\u304c\n\u5fc5\u8981\u3067\u3059\u3002";
+                        break;
+                    default:
+                        this._message.text = ""
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._icon = null, this._message = null
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon1 = new PIXI.Sprite, e._icon1.position.set(30, 0), e.addChild(e._icon1), e._icon2 = new PIXI.Sprite, e._icon2.position.set(153, 0), e.addChild(e._icon2), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(0, 150), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a) {
+                switch (this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), i) {
+                    case 65:
+                        this._message.text = "\u672c\u6539\u88c5\u306f\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message.text = "\u672c\u6539\u88c5\u306f\uff62\u6226\u95d8\u8a73\u5831\uff63" + o + "\u90e8\u3068\n\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u304c\u5fc5\u8981\u3067\u3059\u3002";
+                        break;
+                    default:
+                        this._message.text = ""
+                }
+                this._message2.text = n(r, a)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._message = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = 3;
+                return e._icon1 = new PIXI.Sprite, e._icon1.position.set(i, 0), e.addChild(e._icon1), i += 85, e._icon2 = new PIXI.Sprite, e._icon2.position.set(i, 0), e.addChild(e._icon2), i += 85, e._icon3 = new PIXI.Sprite, e._icon3.position.set(i, 0), e.addChild(e._icon3), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(3, 155), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u) {
+                this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r);
+                var l = "\u672c\u6539\u88c5\u306b\u306f";
+                switch (t) {
+                    case 78:
+                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + e + "\u90e8\u3068\n";
+                        break;
+                    case 58:
+                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        break;
+                    default:
+                        l += ""
+                }
+                switch (i) {
+                    case 75:
+                        l += "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63" + o + "\u3064\u3068\n";
+                        break;
+                    case 65:
+                        l += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n";
+                        break;
+                    default:
+                        l += ""
+                }
+                switch (r) {
+                    case 58:
+                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + a + "\u679a";
+                        break;
+                    case 78:
+                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + a + "\u90e8";
+                        break;
+                    default:
+                        l += ""
+                }
+                this._message.text = l + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(_, u)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._message = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = 5;
+                return e._icon1 = new PIXI.Sprite, e._icon1.width = 60, e._icon1.height = 60, e._icon1.position.set(i, 8), e.addChild(e._icon1), i += 65, e._icon2 = new PIXI.Sprite, e._icon2.width = 60, e._icon2.height = 60, e._icon2.position.set(i, 8), e.addChild(e._icon2), i += 65, e._icon3 = new PIXI.Sprite, e._icon3.width = 60, e._icon3.height = 60, e._icon3.position.set(i, 8), e.addChild(e._icon3), i += 65, e._icon4 = new PIXI.Sprite, e._icon4.width = 60, e._icon4.height = 60, e._icon4.position.set(i, 8), e.addChild(e._icon4), e._message1 = new r.TextBox(17, 1644567), e._message1.position.set(2, 74), e.addChild(e._message1), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(2, 153), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u, l, c) {
+                this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r), this._icon4.texture = s.COMMON_ITEMICONS.getTextureFromMstID(_);
+                var h = "\u672c\u6539\u88c5\u306b\u306f";
+                switch (t) {
+                    case 58:
+                        h += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (i) {
+                    case 65:
+                        h += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (r) {
+                    case 78:
+                        h += "\uff62\u6226\u95d8\u8a73\u5831\uff63\n";
+                        break;
+                    default:
+                        h += ""
+                }
+                switch (_) {
+                    case 77:
+                        h += "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750" + (u > 1 ? "x" + u : "") + "\uff63";
+                        break;
+                    default:
+                        h += ""
+                }
+                this._message1.text = h + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(l, c)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._icon4 = null, this._message1 = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.position.set(0, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(77, 11), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 105), e.addChild(e._message2), e
+            }
+            return o(e, t), e.prototype.update = function (t, e, i, o) {
+                switch (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), t) {
+                    case 58:
+                        this._message1.text = "\u672c\u6539\u88c5\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\n" + e + "\u679a\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    case 78:
+                        this._message1.text = "\u672c\u6539\u88c5\u306f\u300c\u6226\u95d8\u8a73\u5831\u300d\n" + e + "\u90e8\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002";
+                        break;
+                    default:
+                        this._message1.text = ""
+                }
+                this._message2.text = n(i, o)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon = null, this._message1 = null, this._message2 = null
+            }, e
+        }(PIXI.Container),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._message = new r.TextBox(18, 1644567), e._message.position.set(0, 0), e.addChild(e._message), e
+            }
+            return o(e, t), e.prototype.update = function (t, e) {
+                this._message.text = t > 0 ? e > 0 ? "\u672c\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u3001\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092" + t + "\u500b\n\u4f7f\u7528\u3057\u307e\u3059\u3002" : "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u958b\u767a\u8cc7\u6750\u300d\u3092\n" + t + "\u500b\u4f7f\u7528\u3057\u307e\u3059\u3002" : e > 0 ? "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u9ad8\u901f\u5efa\u9020\u6750\u300d\u3092\n" + e + "\u500b\u4f7f\u7528\u3057\u307e\u3059\u3002" : ""
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message = null
+            }, e
+        }(PIXI.Container),
         d = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickStart = function () {
-                    null != e._cb_onStart && e._cb_onStart()
-                }, e._onClickCancel = function () {
-                    null != e._cb_onCancel && e._cb_onCancel()
-                };
-                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
-                n.position.set(275, 194), e.addChild(n);
-                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
-                d.position.set(653, 194), e.addChild(d), e._shipPanelBefore = new c.KaizoDetailShipPanel, e._shipPanelBefore.position.set(35, 218), e.addChild(e._shipPanelBefore), e._shipPanelAfter = new c.KaizoDetailShipPanel, e._shipPanelAfter.position.set(408, 218), e.addChild(e._shipPanelAfter);
-                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(30));
-                f.position.set(32, 416), e.addChild(f);
-                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(28));
-                y.position.set(413, 418), e.addChild(y);
-                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(31));
-                m.position.set(32, 471), e.addChild(m);
-                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(29));
-                v.position.set(413, 473), e.addChild(v);
-                e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
-                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
-                return g.position.set(720, 446), e.addChild(g), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+                return e._icon = new PIXI.Sprite, e._icon.position.set(87, 0), e.addChild(e._icon), e._message1 = new r.TextBox(18, 1644567), e._message1.position.set(0, 81), e.addChild(e._message1), e._message2 = new r.TextBox(18, 1644567), e._message2.position.set(0, 81), e.addChild(e._message2), e._message3 = new r.TextBox(18, 1644567), e.addChild(e._message3), e
             }
-            return n(e, t), e.prototype.activate = function (t, e) {
-                this._cb_onStart = t, this._cb_onCancel = e
-            }, e.prototype.update = function (t, e, i, n) {
-                this._shipPanelBefore.update(t.level, t.name, t.shipTypeName), this._shipPanelBefore.updateStatus(t.karyoku, t.raisou, t.taiku, t.soukou), this._shipPanelAfter.update(t.level), this._shipPanelAfter.updateStatus(), this._textAmmoNow.text = e.getCount(32).toString(), this._textSteelNow.text = e.getCount(33).toString(), this._textAmmoNeed.text = e.getRequire(32).toString(), this._textSteelNeed.text = e.getRequire(33).toString(), this._header.update(t), this._startBtn.update(!1), e.validateAll() && 1 == i && 1 == n && this._startBtn.update(!0);
-                var o = e.getRequire(58),
-                    r = e.getRequire(65),
-                    s = e.getRequire(78),
-                    a = e.getRequire(75),
-                    _ = e.getRequire(77),
-                    l = e.getRequire(3),
-                    u = e.getRequire(2),
-                    c = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, l, u) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, l, u) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, l, u) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, l, u) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, l, u) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, l, u) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, l, u) : l > 0 || u > 0 ? this._alertPanel.showMessageKits(l, u) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
-                    var h = e.validate(32),
-                        p = e.validate(33),
-                        d = !(u > 0) || e.validate(2),
-                        f = !(l > 0) || e.validate(3),
-                        y = h && p,
-                        m = d && f;
-                    0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
+            return o(e, t), e.prototype.update = function (t, e) {
+                if (this._icon.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), 58 == t) this._message1.style.fontSize = 15, this._message1.style.fill = 1644567, this._message2.style.fontSize = 15, this._message2.style.fill = 16724736, this._message3.style.fontSize = 15, this._message3.style.fill = 1644567, this._message1.text = "\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c", this._message2.text = "\u8db3\u308a\u307e\u305b\u3093\u3002", this._message2.position.set(this._message1.width, 81), this._message3.text = "\u3053\u306e\u6539\u88c5\u3067\u306f\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u304c" + e + "\u679a\n\u5fc5\u8981\u3067\u3059\u3002\u52f2\u7ae0\u30924\u500b\u96c6\u3081\u308b\u3068\u3001\n\u30a2\u30a4\u30c6\u30e0\u753b\u9762\u3067\u300c\u6539\u88c5\u8a2d\u8a08\u56f3\u300d\u3068\n\u4ea4\u63db\u3067\u304d\u307e\u3059\u3002", this._message3.y = this._message1.y + this._message1.height;
+                else {
+                    switch (this._message1.style.fontSize = 18, this._message1.style.fill = 39270, this._message2.style.fontSize = 18, this._message2.style.fill = 1644567, t) {
+                        case 65:
+                            this._message1.text = "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63";
+                            break;
+                        case 78:
+                            this._message1.text = "\uff62\u6226\u95d8\u8a73\u5831\uff63";
+                            break;
+                        case 75:
+                            this._message1.text = "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63";
+                            break;
+                        case 77:
+                            this._message1.text = "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750\uff63";
+                            break;
+                        default:
+                            this._message1.text = ""
+                    }
+                    this._message1.position.set(11, 83), this._message2.text = "\n\u672c\u6539\u88c5\u306b\u306f\u4e0a\u8a18\u30a2\u30a4\u30c6\u30e0\u304c\n\u5fc5\u8981\u3067\u3059\u3002", this._message2.position.set(11, 83), this._message3.text = ""
                 }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._shipPanelBefore.dispose(), this._shipPanelAfter.dispose(), this._cancelBtn.dispose(), this._startBtn.dispose(), this._arrow.dispose(), this._alertPanel.dispose(), this._header.dispose(), this._titleBar.dispose(), this._textAmmoNow.destroy(), this._textSteelNow.destroy(), this._textAmmoNeed.destroy(), this._textSteelNeed.destroy(), this._alertMessage.destroy(), this._cb_onStart = null, this._cb_onCancel = null, this._shipPanelBefore = null, this._shipPanelAfter = null, this._textAmmoNow = null, this._textAmmoNeed = null, this._textSteelNow = null, this._textSteelNeed = null, this._cancelBtn = null, this._startBtn = null, this._arrow = null, this._alertPanel = null, this._alertMessage = null, this._alertOverLimit = null, this._header = null, this._titleBar = null
+                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy(), this._message1 = null, this._message2 = null, this._message3 = null, this._icon = null
             }, e
-        }(PIXI.Container);
-    e.KaizoDetail = d
+        }(PIXI.Container)
 }

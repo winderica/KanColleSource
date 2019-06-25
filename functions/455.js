@@ -51,11 +51,11 @@ const function455 = function (t, e, i) {
                     }, 250).call(function () {
                         t._view.emit("attack"), t._shipFlash.position = t._ship_sprite.position, t._shipFlash.play()
                     }).wait(135), null != this._slot1 || null != this._slot2) {
-                    var l = this._view.box;
-                    l.initilize(this._attacker);
-                    var u = 0;
-                    1 == this._attacker.friend ? l.x = -60 : (u = o.default.width - l.width, l.x = u + 60), l.y = o.default.height - l.height, l.alpha = 0, createjs.Tween.get(l).wait(365).to({
-                        x: u,
+                    var u = this._view.box;
+                    u.initilize(this._attacker);
+                    var l = 0;
+                    1 == this._attacker.friend ? u.x = -60 : (l = o.default.width - u.width, u.x = l + 60), u.y = o.default.height - u.height, u.alpha = 0, createjs.Tween.get(u).wait(365).to({
+                        x: l,
                         alpha: 1
                     }, 165).wait(900).to({
                         alpha: 0

@@ -19,24 +19,45 @@ const function759 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(17))
-                }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(15))
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(16), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+    var o = i(0),
+        r = i(2),
+        s = i(760),
+        a = i(305),
+        _ = i(211),
+        u = i(308),
+        l = i(307),
+        c = i(71),
+        h = i(128),
+        p = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i.phasePreInitialize = function () {
+                    o.default.sound.bgm.play(102), i._scene.start(), i._endTask()
+                }, i._scene = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
-            }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(15) : o.SUPPLY_MAIN.getTexture(16)
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this;
+                (new s.TaskLoadResourcesRemodel).start(function () {
+                    t._uploadToGPU()
+                })
+            }, e.prototype._uploadToGPU = function () {
+                var t, e = this;
+                t = c.REMODEL_MAIN.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                    t = h.REMODEL_POWERUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                        t = l.REMODEL_GRADEUP.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                            t = u.REMODEL_ANIMATION.getTexture(0), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                t = _.COMMON_SORT.getTexture(2), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                    t = a.COMMON_ANIMATION.getTexture(1), o.default.settings.renderer.plugins.prepare.upload(t.baseTexture, function () {
+                                        e.phasePreInitialize()
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
             }, e
-        }(PIXI.Sprite);
-    e.SupplyAircraftButton = s
+        }(r.TaskBase);
+    e.PreInitializeTask = p
 }

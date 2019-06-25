@@ -22,10 +22,10 @@ const function589 = function (t, e, i) {
     var o = i(8),
         r = i(4),
         s = i(590),
-        a = i(31),
+        a = i(32),
         _ = i(280),
-        l = i(591),
-        u = i(104),
+        u = i(591),
+        l = i(104),
         c = i(281),
         h = i(155),
         p = i(596),
@@ -35,8 +35,8 @@ const function589 = function (t, e, i) {
                 var e = t.call(this) || this;
                 return e._initialized = !1, e._activated = !1, e._onClick = function () {
                     var t = new s.ExpeditionResultModel,
-                        i = new l.ExpeditionResultAPI(e._deck_id, t);
-                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new u.UseItemAPI).start(function () {
+                        i = new u.ExpeditionResultAPI(e._deck_id, t);
+                    (new a.APIConnector).add(i).add(new _.PortAPI).add(new l.UseItemAPI).start(function () {
                         e._showExpeditionCutin(t)
                     })
                 }, e._showExpeditionCutin = function (t) {

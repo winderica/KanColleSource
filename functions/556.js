@@ -24,7 +24,7 @@ const function556 = function (t, e, i) {
         s = i(2),
         a = i(14),
         _ = i(17),
-        l = function (t) {
+        u = function (t) {
             function e(e) {
                 void 0 === e && (e = null);
                 var i = t.call(this) || this;
@@ -63,5 +63,5 @@ const function556 = function (t, e, i) {
                 t.add("hpgauge/hp_gauge_mask.png"), t.add("hpgauge/hp_s_bg2.png"), t.add("hpgauge/hp_s_red_light.png"), t.add("error.png", "error"), t.add("focus_mask3.png", "mask"), t.add("common_main.json"), t.add("common_sort.json"), t.add("common_animation.json"), t.add("common_shogo.json"), t.load(this._loadPhase2, this._onProgressPhase1)
             }, e
         }(s.TaskBase);
-    e.TaskLoadResourcesCommon = l
+    e.TaskLoadResourcesCommon = u
 }

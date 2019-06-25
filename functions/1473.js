@@ -8,39 +8,29 @@ const function1473 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mst_id", {
+            return Object.defineProperty(t.prototype, "nowHP", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_now_hp")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "level", {
+            }), Object.defineProperty(t.prototype, "maxHP", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_slot_level")
+                    return n.ObjUtil.getNumber(this._o, "api_max_hp")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
+            }), Object.defineProperty(t.prototype, "subValue", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_value")
+                    return n.ObjUtil.getNumber(this._o, "api_sub_value")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.isUseitem = function () {
-                return 1 == this._type
-            }, t.prototype.isShip = function () {
-                return 2 == this._type
-            }, t.prototype.isSlotitem = function () {
-                return 3 == this._type
-            }, t.prototype.isFurniture = function () {
-                return 5 == this._type
-            }, Object.defineProperty(t.prototype, "_type", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_type")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.isLandingMap = function () {
+                return null != this._o
+            }, t.prototype.isSuccess = function () {
+                return this.subValue > 0
+            }, t
         }();
-    e.MapBonusModel = o
+    e.LandingModel = o
 }

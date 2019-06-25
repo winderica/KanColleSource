@@ -23,15 +23,15 @@ const function321 = function (t, e, i) {
         r = i(0),
         s = i(2),
         a = i(22),
-        _ = i(32),
-        l = i(282),
-        u = function (t) {
+        _ = i(33),
+        u = i(282),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._deck_id = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                r.default.view.clickGuard = !0, this._cutin = new l.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
+                r.default.view.clickGuard = !0, this._cutin = new u.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
             }, e.prototype._loadShipRespirces = function () {
                 this._anim()
             }, e.prototype._anim = function () {
@@ -75,8 +75,8 @@ const function321 = function (t, e, i) {
                 e = null == n ? [i] : null == o ? [n, i] : [n, i, o];
                 for (var r = 0; r < e.length; r++) {
                     var s = e[r],
-                        l = new _.ShipBanner;
-                    l.update(s, !0), l.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(l)
+                        u = new _.ShipBanner;
+                    u.update(s, !0), u.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(u)
                 }
             }, e.prototype._createShipContainerB = function (t) {
                 var e, i = t[1],
@@ -85,13 +85,13 @@ const function321 = function (t, e, i) {
                     r = t[6];
                 e = null == o ? null == n ? null == i ? [] : [i] : [i, n] : null == r ? [o, i, n] : [o, i, n, r];
                 for (var s = 0; s < e.length; s++) {
-                    var l = e[s],
-                        u = new _.ShipBanner;
-                    u.update(l, !0), u.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(u)
+                    var u = e[s],
+                        l = new _.ShipBanner;
+                    l.update(u, !0), l.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(l)
                 }
             }, e.prototype._endTask = function (e) {
                 void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.TaskExpeditionStartCutin = u
+    e.TaskExpeditionStartCutin = l
 }

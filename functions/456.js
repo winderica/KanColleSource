@@ -20,16 +20,16 @@ const function456 = function (t, e, i) {
         value: !0
     });
     var o = i(44),
-        r = i(1366),
-        s = i(1369),
+        r = i(1367),
+        s = i(1370),
         a = i(121),
         _ = i(452),
-        l = i(453),
-        u = i(41),
+        u = i(453),
+        l = i(40),
         c = function (t) {
-            function e(e, i, n, o, a, _, u, c, h, p) {
+            function e(e, i, n, o, a, _, l, c, h, p) {
                 void 0 === p && (p = !1);
-                var d = t.call(this, e, i, o, u, c, h) || this;
+                var d = t.call(this, e, i, o, l, c, h) || this;
                 d._onAttack = function () {
                     d._playVoice(), d._createPlanes()
                 }, d._onDamaged = function () {
@@ -41,7 +41,7 @@ const function456 = function (t, e, i) {
                 }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
                 var f = d._scene.data.isNight(),
                     y = d._scene.view.layer_cutin;
-                return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new l.PlaneTrio(i.friend), d
+                return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new u.PlaneTrio(i.friend), d
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
@@ -79,6 +79,6 @@ const function456 = function (t, e, i) {
             }, e.prototype._endTask = function () {
                 0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
             }, e
-        }(u.PhaseAttackBase);
+        }(l.PhaseAttackBase);
     e.PhaseAttackKuboCutin = c
 }

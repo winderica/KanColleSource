@@ -76,6 +76,9 @@ const function520 = function (t, e, i) {
                 var e = n.ObjUtil.getNumArray(this._o, "api_weda"),
                     i = n.ObjUtil.getNumArray(this._o, "api_wedb");
                 return new PIXI.Rectangle(e[0], e[1], i[0], i[1])
+            }, t.prototype.getPaOffset = function () {
+                var t = n.ObjUtil.getNumArray(this._o, "api_pa");
+                return new PIXI.Point(t[0], t[1])
             }, t
         }();
     e.ShipGraphModel = o

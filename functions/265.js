@@ -24,8 +24,8 @@ const function265 = function (t, e, i) {
         s = i(68),
         a = i(7),
         _ = i(29),
-        l = i(14),
-        u = function () {
+        u = i(14),
+        l = function () {
             function t(t, e) {
                 var i = this;
                 this._onImageLoadComplete = function (t, e) {
@@ -42,7 +42,7 @@ const function265 = function (t, e, i) {
                 if (-1 == this._keys.indexOf(t)) {
                     this._keys.push(t);
                     var e = s.GaugeSetModel.getMapId(t);
-                    this._version_map[t] = l.UIImageLoader.getResourceVersionMap(e)
+                    this._version_map[t] = u.UIImageLoader.getResourceVersionMap(e)
                 }
                 return this
             }, t.prototype.load = function (t) {
@@ -58,7 +58,7 @@ const function265 = function (t, e, i) {
                 })
             }, t
         }();
-    e.GaugeLoader = u;
+    e.GaugeLoader = l;
     var c = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
@@ -74,7 +74,7 @@ const function265 = function (t, e, i) {
             }
             0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
         }, e
-    }(u);
+    }(l);
     e.HorizontalGaugeLoader = c;
     var h = function (t) {
         function e() {
@@ -94,7 +94,7 @@ const function265 = function (t, e, i) {
             }
             0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
         }, e
-    }(u);
+    }(l);
     e.VerticalGaugeLoader = h;
     var p = function (t) {
         function e(e, i, n) {

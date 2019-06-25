@@ -36,9 +36,9 @@ const function328 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.MaterialView = s;
-    var a = i(747),
+    var a = i(744),
         _ = i(9),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this,
                     i = new PIXI.Sprite(_.COMMON_MISC.getTexture(144)),
@@ -52,5 +52,5 @@ const function328 = function (t, e, i) {
                 this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
             }, e
         }(PIXI.Container);
-    e.MaterialViewS = l
+    e.MaterialViewS = u
 }

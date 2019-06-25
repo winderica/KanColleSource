@@ -20,31 +20,40 @@ const function951 = function (t, e, i) {
         value: !0
     });
     var o = i(26),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img_light = new PIXI.Sprite, i._img_light.alpha = 0, i.addChild(i._img_light), i._img = new PIXI.Sprite, i._img.position.set(12, 12), i.addChild(i._img), i.interactive = !0, i
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.SALLY_AIRUNIT.getTexture(20), this._img_light.texture = o.SALLY_AIRUNIT.getTexture(23), this.update(!1)
-            }, e.prototype.update = function (t) {
-                this.visible = t, 1 == t ? this._activate() : this._deactivate()
-            }, e.prototype.dispose = function () {
-                this._deactivate(), this._cb_onClick = null
-            }, e.prototype._activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), null == this._t && (this._img_light.alpha = 0, this._t = createjs.Tween.get(this._img_light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3)))
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null, this._img_light.alpha = 0)
+            return n(e, t), e.prototype.update = function (t) {
+                var e;
+                switch (t) {
+                    case 1:
+                        e = 98;
+                        break;
+                    case 2:
+                        e = 99;
+                        break;
+                    case 3:
+                        e = 100;
+                        break;
+                    case 4:
+                        e = 101;
+                        break;
+                    case 5:
+                        e = 102;
+                        break;
+                    case 6:
+                        e = 103;
+                        break;
+                    case 7:
+                        e = 104;
+                        break;
+                    default:
+                        return void(this.visible = !1)
+                }
+                this._img.texture = o.SALLY_AIRUNIT.getTexture(e), this._img.x = 23 - Math.floor(this._img.width / 2), this.visible = !0
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItemSupplyButton = s
+    e.AirUnitPanelItemSkillLevelIcon = r
 }

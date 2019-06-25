@@ -19,58 +19,25 @@ const function953 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._selected = !1, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._airunit_id)
-                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i._label.position.set(8, 11), i.addChild(i._label), i.interactive = !0, i
+    var o = i(17),
+        r = i(352),
+        s = i(955),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._btn_extend = new s.AirUnitExtendBtn(i), n._btn_extend.visible = !1, n.addChild(n._btn_extend), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    return this._selected
-                },
-                set: function (t) {
-                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), 1 == this.visible && this.update())
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "airunit_id", {
-                get: function () {
-                    return this._airunit_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                if (this._airunit_id = t, t > e) return void(this.visible = !1);
-                if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(119);
-                else switch (t) {
-                    case 1:
-                        this._label.texture = o.SALLY_AIRUNIT.getTexture(120);
-                        break;
-                    case 2:
-                        this._label.texture = o.SALLY_AIRUNIT.getTexture(121);
-                        break;
-                    case 3:
-                        this._label.texture = o.SALLY_AIRUNIT.getTexture(122);
-                        break;
-                    default:
-                        this._label.texture = PIXI.Texture.EMPTY
-                }
-                this.update(), this.visible = !0
-            }, e.prototype.update = function () {
-                1 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(125) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(124)
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._btn_extend.initialize()
             }, e.prototype.activate = function () {
-                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+                t.prototype.activate.call(this), this._btn_extend.activate()
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+                t.prototype.deactivate.call(this), this._btn_extend.deactivate()
             }, e.prototype.dispose = function () {
-                this._deactivate(), this._cb_onClick = null
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+                t.prototype.dispose.call(this), this._btn_extend.dispose()
+            }, e.prototype.updateExtendBtn = function (t, e) {
+                this._total_num < 3 && t != o.EVENT_AREA_ID ? (this._btn_extend.enabled = e > 0, this._btn_extend.x = 101 * this._total_num, this._btn_extend.visible = !0) : this._btn_extend.visible = !1
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelTab = s
+        }(r.AirUnitPanelTabContainer);
+    e.AirUnitPanelTabContainerWithExtend = a
 }

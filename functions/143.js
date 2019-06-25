@@ -24,8 +24,8 @@ const function143 = function (t, e, i) {
         s = i(2),
         a = i(12),
         _ = i(13),
-        l = i(25),
-        u = i(45),
+        u = i(25),
+        l = i(45),
         c = i(450),
         h = i(451),
         p = function (t) {
@@ -50,13 +50,13 @@ const function143 = function (t, e, i) {
                     e = this._attacker.isDamaged(),
                     i = r.default.resources.getShip(t, e, "full"),
                     n = new a.Sprite(i),
-                    o = new u.ShipFlash(i),
+                    o = new l.ShipFlash(i),
                     s = r.default.model.ship_graph.get(t),
                     _ = s.getBattleOffset(e);
                 n.x = o.x = _.x, n.y = o.y = _.y;
-                var l = this._friend ? 1 : -1,
+                var u = this._friend ? 1 : -1,
                     c = Math.floor(4 * Math.random());
-                0 == c ? this.play_type1(n, o, l) : 1 == c ? this.play_type2(n, o, l, _) : 2 == c ? this.play_type3(n, o, l) : this.play_type4(n, o, l, _), this._view.chara.addChild(n), this._view.chara.addChild(o), this._animBox(this._attacker, this._slot), this._animTelop(this._slot, this._attacker.friend)
+                0 == c ? this.play_type1(n, o, u) : 1 == c ? this.play_type2(n, o, u, _) : 2 == c ? this.play_type3(n, o, u) : this.play_type4(n, o, u, _), this._view.chara.addChild(n), this._view.chara.addChild(o), this._animBox(this._attacker, this._slot), this._animTelop(this._slot, this._attacker.friend)
             }, e.prototype.play_type1 = function (t, e, i) {
                 var n = this;
                 this._view.chara.position.set(this._base_pos.x - 180 * i, this._base_pos.y + 120), this._view.chara.alpha = 0;
@@ -182,7 +182,7 @@ const function143 = function (t, e, i) {
         }, e.prototype._loadSlotTextImage = function () {
             var t = this;
             if (null != this._slot) {
-                var e = new l.SlotLoader;
+                var e = new u.SlotLoader;
                 e.add(this._slot.mstID, "btxt_flat"), e.load(function () {
                     t._endTask()
                 })

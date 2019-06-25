@@ -20,7 +20,7 @@ const function542 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(24),
+        r = i(23),
         s = function (t) {
             function e() {
                 return t.call(this) || this

@@ -24,7 +24,7 @@ const function505 = function (t, e, i) {
         s = i(148),
         a = i(187),
         _ = i(125),
-        l = function () {
+        u = function () {
             function t() {
                 this._arr = []
             }
@@ -36,8 +36,8 @@ const function505 = function (t, e, i) {
                 this._arr = []
             }, t
         }();
-    e.IncentiveModelHolder = l;
-    var u = function (t) {
+    e.IncentiveModelHolder = u;
+    var l = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -46,15 +46,15 @@ const function505 = function (t, e, i) {
                 var e = o.ObjUtil.getObjectArray(t, "api_item");
                 if (null != e)
                     for (var i = 0, n = e; i < n.length; i++) {
-                        var l = n[i],
-                            u = (o.ObjUtil.getNumber(l, "api_mode"), o.ObjUtil.getNumber(l, "api_type")),
-                            c = o.ObjUtil.getNumber(l, "api_mst_id"),
-                            h = o.ObjUtil.getString(l, "api_getmes"),
+                        var u = n[i],
+                            l = (o.ObjUtil.getNumber(u, "api_mode"), o.ObjUtil.getNumber(u, "api_type")),
+                            c = o.ObjUtil.getNumber(u, "api_mst_id"),
+                            h = o.ObjUtil.getString(u, "api_getmes"),
                             p = void 0;
-                        1 == u ? p = new a.RewardModelShip(c, h) : 2 == u ? p = new s.RewardModelSlotitem(c, 1, h) : 3 == u ? p = new _.RewardModelUseitem(c, 1, h) : 4 == u || 5 == u && (p = new r.RewardModelFurniture(c, "", h)), null != p && this._arr.push(p)
+                        1 == l ? p = new a.RewardModelShip(c, h) : 2 == l ? p = new s.RewardModelSlotitem(c, 1, h) : 3 == l ? p = new _.RewardModelUseitem(c, 1, h) : 4 == l || 5 == l && (p = new r.RewardModelFurniture(c, "", h)), null != p && this._arr.push(p)
                     }
             }
         }, e
-    }(l);
-    e.IncentiveModelHolderEdit = u
+    }(u);
+    e.IncentiveModelHolderEdit = l
 }

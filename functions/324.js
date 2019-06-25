@@ -29,15 +29,15 @@ const function324 = function (t, e, i) {
         function e() {
             var e = t.call(this) || this;
             e.balloon = new PIXI.Sprite, e.shipInfos = new Array;
-            var i = new l,
-                n = new l,
-                o = new l,
-                r = new l,
-                a = new l,
-                _ = new l;
+            var i = new u,
+                n = new u,
+                o = new u,
+                r = new u,
+                a = new u,
+                _ = new u;
             e.container = new PIXI.Container, i.position.set(0, 0), n.position.set(190, 0), o.position.set(0, 43), r.position.set(190, 43), a.position.set(0, 85), _.position.set(190, 85);
-            var u = s.ORGANIZE_MAIN.getTexture(34);
-            e.balloon.texture = u, e.shipInfos.push(i, n, o, r, a, _);
+            var l = s.ORGANIZE_MAIN.getTexture(34);
+            e.balloon.texture = l, e.shipInfos.push(i, n, o, r, a, _);
             for (var c = 0; c < e.shipInfos.length; c++) {
                 var h = e.shipInfos[c];
                 e.container.addChild(h)
@@ -53,10 +53,10 @@ const function324 = function (t, e, i) {
                 if (a < n) {
                     if (i.isLostShip(a)) _.updateLost();
                     else {
-                        var l = i.ships[a],
-                            u = r.default.model.ship.getMst(l.mstID).getClassType(),
+                        var u = i.ships[a],
+                            l = r.default.model.ship.getMst(u.mstID).getClassType(),
                             c = 0 == i.isOtherDeckShip(a, t);
-                        _.update(l.name, u, l.shipTypeID, c)
+                        _.update(u.name, l, u.shipTypeID, c)
                     }
                 } else _.updateUnSet()
             }
@@ -80,7 +80,7 @@ const function324 = function (t, e, i) {
         }, e
     }(PIXI.Container);
     e.PresetPreviewBalloon = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this,
                 i = r.default.resources.getUIImage("mask"),

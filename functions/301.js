@@ -24,16 +24,16 @@ const function301 = function (t, e, i) {
         s = i(2),
         a = i(8),
         _ = i(60),
-        l = i(38),
-        u = i(29),
+        u = i(41),
+        l = i(29),
         c = i(25),
         h = i(67),
         p = i(9),
         d = i(204),
-        f = i(627),
-        y = i(628),
-        m = i(629),
-        v = function (t) {
+        f = i(624),
+        y = i(625),
+        m = i(626),
+        g = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._model = i, n
@@ -104,7 +104,7 @@ const function301 = function (t, e, i) {
                     t._layer.removeChild(t._white)
                 })
             }, e.prototype._meltInto = function () {
-                for (var t = this, e = new u.SerialTask, i = 0, n = this._model.melt_into_items; i < n.length; i++) {
+                for (var t = this, e = new l.SerialTask, i = 0, n = this._model.melt_into_items; i < n.length; i++) {
                     var o = n[i],
                         r = o.items,
                         s = o.direction,
@@ -147,7 +147,7 @@ const function301 = function (t, e, i) {
             }, e.prototype._waitClick = function () {
                 var t = this;
                 this._particle_layer.activate(), this._messagebox.changeText(this._model.message2), createjs.Tween.get(null).wait(1500).call(function () {
-                    var e = new l.GearBtnHome;
+                    var e = new u.GearBtnHome;
                     e.position.set(1140, 660), e.initialize(), e.activate(), t._layer.addChild(e);
                     var i = new a.AreaBox(0);
                     i.buttonMode = !0, t._layer.addChild(i), i.once(r.EventType.CLICK, function () {
@@ -173,5 +173,5 @@ const function301 = function (t, e, i) {
                 this._layer = null, this._model = null, this._bg = null, this._item_from = null, this._item_tobe = null, this._particle_layer = null, this._messagebox = null, this._white = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.ModelChangeTask = v
+    e.ModelChangeTask = g
 }

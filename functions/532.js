@@ -9,12 +9,12 @@ const function532 = function (t, e, i) {
         s = i(25),
         a = i(14),
         _ = i(67),
-        l = i(533),
-        u = i(9),
+        u = i(533),
+        l = i(9),
         c = i(266),
         h = function () {
             function t() {
-                this._gauge = new l.GaugeRManager
+                this._gauge = new u.GaugeRManager
             }
             return Object.defineProperty(t.prototype, "gauge", {
                 get: function () {
@@ -36,7 +36,7 @@ const function532 = function (t, e, i) {
                 return PIXI.utils.TextureCache[n]
             }, t.prototype.getShip = function (t, e, i) {
                 var n, o = r.ShipLoader.getPath(t, e, i);
-                return n = PIXI.utils.TextureCache[o] ? PIXI.utils.TextureCache[o] : PIXI.Texture.EMPTY, "banner" == i && n == PIXI.Texture.EMPTY && (n = u.COMMON_MISC.getTexture(2)), n
+                return n = PIXI.utils.TextureCache[o] ? PIXI.utils.TextureCache[o] : PIXI.Texture.EMPTY, "banner" == i && n == PIXI.Texture.EMPTY && (n = l.COMMON_MISC.getTexture(2)), n
             }, t.prototype.getSlotitem = function (t, e) {
                 "item_up" == e && (1 == n.ITEMUP_REPLACE.hasOwnProperty(t.toString()) ? t = n.ITEMUP_REPLACE[t] : t > 500 && (t -= 500));
                 var i = s.SlotLoader.getPath(t, e);

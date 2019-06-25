@@ -19,52 +19,110 @@ const function1300 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = function (t) {
+    var o = i(12),
+        r = i(6),
+        s = i(20),
+        a = i(1301),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-            }, e.prototype.activate = function () {
-                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 900).to({
+            return n(e, t), Object.defineProperty(e.prototype, "direction", {
+                get: function () {
+                    return this._direction
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "under", {
+                get: function () {
+                    return this._under
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ship", {
+                get: function () {
+                    return this._ship
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                var e;
+                e = 1 == t ? 141 : 2 == t ? 142 : 3 == t ? 143 : 140, this._ship.texture = s.MAP_COMMON.getTexture(e)
+            }, e.prototype.startWaveWhite = function () {
+                this._startWave(48)
+            }, e.prototype.startWaveRed = function (t) {
+                var e = this;
+                this._startWave(47);
+                var i = new u;
+                i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
+                    y: -75,
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
+                    y: -78,
+                    scaleX: 1.3,
+                    scaleY: .6
+                }, 200).to({
+                    y: -59,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    y: -68
+                }, 200).to({
                     alpha: 0
-                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
-                    loop: !0
-                }).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(500).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
-                    loop: !0
-                }).wait(500).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400))
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
-            }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._stopTween = function () {
-                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
+                }, 100).call(function () {
+                    e._over.removeChild(i), t()
+                })
+            }, e.prototype.stopWave = function () {
+                this._wave.deactivate()
+            }, e.prototype.turn = function (t, e, i) {
+                if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e();
+                else {
+                    this._direction = t;
+                    var n = 2 == t ? 1 : -1,
+                        o = createjs.Tween.get(this._ship);
+                    o.to({
+                        scaleX: n
+                    }, i), null != e && o.call(e)
+                }
+            }, e.prototype._startWave = function (t) {
+                this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
+                    r.SE.play("252")
+                }).wait(2e3).call(function () {
+                    r.SE.play("252")
+                })
             }, e
         }(PIXI.Container);
-    e.CompShipWave = r
+    e.CompShipIcon = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
+            get: function () {
+                return this.scale.x
+            },
+            set: function (t) {
+                this.scale.x = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "scaleY", {
+            get: function () {
+                return this.scale.y
+            },
+            set: function (t) {
+                this.scale.y = t
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.MAP_COMMON.getTexture(94)
+        }, e
+    }(PIXI.Sprite)
 }

@@ -19,31 +19,20 @@ const function811 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.rollR = [0, 0, 0, 0], e.rot = [0, 0, 0, 0], e.spd = 2, e.balls = [], e.RESIDS = [4, 5, 6, 7];
-                for (var i = 0; i < e.RESIDS.length; i++) {
-                    var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(e.RESIDS[i]));
-                    n.anchor.set(.5, .5), e.addChild(n), e.balls.push(n)
-                }
-                return createjs.Tween.get(e, {
-                    loop: !0
-                }).wait(1 / 60).call(function () {
-                    e.__ENTERFRAME__()
-                }).play(null), e
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
             }
-            return n(e, t), e.prototype.updateRotationTable = function () {
-                for (var t = 0; t < this.RESIDS.length; t++) this.rollR[t] = Math.floor(121 * Math.random()) - 60, this.rot[t] = Math.floor(360 * Math.random())
-            }, e.prototype.__ENTERFRAME__ = function () {
-                for (var t = 0; t < 4; t++) {
-                    var e = this.balls[t];
-                    e.x = this.rollR[t] * Math.cos(this.rot[t] / 180 * Math.PI), e.y = this.rollR[t] * Math.sin(this.rot[t] / 180 * Math.PI), this.rot[t] += this.spd
-                }
-            }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this), this.rollR = null, this.rot = null, this.spd = null, this.balls = null, this.RESIDS = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
+                    n = o.default.model.ship_upgrade.getRequires(i);
+                e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), e = o.default.model.useItem.get(77), e.__setCount__(e.count - n.newkokuhesosizai), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.PowerElement = r
+        }(r.APIBase);
+    e.RemodelingAPI = s
 }

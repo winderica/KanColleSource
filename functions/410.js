@@ -135,9 +135,9 @@ const function410 = function (t, e, i) {
                 var t = o.ObjUtil.getObjectArray(this._o, "api_select_rewards");
                 if (null == t) return null;
                 for (var e = [], i = 0, n = t; i < n.length; i++) {
-                    for (var s = n[i], a = [], _ = 0, l = s; _ < l.length; _++) {
-                        var u = l[_];
-                        a.push(new r.SelectableRewardModel(u))
+                    for (var s = n[i], a = [], _ = 0, u = s; _ < u.length; _++) {
+                        var l = u[_];
+                        a.push(new r.SelectableRewardModel(l))
                     }
                     e.push(a)
                 }
@@ -151,7 +151,7 @@ const function410 = function (t, e, i) {
                     if (n.default.model.basic.shipMax - n.default.model.ship.num < 1) return 1;
                     if (n.default.model.basic.slotMax - n.default.model.slot.num < 5) return 1
                 }
-                return 0 == this.isValid() ? 318 == this.id ? 5 : 683 == this.id || 684 == this.id || 685 == this.id || 686 == this.id || 687 == this.id ? 4 : this.getNeedMedalCount() > 0 ? 4 : s.BUTAI_SAIHENSEI.indexOf(this.id) >= 0 ? 3 : 2 : 0
+                return 0 == this.isValid() ? 318 == this.id ? 5 : 683 == this.id || 684 == this.id || 685 == this.id || 686 == this.id || 687 == this.id || 620 == this.id ? 4 : this.getNeedMedalCount() > 0 ? 4 : s.BUTAI_SAIHENSEI.indexOf(this.id) >= 0 ? 3 : 2 : 0
             }, t
         }();
     e.DutyModel = a

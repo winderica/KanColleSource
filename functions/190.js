@@ -53,16 +53,16 @@ const function190 = function (t, e, i) {
                     s = -5 - this._randomInt(n * this._area.width / this._area.height - 5),
                     a = e,
                     _ = i,
-                    l = this._randomInt(960) - o.default.height;
-                l = l * Math.PI / 180;
-                for (var u = 0; a > -60 && _ < 780;) a += s, _ += n, u++;
+                    u = this._randomInt(960) - o.default.height;
+                u = u * Math.PI / 180;
+                for (var l = 0; a > -60 && _ < 780;) a += s, _ += n, l++;
                 this.x = e, this.y = i;
                 var c = [149, 150, 151, 152, 153][this._randomInt(5)];
                 this.texture = r.COMMON_MISC.getTexture(c), createjs.Tween.get(this).to({
                     x: a,
                     y: _,
-                    rotation: l
-                }, u / 30 * 1e3).call(function () {
+                    rotation: u
+                }, l / 30 * 1e3).call(function () {
                     t._createTween()
                 })
             }

@@ -22,7 +22,7 @@ const function77 = function (t, e, i) {
     var o = i(0),
         r = i(6),
         s = i(63),
-        a = i(1356),
+        a = i(1357),
         _ = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
@@ -45,13 +45,13 @@ const function77 = function (t, e, i) {
                     var a = s[r],
                         _ = a.attacker.index;
                     (null == i || i.index > _) && (i = a.attacker);
-                    var l = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
-                    n.push(l)
+                    var u = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
+                    n.push(u)
                 }
-                for (var u = 0, c = e; u < c.length; u++) {
-                    var a = c[u],
-                        l = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
-                    n.push(l)
+                for (var l = 0, c = e; l < c.length; l++) {
+                    var a = c[l],
+                        u = this._scene.view.bannerGroupLayer.getBanner(a.attacker);
+                    n.push(u)
                 }
                 if (null != i) {
                     var h = i.mst_id.toString();
@@ -94,16 +94,16 @@ const function77 = function (t, e, i) {
                         _.damage += s.damage, 2 == _.hit || 2 == s.hit ? _.hit = 2 : 1 == _.hit || 1 == s.hit ? _.hit = 1 : _.hit = 0
                     }
                 }
-                for (var l = {}, u = 0, c = t; u < c.length; u++) {
-                    var s = c[u],
+                for (var u = {}, l = 0, c = t; l < c.length; l++) {
+                    var s = c[l],
                         a = s.defender.index;
-                    if (null == l[a]) l[a] = {
+                    if (null == u[a]) u[a] = {
                         damage: s.damage,
                         hit: s.hit,
                         shield: s.shield
                     };
                     else {
-                        var _ = l[a];
+                        var _ = u[a];
                         _.damage += s.damage, 2 == _.hit || 2 == s.hit ? _.hit = 2 : 1 == _.hit || 1 == s.hit ? _.hit = 1 : _.hit = 0
                     }
                 }
@@ -121,7 +121,7 @@ const function77 = function (t, e, i) {
                 for (var y = 0, m = this._scene.data.model.deck_e.ships; y < m.length; y++) {
                     var d = m[y];
                     if (null != d) {
-                        var _ = l[d.index];
+                        var _ = u[d.index];
                         null != _ && this._damageBase(d, _)
                     }
                 }
@@ -130,7 +130,7 @@ const function77 = function (t, e, i) {
                     this._scene.view.layer_damage.showShieldAtBanner(f)
                 }
                 createjs.Tween.get(null).wait(500).call(function () {
-                    i._showDamageNumber(n, l)
+                    i._showDamageNumber(n, u)
                 })
             }, e.prototype._showDamageNumber = function (t, e) {
                 var i = this;

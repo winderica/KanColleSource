@@ -27,16 +27,14 @@ const function777 = function (t, e, i) {
                 return e._onClick = function () {
                     e.onClick()
                 }, e._onMouseOver = function () {
-                    e.texture = e.texture_on
+                    e.extensionPopUp.alpha = 1
                 }, e._onMouseOut = function () {
-                    e.texture = e.texture_off
-                }, e.texture_on = o.REMODEL_MAIN.getTexture(5), e.texture_off = o.REMODEL_MAIN.getTexture(4), e.texture_none = o.REMODEL_MAIN.getTexture(3), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.interactive = e.buttonMode = !0, e
+                    e.extensionPopUp.alpha = 0
+                }, e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 330, 180), e.clickArea.endFill(), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.renderable = !1, e.clickArea.interactive = e.clickArea.buttonMode = !0, e.extensionPopUp = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(36)), e.extensionPopUp.alpha = 0, e.extensionPopUp.position.set(113, 0), e.addChild(e.clickArea, e.extensionPopUp), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this.texture = this.texture_none, this.interactive = this.buttonMode = !1, t && (this.texture = this.texture_off, this.interactive = this.buttonMode = !0)
-            }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.onClick = null, this.texture_on = null, this.texture_off = null, this.texture_none = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.off(r.EventType.CLICK), this.onClick = null, this.clickArea = null, this.extensionPopUp = null, this.removeChildren()
             }, e
-        }(PIXI.Sprite);
-    e.KindaikaButton = s
+        }(PIXI.Container);
+    e.ExtensionButton = s
 }

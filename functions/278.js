@@ -24,7 +24,7 @@ const function278 = function (t, e, i) {
         s = i(194),
         a = i(277),
         _ = i(279),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._onClick = function () {
@@ -47,5 +47,5 @@ const function278 = function (t, e, i) {
                 null != this._content_tween && this._content_tween.setPaused(!0)
             }, e
         }(a.CircleContent);
-    e.CircleContentSkin2 = l
+    e.CircleContentSkin2 = u
 }

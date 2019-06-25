@@ -20,16 +20,25 @@ const function798 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(3),
-        s = i(86),
-        a = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.headerKansenStatus = new s.TitleBar, e.headerKansenStatus.initialize(o.COMMON_MAIN.getTexture(1), 35), e.headerSelectKyouka = new s.TitleBar, e.headerSelectKyouka.initialize(r.REMODEL_POWERUP.getTexture(3), 26), e.headerSelectKyouka.position.set(536, 0), e.headerKyoukaList = new s.TitleBar, e.headerKyoukaList.initialize(r.REMODEL_POWERUP.getTexture(2), 26), e.headerKyoukaList.position.set(806, 0), e.addChild(e.headerKansenStatus, e.headerSelectKyouka, e.headerKyoukaList), e.cacheAsBitmap = !0, e
+                return e._onMouseOver = function () {
+                    e.texture = e.textureBtnStartIntensifyOn
+                }, e._onMouseOut = function () {
+                    e.texture = e.textureBtnStartIntensifyOff
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e.textureBtnStartIntensifyNone = o.REMODEL_POWERUP.getTexture(6), e.textureBtnStartIntensifyOn = o.REMODEL_POWERUP.getTexture(8), e.textureBtnStartIntensifyOff = o.REMODEL_POWERUP.getTexture(7), e.texture = e.textureBtnStartIntensifyNone, e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.cacheAsBitmap = !1, this.headerKansenStatus.dispose(), this.headerKyoukaList.dispose(), this.headerSelectKyouka.dispose(), this.headerKansenStatus = null, this.headerKyoukaList = null, this.headerSelectKyouka = null
+            return n(e, t), e.prototype.update = function (t) {
+                this._updateClickable_(t)
+            }, e.prototype._updateClickable_ = function (t) {
+                this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
+            }, e.prototype.dispose = function () {
+                this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this.interactive = this.buttonMode = !1, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.PowerUpHeader = a
+        }(PIXI.Sprite);
+    e.StartButton = s
 }

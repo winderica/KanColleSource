@@ -24,8 +24,8 @@ const function467 = function (t, e, i) {
         s = i(22),
         a = i(2),
         _ = i(13),
-        l = i(1382),
-        u = function (t) {
+        u = i(1383),
+        l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._layer = e, n._ships = i, n
@@ -41,7 +41,7 @@ const function467 = function (t, e, i) {
                     t._initCutin()
                 })
             }, e.prototype._initCutin = function () {
-                this._cutin = new l.SupportDeckCutin, this._cutin.initialize(), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
+                this._cutin = new u.SupportDeckCutin, this._cutin.initialize(), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
             }, e.prototype._playCutin = function () {
                 var t = this;
                 this._layer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({
@@ -82,8 +82,8 @@ const function467 = function (t, e, i) {
                 for (var o = 0; o < t.length; o++) {
                     var a = t[o],
                         _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
-                        l = new PIXI.Sprite(_);
-                    l.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(l)
+                        u = new PIXI.Sprite(_);
+                    u.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(u)
                 }
             }, e.prototype._createShipContainerB = function () {
                 var t, e = this._ships[1],
@@ -93,12 +93,12 @@ const function467 = function (t, e, i) {
                 for (var o = 0; o < t.length; o++) {
                     var a = t[o],
                         _ = r.default.resources.getShip(a.mst_id, a.damaged, "banner"),
-                        l = new PIXI.Sprite(_);
-                    l.position.x = s.BannerSize.W * o, this._cutin.banner_bottom.addChild(l)
+                        u = new PIXI.Sprite(_);
+                    u.position.x = s.BannerSize.W * o, this._cutin.banner_bottom.addChild(u)
                 }
             }, e.prototype._endTask = function (e) {
                 void 0 === e && (e = !1), this._layer.removeChild(this._cutin), this._cutin.dispose(), t.prototype._endTask.call(this)
             }, e
         }(a.TaskBase);
-    e.TaskSupportDeckCutin = u
+    e.TaskSupportDeckCutin = l
 }

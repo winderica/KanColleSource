@@ -24,11 +24,11 @@ const function284 = function (t, e, i) {
         s = function (t) {
             function e() {
                 for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
-                    var l = new PIXI.Sprite,
-                        u = i[_];
-                    l.position.x = u[0], l.position.y = u[1], l.alpha = 1;
-                    var c = new o.KiraAnimation(l, n, s);
-                    a.push(c), e.addChild(l)
+                    var u = new PIXI.Sprite,
+                        l = i[_];
+                    u.position.x = l[0], u.position.y = l[1], u.alpha = 1;
+                    var c = new o.KiraAnimation(u, n, s);
+                    a.push(c), e.addChild(u)
                 }
                 return e.kiraAnimations = a, e.visible = !1, e
             }

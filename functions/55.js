@@ -22,9 +22,9 @@ const function55 = function (t, e, i) {
     var o = i(0),
         r = i(2),
         s = i(178),
-        a = i(1335),
-        _ = i(1339),
-        l = function (t) {
+        a = i(1336),
+        _ = i(1340),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i._chuha_ships = new Array, i._taiha_ships = new Array, i._gouchin_ships = new Array, i
@@ -95,8 +95,8 @@ const function55 = function (t, e, i) {
                     o.push(a.mst_id)
                 }
                 this._taiha_ships = Array();
-                for (var l = 0, u = this._chuha_ships; l < u.length; l++) {
-                    var a = u[l];
+                for (var u = 0, l = this._chuha_ships; u < l.length; u++) {
+                    var a = l[u];
                     o.push(a.mst_id)
                 }
                 if (this._clearTaihaList(), this._clearTaihaList(), o.length > 0) {
@@ -112,5 +112,5 @@ const function55 = function (t, e, i) {
                 null != this._chuha_ships && this._chuha_ships.length > 0 && (this._chuha_ships = new Array)
             }, e.prototype._log = function (t, e) {}, e
         }(r.TaskBase);
-    e.PhaseDamageCutin = l
+    e.PhaseDamageCutin = u
 }

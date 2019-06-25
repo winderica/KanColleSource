@@ -24,8 +24,8 @@ const function90 = function (t, e, i) {
         s = i(201),
         a = i(148),
         _ = i(125),
-        l = i(147),
-        u = function (t) {
+        u = i(147),
+        l = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._url = "api_req_member/itemuse", o._result = new h, o._mst_id = e, o._force = i, o._exchange_type = n, o
@@ -42,7 +42,7 @@ const function90 = function (t, e, i) {
                 this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.UseItemUseAPI = u;
+    e.UseItemUseAPI = l;
     var c = function () {
         function t() {
             this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._has_furniture_reward = !1, this._rewards = null
@@ -98,20 +98,20 @@ const function90 = function (t, e, i) {
                 for (var e = 0, i = t; e < i.length; e++) {
                     var n = i[e],
                         r = o.ObjUtil.getNumber(n, "api_usemst"),
-                        u = o.ObjUtil.getNumber(n, "api_mst_id"),
+                        l = o.ObjUtil.getNumber(n, "api_mst_id"),
                         c = o.ObjUtil.getNumber(n, "api_getcount");
                     if (0 != c)
                         if (2 == r) {
                             this._has_slotitem_reward = !0;
-                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(u, 1))
-                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(u, c));
+                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
+                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
                     else if (6 == r)
-                        if (10 == u || 11 == u || 12 == u) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(u, c));
+                        if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
                         else {
                             this._has_useitem_reward = !0;
-                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(u, 1))
+                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(l, 1))
                         }
-                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new l.RewardModelFurniture(u)))
+                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new u.RewardModelFurniture(l)))
                 }
         }, e.prototype._initMaterialReward = function () {
             var t = o.ObjUtil.getNumArray(this._o, "api_material");

@@ -19,39 +19,17 @@ const function1062 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(11),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_ranking/mxltvkpyuklh", n._recordRankingModels = e, n._pageNo = i, n
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_get_member/record", i._recordInfoModel = e, i
             }
             return n(e, t), e.prototype._connect = function () {
-                0 != this._pageNo && (this._post_data.api_pageno = this._pageNo), this._post_data.api_ranking = this._createKey(o.default.model.basic.member_id), t.prototype._connect.call(this)
+                t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._recordRankingModels[this._pageNo].SetAll(this._raw_data, this._pageNo), t.prototype._completedEnd.call(this)
-            }, e.prototype._getSeed = function (t) {
-                return r.PORT_API_SEED[t % 10]
-            }, e.prototype._createKey = function (t) {
-                var e = this._getSeed(t),
-                    i = Math.floor(Date.now() / 1e3),
-                    n = 1e3 * (Math.floor(9 * Math.random()) + 1) + t % 1e3,
-                    o = Math.floor(8999 * Math.random()) + 1e3,
-                    r = Math.floor(32767 * Math.random()) + 32768,
-                    s = Math.floor(10 * Math.random()),
-                    a = Math.floor(10 * Math.random()),
-                    _ = Math.floor(10 * Math.random()),
-                    l = parseInt(t.toString().substr(0, 4)),
-                    u = (4132653 + r) * (l + 1e3) - i + (1875979 + 9 * r),
-                    c = u - t,
-                    h = c * e,
-                    p = n.toString() + h.toString() + o.toString();
-                p = s.toString() + p;
-                var d = p.substr(0, 8),
-                    f = p.substr(8);
-                return p = d + a + f, d = p.substr(0, 18), f = p.substr(18), (p = d + _ + f) + r.toString()
+                this._recordInfoModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(s.APIBase);
-    e.RecordRankingAPI = a
+        }(o.APIBase);
+    e.RecordInfoAPI = r
 }

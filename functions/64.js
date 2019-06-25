@@ -24,7 +24,7 @@ const function64 = function (t, e, i) {
         s = i(447),
         a = i(183),
         _ = i(449),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
@@ -94,5 +94,5 @@ const function64 = function (t, e, i) {
                 return 0 == this._record.raw.sakuteki.isSuccess_e() ? e = !0 : 0 == this._data.plane_from_e.length ? e = !0 : 1 == this._scene.data.model.deck_f.isSubmarineAll() && (e = !0), 1 != t || 1 != e
             }, e
         }(o.PhaseAirBase);
-    e.PhaseAirWar = l
+    e.PhaseAirWar = u
 }

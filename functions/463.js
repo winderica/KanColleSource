@@ -24,7 +24,7 @@ const function463 = function (t, e, i) {
         s = i(6),
         a = i(16),
         _ = i(55),
-        l = function (t) {
+        u = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o.DELAYS = [0, 250, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
@@ -33,22 +33,22 @@ const function463 = function (t, e, i) {
                 for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = [], o = this._ships_e, a = 0; a < o.length; a++) {
                     var _ = o[a];
                     if (null != _ && !(_.hp_now <= 0)) {
-                        var l = this._scene.view.bannerGroupLayer.getBanner(_);
-                        if (null != l) {
-                            var d = new u;
+                        var u = this._scene.view.bannerGroupLayer.getBanner(_);
+                        if (null != u) {
+                            var d = new l;
                             d.initialize(), d.x = 180 - 24 * a, d.y = -90;
-                            var f = l.getGlobalPos(),
+                            var f = u.getGlobalPos(),
                                 y = new c(e, d, f, this.DELAYS[a]);
                             i.add(y);
                             var m = new h(this._scene, this._data, this._damage_cutin, _, 1500);
                             if (i.add(m), 1 == this._data.isShield(a)) {
-                                var v = this._scene.view.bannerGroupLayer.getShieldTargetBanner(l); - 1 == n.indexOf(v) && n.push(v)
+                                var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(u); - 1 == n.indexOf(g) && n.push(g)
                             }
                         }
                     }
                 }
-                for (var g = 0, b = n; g < b.length; g++) {
-                    var w = b[g];
+                for (var v = 0, b = n; v < b.length; v++) {
+                    var w = b[v];
                     i.add(new p(this._scene, w, 1500))
                 }
                 s.SE.play("112"), i.start(function () {
@@ -58,8 +58,8 @@ const function463 = function (t, e, i) {
                 this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.PhaseSupportRai = l;
-    var u = function (t) {
+    e.PhaseSupportRai = u;
+    var l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.anchor.x = 1, e.anchor.y = .5, e

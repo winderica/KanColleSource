@@ -23,15 +23,15 @@ const function245 = function (t, e, i) {
         r = i(0),
         s = i(66),
         a = i(8),
-        _ = i(38),
-        l = i(67),
-        u = i(207),
-        c = i(1272),
+        _ = i(41),
+        u = i(67),
+        l = i(207),
+        c = i(1273),
         h = i(209),
         p = i(1),
         d = function (t) {
-            function e(e, i, n, l, u) {
-                void 0 === u && (u = null);
+            function e(e, i, n, u, l) {
+                void 0 === l && (l = null);
                 var c = t.call(this) || this;
                 return c._moveCard = function () {
                     null != c._pre_task && (c._pre_task.dispose(), c._pre_task = null), c._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
@@ -78,10 +78,10 @@ const function245 = function (t, e, i) {
                     e.interactive = !0, e.buttonMode = !0, c._bonus.addChild(e), e.once(p.EventType.CLICK, function () {
                         c._bonus.removeChild(e), c._finalize(t)
                     })
-                }, c._layer = e, c._mst_id = i, c._count = n, c._pre_task = u, c._play_bgm = l, c
+                }, c._layer = e, c._mst_id = i, c._count = n, c._pre_task = l, c._play_bgm = u, c
             }
             return n(e, t), e.prototype._start = function () {
-                this._bonus = new c.BonusUseItem, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new u.BonusInsert, this._loadBG()
+                this._bonus = new c.BonusUseItem, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new l.BonusInsert, this._loadBG()
             }, e.prototype._loadBG = function () {
                 var t = this;
                 this._bonus.bg.initiailzeForUseitem(function () {
@@ -89,7 +89,7 @@ const function245 = function (t, e, i) {
                 })
             }, e.prototype._loadImage = function () {
                 var t = this,
-                    e = new l.UseitemLoader;
+                    e = new u.UseitemLoader;
                 e.add(this._mst_id, 1), e.load(function () {
                     t._insert.preload(function () {
                         t._showInsert()

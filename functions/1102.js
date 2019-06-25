@@ -21,40 +21,34 @@ const function1102 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(14),
-        a = i(237),
-        _ = function (t) {
-            function e() {
-                return t.call(this) || this
+        s = i(80),
+        a = i(236),
+        _ = i(1103),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._purchasedItems = e, o._scene_model = i, o._delegate_initialize = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
-                    t._load2()
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new _.TaskLoadResources).start(function () {
+                    if (null != t._delegate_initialize) {
+                        o.default.model.useItem.updateCount();
+                        var e = 0;
+                        t._scene_model instanceof s.ItemSceneModel && (e = t._scene_model.subtype), t._delegate_initialize(e)
+                    }
+                    t._connectAPI()
                 })
-            }, e.prototype._load2 = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
-                    t._loadSkinResource()
-                })
-            }, e.prototype._loadSkinResource = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item"),
-                    i = o.default.model.basic.getUISkinID();
-                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
-                    t._loadAkashiResoueces()
-                })
-            }, e.prototype._loadAkashiResoueces = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
+            }, e.prototype._connectAPI = function () {
+                var t = this;
+                new a.PayItemAPI(this._purchasedItems).start(function () {
                     t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._purchasedItems = null, this._scene_model = null, this._delegate_initialize = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskLoadResources = _
+    e.TaskItemScenePreInitialize = u
 }

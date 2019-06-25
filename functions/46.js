@@ -61,10 +61,10 @@ const function46 = function (t, e, i) {
                 a = t.range,
                 _ = t.equipType;
             n && 1 <= a && r.push("\u5c04\u7a0b " + ["", "\u77ed", "\u4e2d", "\u9577", "\u8d85\u9577"][a]), 48 == _ && (s[5] = "\u5bfe\u7206", s[6] = "\u8fce\u6483");
-            for (var l = [t.karyoku, t.raisou, t.taiku, t.taisen, t.bakusou, t.meichu, t.kaihi, t.sakuteki, t.soukou], u = 0, c = 0; c < l.length; c++)
-                if (0 != l[c]) {
+            for (var u = [t.karyoku, t.raisou, t.taiku, t.taisen, t.bakusou, t.meichu, t.kaihi, t.sakuteki, t.soukou], l = 0, c = 0; c < u.length; c++)
+                if (0 != u[c]) {
                     var h = e;
-                    if (l[c] < 0 && (h = e.split("+").join("")), r.push(s[c] + h + l[c]), u++, -1 != o && o <= u) break
+                    if (u[c] < 0 && (h = e.split("+").join("")), r.push(s[c] + h + u[c]), l++, -1 != o && o <= l) break
                 } return r.join(i)
         }
 

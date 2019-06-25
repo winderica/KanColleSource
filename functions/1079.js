@@ -19,18 +19,22 @@ const function1079 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._view = e, i
+    var o = i(0),
+        r = i(11),
+        s = i(171),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._view = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._view.dispose(), r.UIImageLoader.clearMemoryCache("album"), this._endTask()
+                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
+                o.default.sound.bgm.play(t), this._startScene()
+            }, e.prototype._startScene = function () {
+                this._view.activate(), this._endTask()
             }, e.prototype._endTask = function () {
                 this._view = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskSceneFinalize = s
+        }(r.TaskBase);
+    e.TaskSceneInitialize = a
 }

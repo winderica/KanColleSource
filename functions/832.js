@@ -19,20 +19,19 @@ const function832 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
+    var o = i(0),
+        r = i(10),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickBack = function () {
-                    e.onClickBack()
-                };
-                var i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(48));
-                return e.buttonBack = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(0)), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.on(r.EventType.CLICK, e._onClickBack), e.buttonBack.position.set(221, 206), e.addChild(i, e.buttonBack), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kaisou/marriage", i.api_id = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.buttonBack.off(r.EventType.CLICK), this.onClickBack = null, this.buttonBack = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.useItem.get(55);
+                e.__setCount__(e.count - 1), o.default.model.ship.updateData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.MarriageAlert = s
+        }(r.APIBase);
+    e.MarriageAPI = s
 }

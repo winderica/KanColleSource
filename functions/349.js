@@ -23,14 +23,14 @@ const function349 = function (t, e, i) {
         r = i(2),
         s = i(17),
         a = i(25),
-        _ = i(24),
-        l = i(26),
-        u = function (t) {
+        _ = i(23),
+        u = i(26),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.NUM_TEXTURE_M = [67, 68, 69, 70, 71, 72, 73, 74, 75, 76], e.PULS_TEXTURE = [87, 88, 89], e._setTexture = function (t) {
-                    e.texture = l.SALLY_AIRUNIT.getTexture(t)
-                }, e._fairy = new PIXI.Sprite, e.addChild(e._fairy), e._area = new PIXI.Sprite, e._area.position.set(5, 5), e.addChild(e._area), e._distanceLayer = new PIXI.Container, e.addChild(e._distanceLayer), e._text = new PIXI.Sprite(l.SALLY_AIRUNIT.getTexture(132)), e._text.position.set(5, 46), e._distanceLayer.addChild(e._text), e._distance1 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance1), e._distance2 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance2), e._plusNum = new PIXI.Sprite, e._distanceLayer.addChild(e._plusNum), e
+                    e.texture = u.SALLY_AIRUNIT.getTexture(t)
+                }, e._fairy = new PIXI.Sprite, e.addChild(e._fairy), e._area = new PIXI.Sprite, e._area.position.set(5, 5), e.addChild(e._area), e._distanceLayer = new PIXI.Container, e.addChild(e._distanceLayer), e._text = new PIXI.Sprite(u.SALLY_AIRUNIT.getTexture(132)), e._text.position.set(5, 46), e._distanceLayer.addChild(e._text), e._distance1 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance1), e._distance2 = new PIXI.Sprite, e._distanceLayer.addChild(e._distance2), e._plusNum = new PIXI.Sprite, e._distanceLayer.addChild(e._plusNum), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
                 var e = _.MathUtil.zeroPadding(t, 3),
@@ -42,7 +42,7 @@ const function349 = function (t, e, i) {
                     o._load_task = null
                 })) : this._fairy.texture = PIXI.Texture.EMPTY, this._stopAnimation(), 1 == t ? this._t = createjs.Tween.get(null, {
                     loop: !0
-                }).call(this._setTexture, [0]).wait(150).call(this._setTexture, [1]).wait(150) : 2 == t ? this.texture = l.SALLY_AIRUNIT.getTexture(2) : 3 == t ? this._t = createjs.Tween.get(null, {
+                }).call(this._setTexture, [0]).wait(150).call(this._setTexture, [1]).wait(150) : 2 == t ? this.texture = u.SALLY_AIRUNIT.getTexture(2) : 3 == t ? this._t = createjs.Tween.get(null, {
                     loop: !0
                 }).call(this._setTexture, [3]).wait(150).call(this._setTexture, [4]).wait(150) : this.texture = PIXI.Texture.EMPTY;
                 var r = i,
@@ -52,14 +52,14 @@ const function349 = function (t, e, i) {
                         case 1:
                         case 2:
                         case 3:
-                            this._plusNum.visible = !0, this._plusNum.texture = l.SALLY_AIRUNIT.getTexture(this.PULS_TEXTURE[s - 1])
+                            this._plusNum.visible = !0, this._plusNum.texture = u.SALLY_AIRUNIT.getTexture(this.PULS_TEXTURE[s - 1])
                     }
                     if (r >= 10) {
                         var a = r.toString().split(""),
                             _ = parseInt(a[0]),
-                            u = parseInt(a[1]);
-                        this._distance2.visible = !0, this._distance1.position.set(86, 35), this._distance2.position.set(102, 35), this._plusNum.position.set(120, 40), this._distance1.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[_]), this._distance2.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[u])
-                    } else this._distance1.position.set(86, 35), this._plusNum.position.set(102, 40), this._distance1.texture = l.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[r])
+                            l = parseInt(a[1]);
+                        this._distance2.visible = !0, this._distance1.position.set(86, 35), this._distance2.position.set(102, 35), this._plusNum.position.set(120, 40), this._distance1.texture = u.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[_]), this._distance2.texture = u.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[l])
+                    } else this._distance1.position.set(86, 35), this._plusNum.position.set(102, 40), this._distance1.texture = u.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_M[r])
                 }
             }, e.prototype.dispose = function () {
                 this.removeChildren(), this._distanceLayer.removeChildren(), this._stopLoadImage(), this._stopAnimation()
@@ -69,7 +69,7 @@ const function349 = function (t, e, i) {
                 null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
         }(PIXI.Sprite);
-    e.AirUnitPanelBanner = u;
+    e.AirUnitPanelBanner = l;
     var c = function (t) {
         function e(e, i) {
             var n = t.call(this) || this;

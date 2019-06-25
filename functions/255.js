@@ -24,14 +24,14 @@ const function255 = function (t, e, i) {
         s = i(25),
         a = i(450),
         _ = i(451),
-        l = function (t) {
+        u = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
                 r._attacker = e, r._slot1 = i, r._slot2 = n, r._friend = r._attacker.friend, 1 == r._friend ? r._base_pos = new PIXI.Point(-162, -131) : r._base_pos = new PIXI.Point(435, -131), r._view = new a.CutinCanvas;
                 var s = Math.floor(3 * Math.random());
                 r._telop1 = new _.CutinTelop(s, o);
-                var l = Math.floor(3 * Math.random());
-                return r._telop2 = new _.CutinTelop(l, o), r._preload_task = new u(e, i, n), r
+                var u = Math.floor(3 * Math.random());
+                return r._telop2 = new _.CutinTelop(u, o), r._preload_task = new l(e, i, n), r
             }
             return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
@@ -45,8 +45,8 @@ const function255 = function (t, e, i) {
                 this._attacker = null, this._slot1 = null, this._slot2 = null, this._base_pos = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view.dispose(), this._view = null, this._telop1 = null, this._telop2 = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.CutinDouble = l;
-    var u = function (t) {
+    e.CutinDouble = u;
+    var l = function (t) {
         function e(e, i, n) {
             var o = t.call(this) || this;
             return o._attacker = e, o._slot1 = i, o._slot2 = n, o

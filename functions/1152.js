@@ -19,51 +19,54 @@ const function1152 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._btn = new a(e), i.addChild(i._btn), i
+    var o = i(0),
+        r = i(6),
+        s = i(130),
+        a = i(89),
+        _ = i(1153),
+        u = i(1154),
+        l = i(1155),
+        c = i(1156),
+        h = i(1160),
+        p = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._count = 0, n._onChangePage = function () {
+                    var t = n._views.indexOf(n._current);
+                    n._showView(t ? 0 : 1)
+                }, n._onSelect = function (t, e) {
+                    r.SE.play("214");
+                    var i = 10;
+                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
+                    var s = new c.TaskPurchaseConfirm(t, e, i);
+                    n.addChild(s.layer), s.start(function () {
+                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
+                    })
+                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new u.NormalItemShopMain(n._onSelect)), n._views.push(new l.SpecialItemShopMain(n._onSelect)), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._btn.initialize()
+                this._header.texture = s.ITEM_ISHOP.getTexture(35);
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].initialize()
+                }
+            }, e.prototype.update = function () {
+                this._count = 0, this._showView(0)
             }, e.prototype.activate = function () {
-                this._btn.activate()
-            }, e.prototype.update = function (t) {
-                this._btn.update(t), 0 == t ? this._btn.position.set(801, 667) : this._btn.position.set(207, 666)
+                null != this._current && this._current.activate(), this._tab.activate()
             }, e.prototype.deactivate = function () {
-                this._btn.deactivate()
+                null != this._current && this._current.deactivate(), this._tab.deactivate()
             }, e.prototype.dispose = function () {
-                this._btn.dispose()
+                this._purchasedItems = null, this._tab.dispose(), this._removeView();
+                for (var t = 0, e = this._views; t < e.length; t++) {
+                    e[t].dispose()
+                }
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
+            }, e.prototype._showView = function (t) {
+                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
+                var e = o.default.view.overLayer;
+                new h.TaskWelcomeCutin(e, t, this._count).start()
             }, e
-        }(PIXI.Container);
-    e.TabContainer = s;
-    var a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick()
-            }, i._cb_onClick = e, i._over = new PIXI.Sprite, i.addChild(i._over), i.interactive = !0, i
-        }
-        return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
-            0 == t ? (this._texture = o.ITEM_ISHOP.getTexture(6), this._over.texture = o.ITEM_ISHOP.getTexture(7)) : (this._texture = o.ITEM_ISHOP.getTexture(4), this._over.texture = o.ITEM_ISHOP.getTexture(5))
-        }, e.prototype.activate = function () {
-            1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this._startTween())
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this._stopTween()
-        }, e.prototype.dispose = function () {
-            this.deactivate()
-        }, e.prototype._startTween = function () {
-            null == this._t && (this._over.alpha = 0, this._t = createjs.Tween.get(this._over, {
-                loop: !0
-            }).to({
-                alpha: 1
-            }, 500).to({
-                alpha: 0
-            }, 500))
-        }, e.prototype._stopTween = function () {
-            null != this._t && (this._over.alpha = 0, this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Sprite)
+        }(a.ViewBase);
+    e.ItemShopMain = p
 }

@@ -24,18 +24,18 @@ const function250 = function (t, e, i) {
         s = i(143),
         a = i(121),
         _ = i(453),
-        l = i(41),
-        u = function (t) {
-            function e(e, i, n, o, r, a, l, u) {
-                void 0 === u && (u = !1);
-                var c = t.call(this, e, i, o, r, a, l) || this;
+        u = i(40),
+        l = function (t) {
+            function e(e, i, n, o, r, a, u, l) {
+                void 0 === l && (l = !1);
+                var c = t.call(this, e, i, o, r, a, u) || this;
                 c._onDamage = function () {
                     1 == c._shield && c._showShield(c._d_banner), c._d_banner.moveAtDamage(c._shield);
                     var t = c._getDamage(c._defender);
                     c._playExplosion(c._d_banner, t), c._playDamageEffect(c._a_banner, c._d_banner, c._defender, t, c._hit, function () {
                         c._complete_flg_damage = !0, c._endTask()
                     })
-                }, c._complete_flg_plane = !1, c._complete_flg_damage = !1, c._defender = n, c._yasenkouku = u;
+                }, c._complete_flg_plane = !1, c._complete_flg_damage = !1, c._defender = n, c._yasenkouku = l;
                 var h = c._scene.data.isNight();
                 return c._cutin = new s.CutinAttack(c._attacker, c._slot, h, !1, !1), c._trio = new _.PlaneTrio(i.friend), c
             }
@@ -78,6 +78,6 @@ const function250 = function (t, e, i) {
             }, e.prototype._endTask = function () {
                 0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
             }, e
-        }(l.PhaseAttackBase);
-    e.PhaseAttackKansaiki = u
+        }(u.PhaseAttackBase);
+    e.PhaseAttackKansaiki = l
 }

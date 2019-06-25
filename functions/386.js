@@ -53,8 +53,8 @@ const function386 = function (t, e, i) {
                         var o = _[a];
                         o.selected = o.no == e
                     } else
-                        for (var l = 0, u = this._slot_tabs; l < u.length; l++) {
-                            var o = u[l];
+                        for (var u = 0, l = this._slot_tabs; u < l.length; u++) {
+                            var o = l[u];
                             o.selected = !1
                         }
             }, e.prototype.activate = function () {
@@ -97,9 +97,9 @@ const function386 = function (t, e, i) {
                         s = n.no,
                         a = this._getBtnTextureNo(r, s),
                         _ = -1 == a ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(a),
-                        l = this._getBtnOnTextureNo(r, s),
-                        u = -1 == l ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(l);
-                    n.initialize(_, u)
+                        u = this._getBtnOnTextureNo(r, s),
+                        l = -1 == u ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(u);
+                    n.initialize(_, l)
                 }
             }, e
         }(PIXI.Container);

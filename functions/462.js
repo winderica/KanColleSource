@@ -24,7 +24,7 @@ const function462 = function (t, e, i) {
         s = i(6),
         a = i(16),
         _ = i(55),
-        l = function (t) {
+        u = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o.DELAYS = [0, 266, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
@@ -36,18 +36,18 @@ const function462 = function (t, e, i) {
                         _ = new h(e, o, a, this.DELAYS[n]);
                     i.add(_)
                 }
-                for (var l = [], p = this._ships_e, n = 0; n < p.length; n++) {
+                for (var u = [], p = this._ships_e, n = 0; n < p.length; n++) {
                     var d = p[n];
                     if (null != d && !(d.hp_now <= 0)) {
-                        var f = new u(this._scene, this._data, this._damage_cutin, d, 1e3);
+                        var f = new l(this._scene, this._data, this._damage_cutin, d, 1e3);
                         if (i.add(f), 1 == this._data.isShield(n)) {
                             var y = this._scene.view.bannerGroupLayer.getBanner(d),
-                                m = this._scene.view.bannerGroupLayer.getShieldTargetBanner(y); - 1 == l.indexOf(m) && l.push(m)
+                                m = this._scene.view.bannerGroupLayer.getShieldTargetBanner(y); - 1 == u.indexOf(m) && u.push(m)
                         }
                     }
                 }
-                for (var v = 0, g = l; v < g.length; v++) {
-                    var b = g[v];
+                for (var g = 0, v = u; g < v.length; g++) {
+                    var b = v[g];
                     i.add(new c(this._scene, b, 1e3))
                 }
                 s.SE.play("101"), i.start(function () {
@@ -57,8 +57,8 @@ const function462 = function (t, e, i) {
                 this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.PhaseSupportHou = l;
-    var u = function (t) {
+    e.PhaseSupportHou = u;
+    var l = function (t) {
             function e(e, i, n, o, r) {
                 void 0 === r && (r = 0);
                 var s = t.call(this) || this;

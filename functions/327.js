@@ -43,10 +43,10 @@ const function327 = function (t, e, i) {
                     var r = i[n],
                         a = s.ObjUtil.getNumber(r, "api_id"),
                         _ = s.ObjUtil.getNumber(r, "api_fuel"),
-                        l = s.ObjUtil.getNumber(r, "api_bull"),
-                        u = s.ObjUtil.getNumArray(r, "api_onslot", []),
+                        u = s.ObjUtil.getNumber(r, "api_bull"),
+                        l = s.ObjUtil.getNumArray(r, "api_onslot", []),
                         c = o.default.model.ship.get(a);
-                    c.__updateFuel__(_), c.__updateAmmo__(l), c.__updateOnSlot__(u)
+                    c.__updateFuel__(_), c.__updateAmmo__(u), c.__updateOnSlot__(l)
                 }
                 var h = s.ObjUtil.getNumber(this._raw_data, "api_use_bou");
                 this._usedBauxite = !!h, t.prototype._completedEnd.call(this)

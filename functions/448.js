@@ -51,10 +51,10 @@ const function448 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.CutinCanvasFunnel = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._telop_bg = new PIXI.Sprite, e._telop_bg.anchor.set(.5), e._laser_effect = new u, e._laser_effect.visible = !1, e._ship = new PIXI.Sprite, e._ship.alpha = 0, e._ship_mask = new PIXI.Graphics, e._plane1 = new s.Sprite, e._plane2 = new s.Sprite, e._plane3 = new s.Sprite, e.addChild(e._telop_bg), e.addChild(e._plane3), e.addChild(e._laser_effect), e.addChild(e._ship), e.addChild(e._ship_mask), e.addChild(e._plane2), e.addChild(e._plane1), e
+            return e._telop_bg = new PIXI.Sprite, e._telop_bg.anchor.set(.5), e._laser_effect = new l, e._laser_effect.visible = !1, e._ship = new PIXI.Sprite, e._ship.alpha = 0, e._ship_mask = new PIXI.Graphics, e._plane1 = new s.Sprite, e._plane2 = new s.Sprite, e._plane3 = new s.Sprite, e.addChild(e._telop_bg), e.addChild(e._plane3), e.addChild(e._laser_effect), e.addChild(e._ship), e.addChild(e._ship_mask), e.addChild(e._plane2), e.addChild(e._plane1), e
         }
         return n(e, t), Object.defineProperty(e.prototype, "telop_bg", {
             get: function () {
@@ -102,8 +102,8 @@ const function448 = function (t, e, i) {
             this._ship_mask.beginFill(16711680, .3), 1 == t ? (this._telop_bg.texture = PIXI.Texture.fromFrame("battle_telop_kkcutin_f"), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height), new PIXI.Point(o.default.width / 4 * 3, o.default.height), new PIXI.Point(0, o.default.height / 3 * 2)])) : (this._telop_bg.texture = PIXI.Texture.fromFrame("battle_telop_kkcutin_e"), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height / 3 * 2), new PIXI.Point(o.default.width / 4, o.default.height), new PIXI.Point(0, o.default.height)])), this._ship_mask.endFill()
         }, e
     }(PIXI.Container);
-    e.CutinCanvasFunnelOnce = l;
-    var u = function (t) {
+    e.CutinCanvasFunnelOnce = u;
+    var l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.lineStyle(2.6, 65535), e.moveTo(24, 198), e.lineTo(-420, -105), e.moveTo(90, 174), e.lineTo(-90, -200), e.moveTo(177, 177), e.lineTo(420, -195), e

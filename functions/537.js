@@ -6,7 +6,7 @@ const function537 = function (t, e, i) {
         if (1 == isNaN(i)) {
             if ("tutorial" != t) {
                 var n = parseInt(e, 10);
-                e = l.MathUtil.zeroPadding(n, 3)
+                e = u.MathUtil.zeroPadding(n, 3)
             }
             return a.default.settings.path_root + "resources/voice/" + t + "/" + e + ".mp3"
         }
@@ -15,9 +15,9 @@ const function537 = function (t, e, i) {
         var r = t,
             s = e;
         if (9997 != i && 9998 != i && 9999 != i) {
-            var u = a.default.model.ship_graph.get(t);
-            if (null == u) return;
-            r = u.unique_key;
+            var l = a.default.model.ship_graph.get(t);
+            if (null == l) return;
+            r = l.unique_key;
             var c = _,
                 n = parseInt(e);
             s = n <= 53 ? (17 * (i + 7) * c.voice[n - 1] % 99173 + 1e5).toString() : e
@@ -29,7 +29,7 @@ const function537 = function (t, e, i) {
         var i = parseInt(t, 10);
         if (1 == isNaN(i)) return "1";
         var n = parseInt(e, 10);
-        return u.VersionUtil.get(3, i, n)
+        return l.VersionUtil.get(3, i, n)
     }
 
     function r(t, e) {
@@ -59,8 +59,8 @@ const function537 = function (t, e, i) {
     });
     var a = i(0),
         _ = i(264),
-        l = i(24),
-        u = i(79),
+        u = i(23),
+        l = i(79),
         c = i(538),
         h = function () {
             function t() {

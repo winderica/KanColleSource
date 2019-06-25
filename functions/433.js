@@ -262,8 +262,8 @@ const function433 = function (t, e, i) {
                         for (var s = 0; s < r.length; s++) {
                             var a = new o.FormationPoint,
                                 _ = r[s][0],
-                                l = r[s][1];
-                            a.position.set(_, l), a.initialize(this._friend), a.visible = !1, this.addChild(a), this._points.push(a)
+                                u = r[s][1];
+                            a.position.set(_, u), a.initialize(this._friend), a.visible = !1, this.addChild(a), this._points.push(a)
                         }
                     }
                 }

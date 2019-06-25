@@ -33,11 +33,11 @@ const function557 = function (t, e, i) {
             return n && e.appendChild(t.c.createTextNode(n)), e
         }
 
-        function l(t, e, i) {
+        function u(t, e, i) {
             t = t.c.getElementsByTagName(e)[0], t || (t = document.documentElement), t.insertBefore(i, t.lastChild)
         }
 
-        function u(t) {
+        function l(t) {
             t.parentNode && t.parentNode.removeChild(t)
         }
 
@@ -89,7 +89,7 @@ const function557 = function (t, e, i) {
                 o = !0, s = Error("Stylesheet failed to load"), n()
             }) : setTimeout(function () {
                 o = !0, n()
-            }, 0), l(t, "head", e)
+            }, 0), u(t, "head", e)
         }
 
         function f(t, e, i, n) {
@@ -115,15 +115,15 @@ const function557 = function (t, e, i) {
         function m(t) {
             return t.a++,
                 function () {
-                    t.a--, g(t)
+                    t.a--, v(t)
                 }
         }
 
-        function v(t, e) {
-            t.c = e, g(t)
+        function g(t, e) {
+            t.c = e, v(t)
         }
 
-        function g(t) {
+        function v(t) {
             0 == t.a && t.c && (t.c(), t.c = null)
         }
 
@@ -192,7 +192,7 @@ const function557 = function (t, e, i) {
             this.c = {}
         }
 
-        function E(t, e, i) {
+        function j(t, e, i) {
             var n, o = [];
             for (n in e)
                 if (e.hasOwnProperty(n)) {
@@ -201,14 +201,14 @@ const function557 = function (t, e, i) {
                 } return o
         }
 
-        function j(t, e) {
+        function E(t, e) {
             this.c = t, this.f = e, this.a = _(this.c, "span", {
                 "aria-hidden": "true"
             }, this.f)
         }
 
         function N(t) {
-            l(t.c, "body", t.a)
+            u(t.c, "body", t.a)
         }
 
         function L(t) {
@@ -220,7 +220,7 @@ const function557 = function (t, e, i) {
         }
 
         function R(t, e, i, n, o, r, s) {
-            this.v = t, this.B = e, this.c = i, this.a = n, this.s = s || "BESbswy", this.f = {}, this.w = o || 3e3, this.u = r || null, this.m = this.j = this.h = this.g = null, this.g = new j(this.c, this.s), this.h = new j(this.c, this.s), this.j = new j(this.c, this.s), this.m = new j(this.c, this.s), t = new w(this.a.c + ",serif", T(this.a)), t = L(t), this.g.a.style.cssText = t, t = new w(this.a.c + ",sans-serif", T(this.a)), t = L(t), this.h.a.style.cssText = t, t = new w("serif", T(this.a)), t = L(t), this.j.a.style.cssText = t, t = new w("sans-serif", T(this.a)), t = L(t), this.m.a.style.cssText = t, N(this.g), N(this.h), N(this.j), N(this.m)
+            this.v = t, this.B = e, this.c = i, this.a = n, this.s = s || "BESbswy", this.f = {}, this.w = o || 3e3, this.u = r || null, this.m = this.j = this.h = this.g = null, this.g = new E(this.c, this.s), this.h = new E(this.c, this.s), this.j = new E(this.c, this.s), this.m = new E(this.c, this.s), t = new w(this.a.c + ",serif", T(this.a)), t = L(t), this.g.a.style.cssText = t, t = new w(this.a.c + ",sans-serif", T(this.a)), t = L(t), this.h.a.style.cssText = t, t = new w("serif", T(this.a)), t = L(t), this.j.a.style.cssText = t, t = new w("sans-serif", T(this.a)), t = L(t), this.m.a.style.cssText = t, N(this.g), N(this.h), N(this.j), N(this.m)
         }
 
         function D() {
@@ -251,7 +251,7 @@ const function557 = function (t, e, i) {
 
         function V(t, e) {
             setTimeout(s(function () {
-                u(this.g.a), u(this.h.a), u(this.j.a), u(this.m.a), e(this.a)
+                l(this.g.a), l(this.h.a), l(this.j.a), l(this.m.a), e(this.a)
             }, t), 0)
         }
 
@@ -275,21 +275,21 @@ const function557 = function (t, e, i) {
                 if (0 === i.length && r) M(e.a);
                 else {
                     e.f += i.length, r && (e.j = r);
-                    var _, l = [];
+                    var _, u = [];
                     for (_ = 0; _ < i.length; _++) {
-                        var u = i[_],
-                            h = a[u.c],
+                        var l = i[_],
+                            h = a[l.c],
                             p = e.a,
-                            d = u;
+                            d = l;
                         if (p.g && c(p.f, [p.a.c("wf", d.c, T(d).toString(), "loading")]), S(p, "fontloading", d), p = null, null === _t)
                             if (window.FontFace) {
                                 var d = /Gecko.*Firefox\/(\d+)/.exec(window.navigator.userAgent),
                                     f = /OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent) && /Apple/.exec(window.navigator.vendor);
                                 _t = d ? 42 < parseInt(d[1], 10) : !f
                             } else _t = !1;
-                        p = _t ? new B(s(e.g, e), s(e.h, e), e.c, u, e.s, h) : new R(s(e.g, e), s(e.h, e), e.c, u, e.s, t, h), l.push(p)
+                        p = _t ? new B(s(e.g, e), s(e.h, e), e.c, l, e.s, h) : new R(s(e.g, e), s(e.h, e), e.c, l, e.s, t, h), u.push(p)
                     }
-                    for (_ = 0; _ < l.length; _++) l[_].start()
+                    for (_ = 0; _ < u.length; _++) u[_].start()
                 }
             }, 0)
         }
@@ -298,7 +298,7 @@ const function557 = function (t, e, i) {
             var n = [],
                 o = i.timeout;
             k(e);
-            var n = E(t.a, i, t.c),
+            var n = j(t.a, i, t.c),
                 r = new z(t.c, e, o);
             for (t.h = n.length, e = 0, i = n.length; e < i; e++) n[e].load(function (e, i, n) {
                 Y(t, r, e, i, n)
@@ -314,7 +314,7 @@ const function557 = function (t, e, i) {
         }
 
         function J(t, e) {
-            this.c = t || lt, this.a = [], this.f = [], this.g = e || ""
+            this.c = t || ut, this.a = [], this.f = [], this.g = e || ""
         }
 
         function Z(t, e) {
@@ -345,23 +345,23 @@ const function557 = function (t, e, i) {
                 if (2 <= n.length) {
                     var s, a = n[1];
                     if (s = [], a)
-                        for (var a = a.split(","), _ = a.length, l = 0; l < _; l++) {
-                            var u;
-                            if (u = a[l], u.match(/^[\w-]+$/)) {
-                                var c = pt.exec(u.toLowerCase());
-                                if (null == c) u = "";
+                        for (var a = a.split(","), _ = a.length, u = 0; u < _; u++) {
+                            var l;
+                            if (l = a[u], l.match(/^[\w-]+$/)) {
+                                var c = pt.exec(l.toLowerCase());
+                                if (null == c) l = "";
                                 else {
-                                    if (u = c[2], u = null == u || "" == u ? "n" : ht[u], null == (c = c[1]) || "" == c) c = "4";
+                                    if (l = c[2], l = null == l || "" == l ? "n" : ht[l], null == (c = c[1]) || "" == c) c = "4";
                                     else var h = ct[c],
                                         c = h || (isNaN(c) ? "4" : c.substr(0, 1));
-                                    u = [u, c].join("")
+                                    l = [l, c].join("")
                                 }
-                            } else u = "";
-                            u && s.push(u)
+                            } else l = "";
+                            l && s.push(l)
                         }
-                    0 < s.length && (r = s), 3 == n.length && (n = n[2], s = [], n = n ? n.split(",") : s, 0 < n.length && (n = ut[n[0]]) && (t.c[o] = n))
+                    0 < s.length && (r = s), 3 == n.length && (n = n[2], s = [], n = n ? n.split(",") : s, 0 < n.length && (n = lt[n[0]]) && (t.c[o] = n))
                 }
-                for (t.c[o] || (n = ut[o]) && (t.c[o] = n), n = 0; n < r.length; n += 1) t.a.push(new w(o, r[n]))
+                for (t.c[o] || (n = lt[o]) && (t.c[o] = n), n = 0; n < r.length; n += 1) t.a.push(new w(o, r[n]))
             }
         }
 
@@ -465,14 +465,14 @@ const function557 = function (t, e, i) {
             var a = [];
             for (e = 0, i = o.length; e < i; e++)
                 if (n = o[e].split(":"), n[1])
-                    for (var _ = n[1].split(","), l = 0; l < _.length; l += 1) a.push(new w(n[0], _[l]));
+                    for (var _ = n[1].split(","), u = 0; u < _.length; u += 1) a.push(new w(n[0], _[u]));
                 else a.push(new w(n[0]));
-            v(s, function () {
+            g(s, function () {
                 t(a, r)
             })
         };
-        var lt = "https://fonts.googleapis.com/css",
-            ut = {
+        var ut = "https://fonts.googleapis.com/css",
+            lt = {
                 latin: "BESbswy",
                 "latin-ext": "\xe7\xf6\xfc\u011f\u015f",
                 cyrillic: "\u0439\u044f\u0416",
@@ -524,7 +524,7 @@ const function557 = function (t, e, i) {
                 o = this.a.families;
             Z(n, o);
             var r = new $(o);
-            tt(r), d(i, Q(n), m(e)), v(e, function () {
+            tt(r), d(i, Q(n), m(e)), g(e, function () {
                 t(r.a, r.c, dt)
             })
         }, it.prototype.load = function (t) {

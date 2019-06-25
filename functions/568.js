@@ -24,8 +24,8 @@ const function568 = function (t, e, i) {
         s = i(273),
         a = i(569),
         _ = i(571),
-        l = i(576),
-        u = i(577),
+        u = i(576),
+        l = i(577),
         c = i(276),
         h = i(6),
         p = function (t) {
@@ -63,9 +63,9 @@ const function568 = function (t, e, i) {
                     var _ = !1;
                     if (0 == n.children.length ? _ = !0 : (n.id != t || n._data.model.reloadFlag) && (_ = !0, n.removeChildren()), _) {
                         n._id = t;
-                        var l = n._data.currentStateName,
-                            u = n._data.model.getState(l);
-                        n._reCreate(u)
+                        var u = n._data.currentStateName,
+                            l = n._data.model.getState(u);
+                        n._reCreate(l)
                     }
                 })
             }, e.prototype.restart = function () {
@@ -103,9 +103,9 @@ const function568 = function (t, e, i) {
                                 var _ = a.split(":");
                                 if (_.length > 1) {
                                     a = _[0];
-                                    var l = parseFloat(_[1]),
-                                        u = 100 * Math.random();
-                                    u < l && (this._data.setAnimationState(2, a), this._updateFurnitureLayers())
+                                    var u = parseFloat(_[1]),
+                                        l = 100 * Math.random();
+                                    l < u && (this._data.setAnimationState(2, a), this._updateFurnitureLayers())
                                 } else this._data.setAnimationState(2, a), this._updateFurnitureLayers()
                             }
                         }
@@ -153,15 +153,15 @@ const function568 = function (t, e, i) {
                     for (var e = t.layers, i = 0; i < e.length; i++) {
                         var n = e[i],
                             o = n.frames[0],
-                            r = (o.filename, new l.FurnitureLayer(n));
+                            r = (o.filename, new u.FurnitureLayer(n));
                         this._sprites.push(r), this._setOffset(r, o), this.addChild(r)
                     }
                     var a = t.hitArea;
                     if (null != a) {
                         var _ = this._getTextureByName(a.filename);
                         this._hitAreaLayer = new PIXI.Sprite(_), this._hitAreaLayer.interactive = !0, this._setOffsetBase(this._hitAreaLayer);
-                        var u = a.offset;
-                        u && (this._hitAreaLayer.x += u[0], this._hitAreaLayer.y += u[1]), this._hitAreaLayer.alpha = s.FurnitureConst.HIT_ALPHA, this.addChild(this._hitAreaLayer)
+                        var l = a.offset;
+                        l && (this._hitAreaLayer.x += l[0], this._hitAreaLayer.y += l[1]), this._hitAreaLayer.alpha = s.FurnitureConst.HIT_ALPHA, this.addChild(this._hitAreaLayer)
                     }
                 }
             }, e.prototype._execFrameAction = function (t) {
@@ -192,7 +192,7 @@ const function568 = function (t, e, i) {
             }, e.prototype._openPopup = function (t) {
                 var e = this,
                     i = t.getPopupOption();
-                null != i && null == this._popupLayer && 0 == r.default.scene.now && (r.default.scene.isChangingNow() || 1 != r.default.friendlyRequest.UI && (this._popupLayer = new u.FurniturePopupLayer(i), r.default.view.overLayer.addChild(this._popupLayer), this._popupLayer.show(function () {
+                null != i && null == this._popupLayer && 0 == r.default.scene.now && (r.default.scene.isChangingNow() || 1 != r.default.friendlyRequest.UI && (this._popupLayer = new l.FurniturePopupLayer(i), r.default.view.overLayer.addChild(this._popupLayer), this._popupLayer.show(function () {
                     e._removePopup()
                 })))
             }, e.prototype._removePopup = function () {

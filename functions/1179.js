@@ -5,5 +5,5 @@ const function1179 = function (t, e, i) {
         }),
         function (t) {
             for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-        }(i(407))
+        }(i(1180))
 }

@@ -4,7 +4,7 @@ const function473 = function (t, e, i) {
         value: !0
     });
     var n = i(7),
-        o = i(1427),
+        o = i(1428),
         r = function () {
             function t(t) {
                 this._o = t
@@ -87,9 +87,9 @@ const function473 = function (t, e, i) {
                     var s = r[i],
                         a = parseInt(n.ObjUtil.getString(s, "api_type")),
                         _ = parseInt(n.ObjUtil.getString(s, "api_boss_ship_id")),
-                        l = n.ObjUtil.getString(s, "api_class_name"),
-                        u = n.ObjUtil.getString(s, "api_ship_name"),
-                        c = new o.BossModel(a, _, l, u),
+                        u = n.ObjUtil.getString(s, "api_class_name"),
+                        l = n.ObjUtil.getString(s, "api_ship_name"),
+                        c = new o.BossModel(a, _, u, l),
                         h = n.ObjUtil.getString(s, "api_voice_id"),
                         p = n.ObjUtil.getString(s, "api_message");
                     c.setMessage(h, p);

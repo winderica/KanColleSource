@@ -19,16 +19,34 @@ const function725 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(726),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/preset_deck", e
+    var o = i(0),
+        r = i(2),
+        s = i(14),
+        a = i(217),
+        _ = i(726),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (this._scene.finalize(), s.UIImageLoader.clearMemoryCache("organize"), this._isChangeListStatus()) {
+                    var e = a.OrganizeSceneMemory.filterStatus,
+                        i = a.OrganizeSceneMemory.japanese;
+                    new _.UpdateListStatusAPI(e, i).start(function () {
+                        o.default.model.basic.updateOrganizeListSetting(e, i), t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._isChangeListStatus = function () {
+                if (o.default.model.basic.isJapaneseOrganizeList() != a.OrganizeSceneMemory.japanese) return !0;
+                var t = o.default.model.basic.getFilterStatusOrganizeList(),
+                    e = a.OrganizeSceneMemory.filterStatus;
+                if (t.length != e.length) return !0;
+                for (var i = 0; i < t.length; i++)
+                    if (t[i] != e[i]) return !0;
+                return !1
             }, e
-        }(o.APIBase);
-    e.PresetDeckAPI = s
+        }(r.TaskBase);
+    e.FinalizeTask = u
 }

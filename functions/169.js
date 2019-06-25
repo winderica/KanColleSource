@@ -15,8 +15,8 @@ const function169 = function (t, e, i) {
                     a = o.memID,
                     _ = new t(e, i, n, s, a, o.level, o.speed);
                 _.initializeHPInfo(o.hpNow, o.hpMax);
-                for (var l = r.SlotitemModelReplica.converts(o.getSlotitems()), u = r.SlotitemModelReplica.convert(o.getSlotitemEx()), c = new Array, h = 0; h < o.slotNum; h++) c.push(o.getSlotitemTousai(h));
-                return _.initializeSlots(l, u, c), _.initializeParams(o.karyoku, o.raisou, o.taiku, o.soukou), _
+                for (var u = r.SlotitemModelReplica.converts(o.getSlotitems()), l = r.SlotitemModelReplica.convert(o.getSlotitemEx()), c = new Array, h = 0; h < o.slotNum; h++) c.push(o.getSlotitemTousai(h));
+                return _.initializeSlots(u, l, c), _.initializeParams(o.karyoku, o.raisou, o.taiku, o.soukou), _
             }, Object.defineProperty(t.prototype, "type", {
                 get: function () {
                     return this._type
@@ -280,9 +280,9 @@ const function169 = function (t, e, i) {
                 var a = null;
                 if (null != this._tousai) {
                     a = new Array;
-                    for (var _ = 0, l = this._tousai; _ < l.length; _++) {
-                        var u = l[_];
-                        a.push(u)
+                    for (var _ = 0, u = this._tousai; _ < u.length; _++) {
+                        var l = u[_];
+                        a.push(l)
                     }
                 }
                 return e.initializeSlots(i, s, a), e.initializeParams(this._karyoku, this._raisou, this.taiku, this._soukou), e.initializeTaihi(this._taihi), e

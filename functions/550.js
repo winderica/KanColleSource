@@ -12,9 +12,9 @@ const function550 = function (t, e, i) {
                 _ = -1 === a.indexOf("]=") ? a.indexOf("=") : a.indexOf("]=") + 1;
             if (-1 === _) i[n.decode(a)] = "";
             else {
-                var l = n.decode(a.slice(0, _)),
-                    u = n.decode(a.slice(_ + 1));
-                i.hasOwnProperty(l) ? i[l] = [].concat(i[l]).concat(u) : i[l] = u
+                var u = n.decode(a.slice(0, _)),
+                    l = n.decode(a.slice(_ + 1));
+                i.hasOwnProperty(u) ? i[u] = [].concat(i[u]).concat(l) : i[u] = l
             }
         }
         return i
@@ -46,9 +46,9 @@ const function550 = function (t, e, i) {
         if ("" === t || null === t || void 0 === t) return {};
         e = e || {}, e.delimiter = "string" == typeof e.delimiter || n.isRegExp(e.delimiter) ? e.delimiter : o.delimiter, e.depth = "number" == typeof e.depth ? e.depth : o.depth, e.arrayLimit = "number" == typeof e.arrayLimit ? e.arrayLimit : o.arrayLimit, e.parameterLimit = "number" == typeof e.parameterLimit ? e.parameterLimit : o.parameterLimit;
         for (var i = "string" == typeof t ? o.parseValues(t, e) : t, r = {}, s = Object.keys(i), a = 0, _ = s.length; a < _; ++a) {
-            var l = s[a],
-                u = o.parseKeys(l, i[l], e);
-            r = n.merge(r, u)
+            var u = s[a],
+                l = o.parseKeys(u, i[u], e);
+            r = n.merge(r, l)
         }
         return n.compact(r)
     }

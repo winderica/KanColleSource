@@ -24,11 +24,11 @@ const function447 = function (t, e, i) {
         s = i(44),
         a = i(2),
         _ = i(29),
-        l = i(6),
-        u = i(142),
+        u = i(6),
+        l = i(142),
         c = i(448),
         h = i(448),
-        p = i(1353),
+        p = i(1354),
         d = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -69,9 +69,9 @@ const function447 = function (t, e, i) {
                         o = t.mst_id,
                         r = t.isDamaged();
                     i = 0 == e ? s.PlaneConst.getPlaneType(!0) : s.PlaneConst.getJetPlaneType();
-                    for (var a = t.slots, _ = new Array, l = 0; l < a.length; l++) {
-                        var u = a[l];
-                        null != u && (i.indexOf(u.equipTypeSp) >= 0 && _.push(u.mst_id))
+                    for (var a = t.slots, _ = new Array, u = 0; u < a.length; u++) {
+                        var l = a[u];
+                        null != l && (i.indexOf(l.equipTypeSp) >= 0 && _.push(l.mst_id))
                     }
                     _.length >= 3 ? this.addCutin(n, o, r, _[0], _[1], _[2]) : 2 == _.length ? this.addCutin(n, o, r, _[0], _[1]) : 1 == _.length ? this.addCutin(n, o, r, _[0]) : this.addCutin(n, o, r, -1)
                 }
@@ -95,21 +95,21 @@ const function447 = function (t, e, i) {
     e.CutinFunnel = d;
     var f = function (t) {
         function e(e, i, n, s, a, _) {
-            var u = t.call(this) || this;
-            return u._anim2 = function () {
+            var l = t.call(this) || this;
+            return l._anim2 = function () {
                 var t = function (t, e, i) {
-                        u._view.laser_effect.position.set(t, e), u._view.laser_effect.rotation = i / 180 * Math.PI
+                        l._view.laser_effect.position.set(t, e), l._view.laser_effect.rotation = i / 180 * Math.PI
                     },
-                    e = u._friend ? 1 : -1;
-                u._view.laser_effect.scale.x = e, t(o.default.width / 2 - 330 * e, 150, 9), u._view.laser_effect.visible = !0, l.SE.play("111"), createjs.Tween.get(null).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(function () {
-                    u._view.laser_effect.visible = !1
-                }).wait(100).call(u._anim3)
-            }, u._anim3 = function () {
-                1 == u._friend && r.default.sound.voice.playAtRandom(u._ship_mstid.toString(), [15, 17], [50, 50]), u._tweens = new Array;
+                    e = l._friend ? 1 : -1;
+                l._view.laser_effect.scale.x = e, t(o.default.width / 2 - 330 * e, 150, 9), l._view.laser_effect.visible = !0, u.SE.play("111"), createjs.Tween.get(null).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(t, [o.default.width / 2 - 315 * e, 144, 2 * e]).wait(33).call(t, [o.default.width / 2 - 330 * e, 150, 0]).wait(33).call(function () {
+                    l._view.laser_effect.visible = !1
+                }).wait(100).call(l._anim3)
+            }, l._anim3 = function () {
+                1 == l._friend && r.default.sound.voice.playAtRandom(l._ship_mstid.toString(), [15, 17], [50, 50]), l._tweens = new Array;
                 var t;
-                u._plane1 > 0 && (t = u._createTweenPlane1(), u._tweens.push(t), t.call(u._onComplete, [t])), u._plane2 > 0 && (t = u._createTweenPlane2(), u._tweens.push(t), t.call(u._onComplete, [t])), u._plane3 > 0 && (t = u._createTweenPlane3(), u._tweens.push(t), t.call(u._onComplete, [t]));
+                l._plane1 > 0 && (t = l._createTweenPlane1(), l._tweens.push(t), t.call(l._onComplete, [t])), l._plane2 > 0 && (t = l._createTweenPlane2(), l._tweens.push(t), t.call(l._onComplete, [t])), l._plane3 > 0 && (t = l._createTweenPlane3(), l._tweens.push(t), t.call(l._onComplete, [t]));
                 var e;
-                e = u._friend ? {
+                e = l._friend ? {
                     x: -606,
                     y: -252,
                     alpha: 0
@@ -117,11 +117,11 @@ const function447 = function (t, e, i) {
                     x: 1049,
                     y: -251,
                     alpha: 0
-                }, t = createjs.Tween.get(u.view.ship).wait(900).to(e, 200), u._tweens.push(t), t.call(u._onComplete, [t])
-            }, u._onComplete = function (t) {
-                var e = u._tweens.indexOf(t);
-                e >= 0 && u._tweens.splice(e, 1), 0 == u._tweens.length && u._endTask()
-            }, u._friend = e, u._ship_mstid = i, u._ship_damaged = n, u._plane1 = s, u._plane2 = a, u._plane3 = _, u._view = new h.CutinCanvasFunnelOnce, u._preload_task = new p.PreloadCutinFunnel(i, n, s, a, _), u
+                }, t = createjs.Tween.get(l.view.ship).wait(900).to(e, 200), l._tweens.push(t), t.call(l._onComplete, [t])
+            }, l._onComplete = function (t) {
+                var e = l._tweens.indexOf(t);
+                e >= 0 && l._tweens.splice(e, 1), 0 == l._tweens.length && l._endTask()
+            }, l._friend = e, l._ship_mstid = i, l._ship_damaged = n, l._plane1 = s, l._plane2 = a, l._plane3 = _, l._view = new h.CutinCanvasFunnelOnce, l._preload_task = new p.PreloadCutinFunnel(i, n, s, a, _), l
         }
         return n(e, t), Object.defineProperty(e.prototype, "friend", {
             get: function () {
@@ -170,11 +170,11 @@ const function447 = function (t, e, i) {
             }, createjs.Tween.get(this._view.ship).wait(200).to(t, 200).call(this._anim2)
         }, e.prototype._createTweenPlane1 = function () {
             var t = this._friend ? 1 : -1,
-                e = new u.Plane;
+                e = new l.Plane;
             e.initialize(this._plane1, this._friend);
             var i = this._view.plane1;
             return i.addChild(e), i.position.set(o.default.width / 2 - 926 * t, 411), i.scale.set(1.52), i.visible = !1, createjs.Tween.get(this._view.plane1).wait(200).call(function () {
-                e.activate(), i.visible = !0, l.SE.play("107")
+                e.activate(), i.visible = !0, u.SE.play("107")
             }).to({
                 x: o.default.width / 2 - 563 * t,
                 y: 666,
@@ -186,7 +186,7 @@ const function447 = function (t, e, i) {
                 scaleX: 1,
                 scaleY: 1
             }, 200).wait(500).call(function () {
-                l.SE.play("115")
+                u.SE.play("115")
             }).to({
                 x: o.default.width / 2 + 809 * t,
                 y: 525
@@ -195,10 +195,10 @@ const function447 = function (t, e, i) {
             })
         }, e.prototype._createTweenPlane2 = function () {
             var t = this._friend ? 1 : -1,
-                e = new u.Plane;
+                e = new l.Plane;
             e.initialize(this._plane2, this._friend);
             var i = this._view.plane2;
-            return i.addChild(e), i.position.set(o.default.width / 2 - 780 * t, 459), i.scale.set(1.16), e.activate(), l.SE.play("107"), createjs.Tween.get(this._view.plane2).to({
+            return i.addChild(e), i.position.set(o.default.width / 2 - 780 * t, 459), i.scale.set(1.16), e.activate(), u.SE.play("107"), createjs.Tween.get(this._view.plane2).to({
                 x: o.default.width / 2 - 453 * t,
                 y: 626,
                 scaleX: .93,
@@ -209,7 +209,7 @@ const function447 = function (t, e, i) {
                 scaleX: .88,
                 scaleY: .88
             }, 200).wait(1e3).call(function () {
-                l.SE.play("115")
+                u.SE.play("115")
             }).to({
                 x: o.default.width / 2 + 840 * t,
                 y: 405
@@ -218,18 +218,18 @@ const function447 = function (t, e, i) {
             })
         }, e.prototype._createTweenPlane3 = function () {
             var t = this._friend ? 1 : -1,
-                e = new u.Plane;
+                e = new l.Plane;
             e.initialize(this._plane3, this._friend);
             var i = this._view.plane3;
             return i.addChild(e), i.position.set(o.default.width / 2 - 618 * t, -221), i.scale.set(.87), i.visible = !1, createjs.Tween.get(this._view.plane3).wait(100).call(function () {
-                e.activate(), i.visible = !0, l.SE.play("107")
+                e.activate(), i.visible = !0, u.SE.play("107")
             }).to({
                 x: o.default.width / 2 - 30 * t,
                 y: 98,
                 scaleX: .6,
                 scaleY: .6
             }, 400).wait(500).call(function () {
-                l.SE.play("115")
+                u.SE.play("115")
             }).to({
                 x: o.default.width / 2 + 900 * t,
                 y: 23

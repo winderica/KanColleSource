@@ -24,8 +24,8 @@ const function402 = function (t, e, i) {
         s = i(13),
         a = i(25),
         _ = i(67),
-        l = i(14),
-        u = i(2),
+        u = i(14),
+        l = i(2),
         c = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -41,14 +41,14 @@ const function402 = function (t, e, i) {
                 this._task.add(new f(t))
             }, e.prototype._start = function () {
                 var t = this,
-                    e = new l.UIImageLoader("common");
+                    e = new u.UIImageLoader("common");
                 e.add("common_selectable_reward.json"), e.load(function () {
                     t._task.start(function () {
                         t._endTask()
                     })
                 })
             }, e
-        }(u.TaskBase);
+        }(l.TaskBase);
     e.TaskLoadResources = c;
     var h = function (t) {
             function e(e) {
@@ -62,7 +62,7 @@ const function402 = function (t, e, i) {
                     t._endTask()
                 })
             }, e
-        }(u.TaskBase),
+        }(l.TaskBase),
         p = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -75,7 +75,7 @@ const function402 = function (t, e, i) {
                     t._endTask()
                 })
             }, e
-        }(u.TaskBase),
+        }(l.TaskBase),
         d = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -88,7 +88,7 @@ const function402 = function (t, e, i) {
                     t._endTask()
                 })
             }, e
-        }(u.TaskBase),
+        }(l.TaskBase),
         f = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -101,5 +101,5 @@ const function402 = function (t, e, i) {
                     t._endTask()
                 })
             }, e
-        }(u.TaskBase)
+        }(l.TaskBase)
 }

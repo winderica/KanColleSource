@@ -59,7 +59,7 @@ const function510 = function (t, e, i) {
             }, t
         }();
     e.MapModelHolder = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             return t.call(this) || this
         }
@@ -89,5 +89,5 @@ const function510 = function (t, e, i) {
                 }
         }, e
     }(_);
-    e.MapModelHolderEdit = l
+    e.MapModelHolderEdit = u
 }

@@ -21,10 +21,10 @@ const function597 = function (t, e, i) {
     });
     var o = i(0),
         r = i(4),
-        s = i(32),
+        s = i(33),
         a = i(9),
         _ = i(152),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 return t.call(this) || this
             }
@@ -77,7 +77,7 @@ const function597 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e) {
-                for (this._ship_canvas = new PIXI.Container, this._ship_canvas.position.set(587, -12), this._ship_canvas.scale.set(.8), this._bg = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(0)), this._expedition_name = new r.TextBox(24, 1949120), this._expedition_name.anchor.set(.5, .5), this._expedition_name.position.set(600, 66), this._user_info = new u, this._user_info.initialize(t, e), this._user_info.position.set(86, 111), this._banner_canvas = new PIXI.Container, this._banner_canvas.position.set(305, 279), this._banners = new Array; this._banners.length < 6;) {
+                for (this._ship_canvas = new PIXI.Container, this._ship_canvas.position.set(587, -12), this._ship_canvas.scale.set(.8), this._bg = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(0)), this._expedition_name = new r.TextBox(24, 1949120), this._expedition_name.anchor.set(.5, .5), this._expedition_name.position.set(600, 66), this._user_info = new l, this._user_info.initialize(t, e), this._user_info.position.set(86, 111), this._banner_canvas = new PIXI.Container, this._banner_canvas.position.set(305, 279), this._banners = new Array; this._banners.length < 6;) {
                     var i = new s.ShipBanner;
                     this._banner_canvas.addChild(i), this._banners.push(i)
                 }
@@ -90,8 +90,8 @@ const function597 = function (t, e, i) {
                 this._banners = null, this._infos.dispose(), this._infos = null, this._bonus.dispose(), this._bonus = null, this._item.dispose(), this._item = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.ExpeditionResult = l;
-    var u = function (t) {
+    e.ExpeditionResult = u;
+    var l = function (t) {
             function e() {
                 return t.call(this) || this
             }
@@ -169,11 +169,11 @@ const function597 = function (t, e, i) {
                     n = new PIXI.Sprite(a.COMMON_MISC.getTexture(87)),
                     o = new PIXI.Sprite(a.COMMON_MISC.getTexture(88)),
                     s = new PIXI.Sprite(a.COMMON_MISC.getTexture(89)),
-                    l = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(16)),
                     u = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(16)),
+                    l = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(16)),
                     c = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(16)),
                     h = new PIXI.Sprite(_.COMMON_EXPEDITION.getTexture(16));
-                this._item1_name = new r.TextBox(21, 16774898), this._item1_img = new PIXI.Sprite, this._item1_count = new r.TextBox(19, 16774898), this._item2_name = new r.TextBox(21, 16774898), this._item2_img = new PIXI.Sprite, this._item2_count = new r.TextBox(19, 16774898), this._fuel = new r.TextBox(18, 16774898), this._ammo = new r.TextBox(18, 16774898), this._steel = new r.TextBox(18, 16774898), this._baux = new r.TextBox(18, 16774898), t.position.set(-324, 105), t.scale.set(1, 1.2), e.position.set(-303, 117), s.position.set(69, 153), o.position.set(69, 186), n.position.set(69, 219), i.position.set(69, 252), h.position.set(102, 159), c.position.set(102, 192), u.position.set(102, 225), l.position.set(102, 258), this._item1_name.position.set(-299, 156), this._item1_img.position.set(-299, 195), this._item1_count.position.set(-215, 234), this._item2_name.position.set(-114, 156), this._item2_img.position.set(-114, 195), this._item2_count.position.set(-30, 234), this._baux.position.set(123, 155), this._steel.position.set(123, 188), this._ammo.position.set(123, 221), this._fuel.position.set(123, 254), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(o), this.addChild(s), this.addChild(l), this.addChild(u), this.addChild(c), this.addChild(h), this.addChild(this._item1_name), this.addChild(this._item1_img), this.addChild(this._item1_count), this.addChild(this._item2_name), this.addChild(this._item2_img), this.addChild(this._item2_count), this.addChild(this._fuel), this.addChild(this._ammo), this.addChild(this._steel), this.addChild(this._baux)
+                this._item1_name = new r.TextBox(21, 16774898), this._item1_img = new PIXI.Sprite, this._item1_count = new r.TextBox(19, 16774898), this._item2_name = new r.TextBox(21, 16774898), this._item2_img = new PIXI.Sprite, this._item2_count = new r.TextBox(19, 16774898), this._fuel = new r.TextBox(18, 16774898), this._ammo = new r.TextBox(18, 16774898), this._steel = new r.TextBox(18, 16774898), this._baux = new r.TextBox(18, 16774898), t.position.set(-324, 105), t.scale.set(1, 1.2), e.position.set(-303, 117), s.position.set(69, 153), o.position.set(69, 186), n.position.set(69, 219), i.position.set(69, 252), h.position.set(102, 159), c.position.set(102, 192), l.position.set(102, 225), u.position.set(102, 258), this._item1_name.position.set(-299, 156), this._item1_img.position.set(-299, 195), this._item1_count.position.set(-215, 234), this._item2_name.position.set(-114, 156), this._item2_img.position.set(-114, 195), this._item2_count.position.set(-30, 234), this._baux.position.set(123, 155), this._steel.position.set(123, 188), this._ammo.position.set(123, 221), this._fuel.position.set(123, 254), this.addChild(t), this.addChild(e), this.addChild(i), this.addChild(n), this.addChild(o), this.addChild(s), this.addChild(u), this.addChild(l), this.addChild(c), this.addChild(h), this.addChild(this._item1_name), this.addChild(this._item1_img), this.addChild(this._item1_count), this.addChild(this._item2_name), this.addChild(this._item2_img), this.addChild(this._item2_count), this.addChild(this._fuel), this.addChild(this._ammo), this.addChild(this._steel), this.addChild(this._baux)
             }, e.prototype.updateItem1 = function (t, e, i) {
                 this._item1_name.text = e, this._item1_img.texture = o.default.resources.getUseitem(t, 0), this._item1_count.text = "\xd7" + i.toString()
             }, e.prototype.updateItem2 = function (t, e, i) {

@@ -5,7 +5,7 @@ const function13 = function (t, e, i) {
     });
     var n = i(0),
         o = i(28),
-        r = i(24),
+        r = i(23),
         s = i(103),
         a = i(79),
         _ = function () {
@@ -24,70 +24,70 @@ const function13 = function (t, e, i) {
                 }
             }, t.getPath = function (e, i, _) {
                 "album_status" == _ ? i = !1 : "banner_g" == _ ? i = !0 : "banner2_g" == _ ? i = !0 : "banner3_g" == _ ? i = !0 : 1 == o.ShipUtil.isEnemy(e) && (i = !1);
-                var l = _ + (i ? "_dmg" : ""),
-                    u = "ship_" + l,
-                    c = s.SuffixUtil.create(e, u),
+                var u = _ + (i ? "_dmg" : ""),
+                    l = "ship_" + u,
+                    c = s.SuffixUtil.create(e, l),
                     h = r.MathUtil.zeroPadding(e, 4),
                     p = "";
                 if ("full" == _) {
                     var d = n.default.model.ship_graph.get(e);
                     null != d && (p = "_" + d.unique_key)
                 }
-                return n.default.settings.path_root + "resources/ship/" + l + "/" + (h + t.hSuffix(e, _)) + "_" + c + p + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
+                return n.default.settings.path_root + "resources/ship/" + u + "/" + (h + t.hSuffix(e, _)) + "_" + c + p + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
             }, t.prototype.add = function (e, i, n) {
                 var o = t.getPath(e, i, n);
                 return this._url_list.push(o), this
             }, t.prototype.getSpecificAlbumImageLoadList = function (t) {
                 switch (t) {
-                    case 754:
-                    case 755:
+                    case 5026:
+                    case 5027:
                         return {
                             typeList: ["character_up", "character_full"],
                             hasTaiha: !1
                         };
-                    case 984:
-                    case 997:
+                    case 5256:
+                    case 5269:
                         return {
                             typeList: ["character_up", "character_full"],
                             hasTaiha: !0
                         };
-                    case 1003:
-                    case 1004:
-                    case 1005:
-                    case 1006:
-                    case 1007:
-                    case 1008:
-                    case 1009:
-                    case 1010:
-                    case 1011:
-                    case 1012:
-                    case 1013:
-                    case 1014:
-                    case 1015:
-                    case 1016:
-                    case 1017:
-                    case 1018:
-                    case 1019:
-                    case 1020:
-                    case 1021:
-                    case 1022:
-                    case 1023:
-                    case 1024:
-                    case 1025:
-                    case 1026:
-                    case 1027:
-                    case 1028:
-                    case 1029:
-                    case 1030:
-                    case 1031:
-                    case 1032:
-                    case 1033:
-                    case 1034:
+                    case 5275:
+                    case 5276:
+                    case 5277:
+                    case 5278:
+                    case 5279:
+                    case 5280:
+                    case 5281:
+                    case 5282:
+                    case 5283:
+                    case 5284:
+                    case 5285:
+                    case 5286:
+                    case 5287:
+                    case 5288:
+                    case 5289:
+                    case 5290:
+                    case 5291:
+                    case 5292:
+                    case 5293:
+                    case 5294:
+                    case 5295:
+                    case 5296:
+                    case 5297:
+                    case 5298:
+                    case 5299:
+                    case 5300:
+                    case 5301:
+                    case 5302:
+                    case 5303:
+                    case 5304:
+                    case 5305:
+                    case 5306:
                         return {
                             typeList: ["character_up", "character_full"],
                             hasTaiha: !1
                         };
-                    case 1085:
+                    case 5357:
                         return {
                             typeList: ["character_up", "character_full"],
                             hasTaiha: !0

@@ -19,42 +19,69 @@ const function1441 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
+    var o = i(5),
+        r = i(22),
+        s = i(477),
+        a = i(1444),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.5, .87), e._splash2.anchor.set(.56, .95), e._splash3.anchor.set(.58, .9), e._splash1.position.set(5, 5), e._splash2.position.set(18, -11), e._splash3.position.set(24, -26), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._splash1.texture = r.BATTLE_MAIN.getTexture(114), this._splash2.texture = r.BATTLE_MAIN.getTexture(115), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._splash1).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 366).to({
-                    scaleX: .78,
-                    scaleY: .78,
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._splash2).wait(200).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    alpha: 0
-                }, 33), createjs.Tween.get(this._splash3).wait(333).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 166).to({
-                    scaleX: .88,
-                    scaleY: .88,
-                    alpha: 0
-                }, 166).call(function () {
-                    t._init(), t.emit("complete")
+            return n(e, t), e.prototype.playTorpedo = function (t, e, i, n) {
+                var o = this;
+                void 0 === i && (i = 1800), void 0 === n && (n = null);
+                var r = new a.Torpedo(1);
+                this.addChild(r), r.play(t, e, i, function () {
+                    o.removeChild(r), null != n && n()
                 })
-            }, e.prototype._init = function () {
-                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
+            }, e.prototype.playTorpedoAtNight = function (t, e, i, n) {
+                var o = this;
+                void 0 === i && (i = 800), void 0 === n && (n = null);
+                var r = new a.Torpedo(2);
+                this.addChild(r), r.play(t, e, i, function () {
+                    o.removeChild(r), null != n && n()
+                })
+            }, e.prototype.playAerialTorpedo = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(3);
+                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                    n.removeChild(o), null != i && i()
+                })
+            }, e.prototype.playAerialTorpedoSuper = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(5);
+                this.addChild(o), o.play(t, e, 0, null), o.once("complete", function () {
+                    n.removeChild(o), null != i && i()
+                })
+            }, e.prototype.playAerialTorpedoJet = function (t, e, i) {
+                var n = this;
+                void 0 === i && (i = null);
+                var o = new a.Torpedo(4);
+                this.addChild(o), o.play(t, e, 0, function () {
+                    n.removeChild(o), null != i && i()
+                })
             }, e
-        }(PIXI.Container);
-    e.TorpedoWaterColumn = s
+        }(s.LayerExplosion);
+    e.LayerTorpedo = _;
+    ! function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._night = e, i._canvas = new Array, i._createCanvas(!1, !1), i._createCanvas(!0, !1), i._createCanvas(!1, !0), i._createCanvas(!0, !0), i
+        }
+        n(e, t), e.prototype.getCanvas = function (t, e) {
+            return this._night ? this._canvas[0] : this._canvas[(t ? 1 : 0) + (e ? 2 : 0)]
+        }, e.prototype._createCanvas = function (t, e) {
+            var i = r.BannerSize.W;
+            1 == t && (i += .9 * r.BannerSize.W);
+            var n = r.BannerSize.W;
+            1 == e && (n += .9 * r.BannerSize.W);
+            var s = o.default.width - i - n,
+                a = new PIXI.Graphics;
+            a.beginFill(16711680, .3), a.drawRect(i, 0, s, o.default.height), a.endFill(), this.addChild(a);
+            var _ = new PIXI.Container;
+            _.mask = a, this.addChild(_), this._canvas.push(_)
+        }
+    }(PIXI.Container)
 }

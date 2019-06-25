@@ -24,10 +24,10 @@ const function248 = function (t, e, i) {
         s = i(19),
         a = i(12),
         _ = i(8),
-        l = i(13),
-        u = i(25),
+        u = i(13),
+        l = i(25),
         c = i(6),
-        h = i(1341),
+        h = i(1342),
         p = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
@@ -39,12 +39,12 @@ const function248 = function (t, e, i) {
                 this.loadShipImage(t)
             }, e.prototype.loadShipImage = function (t) {
                 var e = this,
-                    i = new l.ShipLoader;
+                    i = new u.ShipLoader;
                 i.add(this.ship_mstid, this.ship_damaged, "full"), i.load(function () {
                     e.loadSlotTextImage(t)
                 })
             }, e.prototype.loadSlotTextImage = function (t) {
-                for (var e = new u.SlotLoader, i = 0, n = this.slot_mstids; i < n.length; i++) {
+                for (var e = new l.SlotLoader, i = 0, n = this.slot_mstids; i < n.length; i++) {
                     var o = n[i];
                     o > 0 && e.add(o, "btxt_flat")
                 }

@@ -24,15 +24,15 @@ const function577 = function (t, e, i) {
         s = i(8),
         a = i(6),
         _ = i(1),
-        l = i(103),
-        u = i(79),
+        u = i(103),
+        l = i(79),
         c = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i._data = e;
                 var n = parseInt(e.src),
-                    o = l.SuffixUtil.create(n, "furniture_picture"),
-                    a = r.default.settings.path_root + "resources/furniture/picture/" + e.src + "_" + o + ".png" + u.VersionUtil.getResourceVersion(2, n);
+                    o = u.SuffixUtil.create(n, "furniture_picture"),
+                    a = r.default.settings.path_root + "resources/furniture/picture/" + e.src + "_" + o + ".png" + l.VersionUtil.getResourceVersion(2, n);
                 if (null != PIXI.utils.TextureCache[a]) {
                     var _ = PIXI.utils.TextureCache[a];
                     i._img = new PIXI.Sprite(_), i._img.visible = !1, i._centering()

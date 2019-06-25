@@ -20,31 +20,18 @@ const function750 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
+        r = i(3),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._onClick = function () {
-                    e.onClick()
-                };
-                var i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
-                    n = new PIXI.Sprite;
-                return n.position.set(3, 3), n.buttonMode = !0, n.addListener(r.EventType.CLICK, e._onClick), e.addChild(i, n), e.background = i, e.checkState = n, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
+                e.headerSupplyBg = i;
+                var n = new PIXI.Sprite(r.SUPPLY_MAIN.getTexture(0));
+                return e.headerSupplyText = n, n.position.set(24, 11), e.addChild(i, n), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                switch (this.checkState.interactive = !1, t) {
-                    case 1:
-                        this.background.texture = o.SUPPLY_MAIN.getTexture(18), this.checkState.texture = o.SUPPLY_MAIN.getTexture(20);
-                        break;
-                    case 2:
-                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(21), this.checkState.interactive = !0;
-                        break;
-                    case 3:
-                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(22), this.checkState.interactive = !0
-                }
-            }, e.prototype.dispose = function () {
-                this.background = null, this.checkState.removeListener(r.EventType.CLICK, this._onClick), this.checkState = null, this.onClick = null, this.removeChildren()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.headerSupplyBg.texture = PIXI.Texture.EMPTY, this.headerSupplyText.texture = PIXI.Texture.EMPTY, this.headerSupplyBg = null, this.headerSupplyText = null
             }, e
         }(PIXI.Container);
-    e.SupplySelectAllButton = s
+    e.HeaderSupply = s
 }

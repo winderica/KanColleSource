@@ -1,65 +1,85 @@
 const function803 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(212),
-        r = i(128),
-        s = function (t) {
-            function e() {
-                var e = this,
-                    i = r.REMODEL_POWERUP.getTexture(13);
-                e = t.call(this, i) || this;
-                var n = r.REMODEL_POWERUP.getTexture(22);
-                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
+    var n = i(5),
+        o = i(0),
+        r = i(28),
+        s = i(135),
+        a = i(52),
+        _ = i(87),
+        u = i(804),
+        l = i(805),
+        c = function () {
+            function t(t) {
+                var e = this;
+                this._onClickShip = function (t, i) {
+                    e.onClickShip(i);
+                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
+                        alpha: 0
+                    }, 125), createjs.Tween.get(e.shipList).to({
+                        x: n.default.width
+                    }, 125).call(function () {
+                        o.default.view.clickGuard = !1, e.onComplete()
+                    })
+                }, this._onClickBack = function () {
+                    o.default.view.clickGuard = !0, e.backAreaChoiceShip.width = n.default.width, createjs.Tween.get(e.backAreaChoiceShip).to({
+                        alpha: 0
+                    }, 125), createjs.Tween.get(e.shipList).to({
+                        x: n.default.width
+                    }, 125).call(function () {
+                        o.default.view.clickGuard = !1, e.onComplete()
+                    })
+                }, this._onClickPager_ = function (t) {
+                    e.pageIndex != t && e._updatePage_(t)
+                }, this._onClickSort_ = function () {
+                    switch (s.SceneMemory.shipSortKeyType) {
+                        case 1:
+                            s.SceneMemory.shipSortKeyType = 2;
+                            break;
+                        case 2:
+                            s.SceneMemory.shipSortKeyType = 3;
+                            break;
+                        case 3:
+                            s.SceneMemory.shipSortKeyType = 4;
+                            break;
+                        case 4:
+                            s.SceneMemory.shipSortKeyType = 1
+                    }
+                    e._updateSort_(s.SceneMemory.shipSortKeyType), e._updatePage_(e.pageIndex)
+                }, this.mainView = t, this.backAreaChoiceShip = new u.BackAreaChoiceShip, this.shipList = new l.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
             }
-            return n(e, t), e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
-            }, e.prototype.clear = function () {
-                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
-            }, e.prototype.updateKaryoku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
-            }, e.prototype.updateRaisou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
-            }, e.prototype.updateSoukou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
-            }, e.prototype.updateTaiku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
-            }, e.prototype.updateLucky = function (t, e, i) {
-                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
-                var n = 5523516,
-                    o = "",
-                    r = t != e;
-                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
-            }, e.prototype.updateTaikyu = function (t, e) {
-                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
-            }, e.prototype.updateTaisen = function (t, e) {
-                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
-            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
-                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
-            }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameterChecker = s
+            return t.prototype.dispose = function () {
+                this.mainView.removeChild(this.backAreaChoiceShip), this.mainView.removeChild(this.shipList), this.onClickShip = null, this.onComplete = null, this._onClickBack = null, this._onClickShip = null, this.backAreaChoiceShip && this.backAreaChoiceShip.dispose(), this.shipList && this.shipList.dispose(), this.mainView = null, this.backAreaChoiceShip = null, this.shipList = null, this.targets = null, this.pageIndex = null
+            }, t.prototype.start = function (t, e) {
+                var i = this;
+                o.default.view.clickGuard = !0;
+                var a;
+                a = _.RemodelUtil.createShipListForPowerUp(), a = r.ShipUtil.filter(a, !0, t), this._updateTargets_(a), this._updateSort_(s.SceneMemory.shipSortKeyType), this._updatePage_(e), this.shipList.position.set(n.default.width, 141), this.backAreaChoiceShip.alpha = 0, this.mainView.addChild(this.backAreaChoiceShip), this.mainView.addChild(this.shipList);
+                createjs.Tween.get(this.backAreaChoiceShip).to({
+                    alpha: 1
+                }, 125), createjs.Tween.get(this.shipList).to({
+                    x: 638
+                }, 125).call(function () {
+                    i.backAreaChoiceShip.width = 684, o.default.view.clickGuard = !1
+                })
+            }, t.prototype._updateTargets_ = function (t) {
+                var e = _.RemodelUtil.calcPageCount(t.length);
+                this.shipList.pagerView.init(e), this.targets = t
+            }, t.prototype._updateSort_ = function (t) {
+                r.ShipUtil.sort(this.targets, t), 1 == t && (this.targets = this.targets.reverse()), s.SceneMemory.shipSortKeyType = t, this.shipList.shipSortButton.update(t)
+            }, t.prototype._updatePage_ = function (t) {
+                var e = this.targets.slice(a.RemodelConst.ITEM_NUM * t, a.RemodelConst.ITEM_NUM * t + a.RemodelConst.ITEM_NUM);
+                this.shipList.clear();
+                for (var i = 0; i < e.length; i++) {
+                    var n = e[i],
+                        r = o.default.model.ship.getMst(n.mstID),
+                        s = o.default.model.deck.isInDeck(n.memID);
+                    this.shipList.update(i, n, r, s)
+                }
+                this.pageIndex = t
+            }, t
+        }();
+    e.TaskShipChoice = c
 }

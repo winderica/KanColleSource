@@ -19,37 +19,41 @@ const function969 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(42),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._board = new a, e._board.position.set(726, 346), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
+    var o = i(2),
+        r = i(970),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
+                }, i._layer = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "board", {
-                get: function () {
-                    return this._board
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(25)
+            return n(e, t), e.prototype._start = function () {
+                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
+            }, e.prototype._open = function () {
+                var t = this;
+                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
+                    alpha: 1
+                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
+                    scaleY: 1
+                }, 250).call(function () {
+                    t._wait()
+                })
+            }, e.prototype._wait = function () {
+                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
+            }, e.prototype._close = function () {
+                var t = this;
+                createjs.Tween.get(this._dialog.chara).to({
+                    alpha: 0
+                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
+                    scaleY: 0
+                }, 150).call(function () {
+                    t._layer.removeChild(t._dialog), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.IntroAlertDialog = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(35)
-        }, e
-    }(o.Sprite)
+        }(o.TaskBase);
+    e.ShowIntroAlertDialogTask = a
 }

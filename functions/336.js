@@ -23,11 +23,11 @@ const function336 = function (t, e, i) {
         r = i(8),
         s = i(60),
         a = i(13),
-        _ = i(811),
-        l = function (t) {
+        _ = i(808),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._clickGuard = new r.AreaBox(0), i._background = new s.RarityBG, i._ship = new PIXI.Sprite, i._elements = new u(e), i._white = new r.AreaBox(1, 16777215), i
+                return i._clickGuard = new r.AreaBox(0), i._background = new s.RarityBG, i._ship = new PIXI.Sprite, i._elements = new l(e), i._white = new r.AreaBox(1, 16777215), i
             }
             return n(e, t), e.prototype.preload = function (t, e, i, n) {
                 var r = this,
@@ -59,8 +59,8 @@ const function336 = function (t, e, i) {
                 this.removeChildren(), this._cb_onPreComplete = null, this._cb_onComplete = null, this._clickGuard = null, this._background.dispose(), this._background = null, this._ship = null, this._elements.dispose(), this._elements = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.PowerUpAnimation = l;
-    var u = function (t) {
+    e.PowerUpAnimation = u;
+    var l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             i.PROGRESS_WEIGHT = 50, i.ALLROT = 4, i.animation = {
@@ -73,11 +73,11 @@ const function336 = function (t, e, i) {
                         t > .5 && (s = 1 - (t - .5) / .5);
                         var a = e[o][0] - 600,
                             _ = e[o][1] - 360,
-                            l = Math.sqrt(a * a + _ * _),
-                            u = Math.atan2(_, a);
-                        u += i.ALLROT * Math.PI / 180 * (t * i.PROGRESS_WEIGHT), l -= n * (t * i.PROGRESS_WEIGHT);
-                        var c = l * Math.cos(u) + 600,
-                            h = l * Math.sin(u) + 360;
+                            u = Math.sqrt(a * a + _ * _),
+                            l = Math.atan2(_, a);
+                        l += i.ALLROT * Math.PI / 180 * (t * i.PROGRESS_WEIGHT), u -= n * (t * i.PROGRESS_WEIGHT);
+                        var c = u * Math.cos(l) + 600,
+                            h = u * Math.sin(l) + 360;
                         r.x = c, r.y = h, r.alpha = s
                     }
                 }

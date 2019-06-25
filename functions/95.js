@@ -20,12 +20,12 @@ const function95 = function (t, e, i) {
         value: !0
     });
     var o = i(29),
-        r = i(40),
+        r = i(39),
         s = i(247),
         a = i(248),
         _ = i(63),
-        l = i(443),
-        u = i(1355),
+        u = i(443),
+        l = i(1356),
         c = i(183),
         h = function (t) {
             function e() {
@@ -43,7 +43,7 @@ const function95 = function (t, e, i) {
             }, e.prototype._showTelop = function () {
                 var t = this,
                     e = this._scene.view.layer_info2;
-                new u.TaskAirUnitAttackStartTelop(e).start(function () {
+                new l.TaskAirUnitAttackStartTelop(e).start(function () {
                     t._beforeAnimation()
                 })
             }, e.prototype._beforeAnimation = function () {
@@ -70,7 +70,7 @@ const function95 = function (t, e, i) {
                 var e = this,
                     i = this._scene.data.model.deck_f.ships,
                     n = this._scene.data.model.deck_e.ships;
-                new l.TaskAirUnit(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
+                new u.TaskAirUnit(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
                     e._afterAnimetion()
                 })
             }, e.prototype._afterAnimetion = function () {

@@ -22,13 +22,13 @@ const function350 = function (t, e, i) {
     var o = i(0),
         r = i(1),
         s = i(26),
-        a = i(945),
-        _ = i(946),
-        l = i(947),
+        a = i(946),
+        _ = i(947),
         u = i(948),
-        c = i(949),
-        h = i(950),
-        p = i(951),
+        l = i(949),
+        c = i(950),
+        h = i(951),
+        p = i(952),
         d = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -40,7 +40,7 @@ const function350 = function (t, e, i) {
                     n._isSlot && (n._distanceLayer.visible = !0)
                 }, n._onMouseOut = function () {
                     n._isSlot && (n._distanceLayer.visible = !1)
-                }, n._cb_onMouseDown = e, n._cb_onSupply = i, n._isSlot = !1, n._bg = new PIXI.Sprite, n._bg.position.set(11, 23), n.addChild(n._bg), n._banner = new PIXI.Sprite, n._banner.position.set(11, 23), n.addChild(n._banner), n._none_label = new PIXI.Sprite, n.addChild(n._none_label), n._label = new PIXI.Sprite, n._label.position.set(8, 0), n.addChild(n._label), n._name = new PIXI.Sprite, n._name.position.set(93, 0), n.addChild(n._name), n._detail = new _.AirUnitPanelItemDetailInfoPanel, n._detail.position.set(29, 30), n.addChild(n._detail), n._skill = new h.AirUnitPanelItemSkillLevelIcon, n._skill.position.set(128, 24), n.addChild(n._skill), n._fatigue = new l.AirUnitPanelItemFatigueIcon, n._fatigue.position.set(0, 21), n.addChild(n._fatigue), n._level = new u.AirUnitPanelItemLevelIcon, n._level.position.set(167, 54), n.addChild(n._level), n._supply_btn = new p.AirUnitPanelItemSupplyButton(n._onSupply), n._supply_btn.position.set(123, 26), n.addChild(n._supply_btn), n._relocation = new c.AirUnitPanelItemRelocationLayer, n._relocation.position.set(11, 23), n.addChild(n._relocation), n._distanceLayer = new PIXI.Container, n.addChild(n._distanceLayer), n._distanceLayer.visible = !1, n._numText = new PIXI.Sprite(s.SALLY_AIRUNIT.getTexture(133)), n._distanceLayer.addChild(n._numText), n._distance1 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance1), n._distance2 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance2), n._bg.interactive = !0, n
+                }, n._cb_onMouseDown = e, n._cb_onSupply = i, n._isSlot = !1, n._bg = new PIXI.Sprite, n._bg.position.set(11, 23), n.addChild(n._bg), n._banner = new PIXI.Sprite, n._banner.position.set(11, 23), n.addChild(n._banner), n._none_label = new PIXI.Sprite, n.addChild(n._none_label), n._label = new PIXI.Sprite, n._label.position.set(8, 0), n.addChild(n._label), n._name = new PIXI.Sprite, n._name.position.set(93, 0), n.addChild(n._name), n._detail = new _.AirUnitPanelItemDetailInfoPanel, n._detail.position.set(29, 30), n.addChild(n._detail), n._skill = new h.AirUnitPanelItemSkillLevelIcon, n._skill.position.set(128, 24), n.addChild(n._skill), n._fatigue = new u.AirUnitPanelItemFatigueIcon, n._fatigue.position.set(0, 21), n.addChild(n._fatigue), n._level = new l.AirUnitPanelItemLevelIcon, n._level.position.set(167, 54), n.addChild(n._level), n._supply_btn = new p.AirUnitPanelItemSupplyButton(n._onSupply), n._supply_btn.position.set(123, 26), n.addChild(n._supply_btn), n._relocation = new c.AirUnitPanelItemRelocationLayer, n._relocation.position.set(11, 23), n.addChild(n._relocation), n._distanceLayer = new PIXI.Container, n.addChild(n._distanceLayer), n._distanceLayer.visible = !1, n._numText = new PIXI.Sprite(s.SALLY_AIRUNIT.getTexture(133)), n._distanceLayer.addChild(n._numText), n._distance1 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance1), n._distance2 = new PIXI.Sprite, n._distanceLayer.addChild(n._distance2), n._bg.interactive = !0, n
             }
             return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
                 get: function () {
@@ -78,9 +78,9 @@ const function350 = function (t, e, i) {
                         r = n.distance;
                     if (this._distance2.visible = !1, r >= 10) {
                         var _ = r.toString().split(""),
-                            l = parseInt(_[0]),
-                            u = parseInt(_[1]);
-                        this._numText.position.set(213, 68), this._distance2.visible = !0, this._distance1.position.set(288, 63), this._distance2.position.set(299, 63), this._distance1.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[l]), this._distance2.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[u])
+                            u = parseInt(_[0]),
+                            l = parseInt(_[1]);
+                        this._numText.position.set(213, 68), this._distance2.visible = !0, this._distance1.position.set(288, 63), this._distance2.position.set(299, 63), this._distance1.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[u]), this._distance2.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[l])
                     } else this._numText.position.set(222, 68), this._distance1.position.set(299, 63), this._distance1.texture = s.SALLY_AIRUNIT.getTexture(this.NUM_TEXTURE_S[r])
                 }
                 this._load_task = new a.TaskAirUnitImageLoader(this._mst_id), this._load_task.start(function () {

@@ -19,15 +19,16 @@ const function722 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.organizeSceneMain = e, i
+    var o = i(10),
+        r = i(723),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/preset_deck", e
             }
-            return n(e, t), e.prototype._start = function () {
-                this.organizeSceneMain.prefinalize(), this._completedEnd()
+            return n(e, t), e.prototype._completedEnd = function () {
+                this.result = new r.PresetListModel, this.result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.PreFinalizeTask = r
+        }(o.APIBase);
+    e.PresetDeckAPI = s
 }

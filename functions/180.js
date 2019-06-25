@@ -23,9 +23,9 @@ const function180 = function (t, e, i) {
         r = i(44),
         s = i(2),
         a = i(6),
-        _ = i(1344),
-        l = i(1351),
-        u = i(141),
+        _ = i(1345),
+        u = i(1352),
+        l = i(141),
         c = function (t) {
             function e(e, i, n, o, r, s) {
                 var a = t.call(this) || this;
@@ -37,9 +37,9 @@ const function180 = function (t, e, i) {
                 for (var i = this._getPlaneType(), n = [], o = t.slots, r = 0, s = o; r < s.length; r++) {
                     var a = s[r];
                     if (null != a && i.indexOf(a.equipTypeSp) >= -0) {
-                        var _ = new u.Plane,
-                            l = new PIXI.Point([45, 18, -36][n.length], [18, -27, 38][n.length]);
-                        if (_.initialize(a.mst_id, t.friend, e, l), n.push(_), n.length >= 3) break
+                        var _ = new l.Plane,
+                            u = new PIXI.Point([45, 18, -36][n.length], [18, -27, 38][n.length]);
+                        if (_.initialize(a.mst_id, t.friend, e, u), n.push(_), n.length >= 3) break
                     }
                 }
                 return n
@@ -125,28 +125,28 @@ const function180 = function (t, e, i) {
                         var o = n[i],
                             r = this._getAntiAircraftAbility(o);
                         if (0 != r) {
-                            for (var s = this._data.stage3_f.getDamage(o.index), l = this._canvas.planes_e.concat(), u = null; l.length > 0;) {
-                                var c = Math.floor(Math.random() * l.length);
-                                if (l[c].power > 0) {
-                                    u = l[c];
+                            for (var s = this._data.stage3_f.getDamage(o.index), u = this._canvas.planes_e.concat(), l = null; u.length > 0;) {
+                                var c = Math.floor(Math.random() * u.length);
+                                if (u[c].power > 0) {
+                                    l = u[c];
                                     break
                                 }
-                                l.splice(c, 1)
+                                u.splice(c, 1)
                             }
-                            var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, r, u);
+                            var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, r, l);
                             e.push(h)
                         }
                     }
                     if (0 == e.length) {
-                        for (var o = this._ships_f[0], s = this._data.stage3_f.getDamage(o.index), l = this._canvas.planes_e.concat(), u = null; l.length > 0;) {
-                            var c = Math.floor(Math.random() * l.length);
-                            if (l[c].power > 0) {
-                                u = l[c];
+                        for (var o = this._ships_f[0], s = this._data.stage3_f.getDamage(o.index), u = this._canvas.planes_e.concat(), l = null; u.length > 0;) {
+                            var c = Math.floor(Math.random() * u.length);
+                            if (u[c].power > 0) {
+                                l = u[c];
                                 break
                             }
-                            l.splice(c, 1)
+                            u.splice(c, 1)
                         }
-                        var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, 1, u);
+                        var h = new _.TaskAirWarAntiAircraft(this._scene, o, s, 1, l);
                         e.push(h)
                     }
                     a.SE.play("116");
@@ -171,8 +171,8 @@ const function180 = function (t, e, i) {
                 if (i.indexOf(51) >= 0) return 3;
                 if (o.indexOf(16) >= 0) return 2;
                 if (n.indexOf(21) >= 0) return 1;
-                for (var l = 0, u = e; l < u.length; l++) {
-                    var c = u[l];
+                for (var u = 0, l = e; u < l.length; u++) {
+                    var c = l[u];
                     if (null != c && (11 == c.iconType && c.taiku > 0)) return 1
                 }
             }, e.prototype._isHunshinhouShipType = function (t) {
@@ -227,7 +227,7 @@ const function180 = function (t, e, i) {
                     n = this._damage_cutin,
                     o = this._ships_f,
                     r = this._ships_e;
-                new l.TaskAirWarDamageNumber(e, i, n, o, r, this._hunshin_danmaku).start(function () {
+                new u.TaskAirWarDamageNumber(e, i, n, o, r, this._hunshin_danmaku).start(function () {
                     t._complete_show_damage_number = !0, t._endTask()
                 })
             }, e.prototype._endTask = function () {

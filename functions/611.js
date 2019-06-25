@@ -1,54 +1,42 @@
 const function611 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(24),
-        s = i(155),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._timer = -1, e._startAnimation = function () {
-                    e._timer < 0 && (e._timer = setInterval(e._onTimer, 1e3))
-                }, e._stopAnimation = function () {
-                    e._timer >= 0 && (clearInterval(e._timer), e._timer = -1)
-                }, e._onTimer = function () {
-                    var t = new Date,
-                        i = t.getMonth() + 1,
-                        n = t.getDate();
-                    e._date.text = r.MathUtil.zeroPadding(i, 2) + "/" + r.MathUtil.zeroPadding(n, 2);
-                    var o = t.getHours(),
-                        s = t.getMinutes();
-                    e._time.text = r.MathUtil.zeroPadding(o, 2) + ":" + r.MathUtil.zeroPadding(s, 2)
-                };
-                var i = new PIXI.Sprite;
-                return i.name = "bg", i.position.set(0, 573), e.addChild(i), e._date = new o.TextBox(26, "white"), e._date.anchor.set(.5, 0), e._date.position.set(58, 612), e.addChild(e._date), e._time = new o.TextBox(41, "white"), e._time.anchor.set(.5, 0), e._time.position.set(75, 651), e.addChild(e._time), e
+    var n = i(0),
+        o = function () {
+            function t(t) {
+                var e = this;
+                this._enabled_timeSignal = !1, this._timer_handle_timeSignal = -1, this._timer_handle_preload = -1, this._timer_handle_nextTimeSignal = -1, this._onEnd = function () {
+                    e._timerBeLeftVoice.enabled_byTimeSignal = !0
+                }, this._timerBeLeftVoice = t
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.getChildByName("bg").texture = s.PORT_MAIN.getTexture(19), this._onTimer(), this._startAnimation()
-            }, e.prototype.update = function (t) {
-                var e = [0, 11, 12, 13, 14, 15, 31, 16];
-                this.visible = e.indexOf(t) >= 0, 1 == this.visible ? this._startAnimation() : this._stopAnimation()
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._date && this._date.destroy(), this._date = null, this._time && this._time.destroy(), this._time = null
-            }, e
-        }(PIXI.Container);
-    e.ClockLayer = a
+            return t.prototype.initialize = function (t) {
+                this._mst_id = t;
+                var e = n.default.model.ship.getMst(this._mst_id);
+                this._enabled_timeSignal = null != e && e.availableTimeSignalVoice, this.reset()
+            }, t.prototype.stop = function () {
+                -1 != this._timer_handle_timeSignal && (clearInterval(this._timer_handle_timeSignal), this._timer_handle_timeSignal = -1), -1 != this._timer_handle_preload && (clearInterval(this._timer_handle_preload), this._timer_handle_preload = -1), -1 != this._timer_handle_nextTimeSignal && (clearInterval(this._timer_handle_nextTimeSignal), this._timer_handle_nextTimeSignal = -1), this._timerBeLeftVoice.enabled_byTimeSignal = !0
+            }, t.prototype.reset = function () {
+                var t = this;
+                if (this.stop(), 0 != this._enabled_timeSignal) {
+                    var e = new Date,
+                        i = e.getMinutes(),
+                        n = e.getSeconds();
+                    this._voicehour = e.getHours(), this._INTERVAL_sec = 60 * (59 - i) + (59 - n), this._INTERVAL_sec < 3599 && ++this._voicehour > 23 && (this._voicehour = 0), this._timer_handle_timeSignal = setTimeout(function () {
+                        t._play()
+                    }, 1e3 * this._INTERVAL_sec), this._INTERVAL_sec > 1800 ? this._Preload_sec = parseInt(1500 * Math.random() + (this._INTERVAL_sec - 1800) + "") : this._INTERVAL_sec < 300 ? this._Preload_sec = 0 : this._Preload_sec = parseInt(Math.random() * (this._INTERVAL_sec - 300) + ""), this._timer_handle_preload = setTimeout(function () {
+                        t._preload()
+                    }, 1e3 * this._Preload_sec)
+                }
+            }, t.prototype._preload = function () {
+                n.default.sound.voice.preload(this._mst_id.toString(), this._voicehour + 30)
+            }, t.prototype._play = function () {
+                var t = this;
+                1 == this._enabled_timeSignal && (this._timerBeLeftVoice.enabled_byTimeSignal = !1, n.default.sound.voice.play(this._mst_id.toString(), this._voicehour + 30, this._onEnd), this._timer_handle_nextTimeSignal = setTimeout(function () {
+                    t.reset()
+                }, 61e3))
+            }, t
+        }();
+    e.TimeSignal = o
 }

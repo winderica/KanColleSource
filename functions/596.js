@@ -24,8 +24,8 @@ const function596 = function (t, e, i) {
         s = i(1),
         a = i(2),
         _ = i(8),
-        l = i(18),
-        u = i(597),
+        u = i(18),
+        l = i(597),
         c = i(59),
         h = i(51),
         p = i(13),
@@ -53,12 +53,12 @@ const function596 = function (t, e, i) {
                 })
             }, e.prototype._showWhiteLight = function () {
                 var t = this;
-                this._view = new u.ExpeditionResult, this._view.initialize(this._deck_id, this._expedition_result);
+                this._view = new l.ExpeditionResult, this._view.initialize(this._deck_id, this._expedition_result);
                 var e = this._expedition_result;
                 this._view.expedition_name.visible = !1, this._view.user_info.visible = !1, this._view.item.visible = !1;
                 var i = e.item1;
                 null != i && this._view.item.updateItem1(i.mstID, i.name, i.count), i = e.item2, null != i && this._view.item.updateItem2(i.mstID, i.name, i.count), this._view.item.updateMaterials(e.fuel, e.ammo, e.steel, e.baux), this._view.visible = !1, r.default.view.overLayer.addChild(this._view);
-                var n = new l.FadeBox(1, 16777215);
+                var n = new u.FadeBox(1, 16777215);
                 n.hide(0), r.default.view.overLayer.addChild(n), n.show(200, function () {
                     t._view.visible = !0, n.hide(200, function () {
                         r.default.view.overLayer.removeChild(n), t._showUserInfo()
@@ -74,31 +74,31 @@ const function596 = function (t, e, i) {
                 this._view.user_info.update(e, i, n, o), this._view.user_info.visible = !0;
                 for (var s = this._expedition_result.ship_mem_ids, a = new createjs.Timeline([], null, {
                         paused: !0
-                    }), _ = this._view.banners, l = 0; l < _.length; l++) {
-                    var u = _[l];
-                    if (s.length <= l) u.visible = !1;
+                    }), _ = this._view.banners, u = 0; u < _.length; u++) {
+                    var l = _[u];
+                    if (s.length <= u) l.visible = !1;
                     else {
-                        var c = r.default.model.ship.get(s[l]);
-                        u.y = 68 * l + 15, u.alpha = 0, u.update(c, !1);
-                        var h = createjs.Tween.get(u).wait(200 * l).to({
-                            y: u.y - 15,
+                        var c = r.default.model.ship.get(s[u]);
+                        l.y = 68 * u + 15, l.alpha = 0, l.update(c, !1);
+                        var h = createjs.Tween.get(l).wait(200 * u).to({
+                            y: l.y - 15,
                             alpha: 1
                         }, 200);
                         a.addTween(h)
                     }
                 }
-                for (var p = this._view.infos.items, l = 0; l < p.length; l++) {
-                    var d = p[l];
-                    if (s.length <= l) d.visible = !1;
+                for (var p = this._view.infos.items, u = 0; u < p.length; u++) {
+                    var d = p[u];
+                    if (s.length <= u) d.visible = !1;
                     else {
-                        var c = r.default.model.ship.get(s[l]);
-                        d.y = 68 * l + 8, d.alpha = 0, d.initialize(), d.update(c.name, c.level)
+                        var c = r.default.model.ship.get(s[u]);
+                        d.y = 68 * u + 8, d.alpha = 0, d.initialize(), d.update(c.name, c.level)
                     }
                 }
                 this._view.infos.visible = !0;
-                for (var f, l = 0; l < p.length; l++) {
-                    var d = p[l];
-                    null != d && (f = createjs.Tween.get(d).wait(500 + 100 * l).to({
+                for (var f, u = 0; u < p.length; u++) {
+                    var d = p[u];
+                    null != d && (f = createjs.Tween.get(d).wait(500 + 100 * u).to({
                         y: d.y - 8,
                         alpha: 1
                     }, 200), a.addTween(f))

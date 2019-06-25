@@ -24,8 +24,8 @@ const function200 = function (t, e, i) {
         s = i(2),
         a = i(18),
         _ = i(292),
-        l = i(293),
-        u = i(294),
+        u = i(293),
+        l = i(294),
         c = i(147),
         h = i(295),
         p = i(296),
@@ -33,22 +33,22 @@ const function200 = function (t, e, i) {
         f = i(201),
         y = i(187),
         m = i(148),
-        v = i(125),
-        g = i(298),
-        b = i(621),
-        w = i(622),
-        x = i(633),
-        I = i(634),
-        T = i(635),
-        O = i(636),
-        C = i(637),
-        P = i(638),
-        k = i(639),
-        M = i(640),
-        S = i(641),
-        A = i(642),
-        E = i(643),
-        j = i(206),
+        g = i(125),
+        v = i(298),
+        b = i(618),
+        w = i(619),
+        x = i(630),
+        I = i(631),
+        T = i(632),
+        O = i(633),
+        C = i(634),
+        P = i(635),
+        k = i(636),
+        M = i(637),
+        S = i(638),
+        A = i(639),
+        j = i(640),
+        E = i(206),
         N = function (t) {
             function e(e, i, n) {
                 void 0 === n && (n = -1);
@@ -80,7 +80,7 @@ const function200 = function (t, e, i) {
             }, e.prototype._endTask = function () {
                 this._layer = null, this._rewards = null, t.prototype._endTask.call(this)
             }, e.prototype._getTask = function (t) {
-                return t instanceof y.RewardModelShip ? 682 == this._quest_id || 882 == this._quest_id || 883 == this._quest_id ? new L(this._layer, t.mst_id) : new M.TaskRewardDialogShip(this._dialog, t) : t instanceof m.RewardModelSlotitem ? new S.TaskRewardDialogSlotitem(this._dialog, t) : t instanceof v.RewardModelUseitem ? new A.TaskRewardDialogUseitem(this._dialog, t) : t instanceof f.RewardModelMultiUseitem ? new k.TaskRewardDialogMultiUseitem(this._dialog, t) : t instanceof c.RewardModelFurniture ? new T.TaskRewardDialogFurniture(this._dialog, t) : t instanceof l.RewardModelDeck ? new x.TaskRewardDialogDeck(this._dialog, t) : t instanceof u.RewardModelExtraSupply ? new I.TaskRewardDialogExtraSupply(this._dialog, t) : t instanceof h.RewardModelLargeBuild ? new O.TaskRewardDialogLargeBuild(this._dialog, t) : t instanceof d.RewardModelModelChange ? new P.TaskRewardDialogModelChange(this._dialog, t, this._quest_id, this._fade) : t instanceof _.RewardModelAirUnit ? new w.TaskRewardDialogAirUnit(this._dialog, t) : t instanceof g.RewardModelWarResult ? new E.TaskRewardDialogWarResult(this._dialog, t) : t instanceof p.RewardModelMap ? new C.TaskRewardDialogMap(this._dialog, t) : void 0
+                return t instanceof y.RewardModelShip ? 682 == this._quest_id || 882 == this._quest_id || 883 == this._quest_id ? new L(this._layer, t.mst_id) : new M.TaskRewardDialogShip(this._dialog, t) : t instanceof m.RewardModelSlotitem ? new S.TaskRewardDialogSlotitem(this._dialog, t) : t instanceof g.RewardModelUseitem ? new A.TaskRewardDialogUseitem(this._dialog, t) : t instanceof f.RewardModelMultiUseitem ? new k.TaskRewardDialogMultiUseitem(this._dialog, t) : t instanceof c.RewardModelFurniture ? new T.TaskRewardDialogFurniture(this._dialog, t) : t instanceof u.RewardModelDeck ? new x.TaskRewardDialogDeck(this._dialog, t) : t instanceof l.RewardModelExtraSupply ? new I.TaskRewardDialogExtraSupply(this._dialog, t) : t instanceof h.RewardModelLargeBuild ? new O.TaskRewardDialogLargeBuild(this._dialog, t) : t instanceof d.RewardModelModelChange ? new P.TaskRewardDialogModelChange(this._dialog, t, this._quest_id, this._fade) : t instanceof _.RewardModelAirUnit ? new w.TaskRewardDialogAirUnit(this._dialog, t) : t instanceof v.RewardModelWarResult ? new j.TaskRewardDialogWarResult(this._dialog, t) : t instanceof p.RewardModelMap ? new C.TaskRewardDialogMap(this._dialog, t) : void 0
             }, e
         }(s.TaskBase);
     e.TaskReward = N;
@@ -100,5 +100,5 @@ const function200 = function (t, e, i) {
                 e.dispose(), e._endTask()
             })
         }, e
-    }(j.TaskBonusShip)
+    }(E.TaskBonusShip)
 }

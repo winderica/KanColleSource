@@ -19,27 +19,18 @@ const function1524 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.createShowTween = function (t, e, i, n) {
-            return void 0 === n && (n = 0), this._img.alpha = 0, this._img.visible = !0, this._img.texture = t, null != e ? (this._img.x = e.x, this._img.y = e.y) : this._img.position.set(0), createjs.Tween.get(this._img).wait(n).to({
-                alpha: 1
-            }, i)
-        }, e.prototype.createHideTween = function (t, e) {
-            var i = this;
-            void 0 === e && (e = 0);
-            var n = createjs.Tween.get(this._img).wait(e);
-            return 1 == this._img.visible && n.to({
-                alpha: 0
-            }, t).call(function () {
-                i._img.visible = !1
-            }), n
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._img = null
-        }, e
-    }(PIXI.Container);
-    e.LayerMVP = o
+    var o = i(4),
+        r = i(36),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._enemy_type = new PIXI.Sprite, e._enemy_type.position.set(2, 29), e.addChild(e._name), e.addChild(e._enemy_type), e
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 246, this._name.height), this._name_mask.endFill(), this._enemy_type.texture = 1 == e ? r.BATTLE_RESULT_MAIN.getTexture(7) : 2 == e ? r.BATTLE_RESULT_MAIN.getTexture(8) : PIXI.Texture.EMPTY
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._name.destroy(), this._name = null, this._name_mask = null, this._enemy_type = null
+            }, e
+        }(PIXI.Container);
+    e.BannerInfoEnemy = s
 }

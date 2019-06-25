@@ -24,8 +24,8 @@ const function281 = function (t, e, i) {
         s = i(22),
         a = i(2),
         _ = i(282),
-        l = i(32),
-        u = i(13),
+        u = i(33),
+        l = i(13),
         c = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -34,7 +34,7 @@ const function281 = function (t, e, i) {
             return n(e, t), e.prototype._start = function () {
                 r.default.view.clickGuard = !0, this._loadResources()
             }, e.prototype._loadResources = function () {
-                for (var t = this, e = new u.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
+                for (var t = this, e = new l.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
                     var o = n[i];
                     null != o && e.add(o.mstID, o.isDamaged(), "banner")
                 }
@@ -85,7 +85,7 @@ const function281 = function (t, e, i) {
                 t = null == i ? [e] : null == n ? [i, e] : [i, e, n];
                 for (var o = 0; o < t.length; o++) {
                     var r = t[o],
-                        a = new l.ShipBanner;
+                        a = new u.ShipBanner;
                     a.update(r, !1), a.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(a)
                 }
             }, e.prototype._createShipContainerB = function () {
@@ -96,7 +96,7 @@ const function281 = function (t, e, i) {
                 t = null == n ? null == i ? null == e ? [] : [e] : [e, i] : null == o ? [n, e, i] : [n, e, i, o];
                 for (var r = 0; r < t.length; r++) {
                     var a = t[r],
-                        _ = new l.ShipBanner;
+                        _ = new u.ShipBanner;
                     _.update(a, !1), _.position.x = s.BannerSize.W * r, this._cutin.banner_bottom.addChild(_)
                 }
             }, e.prototype._endTask = function (e) {

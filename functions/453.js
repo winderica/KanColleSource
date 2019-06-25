@@ -66,29 +66,29 @@ const function453 = function (t, e, i) {
             }, e.prototype.play = function (t, e, i, n, s) {
                 var a = this;
                 void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, l = new PIXI.Point(this.x, this.y),
-                    u = this._createControllPoints(l, t),
-                    c = u.c1,
-                    h = u.c2;
+                var _, u = new PIXI.Point(this.x, this.y),
+                    l = this._createControllPoints(u, t),
+                    c = l.c1,
+                    h = l.c2;
                 if (0 == isNaN(e)) {
                     var p = .99,
                         d = 1 - p,
-                        f = Math.pow(d, 3) * l.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * l.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
+                        f = Math.pow(d, 3) * u.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
+                        y = Math.pow(d, 3) * u.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
                         m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        v = t.x - f,
-                        g = (e - t.x) / v,
-                        b = i / (100 + g) * 100,
-                        w = i / (100 + g) * g;
-                    this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
+                        g = t.x - f,
+                        v = (e - t.x) / g,
+                        b = i / (100 + v) * 100,
+                        w = i / (100 + v) * v;
+                    this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
                         x: e,
                         y: m
                     }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, l, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
+                } else this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
                 return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
                     r.SE.play("116"), a.fire()
                 }), {
-                    s: l,
+                    s: u,
                     c1: c,
                     c2: h,
                     e: t,

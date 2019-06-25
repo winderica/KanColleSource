@@ -24,8 +24,8 @@ const function415 = function (t, e, i) {
         s = i(402),
         a = i(403),
         _ = i(173),
-        l = i(173),
-        u = function (t) {
+        u = i(173),
+        l = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._result = null, n._onSelect = function (t) {
@@ -58,11 +58,11 @@ const function415 = function (t, e, i) {
                     11 == o.type ? e.addShip(o.mst_id) : 12 == o.type ? e.addSlotitem(o.mst_id) : 13 == o.type ? e.addUseitem(o.mst_id) : 14 == o.type && e.addFurniture(o.mst_id)
                 }
                 e.start(function () {
-                    3 == t._candidates.length ? (t._dialog = new l.RewardSelectDialog3, t._dialog.position.set(195, 164)) : (t._dialog = new _.RewardSelectDialog2, t._dialog.position.set(297, 164)), t._dialog.initialize(t._candidates, t._onSelect), t._layer.addChild(t._dialog), t._dialog.activate()
+                    3 == t._candidates.length ? (t._dialog = new u.RewardSelectDialog3, t._dialog.position.set(195, 164)) : (t._dialog = new _.RewardSelectDialog2, t._dialog.position.set(297, 164)), t._dialog.initialize(t._candidates, t._onSelect), t._layer.addChild(t._dialog), t._dialog.activate()
                 })
             }, e.prototype._endTask = function () {
                 this._layer = null, this._candidates = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskRewardSelect = u
+    e.TaskRewardSelect = l
 }

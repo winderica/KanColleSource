@@ -24,8 +24,8 @@ const function320 = function (t, e, i) {
         s = i(214),
         a = i(110),
         _ = i(70),
-        l = i(83),
-        u = i(4),
+        u = i(83),
+        l = i(4),
         c = i(283),
         h = i(197),
         p = i(37),
@@ -41,19 +41,19 @@ const function320 = function (t, e, i) {
                     p = new h.BannerSmoke,
                     f = new c.BannerKirakira,
                     y = new a.HpGaugeView,
-                    m = new l.StarRateView,
-                    v = new u.TextBox(27, 16777215),
-                    g = new u.TextBox(30, 16777215),
+                    m = new u.StarRateView,
+                    g = new l.TextBox(27, 16777215),
+                    v = new l.TextBox(30, 16777215),
                     b = new s.DeckIndexEmblem,
                     w = new PIXI.Sprite(d.COMMON_MAIN.getTexture(18)),
                     x = new _.RingSmall;
-                o.x = 12, o.y = 6, x.initialize(), x.activate(), x.position.set(215, 33), y.position.set(14, 42), m.position.set(122, 39), g.anchor.x = 1, b.position.set(15, 18), w.position.set(251, 6), g.position.set(212, 2);
+                o.x = 12, o.y = 6, x.initialize(), x.activate(), x.position.set(215, 33), y.position.set(14, 42), m.position.set(122, 39), v.anchor.x = 1, b.position.set(15, 18), w.position.set(251, 6), v.position.set(212, 2);
                 var I = new PIXI.Graphics;
                 I.beginFill(0, 0), I.drawRect(0, 0, 105, 36), I.endFill();
                 var T = new PIXI.Container;
-                T.position.set(9, 5), T.mask = I, T.addChild(v, I), w.addChild(T, g, y, m), p.visible = !1;
+                T.position.set(9, 5), T.mask = I, T.addChild(g, I), w.addChild(T, v, y, m), p.visible = !1;
                 var O = new PIXI.Container;
-                return O.width = 240, O.height = 60, O.addChild(p, f), e.addChild(i, o, n, O, w, r, b, x), e.shipBanner = i, e.burned = n, e.state = o, e.tired = r, e.smoke = p, e.textLevel = g, e.textName = v, e.starRateView = m, e.hpGaugeView = y, e.kirakira = f, e.ring = x, e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e.containerName = T, e.containerEffect = O, e.deckIndexEmblem = b, e
+                return O.width = 240, O.height = 60, O.addChild(p, f), e.addChild(i, o, n, O, w, r, b, x), e.shipBanner = i, e.burned = n, e.state = o, e.tired = r, e.smoke = p, e.textLevel = v, e.textName = g, e.starRateView = m, e.hpGaugeView = y, e.kirakira = f, e.ring = x, e.hitArea = new PIXI.Rectangle(0, 0, 240, 60), e.containerName = T, e.containerEffect = O, e.deckIndexEmblem = b, e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerEffect.removeChildren(), this.hpGaugeView.dispose(), this.starRateView.dispose(), this.smoke.dispose(), this.kirakira.dispose(), this.ring.dispose(), this.textLevel.destroy(), this.textName.destroy(), this.containerName.mask = null, this.containerName = null, this.containerEffect = null, this.shipBanner = null, this.hpGaugeView = null, this.starRateView = null, this.deckIndexEmblem = null, this.textLevel = null, this.textName = null, this.burned = null, this.state = null, this.tired = null, this.smoke = null, this.kirakira = null, this.ring = null, this.removeChildren()

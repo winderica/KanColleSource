@@ -19,16 +19,16 @@ const function1047 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(39),
+    var o = i(38),
         r = function (t) {
             function e() {
                 return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {}, e.prototype.update = function (t) {
-                0 == t ? (this._setTexture(38), this.visible = !0) : 2 == t ? (this._setTexture(32), this.visible = !0) : this.visible = !1
+                this.visible = !0, 1 == t ? this._setTexture(29) : 2 == t ? this._setTexture(28) : 3 == t ? this._setTexture(27) : 4 == t ? this._setTexture(26) : 5 == t ? this._setTexture(25) : 6 == t ? this._setTexture(30) : t > 6 ? this._setTexture(30) : this.visible = !1
             }, e.prototype.dispose = function () {}, e.prototype._setTexture = function (t) {
                 this.texture = o.SALLY_EXPEDITION.getTexture(t)
             }, e
         }(PIXI.Sprite);
-    e.ExpeditionStateIcon = r
+    e.ExpeditionDifficulty = r
 }

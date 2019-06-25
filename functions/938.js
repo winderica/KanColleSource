@@ -8,25 +8,23 @@ const function938 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "ship_mem_id", {
+            return Object.defineProperty(t.prototype, "lost_mstid", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_supply_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_mst_id", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ship_mem_id_supplied", {
+            }), Object.defineProperty(t.prototype, "lost_count", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_given_ship")
+                    return n.ObjUtil.getNumber(this._o, "api_count", 0)
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "num_of_use", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_use_num")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            }), t.prototype.isDentan = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_dentan", 0)
+            }, t.prototype.getUseitemMstID = function () {
+                return [-1, 31, 32, 33, 34, 2, 1, 3, 4][this.lost_mstid]
+            }, t
         }();
-    e.ReplenishmentModel = o
+    e.HappeningModel = o
 }

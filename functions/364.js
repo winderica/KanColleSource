@@ -109,8 +109,8 @@ const function364 = function (t, e, i) {
             configurable: !0
         }), t.prototype.update = function (t) {
             for (var e = 0, i = 0, n = 0, o = 0, r = 0, s = 0, a = 0, _ = t; a < _.length; a++) {
-                var l = _[a];
-                null != l && (e += l.karyoku, i += l.raisou, n += l.taiku, o += l.kaihi, r += l.hpMax, s++)
+                var u = _[a];
+                null != u && (e += u.karyoku, i += u.raisou, n += u.taiku, o += u.kaihi, r += u.hpMax, s++)
             }
             this._karyoku = this._getParam(e, s), this._raisou = this._getParam(i, s), this._taiku = this._getParam(n, s), this._kaihi = this._getParam(o, s), this._taikyu = this._getParam(r, s)
         }, t.prototype._getParam = function (t, e) {

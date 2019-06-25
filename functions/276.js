@@ -25,9 +25,9 @@ const function276 = function (t, e, i) {
                     }
                 }
                 if (0 == n)
-                    for (var _ = o.default.model.ship.getMst(e), l = null == _ ? "" : _.yomi, u = 0, c = t.shipyomi; u < c.length; u++) {
-                        var a = c[u];
-                        if (a.list.indexOf(l) >= 0) {
+                    for (var _ = o.default.model.ship.getMst(e), u = null == _ ? "" : _.yomi, l = 0, c = t.shipyomi; l < c.length; l++) {
+                        var a = c[l];
+                        if (a.list.indexOf(u) >= 0) {
                             n = a.group;
                             break
                         }
@@ -47,9 +47,9 @@ const function276 = function (t, e, i) {
                     }
                 }
                 if (1 == i)
-                    for (var l = null == n ? 0 : n.getClassType(), u = 0, c = t.shipclass; u < c.length; u++) {
-                        var _ = c[u];
-                        if (_.list.indexOf(l) >= 0) {
+                    for (var u = null == n ? 0 : n.getClassType(), l = 0, c = t.shipclass; l < c.length; l++) {
+                        var _ = c[l];
+                        if (_.list.indexOf(u) >= 0) {
                             i = _.fileno;
                             break
                         }
@@ -67,38 +67,50 @@ const function276 = function (t, e, i) {
                 var i = o.default.model.ship.getMst(e);
                 if (null == i) return "";
                 for (var n = i.yomi, r = i.getClassType(), s = 1, a = 0, _ = t.shipyomi; a < _.length; a++) {
-                    var l = _[a];
-                    if (l.list.indexOf(n) >= 0) {
-                        s = l.fileno;
+                    var u = _[a];
+                    if (u.list.indexOf(n) >= 0) {
+                        s = u.fileno;
                         break
                     }
                 }
                 if (1 == s)
-                    for (var u = 0, c = t.shipclass; u < c.length; u++) {
-                        var l = c[u];
-                        if (l.list.indexOf(r) >= 0) {
-                            s = l.fileno;
+                    for (var l = 0, c = t.shipclass; l < c.length; l++) {
+                        var u = c[l];
+                        if (u.list.indexOf(r) >= 0) {
+                            s = u.fileno;
                             break
                         }
                     }
                 return "f171_f103_secretary1_B" + s + ".png"
             }, t.getUmbrellarackTextures = function (t, e) {
-                for (var i = o.default.model.ship.getMst(e), n = null == i ? "" : i.yomi, s = 3, a = null == i ? 0 : i.shipTypeID, _ = 0, l = t.shiptype; _ < l.length; _++) {
-                    var u = l[_];
-                    if (u.list.indexOf(a) >= 0) {
-                        s = u.fileno;
+                for (var i = o.default.model.ship.getMst(e), n = null == i ? "" : i.yomi, s = 3, a = null == i ? 0 : i.shipTypeID, _ = 0, u = t.shiptype; _ < u.length; _++) {
+                    var l = u[_];
+                    if (l.list.indexOf(a) >= 0) {
+                        s = l.fileno;
                         break
                     }
                 }
                 for (var c, h, p = "f385_e07" + (s - 1) + "_umbrellarack", d = 0, f = t.shipyomi; d < f.length; d++) {
-                    var u = f[d];
-                    if (c = u.list.indexOf(n) + 1, s == u.fileno && (h = u.list.length), c > 0) break
+                    var l = f[d];
+                    if (c = l.list.indexOf(n) + 1, s == l.fileno && (h = l.list.length), c > 0) break
                 }
                 var y = r.ObjUtil.getObjectArray(t.standard, "data"),
                     m = [];
                 m.push(p + "_" + s + "_A.png");
-                for (var v = 1; v < y.length && !(v > h); v++) m.push(p + "_" + s + "_B" + v + ".png");
+                for (var g = 1; g < y.length && !(g > h); g++) g != c && m.push(p + "_" + s + "_B" + g + ".png");
                 return m
+            }, t.getHydrangeaDeskTextures = function (t, e) {
+                var i = o.default.model.ship.getMst(e);
+                if (null == i) return "";
+                for (var n = i.yomi, r = 0, s = t.shipid; r < s.length; r++) {
+                    var a = s[r];
+                    if (a.list.indexOf(e) >= 0) return "f442_f109_Purple_" + a.fileno + ".png"
+                }
+                for (var _ = 0, u = t.shipyomi; _ < u.length; _++) {
+                    var a = u[_];
+                    if (a.list.indexOf(n) >= 0) return "f442_f109_Purple_" + a.fileno + ".png"
+                }
+                return "f442_f109_Purple_1.png"
             }, t
         }();
     e.FurnitureUtil = s

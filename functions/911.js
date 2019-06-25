@@ -1,52 +1,20 @@
 const function911 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kousyou/destroyship", n.api_ship_ids = e, n.type = i, n
-            }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_ship_id = this.api_ship_ids.join(","), this._post_data.api_slot_dest_flag = this.type, o.default.model.basic.setDestroyShipSlotType(this.type), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._raw_data.api_material;
-                o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]);
-                var i = 0 === this.type;
-                i && o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unset_list"));
-                for (var n = 0, r = this.api_ship_ids.length; n < r; n++) {
-                    var a = this.api_ship_ids[n],
-                        _ = o.default.model.ship.get(a),
-                        l = o.default.model.deck.isInDeck(a);
-                    if (l) {
-                        var u = l[0],
-                            c = l[1];
-                        o.default.model.deck.get(u).__remove__(c)
-                    }
-                    o.default.model.ship.delete(_.memID, i)
-                }
-                t.prototype._completedEnd.call(this)
-            }, e
-        }(r.APIBase);
-    e.DestroyShipAPI = a
+    ! function (t) {
+        t.HOKAN = {
+            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u5009\u5eab\u306b\u4fdd\u7ba1\u3055\u308c\u307e\u3059\u3002",
+            color: 3564704,
+            x: 40
+        }, t.KAITAI = {
+            text: "\u88c5\u5099\u304c\u3042\u308b\u5834\u5408\u3001\u540c\u6642\u306b\u89e3\u4f53\u3055\u308c\u307e\u3059\u3002",
+            color: 12467003,
+            x: 105
+        }
+    }(e.DisassemblyTypeMessage || (e.DisassemblyTypeMessage = {}));
+    ! function (t) {
+        t.HOKAN = "hokan", t.KAITAI = "kaitai", t.BTN = "btn"
+    }(e.DisassemblyTypeName || (e.DisassemblyTypeName = {}))
 }

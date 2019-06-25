@@ -24,8 +24,8 @@ const function599 = function (t, e, i) {
         s = i(14),
         a = i(18),
         _ = i(6),
-        l = i(600),
-        u = i(601),
+        u = i(600),
+        l = i(601),
         c = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -41,10 +41,10 @@ const function599 = function (t, e, i) {
                 }, e.changeTab = function (t) {
                     if (e._nowTab != t) switch (e._nowTab = t, e._nowTab) {
                         case 0:
-                            e._sound.visible = !0, e._interface.visible = !1, e._tabIcon.position.set(77, 16), e._tabSound.texture = l.PORT_OPTION.getTexture(15), e._tabSound.position.set(36, 0), e._txtSound.position.set(98, 19), e._tabInterface.texture = l.PORT_OPTION.getTexture(13), e._tabInterface.position.set(209, 12), e._txtInterface.position.set(241, 24);
+                            e._sound.visible = !0, e._interface.visible = !1, e._tabIcon.position.set(77, 16), e._tabSound.texture = u.PORT_OPTION.getTexture(15), e._tabSound.position.set(36, 0), e._txtSound.position.set(98, 19), e._tabInterface.texture = u.PORT_OPTION.getTexture(13), e._tabInterface.position.set(209, 12), e._txtInterface.position.set(241, 24);
                             break;
                         case 1:
-                            e._sound.visible = !1, e._interface.visible = !0, e._tabIcon.position.set(223, 16), e._interface.setSkinID(o.default.model.basic.getUISkinID()), e._tabSound.texture = l.PORT_OPTION.getTexture(13), e._tabSound.position.set(36, 12), e._txtSound.position.set(94, 24), e._tabInterface.texture = l.PORT_OPTION.getTexture(15), e._tabInterface.position.set(209, 0), e._txtInterface.position.set(245, 19)
+                            e._sound.visible = !1, e._interface.visible = !0, e._tabIcon.position.set(223, 16), e._interface.setSkinID(o.default.model.basic.getUISkinID()), e._tabSound.texture = u.PORT_OPTION.getTexture(13), e._tabSound.position.set(36, 12), e._txtSound.position.set(94, 24), e._tabInterface.texture = u.PORT_OPTION.getTexture(15), e._tabInterface.position.set(209, 0), e._txtInterface.position.set(245, 19)
                     }
                 }, e._onClick = function () {
                     0 == e._bg.isNowAnimation() && (1 == e._opened ? e._close() : 0 == e._opened && e._open())
@@ -55,7 +55,7 @@ const function599 = function (t, e, i) {
                 }), e._bg = new a.FadeBox(.5), e._bg.hide(), e._bg.visible = !1, e._btn = new PIXI.Sprite, e._btn.position.set(1131, 645), e._sound = new h, e._sound.visible = !0, e._interface = new p, e._interface.visible = !1, e._optionLayer.addChild(e._optionBg), e._optionLayer.addChild(e._tabSide, e._tabSound, e._tabInterface, e._txtSound, e._txtInterface, e._tabIcon), e._optionLayer.addChild(e._sound, e._interface), e.addChild(e._bg, e._optionLayer, e._btn), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._sound.initialize(), this._interface.initialize(), this._btn.texture = l.PORT_OPTION.getTexture(3), this._optionBg.texture = l.PORT_OPTION.getTexture(12), this._tabSide.texture = l.PORT_OPTION.getTexture(14), this._tabIcon.texture = l.PORT_OPTION.getTexture(2), this._tabSound.texture = l.PORT_OPTION.getTexture(15), this._tabInterface.texture = l.PORT_OPTION.getTexture(13), this._txtSound.texture = l.PORT_OPTION.getTexture(28), this._txtInterface.texture = l.PORT_OPTION.getTexture(27), this._tabSide.position.set(2, 12), this._tabIcon.position.set(77, 16), this._optionBg.position.set(2, 55), this._tabSound.position.set(36, 0), this._txtSound.position.set(98, 19), this._tabInterface.position.set(209, 12), this._txtInterface.position.set(241, 24), this._btn.interactive = this._btn.buttonMode = !0, this._btn.on(r.EventType.CLICK, this._onClick)
+                this._sound.initialize(), this._interface.initialize(), this._btn.texture = u.PORT_OPTION.getTexture(3), this._optionBg.texture = u.PORT_OPTION.getTexture(12), this._tabSide.texture = u.PORT_OPTION.getTexture(14), this._tabIcon.texture = u.PORT_OPTION.getTexture(2), this._tabSound.texture = u.PORT_OPTION.getTexture(15), this._tabInterface.texture = u.PORT_OPTION.getTexture(13), this._txtSound.texture = u.PORT_OPTION.getTexture(28), this._txtInterface.texture = u.PORT_OPTION.getTexture(27), this._tabSide.position.set(2, 12), this._tabIcon.position.set(77, 16), this._optionBg.position.set(2, 55), this._tabSound.position.set(36, 0), this._txtSound.position.set(98, 19), this._tabInterface.position.set(209, 12), this._txtInterface.position.set(241, 24), this._btn.interactive = this._btn.buttonMode = !0, this._btn.on(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
                 this._btn.interactive = this._btn.buttonMode = !1, this._btn.off(r.EventType.CLICK, this._onClick)
             }, e.prototype._open = function () {
@@ -78,7 +78,7 @@ const function599 = function (t, e, i) {
                 o.default.option.vol_bgm = e, o.default.option.vol_se = this._sound.slider_se.value, o.default.option.vol_voice = this._sound.slider_voice.value, o.default.option.voice_be_left = this._sound.toggle1.value, o.default.option.voice_duty = this._sound.toggle2.value, o.default.option.save(), 0 == this._start_bgm_volume && e > 0 ? o.default.sound.bgm.play(o.default.sound.bgm.bgm_id) : this._start_bgm_volume > 0 && 0 == e && o.default.sound.bgm.stop();
                 var i = o.default.model.basic.getUISkinID();
                 if (this._base_skinID != i) {
-                    new u.SetSkinAPI(i).start(function () {
+                    new l.SetSkinAPI(i).start(function () {
                         t._close_complete()
                     })
                 } else this._close_complete()
@@ -121,7 +121,7 @@ const function599 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._text.texture = l.PORT_OPTION.getTexture(16), this._txtBgm.texture = l.PORT_OPTION.getTexture(19), this._txtSe.texture = l.PORT_OPTION.getTexture(21), this._txtVoice.texture = l.PORT_OPTION.getTexture(24), this._txtToggle1.texture = l.PORT_OPTION.getTexture(25), this._txtToggle2.texture = l.PORT_OPTION.getTexture(26), this._text.position.set(142, 72), this._txtBgm.position.set(80, 124), this._txtSe.position.set(80, 217), this._txtVoice.position.set(80, 311), this._txtToggle1.position.set(38, 398), this._txtToggle2.position.set(198, 398), this._slider_bgm.initialize(), this._slider_se.initialize(), this._slider_voice.initialize(), this._toggle1.initialize(), this._toggle2.initialize()
+                this._text.texture = u.PORT_OPTION.getTexture(16), this._txtBgm.texture = u.PORT_OPTION.getTexture(19), this._txtSe.texture = u.PORT_OPTION.getTexture(21), this._txtVoice.texture = u.PORT_OPTION.getTexture(24), this._txtToggle1.texture = u.PORT_OPTION.getTexture(25), this._txtToggle2.texture = u.PORT_OPTION.getTexture(26), this._text.position.set(142, 72), this._txtBgm.position.set(80, 124), this._txtSe.position.set(80, 217), this._txtVoice.position.set(80, 311), this._txtToggle1.position.set(38, 398), this._txtToggle2.position.set(198, 398), this._slider_bgm.initialize(), this._slider_se.initialize(), this._slider_voice.initialize(), this._toggle1.initialize(), this._toggle2.initialize()
             }, e.prototype.dispose = function () {
                 this._slider_bgm.dispose(), this._slider_se.dispose(), this._slider_voice.dispose(), this._toggle1.dispose(), this._toggle2.dispose()
             }, e.prototype.setState = function (t) {
@@ -142,24 +142,24 @@ const function599 = function (t, e, i) {
                         })
                     }
                 }, e._selector_bg = new PIXI.Sprite, e._selector_bg.position.set(48, 92), e._selector = new PIXI.Sprite, e._selector.position.set(0), e.btn = new PIXI.Sprite, e.btn.position.set(27, 417), e.btn.interactive = e.btn.buttonMode = !0, e.btn.on(r.EventType.MOUSEOVER, function () {
-                    e.btn.texture = l.PORT_OPTION.getTexture(1)
+                    e.btn.texture = u.PORT_OPTION.getTexture(1)
                 }), e.btn.on(r.EventType.MOUSEOUT, function () {
-                    e.btn.texture = l.PORT_OPTION.getTexture(0)
+                    e.btn.texture = u.PORT_OPTION.getTexture(0)
                 }), e.btn.on(r.EventType.CLICK, function () {
                     e._onChangeSkin()
                 }), e.type1 = new PIXI.Sprite, e.type2 = new PIXI.Sprite, e.type3 = new PIXI.Sprite, e.type4 = new PIXI.Sprite, e.type5 = new PIXI.Sprite, e.type1.position.set(98, 92), e.type2.position.set(98, 140), e.type3.position.set(98, 188), e.type4.position.set(98, 234), e.type5.position.set(98, 280);
-                for (var i = [101, 102, 201, 301, 311], n = [], a = this, u = 0; u < i.length; u++) ! function (t) {
+                for (var i = [101, 102, 201, 301, 311], n = [], a = this, l = 0; l < i.length; l++) ! function (t) {
                     var o = new PIXI.Graphics;
                     o.beginFill(16777215, 0), o.drawRect(0, 0, 28, 28), o.endFill(), o.position.x = 51, o.position.y = a._getY(i[t]), o.interactive = o.buttonMode = !0, o.on(r.EventType.CLICK, function () {
                         _.SE.play("246"), e.setSkinID(i[t])
                     }), n.push(o)
-                }(u);
+                }(l);
                 return e.addChild(e._selector_bg, e._selector, e.btn, e.type1, e.type2, e.type3, e.type4, e.type5), n.forEach(function (t) {
                     e.addChild(t)
                 }), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._selector_bg.texture = l.PORT_OPTION.getTexture(8), this._selector.texture = l.PORT_OPTION.getTexture(7), this.btn.texture = l.PORT_OPTION.getTexture(0), this.type1.texture = l.PORT_OPTION.getTexture(17), this.type2.texture = l.PORT_OPTION.getTexture(18), this.type3.texture = l.PORT_OPTION.getTexture(20), this.type4.texture = l.PORT_OPTION.getTexture(22), this.type5.texture = l.PORT_OPTION.getTexture(23)
+                this._selector_bg.texture = u.PORT_OPTION.getTexture(8), this._selector.texture = u.PORT_OPTION.getTexture(7), this.btn.texture = u.PORT_OPTION.getTexture(0), this.type1.texture = u.PORT_OPTION.getTexture(17), this.type2.texture = u.PORT_OPTION.getTexture(18), this.type3.texture = u.PORT_OPTION.getTexture(20), this.type4.texture = u.PORT_OPTION.getTexture(22), this.type5.texture = u.PORT_OPTION.getTexture(23)
             }, e.prototype._getY = function (t) {
                 switch (t) {
                     case 101:
@@ -222,7 +222,7 @@ const function599 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._bg.texture = l.PORT_OPTION.getTexture(29), this._bar.texture = l.PORT_OPTION.getTexture(30), this._vol.texture = l.PORT_OPTION.getTexture(5), this._vol_mute.texture = l.PORT_OPTION.getTexture(6), this._thumb.texture = l.PORT_OPTION.getTexture(9), this._bg.interactive = this._bg.buttonMode = !0, this._bg.on(r.EventType.CLICK, this._onBarClick), this._thumb.interactive = this._thumb.buttonMode = !0, this._thumb.on(r.EventType.MOUSEDOWN, this._onMouseDown), this._thumb.on(r.EventType.MOUSEMOVE, this._onMouseMove), this._thumb.on(r.EventType.MOUSEUP, this._onMouseUp), this._thumb.on("pointerupoutside", this._onMouseUp), this._volume_container.interactive = this._volume_container.buttonMode = !0, this._volume_container.on(r.EventType.CLICK, this._onClick)
+                this._bg.texture = u.PORT_OPTION.getTexture(29), this._bar.texture = u.PORT_OPTION.getTexture(30), this._vol.texture = u.PORT_OPTION.getTexture(5), this._vol_mute.texture = u.PORT_OPTION.getTexture(6), this._thumb.texture = u.PORT_OPTION.getTexture(9), this._bg.interactive = this._bg.buttonMode = !0, this._bg.on(r.EventType.CLICK, this._onBarClick), this._thumb.interactive = this._thumb.buttonMode = !0, this._thumb.on(r.EventType.MOUSEDOWN, this._onMouseDown), this._thumb.on(r.EventType.MOUSEMOVE, this._onMouseMove), this._thumb.on(r.EventType.MOUSEUP, this._onMouseUp), this._thumb.on("pointerupoutside", this._onMouseUp), this._volume_container.interactive = this._volume_container.buttonMode = !0, this._volume_container.on(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
                 this._bg.interactive = this._bg.buttonMode = !1, this._bg.off(r.EventType.CLICK, this._onBarClick), this._thumb.interactive = this._thumb.buttonMode = !1, this._thumb.off(r.EventType.MOUSEDOWN, this._onMouseDown), this._thumb.off(r.EventType.MOUSEMOVE, this._onMouseMove), this._thumb.off(r.EventType.MOUSEUP, this._onMouseUp), this._thumb.off("pointerupoutside", this._onMouseUp), this._volume_container.interactive = this._volume_container.buttonMode = !1, this._volume_container.off(r.EventType.CLICK, this._onClick)
             }, e.prototype._updateValue = function (t) {
@@ -267,11 +267,11 @@ const function599 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._thumb.texture = l.PORT_OPTION.getTexture(9), this._updateBG(), this.interactive = this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
+                this._thumb.texture = u.PORT_OPTION.getTexture(9), this._updateBG(), this.interactive = this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
                 this.interactive = this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype._updateBG = function () {
-                1 == this.value ? this._bg.texture = l.PORT_OPTION.getTexture(11) : this._bg.texture = l.PORT_OPTION.getTexture(10), this._thumb.x = this.value ? this._ON_XPOS : this._OFF_XPOS
+                1 == this.value ? this._bg.texture = u.PORT_OPTION.getTexture(11) : this._bg.texture = u.PORT_OPTION.getTexture(10), this._thumb.x = this.value ? this._ON_XPOS : this._OFF_XPOS
             }, e
         }(PIXI.Container)
 }

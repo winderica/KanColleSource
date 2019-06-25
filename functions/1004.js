@@ -19,23 +19,24 @@ const function1004 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(369),
+    var o = i(26),
+        r = i(1),
         s = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype._getBlackTexture = function () {
-                switch (this._type) {
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(27);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(28)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._setPositions = function () {
-                1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_AIRUNIT.getTexture(5)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(r.MapThumbnailLocked);
-    e.EventMapThumbnailLocked = s
+        }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

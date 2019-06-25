@@ -47,7 +47,7 @@ const function91 = function (t, e, i) {
                 })
             }, e.prototype._showDialog = function () {
                 var t = this;
-                this._dialog = new l, this._dialog.position.set(219, 207), this._dialog.alpha = 0, this._fade.addChild(this._dialog), this._dialog.initialize(), createjs.Tween.get(this._dialog).to({
+                this._dialog = new u, this._dialog.position.set(219, 207), this._dialog.alpha = 0, this._fade.addChild(this._dialog), this._dialog.initialize(), createjs.Tween.get(this._dialog).to({
                     alpha: 1
                 }, 250).call(function () {
                     t._waitSelect()
@@ -64,7 +64,7 @@ const function91 = function (t, e, i) {
             }, e
         }(o.TaskBase);
     e.TaskItemOverflowConfirm = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._btn_yes = new PIXI.Sprite, e._btn_yes.position.set(203, 216), e._btn_yes.interactive = !0, e._btn_yes.buttonMode = !0, e.addChild(e._btn_yes), e._btn_no = new PIXI.Sprite, e._btn_no.position.set(419, 216), e._btn_no.interactive = !0, e._btn_no.buttonMode = !0, e.addChild(e._btn_no), e

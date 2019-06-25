@@ -35,9 +35,9 @@ const function348 = function (t, e, i) {
                     if ((0 != r.defeat_required || 0 != r.gauge_max) && 0 != r.isOpened()) {
                         var a = r.area_id,
                             _ = r.map_no,
-                            l = r.getGaugeNum(),
-                            u = s.GaugeSetModel.createKey(a, _, l);
-                        e.add(u)
+                            u = r.getGaugeNum(),
+                            l = s.GaugeSetModel.createKey(a, _, u);
+                        e.add(l)
                     }
                 }
                 e.count > 0 ? e.load(function () {

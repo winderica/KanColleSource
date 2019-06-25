@@ -1,66 +1,15 @@
 const function828 = function (t, e, i) {
     "use strict";
+
+    function n() {
+        var t = {};
+        return t[o.linear] = createjs.Ease.linear, t[o.backIn] = createjs.Ease.backIn, t[o.backInOut] = createjs.Ease.backInOut, t[o.backOut] = createjs.Ease.backOut, t[o.bounceIn] = createjs.Ease.bounceIn, t[o.bounceInOut] = createjs.Ease.bounceInOut, t[o.bounceOut] = createjs.Ease.bounceOut, t[o.circIn] = createjs.Ease.circIn, t[o.circInOut] = createjs.Ease.circInOut, t[o.circOut] = createjs.Ease.circOut, t[o.cubicIn] = createjs.Ease.cubicIn, t[o.cubicInOut] = createjs.Ease.cubicInOut, t[o.cubicOut] = createjs.Ease.cubicOut, t[o.elasticIn] = createjs.Ease.elasticIn, t[o.elasticInOut] = createjs.Ease.elasticInOut, t[o.elasticOut] = createjs.Ease.elasticOut, t[o.quadIn] = createjs.Ease.quadIn, t[o.quadInOut] = createjs.Ease.quadInOut, t[o.quadOut] = createjs.Ease.quadOut, t[o.quartIn] = createjs.Ease.quartIn, t[o.quartInOut] = createjs.Ease.quartInOut, t[o.quartOut] = createjs.Ease.quartOut, t[o.quintIn] = createjs.Ease.quintIn, t[o.quintInOut] = createjs.Ease.quintInOut, t[o.quintOut] = createjs.Ease.quintOut, t[o.sineIn] = createjs.Ease.sineIn, t[o.sineInOut] = createjs.Ease.sineInOut, t[o.sineOut] = createjs.Ease.sineOut, t
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(8),
-        r = i(337),
-        s = i(52),
-        a = i(831),
-        _ = i(832),
-        l = i(833),
-        u = function () {
-            function t(t) {
-                var e = this;
-                this._onClickSign = function () {
-                    n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.addChild(e.clickGuardMarriageConfirm);
-                    var t = new a.MarriageAPI(e.memShipId);
-                    n.default.view.clickGuard = !0, t.start(function () {
-                        n.default.view.clickGuard = !1;
-                        var t = new r.MarriageAnimation(n.default.model.ship.get(e.memShipId).mstID);
-                        n.default.view.overLayer.addChild(t), t.PreLoad(function () {
-                            t.Initialize(), t.Play(!1, function () {
-                                n.default.view.overLayer.removeChild(e.marriageConfirm), n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(t), t.Dispose(), n.default.sound.bgm.play(102), e.onUpdateShip(), e.onComplete()
-                            })
-                        })
-                    })
-                }, this._onClickConfirmBack = function () {
-                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
-                        alpha: 0
-                    }, 250), createjs.Tween.get(e.marriageConfirm).to({
-                        alpha: 0
-                    }, 250).call(function () {
-                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageConfirm), e.onComplete()
-                    })
-                }, this._onClickAlertBack = function () {
-                    n.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardMarriageConfirm).to({
-                        alpha: 0
-                    }, 250), createjs.Tween.get(e.marriageAlert).to({
-                        alpha: 0
-                    }, 250).call(function () {
-                        n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageAlert), e.onComplete()
-                    })
-                }, this.mainView = t, this.marriageConfirm = new l.MarriageConfirm(this._onClickSign, this._onClickConfirmBack), this.marriageAlert = new _.MarriageAlert, this.clickGuardMarriageConfirm = new o.AreaBox(.5)
-            }
-            return t.prototype.start = function (t) {
-                var e = n.default.model.useItem.get(s.RemodelConst.MARRIAGE_RING_ITEMID).count;
-                this.marriageConfirm.position.set(294, 212), this.marriageAlert.position.set(294, 212), this.clickGuardMarriageConfirm.alpha = 0, this.marriageConfirm.alpha = 0, this.marriageAlert.alpha = 0, 0 < e ? (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageConfirm), this.marriageConfirm.update(e), n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this.marriageConfirm).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    n.default.view.clickGuard = !1
-                })) : (n.default.view.overLayer.addChild(this.clickGuardMarriageConfirm, this.marriageAlert), this.marriageAlert.onClickBack = this._onClickAlertBack, n.default.view.clickGuard = !0, createjs.Tween.get(this.clickGuardMarriageConfirm).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this.marriageAlert).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    n.default.view.clickGuard = !1
-                })), this.memShipId = t
-            }, t.prototype.dispose = function () {
-                this.marriageAlert.onClickBack = this._onClickAlertBack = null, this.onUpdateShip = null, this.onComplete = null, this.mainView = null, this.marriageConfirm && this.marriageConfirm.dispose(), this.marriageAlert && this.marriageAlert.dispose(), this.marriageConfirm = null, this.marriageAlert = null, this.clickGuardMarriageConfirm = null, this.memShipId = null
-            }, t
-        }();
-    e.TaskMarriage = u
+    var o;
+    ! function (t) {
+        t[t.linear = 0] = "linear", t[t.backIn = 1] = "backIn", t[t.backInOut = 2] = "backInOut", t[t.backOut = 3] = "backOut", t[t.bounceIn = 4] = "bounceIn", t[t.bounceInOut = 5] = "bounceInOut", t[t.bounceOut = 6] = "bounceOut", t[t.circIn = 7] = "circIn", t[t.circInOut = 8] = "circInOut", t[t.circOut = 9] = "circOut", t[t.cubicIn = 10] = "cubicIn", t[t.cubicInOut = 11] = "cubicInOut", t[t.cubicOut = 12] = "cubicOut", t[t.elasticIn = 13] = "elasticIn", t[t.elasticInOut = 14] = "elasticInOut", t[t.elasticOut = 15] = "elasticOut", t[t.quadIn = 16] = "quadIn", t[t.quadInOut = 17] = "quadInOut", t[t.quadOut = 18] = "quadOut", t[t.quartIn = 19] = "quartIn", t[t.quartInOut = 20] = "quartInOut", t[t.quartOut = 21] = "quartOut", t[t.quintIn = 22] = "quintIn", t[t.quintInOut = 23] = "quintInOut", t[t.quintOut = 24] = "quintOut", t[t.sineIn = 25] = "sineIn", t[t.sineInOut = 26] = "sineInOut", t[t.sineOut = 27] = "sineOut"
+    }(o = e.Easing || (e.Easing = {})), e.genEasingMap = n
 }

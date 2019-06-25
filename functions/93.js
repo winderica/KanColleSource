@@ -20,12 +20,12 @@ const function93 = function (t, e, i) {
         value: !0
     });
     var o = i(29),
-        r = i(40),
+        r = i(39),
         s = i(247),
         a = i(248),
         _ = i(63),
-        l = i(1342),
-        u = i(183),
+        u = i(1343),
+        l = i(183),
         c = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
@@ -55,14 +55,14 @@ const function93 = function (t, e, i) {
                     e = this._data,
                     i = e.getTouchPlaneFriend(),
                     n = e.getTouchPlaneEnemy();
-                new u.TaskShowTouchPlane(this._scene, i, n).start(function () {
+                new l.TaskShowTouchPlane(this._scene, i, n).start(function () {
                     t._animation(e)
                 })
             }, e.prototype._animation = function (t) {
                 var e = this,
                     i = this._scene.data.model.deck_f.ships,
                     n = this._scene.data.model.deck_e.ships;
-                new l.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
+                new u.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
                     e._afterAnimetion()
                 })
             }, e.prototype._afterAnimetion = function () {

@@ -24,14 +24,14 @@ const function438 = function (t, e, i) {
         s = i(19),
         a = i(51),
         _ = i(56),
-        l = i(24),
-        u = i(7),
+        u = i(23),
+        l = i(7),
         c = i(68),
         h = function (t) {
-            function e(e, i, n, o, r, s, a, _, l) {
-                void 0 === l && (l = !0);
-                var u = t.call(this) || this;
-                return u._map_id = e, u._mapInfo = i, u._view = n, u._stage = o, u._from = u._mapInfo.spots.length, u._mapAnime = r, u._gaugeAnime = s, u._enemyAnime = a, u._shutterAnime = _, u._gaugeLeft = l, u
+            function e(e, i, n, o, r, s, a, _, u) {
+                void 0 === u && (u = !0);
+                var l = t.call(this) || this;
+                return l._map_id = e, l._mapInfo = i, l._view = n, l._stage = o, l._from = l._mapInfo.spots.length, l._mapAnime = r, l._gaugeAnime = s, l._enemyAnime = a, l._shutterAnime = _, l._gaugeLeft = u, l
             }
             return n(e, t), e.prototype._start = function () {
                 this._mapAnime ? this._loadInfo() : this._hideEnemy()
@@ -40,7 +40,7 @@ const function438 = function (t, e, i) {
                     e = (this._mapInfo.spots.length, this._mapInfo.spots.length),
                     i = this._getPath("info" + e + ".json");
                 axios.get(i).then(function (i) {
-                    var n = u.ObjUtil.getObject(i, "data");
+                    var n = l.ObjUtil.getObject(i, "data");
                     t._mapInfo.add(n), t._loadSpriteSheet(e)
                 }).catch(function (e) {
                     t._failedEnd()
@@ -81,8 +81,8 @@ const function438 = function (t, e, i) {
                             var _ = a[s];
                             t.push(_.no), 0 == o && (o = _.color)
                         }
-                        var l = r[0].no;
-                        this._view.map.spotLayer.getSpot(l).setColor(o)
+                        var u = r[0].no;
+                        this._view.map.spotLayer.getSpot(u).setColor(o)
                     }
                 }
                 this.setView()
@@ -155,10 +155,10 @@ const function438 = function (t, e, i) {
                             }, 100), e.addTween(r)
                         }
                     for (var a = 0, _ = this._openSpot; a < _.length; a++) {
-                        var l = _[a],
-                            u = l.point;
-                        if (null != u) {
-                            var r = createjs.Tween.get(u);
+                        var u = _[a],
+                            l = u.point;
+                        if (null != l) {
+                            var r = createjs.Tween.get(l);
                             r.to({
                                 scaleX: 1.2,
                                 scaleY: 1.2,
@@ -168,7 +168,7 @@ const function438 = function (t, e, i) {
                                 scaleY: 1
                             }, 100), e.addTween(r)
                         }
-                        var c = l.route;
+                        var c = u.route;
                         if (null != c) {
                             var r = createjs.Tween.get(c);
                             r.wait(300), r.to({
@@ -221,7 +221,7 @@ const function438 = function (t, e, i) {
             }, e.prototype._getPath = function (t) {
                 var e = _.MapUtil.toAreaID(this._map_id),
                     i = _.MapUtil.toMapNo(this._map_id);
-                return o.default.settings.path_root + "resources/map/" + l.MathUtil.zeroPadding(e, 3) + "/" + l.MathUtil.zeroPadding(i, 2) + "_" + t
+                return o.default.settings.path_root + "resources/map/" + u.MathUtil.zeroPadding(e, 3) + "/" + u.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
         }(r.TaskBase);
     e.EventTaskCellOpen = h

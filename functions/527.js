@@ -52,30 +52,30 @@ const function527 = function (t, e, i) {
                 var t = new Array;
                 for (var e in this._map) t.push(this._map[e]);
                 return t
-            }, t.prototype.createSetList = function (t, e, i) {
-                void 0 === t && (t = null), void 0 === e && (e = null), void 0 === i && (i = -1);
-                var n = {},
-                    r = new Array;
+            }, t.prototype.createSetList = function (t, e, i, n) {
+                void 0 === t && (t = null), void 0 === e && (e = null), void 0 === i && (i = -1), void 0 === n && (n = null);
+                var r = {},
+                    s = new Array;
                 if (null == t) {
                     t = new Array;
-                    for (var s in this._mapMstEquipType) {
-                        var a = parseInt(s);
-                        t.push(a)
+                    for (var a in this._mapMstEquipType) {
+                        var _ = parseInt(a);
+                        t.push(_)
                     }
                 }
-                for (var _ = o.default.model.ship.getAll(), l = -1 != i, u = 0, c = _; u < c.length; u++) {
-                    var h = c[u];
+                for (var u = o.default.model.ship.getAll(), l = -1 != i, c = 0, h = u; c < h.length; c++) {
+                    var p = h[c];
                     if (l) {
-                        if (h.memID == i) continue
+                        if (p.memID == i) continue
                     }
-                    for (var p = h.getSlotitems(), d = 0, f = p; d < f.length; d++) {
-                        var y = f[d];
-                        null != y && (-1 != t.indexOf(y.equipTypeSp) ? (r.push(y), n[y.memID] = h.memID) : null != e && -1 != e.indexOf(y.mstID) && (r.push(y), n[y.memID] = h.memID))
+                    for (var d = p.getSlotitems(), f = 0, y = d; f < y.length; f++) {
+                        var m = y[f];
+                        null != m && (-1 != t.indexOf(m.equipTypeSp) ? (s.push(m), r[m.memID] = p.memID) : null != e && -1 != e.indexOf(m.mstID) && (s.push(m), r[m.memID] = p.memID))
                     }
-                    var m = h.getSlotitemEx();
-                    null != m && (-1 != t.indexOf(m.equipTypeSp) ? (r.push(m), n[m.memID] = h.memID) : null != e && -1 != e.indexOf(m.mstID) && (r.push(m), n[m.memID] = h.memID))
+                    var g = p.getSlotitemEx();
+                    null != g && (-1 != t.indexOf(g.equipTypeSp) ? (s.push(g), r[g.memID] = p.memID) : null != e && -1 != e.indexOf(g.mstID) && (s.push(g), r[g.memID] = p.memID))
                 }
-                return [r, n]
+                return [s, r]
             }, t.prototype.createUnsetListFromMstId = function (t) {
                 var e = o.default.model.slot.getMst(t).equipTypeSp,
                     i = o.default.model.slot.createUnsetList([e]),
@@ -91,48 +91,49 @@ const function527 = function (t, e, i) {
                 return i[0].forEach(function (e) {
                     e.mstID == t && (n.push(e), r[e.memID] = i[1][e.memID])
                 }), [n, r]
-            }, t.prototype.createUnsetList = function (t, e) {
-                void 0 === t && (t = null), void 0 === e && (e = null);
-                var i = new Array;
+            }, t.prototype.createUnsetList = function (t, e, i) {
+                void 0 === t && (t = null), void 0 === e && (e = null), void 0 === i && (i = null);
+                var n = new Array;
                 if (null == t) {
                     t = new Array;
-                    for (var n in this._mapUnset) {
-                        var r = parseInt(n);
-                        t.push(r)
+                    for (var r in this._mapUnset) {
+                        var s = parseInt(r);
+                        t.push(s)
                     }
                 }
-                for (var s = 0, a = t; s < a.length; s++) {
-                    var r = a[s],
-                        n = r.toString();
-                    if (1 == this._mapUnset.hasOwnProperty(n)) {
-                        var _ = this._mapUnset[n];
-                        if (null == _) continue;
-                        for (var l = 0, u = _; l < u.length; l++) {
-                            var c = u[l];
-                            if (1 == this._map.hasOwnProperty(c.toString())) {
-                                var h = this._map[c.toString()];
-                                i.push(h)
+                for (var a = 0, _ = t; a < _.length; a++) {
+                    var s = _[a],
+                        r = s.toString();
+                    if (1 == this._mapUnset.hasOwnProperty(r)) {
+                        var u = this._mapUnset[r];
+                        if (null == u) continue;
+                        for (var l = 0, c = u; l < c.length; l++) {
+                            var h = c[l];
+                            if (1 == this._map.hasOwnProperty(h.toString())) {
+                                var p = this._map[h.toString()];
+                                if (392 == i && 11 == s && 194 !== p.mstID) continue;
+                                n.push(p)
                             }
                         }
                     }
                 }
                 if (null != e)
-                    for (var p = 0, d = e; p < d.length; p++) {
-                        var f = d[p],
-                            r = o.default.model.slot.getMst(f).equipTypeSp;
-                        if (-1 == t.indexOf(r)) {
-                            var _ = this._mapUnset[r.toString()];
-                            if (null != _)
-                                for (var y = 0, m = _; y < m.length; y++) {
-                                    var c = m[y];
-                                    if (1 == this._map.hasOwnProperty(c.toString())) {
-                                        var h = this._map[c.toString()];
-                                        h.mstID == f && i.push(h)
+                    for (var d = 0, f = e; d < f.length; d++) {
+                        var y = f[d],
+                            s = o.default.model.slot.getMst(y).equipTypeSp;
+                        if (-1 == t.indexOf(s)) {
+                            var u = this._mapUnset[s.toString()];
+                            if (null != u)
+                                for (var m = 0, g = u; m < g.length; m++) {
+                                    var h = g[m];
+                                    if (1 == this._map.hasOwnProperty(h.toString())) {
+                                        var p = this._map[h.toString()];
+                                        p.mstID == y && n.push(p)
                                     }
                                 }
                         }
                     }
-                return i
+                return n
             }, t.prototype.getExtraEquipShipData = function (t) {
                 var e = t.toString(),
                     i = this._extraEquipShips[e];
@@ -145,45 +146,58 @@ const function527 = function (t, e, i) {
                 return e
             }, t.prototype.getAirUnitRelocation = function () {
                 return null == this._airunit_relocation ? [] : this._airunit_relocation.concat()
-            }, t.prototype.createUnsetList_unType = function (t) {
+            }, t.prototype.createUnsetList_unType = function (t, e) {
                 if (!t) return [];
-                var e = new Array;
-                for (var i in this._mapUnset) {
-                    var n = parseInt(i);
-                    if (-1 == t.indexOf(n)) {
-                        var o = this._mapUnset[i];
-                        if (null == o) continue;
-                        for (var r = 0, s = o; r < s.length; r++) {
-                            var a = s[r];
-                            if (1 == this._map.hasOwnProperty(a.toString())) {
-                                var _ = this._map[a.toString()];
-                                e.push(_)
+                var i = new Array;
+                for (var n in this._mapUnset) {
+                    var o = parseInt(n);
+                    if (-1 == t.indexOf(o)) {
+                        var r = this._mapUnset[n];
+                        if (null == r) continue;
+                        for (var s = 0, a = r; s < a.length; s++) {
+                            var _ = a[s];
+                            if (1 == this._map.hasOwnProperty(_.toString())) {
+                                var u = this._map[_.toString()];
+                                i.push(u)
                             }
                         }
                     }
                 }
-                return e
+                if (392 == e) {
+                    var l = t.indexOf(11),
+                        c = l > -1 ? this._mapUnset[t[l]] : null;
+                    if (null != c)
+                        for (var h = 0, p = c; h < p.length; h++) {
+                            var d = p[h];
+                            if (1 == this._map.hasOwnProperty(d.toString())) {
+                                var u = this._map[d.toString()];
+                                if (194 == u.mstID) continue;
+                                i.push(u)
+                            }
+                        }
+                }
+                return i
             }, t.prototype.createSetList_unType = function (t, e) {
                 if (void 0 === e && (e = -1), null == t) return [
                     [], {}
                 ];
                 for (var i = {}, n = new Array, r = o.default.model.ship.getAll(), s = -1 != e, a = 0, _ = r; a < _.length; a++) {
-                    var l = _[a];
+                    var u = _[a];
                     if (s) {
-                        if (l.memID == e) continue
+                        if (u.memID == e) continue
                     }
-                    for (var u = l.getSlotitems(), c = 0, h = u; c < h.length; c++) {
+                    for (var l = u.getSlotitems(), c = 0, h = l; c < h.length; c++) {
                         var p = h[c];
-                        null != p && (-1 == t.indexOf(p.equipTypeSp) && (n.push(p), i[p.memID] = l.memID))
+                        null != p && (-1 == t.indexOf(p.equipTypeSp) && (n.push(p), i[p.memID] = u.memID))
                     }
-                    var d = l.getSlotitemEx();
-                    null != d && -1 == t.indexOf(d.equipTypeSp) && (n.push(d), i[d.memID] = l.memID)
+                    var d = u.getSlotitemEx();
+                    null != d && -1 == t.indexOf(d.equipTypeSp) && (n.push(d), i[d.memID] = u.memID)
                 }
                 return [n, i]
             }, t
         }();
     e.SlotitemModelHolder = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -256,5 +270,5 @@ const function527 = function (t, e, i) {
             null == this._airunit_relocation && (this._airunit_relocation = []), this._airunit_relocation.push(t)
         }, e
     }(_);
-    e.SlotitemModelHolderEdit = l
+    e.SlotitemModelHolderEdit = u
 }

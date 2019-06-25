@@ -4,13 +4,13 @@ const function268 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(24),
+        o = i(23),
         r = i(103),
         s = i(536),
         a = i(17),
         _ = function () {
             function t() {
-                this._bgm = new l, this._se = new u, this._voice = new s.VoiceManagerHolder
+                this._bgm = new u, this._se = new l, this._voice = new s.VoiceManagerHolder
             }
             return Object.defineProperty(t.prototype, "bgm", {
                 get: function () {
@@ -33,7 +33,7 @@ const function268 = function (t, e, i) {
             }), t
         }();
     e.SoundManager = _;
-    var l = function () {
+    var u = function () {
             function t() {
                 this._bgm_id = 0, this._bgm = null
             }
@@ -54,18 +54,18 @@ const function268 = function (t, e, i) {
             }, t.prototype.play = function (t, e, i, s, _) {
                 if (void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === s && (s = "port"), void 0 === _ && (_ = null), (null == this._bgm || this._bgm_id != t) && s) {
                     this.stop(), this._bgm_id = t;
-                    var l = n.default.option.vol_bgm / 100;
-                    if (0 != l) {
-                        var u = o.MathUtil.zeroPadding(t, 3),
+                    var u = n.default.option.vol_bgm / 100;
+                    if (0 != u) {
+                        var l = o.MathUtil.zeroPadding(t, 3),
                             c = r.SuffixUtil.create(t, "bgm_" + s),
-                            h = u + "_" + c,
+                            h = l + "_" + c,
                             p = n.default.settings.path_root + "resources/bgm/" + s + "/" + h + ".mp3",
                             d = {
                                 src: [p],
                                 html5: a.HTML5_AUDIO,
                                 onend: _
                             };
-                        d.autoplay = !0, d.loop = e, i > 0 ? (d.volume = 0, this._bgm = new Howl(d), this._bgm.fade(0, l, i)) : (d.volume = l, this._bgm = new Howl(d))
+                        d.autoplay = !0, d.loop = e, i > 0 ? (d.volume = 0, this._bgm = new Howl(d), this._bgm.fade(0, u, i)) : (d.volume = u, this._bgm = new Howl(d))
                     }
                 }
             }, t.prototype.stop = function () {
@@ -85,7 +85,7 @@ const function268 = function (t, e, i) {
                 this._bgm.volume(t / 100)
             }, t
         }(),
-        u = function () {
+        l = function () {
             function t() {}
             return t.prototype.play = function (t) {
                 if (0 != n.default.option.vol_se) {

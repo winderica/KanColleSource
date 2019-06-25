@@ -22,13 +22,13 @@ const function249 = function (t, e, i) {
     var o = i(6),
         r = i(143),
         s = i(121),
-        a = i(41),
+        a = i(40),
         _ = function (t) {
             function e(e, i, n, o, s, a, _) {
-                var l = t.call(this, e, i, o, s, a, _) || this;
-                l._defender = n;
-                var u = l._scene.data.isNight();
-                return l._cutin = new r.CutinAttack(l._attacker, l._slot, u, !0, !0), l
+                var u = t.call(this, e, i, o, s, a, _) || this;
+                u._defender = n;
+                var l = u._scene.data.isNight();
+                return u._cutin = new r.CutinAttack(u._attacker, u._slot, l, !0, !0), u
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;

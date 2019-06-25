@@ -5,8 +5,8 @@ const function1495 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("battle_result_event_e5_xbfeywubreofgtcl_" + t)
+            return PIXI.Texture.fromFrame("battle_result_event_e4_sgfhyyyfqcpumpxj_" + t)
         }
         t.getTexture = e
-    }(e.BATTLE_RESULT_EVENT_E5_XBFEYWUBREOFGTCL || (e.BATTLE_RESULT_EVENT_E5_XBFEYWUBREOFGTCL = {}))
+    }(e.BATTLE_RESULT_EVENT_E4_SGFHYYYFQCPUMPXJ || (e.BATTLE_RESULT_EVENT_E4_SGFHYYYFQCPUMPXJ = {}))
 }

@@ -21,82 +21,83 @@ const function916 = function (t, e, i) {
     });
     var o = i(0),
         r = i(1),
-        s = i(113),
-        a = i(115),
-        _ = i(84),
-        l = i(35),
-        u = i(346),
-        c = function (t) {
+        s = i(144),
+        a = i(46),
+        _ = i(161),
+        u = i(61),
+        l = i(162),
+        c = i(4),
+        h = i(21),
+        p = i(35),
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickDisassembly = function () {
-                    e.onClickStart(e.memSlotIds)
+                e.ITEM_NUM = 10, e._onClick = function (t) {
+                    e.onClickSlot(t)
                 };
-                var i = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(62));
-                e.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(63));
-                n.position.set(21, 32);
-                var o = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(20));
-                e.buttonDisassembly = new a.SimpleButton(l.ARSENAL_MAIN.getTexture(19), l.ARSENAL_MAIN.getTexture(21));
-                var _ = new s.DisableDownArrowAnimationView;
-                e.downArrowAnimationView = new s.DownArrowAnimationView, e._icon = new PIXI.Sprite, e._iconMulti = new PIXI.Sprite(l.ARSENAL_MAIN.getTexture(78)), e.disassemblyMaterialItems = new Array, e.disassemblyMaterialItems.push(new u.DisassemblyMaterialItem), e.disassemblyMaterialItems.push(new u.DisassemblyMaterialItem), e.disassemblyMaterialItems.push(new u.DisassemblyMaterialItem), e.disassemblyMaterialItems.push(new u.DisassemblyMaterialItem), e.disassemblyMaterialItems[0].position.set(15, 84), e.disassemblyMaterialItems[1].position.set(15, 139), e.disassemblyMaterialItems[2].position.set(15, 195), e.disassemblyMaterialItems[3].position.set(15, 250), _.position.set(127, 450), e.downArrowAnimationView.position.set(127, 450), o.position.set(28, 496), e.buttonDisassembly.position.set(28, 496), e.buttonDisassembly.on(r.EventType.CLICK, e._onClickDisassembly), e._icon.anchor.set(.5, .5), e._icon.scale.set(.356, .356), e._icon.position.set(148, 367), e._icon.visible = !1, e._iconMulti.anchor.set(.5, .5), e._iconMulti.position.set(148, 367), e._iconMulti.scale.set(1), e._iconMulti.visible = !1;
-                var c = new PIXI.Container;
-                return c.name = "container", c.addChild(e.disassemblyMaterialItems[0], e.disassemblyMaterialItems[1], e.disassemblyMaterialItems[2], e.disassemblyMaterialItems[3], e._icon, e._iconMulti, o, _, e.downArrowAnimationView, e.buttonDisassembly), e.addChild(n, c), e.visibleContainer(!1), e
+                var i = new PIXI.Sprite(h.COMMON_MAIN.getTexture(13));
+                i.interactive = !0, e.addChild(i);
+                var n = new PIXI.Sprite(h.COMMON_MAIN.getTexture(35));
+                e.iconEmpty = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(140)), e.listItems = new Array, n.position.set(90, 12), e.addChild(e.iconEmpty, n);
+                e.iconEmpty.position.set(93, 58), e.iconEmpty.visible = !1;
+                for (var o = 0; o < e.ITEM_NUM; o++) {
+                    var r = new y,
+                        s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(37));
+                    r.onClick = e._onClick, s.position.set(48, 43 + 46 * o + 43), r.position.set(0, 43 + 46 * o), e.addChild(s, r), e.listItems.push(r)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewIcon", {
-                get: function () {
-                    return this._icon.visible ? this._icon : this._iconMulti
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                _.TaskLoadSlotResource.abortBy(this._icon);
-                for (var t = 0; t < this.disassemblyMaterialItems.length; t++) this.disassemblyMaterialItems[t].dispose(), this.disassemblyMaterialItems[t] = null;
-                this.buttonDisassembly.dispose(), this.downArrowAnimationView.dispose(), this.onClickStart = null, this.disassemblyMaterialItems = null, this.buttonDisassembly = null, this.downArrowAnimationView = null, this._icon = null, this._iconMulti = null, this.memSlotIds = null, this.removeChildren()
-            }, e.prototype.visibleContainer = function (t) {
-                this.getChildByName("container").visible = t
+            return n(e, t), e.prototype.dispose = function () {
+                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose(), this.listItems[t] = null;
+                this.listItems = null, this.iconEmpty = null, this.onClickSlot = null, this.removeChildren()
             }, e.prototype.update = function (t, e) {
-                for (var i = {
-                        fuel: 0,
-                        ammo: 0,
-                        steel: 0,
-                        baux: 0
-                    }, n = 0; n < t.length; n++) {
-                    var r = t[n],
-                        s = o.default.model.slot.get(r),
-                        a = o.default.model.slot.getMst(s.mstID),
-                        l = a.getMaterialsFromBroken();
-                    i.ammo += l.ammo, i.fuel += l.fuel, i.steel += l.steel, i.baux += l.baux
+                for (var i = 0; i < this.listItems.length; i++) {
+                    var n = this.listItems[i];
+                    if (n.visible = !1, !(i >= t.length)) {
+                        var r = t[i],
+                            s = o.default.model.slot.getMst(r.mstID),
+                            _ = a.SlotUtil.genSummaryText(r, "+", "/", !0),
+                            u = f.DISABLE;
+                        u = r.isLocked() ? f.DISABLE : e.indexOf(r.memID) > -1 ? f.ON : f.OFF, n.update(r.memID, r.iconType, r.name, r.skillLevel, r.level, s.rarity, _, r.isLocked(), u), n.visible = !0
+                    }
                 }
-                for (var u = 0, n = 0; n < this.disassemblyMaterialItems.length; n++) this.disassemblyMaterialItems[n].visible = !1;
-                if (0 < i.fuel) {
-                    var c = this.disassemblyMaterialItems[u];
-                    c.update(31, i.fuel), c.visible = !0, u++
-                }
-                if (0 < i.ammo) {
-                    var c = this.disassemblyMaterialItems[u];
-                    c.update(32, i.ammo), c.visible = !0, u++
-                }
-                if (0 < i.steel) {
-                    var c = this.disassemblyMaterialItems[u];
-                    c.update(33, i.steel), c.visible = !0, u++
-                }
-                if (0 < i.baux) {
-                    var c = this.disassemblyMaterialItems[u];
-                    c.update(34, i.baux), c.visible = !0, u++
-                }
-                if (_.TaskLoadSlotResource.abortBy(this._icon), 1 < t.length) this._icon.visible = !1, this._icon.texture = PIXI.Texture.EMPTY, this._iconMulti.visible = !0;
-                else {
-                    this._iconMulti.visible = !1, this._icon.visible = !0;
-                    var r = t[0],
-                        h = o.default.model.slot.get(r);
-                    new _.TaskLoadSlotResource("item_on", this._icon, h.mstID).start()
-                }
-                this.buttonDisassembly.visible = !1, this.downArrowAnimationView.visible = !1, e && (this.buttonDisassembly.visible = !0, this.downArrowAnimationView.visible = !0), this.memSlotIds = t
-            }, e.prototype.clearInfo = function () {
-                for (var t = 0; t < this.disassemblyMaterialItems.length; t++) this.disassemblyMaterialItems[t].visible = !1;
-                this._icon.visible = !1, this._iconMulti.visible = !1, this.buttonDisassembly.visible = !1, this.downArrowAnimationView.visible = !1
+                this.iconEmpty.visible = !1, 0 == t.length && (this.iconEmpty.visible = !0)
             }, e
         }(PIXI.Container);
-    e.SlotDisassemblyConfirm = c
+    e.SlotDisassemblyChoice = d;
+    var f;
+    ! function (t) {
+        t[t.DISABLE = 0] = "DISABLE", t[t.OFF = 1] = "OFF", t[t.ON = 2] = "ON"
+    }(f || (f = {}));
+    var y = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick(e.memSlotId)
+            }, e._onMouseOver = function () {
+                e.containerName.cacheAsBitmap = !1, e.containerSummary.cacheAsBitmap = !1, e.background.visible = !0, e.textRarity.style.fill = e.textSummary.style.fill = e.textName.style.fill = 16777215, e.maskName.texture = h.COMMON_MAIN.getTexture(16), e.maskSummary.texture = h.COMMON_MAIN.getTexture(16), e.containerName.cacheAsBitmap = !0, e.containerSummary.cacheAsBitmap = !0
+            }, e._onMouseOut = function () {
+                e.containerName.cacheAsBitmap = !1, e.containerSummary.cacheAsBitmap = !1, e.background.visible = !1, e.textRarity.style.fill = e.textSummary.style.fill = e.textName.style.fill = 5523516, e.maskName.texture = h.COMMON_MAIN.getTexture(38), e.maskSummary.texture = h.COMMON_MAIN.getTexture(38), e.containerName.cacheAsBitmap = !0, e.containerSummary.cacheAsBitmap = !0
+            }, e.background = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), e.clickArea = new PIXI.Graphics, e.iconCheckState = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(12)), e.iconWeapon = new u.IconWeapon, e.airPlaneLevel = new _.AirPlaneLevel, e.textRarity = new c.TextBox(21, 5523516), e.textSummary = new c.TextBox(21, 5523516), e.textName = new c.TextBox(21, 5523516), e.slotItemLevel = new l.SlotItemLevel, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskSummary = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.iconLock = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(80)), e.maskName.anchor.set(1, 0), e.maskName.position.set(360, 0), e.maskSummary.anchor.set(1, 0), e.maskSummary.position.set(700, 0), e.iconCheckState.position.set(15, 24), e.iconCheckState.anchor.set(0, .5), e.airPlaneLevel.position.set(270, 3), e.textRarity.anchor.x = 0, e.slotItemLevel.position.set(307, 15), e.iconWeapon.position.set(45, 0), e.iconLock.position.set(618, 0), e.background.position.set(90, 0), e.background.scale.x = 1.22, e.background.visible = !1, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 645, 45), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.interactive = e.clickArea.buttonMode = !0, e.containerSummary = new PIXI.Container, e.containerName = new PIXI.Container, e.containerSummary.position.set(450, 10), e.containerName.position.set(96, 10);
+            var i = new PIXI.Graphics;
+            i.beginFill(0, 0), i.drawRect(0, 0, 245, 45), i.endFill();
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), e.containerSummary.mask = n, e.containerSummary.addChild(e.textSummary, n), e.containerName.mask = i, e.containerName.addChild(e.textName, i), e.addChild(e.background, e.iconCheckState, e.iconWeapon, e.containerName, e.maskName, e.airPlaneLevel, e.slotItemLevel, e.textRarity, e.containerSummary, e.maskSummary, e.iconLock, e.clickArea), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.containerName.mask = null, this.containerSummary.mask = null, this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerSummary.cacheAsBitmap = !1, this.containerSummary.removeChildren(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.clickArea.clear(), this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.off(r.EventType.MOUSEOUT), this.textRarity.destroy(), this.textSummary.destroy(), this.textName.destroy(), this.onClick = null, this.iconCheckState = null, this.iconWeapon = null, this.textName = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.textRarity = null, this.textSummary = null, this.iconLock = null, this.background = null, this.clickArea = null, this.containerName = null, this.containerSummary = null, this.maskName = null, this.maskSummary = null
+        }, e.prototype.update = function (t, e, i, n, o, r, a, _, u) {
+            switch (this.containerName.cacheAsBitmap = !1, this.containerSummary.cacheAsBitmap = !1, this.memSlotId = t, this.iconWeapon.update(e), this.textName.text = i, this.airPlaneLevel.update(n), this.slotItemLevel.update(o), this.iconLock.visible = !1, _ && (this.iconLock.visible = !0), this.textRarity.text = s.SlotConst.SLOTITEM_RARITY_NAMES[r], this.textSummary.text = a, u) {
+                case f.DISABLE:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(12);
+                    break;
+                case f.OFF:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13);
+                    break;
+                case f.ON:
+                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14)
+            }
+            this.textRarity.position.set(391 - Math.floor(this.textRarity.width / 2), 10), this.containerName.cacheAsBitmap = !0, this.containerSummary.cacheAsBitmap = !0
+        }, e
+    }(PIXI.Container)
 }

@@ -24,8 +24,8 @@ const function100 = function (t, e, i) {
         s = i(63),
         a = i(249),
         _ = i(250),
-        l = i(251),
-        u = i(252),
+        u = i(251),
+        l = i(252),
         c = i(254),
         h = i(454),
         p = i(456),
@@ -33,9 +33,10 @@ const function100 = function (t, e, i) {
         f = i(458),
         y = i(459),
         m = i(460),
-        v = i(461),
-        g = i(1379),
-        b = function (t) {
+        g = i(461),
+        v = i(1380),
+        b = i(14),
+        w = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
@@ -89,13 +90,13 @@ const function100 = function (t, e, i) {
                             e._hougekiCycle()
                         })
                     } else if (2 == p) {
-                        var y = new l.PhaseAttackBakurai(i, n, o, r, s, c, h);
+                        var y = new u.PhaseAttackBakurai(i, n, o, r, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
                         })
                     } else {
                         if (3 != p) throw new Error;
-                        var y = new u.PhaseAttackRaigeki(i, n, o, r, s, c, h);
+                        var y = new l.PhaseAttackRaigeki(i, n, o, r, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
                         })
@@ -110,11 +111,11 @@ const function100 = function (t, e, i) {
                     s = t.getHitType(0),
                     a = t.isShield(0),
                     _ = this._getDShip(t.d_indexes[1], t.flag),
-                    l = t.getSlotitem(1),
-                    u = t.getDamage(1),
+                    u = t.getSlotitem(1),
+                    l = t.getDamage(1),
                     h = t.getHitType(1),
                     p = t.isShield(1);
-                new c.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, l, u, h, p).start(function () {
+                new c.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, u, l, h, p).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuboCI = function (t) {
@@ -126,10 +127,10 @@ const function100 = function (t, e, i) {
                     s = t.getSlotitem(1),
                     a = t.getSlotitem(2),
                     _ = t.getDamage(0),
-                    l = t.getHitType(0),
-                    u = t.isShield(0),
+                    u = t.getHitType(0),
+                    l = t.isShield(0),
                     c = this._getDaihatsuEffectType(n, o),
-                    h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, l, u);
+                    h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l);
                 h.setOptionalEffects(c), h.start(function () {
                     e._hougekiCycle()
                 })
@@ -174,7 +175,7 @@ const function100 = function (t, e, i) {
                 var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
                     s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
                     a = [t.isShield(0), t.isShield(1), t.isShield(2)];
-                new v.PhaseColoradoAttack(this._scene, i, r, s, a).start(function () {
+                new g.PhaseColoradoAttack(this._scene, i, r, s, a).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._special = function (t) {
@@ -187,22 +188,25 @@ const function100 = function (t, e, i) {
                         s = t.getSlotitem(2),
                         a = t.getDamage(0),
                         _ = t.getHitType(0),
-                        l = t.isShield(0);
-                    new h.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, l).start(function () {
+                        u = t.isShield(0);
+                    new h.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, u).start(function () {
                         e._hougekiCycle()
                     })
                 }
             }, e.prototype._zuiunCutin = function (t) {
                 var e = this,
-                    i = this._getAShip(t.a_index, t.flag),
-                    n = this._getDShip(t.d_indexes[0], t.flag),
-                    o = t.getSlotitem(0),
-                    r = t.getSlotitem(2),
-                    s = t.getDamage(0),
-                    a = t.getHitType(0),
-                    _ = t.isShield(0);
-                new g.PhaseZRK(this._scene, i, n, o, r, s, a, _).start(function () {
-                    e._hougekiCycle()
+                    i = new b.UIImageLoader("battle");
+                i.add("battle_zrk.json"), i.load(function () {
+                    var i = e._getAShip(t.a_index, t.flag),
+                        n = e._getDShip(t.d_indexes[0], t.flag),
+                        o = t.getSlotitem(0),
+                        r = t.getSlotitem(2),
+                        s = t.getDamage(0),
+                        a = t.getHitType(0),
+                        _ = t.isShield(0);
+                    new v.PhaseZRK(e._scene, i, n, o, r, s, a, _).start(function () {
+                        e._hougekiCycle()
+                    })
                 })
             }, e.prototype._getAShip = function (t, e) {
                 return 0 == e ? this._scene.data.model.deck_f.ships[t] : this._scene.data.model.deck_e.ships[t]
@@ -210,10 +214,10 @@ const function100 = function (t, e, i) {
                 return 0 == e ? this._scene.data.model.deck_e.ships[t] : this._scene.data.model.deck_f.ships[t]
             }, e.prototype._getNormalAttackType = function (t, e, i) {
                 for (var n = 0, r = 0, s = t.slots, a = 0, _ = s; a < _.length; a++) {
-                    var l = _[a];
-                    if (null != l) {
-                        var u = l.equipType;
-                        8 == u || 58 == u ? (n++, l.taisen > 0 && r++) : 11 != u && 25 != u || r++
+                    var u = _[a];
+                    if (null != u) {
+                        var l = u.equipType;
+                        8 == l || 58 == l ? (n++, u.taisen > 0 && r++) : 11 != l && 25 != l || r++
                     }
                 }
                 var c = t.stype;
@@ -249,5 +253,5 @@ const function100 = function (t, e, i) {
                 return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e
         }(r.TaskBase);
-    e.PhaseHougeki = b
+    e.PhaseHougeki = w
 }

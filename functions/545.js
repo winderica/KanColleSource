@@ -2,7 +2,7 @@ const function545 = function (t, e, i) {
     "use strict";
 
     function n(t) {
-        return 11 == t ? new w.OrganizeScene : 12 == t ? new x.SupplyScene : 13 == t ? new I.RemodelScene : 14 == t ? new T.RepairScene : 15 == t ? new O.ArsenalScene : 16 == t ? new C.SallyScene : 21 == t ? new P.RecordScene : 23 == t ? new k.AlbumScene : 24 == t ? new M.ItemScene : 25 == t ? new S.InteriorScene : 26 == t ? new A.DutyScene : 31 == t ? new E.RevampScene : 33 == t ? new N.MapScene(L.BattleScene, B.BattleResultScene) : 32 == t ? new j.PracticeScene(new L.BattleScene, new B.BattleResultScene) : void 0
+        return 11 == t ? new w.OrganizeScene : 12 == t ? new x.SupplyScene : 13 == t ? new I.RemodelScene : 14 == t ? new T.RepairScene : 15 == t ? new O.ArsenalScene : 16 == t ? new C.SallyScene : 21 == t ? new P.RecordScene : 23 == t ? new k.AlbumScene : 24 == t ? new M.ItemScene : 25 == t ? new S.InteriorScene : 26 == t ? new A.DutyScene : 31 == t ? new j.RevampScene : 33 == t ? new N.MapScene(L.BattleScene, B.BattleResultScene) : 32 == t ? new E.PracticeScene(new L.BattleScene, new B.BattleResultScene) : void 0
     }
     var o = this && this.__extends || function () {
         var t = Object.setPrototypeOf || {
@@ -25,10 +25,10 @@ const function545 = function (t, e, i) {
     });
     var r = i(0),
         s = i(7),
-        a = i(31),
+        a = i(32),
         _ = i(546),
-        l = i(551),
-        u = i(552),
+        u = i(551),
+        l = i(552),
         c = i(2),
         h = i(553),
         p = i(267),
@@ -36,14 +36,14 @@ const function545 = function (t, e, i) {
         f = i(558),
         y = i(559),
         m = i(14),
-        v = i(561),
-        g = i(651),
+        g = i(561),
+        v = i(648),
         b = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._end_titlecall = !1, i._TutorialScene = null, i._isTutorialEnd = !1, i._tutorialEnd = function () {
                     i._TutorialScene.emitter.off("tutorial-event-end", i._tutorialEnd), r.default.view.removeChild(i._TutorialScene), i._isTutorialEnd = !0, i._preInitPort()
-                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.view.initialize(new v.PortScene), i
+                }, i._end_connect_api = !1, p.TaskSceneChange.__factory__ = n, r.default.settings.initialize(e), r.default.view.initialize(new g.PortScene), i
             }
             return o(e, t), e.prototype._start = function () {
                 this._loadVersionFile()
@@ -98,8 +98,8 @@ const function545 = function (t, e, i) {
                 })
             }, e.prototype._connectAPI = function () {
                 var t = this;
-                (new a.APIConnector).add(new u.GetIncentiveAPI).add(new _.GetDataAPI).add(new l.RequireInfoAPI).start(function () {
-                    t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new g.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
+                (new a.APIConnector).add(new l.GetIncentiveAPI).add(new _.GetDataAPI).add(new u.RequireInfoAPI).start(function () {
+                    t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new v.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
                 })
             }, e.prototype._preInitPort = function () {
                 var t = this;
@@ -132,21 +132,21 @@ const function545 = function (t, e, i) {
             }, e
         }(c.TaskBase);
     e.AppInitializeTask = b;
-    var w = i(663),
-        x = i(740),
-        I = i(761),
-        T = i(841),
-        O = i(866),
-        C = i(917),
-        P = i(1053),
-        k = i(1069),
-        M = i(1099),
-        S = i(1172),
-        A = i(1181),
-        E = i(1200),
-        j = i(1216),
+    var w = i(660),
+        x = i(737),
+        I = i(758),
+        T = i(842),
+        O = i(867),
+        C = i(918),
+        P = i(1054),
+        k = i(1070),
+        M = i(1100),
+        S = i(1173),
+        A = i(1182),
+        j = i(1201),
+        E = i(1217),
         N = i(434),
-        L = i(1319),
-        B = i(1466),
+        L = i(1320),
+        B = i(1467),
         R = i(17)
 }

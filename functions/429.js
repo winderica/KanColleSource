@@ -24,7 +24,7 @@ const function429 = function (t, e, i) {
         s = i(2),
         a = i(12),
         _ = i(137),
-        l = function (t) {
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._layer = e, i
@@ -65,5 +65,5 @@ const function429 = function (t, e, i) {
                 this._canvas.removeChildren(), this._layer.removeChild(this._canvas), this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.SallyAnimationTask = l
+    e.SallyAnimationTask = u
 }

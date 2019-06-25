@@ -24,14 +24,14 @@ const function206 = function (t, e, i) {
         s = i(1),
         a = i(66),
         _ = i(8),
-        l = i(38),
-        u = i(13),
+        u = i(41),
+        l = i(13),
         c = i(207),
-        h = i(645),
+        h = i(642),
         p = i(209),
         d = function (t) {
-            function e(e, i, n, u) {
-                void 0 === u && (u = null);
+            function e(e, i, n, l) {
+                void 0 === l && (l = null);
                 var c = t.call(this) || this;
                 return c._moveCard = function () {
                     null != c._pre_task && (c._pre_task.dispose(), c._pre_task = null), c._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
@@ -71,13 +71,13 @@ const function206 = function (t, e, i) {
                     }, 300).call(c._waitClick)
                 }, c._waitClick = function () {
                     c._bonus.message_box.activate();
-                    var t = new l.GearBtnHome;
+                    var t = new u.GearBtnHome;
                     t.position.set(1140, 660), t.initialize(), t.activate(), c._bonus.addChild(t);
                     var e = new _.AreaBox(0);
                     e.interactive = !0, e.buttonMode = !0, c._bonus.addChild(e), c._voice = r.default.sound.voice.play(c._mst_id.toString(), 1), e.once(s.EventType.CLICK, function () {
                         r.default.sound.voice.stop(c._voice), c._voice = null, c._bonus.removeChild(e), c._finalize(t)
                     })
-                }, c._layer = e, c._mst_id = i, c._pre_task = u, c._play_bgm = n, c
+                }, c._layer = e, c._mst_id = i, c._pre_task = l, c._play_bgm = n, c
             }
             return n(e, t), e.prototype._start = function () {
                 this._bonus = new h.BonusShip, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new c.BonusInsert, this._loadBG()
@@ -89,7 +89,7 @@ const function206 = function (t, e, i) {
                 })
             }, e.prototype._loadShipImage = function () {
                 var t = this,
-                    e = new u.ShipLoader;
+                    e = new l.ShipLoader;
                 e.add(this._mst_id, !1, "full"), e.load(function () {
                     t._insert.preload(function () {
                         t._showInsert()

@@ -23,26 +23,26 @@ const function337 = function (t, e, i) {
         r = i(0),
         s = i(1),
         a = i(190),
-        _ = i(38),
-        l = i(13),
-        u = i(14),
-        c = i(829),
-        h = i(830),
+        _ = i(41),
+        u = i(13),
+        l = i(14),
+        c = i(830),
+        h = i(831),
         p = 18,
         d = 20,
         f = 8,
         y = 3,
         m = 1.75,
-        v = function (t) {
+        g = function (t) {
             function e(e, i) {
                 void 0 === i && (i = null);
                 var n = t.call(this) || this;
                 return n.Dispose = function () {
-                    r.default.view.portMain.visible = !0, null != n.voice && r.default.sound.voice.stop(n.voice), null != n.btn && n.btn.dispose(), n.shipModel = null, n.sakura = null, n.voice = null, n.btn = null, n.endAction = null, n.faceRect = null, n.touchArea = null, n.sBG = null, n.sFeather = null, n.sLight = null, n.sBlueLight = null, n.maskBg = null, n.sWhiteFrame = null, n.sBox1 = null, n.sBox2 = null, n.sBox3 = null, n.sBox4 = null, n.sRing = null, n.sText = null, n.sTextBack = null, n.sShip1 = null, n.sShip2 = null, n.sWhiteFrame = null, n.lightTween = null, n.blueTween = null, n.mainTween = null, n.timelineS1 = null, n.tweenS2_1 = null, n.tweenS2_2 = null, n.timelineS2 = null, n.tweenS3_1 = null, n.timelineS3_1 = null, n.timelineS3_2 = null, n.tweenS4_1 = null, n.tweenS4_2 = null, n.tweenS5_1 = null, n.tweenS5_2 = null, n.timelineS5_2 = null, n.timelineS5_2 = null, n.tweenS6_1 = null, n.timelineS6_1 = null, n.tweenS7_1 = null, n.timelineS7_1 = null, n.timelineS7_2 = null, n.timelineS7_3 = null, n.timelineS7_4 = null, u.UIImageLoader.clearMemoryCache("wedding")
+                    r.default.view.portMain.visible = !0, null != n.voice && r.default.sound.voice.stop(n.voice), null != n.btn && n.btn.dispose(), n.shipModel = null, n.sakura = null, n.voice = null, n.btn = null, n.endAction = null, n.faceRect = null, n.touchArea = null, n.sBG = null, n.sFeather = null, n.sLight = null, n.sBlueLight = null, n.maskBg = null, n.sWhiteFrame = null, n.sBox1 = null, n.sBox2 = null, n.sBox3 = null, n.sBox4 = null, n.sRing = null, n.sText = null, n.sTextBack = null, n.sShip1 = null, n.sShip2 = null, n.sWhiteFrame = null, n.lightTween = null, n.blueTween = null, n.mainTween = null, n.timelineS1 = null, n.tweenS2_1 = null, n.tweenS2_2 = null, n.timelineS2 = null, n.tweenS3_1 = null, n.timelineS3_1 = null, n.timelineS3_2 = null, n.tweenS4_1 = null, n.tweenS4_2 = null, n.tweenS5_1 = null, n.tweenS5_2 = null, n.timelineS5_2 = null, n.timelineS5_2 = null, n.tweenS6_1 = null, n.timelineS6_1 = null, n.tweenS7_1 = null, n.timelineS7_1 = null, n.timelineS7_2 = null, n.timelineS7_3 = null, n.timelineS7_4 = null, l.UIImageLoader.clearMemoryCache("wedding")
                 }, n.Hide = function () {
                     null != n.voice && r.default.sound.voice.stop(n.voice), r.default.sound.bgm.stop(), n.stopTween(n.mainTween), n.stopTween(n.timelineS1), n.stopTween(n.tweenS2_1), n.stopTween(n.tweenS2_2), n.stopTween(n.timelineS2), n.stopTween(n.tweenS3_1), n.stopTween(n.timelineS3_1), n.stopTween(n.timelineS3_2), n.stopTween(n.tweenS4_1), n.stopTween(n.tweenS4_2), n.stopTween(n.tweenS5_1), n.stopTween(n.tweenS5_2), n.stopTween(n.timelineS5_1), n.stopTween(n.timelineS5_2), n.stopTween(n.tweenS6_1), n.stopTween(n.timelineS6_1), n.stopTween(n.tweenS7_1), n.stopTween(n.timelineS7_1), n.stopTween(n.timelineS7_2), n.stopTween(n.timelineS7_3), n.stopTween(n.timelineS7_4), n.stopLight(), n.stopBlueTwinkle(), n.hideSakura(), n.removeChildren(0, n.children.length)
                 }, n.Play = function (t, e) {
-                    (new l.ShipLoader).add(n.shipModel.mstID, !1, "full").load(function () {
+                    (new u.ShipLoader).add(n.shipModel.mstID, !1, "full").load(function () {
                         n.sShip1.texture = r.default.resources.getShip(n.shipModel.mstID, !1, "full"), n.sShip2.texture = r.default.resources.getShip(n.shipModel.mstID, !1, "full"), null == n.faceRect && (n.faceRect = r.default.model.ship_graph.get(n.shipModel.mstID).getFaceRect(!1)), n.sShip1.scale.set(2, 2), n.sShip2.scale.set(1, 1), n.startAnimation(t, e)
                     })
                 }, n.playVoice = function () {
@@ -67,7 +67,7 @@ const function337 = function (t, e, i) {
                 }, n.playRandomLight = function () {
                     for (var t = 0; t < n.lightTween.length; t++) n.lightTween[t].setPaused(!1)
                 }, n.startAnimation = function (t, e) {
-                    for (var i = 432 / n.faceRect.height, a = 600 - (n.faceRect.x + n.faceRect.width / 2) * i, _ = 240 - (n.faceRect.y + n.faceRect.height / 2) * i, l = [{
+                    for (var i = 432 / n.faceRect.height, a = 600 - (n.faceRect.x + n.faceRect.width / 2) * i, _ = 240 - (n.faceRect.y + n.faceRect.height / 2) * i, u = [{
                             x: 1200,
                             y: 600,
                             time: 2.6
@@ -147,14 +147,14 @@ const function337 = function (t, e, i) {
                             x: 1350,
                             y: 150,
                             time: 0
-                        }], u = Array(d), c = Array(d), h = 0; h < d; h++) u[h] = n.sFeather[h].position.x, c[h] = n.sFeather[h].position.y;
+                        }], l = Array(d), c = Array(d), h = 0; h < d; h++) l[h] = n.sFeather[h].position.x, c[h] = n.sFeather[h].position.y;
                     n.endAction = function () {
                         n.touchArea.interactive = !1, n.touchArea.buttonMode = !1, n.Hide(), null != e && e()
                     }, n.touchArea.interactive = !!t, n.touchArea.buttonMode = !!t, n.touchArea.on(s.EventType.CLICK, n.endAction);
                     for (var h = 0; h < 8; h++) n.sText[h].scale.set(0, 0), n.sTextBack[h].scale.set(0, 0);
                     for (var f = Array(d), h = 0; h < d; h++) f[h] = (-3 + Math.floor(6 * Math.random())) * Math.PI / 180, 0 == f[h] && (f[h] = 1 * Math.PI / 180), f[h] = 150 * f[h];
                     var y = function (t) {
-                        for (var e = t.target.target.time, i = 0; i < d; i++) n.sFeather[i].position.x = u[i] + (l[i].x - u[i]) * e, n.sFeather[i].position.y = c[i] + (l[i].y - c[i]) * e, n.sFeather[i].position.x -= (l[i].x - u[i]) * (.1 * l[i].time), n.sFeather[i].position.y -= (l[i].y - c[i]) * (.1 * l[i].time), n.sFeather[i].rotation = 0 + f[i] * e
+                        for (var e = t.target.target.time, i = 0; i < d; i++) n.sFeather[i].position.x = l[i] + (u[i].x - l[i]) * e, n.sFeather[i].position.y = c[i] + (u[i].y - c[i]) * e, n.sFeather[i].position.x -= (u[i].x - l[i]) * (.1 * u[i].time), n.sFeather[i].position.y -= (u[i].y - c[i]) * (.1 * u[i].time), n.sFeather[i].rotation = 0 + f[i] * e
                     };
                     n.randomLight(), n.mainTween = createjs.Tween.get(null).call(function () {
                         var t = {
@@ -483,7 +483,7 @@ const function337 = function (t, e, i) {
                 for (var t = 0; t < f; t++) this.addChild(this.sLight[t]);
                 this.addChild(this.maskBg), this.addChild(this.touchArea)
             }, e.prototype.PreLoad = function (t) {
-                var e = new u.UIImageLoader("wedding");
+                var e = new l.UIImageLoader("wedding");
                 e.add("wedding_marriage_bg.json"), e.add("wedding_marriage.json"), e.load(function () {
                     null != t && t()
                 })
@@ -509,5 +509,5 @@ const function337 = function (t, e, i) {
                 return [9, 12, 13, 14, 15, 16, 17, 18, 19, 10, 11][t]
             }, e
         }(PIXI.Container);
-    e.MarriageAnimation = v
+    e.MarriageAnimation = g
 }

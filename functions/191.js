@@ -49,7 +49,7 @@ const function191 = function (t, e, i) {
         }, e
     }(r.APIBase);
     e.UserFurnitureJukeBoxMusicPlayAPI = _;
-    var l = function (t) {
+    var u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._url = "api_req_furniture/set_portbgm", i._post_data.api_music_id = e, i
@@ -60,5 +60,5 @@ const function191 = function (t, e, i) {
             t.prototype._completedEnd.call(this)
         }, e
     }(r.APIBase);
-    e.UserFurnitureJukeBoxSetPortBGMAPI = l
+    e.UserFurnitureJukeBoxSetPortBGMAPI = u
 }

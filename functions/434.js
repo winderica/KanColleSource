@@ -23,30 +23,30 @@ const function434 = function (t, e, i) {
         r = i(145),
         s = i(48),
         a = i(51),
-        _ = i(1234),
-        l = i(1235),
+        _ = i(1235),
         u = i(1236),
-        c = i(1241),
-        h = i(1242),
-        p = i(1244),
-        d = i(1247),
-        f = i(1248),
-        y = i(1280),
-        m = i(1281),
-        v = i(1282),
-        g = i(1284),
-        b = i(1286),
+        l = i(1237),
+        c = i(1242),
+        h = i(1243),
+        p = i(1245),
+        d = i(1248),
+        f = i(1249),
+        y = i(1281),
+        m = i(1282),
+        g = i(1283),
+        v = i(1285),
+        b = i(1287),
         w = i(436),
-        x = i(1288),
+        x = i(1289),
         I = i(438),
-        T = i(1296),
-        O = i(1314),
+        T = i(1297),
+        O = i(1315),
         C = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._startScene = function () {
                     n._appointAirUnit()
-                }, n._battle_cls = e, n._battle_result_cls = i, n._view = new T.ViewMain, n.addChild(n._view), n._resInfo = new u.MapResourceInfo, n._user_select = new c.UserSelectModel, n
+                }, n._battle_cls = e, n._battle_result_cls = i, n._view = new T.ViewMain, n.addChild(n._view), n._resInfo = new l.MapResourceInfo, n._user_select = new c.UserSelectModel, n
             }
             return n(e, t), Object.defineProperty(e.prototype, "model", {
                 get: function () {
@@ -117,15 +117,15 @@ const function434 = function (t, e, i) {
                         })
                     }
                     if (44 == o && 1 == r && (1 == a || 1 == s)) {
-                        var l = 1 == a,
-                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, l, !1);
+                        var u = 1 == a,
+                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, u, !1);
                         return void _.start(function () {
                             i._endScene(n)
                         })
                     }
                     if (44 == o && 2 == r && 1 == a) {
-                        var u = 1 == this._model.sortie.map.getGaugeNum(),
-                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, u, !0, !0);
+                        var l = 1 == this._model.sortie.map.getGaugeNum(),
+                            _ = new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, l, !0, !0);
                         return void _.start(function () {
                             i._endScene(n)
                         })
@@ -170,36 +170,36 @@ const function434 = function (t, e, i) {
                     s = n.hasMegami(),
                     a = this._model.sortie.area_id,
                     _ = this._model.sortie.map_no,
-                    l = null == e ? 0 : e.m1;
-                if (44 == a && 1 == _ && 1 == l) {
+                    u = null == e ? 0 : e.m1;
+                if (44 == a && 1 == _ && 1 == u) {
                     return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0, !1).start(function () {
                         i._endScene(t)
                     })
                 }
-                if (44 == a && 2 == _ && 1 == l) {
-                    var u = 1 == this._model.sortie.map.getGaugeNum();
-                    return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, u, !0, !0).start(function () {
+                if (44 == a && 2 == _ && 1 == u) {
+                    var l = 1 == this._model.sortie.map.getGaugeNum();
+                    return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, l, !0, !0).start(function () {
                         i._endScene(t)
                     })
                 }
-                if (44 == a && 3 == _ && 2 == l) {
+                if (44 == a && 3 == _ && 2 == u) {
                     return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0).start(function () {
                         i._endScene(t)
                     })
                 }
-                if (44 == a && 4 == _ && 1 == l) {
+                if (44 == a && 4 == _ && 1 == u) {
                     return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0, !1).start(function () {
                         i._endScene(t)
                     })
                 }
-                if (44 == a && 5 == _ && 2 == l) {
+                if (44 == a && 5 == _ && 2 == u) {
                     return void new I.EventTaskCellOpen(this._model.sortie.map_id, this._resInfo, this._view, this._model.sortie.map.getGaugeNum(), !0, !1, !0, !0, !1).start(function () {
                         i._endScene(t)
                     })
                 }
                 if (1 == o && 0 == r && 0 == s) {
                     var c = e.deck_f.name;
-                    return void new g.TaskFlagShipDamaged(this._view, c, n.mst_id).start(function () {
+                    return void new v.TaskFlagShipDamaged(this._view, c, n.mst_id).start(function () {
                         i._endScene(t)
                     })
                 }
@@ -220,11 +220,11 @@ const function434 = function (t, e, i) {
                             a = i._model.sortie.map_no,
                             _ = r.MapConst.getMapBGMID(s, a);
                         1 == _.battle_bgm ? o.default.sound.bgm.playBattleBGM(_.id) : o.default.sound.bgm.play(_.id);
-                        var u = i._model.deck_f,
-                            c = [u.id];
-                        0 != u.type && c.push(u.id_second);
+                        var l = i._model.deck_f,
+                            c = [l.id];
+                        0 != l.type && c.push(l.id_second);
                         var h = i._model.sortie.getNextCell().no;
-                        new l.APIShipDeck(c, s, a, h).start(function () {
+                        new u.APIShipDeck(c, s, a, h).start(function () {
                             var n = i._model.deck_f.id,
                                 r = o.default.model.deck.get(n);
                             i._model.deck_f.updateShipList(r), i._preNext(t, e)
@@ -240,13 +240,13 @@ const function434 = function (t, e, i) {
                     else {
                         var n = s._model.sortie.area_id,
                             _ = s._model.sortie.map_no,
-                            u = r.MapConst.getMapBGMID(n, _);
-                        1 == u.battle_bgm ? o.default.sound.bgm.playBattleBGM(u.id) : o.default.sound.bgm.play(u.id);
+                            l = r.MapConst.getMapBGMID(n, _);
+                        1 == l.battle_bgm ? o.default.sound.bgm.playBattleBGM(l.id) : o.default.sound.bgm.play(l.id);
                         var c = s._model.deck_f,
                             h = [c.id];
                         0 != c.type && h.push(c.id_second);
                         var p = s._model.sortie.getNextCell().no;
-                        new l.APIShipDeck(h, n, _, p).start(function () {
+                        new u.APIShipDeck(h, n, _, p).start(function () {
                             var n = s._model.deck_f.id,
                                 r = o.default.model.deck.get(n);
                             s._model.deck_f.updateShipList(r), s._model.deck_f.ships[0].selectRepairItem(i);
@@ -260,7 +260,7 @@ const function434 = function (t, e, i) {
                     t.getSelectableRoutes();
                     this._viewNext(e, i, function () {
                         n._view.map.plane_layer.hideAll();
-                        var t = new v.TaskBranchRoute(n, n._model);
+                        var t = new g.TaskBranchRoute(n, n._model);
                         t.start(function () {
                             var e = t.selected_no;
                             new _.APIMapNext(n._model.sortie, i, e).start(function () {

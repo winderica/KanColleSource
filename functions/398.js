@@ -24,7 +24,7 @@ const function398 = function (t, e, i) {
         s = i(4),
         a = i(3),
         _ = i(172),
-        l = function (t) {
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._mst_id = -1, i._onMouseOver = function () {
@@ -49,8 +49,8 @@ const function398 = function (t, e, i) {
                 return o.default.resources.getUseitem(t, 0)
             }, e
         }(PIXI.Graphics);
-    e.ItemIcon = l;
-    var u = function (t) {
+    e.ItemIcon = u;
+    var l = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -59,8 +59,8 @@ const function398 = function (t, e, i) {
         }, e.prototype._getTexture = function (t) {
             return _.getPayitemIcon(t)
         }, e
-    }(l);
-    e.PayItemIcon = u;
+    }(u);
+    e.PayItemIcon = l;
     var c = function (t) {
         function e() {
             var e = t.call(this) || this;

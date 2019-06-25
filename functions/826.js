@@ -1,123 +1,268 @@
 const function826 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(1),
-        a = i(23),
-        _ = i(8),
-        l = i(38),
-        u = i(13),
-        c = i(827),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.bg = new _.AreaBox(1, 16777215), e.black = new _.AreaBox(1, 0), e.bgGrad = new PIXI.Sprite(r.default.resources.getUIImage("vignette_frame")), e.shipLayer = new a.Container, e.ship = new PIXI.Sprite, e.overlay = new PIXI.Sprite, e.silhouette1 = new PIXI.Sprite, e.silhouette2 = new PIXI.Sprite, e.text1 = new PIXI.Sprite, e.text2 = new PIXI.Sprite, e.text1.position.set(0), e.text2.position.set(0, o.default.height), e.text2.anchor.set(0, 1), e.text1.visible = !1, e.text2.visible = !1, e.shipLayer.addChild(e.silhouette1, e.silhouette2, e.ship, e.overlay), e.addChild(e.bg, e.bgGrad, e.shipLayer, e.text1, e.text2, e.black), e
+    var n = function () {
+        function t() {}
+        return t.Sequence = function () {
+            for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+            return new a(t)
+        }, t.Parallel = function () {
+            for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+            return new d(t)
+        }, t.Delay = function (t) {
+            return new _(t)
+        }, t.Call = function (t) {
+            return new u(t)
+        }, t.Condition = function (e, i, n) {
+            return void 0 === n && (n = function () {
+                return t.DoNothing()
+            }), new s(e, i, n)
+        }, t.DoNothing = function () {
+            return new r
+        }, t.WaitForTask = function (t, e) {
+            return new h(t, e)
+        }, t.LoopFor = function (t, e) {
+            return new p(t, e)
+        }, t.Value = function (t, e, i, n, o, r) {
+            return void 0 === n && (n = createjs.Ease.linear), void 0 === o && (o = function () {}), void 0 === r && (r = !1), new c(t, e, i, o, n, r)
+        }, t.WaitForFrame = function (t) {
+            return new l(t)
+        }, t.Tick = function (t, e) {
+            return new o(t, e)
+        }, t.SILENT = function () {}, t.ENDLESS = t.SILENT, t
+    }();
+    e.$_$ = n;
+    var o = function () {
+            function t(t, e) {
+                var i = this;
+                this.onTick = function (t) {
+                    var e = t;
+                    i._checkCall() ? i._onTick(e) : (createjs.Ticker.removeEventListener("tick", i.onTick), i._onComplete())
+                }, this._onTick = e, this._checkCall = t
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._cb_onComplete = null, this._offset = null, this.removeChildren()
-            }, e.prototype.play = function (t, e) {
-                var i = this;
-                this._cb_onComplete = e, this.preload(t, function () {
-                    i._anim1()
-                })
-            }, e.prototype.preload = function (t, e) {
-                var i = this;
-                this._ship_mstid = t, this._offset = r.default.model.ship_graph.get(t).getCenterOffset(!1);
-                var n = new u.ShipLoader;
-                n.add(t, !1, "full_x2"), n.add(t, !1, "text_class"), n.add(t, !1, "text_name"), n.load(function () {
-                    i.text1.texture = r.default.resources.getShip(t, !1, "text_class"), i.text2.texture = r.default.resources.getShip(t, !1, "text_name");
-                    var n = r.default.resources.getShip(t, !1, "full_x2");
-                    i.ship.texture = n, i.overlay.texture = n, i.silhouette1.texture = n, i.silhouette2.texture = n, i.overlay.tint = 0, i.silhouette1.tint = 0, i.silhouette2.tint = 0, i.silhouette1.alpha = .4, i.silhouette2.alpha = .15, i._obj = c.SpKaizoConst.getObj(i._ship_mstid), e()
-                })
-            }, e.prototype._anim1 = function () {
-                var t = this,
-                    e = this._obj[0];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(this.black).to({
-                    alpha: 0
-                }, 600);
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 0, i)(), i.call(function () {
-                    t._anim2()
-                }), createjs.Tween.get(this.overlay).to({
-                    alpha: 0
-                }, 4500), createjs.Tween.get(this.silhouette2).wait(500).to({
-                    x: 35
-                }, 4e3)
-            }, e.prototype._anim2 = function () {
-                var t = this,
-                    e = this._obj[1];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 0, this.silhouette1)();
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 1, i)(), i.call(function () {
-                    t._anim3()
-                })
-            }, e.prototype._anim3 = function () {
-                var t = this,
-                    e = this._obj[2];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), c.SpKaizoConst.getSilhouetteAnim(this._ship_mstid, 1, this.silhouette1)();
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 2, i)(), i.call(function () {
-                    t._anim4()
-                })
-            }, e.prototype._anim4 = function () {
-                var t = this,
-                    e = this._obj[3];
-                this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y), createjs.Tween.get(null).wait(1e3).call(function () {
-                    r.default.sound.voice.play(t._ship_mstid.toString(), 10)
-                });
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 3, i)(), i.call(function () {
-                    var e = createjs.Tween.get(t.shipLayer);
-                    c.SpKaizoConst.getObject(t._ship_mstid, 4, e)(), e.call(function () {
-                        var e = createjs.Tween.get(t.shipLayer);
-                        c.SpKaizoConst.getObject(t._ship_mstid, 5, e)(), e.call(function () {
-                            t._anim5()
-                        })
-                    })
-                })
-            }, e.prototype._anim5 = function () {
-                var t = this,
-                    e = this._obj[4];
-                this.text1.visible = !0, this.text2.visible = !0, this.shipLayer.scale.set(e.scale), this.shipLayer.position.set(e.x, e.y);
-                var i = createjs.Tween.get(this.shipLayer);
-                c.SpKaizoConst.getObject(this._ship_mstid, 6, i)(), i.wait(1e3).call(function () {
-                    t._03_waitClick()
-                })
-            }, e.prototype._03_waitClick = function () {
-                var t = this,
-                    e = new l.GearBtnHome;
-                e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
-                var i = new _.AreaBox(0);
-                i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {
-                    t.removeChild(i), t._04_fadeOut(e)
-                })
-            }, e.prototype._04_fadeOut = function (t) {
+            return t.prototype.execute = function (t) {
+                createjs.Ticker.addEventListener("tick", this.onTick), this._onComplete = t
+            }, t.prototype.dispose = function () {
+                this._onTick = null, this._checkCall = null, this._onComplete = null
+            }, t.prototype.interrupt = function () {
+                createjs.Ticker.removeEventListener("tick", this.onTick)
+            }, t.prototype.interruptible = function () {
+                return !0
+            }, t
+        }(),
+        r = function () {
+            function t() {}
+            return t.prototype.interruptible = function () {
+                return !0
+            }, t.prototype.interrupt = function () {}, t.prototype.execute = function (t) {
+                t()
+            }, t.prototype.dispose = function () {}, t
+        }(),
+        s = function () {
+            function t(t, e, i) {
+                this._testCondition = t, this._trueCase = e, this._falseCase = i
+            }
+            return t.prototype.interruptible = function () {
+                return this._job.interruptible()
+            }, t.prototype.interrupt = function () {
+                this._job.interrupt(), this._trueCase = function () {}, this._falseCase = function () {}, this._testCondition = function () {}
+            }, t.prototype.execute = function (t) {
+                var e = this._testCondition(),
+                    i = e ? this._trueCase() : this._falseCase();
+                this._job = i, i.execute(t)
+            }, t.prototype.dispose = function () {
+                this._job.dispose(), this._job = null, this._testCondition = null, this._trueCase = null, this._falseCase = null
+            }, t
+        }(),
+        a = function () {
+            function t(t) {
                 var e = this;
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 100).call(function () {
-                    t.dispose(), e.removeChild(t), null != e._cb_onComplete && e._cb_onComplete()
+                this._next = function () {
+                    if (e._job && e._job.dispose(), e._job = null, e._seek < e._tasks.length) {
+                        var t = e._tasks[e._seek++],
+                            i = t();
+                        e._job = i, i.execute(e._next)
+                    } else e._onComplete()
+                }, this._tasks = t
+            }
+            return t.prototype.push = function () {
+                for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+                1 == t.length ? this._tasks.push(t[0]) : this._tasks = this._tasks.concat(t)
+            }, t.prototype.execute = function (t) {
+                this._onComplete = t, this._start()
+            }, t.prototype._start = function () {
+                this._seek = 0, this._next()
+            }, t.prototype.interruptible = function () {
+                return this._job && this._job.interruptible(), !0
+            }, t.prototype.interrupt = function () {
+                this._job && this._job.interrupt()
+            }, t.prototype.dispose = function () {
+                var t = this;
+                this._job && this._job.dispose(), this._job = null, this._tasks.forEach(function (e, i) {
+                    t._tasks[i] = null
+                }), this._onComplete = null
+            }, t
+        }(),
+        _ = function () {
+            function t(t) {
+                this._duration = t
+            }
+            return t.prototype.execute = function (t) {
+                var e = createjs.Tween.get(this).wait(this._duration),
+                    i = e.call(t);
+                this._tween = i, i.play(null)
+            }, t.prototype.interruptible = function () {
+                return !0
+            }, t.prototype.interrupt = function () {
+                createjs.Tween.removeTweens(this._tween.target)
+            }, t.prototype.dispose = function () {
+                this._tween = null, this._duration = null
+            }, t
+        }(),
+        u = function () {
+            function t(t) {
+                this._call = t
+            }
+            return t.prototype.execute = function (t) {
+                this._call(), t()
+            }, t.prototype.dispose = function () {
+                this._call = null
+            }, t.prototype.interruptible = function () {
+                return !0
+            }, t.prototype.interrupt = function () {}, t
+        }(),
+        l = function () {
+            function t(t) {
+                this._frame = t
+            }
+            return t.prototype.execute = function (t) {
+                var e = createjs.Tween.get(this, {
+                    useTicks: !0
+                }).wait(this._frame).call(function () {
+                    t()
+                });
+                this._tween = e, e.play(null)
+            }, t.prototype.dispose = function () {
+                this._tween = null, this._frame = null
+            }, t.prototype.interruptible = function () {
+                return !0
+            }, t.prototype.interrupt = function () {
+                createjs.Tween.removeTweens(this._tween.target)
+            }, t
+        }(),
+        c = function () {
+            function t(t, e, i, n, o, r) {
+                var s = this;
+                this._complete = function () {
+                    s._tween.removeEventListener("change", s.__onUpdate__), s.__onUpdate__(), s.__onComplete__()
+                }, this.__onComplete__ = function () {
+                    s._onComplete && s._onComplete()
+                }, this.__onUpdate__ = function () {
+                    s._onUpadte && s._onUpadte(s._target)
+                }, this._target = t, this._to = e, this._duration = i, this._onUpadte = n, this._easing = o
+            }
+            return t.prototype.execute = function (t) {
+                var e = this;
+                this._onComplete = t;
+                var i = createjs.Tween.get(this._target).to(this._to, this._duration, this._easing).call(function () {
+                    e._complete()
+                });
+                i.addEventListener("change", this.__onUpdate__), this._tween = i, i.play(null)
+            }, t.prototype.dispose = function () {
+                this._target = null, this._to = null, this._duration = null, this._tween = null, this._easing = null, this._onUpadte = null
+            }, t.prototype.interruptible = function () {
+                return !0
+            }, t.prototype.interrupt = function () {
+                createjs.Tween.removeTweens(this._tween.target), this._complete = function () {}, this.__onUpdate__ = function () {}, this._onComplete = null, this._onUpadte = null
+            }, t
+        }(),
+        h = function () {
+            function t(t, e) {
+                var i = this;
+                this._completeLoopJob = function () {
+                    i._loopJob.dispose(), i._loopJob = null, i._startLoopJob()
+                }, this._completeMainJob = function () {
+                    i._mainJob.dispose(), i._mainJob = null
+                }, this._mainTask = t, this._loopTask = e
+            }
+            return t.prototype.execute = function (t) {
+                this._onComplete = t, this._startMainJob(), this._startLoopJob()
+            }, t.prototype._startMainJob = function () {
+                var t = this._mainTask();
+                this._mainJob = t, t.execute(this._completeMainJob)
+            }, t.prototype._startLoopJob = function () {
+                if (null == this._mainJob) this._onComplete();
+                else {
+                    var t = this._loopTask();
+                    this._loopJob = t, t.execute(this._completeLoopJob)
+                }
+            }, t.prototype.dispose = function () {
+                this._loopTask = null, this._mainTask = null, this._loopJob = null, this._mainJob = null, this._onComplete = null
+            }, t.prototype.interrupt = function () {
+                this._loopJob && this._loopJob.interrupt(), this._mainJob && this._mainJob.interrupt()
+            }, t.prototype.interruptible = function () {
+                var t = !0;
+                return this._loopJob && (t = t && this._loopJob.interruptible()), this._mainJob && (t = t && this._mainJob.interruptible()), t
+            }, t
+        }(),
+        p = function () {
+            function t(t, e) {
+                var i = this;
+                this._for_ = function () {
+                    if (i._job && i._job.dispose(), i._job = null, i._checkCondition()) {
+                        var t = i._task();
+                        i._job = t, t.execute(i._for_)
+                    } else i._onComplete()
+                }, this._checkCondition = t, this._task = e
+            }
+            return t.prototype.execute = function (t) {
+                this._onComplete = t, this._for_()
+            }, t.prototype.interruptible = function () {
+                return !this._job || this._job.interruptible()
+            }, t.prototype.interrupt = function () {
+                this._for_ = function () {}, this._job && this._job.interrupt()
+            }, t.prototype.dispose = function () {
+                this._job && this._job.dispose(), this._onComplete = null, this._job = null, this._checkCondition = null
+            }, t
+        }(),
+        d = function () {
+            function t(t) {
+                var e = this;
+                this._complete_call = function () {
+                    e._doneCounter++, e._tasks.length <= e._doneCounter && e._onComplete()
+                }, this._tasks = t, this._jobs = [], this._doneCounter = 0
+            }
+            return t.prototype.push = function () {
+                for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+                1 == t.length ? this._tasks.push(t[0]) : this._tasks = this._tasks.concat(t)
+            }, t.prototype.interruptible = function () {
+                var t = !0;
+                return this._jobs.forEach(function (e) {
+                    var i = e.interruptible();
+                    t = t && i
+                }), t
+            }, t.prototype.interrupt = function () {
+                this._jobs.forEach(function (t) {
+                    return t.interrupt()
+                }), this._onComplete = function () {}
+            }, t.prototype.execute = function (t) {
+                this._onComplete = t, this.__call__()
+            }, t.prototype.__call__ = function () {
+                var t = this;
+                if (0 == this._tasks.length) return void this._complete_call();
+                this._tasks.forEach(function (e) {
+                    var i = e();
+                    t._jobs.push(i), i.execute(t._complete_call)
                 })
-            }, e
-        }(PIXI.Container);
-    e.SpKaizoAnimation = h
+            }, t.prototype.dispose = function () {
+                var t = this;
+                this._jobs.forEach(function (e, i) {
+                    e.dispose(), t._jobs[i] = null
+                }), this._jobs = null, this._complete_call = null, this._tasks.forEach(function (e, i) {
+                    t._tasks[i] = null
+                }), this._onComplete = null, this._doneCounter = null
+            }, t
+        }()
 }

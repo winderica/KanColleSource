@@ -22,10 +22,10 @@ const function92 = function (t, e, i) {
     var o = i(0),
         r = i(22),
         s = i(2),
-        a = i(23),
+        a = i(24),
         _ = i(27),
-        l = i(16),
-        u = i(1333),
+        u = i(16),
+        l = i(1334),
         c = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -37,11 +37,11 @@ const function92 = function (t, e, i) {
                 for (var t = this, e = this._scene.data.model.deck_f.ships, i = this._record.getRation(), n = this._createDic(e, i), o = new _.ParallelTask, r = 0, s = e; r < s.length; r++) {
                     var a = s[r];
                     if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                        var l = n[a.mem_id];
-                        if (1 == l.length) o.add(new h(this._scene, a, l[0]));
-                        else if (2 == l.length) {
-                            var u = this._voice_ship == a;
-                            o.add(new p(this._scene, a, l[0], l[1], u))
+                        var u = n[a.mem_id];
+                        if (1 == u.length) o.add(new h(this._scene, a, u[0]));
+                        else if (2 == u.length) {
+                            var l = this._voice_ship == a;
+                            o.add(new p(this._scene, a, u[0], u[1], l))
                         }
                     }
                 }
@@ -57,11 +57,11 @@ const function92 = function (t, e, i) {
                     for (var i = this._scene.data.model.deck_f.ships, n = this._createDic(i, e), o = new _.ParallelTask, r = 0, s = i; r < s.length; r++) {
                         var a = s[r];
                         if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                            var l = n[a.mem_id];
-                            if (1 == l.length) o.add(new h(this._scene, a, l[0]));
-                            else if (2 == l.length) {
-                                var u = this._voice_ship == a;
-                                o.add(new p(this._scene, a, l[0], l[1], u))
+                            var u = n[a.mem_id];
+                            if (1 == u.length) o.add(new h(this._scene, a, u[0]));
+                            else if (2 == u.length) {
+                                var l = this._voice_ship == a;
+                                o.add(new p(this._scene, a, u[0], u[1], l))
                             }
                         }
                     }
@@ -110,7 +110,7 @@ const function92 = function (t, e, i) {
                     scaleX: 1,
                     scaleY: 1
                 }, 300, createjs.Ease.sineOut).call(function () {
-                    new u.TaskBannerParticle(o, i).start()
+                    new l.TaskBannerParticle(o, i).start()
                 }).wait(1e3).to({
                     scaleX: 1.2,
                     scaleY: 1.2
@@ -161,7 +161,7 @@ const function92 = function (t, e, i) {
                     scaleX: 1,
                     scaleY: 1
                 }, 300, createjs.Ease.sineOut).call(function () {
-                    new u.TaskBannerParticle(s, i).start(), 1 == t._voice && o.default.sound.voice.play(t._ship.mst_id.toString(), 26)
+                    new l.TaskBannerParticle(s, i).start(), 1 == t._voice && o.default.sound.voice.play(t._ship.mst_id.toString(), 26)
                 }).wait(1e3).to({
                     scaleX: 1.2,
                     scaleY: 1.2
@@ -183,11 +183,11 @@ const function92 = function (t, e, i) {
             }, e.prototype._getTexture = function (t) {
                 switch (t) {
                     case 145:
-                        return l.BATTLE_MAIN.getTexture(53);
+                        return u.BATTLE_MAIN.getTexture(53);
                     case 150:
-                        return l.BATTLE_MAIN.getTexture(57);
+                        return u.BATTLE_MAIN.getTexture(57);
                     case 241:
-                        return l.BATTLE_MAIN.getTexture(54);
+                        return u.BATTLE_MAIN.getTexture(54);
                     default:
                         return PIXI.Texture.EMPTY
                 }

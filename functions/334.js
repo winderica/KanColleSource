@@ -37,12 +37,12 @@ const function334 = function (t, e, i) {
                         if (o.progress < a) {
                             var _ = e - 1;
                             _ < 0 && (_ = 0);
-                            var l = n[_],
-                                u = l[0],
-                                c = l[1],
-                                h = l[2],
+                            var u = n[_],
+                                l = u[0],
+                                c = u[1],
+                                h = u[2],
                                 p = (o.progress - h) / (a - h),
-                                d = u + (r - u) * p,
+                                d = l + (r - l) * p,
                                 f = c + (s - c) * p;
                             return t.position.x = d, void(t.position.y = f)
                         }
@@ -91,12 +91,12 @@ const function334 = function (t, e, i) {
                         if (r.progress < a) {
                             var _ = e - 1;
                             _ < 0 && (_ = 0);
-                            var l = o[_],
-                                u = l[0],
-                                c = l[1],
-                                h = l[2],
+                            var u = o[_],
+                                l = u[0],
+                                c = u[1],
+                                h = u[2],
                                 p = (r.progress - h) / (a - h),
-                                d = u + (n - u) * p,
+                                d = l + (n - l) * p,
                                 f = c + (s - c) * p;
                             return t.position.x = d, void(t.position.y = f)
                         }
@@ -105,10 +105,10 @@ const function334 = function (t, e, i) {
                 _ = function () {
                     n++
                 },
-                l = function () {
+                u = function () {
                     n % 2 == 0 && a()
                 },
-                u = function () {
+                l = function () {
                     if (n % 8 == 0) {
                         var i = e[Math.floor(n % e.length)];
                         i.x = t.x - 15, i.y = t.y + 75, i.alpha = 1, createjs.Tween.removeTweens(i), createjs.Tween.get(i).to({
@@ -117,7 +117,7 @@ const function334 = function (t, e, i) {
                     }
                 };
             return r.progress = 0, a(), s.call(function () {
-                return s.addEventListener("change", _), s.addEventListener("change", l), s.addEventListener("change", u), s
+                return s.addEventListener("change", _), s.addEventListener("change", u), s.addEventListener("change", l), s
             }).to({
                 progress: 1
             }, 4400, createjs.Ease.quadOut).call(function () {

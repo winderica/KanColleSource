@@ -12,33 +12,30 @@ const function843 = function (t, e, i) {
                     n.onComplete(!0)
                 }, this._onClickNO = function () {
                     n.onComplete(!1)
-                }, i.interactive = !0, i.alpha = 0, e.alpha = 0, e.x = Math.floor(600 - e.width / 2), e.y = Math.floor(360 - e.height / 2 + 27), t.addChild(i, e), e.onClickYES = this._onClickYES, e.onClickNO = this._onClickNO, this.mainView = t, this.useHiSpeedRepairConfirmView = e, this.background = i
+                }, i.interactive = !0, i.alpha = 0, e.alpha = 0, e.x = Math.floor(600 - e.width / 2), e.y = Math.floor(360 - e.height / 2 + 27), e.onClickYES = this._onClickYES, e.onClickNO = this._onClickNO, t.addChild(i, e), this.mainView = t, this.background = i, this.useRepairConfirmView = e
             }
-            return t.prototype.start = function (t) {
+            return t.prototype.dispose = function () {
+                this.mainView.removeChild(this.background), this.mainView.removeChild(this.useRepairConfirmView), this.useRepairConfirmView = null, this.background = null, this.mainView = null, this._onClickYES = this._onClickNO = null
+            }, t.prototype.start = function (t, e) {
                 n.default.view.clickGuard = !0;
-                var e = n.default.model.ndock.get(t),
-                    i = n.default.model.ship.get(e.shipMemID),
-                    r = n.default.model.useItem.get(1).count;
-                this.useHiSpeedRepairConfirmView.update(i, r);
-                var s = o.UISettings.DIALOG_FADETIME,
-                    a = {
+                var i = n.default.model.ship.get(t);
+                this.useRepairConfirmView.update(i, e), this.background.alpha = 0, this.useRepairConfirmView.alpha = 0;
+                var r = o.UISettings.DIALOG_FADETIME,
+                    s = {
                         alpha: 1
                     };
-                createjs.Tween.get(this.background).to(a, s), createjs.Tween.get(this.useHiSpeedRepairConfirmView).to(a, s).call(function () {
+                createjs.Tween.get(this.background).to(s, r), createjs.Tween.get(this.useRepairConfirmView).to(s, r).call(function () {
                     n.default.view.clickGuard = !1
                 })
             }, t.prototype.hide = function (t) {
-                n.default.view.clickGuard = !0;
                 var e = o.UISettings.DIALOG_FADETIME,
                     i = {
                         alpha: 0
                     };
-                createjs.Tween.get(this.background).to(i, e), createjs.Tween.get(this.useHiSpeedRepairConfirmView).to(i, e).call(function () {
+                createjs.Tween.get(this.background).to(i, e), createjs.Tween.get(this.useRepairConfirmView).to(i, e).call(function () {
                     n.default.view.clickGuard = !1, t()
                 })
-            }, t.prototype.dispose = function () {
-                this.mainView.removeChild(this.background), this.mainView.removeChild(this.useHiSpeedRepairConfirmView), this.onComplete = null, this.mainView = null, this.useHiSpeedRepairConfirmView = null, this.background = null
             }, t
         }();
-    e.PhaseHiSpeedRepairConfirm = r
+    e.PhaseRepairConfirm = r
 }

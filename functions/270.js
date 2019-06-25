@@ -29,8 +29,8 @@ const function270 = function (t, e) {
             return o
         }
         for (var a = Object.keys(t), r = 0, _ = a.length; r < _; ++r) {
-            var l = a[r];
-            t[l] = e.compact(t[l], i)
+            var u = a[r];
+            t[u] = e.compact(t[u], i)
         }
         return t
     }, e.isRegExp = function (t) {

@@ -23,8 +23,8 @@ const function361 = function (t, e, i) {
         r = i(2),
         s = i(327),
         a = i(8),
-        _ = i(984),
-        l = function (t) {
+        _ = i(985),
+        u = function (t) {
             function e(e, i, n) {
                 var r = t.call(this) || this;
                 r._ships = e, r._rader = i, r._onUpdate = n, r._fuel = 0, r._ammo = 0;
@@ -33,8 +33,8 @@ const function361 = function (t, e, i) {
                     null != a && (r._fuel += a.getFuelForSupply(), r._ammo += a.getAmmoForSupply())
                 }
                 var _ = o.default.model.useItem.getCount(31),
-                    l = o.default.model.useItem.getCount(32);
-                return r._fuelActive = r._fuel > 0 && r._fuel <= _, r._ammoActive = r._ammo > 0 && r._ammo <= l, r
+                    u = o.default.model.useItem.getCount(32);
+                return r._fuelActive = r._fuel > 0 && r._fuel <= _, r._ammoActive = r._ammo > 0 && r._ammo <= u, r
             }
             return n(e, t), e.prototype._start = function () {
                 this._clickGuard = new a.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard), this._hideRader()
@@ -86,5 +86,5 @@ const function361 = function (t, e, i) {
                 this._ships = null, this._rader = null, this._onUpdate = null, this._clickGuard = null, this._box && this._box.dispose(), this._box = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.TaskTemporarySupply = l
+    e.TaskTemporarySupply = u
 }

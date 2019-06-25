@@ -23,25 +23,25 @@ const function256 = function (t, e, i) {
         r = i(27),
         s = i(143),
         a = i(121),
-        _ = i(1363),
-        l = i(1364),
-        u = i(41),
+        _ = i(1364),
+        u = i(1365),
+        l = i(40),
         c = function (t) {
-            function e(e, i, n, l, u, c) {
-                var h = t.call(this, e, i, -1, l, u, c) || this;
+            function e(e, i, n, u, l, c) {
+                var h = t.call(this, e, i, -1, u, l, c) || this;
                 h._fire = function (t, e) {
                     var i = h._scene.view.layer_content,
                         n = t.getGlobalPos(),
                         s = 1;
                     1 == t.friend ? n.x += o.BannerSize.W / 2 : (n.x -= o.BannerSize.W / 2, s = -1);
-                    var l = new _.TaskRocketFire(i, n.x, n.y, s, 0);
-                    if (0 == h._daihatsu_eff) l.start(function () {
+                    var u = new _.TaskRocketFire(i, n.x, n.y, s, 0);
+                    if (0 == h._daihatsu_eff) u.start(function () {
                         h._impact(t, e)
                     });
                     else {
-                        var u = new a.TaskDaihatsuEff(i, t, e, h._daihatsu_eff),
+                        var l = new a.TaskDaihatsuEff(i, t, e, h._daihatsu_eff),
                             c = new r.ParallelTask;
-                        c.add(l), c.add(u), c.start(function () {
+                        c.add(u), c.add(l), c.start(function () {
                             h._impact(t, e)
                         })
                     }
@@ -67,7 +67,7 @@ const function256 = function (t, e, i) {
                     n = this._scene.view.layer_content,
                     r = e.getGlobalPos();
                 1 == e.friend ? r.x += o.BannerSize.W / 2 : r.x -= o.BannerSize.W / 2;
-                new l.TaskRocketHit(n, r.x, r.y, 300).start(function () {
+                new u.TaskRocketHit(n, r.x, r.y, 300).start(function () {
                     i._damageEffect(t, e)
                 })
             }, e.prototype._damageEffect = function (t, e) {
@@ -79,6 +79,6 @@ const function256 = function (t, e, i) {
                     i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
                 })
             }, e
-        }(u.PhaseAttackBase);
+        }(l.PhaseAttackBase);
     e.PhaseAttackRocket = c
 }

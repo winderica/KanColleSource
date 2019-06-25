@@ -88,8 +88,8 @@ const function258 = function (t, e, i) {
                     var a = s[r];
                     e.push(a)
                 }
-                for (var _ = o.default.model.deck.get(t.deck_id_sub), l = _.getShipList(), u = 0, c = l; u < c.length; u++) {
-                    var a = c[u];
+                for (var _ = o.default.model.deck.get(t.deck_id_sub), u = _.getShipList(), l = 0, c = u; l < c.length; l++) {
+                    var a = c[l];
                     e.push(a)
                 }
                 return e
@@ -135,9 +135,9 @@ const function258 = function (t, e, i) {
                 s[1]; - 1 == _ ? (a.splice(s[1], 1), a.push(-1)) : a[s[1]] = _
             }
             n[t] = r.memID;
-            for (var l = n.filter(function (t) {
+            for (var u = n.filter(function (t) {
                     return t > 0
-                }), u = 0; u < n.length; u++) u >= l.length ? n[u] = -1 : n[u] = l[u]
+                }), l = 0; l < n.length; l++) l >= u.length ? n[l] = -1 : n[l] = u[l]
         }, e.prototype.__remove__ = function (t, e) {
             void 0 === e && (e = !1);
             var i = this._getShipMemIDArray(),

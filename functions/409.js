@@ -9,8 +9,8 @@ const function409 = function (t, e, i) {
         s = i(294),
         a = i(147),
         _ = i(295),
-        l = i(296),
-        u = i(297),
+        u = i(296),
+        l = i(297),
         c = i(201),
         h = i(187),
         p = i(148),
@@ -115,7 +115,7 @@ const function409 = function (t, e, i) {
                     n = t.message,
                     r = new o.RewardModelAirUnit(e, i, n);
                 if (0 == this._dic.hasOwnProperty(5..toString()) && (this._dic[5] = []), this._dic[5].push(r), this._rewards.push(r), 647 == this._duty_id && 1 == t.c_flag) {
-                    var s = new l.RewardModelMap(6, 5);
+                    var s = new u.RewardModelMap(6, 5);
                     this._rewards.push(s)
                 }
             }, t.prototype._addExtraSupplyBonus = function (t) {
@@ -141,7 +141,7 @@ const function409 = function (t, e, i) {
                 var e = t.id_from,
                     i = t.id_tobe,
                     n = t.message,
-                    o = new u.RewardModelModelChange(e, i, "", n),
+                    o = new l.RewardModelModelChange(e, i, "", n),
                     r = t.type;
                 0 == this._dic.hasOwnProperty(r.toString()) && (this._dic[r] = []), this._dic[r].push(o), this._rewards.push(o)
             }, t.prototype._addWarResultBonus = function (t) {

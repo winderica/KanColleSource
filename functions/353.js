@@ -19,12 +19,12 @@ const function353 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(23),
+    var o = i(24),
         r = i(8),
         s = i(6),
         a = i(26),
         _ = i(1),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._activated = !1, e._enabled = !0, e._state = -1, e._onMouseOver = function () {
@@ -34,7 +34,7 @@ const function353 = function (t, e, i) {
                 }, e._onClick = function () {
                     var t;
                     t = 4 == e._state ? 0 : e._state + 1, s.SE.play("223"), e.update(t, !0)
-                }, e._content = new u, e.addChild(e._content), e._hitArea = new r.AreaBox(0, 0, 42, 74), e._hitArea.position.set(-21, -12), e._hitArea.interactive = !0, e.addChild(e._hitArea), e
+                }, e._content = new l, e.addChild(e._content), e._hitArea = new r.AreaBox(0, 0, 42, 74), e._hitArea.position.set(-21, -12), e._hitArea.interactive = !0, e.addChild(e._hitArea), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "enabled", {
                 get: function () {
@@ -74,8 +74,8 @@ const function353 = function (t, e, i) {
                 this._hitArea.buttonMode = !1, this._hitArea.off(_.EventType.MOUSEOVER, this._onMouseOver), this._hitArea.off(_.EventType.MOUSEOUT, this._onMouseOut), this._hitArea.off(_.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelWoodenTag = l;
-    var u = function (t) {
+    e.AirUnitPanelWoodenTag = u;
+    var l = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._img = new PIXI.Sprite, e._img.position.set(-21, -12), e.addChild(e._img), e._light = new PIXI.Sprite, e._light.position.set(-24, -12), e.addChild(e._light), e

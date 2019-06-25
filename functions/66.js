@@ -11,10 +11,10 @@ const function66 = function (t, e, i) {
         function i(t, e, i, n, o) {
             void 0 === o && (o = null);
             for (var r = new Array, s = n / 100, a = n / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / n;
-                null != o && (l = o(l)), r.push({
-                    x: (1 - l) * (1 - l) * t.x + 2 * (1 - l) * l * e.x + l * l * i.x,
-                    y: (1 - l) * (1 - l) * t.y + 2 * (1 - l) * l * e.y + l * l * i.y,
+                var u = a * (_ + 1) / n;
+                null != o && (u = o(u)), r.push({
+                    x: (1 - u) * (1 - u) * t.x + 2 * (1 - u) * u * e.x + u * u * i.x,
+                    y: (1 - u) * (1 - u) * t.y + 2 * (1 - u) * u * e.y + u * u * i.y,
                     t: a
                 })
             }
@@ -23,10 +23,10 @@ const function66 = function (t, e, i) {
 
         function n(t, e, i, n, o) {
             for (var r = new Array, s = o / 100, a = o / s, _ = 0; _ < s; _++) {
-                var l = a * (_ + 1) / o;
+                var u = a * (_ + 1) / o;
                 r.push({
-                    x: (1 - l) * (1 - l) * (1 - l) * t.x + 3 * (1 - l) * (1 - l) * l * e.x + 3 * (1 - l) * l * l * i.x + l * l * l * n.x,
-                    y: (1 - l) * (1 - l) * (1 - l) * t.y + 3 * (1 - l) * (1 - l) * l * e.y + 3 * (1 - l) * l * l * i.y + l * l * l * n.y,
+                    x: (1 - u) * (1 - u) * (1 - u) * t.x + 3 * (1 - u) * (1 - u) * u * e.x + 3 * (1 - u) * u * u * i.x + u * u * u * n.x,
+                    y: (1 - u) * (1 - u) * (1 - u) * t.y + 3 * (1 - u) * (1 - u) * u * e.y + 3 * (1 - u) * u * u * i.y + u * u * u * n.y,
                     t: a
                 })
             }
@@ -34,14 +34,14 @@ const function66 = function (t, e, i) {
         }
 
         function o(e, i, n, o, r, s, a) {
-            for (var _ = t.create3BezierPoints(i, n, o, r, s), l = createjs.Tween.get(e, a), u = 0, c = _; u < c.length; u++) {
-                var h = c[u];
-                l.to({
+            for (var _ = t.create3BezierPoints(i, n, o, r, s), u = createjs.Tween.get(e, a), l = 0, c = _; l < c.length; l++) {
+                var h = c[l];
+                u.to({
                     x: h.x,
                     y: h.y
                 }, h.t)
             }
-            return l
+            return u
         }
 
         function r(t, e, i, n, o, r, s, a) {

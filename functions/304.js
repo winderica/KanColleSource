@@ -29,8 +29,8 @@ const function304 = function (t, e, i) {
                 n._ImageManager = e, n._ev = i;
                 var _ = new PIXI.Sprite(n._ImageManager.use(a.IMAGE_FILE.MSG_BOX));
                 n.btn = new PIXI.Container;
-                var l = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(3));
-                return l.anchor.set(.5, .5), n._btnOuter = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(4)), n._btnOuter.anchor.set(.5, .5), n.btn.addChild(l, n._btnOuter), n.btn.width = n._btnOuter.width, n.btn.height = n._btnOuter.height, n.btn.position.set(s.default.width - Math.floor(n._btnOuter.width / 2) - 20, 170), n.message = new o.TextBox(27, 16777215), n.message.text = "", n.message.position.set(250, 85), n.position.set(0, 465), n.addChild(_, n.message, n.btn), n
+                var u = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(3));
+                return u.anchor.set(.5, .5), n._btnOuter = new PIXI.Sprite(r.TUTORIAL_MAIN.getTexture(4)), n._btnOuter.anchor.set(.5, .5), n.btn.addChild(u, n._btnOuter), n.btn.width = n._btnOuter.width, n.btn.height = n._btnOuter.height, n.btn.position.set(s.default.width - Math.floor(n._btnOuter.width / 2) - 20, 170), n.message = new o.TextBox(27, 16777215), n.message.text = "", n.message.position.set(250, 85), n.position.set(0, 465), n.addChild(_, n.message, n.btn), n
             }
             return n(e, t), e.prototype.start = function () {
                 createjs.Tween.get(this._btnOuter, {

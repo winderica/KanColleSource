@@ -19,29 +19,35 @@ const function697 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(1),
-        s = i(8),
+    var o = i(57),
+        r = i(163),
+        s = i(58),
         a = function (t) {
-            function e(e, i, n) {
-                var a = t.call(this, .1) || this;
-                a._cbDrop = n, a._drag = null, a._isPosible = !1, a._onMove = function (t) {
-                    a._flagIcon.position.set(t.data.global.x, t.data.global.y);
-                    var e = a._reactionArea,
-                        i = t.data.getLocalPosition(e);
-                    a._isPosible = e.hitArea.contains(i.x, i.y)
-                }, a._onUp = function () {
-                    a._dispose(), a._cbDrop(a._isPosible)
-                }, a._onOut = function () {
-                    a._dispose(), a._cbDrop(!1)
-                }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
-                var _ = a._flagIcon.width,
-                    l = a._flagIcon.height;
-                return a._reactionArea = new s.AreaBox(0, 16777215, _, l), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, l), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
+            function e() {
+                var e = t.call(this) || this;
+                e._onClickMamiya = function () {
+                    e.onClickMamiya()
+                }, e._onClickIrako = function () {
+                    e.onClickIrako()
+                }, e._onClickMamiyaAndIrako = function () {
+                    e.onClickMamiyaAndIrako()
+                }, e._onClickBack = function () {
+                    e.onClickBack()
+                };
+                var i = o.ORGANIZE_MAIN.getTexture(6);
+                e.message = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_info4);
+                var n = r.OrganizeConst.getMamiyaOption().res_btn_mamiya;
+                e.buttonMamiya = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_irako, e.buttonIrako = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_m_i, e.buttonMamiyaAndIrako = new s.SimpleButton(n, n), e.buttonBack = new s.SimpleButton(i, i);
+                var a = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_mamiya_g),
+                    _ = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_irako_g),
+                    u = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_m_i_g);
+                return e.buttonMamiya.position = a.position = new PIXI.Point(100, 43), e.buttonIrako.position = _.position = new PIXI.Point(753, 43), e.buttonMamiyaAndIrako.position = u.position = new PIXI.Point(390, 114), e.buttonBack.position.set(762, 135), e.buttonMamiya.onClick = e._onClickMamiya, e.buttonIrako.onClick = e._onClickIrako, e.buttonMamiyaAndIrako.onClick = e._onClickMamiyaAndIrako, e.buttonBack.onClick = e._onClickBack, e.addChild(e.message, a, _, u, e.buttonMamiya, e.buttonIrako, e.buttonMamiyaAndIrako, e.buttonBack), e
             }
-            return n(e, t), e.prototype._dispose = function () {
-                this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)
+            return n(e, t), e.prototype.dispose = function () {
+                this.buttonMamiya.dispose(), this.buttonIrako.dispose(), this.buttonMamiyaAndIrako.dispose(), this.buttonBack.dispose(), this._onClickBack = this._onClickIrako = this._onClickMamiya = this._onClickMamiyaAndIrako = null, this.buttonMamiya = null, this.buttonIrako = null, this.buttonMamiyaAndIrako = null, this.buttonBack = null, this.message = null, this.onClickMamiya = null, this.onClickIrako = null, this.onClickMamiyaAndIrako = null, this.onClickBack = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i) {
+                t ? (this.buttonMamiya.visible = !0, this.buttonMamiya.interactive = !0, this.buttonMamiya.buttonMode = !0) : (this.buttonMamiya.visible = !1, this.buttonMamiya.interactive = !1, this.buttonMamiya.buttonMode = !1), e ? (this.buttonIrako.visible = !0, this.buttonIrako.interactive = !0, this.buttonIrako.buttonMode = !0) : (this.buttonIrako.visible = !1, this.buttonIrako.interactive = !1, this.buttonIrako.buttonMode = !1), i ? (this.buttonMamiyaAndIrako.visible = !0, this.buttonMamiyaAndIrako.interactive = !0, this.buttonMamiyaAndIrako.buttonMode = !0) : (this.buttonMamiyaAndIrako.visible = !1, this.buttonMamiyaAndIrako.interactive = !1, this.buttonMamiyaAndIrako.buttonMode = !1)
             }, e
-        }(s.AreaBox);
-    e.CombineDragging = a
+        }(PIXI.Container);
+    e.SweetsSelectView = a
 }

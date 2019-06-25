@@ -3,7 +3,7 @@ const function56 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(24);
+    var n = i(23);
     ! function (t) {
         function e(t, e) {
             return 10 * t + e

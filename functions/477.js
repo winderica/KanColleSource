@@ -22,9 +22,9 @@ const function477 = function (t, e, i) {
     var o = i(22),
         r = i(6),
         s = i(181),
-        a = i(1441),
-        _ = i(1442),
-        l = function (t) {
+        a = i(1442),
+        _ = i(1443),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._under_layer = new PIXI.Sprite, e._over_layer = new PIXI.Sprite, e.addChild(e._under_layer), e.addChild(e._over_layer), e
@@ -111,5 +111,5 @@ const function477 = function (t, e, i) {
                 })
             }, e
         }(PIXI.Container);
-    e.LayerExplosion = l
+    e.LayerExplosion = u
 }

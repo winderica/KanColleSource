@@ -21,12 +21,12 @@ const function430 = function (t, e, i) {
     });
     var o = i(4),
         r = i(137),
-        s = i(1225),
+        s = i(1226),
         a = i(431),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new l, e._bg.position.set(0, 633), e._bg.alpha = 0, e._compass = new s.CompCompass, e._compass.position.set(54, 766), e._compass.alpha = 0, e.addChild(e._bg), e.addChild(e._compass), e
+                return e._bg = new u, e._bg.position.set(0, 633), e._bg.alpha = 0, e._compass = new s.CompCompass, e._compass.position.set(54, 766), e._compass.alpha = 0, e.addChild(e._bg), e.addChild(e._compass), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "text", {
                 get: function () {
@@ -74,7 +74,7 @@ const function430 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.CompMessageBox = _;
-    var l = function (t) {
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
             return e._bg = new PIXI.Sprite, e._icon = new a.CompDropItemIcon, e._icon.position.set(416, 23), e._icon.visible = !1, e._text = new o.TextBox(30, 16777215), e._text.position.set(414, 23), e._text.style.wordWrap = !1, e._text.style.breakWords = !1, e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e

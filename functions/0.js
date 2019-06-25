@@ -9,11 +9,11 @@ const function0 = function (t, e, i) {
         s = i(268),
         a = i(539),
         _ = i(540),
-        l = i(541),
-        u = i(544),
+        u = i(541),
+        l = i(544),
         c = function () {
             function t() {
-                this._view = new l.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new u.FriendlyRequestModel
+                this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new l.FriendlyRequestModel
             }
             return t._getInstance = function () {
                 return null == this._instance && (this._instance = new t), this._instance

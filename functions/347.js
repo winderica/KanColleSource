@@ -21,7 +21,7 @@ const function347 = function (t, e, i) {
     });
     var o = i(9),
         r = i(3),
-        s = i(33),
+        s = i(31),
         a = function (t) {
             function e(e, i) {
                 void 0 === e && (e = 240), void 0 === i && (i = 60);
@@ -30,19 +30,19 @@ const function347 = function (t, e, i) {
                 var a = new PIXI.Container;
                 n._materialTextureList = [o.COMMON_MISC.getTexture(86), o.COMMON_MISC.getTexture(87), o.COMMON_MISC.getTexture(88), o.COMMON_MISC.getTexture(89)];
                 for (var _ = 0; _ < 5; _++) {
-                    var l = new s.Sprite;
-                    l.alpha = 0, a.addChild(l), n._materialArea.push(l)
+                    var u = new s.Sprite;
+                    u.alpha = 0, a.addChild(u), n._materialArea.push(u)
                 }
-                var u = new PIXI.Container;
+                var l = new PIXI.Container;
                 n._mokuTextureList = [r.ARSENAL_MAIN.getTexture(123), r.ARSENAL_MAIN.getTexture(124)];
                 for (var c = 0; c < 20; c++) {
-                    var l = new s.Sprite;
-                    l.alpha = 0, l.anchor.set(.5, .5), u.addChild(l), n._mokuArea.push(l)
+                    var u = new s.Sprite;
+                    u.alpha = 0, u.anchor.set(.5, .5), l.addChild(u), n._mokuArea.push(u)
                 }
                 return n.RANGE = {
                     width: e,
                     height: i
-                }, n.addChild(a, u), n
+                }, n.addChild(a, l), n
             }
             return n(e, t), e.prototype.play = function (t) {
                 void 0 === t && (t = 5), this._stop(), this._mokuAnimation(), this._materialAnimation(t)
@@ -83,11 +83,11 @@ const function347 = function (t, e, i) {
                                 n = Math.random() * e.RANGE.width,
                                 o = Math.random() * e.RANGE.height,
                                 _ = 1.999 * Math.random() * Math.PI,
-                                l = .4 * Math.random() + .6,
-                                u = 8 * l * Math.cos(_),
-                                c = 8 * l * Math.sin(_) - 8,
+                                u = .4 * Math.random() + .6,
+                                l = 8 * u * Math.cos(_),
+                                c = 8 * u * Math.sin(_) - 8,
                                 h = function () {
-                                    r.x += u * i, r.y += c * i, r.alpha = 1 - s.progress, c += .7 * i
+                                    r.x += l * i, r.y += c * i, r.alpha = 1 - s.progress, c += .7 * i
                                 };
                             r.alpha = 1, r.position.set(n, o), a.addEventListener("change", h)
                         }).to({

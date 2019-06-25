@@ -24,8 +24,8 @@ const function466 = function (t, e, i) {
         s = i(27),
         a = i(19),
         _ = i(29),
-        l = i(40),
-        u = i(6),
+        u = i(39),
+        l = i(6),
         c = i(140),
         h = i(180),
         p = i(141),
@@ -47,7 +47,7 @@ const function466 = function (t, e, i) {
             }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
                 var t = this,
                     e = new s.ParallelTask,
-                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
+                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
                 e.add((new a.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
                     t._fireDogFight()
                 }, 750)), e.add(new r.FuncTask(function () {
@@ -58,7 +58,7 @@ const function466 = function (t, e, i) {
                     t._antiAircraft()
                 }, 1200)), e.add(new r.FuncTask(function () {
                     t._damageAtStage2()
-                }, 1350)), e.add((new _.SerialTask).add(new l.WaitTask(1700)).add((new s.ParallelTask).add(new d.TaskAirSupportTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new f.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
+                }, 1350)), e.add((new _.SerialTask).add(new u.WaitTask(1700)).add((new s.ParallelTask).add(new d.TaskAirSupportTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new f.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
                     t._showBakuExplosion()
                 }, 2950)), e.add(new r.FuncTask(function () {
                     t._showDamage()
@@ -71,17 +71,17 @@ const function466 = function (t, e, i) {
                         s = r.mem_id,
                         a = o.default.model.ship.get(s);
                     if (null != a)
-                        for (var _ = a.getSlotitems(), l = 0; l < _.length; l++) {
-                            var u = _[l];
-                            if (null != u) {
-                                var c = a.getSlotitemTousai(l);
-                                u.taisen > 0 && c > 0 && t++
+                        for (var _ = a.getSlotitems(), u = 0; u < _.length; u++) {
+                            var l = _[u];
+                            if (null != l) {
+                                var c = a.getSlotitemTousai(u);
+                                l.taisen > 0 && c > 0 && t++
                             }
                         }
                 }
-                for (var h = [], l = 0; l < t; l++) {
+                for (var h = [], u = 0; u < t; u++) {
                     var d = new p.Plane,
-                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * l + 150 + (45 * Math.random() - 23)),
+                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
                         y = new PIXI.Point;
                     d.initialize(16, !0, f, y), h.push(d)
                 }

@@ -14,7 +14,7 @@ const function485 = function (t, e, i) {
     }
 
     function o() {
-        createjs.Ticker.timingMode = createjs.Ticker.TIMEOUT, createjs.Ticker.setFPS(60), PIXI.settings.GC_MAX_IDLE = 1200;
+        createjs.Ticker.timingMode = createjs.Ticker.TIMEOUT, createjs.Ticker.setFPS(60), PIXI.settings.GC_MAX_IDLE = 360, PIXI.settings.GC_MAX_CHECK_COUNT = 180;
         var t = {
                 antialias: !1,
                 backgroundColor: 0
