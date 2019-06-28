@@ -75,7 +75,7 @@ const function734 = function (t, e, i) {
             }, e.prototype.updateBanner = function (t, e) {
                 this.shipBanner.update(t, e), this.shipBanner.updatePlate(t.label)
             }, e.prototype.updateSlots = function (t, e) {
-                this.slotItemSlotContainer.update(t, e, !1)
+                this.slotItemSlotContainer.updateSlot(t, e)
             }, e.prototype.updatePosition = function (t) {
                 var e = 5 === t ? 1 : 0;
                 if (this._positionType !== e) {

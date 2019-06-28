@@ -49,7 +49,7 @@ const function1113 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this._name.destroy(), this._name2.destroy(), this._count.dispose(), this._description.destroy(), this._use_btn.dispose(), this._cb_onUse = null
             }, e.prototype._clean = function () {
-                this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._use_btn.visible = !1, this._use_btn.deactivate()
+                this._name.text = "", this._name2.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._use_btn.visible = !1, this._use_btn.deactivate()
             }, e
         }(PIXI.Sprite);
     e.OwnedItemDetailPanel = _;

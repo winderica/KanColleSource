@@ -50,11 +50,11 @@ const function679 = function (t, e, i) {
             }, e.prototype.updateBox1 = function (t, e, i, n, o, r) {
                 this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
             }, e.prototype.updateBox2 = function (t, e) {
-                this.slotItemSlotContainer.update(t, e, !1)
+                this.slotItemSlotContainer.updateSlot(t, e)
             }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, u, l, c) {
                 this.shipParameterView.update(t, e, i, n, o, r, s, a, _, u, l, c)
             }, e.prototype.updateBox4 = function (t, e, i) {
-                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.update(t, [e], !0), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
+                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.updateExSlot(e), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
             }, e.prototype.updateBox5 = function (t, e) {
                 this.shipCard.update(t, e)
             }, e

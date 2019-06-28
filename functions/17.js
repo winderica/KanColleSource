@@ -10,7 +10,6 @@ const function17 = function (t, e, i) {
     var o = window.navigator.userAgent.toLowerCase(),
         r = /edge/i.test(o),
         s = /chrome/i.test(o) && !r,
-        a = /ip(hone|ad|od)/i.test(o),
-        _ = /safari/i.test(o) && !r && a;
-    e.HTML5_AUDIO = s || _
+        a = /ip(hone|ad|od)/i.test(o);
+    e.HTML5_AUDIO = s && !a
 }

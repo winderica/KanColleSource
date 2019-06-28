@@ -40,11 +40,13 @@ const function313 = function (t, e, i) {
             return n(e, t), e.prototype.dispose = function () {
                 for (var t = 0; t < this.normalViews.length; t++) this.normalViews[t].dispose(), this.normalViews[t] = null;
                 this.maxSlot = null, this.emptyViews = null, this.normalViews = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i) {
-                for (var n = t.getSlotViewMax(), o = 0; o < this.maxSlot; o++) {
-                    var r = e[o];
-                    o < t.slotNum ? (this.normalViews[o].visible = !0, this.emptyViews[o].visible = !1, i ? (this.normalViews[o].visible = !1, this.emptyViews[o].visible = !1, r ? (this.normalViews[o].visible = !0, this.normalViews[o].update(r.iconType, r.name, r.isPlane(), -1, r.level, r.skillLevel, r.isLocked())) : this.emptyViews[o].visible = !0) : r ? this.normalViews[o].update(r.iconType, r.name, r.isPlane(), t.getSlotitemTousai(o), r.level, r.skillLevel, r.isLocked()) : this.normalViews[o].clear()) : (this.normalViews[o].visible = !1, this.emptyViews[o].visible = o < n)
+            }, e.prototype.updateSlot = function (t, e) {
+                for (var i = t.getSlotViewMax(), n = 0; n < this.maxSlot; n++) {
+                    var o = e[n];
+                    n < t.slotNum ? (this.normalViews[n].visible = !0, this.emptyViews[n].visible = !1, o ? this.normalViews[n].update(o.iconType, o.name, o.isPlane(), t.getSlotitemTousai(n), o.level, o.skillLevel, o.isLocked()) : this.normalViews[n].clear()) : (this.normalViews[n].visible = !1, this.emptyViews[n].visible = n < i)
                 }
+            }, e.prototype.updateExSlot = function (t) {
+                this.normalViews[0].visible = !1, this.emptyViews[0].visible = !1, t ? (this.normalViews[0].visible = !0, this.normalViews[0].update(t.iconType, t.name, t.isPlane(), -1, t.level, t.skillLevel, t.isLocked())) : this.emptyViews[0].visible = !0
             }, e
         }(PIXI.Container);
     e.SlotItemSlotContainer = s
