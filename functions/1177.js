@@ -19,19 +19,26 @@ const function1177 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
+    var o = i(11),
+        r = i(14),
         s = function (t) {
-            function e(e, i, n, o, r, s, a) {
-                var _ = t.call(this) || this;
-                return _._url = "api_req_furniture/change", _._api_floor = e, _._api_wallpaper = i, _._api_window = n, _._api_wallhanging = o, _._api_shelf = r, _._api_desk = s, _._api_season = a, _
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._view = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_floor = this._api_floor, this._post_data.api_wallpaper = this._api_wallpaper, this._post_data.api_window = this._api_window, this._post_data.api_wallhanging = this._api_wallhanging, this._post_data.api_shelf = this._api_shelf, this._post_data.api_desk = this._api_desk, -1 != this._api_season && (this._post_data.api_season = this._api_season), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.basic;
-                e.updatePortFurnitureMstID(0, this._api_floor), e.updatePortFurnitureMstID(1, this._api_wallpaper), e.updatePortFurnitureMstID(2, this._api_window), e.updatePortFurnitureMstID(3, this._api_wallhanging), e.updatePortFurnitureMstID(4, this._api_shelf), e.updatePortFurnitureMstID(5, this._api_desk), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, this._endTask()
             }, e
-        }(r.APIBase);
-    e.FurnitureChangeAPI = s
+        }(o.TaskBase);
+    e.PreFinalizeTask = s;
+    var a = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, r.UIImageLoader.clearMemoryCache("interior"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = a
 }

@@ -1,30 +1,88 @@
 const function497 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(498),
-        r = function () {
-            function t() {
-                this.__map__ = {}
-            }
-            return t.prototype.__initData__ = function (t) {
+    var o = i(498),
+        r = i(15),
+        s = function () {
+            function t() {}
+            return t.prototype.get = function (t) {
+                return 1 == this._map.hasOwnProperty(t.toString()) ? this._map[t] : null
+            }, t.prototype.getLimitTime = function () {
+                return this._limit_time
+            }, t.prototype.getInArea = function (t, e) {
+                var i = [];
+                for (var n in this._map) {
+                    var o = this._map[n];
+                    o.areaID == t && (1 == e && -1 == o.state || i.push(o))
+                }
+                return i.sort(function (t, e) {
+                    return t.mstID - e.mstID
+                }), i
+            }, t.prototype.getserialID = function () {
+                return this._serial_id
+            }, Object.defineProperty(t.prototype, "serial_id", {
+                set: function (t) {
+                    this._serial_id = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.ExpeditionModelHolder = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.setMstData = function (t) {
+            if (this._map = {}, null != t)
                 for (var e = 0; e < t.length; e++) {
                     var i = t[e],
-                        n = new o.EquipModel(i),
-                        r = n.ship_id.toString();
-                    this.__map__[r] = n
+                        n = new o.ExpeditionModelEdit(i),
+                        r = n.mstID;
+                    if (r > 0) {
+                        var s = r.toString();
+                        this._map[s] = n
+                    }
                 }
-            }, t.prototype.get = function (t) {
-                var e = t.toString(),
-                    i = this.__map__[e];
-                if (i) return i;
-                var r = n.default.model.ship.getMst(t).shipTypeID,
-                    s = n.default.model.shipType.get(r).getEquippableTypes(),
-                    a = {};
-                return a.api_ship_id = t, a.api_equip_type = s, new o.EquipModel(a)
-            }, t
-        }();
-    e.EquipModelHolder = r
+        }, e.prototype.setData = function (t, e) {
+            if (null != this._map && null != t) {
+                for (var i in this._map) {
+                    var n = this.get(this._map[i].mstID);
+                    n.__setState__(-1)
+                }
+                for (var o = 0, s = t; o < s.length; o++) {
+                    var a = s[o],
+                        _ = r.ObjUtil.getNumber(a, "api_mission_id");
+                    if (_ > 0) {
+                        var n = this.get(_);
+                        if (null != n) {
+                            var u = r.ObjUtil.getNumber(a, "api_state"),
+                                l = u;
+                            n.__setState__(l)
+                        }
+                    }
+                }
+                this._limit_time = e
+            }
+        }, e
+    }(s);
+    e.ExpeditionModelHolderEdit = a
 }

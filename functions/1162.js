@@ -20,83 +20,57 @@ const function1162 = function (t, e, i) {
         value: !0
     });
     var o = i(4),
-        r = i(3),
+        r = i(110),
         s = i(1163),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onBtnMouseOver = function (t) {
-                    i._illust.update(t)
-                }, i._onBtnMouseOut = function (t) {
-                    i._illust.update()
-                }, i._onBtnClick = function (t) {
-                    null != i._cb_onSelect && i._cb_onSelect(t)
-                }, i._cb_onSelect = e, i._header = new PIXI.Sprite, i._header.position.set(561, 169), i.addChild(i._header), i._illust = new _, i._illust.position.set(387, 210), i.addChild(i._illust), i._footer = new o.TextBox(16, 0), i._footer.position.set(670, 679), i._footer.text = "\u5bb6\u5177\u30b3\u30a4\u30f3\u306f\u9060\u5f81\u306a\u3069\u3067\u5165\u624b\u3067\u304d\u307e\u3059\u3002", i.addChild(i._footer), i._btns = [];
-                for (var n = [1, 0, 5, 2, 3, 4], r = 0; r < n.length; r++) {
-                    var a = n[r],
-                        u = new s.FurnitureTypeBtn(a);
-                    u.x = 204, u.y = 241 + 70 * r, i.addChild(u), i._btns.push(u)
-                }
-                return i
+            function e() {
+                var e = t.call(this) || this;
+                return e._thumbnail = new s.Thumbnail, e._thumbnail.position.set(30, 31), e._name = new o.TextBox(20, 16774898), e._name.x = 283, e._name.y = 28, e.addChild(e._name), e._description = new o.TextBox(19, 16774898), e._description.x = 285, e._description.y = 87, e._description.style.breakWords = !0, e._description.style.wordWrap = !0, e._description.style.wordWrapWidth = 258, e._description.style.lineHeight = 24.7, e._price = new o.TextBox(20, 16774898), e._price.x = 292, e._price.y = 255, e._bgmFairy = new PIXI.Sprite, e._bgmFairy.x = 368, e._bgmFairy.y = 234, e._rare = new _, e._rare.x = 319, e._rare.y = 333, e._craftman = new u, e._craftman.x = 34, e._craftman.y = 343, e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = r.ITEM_FSHOP.getTexture(51), this._illust.initiatize();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].initialize(this._onBtnMouseOver, this._onBtnMouseOut, this._onBtnClick)
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                this._illust.update();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].deactivate()
-                }
+                this.texture = r.ITEM_FSHOP.getTexture(56);
+                var t = r.ITEM_FSHOP.getTexture(10),
+                    e = new PIXI.Sprite(t);
+                e.x = 282, e.y = 61, this.addChild(e), t = r.ITEM_FSHOP.getTexture(12), e = new PIXI.Sprite(t), e.x = 282, e.y = 222, this.addChild(e), t = r.ITEM_FSHOP.getTexture(11), e = new PIXI.Sprite(t), e.x = 282, e.y = 304, this.addChild(e), this._thumbnail.initialize(), this.addChild(this._thumbnail), this.addChild(this._description), this.addChild(this._price), this._bgmFairy.texture = r.ITEM_FSHOP.getTexture(13), this.addChild(this._bgmFairy), this._rare.initialize(), this.addChild(this._rare), this._craftman.initialize(), this._craftman.visible = !1, this.addChild(this._craftman)
+            }, e.prototype.update = function (t, e) {
+                null == t ? (this._thumbnail.clean(), this._name.text = "", this._description.text = "", this._price.text = "", this._bgmFairy.visible = !1, this._rare.update(0), this._craftman.visible = !1) : (this._thumbnail.updateFromModel(t), this._name.text = t.name, this._description.text = t.description.replace(/<br>/g, "\n"), this._price.text = t.price.toString(), this._bgmFairy.visible = t.seasonID > 0, this._rare.update(t.rarity), 1 == t.isNeedCraftsman() ? (this._craftman.update(e), this._craftman.visible = !0) : this._craftman.visible = !1)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._footer.destroy();
-                for (var t = 0, e = this._btns; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._cb_onSelect = null
+                this.removeChildren(), this._name.destroy(), this._description.destroy(), this._price.destroy(), this._craftman.dispose()
             }, e
-        }(PIXI.Container);
-    e.FurnitureShopMainView = a;
+        }(PIXI.Sprite);
+    e.FShopDetailPanel = a;
     var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._over = new PIXI.Sprite, e.addChild(e._over), e
-        }
-        return n(e, t), e.prototype.initiatize = function () {
-            this.texture = r.ITEM_FSHOP.getTexture(38)
-        }, e.prototype.update = function (t) {
-            if (void 0 === t && (t = -1), -1 == t) this._over.visible = !1;
-            else {
-                var e = void 0;
-                switch (t) {
-                    case 0:
-                        e = 39, this._over.position.set(16, 258);
-                        break;
-                    case 1:
-                        e = 40, this._over.position.set(16, 16);
-                        break;
-                    case 2:
-                        e = 41, this._over.position.set(196, 15);
-                        break;
-                    case 3:
-                        e = 42, this._over.position.set(16, 16);
-                        break;
-                    case 4:
-                        e = 43, this._over.position.set(577, 16);
-                        break;
-                    case 5:
-                        e = 44, this._over.position.set(39, 114);
-                        break;
-                    default:
-                        return void(this._over.visible = !1)
+            function e() {
+                var e = t.call(this) || this;
+                e._stars = [];
+                for (var i = 0; i < 7; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = 30 * i, n.visible = !1, e.addChild(n), e._stars.push(n)
                 }
-                this._over.texture = r.ITEM_FSHOP.getTexture(e), this._over.visible = !0
+                return e
             }
-        }, e
-    }(PIXI.Sprite)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_FSHOP.getTexture(53);
+                for (var t = 0, e = this._stars; t < e.length; t++) {
+                    e[t].texture = r.ITEM_FSHOP.getTexture(15)
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0; e < this._stars.length; e++) {
+                    this._stars[e].visible = e < t
+                }
+            }, e
+        }(PIXI.Sprite),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.x = 1, e.addChild(e._icon), e._arrow = new PIXI.Sprite, e._arrow.x = 88, e._arrow.y = 7, e.addChild(e._arrow), e._from = new o.TextBox(19, 16774898), e._from.anchor.x = 1, e._from.x = 79, e.addChild(e._from), e._to = new o.TextBox(19, 16774898), e._to.x = 120, e.addChild(e._to), e._comment = new o.TextBox(17, 16774898), e._comment.y = 27, e._comment.text = "\u7279\u6ce8\u5bb6\u5177\u8077\u4eba\u306e\u5354\u529b\u304c\u5fc5\u8981\u3068\u306a\u308a\u307e\u3059\u3002", e.addChild(e._comment), e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._icon.texture = r.ITEM_FSHOP.getTexture(8), this._arrow.texture = r.ITEM_FSHOP.getTexture(0)
+            }, e.prototype.update = function (t) {
+                this._from.text = t.toString(), t > 0 ? (this._to.style.fill = 16774898, this._to.text = (t - 1).toString()) : (this._to.style.fill = 15859712, this._to.text = "0")
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._from.destroy(), this._to.destroy(), this._comment.destroy()
+            }, e
+        }(PIXI.Container)
 }

@@ -19,60 +19,210 @@ const function1361 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(12),
-        a = i(255),
-        _ = i(45),
+    var o = i(2),
+        r = i(19),
+        s = i(23),
+        a = i(6),
+        _ = i(16),
         u = function (t) {
             function e(e, i, n, o) {
-                return t.call(this, e, i, n, o) || this
+                void 0 === o && (o = 0);
+                var r = t.call(this) || this;
+                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
             }
-            return n(e, t), e.prototype.resume = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._wait()
+            }, e.prototype._wait = function () {
                 var t = this;
-                null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
-                    t._resume()
-                })) : this._resume()
-            }, e.prototype._start = function () {
-                var t = this,
-                    e = this._attacker.mst_id,
-                    i = this._attacker.isDamaged();
-                this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
-                var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
-                this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
-                var a = this._base_pos;
-                this._view.chara.position.set(a.x, a.y);
-                var u = 344 - n.x,
-                    l = 597 - n.y;
-                if (this._ship_sprite.x += u, this._ship_sprite.y += l, this._ship_sprite.anchor.set(u / this._ship_sprite.width, l / this._ship_sprite.height), this._ship_sprite.scale.set(1.25), this._ship_sprite.alpha = 0, this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._ship_sprite).wait(235).to({
-                        scaleX: 1,
-                        scaleY: 1,
-                        alpha: 1
-                    }, 533, createjs.Ease.sineOut).call(function () {
-                        t._view.emit("attack"), t._shipFlash.scale = t._ship_sprite.scale, t._shipFlash.play()
-                    }).wait(135), null != this._slot1 || null != this._slot2) {
-                    var c = this._view.box;
-                    c.initilize(this._attacker);
-                    var h = 0;
-                    1 == this._attacker.friend ? c.x = -60 : (h = o.default.width - c.width, c.x = h + 60), c.y = o.default.height - c.height, c.alpha = 0, createjs.Tween.get(c).wait(365).to({
-                        x: h,
-                        alpha: 1
-                    }, 165).wait(900).to({
-                        alpha: 0
-                    }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
-                }
-            }, e.prototype._resume = function () {
-                var t = this;
-                createjs.Tween.get(this._ship_sprite).call(function () {
-                    t._view.emit("attack"), t._shipFlash.play()
-                }).wait(135).wait(200).to({
-                    scaleX: 1.25,
-                    scaleY: 1.25,
-                    alpha: 0
-                }, 466).call(function () {
-                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                if (this._delay <= 0) return void this._anim();
+                createjs.Tween.get(null).wait(this._delay).call(function () {
+                    t._anim()
                 })
+            }, e.prototype._anim = function () {
+                var t = this,
+                    e = new l;
+                e.x = this._x, e.y = this._y, this._layer.addChild(e);
+                var i = new r.TweenTask;
+                e.bomb0.position.set(39, -71), e.bomb0.scale.set(0), e.bomb0.alpha = 1, i.addTween(createjs.Tween.get(e.bomb0).wait(270).to({
+                    scaleX: .7,
+                    scaleY: .7
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 90)), e.bomb1.scale.set(.3), e.bomb1.alpha = 0, i.addTween(createjs.Tween.get(e.bomb1).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 120).to({
+                    alpha: .8,
+                    scaleX: 1.05,
+                    scaleY: 1.05
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 90)), e.bomb2.scale.set(0), e.bomb2.alpha = 0, i.addTween(createjs.Tween.get(e.bomb2).to({
+                    alpha: .6,
+                    scaleX: .8,
+                    scaleY: .8
+                }, 90).to({
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 90).to({
+                    alpha: .7,
+                    scaleX: 1.15,
+                    scaleY: 1.15
+                }, 150).to({
+                    alpha: 0
+                }, 240)), e.bomb3.position.set(-29, -72), e.bomb3.scale.set(.8), e.bomb3.alpha = 0, i.addTween(createjs.Tween.get(e.bomb3).wait(300).to({
+                    alpha: 1,
+                    scaleX: .85,
+                    scaleY: .85
+                }, 60).to({
+                    alpha: 1,
+                    scaleX: .95,
+                    scaleY: .95
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 150)), e.bomb4.position.set(11, -72), e.bomb4.scale.set(.8), e.bomb4.alpha = 0, i.addTween(createjs.Tween.get(e.bomb4).wait(330).to({
+                    alpha: 1,
+                    scaleX: .85,
+                    scaleY: .85
+                }, 60).to({
+                    scaleX: .95,
+                    scaleY: .95
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 90)), e.bomb5.position.set(-14, -17), e.bomb5.scale.set(.8), e.bomb5.alpha = 0, i.addTween(createjs.Tween.get(e.bomb5).wait(270).to({
+                    alpha: 1,
+                    scaleX: .85,
+                    scaleY: .85
+                }, 60).to({
+                    scaleX: .9,
+                    scaleY: .9
+                }, 120).to({
+                    alpha: 0,
+                    scaleX: 1.2,
+                    scaleY: 1.2
+                }, 120)), e.bomb6.position.set(36, 0), e.bomb6.scale.set(0), e.bomb6.alpha = 1, i.addTween(createjs.Tween.get(e.bomb6).wait(200).to({
+                    scaleX: .7,
+                    scaleY: .7
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 90)), e.bomb7.position.set(-39, -21), e.bomb7.scale.set(0), e.bomb7.alpha = 1, i.addTween(createjs.Tween.get(e.bomb7).wait(90).to({
+                    scaleX: .7,
+                    scaleY: .7
+                }, 60).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 90)), i.addTween(createjs.Tween.get(null).call(function () {
+                    a.SE.play("102")
+                }).wait(200).call(function () {
+                    a.SE.play("102")
+                }).wait(200).call(function () {
+                    a.SE.play("102")
+                })), i.start(function () {
+                    t._layer.removeChild(e), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
-        }(a.CutinDouble);
-    e.CutinDouble2 = u
+        }(o.TaskBase);
+    e.TaskRocketHit = u;
+    var l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bomb0 = new d, e.addChild(e._bomb0), e._bomb1 = new h, e.addChild(e._bomb1), e._bomb2 = new c, e.addChild(e._bomb2), e._bomb3 = new p, e.addChild(e._bomb3), e._bomb4 = new p, e.addChild(e._bomb4), e._bomb5 = new p, e.addChild(e._bomb5), e._bomb6 = new d, e.addChild(e._bomb6), e._bomb7 = new d, e.addChild(e._bomb7), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "bomb0", {
+                get: function () {
+                    return this._bomb0
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb1", {
+                get: function () {
+                    return this._bomb1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb2", {
+                get: function () {
+                    return this._bomb2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb3", {
+                get: function () {
+                    return this._bomb3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb4", {
+                get: function () {
+                    return this._bomb4
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb5", {
+                get: function () {
+                    return this._bomb5
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb6", {
+                get: function () {
+                    return this._bomb6
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bomb7", {
+                get: function () {
+                    return this._bomb7
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(PIXI.Container),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(32));
+                return i.x = -90, i.y = -113, e.addChild(i), e
+            }
+            return n(e, t), e
+        }(s.Container),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(33));
+                return i.x = -74, i.y = -107, e.addChild(i), e
+            }
+            return n(e, t), e
+        }(s.Container),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(34));
+                return i.x = -60, i.y = -45, e.addChild(i), e
+            }
+            return n(e, t), e
+        }(s.Container),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(35));
+                return i.x = -26, i.y = -39, e.addChild(i), e
+            }
+            return n(e, t), e
+        }(s.Container)
 }

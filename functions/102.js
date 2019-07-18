@@ -21,182 +21,237 @@ const function102 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(29),
-        a = i(39),
-        _ = i(13),
-        u = i(55),
-        l = i(63),
-        c = i(462),
-        h = i(463),
-        p = i(464),
-        d = i(466),
-        f = i(467),
-        y = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new u.PhaseDamageCutin(n._scene), n
+        s = i(63),
+        a = i(249),
+        _ = i(250),
+        u = i(251),
+        l = i(252),
+        c = i(254),
+        h = i(452),
+        p = i(454),
+        d = i(256),
+        f = i(456),
+        y = i(457),
+        m = i(458),
+        g = i(459),
+        v = i(1376),
+        b = i(14),
+        w = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._current_index = 0, o._scene = e, o._record = i, o._data = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this._record.raw.support_air;
-                if (null != t) return void this._supportAir(t);
-                var e = this._record.raw.support_hou;
-                if (null != e) return void this._supportHou(e);
-                var i = this._record.raw.support_rai;
-                if (null != i) return void this._supportRai(i);
-                var n = this._record.raw.support_taisen;
-                if (null != n) return void this._supportTaisen(n);
-                this._endTask()
-            }, e.prototype._supportAir = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(1);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: l.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    h.add(d);
-                    var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    h.add(new m(i, y, g));
-                    var v = e._scene.data.model.deck_f.ships,
-                        b = e._scene.data.model.deck_e.ships;
-                    h.add(new p.TaskSupportAir(e._scene, t, v, b, e._damage_cutin, null)), h.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
+                var t = this;
+                if (null == this._data || null == this._data.list || 0 == this._data.list.length) this._endTask();
+                else {
+                    new s.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                        t._scene.view.layer_title.show(5), t._hougekiCycle()
+                    })
+                }
+            }, e.prototype._hougekiCycle = function () {
+                if (this._current_index < this._data.list.length) {
+                    var t = this._data.list[this._current_index];
+                    this._current_index++, this._hougeki(t)
+                } else this._endTask()
+            }, e.prototype._hougeki = function (t) {
+                var e = t.type;
+                0 == e ? this._normal(t) : 2 == e ? this._double(t) : 7 == e ? this._kuboCI(t) : 100 == e ? this._nelson_touch(t) : 101 == e ? this._nagato_cutin(t) : 102 == e ? this._mutsu_cutin(t) : 103 == e ? this._colorado_cutin(t) : 200 == e ? this._zuiunCutin(t) : this._special(t)
+            }, e.prototype._normal = function (t) {
+                var e = this,
+                    i = this._scene,
+                    n = this._getAShip(t.a_index, t.flag),
+                    o = this._getDShip(t.d_indexes[0], t.flag);
+                if (null != n && null != o) {
+                    var r = t.getSlotitem(0),
+                        s = t.getDamage(0),
+                        c = t.getHitType(0),
+                        h = t.isShield(0),
+                        p = this._getNormalAttackType(n, o, r),
+                        f = this._getDaihatsuEffectType(n, o);
+                    if (1 == this._hasRocketEffect(n, o)) {
+                        var y = new d.PhaseAttackRocket(i, n, o, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
                         })
+                    } else if (i.data.model.map_info.isLongRangeFires()) {
+                        var y = new a.PhaseAttackNormal(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (0 == p) {
+                        var y = new a.PhaseAttackNormal(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (1 == p) {
+                        var y = new _.PhaseAttackKansaiki(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else if (2 == p) {
+                        var y = new u.PhaseAttackBakurai(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
+                    } else {
+                        if (3 != p) throw new Error;
+                        var y = new l.PhaseAttackRaigeki(i, n, o, r, s, c, h);
+                        y.setOptionalEffects(f), y.start(function () {
+                            e._hougekiCycle()
+                        })
+                    }
+                }
+            }, e.prototype._double = function (t) {
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag),
+                    o = t.getSlotitem(0),
+                    r = t.getDamage(0),
+                    s = t.getHitType(0),
+                    a = t.isShield(0),
+                    _ = this._getDShip(t.d_indexes[1], t.flag),
+                    u = t.getSlotitem(1),
+                    l = t.getDamage(1),
+                    h = t.getHitType(1),
+                    p = t.isShield(1);
+                new c.PhaseAttackDouble(this._scene, i, n, o, r, s, a, _, u, l, h, p).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._kuboCI = function (t) {
+                var e = this,
+                    i = this._scene,
+                    n = this._getAShip(t.a_index, t.flag),
+                    o = this._getDShip(t.d_indexes[0], t.flag),
+                    r = t.getSlotitem(0),
+                    s = t.getSlotitem(1),
+                    a = t.getSlotitem(2),
+                    _ = t.getDamage(0),
+                    u = t.getHitType(0),
+                    l = t.isShield(0),
+                    c = this._getDaihatsuEffectType(n, o),
+                    h = new p.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l);
+                h.setOptionalEffects(c), h.start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._nelson_touch = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new f.PhaseNelsonTouch(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._nagato_cutin = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new y.PhaseNagatoAttack(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._mutsu_cutin = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new m.PhaseMutsuAttack(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._colorado_cutin = function (t) {
+                for (var e = this, i = [], n = 0; n < 3; n++) {
+                    var o = this._getDShip(t.d_indexes[n], t.flag);
+                    o && i.push(o)
+                }
+                var r = [t.getDamage(0), t.getDamage(1), t.getDamage(2)],
+                    s = [t.getHitType(0), t.getHitType(1), t.getHitType(2)],
+                    a = [t.isShield(0), t.isShield(1), t.isShield(2)];
+                new g.PhaseColoradoAttack(this._scene, i, r, s, a).start(function () {
+                    e._hougekiCycle()
+                })
+            }, e.prototype._special = function (t) {
+                var e = this,
+                    i = this._getAShip(t.a_index, t.flag),
+                    n = this._getDShip(t.d_indexes[0], t.flag);
+                if (null != i && null != n) {
+                    var o = t.getSlotitem(0),
+                        r = t.getSlotitem(1),
+                        s = t.getSlotitem(2),
+                        a = t.getDamage(0),
+                        _ = t.getHitType(0),
+                        u = t.isShield(0);
+                    new h.PhaseAttackDanchaku(this._scene, t.type, i, n, o, r, s, a, _, u).start(function () {
+                        e._hougekiCycle()
+                    })
+                }
+            }, e.prototype._zuiunCutin = function (t) {
+                var e = this,
+                    i = new b.UIImageLoader("battle");
+                i.add("battle_zrk.json"), i.load(function () {
+                    var i = e._getAShip(t.a_index, t.flag),
+                        n = e._getDShip(t.d_indexes[0], t.flag),
+                        o = t.getSlotitem(0),
+                        r = t.getSlotitem(2),
+                        s = t.getDamage(0),
+                        a = t.getHitType(0),
+                        _ = t.isShield(0);
+                    new v.PhaseZRK(e._scene, i, n, o, r, s, a, _).start(function () {
+                        e._hougekiCycle()
                     })
                 })
-            }, e.prototype._supportHou = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(2);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var h = o.default.model.ship.get(l.mem_id);
-                            null != h ? r.push({
-                                mst_id: h.mstID,
-                                damaged: l.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
+            }, e.prototype._getAShip = function (t, e) {
+                return 0 == e ? this._scene.data.model.deck_f.ships[t] : this._scene.data.model.deck_e.ships[t]
+            }, e.prototype._getDShip = function (t, e) {
+                return 0 == e ? this._scene.data.model.deck_e.ships[t] : this._scene.data.model.deck_f.ships[t]
+            }, e.prototype._getNormalAttackType = function (t, e, i) {
+                for (var n = 0, r = 0, s = t.slots, a = 0, _ = s; a < _.length; a++) {
+                    var u = _[a];
+                    if (null != u) {
+                        var l = u.equipType;
+                        8 == l || 58 == l ? (n++, u.taisen > 0 && r++) : 11 != l && 25 != l || r++
                     }
-                    var p = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    p.add(new m(i, y, g)), p.add(new c.PhaseSupportHou(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
-                })
-            }, e.prototype._supportRai = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    e._scene.view.layer_title.show(3);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: l.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
+                }
+                var c = t.stype;
+                if (352 == t.mst_id) {
+                    if (1 == e.isSubMarine()) return r > 0 ? 1 : 2;
+                    if (n > 0) return 1
+                }
+                if (7 == c || 11 == c || 18 == c) return 1;
+                if (e.isSubMarine()) return 6 == c || 10 == c || 16 == c || 17 == c ? 1 : 2;
+                var h = o.default.model.slot.getMst(i);
+                return null == h || 5 != h.equipTypeSp && 32 != h.equipTypeSp ? 0 : 3
+            }, e.prototype._hasRocketEffect = function (t, e) {
+                if (0 == e.isGround()) return !1;
+                for (var i = t.slots, n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    if (null != r) {
+                        if (37 == r.equipType) return !0
                     }
-                    var p = new s.SerialTask,
-                        d = new f.TaskSupportDeckCutin(i, r);
-                    p.add(d);
-                    var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    p.add(new m(i, y, g)), p.add(new h.PhaseSupportRai(e._scene, t, e._scene.data.model.deck_e.ships)), p.start(function () {
-                        e._scene.view.layer_title.hide(function () {
-                            new a.WaitTask(800).start(function () {
-                                e._endTask()
-                            })
-                        })
-                    })
-                })
-            }, e.prototype._supportTaisen = function (t) {
-                var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
-                            null != c ? r.push({
-                                mst_id: c.mstID,
-                                damaged: l.damaged
-                            }) : r.push(null)
-                        } else r.push(null)
-                    }
-                    var h = new s.SerialTask,
-                        p = new f.TaskSupportDeckCutin(i, r);
-                    h.add(p);
-                    var y = r[0].mst_id,
-                        g = r[0].damaged;
-                    h.add(new m(i, y, g));
-                    var v = e._scene.data.model.deck_f.ships,
-                        b = e._scene.data.model.deck_e.ships;
-                    h.add(new d.TaskSupportTaisen(e._scene, t, v, b, e._damage_cutin, null)), h.start(function () {
-                        new a.WaitTask(800).start(function () {
-                            e._endTask()
-                        })
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                var e = this;
-                this._damage_cutin.start(function () {
-                    e._scene = null, e._record = null, e._damage_cutin = null, t.prototype._endTask.call(e)
-                })
+                }
+                return !1
+            }, e.prototype._getDaihatsuEffectType = function (t, e) {
+                if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca", "\u98db\u884c\u5834\u59eb"];
+                if (1 == t.hasSlot(167)) {
+                    if (1 == t.isSubMarine()) {
+                        if (1 == e.isGround()) return 4
+                    } else if (i.indexOf(e.name) >= 0) return 4;
+                    return 0
+                }
+                return 1 == t.hasSlot(166) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(193) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(68) && i.indexOf(e.name) >= 0 ? 3 : 0
+            }, e.prototype._log = function (t, e, i, n, o) {}, e.prototype._getIndex = function (t) {
+                var e = this._scene.data.model.deck_f.ships.indexOf(t);
+                return e >= 0 ? e : this._scene.data.model.deck_e.ships.indexOf(t)
             }, e
         }(r.TaskBase);
-    e.PhaseSupport = y;
-    var m = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            return o._layer = e, o._mst_id = i, o._damaged = n, o
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new _.ShipLoader;
-            e.add(this._mst_id, this._damaged, "full"), e.load(function () {
-                t._show()
-            })
-        }, e.prototype._show = function () {
-            var t = this,
-                e = o.default.model.ship_graph.get(this._mst_id).getBattleOffset(this._damaged),
-                i = -740 + e.x,
-                n = o.default.resources.getShip(this._mst_id, this._damaged, "full");
-            this._s = new PIXI.Sprite(n), this._s.x = i, this._s.y = -105 + e.y, this._s.alpha = 0, this._layer.addChild(this._s), createjs.Tween.get(this._s).to({
-                x: i + 665,
-                alpha: 1
-            }, 500).to({
-                x: i + 740
-            }, 300).call(function () {
-                o.default.sound.voice.playAtRandom(t._mst_id.toString(), [16, 17, 18], [33, 33, 34])
-            }).wait(300).to({
-                x: i + 1070,
-                alpha: 0
-            }, 500).call(function () {
-                t._layer.removeChild(t._s), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._layer = null, this._s = null, t.prototype._endTask.call(this)
-        }, e
-    }(r.TaskBase);
-    e.TaskFlagShip = m
+    e.PhaseHougeki = w
 }

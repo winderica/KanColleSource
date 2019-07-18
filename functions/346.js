@@ -19,31 +19,33 @@ const function346 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.iconMaterial = new PIXI.Sprite, e.textCount = new o.TextBox(25, 5523516), e.iconMaterial.position.set(0, 18), e.textCount.anchor.set(1, 0), e.textCount.position.set(261, 9), e.addChild(e.iconMaterial, e.textCount), e
+    var o = i(0),
+        r = i(2),
+        s = i(68),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._maps = e, i
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                switch (t) {
-                    case 31:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(157);
-                        break;
-                    case 32:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(159);
-                        break;
-                    case 33:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(161);
-                        break;
-                    case 34:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(163)
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
+                    var r = n[i];
+                    if ((0 != r.defeat_required || 0 != r.gauge_max) && 0 != r.isOpened()) {
+                        var a = r.area_id,
+                            _ = r.map_no,
+                            u = r.getGaugeNum(),
+                            l = s.GaugeSetModel.createKey(a, _, u);
+                        e.add(l)
+                    }
                 }
-                this.textCount.text = e.toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.textCount.destroy(), this.iconMaterial = null, this.textCount = null
+                e.count > 0 ? e.load(function () {
+                    t._endTask()
+                }) : this._endTask()
+            }, e.prototype._endTask = function () {
+                this._maps = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.DisassemblyMaterialItem = s
+        }(r.TaskBase);
+    e.TaskLoadGaugeResources = a
 }

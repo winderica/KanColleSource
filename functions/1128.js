@@ -25,17 +25,17 @@ const function1128 = function (t, e, i) {
         a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
+                return i._count = 0, i._onSelectFromTop = function (t) {
                     if (i._top_view.deactivate(), -1 == t) {
                         if (null == i._cb_onResult) return;
                         i._cb_onResult(t)
-                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                    } else i._confirm_view = new s.ConfirmView(i._onSelectFromConfirm), i._confirm_view.position.set(215, 206), i.addChild(i._confirm_view), i._confirm_view.initialize(i._count), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
                 }, i._onSelectFromConfirm = function (t) {
                     null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(215, 206), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._top_view.initialize()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize(t)
             }, e.prototype.activate = function () {
                 null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
             }, e.prototype.deactivate = function () {
@@ -44,5 +44,5 @@ const function1128 = function (t, e, i) {
                 null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
         }(o.DialogBase);
-    e.PresentBoxUseDialog = a
+    e.KouMedalUseDialog = a
 }

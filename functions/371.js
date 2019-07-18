@@ -19,36 +19,42 @@ const function371 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(231),
-        s = i(1005),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                return t.call(this, e, i, n, o, r) || this
+    var o = i(1037),
+        r = i(58),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._setPositions = function () {
-                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-            }, e.prototype._getNoneTexture = function () {
-                switch (this._type) {
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(32);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(33)
+            return n(e, t), e.prototype.update = function (t) {
+                var e = o.shipTypeIdToCategory(t),
+                    i = this._shipTypeToResourceID(e);
+                this.texture = r.SALLY_EXPEDITION.getTexture(i)
+            }, e.prototype._shipTypeToResourceID = function (t) {
+                switch (t) {
+                    case o.ShipCategory.BB_BC:
+                        return 104;
+                    case o.ShipCategory.CV_CVL:
+                        return 106;
+                    case o.ShipCategory.CA:
+                        return 107;
+                    case o.ShipCategory.CL:
+                        return 108;
+                    case o.ShipCategory.DD:
+                        return 109;
+                    case o.ShipCategory.DE:
+                        return 110;
+                    case o.ShipCategory.SS:
+                        return 111;
+                    case o.ShipCategory.AV_AO_AS:
+                        return 112;
+                    case o.ShipCategory.BBV:
+                        return 105;
+                    case o.ShipCategory.CLT:
+                        return 113
                 }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._getFocusTexture = function () {
-                switch (this._type) {
-                    case 1:
-                        return o.SALLY_EVENT.getTexture(31);
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(29);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(30)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._createLock = function () {
-                return new s.EventMapThumbnailLocked(this._type)
+            }, e.prototype.dispose = function () {
+                this.texture = PIXI.Texture.EMPTY
             }, e
-        }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+        }(PIXI.Sprite);
+    e.ShipShadow = s
 }

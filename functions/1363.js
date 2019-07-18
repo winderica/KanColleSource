@@ -19,63 +19,94 @@ const function1363 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(12),
-        a = i(255),
-        _ = i(45),
-        u = function (t) {
-            function e(e, i, n, o) {
-                return t.call(this, e, i, n, o) || this
+    var o = i(0),
+        r = i(8),
+        s = i(19),
+        a = i(6),
+        _ = i(44),
+        u = i(455),
+        l = i(1365),
+        c = i(65),
+        h = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this, i, n, o, r, !1) || this;
+                return s._layer = e, s._friend = s._attacker.friend, s
             }
-            return n(e, t), e.prototype.resume = function () {
-                var t = this;
-                null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
-                    t._resume()
-                })) : this._resume()
-            }, e.prototype._start = function () {
+            return n(e, t), e.prototype._start = function () {
                 var t = this,
-                    e = this._attacker.mst_id,
-                    i = this._attacker.isDamaged();
-                this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
-                var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
-                this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
-                var a = this._base_pos,
-                    u = this._friend ? 1 : -1;
-                this._view.chara.position.set(a.x - 180 * u, a.y + 120), this._view.chara.alpha = 0;
-                var l = 344 - n.x,
-                    c = 597 - n.y;
-                if (this._ship_sprite.x += l, this._ship_sprite.y += c, this._ship_sprite.anchor.set(l / this._ship_sprite.width, c / this._ship_sprite.height), this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
-                        x: a.x - 30 * u,
-                        y: a.y + 15,
-                        alpha: 1
-                    }, 300).to({
-                        x: a.x,
-                        y: a.y
-                    }, 250).call(function () {
-                        t._view.emit("attack"), t._shipFlash.play()
-                    }).wait(135), null != this._slot1 || null != this._slot2) {
-                    var h = this._view.box;
-                    h.initilize(this._attacker);
-                    var p = 0;
-                    1 == this._attacker.friend ? h.x = -60 : (p = o.default.width - h.width, h.x = p + 60), h.y = o.default.height - h.height, h.alpha = 0, createjs.Tween.get(h).wait(365).to({
-                        x: p,
-                        alpha: 1
-                    }, 165).wait(900).to({
-                        alpha: 0
-                    }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
+                    e = this._friend ? 1 : -1;
+                this._canvas = new l.CutinKuboDayCanvas, this._canvas.bg.alpha = 0;
+                var i = this._attacker.mst_id,
+                    n = this._attacker.isDamaged(),
+                    r = o.default.resources.getShip(i, n, "full"),
+                    u = new PIXI.Sprite(r),
+                    c = new _.ShipFlash(r),
+                    h = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                u.position.set(h.x, h.y), c.position.set(h.x, h.y), this._canvas.chara.alpha = 0, this._canvas.chara.x = (this._friend ? 0 : 600) - 54, this._canvas.chara.y = 615, this._canvas.chara.addChild(u), this._canvas.chara.addChild(c), this._canvas.plane1.position.set(600 - 917 * e, 387), this._canvas.plane1.initialize(this._slot_mst_id1, this._friend);
+                var p = 0,
+                    d = this._attacker.slots;
+                if (null != d && d.length > 0 && null != d[0]) {
+                    var f = d[0].mst_id;
+                    f == this._slot_mst_id1 ? p = 1 : f == this._slot_mst_id2 ? p = 2 : f == this._slot_mst_id3 && (p = 3)
                 }
-            }, e.prototype._resume = function () {
-                var t = this;
-                createjs.Tween.get(this._ship_sprite).call(function () {
-                    t._view.emit("attack"), t._shipFlash.play()
-                }).wait(135).wait(200).to({
-                    scaleY: 1.66,
+                var y, m = new s.TweenTask;
+                this._canvas.bar1.initialize(this._slot_mst_id1, this._friend), y = 1 == p ? 1300 : 1600, m.addTweens(this._canvas.bar1.createTween(y)), this._canvas.bar2.initialize(this._slot_mst_id2, this._friend), y = 2 == p ? 1300 : 1600, m.addTweens(this._canvas.bar2.createTween(y)), this._canvas.bar3.initialize(this._slot_mst_id3, this._friend), y = 3 == p ? 1300 : 1600, m.addTweens(this._canvas.bar3.createTween(y)), m.start(function () {
+                    var e = new s.TweenTask;
+                    e.addTweens(t._canvas.bar1.createTween2(1300)), e.addTweens(t._canvas.bar2.createTween2(1300)), e.addTweens(t._canvas.bar3.createTween2(1300)), e.start()
+                }), this._layer.addChild(this._canvas), createjs.Tween.get(this._canvas.bg).to({
+                    alpha: 1
+                }, 250), createjs.Tween.get(this._canvas.chara).to({
+                    y: -87,
+                    alpha: 1
+                }, 500).wait(700).call(function () {
+                    c.play()
+                }).wait(100).wait(1500).call(function () {
+                    c.play()
+                }).wait(100).call(function () {
+                    null != t._cb_onAttack && t._cb_onAttack()
+                }).wait(100).to({
+                    y: -351,
                     alpha: 0
-                }, 466).call(function () {
-                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                }, 500), createjs.Tween.get(this._canvas.plane1).wait(300).call(function () {
+                    t._canvas.plane1.activate()
+                }).to({
+                    x: 600 - 38 * e
+                }, 400).wait(700).to({
+                    x: 600 + 863 * e
+                }, 400).call(function () {
+                    t._canvas.plane1.deactivate()
+                }), createjs.Tween.get(null).wait(750).call(function () {
+                    a.SE.play("105")
+                }).wait(250).call(function () {
+                    a.SE.play("109")
+                }).wait(600).call(function () {
+                    a.SE.play("105")
+                }).wait(200).call(function () {
+                    a.SE.play("109")
+                }), this._anim2()
+            }, e.prototype._anim2 = function () {
+                var t = this,
+                    e = new c.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).wait(3100).call(function () {
+                    e.activate()
+                }).to({
+                    alpha: 1
+                }, 200).wait(300).to({
+                    alpha: 0
+                }, 300);
+                var i = new r.AreaBox(1, 16777215);
+                i.alpha = 0, this._layer.addChild(i), createjs.Tween.get(i).wait(3100).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._canvas)
+                }).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(e), t._layer.removeChild(i), t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._canvas = null, t.prototype._endTask.call(this)
             }, e
-        }(a.CutinDouble);
-    e.CutinDouble4 = u
+        }(u.CutinKuboBase);
+    e.CutinKuboDay = h
 }

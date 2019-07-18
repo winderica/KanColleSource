@@ -19,52 +19,31 @@ const function1301 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
+    var o = i(1302),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return e._frame = 0, e._sprite = new PIXI.Sprite(o.MAP_EVENT_ANIME.getTexture(e._frame)), e.addChild(e._sprite), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-            }, e.prototype.activate = function () {
-                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 900).to({
+            return n(e, t), e.prototype.dispose = function () {
+                this.stopAnimation(), this.removeChildren(), this._sprite = null, this._frame = null
+            }, e.prototype.startAnimation = function () {
+                var t = this;
+                this._tween = createjs.Tween.get(null), this._tween.loop = !0, this._tween.wait(250).call(function () {
+                    t._onUpdate()
+                })
+            }, e.prototype.stopAnimation = function () {
+                this._tween && (this._tween.setPaused(!0), this._tween = null, this._sprite.alpha = 0)
+            }, e.prototype.hide = function () {
+                var t = this;
+                createjs.Tween.get(this).to({
                     alpha: 0
-                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
-                    loop: !0
-                }).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(500).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
-                    loop: !0
-                }).wait(500).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400))
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
-            }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._stopTween = function () {
-                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
+                }, 200).call(function () {
+                    t.stopAnimation()
+                })
+            }, e.prototype._onUpdate = function () {
+                this._frame >= 29 ? this._frame = 0 : this._frame++, this._sprite.texture = o.MAP_EVENT_ANIME.getTexture(this._frame)
             }, e
         }(PIXI.Container);
-    e.CompShipWave = r
+    e.MapAnime = r
 }

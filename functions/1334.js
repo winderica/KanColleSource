@@ -20,102 +20,55 @@ const function1334 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(19),
-        s = i(16),
-        a = [{
-            x: 0,
-            y: 0,
-            delay: 0
-        }, {
-            x: 0,
-            y: -23,
-            delay: 60
-        }, {
-            x: -45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 0,
-            y: 30,
-            delay: 120
-        }, {
-            x: -75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 0,
-            y: -53,
-            delay: 180
-        }, {
-            x: -98,
-            y: 45,
-            delay: 180
-        }, {
-            x: 98,
-            y: 45,
-            delay: 180
-        }],
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._pos = i, n
+        r = i(12),
+        s = i(179),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ready2 = function () {
+                    i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
+                this._ready()
+            }, e.prototype._ready = function () {
+                this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
+            }, e.prototype._showText = function () {
+                this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
+                    y: 300,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._blue_lost).to({
+                    y: 420,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300).wait(500).call(this._ready2)
+            }, e.prototype._hideText = function () {
                 var t = this;
-                this._container = new PIXI.Container, this._container.x = this._pos.x, this._container.y = this._pos.y, this._layer.addChild(this._container);
-                for (var e = new r.TweenTask, i = 0, n = a; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        var n = new u;
-                        n.Initialize(), n.x = i.x + 24 * Math.random() - 12, n.y = i.y + 6 * Math.random() - 3, n.x -= 18, n.y -= 18, n.alpha = 0;
-                        var o = .6 * Math.random(),
-                            r = createjs.Tween.get(n);
-                        r.wait(i.delay), r.call(function () {
-                            n.activate(), t._container.addChild(n)
-                        }), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * o), r.to({
-                            alpha: 0
-                        }, 100), r.wait(100), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * (.6 - o)), r.to({
-                            alpha: 0
-                        }, 200), r.call(function () {
-                            t._container.removeChild(n), n.deactivate()
-                        }), e.addTween(r)
-                    }(o)
-                }
-                e.start(function () {
-                    t._layer.removeChild(t._container), t._endTask()
+                this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray)
+                }), createjs.Tween.get(this._gray_lost).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue_lost)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray_lost)
+                }).wait(500).call(function () {
+                    t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._pos = null, this._container = null, t.prototype._endTask.call(this)
+                this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskBannerParticle = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._update = function (t) {
-                e._img.texture = 1 == t ? s.BATTLE_MAIN.getTexture(62) : s.BATTLE_MAIN.getTexture(63), e._img.x = e._img.width / 2, e._img.y = e._img.height / 2
-            }, e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.Initialize = function () {
-            this._update(!0)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._update(!0), this._t = createjs.Tween.get(null, {
-                loop: !0
-            }).wait(300).call(this._update, [!1]).wait(300).call(this._update, [!0]))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+    e.TaskGouchinCutinText = a
 }

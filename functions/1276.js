@@ -19,48 +19,36 @@ const function1276 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(24),
-        r = i(20),
-        s = i(1277),
+    var o = i(5),
+        r = i(62),
+        s = i(20),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._type = e, i._img = new PIXI.Sprite, i.addChild(i._img), i._numset = new s.NumericalDisplaySet, i.addChild(i._numset), i._numset.visible = !1, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._container = new PIXI.Container, e.addChild(e._container), e._bg = new r.CenteringSprite, e._bg.scale.x = 1.2, e._container.addChild(e._bg), e._txt = new r.CenteringSprite, e._container.addChild(e._txt), e
             }
-            return n(e, t), e
-        }(o.Container);
-    e.LandingBalloonBase = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(51), this._img.position.set(-5, -92)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(52), this._img.position.set(-45, -105)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(53), this._img.position.set(-86, -92))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = 8 - Math.round(this._numset.width / 2), this._numset.y = -36, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -33 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : this._numset.visible = !1
-        }, e
-    }(a);
-    e.LandingBalloonType1 = _;
-    var u = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(55), this._img.position.set(0, -45)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(56), this._img.position.set(-29, 0)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(57), this._img.position.set(-63, 0))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = 24 - Math.round(this._numset.width / 2), this._numset.y = 84, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -12 - Math.round(this._numset.width / 2), this._numset.y = 83, this._numset.visible = !0) : this._numset.visible = !1
-        }, e
-    }(a);
-    e.LandingBalloonType2 = u;
-    var l = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            1 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(59), this._img.position.set(-15, -101)) : 2 == this._type ? (this._img.texture = r.MAP_COMMON.getTexture(60), this._img.position.set(-87, -93)) : 3 == this._type && (this._img.texture = r.MAP_COMMON.getTexture(61), this._img.position.set(-99, -12))
-        }, e.prototype.update = function (t) {
-            this._numset.update(t), 2 == this._type ? (this._numset.x = -35 - Math.round(this._numset.width / 2), this._numset.y = -23, this._numset.visible = !0) : 3 == this._type ? (this._numset.x = -47 - Math.round(this._numset.width / 2), this._numset.y = 57, this._numset.visible = !0) : this._numset.visible = !1
-        }, e
-    }(a);
-    e.LandingBalloonType3 = l
+            return n(e, t), e.prototype.initialize = function (t) {
+                switch (t) {
+                    case 1:
+                        this._bg.texture = s.MAP_COMMON.getTexture(102), this._txt.texture = s.MAP_COMMON.getTexture(113);
+                        break;
+                    case 2:
+                        this._bg.texture = s.MAP_COMMON.getTexture(105), this._txt.texture = s.MAP_COMMON.getTexture(115);
+                        break;
+                    case 3:
+                        this._bg.texture = s.MAP_COMMON.getTexture(102), this._txt.texture = s.MAP_COMMON.getTexture(114);
+                        break;
+                    case 4:
+                        this._bg.texture = s.MAP_COMMON.getTexture(103), this._txt.texture = s.MAP_COMMON.getTexture(116)
+                }
+                this._container.y = -o.default.height / 2 - this._container.height
+            }, e.prototype.playAnimation = function (t) {
+                createjs.Tween.get(this._container).to({
+                    y: 0
+                }, 600, createjs.Ease.sineOut).wait(1e3).to({
+                    y: o.default.height / 2 + this.height
+                }, 600, createjs.Ease.sineIn).call(t)
+            }, e
+        }(PIXI.Container);
+    e.AirRaidResultTelop = a
 }

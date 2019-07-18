@@ -19,34 +19,29 @@ const function1078 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(171),
-        s = i(380),
-        a = i(381),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._model = i, r._view = n, r._onBack = o, r
+    var o = i(0),
+        r = i(2),
+        s = i(24),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._mst_id = e, n._target = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                (new a.TaskLoadResources).start(function () {
-                    t._initView()
+            return n(e, t), e.prototype.cancel = function () {
+                this._target = null
+            }, e.prototype._start = function () {
+                var t = this,
+                    e = new s.SlotLoader;
+                e.add(this._mst_id, "card"), e.load(function () {
+                    if (null != t._target) {
+                        var e = o.default.resources.getSlotitem(t._mst_id, "card");
+                        t._target.texture = e
+                    }
+                    t._endTask()
                 })
-            }, e.prototype._initView = function () {
-                this._view.initialize(this._onBack), this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new s.AlbumAPI(1, 0, this._model).start(function () {
-                    t._showImage()
-                })
-            }, e.prototype._showImage = function () {
-                var t = r.AlbumConst.COUNT_INPAGE,
-                    e = this._model.getData(1, 0, t);
-                this._view.content.update(1, 0, e), this._endTask()
             }, e.prototype._endTask = function () {
-                this._model = null, this._view = null, this._onBack = null, t.prototype._endTask.call(this)
+                this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskScenePreInitialize = _
+        }(r.TaskBase);
+    e.TaskShowSlotCard = a
 }

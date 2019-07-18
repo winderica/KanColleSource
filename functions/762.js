@@ -15,13 +15,13 @@ const function762 = function (t, e, i) {
         h = i(763),
         p = i(764),
         d = i(765),
-        f = i(86),
+        f = i(88),
         y = i(766),
         m = i(767),
         g = i(768),
         v = i(769),
-        b = i(87),
-        w = i(52),
+        b = i(89),
+        w = i(51),
         x = i(134),
         I = i(780),
         T = i(792),
@@ -29,11 +29,11 @@ const function762 = function (t, e, i) {
         C = i(829),
         P = i(835),
         k = i(135),
-        M = i(6),
-        S = i(838),
+        S = i(6),
+        M = i(838),
         A = i(839),
+        E = i(113),
         j = i(111),
-        E = i(109),
         N = i(840),
         L = i(8),
         B = function () {
@@ -124,7 +124,7 @@ const function762 = function (t, e, i) {
                         a = function () {
                             n.default.view.clickGuard = !1, e._updateShipDetail_(t)
                         };
-                    M.SE.play("106"), n.default.view.clickGuard = !0, i.add(r).add(s), i.start(a)
+                    S.SE.play("106"), n.default.view.clickGuard = !0, i.add(r).add(s), i.start(a)
                 }, this._onClickDetachAll = function () {
                     var t = e.memShipId,
                         i = new o.APIConnector,
@@ -133,13 +133,13 @@ const function762 = function (t, e, i) {
                         a = function () {
                             n.default.view.clickGuard = !1, e._updateShipDetail_(t)
                         };
-                    M.SE.play("106"), n.default.view.clickGuard = !0, i.add(r).add(s), i.start(a)
+                    S.SE.play("106"), n.default.view.clickGuard = !0, i.add(r).add(s), i.start(a)
                 }, this._onClickDetach = function (t) {
                     var i = e.memShipId,
                         r = new u.SlotSetAPI(i, -1, t),
                         s = new l.Ship3API(i),
                         a = new o.APIConnector;
-                    M.SE.play("106");
+                    S.SE.play("106");
                     var _ = function () {
                         n.default.view.portMain.updateInfo(), n.default.view.clickGuard = !1, e._updateShipDetail_(i)
                     };
@@ -178,13 +178,13 @@ const function762 = function (t, e, i) {
                         i > -1 ? e._changeSlotItem(t, i) : e._removeSlotItem(t)
                     }
                 }, this._changeSlotItem = function (t, i) {
-                    M.SE.play("240"), e.shipVoice.play(e.memShipId);
+                    S.SE.play("240"), e.shipVoice.play(e.memShipId);
                     var o = new L.AreaBox(0);
                     n.default.view.overLayer.addChild(o), new p.SlotExchangeIndexAPI(e.memShipId, t, i).start(function () {
                         n.default.view.portMain.updateInfo(), e._updateShipDetail_(e.memShipId), n.default.view.overLayer.removeChild(o)
                     })
                 }, this._removeSlotItem = function (t) {
-                    M.SE.play("106");
+                    S.SE.play("106");
                     var i = new L.AreaBox(0);
                     n.default.view.overLayer.addChild(i), (new o.APIConnector).add(new u.SlotSetAPI(e.memShipId, -1, t)).add(new l.Ship3API(e.memShipId)).start(function () {
                         n.default.view.portMain.updateInfo(), e._updateShipDetail_(e.memShipId), n.default.view.overLayer.removeChild(i)
@@ -251,10 +251,10 @@ const function762 = function (t, e, i) {
                         x: 206,
                         y: 222
                     }, B = 0; B < i.length; B++) {
-                    var R = new S.ShipSlot;
+                    var R = new M.ShipSlot;
                     R.position.x = i[B][0] + b.x, R.position.y = i[B][1] + b.y, this.shipSlots.push(R)
                 }
-                this.deckCraneFrame = new y.DeckCraneFrame, this.otherBackground = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), this.miniPager = new m.MiniPager, this.otherShipList = new g.OtherShipList(10), this.otherShipFrame = new y.OtherShipFrame, this.arrowTopButton = new j.ArrowTopButton, this.arrowBottomButton = new j.ArrowBottomButton, n.default.model.deck.isCombined() && (this.combinedView = new E.CombinedView, this.combinedView.position.set(0, 0)), n.default.model.deck.exist3rdUnit && (this.icon3rdUnit = new PIXI.Sprite(a.COMMON_MISC.getTexture(183))), this.shipDetail = new v.ShipDetail, this.shipDetailEmpty = new v.ShipDetailEmpty, this.kaizoButton = this.shipDetail.kaizoButton, this.kindaikaButton = this.shipDetail.kindaikaButton, this.slotItemSlotBox = this.shipDetail.slotItemSlotBox, this.extraSlotItemSlot = this.shipDetail.extraSlotItemSlot, this.shipCard = this.shipDetail.shipCard, this.detachAllButton = this.shipDetail.detachAllButton, this.shipParameter = this.shipDetail.shipParameter, this.extensionButton = this.shipDetail.extensionButton, this.marriageButton = this.shipDetail.marriageButton, this.kindaikaButton.onClick = this._onClickKindaika, this.kaizoButton.onClick = this._onClickKaizoButton, this.extraSlotItemSlot.onClick = this._onClickExtraSlot, this.extraSlotItemSlot.onClickDetach = this._onClickDetachExtraSlot, this.detachAllButton.onClick = this._onClickDetachAll, this.slotItemSlotBox.mousedown = this._onMouseDownSlot, this.slotItemSlotBox.onMouseUp = this._onMouseUp, this.slotItemSlotBox.onMouseOut = this._onMouseOut, this.slotItemSlotBox.onClickDetach = this._onClickDetach, this.extensionButton.onClick = this._onClickExtension, this.marriageButton.onClick = this._onClickMarriage, this.deckSelectView.onClickDeck = this._onClickDeckTab, this.deckSelectView.onClickOther = this._onClickOtherTab;
+                this.deckCraneFrame = new y.DeckCraneFrame, this.otherBackground = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), this.miniPager = new m.MiniPager, this.otherShipList = new g.OtherShipList(10), this.otherShipFrame = new y.OtherShipFrame, this.arrowTopButton = new E.ArrowTopButton, this.arrowBottomButton = new E.ArrowBottomButton, n.default.model.deck.isCombined() && (this.combinedView = new j.CombinedView, this.combinedView.position.set(0, 0)), n.default.model.deck.exist3rdUnit && (this.icon3rdUnit = new PIXI.Sprite(a.COMMON_MISC.getTexture(183))), this.shipDetail = new v.ShipDetail, this.shipDetailEmpty = new v.ShipDetailEmpty, this.kaizoButton = this.shipDetail.kaizoButton, this.kindaikaButton = this.shipDetail.kindaikaButton, this.slotItemSlotBox = this.shipDetail.slotItemSlotBox, this.extraSlotItemSlot = this.shipDetail.extraSlotItemSlot, this.shipCard = this.shipDetail.shipCard, this.detachAllButton = this.shipDetail.detachAllButton, this.shipParameter = this.shipDetail.shipParameter, this.extensionButton = this.shipDetail.extensionButton, this.marriageButton = this.shipDetail.marriageButton, this.kindaikaButton.onClick = this._onClickKindaika, this.kaizoButton.onClick = this._onClickKaizoButton, this.extraSlotItemSlot.onClick = this._onClickExtraSlot, this.extraSlotItemSlot.onClickDetach = this._onClickDetachExtraSlot, this.detachAllButton.onClick = this._onClickDetachAll, this.slotItemSlotBox.mousedown = this._onMouseDownSlot, this.slotItemSlotBox.onMouseUp = this._onMouseUp, this.slotItemSlotBox.onMouseOut = this._onMouseOut, this.slotItemSlotBox.onClickDetach = this._onClickDetach, this.extensionButton.onClick = this._onClickExtension, this.marriageButton.onClick = this._onClickMarriage, this.deckSelectView.onClickDeck = this._onClickDeckTab, this.deckSelectView.onClickOther = this._onClickOtherTab;
                 for (var D = 0; D < this.shipSlots.length; D++) this.shipSlots[D].onClick = this._onClickShipSlot;
                 this.miniPager.onClick = this._onClickMiniPager, this.otherShipList.onClick = this._onClickOtherListItem, this.arrowTopButton.onClick = this._onClickArrowTop, this.arrowBottomButton.onClick = this._onClickArrowBottom, this.combinedView && (this.combinedView.position.set(197, 150), this.combinedView.activate()), this.icon3rdUnit && this.icon3rdUnit.position.set(282, 139), this.memShipId = null, this.deckId = null, this.pageIndex = null, this.shipVoice = new A.ShipVoice([9, 10, 26])
             }

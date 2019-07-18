@@ -1,50 +1,54 @@
 const function284 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(285),
-        r = i(21),
-        s = function (t) {
-            function e() {
-                for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
-                    var u = new PIXI.Sprite,
-                        l = i[_];
-                    u.position.x = l[0], u.position.y = l[1], u.alpha = 1;
-                    var c = new o.KiraAnimation(u, n, s);
-                    a.push(c), e.addChild(u)
-                }
-                return e.kiraAnimations = a, e.visible = !1, e
+    var n = function () {
+        function t(t, e, i) {
+            this.UpdateInterval = 1e3 / 30;
+            var n = -(.3 * Math.random() + .1);
+            this.kira = t, this.light_ss_yellow_01 = e, this.light_ss_yellow_02 = i, this.animationSpeed = n
+        }
+        return t.prototype.play = function (t) {
+            this._stop(), this._playAlphaTween(), this._playTextureSwitchTween(t)
+        }, t.prototype.stop = function () {
+            this._stop()
+        }, t.prototype.dispose = function () {
+            this._stop(), this.kira = null, this.light_ss_yellow_01 = null, this.light_ss_yellow_02 = null, this.animationSpeed = null
+        }, t.prototype._playTextureSwitchTween = function (t) {
+            var e = this,
+                i = createjs.Tween.get(this);
+            switch (i.loop = !0, t) {
+                case 0:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(2 * this.UpdateInterval);
+                    break;
+                case 1:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(4 * this.UpdateInterval);
+                    break;
+                case 2:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(40)
             }
-            return n(e, t), e.prototype.play = function () {
-                this.visible = !0;
-                for (var t = 0; t < this.kiraAnimations.length; t++) {
-                    var e = Math.floor(3 * Math.random());
-                    this.kiraAnimations[t].play(e)
-                }
-            }, e.prototype.stop = function () {
-                this.visible = !1;
-                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].stop()
-            }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].dispose(), this.kiraAnimations[t] = null;
-                this.kiraAnimations = null, this.removeChildren()
-            }, e
-        }(PIXI.Container);
-    e.BaseKirakira = s
+        }, t.prototype._playAlphaTween = function () {
+            var t = this,
+                e = createjs.Tween.get(this);
+            e.loop = !0, e.wait(40).call(function () {
+                t.kira.alpha += t.animationSpeed, 1 < t.kira.alpha ? t.animationSpeed = -(.3 * Math.random() + .1) : t.kira.alpha < .3 && (t.animationSpeed = .3 * Math.random() + .1)
+            })
+        }, t.prototype._stop = function () {
+            createjs.Tween.removeTweens(this), this.kira.alpha = 0
+        }, t
+    }();
+    e.KiraAnimation = n
 }

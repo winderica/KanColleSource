@@ -19,54 +19,43 @@ const function387 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._activated = !1, o._selected = !1, o._onMouseOver = function () {
-                    o._update(!0)
-                }, o._onMouseOut = function () {
-                    o._update(!1)
-                }, o._onClick = function () {
-                    null != o._cb_onChange && o._cb_onChange(o._state, o._no)
-                }, o._state = e, o._no = i, o._cb_onChange = n, o.interactive = !0, o
+    var o = i(31),
+        r = i(3),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function (t) {
+                    null != i._cb_onClick && i._cb_onClick(t)
+                }, i._icon = new o.Sprite, i._icon.position.set(19, 19), i._icon.anchor.set(.5), i._icon.scale.set(.5), i.addChild(i._icon), i._t = createjs.Tween.get(i._icon, {
+                    loop: !0
+                }).to({
+                    scaleX: .8,
+                    scaleY: .8
+                }, 1e3).to({
+                    scaleX: .5,
+                    scaleY: .5
+                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "state", {
-                get: function () {
-                    return this._state
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "no", {
-                get: function () {
-                    return this._no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    return this._selected
-                },
-                set: function (t) {
-                    this._selected != t && (this._selected = t, 1 == this._selected ? this._deactivate() : 1 == this._activated && this._activate(), this._update(!1))
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._texture_cache = t, this._texture_on_cache = e, this._update(!1)
+            return n(e, t), e.prototype.initialize = function () {
+                var t = this;
+                this._icon.texture = r.ALBUM_MAIN.getTexture(11), this._update(!1, function () {
+                    var e = t.texture;
+                    t.hitArea = new PIXI.Rectangle(0, 0, e.width, e.height)
+                })
             }, e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._activate())
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._deactivate()
+                this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._texture_cache = null, this._texture_on_cache = null, this._cb_onChange = null
-            }, e.prototype._update = function (t) {
-                1 == this._selected || 1 == t ? this.texture = this._texture_on_cache : this.texture = this._texture_cache
-            }, e.prototype._activate = function () {
-                1 != this._selected && (this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick))
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._icon = null, this._t = null, this._cb_onClick = null
+            }, e.prototype._update = function (t, e) {
+                void 0 === e && (e = null), 0 == t ? (this.texture = r.ALBUM_MAIN.getTexture(0), this._icon.visible = !0, this._t.setPaused(!1)) : (this.texture = r.ALBUM_MAIN.getTexture(14), this._icon.visible = !1, this._t.setPaused(!0)), null !== e && e()
             }, e
         }(PIXI.Sprite);
-    e.TabBtn = r
+    e.VoiceBtn = a
 }

@@ -19,210 +19,103 @@ const function1365 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(19),
-        s = i(24),
-        a = i(6),
-        _ = i(16),
+    var o = i(0),
+        r = i(18),
+        s = i(16),
+        a = i(142),
+        _ = i(184),
         u = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = 0);
-                var r = t.call(this) || this;
-                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
-            }
-            return n(e, t), e.prototype._start = function () {
-                this._wait()
-            }, e.prototype._wait = function () {
-                var t = this;
-                if (this._delay <= 0) return void this._anim();
-                createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._anim()
-                })
-            }, e.prototype._anim = function () {
-                var t = this,
-                    e = new l;
-                e.x = this._x, e.y = this._y, this._layer.addChild(e);
-                var i = new r.TweenTask;
-                e.bomb0.position.set(39, -71), e.bomb0.scale.set(0), e.bomb0.alpha = 1, i.addTween(createjs.Tween.get(e.bomb0).wait(270).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), e.bomb1.scale.set(.3), e.bomb1.alpha = 0, i.addTween(createjs.Tween.get(e.bomb1).to({
-                    alpha: 1,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 120).to({
-                    alpha: .8,
-                    scaleX: 1.05,
-                    scaleY: 1.05
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 90)), e.bomb2.scale.set(0), e.bomb2.alpha = 0, i.addTween(createjs.Tween.get(e.bomb2).to({
-                    alpha: .6,
-                    scaleX: .8,
-                    scaleY: .8
-                }, 90).to({
-                    alpha: 1,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90).to({
-                    alpha: .7,
-                    scaleX: 1.15,
-                    scaleY: 1.15
-                }, 150).to({
-                    alpha: 0
-                }, 240)), e.bomb3.position.set(-29, -72), e.bomb3.scale.set(.8), e.bomb3.alpha = 0, i.addTween(createjs.Tween.get(e.bomb3).wait(300).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    alpha: 1,
-                    scaleX: .95,
-                    scaleY: .95
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 150)), e.bomb4.position.set(11, -72), e.bomb4.scale.set(.8), e.bomb4.alpha = 0, i.addTween(createjs.Tween.get(e.bomb4).wait(330).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    scaleX: .95,
-                    scaleY: .95
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 90)), e.bomb5.position.set(-14, -17), e.bomb5.scale.set(.8), e.bomb5.alpha = 0, i.addTween(createjs.Tween.get(e.bomb5).wait(270).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    scaleX: .9,
-                    scaleY: .9
-                }, 120).to({
-                    alpha: 0,
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 120)), e.bomb6.position.set(36, 0), e.bomb6.scale.set(0), e.bomb6.alpha = 1, i.addTween(createjs.Tween.get(e.bomb6).wait(200).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), e.bomb7.position.set(-39, -21), e.bomb7.scale.set(0), e.bomb7.alpha = 1, i.addTween(createjs.Tween.get(e.bomb7).wait(90).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), i.addTween(createjs.Tween.get(null).call(function () {
-                    a.SE.play("102")
-                }).wait(200).call(function () {
-                    a.SE.play("102")
-                }).wait(200).call(function () {
-                    a.SE.play("102")
-                })), i.start(function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.TaskRocketHit = u;
-    var l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bomb0 = new d, e.addChild(e._bomb0), e._bomb1 = new h, e.addChild(e._bomb1), e._bomb2 = new c, e.addChild(e._bomb2), e._bomb3 = new p, e.addChild(e._bomb3), e._bomb4 = new p, e.addChild(e._bomb4), e._bomb5 = new p, e.addChild(e._bomb5), e._bomb6 = new d, e.addChild(e._bomb6), e._bomb7 = new d, e.addChild(e._bomb7), e
+                return e._bg = new r.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._bar1 = new l, e._bar1.position.set(600, 183), e.addChild(e._bar1), e._bar2 = new l, e._bar2.position.set(600, 392), e.addChild(e._bar2), e._bar3 = new l, e._bar3.position.set(600, 600), e.addChild(e._bar3), e._plane1 = new a.Plane(.88), e.addChild(e._plane1), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bomb0", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._bomb0
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb1", {
+            }), Object.defineProperty(e.prototype, "chara", {
                 get: function () {
-                    return this._bomb1
+                    return this._chara
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb2", {
+            }), Object.defineProperty(e.prototype, "bar1", {
                 get: function () {
-                    return this._bomb2
+                    return this._bar1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb3", {
+            }), Object.defineProperty(e.prototype, "bar2", {
                 get: function () {
-                    return this._bomb3
+                    return this._bar2
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb4", {
+            }), Object.defineProperty(e.prototype, "bar3", {
                 get: function () {
-                    return this._bomb4
+                    return this._bar3
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb5", {
+            }), Object.defineProperty(e.prototype, "plane1", {
                 get: function () {
-                    return this._bomb5
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb6", {
-                get: function () {
-                    return this._bomb6
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb7", {
-                get: function () {
-                    return this._bomb7
+                    return this._plane1
                 },
                 enumerable: !0,
                 configurable: !0
             }), e
+        }(PIXI.Container);
+    e.CutinKuboDayCanvas = u;
+    var l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._mst_id = 0, e._bg = new _.TelopBG, e.addChild(e._bg), e._plane_canvas = new PIXI.Sprite, e.addChild(e._plane_canvas);
+                var i = new PIXI.Graphics;
+                return i.beginFill(16711680, .5), i.drawRect(-600, -71, 1200, 141), i.endFill(), e._plane_canvas.addChild(i), e._plane_canvas.mask = i, e._plane = new a.Plane(.85), e._plane.alpha = 0, e._plane_canvas.addChild(e._plane), e._icon = new c, e._icon.y = 72, e._icon.alpha = 0, e.addChild(e._icon), e
+            }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._mst_id = t, this._friend = e, this._bg.initialize(e, !0), 1 == e ? (this._bg.x = 1500, this._plane.x = -600, this._icon.x = 677) : (this._bg.x = -1500, this._plane.x = 600, this._icon.x = -677), this._plane.initialize(t, e), this._icon.initialize(t)
+            }, e.prototype.createTween = function (t) {
+                var e = [];
+                return this._mst_id <= 0 ? e : (e.push(createjs.Tween.get(this._bg).wait(t).to({
+                    x: this._friend ? 780 : -780
+                }, 300), createjs.Tween.get(this._plane).wait(t).to({
+                    x: this._friend ? 386 : -386,
+                    alpha: 1
+                }, 250), createjs.Tween.get(this._icon).wait(t).to({
+                    x: this._friend ? 96 : -96,
+                    alpha: 1
+                }, 200)), e)
+            }, e.prototype.createTween2 = function (t) {
+                var e = [];
+                return e.push(createjs.Tween.get(this._plane).wait(t).to({
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500)), e
+            }, e
         }(PIXI.Container),
         c = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(32));
-                return i.x = -90, i.y = -113, e.addChild(i), e
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._img.scale.set(.75), e.addChild(e._img), e
             }
-            return n(e, t), e
-        }(s.Container),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(33));
-                return i.x = -74, i.y = -107, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(34));
-                return i.x = -60, i.y = -45, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(35));
-                return i.x = -26, i.y = -39, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height)
+            }, e.prototype._getTexture = function (t) {
+                var e = o.default.model.slot.getMst(t);
+                if (null == e) return PIXI.Texture.EMPTY;
+                switch (e.equipType) {
+                    case 6:
+                        return s.BATTLE_MAIN.getTexture(69);
+                    case 7:
+                        return s.BATTLE_MAIN.getTexture(70);
+                    case 8:
+                        return s.BATTLE_MAIN.getTexture(71);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
+            }, e
+        }(PIXI.Container)
 }

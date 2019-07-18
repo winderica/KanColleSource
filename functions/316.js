@@ -5,8 +5,8 @@ const function316 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("organize_mamiya_animation_default_" + t)
+            return PIXI.Texture.fromFrame("organize_mamiya_animation_xmas_" + t)
         }
         t.getTexture = e
-    }(e.ORGANIZE_MAMIYA_ANIMATION_DEFAULT || (e.ORGANIZE_MAMIYA_ANIMATION_DEFAULT = {}))
+    }(e.ORGANIZE_MAMIYA_ANIMATION_XMAS || (e.ORGANIZE_MAMIYA_ANIMATION_XMAS = {}))
 }

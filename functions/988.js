@@ -112,8 +112,7 @@ const function988 = function (t, e, i) {
                     case 14:
                     case 18:
                         return {
-                            result: !1,
-                            reason: 4
+                            result: !1, reason: 4
                         }
                 }
             }

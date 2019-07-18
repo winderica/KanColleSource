@@ -23,7 +23,7 @@ const function848 = function (t, e, i) {
         r = i(0),
         s = i(4),
         a = i(33),
-        _ = i(23),
+        _ = i(25),
         u = i(1),
         l = function (t) {
             function e() {
@@ -60,10 +60,10 @@ const function848 = function (t, e, i) {
                 P.position.set(0, 0), e._useRepairKitCount.addChild(P);
                 var k = new s.TextBox(21, 16777215);
                 k.name = "before", k.text = "9999", k.anchor.x = 1, k.position.set(106, 7), e._labelArr.push(k), e._useRepairKitCount.addChild(k);
-                var M = new s.TextBox(21, 16777215);
-                M.text = "\u2192", M.position.set(116, 7), e._labelArr.push(M), e._useRepairKitCount.addChild(M);
                 var S = new s.TextBox(21, 16777215);
-                return S.name = "after", S.text = "9999", S.position.set(146, 7), e._labelArr.push(S), e._useRepairKitCount.addChild(S), y.position.set(297, 516), f.position.set(580, 516), y.addListener(u.EventType.CLICK, e._onClickNO), f.addListener(u.EventType.CLICK, e._onClickYES), y.interactive = y.buttonMode = !0, f.interactive = f.buttonMode = !0, e.addChild(i, l, c, h, p, d, x, v, b, g, e._useRepairKitTime, w, y, f, n, _, m, e._useRepairKitCount), e.textName = I, e.textSteelCount = v, e.textFuelCount = b, e.textUseOption = w, e.textRequireTime = g, e.buttonYes = f, e.buttonNo = y, e.shipBanner = m, e.containerName = x, e
+                S.text = "\u2192", S.position.set(116, 7), e._labelArr.push(S), e._useRepairKitCount.addChild(S);
+                var M = new s.TextBox(21, 16777215);
+                return M.name = "after", M.text = "9999", M.position.set(146, 7), e._labelArr.push(M), e._useRepairKitCount.addChild(M), y.position.set(297, 516), f.position.set(580, 516), y.addListener(u.EventType.CLICK, e._onClickNO), f.addListener(u.EventType.CLICK, e._onClickYES), y.interactive = y.buttonMode = !0, f.interactive = f.buttonMode = !0, e.addChild(i, l, c, h, p, d, x, v, b, g, e._useRepairKitTime, w, y, f, n, _, m, e._useRepairKitCount), e.textName = I, e.textSteelCount = v, e.textFuelCount = b, e.textUseOption = w, e.textRequireTime = g, e.buttonYes = f, e.buttonNo = y, e.shipBanner = m, e.containerName = x, e
             }
             return n(e, t), e.prototype.update = function (t, e) {
                 if (this.containerName.cacheAsBitmap = !1, this.textName.text = t.name, this.textSteelCount.text = "\xd7" + t.getRepairSteel().toString(), this.textFuelCount.text = "\xd7" + t.getRepairFuel().toString(), this.textUseOption.text = e ? "\u4f7f\u7528\u3059\u308b" : "\u4f7f\u7528\u3057\u306a\u3044", this.textRequireTime.text = _.MathUtil.timeToString(t.getRepairTime()), this.shipBanner.update(t, !1), this.containerName.cacheAsBitmap = !0, this._useRepairKitTime.visible = e, this._useRepairKitCount.visible = e, e) {

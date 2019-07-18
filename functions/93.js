@@ -19,56 +19,70 @@ const function93 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(39),
-        s = i(247),
-        a = i(248),
-        _ = i(63),
-        u = i(1343),
-        l = i(183),
-        c = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(18),
+        s = i(130),
+        a = i(1),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._result = !1, i._onYes = function () {
+                    i._result = !0, i._dialog.btn_no.off(a.EventType.CLICK, i._onNo), i._hideDialog()
+                }, i._onNo = function () {
+                    i._dialog.btn_yes.off(a.EventType.CLICK, i._onYes), i._hideDialog()
+                }, i._layer = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._data = this._record.raw.air_unit_jet, null == this._data ? this._endTask() : this._preload()
-            }, e.prototype._preload = function () {
-                var t = this,
-                    e = this._data.getTaikuShipIndex(),
-                    i = this._scene.data.model.deck_f.ships[e];
-                if (null != i) {
-                    var n = i.mst_id,
-                        o = i.isDamaged(),
-                        r = this._data.getTaikuSlotMstIDs();
-                    this._aaCutin = new a.CutinAntiAircraft(n, o, r), this._aaCutin.preload(function () {
-                        t._enterEnemy()
-                    })
-                } else this._enterEnemy()
-            }, e.prototype._enterEnemy = function () {
-                var t = this,
-                    e = new o.SerialTask;
-                e.add(new _.PhaseEnemyEnter(this._scene, this._record)), e.add(new r.WaitTask(600)), e.start(function () {
-                    t._showTouchPlane()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                var t = this;
+                this._fade = new r.FadeBox(.2), this._fade.hide(0), this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t._showDialog()
                 })
-            }, e.prototype._showTouchPlane = function () {
-                var t = this,
-                    e = this._data,
-                    i = e.getTouchPlaneFriend(),
-                    n = e.getTouchPlaneEnemy();
-                new l.TaskShowTouchPlane(this._scene, i, n).start(function () {
-                    t._animation(e)
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new u, this._dialog.position.set(219, 207), this._dialog.alpha = 0, this._fade.addChild(this._dialog), this._dialog.initialize(), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 250).call(function () {
+                    t._waitSelect()
                 })
-            }, e.prototype._animation = function (t) {
-                var e = this,
-                    i = this._scene.data.model.deck_f.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new u.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
-                    e._afterAnimetion()
+            }, e.prototype._waitSelect = function () {
+                this._dialog.btn_yes.once(a.EventType.CLICK, this._onYes), this._dialog.btn_no.once(a.EventType.CLICK, this._onNo)
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._fade).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._fade), t._fade = null, t._dialog = null, t._endTask()
                 })
-            }, e.prototype._afterAnimetion = function () {
-                var t = this._scene.view.raderLayer;
-                t.rader_e.touch_plane.hide(), t.rader_f.touch_plane.hide(), this._endTask()
             }, e
-        }(s.PhaseAirBase);
-    e.PhaseAirUnitJet = c
+        }(o.TaskBase);
+    e.TaskItemOverflowConfirm = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._btn_yes = new PIXI.Sprite, e._btn_yes.position.set(203, 216), e._btn_yes.interactive = !0, e._btn_yes.buttonMode = !0, e.addChild(e._btn_yes), e._btn_no = new PIXI.Sprite, e._btn_no.position.set(419, 216), e._btn_no.interactive = !0, e._btn_no.buttonMode = !0, e.addChild(e._btn_no), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "btn_yes", {
+            get: function () {
+                return this._btn_yes
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "btn_no", {
+            get: function () {
+                return this._btn_no
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function () {
+            this.texture = s.ITEM_ILIST.getTexture(34), this._btn_yes.texture = s.ITEM_ILIST.getTexture(9), this._btn_no.texture = s.ITEM_ILIST.getTexture(3)
+        }, e
+    }(PIXI.Sprite)
 }

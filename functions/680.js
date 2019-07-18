@@ -19,33 +19,20 @@ const function680 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(284),
-        r = function (t) {
+    var o = i(212),
+        r = i(21),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = r.COMMON_MAIN.getTexture(15);
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype.__getPositions__ = function () {
-                return [
-                    [48, 0],
-                    [12, 50],
-                    [29, 86],
-                    [87, 86],
-                    [0, 140],
-                    [20, 224],
-                    [0, 381],
-                    [96, 426],
-                    [132, 390],
-                    [219, 395],
-                    [266, 426],
-                    [309, 381],
-                    [284, 320],
-                    [302, 120],
-                    [284, 84],
-                    [293, 48],
-                    [257, 26],
-                    [293, 0]
-                ]
+            return n(e, t), e.prototype.dispose = function () {
+                this.cacheAsBitmap = !1, t.prototype.dispose.call(this)
+            }, e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
+                this.cacheAsBitmap = !1, this._sokuryoku.update(o), this._textHp.text = t.toString(), this._textSoukou.text = e.toString(), this._textKaihi.text = i.toString(), this._textTousai.text = n.toString(), this._shatei.update(r), this._textKaryoku.text = s.toString(), this._textRaisou.text = a.toString(), this._textTaiku.text = _.toString(), this._textTaisen.text = u.toString(), this._textSakuteki.text = l.toString(), this._textLucky.text = c.toString(), this.cacheAsBitmap = !0, this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(137, 3), this._textSoukou.position.set(137, 38), this._textKaihi.position.set(137, 72), this._textTousai.position.set(137, 107), this._sokuryoku.position.set(116, 143), this._shatei.position.set(116, 177), this._textKaryoku.position.set(285, 3), this._textRaisou.position.set(285, 38), this._textTaiku.position.set(285, 72), this._textTaisen.position.set(285, 107), this._textSakuteki.position.set(285, 141), this._textLucky.position.set(285, 176)
             }, e
-        }(o.BaseKirakira);
-    e.CardKirakira = r
+        }(o.ShipParameterViewBase);
+    e.ShipParameterView = s
 }

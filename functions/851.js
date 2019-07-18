@@ -24,8 +24,8 @@ const function851 = function (t, e, i) {
         s = i(223),
         a = i(4),
         _ = i(33),
-        u = i(23),
-        l = i(113),
+        u = i(25),
+        l = i(114),
         c = i(1),
         h = i(15),
         p = function (t) {
@@ -52,17 +52,17 @@ const function851 = function (t, e, i) {
                     C = new a.TextBox(15, 12467003),
                     P = new a.TextBox(24, 5523516),
                     k = new l.DownArrowAnimationView,
-                    M = new l.DisableDownArrowAnimationView,
-                    S = new PIXI.Container,
+                    S = new l.DisableDownArrowAnimationView,
+                    M = new PIXI.Container,
                     A = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
                 A.position.set(0, -34);
-                var j = new PIXI.Sprite(o.COMMON_MAIN.getTexture(1));
-                j.anchor.y = .5, j.position.set(22, 20), A.addChild(j), S.addChild(A), v.onClick = e._onClick, n.position.set(31, 31), u.position.set(15, 226), c.position.set(15, 280), p.position.set(15, 336), y.position.set(15, 390), g.position.set(178, 275), x.position.set(304, 42), m.position.set(229, 49), I.position.set(301, 151), T.position.set(318, 333), O.position.set(318, 389), C.position.set(40, 447), v.position.set(40, 477), b.position.set(61, 177), P.position.set(318, 225), w.position.set(60, 85), k.position.set(156, 441), M.position.set(156, 441), I.anchor.x = 1, x.anchor.x = 1;
-                var E = new PIXI.Container,
+                var E = new PIXI.Sprite(o.COMMON_MAIN.getTexture(1));
+                E.anchor.y = .5, E.position.set(22, 20), A.addChild(E), M.addChild(A), v.onClick = e._onClick, n.position.set(31, 31), u.position.set(15, 226), c.position.set(15, 280), p.position.set(15, 336), y.position.set(15, 390), g.position.set(178, 275), x.position.set(304, 42), m.position.set(229, 49), I.position.set(301, 151), T.position.set(318, 333), O.position.set(318, 389), C.position.set(40, 447), v.position.set(40, 477), b.position.set(61, 177), P.position.set(318, 225), w.position.set(60, 85), k.position.set(156, 441), S.position.set(156, 441), I.anchor.x = 1, x.anchor.x = 1;
+                var j = new PIXI.Container,
                     N = new a.TextBox(30, 5523516);
-                E.position.set(57, 37);
+                j.position.set(57, 37);
                 var L = h.CreateRect.gradientLeftToRight(170, 42, .5, .98);
-                return E.mask = L, E.addChild(N, L), T.anchor.x = 1, O.anchor.x = 1, P.anchor.x = 1, i.interactive = !0, e.addChild(i, n, u, c, p, y, C, v, m, E, x, I, b, g, T, O, P, S, w, M, k), e.textName = N, e.textLevel = x, e.textHp = I, e.textSteel = T, e.textFuel = O, e.textAlert = C, e.hiSpeedToggle = g, e.startButton = v, e.textRequire = P, e.shipBanner = w, e.downArrowAnimationView = k, e.disableDownArrowAnimationView = M, e.hpGaugeView = b, e.headerContainer = S, e.containerName = E, e
+                return j.mask = L, j.addChild(N, L), T.anchor.x = 1, O.anchor.x = 1, P.anchor.x = 1, i.interactive = !0, e.addChild(i, n, u, c, p, y, C, v, m, j, x, I, b, g, T, O, P, M, w, S, k), e.textName = N, e.textLevel = x, e.textHp = I, e.textSteel = T, e.textFuel = O, e.textAlert = C, e.hiSpeedToggle = g, e.startButton = v, e.textRequire = P, e.shipBanner = w, e.downArrowAnimationView = k, e.disableDownArrowAnimationView = S, e.hpGaugeView = b, e.headerContainer = M, e.containerName = j, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "state", {
                 get: function () {

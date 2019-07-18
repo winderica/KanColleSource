@@ -19,56 +19,143 @@ const function1035 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = (i(260), i(23)),
-        s = i(38),
-        a = i(1036),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._activated = !1, i._expedition_id = -1, i._deck_id = -1, i._remain_time = 0, i._timer_key = -1, i._onClick = function () {
-                    null != i._cancel_cb && i._cancel_cb(i._expedition_id, i._deck_id)
-                }, i._cancel_cb = e, i
+    var o = i(1036),
+        r = i(30),
+        s = i(1038),
+        a = i(58),
+        _ = i(113),
+        u = i(228),
+        l = i(1),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this,
+                    l = new Array,
+                    c = 27;
+                [1, 2, 3, 7, 4, 5, 6].forEach(function (t) {
+                    var e = new h(t);
+                    l.push(e), e.position.x = c, e.position.y = 510, c = e.position.x + e.width + 4
+                });
+                var p = new o.ExpeditionDetail,
+                    d = new o.ExpeditionEmptyDetail,
+                    f = new PIXI.Sprite(r.SALLY_COMMON.getTexture(27)),
+                    y = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(29)),
+                    m = new s.ExpeditionList,
+                    g = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(92)),
+                    v = new _.ArrowButton,
+                    b = new _.ArrowButton(!0),
+                    w = new u.CompSwitchBtns(2, e, i);
+                return w.position.set(300, 12), w.initialize(), v.scale.set(.85), b.scale.set(.85), v.position.set(300, 75), b.position.set(300, 480), m.position.set(10, 55), f.position.set(-5, 2), g.position.set(37, 468), p.position.set(694, 0), d.position.set(694, 0), n.addChild(f), n.addChild(y), n.addChild(m), n.addChild(g), l.forEach(function (t) {
+                    n.addChild(t)
+                }), n.addChild(v, b), n.addChild(w), n.addChild(p, d), n._detail = p, n._emptyDetail = d, n._prevButton = v, n._nextButton = b, n._areaIcons = l, n._list = m, n._hukidashi = g, n._compSwitchBtns = w, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_name", {
+            return n(e, t), Object.defineProperty(e.prototype, "list", {
                 get: function () {
-                    return this._deck_name
+                    return this._list
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function () {
-                var t = new PIXI.Graphics;
-                t.lineStyle(1, 13421772), t.moveTo(21, 228), t.lineTo(336, 228), t.moveTo(21, 439), t.lineTo(336, 439), t.moveTo(21, 498), t.lineTo(336, 498), this.addChild(t);
-                var e = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(42));
-                e.position.set(28, 579), this.addChild(e), this._deck_name = new o.TextBox(15, 4999235), this._deck_name.position.set(27, 186), this.addChild(this._deck_name), this._time_remaining = new o.TextBox(22, 4999235), this._time_remaining.anchor.set(1, 0), this._time_remaining.position.set(337, 576), this.addChild(this._time_remaining), this._remaining_none = new o.TextBox(19, 4999235), this._remaining_none.text = "\u307e\u3082\u306a\u304f\u5e30\u9084\u3057\u307e\u3059", this._remaining_none.position.set(127, 606), this.addChild(this._remaining_none), this._icon = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(35)), this._icon.position.set(31, 627), this.addChild(this._icon), this._btn = new a.BtnCancel(this._onClick), this._btn.initialize(), this._btn.position.set(87, 636), this._btn.visible = !1, this.addChild(this._btn)
-            }, e.prototype.update = function (t, e) {
-                if (null == t) this._expedition_id = -1, this._deck_id = -1, this._deck_name.text = "", this._time_remaining.text = "", this._remaining_none.visible = !1, this._btn.visible = !1, this._deactivate();
-                else {
-                    this._expedition_id = t.mstID, this._deck_id = e.mstID, this._deck_name.text = e.name;
-                    var i = Date.now(),
-                        n = e.expedition.complete_unixtime,
-                        o = n - i;
-                    o = Math.max(o, 0) / 1e3, this._remain_time = o, this._updateRemainTime(), this._btn.visible = !0, 3 == e.expedition.state ? this._btn.enabled = !1 : 0 == t.isCancelable() ? this._btn.enabled = !1 : this._btn.enabled = !(o <= 0), this._activate()
-                }
+            }), Object.defineProperty(e.prototype, "detail", {
+                get: function () {
+                    return this._detail
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "emptyDetail", {
+                get: function () {
+                    return this._emptyDetail
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "areaIcons", {
+                get: function () {
+                    return this._areaIcons
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "nextButton", {
+                get: function () {
+                    return this._nextButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "prevButton", {
+                get: function () {
+                    return this._prevButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "compSwitch", {
+                get: function () {
+                    return this._compSwitchBtns
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.seekHukidashi = function (t) {
+                this._hukidashi.position.x = t
             }, e.prototype.dispose = function () {
-                this._deactivate(), this.removeChildren(), this._cancel_cb = null, this._deck_name.destroy(), this._time_remaining.destroy(), this._remaining_none.destroy()
-            }, e.prototype._activate = function () {
-                var t = this;
-                0 == this._activated && (this._activated = !0), this._remain_time > 0 && -1 == this._timer_key && (this._timer_key = setInterval(function () {
-                    t._remain_time--, t._remain_time <= 0 && (clearInterval(t._timer_key), t._timer_key = -1), t._updateRemainTime()
-                }, 1e3)), this._btn.activate()
-            }, e.prototype._deactivate = function () {
-                this._timer_key > 0 && (clearInterval(this._timer_key), this._timer_key = -1), this._btn.deactivate(), this._activated = !1
-            }, e.prototype._updateRemainTime = function () {
-                var t = this._remain_time;
-                if (t > 0) {
-                    var e = r.MathUtil.zeroPadding(Math.floor(t) % 60, 2),
-                        i = Math.floor(t / 60),
-                        n = r.MathUtil.zeroPadding(i % 60, 2),
-                        o = r.MathUtil.zeroPadding(Math.floor(i / 60), 2);
-                    this._time_remaining.text = o + ":" + n + ":" + e, this._time_remaining.visible = !0, this._remaining_none.visible = !1
-                } else this._time_remaining.visible = !1, this._remaining_none.visible = !0, this._btn.enabled = !1
+                this.removeChildren(), this._detail.dispose(), this._emptyDetail.dispose(), this._list.dispose(), this._areaIcons.forEach(function (t) {
+                    return t.dispose()
+                }), this._areaIcons.length = 0, this._nextButton.dispose(), this._prevButton.dispose(), this._hukidashi.texture = PIXI.Texture.EMPTY, this._compSwitchBtns.dispose(), this._detail = null, this._emptyDetail = null, this._list = null, this._areaIcons = null, this._nextButton = null, this._prevButton = null, this._hukidashi = null, this._compSwitchBtns = null, this._areaIcons = null
             }, e
         }(PIXI.Container);
-    e.PanelDetailInExpe = _
+    e.ExpeditionStage = c;
+    var h = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.RESOURCE_MAP = {
+                1: {
+                    off: 1,
+                    on: 2
+                },
+                2: {
+                    off: 3,
+                    on: 4
+                },
+                3: {
+                    off: 5,
+                    on: 6
+                },
+                4: {
+                    off: 9,
+                    on: 10
+                },
+                5: {
+                    off: 11,
+                    on: 12
+                },
+                6: {
+                    off: 13,
+                    on: 14
+                },
+                7: {
+                    off: 7,
+                    on: 8
+                }
+            }, i._focus = !1, i._onClick = function () {
+                i.onClick(i._area_mst_id)
+            }, i._onOver = function () {
+                i._focus || i._setActive(!0)
+            }, i._onOut = function () {
+                i._focus || i._setActive(!1)
+            };
+            var n = new PIXI.Sprite,
+                o = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, 56, 56).endFill();
+            return o.addListener(l.EventType.CLICK, i._onClick), o.addListener(l.EventType.MOUSEOVER, i._onOver), o.addListener(l.EventType.MOUSEOUT, i._onOut), o.buttonMode = !0, o.interactive = !0, i.addChild(n), i.addChild(o), i._icon = n, i._area_mst_id = e, i._resourceMap = i.RESOURCE_MAP[e], i._hitArea = o, i._setActive(!1), i._area_mst_id = e, i
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this._hitArea.removeAllListeners(l.EventType.CLICK), this._hitArea.removeAllListeners(l.EventType.MOUSEOUT), this._hitArea.removeAllListeners(l.EventType.MOUSEOVER), this._icon.texture = PIXI.Texture.EMPTY, this._icon.texture = null, this._hitArea = null, this._resourceMap = null, this.onClick = null
+        }, Object.defineProperty(e.prototype, "area_mst_id", {
+            get: function () {
+                return this._area_mst_id
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype._setActive = function (t) {
+            t ? this._icon.texture = a.SALLY_EXPEDITION.getTexture(this._resourceMap.on) : (this._icon.texture = a.SALLY_EXPEDITION.getTexture(this._resourceMap.off), this._hitArea.interactive = !0)
+        }, e.prototype.focus = function (t) {
+            this._setActive(t);
+            var e = 0 == t;
+            this._hitArea.interactive = e, this._focus = t
+        }, e
+    }(PIXI.Container)
 }

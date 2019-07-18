@@ -24,12 +24,12 @@ const function464 = function (t, e, i) {
         s = i(27),
         a = i(19),
         _ = i(29),
-        u = i(39),
+        u = i(38),
         l = i(6),
         c = i(140),
         h = i(180),
         p = i(141),
-        d = i(465),
+        d = i(463),
         f = i(182),
         y = function (t) {
             function e() {
@@ -70,17 +70,23 @@ const function464 = function (t, e, i) {
                     var r = n[i],
                         s = r.mem_id,
                         a = o.default.model.ship.get(s);
-                    null != a && (6 == a.shipTypeID ? t++ : 7 == a.shipTypeID ? t++ : 10 == a.shipTypeID ? t++ : 11 == a.shipTypeID ? t++ : 15 == a.shipTypeID ? t++ : 16 == a.shipTypeID ? t++ : 17 == a.shipTypeID ? t++ : 18 == a.shipTypeID ? t++ : 22 == a.shipTypeID && t++)
+                    if (null != a)
+                        for (var _ = a.getSlotitems(), u = 0; u < _.length; u++) {
+                            var l = _[u];
+                            if (null != l) {
+                                var c = a.getSlotitemTousai(u);
+                                l.taisen > 0 && c > 0 && t++
+                            }
+                        }
                 }
-                t = Math.min(6, t);
-                for (var _ = [], u = 0; u < t; u++) {
-                    var l = new p.Plane,
-                        c = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
-                        h = new PIXI.Point;
-                    l.initialize(16, !0, c, h), _.push(l)
+                for (var h = [], u = 0; u < t; u++) {
+                    var d = new p.Plane,
+                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
+                        y = new PIXI.Point;
+                    d.initialize(16, !0, f, y), h.push(d)
                 }
-                this._canvas.addPlanes_f(_)
+                this._canvas.addPlanes_f(h)
             }, e
         }(h.TaskAircraftFlightBase);
-    e.TaskSupportAir = y
+    e.TaskSupportTaisen = y
 }

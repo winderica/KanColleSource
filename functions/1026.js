@@ -19,7 +19,7 @@ const function1026 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(54),
+    var o = i(53),
         r = i(1),
         s = function (t) {
             function e(e) {
@@ -41,8 +41,8 @@ const function1026 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this.deactivate(), this._cb_onClick = null
             }, e.prototype._update = function (t) {
-                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(2) : o.SALLY_PRACTICE.getTexture(1)
+                this.texture = 1 == t ? o.SALLY_PRACTICE.getTexture(13) : o.SALLY_PRACTICE.getTexture(12)
             }, e
         }(PIXI.Sprite);
-    e.BackBtn = s
+    e.GoPracticeBtn = s
 }

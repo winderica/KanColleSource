@@ -19,65 +19,47 @@ const function1504 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(68),
-        a = i(8),
-        _ = i(31),
-        u = i(1505),
-        l = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(36),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this._scene.data.getLandingData();
-                t.isLandingMap() ? this._loadResources(t) : this._endTask()
-            }, e.prototype._loadResources = function (t) {
-                var e = this,
-                    i = o.default.resources.gauge.createLoaderHorizontal(),
-                    n = this._scene.data.battle_model.map_info.area_id,
-                    r = this._scene.data.battle_model.map_info.map_no,
-                    a = this._scene.data.battle_model.stage,
-                    _ = s.GaugeSetModel.createKey(n, r, a);
-                i.add(_);
-                i.load(function () {
-                    var i = o.default.resources.gauge.getGaugeInfo(_),
-                        n = null;
-                    e._showDialog(t, i, n)
-                })
-            }, e.prototype._showDialog = function (t, e, i) {
-                var n = this,
-                    o = new u.ResultDialog(t, e, i);
-                o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({
-                    alpha: 1
-                }, 300).wait(500).call(function () {
-                    o.startAnimation(function () {
-                        n._hideDialog(o)
-                    })
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._scene.view.removeChild(t), t.dispose(), e._wait()
-                })
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                var e = this,
-                    i = new _.GearBtnNext;
-                i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
-                var n = new a.AreaBox(0);
-                n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
-                    i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
-                })
+            return n(e, t), e.prototype.update = function (t) {
+                switch (t) {
+                    case 0:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(43);
+                        break;
+                    case 1:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(45);
+                        break;
+                    case 2:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(47);
+                        break;
+                    case 3:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(49);
+                        break;
+                    case 4:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(51);
+                        break;
+                    case 5:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(53);
+                        break;
+                    case 6:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(55);
+                        break;
+                    case 7:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(57);
+                        break;
+                    case 8:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(59);
+                        break;
+                    case 9:
+                        this.texture = o.BATTLE_RESULT_MAIN.getTexture(61);
+                        break;
+                    default:
+                        this.texture = PIXI.Texture.EMPTY
+                }
             }, e
-        }(r.TaskBase);
-    e.PhaseTransportResult = c
+        }(PIXI.Sprite);
+    e.ResultDialogNum = r
 }

@@ -19,53 +19,26 @@ const function1386 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(19),
-        s = i(2),
-        a = i(1387),
-        _ = i(1394),
-        u = i(469),
-        l = function (t) {
+    var o = i(22),
+        r = i(2),
+        s = i(1387),
+        a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+                return n._banner = e, n._large = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-            }, e.prototype._opening = function () {
+                if (null == this._banner) return void this._endTask();
+                this._effect()
+            }, e.prototype._effect = function () {
                 var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
-                    })
-                })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
-                })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new u.PhaseHougeki(this._scene, e, i, n).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
+                    e = new s.SearchLight;
+                e.initialize(this._large), 1 == this._banner.friend ? e.x = o.BannerSize.W + 15 : (e.x = -15, e.scale.x = -1), e.y = o.BannerSize.H / 2, this._banner.addChild(e), e.getAnimationTask().start(function () {
+                    t._banner.removeChild(e), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
+                this._banner = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = l
+        }(r.TaskBase);
+    e.TaskSearchLightAnimation = a
 }

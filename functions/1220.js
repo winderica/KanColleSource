@@ -1,37 +1,44 @@
 const function1220 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new r.UIImageLoader("prac");
-                e.add("prac_main.json"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesPractice = s
+    var n = function () {
+        function t(t) {
+            this._hp = t.hp_now, this._slotitem = [];
+            var e = t.slots;
+            if (null != e)
+                for (var i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    null != o && this._slotitem.push({
+                        mst: o.mst_id,
+                        mem: o.mem_id
+                    })
+                }
+            null != t.slot_ex && (this._slotitem_ex = {
+                mst: t.slot_ex.mst_id,
+                mem: t.slot_ex.mem_id
+            })
+        }
+        return Object.defineProperty(t.prototype, "hp", {
+            get: function () {
+                return this._hp
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "slotitem", {
+            get: function () {
+                return this._slotitem
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "slotitem_ex", {
+            get: function () {
+                return this._slotitem_ex
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t
+    }();
+    e.ShipInstantModel = n
 }

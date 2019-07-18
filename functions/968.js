@@ -26,8 +26,8 @@ const function968 = function (t, e, i) {
         _ = i(18),
         u = i(969),
         l = i(971),
-        c = i(348),
-        h = i(356),
+        c = i(346),
+        h = i(354),
         p = function (t) {
             function e(e, i, n, o, s) {
                 var a = t.call(this) || this;
@@ -60,28 +60,23 @@ const function968 = function (t, e, i) {
                 switch (t) {
                     case 1:
                         return {
-                            voice: [411, 415, 424],
-                            delay: [0, 200, 200]
+                            voice: [411, 415, 424], delay: [0, 200, 200]
                         };
                     case 2:
                         return {
-                            voice: [411, 416, 423, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [411, 416, 423, 424], delay: [0, 200, 200, 200]
                         };
                     case 3:
                         return {
-                            voice: [411, 417, 422, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [411, 417, 422, 424], delay: [0, 200, 200, 200]
                         };
                     case 4:
                         return {
-                            voice: [412, 418, 422, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [412, 418, 422, 424], delay: [0, 200, 200, 200]
                         };
                     case 5:
                         return {
-                            voice: [412, 421, 422, 424],
-                            delay: [0, 200, 200, 200]
+                            voice: [412, 421, 422, 424], delay: [0, 200, 200, 200]
                         };
                     default:
                         return null

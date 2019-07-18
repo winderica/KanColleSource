@@ -20,20 +20,15 @@ const function1328 = function (t, e, i) {
         value: !0
     });
     var o = i(10),
-        r = i(139),
-        s = function (t) {
+        r = function (t) {
             function e(e, i) {
                 void 0 === i && (i = !1);
                 var n = t.call(this) || this;
-                return n._url = "api_req_practice/battle", n._data = e, n._debug = i, n
+                return n._url = "api_req_practice/midnight_battle", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._connect = function () {
-                var e = this._data.model.deck_f,
-                    i = this._data.model.deck_e;
-                this._post_data.api_deck_id = e.id, this._post_data.api_formation_id = e.formation, this._post_data.api_enemy_id = i.id, 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._completedEnd = function () {
+                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIPracticeStart = s
+    e.APIPracticeDayToNight = r
 }

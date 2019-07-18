@@ -19,33 +19,21 @@ const function1199 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(6),
-        a = i(240),
-        _ = i(175),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+    var o = i(2),
+        r = i(14),
+        s = function (t) {
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
                 var t = this,
-                    e = o.default.model.basic.getDutyExecutableCount();
-                if (this._holder.getExecCount() >= e) return void this._endTask();
-                s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
-                    t._update()
+                    e = new r.UIImageLoader("revamp");
+                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    t._endTask()
                 })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskWaitedDutySelect = u
+        }(o.TaskBase);
+    e.TaskLoadResources = s
 }

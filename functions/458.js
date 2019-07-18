@@ -23,11 +23,11 @@ const function458 = function (t, e, i) {
         r = i(2),
         s = i(22),
         a = i(1372),
-        _ = i(55),
+        _ = i(54),
         u = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
-                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[2], s._scene.data.model.deck_f.ships[4]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNelsonTouch(s._attackers), s
+                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinMutsuAttack(s._attackers), s
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
@@ -93,5 +93,5 @@ const function458 = function (t, e, i) {
                 })
             }, e.prototype._log = function (t) {}, e
         }(r.TaskBase);
-    e.PhaseNelsonTouch = u
+    e.PhaseMutsuAttack = u
 }

@@ -19,44 +19,89 @@ const function1094 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(4),
-        a = i(3),
-        _ = i(43),
-        u = i(43),
-        l = i(43),
-        c = i(43),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClose = function () {
-                    null != i._cb_onClose && i._cb_onClose()
-                }, i._cb_onClose = e, i._title = new p, i._title.position.set(39, 45), i.addChild(i._title), i._message = new s.TextBox(20, 5523516), i._message.position.set(94, 136), i._message.style.breakWords = !0, i._message.style.wordWrap = !0, i._message.style.wordWrapWidth = 598, i._message.style.lineHeight = 33.6, i.addChild(i._message), i._statusBox = new _.SlotDetailStatusBox, i._statusBox.position.set(93, 355), i.addChild(i._statusBox), i._etype = new l.SlotTypeView, i._etype.position.set(873, 37), i.addChild(i._etype), i._content = new c.SlotDetailContent, i._content.position.set(699, 34), i.addChild(i._content), i._close_btn = new PIXI.Sprite, i._close_btn.position.set(1111, 30), i._close_btn.interactive = !0, i.addChild(i._close_btn), i.interactive = !0, i
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._items = [];
+                for (var i = 0; i < 6; i++) {
+                    var n = new a;
+                    n.x = i % 2 * 225, n.y = 39 * Math.floor(i / 2), e.addChild(n), e._items.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._model = t, this.texture = a.ALBUM_MAIN.getTexture(88);
-                var e = t.no,
-                    i = t.mst_ids[0];
-                this._title.initialize(e, i), this._message.text = t.message.replace(/<br>/g, "\n"), this._statusBox.initialize(t), this._etype.update(t.cardType), this._content.initialize(t), this._close_btn.texture = a.ALBUM_MAIN.getTexture(21)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this._content.activate(), this.on(r.EventType.CLICK, this._onClose))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClose), this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._title.dispose(), this._content.dispose(), this._statusBox.dispose(), this._message.destroy(), this._model = null, this._title = null, this._message = null, this._statusBox = null, this._etype = null, this._content = null, this._close_btn = null, this._cb_onClose = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this._items.length; t++) this._items[t].dispose(), this._items[t] = null;
+                this._items = null
+            }, e.prototype.update = function (t) {
+                var e = [];
+                this._addParamData(e, 0, t.soukou), this._addParamData(e, 1, t.karyoku), this._addParamData(e, 2, t.raisou), this._addParamData(e, 3, t.baku), this._addParamData(e, 4, t.taiku), this._addParamData(e, 5, t.taisen), this._addParamData(e, 6, t.meichu), this._addParamData(e, 7, t.kaihi), this._addParamData(e, 8, t.sakuteki), this._addParamData(e, 9, t.syatei);
+                for (var i = t.equipType, n = 0; n < this._items.length; n++)
+                    if (e.length <= n) this._items[n].visible = !1;
+                    else {
+                        var o = e[n];
+                        this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
+                    }
+            }, e.prototype._addParamData = function (t, e, i) {
+                null != t && 0 != i && t.push({
+                    type: e,
+                    value: i
+                })
             }, e
-        }(PIXI.Sprite);
-    e.SlotDetailPanel = h;
-    var p = function (t) {
+        }(PIXI.Container);
+    e.SlotParamsContainer = s;
+    var a = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._nums = new u.DetailPanelNumbers, e._nums.position.set(60, 36), e.addChild(e._nums), e._img = new PIXI.Sprite, e.addChild(e._img), e
+            return e._value_text = new o.TextBox(19, 16774898), e._value_text.position.set(189, 2), e._value_text.anchor.x = 1, e.addChild(e._value_text), e._value_img = new PIXI.Sprite, e._value_img.position.set(184, 13), e._value_img.anchor.set(1, .5), e.addChild(e._value_img), e
         }
         return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._nums.dispose(), this._nums = null, this._img = null
-        }, e.prototype.initialize = function (t, e) {
-            this.texture = a.ALBUM_MAIN.getTexture(87), this._nums.update(t), this._img.texture = o.default.resources.getSlotitem(e, "statustop_item")
+            this.removeChildren(), this._value_text.destroy(), this._value_text = null, this._value_img = null
+        }, e.prototype.update = function (t, e, i) {
+            if (this.texture = this._getTexture(t, i), 9 == t) {
+                this._value_text.visible = !1;
+                var n = [91, 92, 90, 89, 93][e];
+                this._value_img.texture = r.ALBUM_MAIN.getTexture(n), this._value_img.visible = !0
+            } else this._value_img.visible = !1, this._value_text.text = e > 0 ? "+" + e : e.toString(), this._value_text.visible = !0
+        }, e.prototype._getTexture = function (t, e) {
+            var i;
+            switch (t) {
+                case 0:
+                    i = 30;
+                    break;
+                case 1:
+                    i = 33;
+                    break;
+                case 2:
+                    i = 34;
+                    break;
+                case 3:
+                    i = 27;
+                    break;
+                case 4:
+                    i = 35;
+                    break;
+                case 5:
+                    i = 24;
+                    break;
+                case 6:
+                    i = 48 == e ? 28 : 26;
+                    break;
+                case 7:
+                    i = 48 == e ? 29 : 31;
+                    break;
+                case 8:
+                    i = 25;
+                    break;
+                case 9:
+                    i = 32;
+                    break;
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+            return r.ALBUM_MAIN.getTexture(i)
         }, e
     }(PIXI.Sprite)
 }

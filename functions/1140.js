@@ -19,29 +19,29 @@ const function1140 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(74),
+    var o = i(0),
+        r = i(174),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClickYes = function () {
-                    null != i._cb_onClick && i._cb_onClick(!0)
-                }, i._onClickNo = function () {
-                    null != i._cb_onClick && i._cb_onClick(!1)
-                }, i._cb_onClick = e, i._btn_yes = new PIXI.Sprite, i._btn_yes.position.set(153, 78), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite, i._btn_no.position.set(246, 78), i.addChild(i._btn_no), i._btn_yes.interactive = !0, i._btn_no.interactive = !0, i
+            function e() {
+                var e = null !== t && t.apply(this, arguments) || this;
+                return e._onMouseOver = function () {
+                    e._canvas.scale.set(1.05)
+                }, e._onMouseOut = function () {
+                    e._canvas.scale.set(1)
+                }, e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_SELECTABLE_REWARD.getTexture(1);
-                var e = new PIXI.Sprite(t),
-                    i = Math.min(135 / e.width, 135 / e.height);
-                e.scale.set(i), e.x = 11 + Math.round((135 - e.width) / 2), e.y = 12 + Math.round((135 - e.height) / 2), this.addChild(e), this._btn_yes.texture = r.COMMON_SELECTABLE_REWARD.getTexture(4), this._btn_no.texture = r.COMMON_SELECTABLE_REWARD.getTexture(3)
-            }, e.prototype.activate = function () {
-                1 != this._btn_yes.buttonMode && (this._btn_yes.buttonMode = !0, this._btn_yes.on(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !0, this._btn_no.on(o.EventType.CLICK, this._onClickNo))
-            }, e.prototype.deactivate = function () {
-                this._btn_yes.buttonMode = !1, this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.buttonMode = !1, this._btn_no.off(o.EventType.CLICK, this._onClickNo)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
+            return n(e, t), e.prototype.load = function (t) {
+                t()
+            }, e.prototype._initialize = function () {
+                this._icon.visible = !1;
+                this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getShip(e, !1, "card_round"),
+                    n = new PIXI.Sprite(i);
+                n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectConfirm = s
+        }(r.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogShipBtn = s
 }

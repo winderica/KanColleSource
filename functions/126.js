@@ -20,16 +20,33 @@ const function126 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(10),
+        r = i(46),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/slot_item", e
+            function e(e, i, n) {
+                void 0 === n && (n = null);
+                var o = t.call(this) || this;
+                return o._mst_id = e, o._count = i, o._message = n, o
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = this._raw_data;
-                o.default.model.slot.setMemData(e), t.prototype._completedEnd.call(this)
-            }, e
-        }(r.APIBase);
-    e.UserSlotItemAPI = s
+            return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
+                get: function () {
+                    return this._mst_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "name", {
+                get: function () {
+                    var t = o.default.model.useItem.get(this._mst_id);
+                    return null == t ? "" : t.name
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(r.RewardModel);
+    e.RewardModelUseitem = s
 }

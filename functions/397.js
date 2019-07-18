@@ -19,55 +19,42 @@ const function397 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(310),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._eye_open_flag = !0, e._onUpdate = function () {
-                    for (var t = 0, i = e._flowers; t < i.length; t++) {
-                        i[t].update()
-                    }
-                }, e._flowers = [];
-                var i = new s;
-                return i.position.set(151, 10), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(166, 43), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(40, 177), e.addChild(i), e._flowers.push(i), e
+    var o = i(0),
+        r = i(1112),
+        s = i(34),
+        a = i(238),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._flowers; t < e.length; t++) {
-                    e[t].initialize()
-                }
-                this._update()
-            }, e.prototype.activate = function () {
-                this._startWaiting()
-            }, e.prototype.deactivate = function () {
-                this._stopWaiting()
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._update = function () {
-                1 == this._eye_open_flag ? this.texture = o.ITEM_MINI.getTexture(0) : this.texture = o.ITEM_MINI.getTexture(1)
-            }, e.prototype._startWaiting = function () {
-                var t = this;
-                if (null == this._t) {
-                    var e = 0;
-                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 200 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
-                        onChange: this._onUpdate
-                    }).wait(e).call(function () {
-                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
-                    })
-                }
-            }, e.prototype._stopWaiting = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype._start = function () {
+                this._connectAPI()
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
+                    n = i.result;
+                i.start(function () {
+                    1 == n.hasCaution() ? t._confirm() : (t._result = n, t._endTask())
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._layer,
+                    n = new a.TaskItemOverflowConfirm(i);
+                n.start(function () {
+                    if (1 == n.result) {
+                        var i = new r.UseItemUseAPI(e, !0, 0),
+                            o = i.result;
+                        i.start(function () {
+                            t._result = o, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.MiniChara = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._i = 0, e._rnd = 0, e._startY = 0, e._rnd = .04 * Math.random() + .05, e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = o.ITEM_MINI.getTexture(2), this._startY = this.y
-        }, e.prototype.update = function () {
-            this.y = this._startY + 2 * Math.sin(this._i * this._rnd), this._i += .5
-        }, e
-    }(PIXI.Sprite)
+        }(s.TaskWithResult);
+    e.TaskUseNormalItem = _
 }

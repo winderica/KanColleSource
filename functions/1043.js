@@ -1,91 +1,83 @@
 const function1043 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(375),
-        a = i(1044),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._icons = new Array;
-                for (var n = [0, 62, 124, 248, 310, 372, 186], o = 0; o < n.length; o++) {
-                    var _ = new s.ExpeditionAreaIconBtn(o + 1, e);
-                    _.position.x = n[o], _.position.y = 0, i._icons.push(_)
-                }
-                return i._icon_event = new a.ExpeditionEventAreaIconBtn(r.EVENT_AREA_ID, e), i._icon_event.position.set(559, -9), i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "selected", {
-                get: function () {
-                    for (var t = 0, e = this._icons; t < e.length; t++) {
-                        var i = e[t];
-                        if (1 == i.selected) return i.area_id
+    var n = i(0),
+        o = function () {
+            function t() {}
+            return t.prototype.check = function (t, e) {
+                var i = n.default.model.expedition.get(t),
+                    o = n.default.model.expedition.getLimitTime();
+                if (null == i || null == e) return {
+                    result: !1,
+                    reason: 0
+                };
+                var r = e.getCount();
+                if (0 == r) return {
+                    result: !1,
+                    reason: 31
+                };
+                if (r > 6) return {
+                    result: !1,
+                    reason: 36
+                };
+                if (e.isCombined_Main() || e.isCombined_Sub()) return {
+                    result: !1,
+                    reason: 22
+                };
+                if (1 == i.reset_type) {
+                    if (2 == i.state) return {
+                        result: !1,
+                        reason: 0
+                    };
+                    var s = Math.floor(Date.now() / 1e3);
+                    if (s + 60 * i.time >= o[0]) return {
+                        result: !1,
+                        reason: 0
                     }
-                    return 1 == this._icon_event.selected ? this._icon_event.area_id : 0
-                },
-                set: function (t) {
-                    for (var e = 0, i = this._icons; e < i.length; e++) {
-                        var n = i[e];
-                        n.selected = t == n.area_id
+                }
+                var a = e.getShipList(),
+                    _ = i.isSupport();
+                if (_) {
+                    for (var u = 0, l = 0, c = a; l < c.length; l++) {
+                        var h = c[l];
+                        null != h && (2 == h.shipTypeID && u++)
                     }
-                    this._icon_event.selected = t == this._icon_event.area_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    i.initialize()
+                    if (u < 2) return {
+                        result: !1,
+                        reason: 13
+                    }
                 }
-                this.selected = 1;
-                for (var n = 0, s = this._icons; n < s.length; n++) {
-                    var i = s[n];
-                    this.addChild(i)
+                if (null != e.expedition) return {
+                    result: !1,
+                    reason: 30
+                };
+                for (var p = n.default.model.ndock.getShipMemIDs(), d = !1, f = !1, y = !0, m = 0, g = a; m < g.length; m++) {
+                    var h = g[m];
+                    null != h && (p.indexOf(h.memID) >= 0 && (d = !0), (h.fuelNow <= 0 || h.ammoNow <= 0) && (f = !0), (h.fuelNow < h.fuelMax || h.ammoNow < h.ammoMax) && (y = !1))
                 }
-                if (r.EVENT_AREA_ID > 0) {
-                    null != o.default.model.map.getArea(r.EVENT_AREA_ID) && (this._icon_event.initialize(), this.addChild(this._icon_event))
+                if (d) return {
+                    result: !1,
+                    reason: 1
+                };
+                if (_ && 0 == y) return {
+                    result: !1,
+                    reason: 14
+                };
+                if (f) return {
+                    result: !1,
+                    reason: 2
+                };
+                var v = a[0].getDamageType();
+                return 25 == v || 0 == v ? {
+                    result: !1,
+                    reason: 3
+                } : {
+                    result: !0,
+                    reason: 0
                 }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    1 == i.selected ? i.deactivate() : i.activate()
-                }
-                1 == this._icon_event.selected ? this._icon_event.deactivate() : this._icon_event.activate()
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-                this._icon_event.deactivate()
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._icon_event.dispose()
-            }, e.prototype.getSelectedIcon = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    if (1 == i.selected) return i
-                }
-                return 1 == this._icon_event.selected ? this._icon_event : null
-            }, e
-        }(PIXI.Container);
-    e.ExpeditionAreaIconSet = _
+            }, t
+        }();
+    e.ExpeditionCondition = o
 }

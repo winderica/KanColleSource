@@ -24,11 +24,12 @@ const function127 = function (t, e, i) {
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._url = "api_get_member/unsetslot", e
+                return e._url = "api_get_member/slot_item", e
             }
             return n(e, t), e.prototype._completedEnd = function () {
-                o.default.model.slot.setUnsetData(this._raw_data), t.prototype._completedEnd.call(this)
+                var e = this._raw_data;
+                o.default.model.slot.setMemData(e), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.UnsetSlotAPI = s
+    e.UserSlotItemAPI = s
 }

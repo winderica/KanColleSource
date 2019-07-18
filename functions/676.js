@@ -19,55 +19,92 @@ const function676 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(58),
-        s = i(15),
-        a = i(4),
-        _ = function (t) {
+    var o = i(0),
+        r = i(677),
+        s = i(113),
+        a = i(683),
+        _ = i(313),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickUpdate = function () {
-                    e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
-                }, e._onKeyDown = function () {
-                    var t = s.EditTextBoxUtil.text;
-                    e._mirrorText.text = t;
-                    var i = s.EditTextBoxUtil.validation(t, e.baseText);
-                    e.__updateButton__(i, e._editable)
-                };
-                var i = o.ORGANIZE_MAIN.getTexture(27),
-                    n = o.ORGANIZE_MAIN.getTexture(57),
-                    _ = o.ORGANIZE_MAIN.getTexture(58),
-                    u = o.ORGANIZE_MAIN.getTexture(59),
-                    l = new PIXI.Sprite(i);
-                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, u), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(l.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(l.width, 1), e.addChild(l, e.editButton, e.updateButton, e._mirrorText), e
+                e.SLOT_MAX = 6, e.shipSlots = [];
+                for (var i = 0; i < e.SLOT_MAX; i++) {
+                    var n = new a.ShipSlot(i),
+                        o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
+                        r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
+                    n.position.set(o, r), e.shipSlots.push(n)
+                }
+                return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
+            return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
                 get: function () {
-                    return s.EditTextBoxUtil.text
+                    return this.shipSlots
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.__updateButton__ = function (t, e) {
-                this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
-            }, e.prototype.reload = function (t) {
-                this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
-                var e = s.EditTextBoxUtil.validation(t, this.baseText);
-                this.__updateButton__(e, this._editable)
-            }, Object.defineProperty(e.prototype, "writable", {
-                set: function (t) {
-                    s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
+            }), Object.defineProperty(e.prototype, "ArrowTopButton", {
+                get: function () {
+                    return this.arrowTopButton
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "editable", {
-                set: function (t) {
-                    this.editButton.visible = this._editable = t
+            }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
+                get: function () {
+                    return this.arrowBottomButton
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e
+            }), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
+                this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
+            }, e.prototype.init = function (t, e, i) {
+                this.shipSlots.forEach(function (n) {
+                    n.activate(t, e, i)
+                })
+            }, e.prototype.initArrow = function (t) {
+                this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
+                    t && t(-2)
+                }), this.arrowBottomButton.initialize(function () {
+                    t && t(2)
+                })
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
+            }, e.prototype.update = function (t, e) {
+                for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
+                    var _ = this.shipSlots[a],
+                        u = a + e,
+                        l = i.getShipModel(u);
+                    if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open();
+                    else if (u < s) {
+                        var c = r < s,
+                            h = u == r,
+                            p = 0 == n,
+                            d = p && c && h;
+                        _.visible = !0, _.updateEmpty(u, d), _.close()
+                    }
+                }
+                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
+            }, e.prototype.shutterAnimation = function (t, e, i) {
+                var n = this.shipSlots[t];
+                n.closeAnimation(function () {
+                    e && e(), n.close();
+                    createjs.Tween.get(null).wait(100).call(function () {
+                        n.openAnimation(function () {
+                            i && i()
+                        }, 200)
+                    })
+                }, 200)
+            }, e.prototype.onShipDetail = function (t, e, i) {
+                var n = this;
+                this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
+                    n.taskShipDetail.hide(function () {
+                        n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
+                    })
+                }, this.taskShipDetail.start(t)
+            }, e
         }(PIXI.Container);
-    e.EditNameArea = _
+    e.ShipSlotLayer = u
 }

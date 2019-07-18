@@ -1,129 +1,83 @@
 const function90 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(10),
-        s = i(201),
-        a = i(148),
-        _ = i(125),
-        u = i(147),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_req_member/itemuse", o._result = new h, o._mst_id = e, o._force = i, o._exchange_type = n, o
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_useitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, this._exchange_type > 0 && (this._post_data.api_exchange_type = this._exchange_type), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
-            }, e
-        }(r.APIBase);
-    e.UseItemUseAPI = l;
-    var c = function () {
-        function t() {
-            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._has_furniture_reward = !1, this._rewards = null
+    var n = i(0);
+    i(3);
+    ! function (t) {
+        function e(t, e, i, o, r, s) {
+            return !(n.default.model.useItem.get(31).count < t) && (!(n.default.model.useItem.get(32).count < e) && (!(n.default.model.useItem.get(33).count < i) && (!(n.default.model.useItem.get(34).count < o) && (!(n.default.model.useItem.get(3).count < r) && !(n.default.model.useItem.get(2).count < s)))))
         }
-        return Object.defineProperty(t.prototype, "rewards", {
-            get: function () {
-                return this._rewards
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_caution_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t.prototype.hasMaterialReward = function () {
-            return this._has_material_reward
-        }, t.prototype.hasSlotitemReward = function () {
-            return this._has_slotitem_reward
-        }, t.prototype.hasCoinReward = function () {
-            return this._has_coin_reward
-        }, t.prototype.hasUseitemReward = function () {
-            return this._has_useitem_reward
-        }, t.prototype.hasFurnitureReward = function () {
-            return this._has_furniture_reward
-        }, t.prototype.getSlotitemObjects = function () {
-            var t = [];
-            if (null != this._o && this._o.hasOwnProperty("api_getitem")) {
-                var e = o.ObjUtil.getObjectArray(this._o, "api_getitem");
-                if (null != e)
-                    for (var i = 0, n = e; i < n.length; i++) {
-                        var r = n[i],
-                            s = o.ObjUtil.getObject(r, "api_slotitem");
-                        t.push(s)
-                    }
-            }
-            return t
-        }, t
-    }();
-    e.UseItemUseResult = c;
-    var h = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
+
+        function i(t, e, i, o, r) {
+            return !(n.default.model.useItem.get(31).count < t) && (!(n.default.model.useItem.get(32).count < e) && (!(n.default.model.useItem.get(33).count < i) && (!(n.default.model.useItem.get(34).count < o) && !(n.default.model.useItem.get(3).count < r))))
         }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t, this._rewards = [], this._initMaterialReward(), this._initRewardItem()
-        }, e.prototype._initRewardItem = function () {
-            var t = o.ObjUtil.getObjectArray(this._o, "api_getitem");
-            if (null != t)
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        r = o.ObjUtil.getNumber(n, "api_usemst"),
-                        l = o.ObjUtil.getNumber(n, "api_mst_id"),
-                        c = o.ObjUtil.getNumber(n, "api_getcount");
-                    if (0 != c)
-                        if (2 == r) {
-                            this._has_slotitem_reward = !0;
-                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
-                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
-                    else if (6 == r)
-                        if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
-                        else {
-                            this._has_useitem_reward = !0;
-                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(l, 1))
-                        }
-                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new u.RewardModelFurniture(l)))
-                }
-        }, e.prototype._initMaterialReward = function () {
-            var t = o.ObjUtil.getNumArray(this._o, "api_material");
-            if (null != t)
-                for (var e = [31, 32, 33, 34, 2, 1, 3, 4], i = null, n = 0; n < t.length; n++) {
-                    var r = t[n];
-                    if (!(r <= 0)) {
-                        null == i && (this._has_material_reward = !0, i = new s.RewardModelMultiUseitem, this.rewards.push(i));
-                        var a = e[n];
-                        i.add(a, r)
-                    }
-                }
-        }, e
-    }(c)
+
+        function o(t) {
+            var e = n.default.model.ship.get(t);
+            if (1 == e.isLocked()) return !1;
+            if (1 == e.isRepair()) return !1;
+            if (e.hasLockedSlotitem()) return !1;
+            var i = n.default.model.deck.isInDeck(t);
+            if (i) {
+                if (1 == i[0] && 0 == i[1]) return !1;
+                if (null != n.default.model.deck.get(i[0]).expedition) return !1
+            }
+            return !0
+        }
+
+        function r(t) {
+            switch (t) {
+                case 0:
+                    return 165;
+                case 1:
+                    return 166;
+                case 2:
+                    return 167;
+                case 3:
+                    return 168;
+                case 4:
+                    return 169;
+                case 5:
+                    return 170;
+                case 6:
+                    return 171;
+                case 7:
+                    return 172;
+                case 8:
+                    return 173;
+                case 9:
+                    return 174
+            }
+            throw new Error("unsupported param:" + t)
+        }
+
+        function s(t) {
+            switch (t) {
+                case 0:
+                    return 125;
+                case 1:
+                    return 126;
+                case 2:
+                    return 127;
+                case 3:
+                    return 128;
+                case 4:
+                    return 129;
+                case 5:
+                    return 130;
+                case 6:
+                    return 131;
+                case 7:
+                    return 132;
+                case 8:
+                    return 133;
+                case 9:
+                    return 134
+            }
+            throw new Error("unsupported param:" + t)
+        }
+        t.BuildValidation = e, t.DevelopValidation = i, t.ShipDisassemblyValidation = o, t.getWhiteNumberResourceId = r, t.getRedNumberResourceId = s
+    }(e.Util || (e.Util = {}))
 }

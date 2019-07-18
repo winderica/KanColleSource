@@ -1,23 +1,55 @@
 const function549 = function (t, e, i) {
-    var n = i(270),
+    var n = i(269),
         o = {
-            delimiter: "&"
+            delimiter: "&",
+            depth: 5,
+            arrayLimit: 20,
+            parameterLimit: 1e3
         };
-    o.stringify = function (t, e) {
-        if (n.isBuffer(t) ? t = t.toString() : t instanceof Date ? t = t.toISOString() : null === t && (t = ""), "string" == typeof t || "number" == typeof t || "boolean" == typeof t) return [encodeURIComponent(e) + "=" + encodeURIComponent(t)];
-        var i = [];
-        if (void 0 === t) return i;
-        for (var r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            i = i.concat(o.stringify(t[_], e + "[" + _ + "]"))
+    o.parseValues = function (t, e) {
+        for (var i = {}, o = t.split(e.delimiter, e.parameterLimit === 1 / 0 ? void 0 : e.parameterLimit), r = 0, s = o.length; r < s; ++r) {
+            var a = o[r],
+                _ = -1 === a.indexOf("]=") ? a.indexOf("=") : a.indexOf("]=") + 1;
+            if (-1 === _) i[n.decode(a)] = "";
+            else {
+                var u = n.decode(a.slice(0, _)),
+                    l = n.decode(a.slice(_ + 1));
+                i.hasOwnProperty(u) ? i[u] = [].concat(i[u]).concat(l) : i[u] = l
+            }
         }
         return i
-    }, t.exports = function (t, e) {
-        e = e || {};
-        for (var i = void 0 === e.delimiter ? o.delimiter : e.delimiter, n = [], r = Object.keys(t), s = 0, a = r.length; s < a; ++s) {
-            var _ = r[s];
-            n = n.concat(o.stringify(t[_], _))
+    }, o.parseObject = function (t, e, i) {
+        if (!t.length) return e;
+        var n = t.shift(),
+            r = {};
+        if ("[]" === n) r = [], r = r.concat(o.parseObject(t, e, i));
+        else {
+            var s = "[" === n[0] && "]" === n[n.length - 1] ? n.slice(1, n.length - 1) : n,
+                a = parseInt(s, 10),
+                _ = "" + a;
+            !isNaN(a) && n !== s && _ === s && a <= i.arrayLimit ? (r = [], r[a] = o.parseObject(t, e, i)) : r[s] = o.parseObject(t, e, i)
         }
-        return n.join(i)
+        return r
+    }, o.parseKeys = function (t, e, i) {
+        if (t) {
+            var n = /^([^\[\]]*)/,
+                r = /(\[[^\[\]]*\])/g,
+                s = n.exec(t);
+            if (!Object.prototype.hasOwnProperty(s[1])) {
+                var a = [];
+                s[1] && a.push(s[1]);
+                for (var _ = 0; null !== (s = r.exec(t)) && _ < i.depth;) ++_, Object.prototype.hasOwnProperty(s[1].replace(/\[|\]/g, "")) || a.push(s[1]);
+                return s && a.push("[" + t.slice(s.index) + "]"), o.parseObject(a, e, i)
+            }
+        }
+    }, t.exports = function (t, e) {
+        if ("" === t || null === t || void 0 === t) return {};
+        e = e || {}, e.delimiter = "string" == typeof e.delimiter || n.isRegExp(e.delimiter) ? e.delimiter : o.delimiter, e.depth = "number" == typeof e.depth ? e.depth : o.depth, e.arrayLimit = "number" == typeof e.arrayLimit ? e.arrayLimit : o.arrayLimit, e.parameterLimit = "number" == typeof e.parameterLimit ? e.parameterLimit : o.parameterLimit;
+        for (var i = "string" == typeof t ? o.parseValues(t, e) : t, r = {}, s = Object.keys(i), a = 0, _ = s.length; a < _; ++a) {
+            var u = s[a],
+                l = o.parseKeys(u, i[u], e);
+            r = n.merge(r, l)
+        }
+        return n.compact(r)
     }
 }

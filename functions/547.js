@@ -1,3 +1,8 @@
 const function547 = function (t, e, i) {
-    t.exports = i(548)
+    var n = i(548),
+        o = i(549);
+    t.exports = {
+        stringify: n,
+        parse: o
+    }
 }

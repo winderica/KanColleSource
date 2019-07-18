@@ -19,21 +19,35 @@ const function591 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
+    var o = i(592),
+        r = i(17),
         s = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/result", o._deck_id = e, o._result_model = i, o._debug = n, o
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id),
-                    i = e.expedition.expedition_id;
-                this._result_model.setData(this._raw_data, i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.update = function (t) {
+                this.texture = this._getTexture(t), this.visible = this.texture != PIXI.Texture.EMPTY
+            }, e.prototype.clear = function () {
+                this.update(-1)
+            }, e.prototype._getTexture = function (t) {
+                if (-1 === r.EVENT_AREA_ID) return PIXI.Texture.EMPTY;
+                switch (t) {
+                    case 1:
+                        return o.COMMON_EVENT.getTexture(0);
+                    case 2:
+                        return o.COMMON_EVENT.getTexture(1);
+                    case 3:
+                        return o.COMMON_EVENT.getTexture(2);
+                    case 4:
+                        return o.COMMON_EVENT.getTexture(3);
+                    case 5:
+                        return o.COMMON_EVENT.getTexture(4);
+                    case 6:
+                        return o.COMMON_EVENT.getTexture(5);
+                    default:
+                        return PIXI.Texture.EMPTY
+                }
             }, e
-        }(r.APIBase);
-    e.ExpeditionResultAPI = s
+        }(PIXI.Sprite);
+    e.BannerPlate = s
 }

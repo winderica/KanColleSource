@@ -19,52 +19,78 @@ const function1293 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
-                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
+    var o = i(151),
+        r = i(50),
+        s = i(428),
+        a = i(1294),
+        _ = i(1295),
+        u = i(1309),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "complete", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._complete
-                },
-                set: function (t) {
-                    this._complete = t, this.buttonMode = t, this._update()
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
-            }, e.prototype.update = function (t) {
-                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "map", {
+                get: function () {
+                    return this._map
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
+                get: function () {
+                    return this._gauge_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara_layer", {
+                get: function () {
+                    return this._chara_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
             }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._update = function () {
-                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(173), this._img.position.set(0, 0);
-                else {
-                    switch (this._airunit_id) {
-                        case 0:
-                            this._img.texture = o.MAP_COMMON.getTexture(169);
-                            break;
-                        case 1:
-                            this._img.texture = o.MAP_COMMON.getTexture(170);
-                            break;
-                        case 2:
-                            this._img.texture = o.MAP_COMMON.getTexture(171);
-                            break;
-                        case 3:
-                            this._img.texture = o.MAP_COMMON.getTexture(172);
-                            break;
-                        default:
-                            this._img.texture = PIXI.Texture.EMPTY
-                    }
-                    this._img.position.set(11, 9)
-                }
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
         }(PIXI.Container);
-    e.AirUnitAppointmentTitle = s
+    e.ViewMain = l
 }

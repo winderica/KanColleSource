@@ -19,45 +19,29 @@ const function1273 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(60),
-        a = i(81),
-        _ = i(208),
-        u = function (t) {
+    var o = i(244),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
+                return e._imgs = [], e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particle", {
-                get: function () {
-                    return this._particle
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
-                get: function () {
-                    return this._message_box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "white", {
-                get: function () {
-                    return this._white
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
+            return n(e, t), e.prototype.update = function (t) {
+                if (this._imgs = [], t <= 0) {
+                    var e = new o.NumericalDisplay(0);
+                    this.addChild(e), this._imgs.push(e)
+                } else
+                    for (; t > 0;) {
+                        var i = t % 10,
+                            e = new o.NumericalDisplay(i);
+                        this.addChild(e), this._imgs.push(e), t = Math.floor(t / 10)
+                    }
+                var n = new o.NumericalDisplay(-1);
+                this.addChild(n), this._imgs.push(n), this._imgs = this._imgs.reverse();
+                for (var r = 0, s = 0, a = this._imgs; s < a.length; s++) {
+                    var _ = a[s];
+                    _.x = r, r += _.width
+                }
             }, e
         }(PIXI.Container);
-    e.BonusUseItem = u
+    e.NumericalDisplaySet = r
 }

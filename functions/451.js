@@ -19,103 +19,91 @@ const function451 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(12),
-        s = i(184),
+    var o = i(66),
+        r = i(6),
+        s = i(141),
         a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._weight = 1, n._type = e, n._night = i, n._bg = new s.TelopBG, n.addChild(n._bg), n._text = new r.Sprite, n.addChild(n._text), n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._planes = [], i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                switch (this._friend = e, this._text.texture = o.default.resources.getSlotitem(t, "btxt_flat"), this._text.scale.set(.83), this._setBGTexture(e), this._type) {
-                    case 0:
-                        1 == e ? (this._bg_base_x = -600, this._text.anchor.set(1, .5), this._text_base_x = 0) : (this._bg_base_x = 1800, this._text.anchor.set(0, .5), this._text_base_x = 1200, this._weight = -1), this._bg.position.set(this._bg_base_x, 516), this._text.position.set(this._text_base_x, 516);
-                        break;
-                    case 1:
-                        this._text_w = this._text.width, this._bg.scale.set(1, 1.5), this._bg.position.set(600, 516), this._bg.alpha = 0, 1 == e ? (this._text.anchor.set(.5), this._text.position.set(1200 - this._text_w / 2, 516)) : (this._text.anchor.set(.5), this._text.position.set(0 + this._text_w / 2, 516)), this._text.alpha = 0, this._text.scale.set(.83 + .2075);
-                        break;
-                    case 2:
-                        this._friend = e;
-                        var i = e ? 1 : -1;
-                        1 == e ? (this._text.anchor.set(1, .5), this._text.rotation = -16 / 180 * Math.PI, this._text.position.set(0, 692)) : (this._text.anchor.set(0, .5), this._text.rotation = 16 / 180 * Math.PI, this._text.position.set(1200, 580)), this._bg.position.set(600 - 750 * i, 644)
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.addPlane = function (t, e) {
+                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
+                    var i = new s.Plane;
+                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
+                    for (var n = 0; n < this._planes.length; n++) {
+                        var o = this._planes[n];
+                        if (i.y < o.y) {
+                            var r = this.getChildIndex(o);
+                            this.addChildAt(i, r);
+                            break
+                        }
+                        n == this._planes.length - 1 && this.addChild(i)
+                    }
                 }
-            }, e.prototype._setBGTexture = function (t) {
-                switch (this._type) {
-                    case 0:
-                    case 1:
-                        this._bg.initialize(t, !this._night);
-                        break;
-                    case 2:
-                        this._bg.removeChildren();
-                        var e = new PIXI.Sprite;
-                        1 == t ? 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_ybg") : 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_ybg"), e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._bg.addChild(e)
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].dispose()
                 }
-            }, e.prototype.play = function () {
-                switch (this._type) {
-                    case 0:
-                        this.play_type1();
-                        break;
-                    case 1:
-                        this.play_type2();
-                        break;
-                    case 2:
-                        this.play_type3()
+            }, e.prototype.startFluctuations = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].startFluctuations()
                 }
-            }, e.prototype.play_type1 = function () {
-                createjs.Tween.get(this._bg).to({
-                    x: this._bg_base_x + 1200 * this._weight
-                }, 200).wait(565).to({
-                    x: this._bg_base_x + 1410 * this._weight,
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._text).wait(200).to({
-                    x: this._text_base_x + 1155 * this._weight
-                }, 265).to({
-                    x: this._text_base_x + 1200 * this._weight
-                }, 235).to({
-                    x: this._text_base_x + 1800 * this._weight,
-                    alpha: 0
-                }, 200)
-            }, e.prototype.play_type2 = function () {
-                createjs.Tween.get(this._bg).to({
-                    scaleY: 1,
-                    alpha: 1
-                }, 433).wait(333).to({
-                    scaleY: 1.5,
-                    alpha: 0
-                }, 200);
-                var t = this._friend ? 1230 - this._text_w / 2 : this._text_w / 2 - 30;
-                createjs.Tween.get(this._text).wait(200).to({
-                    scaleX: .83,
-                    scaleY: .83,
-                    alpha: 1
-                }, 333, createjs.Ease.sineOut).to({
-                    x: t
-                }, 200).to({
-                    scaleX: .83 + .2075,
-                    scaleY: .83 + .2075,
-                    alpha: 0
-                }, 200)
-            }, e.prototype.play_type3 = function () {
-                var t = this._friend ? 1 : -1,
-                    e = this._friend ? 356 : 244;
-                createjs.Tween.get(this._bg).to({
-                    x: 600,
-                    y: 450
-                }, 200).wait(566).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._text).wait(200).to({
-                    x: 600 + 600 * t,
-                    y: e
-                }, 400, createjs.Ease.sineOut).to({
-                    x: 600 + 630 * t,
-                    y: e - 8
-                }, 100).to({
-                    x: 600 + 1140 * t,
-                    y: e - 150,
-                    alpha: 0
-                }, 266)
+            }, e.prototype.stopFluctuations = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].stopFluctuations()
+                }
+            }, e.prototype.fire = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].fire()
+                }
+            }, e.prototype.play = function (t, e, i, n, s) {
+                var a = this;
+                void 0 === e && (e = NaN), void 0 === s && (s = null);
+                var _, u = new PIXI.Point(this.x, this.y),
+                    l = this._createControllPoints(u, t),
+                    c = l.c1,
+                    h = l.c2;
+                if (0 == isNaN(e)) {
+                    var p = .99,
+                        d = 1 - p,
+                        f = Math.pow(d, 3) * u.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
+                        y = Math.pow(d, 3) * u.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
+                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
+                        g = t.x - f,
+                        v = (e - t.x) / g,
+                        b = i / (100 + v) * 100,
+                        w = i / (100 + v) * v;
+                    this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
+                        x: e,
+                        y: m
+                    }, w), _ = new PIXI.Point(e, m)
+                } else this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
+                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
+                    r.SE.play("116"), a.fire()
+                }), {
+                    s: u,
+                    c1: c,
+                    c2: h,
+                    e: t,
+                    ex: _
+                }
+            }, e.prototype.debugLine = function (t) {
+                var e = new PIXI.Graphics;
+                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
+            }, e.prototype._createControllPoints = function (t, e) {
+                var i, n, o = t.x <= e.x;
+                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
+                    c1: i,
+                    c2: n
+                }
             }, e
         }(PIXI.Container);
-    e.CutinTelop = a
+    e.PlaneTrio = a
 }

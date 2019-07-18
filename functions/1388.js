@@ -19,65 +19,173 @@ const function1388 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(18),
+    var o = i(0),
+        r = i(72),
         s = i(27),
-        a = i(6),
-        _ = i(1389),
-        u = i(1391),
-        l = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+        a = i(29),
+        _ = i(19),
+        u = i(2),
+        l = i(8),
+        c = i(13),
+        h = i(1),
+        p = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._model = e, o._list = e.getDisplayList(), o._bannerGroupLayer = i, o._cutinLayer = n, o
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), e.prototype.preload = function (t) {
+                for (var e = new c.ShipLoader, i = 0, n = this._list; i < n.length; i++) {
+                    var o = n[i],
+                        r = o.ship,
+                        s = r.mst_id,
+                        a = r.isDamaged();
+                    e.add(s, a, "full")
+                }
+                for (var _ = 0, u = this._model.ships; _ < u.length; _++) {
+                    var r = u[_];
+                    if (null != r) {
+                        var l = r.mst_id,
+                            a = r.isDamaged();
+                        e.add(l, a, "banner"), 0 == a && e.add(l, !0, "banner")
+                    }
+                }
+                null == t ? e.load() : e.load(t)
+            }, e.prototype._start = function () {
+                this._charaLayer = new PIXI.Container, this._cutinLayer.addChild(this._charaLayer), this._clickLayer = new PIXI.Container, this._cutinLayer.addChild(this._clickLayer), this._showShip1()
+            }, e.prototype._showShip1 = function () {
                 var t = this,
-                    e = this._banner_f,
-                    i = this._banner_e;
-                1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                    t._search_light_task = null, t._preEndTask()
+                    e = this._list[0].ship,
+                    i = e.mst_id,
+                    n = e.isDamaged(),
+                    r = o.default.resources.getShip(i, n, "full"),
+                    s = new PIXI.Sprite(r),
+                    a = o.default.model.ship_graph.get(i).getBattleOffset(n);
+                s.x = -285 + a.x, s.y = -87 + a.y, s.alpha = 0, this._charaLayer.addChild(s), createjs.Tween.get(s).to({
+                    x: 165 + a.x,
+                    alpha: 1
+                }, 700, createjs.Ease.cubicOut).call(function () {
+                    t._playVoice1(s)
                 })
-            }, e.prototype._effectWithFlare = function (t, e) {
-                var i = this,
-                    n = new s.ParallelTask;
-                n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                    createjs.Tween.get(null).wait(1170).call(function () {
-                        i._flareAnimation(t, e)
-                    }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                        i._search_light_task.start(function () {
-                            i._search_light_task = null, i._preEndTask()
-                        })
+            }, e.prototype._playVoice1 = function (t) {
+                var e = this,
+                    i = this._list[0].ship.mst_id,
+                    n = this._list[0].voiceID,
+                    o = new d(i.toString(), n, this._clickLayer, !0),
+                    u = new _.TweenTask;
+                u.addTweens(this._bannerGroupLayer.friends_combined.createExitTweensUpDown());
+                var l = new _.TweenTask;
+                l.addTweens(this._bannerGroupLayer.friends.createExitTweens());
+                var c = new _.TweenTask;
+                c.addTweens(this._bannerGroupLayer.ally.createEnterTweens());
+                var h = new a.SerialTask;
+                h.add(u), h.add(l), h.add(c), h.add(new r.FuncTask(function () {
+                    o.clickable = !0
+                }));
+                var p = new s.ParallelTask;
+                p.add(o), p.add(h), p.start(function () {
+                    e._list.length > 1 ? e._showShip2(t) : createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
                     })
                 })
-            }, e.prototype._flareAnimation = function (t, e) {
-                var i = this;
-                this._flare_light_task = new s.ParallelTask;
-                var n = this._layer;
-                this._flare_light_task.add(new c(n));
-                var o;
-                null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                    i._flare_light_task = null, i._preEndTask()
+            }, e.prototype._showShip2 = function (t) {
+                var e = this,
+                    i = this._list[1].ship,
+                    n = i.mst_id,
+                    r = i.isDamaged(),
+                    s = o.default.resources.getShip(n, r, "full"),
+                    a = new PIXI.Sprite(s),
+                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
+                a.x = -360 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
+                    x: 15 + _.x,
+                    alpha: 1
+                }, 600, createjs.Ease.cubicOut).call(function () {
+                    e._playVoice2(a)
+                }), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._charaLayer.removeChild(t)
                 })
-            }, e.prototype._preEndTask = function () {
-                null == this._search_light_task && null == this._flare_light_task && this._endTask()
+            }, e.prototype._playVoice2 = function (t) {
+                var e = this,
+                    i = this._list[1].ship.mst_id,
+                    n = this._list[1].voiceID,
+                    o = this._list.length > 2,
+                    r = new d(i.toString(), n, this._clickLayer, o);
+                r.clickable = !0, r.start(function () {
+                    o ? e._showShip3(t) : createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
+                    })
+                })
+            }, e.prototype._showShip3 = function (t) {
+                var e = this,
+                    i = this._list[2].ship,
+                    n = i.mst_id,
+                    r = i.isDamaged(),
+                    s = o.default.resources.getShip(n, r, "full"),
+                    a = new PIXI.Sprite(s),
+                    _ = o.default.model.ship_graph.get(n).getBattleOffset(r);
+                a.x = -435 + _.x, a.y = -87 + _.y, a.alpha = 0, this._charaLayer.addChild(a), createjs.Tween.get(a).to({
+                    x: -135 + _.x,
+                    alpha: 1
+                }, 600, createjs.Ease.cubicOut).call(function () {
+                    e._playVoice3(t)
+                }), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._charaLayer.removeChild(t)
+                })
+            }, e.prototype._playVoice3 = function (t) {
+                var e = this,
+                    i = this._list[2].ship.mst_id,
+                    n = this._list[2].voiceID,
+                    o = new d(i.toString(), n, this._clickLayer, !1);
+                o.clickable = !0, o.start(function () {
+                    createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 300).call(function () {
+                        e._charaLayer.removeChild(t), e._endTask()
+                    })
+                })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+                this._model = null, this._list = null, this._bannerGroupLayer = null, this._cutinLayer = null, null != this._charaLayer.parent && this._charaLayer.parent.removeChild(this._charaLayer), this._charaLayer = null, null != this._clickLayer.parent && this._clickLayer.parent.removeChild(this._clickLayer), this._clickLayer = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskFlareEffect = l;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
+        }(u.TaskBase);
+    e.PhaseAllyOpening = p;
+    var d = function (t) {
+        function e(e, i, n, r) {
+            var s = t.call(this) || this;
+            return s._clickArea = null, s._voice = null, s._onClick = function () {
+                s._stop_onClick && null != s._voice && o.default.sound.voice.stop(s._voice), s._endTask()
+            }, s._mstID = e, s._voiceID = i, s._clickLayer = n, s._stop_onClick = r, s
         }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
+        return n(e, t), Object.defineProperty(e.prototype, "clickable", {
+            get: function () {
+                return null != this._clickArea
+            },
+            set: function (t) {
+                if (t) {
+                    if (null != this._clickArea) return;
+                    this._clickArea = new l.AreaBox(0), this._clickArea.buttonMode = !0, this._clickArea.once(h.EventType.CLICK, this._onClick), null != this._clickLayer && this._clickLayer.addChild(this._clickArea)
+                } else {
+                    if (null == this._clickArea) return;
+                    null != this._clickArea.parent && this._clickArea.parent.removeChild(this._clickArea), this._clickArea.off(h.EventType.CLICK, this._onClick), this._clickArea = null
+                }
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype._start = function () {
+            var t = this;
+            this._voice = o.default.sound.voice.play(this._mstID, this._voiceID, function () {
+                t._onEnd()
             })
+        }, e.prototype._onEnd = function () {
+            this._endTask()
+        }, e.prototype._endTask = function () {
+            this.clickable = !1, this._clickLayer = null, this._voice = null, t.prototype._endTask.call(this)
         }, e
-    }(o.TaskBase)
+    }(u.TaskBase)
 }

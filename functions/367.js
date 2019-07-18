@@ -19,32 +19,36 @@ const function367 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(17),
-        s = i(15),
+    var o = i(43),
+        r = i(231),
+        s = i(1007),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._area_id = -1, e
+            function e(e, i, n, o, r) {
+                return t.call(this, e, i, n, o, r) || this
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                var i = this;
-                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
-                this._area_id = t;
-                var n = s.MathUtil.zeroPadding(t, 3),
-                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
-                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
-                else {
-                    var _ = new PIXI.loaders.Loader;
-                    _.add(a), _.load(function () {
-                        i._img.texture = _.resources[a].texture, null != e && e()
-                    })
+            return n(e, t), e.prototype._setPositions = function () {
+                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
+            }, e.prototype._getNoneTexture = function () {
+                switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(32);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(33)
                 }
-            }, e.prototype.clear = function () {
-                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
-            }, e.prototype.dispose = function () {
-                this.clear()
+                return PIXI.Texture.EMPTY
+            }, e.prototype._getFocusTexture = function () {
+                switch (this._type) {
+                    case 1:
+                        return o.SALLY_EVENT.getTexture(31);
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(29);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(30)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._createLock = function () {
+                return new s.EventMapThumbnailLocked(this._type)
             }, e
-        }(PIXI.Container);
-    e.AreaTextImage = a
+        }(r.MapThumbnail);
+    e.EventMapThumbnail = a
 }

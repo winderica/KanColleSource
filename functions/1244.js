@@ -22,18 +22,13 @@ const function1244 = function (t, e, i) {
     var o = i(2),
         r = i(14),
         s = function (t) {
-            function e() {
-                return t.call(this) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("map");
-                e.add("map_common.json"), e.add("map_compass.json"), e.add("map_flagship_damage.json"), e.load(function () {
-                    t._endTask()
-                })
+                this._scene.view.dispose(), r.UIImageLoader.clearMemoryCache("map"), this._endTask()
             }, e
         }(o.TaskBase);
-    e.TaskLoadResourcesMap = s
+    e.TaskFinalize = s
 }

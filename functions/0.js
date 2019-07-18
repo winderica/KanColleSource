@@ -3,14 +3,14 @@ const function0 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(486),
-        o = i(532),
-        r = i(535),
-        s = i(268),
-        a = i(539),
-        _ = i(540),
-        u = i(541),
-        l = i(544),
+    var n = i(484),
+        o = i(531),
+        r = i(534),
+        s = i(267),
+        a = i(538),
+        _ = i(539),
+        u = i(540),
+        l = i(543),
         c = function () {
             function t() {
                 this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new l.FriendlyRequestModel

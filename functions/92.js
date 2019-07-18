@@ -19,178 +19,111 @@ const function92 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(2),
-        a = i(24),
-        _ = i(27),
-        u = i(16),
-        l = i(1334),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._voice_ship = null, n._scene = e, n._record = i, n
-            }
-            return n(e, t), e.prototype._start = function () {
-                this._record.getRation().length > 0 ? this._ration() : this._ration_combined()
-            }, e.prototype._ration = function () {
-                for (var t = this, e = this._scene.data.model.deck_f.ships, i = this._record.getRation(), n = this._createDic(e, i), o = new _.ParallelTask, r = 0, s = e; r < s.length; r++) {
-                    var a = s[r];
-                    if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                        var u = n[a.mem_id];
-                        if (1 == u.length) o.add(new h(this._scene, a, u[0]));
-                        else if (2 == u.length) {
-                            var l = this._voice_ship == a;
-                            o.add(new p(this._scene, a, u[0], u[1], l))
-                        }
-                    }
-                }
-                o.start(function () {
-                    createjs.Tween.get(null).wait(500).call(function () {
-                        t._ration_combined()
-                    })
-                })
-            }, e.prototype._ration_combined = function () {
-                var t = this,
-                    e = this._record.getRationCombined();
-                if (e.length > 0) {
-                    for (var i = this._scene.data.model.deck_f.ships, n = this._createDic(i, e), o = new _.ParallelTask, r = 0, s = i; r < s.length; r++) {
-                        var a = s[r];
-                        if (null != a && 0 != n.hasOwnProperty(a.mem_id.toString())) {
-                            var u = n[a.mem_id];
-                            if (1 == u.length) o.add(new h(this._scene, a, u[0]));
-                            else if (2 == u.length) {
-                                var l = this._voice_ship == a;
-                                o.add(new p(this._scene, a, u[0], u[1], l))
-                            }
-                        }
-                    }
-                    o.start(function () {
-                        createjs.Tween.get(null).wait(500).call(function () {
-                            t._endTask()
-                        })
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._voice_ship = null, t.prototype._endTask.call(this)
-            }, e.prototype._createDic = function (t, e) {
-                for (var i = {}, n = 0, o = t; n < o.length; n++) {
-                    var r = o[n];
-                    if (null != r) {
-                        var s = r.mem_id;
-                        if (e.indexOf(s) >= 0) {
-                            var a = r.useRation();
-                            null == this._voice_ship && a.length > 1 && (this._voice_ship = r), i[r.mem_id] = a
-                        }
-                    }
-                }
-                return i
-            }, e
-        }(s.TaskBase);
-    e.PhaseRation = c;
-    var h = function (t) {
+    var o = i(7),
+        r = i(10),
+        s = i(201),
+        a = i(148),
+        _ = i(126),
+        u = i(147),
+        l = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
-                return o._scene = e, o._ship = i, o._ration_mst_id = n, o
+                return o._url = "api_req_member/itemuse", o._result = new h, o._mst_id = e, o._force = i, o._exchange_type = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
-                    i = e.getGlobalPos(),
-                    n = new d;
-                n.initialize(this._ration_mst_id), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
-                var o = this._scene.view.bannerGroupLayer.effect_layer;
-                o.addChild(n), createjs.Tween.get(n).to({
-                    x: i.x + r.BannerSize.W / 2 + 20,
-                    alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).call(function () {
-                    new l.TaskBannerParticle(o, i).start()
-                }).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100).call(function () {
-                    t._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_useitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, this._exchange_type > 0 && (this._post_data.api_exchange_type = this._exchange_type), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(s.TaskBase),
-        p = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._ship = i, s._ration_mst_id_1 = n, s._ration_mst_id_2 = o, s._voice = r, s
+        }(r.APIBase);
+    e.UseItemUseAPI = l;
+    var c = function () {
+        function t() {
+            this._has_material_reward = !1, this._has_slotitem_reward = !1, this._has_coin_reward = !1, this._has_useitem_reward = !1, this._has_furniture_reward = !1, this._rewards = null
+        }
+        return Object.defineProperty(t.prototype, "rewards", {
+            get: function () {
+                return this._rewards
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(t.prototype, "cautionFlg", {
+            get: function () {
+                return o.ObjUtil.getNumber(this._o, "api_caution_flag")
+            },
+            enumerable: !0,
+            configurable: !0
+        }), t.prototype.hasCaution = function () {
+            return this.cautionFlg >= 1
+        }, t.prototype.hasMaterialReward = function () {
+            return this._has_material_reward
+        }, t.prototype.hasSlotitemReward = function () {
+            return this._has_slotitem_reward
+        }, t.prototype.hasCoinReward = function () {
+            return this._has_coin_reward
+        }, t.prototype.hasUseitemReward = function () {
+            return this._has_useitem_reward
+        }, t.prototype.hasFurnitureReward = function () {
+            return this._has_furniture_reward
+        }, t.prototype.getSlotitemObjects = function () {
+            var t = [];
+            if (null != this._o && this._o.hasOwnProperty("api_getitem")) {
+                var e = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+                if (null != e)
+                    for (var i = 0, n = e; i < n.length; i++) {
+                        var r = n[i],
+                            s = o.ObjUtil.getObject(r, "api_slotitem");
+                        t.push(s)
+                    }
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.getBanner(this._ship),
-                    i = e.getGlobalPos(),
-                    n = new d;
-                n.initialize(this._ration_mst_id_1), n.x = i.x + r.BannerSize.W / 2 + 20 - 75, n.y = i.y, n.alpha = 0;
-                var s = this._scene.view.bannerGroupLayer.effect_layer;
-                s.addChild(n), createjs.Tween.get(n).to({
-                    x: i.x + r.BannerSize.W / 2 + 20,
-                    alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100);
-                var a = new d;
-                a.initialize(this._ration_mst_id_2), a.x = i.x + r.BannerSize.W / 2 + 20 + 75 - 75, a.y = i.y, a.alpha = 0, s.addChild(a), createjs.Tween.get(a).wait(100).to({
-                    x: i.x + r.BannerSize.W / 2 + 20 + 75,
-                    alpha: 1
-                }, 200, createjs.Ease.sineOut).wait(250).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 300, createjs.Ease.sineOut).call(function () {
-                    new l.TaskBannerParticle(s, i).start(), 1 == t._voice && o.default.sound.voice.play(t._ship.mst_id.toString(), 26)
-                }).wait(1e3).to({
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 150, createjs.Ease.sineOut).to({
-                    scaleX: 0,
-                    scaleY: 0
-                }, 100).call(function () {
-                    t._endTask()
-                }), this._endTask()
-            }, e
-        }(s.TaskBase),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.y = -22, e.addChild(e._img), e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._img.texture = this._getTexture(t)
-            }, e.prototype._getTexture = function (t) {
-                switch (t) {
-                    case 145:
-                        return u.BATTLE_MAIN.getTexture(53);
-                    case 150:
-                        return u.BATTLE_MAIN.getTexture(57);
-                    case 241:
-                        return u.BATTLE_MAIN.getTexture(54);
-                    default:
-                        return PIXI.Texture.EMPTY
+            return t
+        }, t
+    }();
+    e.UseItemUseResult = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.setData = function (t) {
+            this._o = t, this._rewards = [], this._initMaterialReward(), this._initRewardItem()
+        }, e.prototype._initRewardItem = function () {
+            var t = o.ObjUtil.getObjectArray(this._o, "api_getitem");
+            if (null != t)
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        r = o.ObjUtil.getNumber(n, "api_usemst"),
+                        l = o.ObjUtil.getNumber(n, "api_mst_id"),
+                        c = o.ObjUtil.getNumber(n, "api_getcount");
+                    if (0 != c)
+                        if (2 == r) {
+                            this._has_slotitem_reward = !0;
+                            for (var h = 0; h < c; h++) this._rewards.push(new a.RewardModelSlotitem(l, 1))
+                        } else if (5 == r) this._has_coin_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
+                    else if (6 == r)
+                        if (10 == l || 11 == l || 12 == l) this._has_useitem_reward = !0, this._rewards.push((new s.RewardModelMultiUseitem).add(l, c));
+                        else {
+                            this._has_useitem_reward = !0;
+                            for (var h = 0; h < c; h++) this._rewards.push(new _.RewardModelUseitem(l, 1))
+                        }
+                    else 1 == r && (this._has_furniture_reward = !0, this._rewards.push(new u.RewardModelFurniture(l)))
                 }
-            }, e
-        }(a.Container)
+        }, e.prototype._initMaterialReward = function () {
+            var t = o.ObjUtil.getNumArray(this._o, "api_material");
+            if (null != t)
+                for (var e = [31, 32, 33, 34, 2, 1, 3, 4], i = null, n = 0; n < t.length; n++) {
+                    var r = t[n];
+                    if (!(r <= 0)) {
+                        null == i && (this._has_material_reward = !0, i = new s.RewardModelMultiUseitem, this.rewards.push(i));
+                        var a = e[n];
+                        i.add(a, r)
+                    }
+                }
+        }, e
+    }(c)
 }

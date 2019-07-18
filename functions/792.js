@@ -8,14 +8,14 @@ const function792 = function (t, e, i) {
         r = i(37),
         s = i(8),
         a = i(6),
-        _ = i(87),
+        _ = i(89),
         u = i(793),
         l = i(801),
         c = i(803),
         h = i(806),
         p = i(807),
         d = i(809),
-        f = i(50),
+        f = i(49),
         y = function () {
             function t(t) {
                 var e = this;
@@ -151,16 +151,16 @@ const function792 = function (t, e, i) {
                     C = w + c,
                     P = x + h,
                     k = I + p,
-                    M = T + d;
-                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, M, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, u);
-                var S = [a, _, u].some(function (t) {
+                    S = T + d;
+                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, S, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, u);
+                var M = [a, _, u].some(function (t) {
                         return 1 == t
                     }),
                     A = [f, y, m, g, v].some(function (t) {
                         return 0 == t
                     }),
-                    j = !1;
-                (A || S) && (O > t.karyoku || C > t.raisou || P > t.taiku || k > t.soukou || M > t.lucky || S) && (j = !0), this.powerUpEdit.startButton.update(j)
+                    E = !1;
+                (A || M) && (O > t.karyoku || C > t.raisou || P > t.taiku || k > t.soukou || S > t.lucky || M) && (E = !0), this.powerUpEdit.startButton.update(E)
             }, t.prototype._updateShipFull_ = function (t, e) {
                 this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, r.TaskLoadShipResource.abortBy(this.powerUpEdit.shipFull);
                 var i = new PIXI.Point(-173, -139),

@@ -19,29 +19,15 @@ const function456 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(44),
-        r = i(1367),
-        s = i(1370),
-        a = i(121),
-        _ = i(452),
-        u = i(453),
-        l = i(40),
-        c = function (t) {
-            function e(e, i, n, o, a, _, l, c, h, p) {
-                void 0 === p && (p = !1);
-                var d = t.call(this, e, i, o, l, c, h) || this;
-                d._onAttack = function () {
-                    d._playVoice(), d._createPlanes()
-                }, d._onDamaged = function () {
-                    1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
-                    var t = d._getDamage(d._defender);
-                    d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
-                        d._complete_flg_damage = !0, d._endTask()
-                    })
-                }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
-                var f = d._scene.data.isNight(),
-                    y = d._scene.view.layer_cutin;
-                return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new u.PlaneTrio(i.friend), d
+    var o = i(6),
+        r = i(2),
+        s = i(22),
+        a = i(1368),
+        _ = i(54),
+        u = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[2], s._scene.data.model.deck_f.ships[4]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNelsonTouch(s._attackers), s
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this;
@@ -49,36 +35,63 @@ const function456 = function (t, e, i) {
                     t._completePreload()
                 })
             }, e.prototype._completePreload = function () {
-                var t = this._attacker.friend,
-                    e = this._attacker.index,
-                    i = this._defender.index;
-                1 == t ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i)), this._cutin.setCallback(this._onAttack), this._cutin.start()
-            }, e.prototype._createPlanes = function () {
-                var t;
-                t = 1 == this._defender.isSubMarine() ? o.PlaneConst.getPlaneType(!0) : o.PlaneConst.getPlaneType(!1);
-                for (var e = this._attacker.slots, i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
-                        var s = r.mst_id;
-                        if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
-                        var a = this._a_banner.getGlobalPos(!0);
-                        this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
-                    }
+                for (var t = this, e = this._attackers[0].friend, i = [], n = [], o = 0; o < this._attackers.length; o++) {
+                    var r = this._attackers[o].index,
+                        s = this._scene.view.bannerGroupLayer.getBanner(!!e, r);
+                    i.push(s), s.moveFront()
                 }
-                this._attack()
-            }, e.prototype._attack = function () {
-                var t = this,
-                    e = this._scene.view.layer_content,
-                    i = this._a_banner,
-                    n = this._d_banner;
-                new a.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start();
-                var o = n.getGlobalPos(!0);
-                new _.TaskPlane(e, this._trio, o, this._onDamaged).start(function () {
-                    t._complete_flg_plane = !0, t._endTask()
+                for (var o = 0; o < this._defenders.length; o++) {
+                    var a = this._defenders[o].index,
+                        _ = this._scene.view.bannerGroupLayer.getBanner(!e, a);
+                    n.push(_)
+                }
+                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
+                    t._explosion(i, n, 0)
                 })
+            }, e.prototype._explosion = function (t, e, i) {
+                var n = this,
+                    o = e[i].getGlobalPos(!0),
+                    r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
+                    a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
+                    _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
+                    u = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
+                createjs.Tween.get(null).wait(200).call(function () {
+                    e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
+                }).wait(150).call(function () {
+                    n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
+                }).wait(100).call(function () {
+                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                        n._attack(t, e, i)
+                    })
+                })
+            }, e.prototype._attack = function (t, e, i) {
+                o.SE.play("102"), this._damageEffect(t, e, i)
+            }, e.prototype._damageEffect = function (t, e, i) {
+                1 == this._shields[i] && this._showShield(e[i]), e[i].moveAtDamage(this._shields[i]), this._playExplosion(e[i], this._damages[i]), this._playDamageEffect(t, e, i)
+            }, e.prototype._showShield = function (t) {
+                var e = this._scene.view.bannerGroupLayer.getShieldTargetBanner(t);
+                this._scene.view.layer_damage.showShieldAtBanner(e)
+            }, e.prototype._playExplosion = function (t, e) {
+                var i = t.getGlobalPos(!0);
+                this._scene.view.layer_explosion.playDamageExplosion(i.x, i.y, e)
+            }, e.prototype._playDamageEffect = function (t, e, i) {
+                var n = this;
+                this._scene.view.layer_damage.showAtBanner(e[i], this._damages[i], this._hits[i]);
+                var o = createjs.Tween.get(null);
+                o.wait(200), o.call(function () {
+                    if (n._damage_cutin.causeDamage(n._defenders[i], n._damages[i]), e[i].updateHp(n._defenders[i].hp_now), i + 1 >= n._defenders.length)
+                        for (var o = 0; o < n._attackers.length; o++) t[o].moveDefault()
+                }), i + 1 >= this._defenders.length ? (o.wait(1e3), o.call(function () {
+                    n._endTask()
+                })) : (o.wait(150), o.call(function () {
+                    n._explosion(t, e, i + 1)
+                }))
             }, e.prototype._endTask = function () {
-                0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
-            }, e
-        }(l.PhaseAttackBase);
-    e.PhaseAttackKuboCutin = c
+                var e = this;
+                this._damage_cutin.start(function () {
+                    t.prototype._endTask.call(e)
+                })
+            }, e.prototype._log = function (t) {}, e
+        }(r.TaskBase);
+    e.PhaseNelsonTouch = u
 }

@@ -19,17 +19,35 @@ const function1045 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(38),
-        r = function (t) {
+    var o = i(149),
+        r = i(58),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._beek = new PIXI.Sprite, e._beek.y = 402, e.addChild(e._beek), e
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_EXPEDITION.getTexture(40), this._beek.texture = o.SALLY_EXPEDITION.getTexture(39), this._beek.visible = !1
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(69)
+                }
             }, e.prototype.update = function (t) {
-                this._beek.x = t - 16, this._beek.visible = !0
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(PIXI.Sprite);
-    e.ExpeditionListFrame = r
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

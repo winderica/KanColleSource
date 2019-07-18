@@ -20,32 +20,27 @@ const function673 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(9),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = o.ORGANIZE_MAIN.getTexture(43),
-                    a = new PIXI.Sprite(r.COMMON_MISC.getTexture(75));
-                i.icon_d2_on = new PIXI.Sprite(r.COMMON_MISC.getTexture(77));
-                var _ = new PIXI.Sprite(n);
-                return _.position.set(-39, -21), i.addChild(a, _, i.icon_d2_on), i.tween = createjs.Tween.get(_).to({
-                    x: -39,
-                    y: -21,
-                    alpha: 1
-                }).to({
-                    x: -57
-                }, 600, createjs.Ease.cubicIn).wait(200).to({
-                    alpha: 0
-                }, 300).wait(400), i.tween.loop = !0, i.tween.play(null), i.icon_d2_on.on(s.EventType.MOUSEDOWN, e), i.icon_d2_on.interactive = !0, i.icon_d2_on.buttonMode = !0, i
+        r = i(57),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onMouseOver = function () {
+                    e.balloon.alpha = 1
+                }, e._onMouseOut = function () {
+                    e.balloon.alpha = 0
+                }, e._onClick = function () {
+                    e.onClick()
+                };
+                var i = o.ORGANIZE_MAIN.getTexture(53),
+                    n = o.ORGANIZE_MAIN.getTexture(54),
+                    s = o.ORGANIZE_MAIN.getTexture(38);
+                return e.iconText = new r.SimpleButton(i, n), e.balloon = new PIXI.Sprite(s), e.balloon.alpha = 0, e.balloon.x = -28, e.balloon.y = -37, e.iconText.onMouseOver = e._onMouseOver, e.iconText.onMouseOut = e._onMouseOut, e.iconText.onClick = e._onClick, e.addChild(e.iconText, e.balloon), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this.tween.target), this.tween.setPaused(!0), this.icon_d2_on.removeAllListeners(s.EventType.MOUSEDOWN), this.icon_d2_on = null, this.tween = null, this.removeChildren()
-            }, e.prototype.hideOn = function () {
-                this.icon_d2_on.visible = !1
-            }, e.prototype.showOn = function () {
-                this.icon_d2_on.visible = !0
+            return n(e, t), e.prototype.update = function (t) {
+                this.iconText.interactive = !1, t && (this.iconText.interactive = !0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.iconText.onMouseOver = this._onMouseOver = null, this.iconText.onMouseOut = this._onMouseOut = null, this.iconText.onClick = this._onClick = null, this.iconText.dispose(), this.iconText = null, this.balloon = null, this.onClick = null
             }, e
         }(PIXI.Container);
-    e.CombineGuideView = a
+    e.BreakDeckView = s
 }

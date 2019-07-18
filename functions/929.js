@@ -22,29 +22,29 @@ const function929 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(17),
-        a = i(261),
+        a = i(260),
         _ = i(29),
         u = i(18),
         l = i(32),
         c = i(69),
         h = i(225),
         p = i(30),
-        d = i(53),
+        d = i(52),
         f = i(930),
         y = i(227),
         m = i(228),
         g = i(931),
-        v = i(348),
+        v = i(346),
         b = i(940),
         w = i(968),
         x = i(978),
         I = i(979),
         T = i(981),
         O = i(989),
-        C = i(991),
-        P = i(1007),
+        C = i(993),
+        P = i(1009),
         k = i(1),
-        M = function (t) {
+        S = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._serial_id = null, n._onChangeArea = function (t) {
@@ -130,9 +130,9 @@ const function929 = function (t, e, i) {
                 }, n._layout = new C.ContainerLayout(n._onSelect, n._onSelectAirUnit, n._onBack, n._onNext), n._switch = new m.CompSwitchBtns(0, e, i), n._switch.position.set(795, 162), n._area_icons = new I.CompAreaIcons(n._onChangeArea), n._area_icons.position.set(188, 633), n._airUnitBtn = new x.AirUnitBtn(n._onSelectAirUnit), n._airUnitBtn.position.set(651, 165), n._airUnitBtn.visible = !1, n._cancelArea = new u.FadeBox(.3), n._cancelArea.hide(), n._cancelArea.visible = !1, n._detailPanel = new O.PanelDetail(n._onDecision), n._detailPanel.position.set(o.default.width, 0), n._detailPanel.visible = !1, n._offset_list = [], n
             }
             return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(p.SALLY_COMMON.getTexture(26));
+                var t = new PIXI.Sprite(p.SALLY_COMMON.getTexture(27));
                 t.position.set(144, 140);
-                var e = new PIXI.Sprite(p.SALLY_COMMON.getTexture(50));
+                var e = new PIXI.Sprite(p.SALLY_COMMON.getTexture(51));
                 e.position.set(0, 102);
                 var i = new PIXI.Sprite(d.SALLY_SORTIE.getTexture(8));
                 i.position.set(198, 113);
@@ -159,5 +159,5 @@ const function929 = function (t, e, i) {
                 this._event_sortie_condition = null, this._layout.dispose(), this._layout = null, this._switch.dispose(), this._switch = null, this._area_icons.dispose(), this._area_icons = null, this._airUnitBtn.dispose(), this._airUnitBtn = null, this._cancelArea.off(k.EventType.CLICK, this._onCancel), this._cancelArea = null, this._detailPanel.dispose(), this._detailPanel = null, null != this._deckSelectPanel && (this._deckSelectPanel.dispose(), this._deckSelectPanel = null), null != this._airunit_task && (this._airunit_task.dispose(), this._airunit_task = null), this.removeChildren()
             }, e
         }(y.ViewMainBase);
-    e.ViewMain = M
+    e.ViewMain = S
 }

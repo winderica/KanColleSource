@@ -19,34 +19,41 @@ const function1089 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._n100 = new s, e.addChild(e._n100), e._n010 = new s, e._n010.x = 18, e.addChild(e._n010), e._n001 = new s, e._n001.x = 36, e.addChild(e._n001), e
+    var o = i(31),
+        r = i(3),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function (t) {
+                    null != i._cb_onClick && i._cb_onClick(t, i._voice_id)
+                }, i._bg = new PIXI.Sprite, i._bg.position.set(0, 0), i.addChild(i._bg), i._icon = new o.Sprite, i._icon.position.set(18.5, 18.5), i._icon.anchor.set(.5), i.addChild(i._icon), i._category = new PIXI.Sprite, i._category.position.set(0, 0), i.addChild(i._category), i._t = createjs.Tween.get(i._icon, {
+                    loop: !0
+                }).to({
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 1e3).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i._bg.interactive = !0, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._n100 = null, this._n010 = null, this._n001 = null
-            }, e.prototype.update = function (t) {
-                if (t < 0 || t > 999) this._n100.texture = PIXI.Texture.EMPTY, this._n010.texture = PIXI.Texture.EMPTY, this._n001.texture = PIXI.Texture.EMPTY;
-                else {
-                    this._n100.update(Math.floor(t / 100));
-                    var e = t % 100;
-                    this._n010.update(Math.floor(e / 10)), e = t % 10, this._n001.update(e)
-                }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._voice_id = null === t ? -1 : t.api_voice_id, this._icon.texture = r.ALBUM_MAIN.getTexture(12);
+                var e = 4;
+                this._category.position.set(23, 20), null !== t && 2 === t.api_icon_id && (e = 3, this._category.position.set(20, 20)), this._category.texture = r.ALBUM_MAIN.getTexture(e), this._update(!1)
+            }, e.prototype._update = function (t) {
+                0 == t ? (this._bg.texture = r.ALBUM_MAIN.getTexture(1), this._icon.visible = !0, this._t.setPaused(!1)) : (this._bg.texture = r.ALBUM_MAIN.getTexture(13), this._icon.visible = !1, this._t.setPaused(!0))
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this._bg.buttonMode = !0, this._bg.on(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.on(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.on(s.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._bg.buttonMode = !1, this._bg.off(s.EventType.MOUSEOVER, this._onMouseOver), this._bg.off(s.EventType.MOUSEOUT, this._onMouseOut), this._bg.off(s.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._bg = null, this._icon = null, this._category = null, this._t = null, this._cb_onClick = null, this._voice_id = null
             }, e
         }(PIXI.Container);
-    e.DetailPanelNumbers = r;
-    var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.update = function (t) {
-            if (t < 0 || t > 9) this.texture = PIXI.Texture.EMPTY;
-            else {
-                var e = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106][t];
-                this.texture = o.ALBUM_MAIN.getTexture(e)
-            }
-        }, e
-    }(PIXI.Sprite)
+    e.extraVoiceBtn = a
 }

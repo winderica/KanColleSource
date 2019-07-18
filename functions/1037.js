@@ -1,46 +1,53 @@
 const function1037 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
+
+    function n(t) {
+        switch (t) {
+            case 1:
+                return o.DE;
+            case 2:
+                return o.DD;
+            case 3:
+            case 4:
+                return o.CL;
+            case 5:
+            case 6:
+                return o.CA;
+            case 7:
+                return o.CV_CVL;
+            case 8:
+            case 9:
+                return o.BB_BC;
+            case 10:
+                return o.BBV;
+            case 11:
+                return o.CV_CVL;
+            case 12:
+                return o.BB_BC;
+            case 13:
+            case 14:
+                return o.SS;
+            case 15:
+            case 16:
+            case 17:
+                return o.AV_AO_AS;
+            case 18:
+                return o.CV_CVL;
+            case 19:
+            case 20:
+                return o.AV_AO_AS;
+            case 21:
+                return o.CLT;
+            case 22:
+                return o.AV_AO_AS
         }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
+        throw new Error("UNSUPPORT_TYPE")
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(358),
-        r = i(1038),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._panel.initialize(t, e, i)
-            }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._panel.activate()
-            }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._panel.deactivate()
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._panel.dispose()
-            }, e
-        }(o.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = s
+    var o;
+    ! function (t) {
+        t[t.BB_BC = 0] = "BB_BC", t[t.CV_CVL = 1] = "CV_CVL", t[t.CA = 2] = "CA", t[t.CL = 3] = "CL", t[t.DD = 4] = "DD", t[t.DE = 5] = "DE", t[t.SS = 6] = "SS", t[t.AV_AO_AS = 7] = "AV_AO_AS", t[t.BBV = 8] = "BBV", t[t.CLT = 9] = "CLT"
+    }(o = e.ShipCategory || (e.ShipCategory = {})), e.shipTypeIdToCategory = n
 }

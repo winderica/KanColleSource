@@ -21,7 +21,7 @@ const function840 = function (t, e, i) {
     });
     var o = i(8),
         r = i(1),
-        s = i(52),
+        s = i(51),
         a = i(3),
         _ = i(841),
         u = function (t) {

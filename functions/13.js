@@ -5,8 +5,8 @@ const function13 = function (t, e, i) {
     });
     var n = i(0),
         o = i(28),
-        r = i(23),
-        s = i(103),
+        r = i(25),
+        s = i(105),
         a = i(79),
         _ = function () {
             function t() {
@@ -42,14 +42,12 @@ const function13 = function (t, e, i) {
                     case 5026:
                     case 5027:
                         return {
-                            typeList: ["character_up", "character_full"],
-                            hasTaiha: !1
+                            typeList: ["character_up", "character_full"], hasTaiha: !1
                         };
                     case 5256:
                     case 5269:
                         return {
-                            typeList: ["character_up", "character_full"],
-                            hasTaiha: !0
+                            typeList: ["character_up", "character_full"], hasTaiha: !0
                         };
                     case 5275:
                     case 5276:
@@ -84,18 +82,15 @@ const function13 = function (t, e, i) {
                     case 5305:
                     case 5306:
                         return {
-                            typeList: ["character_up", "character_full"],
-                            hasTaiha: !1
+                            typeList: ["character_up", "character_full"], hasTaiha: !1
                         };
                     case 5357:
                         return {
-                            typeList: ["character_up", "character_full"],
-                            hasTaiha: !0
+                            typeList: ["character_up", "character_full"], hasTaiha: !0
                         };
                     default:
                         return {
-                            typeList: null,
-                            hasTaiha: null
+                            typeList: null, hasTaiha: null
                         }
                 }
             }, t.prototype.needCard = function (t) {

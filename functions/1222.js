@@ -19,59 +19,28 @@ const function1222 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(242),
-        s = i(429),
-        a = i(1225),
-        _ = i(1228),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._option = i, n
+    var o = i(137),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
+            }, e.prototype.activate = function () {
+                this._startMove()
+            }, e.prototype.deactivate = function () {
+                this._stopMove()
+            }, e.prototype.dispose = function () {
+                this._stopMove()
+            }, e.prototype._startMove = function () {
                 var t = this;
-                this._model = new r.BattleSceneModel(!0), this._model.updateDeckData(this._option.deck_f, this._option.deck_e), this._scene.battle.initialize(this._model), this._scene.view.shutter.once("closed", function () {
-                    t._formationSelect()
-                }), this._scene.view.shutter.close(400)
-            }, e.prototype._formationSelect = function () {
-                var t = this,
-                    e = new a.TaskFormationSelect(this._scene, this._option.deck_f);
-                e.start(function () {
-                    t._option.deck_f.formation = e.selected_formation, t._insert()
-                })
-            }, e.prototype._insert = function () {
-                var t = this;
-                this._scene.battle.bg.setDay(function () {
-                    createjs.Tween.get(t._scene.view).to({
-                        alpha: 0
-                    }, 300), t._scene.battle.shutter2.open(0), createjs.Tween.get(t._scene.battle).to({
-                        alpha: 1
-                    }, 300), new s.SallyAnimationTask(t._scene).start(function () {
-                        t._cutin()
-                    })
-                })
-            }, e.prototype._cutin = function () {
-                var t = this,
-                    e = this._option.deck_f.ships,
-                    i = this._option.deck_f.medal_num,
-                    n = this._option.deck_e.ships,
-                    o = this._option.deck_e.medal_num,
-                    r = new _.StartAnimationTask(this._scene, e, i, n, o);
-                r.preload(function () {
-                    r.start(function () {
-                        t._endTask()
-                    })
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._option = null, t.prototype._endTask.call(this)
+                0 == this._interval_id && (this._interval_id = setInterval(function () {
+                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
+                }, 30))
+            }, e.prototype._stopMove = function () {
+                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
             }, e
-        }(o.TaskBase);
-    e.TaskMain = u
+        }(PIXI.Container);
+    e.CompCompass = r
 }

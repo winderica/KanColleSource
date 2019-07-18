@@ -19,24 +19,16 @@ const function373 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = i(1),
+    var o = i(0),
+        r = i(11),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i.interactive = !0, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/deck", e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_COMMON.getTexture(25)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.deck.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.CloseBtn = s
+        }(r.APIBase);
+    e.DeckAPI = s
 }

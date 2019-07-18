@@ -19,49 +19,49 @@ const function1316 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(439),
-        a = i(1317),
-        _ = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._onTaihi = function () {
-                    o._view.deactivate();
-                    var t = o._model.map_info.area_id,
-                        e = o._model.map_info.map_no,
-                        i = o._model.map_info.cell_no;
-                    new s.GobackPortAPI(t, e, i, o._target.mem_id, -1).start(function () {
-                        o._target.initializeTaihi(!0), o._hideView()
-                    })
-                }, o._onTaihiSezu = function () {
-                    o._view.deactivate(), o._hideView()
-                }, o._scene = e, o._model = i, o._target = n, o
+    var o = i(273),
+        r = i(1317),
+        s = i(1326),
+        a = i(1421),
+        _ = i(1434),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadShipResources()
-            }, e.prototype._loadShipResources = function () {
-                var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.load(function () {
-                    t._show()
-                })
-            }, e.prototype._show = function () {
-                this._view = new a.EscapeTankanView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-                var t = this._target;
-                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
-                    alpha: 1
-                }, 300)
-            }, e.prototype._hideView = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+            }, e.prototype.dispose = function () {
+                this._view.dispose(), t.prototype.dispose.call(this)
+            }, e.prototype.start = function () {
                 var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._endTask()
+                new r.TaskInit(this).start(function () {
+                    t._main()
                 })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+            }, e.prototype._main = function () {
+                var t = this;
+                new s.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this.data.model.deck_f.ships,
+                    e = this.data.model.deck_e.ships;
+                this.data.model.ship_info.add(t, e);
+                var i = (new Date).getTime();
+                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
             }, e
-        }(o.TaskBase);
-    e.EscapeTankanTask = _
+        }(o.BattleSceneBase);
+    e.BattleScene = u
 }

@@ -1,59 +1,63 @@
 const function1183 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = i(408),
-        r = function () {
-            function t() {
-                this._models = []
+    var o = i(118),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
             }
-            return Object.defineProperty(t.prototype, "selected_type", {
-                get: function () {
-                    return this._selected_type
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "selected_page_no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_disp_page", 1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "page_max", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_page_count", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "models", {
-                get: function () {
-                    return this._models
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.update = function (t, e) {
-                this._selected_type = t, this._o = e, this._models = [];
-                var i = n.ObjUtil.getObjectArray(this._o, "api_list");
-                if (null != i)
-                    for (var r = 0, s = i; r < s.length; r++) {
-                        var a = s[r];
-                        "number" == typeof a && -1 == a || this._models.push(new o.DutyModel_(a))
-                    }
-            }, t.prototype.getExecCount = function () {
-                return n.ObjUtil.getNumber(this._o, "api_exec_count")
-            }, t.prototype.hasComplete = function () {
-                if (1 == (1 == n.ObjUtil.getNumber(this._o, "api_completed_kind"))) return !0;
-                var t = n.ObjUtil.getObjectArray(this._o, "api_c_list");
-                if (null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var r = i[e],
-                            s = new o.DutyModel_(r);
-                        if (3 == s.status) return !0
-                    }
-                return !1
-            }, t
-        }();
-    e.DutyDataHolder = r
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.DUTY_COMMON.getTexture(42), this._star1.texture = o.DUTY_COMMON.getTexture(45), this._star2.texture = o.DUTY_COMMON.getTexture(44)
+            }, e.prototype.activate = function () {
+                null == this._t && this._wait()
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e.prototype._wait = function () {
+                var t = this;
+                this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
+                    t._wink()
+                })
+            }, e.prototype._wink = function () {
+                0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
+            }, e.prototype._anim = function () {
+                var t = this;
+                this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(43), this._t = createjs.Tween.get(null).wait(150).call(function () {
+                    t.texture = o.DUTY_COMMON.getTexture(42)
+                }).wait(150).call(function () {
+                    t.texture = o.DUTY_COMMON.getTexture(43)
+                }).wait(150).call(function () {
+                    t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(42)
+                }).wait(100).call(function () {
+                    t._star2.visible = !0
+                }).wait(600).call(function () {
+                    t._star1.visible = !1
+                }).wait(30).call(function () {
+                    t._star2.visible = !1, t._wait()
+                })
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(42), this._star1.visible = !1, this._star2.visible = !1)
+            }, e
+        }(PIXI.Sprite);
+    e.MiniChara = r
 }

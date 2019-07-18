@@ -19,91 +19,65 @@ const function453 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(66),
-        r = i(6),
-        s = i(141),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._planes = [], i
+    var o = i(5),
+        r = i(0),
+        s = i(255),
+        a = i(44),
+        _ = function (t) {
+            function e(e, i, n, o) {
+                return t.call(this, e, i, n, o) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
-                get: function () {
-                    return this._friend
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.addPlane = function (t, e) {
-                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
-                    var i = new s.Plane;
-                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
-                    for (var n = 0; n < this._planes.length; n++) {
-                        var o = this._planes[n];
-                        if (i.y < o.y) {
-                            var r = this.getChildIndex(o);
-                            this.addChildAt(i, r);
-                            break
-                        }
-                        n == this._planes.length - 1 && this.addChild(i)
-                    }
+            return n(e, t), e.prototype.resume = function () {
+                var t = this;
+                null != this._slot2 ? (this._telop2.initialize(this._slot2.mstID, this._attacker.friend), this._view.addChildAt(this._telop2, 0), this._telop2.play(), createjs.Tween.get(this).wait(150).call(function () {
+                    t._resume()
+                })) : this._resume()
+            }, e.prototype._start = function () {
+                var t = this,
+                    e = this._attacker.mst_id,
+                    i = this._attacker.isDamaged();
+                this._ship_sprite = new PIXI.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new a.ShipFlash(r.default.resources.getShip(e, i, "full"));
+                var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
+                this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
+                var s = this._base_pos,
+                    _ = this._friend ? 1 : -1;
+                if (this._view.chara.position.set(s.x - 180 * _, s.y + 120), this._view.chara.alpha = 0, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
+                        x: s.x - 30 * _,
+                        y: s.y + 15,
+                        alpha: 1
+                    }, 300).to({
+                        x: s.x,
+                        y: s.y
+                    }, 250).call(function () {
+                        t._view.emit("attack"), t._shipFlash.position = t._ship_sprite.position, t._shipFlash.play()
+                    }).wait(135), null != this._slot1 || null != this._slot2) {
+                    var u = this._view.box;
+                    u.initilize(this._attacker);
+                    var l = 0;
+                    1 == this._attacker.friend ? u.x = -60 : (l = o.default.width - u.width, u.x = l + 60), u.y = o.default.height - u.height, u.alpha = 0, createjs.Tween.get(u).wait(365).to({
+                        x: l,
+                        alpha: 1
+                    }, 165).wait(900).to({
+                        alpha: 0
+                    }, 200), null != this._slot1 && (this._telop1.initialize(this._slot1.mstID, this._attacker.friend), this._view.addChildAt(this._telop1, 0), this._telop1.play())
                 }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.startFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].startFluctuations()
-                }
-            }, e.prototype.stopFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].stopFluctuations()
-                }
-            }, e.prototype.fire = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].fire()
-                }
-            }, e.prototype.play = function (t, e, i, n, s) {
-                var a = this;
-                void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, u = new PIXI.Point(this.x, this.y),
-                    l = this._createControllPoints(u, t),
-                    c = l.c1,
-                    h = l.c2;
-                if (0 == isNaN(e)) {
-                    var p = .99,
-                        d = 1 - p,
-                        f = Math.pow(d, 3) * u.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * u.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
-                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        g = t.x - f,
-                        v = (e - t.x) / g,
-                        b = i / (100 + v) * 100,
-                        w = i / (100 + v) * v;
-                    this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
-                        x: e,
-                        y: m
-                    }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
-                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
-                    r.SE.play("116"), a.fire()
-                }), {
-                    s: u,
-                    c1: c,
-                    c2: h,
-                    e: t,
-                    ex: _
-                }
-            }, e.prototype.debugLine = function (t) {
-                var e = new PIXI.Graphics;
-                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
-            }, e.prototype._createControllPoints = function (t, e) {
-                var i, n, o = t.x <= e.x;
-                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
-                    c1: i,
-                    c2: n
-                }
+            }, e.prototype._resume = function () {
+                var t = this,
+                    e = this._base_pos,
+                    i = this._friend ? 1 : -1;
+                createjs.Tween.get(this._view.chara).call(function () {
+                    t._view.emit("attack"), t._shipFlash.play()
+                }).wait(135).wait(200).to({
+                    x: e.x + 38 * i,
+                    y: e.y - 23
+                }, 135).to({
+                    x: e.x + 135 * i,
+                    y: e.y - 75,
+                    alpha: 0
+                }, 335).call(function () {
+                    t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.PlaneTrio = a
+        }(s.CutinDouble);
+    e.CutinDouble1 = _
 }

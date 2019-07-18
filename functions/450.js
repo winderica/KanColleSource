@@ -19,27 +19,28 @@ const function450 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1358),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._chara = new PIXI.Container, e._box = new o.CutinStatusBox, e.addChild(e._chara), e.addChild(e._box), e
+    var o = i(2),
+        r = i(6),
+        s = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onComplete = function () {
+                    r._layer.removeChild(r._planes), r._planes.stopFluctuations(), r._planes.dispose(), r._endTask()
+                }, r._layer = e, r._planes = i, r._to_pos = n, r._cb_onDamaged = o, r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "box", {
-                get: function () {
-                    return this._box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._chara.removeChildren(), this._box.dispose()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._planes.startFluctuations(), this._planes.scale.set(0), this._layer.addChild(this._planes), r.SE.play("115"), createjs.Tween.get(this._planes.scale).to({
+                    x: 1,
+                    y: 1
+                }, 250).call(function () {
+                    var e = t._to_pos,
+                        i = t._planes.friend ? 1275 : -75;
+                    t._planes.play(e, i, 2500, t._cb_onDamaged, t._onComplete)
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._planes = null, this._to_pos = null, this._cb_onDamaged = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.CutinCanvas = r
+        }(o.TaskBase);
+    e.TaskPlane = s
 }

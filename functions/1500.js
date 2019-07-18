@@ -19,44 +19,45 @@ const function1500 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(1501),
-        s = i(481),
-        a = function (t) {
+    var o = i(232),
+        r = i(23),
+        s = i(27),
+        a = i(1501),
+        _ = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._initializeMapImages = function () {
-                this._maps = [];
-                for (var t = 0; t < 5; t++) {
-                    var e = new PIXI.Sprite;
-                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(4), r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(5), r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(6)][t], e.x = 160 + 170.5 * t, e.y = 112, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
-                }
-            }, e.prototype._createMapShowTweens = function () {
-                return this.__createMapShowTweens(700)
-            }, e.prototype._initializeStampImages = function () {
-                this._stamps = [];
-                for (var t = 0; t < 4; t++) {
-                    var e = new o.Sprite;
-                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(0), e.x = 272 + 173 * t, e.y = 235.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
-                }
-            }, e.prototype._createStampShowTweens = function () {
-                return this.__createStampShowTweens(700)
-            }, e.prototype._showText = function () {
-                this.__showText(new _)
-            }, e.prototype._createStampLast = function () {
-                var t = r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(1),
-                    e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(1054.5, 293.5), e.alpha = 0, e
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(e, i), this.addChild(this._gauge)
+            }, e.prototype.update = function (t, e) {
+                if (null == this._gauge) return null;
+                this._gauge.update(t, e)
+            }, e.prototype.explode = function (t) {
+                var e = this,
+                    i = new s.ParallelTask,
+                    n = new a.TaskExplosion(this, 107, 20);
+                i.add(n);
+                var o = new a.TaskExplosion(this, 209, 57, 250);
+                i.add(o);
+                var r = new a.TaskExplosion(this, 309, 24, 450);
+                i.add(r), i.start(function () {
+                    null != t && t()
+                }), createjs.Tween.get(this._gauge).wait(200).to({
+                    alpha: 0
+                }, 400).call(function () {
+                    e.removeChild(e._gauge), e._gauge = null
+                })
+            }, e.prototype.changeNextGauge = function (t, e) {
+                null != this._gauge && (null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new o.GaugeHorizontal, this._gauge.initialize(t), this._gauge.update(100, 100), this._gauge.x = -this._gauge.width / 2, this._gauge.y = -this._gauge.height / 2;
+                var i = new r.Container;
+                i.x = this._gauge.width / 2, i.y = this._gauge.height / 2, i.scale.set(1.6), i.alpha = 0, this.addChild(i), i.addChild(this._gauge), createjs.Tween.get(i).wait(1e3).to({
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 750, createjs.Ease.quartInOut).wait(1500).call(function () {
+                    null != e && e()
+                })
             }, e
-        }(s.TaskEventEndingBase);
-    e.TaskEventEnding2 = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(7), this._text1.position.set(126, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_QSHXDPSTQLJRNYFS.getTexture(8), this._text2.position.set(243, 508)
-        }, e
-    }(s.TextsBase)
+        }(PIXI.Container);
+    e.ResultDialogGauge = _
 }

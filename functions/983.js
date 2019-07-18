@@ -39,7 +39,7 @@ const function983 = function (t, e, i) {
                 var t = new PIXI.Sprite(this._getTexture());
                 this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
             }, e.prototype.update = function (t) {
-                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(31), this.visible = !0) : this.visible = !1
+                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(33), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : this.visible = !1
             }, e.prototype._getTexture = function () {
                 return null
             }, e
@@ -49,7 +49,7 @@ const function983 = function (t, e, i) {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(29)
+                return o.SALLY_COMMON.getTexture(30)
             }, e
         }(s),
         _ = function (t) {
@@ -57,7 +57,7 @@ const function983 = function (t, e, i) {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(30)
+                return o.SALLY_COMMON.getTexture(31)
             }, e
         }(s)
 }

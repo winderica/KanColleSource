@@ -19,166 +19,114 @@ const function1412 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(18),
-        s = i(6),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new r.FadeBox(.9, 0), e._chara = new PIXI.Container, e._item1 = new _, e._item2 = new u, e._item3 = new l, e._name1 = new c, e._name2 = new c, e._name3 = new c, e._bg.hide(0), e.addChild(e._bg), e.addChild(e._chara), e.addChild(e._item3), e.addChild(e._item2), e.addChild(e._item1), e.addChild(e._name1), e.addChild(e._name2), e.addChild(e._name3), e
+    var o = i(76),
+        r = i(1413),
+        s = i(95),
+        a = i(96),
+        _ = i(97),
+        u = i(64),
+        l = i(104),
+        c = i(100),
+        h = i(99),
+        p = i(101),
+        d = i(98),
+        f = i(102),
+        y = i(77),
+        m = i(103),
+        g = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e, !1) || this;
+                return n._record = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "item1", {
-                get: function () {
-                    return this._item1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "item2", {
-                get: function () {
-                    return this._item2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "item3", {
-                get: function () {
-                    return this._item3
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "name1", {
-                get: function () {
-                    return this._name1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "name2", {
-                get: function () {
-                    return this._name2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "name3", {
-                get: function () {
-                    return this._name3
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._item1.initialize(t, e), this._item2.initialize(t, i), this._item3.initialize(t, n), this._name1.initialize(t), this._name1.y = 570, this._name2.initialize(t), this._name2.y = 480, this._name3.initialize(t), this._name3.y = 390, this.name1.texture = o.default.resources.getSlotitem(e, "btxt_flat"), this.name2.texture = o.default.resources.getSlotitem(i, "btxt_flat"), this.name3.texture = o.default.resources.getSlotitem(n, "btxt_flat")
-            }, e.prototype.dispose = function () {
-                this.removeChildren()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this.scene.bg.setDay(function () {
+                    t._shutterOpen()
+                })
+            }, e.prototype._shutterOpen = function () {
+                var t = this,
+                    e = this.scene.view;
+                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
+                    e.shutter.once("opened", function () {
+                        t._moveBanner()
+                    }), e.shutter.open()
+                })
+            }, e.prototype._moveBanner = function () {
+                var t = this;
+                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
+                    t._jetAirUnit()
+                })
+            }, e.prototype._jetAirUnit = function () {
+                var t = this;
+                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
+                    t._jetAirWar()
+                })
+            }, e.prototype._jetAirWar = function () {
+                var t = this;
+                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
+                    t._airUnit()
+                })
+            }, e.prototype._airUnit = function () {
+                var t = this;
+                new _.PhaseAirUnit(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._support = function () {
+                var t = this;
+                new l.PhaseSupport(this.scene, this._record).start(function () {
+                    t._airWar()
+                })
+            }, e.prototype._airWar = function () {
+                var t = this;
+                new u.PhaseAirWar(this.scene, this._record).start(function () {
+                    t._support()
+                })
+            }, e.prototype._openingAttack = function () {
+                var t = this;
+                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
+                    t._openingTorpedo()
+                })
+            }, e.prototype._openingTorpedo = function () {
+                var t = this;
+                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
+                    t._formation()
+                })
+            }, e.prototype._formation = function () {
+                var t = this;
+                new p.PhaseFormation(this.scene, this._record).start(function () {
+                    t._airWar2()
+                })
+            }, e.prototype._airWar2 = function () {
+                var t = this;
+                new d.PhaseAirWar2(this.scene, this._record).start(function () {
+                    t._attack1()
+                })
+            }, e.prototype._attack1 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
+                    t._attack2()
+                })
+            }, e.prototype._attack2 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
+                    t._torpedo()
+                })
+            }, e.prototype._torpedo = function () {
+                var t = this;
+                new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._ending()
+                })
+            }, e.prototype._ending = function () {
+                var t = this;
+                new m.PhaseEnding(this.scene, this._record).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.CutinCanvasSpSSS = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._bg.scale.x = -1, e._bg.anchor.set(.5), e._bg.alpha = 0, e.addChild(e._bg), e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._item.position.set(60, 15), e._item.scale.set(1.5), e._item.alpha = 0, e.addChild(e._item);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(-741, -392), new PIXI.Point(749, 75), new PIXI.Point(749, 395), new PIXI.Point(-741, -75)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            t ? (this.position.set(750, 674), this._to_pos = new PIXI.Point(565, 615)) : (this.position.set(450, 674), this._to_pos = new PIXI.Point(635, 615), this.scale.x = -1);
-            var i = t ? "battle_telop_mes_ybg3_f" : "battle_telop_mes_ybg3_e";
-            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
-        }, e.prototype.show = function (t) {
-            var e = this;
-            createjs.Tween.get(this).wait(t).call(function () {
-                e._play(e._to_pos.x, e._to_pos.y)
-            })
-        }, e.prototype._play = function (t, e) {
-            s.SE.play("105"), createjs.Tween.get(this).to({
-                x: t,
-                y: e
-            }, 200), createjs.Tween.get(this._bg).to({
-                alpha: 1
-            }, 200), createjs.Tween.get(this._item).to({
-                alpha: 1
-            }, 133).call(function () {
-                s.SE.play("109")
-            })
-        }, e
-    }(PIXI.Container);
-    e.ItemBox1 = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._item = new PIXI.Sprite, e._item.position.set(77, -68), e._bg.anchor.set(.5), e._item.anchor.set(.5), e._item.scale.set(1.5), e._bg.alpha = 0, e._item.alpha = 0, e.addChild(e._bg), e.addChild(e._item);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(-756, 74), new PIXI.Point(749, -395), new PIXI.Point(749, -75), new PIXI.Point(-756, 395)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            t ? (this.position.set(300, 674), this._to_pos = new PIXI.Point(750, 492)) : (this.position.set(900, 674), this._to_pos = new PIXI.Point(450, 492), this.scale.x = -1);
-            var i = t ? "battle_telop_mes_ybg3_f" : "battle_telop_mes_ybg3_e";
-            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
-        }, e.prototype.show = function (t) {
-            var e = this;
-            createjs.Tween.get(this).wait(t).call(function () {
-                e._play(e._to_pos.x, e._to_pos.y)
-            })
-        }, e.prototype._play = function (t, e) {
-            s.SE.play("105"), createjs.Tween.get(this).to({
-                x: t,
-                y: e
-            }, 200), createjs.Tween.get(this._bg).to({
-                alpha: 1
-            }, 200), createjs.Tween.get(this._item).to({
-                alpha: 1
-            }, 133).call(function () {
-                s.SE.play("109")
-            })
-        }, e
-    }(PIXI.Container);
-    e.ItemBox2 = u;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Sprite, e._item = new PIXI.Sprite, e._item.position.set(-15, 5), e._bg.anchor.set(.5), e._item.anchor.set(.5), e._item.scale.set(1.5), e._bg.alpha = 0, e._item.alpha = 0, e.addChild(e._bg), e.addChild(e._item);
-            var i = new PIXI.Graphics;
-            return i.beginFill(16711680), i.drawPolygon([new PIXI.Point(402, -585), new PIXI.Point(867, -585), new PIXI.Point(-354, 537), new PIXI.Point(-813, 537)]), i.endFill(), e.addChild(i), e._item.mask = i, e
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            t ? (this.position.set(505, 585), this._to_pos = new PIXI.Point(993, 135)) : (this.position.set(695, 585), this._to_pos = new PIXI.Point(207, 135), this.scale.x = -1);
-            var i = t ? "battle_telop_mes_ybg4_f" : "battle_telop_mes_ybg4_e";
-            this._bg.texture = PIXI.Texture.fromFrame(i), this._item.texture = o.default.resources.getSlotitem(e, "item_up")
-        }, e.prototype.show = function (t) {
-            var e = this;
-            createjs.Tween.get(this).wait(t).call(function () {
-                e._play(e._to_pos.x, e._to_pos.y)
-            })
-        }, e.prototype._play = function (t, e) {
-            s.SE.play("105"), createjs.Tween.get(this).to({
-                x: t,
-                y: e
-            }, 200), createjs.Tween.get(this._bg).to({
-                alpha: 1
-            }, 200), createjs.Tween.get(this._item).to({
-                alpha: 1
-            }, 133).call(function () {
-                s.SE.play("109")
-            })
-        }, e
-    }(PIXI.Container);
-    e.ItemBox3 = l;
-    var c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.scale.set(.76), e.alpha = 0, e
-        }
-        return n(e, t), e.prototype.initialize = function (t) {
-            1 == t ? (this.anchor.set(0, .5), this.position.x = -300) : (this.anchor.set(1, .5), this.position.x = 1500)
-        }, e
-    }(PIXI.Sprite)
+        }(o.PhaseCombatBase);
+    e.PhaseDayFromNight = g
 }

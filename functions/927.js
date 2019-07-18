@@ -46,7 +46,7 @@ const function927 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t) {
-                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(50));
+                var e = new PIXI.Sprite(o.SALLY_COMMON.getTexture(51));
                 e.position.set(0, 102);
                 var i = new PIXI.Sprite(r.SALLY_TOP.getTexture(0));
                 i.position.set(188, 113);

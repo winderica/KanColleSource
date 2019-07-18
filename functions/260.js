@@ -1,14 +1,16 @@
 const function260 = function (t, e, i) {
     "use strict";
+
+    function n(t, e, i) {
+        var n = (new Date).getTime(),
+            r = Math.floor(n / 1e3);
+        e = Math.round(e) % 1e3 + 1e3, i = Math.round(i) % 1e3 + 1e3;
+        var s = 1e4 * e + i;
+        return s *= o.PORT_API_SEED[t % 10], r.toString() + s.toString()
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t, e) {
-            e || (e = "YYYY/MM/DD hh:mm:ss");
-            var i = new Date(t);
-            return e = e.replace(/YYYY/g, i.getFullYear().toString()), e = e.replace(/MM/g, ("0" + (i.getMonth() + 1)).slice(-2)), e = e.replace(/DD/g, ("0" + i.getDate()).slice(-2)), e = e.replace(/hh/g, ("0" + i.getHours()).slice(-2)), e = e.replace(/mm/g, ("0" + i.getMinutes()).slice(-2)), e = e.replace(/ss/g, ("0" + i.getSeconds()).slice(-2))
-        }
-        t.format = e
-    }(e.DateUtil || (e.DateUtil = {}))
+    var o = i(17);
+    e.__create_serial_id__ = n
 }

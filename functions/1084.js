@@ -19,44 +19,21 @@ const function1084 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(203),
-        r = i(160),
-        s = i(1085),
-        a = i(383),
-        _ = i(384),
-        u = i(386),
-        l = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._bg = new PIXI.Sprite, r._bg.position.set(147, 60), r.addChild(r._bg), r._pager = new _.PagerContainer(i), r._pager.position.set(195, 14), r.addChild(r._pager), r._content = new s.MainContainer(n), r._content.position.set(126, 66), r.addChild(r._content), r._tab_container = new u.TabBtnContainer(e), r._tab_container.position.set(0, 60), r.addChild(r._tab_container), r._mini_chara = new a.MiniChara, r._mini_chara.position.set(104, 564), r.addChild(r._mini_chara), r._back_btn = new o.BackBtn, r._back_btn.position.set(0, 659), r.addChild(r._back_btn), r
+    var o = i(4),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._karyoku = e._createTextBox(85), e._raisou = e._createTextBox(124), e._taiku = e._createTextBox(163), e._kaihi = e._createTextBox(202), e._taikyu = e._createTextBox(241), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "pager", {
-                get: function () {
-                    return this._pager
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "tab_container", {
-                get: function () {
-                    return this._tab_container
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._bg.texture = r.ALBUM_MAIN.getTexture(20), this._pager.initialize(), this._tab_container.initialize(), this._content.initialize(), this._pager.update(0, 0), this._content.update(1, 0, null), this._tab_container.update(1, 0), this._mini_chara.initialize(), this._back_btn.initialize(t)
-            }, e.prototype.activate = function () {
-                this._pager.activate(), this._content.activate(), this._tab_container.activate(), this._mini_chara.activate(), this._back_btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._pager.deactivate(), this._content.deactivate(), this._tab_container.deactivate(), this._mini_chara.deactivate(), this._back_btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._pager.dispose(), this._content.dispose(), this._tab_container.dispose(), this._mini_chara.dispose(), this._back_btn.dispose(), this._bg = null, this._pager = null, this._content = null, this._tab_container = null, this._mini_chara = null, this._back_btn = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._karyoku.destroy(), this._raisou.destroy(), this._taiku.destroy(), this._kaihi.destroy(), this._taikyu.destroy(), this._karyoku = null, this._raisou = null, this._taiku = null, this._kaihi = null, this._taikyu = null
+            }, e.prototype.initialize = function (t) {
+                this.texture = r.ALBUM_MAIN.getTexture(94), this._karyoku.text = t.karyoku.toString(), this._karyoku.x = 487 - Math.floor(this._karyoku.width / 2), this._raisou.text = t.raisou.toString(), this._raisou.x = 487 - Math.floor(this._raisou.width / 2), this._taiku.text = t.taiku.toString(), this._taiku.x = 487 - Math.floor(this._taiku.width / 2), this._kaihi.text = t.kaihi.toString(), this._kaihi.x = 487 - Math.floor(this._kaihi.width / 2), this._taikyu.text = t.taikyu.toString(), this._taikyu.x = 487 - Math.floor(this._taikyu.width / 2)
+            }, e.prototype._createTextBox = function (t) {
+                var e = new o.TextBox(23, 16777215);
+                return e.y = t - 3, this.addChild(e), e
             }, e
-        }(PIXI.Container);
-    e.MainView = l
+        }(PIXI.Sprite);
+    e.ShipDetailStatusBox = s
 }

@@ -19,89 +19,45 @@ const function386 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(160),
-        r = i(387),
+    var o = i(3),
+        r = i(1),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i.TABMAX_SHIP = 6, i.TABMAX_SLOT = 5, i._ship_tabs = [];
-                for (var n = 0; n < i.TABMAX_SHIP; n++) {
-                    var o = new r.TabBtn(1, n, e);
-                    o.position.set(0, 45 * n), i.addChild(o), i._ship_tabs.push(o)
-                }
-                i._slot_tabs = [];
-                for (var n = 0; n < i.TABMAX_SLOT; n++) {
-                    var o = new r.TabBtn(2, n, e);
-                    o.position.set(0, 278 + 45 * n), i.addChild(o), i._slot_tabs.push(o)
-                }
-                return i
+                return i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function (t) {
+                    null != i._cb_onClick && i._cb_onClick(t)
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._initializeTabBtns(this._ship_tabs), this._initializeTabBtns(this._slot_tabs)
-            }, e.prototype.update = function (t, e) {
-                if (1 == t)
-                    for (var i = 0, n = this._ship_tabs; i < n.length; i++) {
-                        var o = n[i];
-                        o.selected = o.no == e
-                    } else
-                        for (var r = 0, s = this._ship_tabs; r < s.length; r++) {
-                            var o = s[r];
-                            o.selected = !1
-                        }
-                if (2 == t)
-                    for (var a = 0, _ = this._slot_tabs; a < _.length; a++) {
-                        var o = _[a];
-                        o.selected = o.no == e
-                    } else
-                        for (var u = 0, l = this._slot_tabs; u < l.length; u++) {
-                            var o = l[u];
-                            o.selected = !1
-                        }
+                this._update(!1)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.activate()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.activate()
-                }
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.deactivate()
-                }
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
-                    var i = e[t];
-                    i.dispose()
-                }
-                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
-                    var i = o[n];
-                    i.dispose()
-                }
-                this._ship_tabs = null, this._slot_tabs = null
-            }, e.prototype._getBtnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [74, 76, 78, 80, 82, 84][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [64, 66, 68, 70, 72][e] : -1
-            }, e.prototype._getBtnOnTextureNo = function (t, e) {
-                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [75, 77, 79, 81, 83, 85][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [65, 67, 69, 71, 73][e] : -1
-            }, e.prototype._initializeTabBtns = function (t) {
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        r = n.state,
-                        s = n.no,
-                        a = this._getBtnTextureNo(r, s),
-                        _ = -1 == a ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(a),
-                        u = this._getBtnOnTextureNo(r, s),
-                        l = -1 == u ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(u);
-                    n.initialize(_, l)
-                }
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(PIXI.Container);
-    e.TabBtnContainer = s
+        }(PIXI.Sprite),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._update = function (t) {
+                this.texture = 0 == t ? o.ALBUM_MAIN.getTexture(5) : o.ALBUM_MAIN.getTexture(6)
+            }, e
+        }(s);
+    e.NextBtn = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype._update = function (t) {
+            this.texture = 0 == t ? o.ALBUM_MAIN.getTexture(7) : o.ALBUM_MAIN.getTexture(8)
+        }, e
+    }(s);
+    e.PrevBtn = _
 }

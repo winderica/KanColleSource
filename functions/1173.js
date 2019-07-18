@@ -19,37 +19,19 @@ const function1173 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(48),
-        r = i(1174),
-        s = i(1176),
-        a = i(1178),
-        _ = i(1181),
-        u = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e(e, i, n, o, r, s, a) {
+                var _ = t.call(this) || this;
+                return _._url = "api_req_furniture/change", _._api_floor = e, _._api_wallpaper = i, _._api_window = n, _._api_wallhanging = o, _._api_shelf = r, _._api_desk = s, _._api_season = a, _
             }
-            return n(e, t), Object.defineProperty(e.prototype, "viewTop", {
-                get: function () {
-                    return this._viewTop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getPreInitializeTask = function (t) {
-                return new r.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new r.InitializeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new _.FinalizeTask(this)
-            }, e.prototype.initialize = function () {
-                this._viewTop = new a.ViewTop, this._viewTop.initialize(), this.addChild(this._viewTop)
-            }, e.prototype.startTopTask = function () {
-                var t = this;
-                this._topTask = new s.TaskTop(this), this._topTask.start(function () {
-                    t._topTask = null
-                })
-            }, e.prototype.dispose = function () {
-                null != this._topTask && (this._topTask.cancel(), this._topTask = null), null != this._viewTop && (this._viewTop.dispose(), this._viewTop = null), null != this._viewSub && (this._viewSub.dispose(), this._viewSub = null), this._FurnitureLists = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_floor = this._api_floor, this._post_data.api_wallpaper = this._api_wallpaper, this._post_data.api_window = this._api_window, this._post_data.api_wallhanging = this._api_wallhanging, this._post_data.api_shelf = this._api_shelf, this._post_data.api_desk = this._api_desk, -1 != this._api_season && (this._post_data.api_season = this._api_season), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.updatePortFurnitureMstID(0, this._api_floor), e.updatePortFurnitureMstID(1, this._api_wallpaper), e.updatePortFurnitureMstID(2, this._api_window), e.updatePortFurnitureMstID(3, this._api_wallhanging), e.updatePortFurnitureMstID(4, this._api_shelf), e.updatePortFurnitureMstID(5, this._api_desk), t.prototype._completedEnd.call(this)
             }, e
-        }(o.SceneBase);
-    e.InteriorScene = u
+        }(r.APIBase);
+    e.FurnitureChangeAPI = s
 }

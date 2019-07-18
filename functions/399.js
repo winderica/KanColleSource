@@ -20,41 +20,17 @@ const function399 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(1116),
-        s = i(34),
-        a = i(238),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._target = i, n
+        r = i(4),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._arrow = new r.TextBox(22, 4999235), e._arrow.position.set(152, 20), e.addChild(e._arrow), e._from = new r.TextBox(24, 4999235), e._from.y = 20, e.addChild(e._from), e._tobe = new r.TextBox(24, 4999235), e._tobe.position.set(188, 20), e.addChild(e._tobe), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, 0)),
-                    n = i.result;
-                i.start(function () {
-                    1 == n.hasCaution() ? t._confirm() : (t._result = n, t._endTask())
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._layer,
-                    n = new a.TaskItemOverflowConfirm(i);
-                n.start(function () {
-                    if (1 == n.result) {
-                        var i = new r.UseItemUseAPI(e, !0, 0),
-                            o = i.result;
-                        i.start(function () {
-                            t._result = o, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                void 0 === e && (e = 1), this.texture = o.default.resources.getUseitem(57, 0), this._arrow.text = "\u2192", this._from.text = t.toString(), this._from.x = 147 - this._from.width, this._tobe.text = (t - e).toString()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy()
             }, e
-        }(s.TaskWithResult);
-    e.TaskUseNormalItem = _
+        }(PIXI.Sprite);
+    e.MedalIcon = s
 }

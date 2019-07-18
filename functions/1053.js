@@ -19,22 +19,27 @@ const function1053 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
+    var o = i(11),
+        r = i(15),
+        s = i(14),
         a = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._view = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id).expedition,
-                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
-                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, r.EditTextBoxUtil.setVisibility(!1), this._endTask()
             }, e
-        }(r.APIBase);
-    e.ExpeditionCancelAPI = a
+        }(o.TaskBase);
+    e.PreFinalizeTask = a;
+    var _ = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene_dispose_delegate = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._view = null, s.UIImageLoader.clearMemoryCache("record"), this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = _
 }

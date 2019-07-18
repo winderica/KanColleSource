@@ -19,56 +19,58 @@ const function1091 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._progress = 0, e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "progress", {
-            get: function () {
-                return this._progress
-            },
-            set: function (t) {
-                this._progress = t, this._draw(this._progress)
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.update = function (t) {
-            if (this._model = t, null == t) return void this._clear();
-            this._startAnimation()
-        }, e.prototype.dispose = function () {
-            this._stopAnimation()
-        }, e.prototype._clear = function () {
-            this._stopAnimation(), this.clear()
-        }, e.prototype._startAnimation = function () {
-            var t = this;
-            this._stopAnimation(), this._progress = 0, this._t = createjs.Tween.get(this).to({
-                progress: 1
-            }, 1e3).call(function () {
-                t._t = null, t._progress = 0
-            })
-        }, e.prototype._stopAnimation = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e.prototype._draw = function (t) {
-            var e = [(this._model.karyoku > 100 ? 100 : this._model.karyoku) * t, (this._model.raisou > 100 ? 100 : this._model.raisou) * t, (this._model.taiku > 100 ? 100 : this._model.taiku) * t, (this._model.kaihi > 100 ? 100 : this._model.kaihi) * t, (this._model.taikyu > 100 ? 100 : this._model.taikyu) * t],
-                i = e.map(function (t, e, i) {
-                    var n = (72 * e - 90) / 180 * Math.PI;
-                    return [95 * t / 100 * Math.cos(n), 95 * t / 100 * Math.sin(n)]
-                });
-            this.clear(), this.lineStyle(1.4, 16774898), this.beginFill(1949120), this.moveTo(i[0][0], i[0][1]);
-            for (var n = 0; n < 5; n++) {
-                var o = (n + 1) % 5;
-                i[n][0] == i[o][0] && i[n][1] == i[o][1] || this.lineTo(i[o][0], i[o][1])
+    var o = i(0),
+        r = i(41),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onPrev = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i - 1;
+                            n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
+                        }
+                    }
+                }, e._onNext = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i + 1;
+                            n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
+                        }
+                    }
+                }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
             }
-            this.endFill()
-        }, e
-    }(PIXI.Graphics);
-    e.RaderGraph = o;
-    var r = function () {
-        function t() {
-            this.karyoku = 0, this.raisou = 0, this.taiku = 0, this.kaihi = 0, this.taikyu = 0
-        }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._data_list = [];
+                for (var e = 0, i = t.mst_ids; e < i.length; e++) {
+                    var n = i[e],
+                        r = o.default.resources.getSlotitem(n, "card");
+                    this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
+                }
+                this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
+            }, e.prototype.activate = function () {
+                1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
+            }, e.prototype.deactivate = function () {
+                this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose();
+                for (var t = 0; t < this._data_list.length; t++) this._data_list[t] = null;
+                this._data_list = null, this._current = null, this._canvas = null, this._prevBtn = null, this._nextBtn = null
+            }, e.prototype._addImageData = function (t, e, i) {
+                if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
+                    var n = new _;
+                    n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
+                }
+            }, e.prototype._update = function () {
+                null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
+            }, e
+        }(PIXI.Container);
+    e.SlotDetailContent = a;
+    var _ = function () {
+        function t() {}
         return t
-    }();
-    e.RaderGraphModel = r
+    }()
 }

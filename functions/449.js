@@ -19,55 +19,103 @@ const function449 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(29),
-        s = i(72),
-        a = i(19),
-        _ = i(39),
-        u = i(6),
-        l = i(140),
-        c = i(180),
-        h = i(445),
-        p = i(182),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(0),
+        r = i(12),
+        s = i(184),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._weight = 1, n._type = e, n._night = i, n._bg = new s.TelopBG, n.addChild(n._bg), n._text = new r.Sprite, n.addChild(n._text), n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new l.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new o.ParallelTask,
-                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
-                e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
-                    t._fireDogFight()
-                }, 750)), e.add(new s.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new s.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new r.SerialTask).add(new _.WaitTask(1700)).add((new o.ParallelTask).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new s.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), e.add(new s.FuncTask(function () {
-                    t._showDamageNumber()
-                }, 3600)), this._main_task = e, this._main_task.start(function () {})
-            }, e.prototype._showSeikuResult = function () {
-                var t = this._scene.view.layer_content;
-                new h.TaskAirWarShowSeiku(t, this.data_.seiku).start()
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                switch (this._friend = e, this._text.texture = o.default.resources.getSlotitem(t, "btxt_flat"), this._text.scale.set(.83), this._setBGTexture(e), this._type) {
+                    case 0:
+                        1 == e ? (this._bg_base_x = -600, this._text.anchor.set(1, .5), this._text_base_x = 0) : (this._bg_base_x = 1800, this._text.anchor.set(0, .5), this._text_base_x = 1200, this._weight = -1), this._bg.position.set(this._bg_base_x, 516), this._text.position.set(this._text_base_x, 516);
+                        break;
+                    case 1:
+                        this._text_w = this._text.width, this._bg.scale.set(1, 1.5), this._bg.position.set(600, 516), this._bg.alpha = 0, 1 == e ? (this._text.anchor.set(.5), this._text.position.set(1200 - this._text_w / 2, 516)) : (this._text.anchor.set(.5), this._text.position.set(0 + this._text_w / 2, 516)), this._text.alpha = 0, this._text.scale.set(.83 + .2075);
+                        break;
+                    case 2:
+                        this._friend = e;
+                        var i = e ? 1 : -1;
+                        1 == e ? (this._text.anchor.set(1, .5), this._text.rotation = -16 / 180 * Math.PI, this._text.position.set(0, 692)) : (this._text.anchor.set(0, .5), this._text.rotation = 16 / 180 * Math.PI, this._text.position.set(1200, 580)), this._bg.position.set(600 - 750 * i, 644)
+                }
+            }, e.prototype._setBGTexture = function (t) {
+                switch (this._type) {
+                    case 0:
+                    case 1:
+                        this._bg.initialize(t, !this._night);
+                        break;
+                    case 2:
+                        this._bg.removeChildren();
+                        var e = new PIXI.Sprite;
+                        1 == t ? 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_ybg") : 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_ybg"), e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._bg.addChild(e)
+                }
+            }, e.prototype.play = function () {
+                switch (this._type) {
+                    case 0:
+                        this.play_type1();
+                        break;
+                    case 1:
+                        this.play_type2();
+                        break;
+                    case 2:
+                        this.play_type3()
+                }
+            }, e.prototype.play_type1 = function () {
+                createjs.Tween.get(this._bg).to({
+                    x: this._bg_base_x + 1200 * this._weight
+                }, 200).wait(565).to({
+                    x: this._bg_base_x + 1410 * this._weight,
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._text).wait(200).to({
+                    x: this._text_base_x + 1155 * this._weight
+                }, 265).to({
+                    x: this._text_base_x + 1200 * this._weight
+                }, 235).to({
+                    x: this._text_base_x + 1800 * this._weight,
+                    alpha: 0
+                }, 200)
+            }, e.prototype.play_type2 = function () {
+                createjs.Tween.get(this._bg).to({
+                    scaleY: 1,
+                    alpha: 1
+                }, 433).wait(333).to({
+                    scaleY: 1.5,
+                    alpha: 0
+                }, 200);
+                var t = this._friend ? 1230 - this._text_w / 2 : this._text_w / 2 - 30;
+                createjs.Tween.get(this._text).wait(200).to({
+                    scaleX: .83,
+                    scaleY: .83,
+                    alpha: 1
+                }, 333, createjs.Ease.sineOut).to({
+                    x: t
+                }, 200).to({
+                    scaleX: .83 + .2075,
+                    scaleY: .83 + .2075,
+                    alpha: 0
+                }, 200)
+            }, e.prototype.play_type3 = function () {
+                var t = this._friend ? 1 : -1,
+                    e = this._friend ? 356 : 244;
+                createjs.Tween.get(this._bg).to({
+                    x: 600,
+                    y: 450
+                }, 200).wait(566).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._text).wait(200).to({
+                    x: 600 + 600 * t,
+                    y: e
+                }, 400, createjs.Ease.sineOut).to({
+                    x: 600 + 630 * t,
+                    y: e - 8
+                }, 100).to({
+                    x: 600 + 1140 * t,
+                    y: e - 150,
+                    alpha: 0
+                }, 266)
             }, e
-        }(c.TaskAircraftFlightBase);
-    e.TaskAirWar = d
+        }(PIXI.Container);
+    e.CutinTelop = a
 }

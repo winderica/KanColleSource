@@ -19,20 +19,27 @@ const function339 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.WIDTH = 150;
-            var i = new PIXI.Graphics;
-            i.beginFill(16777215, 1), i.drawRect(0, 0, e.WIDTH, 3), i.endFill();
-            var n = new PIXI.Graphics;
-            n.beginFill(0, 1), n.drawRect(0, 0, e.WIDTH, 1), n.endFill();
-            var o = n.clone();
-            return n.position.y = 3, o.position.y = 0, e.addChild(i, n, o), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.Wire = o
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                var e = this.getMaterialIconTextResourceid(t);
+                this.texture = o.ARSENAL_MAIN.getTexture(e)
+            }, e.prototype.getMaterialIconTextResourceid = function (t) {
+                switch (t) {
+                    case 31:
+                        return 158;
+                    case 32:
+                        return 160;
+                    case 33:
+                        return 162;
+                    case 34:
+                        return 164
+                }
+                throw new Error("unsupported param")
+            }, e
+        }(PIXI.Sprite);
+    e.MaterialIconText = r
 }

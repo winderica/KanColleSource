@@ -19,14 +19,33 @@ const function96 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(64),
-        r = function (t) {
+    var o = i(445),
+        r = i(64),
+        s = i(1351),
+        a = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
             return n(e, t), e.prototype._start = function () {
-                this._data = this._record.raw.air_war2, 0 == this._hasPhase() ? this._endTask() : (this._scene.view.layer_title.show(4), this._preload())
+                this._data = this._record.raw.air_war_jet, 0 == this._hasPhase() ? this._endTask() : this._preload()
+            }, e.prototype._cutin = function (t, e) {
+                var i = this,
+                    n = new o.CutinFunnel;
+                n.addCutinFromModel(t, !0), n.addCutinFromModel(e, !0);
+                var r = n.view;
+                n.preload_task.start(function () {
+                    i._scene.view.layer_cutin.addChild(r), n.start(function () {
+                        i._scene.view.layer_cutin.removeChild(r), i._showTouchPlane()
+                    })
+                })
+            }, e.prototype._main = function () {
+                var t = this,
+                    e = this._scene.data.model.deck_f.ships,
+                    i = this._scene.data.model.deck_e.ships;
+                new s.TaskAirWarJet(this._scene, this._data, e, i, this._damage_cutin, this._aaCutin).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.PhaseAirWar);
-    e.PhaseAirWar2 = r
+        }(r.PhaseAirWar);
+    e.PhaseAirWarJet = a
 }
