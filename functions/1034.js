@@ -142,7 +142,7 @@ const function1034 = function (t, e, i) {
                     var n = i._expeditionStage.list.items[t];
                     if (n.visible = !1, t < e.length) {
                         var r = null;
-                        r = 0 == t ? 0 : t == e.length - 1 ? 2 : 1;
+                        r = 0 == t ? 0 : t == i._expeditionStage.list.items.length - 1 ? 2 : 1;
                         var s = e[t],
                             a = s.win_mat_level,
                             _ = i._genWinItemInfo(s);

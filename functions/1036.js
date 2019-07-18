@@ -132,8 +132,8 @@ const function1036 = function (t, e, i) {
             X.position.set(8, 379);
             var F = new u.ShipBanner,
                 V = new _.ShipInDeckFlag,
-                z = new l.TextBox(12, 0),
-                G = new l.TextBox(12, 0),
+                z = new l.TextBox(14, 0),
+                G = new l.TextBox(14, 0),
                 K = new l.TextBox(12, 0),
                 Y = new a.FleetShadow;
             Y.position.set(322, 482), Y.scale.set(.7, .7);
@@ -146,7 +146,7 @@ const function1036 = function (t, e, i) {
             var J = new x;
             J.position.x = 305, J.position.y = 420;
             var Z = new h.ShipShadow;
-            Z.anchor.set(.5, 0), Z.position.set(305, 380), V.anchor.set(.5, .5), V.scale.set(.75, .75), V.position.set(25, 483), z.position.set(90, 381), F.position.set(10, 405), G.position.set(44, 467), G.style.fontSize = 12, K.position.set(44, 483), K.style.fontSize = 12, D.position.set(40, 502), U.position.set(80, 502), R.position.set(39, 502), D.onClick = function () {
+            Z.anchor.set(.5, 0), Z.position.set(305, 380), V.anchor.set(.5, .5), V.scale.set(.75, .75), V.position.set(25, 483), z.position.set(90, 381), F.position.set(10, 405), G.position.set(44, 467), K.position.set(44, 483), D.position.set(40, 502), U.position.set(80, 502), R.position.set(39, 502), D.onClick = function () {
                 return e.onClickStart(e._expedition_mst_id)
             }, U.onClick = function () {
                 return e.onClickCancel(e._expedition_mst_id)
@@ -158,7 +158,7 @@ const function1036 = function (t, e, i) {
         return o(e, t), e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, u, l, c, h, p, d, f, y, m) {
             this._textDetail.text = _.replace(/<br>/g, "\n"), this._textName.text = e, this._expedition_mst_id = t, this._useTime = r, this._useFuel.update(s), this._useAmmo.update(a), this._rewardFuel.update(u), this._rewardAmmo.update(l), this._rewardSteel.update(c), this._rewardBauxite.update(h), this._rewardRepairKit.update(d), this._rewardDevKit.update(f), this._rewardBuildKit.update(p), this._rewardOtherItem.update(y), this._iconMonthly.visible = !1, 0 < i && (this._iconMonthly.visible = !0), this._iconDamage.visible = !1, 0 < n && (this._iconDamage.visible = !0), this._cancelable = m
         }, e.prototype.updateMember = function (t, e, i, n, o, r, s) {
-            switch (this._flagShipBanner.visible = !1, this._textFlagShipName.visible = !1, this._textFlagShipLevel.visible = !1, this._flagShipShadow.visible = !1, r && (this._flagShipBanner.update(r, r.isDamaged()), this._textFlagShipName.text = "\u65d7\u8266 [" + r.name + "]", this._textFlagShipLevel.text = "Lv." + r.level, this._flagShipBanner.visible = !0, this._textFlagShipName.visible = !0, this._textFlagShipLevel.visible = !0, this._flagShipShadow.update(r.shipTypeID), this._flagShipShadow.visible = !0), this._textDeckName.visible = !1, o && (this._textDeckName.text = o, this._textDeckName.visible = !0), this._hexClockActive.visible = !1, this._flagShipShadow.visible = !1, this._hexClockCancel.visible = !1, this._hexClockComplete.visible = !1, t) {
+            switch (this._flagShipBanner.visible = !1, this._textFlagShipName.visible = !1, this._textFlagShipLevel.visible = !1, this._flagShipShadow.visible = !1, r && (this._flagShipBanner.updateImage(r.mstID, r.isDamaged()), this._flagShipBanner.updateRing(r.isMarriage()), this._textFlagShipName.text = "\u65d7\u8266 [" + r.name + "]", this._textFlagShipLevel.text = "Lv." + r.level, this._flagShipBanner.visible = !0, this._textFlagShipName.visible = !0, this._textFlagShipLevel.visible = !0, this._flagShipShadow.update(r.shipTypeID), this._flagShipShadow.visible = !0), this._textDeckName.visible = !1, o && (this._textDeckName.text = o, this._textDeckName.visible = !0), this._hexClockActive.visible = !1, this._flagShipShadow.visible = !1, this._hexClockCancel.visible = !1, this._hexClockComplete.visible = !1, t) {
                 case 0:
                     break;
                 case 1:
