@@ -69,12 +69,12 @@ const function1036 = function (t, e, i) {
                 n = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(39)),
                 o = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(116)),
                 c = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(70)),
-                p = new PIXI.Text;
-            n.position.set(8, 36), p.style.fill = 4999235, p.position.set(16, 62), o.position.set(225, 8), c.position.set(75, 4);
+                p = new l.TextBox(25, 4999235);
+            n.position.set(8, 36), p.position.set(16, 60), o.position.set(225, 8), c.position.set(75, 4);
             var d = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(40));
             d.position.set(8, 95);
-            var I = new PIXI.Text;
-            I.style.fill = 4999235, I.style.fontSize = 22, I.position.set(18, 121);
+            var I = new l.TextBox(21, 4999235);
+            I.position.set(18, 119);
             var T = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(41));
             T.position.set(22, 256);
             var O = new f({
@@ -220,8 +220,8 @@ const function1036 = function (t, e, i) {
                     n = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(37)),
                     o = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(e.on)),
                     r = new PIXI.Sprite(s.SALLY_EXPEDITION.getTexture(e.off)),
-                    a = new PIXI.Text;
-                return o.anchor.set(.5, .5), r.anchor.set(.5, .5), a.style.fill = 4999235, a.anchor.set(.5, .5), n.anchor.set(0, .5), n.position.x = 18, a.style.fontSize = 16, a.position.x = 40, i.addChild(n, r, o, a), i._iconOn = o, i._iconOff = r, i._text = a, i
+                    a = new l.TextBox(16, 4999235);
+                return o.anchor.set(.5, .5), r.anchor.set(.5, .5), a.anchor.set(.5, .5), n.anchor.set(0, .5), n.position.x = 18, a.position.x = 40, i.addChild(n, r, o, a), i._iconOn = o, i._iconOff = r, i._text = a, i
             }
             return o(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this._iconOn.texture = PIXI.Texture.EMPTY, this._iconOff.texture = PIXI.Texture.EMPTY, this._text.texture = PIXI.Texture.EMPTY, this._iconOn = null, this._iconOff = null, this._text = null
