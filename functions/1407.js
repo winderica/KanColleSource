@@ -38,12 +38,14 @@ const function1407 = function (t, e, i) {
                 if (e.isSubMarine()) return 6 == r || 10 == r || 16 == r || 17 == r ? 1 : 2;
                 var _ = o.default.model.slot.getMst(i);
                 return null == _ || 5 != _.equipTypeSp && 32 != _.equipTypeSp ? 0 : 3
-            }, e.prototype._hasRocketEffect = function (t, e) {
+            }, e.prototype._hasRocketEffect = function (t, e, i) {
                 if (0 == e.isGround()) return !1;
-                for (var i = t.slots, n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    if (null != r) {
-                        if (37 == r.equipType) return !0
+                if (1 == i) return !1;
+                for (var n = t.slots, o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != s) {
+                        var a = s.mst_id;
+                        if (126 == a || 346 == a || 347 == a || 348 == a) return !0
                     }
                 }
                 return !1

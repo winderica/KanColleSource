@@ -69,7 +69,7 @@ const function102 = function (t, e, i) {
                         h = t.isShield(0),
                         p = this._getNormalAttackType(n, o, r),
                         f = this._getDaihatsuEffectType(n, o);
-                    if (1 == this._hasRocketEffect(n, o)) {
+                    if (1 == this._hasRocketEffect(n, o, p)) {
                         var y = new d.PhaseAttackRocket(i, n, o, s, c, h);
                         y.setOptionalEffects(f), y.start(function () {
                             e._hougekiCycle()
@@ -229,12 +229,14 @@ const function102 = function (t, e, i) {
                 if (e.isSubMarine()) return 6 == c || 10 == c || 16 == c || 17 == c ? 1 : 2;
                 var h = o.default.model.slot.getMst(i);
                 return null == h || 5 != h.equipTypeSp && 32 != h.equipTypeSp ? 0 : 3
-            }, e.prototype._hasRocketEffect = function (t, e) {
+            }, e.prototype._hasRocketEffect = function (t, e, i) {
                 if (0 == e.isGround()) return !1;
-                for (var i = t.slots, n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    if (null != r) {
-                        if (37 == r.equipType) return !0
+                if (1 == i) return !1;
+                for (var n = t.slots, o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != s) {
+                        var a = s.mst_id;
+                        if (126 == a || 346 == a || 347 == a || 348 == a) return !0
                     }
                 }
                 return !1

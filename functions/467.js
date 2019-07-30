@@ -63,7 +63,7 @@ const function467 = function (t, e, i) {
                         c = t.isShield(0),
                         h = this._getNormalAttackType(i, n, _, t.yasen_kubo),
                         p = this._getDaihatsuEffectType(i, n);
-                    if (1 == this._hasRocketEffect(i, n)) {
+                    if (1 == this._hasRocketEffect(i, n, h)) {
                         var d = new y.PhaseAttackRocket(this._scene, i, n, u, l, c);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
@@ -119,7 +119,7 @@ const function467 = function (t, e, i) {
                     _ = t.getDamage(0),
                     u = t.getHitType(0),
                     l = t.isShield(0),
-                    c = (this._hasRocketEffect(n, o), this._getDaihatsuEffectType(n, o)),
+                    c = this._getDaihatsuEffectType(n, o),
                     h = t.yasen_kubo,
                     p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l, h);
                 p.setOptionalEffects(c), p.start(function () {
