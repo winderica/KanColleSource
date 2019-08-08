@@ -20,13 +20,12 @@ const function189 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(17),
-        s = function (t) {
+        r = function (t) {
             function e() {
                 return t.call(this) || this
             }
             return n(e, t), e.prototype.load = function (t) {
-                var e = this._getPath(t) + "?" + r.START_TIME;
+                var e = this._getPath(t);
                 this.texture = PIXI.Texture.fromImage(e)
             }, e.prototype._getKeyName = function () {
                 var t = location.hostname;
@@ -40,5 +39,5 @@ const function189 = function (t, e, i) {
                 return "title" == t ? o.default.settings.path_root + "resources/world/" + e + "_t.png" : "small" == t ? o.default.settings.path_root + "resources/world/" + e + "_s.png" : "large" == t ? o.default.settings.path_root + "resources/world/" + e + "_l.png" : void 0
             }, e
         }(PIXI.Sprite);
-    e.WorldTextImage = s
+    e.WorldTextImage = r
 }

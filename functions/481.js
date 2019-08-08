@@ -19,81 +19,57 @@ const function481 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(170),
-        r = i(4),
+    var o = i(5),
+        r = i(12),
         s = i(36),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e
+                return e._timer_handle = -1, e._update = function () {
+                    for (var t = 0, i = e._particles; t < i.length; t++) {
+                        i[t].update()
+                    }
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "user_name", {
-                get: function () {
-                    return this._user_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "level", {
-                get: function () {
-                    return this._level
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_name", {
-                get: function () {
-                    return this._deck_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "medal", {
-                get: function () {
-                    return this._medal
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._user_name.destroy(), this._level.dispose(), this._deck_name.dispose(), this._medal.dispose()
+            return n(e, t), e.prototype.startKamihubuki = function (t) {
+                this.removeChildren(), this._particles = [];
+                for (var e = 0; e < t; e++) {
+                    var i = new _;
+                    i.initialize(), this.addChild(i), this._particles.push(i)
+                } - 1 == this._timer_handle && (this._timer_handle = setInterval(this._update, 1e3 / 30))
+            }, e.prototype.dispose = function () {
+                -1 != this._timer_handle && clearInterval(this._timer_handle), this.removeChildren(), this._particles = null
             }, e
         }(PIXI.Container);
-    e.DeckInfo = a;
+    e.KamihubukiLayer = a;
     var _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._text = new r.TextBox(21, 16774898), e._text.x = 29, e._text.y = -1, e.addChild(e._text), e
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._initialize()
+        }, e.prototype.update = function () {
+            this.x = this._base_x + this._haba + Math.sin(this._rad), this.y += this._spdY, this.rotation += this._spdR, this._rad += this._spdX, this.y > o.default.height + 75 && this._initialize()
+        }, e.prototype._initialize = function () {
+            var t;
+            switch (Math.floor(5 * Math.random())) {
+                case 0:
+                    t = 15;
+                    break;
+                case 1:
+                    t = 16;
+                    break;
+                case 2:
+                    t = 17;
+                    break;
+                case 3:
+                    t = 18;
+                    break;
+                case 4:
+                    t = 19
             }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text.text
-                },
-                set: function (t) {
-                    this._text.text = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.texture = s.BATTLE_RESULT_MAIN.getTexture(68)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e
-        }(PIXI.Sprite),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._text = new r.TextBox(21, 16774898), e._text.x = 71, e._text.y = -3, e.addChild(e._text), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text.text
-                },
-                set: function (t) {
-                    this._text.text = t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.texture = s.BATTLE_RESULT_MAIN.getTexture(76)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e
-        }(PIXI.Sprite)
+            this.texture = s.BATTLE_RESULT_MAIN.getTexture(t), this.x = 1140 * Math.random() + 30, this.y = -150 - 150 * Math.random(), this.scale.set(.3 + .2 * Math.random()), this._base_x = this.x, this._rad = 0, this._haba = 45 * Math.random(), this._spdX = (15 * Math.random() + 1) / 100, this._spdY = 12 * Math.random() + 3, this._spdR = 2 * Math.random() / 180 * Math.PI
+        }, e
+    }(r.Sprite)
 }

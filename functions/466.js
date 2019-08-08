@@ -19,50 +19,113 @@ const function466 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(2),
-        s = i(1382),
-        a = i(1386),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = i(2),
+        r = i(27),
+        s = i(6),
+        a = i(16),
+        _ = i(54),
+        u = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o.DELAYS = [0, 250, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
             }
             return n(e, t), e.prototype._start = function () {
-                this._showLight()
-            }, e.prototype._showLight = function () {
-                var t = this,
-                    e = this._scene.view.layer_cutin,
-                    i = this._getFlareBanner_f(),
-                    n = this._getFlareBanner_e(),
-                    o = this._createSearchLightTask();
-                new s.TaskFlareEffect(e, i, n, o).start(function () {
+                for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = [], o = this._ships_e, a = 0; a < o.length; a++) {
+                    var _ = o[a];
+                    if (null != _ && !(_.hp_now <= 0)) {
+                        var u = this._scene.view.bannerGroupLayer.getBanner(_);
+                        if (null != u) {
+                            var d = new l;
+                            d.initialize(), d.x = 180 - 24 * a, d.y = -90;
+                            var f = u.getGlobalPos(),
+                                y = new c(e, d, f, this.DELAYS[a]);
+                            i.add(y);
+                            var m = new h(this._scene, this._data, this._damage_cutin, _, 1500);
+                            if (i.add(m), 1 == this._data.isShield(a)) {
+                                var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(u); - 1 == n.indexOf(g) && n.push(g)
+                            }
+                        }
+                    }
+                }
+                for (var v = 0, b = n; v < b.length; v++) {
+                    var w = b[v];
+                    i.add(new p(this._scene, w, 1500))
+                }
+                s.SE.play("112"), i.start(function () {
                     t._endTask()
                 })
-            }, e.prototype._createSearchLightTask = function () {
-                var t = this._getShips_f(),
-                    e = this._getSearchLightAnimationTask(t),
-                    i = this._getShips_e(),
-                    n = this._getSearchLightAnimationTask(i),
-                    r = new o.ParallelTask;
-                return r.add(e), r.add(n), r
-            }, e.prototype._getSearchLightAnimationTask = function (t) {
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(42))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !0)
-                    }
-                }
-                for (var r = 0, s = t; r < s.length; r++) {
-                    var n = s[r];
-                    if (null != n && (!(n.hp_now <= 1) && 1 != n.isTaihi() && 1 == n.hasSlotByEquipType(29))) {
-                        var o = this._scene.view.bannerGroupLayer.getBanner(n);
-                        return new a.TaskSearchLightAnimation(o, !1)
-                    }
-                }
-                return null
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.PhaseLightingBase = _
+        }(o.TaskBase);
+    e.PhaseSupportRai = u;
+    var l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.anchor.x = 1, e.anchor.y = .5, e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = a.BATTLE_MAIN.getTexture(50)
+            }, e
+        }(PIXI.Sprite),
+        c = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._layer = e, r._torpedo = i, r._target = n, r._delay = o, r
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._target.x - this._torpedo.x,
+                    i = this._target.y - this._torpedo.y;
+                this._torpedo.rotation = Math.atan2(i, e), createjs.Tween.get(this._torpedo).wait(this._delay).call(function () {
+                    t._layer.addChild(t._torpedo)
+                }).to({
+                    x: this._target.x,
+                    y: this._target.y
+                }, 1400).call(function () {
+                    t._layer.removeChild(t._torpedo), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._torpedo = null, this._target = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase),
+        h = function (t) {
+            function e(e, i, n, o, r) {
+                void 0 === r && (r = 0);
+                var s = t.call(this) || this;
+                return s.__start = function () {
+                    var t = s._scene.view.bannerGroupLayer.getBanner(s._defender),
+                        e = s._defender.index,
+                        i = s._data.getDamage(e),
+                        n = s._data.getHitType(e),
+                        o = s._data.isShield(e);
+                    t.moveAtDamage(o);
+                    var r = t.getGlobalPos();
+                    s._scene.view.layer_explosion.playExplosionLarge(r.x, r.y), s._scene.view.layer_damage.showAtBanner(t, i, n), createjs.Tween.get(null).wait(200).call(function () {
+                        s._damage_cutin.causeDamage(s._defender, i), t.updateHp(s._defender.hp_now)
+                    }).wait(600).call(function () {
+                        s._endTask()
+                    })
+                }, s._scene = e, s._data = i, s._damage_cutin = n, s._defender = o, s._delay = r, s
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._damage_cutin = null, this._defender = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase),
+        p = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = 0);
+                var o = t.call(this) || this;
+                return o.__start = function () {
+                    o._scene.view.layer_damage.showShieldAtBanner(o._target), o._endTask()
+                }, o._scene = e, o._target = i, o._delay = n, o
+            }
+            return n(e, t), e.prototype._start = function () {
+                this._delay > 0 ? createjs.Tween.get(null).wait(this._delay).call(this.__start) : this.__start()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._target = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase)
 }

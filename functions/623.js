@@ -19,35 +19,45 @@ const function623 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(9),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
+    var o = i(0),
+        r = i(303),
+        s = i(626),
+        a = i(48),
+        _ = function (t) {
+            function e(e, i) {
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
-            }, e.prototype.changeText = function (t) {
-                var e = this;
-                createjs.Tween.get(this._text).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._startAnimation(t)
+            return n(e, t), Object.defineProperty(e.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._createContent = function () {
+                this._showDialog()
+            }, e.prototype._showContent = function () {
+                var t = this,
+                    e = new r.ModelChangeModelEdit;
+                e.setItemFrom(73, !0), e.setItemTobe(-1);
+                var i = this.model.message1,
+                    n = this.model.message2;
+                e.setMessage(i, n), e.addMeltInto([{
+                    id: 31,
+                    type: 6
+                }], 1, 1), e.addMeltInto([{
+                    id: 34,
+                    type: 6
+                }], 2, 1);
+                var a = o.default.view.overLayer;
+                new s.AirunitBaseOpenTask(a, e).start(function () {
+                    t._showContentComplete()
                 })
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._text.destroy()
-            }, e.prototype._startAnimation = function (t) {
-                var e = this;
-                null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(100).call(function () {
-                    var t = e._message.substr(0, 1);
-                    " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
-                }))
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._showDialog = function () {
+                this._showContent()
+            }, e.prototype._removeContent = function () {}, e.prototype._showContentComplete = function () {
+                var t = o.default.model.useItem.get(73);
+                t.__setCount__(t.count - 1), this._removeContent(), this._endTask()
             }, e
-        }(PIXI.Sprite);
-    e.ModelChangeMessageBox = s
+        }(a.TaskRewardDialogBase);
+    e.TaskRewardDialogAirUnit = _
 }

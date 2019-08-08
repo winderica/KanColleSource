@@ -19,20 +19,25 @@ const function770 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(212),
-        r = i(21),
-        s = function (t) {
-            function e() {
-                var e = r.COMMON_MAIN.getTexture(15);
-                return t.call(this, e) || this
+    var o = i(10),
+        r = i(0),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
             }
-            return n(e, t), e.prototype.update = function (t, e, i, n, o, r, s, a, _, u, l, c) {
-                this._update_(t, e, i, n, o, r, s, a, _, u, l, c), this._sokuryoku.position.set(113 - Math.floor(this._sokuryoku.width / 2), 143), this._shatei.position.set(113 - Math.floor(this._shatei.width / 2), 177)
-            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _, u, l, c) {
-                this._textHp.text = "" + t, this._textSoukou.text = "" + e, this._textKaihi.text = "" + i, this._textTousai.text = "" + n, this._textKaryoku.text = "" + s, this._textRaisou.text = "" + a, this._textTaiku.text = "" + _, this._textTaisen.text = "" + u, this._textSakuteki.text = "" + l, this._textLucky.text = "" + c, this._sokuryoku.update(o), this._shatei.update(r)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(140, 3), this._textSoukou.position.set(140, 38), this._textKaihi.position.set(140, 72), this._textTousai.position.set(140, 105), this._sokuryoku.position.set(113, 140), this._shatei.position.set(114, 173), this._textKaryoku.position.set(290, 3), this._textRaisou.position.set(290, 38), this._textTaiku.position.set(290, 72), this._textTaisen.position.set(290, 106), this._textSakuteki.position.set(290, 140), this._textLucky.position.set(290, 174)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data.api_ship_data;
+                r.default.model.ship.updateData(e), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    r.default.model.useItem.get(34).__setCount__(t)
+                }
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameter = s
+        }(o.APIBase);
+    e.SlotExchangeIndexAPI = a
 }

@@ -20,28 +20,29 @@ const function360 = function (t, e, i) {
         value: !0
     });
     var o = i(17),
-        r = i(14),
-        s = i(30),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onGo = function (t, e) {
+                    void 0 === t && (t = 0), null != i._cb && i._cb(t, e)
+                }, i._onCancel = function () {
+                    null != i._cb && 1 == i._cancelArea.buttonMode && i._cb(0, -1)
+                }, i._cb = e, i._cancelArea = new o.FadeBox(.2), i._cancelArea.hide(0), i._cancelArea.interactive = !0, i.addChild(i._cancelArea), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.alpha = 0, this.visible = !1
-            }, e.prototype.update = function (t) {
-                var e = this;
-                if (0 == t) return this.texture = PIXI.Texture.EMPTY, void(this.visible = !1);
-                this.texture = s.SALLY_COMMON.getTexture(0), this.visible = !0, this._type = t;
-                var i = new r.UIImageLoader("sally"),
-                    n = "sally_alert_alert_" + t;
-                i.add("alert/alert_" + t + ".png?" + o.START_TIME, n), i.load(function () {
-                    e._type == t && (e.texture = PIXI.Texture.fromFrame(n))
-                })
-            }, e.prototype.activate = function () {
-                0 == this.alpha && createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300)
+            return n(e, t), Object.defineProperty(e.prototype, "cancelArea", {
+                get: function () {
+                    return this._cancelArea
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.activate = function () {
+                this._cancelArea.buttonMode = !0, this._cancelArea.on(r.EventType.CLICK, this._onCancel)
+            }, e.prototype.deactivate = function () {
+                this._cancelArea.buttonMode = !1, this._cancelArea.off(r.EventType.CLICK, this._onCancel)
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.removeChildren(), this._cancelArea = null, this._cb = null
             }, e
-        }(PIXI.Sprite);
-    e.AlertBalloon = a
+        }(PIXI.Container);
+    e.ContainerDeckSelectBase = s
 }

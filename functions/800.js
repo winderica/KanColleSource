@@ -19,47 +19,45 @@ const function800 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(212),
-        r = i(129),
+    var o = i(4),
+        r = i(3),
         s = function (t) {
-            function e() {
-                var e = this,
-                    i = r.REMODEL_POWERUP.getTexture(13);
-                e = t.call(this, i) || this;
-                var n = r.REMODEL_POWERUP.getTexture(22);
-                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n.textureNormalFrame = r.REMODEL_POWERUP.getTexture(e), n.textureMaxFrame = r.REMODEL_POWERUP.getTexture(i), n.textBefore = new o.TextBox(30, 5523516), n.textAfter = new o.TextBox(30, 5523516), n.textMax = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(41)), n.textBefore.anchor.x = 0, n.textAfter.anchor.x = 0, n.textMax.anchor.x = 0, n.textMax.position.set(233 - Math.floor(n.textMax.width / 2), 6), n.textMax.visible = !1, n.addChild(n.textBefore, n.textAfter, n.textMax), n
             }
-            return n(e, t), e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
-            }, e.prototype.clear = function () {
-                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
-            }, e.prototype.updateKaryoku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
-            }, e.prototype.updateRaisou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
-            }, e.prototype.updateSoukou = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
-            }, e.prototype.updateTaiku = function (t, e) {
-                var i = 5523516;
-                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
-            }, e.prototype.updateLucky = function (t, e, i) {
-                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
-                var n = 5523516,
-                    o = "",
-                    r = t != e;
-                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
-            }, e.prototype.updateTaikyu = function (t, e) {
-                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
-            }, e.prototype.updateTaisen = function (t, e) {
-                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
-            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
-                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
-            }, e.prototype._alignment = function () {
-                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
+            return n(e, t), e.prototype.update = function (t, e, i) {
+                this.textBefore.text = t.toString(), this.textAfter.text = e.toString(), this.textMax.visible = !1, t == e || i ? this.textAfter.style.fill = 5523516 : (this.textAfter.style.fill = 1949120, this.textMax.visible = !0), this.texture = i ? this.textureMaxFrame : this.textureNormalFrame, this.textBefore.position.set(108 + Math.floor(34.0125 - this.textBefore.width / 2), 14), this.textAfter.position.set(203 + Math.floor(31.5 - this.textAfter.width / 2), 14)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.textBefore.destroy(), this.textAfter.destroy(), this.textBefore = null, this.textBefore = null, this.textAfter = null, this.textureNormalFrame = null, this.textureMaxFrame = null
             }, e
-        }(o.ShipParameterViewBase);
-    e.ShipParameterChecker = s
+        }(PIXI.Sprite),
+        a = function (t) {
+            function e() {
+                return t.call(this, 30, 31) || this
+            }
+            return n(e, t), e
+        }(s);
+    e.KaryokuBeforeAfterConfirm = a;
+    var _ = function (t) {
+        function e() {
+            return t.call(this, 32, 33) || this
+        }
+        return n(e, t), e
+    }(s);
+    e.RaisouBeforeAfterConfirm = _;
+    var u = function (t) {
+        function e() {
+            return t.call(this, 34, 35) || this
+        }
+        return n(e, t), e
+    }(s);
+    e.TaikuBeforeAfterConfirm = u;
+    var l = function (t) {
+        function e() {
+            return t.call(this, 36, 37) || this
+        }
+        return n(e, t), e
+    }(s);
+    e.SoukouBeforeAfterConfirm = l
 }

@@ -19,83 +19,79 @@ const function1184 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(21),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onFirst = function () {
-                    i._onChange(1)
-                }, i._onPrev = function () {
-                    i._onChange(i._page_now - 1)
-                }, i._onNext = function () {
-                    i._onChange(i._page_now + 1)
-                }, i._onLast = function () {
-                    i._onChange(i._page_max)
-                }, i._onChange = function (t) {
-                    null != i._cb_onChangePage && i._cb_onChangePage(t)
-                }, i._cb_onChangePage = e, i._pages = [];
-                for (var n = 0; n < 5; n++) {
-                    var o = new _(i._onChange);
-                    o.x = 118 + 82 * n, i.addChild(o), i._pages.push(o)
-                }
-                return i._first = new u(i._onFirst), i._first.position.set(0, 2), i.addChild(i._first), i._prev = new u(i._onPrev), i._prev.position.set(57, 2), i.addChild(i._prev), i._next = new u(i._onNext), i._next.position.set(544, 2), i.addChild(i._next), i._last = new u(i._onLast), i._last.position.set(595, 2), i.addChild(i._last), i
+    var o = i(0),
+        r = i(11),
+        s = i(8),
+        a = i(9),
+        _ = i(119),
+        u = i(411),
+        l = i(120),
+        c = i(75),
+        h = i(75),
+        p = i(75),
+        d = i(75),
+        f = i(75),
+        y = i(75),
+        m = i(75),
+        g = i(75),
+        v = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onInitialize = function () {
+                    var t = _.DUTY_COMMON.getTexture(46),
+                        i = new PIXI.Sprite(t);
+                    e.addChild(i), t = a.COMMON_MISC.getTexture(48), i = new PIXI.Sprite(t), i.position.set(171, 103), e.addChild(i), e._girl_layer = new s.AreaBox(0), o.default.view.overLayer.addChild(e._girl_layer), e.addChild(e._view);
+                    var n = o.default.model.basic.getDutyExecutableCount();
+                    e._view.initialize(n, e._onBack), e._view.update(e._data)
+                }, e._onActivate = function () {
+                    if (null != e._girl_layer) {
+                        new d.TaskPosterGirl(e._girl_layer).start(function () {
+                            e._girl_layer.parent.removeChild(e._girl_layer), e._girl_layer = null
+                        })
+                    }
+                    e._view.activate()
+                }, e._onDispose = function () {
+                    e._view.dispose()
+                }, e._onChangeType = function (t) {
+                    new f.TaskUpdateDutyListData(1, t, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onChangePage = function (t) {
+                    var i = e._data.selected_type;
+                    new f.TaskUpdateDutyListData(t, i, e._data).start(function () {
+                        e._view.update(e._data)
+                    })
+                }, e._onSelectDuty = function (t) {
+                    if (3 == t.status) {
+                        if (0 == t.alert) {
+                            var i = o.default.view.overLayer,
+                                n = new g.TaskTasseiDutySelect(i, t, e._data);
+                            n.start(function () {
+                                e._view.update(e._data)
+                            })
+                        }
+                    } else if (2 == t.status) {
+                        var n = new m.TaskExecutedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    } else {
+                        var n = new y.TaskWaitedDutySelect(t, e._data);
+                        n.start(function () {
+                            e._view.update(e._data)
+                        })
+                    }
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._data = new u.DutyDataHolder, e._view = new l.DutyMainView(e._onChangeType, e._onChangePage, e._onSelectDuty), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0, e = this._pages; t < e.length; t++) {
-                    e[t].initialize()
-                }
-                this._first.initialize(r.COMMON_MAIN.getTexture(6)), this._prev.initialize(r.COMMON_MAIN.getTexture(8)), this._next.initialize(r.COMMON_MAIN.getTexture(7)), this._last.initialize(r.COMMON_MAIN.getTexture(5))
-            }, e.prototype.update = function (t, e) {
-                if (0 == e) return void(this.visible = !1);
-                this.visible = !0, this._page_now = t, this._page_max = e;
-                var i = Math.min(t - 2, e - 4);
-                i = Math.max(i, 1);
-                for (var n = 0; n < 5; n++) {
-                    var o = this._pages[n],
-                        r = i + n;
-                    o.enabled = r <= e, o.selected = r == t, o.update(r)
-                }
-                this._first.visible = t > 1, this._prev.visible = this._first.visible, this._last.visible = t < e, this._next.visible = this._last.visible
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._pages; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._first.dispose(), this._prev.dispose(), this._last.dispose(), this._next.dispose(), this._cb_onChangePage = null
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new c.TaskDutyScenePreInitialize(this._data, this._onInitialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new h.TaskDutySceneInitialize(this._data, this._onActivate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new p.TaskDutySceneFinalize(this._onDispose)
             }, e
-        }(PIXI.Container);
-    e.Pager = a;
-    var _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._page_no = 0, i.enabled = !0, i.selected = !1, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._page_no)
-                }, i._cb_onClick = e, i.interactive = !0, i.hitArea = new PIXI.Rectangle(12, 3, 57, 27), i
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._text = new o.TextBox(24, 1949120), this.addChild(this._text)
-            }, e.prototype.update = function (t) {
-                this._page_no = t, this._text.text = this._page_no.toString(), this._text.x = 42 - Math.floor(this._text.width / 2), 0 == this.enabled ? (this._text.style.fill = 16777215, this.deactivate()) : 1 == this.selected ? (this._text.style.fill = 3642803, this.deactivate()) : (this._text.style.fill = 4999235, this.activate())
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._text.destroy(), this._cb_onClick = null
-            }, e
-        }(PIXI.Container),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i.interactive = !0, i
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = t, this.buttonMode = !0, this.on(s.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.off(s.EventType.CLICK, this._onClick), this._cb_onClick = null
-            }, e
-        }(PIXI.Sprite)
+        }(r.SceneBase);
+    e.DutyScene = v
 }

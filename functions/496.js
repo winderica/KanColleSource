@@ -8,19 +8,19 @@ const function496 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "ship_id", {
+            return Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_ship_id")
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "equip_type", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_equip_type")
+                    return n.ObjUtil.getNumber(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.EquipModel = o
+    e.BGMMstModel = o
 }

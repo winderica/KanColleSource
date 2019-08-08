@@ -19,37 +19,49 @@ const function629 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(9),
-        s = i(48),
-        a = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
+    var o = i(9),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onUpdate = function () {
+                    if (e.children.length < 20 && Math.random() < .1) {
+                        var t = new s;
+                        e.addChild(t)
+                    }
+                    for (var i = 0, n = e.children; i < n.length; i++) {
+                        var o = n[i],
+                            t = o;
+                        null != t && t.update()
+                    }
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = r.COMMON_MISC.getTexture(50);
-                this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135;
-                var e = new PIXI.Sprite;
-                switch (this.model.deck_id) {
-                    case 2:
-                        e.texture = r.COMMON_MISC.getTexture(77);
-                        break;
-                    case 3:
-                        e.texture = r.COMMON_MISC.getTexture(80);
-                        break;
-                    case 4:
-                        e.texture = r.COMMON_MISC.getTexture(83)
-                }
-                e.position.set(117, 40), this._img.addChild(e), this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = this.model.deck_name + "\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u89e3\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
-            }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text2.destroy(), this._text1 = null, this._text2 = null
+            return n(e, t), e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(35).call(this._onUpdate))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.removeChildren())
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
-        }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogDeck = a
+        }(PIXI.Container);
+    e.ModelChangeParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this, o.COMMON_MISC.getTexture(51)) || this;
+            return e._state = 0, e.anchor.set(.5), e.x = 600, e.y = 360 + 300 * Math.random() - 225, e.scale.set(.1), e.alpha = 0, e._dir = Math.random() < .5 ? 1 : -1, e._life = 60 * Math.random() + 30, e._xspd = 1.2 * (7 * Math.random() + 6) * e._dir, e._yspd = 1.2 * -9, e._gg = .36, e
+        }
+        return n(e, t), e.prototype.update = function () {
+            switch (this.x += this._xspd, this.y += this._yspd, this._yspd += this._gg, this.scale.x < .6 && (this.scale.x = this.scale.x + .1, this.scale.y = this.scale.y + .1), this.rotation += 3 * this._dir / 180 * Math.PI, this._state) {
+                case 0:
+                    this.alpha += .1, this.alpha >= 1 && (this._state = 1);
+                    break;
+                case 1:
+                    this._life--, this._life <= 0 && (this._state = 2);
+                    break;
+                case 2:
+                    this.parent.removeChild(this)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

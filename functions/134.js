@@ -4,6 +4,13 @@ const function134 = function (t, e, i) {
         value: !0
     });
     ! function (t) {
-        t[t.UNSET = 0] = "UNSET", t[t.SET = 1] = "SET"
-    }(e.SlotListMode || (e.SlotListMode = {}))
+        function e(t) {
+            try {
+                return PIXI.Texture.fromFrame("common_icon_weapon_id_" + t)
+            } catch (t) {
+                return PIXI.Texture.EMPTY
+            }
+        }
+        t.getTextureFromMstID = e
+    }(e.COMMON_ICON_WEAPON || (e.COMMON_ICON_WEAPON = {}))
 }

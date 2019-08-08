@@ -1,178 +1,178 @@
 const function792 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(5),
-        o = i(0),
-        r = i(37),
-        s = i(8),
-        a = i(6),
-        _ = i(89),
-        u = i(793),
-        l = i(801),
-        c = i(803),
-        h = i(806),
-        p = i(807),
-        d = i(809),
-        f = i(49),
-        y = function () {
-            function t(t) {
-                var e = this;
-                this._onClickEmpty = function (t) {
-                    var i = [];
-                    i.push(e.memShipId), e.targetShips.forEach(function (t) {
-                        i.push(t.memID)
-                    });
-                    var n = new c.TaskShipChoice(e.mainView);
-                    n.onClickShip = function (t) {
-                        var i = o.default.model.ship.get(e.memShipId),
-                            n = o.default.model.ship.getMst(i.mstID),
-                            r = [],
-                            s = o.default.model.ship.get(t);
-                        e.targetShips.push(s), e.targetShips.forEach(function (t) {
-                            var e = o.default.model.ship.getMst(t.mstID);
-                            r.push(e)
-                        });
-                        var a = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                        e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, a.karyoku, a.raiso, a.taiku, a.souko, a.lucky, a.checkBonusLucky, a.checkBonusTaikyu, a.checkBonusTaisen)
-                    }, n.onComplete = function () {
-                        n.dispose(), e.taskShipChoice = null
-                    }, e.taskShipChoice = n, n.start(i, 0)
-                }, this._onClickCancel = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.clickGuardKindaika.width = n.default.width, o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardKindaika).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e.powerUpEdit).to({
-                        x: n.default.width
-                    }, t).call(function () {
-                        o.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this._onClickStart = function () {
-                    e.clickGuardConfirm.alpha = 0, e.powerUpStartConfirm.alpha = 0;
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0;
-                    var i = o.default.model.ship.get(e.memShipId),
-                        n = o.default.model.ship.getMst(i.mstID),
-                        r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpStartConfirm.update(i, e.targetShips, s), createjs.Tween.get(e.clickGuardConfirm).to({
-                        alpha: 1
-                    }, t), createjs.Tween.get(e.powerUpStartConfirm).to({
-                        alpha: 1
-                    }, t).call(function () {
-                        e.mainView.visible = !1, o.default.view.clickGuard = !1
-                    })
-                }, this._onClickPowerUpStartYES = function () {
-                    o.default.view.clickGuard = !0;
-                    var t = o.default.model.ship.get(e.memShipId),
-                        i = o.default.model.ship.getMst(t.mstID),
-                        n = new Array;
-                    e.targetShips.forEach(function (t) {
-                        n.push(t.memID)
-                    });
-                    var r = new h.PowerUpAPI(e.memShipId, n);
-                    o.default.sound.voice.playAtRandom(t.mstID.toString(), [9, 10], [50, 50]), r.start(function () {
-                        e.powerUpEdit.shipInfoBox.update(t.shipTypeName, t.name, t.level, t.starNum), e.onUpdateShip();
-                        var s, a = r.api_powerup_flag,
-                            _ = n.length;
-                        s = 1 == a ? new d.PowerUpAnimationSuccess(_, e.mainView) : new p.PowerUpAnimationFailed(_, e.mainView);
-                        var u = t.mstID,
-                            l = t.isDamaged(),
-                            c = o.default.model.ship_graph.get(u).getCenterOffset(l);
-                        s.preload(u, l, c, function () {
-                            o.default.view.clickGuard = !1, o.default.view.overLayer.addChild(e.animationClickGuard, s), s.play(function () {
-                                e.targetShips.length = 0, e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(t, i, 0, 0, 0, 0, 0, !1, !1, !1), o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm)
-                            }, function () {
-                                s.dispose(), o.default.view.overLayer.removeChild(e.animationClickGuard), o.default.view.overLayer.removeChild(s), o.default.view.portMain.updateInfo()
-                            })
-                        })
-                    })
-                }, this._onClickPowerUpStartNO = function () {
-                    var t = f.UISettings.DIALOG_FADETIME;
-                    e.mainView.visible = !0, o.default.view.overLayer.addChild(e.clickGuardConfirm, e.powerUpStartConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(e.clickGuardConfirm).to({
-                        alpha: 0
-                    }, t), createjs.Tween.get(e.powerUpStartConfirm).to({
-                        alpha: 0
-                    }, t).call(function () {
-                        o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm), o.default.view.clickGuard = !1
-                    })
-                }, this._onClickSlotIn = function (t) {
-                    e.targetShips.splice(t, 1);
-                    var i = o.default.model.ship.get(e.memShipId),
-                        n = o.default.model.ship.getMst(i.mstID),
-                        r = [];
-                    e.targetShips.forEach(function (t) {
-                        var e = o.default.model.ship.getMst(t.mstID);
-                        r.push(e)
-                    });
-                    var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
-                    e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, s.karyoku, s.raiso, s.taiku, s.souko, s.lucky, s.checkBonusLucky, s.checkBonusTaikyu, s.checkBonusTaisen)
-                }, this.mainView = t;
-                this.clickGuardKindaika = new s.AreaBox(.5), this.clickGuardKindaika.height = n.default.height - 103, this.clickGuardKindaika.position.set(0, 103), this.clickGuardConfirm = new s.AreaBox(1), this.clickGuardConfirm.height = n.default.height, this.clickGuardConfirm.position.set(0, 0), this.animationClickGuard = new s.AreaBox(0), this.animationClickGuard.renderable = !1, this.powerUpStartConfirm = new l.PowerUpStartConfirm, this.powerUpEdit = new u.PowerUpEdit
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.maxDuration = 125, e.shown = !1, e._onClickSlotItemFilterKeyType = function (t) {
+                    e.onClick(t)
+                }, e._onMouseOutHideArea = function (t) {
+                    var i = t.data.getLocalPosition(e);
+                    i.x >= e.startPoint.x && i.x <= e.endPoint.x && i.y >= e.startPoint.y && i.y <= e.endPoint.y || (e.hideFilterList(), e.shown = !1)
+                }, e._onClick = function () {
+                    e.switchShown()
+                }, e.slotItemFilterButton = new u, e.slotItemFilterButton.onClick = e._onClick, e.slotItemFilterList = new a, e.slotItemFilterListMask = new PIXI.Graphics, e.slotItemFilterListMask.beginFill(0, 0), e.slotItemFilterListMask.drawRect(0, 0, e.slotItemFilterList.width, e.slotItemFilterList.height), e.slotItemFilterListMask.endFill(), e.slotItemFilterListMask.position.set(0, -(e.slotItemFilterListMask.height + 2)), e.slotItemFilterList.position.set(29, 30), e.slotItemFilterList.mask = e.slotItemFilterListMask, e.slotItemFilterList.onClick = e._onClickSlotItemFilterKeyType, e.slotItemFilterList.addChild(e.slotItemFilterListMask), e.startPoint = new PIXI.Point(-38, -38), e.endPoint = new PIXI.Point(157, -38 + e.slotItemFilterList.height + 76), e.filterListArea = new PIXI.Graphics, e.filterListArea.beginFill(0, 0), e.filterListArea.position.set(-246, -12), e.filterListArea.drawRect(0, 0, 700, 560), e.filterListArea.endFill(), e.filterListArea.on(r.EventType.MOUSEMOVE, e._onMouseOutHideArea), e.filterListArea.interactive = !0, e.filterListArea.visible = !1, e.slotItemFilterList.renderable = !1, e.addChild(e.filterListArea, e.slotItemFilterButton, e.slotItemFilterList), e
             }
-            return t.prototype.start = function (t) {
-                var e = this;
-                o.default.view.clickGuard = !0, a.SE.play("249"), this.targetShips = [];
-                var i = o.default.model.ship.get(t),
-                    r = o.default.model.ship.getMst(i.mstID);
-                this.powerUpEdit.targetShipBox.onClickEmpty = this._onClickEmpty, this.powerUpEdit.targetShipBox.onClickSlotIn = this._onClickSlotIn, this.powerUpEdit.cancelButton.initialize(this._onClickCancel), this.powerUpEdit.startButton.onClick = this._onClickStart, this.powerUpStartConfirm.onClickNO = this._onClickPowerUpStartNO, this.powerUpStartConfirm.onClickYES = this._onClickPowerUpStartYES, this.memShipId = t, this.powerUpEdit.shipInfoBox.update(i.shipTypeName, i.name, i.level, i.starNum), this._updatePowerUp_(i, r, 0, 0, 0, 0, 0, !1, !1, !1), this._updateShipFull_(i.mstID, i.isDamaged()), this.powerUpEdit.targetShipBox.update(this.targetShips), this.clickGuardKindaika.alpha = 0, this.powerUpEdit.position.set(n.default.width, 140), this.mainView.addChild(this.clickGuardKindaika, this.powerUpEdit);
-                var s = f.UISettings.DIALOG_FADETIME;
-                createjs.Tween.get(this.clickGuardKindaika).to({
-                    alpha: 1
-                }, s), createjs.Tween.get(this.powerUpEdit).to({
-                    x: 174
-                }, s).call(function () {
-                    e.clickGuardKindaika.width = 212, o.default.view.clickGuard = !1
-                })
-            }, t.prototype.dispose = function () {
-                this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null, this.mainView.removeChild(this.clickGuardKindaika), this.mainView.removeChild(this.powerUpEdit), this._onClickEmpty = null, this._onClickSlotIn = null, this.onComplete = null, this.onUpdateShip = null, this.mainView = null, this.powerUpEdit && (this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, this.powerUpEdit.dispose()), this.powerUpEdit = null, this.clickGuardKindaika = null, this.animationClickGuard = null, this.powerUpStartConfirm && this.powerUpStartConfirm.dispose(), this.powerUpStartConfirm = null, this.clickGuardConfirm = null, this.targetShips = null, this.memShipId = null, this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null
-            }, t.prototype._updatePowerUp_ = function (t, e, i, n, o, r, s, a, _, u) {
-                var l = t.karyoku - (e.hougMin + t.gradeUpHoug),
-                    c = t.raisou - (e.raigMin + t.gradeUpRaig),
-                    h = t.taiku - (e.tykuMin + t.gradeUpTyku),
-                    p = t.soukou - (e.soukMin + t.gradeUpSouk),
-                    d = t.lucky - (e.luckMin + t.gradeUpLuck),
-                    f = e.hougMax + l <= t.karyoku,
-                    y = e.raigMax + c <= t.raisou,
-                    m = e.tykuMax + h <= t.taiku,
-                    g = e.soukMax + p <= t.soukou,
-                    v = e.luckMax + d <= t.lucky,
-                    b = Math.min(t.gradeUpHoug + e.hougMin + i, e.hougMax),
-                    w = Math.min(t.gradeUpRaig + e.raigMin + n, e.raigMax),
-                    x = Math.min(t.gradeUpTyku + e.tykuMin + o, e.tykuMax),
-                    I = Math.min(t.gradeUpSouk + e.soukMin + r, e.soukMax),
-                    T = Math.min(t.gradeUpLuck + e.luckMin + s, e.luckMax),
-                    O = b + l,
-                    C = w + c,
-                    P = x + h,
-                    k = I + p,
-                    S = T + d;
-                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, S, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, u);
-                var M = [a, _, u].some(function (t) {
-                        return 1 == t
-                    }),
-                    A = [f, y, m, g, v].some(function (t) {
-                        return 0 == t
-                    }),
-                    E = !1;
-                (A || M) && (O > t.karyoku || C > t.raisou || P > t.taiku || k > t.soukou || S > t.lucky || M) && (E = !0), this.powerUpEdit.startButton.update(E)
-            }, t.prototype._updateShipFull_ = function (t, e) {
-                this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, r.TaskLoadShipResource.abortBy(this.powerUpEdit.shipFull);
-                var i = new PIXI.Point(-173, -139),
-                    n = o.default.model.ship_graph.get(t).getRemodelPowupUIOffset(e),
-                    s = n.x + (e ? 51 : 75) + i.x,
-                    a = n.y + (e ? 95 : 110) + i.y;
-                if (this.powerUpEdit.shipFull.position.set(s, a), 1 == o.default.resources.isLoadedShip(t, e, "character_full")) this.powerUpEdit.shipFull.texture = o.default.resources.getShip(t, e, "character_full"), this.powerUpEdit.containerShipFull.cacheAsBitmap = !0;
-                else {
-                    this.powerUpEdit.shipFull.texture = PIXI.Texture.EMPTY;
-                    new r.TaskLoadShipResource("character_full", this.powerUpEdit.shipFull, t, e).start()
-                }
-            }, t
-        }();
-    e.TaskKindaika = y
+            return n(e, t), e.prototype.dispose = function () {
+                this.slotItemFilterList.mask = null, this.slotItemFilterList.dispose(), this.slotItemFilterButton.dispose(), this.slotItemFilterListMask.clear(), this.filterListArea.clear(), this.onClick = null, this.shown = null, this.slotItemFilterButton = null, this.slotItemFilterList = null, this.slotItemFilterListMask = null, this.filterListArea = null, this.startPoint = null, this.endPoint = null, this.removeChildren()
+            }, e.prototype.updateFilterType = function (t) {
+                this.slotItemFilterButton.update(t)
+            }, e.prototype.switchShown = function () {
+                this.shown = !this.shown, this.shown ? this.showFilterList() : this.hideFilterList()
+            }, e.prototype.showFilterList = function () {
+                this.filterListArea.visible = !0, this.slotItemFilterList.renderable = !0, createjs.Tween.removeTweens(this.slotItemFilterListMask);
+                var t = this.slotItemFilterListMask.height + this.slotItemFilterListMask.y + 1,
+                    e = 0 == t ? 0 : t / this.slotItemFilterListMask.height,
+                    i = this.maxDuration * (1 - e);
+                createjs.Tween.get(this.slotItemFilterListMask).to({
+                    y: 0
+                }, i).play(null)
+            }, e.prototype.hideFilterList = function () {
+                var t = this;
+                this.filterListArea.visible = !1, createjs.Tween.removeTweens(this.slotItemFilterListMask);
+                var e = this.slotItemFilterListMask.height + this.slotItemFilterListMask.y + 2,
+                    i = 0 == e ? 0 : e / this.slotItemFilterListMask.height,
+                    n = -(this.slotItemFilterListMask.height + 2),
+                    o = this.maxDuration * i;
+                createjs.Tween.get(this.slotItemFilterListMask).to({
+                    y: n
+                }, o).call(function () {
+                    t.slotItemFilterList.renderable = !1
+                }).play(null)
+            }, e.prototype.hideFilterListImmidiate = function () {
+                this.filterListArea.visible = !1, createjs.Tween.removeTweens(this.slotItemFilterListMask), this.slotItemFilterListMask.y = -(this.slotItemFilterListMask.height + 2), this.shown = !1
+            }, e
+        }(PIXI.Container);
+    e.SlotItemFilterView = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function (t) {
+                e.onClick(t)
+            };
+            for (var i = new PIXI.Sprite(o.COMMON_SORT.getTexture(54)), n = [
+                    [0, 21, 22],
+                    [1, 23, 24],
+                    [2, 25, 26],
+                    [3, 27, 28],
+                    [4, 29, 30],
+                    [5, 31, 32],
+                    [6, 33, 34],
+                    [7, 35, 36],
+                    [8, 43, 44],
+                    [9, 45, 46],
+                    [10, 47, 48],
+                    [11, 49, 50],
+                    [12, 37, 38],
+                    [13, 39, 40],
+                    [14, 41, 42],
+                    [15, 51, 52]
+                ], r = [], s = 0; s < n.length; s++) {
+                var a = n[s],
+                    u = a[0],
+                    l = a[1],
+                    c = a[2],
+                    h = new _(u, l, c);
+                h.onClick = e._onClick, h.y = 28.5 * s, r.push(h)
+            }
+            e.addChild(i);
+            for (var s = 0; s < r.length; s++) e.addChild(r[s]);
+            return e.slotItemFilterListItems = r, e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            for (var t = 0; t < this.slotItemFilterListItems.length; t++) this.removeChild(this.slotItemFilterListItems[t]), this.slotItemFilterListItems[t].dispose(), this.slotItemFilterListItems[t] = null;
+            this.slotItemFilterListItems = null, this.onClick = null, this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.SlotItemFilterList = a;
+    var _ = function (t) {
+        function e(e, i, n) {
+            var s = t.call(this) || this;
+            return s._onMouseOver = function () {
+                s.status.texture = o.COMMON_SORT.getTexture(s.rIdMouseover), s.hover.visible = !0
+            }, s._onMouseOut = function () {
+                s.status.texture = o.COMMON_SORT.getTexture(s.rIdMouseout), s.hover.visible = !1
+            }, s._onClick = function () {
+                s.onClick(s.slotItemFilterKeyType)
+            }, s.rIdMouseover = n, s.rIdMouseout = i, s.slotItemFilterKeyType = e, s.status = new PIXI.Sprite(o.COMMON_SORT.getTexture(i)), s.hover = new PIXI.Sprite(o.COMMON_SORT.getTexture(20)), s.hover.visible = !1, s.interactive = !0, s.on(r.EventType.MOUSEOVER, s._onMouseOver), s.on(r.EventType.MOUSEOUT, s._onMouseOut), s.on(r.EventType.CLICK, s._onClick), s.addChild(s.hover, s.status), s
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren(), this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.rIdMouseover = null, this.rIdMouseout = null, this.status = null, this.hover = null, this.slotItemFilterKeyType = null, this.onClick = null
+        }, e
+    }(PIXI.Container);
+    e.SlotItemFilterListItem = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._onClick = function () {
+                e.onClick()
+            };
+            var i = new PIXI.Sprite(o.COMMON_SORT.getTexture(19)),
+                n = new PIXI.Sprite(o.COMMON_SORT.getTexture(2));
+            return e.state = new PIXI.Sprite(o.COMMON_SORT.getTexture(3)), e.on(r.EventType.CLICK, e._onClick), e.interactive = e.buttonMode = !0, i.position.set(0, 0), n.position.set(29, 0), e.state.position.set(29, 0), e.addChild(i, n, e.state), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.off(r.EventType.CLICK), this.removeChildren(), this.onClick = null, this.state = null
+        }, e.prototype.update = function (t) {
+            var e = this.keyToRid(t);
+            this.state.texture = o.COMMON_SORT.getTexture(e)
+        }, e.prototype.keyToRid = function (t) {
+            switch (t) {
+                case 0:
+                    return 3;
+                case 1:
+                    return 4;
+                case 2:
+                    return 5;
+                case 3:
+                    return 6;
+                case 4:
+                    return 7;
+                case 5:
+                    return 8;
+                case 6:
+                    return 9;
+                case 7:
+                    return 10;
+                case 8:
+                    return 14;
+                case 9:
+                    return 15;
+                case 10:
+                    return 16;
+                case 11:
+                    return 17;
+                case 12:
+                    return 11;
+                case 13:
+                    return 12;
+                case 14:
+                    return 13;
+                case 15:
+                    return 18
+            }
+            return null
+        }, e
+    }(PIXI.Container);
+    e.SlotItemFilterButton = u
 }

@@ -4,45 +4,49 @@ const function695 = function (t, e, i) {
         value: !0
     });
     var n = i(0),
-        o = i(8),
-        r = i(696),
-        s = function () {
+        o = i(49),
+        r = i(8),
+        s = i(318),
+        a = i(696),
+        _ = i(697),
+        u = i(698),
+        l = i(216),
+        c = function () {
             function t(t) {
-                var e = this;
-                this._onClickBack = function () {
-                    e.onClickBack()
-                }, this._onClickIrako = function () {
-                    e.onClickUse(2)
-                }, this._onClickMamiya = function () {
-                    e.onClickUse(1)
-                }, this._onClickMamiyaAndIrako = function () {
-                    e.onClickUse(3)
-                }, this.mainView = t, this.sweetsSelectView = new r.SweetsSelectView, this.dialogBackground = new o.AreaBox(.8)
+                this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new u.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
             }
             return t.prototype.dispose = function () {
-                this.sweetsSelectView.dispose(), this.mainView.removeChild(this.sweetsSelectView), this.mainView.removeChild(this.dialogBackground), this.sweetsSelectView = null, this.mainView = null, this.dialogBackground = null, this.onClickBack = null, this.onClickUse = null
-            }, t.prototype.start = function (t) {
-                var e = this;
-                this.sweetsSelectView.position.set(147, 267), this.sweetsSelectView.onClickBack = this._onClickBack, this.sweetsSelectView.onClickIrako = this._onClickIrako, this.sweetsSelectView.onClickMamiya = this._onClickMamiya, this.sweetsSelectView.onClickMamiyaAndIrako = this._onClickMamiyaAndIrako;
-                for (var i = n.default.model.deck.get(t), o = i.getShipList(), r = n.default.model.useItem.get(54).count, s = n.default.model.useItem.get(59).count, a = !1, _ = 0; _ < o.length; _++) {
-                    var u = o[_];
-                    u && u.tired < 40 && (a = !0)
-                }
-                var l = 0 < r && a,
-                    c = 0 < s,
-                    h = 0 < r && 0 < s;
-                this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(l, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 1
-                }, 125).call(function () {
-                    e.sweetsSelectView.visible = !0, n.default.view.clickGuard = !1
-                })
-            }, t.prototype.hide = function (t) {
-                this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
-                    alpha: 0
-                }, 125).call(function () {
-                    t()
-                })
+                this.combineTypeSelectDialog.dispose(), this.combineConfirmDialog.dispose(), this.combineConfirmAlertDialog.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineConfirmAlertDialog), this.mainView.removeChild(this.combineConfirmDialog), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineTypeSelectDialog.onClickBack = null, this.combineTypeSelectDialog.onClickKido = null, this.combineTypeSelectDialog.onClickSuijo = null, this.combineTypeSelectDialog.onClickYuso = null, this.combineConfirmDialog.onClickNO = null, this.combineConfirmDialog.onClickYES = null, this.combineConfirmAlertDialog.onClickYES = null, this.onCombined = null, this.onComplete = null, this.mainView = null, this.dialogBackground = null, this.combineTypeSelectDialog = null, this.combineConfirmDialog = null, this.combineConfirmAlertDialog = null
+            }, t.prototype.start = function () {
+                var t = this;
+                this.combineTypeSelectDialog.position.set(304, 232), this.combineTypeSelectDialog.update(!0, !0, !0), this.combineTypeSelectDialog.onClickBack = function () {
+                    t.onComplete()
+                }, this.combineConfirmAlertDialog.position.set(216, 186), this.combineTypeSelectDialog.onClickKido = function () {
+                    t._onClickType(1)
+                }, this.combineTypeSelectDialog.onClickSuijo = function () {
+                    t._onClickType(2)
+                }, this.combineTypeSelectDialog.onClickYuso = function () {
+                    t._onClickType(3)
+                }, this.mainView.addChild(this.dialogBackground, this.combineTypeSelectDialog)
+            }, t.prototype._onClickType = function (t) {
+                var e = this,
+                    i = n.default.model.deck.get(1),
+                    o = n.default.model.deck.get(2);
+                this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineConfirmDialog.position.set(171, 186);
+                var r = s.CombineUtil.checkCombinable(i, o, t),
+                    a = r[0],
+                    _ = r[1],
+                    u = r[2];
+                a ? (this.combineConfirmDialog.updateViewType(t), this.combineConfirmDialog.updateCombineDeck(i, o), this.combineConfirmDialog.onClickNO = function () {
+                    e.onComplete()
+                }, this.combineConfirmDialog.onClickYES = function () {
+                    n.default.view.clickGuard = !0, new l.CombinedAPI(t).start(function () {
+                        e.onCombined(), n.default.view.clickGuard = !1, e.onComplete()
+                    })
+                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, u), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
+                    e.onComplete()
+                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmAlertDialog))
             }, t
         }();
-    e.TaskChoiceMamiyaIrako = s
+    e.TaskCombineTypeSelect = c
 }

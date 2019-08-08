@@ -8,25 +8,19 @@ const function501 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mstID", {
+            return Object.defineProperty(t.prototype, "ship_id", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
+                    return n.ObjUtil.getNumber(this._o, "api_ship_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "typeID", {
+            }), Object.defineProperty(t.prototype, "equip_type", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_type")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "numberID", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_no")
+                    return n.ObjUtil.getNumArray(this._o, "api_equip_type")
                 },
                 enumerable: !0,
                 configurable: !0
             }), t
         }();
-    e.FurnitureGraphModel = o
+    e.EquipModel = o
 }

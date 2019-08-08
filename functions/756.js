@@ -20,23 +20,18 @@ const function756 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
+        r = i(3),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(17))
-                }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(15))
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(16), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64));
+                e.headerSupplyBg = i;
+                var n = new PIXI.Sprite(r.SUPPLY_MAIN.getTexture(0));
+                return e.headerSupplyText = n, n.position.set(24, 11), e.addChild(i, n), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
-            }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(15) : o.SUPPLY_MAIN.getTexture(16)
+                this.removeChildren(), this.headerSupplyBg.texture = PIXI.Texture.EMPTY, this.headerSupplyText.texture = PIXI.Texture.EMPTY, this.headerSupplyBg = null, this.headerSupplyText = null
             }, e
-        }(PIXI.Sprite);
-    e.SupplyAircraftButton = s
+        }(PIXI.Container);
+    e.HeaderSupply = s
 }

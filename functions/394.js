@@ -19,15 +19,28 @@ const function394 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(0),
+        r = i(11),
+        s = i(171),
+        a = i(339),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._mst_id = i, n._marriageAnimation = new a.MarriageAnimation(i), n
             }
-            return n(e, t), e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = r.ITEM_COMMON.getTexture(1) : this.texture = 0 == t ? r.ITEM_COMMON.getTexture(0) : r.ITEM_COMMON.getTexture(2)
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._marriageAnimation.PreLoad(function () {
+                    t._marriageAnimation.Initialize(), o.default.view.overLayer.addChild(t._marriageAnimation), t._marriageAnimation.Play(!0, function () {
+                        o.default.view.overLayer.removeChild(t._marriageAnimation), t._resetBGM()
+                    })
+                })
+            }, e.prototype._resetBGM = function () {
+                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
+                o.default.sound.bgm.play(t), this._endTask()
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._btn = null, this._marriageAnimation.Dispose(), this._marriageAnimation = null, t.prototype._endTask.call(this)
             }, e
-        }(o.BtnBase);
-    e.BackBtn = s
+        }(r.TaskBase);
+    e.TaskWedding = _
 }

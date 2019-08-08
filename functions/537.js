@@ -3,27 +3,30 @@ const function537 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t() {}
-        return Object.defineProperty(t.prototype, "mst_id", {
-            get: function () {
-                return this._mst_id
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "voice_id", {
-            get: function () {
-                return this._voice_id
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "url", {
-            get: function () {
-                return this._url
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }();
-    e.VoiceModel = n
+    var n = i(266),
+        o = i(266),
+        r = function () {
+            function t() {
+                var t = this;
+                this._onLoadCompleteInfo = function (e, i) {
+                    t._info_dic[e] = i
+                }, this._onLoadCompleteResources = function (e) {
+                    for (var i in e) 0 == t._dic.hasOwnProperty(i) && (t._dic[i] = e[i])
+                }, this._info_dic = {}, this._dic = {}
+            }
+            return t.prototype.createLoaderHorizontal = function () {
+                return new n.HorizontalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+            }, t.prototype.createLoaderVertical = function () {
+                return new o.VerticalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
+            }, t.prototype.getGaugeInfo = function (t) {
+                return 1 == this._info_dic.hasOwnProperty(t) ? this._info_dic[t] : null
+            }, t.prototype.getTexture = function (t) {
+                if (1 == this._dic.hasOwnProperty(t)) {
+                    var e = this._dic[t];
+                    if (null != e && null != e.texture && void 0 != e.texture) return e.texture
+                }
+                return PIXI.Texture.EMPTY
+            }, t
+        }();
+    e.GaugeRManager = r
 }

@@ -19,18 +19,28 @@ const function996 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(231),
-        r = i(233),
+    var o = i(30),
+        r = i(1),
         s = function (t) {
-            function e(e, i, n) {
-                for (var r = t.call(this, e) || this, s = 0; s < 3; s++) {
-                    var a = new o.MapThumbnail(3, i, n, null, null),
-                        _ = 206 + 144 * s;
-                    a.position.set(186, _), r.addChild(a), r._maps.push(a)
-                }
-                return r
+            function e() {
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = o.SALLY_COMMON.getTexture(20)
+                }, e._onMouseOut = function () {
+                    e.texture = o.SALLY_COMMON.getTexture(18)
+                }, e._onClick = function () {
+                    e.emit("dicision")
+                }, e.interactive = !0, e
             }
-            return n(e, t), e
-        }(r.LayoutBase);
-    e.LayoutMap3 = s
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_COMMON.getTexture(18)
+            }, e.prototype.activate = function () {
+                0 == this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._setTextture = function (t) {
+                this.texture = t
+            }, e
+        }(PIXI.Sprite);
+    e.BtnDicision = s
 }

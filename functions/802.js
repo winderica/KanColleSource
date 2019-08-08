@@ -19,32 +19,23 @@ const function802 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(221),
-        r = i(4),
-        s = i(133),
-        a = function (t) {
+    var o = i(4),
+        r = i(130),
+        s = i(803),
+        a = i(15),
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e.powerNums = [], e.iconCategories = new Array;
-                for (var i = 0; i < 4; i++) {
-                    var n = new o.IconCategory;
-                    n.position.set(90 * i, 0), n.update(s.PowerUpCategory.EMPTY), e.iconCategories.push(n);
-                    var a = new r.TextBox(21, 16777215);
-                    a.position.set(45 + 90 * i, 9), e.powerNums.push(a), e.addChild(n), e.addChild(a)
-                }
-                return e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.REMODEL_POWERUP.getTexture(16));
+                e.textType = new o.TextBox(21, 16777215), e.textName = new o.TextBox(36, 16777215), e.textLevel = new o.TextBox(65, 16777215), e.starRate = new s.StarRate;
+                var n = a.CreateRect.gradientLeftToRight(220, 50, .65, .9);
+                return e.containerName = new PIXI.Container, e.containerName.mask = n, e.containerName.addChild(e.textName, n), e.textType.position.set(18, 8), e.containerName.position.set(18, 36), e.textLevel.position.set(230, 89), e.starRate.position.set(15, 165), e.textLevel.anchor.x = 1, e.addChild(i, e.textType, e.containerName, e.textLevel, e.starRate), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < 4; e++) this.powerNums[e].visible = !1, this.iconCategories[e].visible = !1;
-                var i = 0,
-                    n = t[s.PowerUpCategory.Karyoku];
-                0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Karyoku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Raisou], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Raisou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), n = t[s.PowerUpCategory.Taiku], 0 < n && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Taiku), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++), 0 < (n = t[s.PowerUpCategory.Soukou]) && (this.powerNums[i].text = "+" + n, this.iconCategories[i].update(s.PowerUpCategory.Soukou), this.powerNums[i].visible = !0, this.iconCategories[i].visible = !0, i++)
+            return n(e, t), e.prototype.update = function (t, e, i, n) {
+                this.containerName.cacheAsBitmap = !1, this.textType.text = t, this.textName.text = e, this.textLevel.text = "" + i, this.starRate.update(n), this.containerName.cacheAsBitmap = !0
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0; t < this.iconCategories.length; t++) this.iconCategories[t].dispose(), this.iconCategories[t] = null;
-                for (var t = 0; t < this.powerNums.length; t++) this.powerNums[t].destroy(), this.powerNums[t] = null;
-                this.iconCategories = null, this.powerNums = null
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.containerName.mask = null, this.containerName.removeChildren(), this.starRate.dispose(), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textType = null, this.textName = null, this.textLevel = null, this.starRate = null, this.containerName = null
             }, e
         }(PIXI.Container);
-    e.IconCategories = a
+    e.ShipInfoBox = _
 }

@@ -19,66 +19,103 @@ const function454 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(1363),
-        s = i(1366),
-        a = i(122),
-        _ = i(450),
-        u = i(451),
-        l = i(39),
-        c = function (t) {
-            function e(e, i, n, o, a, _, l, c, h, p) {
-                void 0 === p && (p = !1);
-                var d = t.call(this, e, i, o, l, c, h) || this;
-                d._onAttack = function () {
-                    d._playVoice(), d._createPlanes()
-                }, d._onDamaged = function () {
-                    1 == d._shield && d._showShield(d._d_banner), d._d_banner.moveAtDamage(d._shield);
-                    var t = d._getDamage(d._defender);
-                    d._playExplosion(d._d_banner, t), d._playDamageEffect(d._a_banner, d._d_banner, d._defender, t, d._hit, function () {
-                        d._complete_flg_damage = !0, d._endTask()
-                    })
-                }, d._complete_flg_plane = !1, d._complete_flg_damage = !1, d._defender = n, d._yasenkouku = p;
-                var f = d._scene.data.isNight(),
-                    y = d._scene.view.layer_cutin;
-                return d._cutin = 0 == f ? new r.CutinKuboDay(y, i, o, a, _) : new s.CutinKuboNight(y, i, o, a, _), d._trio = new u.PlaneTrio(i.friend), d
+    var o = i(0),
+        r = i(12),
+        s = i(184),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._weight = 1, n._type = e, n._night = i, n._bg = new s.TelopBG, n.addChild(n._bg), n._text = new r.Sprite, n.addChild(n._text), n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._completePreload = function () {
-                var t = this._attacker.friend,
-                    e = this._attacker.index,
-                    i = this._defender.index;
-                1 == t ? (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!0, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!1, i)) : (this._a_banner = this._scene.view.bannerGroupLayer.getBanner(!1, e), this._d_banner = this._scene.view.bannerGroupLayer.getBanner(!0, i)), this._cutin.setCallback(this._onAttack), this._cutin.start()
-            }, e.prototype._createPlanes = function () {
-                var t;
-                t = 1 == this._defender.isSubMarine() ? o.PlaneConst.getPlaneType(!0) : o.PlaneConst.getPlaneType(!1);
-                for (var e = this._attacker.slots, i = 0, n = e; i < n.length; i++) {
-                    var r = n[i];
-                    if (null != r && t.indexOf(r.equipTypeSp) >= -0) {
-                        var s = r.mst_id;
-                        if (this._scene.data.isNight() && "\u30a2\u30fc\u30af\u30ed\u30a4\u30e4\u30eb" == this._attacker.yomi && 0 == this._yasenkouku && 242 != s && 243 != s && 244 != s) continue;
-                        var a = this._a_banner.getGlobalPos(!0);
-                        this._trio.x = a.x, this._trio.y = a.y, this._trio.addPlane(s)
-                    }
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                switch (this._friend = e, this._text.texture = o.default.resources.getSlotitem(t, "btxt_flat"), this._text.scale.set(.83), this._setBGTexture(e), this._type) {
+                    case 0:
+                        1 == e ? (this._bg_base_x = -600, this._text.anchor.set(1, .5), this._text_base_x = 0) : (this._bg_base_x = 1800, this._text.anchor.set(0, .5), this._text_base_x = 1200, this._weight = -1), this._bg.position.set(this._bg_base_x, 516), this._text.position.set(this._text_base_x, 516);
+                        break;
+                    case 1:
+                        this._text_w = this._text.width, this._bg.scale.set(1, 1.5), this._bg.position.set(600, 516), this._bg.alpha = 0, 1 == e ? (this._text.anchor.set(.5), this._text.position.set(1200 - this._text_w / 2, 516)) : (this._text.anchor.set(.5), this._text.position.set(0 + this._text_w / 2, 516)), this._text.alpha = 0, this._text.scale.set(.83 + .2075);
+                        break;
+                    case 2:
+                        this._friend = e;
+                        var i = e ? 1 : -1;
+                        1 == e ? (this._text.anchor.set(1, .5), this._text.rotation = -16 / 180 * Math.PI, this._text.position.set(0, 692)) : (this._text.anchor.set(0, .5), this._text.rotation = 16 / 180 * Math.PI, this._text.position.set(1200, 580)), this._bg.position.set(600 - 750 * i, 644)
                 }
-                this._attack()
-            }, e.prototype._attack = function () {
-                var t = this,
-                    e = this._scene.view.layer_content,
-                    i = this._a_banner,
-                    n = this._d_banner;
-                new a.TaskDaihatsuEff(e, i, n, this._daihatsu_eff).start();
-                var o = n.getGlobalPos(!0);
-                new _.TaskPlane(e, this._trio, o, this._onDamaged).start(function () {
-                    t._complete_flg_plane = !0, t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                0 != this._complete_flg_plane && 0 != this._complete_flg_damage && t.prototype._endTask.call(this)
+            }, e.prototype._setBGTexture = function (t) {
+                switch (this._type) {
+                    case 0:
+                    case 1:
+                        this._bg.initialize(t, !this._night);
+                        break;
+                    case 2:
+                        this._bg.removeChildren();
+                        var e = new PIXI.Sprite;
+                        1 == t ? 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_ybg") : 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_ybg"), e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._bg.addChild(e)
+                }
+            }, e.prototype.play = function () {
+                switch (this._type) {
+                    case 0:
+                        this.play_type1();
+                        break;
+                    case 1:
+                        this.play_type2();
+                        break;
+                    case 2:
+                        this.play_type3()
+                }
+            }, e.prototype.play_type1 = function () {
+                createjs.Tween.get(this._bg).to({
+                    x: this._bg_base_x + 1200 * this._weight
+                }, 200).wait(565).to({
+                    x: this._bg_base_x + 1410 * this._weight,
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._text).wait(200).to({
+                    x: this._text_base_x + 1155 * this._weight
+                }, 265).to({
+                    x: this._text_base_x + 1200 * this._weight
+                }, 235).to({
+                    x: this._text_base_x + 1800 * this._weight,
+                    alpha: 0
+                }, 200)
+            }, e.prototype.play_type2 = function () {
+                createjs.Tween.get(this._bg).to({
+                    scaleY: 1,
+                    alpha: 1
+                }, 433).wait(333).to({
+                    scaleY: 1.5,
+                    alpha: 0
+                }, 200);
+                var t = this._friend ? 1230 - this._text_w / 2 : this._text_w / 2 - 30;
+                createjs.Tween.get(this._text).wait(200).to({
+                    scaleX: .83,
+                    scaleY: .83,
+                    alpha: 1
+                }, 333, createjs.Ease.sineOut).to({
+                    x: t
+                }, 200).to({
+                    scaleX: .83 + .2075,
+                    scaleY: .83 + .2075,
+                    alpha: 0
+                }, 200)
+            }, e.prototype.play_type3 = function () {
+                var t = this._friend ? 1 : -1,
+                    e = this._friend ? 356 : 244;
+                createjs.Tween.get(this._bg).to({
+                    x: 600,
+                    y: 450
+                }, 200).wait(566).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._text).wait(200).to({
+                    x: 600 + 600 * t,
+                    y: e
+                }, 400, createjs.Ease.sineOut).to({
+                    x: 600 + 630 * t,
+                    y: e - 8
+                }, 100).to({
+                    x: 600 + 1140 * t,
+                    y: e - 150,
+                    alpha: 0
+                }, 266)
             }, e
-        }(l.PhaseAttackBase);
-    e.PhaseAttackKuboCutin = c
+        }(PIXI.Container);
+    e.CutinTelop = a
 }

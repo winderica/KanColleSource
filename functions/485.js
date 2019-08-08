@@ -19,72 +19,54 @@ const function485 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(486),
-        s = function () {
-            function t() {
-                this._dic = {}
+    var o = i(31),
+        r = i(9),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._particles = [], e
             }
-            return t.prototype.getAirUnitList = function (t) {
-                var e = this;
-                return null == this._dic ? [] : void 0 === t ? Object.keys(this._dic).map(function (t) {
-                    return e._dic[parseInt(t)]
-                }).reduce(function (t, e) {
-                    return t.concat.apply(t, e)
-                }) : null == this._dic[t] ? [] : this._dic[t]
-            }, t.prototype.getAirUnit = function (t, e) {
-                var i = this.getAirUnitList(t);
-                if (null == i) return null;
-                for (var n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    if (r.id == e) return r
+            return n(e, t), e.prototype.addParticle = function (t, e) {
+                var i = new a;
+                i.initialize(), i.position.set(t, e), this.addChild(i), this._particles.push(i)
+            }, e.prototype.startAnimation = function () {
+                for (var t = 0, e = this._particles; t < e.length; t++) {
+                    e[t].startAnimation()
                 }
-                return null
-            }, t.prototype.getReadyAirUnitList = function (t) {
-                for (var e = [], i = this.getAirUnitList(t), n = 0, o = i; n < o.length; n++) {
-                    var r = o[n];
-                    1 == r.airUnitState && (0 != r.hasActiveSquadron() && e.push(r))
+            }, e.prototype.stopAnimation = function () {
+                for (var t = 0, e = this._particles; t < e.length; t++) {
+                    e[t].stopAnimation()
                 }
-                return e
-            }, t
-        }();
-    e.AirUnitModelHolder = s;
+            }, e
+        }(PIXI.Container);
+    e.ParticleLayer = s;
     var a = function (t) {
         function e() {
-            return null !== t && t.apply(this, arguments) || this
+            var e = t.call(this) || this;
+            return e._r_canvas = new PIXI.Container, e.addChild(e._r_canvas), e._img = new PIXI.Sprite, e._r_canvas.addChild(e._img), e
         }
-        return n(e, t), e.prototype.setData = function (t) {
-            if (this._dic = {}, null != t)
-                for (var e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = new r.AirUnitModelEdit(n),
-                        s = o.area_id;
-                    null == this._dic[s] && (this._dic[s] = new Array), this._dic[s].push(o)
-                }
-        }, e.prototype.addData = function (t) {
-            if (null != this._dic) {
-                var e = new r.AirUnitModelEdit(t),
-                    i = e.area_id;
-                null == this._dic[i] && (this._dic[i] = new Array), this._dic[i].push(e)
+        return n(e, t), e.prototype.initialize = function () {
+            this._img.texture = r.COMMON_MISC.getTexture(115), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), this.scale.set(0)
+        }, e.prototype.startAnimation = function () {
+            var t = this;
+            if (null == this._anim) {
+                var e = 2e3 * Math.random();
+                this._anim = createjs.Tween.get(this).wait(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 0,
+                    scaleY: 0
+                }, 200).call(function () {
+                    t._anim = null, t.startAnimation()
+                }), this.rotation = Math.random() * Math.PI * 2 - Math.PI;
+                var i = this.rotation + Math.random() * Math.PI / 10 - Math.PI / 5;
+                createjs.Tween.get(this._r_canvas).wait(e).to({
+                    rotation: i
+                }, 300)
             }
-        }, e.prototype.updateData = function (t, e, i, n, r) {
-            var s = this.getAirUnit(t, e),
-                a = s.squadrons[i],
-                _ = a.state,
-                u = a.mem_id;
-            s.updateSquadronData(n, r);
-            var l = s.squadrons[i];
-            if (1 == l.state && o.default.model.slot.deleteUnsetData(l.mem_id), 1 == _) {
-                for (var c = !1, h = 0, p = s.squadrons; h < p.length; h++) {
-                    var d = p[h];
-                    if (1 == d.state && d.mem_id == u) {
-                        c = !0;
-                        break
-                    }
-                }
-                0 == c && o.default.model.slot.addAirUnitRelocation(u)
-            }
+        }, e.prototype.stopAnimation = function () {
+            null != this._anim && (this._anim.setPaused(!0), this._anim = null)
         }, e
-    }(s);
-    e.AirUnitModelHolderEdit = a
+    }(o.Container)
 }

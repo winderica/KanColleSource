@@ -19,27 +19,53 @@ const function760 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
+    var o = i(9),
+        r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                e.DURATION = 1 / 30 * 1e3, e.MOVE_ROTATION = Math.PI / 180 * 20.4, e.MOVE_X = 36;
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                    n = new PIXI.Sprite(o.COMMON_MISC.getTexture(19)),
+                    r = new PIXI.Sprite(o.COMMON_MISC.getTexture(12));
+                i.pivot.set(i.width, i.height), i.rotation = Math.PI / 180 * 180, n.x = i.width, r.y = 3, e._shutterWidth = i.width;
+                var s = new PIXI.Graphics;
+                s.beginFill(10798649, .5), s.drawRect(0, 0, 201.45, 180), s.pivot.set(s.width, 0), s.position.set(i.width + 3, -77);
+                var a = new PIXI.Graphics;
+                return a.beginFill(5978566, .5), a.drawRect(0, 0, 201.45, 180), a.pivot.set(0, 0), a.position.set(n.width, -77), i.mask = s, n.mask = a, e.addChild(i, n, s, a, r), e._leftFloor = i, e._rightFloor = n, e._leftFloorMask = s, e._rightFloorMask = a, e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load01()
-            }, e.prototype._load01 = function () {
-                var t = this,
-                    e = new r.UIImageLoader("remodel");
-                e.add("6slot_huki1_c.png"), e.add("6slot_huki1_r.png"), e.add("6slot_huki1_l.png"), e.add("6slot_huki2.png"), e.load(function () {
-                    t._load02()
-                })
-            }, e.prototype._load02 = function () {
-                var t = this,
-                    e = new r.UIImageLoader("remodel");
-                e.add("remodel_main.json"), e.add("remodel_powerup.json"), e.add("remodel_gradeup.json"), e.add("remodel_animation.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype.__stop__ = function () {
+                createjs.Tween.removeTweens(this._leftFloorMask), createjs.Tween.removeTweens(this._rightFloorMask)
+            }, e.prototype.open = function (t) {
+                this.__stop__();
+                var e = 9 * this.DURATION,
+                    i = 0,
+                    n = function () {
+                        2 === ++i && t()
+                    };
+                createjs.Tween.get(this._leftFloorMask).to({
+                    rotation: this.MOVE_ROTATION,
+                    x: this._shutterWidth - this.MOVE_X
+                }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                    rotation: -this.MOVE_ROTATION,
+                    x: this._shutterWidth + this.MOVE_X
+                }, e).call(n)
+            }, e.prototype.close = function (t) {
+                this.__stop__();
+                var e = 9 * this.DURATION,
+                    i = 0,
+                    n = function () {
+                        2 === ++i && t()
+                    };
+                createjs.Tween.get(this._leftFloorMask).to({
+                    rotation: 0,
+                    x: this._shutterWidth
+                }, e).call(n), createjs.Tween.get(this._rightFloorMask).to({
+                    rotation: 0,
+                    x: this._shutterWidth
+                }, e).call(n)
+            }, e.prototype.dispose = function () {
+                this.__stop__(), this._leftFloor.texture = PIXI.Texture.EMPTY, this._rightFloor.texture = PIXI.Texture.EMPTY, this._leftFloor.mask = null, this._rightFloor.mask = null, this._leftFloorMask.clear(), this._rightFloorMask.clear(), this._leftFloor = null, this._rightFloor = null, this.removeChildren()
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResourcesRemodel = s
+        }(PIXI.Container);
+    e.SupplyFloor = r
 }

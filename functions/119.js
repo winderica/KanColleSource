@@ -1,10 +1,12 @@
 const function119 = function (t, e, i) {
     "use strict";
-
-    function n(t) {
-        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
-    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), n(i(1181)), n(i(1182)), n(i(1183)), n(i(1184)), n(i(1185)), n(i(1186))
+    });
+    ! function (t) {
+        function e(t) {
+            return PIXI.Texture.fromFrame("duty_common_" + t)
+        }
+        t.getTexture = e
+    }(e.DUTY_COMMON || (e.DUTY_COMMON = {}))
 }

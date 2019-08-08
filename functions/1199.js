@@ -19,21 +19,15 @@ const function1199 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_quest/start", i._duty_id = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("revamp");
-                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(o.APIBase);
+    e.DutyStartAPI = r
 }

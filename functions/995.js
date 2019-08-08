@@ -19,33 +19,32 @@ const function995 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(52),
-        s = i(43),
+    var o = i(0),
+        r = i(18),
+        s = i(15),
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._content = new PIXI.Sprite, e._light = new PIXI.Sprite, e._light.alpha = 0, e.addChild(e._light), e.addChild(e._content), e.interactive = !0, e.buttonMode = !0, e
+                return e._area_id = -1, e
             }
             return n(e, t), e.prototype.update = function (t, e) {
-                t == o.EVENT_AREA_ID ? (e >= 2 ? (this._content.position.set(1015, 329), this._content.texture = s.SALLY_EVENT.getTexture(12)) : (this._content.position.set(1015, 329), this._content.texture = s.SALLY_EVENT.getTexture(11)), this._light.texture = s.SALLY_EVENT.getTexture(14), this._light.position.set(1015, 330), this._light.alpha = 0) : (this._content.position.set(1031, 332), this._content.texture = r.SALLY_SORTIE.getTexture(15), this._light.texture = r.SALLY_SORTIE.getTexture(16), this._light.position.set(this._content.x - 26, this._content.y - 24), this._light.alpha = 0)
-            }, e.prototype.show = function () {
-                this._activate(), this.visible = !0
-            }, e.prototype.hide = function () {
-                this._deactivate(), this.visible = !1
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
+                }
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
             }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1500).to({
-                    alpha: 0
-                }, 800))
-            }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+                this.clear()
             }, e
         }(PIXI.Container);
-    e.BtnNext = a
+    e.AreaTextImage = a
 }

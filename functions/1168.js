@@ -19,118 +19,58 @@ const function1168 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(2),
-        a = i(18),
-        _ = i(4),
-        u = i(6),
-        l = i(110),
-        c = i(404),
-        h = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._result = !1, n._showDialog = function () {
-                    var t = o.default.model.useItem.getCount(44),
-                        e = o.default.model.useItem.getCount(52);
-                    n._dialog = new p(n._onResult), n._dialog.initialize(n._model, t, e), n._dialog.alpha = 0, n._fade.addChild(n._dialog), createjs.Tween.get(n._dialog).to({
-                        alpha: 1
-                    }, 150).call(function () {
-                        n._dialog.activate()
-                    })
-                }, n._onResult = function (t) {
-                    n._dialog.deactivate(), 0 == t ? n._hideDialog() : n._connectAPI(t)
-                }, n._layer = e, n._model = i, n
+    var o = i(4),
+        r = i(110),
+        s = i(1169),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._thumbnail = new s.Thumbnail, e._thumbnail.position.set(30, 31), e._name = new o.TextBox(20, 16774898), e._name.x = 283, e._name.y = 28, e.addChild(e._name), e._description = new o.TextBox(19, 16774898), e._description.x = 285, e._description.y = 87, e._description.style.breakWords = !0, e._description.style.wordWrap = !0, e._description.style.wordWrapWidth = 258, e._description.style.lineHeight = 24.7, e._price = new o.TextBox(20, 16774898), e._price.x = 292, e._price.y = 255, e._bgmFairy = new PIXI.Sprite, e._bgmFairy.x = 368, e._bgmFairy.y = 234, e._rare = new _, e._rare.x = 319, e._rare.y = 333, e._craftman = new u, e._craftman.x = 34, e._craftman.y = 343, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._showFade()
-            }, e.prototype._showFade = function () {
-                this._fade = new a.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade), this._fade.show(200, this._showDialog)
-            }, e.prototype._connectAPI = function (t) {
-                var e = this;
-                u.SE.play("215"), this._result = !0;
-                var i = 2 == t;
-                new c.FurnitureExchangeAPI(this._model, i).start(function () {
-                    null == e._dialog ? e._endTask() : e._hideDialog()
-                })
-            }, e.prototype._hideDialog = function () {
-                var t = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    t._dialog.dispose(), t._layer.removeChild(t._dialog), t._dialog = null, t._hideFade()
-                })
-            }, e.prototype._hideFade = function () {
-                var t = this;
-                this._fade.hide(150, function () {
-                    t._layer.removeChild(t._fade), t._fade = null, t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._model = null, t.prototype._endTask.call(this)
-            }, e
-        }(s.TaskBase);
-    e.TaskExchangeHighGrade = h;
-    var p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onNominal = function () {
-                    null != i._cb_onResult && i._cb_onResult(1)
-                }, i._onDiscount = function () {
-                    null != i._cb_onResult && i._cb_onResult(2)
-                }, i._onBack = function () {
-                    null != i._cb_onResult && i._cb_onResult(0)
-                }, i._cb_onResult = e, i._bg = new PIXI.Sprite, i._bg.position.set(147, 267), i.addChild(i._bg), i._btn_nominal = new d(i._onNominal), i._btn_nominal.interactive = !0, i._btn_nominal.position.set(259, 312), i.addChild(i._btn_nominal), i._btn_discount = new f(i._onDiscount), i._btn_discount.interactive = !0, i._btn_discount.position.set(622, 295), i.addChild(i._btn_discount), i._btn_back = new PIXI.Sprite, i._btn_back.interactive = !0, i._btn_back.position.set(972, 402), i.addChild(i._btn_back), i
-            }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._bg.texture = l.ITEM_FSHOP.getTexture(52);
-                var n = t.price;
-                this._btn_nominal.initialize(n, e >= n), n = t.getDiscountPrice(), this._btn_discount.initialize(n, e >= n && i > 0), this._btn_back.texture = l.ITEM_FSHOP.getTexture(1)
-            }, e.prototype.activate = function () {
-                this._btn_nominal.activate(), this._btn_discount.activate(), this._btn_back.buttonMode = !0, this._btn_back.once(r.EventType.CLICK, this._onBack)
-            }, e.prototype.deactivate = function () {
-                this._btn_nominal.deactivate(), this._btn_discount.deactivate(), this._btn_back.buttonMode = !1, this._btn_back.off(r.EventType.CLICK, this._onBack)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_FSHOP.getTexture(56);
+                var t = r.ITEM_FSHOP.getTexture(10),
+                    e = new PIXI.Sprite(t);
+                e.x = 282, e.y = 61, this.addChild(e), t = r.ITEM_FSHOP.getTexture(12), e = new PIXI.Sprite(t), e.x = 282, e.y = 222, this.addChild(e), t = r.ITEM_FSHOP.getTexture(11), e = new PIXI.Sprite(t), e.x = 282, e.y = 304, this.addChild(e), this._thumbnail.initialize(), this.addChild(this._thumbnail), this.addChild(this._description), this.addChild(this._price), this._bgmFairy.texture = r.ITEM_FSHOP.getTexture(13), this.addChild(this._bgmFairy), this._rare.initialize(), this.addChild(this._rare), this._craftman.initialize(), this._craftman.visible = !1, this.addChild(this._craftman)
+            }, e.prototype.update = function (t, e) {
+                null == t ? (this._thumbnail.clean(), this._name.text = "", this._description.text = "", this._price.text = "", this._bgmFairy.visible = !1, this._rare.update(0), this._craftman.visible = !1) : (this._thumbnail.updateFromModel(t), this._name.text = t.name, this._description.text = t.description.replace(/<br>/g, "\n"), this._price.text = t.price.toString(), this._bgmFairy.visible = t.seasonID > 0, this._rare.update(t.rarity), 1 == t.isNeedCraftsman() ? (this._craftman.update(e), this._craftman.visible = !0) : this._craftman.visible = !1)
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onResult = null
+                this.removeChildren(), this._name.destroy(), this._description.destroy(), this._price.destroy(), this._craftman.dispose()
             }, e
-        }(PIXI.Container),
-        d = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !1, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._price = new _.TextBox(28, 16774898), i._price.y = 58, i.addChild(i._price), i._cb_onClick = e, i
+        }(PIXI.Sprite);
+    e.FShopDetailPanel = a;
+    var _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._stars = [];
+                for (var i = 0; i < 7; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = 30 * i, n.visible = !1, e.addChild(n), e._stars.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._enabled = e, this.texture = 1 == e ? l.ITEM_FSHOP.getTexture(2) : l.ITEM_FSHOP.getTexture(3), this._price.text = t.toString(), this._price.x = Math.floor(72 - this._price.width / 2)
-            }, e.prototype.activate = function () {
-                0 != this._enabled && (this.buttonMode = !0, this.once(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this.removeChildren(), this._price.destroy(), this._cb_onClick = null
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = r.ITEM_FSHOP.getTexture(53);
+                for (var t = 0, e = this._stars; t < e.length; t++) {
+                    e[t].texture = r.ITEM_FSHOP.getTexture(15)
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0; e < this._stars.length; e++) {
+                    this._stars[e].visible = e < t
+                }
             }, e
         }(PIXI.Sprite),
-        f = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !1, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._price = new _.TextBox(28, 16774898), i._price.y = 88, i.addChild(i._price), i._cb_onClick = e, i
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new PIXI.Sprite, e._icon.x = 1, e.addChild(e._icon), e._arrow = new PIXI.Sprite, e._arrow.x = 88, e._arrow.y = 7, e.addChild(e._arrow), e._from = new o.TextBox(19, 16774898), e._from.anchor.x = 1, e._from.x = 79, e.addChild(e._from), e._to = new o.TextBox(19, 16774898), e._to.x = 120, e.addChild(e._to), e._comment = new o.TextBox(17, 16774898), e._comment.y = 27, e._comment.text = "\u7279\u6ce8\u5bb6\u5177\u8077\u4eba\u306e\u5354\u529b\u304c\u5fc5\u8981\u3068\u306a\u308a\u307e\u3059\u3002", e.addChild(e._comment), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._enabled = e, this.texture = 1 == e ? l.ITEM_FSHOP.getTexture(4) : l.ITEM_FSHOP.getTexture(5), this._price.text = t.toString(), this._price.x = Math.floor(70 - this._price.width / 2)
-            }, e.prototype.activate = function () {
-                0 != this._enabled && (this.buttonMode = !0, this.once(r.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
+            return n(e, t), e.prototype.initialize = function () {
+                this._icon.texture = r.ITEM_FSHOP.getTexture(8), this._arrow.texture = r.ITEM_FSHOP.getTexture(0)
+            }, e.prototype.update = function (t) {
+                this._from.text = t.toString(), t > 0 ? (this._to.style.fill = 16774898, this._to.text = (t - 1).toString()) : (this._to.style.fill = 15859712, this._to.text = "0")
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
+                this.removeChildren(), this._from.destroy(), this._to.destroy(), this._comment.destroy()
             }, e
-        }(PIXI.Sprite)
+        }(PIXI.Container)
 }

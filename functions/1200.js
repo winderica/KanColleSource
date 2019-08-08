@@ -20,15 +20,14 @@ const function1200 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = i(14),
-        s = function (t) {
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._scene_dispose_delegate = e, i
+                return i._url = "api_req_quest/stop", i._duty_id = e, i
             }
-            return n(e, t), e.prototype._start = function () {
-                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_quest_id = this._duty_id, t.prototype._connect.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskItemSceneFinalize = s
+        }(o.APIBase);
+    e.DutyCancelAPI = r
 }

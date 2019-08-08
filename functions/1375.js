@@ -41,10 +41,10 @@ const function1375 = function (t, e, i) {
             },
             enumerable: !0,
             configurable: !0
-        }), e.prototype.dispose = function () {
+        }), e.prototype.initialize = function (t) {}, e.prototype.dispose = function () {
             for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
             this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
         }, e
     }(PIXI.Container);
-    e.CutinColoradoAttackCanvas = o
+    e.CutinNelsonTouchCanvas = o
 }

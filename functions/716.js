@@ -19,91 +19,72 @@ const function716 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(1),
         r = i(4),
-        s = i(1),
-        a = function (t) {
+        s = i(37),
+        a = i(56),
+        _ = i(717),
+        u = i(57),
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._onClick = function () {
-                    i.onClick(i._presetId)
-                }, i._onMouseOut = function (t) {
-                    i.onMouseOut(i._index, t)
-                }, i._index = e;
-                var n = o.ORGANIZE_MAIN.getTexture(36),
-                    a = o.ORGANIZE_MAIN.getTexture(40),
-                    _ = o.ORGANIZE_MAIN.getTexture(12),
-                    u = o.ORGANIZE_MAIN.getTexture(13);
-                i._background = new PIXI.Sprite(n);
-                var l = new PIXI.Sprite(a);
-                return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(u), l.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, l, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
+                i._onMouseOut = function (t) {
+                    t.target != i.saveButton && t.target != i.deleteButton && i.removeFocus()
+                }, i._onClickSave = function () {
+                    i.onClickSave && i.onClickSave(i._presetId)
+                }, i._onClickDelete = function () {
+                    i.onClickDelete && i.onClickDelete(i._presetId)
+                }, i._onClickExtension = function () {
+                    i.onClickExtension && i.onClickExtension()
+                }, i._index = e, i.frame_bg = new PIXI.Sprite(a.ORGANIZE_MAIN.getTexture(29)), i.frame_bg.buttonMode = !1, i.frame_bg.interactive = !0, i.frame_bg.addListener(o.EventType.MOUSEOVER, function () {
+                    i._onMouseOver()
+                }), i.frame_bg.addListener(o.EventType.MOUSEOUT, function (t) {
+                    i._onMouseOut(t)
+                }), i.addChild(i.frame_bg);
+                var n = a.ORGANIZE_MAIN.getTexture(33);
+                i.presetFocuses = new PIXI.Sprite(n), i.presetFocuses.x = -6, i.presetFocuses.y = -3, i.presetFocuses.visible = !1, i.addChild(i.presetFocuses), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new r.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new r.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount);
+                var s = a.ORGANIZE_MAIN.getTexture(4),
+                    l = a.ORGANIZE_MAIN.getTexture(5),
+                    c = a.ORGANIZE_MAIN.getTexture(1);
+                return i.saveButton = new u.SimpleButton(s, s), i.deleteButton = new u.SimpleButton(c, c), i.offSaveButton = new PIXI.Sprite(l), i.deleteButton.interactive = i.deleteButton.buttonMode = !0, i.saveButton.interactive = i.saveButton.buttonMode = !0, i.deleteButton.position.set(490, 36), i.saveButton.x = i.offSaveButton.x = 250, i.saveButton.y = i.offSaveButton.y = 36, i.saveButton.onClick = function () {
+                    i._onClickSave()
+                }, i.deleteButton.onClick = function () {
+                    i._onClickDelete()
+                }, i.saveButton.onMouseOver = function () {
+                    i._onMouseOver()
+                }, i.deleteButton.onMouseOver = function () {
+                    i._onMouseOver()
+                }, i.saveButton.onMouseOut = function (t) {
+                    i._onMouseOut(t)
+                }, i.deleteButton.onMouseOut = function (t) {
+                    i._onMouseOut(t)
+                }, i.addChild(i.offSaveButton, i.saveButton, i.deleteButton), i.presetExtensions = new _.PresetExtensionView(e), i.presetExtensions.onClick = i._onClickExtension, i.addChild(i.presetExtensions), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "index", {
-                get: function () {
-                    return this._index
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "background", {
-                get: function () {
-                    return this._background
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "positiveButton", {
-                get: function () {
-                    return this._positiveButton
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._positiveButton.off(s.EventType.CLICK), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.textMessage = null, this.negativeButton = null, this._index = null, this._background = null, this._positiveButton = null, this._presetId = null
-            }, e.prototype.update = function (t, e, i) {
-                this._positiveButton.visible = !1, this.negativeButton.visible = !1, i ? this._positiveButton.visible = !0 : this.negativeButton.visible = !0, this.textMessage.text = e, this._background.width = this.textMessage.width + 9, this._background.x = 285, 285 < this._background.width / 2 && (this._background.x = Math.floor(this._background.width / 2 - 285 + 285)), this.textMessage.x = this.background.x, this.positiveButton.x = Math.floor(this.background.x - this.positiveButton.width / 2), this.negativeButton.x = Math.floor(this.background.x - this.negativeButton.width / 2), this._presetId = t
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.presetExtensions.dispose(), this.deleteButton.dispose(), this.saveButton.dispose(), this.deckName.destroy(), this.deckCount.destroy(), this.onClickSave = null, this.onClickDelete = null, this.onClickExtension = null, this.frame_bg = null, this.shipBanner = null, this.deckName = null, this.deckCount = null, this.saveButton = null, this.deleteButton = null, this.offSaveButton = null, this.presetFocuses = null, this.presetExtensions = null, this._index = null, this._presetId = null
+            }, e.prototype._onMouseOver = function () {
+                this.focus()
+            }, e.prototype.focus = function () {
+                this.presetFocuses.visible = !0
+            }, e.prototype.removeFocus = function () {
+                this.presetFocuses.visible = !1
+            }, e.prototype.update = function (t, e, i, n, o, r) {
+                void 0 === o && (o = null);
+                var s = t,
+                    a = null != s;
+                if (this.shipBanner.visible = !1, this.deckName.visible = !1, this.deckCount.visible = !1, this.saveButton.visible = !1, this.deleteButton.visible = !1, this.offSaveButton.visible = !1, this.presetExtensions.visible = !1, this.frame_bg.visible = !1, this.frame_bg.interactiveChildren = !1, !a) return 0 == r && (this.frame_bg.visible = !0, this.presetExtensions.update(n), this.presetExtensions.visible = !0), !0;
+                this.frame_bg.interactiveChildren = !0, this.frame_bg.visible = !0;
+                var _ = 0 == s.getShipCount();
+                return _ || (this.updateShip(s), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0), this.updateButton(s.presetID, e, i, _, o == s.presetID), !1
+            }, e.prototype.updateShip = function (t) {
+                this.deckName.text = t.deckName;
+                var e = t.getFrontShip();
+                new s.TaskLoadShipResource("banner", this.shipBanner, e.mstID, e.isDamaged()).start();
+                var i = t.getShipCount();
+                this.deckCount.text = i + "\u96bb \u7de8\u6210"
+            }, e.prototype.updateButton = function (t, e, i, n, o) {
+                this.offSaveButton.visible = !1, this.saveButton.visible = !1, e ? (this.offSaveButton.visible = o && !i, this.saveButton.visible = !o && !i) : (this.offSaveButton.visible = !0, this.saveButton.visible = !1), this.deleteButton.visible = !n, this._presetId = t
             }, e
         }(PIXI.Container);
-    e.PresetAlertOrganizedPopup = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            i._onClick = function () {
-                i.onClick(i._presetId)
-            }, i._onMouseOut = function (t) {
-                i.onMouseOut(i._index, t)
-            }, i._onMouseOver = function (t) {
-                i.onMouseOver(i._index, t)
-            }, i._index = e;
-            var n = o.ORGANIZE_MAIN.getTexture(37),
-                a = o.ORGANIZE_MAIN.getTexture(40),
-                _ = o.ORGANIZE_MAIN.getTexture(13),
-                u = o.ORGANIZE_MAIN.getTexture(11);
-            i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(u), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", l.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, l, i.textMessage, i._negativeButton, i._positiveButton), i
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "index", {
-            get: function () {
-                return this._index
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "background", {
-            get: function () {
-                return this._background
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "positiveButton", {
-            get: function () {
-                return this._positiveButton
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            this._background.off(s.EventType.MOUSEOUT), this._background.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.MOUSEOUT), this._positiveButton.off(s.EventType.MOUSEOVER), this._positiveButton.off(s.EventType.CLICK), this.textMessage.destroy(), this.onClick = null, this.onMouseOut = null, this.onMouseOver = null, this.textMessage = null, this._positiveButton = null, this._negativeButton = null, this._background = null, this._index = null, this._presetId = null, this.removeChildren()
-        }, e.prototype.update = function (t, e) {
-            this._presetId = t, this._positiveButton.visible = !1, this._negativeButton.visible = !1, e ? this._positiveButton.visible = !0 : this._negativeButton.visible = !0
-        }, e
-    }(PIXI.Container);
-    e.PresetAlertLostPopup = _
+    e.PresetEditSlot = l
 }

@@ -19,79 +19,91 @@ const function456 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(2),
-        s = i(22),
-        a = i(1368),
-        _ = i(54),
-        u = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[2], s._scene.data.model.deck_f.ships[4]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinNelsonTouch(s._attackers), s
+    var o = i(66),
+        r = i(6),
+        s = i(142),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._planes = [], i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._cutin.getPreloadTask().start(function () {
-                    t._completePreload()
-                })
-            }, e.prototype._completePreload = function () {
-                for (var t = this, e = this._attackers[0].friend, i = [], n = [], o = 0; o < this._attackers.length; o++) {
-                    var r = this._attackers[o].index,
-                        s = this._scene.view.bannerGroupLayer.getBanner(!!e, r);
-                    i.push(s), s.moveFront()
+            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.addPlane = function (t, e) {
+                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
+                    var i = new s.Plane;
+                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
+                    for (var n = 0; n < this._planes.length; n++) {
+                        var o = this._planes[n];
+                        if (i.y < o.y) {
+                            var r = this.getChildIndex(o);
+                            this.addChildAt(i, r);
+                            break
+                        }
+                        n == this._planes.length - 1 && this.addChild(i)
+                    }
                 }
-                for (var o = 0; o < this._defenders.length; o++) {
-                    var a = this._defenders[o].index,
-                        _ = this._scene.view.bannerGroupLayer.getBanner(!e, a);
-                    n.push(_)
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].dispose()
                 }
-                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    t._explosion(i, n, 0)
-                })
-            }, e.prototype._explosion = function (t, e, i) {
-                var n = this,
-                    o = e[i].getGlobalPos(!0),
-                    r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                    a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
-                    _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                    u = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
-                createjs.Tween.get(null).wait(200).call(function () {
-                    e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
-                }).wait(150).call(function () {
-                    n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
-                }).wait(100).call(function () {
-                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
-                        n._attack(t, e, i)
-                    })
-                })
-            }, e.prototype._attack = function (t, e, i) {
-                o.SE.play("102"), this._damageEffect(t, e, i)
-            }, e.prototype._damageEffect = function (t, e, i) {
-                1 == this._shields[i] && this._showShield(e[i]), e[i].moveAtDamage(this._shields[i]), this._playExplosion(e[i], this._damages[i]), this._playDamageEffect(t, e, i)
-            }, e.prototype._showShield = function (t) {
-                var e = this._scene.view.bannerGroupLayer.getShieldTargetBanner(t);
-                this._scene.view.layer_damage.showShieldAtBanner(e)
-            }, e.prototype._playExplosion = function (t, e) {
-                var i = t.getGlobalPos(!0);
-                this._scene.view.layer_explosion.playDamageExplosion(i.x, i.y, e)
-            }, e.prototype._playDamageEffect = function (t, e, i) {
-                var n = this;
-                this._scene.view.layer_damage.showAtBanner(e[i], this._damages[i], this._hits[i]);
-                var o = createjs.Tween.get(null);
-                o.wait(200), o.call(function () {
-                    if (n._damage_cutin.causeDamage(n._defenders[i], n._damages[i]), e[i].updateHp(n._defenders[i].hp_now), i + 1 >= n._defenders.length)
-                        for (var o = 0; o < n._attackers.length; o++) t[o].moveDefault()
-                }), i + 1 >= this._defenders.length ? (o.wait(1e3), o.call(function () {
-                    n._endTask()
-                })) : (o.wait(150), o.call(function () {
-                    n._explosion(t, e, i + 1)
-                }))
-            }, e.prototype._endTask = function () {
-                var e = this;
-                this._damage_cutin.start(function () {
-                    t.prototype._endTask.call(e)
-                })
-            }, e.prototype._log = function (t) {}, e
-        }(r.TaskBase);
-    e.PhaseNelsonTouch = u
+            }, e.prototype.startFluctuations = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].startFluctuations()
+                }
+            }, e.prototype.stopFluctuations = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].stopFluctuations()
+                }
+            }, e.prototype.fire = function () {
+                for (var t = 0, e = this._planes; t < e.length; t++) {
+                    e[t].fire()
+                }
+            }, e.prototype.play = function (t, e, i, n, s) {
+                var a = this;
+                void 0 === e && (e = NaN), void 0 === s && (s = null);
+                var _, u = new PIXI.Point(this.x, this.y),
+                    l = this._createControllPoints(u, t),
+                    c = l.c1,
+                    h = l.c2;
+                if (0 == isNaN(e)) {
+                    var p = .99,
+                        d = 1 - p,
+                        f = Math.pow(d, 3) * u.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
+                        y = Math.pow(d, 3) * u.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
+                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
+                        g = t.x - f,
+                        v = (e - t.x) / g,
+                        b = i / (100 + v) * 100,
+                        w = i / (100 + v) * v;
+                    this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
+                        x: e,
+                        y: m
+                    }, w), _ = new PIXI.Point(e, m)
+                } else this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
+                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
+                    r.SE.play("116"), a.fire()
+                }), {
+                    s: u,
+                    c1: c,
+                    c2: h,
+                    e: t,
+                    ex: _
+                }
+            }, e.prototype.debugLine = function (t) {
+                var e = new PIXI.Graphics;
+                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
+            }, e.prototype._createControllPoints = function (t, e) {
+                var i, n, o = t.x <= e.x;
+                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
+                    c1: i,
+                    c2: n
+                }
+            }, e
+        }(PIXI.Container);
+    e.PlaneTrio = a
 }

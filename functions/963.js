@@ -19,26 +19,47 @@ const function963 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(26),
+    var o = i(26),
+        r = i(1),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._fuel_max = 0, e._baux_max = 0, e._key = null, e._title = new PIXI.Sprite, e._title.position.set(15, 17), e.addChild(e._title), e._icon_fuel = new PIXI.Sprite, e._icon_fuel.position.set(17, 75), e.addChild(e._icon_fuel), e._icon_baux = new PIXI.Sprite, e._icon_baux.position.set(158, 75), e.addChild(e._icon_baux), e._txt_fuel = new o.TextBox(28, 5523516), e._txt_fuel.y = 158, e.addChild(e._txt_fuel), e._txt_baux = new o.TextBox(28, 5523516), e._txt_baux.y = 158, e.addChild(e._txt_baux), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._category)
+                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i.addChild(i._label), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._fuel_max = t, this._baux_max = e, this._title.texture = r.SALLY_AIRUNIT.getTexture(118), this._icon_fuel.texture = r.SALLY_AIRUNIT.getTexture(12), this._icon_baux.texture = r.SALLY_AIRUNIT.getTexture(11)
-            }, e.prototype.show = function (t, e, i) {
-                void 0 === i && (i = null), this._key = i;
-                var n = t > this._fuel_max ? 16711680 : 5523516;
-                this._txt_fuel.style.fill = n, this._txt_fuel.text = t.toString(), this._txt_fuel.x = 144 - this._txt_fuel.width;
-                var o = e > this._baux_max ? 16711680 : 5523516;
-                this._txt_baux.style.fill = o, this._txt_baux.text = e.toString(), this._txt_baux.x = 285 - this._txt_baux.width
-            }, e.prototype.hide = function (t) {
-                void 0 === t && (t = null), null != t && t != this._key || (this._key = null, this._txt_fuel.text = "", this._txt_baux.text = "")
+            return n(e, t), Object.defineProperty(e.prototype, "category", {
+                get: function () {
+                    return this._category
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._category = t, this._update(!1), 0 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(110), this._label.position.set(11, 12)) : 1 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(111), this._label.position.set(15, 9)) : 2 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(112), this._label.position.set(15, 15)) : 3 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(113), this._label.position.set(15, 15)) : 4 == t ? (this._label.texture = o.SALLY_AIRUNIT.getTexture(114), this._label.position.set(15, 14)) : this._label.texture = PIXI.Texture.EMPTY
+            }, e.prototype.activate = function () {
+                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._txt_fuel.destroy(), this._txt_baux.destroy()
+                this._deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                0 == t && 0 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(116) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(115)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e
         }(PIXI.Container);
-    e.AirUnitSupplyPanelTitle = s
+    e.AirUnitListTab = s
 }

@@ -19,16 +19,23 @@ const function1012 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_get_member/sortie_conditions", i._model = e, i
+    var o = i(43),
+        r = i(369),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = this._raw_data;
-                this._model.update(e), this._model = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._getBlackTexture = function () {
+                switch (this._type) {
+                    case 2:
+                        return o.SALLY_EVENT.getTexture(27);
+                    case 3:
+                        return o.SALLY_EVENT.getTexture(28)
+                }
+                return PIXI.Texture.EMPTY
+            }, e.prototype._setPositions = function () {
+                1 == this._type ? (this._key.position.set(216, 104), this._cloud.position.set(230, 137), this._text.position.set(230, 174)) : 2 == this._type ? (this._key.position.set(311, 42), this._cloud.position.set(332, 81), this._text.position.set(333, 152)) : 3 == this._type ? (this._black.position.set(-3, -2), this._key.position.set(311, 11), this._cloud.position.set(332, 56), this._text.position.set(339, 117)) : 4 == this._type && (this._key.position.set(311, 8), this._cloud.position.set(332, 51), this._text.position.set(333, 60))
             }, e
-        }(o.APIBase);
-    e.APIEventSortieCondition = r
+        }(r.MapThumbnailLocked);
+    e.EventMapThumbnailLocked = s
 }

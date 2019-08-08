@@ -20,23 +20,21 @@ const function757 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(1),
+        r = i(4),
         s = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(14), e.onMouseOver())
-                }, e._onMouseOut = function () {
-                    e.interactive && (e.texture = o.SUPPLY_MAIN.getTexture(12), e.onMouseOut())
-                }, e._onClick = function () {
-                    e.onClick()
-                }, e.texture = o.SUPPLY_MAIN.getTexture(13), e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+                var e = t.call(this) || this,
+                    i = new r.TextBox(24, 5523516),
+                    n = new r.TextBox(24, 5523516),
+                    s = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(27)),
+                    a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(28));
+                return i.anchor.set(1, 0), n.anchor.set(1, 0), i.position.set(142, 8), n.position.set(300, 8), s.position.set(0, 0), a.position.set(158, 0), e.addChild(i, n, s, a), e.textFuel = i, e.textAmmo = n, e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null
-            }, e.prototype.updateClickable = function (t) {
-                this.interactive = this.buttonMode = t, this.texture = t ? o.SUPPLY_MAIN.getTexture(12) : o.SUPPLY_MAIN.getTexture(13)
+                this.removeChildren(), this.textFuel.destroy(), this.textFuel = null, this.textAmmo.destroy(), this.textAmmo = null
+            }, e.prototype.update = function (t, e) {
+                this.textFuel.text = t.toString(), this.textAmmo.text = e.toString()
             }, e
-        }(PIXI.Sprite);
-    e.SupplyAllButton2 = s
+        }(PIXI.Container);
+    e.MaterialCounterView = s
 }

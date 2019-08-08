@@ -19,30 +19,23 @@ const function1147 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = i(3),
-        s = function (t) {
+    var o = i(0),
+        r = i(74),
+        s = i(174),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this._stopTween(), t.prototype.dispose.call(this)
-            }, e.prototype._update = function (t) {
-                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(10), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(11), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
-            }, e.prototype._activate = function () {
-                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
-            }, e.prototype._startTween = function () {
-                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 3e3).to({
-                    alpha: 0
-                }, 3e3)
-            }, e.prototype._stopTween = function () {
-                null != this._tween && this._tween.setPaused(!0), this._tween = null
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(6);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getSlotitem(e, "card"),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(o.BtnBase);
-    e.PickupBtn = s
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogSlotitemBtn = a
 }

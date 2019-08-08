@@ -20,54 +20,88 @@ const function772 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(161),
-        s = i(162),
-        a = i(61),
-        _ = i(4),
-        u = i(3),
-        l = i(329),
-        c = i(51),
-        h = i(1),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._mousedown = function (t) {
-                    i.mousedown(i._index, t.data.global)
-                }, i._mouseover = function () {
-                    i.focusItem.alpha = 1
-                }, i._mouseout = function () {
-                    i.focusItem.alpha = 0, i.onMouseOut()
-                }, i._onClickDetach = function () {
-                    i.onClickDetach(i._index)
-                }, i._mouseup = function () {
-                    i.onMouseUp(i._index)
-                }, i._index = e, i._background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), i._background.texture = o.COMMON_MAIN.getTexture(45), i.focusItem = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(22)), i.clickAreaSlot = new PIXI.Graphics, i.clickAreaSlot.renderable = !1, i.clickAreaSlot.beginFill(0, 0), i.clickAreaSlot.drawRect(0, 0, c.RemodelConst.DETAIL_LISTITEM.WIDTH, c.RemodelConst.DETAIL_LISTITEM.HEIGHT), i.clickAreaSlot.endFill(), i._textItemName = new _.TextBox(19, 5523516), i._textItemNameMask = new PIXI.Graphics, i._textItemNameMask.beginFill(0), i._textItemNameMask.drawRect(0, 0, 240, 30), i._textItemNameMask.endFill();
-                var n = new PIXI.Sprite(o.COMMON_MAIN.getTexture(44));
-                return n.position.set(120, -2), i.containerItemName = new PIXI.Container, i.containerItemName.position.set(50, 11), i.containerItemName.mask = i._textItemNameMask, i.containerItemName.addChild(i._textItemName, i._textItemNameMask, n), i.textTousai = new _.TextBox(21, 5523516), i.textTousai.position.set(-2, 23), i.textTousai.anchor.set(1, .5), i.slotItemLevel = new s.SlotItemLevel, i.airPlaneLevel = new r.AirPlaneLevel, i.lockIcon = new PIXI.Sprite(o.COMMON_MAIN.getTexture(42)), i.iconWeapon = new a.IconWeapon, i.detachButton = new l.DetachButton, i.detachButton.onClick = i._onClickDetach, i.detachButton.position.set(292, 15), i.slotItemLevel.position.set(247, 14), i.airPlaneLevel.position.set(219, 3), i.lockIcon.position.set(293, 2), i.focusItem.scale.x = 1, i.focusItem.position.x = -30, i.focusItem.alpha = 0, i.focusItem.visible = !1, i.addChild(i._background, i.containerItemName, i.textTousai, i.slotItemLevel, i.airPlaneLevel, i.lockIcon, i.iconWeapon, i.focusItem, i.clickAreaSlot, i.detachButton), i.clickAreaSlot.interactive = i.clickAreaSlot.buttonMode = !0, i.clickAreaSlot.on(h.EventType.MOUSEDOWN, i._mousedown), i.clickAreaSlot.on(h.EventType.MOUSEUP, i._mouseup), i.clickAreaSlot.on(h.EventType.MOUSEOVER, i._mouseover), i.clickAreaSlot.on(h.EventType.MOUSEOUT, i._mouseout), i
+        r = i(214),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.select_bg_crane01 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)), e.select_bg_crane02 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44)), e.select_bg_crane01.position.set(275, -3), e.select_bg_crane02.position.set(0, 0), e.addChild(e.select_bg_crane01, e.select_bg_crane02), e
             }
-            return n(e, t), e.prototype.update = function (t, e, i, n) {
-                this._update_(t.name, t.iconType, t.isPlane(), e, t.skillLevel, t.isLocked(), t.level, i, n)
-            }, e.prototype.empty = function (t) {
-                this._updateLock(!1), this._updateAirPlane(!1, 0, 0), this._updateSlotItemLevel(0), this._updateIconType(0), this._updateItemName(""), this._updateDetachButton(!1), this._updateFocusItem(t)
-            }, e.prototype._update_ = function (t, e, i, n, o, r, s, a, _) {
-                this._updateLock(r), this._updateAirPlane(i, n, o), this._updateSlotItemLevel(s), this._updateIconType(e), this._updateItemName(t), this._updateDetachButton(a), this._updateFocusItem(_)
-            }, e.prototype._updateDetachButton = function (t) {
-                this.detachButton.visible = !1, t && (this.detachButton.visible = !0)
-            }, e.prototype._updateFocusItem = function (t) {
-                this.focusItem.alpha = 0, this.focusItem.visible = !1, this.clickAreaSlot.interactive = this.clickAreaSlot.buttonMode = !1, t && (this.focusItem.visible = !0, this.clickAreaSlot.interactive = this.clickAreaSlot.buttonMode = !0)
-            }, e.prototype._updateItemName = function (t) {
-                this.containerItemName.cacheAsBitmap = !1, this._textItemName.text = t, this.containerItemName.cacheAsBitmap = !0
-            }, e.prototype._updateLock = function (t) {
-                this.lockIcon.visible = !1, t && (this.lockIcon.visible = !0)
-            }, e.prototype._updateIconType = function (t) {
-                this.iconWeapon.update(t)
-            }, e.prototype._updateSlotItemLevel = function (t) {
-                this.slotItemLevel.update(t)
-            }, e.prototype._updateAirPlane = function (t, e, i) {
-                this.textTousai.visible = !1, this.airPlaneLevel.visible = !1, t && (this.textTousai.text = "" + e, this.airPlaneLevel.update(i), this.textTousai.visible = !0, this.airPlaneLevel.visible = !0)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.clickAreaSlot.off(h.EventType.MOUSEDOWN, this._mousedown), this.clickAreaSlot.off(h.EventType.MOUSEOVER, this._mouseover), this.clickAreaSlot.off(h.EventType.MOUSEOUT, this._mouseout), this.clickAreaSlot.off(h.EventType.MOUSEUP, this._mouseup), this.clickAreaSlot.clear(), this.airPlaneLevel.dispose(), this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.detachButton.dispose(), this.containerItemName.cacheAsBitmap = !1, this.containerItemName.mask = null, this.containerItemName.removeChildren(), this._textItemName.destroy(), this.textTousai.destroy(), this.mousedown = null, this.onClickDetach = null, this.onMouseUp = null, this.onMouseOut = null, this._background = null, this._textItemNameMask = null, this.focusItem = null, this.detachButton = null, this.containerItemName = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.iconWeapon = null, this.lockIcon = null, this._textItemName = null, this.textTousai = null, this.clickAreaSlot = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.select_bg_crane01 = null, this.select_bg_crane02 = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.SlotItemSlot = p
+    e.OtherShipFrame = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(43)),
+                n = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(44));
+            e.crane = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(46)), e.focus_card = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(21)), i.position.set(275, -3), n.position.set(0, 0);
+            var s = [62, 143, 224, 305, 386, 467];
+            e.addChild(e.focus_card, e.crane);
+            for (var a = 0; a < s.length; a++) {
+                var _ = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(45));
+                _.position.set(9, s[a]), e.addChild(_)
+            }
+            e.addChild(i, n), e.indexEmblems = new Array;
+            for (var u = 0; u < s.length; u++) {
+                var l = new r.DeckIndexEmblem;
+                l.position.set(-15, s[u] + 30), e.indexEmblems.push(l), e.addChild(l)
+            }
+            return e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            createjs.Tween.removeTweens(this.crane);
+            for (var t = 0; t < this.indexEmblems.length; t++) this.indexEmblems[t].dispose(), this.indexEmblems[t] = null;
+            this.indexEmblems = null, this.focus_card = null, this.crane = null, this.removeChildren()
+        }, e.prototype.focus = function (t) {
+            var e = this.getFocusPoint(t);
+            this.focus_card.position.set(e[0], e[1]), this.focus_card.visible = !0
+        }, e.prototype.updateEmblems = function (t, e) {
+            var i = this.indexEmblems[t];
+            i.visible = !0, i.update(e)
+        }, e.prototype.hideEmblem = function (t) {
+            this.indexEmblems[t].visible = !1
+        }, e.prototype.moveCrane = function (t) {
+            createjs.Tween.removeTweens(this.crane);
+            var e = this.getFocusPoint(t);
+            createjs.Tween.get(this.crane).to({
+                x: 278
+            }, 300, createjs.Ease.cubicIn).to({
+                y: e[1] - 8
+            }).to({
+                x: e[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
+        }, e.prototype.insertCrane = function () {
+            createjs.Tween.removeTweens(this.crane);
+            var t = this.getFocusPoint(0);
+            this.crane.x = 278, this.crane.y = t[1] - 8, createjs.Tween.get(this.crane).to({
+                x: t[0] + 23
+            }, 500, createjs.Ease.cubicOut).play(null)
+        }, e.prototype.hideCraneImmidiate = function () {
+            createjs.Tween.removeTweens(this.crane), this.crane.x = 278
+        }, e.prototype.moveCraneImmidiate = function (t) {
+            var e = this.getFocusPoint(t);
+            createjs.Tween.removeTweens(this.crane), this.crane.x = e[0] + 23, this.crane.y = e[1] - 8
+        }, e.prototype.deFocus = function () {
+            this.focus_card.visible = !1
+        }, e.prototype.getFocusPoint = function (t) {
+            switch (t) {
+                case 0:
+                    return [27, 76];
+                case 1:
+                    return [27, 157];
+                case 2:
+                    return [27, 238];
+                case 3:
+                    return [27, 319];
+                case 4:
+                    return [27, 400];
+                case 5:
+                    return [27, 481]
+            }
+            return [0, 0]
+        }, e
+    }(PIXI.Container);
+    e.DeckCraneFrame = a
 }

@@ -20,86 +20,48 @@ const function1263 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(6),
-        s = i(20),
-        a = i(433),
+        r = i(12),
+        s = i(6),
+        a = i(20),
         _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(135)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(136)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(137)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+            }, e.prototype._anim = function () {
                 var t = this;
-                this._data = this._model.sortie.getNextCell().getHappeningData(), this._scene.view.message_box.text = "\u53f8\u4ee4\u5b98\uff01\u3046\u305a\u3057\u304a\u304c\u767a\u751f\u3057\u307e\u3057\u305f\uff01", this._uzu = new u;
-                var e = this._scene.view.map.ship_icon;
-                e.under.addChild(this._uzu), this._uzu.activate(), e.startWaveWhite(), r.SE.play("254");
-                var i = {
-                    rad: 0,
-                    a: 36
-                };
-                createjs.Tween.get(i, {
-                    onChange: function () {
-                        e.ship.x = Math.cos(i.rad) * i.a, e.ship.y = Math.sin(i.rad) * i.a, i.rad += Math.PI / 180 * 5 * (60 / createjs.Ticker.framerate)
-                    }
-                }).to({
-                    a: 0
-                }, 2400).call(function () {
-                    e.stopWave(), t._animItem()
-                })
-            }, e.prototype._animItem = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = new a.CompDropItem;
-                n.initialize(e, i);
-                var o = this._scene.view.map.ship_icon;
-                o.under.addChild(n), createjs.Tween.get(n).to({
-                    x: -120
-                }, 1400), createjs.Tween.get(n).to({
-                    y: -60
-                }, 400, createjs.Ease.quadOut).to({
-                    y: 150
-                }, 1e3, createjs.Ease.quadIn), createjs.Tween.get(n).wait(1200).to({
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
                     alpha: 0
-                }, 200).call(function () {
-                    o.under.removeChild(n), n.dispose(), t._hideUzu()
-                })
-            }, e.prototype._hideUzu = function () {
-                var t = this,
-                    e = this._scene.view.map.ship_icon;
-                createjs.Tween.get(this._uzu).to({
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
                     alpha: 0
-                }, 200).call(function () {
-                    e.under.removeChild(t._uzu), t._uzu.deactivate(), t._uzu = null, t._showText()
-                })
-            }, e.prototype._showText = function () {
-                var t = this,
-                    e = this._data.getUseitemMstID(),
-                    i = this._data.lost_count,
-                    n = this._data.isDentan();
-                this._scene.view.message_box.showUzushioText(e, i, n), createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._endTask()
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, this._data = null, t.prototype._endTask.call(this)
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.CellTaskHappening = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.scale.y = .5;
-            var i = s.MAP_COMMON.getTexture(174);
-            return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._content, {
-                loop: !0
-            }).to({
-                rotation: 2 * Math.PI
-            }, 3e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+    e.TaskReplenishmentBuff = _
 }

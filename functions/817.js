@@ -19,26 +19,20 @@ const function817 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
+    var o = i(0),
+        r = i(10),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e.texture = e._textureOn
-                }, e._onMouseOut = function () {
-                    e.texture = e._textureOff
-                }, e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ship_mem_id = e, i._url = "api_req_kaisou/remodeling", i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t
-            }, e.prototype.update = function (t) {
-                1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
-            }, e.prototype.dispose = function () {
-                this._textureNone = null, this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_id = this._ship_mem_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e, i = o.default.model.ship.get(this._ship_mem_id).mstID,
+                    n = o.default.model.ship_upgrade.getRequires(i);
+                e = o.default.model.useItem.get(32), e.__setCount__(e.count - n.ammo), e = o.default.model.useItem.get(33), e.__setCount__(e.count - n.steel), e = o.default.model.useItem.get(3), e.__setCount__(e.count - n.devkit), e = o.default.model.useItem.get(2), e.__setCount__(e.count - n.buildkit), e = o.default.model.useItem.get(58), e.__setCount__(e.count - n.blueprint), e = o.default.model.useItem.get(65), e.__setCount__(e.count - n.catapult), e = o.default.model.useItem.get(78), e.__setCount__(e.count - n.battlereport), e = o.default.model.useItem.get(75), e.__setCount__(e.count - n.newhokohesosizai), e = o.default.model.useItem.get(77), e.__setCount__(e.count - n.newkokuhesosizai), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.KaizoStartButton = s
+        }(r.APIBase);
+    e.RemodelingAPI = s
 }

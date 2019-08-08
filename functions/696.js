@@ -19,35 +19,97 @@ const function696 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(56),
-        r = i(163),
-        s = i(57),
-        a = function (t) {
+    var o = i(3),
+        r = i(4),
+        s = i(32),
+        a = i(1),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickMamiya = function () {
-                    e.onClickMamiya()
-                }, e._onClickIrako = function () {
-                    e.onClickIrako()
-                }, e._onClickMamiyaAndIrako = function () {
-                    e.onClickMamiyaAndIrako()
-                }, e._onClickBack = function () {
-                    e.onClickBack()
+                e._onClickYES = function () {
+                    e.onClickYES()
                 };
-                var i = o.ORGANIZE_MAIN.getTexture(6);
-                e.message = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_info4);
-                var n = r.OrganizeConst.getMamiyaOption().res_btn_mamiya;
-                e.buttonMamiya = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_irako, e.buttonIrako = new s.SimpleButton(n, n), n = r.OrganizeConst.getMamiyaOption().res_btn_m_i, e.buttonMamiyaAndIrako = new s.SimpleButton(n, n), e.buttonBack = new s.SimpleButton(i, i);
-                var a = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_mamiya_g),
-                    _ = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_irako_g),
-                    u = new PIXI.Sprite(r.OrganizeConst.getMamiyaOption().res_btn_m_i_g);
-                return e.buttonMamiya.position = a.position = new PIXI.Point(100, 43), e.buttonIrako.position = _.position = new PIXI.Point(753, 43), e.buttonMamiyaAndIrako.position = u.position = new PIXI.Point(390, 114), e.buttonBack.position.set(762, 135), e.buttonMamiya.onClick = e._onClickMamiya, e.buttonIrako.onClick = e._onClickIrako, e.buttonMamiyaAndIrako.onClick = e._onClickMamiyaAndIrako, e.buttonBack.onClick = e._onClickBack, e.addChild(e.message, a, _, u, e.buttonMamiya, e.buttonIrako, e.buttonMamiyaAndIrako, e.buttonBack), e
+                var i = new PIXI.Container;
+                i.position.set(69, 153), e.firstShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
+                }
+                var l = new PIXI.Container;
+                l.position.set(678, 153), e.secondShipInDeckBanners = new Array;
+                for (var n = 0; n < 6; n++) {
+                    var _ = new s.ShipBanner;
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), l.addChild(_)
+                }
+                e.background = new PIXI.Sprite;
+                var c = o.ORGANIZE_MAIN.getTexture(16),
+                    h = new PIXI.Sprite(c),
+                    p = o.ORGANIZE_MAIN.getTexture(8);
+                return e.buttonBack = new PIXI.Sprite(p), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(12, 16777215), e.secondDeckName = new r.TextBox(12, 16777215), e.toFirstDeckErrorMessageView = new u, e.toSecondDeckErrorMessageView = new u, e.firstDeckName.position.set(60, 123), e.secondDeckName.position.set(667, 123), h.position.set(300, 420), e.buttonBack.position.set(480, 420), e.toFirstDeckErrorMessageView.position.set(276, 103), e.toSecondDeckErrorMessageView.position.set(325, 331), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.addListener(a.EventType.CLICK, e._onClickYES), e.addChild(e.background, e.message, h, e.buttonBack, e.firstDeckName, e.secondDeckName, i, l, e.toFirstDeckErrorMessageView, e.toSecondDeckErrorMessageView), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.buttonMamiya.dispose(), this.buttonIrako.dispose(), this.buttonMamiyaAndIrako.dispose(), this.buttonBack.dispose(), this._onClickBack = this._onClickIrako = this._onClickMamiya = this._onClickMamiyaAndIrako = null, this.buttonMamiya = null, this.buttonIrako = null, this.buttonMamiyaAndIrako = null, this.buttonBack = null, this.message = null, this.onClickMamiya = null, this.onClickIrako = null, this.onClickMamiyaAndIrako = null, this.onClickBack = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i) {
-                t ? (this.buttonMamiya.visible = !0, this.buttonMamiya.interactive = !0, this.buttonMamiya.buttonMode = !0) : (this.buttonMamiya.visible = !1, this.buttonMamiya.interactive = !1, this.buttonMamiya.buttonMode = !1), e ? (this.buttonIrako.visible = !0, this.buttonIrako.interactive = !0, this.buttonIrako.buttonMode = !0) : (this.buttonIrako.visible = !1, this.buttonIrako.interactive = !1, this.buttonIrako.buttonMode = !1), i ? (this.buttonMamiyaAndIrako.visible = !0, this.buttonMamiyaAndIrako.interactive = !0, this.buttonMamiyaAndIrako.buttonMode = !0) : (this.buttonMamiyaAndIrako.visible = !1, this.buttonMamiyaAndIrako.interactive = !1, this.buttonMamiyaAndIrako.buttonMode = !1)
+                this.removeChildren();
+                for (var t = 0; t < this.firstShipInDeckBanners.length; t++) this.firstShipInDeckBanners[t].dispose(), this.firstShipInDeckBanners[t] = null;
+                for (var t = 0; t < this.secondShipInDeckBanners.length; t++) this.secondShipInDeckBanners[t].dispose(), this.secondShipInDeckBanners[t] = null;
+                this.toFirstDeckErrorMessageView.dispose(), this.toSecondDeckErrorMessageView.dispose(), this.firstDeckName.destroy(), this.secondDeckName.destroy(), this.toFirstDeckErrorMessageView = null, this.toSecondDeckErrorMessageView = null, this.onClickYES = null, this.background = null, this.buttonBack = null, this.message = null, this.firstDeckName = null, this.secondDeckName = null, this.firstShipInDeckBanners = null, this.secondShipInDeckBanners = null
+            }, e.prototype.updateFirstDeck = function (t) {
+                this.firstDeckName.text = t.name;
+                for (var e = t.getShipList(), i = 0; i < e.length; i++) {
+                    var n = this.firstShipInDeckBanners[i],
+                        o = e[i];
+                    null == o ? n.visible = !1 : (n.update(o, !1), n.visible = !0)
+                }
+            }, e.prototype.updateSecondDeck = function (t) {
+                this.secondDeckName.text = t.name;
+                for (var e = null != t.expedition, i = t.getShipList(), n = 0; n < i.length; n++) {
+                    var o = this.secondShipInDeckBanners[n],
+                        r = i[n];
+                    null == r ? o.visible = !1 : (o.update(r, e), o.visible = !0)
+                }
+            }, e.prototype.updateCombineDeck = function (t, e, i, n) {
+                this.updateFirstDeck(t), this.updateSecondDeck(e), this.toFirstDeckErrorMessageView.update(i), this.toSecondDeckErrorMessageView.update(n)
+            }, e.prototype.updateViewType = function (t) {
+                switch (t) {
+                    case 1:
+                        this.initKidoView();
+                        break;
+                    case 2:
+                        this.initSuijoView();
+                        break;
+                    case 3:
+                        this.initYusoView()
+                }
+            }, e.prototype.initKidoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(13);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(15);
+                this.message.texture = e, this.message.position.set(111, 49)
+            }, e.prototype.initSuijoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(19);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(21);
+                this.message.texture = e, this.message.position.set(111, 49)
+            }, e.prototype.initYusoView = function () {
+                var t = o.ORGANIZE_RENGO.getTexture(22);
+                this.background.texture = t;
+                var e = o.ORGANIZE_RENGO.getTexture(24);
+                this.message.texture = e, this.message.position.set(79, 49)
             }, e
         }(PIXI.Container);
-    e.SweetsSelectView = a
+    e.CombineConfirmAlertDialog = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(o.ORGANIZE_RENGO.getTexture(16));
+            e.addChild(i), e._message = new r.TextBox(18, 16777215), e._message.position.set(1, 4), e.addChild(e._message);
+            var n = new PIXI.Graphics;
+            return n.beginFill(0, .5), n.drawRect(0, 0, 328, 75), n.endFill(), e.addChild(n), e.mask = n, e
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            this.cacheAsBitmap = !1, this._message.text = t, this.cacheAsBitmap = !0
+        }, e.prototype.dispose = function () {
+            this.cacheAsBitmap = !1, this.mask = null, this.removeChildren(), this._message.destroy(), this._message = null
+        }, e
+    }(PIXI.Container);
+    e.RengoErrorMessageView = u
 }

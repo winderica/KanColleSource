@@ -19,119 +19,74 @@ const function616 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(32),
-        a = i(279),
-        _ = i(127),
-        u = i(128),
-        l = i(106),
-        c = i(199),
-        h = i(13),
-        p = i(14),
-        d = i(200),
-        f = i(642),
-        y = i(285),
-        m = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._pre_scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
-                        return /^resources\/ship\/.+/.test(t)
-                    }), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i],
-                        r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var s = t.filter(function (t) {
-                        return /^resources\/slot\/.+/.test(t)
-                    }), a = 0, _ = s; a < _.length; a++) {
-                    var o = _[a],
-                        r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                p.UIImageLoader.clearMemoryCache("sally");
-                for (var u = t.filter(function (t) {
-                        return /^resources\/map\/\d{3}\/\d{2}_.+/.test(t)
-                    }), l = 0, c = u; l < c.length; l++) {
-                    var o = c[l],
-                        r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                for (var u = t.filter(function (t) {
-                        return /^map\d{5}_.+/.test(t)
-                    }), h = 0, d = u; h < d.length; h++) {
-                    var o = d[h],
-                        r = PIXI.utils.TextureCache[o];
-                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
-                }
-                this._connectAPI()
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = new s.APIConnector;
-                e.add(new a.PortAPI), 33 == this._pre_scene ? (e.add(new _.UserSlotItemAPI), e.add(new u.UnsetSlotAPI), e.add(new l.UseItemAPI)) : 32 == this._pre_scene && e.add(new _.UserSlotItemAPI), e.start(function () {
-                    t._loadPortResources()
-                })
-            }, e.prototype._loadPortResources = function () {
-                var t = this,
-                    e = o.default.model.basic.getUISkinID();
-                new f.TaskLoadResources(e).start(function () {
-                    t._loadFurnitureResources()
-                })
-            }, e.prototype._loadFurnitureResources = function () {
-                var t = this,
-                    e = new c.FurnitureLoadTask(!0);
-                e.floor_id = o.default.model.basic.getPortFurnitureMstID(0), e.wall_id = o.default.model.basic.getPortFurnitureMstID(1), e.window_id = o.default.model.basic.getPortFurnitureMstID(2), e.object_id = o.default.model.basic.getPortFurnitureMstID(3), e.desk_id = o.default.model.basic.getPortFurnitureMstID(5), e.chest_id = o.default.model.basic.getPortFurnitureMstID(4), e.start(function () {
-                    var e = o.default.view.portMain;
-                    0 == e.isInitialized() && e.initialize(), t._loadFlagShipResource()
-                })
-            }, e.prototype._loadFlagShipResource = function () {
-                var t = this,
-                    e = o.default.model.deck.get(1).getShipModel(0);
-                if (null != e) {
-                    var i = e.mstID,
-                        n = e.isDamaged();
-                    if (1 == o.default.resources.isLoadedShip(i, n, "full")) {
-                        var r = e.tired;
-                        o.default.view.portMain.flagShip.initialize(i, n, r), this._preInitPortView(e)
-                    } else {
-                        var s = new h.ShipLoader;
-                        s.add(i, n, "full"), s.load(function () {
-                            var r = e.tired;
-                            o.default.view.portMain.flagShip.initialize(i, n, r), t._preInitPortView(e)
+    var o = i(193),
+        r = i(194),
+        s = i(195),
+        a = i(196),
+        _ = i(288),
+        u = i(1),
+        l = i(0),
+        c = i(290),
+        h = i(289),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._side.interactive = !0, e._side.buttonMode = !0;
+                var i = e._side.position.y;
+                return e._side.addListener(u.EventType.MOUSEOVER, function () {
+                    e._side.buttonMode = 0 == l.default.scene.now
+                }), e._side.addListener(u.EventType.CLICK, function () {
+                    if (0 == l.default.scene.now) {
+                        var t = l.default.model.deck.get(1).getShipModel(0),
+                            n = l.default.model.basic.getFlagShipPosIDCli(),
+                            o = l.default.view.getNowScene().flagShip.chara,
+                            r = h.PortConst.getMoveXValue(t.mstID),
+                            s = 0;
+                        0 == n ? (s = o.position.x + r, n = 1) : (s = o.position.x - r, n = 0);
+                        var a = c.$_$.Parallel(function () {
+                            return c.$_$.Sequence(function () {
+                                return c.$_$.Value(e._side.position, {
+                                    y: i - 20
+                                }, 150)
+                            }, function () {
+                                return c.$_$.Value(e._side.position, {
+                                    y: i + 15
+                                }, 150)
+                            }, function () {
+                                return c.$_$.Value(e._side.position, {
+                                    y: i - 10
+                                }, 100)
+                            }, function () {
+                                return c.$_$.Value(e._side.position, {
+                                    y: i + 5
+                                }, 100)
+                            }, function () {
+                                return c.$_$.Value(e._side.position, {
+                                    y: i
+                                }, 100)
+                            })
+                        }, function () {
+                            return c.$_$.Value(o.position, {
+                                x: s
+                            }, 600, createjs.Ease.cubicOut)
+                        });
+                        l.default.view.clickGuard = !0, a.execute(function () {
+                            a.dispose(), l.default.view.clickGuard = !1, l.default.model.basic.setFlagShipPosIDCli(n)
                         })
                     }
-                } else this._preInitPortView(e)
-            }, e.prototype._preInitPortView = function (t) {
-                var e = o.default.view.portMain;
-                if (0 == e.isInitialized()) {
-                    var i = o.default.model.basic.getUISkinID();
-                    e.initializeNext(i)
-                } else e.showPortUI(!0);
-                this._initPortView(e, t)
-            }, e.prototype._initPortView = function (t, e) {
-                var i = e.isMarriage();
-                t.activate(e.mstID, i), o.default.view.portMain.updateUserInfo({
-                    userName: o.default.model.basic.nickName,
-                    userLevel: o.default.model.basic.level,
-                    userRank: "[" + o.default.model.basic.rankName + "]",
-                    fleetNum: o.default.model.deck.num
-                }), o.default.view.portMain.updateInfo(), this._showExpeditionResult()
-            }, e.prototype._showExpeditionResult = function () {
-                var t = this;
-                (new y.TaskExpeditionAlertUpdate).start(function () {
-                    t._loginBonus()
-                })
-            }, e.prototype._loginBonus = function () {
-                if (1 == o.default.model.incentive.hasIncentive()) {
-                    var t = o.default.view.overLayer,
-                        e = o.default.model.incentive.getRewards();
-                    new d.TaskReward(t, e).start(), o.default.model.incentive.clearData()
-                }
-                this._endTask()
+                }), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.changeSkin(t), this._gear.activate()
+            }, e.prototype.changeSkin = function (t) {
+                101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
+                var e = PIXI.Texture.EMPTY;
+                e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
+            }, e.prototype.update = function (t) {
+                0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
+            }, e.prototype.dispose = function () {
+                this._gear.dispose()
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = m
+        }(PIXI.Container);
+    e.FrameLayer = p
 }

@@ -19,32 +19,22 @@ const function952 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = i(1),
+    var o = i(4),
+        r = i(26),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img_light = new PIXI.Sprite, i._img_light.alpha = 0, i.addChild(i._img_light), i._img = new PIXI.Sprite, i._img.position.set(12, 12), i.addChild(i._img), i.interactive = !0, i
+            function e() {
+                var e = t.call(this) || this;
+                e._img = [];
+                var i = new PIXI.Sprite;
+                return e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(0, 27), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 0), e.addChild(i), e._img.push(i), i = new PIXI.Sprite, i.position.set(72, 27), e.addChild(i), e._img.push(i), e._kadou = new o.TextBox(24, 0), e._kadou.y = -5, e.addChild(e._kadou), e._teisu = new o.TextBox(24, 0), e._teisu.y = 21, e.addChild(e._teisu), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.SALLY_AIRUNIT.getTexture(20), this._img_light.texture = o.SALLY_AIRUNIT.getTexture(23), this.update(!1)
-            }, e.prototype.update = function (t) {
-                this.visible = t, 1 == t ? this._activate() : this._deactivate()
+                this._img[0].texture = r.SALLY_AIRUNIT.getTexture(135), this._img[1].texture = r.SALLY_AIRUNIT.getTexture(143), this._img[2].texture = r.SALLY_AIRUNIT.getTexture(136), this._img[3].texture = r.SALLY_AIRUNIT.getTexture(136)
+            }, e.prototype.update = function (t, e) {
+                this._kadou.text = t.toString(), this._kadou.x = 72 - this._kadou.width, this._teisu.text = e.toString(), this._teisu.x = 72 - this._teisu.width
             }, e.prototype.dispose = function () {
-                this._deactivate(), this._cb_onClick = null
-            }, e.prototype._activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), null == this._t && (this._img_light.alpha = 0, this._t = createjs.Tween.get(this._img_light, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 1e3)))
-            }, e.prototype._deactivate = function () {
-                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null, this._img_light.alpha = 0)
+                this.removeChildren(), this._img = null, this._kadou.destroy(), this._kadou = null, this._teisu.destroy(), this._teisu = null
             }, e
         }(PIXI.Container);
-    e.AirUnitPanelItemSupplyButton = s
+    e.AirUnitPanelItemDetailInfoPanel = s
 }

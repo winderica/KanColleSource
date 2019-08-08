@@ -19,49 +19,40 @@ const function650 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(82),
-        r = i(5),
-        s = i(109),
-        a = i(1),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._ev = e, i._isInsideScene = !0, i._onNextClick = function () {
-                    i._isInsideScene ? (i._isInsideScene = !1, i._nextScene()) : i._ev.emit("tutorial-next-scene")
-                }, i._onToggleNextBtn = function (t) {
-                    var e = i._getEventTextureKey(t.type);
-                    i._btnNext.texture = i._btnNextImage[e]
-                }, i._getEventTextureKey = function (t) {
-                    return t == a.EventType.MOUSEOVER ? "hover" : "def"
-                }, i.alpha = 0, i._miniImage = [o.TUTORIAL_MAIN.getTexture(11), o.TUTORIAL_MAIN.getTexture(12)], i
+    var o = i(0),
+        r = i(2),
+        s = i(651),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e._view.deactivate(), e._hideDialog()
+                }, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(23));
-                t.position.set(175, 116), this._mini = new PIXI.Sprite(this._miniImage[0]), this._mini.position.set(984, 437), this._btnNextImage = {
-                    def: o.TUTORIAL_MAIN.getTexture(1),
-                    hover: o.TUTORIAL_MAIN.getTexture(2)
-                }, this._btnNext = new PIXI.Sprite(this._btnNextImage.def), this._btnNext.name = "next", this._btnNext.anchor.set(.5, 0), this._btnNext.position.set(r.default.width / 2, r.default.height - this._btnNext.height - 20), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(a.EventType.MOUSEOVER, this._onToggleNextBtn).on(a.EventType.MOUSEOUT, this._onToggleNextBtn).on(a.EventType.CLICK, this._onNextClick), this.alpha = 0, this.addChild(t, this._mini, this._btnNext), this._ev.emit("tutorial-scene-start")
-            }, e.prototype.start = function () {
-                var t = this;
-                createjs.Tween.get(this).to({
+            return n(e, t), e.prototype._start = function () {
+                -1 != o.default.model.deck.combined.type ? this._endTask() : this._breakCombined()
+            }, e.prototype._breakCombined = function () {
+                o.default.model.deck.combined.__update__(0), this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this,
+                    e = o.default.view.overLayer;
+                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
                     alpha: 1
-                }, 200, createjs.Ease.linear);
-                var e = 0;
-                this._miniImageTween = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(400).call(function () {
-                    e++, t._mini.texture = t._miniImage[e % 2]
-                }), this._ev.emit("tutorial-play-voice", "tutorial", "023_a", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "024")
+                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._view.activate()
                 })
-            }, e.prototype._nextScene = function () {
-                var t = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(17));
-                t.position.set(495, 400), t.alpha = 0, this.addChild(t), this._ev.emit("tutorial-play-voice", "tutorial", "025"), createjs.Tween.get(t).to({
-                    alpha: 1
-                }, 400, createjs.Ease.linear)
-            }, e.prototype.dispose = function () {
-                this.alpha = 0, this._btnNext.interactive = !1, this._btnNext.buttonMode = !1, this._btnNext.off(a.EventType.MOUSEOVER, this._onToggleNextBtn).off(a.EventType.MOUSEOUT, this._onToggleNextBtn).off(a.EventType.CLICK, this._onNextClick), createjs.Tween.removeTweens(this._miniImageTween), this._ev.emit("tutorial-remove-scene")
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._view.btn).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._view.parent.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(s.SceneBase);
-    e.SceneExplain1 = _
+        }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

@@ -19,50 +19,82 @@ const function771 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(772),
-        s = i(51),
-        a = function (t) {
+    var o = i(9),
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._mousedown = function (t, i) {
-                    e.mousedown(t, i)
-                }, e._onClickDetach = function (t) {
-                    e.onClickDetach(t)
-                }, e._onMouseUp = function (t) {
-                    e.onMouseUp(t)
-                }, e._onMouseOut = function () {
-                    e.onMouseOut()
-                };
-                e._slotItemSlots = new Array, e._clearSlotItemSlots = new Array;
-                for (var i = o.COMMON_MAIN.getTexture(46), n = 0; n < 5; n++) {
-                    var a = new r.SlotItemSlot(n);
-                    a.mousedown = e._mousedown, a.onClickDetach = e._onClickDetach, a.onMouseUp = e._onMouseUp, a.onMouseOut = e._onMouseOut;
-                    var _ = new PIXI.Sprite(i);
-                    _.y = a.y = s.RemodelConst.DETAIL_LISTITEM.HEIGHT * n + 6, e._slotItemSlots.push(a), e._clearSlotItemSlots.push(_), e.addChild(_, a)
-                }
-                return e
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.textureFocus = o.COMMON_MISC.getTexture(85), e.textureDeFocus = o.COMMON_MISC.getTexture(84), e.textureLocked = PIXI.Texture.EMPTY, e.interactive = e.buttonMode = !1, e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "slotItemSlots", {
-                get: function () {
-                    return this._slotItemSlots
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.clean = function () {
-                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].visible = !1;
-                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t].visible = !0
-            }, e.prototype.update = function (t, e, i, n, o) {
-                var r = this._slotItemSlots[t],
-                    s = this._clearSlotItemSlots[t];
-                r.empty(o), e && r.update(e, i, n, o), s.visible = !1, r.visible = !0
-            }, e.prototype.hide = function (t) {
-                for (var e = t, i = this._slotItemSlots.length; e < i; e++) this._slotItemSlots[e].visible = !1, this._clearSlotItemSlots[e].visible = !1
+            return n(e, t), e.prototype.dispose = function () {
+                this.onClick = null, this.textureFocus = null, this.textureDeFocus = null, this.textureLocked = null, this.off(r.EventType.CLICK)
+            }, e.prototype.focus = function () {
+                this.interactive = this.buttonMode = !1, this.texture = this.textureFocus
+            }, e.prototype.deFocus = function () {
+                this.interactive = this.buttonMode = !0, this.texture = this.textureDeFocus
+            }, e.prototype.locked = function () {
+                this.interactive = this.buttonMode = !1, this.texture = this.textureLocked
+            }, e
+        }(PIXI.Sprite),
+        a = function (t) {
+            function e(e, i, n, s) {
+                var a = t.call(this) || this;
+                return a._onClick = function () {
+                    a.onClick(a.deckId)
+                }, a.deckId = e, a.textureFocus = o.COMMON_MISC.getTexture(i), a.textureDeFocus = o.COMMON_MISC.getTexture(n), a.textureLocked = o.COMMON_MISC.getTexture(s), a.interactive = a.buttonMode = !1, a.on(r.EventType.CLICK, a._onClick), a
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.onClick = null, this.deckId = null, this.textureFocus = null, this.textureDeFocus = null, this.textureLocked = null, this.off(r.EventType.CLICK)
+            }, e.prototype.focus = function () {
+                this.interactive = this.buttonMode = !1, this.texture = this.textureFocus
+            }, e.prototype.deFocus = function () {
+                this.interactive = this.buttonMode = !0, this.texture = this.textureDeFocus
+            }, e.prototype.locked = function () {
+                this.interactive = this.buttonMode = !1, this.texture = this.textureLocked
+            }, e
+        }(PIXI.Sprite),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClickDeck_1 = function () {
+                    e._onClickDeck(1)
+                }, e._onClickDeck_2 = function () {
+                    e._onClickDeck(2)
+                }, e._onClickDeck_3 = function () {
+                    e._onClickDeck(3)
+                }, e._onClickDeck_4 = function () {
+                    e._onClickDeck(4)
+                }, e._onClickOther = function () {
+                    e.onClickOther()
+                }, e.deck1 = new a(1, 74, 73, 72), e.deck2 = new a(2, 77, 76, 75), e.deck3 = new a(3, 80, 79, 78), e.deck4 = new a(4, 83, 82, 81), e.other = new s, e.deck1.position.set(0, 0), e.deck2.position.set(45, 0), e.deck3.position.set(90, 0), e.deck4.position.set(135, 0), e.other.position.set(180, 0), e.deck1.onClick = e._onClickDeck_1, e.deck2.onClick = e._onClickDeck_2, e.deck3.onClick = e._onClickDeck_3, e.deck4.onClick = e._onClickDeck_4, e.other.onClick = e._onClickOther, e.addChild(e.deck1, e.deck2, e.deck3, e.deck4, e.other), e
+            }
+            return n(e, t), e.prototype.focusDeck = function (t) {
+                switch (this._reset(this.deckIds, this.otherShipCount), t) {
+                    case 1:
+                        this.deck1.focus();
+                        break;
+                    case 2:
+                        this.deck2.focus();
+                        break;
+                    case 3:
+                        this.deck3.focus();
+                        break;
+                    case 4:
+                        this.deck4.focus()
+                }
+            }, e.prototype.focusOther = function () {
+                this._reset(this.deckIds, this.otherShipCount), this.other.focus()
             }, e.prototype.dispose = function () {
-                for (var t = 0; t < this._slotItemSlots.length; t++) this._slotItemSlots[t].dispose(), this._slotItemSlots[t] = null;
-                for (var t = 0; t < this._clearSlotItemSlots.length; t++) this._clearSlotItemSlots[t] = null;
-                this._slotItemSlots = null, this._clearSlotItemSlots = null, this.onClickDetach = null, this.mousedown = null, this.onMouseOut = null, this.removeChildren()
+                this.deck1.dispose(), this.deck2.dispose(), this.deck3.dispose(), this.deck4.dispose(), this.other.dispose(), this.deck1 = null, this.deck2 = null, this.deck3 = null, this.deck4 = null, this.other = null, this.deckIds = null, this.otherShipCount = null, this.removeChildren()
+            }, e.prototype._onClickDeck = function (t) {
+                this.onClickDeck(t)
+            }, e.prototype.update = function (t, e) {
+                this._reset(t, e), this.deckIds = t, this.otherShipCount = e
+            }, e.prototype._reset = function (t, e) {
+                this.deck1.locked(), this.deck2.locked(), this.deck3.locked(), this.deck4.locked(), this.other.locked(), -1 != t.indexOf(1) && this.deck1.deFocus(), -1 != t.indexOf(2) && this.deck2.deFocus(), -1 != t.indexOf(3) && this.deck3.deFocus(), -1 != t.indexOf(4) && this.deck4.deFocus(), 0 < e && this.other.deFocus()
             }, e
         }(PIXI.Container);
-    e.SlotItemSlotBox = a
+    e.DeckSelectView = _
 }

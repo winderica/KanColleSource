@@ -19,45 +19,30 @@ const function1138 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(74),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(33),
+        r = i(1139),
+        s = i(1140),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onSelectFromTop = function (t) {
+                    if (i._top_view.deactivate(), -1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                if (null == this._star && (this._star = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(13)), this.addChild(this._star)), null == this._plus && (this._plus = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(23)), this._plus.position.set(21, 5), this.addChild(this._plus)), null == this._level && (this._level = new PIXI.Sprite, this._level.position.set(39, 2), this.addChild(this._level)), t < 1 || 9 < t) this._star.visible = !1, this._plus.visible = !1, this._level.visible = !1;
-                else {
-                    switch (t) {
-                        case 1:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(14);
-                            break;
-                        case 2:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(15);
-                            break;
-                        case 3:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(16);
-                            break;
-                        case 4:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(17);
-                            break;
-                        case 5:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(18);
-                            break;
-                        case 6:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(19);
-                            break;
-                        case 7:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(20);
-                            break;
-                        case 8:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(21);
-                            break;
-                        case 9:
-                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(22)
-                    }
-                    this._star.visible = !0, this._plus.visible = !0, this._level.visible = !0
-                }
+            return n(e, t), e.prototype.initialize = function () {
+                this._top_view.initialize()
+            }, e.prototype.activate = function () {
+                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
+            }, e.prototype.deactivate = function () {
+                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            }, e.prototype.dispose = function () {
+                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
             }, e
-        }(PIXI.Container);
-    e.LevelStar = r
+        }(o.DialogBase);
+    e.HishimochiUseDialog = a
 }

@@ -19,90 +19,39 @@ const function748 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = i(1),
-        a = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = i(8),
+        a = i(0),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClickDeck = function (t) {
-                    e.onClickDeck(t)
-                }, e._onClickOther = function () {
-                    e.onClickOther()
-                }, e.deck1 = new PIXI.Sprite, e.deck2 = new PIXI.Sprite, e.deck3 = new PIXI.Sprite, e.deck4 = new PIXI.Sprite, e.deckOther = new PIXI.Sprite, e.deck1.position.set(0, 0), e.deck2.position.set(45, 0), e.deck3.position.set(90, 0), e.deck4.position.set(135, 0), e.deckOther.position.set(180, 0), e.deck1.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(1)
-                }), e.deck2.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(2)
-                }), e.deck3.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(3)
-                }), e.deck4.on(s.EventType.CLICK, function () {
-                    e._onClickDeck(4)
-                }), e.deckOther.on(s.EventType.CLICK, function () {
-                    e._onClickOther()
-                }), e.addChild(e.deck1, e.deck2, e.deck3, e.deck4, e.deckOther), o.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(r.COMMON_MISC.getTexture(183)), e.icon3rdUnit.position.set(75, -21), e.addChild(e.icon3rdUnit)), e
+                return e._canMouseOver = !1, e._onMouseOver = function () {
+                    e._canMouseOver = !0, e.onMouseOver(), e._supplyAllOn.alpha = 1, e._clickArea.interactive = e._clickArea.buttonMode = !0
+                }, e._onMouseOut = function () {
+                    e.onMouseOut(), e._supplyAllOn.alpha = 0, e._clickArea.interactive = e._clickArea.buttonMode = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onTouchDown = function () {
+                    e._canMouseOver || (e._touchActivate(), e.onMouseOver(), e._supplyAllOn.alpha = 1)
+                }, e._touchActivate = function () {
+                    e._guardLayer = new s.AreaBox(0), e._touchArea = new s.AreaBox(0, 0, e._clickArea.width, e._clickArea.height), e._touchArea.hitArea = new PIXI.Rectangle(0, 0, e._clickArea.width, e._clickArea.height);
+                    var t = e._clickArea.getGlobalPosition();
+                    e._touchArea.position.set(t.x, t.y), e._guardLayer.addChild(e._touchArea), a.default.view.overLayer.addChild(e._guardLayer), e._guardLayer.on(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.on(r.EventType.MOUSEUP, e._onTouchUp)
+                }, e._onTouchMove = function (t) {
+                    var i = t.data.getLocalPosition(e._touchArea);
+                    1 === e._supplyAllOn.alpha && !1 === e._touchArea.hitArea.contains(i.x, i.y) && (e.onMouseOut(), e._supplyAllOn.alpha = 0)
+                }, e._onTouchUp = function () {
+                    1 === e._supplyAllOn.alpha && e.onClick(), e._touchDeactivate()
+                }, e._touchDeactivate = function () {
+                    e._guardLayer.off(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.off(r.EventType.MOUSEUP, e._onTouchUp), e._guardLayer.removeChildren(), e._touchArea = null, a.default.view.overLayer.removeChild(e._guardLayer), e._guardLayer = null
+                }, e._supplyAllOff = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(29)), e._supplyAllOn = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(30)), e._clickArea = new PIXI.Graphics, e._clickArea.beginFill(0, 0), e._clickArea.drawRect(0, 0, 62, 62), e._clickArea.endFill(), e._supplyAllOn.position.set(-26, -26), e._clickArea.position.set(-15, -15), e.addChild(e._supplyAllOff, e._supplyAllOn, e._clickArea), e._supplyAllOff.on(r.EventType.MOUSEOVER, e._onMouseOver), e._supplyAllOff.on(r.EventType.MOUSEDOWN, e._onTouchDown), e._clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e._clickArea.on(r.EventType.CLICK, e._onClick), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.deck1.off(s.EventType.CLICK), this.deck2.off(s.EventType.CLICK), this.deck3.off(s.EventType.CLICK), this.deck4.off(s.EventType.CLICK), this.deckOther.off(s.EventType.CLICK), this.onClickDeck = null, this.onClickOther = null, this.deckCount = null, this.otherShipCount = null, this.deck1 = null, this.deck2 = null, this.deck3 = null, this.deck4 = null, this.deckOther = null, this.icon3rdUnit = null
-            }, e.prototype.initDeckCount = function (t) {
-                this._updateDeckCount(t)
-            }, e.prototype.initOtherShipCount = function (t) {
-                this._updateOtherShipCount(t)
-            }, e.prototype.focusDeck = function (t) {
-                switch (this._initializeDeckTexture(this.deckCount), this._initializeOtherDeckTextre(this.otherShipCount), t) {
-                    case 1:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(74);
-                        break;
-                    case 2:
-                        this.deck2.texture = r.COMMON_MISC.getTexture(77);
-                        break;
-                    case 3:
-                        this.deck3.texture = r.COMMON_MISC.getTexture(80);
-                        break;
-                    case 4:
-                        this.deck4.texture = r.COMMON_MISC.getTexture(83)
-                }
-            }, e.prototype.focusOther = function () {
-                this._initializeDeckTexture(this.deckCount), this._initializeOtherDeckTextre(this.otherShipCount), this.deckOther.texture = r.COMMON_MISC.getTexture(85)
-            }, e.prototype._updateDeckCount = function (t) {
-                this.deckCount = t, this._initializeDeckTexture(t), this._initializeDeckInteractive(t)
-            }, e.prototype._updateOtherShipCount = function (t) {
-                this._initializeOtherDeckTextre(t), this._initializeOtherDeckInteractive(t), this.otherShipCount = t
-            }, e.prototype._initializeDeckTexture = function (t) {
-                switch (t) {
-                    case 1:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(75), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 2:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 3:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(79), this.deck4.texture = r.COMMON_MISC.getTexture(81);
-                        break;
-                    case 4:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(73), this.deck2.texture = r.COMMON_MISC.getTexture(76), this.deck3.texture = r.COMMON_MISC.getTexture(79), this.deck4.texture = r.COMMON_MISC.getTexture(82);
-                        break;
-                    default:
-                        this.deck1.texture = r.COMMON_MISC.getTexture(72), this.deck2.texture = r.COMMON_MISC.getTexture(75), this.deck3.texture = r.COMMON_MISC.getTexture(78), this.deck4.texture = r.COMMON_MISC.getTexture(81)
-                }
-            }, e.prototype._initializeDeckInteractive = function (t) {
-                switch (this.deck1.interactive = this.deck1.buttonMode = !1, this.deck2.interactive = this.deck2.buttonMode = !1, this.deck3.interactive = this.deck3.buttonMode = !1, this.deck4.interactive = this.deck4.buttonMode = !1, t) {
-                    case 1:
-                        this.deck1.interactive = this.deck1.buttonMode = !0;
-                        break;
-                    case 2:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0;
-                        break;
-                    case 3:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0, this.deck3.interactive = this.deck3.buttonMode = !0;
-                        break;
-                    case 4:
-                        this.deck1.interactive = this.deck1.buttonMode = !0, this.deck2.interactive = this.deck2.buttonMode = !0, this.deck3.interactive = this.deck3.buttonMode = !0, this.deck4.interactive = this.deck4.buttonMode = !0
-                }
-            }, e.prototype._initializeOtherDeckTextre = function (t) {
-                0 < t ? (this.deckOther.texture = r.COMMON_MISC.getTexture(84), this.deckOther.visible = !0) : this.deckOther.visible = !1
-            }, e.prototype._initializeOtherDeckInteractive = function (t) {
-                0 < t ? (this.deckOther.interactive = !0, this.deckOther.buttonMode = !0) : (this.deckOther.interactive = !1, this.deckOther.buttonMode = !1)
+                this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
+            }, e.prototype.updateClickable = function (t) {
+                this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
             }, e
         }(PIXI.Container);
-    e.DeckSelectView = a
+    e.SupplyAllButton = _
 }

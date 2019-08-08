@@ -19,87 +19,55 @@ const function400 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(78),
-        s = i(13),
-        a = i(24),
-        _ = i(67),
-        u = i(14),
-        l = i(2),
-        c = function (t) {
+    var o = i(313),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._task = new o.SerialTask, e
+                e._eye_open_flag = !0, e._onUpdate = function () {
+                    for (var t = 0, i = e._flowers; t < i.length; t++) {
+                        i[t].update()
+                    }
+                }, e._flowers = [];
+                var i = new s;
+                return i.position.set(151, 10), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(166, 43), e.addChild(i), e._flowers.push(i), i = new s, i.position.set(40, 177), e.addChild(i), e._flowers.push(i), e
             }
-            return n(e, t), e.prototype.addShip = function (t) {
-                this._task.add(new h(t))
-            }, e.prototype.addSlotitem = function (t) {
-                this._task.add(new p(t))
-            }, e.prototype.addUseitem = function (t) {
-                this._task.add(new d(t))
-            }, e.prototype.addFurniture = function (t) {
-                this._task.add(new f(t))
-            }, e.prototype._start = function () {
-                var t = this,
-                    e = new u.UIImageLoader("common");
-                e.add("common_selectable_reward.json"), e.load(function () {
-                    t._task.start(function () {
-                        t._endTask()
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0, e = this._flowers; t < e.length; t++) {
+                    e[t].initialize()
+                }
+                this._update()
+            }, e.prototype.activate = function () {
+                this._startWaiting()
+            }, e.prototype.deactivate = function () {
+                this._stopWaiting()
+            }, e.prototype.dispose = function () {
+                this.deactivate()
+            }, e.prototype._update = function () {
+                1 == this._eye_open_flag ? this.texture = o.ITEM_MINI.getTexture(0) : this.texture = o.ITEM_MINI.getTexture(1)
+            }, e.prototype._startWaiting = function () {
+                var t = this;
+                if (null == this._t) {
+                    var e = 0;
+                    e = 1 == this._eye_open_flag ? 3e3 * Math.random() + 200 : 200 * Math.random() + 100, this._t = createjs.Tween.get(null, {
+                        onChange: this._onUpdate
+                    }).wait(e).call(function () {
+                        t._eye_open_flag = !t._eye_open_flag, t._update(), t._t = null, t._startWaiting()
                     })
-                })
+                }
+            }, e.prototype._stopWaiting = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(l.TaskBase);
-    e.TaskLoadResources = c;
-    var h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._mst_id, !1, "card_round"), e.add(this._mst_id, !1, "icon_box"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(l.TaskBase),
-        p = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new a.SlotLoader;
-                e.add(this._mst_id, "card"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(l.TaskBase),
-        d = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new _.UseitemLoader;
-                e.add(this._mst_id, 1), e.add(this._mst_id, 2), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(l.TaskBase),
-        f = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mst_id = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new r.FurnitureLoader;
-                e.add(this._mst_id, "reward"), e.load(function () {
-                    t._endTask()
-                })
-            }, e
-        }(l.TaskBase)
+        }(PIXI.Sprite);
+    e.MiniChara = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._i = 0, e._rnd = 0, e._startY = 0, e._rnd = .04 * Math.random() + .05, e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = o.ITEM_MINI.getTexture(2), this._startY = this.y
+        }, e.prototype.update = function () {
+            this.y = this._startY + 2 * Math.sin(this._i * this._rnd), this._i += .5
+        }, e
+    }(PIXI.Sprite)
 }

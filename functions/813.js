@@ -19,66 +19,73 @@ const function813 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(114),
-        s = i(3),
-        a = i(3),
-        _ = i(331),
-        u = i(88),
-        l = i(814),
-        c = i(815),
-        h = i(816),
-        p = i(817),
+    var o = i(336),
+        r = i(19),
+        s = i(8),
+        a = i(337),
+        _ = i(40),
+        u = i(81),
+        l = i(6),
+        c = i(3),
+        h = i(338),
+        p = i(1),
         d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onClickStart = function () {
-                    null != e._cb_onStart && e._cb_onStart()
-                }, e._onClickCancel = function () {
-                    null != e._cb_onCancel && e._cb_onCancel()
-                };
-                var i = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(27));
-                n.position.set(275, 194), e.addChild(n);
-                var d = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(25));
-                d.position.set(653, 194), e.addChild(d), e._shipPanelBefore = new c.KaizoDetailShipPanel, e._shipPanelBefore.position.set(35, 218), e.addChild(e._shipPanelBefore), e._shipPanelAfter = new c.KaizoDetailShipPanel, e._shipPanelAfter.position.set(408, 218), e.addChild(e._shipPanelAfter);
-                var f = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(30));
-                f.position.set(32, 416), e.addChild(f);
-                var y = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(28));
-                y.position.set(413, 418), e.addChild(y);
-                var m = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(31));
-                m.position.set(32, 471), e.addChild(m);
-                var g = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(29));
-                g.position.set(413, 473), e.addChild(g);
-                e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
-                var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
-                return v.position.set(720, 446), e.addChild(v), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new l.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new u.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                return n._mainView = i, n._bg_itemlost = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(0)), n._penguin = new a.FailedPenguin, n._obj_leaf = new PIXI.Sprite(c.COMMON_ANIMATION.getTexture(1)), n._obj_leaf.anchor.set(.5, .5), n._messageBox = new u.MessageBox(!1), n._gearBtnHome = new _.GearBtnHome, n._gearBtnHome.initialize(), n._gearBtnHome.x = 1140, n._gearBtnHome.y = 660, n.leafTween = o.LeafAnimationUtil.LeafAnimation(n._obj_leaf, new PIXI.Point(0, 60)), n.leafTween.setPaused(!0), n
             }
-            return n(e, t), e.prototype.activate = function (t, e) {
-                this._cb_onStart = t, this._cb_onCancel = e
-            }, e.prototype.update = function (t, e, i, n) {
-                this._shipPanelBefore.update(t.level, t.name, t.shipTypeName), this._shipPanelBefore.updateStatus(t.karyoku, t.raisou, t.taiku, t.soukou), this._shipPanelAfter.update(t.level), this._shipPanelAfter.updateStatus(), this._textAmmoNow.text = e.getCount(32).toString(), this._textSteelNow.text = e.getCount(33).toString(), this._textAmmoNeed.text = e.getRequire(32).toString(), this._textSteelNeed.text = e.getRequire(33).toString(), this._header.update(t), this._startBtn.update(!1), e.validateAll() && 1 == i && 1 == n && this._startBtn.update(!0);
-                var o = e.getRequire(58),
-                    r = e.getRequire(65),
-                    s = e.getRequire(78),
-                    a = e.getRequire(75),
-                    _ = e.getRequire(77),
-                    u = e.getRequire(3),
-                    l = e.getRequire(2),
-                    c = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, u, l) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, u, l) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, u, l) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, u, l) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, u, l) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, u, l) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, u, l) : u > 0 || l > 0 ? this._alertPanel.showMessageKits(u, l) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
-                    var h = e.validate(32),
-                        p = e.validate(33),
-                        d = !(l > 0) || e.validate(2),
-                        f = !(u > 0) || e.validate(3),
-                        y = h && p,
-                        m = d && f;
-                    0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)
-                }
+            return n(e, t), e.prototype._03_link = function () {
+                this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin), this._obj_leaf.visible = !1, this.addChild(this._obj_leaf), this.addChild(this._background), this.addChild(this._ship), this._04_whiteInOut()
+            }, e.prototype._04_whiteInOut = function () {
+                var t = this;
+                this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 400).call(function () {
+                    t.removeChild(t._background), t.removeChild(t._ship)
+                }).to({
+                    alpha: 0
+                }, 500).call(function () {
+                    t.removeChild(t._white), t._05_showFailedPenguin()
+                })
+            }, e.prototype._05_showFailedPenguin = function () {
+                var t, e = this,
+                    i = new r.TweenTask;
+                t = createjs.Tween.get(this._penguin.light).to({
+                    alpha: 1
+                }, 300), i.addTween(t), t = createjs.Tween.get(this._penguin.light_place).to({
+                    alpha: 1
+                }, 300), i.addTween(t), i.start(function () {
+                    e._obj_leaf.visible = !0, e.leafTween.setPaused(!1), e._06_typeMessage()
+                })
+            }, e.prototype._06_typeMessage = function () {
+                var t = this;
+                this._messageBox.y = 1200, this._messageBox.initialize("\u8fd1\u4ee3\u5316\u6539\u4fee\uff08\u5408\u6210\uff09\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002"), this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
+                    y: 480
+                }, 500, createjs.Ease.quadOut).call(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), l.SE.play("247"), t._messageBox.activate(function () {
+                        t._07_waitClick()
+                    })
+                })
+            }, e.prototype._07_waitClick = function () {
+                var t = this,
+                    e = new s.AreaBox(0);
+                e.buttonMode = !0, this.addChild(e), e.once(p.EventType.CLICK, function () {
+                    t.removeChild(e), t._08_whiteInOut()
+                })
+            }, e.prototype._08_whiteInOut = function () {
+                var t = this;
+                this.addChild(this._white), createjs.Tween.get(this._white).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t.removeChild(t._bg_itemlost), t.removeChild(t._obj_leaf), t.removeChild(t._penguin), t.removeChild(t._messageBox), t.removeChild(t._gearBtnHome), t._gearBtnHome.dispose(), t._mainView.visible = !0, createjs.Tween.get(t._white).to({
+                        alpha: 0
+                    }, 500).call(function () {
+                        t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    })
+                })
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._shipPanelBefore.dispose(), this._shipPanelAfter.dispose(), this._cancelBtn.dispose(), this._startBtn.dispose(), this._arrow.dispose(), this._alertPanel.dispose(), this._header.dispose(), this._titleBar.dispose(), this._textAmmoNow.destroy(), this._textSteelNow.destroy(), this._textAmmoNeed.destroy(), this._textSteelNeed.destroy(), this._alertMessage.destroy(), this._cb_onStart = null, this._cb_onCancel = null, this._shipPanelBefore = null, this._shipPanelAfter = null, this._textAmmoNow = null, this._textAmmoNeed = null, this._textSteelNow = null, this._textSteelNeed = null, this._cancelBtn = null, this._startBtn = null, this._arrow = null, this._alertPanel = null, this._alertMessage = null, this._alertOverLimit = null, this._header = null, this._titleBar = null
+                this.removeChildren(), createjs.Tween.removeTweens(this.leafTween.target), this.leafTween = null, t.prototype.dispose.call(this), this._bg_itemlost = null, this._penguin.dispose(), this._penguin = null, this._obj_leaf = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome = null
             }, e
-        }(PIXI.Container);
-    e.KaizoDetail = d
+        }(h.PowerUpAnimation);
+    e.PowerUpAnimationFailed = d
 }

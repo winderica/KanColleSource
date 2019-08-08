@@ -20,22 +20,60 @@ const function1137 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(74),
-        s = i(174),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+        r = i(92),
+        s = i(33),
+        a = i(93),
+        _ = i(1138),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getFurniture(e, "reward"),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.HishimochiUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogFurnitureBtn = a
+        }(s.TaskWithResult);
+    e.TaskUseHishimochi = u
 }

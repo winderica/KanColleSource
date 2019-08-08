@@ -19,25 +19,30 @@ const function764 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(0),
-        s = i(7),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_req_kaisou/slot_exchange_index", o.api_id = e, o.api_src_idx = i, o.api_dst_idx = n, o
+    var o = i(0),
+        r = i(47),
+        s = i(14),
+        a = i(765),
+        _ = i(767),
+        u = i(768),
+        l = i(72),
+        c = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_src_idx = this.api_src_idx, this._post_data.api_dst_idx = this.api_dst_idx, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._raw_data.api_ship_data;
-                r.default.model.ship.updateData(e), this._set_bauxite(), t.prototype._completedEnd.call(this)
-            }, e.prototype._set_bauxite = function () {
-                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
-                    var t = s.ObjUtil.getNumber(this._raw_data, "api_bauxite");
-                    r.default.model.useItem.get(34).__setCount__(t)
-                }
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new a.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new _.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                var t = this;
+                return new l.FuncTask(function () {
+                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
+                })
+            }, e.prototype.start = function () {
+                var t = o.default.model.deck.get(1).getShipMemID(0);
+                this.taskIdleMain = new u.TaskIdleMain(this), this.taskIdleMain.start(1, t)
             }, e
-        }(o.APIBase);
-    e.SlotExchangeIndexAPI = a
+        }(r.SceneBase);
+    e.RemodelScene = c
 }

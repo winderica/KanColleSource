@@ -19,35 +19,42 @@ const function1105 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(130),
-        r = i(91),
-        s = i(1106),
-        a = i(1107),
-        _ = i(1144),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onChangeSceneState = function (t) {
-                    i._showView(t)
-                }, i._purchasedItems = e, i._header = new PIXI.Sprite, i._header.position.set(0, 102), i.addChild(i._header), i._tabs = new s.TabContainer(i._onChangeSceneState), i._tabs.position.set(181, 160), i.addChild(i._tabs), i
+    var o = i(0),
+        r = i(2),
+        s = i(14),
+        a = i(239),
+        _ = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = o.ITEM_ILIST.getTexture(35), this._tabs.initialize()
-            }, e.prototype.update = function () {
-                this._showView(0)
-            }, e.prototype.updateForPurchasedView = function () {
-                this._showView(1)
-            }, e.prototype.activate = function () {
-                this._tabs.activate()
-            }, e.prototype.deactivate = function () {
-                this._tabs.deactivate()
-            }, e.prototype.dispose = function () {
-                this._tabs.dispose(), null != this._ownedView && (this._ownedView.dispose(), this._ownedView = null), null != this._purchasedView && (this._purchasedView.dispose(), this._purchasedView = null), this._purchasedItems = null
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null)
-            }, e.prototype._showView = function (t) {
-                this._removeView(), this._tabs.update(t), 0 == t ? (null == this._ownedView && (this._ownedView = new a.OwnedItemListMain, this._ownedView.initialize()), this._current = this._ownedView) : 1 == t && (null == this._purchasedView && (this._purchasedView = new _.PurchasedItemListMain(this._purchasedItems), this._purchasedView.initialize()), this._current = this._purchasedView), this._current.update(), this._current.activate(), this.addChild(this._current)
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
+                    t._load2()
+                })
+            }, e.prototype._load2 = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
+                    t._loadSkinResource()
+                })
+            }, e.prototype._loadSkinResource = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item"),
+                    i = o.default.model.basic.getUISkinID();
+                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
+                    t._loadAkashiResoueces()
+                })
+            }, e.prototype._loadAkashiResoueces = function () {
+                var t = this,
+                    e = new s.UIImageLoader("item");
+                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
+                    t._endTask()
+                })
             }, e
-        }(r.ViewBase);
-    e.ItemListMain = u
+        }(r.TaskBase);
+    e.TaskLoadResources = _
 }

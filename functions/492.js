@@ -1,74 +1,98 @@
 const function492 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(493),
-        o = i(258),
+    var o = i(0),
         r = i(7),
         s = function () {
-            function t() {
-                this._exist3rdUnit = !1, this._combined = new n.DeckCombinedModelEdit
+            function t(t) {
+                this._initialize(t)
             }
-            return Object.defineProperty(t.prototype, "num", {
+            return Object.defineProperty(t.prototype, "id", {
                 get: function () {
-                    var t = 0;
-                    for (var e in this._map) t++;
-                    return t
+                    return r.ObjUtil.getNumber(this._o, "api_squadron_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "combined", {
+            }), Object.defineProperty(t.prototype, "state", {
                 get: function () {
-                    return this._combined
+                    return r.ObjUtil.getNumber(this._o, "api_state")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "exist3rdUnit", {
+            }), Object.defineProperty(t.prototype, "mem_id", {
                 get: function () {
-                    return this._exist3rdUnit
+                    return r.ObjUtil.getNumber(this._o, "api_slotid")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.setData = function (t) {
-                if (this._map = {}, null != t)
-                    for (var e = 0; e < t.length; e++) {
-                        var i = t[e],
-                            n = r.ObjUtil.getNumber(i, "api_id");
-                        if (n > 0) {
-                            var s = n.toString(),
-                                a = new o.DeckModelEdit(i);
-                            this._map[s] = a, 2 === e && (this._exist3rdUnit = i.api_ship.length >= 7)
-                        }
-                    }
-            }, t.prototype.updateData = function (t) {
-                if (null != this._map && null != t) {
-                    var e = new o.DeckModelEdit(t);
-                    if (!(e.mstID <= 0)) {
-                        var i = e.mstID.toString();
-                        1 == this._map.hasOwnProperty(i) && delete this._map[i], this._map[i] = e
-                    }
-                }
-            }, t.prototype.get = function (t) {
-                var e = t.toString();
-                return 1 == this._map.hasOwnProperty(e) ? this._map[e] : null
-            }, t.prototype.getAll = function () {
-                var t, e = [];
-                return null != (t = this.get(1)) && e.push(t), null != (t = this.get(2)) && e.push(t), null != (t = this.get(3)) && e.push(t), null != (t = this.get(4)) && e.push(t), e
-            }, t.prototype.getIDs = function () {
-                return this.getAll().map(function (t, e, i) {
-                    return t.mstID
-                })
-            }, t.prototype.isInDeck = function (t) {
-                for (var e = this.getAll(), i = 0, n = e; i < n.length; i++) {
-                    var o = n[i],
-                        r = o.isInDeck(t);
-                    if (-1 != r) return [o.mstID, r]
-                }
-                return null
-            }, t.prototype.isCombined = function () {
-                return this._combined.isCombined()
+            }), Object.defineProperty(t.prototype, "count", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_count")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "countMax", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_max_count")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "fatigue", {
+                get: function () {
+                    return r.ObjUtil.getNumber(this._o, "api_cond")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_id", {
+                get: function () {
+                    return null == this._model ? -1 : this._model.mstID
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "skill_level", {
+                get: function () {
+                    return null == this._model ? 0 : this._model.skillLevel
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "level", {
+                get: function () {
+                    return null == this._model ? 0 : this._model.level
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isRelocation = function () {
+                return o.default.model.slot.getAirUnitRelocation().indexOf(this.mem_id) >= 0
+            }, t.prototype._initialize = function (t) {
+                this._o = t, this._model = o.default.model.slot.get(this.mem_id)
             }, t
         }();
-    e.DeckModelHolder = s
+    e.AirUnitSquadronModel = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.update = function (t) {
+            this._initialize(t)
+        }, e
+    }(s);
+    e.AirUnitSquadronModelEdit = a
 }

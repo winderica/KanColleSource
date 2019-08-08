@@ -34,10 +34,10 @@ const function992 = function (t, e, i) {
                     e._overed = !1, e._updateTexture(), e._over.visible = !1
                 }, e._onClick = function () {
                     o.default.scene.change(24, new r.ItemSceneModel)
-                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(-187, -40), e._over.visible = !1, e._icon.interactive = !0, e
+                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(30, -55), e._over.visible = !1, e._icon.interactive = !0, e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._icon.texture = s.SALLY_COMMON.getTexture(41), this._over.texture = s.SALLY_COMMON.getTexture(45), this.addChild(this._over), this.addChild(this._icon)
+                this._icon.texture = s.SALLY_COMMON.getTexture(41), this._over.texture = s.SALLY_COMMON.getTexture(44), this.addChild(this._over), this.addChild(this._icon)
             }, e.prototype.activate = function () {
                 var t = this;
                 null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
@@ -49,5 +49,5 @@ const function992 = function (t, e, i) {
                 this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
             }, e
         }(PIXI.Container);
-    e.BtnShop2 = _
+    e.BtnShop = _
 }

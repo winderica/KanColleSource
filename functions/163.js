@@ -20,13 +20,13 @@ const function163 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(17),
-        s = i(697),
-        a = i(698),
-        _ = i(699),
-        u = i(315),
-        l = i(316),
-        c = i(317);
+        r = i(18),
+        s = i(703),
+        a = i(704),
+        _ = i(705),
+        u = i(319),
+        l = i(320),
+        c = i(321);
     ! function (t) {
         function e() {
             switch (r.MAMIYA_IRAKO_SEASON) {
@@ -47,7 +47,7 @@ const function163 = function (t, e, i) {
             }
             return i
         }
-        t.EXTENDS_MAX = 13, t.MAMIYA_DIALOG_VOICE = [
+        t.EXTENDS_MAX = 15, t.MAMIYA_DIALOG_VOICE = [
             [11, 12],
             [50, 50]
         ], t.IRAKO_DIALOG_VOICE = [

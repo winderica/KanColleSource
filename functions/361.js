@@ -19,19 +19,34 @@ const function361 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(362),
-        r = function (t) {
+    var o = i(37),
+        r = i(362),
+        s = i(989),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._rader = new o.Rader, e._rader.x = -188, e._rader.y = -225, e.addChild(e._rader), e
+                return e._banners = [], e._levels = [], e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._rader.initialize()
+            return n(e, t), e.prototype.dispose = function () {
+                for (var t = 0, e = this._banners; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e.prototype.update = function (t) {
-                this._rader.update(t)
-            }, e.prototype.dispose = function () {
-                this._rader.dispose()
+                for (o.TaskLoadShipResource.abortBy(this); this._banners.length > 0;) {
+                    var e = this._banners.pop();
+                    null != e.parent && e.parent.removeChild(e), e.dispose()
+                }
+                for (; this._levels.length > 0;) {
+                    var i = this._levels.pop();
+                    null != i.parent && i.parent.removeChild(i)
+                }
+                for (var n = 0; n < t.length; n++) {
+                    var a = new r.CompBannerAndLack;
+                    a.position.set(0, 75 * n), a.initialize(), a.update(t[n], !0), this.addChild(a), this._banners.push(a);
+                    var _ = new s.CompBannerLevel;
+                    _.position.set(201, 75 * n), _.initialize(), _.update(t[n]), this.addChild(_), this._levels.push(_)
+                }
             }, e
         }(PIXI.Container);
-    e.RaderCanvas = r
+    e.PanelDeckSelectBanners = a
 }

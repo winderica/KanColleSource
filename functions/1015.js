@@ -19,24 +19,154 @@ const function1015 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(1016),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._enabled = !1, i._btn1 = new r.BtnMatchingSelect(e), i._btn2 = new r.BtnMatchingSelect(e), i._btn3 = new r.BtnMatchingSelect(e), i._txt1 = new o.TextBox(19, 4999235), i._txt = new o.TextBox(15, 4999235), i
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this._btn1.initialize(0), this._btn2.initialize(1), this._btn3.initialize(2), this._txt1.text = "\u3088\u308a\u6b21\u56de\u6f14\u7fd2\u5019\u88dc\u3092\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u3002", this._txt1.position.set(141, 7), this.addChild(this._btn1), this.addChild(this._btn2), this.addChild(this._btn3), this.addChild(this._txt1), this.addChild(this._txt)
-            }, e.prototype.update = function (t, e) {
-                this._enabled = t, 1 == t ? (this._btn1.position.set(0, 0), this._btn2.position.set(150, 0), this._btn3.position.set(300, 0), this._txt1.visible = !1, this._txt.position.set(445, 9), 0 == e ? (this._btn1.setSelected(!0), this._btn2.setSelected(!1), this._btn3.setSelected(!1)) : 1 == e ? (this._btn1.setSelected(!1), this._btn2.setSelected(!0), this._btn3.setSelected(!1)) : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!0)), this._txt.text = "\u6f14\u7fd2\u76f8\u624b\u306f\u4e00\u65e5\u4e8c\u56de\u66f4\u65b0\u3055\u308c\u307e\u3059\u3002") : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!1), this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate(), this._btn1.visible = !1, this._btn2.visible = !1, this._btn3.visible = !1, 0 == e ? (this._btn1.visible = !0, this._btn1.position.set(0, 0)) : 1 == e ? (this._btn2.visible = !0, this._btn2.position.set(0, 0)) : (this._btn3.visible = !0, this._btn3.position.set(0, 0)), this._txt1.visible = !0, this._txt.position.set(490, 10), this._txt.text = "\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u5909\u66f4\u53ef\u80fd\u3067\u3059\u3002")
-            }, e.prototype.activate = function () {
-                1 == this._enabled && (this._btn1.activate(), this._btn2.activate(), this._btn3.activate())
-            }, e.prototype.deactivate = function () {
-                this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._btn1.dispose(), this._btn2.dispose(), this._btn3.dispose(), this._txt1.destroy(), this._txt.destroy()
-            }, e
-        }(PIXI.Container);
-    e.CompMatchingSelectBtns = s
+    var o = i(0),
+        r = i(18),
+        s = i(2),
+        a = i(1016),
+        _ = i(1017),
+        u = function () {
+            function t() {}
+            return t.prototype.getPreLoadTask = function () {
+                return this._model = new a.EventSortieConditionModel, new l(this._model)
+            }, t.prototype.update = function (t) {
+                this._map = t
+            }, t.prototype.check = function (t, e) {
+                if (this._map.area_id != r.EVENT_AREA_ID) return {
+                    result: !0,
+                    reason: 0
+                };
+                var i = this._checkCommon();
+                return null != i ? i : (i = this._check(t, e), null != i ? i : {
+                    result: !0,
+                    reason: 0
+                })
+            }, t.prototype._checkCommon = function () {
+                var t = this._model.win_count,
+                    e = this._model.lose_count;
+                if (0 == t && 0 == e) return {
+                    result: !1,
+                    reason: 13
+                };
+                if (this._model.win_rate < .75) return {
+                    result: !1,
+                    reason: 15
+                };
+                var i = o.default.model.basic.shipMax,
+                    n = o.default.model.ship.num;
+                return i - n < 5 ? {
+                    result: !1,
+                    reason: 16
+                } : (i = o.default.model.basic.slotMax, n = o.default.model.slot.num, i - n < 20 ? {
+                    result: !1,
+                    reason: 17
+                } : 0 == this._map.getSelectedOperationType() ? {
+                    result: !1,
+                    reason: 18
+                } : null)
+            }, t.prototype._check = function (t, e) {
+                var i = this._map.mst_id;
+                if (441 == i)
+                    for (var n = [9, 10, 8, 11, 18, 7, 17], o = 0, r = e; o < r.length; o++) {
+                        var s = r[o];
+                        if (null != s) {
+                            var a = s.shipTypeID;
+                            if (n.indexOf(a) > -1) return {
+                                result: !1,
+                                reason: 45
+                            }
+                        }
+                    } else if (442 == i)
+                        for (var n = [11, 18], _ = 0, u = e; _ < u.length; _++) {
+                            var s = u[_];
+                            if (null != s) {
+                                var a = s.shipTypeID;
+                                if (n.indexOf(a) > -1) return {
+                                    result: !1,
+                                    reason: 38
+                                }
+                            }
+                        }
+                if ([3, 4].indexOf(this._map.getSelectedOperationType()) > -1)
+                    if (441 == i)
+                        for (var l = 0, c = e; l < c.length; l++) {
+                            var s = c[l];
+                            if (null != s) {
+                                var h = s.label;
+                                if (0 != h && 1 != h) return {
+                                    result: !1,
+                                    reason: 19
+                                }
+                            }
+                        } else if (442 == i)
+                            for (var p = 0, d = e; p < d.length; p++) {
+                                var s = d[p];
+                                if (null != s) {
+                                    var h = s.label;
+                                    if (0 != h && 2 != h) return {
+                                        result: !1,
+                                        reason: 19
+                                    }
+                                }
+                            } else if (443 == i)
+                                for (var f = 0, y = e; f < y.length; f++) {
+                                    var s = y[f];
+                                    if (null != s) {
+                                        var h = s.label;
+                                        if (0 != h && 3 != h) return {
+                                            result: !1,
+                                            reason: 19
+                                        }
+                                    }
+                                } else if (444 == i)
+                                    if (1 == t)
+                                        for (var m = 0, g = e; m < g.length; m++) {
+                                            var s = g[m];
+                                            if (null != s) {
+                                                var h = s.label;
+                                                if (0 != h && 4 != h) return {
+                                                    result: !1,
+                                                    reason: 47
+                                                }
+                                            }
+                                        } else
+                                            for (var v = 0, b = e; v < b.length; v++) {
+                                                var s = b[v];
+                                                if (null != s) {
+                                                    var h = s.label;
+                                                    if (0 != h && 5 != h) return {
+                                                        result: !1,
+                                                        reason: 48
+                                                    }
+                                                }
+                                            } else if (445 == i && !this._map.isCleared())
+                                                for (var w = 0, x = e; w < x.length; w++) {
+                                                    var s = x[w];
+                                                    if (null != s) {
+                                                        var h = s.label;
+                                                        if (0 != h && 6 != h) return {
+                                                            result: !1,
+                                                            reason: 49
+                                                        }
+                                                    }
+                                                }
+                return {
+                    result: !0,
+                    reason: 0
+                }
+            }, t
+        }();
+    e.EventSortieCondition = u;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onComplete = function () {
+                i._endTask()
+            }, i._model = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            new _.APIEventSortieCondition(this._model).start(this._onComplete)
+        }, e.prototype._endTask = function () {
+            this._model = null, t.prototype._endTask.call(this)
+        }, e
+    }(s.TaskBase)
 }

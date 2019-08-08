@@ -28,25 +28,25 @@ const function161 = function (t, e, i) {
             return n(e, t), e.prototype.update = function (t) {
                 switch (t) {
                     case 1:
-                        this.texture = o.COMMON_MISC.getTexture(171);
-                        break;
-                    case 2:
-                        this.texture = o.COMMON_MISC.getTexture(172);
-                        break;
-                    case 3:
                         this.texture = o.COMMON_MISC.getTexture(173);
                         break;
-                    case 4:
+                    case 2:
                         this.texture = o.COMMON_MISC.getTexture(174);
                         break;
-                    case 5:
+                    case 3:
                         this.texture = o.COMMON_MISC.getTexture(175);
                         break;
-                    case 6:
+                    case 4:
                         this.texture = o.COMMON_MISC.getTexture(176);
                         break;
-                    case 7:
+                    case 5:
                         this.texture = o.COMMON_MISC.getTexture(177);
+                        break;
+                    case 6:
+                        this.texture = o.COMMON_MISC.getTexture(178);
+                        break;
+                    case 7:
+                        this.texture = o.COMMON_MISC.getTexture(179);
                         break;
                     default:
                         this.texture = PIXI.Texture.EMPTY

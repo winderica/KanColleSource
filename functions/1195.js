@@ -19,33 +19,18 @@ const function1195 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(6),
-        a = i(240),
-        _ = i(175),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+    var o = i(2),
+        r = i(14),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene_dispose_delegate = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = o.default.model.basic.getDutyExecutableCount();
-                if (this._holder.getExecCount() >= e) return void this._endTask();
-                s.SE.play("240"), new a.DutyStartAPI(this._model.id).start(function () {
-                    t._update()
-                })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new _.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    1 == o.default.option.voice_duty && o.default.sound.voice.playAtRandom("9999", [409, 410], [50, 50]), t._endTask()
-                })
+                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), this._endTask()
             }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+                this._scene_dispose_delegate = null, r.UIImageLoader.clearMemoryCache("duty"), t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskWaitedDutySelect = u
+        }(o.TaskBase);
+    e.TaskDutySceneFinalize = s
 }

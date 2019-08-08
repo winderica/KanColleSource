@@ -19,103 +19,66 @@ const function449 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(12),
-        s = i(184),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._weight = 1, n._type = e, n._night = i, n._bg = new s.TelopBG, n.addChild(n._bg), n._text = new r.Sprite, n.addChild(n._text), n
+    var o = i(22),
+        r = i(2),
+        s = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._scene = e, r._data = i, r._from_planes = n, r._to_ships = o, r._tasks = new Array, r
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                switch (this._friend = e, this._text.texture = o.default.resources.getSlotitem(t, "btxt_flat"), this._text.scale.set(.83), this._setBGTexture(e), this._type) {
-                    case 0:
-                        1 == e ? (this._bg_base_x = -600, this._text.anchor.set(1, .5), this._text_base_x = 0) : (this._bg_base_x = 1800, this._text.anchor.set(0, .5), this._text_base_x = 1200, this._weight = -1), this._bg.position.set(this._bg_base_x, 516), this._text.position.set(this._text_base_x, 516);
-                        break;
-                    case 1:
-                        this._text_w = this._text.width, this._bg.scale.set(1, 1.5), this._bg.position.set(600, 516), this._bg.alpha = 0, 1 == e ? (this._text.anchor.set(.5), this._text.position.set(1200 - this._text_w / 2, 516)) : (this._text.anchor.set(.5), this._text.position.set(0 + this._text_w / 2, 516)), this._text.alpha = 0, this._text.scale.set(.83 + .2075);
-                        break;
-                    case 2:
-                        this._friend = e;
-                        var i = e ? 1 : -1;
-                        1 == e ? (this._text.anchor.set(1, .5), this._text.rotation = -16 / 180 * Math.PI, this._text.position.set(0, 692)) : (this._text.anchor.set(0, .5), this._text.rotation = 16 / 180 * Math.PI, this._text.position.set(1200, 580)), this._bg.position.set(600 - 750 * i, 644)
+            return n(e, t), e.prototype._start = function () {
+                for (var t = this, e = this, i = 0, n = this._to_ships; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        if (null == i) return "continue";
+                        if (1 == (1 == i.friend ? e._data.stage3_f.getRai(i.index) : e._data.stage3_e.getRai(i.index)) && e._from_planes.length > 0) {
+                            var n = Math.floor(Math.random() * e._from_planes.length),
+                                o = e._from_planes[n],
+                                r = e._scene.view.bannerGroupLayer.getBanner(i),
+                                s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e,
+                                _ = s.getDamage(i.index),
+                                u = s.isShield(i.index),
+                                l = new a(e._scene, o, r, _, u);
+                            e._tasks.push(l), l.start(function () {
+                                t._taskComplete(i, l)
+                            })
+                        }
+                    }(o)
                 }
-            }, e.prototype._setBGTexture = function (t) {
-                switch (this._type) {
-                    case 0:
-                    case 1:
-                        this._bg.initialize(t, !this._night);
-                        break;
-                    case 2:
-                        this._bg.removeChildren();
-                        var e = new PIXI.Sprite;
-                        1 == t ? 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_f_ybg") : 0 == this._night ? e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_hbg") : e.texture = PIXI.Texture.fromFrame("battle_telop_mes_e_ybg"), e.x = -Math.round(e.width / 2), e.y = -Math.round(e.height / 2), this._bg.addChild(e)
-                }
-            }, e.prototype.play = function () {
-                switch (this._type) {
-                    case 0:
-                        this.play_type1();
-                        break;
-                    case 1:
-                        this.play_type2();
-                        break;
-                    case 2:
-                        this.play_type3()
-                }
-            }, e.prototype.play_type1 = function () {
-                createjs.Tween.get(this._bg).to({
-                    x: this._bg_base_x + 1200 * this._weight
-                }, 200).wait(565).to({
-                    x: this._bg_base_x + 1410 * this._weight,
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._text).wait(200).to({
-                    x: this._text_base_x + 1155 * this._weight
-                }, 265).to({
-                    x: this._text_base_x + 1200 * this._weight
-                }, 235).to({
-                    x: this._text_base_x + 1800 * this._weight,
-                    alpha: 0
-                }, 200)
-            }, e.prototype.play_type2 = function () {
-                createjs.Tween.get(this._bg).to({
-                    scaleY: 1,
-                    alpha: 1
-                }, 433).wait(333).to({
-                    scaleY: 1.5,
-                    alpha: 0
-                }, 200);
-                var t = this._friend ? 1230 - this._text_w / 2 : this._text_w / 2 - 30;
-                createjs.Tween.get(this._text).wait(200).to({
-                    scaleX: .83,
-                    scaleY: .83,
-                    alpha: 1
-                }, 333, createjs.Ease.sineOut).to({
-                    x: t
-                }, 200).to({
-                    scaleX: .83 + .2075,
-                    scaleY: .83 + .2075,
-                    alpha: 0
-                }, 200)
-            }, e.prototype.play_type3 = function () {
-                var t = this._friend ? 1 : -1,
-                    e = this._friend ? 356 : 244;
-                createjs.Tween.get(this._bg).to({
-                    x: 600,
-                    y: 450
-                }, 200).wait(566).to({
-                    alpha: 0
-                }, 200), createjs.Tween.get(this._text).wait(200).to({
-                    x: 600 + 600 * t,
-                    y: e
-                }, 400, createjs.Ease.sineOut).to({
-                    x: 600 + 630 * t,
-                    y: e - 8
-                }, 100).to({
-                    x: 600 + 1140 * t,
-                    y: e - 150,
-                    alpha: 0
-                }, 266)
+                0 == this._tasks.length && this._endTask()
+            }, e.prototype._taskComplete = function (t, e) {
+                var i = this._tasks.indexOf(e);
+                this._tasks.splice(i, 1), 0 == this._tasks.length && this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._from_planes = null, this._to_ships = null, this._tasks = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.CutinTelop = a
+        }(r.TaskBase);
+    e.TaskAerialTorpedoJet = s;
+    var a = function (t) {
+        function e(e, i, n, o, r) {
+            var s = t.call(this) || this;
+            return s._explosion = function () {
+                var t = s._shield;
+                if (1 == t) {
+                    var e = s._scene.view.bannerGroupLayer.getShieldTargetBanner(s._to_banner);
+                    s._scene.view.layer_damage.showShieldAtBanner(e)
+                }
+                s._to_banner.moveAtDamage(t);
+                var i = s._to_banner.getGlobalPos(!0),
+                    n = s._scene.view;
+                n.layer_explosion.playDamageExplosion(i.x, i.y, s._damage), n.layer_explosion.playTorpedoWaterColumn(s._to_banner, function () {
+                    s._endTask()
+                })
+            }, s._scene = e, s._from_plane = i, s._to_banner = n, s._damage = o, s._shield = r, s
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._torpedo()
+        }, e.prototype._torpedo = function () {
+            var t = new PIXI.Point(this._from_plane.x, this._from_plane.y),
+                e = this._to_banner.getGlobalPos();
+            1 == this._to_banner.friend ? e.x += o.BannerSize.W / 2 : e.x -= o.BannerSize.W / 2, this._scene.view.layer_torpedo.playAerialTorpedoJet(t, e, this._explosion)
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._from_plane = null, this._to_banner = null, t.prototype._endTask.call(this)
+        }, e
+    }(r.TaskBase)
 }

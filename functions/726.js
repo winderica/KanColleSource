@@ -19,17 +19,47 @@ const function726 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/set_oss_condition", n._filter_status = e, n._japanese = i, n
+    var o = i(0),
+        r = i(2),
+        s = i(727),
+        a = i(134),
+        _ = i(21),
+        u = i(56),
+        l = i(309),
+        c = i(728),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._loadPreset = function () {
+                    var t = new c.PresetDeckAPI;
+                    t.start(function () {
+                        var e = t.result;
+                        i.organizeScene.preInitialize(e), i._endTask()
+                    })
+                }, i.organizeScene = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_language_type = this._japanese ? 0 : 1;
-                for (var e = 0; e < this._filter_status.length; e++) this._post_data["api_oss_items[" + e + "]"] = this._filter_status[e] ? 1 : 0;
-                t.prototype._connect.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._loadResource()
+            }, e.prototype._loadResource = function () {
+                var t = this;
+                (new s.TaskLoadResourcesOrganize).start(function () {
+                    t._uploadToGPU_common()
+                })
+            }, e.prototype._uploadToGPU_common = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(a.COMMON_ICON_WEAPON.getTextureFromMstID(1).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(_.COMMON_MAIN.getTexture(0).baseTexture, function () {
+                        t._uploadToGPU_organize()
+                    })
+                })
+            }, e.prototype._uploadToGPU_organize = function () {
+                var t = this;
+                o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
+                        t._loadPreset()
+                    })
+                })
             }, e
-        }(o.APIBase);
-    e.UpdateListStatusAPI = r
+        }(r.TaskBase);
+    e.PreInitializeTask = h
 }

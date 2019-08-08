@@ -1,79 +1,115 @@
 const function575 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._fileName = "", i._frame_index = 0, i._frameCount = 0, i._frameMax = 0, i._loopCount = 0, i._end = !1, i._offset = null, i._model = e, i._updateTexture(), i._updateAlpha(), i._updateFrameMax(), i._updateOffset(), i
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "fileName", {
-            get: function () {
-                return this._fileName
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.isEnd = function () {
-            return this._end
-        }, e.prototype.getOffset = function () {
-            return this._offset
-        }, e.prototype.reset = function () {
-            this._frame_index = 0, this._frameCount = 0, this._loopCount = 0, this._end = !1, this._updateTexture(), this._updateAlpha(), this._updateFrameMax()
-        }, e.prototype.update = function () {
-            if (this._end) return null;
-            var t = this._model.frames[this._frame_index];
-            this._frameCount++;
-            var e = 0 == this._frame_index && 1 == this._frameCount && 0 == this._loopCount;
-            if (this._frameCount < this._frameMax) return this._updateAlpha(), e ? t : null;
-            if (this._frame_index + 1 < this._model.frames.length) this._frame_index = this._frame_index + 1, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset();
-            else {
-                if (this._loopCount += 1, !(this._model.loopMax < 0 || this._loopCount <= this._model.loopMax)) return this._end = !0, e ? t : null;
-                this._frame_index = 0, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset()
+    var n = i(0),
+        o = i(25),
+        r = i(7),
+        s = i(78),
+        a = i(576),
+        _ = i(277),
+        u = i(105),
+        l = i(79),
+        c = function () {
+            function t() {
+                this._animationState = 0, this._change = !1, this._baseStateName = "standard", this._currentStateName = "", this._model = new a.FurnitureAnimationModel, this._currentStateName = this._baseStateName
             }
-            return t = this._model.frames[this._frame_index], 0 == t.frame && (this._end = !0), t
-        }, e.prototype._updateTexture = function () {
-            var t = this._model.frames[this._frame_index];
-            this._fileName != t.filename && (this._fileName = t.filename, "" == this._fileName ? this.texture = PIXI.Texture.EMPTY : this.texture = this._getTextureByName(this._fileName))
-        }, e.prototype._updateAlpha = function () {
-            var t = this._model.frames[this._frame_index];
-            if (t.alpha[0] == t.alpha[1]) this.alpha = t.alpha[0];
-            else {
-                var e = (t.alpha[1] - t.alpha[0]) / (this._frameMax - 1),
-                    i = t.alpha[0] + e * this._frameCount;
-                i = Math.max(0, i), this.alpha = Math.min(1, i)
-            }
-        }, e.prototype._updateFrameMax = function () {
-            var t = this._model.frames[this._frame_index];
-            if (this._frameMax = t.frame, t.framerand > 0) {
-                var e = Math.random() * t.framerand;
-                this._frameMax = this._frameMax + Math.floor(e)
-            }
-        }, e.prototype._updateOffset = function () {
-            null == this._offset && (this._offset = new PIXI.Point);
-            var t = this._model.frames[this._frame_index],
-                e = t.offsetData;
-            null != e && e.length >= 2 && (this._offset.x = e[0], this._offset.y = e[1])
-        }, e.prototype._getTextureByName = function (t) {
-            var e = PIXI.utils.TextureCache[t];
-            return e || PIXI.Texture.EMPTY
-        }, e
-    }(PIXI.Sprite);
-    e.FurnitureLayer = o
+            return Object.defineProperty(t.prototype, "model", {
+                get: function () {
+                    return this._model
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "animationState", {
+                get: function () {
+                    return this._animationState
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "currentStateName", {
+                get: function () {
+                    return this._currentStateName
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.setAnimationState = function (t, e) {
+                if (void 0 === e && (e = null), this._animationState != t)
+                    if (this._animationState = t, 2 == this._animationState) this._currentStateName = null == e ? "action1" : e;
+                    else if (1 == this._animationState) {
+                    var i = this.model.getState(this._currentStateName);
+                    this._currentStateName = i.hitArea.state
+                } else this._currentStateName = this._baseStateName
+            }, t.prototype.updateBaseStateName = function (t) {
+                this._baseStateName = t, 0 == this._animationState && (this._currentStateName = this._baseStateName)
+            }, t.prototype.loadAnimationData = function (t, e) {
+                var i = this;
+                if (n.default.model.furniture.isActive(t)) {
+                    var r = o.MathUtil.zeroPadding(t, 3),
+                        a = u.SuffixUtil.create(t, "furniture_scripts"),
+                        _ = "./resources/furniture/scripts/" + r + "_" + a + ".json" + l.VersionUtil.getResourceVersion(2, t);
+                    axios.get(_).then(function (t) {
+                        i._baseStateName = "standard", i._currentStateName = "standard", i._setParam(t), e()
+                    })
+                } else {
+                    this._baseStateName = "standard", this._currentStateName = "standard";
+                    var c = {
+                        filename: s.FurnitureLoader.getPath(t, "normal")
+                    };
+                    89 == t ? c.offset = [15, 0] : 93 == t ? c.offset = [-20, 0] : 79 == t ? c.offset = [-2, 0] : 209 == t && (c.offset = [-29, 0]);
+                    var h = {
+                        standard: {
+                            data: [
+                                [c]
+                            ]
+                        }
+                    };
+                    this._model.setData(h), e()
+                }
+            }, t.prototype._setParam = function (t) {
+                var e = new Date,
+                    i = 100 * (e.getMonth() + 1) + e.getDate(),
+                    o = 1e4 * e.getHours() + 100 * e.getMinutes() + e.getSeconds(),
+                    s = r.ObjUtil.getObject(t, "data");
+                this._model.setData(s);
+                var a = this._getBaseStateName(s, i, o);
+                this.updateBaseStateName(a);
+                var u = n.default.model.deck.get(1).getShipModel(0).mstID;
+                if (this.model.hasCategory("counterbar")) {
+                    var l = _.FurnitureUtil.getCounterBarTextureName(s, u, o);
+                    this._model.__overwriteFileName__(l, "standard", 1, 1)
+                } else if (this.model.hasCategory("dressingroom")) {
+                    var l = _.FurnitureUtil.getDressingRoomTextureName(s, u);
+                    this._model.__overwriteFileName__(l, "standard", 1, 0)
+                } else if (this.model.hasCategory("secretarydesk")) {
+                    var l = _.FurnitureUtil.getSecretaryDeskTextureName(s, u);
+                    this._model.__overwriteFileName__(l, "standard", 1, 0)
+                } else if (this.model.hasCategory("umbrellarack"))
+                    for (var c = _.FurnitureUtil.getUmbrellarackTextures(s, u), h = 0; h < c.length; h++) this._model.__overwriteFileName__(c[h], "standard", h, 0);
+                else if (this.model.hasCategory("hydrangeadesk")) {
+                    var l = _.FurnitureUtil.getHydrangeaDeskTextures(s, u);
+                    this._model.__overwriteFileName__(l, "standard", 1, 0)
+                }
+                this._animationState = 0
+            }, t.prototype._getBaseStateName = function (t, e, i) {
+                var n = r.ObjUtil.getObject(t, "case");
+                if (null == n) return "standard";
+                var o = r.ObjUtil.getObjectArray(n, "datetime");
+                if (o)
+                    for (var s = 1e6 * e + i, a = o.length - 1; a >= 0; a--) {
+                        var _ = o[a],
+                            u = parseInt(r.ObjUtil.getString(_, "datetime"));
+                        if (!isNaN(u) && s >= u) return r.ObjUtil.getString(_, "state")
+                    }
+                var l = r.ObjUtil.getObjectArray(n, "time");
+                if (l)
+                    for (var a = l.length - 1; a >= 0; a--) {
+                        var _ = l[a],
+                            u = parseInt(r.ObjUtil.getString(_, "time"));
+                        if (!isNaN(u) && i >= u) return r.ObjUtil.getString(_, "state")
+                    }
+                return "standard"
+            }, t
+        }();
+    e.FAnimationData = c
 }

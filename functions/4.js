@@ -20,13 +20,15 @@ const function4 = function (t, e, i) {
         value: !0
     });
     var o = function (t) {
-        function e(e, i) {
-            var n = {
+        function e(e, i, n) {
+            void 0 === n && (n = "");
+            var o = {
                 fontFamily: "font_j",
+                fontWeight: n,
                 fontSize: e,
                 fill: i
             };
-            return t.call(this, null, n) || this
+            return t.call(this, null, o) || this
         }
         return n(e, t), e
     }(PIXI.Text);

@@ -19,27 +19,32 @@ const function448 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1354),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._chara = new PIXI.Container, e._box = new o.CutinStatusBox, e.addChild(e._chara), e.addChild(e._box), e
+    var o = i(2),
+        r = i(16),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._seiku = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "box", {
-                get: function () {
-                    return this._box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._chara.removeChildren(), this._box.dispose()
+            return n(e, t), e.prototype._start = function () {
+                var t = -1;
+                if (1 == this._seiku ? t = 136 : 2 == this._seiku ? t = 140 : 4 == this._seiku && (t = 138), t < 0) this._endTask();
+                else {
+                    var e = r.BATTLE_MAIN.getTexture(t);
+                    this._content = new PIXI.Sprite(e), this._anim()
+                }
+            }, e.prototype._anim = function () {
+                var t = this;
+                this._content.position.set(600, 600), this._content.anchor.set(.5), this._content.alpha = 0, this._layer.addChild(this._content), createjs.Tween.get(this._content).to({
+                    alpha: 1
+                }, 400).wait(1800).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._content), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._content = null
             }, e
-        }(PIXI.Container);
-    e.CutinCanvas = r
+        }(o.TaskBase);
+    e.TaskAirWarShowSeiku = s
 }

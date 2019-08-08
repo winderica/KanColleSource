@@ -19,18 +19,37 @@ const function1231 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = -1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(5),
+        r = i(1232),
+        s = i(1235),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._enemy = new r.Panel(!1), e._enemy.position.set(o.default.width / 2, 0), e.addChild(e._enemy), e._friend = new r.Panel(!0), e.addChild(e._friend), e._upper = new s.PracticeTitleBar, e._upper.position.set(38, 56), e._upper.alpha = 0, e.addChild(e._upper), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "enemy", {
+                get: function () {
+                    return this._enemy
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "friend", {
+                get: function () {
+                    return this._friend
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._friend.initialize(t, e), this._enemy.initialize(i, n), this._upper.initialize("\u6f14\u7fd2")
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._enemy.dispose(), this._friend.dispose(), this._upper.dispose()
             }, e
-        }(o.APIBase);
-    e.APIMapNext = r
+        }(PIXI.Container);
+    e.PracticeAnimMainView = a
 }

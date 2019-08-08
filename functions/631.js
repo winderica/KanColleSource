@@ -19,37 +19,29 @@ const function631 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(301),
-        s = i(4),
-        a = i(78),
-        _ = i(48),
-        u = function (t) {
-            function e(e, i) {
-                return t.call(this, e, i) || this
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
+    var o = function (t) {
+        function e(e, i, n) {
+            var o = 1 == n ? "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x - width / 2.0 + (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x >= border) {\n                    float a = 0.0;\n                    float diff = gl_FragCoord.x - border;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        " : "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x + width / 2.0 - (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x <= border) {\n                    float a = 0.0;\n                    float diff = border - gl_FragCoord.x;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ";
+            return t.call(this, null, o, {
+                x: {
+                    type: "1f",
+                    value: e
                 },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = this,
-                    e = this.model.mst_id,
-                    i = this.model.name,
-                    n = new a.FurnitureLoader;
-                n.add(e, "reward"), n.load(function () {
-                    var n = o.default.model.furniture.getData(e);
-                    if (null != n) {
-                        var a = (n.type, o.default.resources.getFurniture(e, "reward"));
-                        t._thumb = new r.FurnitureThumbnail(!0), t._thumb.position.set(-123, -187), t._thumb.initialize(), t._thumb.update(a), t._dialog.container.addChild(t._thumb), t._text = new s.TextBox(25, 16774898), t._text.text = i, t._text.x = -Math.round(t._text.width / 2), t._text.y = 124, t._dialog.container.addChild(t._text)
-                    }
-                    t._showDialog()
-                })
-            }, e.prototype._removeContent = function () {
-                null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
-            }, e
-        }(_.TaskRewardDialogBase);
-    e.TaskRewardDialogFurniture = u
+                width: {
+                    type: "1f",
+                    value: i
+                },
+                rate: {
+                    type: "1f",
+                    value: 1
+                },
+                grad: {
+                    type: "1f",
+                    value: .5
+                }
+            }) || this
+        }
+        return n(e, t), e
+    }(PIXI.Filter);
+    e.MeltIntoSlotitemFilter = o
 }

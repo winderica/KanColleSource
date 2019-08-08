@@ -19,45 +19,41 @@ const function1145 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = i(7),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_member/payitemuse", n._result = new _, n._mst_id = e, n._force = i, n
+    var o = i(74),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._num = new PIXI.Sprite, e.addChild(e._num), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_payitem_id = this._mst_id, this._post_data.api_force_flag = this._force ? 1 : 0, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._result.setData(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
+            }, e.prototype.update = function (t) {
+                88 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
+            }, e.prototype._getNumImage = function (t) {
+                switch (t) {
+                    case 1:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
+                    case 2:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
+                    case 3:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
+                    case 4:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
+                    case 5:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
+                    case 6:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
+                    case 7:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
+                    case 8:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
+                    case 9:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(33);
+                    case 88:
+                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
+                }
+                return PIXI.Texture.EMPTY
             }, e
-        }(o.APIBase);
-    e.PurchasedItemPickupAPI = s;
-    var a = function () {
-        function t() {}
-        return Object.defineProperty(t.prototype, "cautionFlg", {
-            get: function () {
-                return r.ObjUtil.getNumber(this._o, "api_caution_flag")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t.prototype.hasCaution = function () {
-            return this.cautionFlg >= 1
-        }, t
-    }();
-    e.PurchasedItemPickupResult = a;
-    var _ = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
-        }, e
-    }(a)
+        }(PIXI.Sprite);
+    e.RewardSelectDialogCount = r
 }

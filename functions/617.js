@@ -19,117 +19,46 @@ const function617 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(23),
-        s = i(12),
-        a = i(298),
-        _ = i(4),
-        u = i(9),
-        l = function (t) {
+    var o = i(618),
+        r = i(619),
+        s = i(620),
+        a = i(157),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-360, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "container", {
-                get: function () {
-                    return this._container
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "get_icon", {
-                get: function () {
-                    return this._get_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "close_btn", {
-                get: function () {
-                    return this._close_btn
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = u.COMMON_MISC.getTexture(184), this._light.initialize(), this._get_icon.initialize(), this._close_btn.initialize()
-            }, e.prototype.dispose = function () {
-                this._light.dispose(), this._message.dispose(), this._get_icon.dispose(), this._close_btn.dispose()
-            }, e
-        }(r.Container);
-    e.RewardDialog = l;
-    var c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e
+                return e._onRevampOpen = function () {
+                    null != e._revamp && e._revamp.open()
+                }, e._onRevampClose = function () {
+                    null != e._revamp && e._revamp.close()
+                }, e._waves = new a.RingMenuWaves, e._organize = new o.RingMenuBtn(11), e._organize.position.set(297, 203), e._supply = new o.RingMenuBtn(12), e._supply.position.set(117, 333), e._remodel = new o.RingMenuBtn(13), e._remodel.position.set(476, 333), e._repair = new o.RingMenuBtn(14), e._repair.position.set(186, 543), e._arsenal = new o.RingMenuBtn(15), e._arsenal.position.set(407, 543), e._sally = new s.RingMenuBtnSally, e._sally.position.set(296, 390), e.addChild(e._remodel), e.addChild(e._arsenal), e.addChild(e._sally), e.addChild(e._organize), e.addChild(e._repair), e.addChild(e._supply), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(69)
+                this._waves.initialize(), this._organize.initialize(), this._supply.initialize(), this._remodel.initialize(), this._repair.initialize(), this._arsenal.initialize(this._onRevampOpen, this._onRevampClose), this._sally.initialize(), this._baseX = this.x, this._presetX = -(this.x + Math.floor(this.width / 3))
             }, e.prototype.activate = function () {
-                null == this._t && (this.rotation = 0, this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3))
+                this._organize.activate(), this._supply.activate(), this._remodel.activate(), this._repair.activate(), this._arsenal.activate(), this._sally.activate(), null != this._revamp && this._revamp.activate()
             }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                this._organize.deactivate(), this._supply.deactivate(), this._remodel.deactivate(), this._repair.deactivate(), this._arsenal.deactivate(), this._sally.deactivate(), null != this._revamp && this._revamp.deactivate()
+            }, e.prototype.prePosition = function () {
+                this.x = this._presetX, this.alpha = 0
+            }, e.prototype.startAnimation = function () {
+                var t = this;
+                this._interactive(!1), createjs.Tween.get(this).wait(200).to({
+                    x: this._baseX,
+                    alpha: 1
+                }, 300, createjs.Ease.quadOut).call(function () {
+                    t._interactive(!0)
+                })
             }, e.prototype.dispose = function () {
-                this.deactivate()
+                this._waves.dispose(), this._organize.dispose(), this._supply.dispose(), this._remodel.dispose(), this._repair.dispose(), this._arsenal.dispose(), this._sally.dispose(), null != this._revamp && this._revamp.dispose()
+            }, e.prototype.setRevampFlg = function (t) {
+                1 == t ? this._addRevampBtn() : this._removeRevampBtn()
+            }, e.prototype._addRevampBtn = function () {
+                null == this._revamp && (this._revamp = new r.RingMenuBtnRevamp(31), this._revamp.position.set(407, 543), this._revamp.initialize(), this._revamp.activate(), this.addChildAt(this._revamp, 0))
+            }, e.prototype._removeRevampBtn = function () {
+                null != this._revamp && (null != this._revamp.parent && this._revamp.parent.removeChild(this._revamp), this._revamp.dispose(), this._revamp = null)
+            }, e.prototype._interactive = function (t) {
+                this._organize.interactiveApply(t), this._supply.interactiveApply(t), this._remodel.interactiveApply(t), this._repair.interactiveApply(t), this._arsenal.interactiveApply(t), null != this._revamp && this._revamp.interactiveApply(t)
             }, e
-        }(s.Sprite),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.beginFill(0, .7), e.drawRect(0, 0, 721, 76), e.endFill(), e._texts = [], e.visible = !1, e
-            }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0, i = this._texts; e < i.length; e++) {
-                    var n = i[e];
-                    null != n.parent && n.parent.removeChild(n)
-                }
-                if (this._texts = [], null == t) return void(this.visible = !1);
-                for (var o = t.split("\n"), r = 9, s = 0; s < o.length; s++) {
-                    var n = new _.TextBox(21, 16777215);
-                    n.text = o[s], n.x = 360 - n.width / 2, n.y = r, this.addChild(n), this._texts.push(n), r += n.height
-                }
-                this.visible = !0
-            }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._texts; t < e.length; t++) {
-                    e[t].destroy()
-                }
-            }, e
-        }(PIXI.Graphics),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e.visible = !1, e
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(22)
-            }, e.prototype.activate = function (t) {
-                this._cb_onClick = t, 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick), this.visible = !0)
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick), this.visible = !1
-            }, e.prototype.dispose = function () {
-                this.deactivate(), this._cb_onClick = null
-            }, e
-        }(s.Sprite)
+        }(PIXI.Container);
+    e.RingMenuLayer = _
 }

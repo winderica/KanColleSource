@@ -19,23 +19,30 @@ const function797 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.MAX = 5, e.stars = new Array;
-                for (var i = o.REMODEL_POWERUP.getTexture(29), n = 0; n < e.MAX; n++) {
-                    var r = new PIXI.Sprite(i);
-                    r.position.set(45 * n, 0), e.stars.push(r), e.addChild(r)
-                }
-                return e
+    var o = i(0),
+        r = i(7),
+        s = i(10),
+        a = function (t) {
+            function e(e, i, n, o, r, s) {
+                var a = t.call(this) || this;
+                return a._url = "api_req_kaisou/slot_deprive", a.api_unset_idx = e, a.api_set_slot_kind = i, a.api_unset_slot_kind = n, a.api_unset_ship = o, a.api_set_idx = r, a.api_set_ship = s, a
             }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < this.MAX; e++) this.stars[e].visible = !1, e < t && (this.stars[e].visible = !0)
-            }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.MAX; t++) this.removeChild(this.stars[t]), this.stars[t] = null;
-                this.stars = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_unset_idx = this.api_unset_idx, this._post_data.api_set_slot_kind = this.api_set_slot_kind, this._post_data.api_unset_slot_kind = this.api_unset_slot_kind, this._post_data.api_unset_ship = this.api_unset_ship, this._post_data.api_set_idx = this.api_set_idx, this._post_data.api_set_ship = this.api_set_ship, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObject(this._raw_data, "api_ship_data"),
+                    i = r.ObjUtil.getObject(e, "api_set_ship"),
+                    n = r.ObjUtil.getObject(e, "api_unset_ship"),
+                    s = r.ObjUtil.getObject(this._raw_data, "api_unset_list"),
+                    a = r.ObjUtil.getNumber(s, "api_type3No"),
+                    _ = r.ObjUtil.getNumArray(s, "api_slot_list");
+                o.default.model.ship.get(i.api_id).__update__(i), o.default.model.ship.get(n.api_id).__update__(n), o.default.model.slot.updateUnsetData(a, _), this._set_bauxite(), t.prototype._completedEnd.call(this)
+            }, e.prototype._set_bauxite = function () {
+                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
+                    var t = r.ObjUtil.getNumber(this._raw_data, "api_bauxite");
+                    o.default.model.useItem.get(34).__setCount__(t)
+                }
             }, e
-        }(PIXI.Container);
-    e.StarRate = r
+        }(s.APIBase);
+    e.SlotDepriveAPI = a
 }

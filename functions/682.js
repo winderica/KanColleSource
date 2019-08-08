@@ -20,35 +20,91 @@ const function682 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(161),
-        s = i(61),
-        a = i(162),
-        _ = i(4),
-        u = i(21),
-        l = function (t) {
-            function e(e) {
-                void 0 === e && (e = !1);
-                var i = t.call(this) || this,
-                    n = new PIXI.Sprite,
-                    l = new _.TextBox(19, 5523516),
-                    c = new PIXI.Sprite(o.default.resources.getUIImage("mask")),
-                    h = new _.TextBox(21, 5523516),
-                    p = new a.SlotItemLevel,
-                    d = new PIXI.Sprite,
-                    f = new r.AirPlaneLevel,
-                    y = new PIXI.Sprite(u.COMMON_MAIN.getTexture(42)),
-                    m = new s.IconWeapon;
-                n.texture = u.COMMON_MAIN.getTexture(45), c.scale.set(-1.95, 1), c.anchor.set(1, 0);
-                var g = new PIXI.Container;
-                return g.mask = c, g.addChild(l, c), g.position.set(50, 11), h.position.set(-2, 23), h.anchor.set(1, .5), p.position.set(247, 14), f.position.set(219, 3), y.position.set(293, 2), i.addChild(n, g, h, d, p, f, y, m), i.background = n, i.textName = l, i.textNum = h, i.emblem = d, i.airPlaneLevel = f, i.slotItemLevel = p, i.lockIcon = y, i.hideTousai = e, i.iconWeapon = m, i.containerName = g, i
+        r = i(683),
+        s = i(113),
+        a = i(689),
+        _ = i(317),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.SLOT_MAX = 6, e.shipSlots = [];
+                for (var i = 0; i < e.SLOT_MAX; i++) {
+                    var n = new a.ShipSlot(i),
+                        o = _.ShipOffsetPosition[0] + _.ShipAreaPosition[i][0],
+                        r = _.ShipOffsetPosition[1] + _.ShipAreaPosition[i][1];
+                    n.position.set(o, r), e.shipSlots.push(n)
+                }
+                return e.arrowTopButton = new s.ArrowButton(!1), e.arrowBottomButton = new s.ArrowButton(!0), e.addChild(e.shipSlots[1], e.shipSlots[3], e.shipSlots[5], e.shipSlots[0], e.shipSlots[2], e.shipSlots[4]), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.containerName.cacheAsBitmap = !1, this.slotItemLevel.dispose(), this.iconWeapon.dispose(), this.airPlaneLevel.dispose(), this.containerName.mask = null, this.containerName.removeChildren(), this.textName.destroy(), this.textNum.destroy(), this.iconWeapon = null, this.background = null, this.textName = null, this.textNum = null, this.emblem = null, this.airPlaneLevel = null, this.slotItemLevel = null, this.lockIcon = null, this.containerName = null, this.hideTousai = null
-            }, e.prototype.clear = function () {
-                this.update(0, "", !1, 0, 0, 0, !1)
-            }, e.prototype.update = function (t, e, i, n, o, r, s) {
-                void 0 === n && (n = 0), void 0 === o && (o = 0), void 0 === r && (r = 0), void 0 === s && (s = !1), this.containerName.cacheAsBitmap = !1, this.textName.text = e.toString(), this.containerName.cacheAsBitmap = !0, this.iconWeapon.update(t), i ? (this.textNum.visible = !0, this.textNum.text = n.toString(), this.airPlaneLevel.visible = !0, this.airPlaneLevel.update(r), this.airPlaneLevel.position.set(219, 3)) : (this.textNum.visible = !1, this.textNum.text = "", this.airPlaneLevel.visible = !1, this.airPlaneLevel.update(0)), this.lockIcon.visible = !!s, this.hideTousai && (this.textNum.visible = !1), this.slotItemLevel.update(o)
+            return n(e, t), Object.defineProperty(e.prototype, "ShipSlots", {
+                get: function () {
+                    return this.shipSlots
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ArrowTopButton", {
+                get: function () {
+                    return this.arrowTopButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ArrowBottomButton", {
+                get: function () {
+                    return this.arrowBottomButton
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0; t < this.shipSlots.length; t++) this.shipSlots[t].dispose(), this.shipSlots[t] = null;
+                this.shipSlots = null, this.arrowTopButton.dispose(), this.arrowTopButton = null, this.arrowBottomButton.dispose(), this.arrowBottomButton = null, this.taskShipDetail && this.taskShipDetail.dispose(), this.taskShipDetail = null
+            }, e.prototype.init = function (t, e, i) {
+                this.shipSlots.forEach(function (n) {
+                    n.activate(t, e, i)
+                })
+            }, e.prototype.initArrow = function (t) {
+                this.arrowTopButton.position.set(686, 220), this.arrowBottomButton.position.set(683, 663), this.arrowTopButton.initialize(function () {
+                    t && t(-2)
+                }), this.arrowBottomButton.initialize(function () {
+                    t && t(2)
+                })
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
+            }, e.prototype.update = function (t, e) {
+                for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
+                    var _ = this.shipSlots[a],
+                        u = a + e,
+                        l = i.getShipModel(u);
+                    if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open();
+                    else if (u < s) {
+                        var c = r < s,
+                            h = u == r,
+                            p = 0 == n,
+                            d = p && c && h;
+                        _.visible = !0, _.updateEmpty(u, d), _.close()
+                    }
+                }
+                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
+            }, e.prototype.shutterAnimation = function (t, e, i) {
+                var n = this.shipSlots[t];
+                n.closeAnimation(function () {
+                    e && e(), n.close();
+                    createjs.Tween.get(null).wait(100).call(function () {
+                        n.openAnimation(function () {
+                            i && i()
+                        }, 200)
+                    })
+                }, 200)
+            }, e.prototype.onShipDetail = function (t, e, i) {
+                var n = this;
+                this.taskShipDetail = new r.TaskShipDetail(e), this.taskShipDetail.onClickBack = function () {
+                    n.taskShipDetail.hide(function () {
+                        n.taskShipDetail.dispose(), n.taskShipDetail = null, i && i()
+                    })
+                }, this.taskShipDetail.start(t)
             }, e
         }(PIXI.Container);
-    e.SlotItemSlotView = l
+    e.ShipSlotLayer = u
 }

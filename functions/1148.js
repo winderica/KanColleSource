@@ -20,53 +20,22 @@ const function1148 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(6),
-        s = i(131),
-        a = i(91),
-        _ = i(1149),
-        u = i(1150),
-        l = i(1151),
-        c = i(1152),
-        h = i(1156),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._count = 0, n._onChangePage = function () {
-                    var t = n._views.indexOf(n._current);
-                    n._showView(t ? 0 : 1)
-                }, n._onSelect = function (t, e) {
-                    r.SE.play("214");
-                    var i = 10;
-                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
-                    var s = new c.TaskPurchaseConfirm(t, e, i);
-                    n.addChild(s.layer), s.start(function () {
-                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
-                    })
-                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new u.NormalItemShopMain(n._onSelect)), n._views.push(new l.SpecialItemShopMain(n._onSelect)), n
+        r = i(74),
+        s = i(174),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_ISHOP.getTexture(35);
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.update = function () {
-                this._count = 0, this._showView(0)
-            }, e.prototype.activate = function () {
-                null != this._current && this._current.activate(), this._tab.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._current && this._current.deactivate(), this._tab.deactivate()
-            }, e.prototype.dispose = function () {
-                this._purchasedItems = null, this._tab.dispose(), this._removeView();
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
-            }, e.prototype._showView = function (t) {
-                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
-                var e = o.default.view.overLayer;
-                new h.TaskWelcomeCutin(e, t, this._count).start()
+            return n(e, t), e.prototype._initialize = function () {
+                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
+                var t = new PIXI.Graphics;
+                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                var e = this._candidate.mst_id,
+                    i = o.default.resources.getUseitem(e, 1),
+                    n = new PIXI.Sprite(i),
+                    s = Math.min(195 / n.width, 195 / n.height);
+                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(a.ViewBase);
-    e.ItemShopMain = p
+        }(s.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogUseitemBtn = a
 }

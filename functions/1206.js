@@ -20,16 +20,15 @@ const function1206 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = function (t) {
+        r = i(14),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
+                return i._scene_dispose_delegate = e, i
             }
-            return n(e, t), e.prototype._connect = function () {
-                t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
             }, e
-        }(o.APIBase);
-    e.RevampSlotlistAPI = r
+        }(o.TaskBase);
+    e.TaskItemSceneFinalize = s
 }

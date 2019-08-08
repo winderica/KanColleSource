@@ -19,25 +19,92 @@ const function1117 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(34),
+    var o = i(0),
+        r = i(2),
+        s = i(17),
         a = i(34),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._bg = new PIXI.Sprite, i._bg.position.set(147, 267), i.addChild(i._bg), i._btn_all = new a.BtnBase(41, e), i._btn_all.position.set(332, 305), i.addChild(i._btn_all), i._btn_half = new a.BtnBase(42, e), i._btn_half.position.set(537, 305), i.addChild(i._btn_half), i._btn_only10 = new a.BtnBase(43, e), i._btn_only10.position.set(744, 305), i.addChild(i._btn_only10), i._btn_back = new a.BtnBase(-1, e), i._btn_back.position.set(972, 402), i.addChild(i._btn_back), i
+        _ = i(167),
+        u = i(129),
+        l = i(106),
+        c = i(158),
+        h = i(200),
+        p = i(6),
+        d = i(402),
+        f = i(1122),
+        y = i(1124),
+        m = i(1129),
+        g = i(1133),
+        v = i(1137),
+        b = i(1141),
+        w = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                var e, i;
-                e = r.ITEM_FSHOP.getTexture(52), this._bg.texture = e, e = o.ITEM_ILIST.getTexture(4), this._btn_all.initialize(e), e = o.ITEM_ILIST.getTexture(5), i = o.ITEM_ILIST.getTexture(6), this._btn_half.initialize(e, i), this._btn_half.enabled = t > 1, e = o.ITEM_ILIST.getTexture(7), i = o.ITEM_ILIST.getTexture(8), this._btn_only10.initialize(e, i), this._btn_only10.enabled = t >= 10, e = r.ITEM_FSHOP.getTexture(1), this._btn_back.initialize(e)
-            }, e.prototype.activate = function () {
-                this._btn_all.activate(), this._btn_half.activate(), this._btn_only10.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_all.deactivate(), this._btn_half.deactivate(), this._btn_only10.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn_all.dispose(), this._btn_half.dispose(), this._btn_only10.dispose(), this._btn_back.dispose()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return null != this._api_result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                if (null == this._target) return void this._endTask();
+                this._fade = new s.FadeBox(.6), this._fade.hide(0), this._startTask()
+            }, e.prototype._startTask = function () {
+                var t, e = this._target.mstID;
+                if (10 == e || 11 == e || 12 == e) t = new f.TaskUseFurnitureBox(this._fade, this._target);
+                else if (57 == e) t = new y.TaskUseMedal(this._fade, this._target);
+                else if (60 == e) t = new m.TaskUsePresentBox(this._fade, this._target);
+                else if (61 == e) t = new g.TaskUseKouMedal(this._fade, this._target);
+                else if (62 == e) t = new v.TaskUseHishimochi(this._fade, this._target);
+                else if (63 == e) {
+                    var i = o.default.model.const.quest_max,
+                        n = o.default.model.basic.getDutyExecutableCount();
+                    n < i ? (p.SE.play("244"), t = new d.TaskUseNormalItem(this._fade, this._target)) : p.SE.play("248")
+                } else 68 == e || 72 == e || (80 == e ? t = new b.TaskUseGiftBox(this._fade, this._target) : 85 == e || 86 == e || 87 == e || 88 == e || 89 == e || 90 == e || (t = new d.TaskUseNormalItem(this._fade, this._target)));
+                null != t ? this._showFade(t) : this._endTask()
+            }, e.prototype._showFade = function (t) {
+                var e = this;
+                this._layer.addChild(this._fade), this._fade.show(200, function () {
+                    t.start(function () {
+                        e._api_result = t.result, e._updateData()
+                    })
+                })
+            }, e.prototype._updateData = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                if (63 == this._target.mstID) {
+                    var e = o.default.model.basic.getDutyExecutableCount();
+                    o.default.model.basic.setDutyExcutableCount(e + 1)
+                } else if (68 == this._target.mstID) {
+                    var i = o.default.model.deck.get(1).getShipModel(0);
+                    o.default.sound.voice.play(i.mstID.toString(), 26)
+                }
+                var n = new a.APIConnector;
+                if (n.add(new l.UseItemAPI), this._api_result.hasMaterialReward() && n.add(new _.MaterialAPI), this._api_result.hasCoinReward() && n.add(new c.UserDataAPI), this._api_result.hasSlotitemReward()) {
+                    var r = this._api_result.getSlotitemObjects();
+                    o.default.model.slot.addMemData(r), n.add(new u.UnsetSlotAPI)
+                }
+                n.start(function () {
+                    o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo(), t._showReward()
+                })
+            }, e.prototype._showReward = function () {
+                var t = this;
+                if (null == this._api_result) return void this._hideFade();
+                var e = this._api_result.rewards;
+                if (null == e || 0 == e.length) return void this._hideFade();
+                var i = o.default.view.overLayer;
+                new h.TaskReward(i, e).start(function () {
+                    t._hideFade()
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._fade.hide(150, function () {
+                    t._layer.removeChild(t._fade), t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, this._fade = null, t.prototype._endTask.call(this)
             }, e
-        }(s.DialogBase);
-    e.FBoxUseDialog = _
+        }(r.TaskBase);
+    e.TaskUseItem = w
 }

@@ -19,19 +19,26 @@ const function804 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
+    var o = i(3),
         r = i(1),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClick = function () {
+                return e._onMouseOver = function () {
+                    e.texture = e.textureBtnStartIntensifyOn
+                }, e._onMouseOut = function () {
+                    e.texture = e.textureBtnStartIntensifyOff
+                }, e._onClick = function () {
                     e.onClick()
-                };
-                return e.beginFill(0, .5), e.drawRect(0, 103, o.default.width, o.default.height - 103), e.endFill(), e.interactive = !0, e.addListener(r.EventType.CLICK, e._onClick), e
+                }, e.textureBtnStartIntensifyNone = o.REMODEL_POWERUP.getTexture(6), e.textureBtnStartIntensifyOn = o.REMODEL_POWERUP.getTexture(8), e.textureBtnStartIntensifyOff = o.REMODEL_POWERUP.getTexture(7), e.texture = e.textureBtnStartIntensifyNone, e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.onClick = this._onClick = null, this.clear(), this.removeAllListeners(r.EventType.CLICK)
+            return n(e, t), e.prototype.update = function (t) {
+                this._updateClickable_(t)
+            }, e.prototype._updateClickable_ = function (t) {
+                this.texture = this.textureBtnStartIntensifyNone, this.interactive = this.buttonMode = !1, t && (this.texture = this.textureBtnStartIntensifyOff, this.interactive = this.buttonMode = !0)
+            }, e.prototype.dispose = function () {
+                this.off(r.EventType.MOUSEOVER), this.off(r.EventType.MOUSEOUT), this.off(r.EventType.CLICK), this.textureBtnStartIntensifyNone = null, this.textureBtnStartIntensifyOn = null, this.textureBtnStartIntensifyOff = null, this.onClick = null, this.interactive = this.buttonMode = !1, this.removeChildren()
             }, e
-        }(PIXI.Graphics);
-    e.BackAreaChoiceShip = s
+        }(PIXI.Sprite);
+    e.StartButton = s
 }

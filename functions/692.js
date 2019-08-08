@@ -20,47 +20,51 @@ const function692 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(57),
-        s = function (t) {
+        r = i(4),
+        s = i(693),
+        a = i(1),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._onClickYuso = function () {
-                    e.onClickYuso()
-                }, e._onClickKido = function () {
-                    e.onClickKido()
-                }, e._onClickSuijo = function () {
-                    e.onClickSuijo()
-                }, e._onClickBack = function () {
-                    e.onClickBack()
+                e.animation = {
+                    light: 0
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onMouseOver_Light = function () {
+                    e._stop(), e.hokyuLight.texture = e.textureHover
+                }, e._onMouseOut_Light = function () {
+                    e._play()
                 };
-                var i = o.ORGANIZE_RENGO.getTexture(17),
-                    n = o.ORGANIZE_RENGO.getTexture(18),
-                    s = new PIXI.Sprite(i),
-                    a = new PIXI.Sprite(n),
-                    _ = o.ORGANIZE_RENGO.getTexture(0),
-                    u = o.ORGANIZE_RENGO.getTexture(2);
-                e.buttonKido = new r.SimpleButton(_, u);
-                var l = o.ORGANIZE_RENGO.getTexture(3),
-                    c = o.ORGANIZE_RENGO.getTexture(5);
-                e.buttonSuijo = new r.SimpleButton(l, c);
-                var h = o.ORGANIZE_RENGO.getTexture(6),
-                    p = o.ORGANIZE_RENGO.getTexture(8);
-                e.buttonYuso = new r.SimpleButton(h, p);
-                var d = o.ORGANIZE_MAIN.getTexture(7);
-                e.buttonBack = new r.SimpleButton(d, d);
-                var f = o.ORGANIZE_RENGO.getTexture(1),
-                    y = new PIXI.Sprite(f),
-                    m = o.ORGANIZE_RENGO.getTexture(4),
-                    g = new PIXI.Sprite(m),
-                    v = o.ORGANIZE_RENGO.getTexture(7),
-                    b = new PIXI.Sprite(v);
-                return e.buttonKido.onClick = e._onClickKido, e.buttonSuijo.onClick = e._onClickSuijo, e.buttonYuso.onClick = e._onClickYuso, e.buttonBack.onClick = e._onClickBack, a.position.set(189, 25), e.buttonKido.position.set(84, 61), e.buttonSuijo.position.set(298, 61), e.buttonYuso.position.set(84, 124), e.buttonBack.position.set(211, 192), y.position.set(84, 61), g.position.set(298, 61), b.position.set(84, 124), e.buttonSuijo.visible = e.buttonYuso.visible = e.buttonKido.visible = !1, e.addChild(s, y, g, b, e.buttonKido, e.buttonSuijo, e.buttonYuso, e.buttonBack, a), e
+                var i = o.ORGANIZE_MAIN.getTexture(17),
+                    n = o.ORGANIZE_MAIN.getTexture(18),
+                    _ = o.ORGANIZE_MAIN.getTexture(19);
+                return e.textCount = new r.TextBox(30, 5523516), e.tween = createjs.Tween.get(e.animation), e.hokyuLight = new PIXI.Sprite, e.hokyuNormal = new PIXI.Sprite(i), e.hokyuNone = new PIXI.Sprite(n), e.hokyuDisable = new PIXI.Sprite(_), e.crossCharacter = new s.CrossCharacter, e.crossCharacter.position.set(48, 15), e.hokyuLight.texture = n, e.tween.to({
+                    light: 0
+                }), e.tween.to({
+                    light: 1
+                }, 500), e.tween.to({
+                    light: 0
+                }, 500), e.tween.loop = !0, e.tween.addEventListener("change", function () {
+                    .5 <= e.animation.light ? e.hokyuLight.texture = e.textureDefault : e.hokyuLight.texture = e.textureHover
+                }), e.tween.setPaused(!0), e.hokyuLight.on(a.EventType.CLICK, e._onClick), e.hokyuLight.on(a.EventType.MOUSEOVER, e._onMouseOver_Light), e.hokyuLight.on(a.EventType.MOUSEOUT, e._onMouseOut_Light), e.hokyuNormal.on(a.EventType.CLICK, e._onClick), e.hokyuLight.interactive = e.hokyuLight.buttonMode = !0, e.hokyuNormal.interactive = e.hokyuNormal.buttonMode = !0, e.hokyuNone.visible = e.hokyuNormal.visible = e.hokyuLight.visible = !1, e.textCount.position.set(e.crossCharacter.width + 48, -1), e.addChild(e.hokyuDisable, e.hokyuNone, e.hokyuNormal, e.hokyuLight, e.textCount, e.crossCharacter), e.textureDefault = n, e.textureHover = i, e._play(), e
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.buttonKido.onClick = this._onClickKido = null, this.buttonSuijo.onClick = this._onClickSuijo = null, this.buttonYuso.onClick = this._onClickYuso = null, this.buttonBack.onClick = this._onClickBack = null, this.buttonKido.dispose(), this.buttonSuijo.dispose(), this.buttonYuso.dispose(), this.buttonBack.dispose(), this.buttonKido = null, this.buttonSuijo = null, this.buttonYuso = null, this.buttonBack = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i) {
-                this.buttonSuijo.reset(), this.buttonYuso.reset(), this.buttonKido.reset(), this.buttonSuijo.visible = this.buttonYuso.visible = this.buttonKido.visible = !1, t && (this.buttonKido.visible = !0), i && (this.buttonYuso.visible = !0), e && (this.buttonSuijo.visible = !0)
+                this.removeChildren(), this.tween && (this.tween.setPaused(!0), createjs.Tween.removeTweens(this.tween.target)), this.hokyuLight.off(a.EventType.CLICK), this.hokyuLight.off(a.EventType.MOUSEOVER), this.hokyuLight.off(a.EventType.MOUSEOUT), this.hokyuNormal.off(a.EventType.CLICK), this._onClick = this._onMouseOut_Light = this._onMouseOver_Light = null, this.crossCharacter.dispose(), this.textCount.destroy(), this.onClick = null, this.textureDefault = null, this.textureHover = null, this.textCount = null, this.animation = null, this.tween = null, this.hokyuLight = null, this.hokyuNormal = null, this.hokyuNone = null, this.hokyuDisable = null, this.crossCharacter = null
+            }, e.prototype.update = function (t, e, i, n) {
+                void 0 === i && (i = 0), this.hokyuNone.visible = !1, this.hokyuLight.visible = !1, this.hokyuNormal.visible = !1, this.textCount.visible = !1, this.hokyuDisable.visible = !1, this.crossCharacter.visible = !1;
+                var o = t + e;
+                if (0 < o) {
+                    if (this.crossCharacter.visible = !0, this.textCount.text = o.toString(), this.textCount.visible = !0, 0 < i) {
+                        if (n) return void(this.hokyuLight.visible = !0);
+                        if (0 < e) return void(this.hokyuNormal.visible = !0)
+                    }
+                    return void(this.hokyuDisable.visible = !0)
+                }
+            }, e.prototype._play = function () {
+                this.tween.setPosition(0, createjs.Tween.LOOP), this.tween.setPaused(!1)
+            }, e.prototype._stop = function () {
+                this.tween.setPaused(!0)
             }, e
         }(PIXI.Container);
-    e.CombineTypeSelectDialog = s
+    e.SweetsButton = _
 }

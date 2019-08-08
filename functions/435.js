@@ -19,39 +19,50 @@ const function435 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(20),
-        s = function (t) {
+    var o = i(1229),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._activated = !1;
-                var i = r.MAP_COMMON.getTexture(17);
-                return e._wave = new o.Sprite(i), e._wave.anchor.set(.5), e._wave.scale.set(0), e.addChild(e._wave), e
+                e.KEIKAIJIN = !1, e._count = 0, e._boxes = [];
+                for (var i = 0; i < (e.KEIKAIJIN ? 6 : 5); i++) {
+                    var n = new o.FormationBox(!0);
+                    e.addChild(n), e._boxes.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype.activate = function () {
-                1 != this._activated && (this._activated = !0, this._startTween())
+            return n(e, t), Object.defineProperty(e.prototype, "count", {
+                get: function () {
+                    return this._count
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                void 0 === i && (i = -1), i <= 0 && (i = t), this._count = 0;
+                for (var n = 0; n < this._boxes.length; n++) {
+                    var o = this._boxes[n];
+                    o.initialize(n + 1, t, e, i), 1 == o.enabled && this._count++
+                }
+                var r, s;
+                1 == this.KEIKAIJIN ? 6 == this._count ? (r = [581, 776, 974, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [680, 876, 1073, 581, 776, 974], s = [92, 92, 92, 330, 330, 330]) : (r = [581, 776, 974, 683, 879], s = [92, 92, 92, 330, 330]);
+                for (var n = 0; n < this._boxes.length; n++) {
+                    var o = this._boxes[n],
+                        a = r[n],
+                        _ = s[n];
+                    o.position.set(a, _)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].activate()
+                }
             }, e.prototype.deactivate = function () {
-                this._activated = !1, this._stopTween()
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this.deactivate(), this._wave = null
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._wave.scale.set(0), this._wave.alpha = 1, this._t = createjs.Tween.get(this._wave, {
-                    loop: !0
-                }).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 800).to({
-                    scaleX: 1.35,
-                    scaleY: 1.35,
-                    alpha: 0
-                }, 300).to({
-                    scaleX: 0,
-                    scaleY: 0,
-                    alpha: 1
-                }, 0))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+                for (var t = 0, e = this._boxes; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(PIXI.Graphics);
-    e.CellWave = s
+        }(PIXI.Container);
+    e.FormationBoxContainer = r
 }

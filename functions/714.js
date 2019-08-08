@@ -19,81 +19,79 @@ const function714 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(21),
-        s = i(113),
-        a = i(715),
-        _ = i(57),
-        u = i(320),
-        l = i(318),
-        c = i(321),
-        h = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                n.PAGE_NUM = 5, n.headIndex = 0, n._onClickBack = function () {
-                    n.hide(), n.clickBack && n.clickBack()
-                }, n._onClickExpand = function (t) {
-                    n.clickExpand && n.clickExpand(t)
-                }, n._onClickDelete = function (t) {
-                    var e = new c.PresetDeleteAPI(t);
-                    o.default.view.clickGuard = !0, e.start(function () {
-                        var e = new Array,
-                            i = o.default.model.deck.get(n.deckId),
-                            r = (i.getShipList(), null != i.expedition),
-                            s = (i.getShipMemIDList(), 0 < i.getCount());
-                        n.presetList.__deletePresetDeckData__(t);
-                        for (var a = 0; a < n.presetList.maxNum; a++) {
-                            var _ = n.presetList.getPresetDeckData(a + 1);
-                            0 < _.getRealShipCount() && e.push(_)
-                        }
-                        var u = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
-                        n.presetExpansionContainer.update(n.deckId, n.presetList, u, s, r), o.default.view.clickGuard = !1, n.presets = e
-                    })
-                }, n._onClickNext = function () {
-                    n.arrowBottomButton.visible = !1;
-                    var t = n.headIndex + 1;
-                    n.presets.length < t + n.PAGE_NUM && (t = n.presets.length - n.PAGE_NUM), n.arrowBottomButton.visible = !1, n.arrowTopButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), 0 < t && (n.presetTitle.hideTxt2(), n.arrowTopButton.visible = !0);
-                    var e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n._onClickPrev = function () {
-                    var t = n.headIndex - 1,
-                        e = n.presets.slice(t, t + n.PAGE_NUM),
-                        i = o.default.model.deck.get(n.deckId),
-                        r = (i.getShipList(), null != i.expedition),
-                        s = (i.getShipMemIDList(), 0 < i.getCount());
-                    t < 0 && (t = 0), n.arrowBottomButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), n.arrowTopButton.visible = !1, 0 < t && (n.arrowTopButton.visible = !0, n.presetTitle.hideTxt2()), n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new u.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new l.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
-                var h = r.COMMON_MAIN.getTexture(4);
-                return n.btnBack = new _.SimpleButton(h, h), n.btnBack.position.set(173, 638), n.btnBack.onClick = n._onClickBack, n.arrowTopButton = new s.ArrowButton, n.arrowTopButton.initialize(n._onClickPrev), n.arrowTopButton.position.set(446, 217), n.arrowBottomButton = new s.ArrowButton(!0), n.arrowBottomButton.initialize(n._onClickNext), n.arrowBottomButton.position.set(443, 667), n.presetExpansionContainer = new a.PresetExpansionContainer, n.presetExpansionContainer.position.set(168, 248), n.presetExpansionContainer.onClickExpand = n._onClickExpand, n.addChild(n.presetTitle, n.btnBack, n.presetExpansionContainer, n.longShipBannerContainer, n.arrowTopButton, n.arrowBottomButton), n
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(22),
+        _ = i(32),
+        u = i(283),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._deck_id = e, i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                if (this.removeChildren(), this.presetTitle.dispose(), this.presetExpansionContainer.hideAllPopupAndFocus(), this.presetExpansionContainer.dispose(), this.btnBack.dispose(), this.arrowTopButton.dispose(), this.arrowBottomButton.dispose(), this.longShipBannerContainer.dispose(), this.presets)
-                    for (var t = 0; t < this.presets.length; t++) this.presets[t] = null;
-                this.clickBack = null, this.clickExpand = null, this.presetTitle = null, this.deckId = null, this.headIndex = null, this.presetList = null, this.presets = null, this.presetExpansionContainer = null, this.btnBack = null, this.arrowTopButton = null, this.arrowBottomButton = null, this.longShipBannerContainer = null
-            }, e.prototype.show = function (t, e) {
-                this.visible = !0, o.default.view.portMain.playCraneAnimation(), this.deckId = t, this.presetList = e, this.arrowTopButton.activate(), this.arrowBottomButton.activate();
-                for (var i = (o.default.model.deck.get(t), new Array), n = 0; n < this.presetList.maxNum; n++) {
-                    var r = this.presetList.getPresetDeckData(n + 1);
-                    0 < r.getRealShipCount() && i.push(r)
+            return n(e, t), e.prototype._start = function () {
+                r.default.view.clickGuard = !0, this._cutin = new u.ExpeditionCutin, this._cutin.initialize(!0), this._loadShipRespirces()
+            }, e.prototype._loadShipRespirces = function () {
+                this._anim()
+            }, e.prototype._anim = function () {
+                var t = this,
+                    e = r.default.model.deck.get(this._deck_id),
+                    i = e.getShipList();
+                this._createShipContainerU(i), this._createShipContainerB(i), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, 360), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, r.default.view.overLayer.addChild(this._cutin), createjs.Tween.get(this._cutin.bg.scale).to({
+                    y: 2
+                }, 300).wait(1500).to({
+                    y: 0
+                }, 300).call(function () {
+                    t._endTask()
+                }), createjs.Tween.get(this._cutin.message).wait(400).to({
+                    x: 660
+                }, 400).to({
+                    x: 525
+                }, 800).to({
+                    x: 420,
+                    alpha: 0
+                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: 600 - this._cutin.banner_top.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: o.default.width - this._cutin.banner_top.width,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
+                    alpha: 1
+                }, 100).to({
+                    x: 600 - this._cutin.banner_bottom.width / 2
+                }, 800, createjs.Ease.cubicInOut).to({
+                    x: 0,
+                    alpha: 0
+                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
+                    t._cutin.particles.startAnim()
+                })
+            }, e.prototype._createShipContainerU = function (t) {
+                var e, i = t[0],
+                    n = t[2],
+                    o = t[4];
+                e = null == n ? [i] : null == o ? [n, i] : [n, i, o];
+                for (var r = 0; r < e.length; r++) {
+                    var s = e[r],
+                        u = new _.ShipBanner;
+                    u.update(s, !0), u.position.x = a.BannerSize.W * r, this._cutin.banner_top.addChild(u)
                 }
-                this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0), this.presets = i, this.headIndex = 0, this.updateDeck(t)
-            }, e.prototype.update = function (t) {
-                this.changeDeck(t)
-            }, e.prototype.hide = function () {
-                this.visible = !1
-            }, e.prototype.changeDeck = function (t) {
-                this.updateDeck(t)
-            }, e.prototype.updateDeck = function (t) {
-                var e = o.default.model.deck.get(t),
-                    i = e.getShipList(),
-                    n = null != e.expedition,
-                    r = this.presets.slice(this.headIndex, this.headIndex + this.PAGE_NUM),
-                    s = 0 < e.getCount();
-                this.longShipBannerContainer.update(i, n), this.presetExpansionContainer.update(t, this.presetList, r, s, n), this.deckId = t
+            }, e.prototype._createShipContainerB = function (t) {
+                var e, i = t[1],
+                    n = t[3],
+                    o = t[5],
+                    r = t[6];
+                e = null == o ? null == n ? null == i ? [] : [i] : [i, n] : null == r ? [o, i, n] : [o, i, n, r];
+                for (var s = 0; s < e.length; s++) {
+                    var u = e[s],
+                        l = new _.ShipBanner;
+                    l.update(u, !0), l.position.x = a.BannerSize.W * s, this._cutin.banner_bottom.addChild(l)
+                }
+            }, e.prototype._endTask = function (e) {
+                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.PresetExpansionLayer = h
+        }(s.TaskBase);
+    e.TaskExpeditionStartCutin = l
 }

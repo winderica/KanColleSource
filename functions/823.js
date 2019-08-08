@@ -19,115 +19,26 @@ const function823 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(824),
-        r = i(31),
-        s = i(1),
-        a = function (t) {
-            function e(e, i, n, r) {
-                var s = t.call(this) || this,
-                    a = (new PIXI.Graphics).beginFill(16777215).drawRect(0, 0, 1200, 720).endFill(),
-                    l = new o.FlashFilter;
-                a.filters = [l];
-                var c = (new PIXI.Graphics).beginFill(0).drawRect(0, 0, 1200, 720).endFill(),
-                    h = new PIXI.Sprite(n),
-                    p = new PIXI.Sprite(r),
-                    d = new _(i),
-                    f = new PIXI.Sprite(e),
-                    y = new PIXI.Container,
-                    m = new u;
-                return d.position.set(.5 * -i.width, .5 * -i.height), h.position.set(12, 12), p.position.set(12, 720 - p.height - 12), y.addChild(d), s.addChild(a), s.addChild(y), s.addChild(f, h, p), s.addChild(c), s.addChild(m), s._textClass = h, s._textName = p, s._camera = y, s._backGround = a, s._blackOver = c, s._ship = d, s._backgroundColorFilter = l, s._goBackArea = m, s
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = e._textureOn
+                }, e._onMouseOut = function () {
+                    e.texture = e._textureOff
+                }, e._onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "camera", {
-                get: function () {
-                    return this._camera
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "textClass", {
-                get: function () {
-                    return this._textClass
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "textName", {
-                get: function () {
-                    return this._textName
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "backGround", {
-                get: function () {
-                    return this._backGround
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "blackOver", {
-                get: function () {
-                    return this._blackOver
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ship", {
-                get: function () {
-                    return this._ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "goBackArea", {
-                get: function () {
-                    return this._goBackArea
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "backgroundColorFilter", {
-                get: function () {
-                    return this._backgroundColorFilter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._ship.dispose(), this._goBackArea.dispose(), this._camera.removeChildren(), this._backGround.filters = [], this._textClass.texture = PIXI.Texture.EMPTY, this._textName.texture = PIXI.Texture.EMPTY, this._goBackArea = null, this._ship = null, this._camera = null, this._textClass = null, this._textName = null, this._backGround = null, this._blackOver = null
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._cb_onClick = t
+            }, e.prototype.update = function (t) {
+                1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
+            }, e.prototype.dispose = function () {
+                this._textureNone = null, this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.SpecialRemodelStartStage = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this,
-                n = new o.FlashFilter,
-                r = new PIXI.Sprite(e);
-            r.filters = [n], n.mr = 0, n.mg = 0, n.mb = 0, n.factor = 1, n.aa = .25, n.ar = 0, n.ag = 0, n.ab = 0, r.alpha = .85;
-            var s = new PIXI.Sprite(e);
-            return i.addChild(r, s), i._main = s, i._shadow = r, i._flashFilter = n, i
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "shadow", {
-            get: function () {
-                return this._shadow
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "shadowColor", {
-            get: function () {
-                return this._flashFilter
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.dispose = function () {
-            this.removeChildren(), this._shadow.filters = [], this._shadow.texture = PIXI.Texture.EMPTY, this._main.texture = PIXI.Texture.EMPTY, this._shadow = null, this._main = null
-        }, e
-    }(PIXI.Container);
-    e.Ship = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick()
-            };
-            var i = new r.GearBtnHome,
-                n = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, 1200, 720).endFill();
-            return i.initialize(), i.activate(), i.position.set(1200 - .5 * i.width, 720 - .5 * i.height), n.interactive = !0, n.buttonMode = !0, n.addChild(i), n.addListener(s.EventType.CLICK, e._onClick), e._gearBtnHome = i, e._goBackArea = n, e.addChild(n), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._goBackArea.removeListener(s.EventType.CLICK, this._onClick), this._gearBtnHome.deactivate(), this._gearBtnHome.dispose(), this._goBackArea = null, this._onClick = null, this._gearBtnHome = null
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Sprite);
+    e.KaizoStartButton = s
 }

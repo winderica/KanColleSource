@@ -20,40 +20,48 @@ const function1157 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(6),
-        s = i(110),
+        r = i(4),
+        s = i(133),
         a = i(91),
-        _ = i(1158),
-        u = i(1160),
-        l = i(1166),
-        c = i(1167),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new u.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
-                }, e._onUnSelect = function () {
-                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
-                }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer,
-                        n = new c.TaskExchange(i, t);
-                    n.start(function () {
-                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
-                    })
-                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new l.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
+        _ = i(408),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOn = function (t, e) {
+                    i._description.text = e.replace(/<br>/g, "\n")
+                }, i._onMouseOff = function () {
+                    i._description.text = ""
+                }, i._cb_onSelect = e, i._bg_layer = new PIXI.Container, i.addChild(i._bg_layer), i._description = new r.TextBox(19, 16777215), i._description.position.set(219, 219), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 744, i.addChild(i._description), i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
+                var t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(26));
+                t.position.set(172, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(30)), t.position.set(202, 144), this._bg_layer.addChild(t), t = new PIXI.Sprite(s.ITEM_ISHOP.getTexture(19)), t.position.set(202, 202), this._bg_layer.addChild(t), this._icons = [];
+                for (var e = 0; e < 14; e++) {
+                    var i = new _.ItemIcon(this._onMouseOn, this._onMouseOff, this._cb_onSelect);
+                    i.x = 234 + 118 * Math.floor(e / 2), i.y = 288 + (0 == Math.floor(e % 2) ? 0 : 181), i.initialize(3), this.addChild(i), this._icons.push(i)
+                }
             }, e.prototype.update = function () {
-                var t = o.default.model.useItem.getCount(44);
-                this._coin.update(t)
+                for (var t = o.default.model.payitem.getOrder(1), e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e],
+                        n = t[e],
+                        r = o.default.model.payitem.getData(n);
+                    i.update(r)
+                }
             }, e.prototype.activate = function () {
-                1 == this._main_view.visible && this._main_view.activate()
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
             }, e.prototype.deactivate = function () {
-                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
+                this.removeChildren();
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._description.destroy(), this._cb_onSelect = null
             }, e
         }(a.ViewBase);
-    e.FurnitureShopMain = h
+    e.SpecialItemShopMain = u
 }

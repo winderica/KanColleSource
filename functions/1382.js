@@ -19,65 +19,67 @@ const function1382 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(18),
-        s = i(27),
-        a = i(6),
-        _ = i(1383),
-        u = i(1385),
-        l = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._banner_f,
-                    i = this._banner_e;
-                1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                    t._search_light_task = null, t._preEndTask()
-                })
-            }, e.prototype._effectWithFlare = function (t, e) {
-                var i = this,
-                    n = new s.ParallelTask;
-                n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                    createjs.Tween.get(null).wait(1170).call(function () {
-                        i._flareAnimation(t, e)
-                    }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                        i._search_light_task.start(function () {
-                            i._search_light_task = null, i._preEndTask()
+    var o = i(0),
+        r = i(22),
+        s = i(6),
+        a = i(376),
+        _ = i(39),
+        u = function (t) {
+            function e(e, i, n, s, _, u, l, c) {
+                var h = t.call(this, e, i, s, u, l, c) || this;
+                h._onCallAttackEffect = function () {
+                    var t = h._getDamage(h._defender),
+                        e = h._defenderBanner.getGlobalPos(!0),
+                        i = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        n = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
+                        o = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
+                        s = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                    createjs.Tween.get(null).call(function () {
+                        h._defenderBanner.moveAtDamage(h._shield), h._scene.view.layer_explosion.playDamageExplosion(e.x, e.y, t)
+                    }).wait(150).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + i, e.y + n)
+                    }).wait(100).call(function () {
+                        h._scene.view.layer_explosion.playExplosionSmall(e.x + o, e.y + s, function () {
+                            h._attack(h._attackerBanner, h._defenderBanner)
                         })
                     })
+                }, h._finallize = function () {
+                    h._cutin.dispose(), h._cutin = null, h._attackerBanner = null, h._defenderBanner = null, h._endTask()
+                };
+                var p, d, f = h._slot.mstID,
+                    y = o.default.model.slot.getMst(_),
+                    m = y.mstID,
+                    g = new a.CutinZRK(i, f, m),
+                    v = i.friend,
+                    b = i.index,
+                    w = n.index;
+                return v ? (p = e.view.bannerGroupLayer.getBanner(!0, b), d = e.view.bannerGroupLayer.getBanner(!1, w)) : (p = e.view.bannerGroupLayer.getBanner(!1, b), d = e.view.bannerGroupLayer.getBanner(!0, w)), g.onCallAttackEffect = h._onCallAttackEffect, g.onCallAttackVoice = h._playVoice, h._attackerBanner = p, h._defenderBanner = d, h._cutin = g, h._defender = n, h._debug_slot_mst_id3 = _, h
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
                 })
-            }, e.prototype._flareAnimation = function (t, e) {
+            }, e.prototype._playVoice = function () {
+                if (this._attacker.friend) {
+                    var t = this._attacker.mst_id;
+                    o.default.sound.voice.play(t.toString(), 16)
+                }
+            }, e.prototype._log = function (t) {}, e.prototype._completePreload = function () {
+                this._attackerBanner.moveFront(), this._defenderBanner.moveFront(), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+            }, e.prototype._attack = function (t, e) {
                 var i = this;
-                this._flare_light_task = new s.ParallelTask;
-                var n = this._layer;
-                this._flare_light_task.add(new c(n));
-                var o;
-                null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                    i._flare_light_task = null, i._preEndTask()
+                s.SE.play("102"), t.attack(function () {
+                    i._damageEffect(t, e)
                 })
-            }, e.prototype._preEndTask = function () {
-                null == this._search_light_task && null == this._flare_light_task && this._endTask()
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+            }, e.prototype._damageEffect = function (t, e) {
+                var i = this;
+                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+                var n = this._getDamage(this._defender);
+                this._playExplosion(e, n), this._playDamageEffect(t, e, this._defender, n, this._hit, function () {
+                    return i._finallize()
+                })
             }, e
-        }(o.TaskBase);
-    e.TaskFlareEffect = l;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            })
-        }, e
-    }(o.TaskBase)
+        }(_.PhaseAttackBase);
+    e.PhaseZRK = u
 }

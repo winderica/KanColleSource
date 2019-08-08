@@ -1,59 +1,37 @@
 const function1179 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = i(406),
-        r = function () {
-            function t() {
-                this._models = []
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e(e, i, n, o, r, s, a) {
+                var _ = t.call(this) || this;
+                return _._url = "api_req_furniture/change", _._api_floor = e, _._api_wallpaper = i, _._api_window = n, _._api_wallhanging = o, _._api_shelf = r, _._api_desk = s, _._api_season = a, _
             }
-            return Object.defineProperty(t.prototype, "selected_type", {
-                get: function () {
-                    return this._selected_type
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "selected_page_no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_disp_page", 1)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "page_max", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_page_count", 0)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "models", {
-                get: function () {
-                    return this._models
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.update = function (t, e) {
-                this._selected_type = t, this._o = e, this._models = [];
-                var i = n.ObjUtil.getObjectArray(this._o, "api_list");
-                if (null != i)
-                    for (var r = 0, s = i; r < s.length; r++) {
-                        var a = s[r];
-                        "number" == typeof a && -1 == a || this._models.push(new o.DutyModel_(a))
-                    }
-            }, t.prototype.getExecCount = function () {
-                return n.ObjUtil.getNumber(this._o, "api_exec_count")
-            }, t.prototype.hasComplete = function () {
-                if (1 == (1 == n.ObjUtil.getNumber(this._o, "api_completed_kind"))) return !0;
-                var t = n.ObjUtil.getObjectArray(this._o, "api_c_list");
-                if (null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var r = i[e],
-                            s = new o.DutyModel_(r);
-                        if (3 == s.status) return !0
-                    }
-                return !1
-            }, t
-        }();
-    e.DutyDataHolder = r
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_floor = this._api_floor, this._post_data.api_wallpaper = this._api_wallpaper, this._post_data.api_window = this._api_window, this._post_data.api_wallhanging = this._api_wallhanging, this._post_data.api_shelf = this._api_shelf, this._post_data.api_desk = this._api_desk, -1 != this._api_season && (this._post_data.api_season = this._api_season), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.updatePortFurnitureMstID(0, this._api_floor), e.updatePortFurnitureMstID(1, this._api_wallpaper), e.updatePortFurnitureMstID(2, this._api_window), e.updatePortFurnitureMstID(3, this._api_wallhanging), e.updatePortFurnitureMstID(4, this._api_shelf), e.updatePortFurnitureMstID(5, this._api_desk), t.prototype._completedEnd.call(this)
+            }, e
+        }(r.APIBase);
+    e.FurnitureChangeAPI = s
 }

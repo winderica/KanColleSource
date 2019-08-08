@@ -19,65 +19,44 @@ const function1498 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(68),
-        a = i(8),
-        _ = i(31),
-        u = i(1499),
-        l = i(1),
-        c = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(12),
+        r = i(1499),
+        s = i(484),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this._scene.data.getLandingData();
-                t.isLandingMap() ? this._loadResources(t) : this._endTask()
-            }, e.prototype._loadResources = function (t) {
-                var e = this,
-                    i = o.default.resources.gauge.createLoaderHorizontal(),
-                    n = this._scene.data.battle_model.map_info.area_id,
-                    r = this._scene.data.battle_model.map_info.map_no,
-                    a = this._scene.data.battle_model.stage,
-                    _ = s.GaugeSetModel.createKey(n, r, a);
-                i.add(_);
-                i.load(function () {
-                    var i = o.default.resources.gauge.getGaugeInfo(_),
-                        n = null;
-                    e._showDialog(t, i, n)
-                })
-            }, e.prototype._showDialog = function (t, e, i) {
-                var n = this,
-                    o = new u.ResultDialog(t, e, i);
-                o.alpha = 0, this._scene.view.addChild(o), createjs.Tween.get(o).wait(500).to({
-                    alpha: 1
-                }, 300).wait(500).call(function () {
-                    o.startAnimation(function () {
-                        n._hideDialog(o)
-                    })
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(t).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._scene.view.removeChild(t), t.dispose(), e._wait()
-                })
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                var e = this,
-                    i = new _.GearBtnNext;
-                i.position.set(1130, 648), i.initialize(), i.activate(), this._scene.view.addChild(i);
-                var n = new a.AreaBox(0);
-                n.buttonMode = !0, this._scene.view.addChild(n), n.once(l.EventType.CLICK, function () {
-                    i.deactivate(), e._scene.view.removeChild(i), e._scene.view.removeChild(n), t.prototype._endTask.call(e)
-                })
+            return n(e, t), e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 3; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(2), r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(3), r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 83, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
+                }
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 2; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(0), e.x = 433 + 225 * t, e.y = 233.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(999, 304.5), e.alpha = 0, e
             }, e
-        }(r.TaskBase);
-    e.PhaseTransportResult = c
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding1 = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(5), this._text1.position.set(124, 271), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(6), this._text2.position.set(329, 514), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_GYKQXDKFPZIHNCFT.getTexture(8), this._text3.position.set(343, 577)
+        }, e
+    }(s.TextsBase)
 }

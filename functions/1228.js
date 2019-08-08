@@ -19,20 +19,28 @@ const function1228 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(138),
-        s = function (t) {
+    var o = i(138),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._bg = new PIXI.Sprite, e._name_txt = new o.TextBox(20, 16774898);
-                var i = new PIXI.Graphics;
-                return i.beginFill(0), i.drawRect(0, 0, 264, 26), i.endFill(), e._name_txt.addChild(i), e._name_txt.mask = i, e._name_txt.position.set(20, 3), e._lvlabel_txt = new o.TextBox(20, 16774898), e._lvlabel_txt.position.set(351, 5), e._lvlabel_txt.text = "Lv", e._lv_txt = new o.TextBox(24, 16774898), e._lv_txt.anchor.set(1, 0), e._lv_txt.position.set(423, 0), e.addChild(e._bg), e.addChild(e._name_txt), e.addChild(e._lvlabel_txt), e.addChild(e._lv_txt), e
+                return e._interval_id = 0, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._hand = new PIXI.Sprite, e._hand.anchor.set(.5, .5), e._light = new PIXI.Sprite, e._light.anchor.set(.5, .5), e.addChild(e._bg), e.addChild(e._hand), e.addChild(e._light), e
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this._bg.texture = r.PRAC_MAIN.getTexture(2), this._name_txt.text = t + " " + e, this._lv_txt.text = i.toString()
+            return n(e, t), e.prototype.initialize = function () {
+                this._bg.texture = o.SALLY_MAP_PARTS.getTexture(15), this._hand.texture = o.SALLY_MAP_PARTS.getTexture(17), this._light.texture = o.SALLY_MAP_PARTS.getTexture(16)
+            }, e.prototype.activate = function () {
+                this._startMove()
+            }, e.prototype.deactivate = function () {
+                this._stopMove()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name_txt.destroy(), this._lvlabel_txt.destroy(), this._lv_txt.destroy()
+                this._stopMove()
+            }, e.prototype._startMove = function () {
+                var t = this;
+                0 == this._interval_id && (this._interval_id = setInterval(function () {
+                    t._hand.rotation = (4 * Math.random() - 2) / 180 * Math.PI
+                }, 30))
+            }, e.prototype._stopMove = function () {
+                0 != this._interval_id && clearInterval(this._interval_id), this._interval_id = 0
             }, e
         }(PIXI.Container);
-    e.ShipElement = s
+    e.CompCompass = r
 }

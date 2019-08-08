@@ -19,25 +19,37 @@ const function292 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(46),
+    var o = i(107),
         r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck_id = e, n._deck_name = i, n
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "deck_id", {
-                get: function () {
-                    return this._deck_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "deck_name", {
-                get: function () {
-                    return this._deck_name
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(o.RewardModel);
-    e.RewardModelDeck = r
+            return n(e, t), e.prototype.initialize = function (t) {
+                var e;
+                if (11 == t) e = 9;
+                else if (12 == t) e = 14;
+                else if (13 == t) e = 10;
+                else if (14 == t) e = 11;
+                else if (15 == t) e = 8;
+                else {
+                    if (31 != t) return void(this._img.texture = PIXI.Texture.EMPTY);
+                    e = 12
+                }
+                this._img.texture = o.PORT_RINGMENU.getTexture(e)
+            }, e.prototype.show = function () {
+                var t = this;
+                1 != this._img.visible && null == this._t && (this._img.position.set(5, -23), this._img.alpha = 0, this._img.visible = !0, this._t = createjs.Tween.get(this._img).wait(400).to({
+                    x: 35,
+                    alpha: 1
+                }, 100).call(function () {
+                    t._t = null
+                }))
+            }, e.prototype.hide = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null), this._img.visible = !1
+            }, e.prototype.dispose = function () {
+                this.hide()
+            }, e
+        }(PIXI.Container);
+    e.RingMenuBtnDescription = r
 }

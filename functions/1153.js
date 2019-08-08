@@ -19,37 +19,30 @@ const function1153 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(1154),
+    var o = i(31),
+        r = i(3),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._result = !1, e._api = null, e._retry_count = 0, e
+                return e._light = new PIXI.Sprite, e._light.position.set(-22, -24), e.addChild(e._light), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "result", {
-                get: function () {
-                    return this._result
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(500).call(function () {
-                    t._check()
-                })
-            }, e.prototype._check = function () {
-                var t = this;
-                this._retry_count++, this._api = new r.PayCheckAPI, this._api.start(function () {
-                    t._checked()
-                })
-            }, e.prototype._checked = function () {
-                var t = this;
-                2 == this._api.result ? (this._result = !0, this._endTask()) : this._retry_count >= 3 ? this._endTask() : createjs.Tween.get(null).wait(1e3).call(function () {
-                    t._check()
-                })
-            }, e.prototype._endTask = function () {
-                this._api = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this._stopTween(), t.prototype.dispose.call(this)
+            }, e.prototype._update = function (t) {
+                0 == t ? (this.texture = r.ITEM_ILIST.getTexture(10), this._light.texture = r.ITEM_ILIST.getTexture(1)) : (this.texture = r.ITEM_ILIST.getTexture(11), this._light.texture = r.ITEM_ILIST.getTexture(2)), this._stopTween(), this._startTween()
+            }, e.prototype._activate = function () {
+                this._stopTween(), this._startTween(), t.prototype._activate.call(this)
+            }, e.prototype._startTween = function () {
+                this._light.alpha = 0, this._tween = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 3e3).to({
+                    alpha: 0
+                }, 3e3)
+            }, e.prototype._stopTween = function () {
+                null != this._tween && this._tween.setPaused(!0), this._tween = null
             }, e
-        }(o.TaskBase);
-    e.TaskPayCheck = s
+        }(o.BtnBase);
+    e.PickupBtn = s
 }

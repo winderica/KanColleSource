@@ -19,56 +19,24 @@ const function1020 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var o = i(4),
         r = i(1021),
-        s = i(225),
-        a = i(169),
-        _ = i(1022),
-        u = i(1027),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._changeToInfo = function () {
-                    e._showInfo()
-                }, e._changeToDeck = function () {
-                    e._showDeck()
-                }, e._onStartPractice = function () {
-                    for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, u = new s.DeckModelReplica(i, !0, n, _), l = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
-                        var p = c[h];
-                        if (null == p) l.push(null);
-                        else {
-                            var d = p.id,
-                                f = p.level,
-                                y = new a.ShipModelReplica(1, !0, h, d, -h, f);
-                            l.push(y)
-                        }
-                    }
-                    var m = e._selected_rival.id,
-                        g = e._selected_rival.medal_num,
-                        v = e._selected_rival.name,
-                        b = e._selected_rival.deck_name,
-                        w = new s.DeckModelReplica(m, !0, g, v, 0, b, l),
-                        x = new r.PracticeSceneModel(u, w);
-                    o.default.scene.change(32, x), e.emit("close")
-                }, e._onClose = function () {
-                    e.emit("close")
-                }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new u.PanelDeckSelect(e._onClose), e
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._enabled = !1, i._btn1 = new r.BtnMatchingSelect(e), i._btn2 = new r.BtnMatchingSelect(e), i._btn3 = new r.BtnMatchingSelect(e), i._txt1 = new o.TextBox(19, 4999235), i._txt = new o.TextBox(15, 4999235), i
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
-            }, e.prototype.update = function (t) {
-                this._selected_rival = t, this._info.update(t), this._showInfo()
+            return n(e, t), e.prototype.initialize = function () {
+                this._btn1.initialize(0), this._btn2.initialize(1), this._btn3.initialize(2), this._txt1.text = "\u3088\u308a\u6b21\u56de\u6f14\u7fd2\u5019\u88dc\u3092\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u3002", this._txt1.position.set(141, 7), this.addChild(this._btn1), this.addChild(this._btn2), this.addChild(this._btn3), this.addChild(this._txt1), this.addChild(this._txt)
+            }, e.prototype.update = function (t, e) {
+                this._enabled = t, 1 == t ? (this._btn1.position.set(0, 0), this._btn2.position.set(150, 0), this._btn3.position.set(300, 0), this._txt1.visible = !1, this._txt.position.set(445, 9), 0 == e ? (this._btn1.setSelected(!0), this._btn2.setSelected(!1), this._btn3.setSelected(!1)) : 1 == e ? (this._btn1.setSelected(!1), this._btn2.setSelected(!0), this._btn3.setSelected(!1)) : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!0)), this._txt.text = "\u6f14\u7fd2\u76f8\u624b\u306f\u4e00\u65e5\u4e8c\u56de\u66f4\u65b0\u3055\u308c\u307e\u3059\u3002") : (this._btn1.setSelected(!1), this._btn2.setSelected(!1), this._btn3.setSelected(!1), this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate(), this._btn1.visible = !1, this._btn2.visible = !1, this._btn3.visible = !1, 0 == e ? (this._btn1.visible = !0, this._btn1.position.set(0, 0)) : 1 == e ? (this._btn2.visible = !0, this._btn2.position.set(0, 0)) : (this._btn3.visible = !0, this._btn3.position.set(0, 0)), this._txt1.visible = !0, this._txt.position.set(490, 10), this._txt.text = "\u66f4\u65b0\u5f8c\u306b\u8a2d\u5b9a\u5909\u66f4\u53ef\u80fd\u3067\u3059\u3002")
             }, e.prototype.activate = function () {
-                1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
+                1 == this._enabled && (this._btn1.activate(), this._btn2.activate(), this._btn3.activate())
             }, e.prototype.deactivate = function () {
-                this._info.deactivate(), this._deck.deactivate()
+                this._btn1.deactivate(), this._btn2.deactivate(), this._btn3.deactivate()
             }, e.prototype.dispose = function () {
-                this._info.dispose(), this._deck.dispose()
-            }, e.prototype._showInfo = function () {
-                1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
-            }, e.prototype._showDeck = function () {
-                1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
+                this.removeChildren(), this._btn1.dispose(), this._btn2.dispose(), this._btn3.dispose(), this._txt1.destroy(), this._txt.destroy()
             }, e
         }(PIXI.Container);
-    e.ContainerOverlay = l
+    e.CompMatchingSelectBtns = s
 }

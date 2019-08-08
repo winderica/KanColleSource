@@ -23,9 +23,9 @@ const function148 = function (t, e, i) {
         r = i(46),
         s = function (t) {
             function e(e, i, n) {
-                void 0 === n && (n = null);
+                void 0 === i && (i = null), void 0 === n && (n = null);
                 var o = t.call(this) || this;
-                return o._mst_id = e, o._count = i, o._message = n, o
+                return o._mst_id = e, o._name = i, o._message = n, o
             }
             return n(e, t), Object.defineProperty(e.prototype, "mst_id", {
                 get: function () {
@@ -33,20 +33,15 @@ const function148 = function (t, e, i) {
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "count", {
-                get: function () {
-                    return this._count
-                },
-                enumerable: !0,
-                configurable: !0
             }), Object.defineProperty(e.prototype, "name", {
                 get: function () {
-                    var t = o.default.model.slot.get(this._mst_id);
+                    if (null != this._name && this._name.length > 0) return this._name;
+                    var t = o.default.model.furniture.getData(this._mst_id);
                     return null == t ? "" : t.name
                 },
                 enumerable: !0,
                 configurable: !0
             }), e
         }(r.RewardModel);
-    e.RewardModelSlotitem = s
+    e.RewardModelFurniture = s
 }

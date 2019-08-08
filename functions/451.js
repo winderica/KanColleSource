@@ -19,91 +19,134 @@ const function451 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(66),
-        r = i(6),
-        s = i(141),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._friend = e, i._planes = [], i
+    var o = i(5),
+        r = i(17),
+        s = i(12),
+        a = i(16),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new r.FadeBox(.8), e._bg.hide(0), e._content = new PIXI.Container, e._overlay = new c, e.addChild(e._bg), e.addChild(e._content), e.addChild(e._overlay), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "friend", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._friend
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.addPlane = function (t, e) {
-                if (void 0 === e && (e = null), !(this._planes.length >= 3)) {
-                    var i = new s.Plane;
-                    null == e && (e = new PIXI.Point, 0 == this._planes.length ? (e.x = 45, e.y = 18) : 1 == this._planes.length ? (e.x = 18, e.y = -27) : 2 == this._planes.length && (e.x = -36, e.y = 38)), i.initialize(t, this._friend, new PIXI.Point, e), this._planes.push(i);
-                    for (var n = 0; n < this._planes.length; n++) {
-                        var o = this._planes[n];
-                        if (i.y < o.y) {
-                            var r = this.getChildIndex(o);
-                            this.addChildAt(i, r);
-                            break
-                        }
-                        n == this._planes.length - 1 && this.addChild(i)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.startFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].startFluctuations()
-                }
-            }, e.prototype.stopFluctuations = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].stopFluctuations()
-                }
-            }, e.prototype.fire = function () {
-                for (var t = 0, e = this._planes; t < e.length; t++) {
-                    e[t].fire()
-                }
-            }, e.prototype.play = function (t, e, i, n, s) {
-                var a = this;
-                void 0 === e && (e = NaN), void 0 === s && (s = null);
-                var _, u = new PIXI.Point(this.x, this.y),
-                    l = this._createControllPoints(u, t),
-                    c = l.c1,
-                    h = l.c2;
-                if (0 == isNaN(e)) {
-                    var p = .99,
-                        d = 1 - p,
-                        f = Math.pow(d, 3) * u.x + 3 * Math.pow(d, 2) * p * c.x + 3 * d * p * p * h.x + p * p * p * t.x,
-                        y = Math.pow(d, 3) * u.y + 3 * Math.pow(d, 2) * p * c.y + 3 * d * p * p * h.y + p * p * p * t.y,
-                        m = t.y + (e - t.x) * (t.y - y) / (t.x - f),
-                        g = t.x - f,
-                        v = (e - t.x) / g,
-                        b = i / (100 + v) * 100,
-                        w = i / (100 + v) * v;
-                    this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, b), null != n && this._tween.call(n), this._tween.to({
-                        x: e,
-                        y: m
-                    }, w), _ = new PIXI.Point(e, m)
-                } else this._tween = o.TweenUtil.create3BezierTween(this, u, c, h, t, i), null != n && this._tween.call(n), _ = new PIXI.Point(t.x, t.y);
-                return null != s && this._tween.call(s), createjs.Tween.get(null).wait(.7 * i).call(function () {
-                    r.SE.play("116"), a.fire()
-                }), {
-                    s: u,
-                    c1: c,
-                    c2: h,
-                    e: t,
-                    ex: _
-                }
-            }, e.prototype.debugLine = function (t) {
-                var e = new PIXI.Graphics;
-                return e.lineStyle(1, 16711680), e.moveTo(t.s.x, t.s.y), e.bezierCurveTo(t.c1.x, t.c1.y, t.c2.x, t.c2.y, t.e.x, t.e.y), e.lineStyle(1, 65280), e.lineTo(t.ex.x, t.ex.y), e
-            }, e.prototype._createControllPoints = function (t, e) {
-                var i, n, o = t.x <= e.x;
-                return 1 == o ? (i = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.min(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)) : (i = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3, Math.max(e.y, t.y) + 150), n = new PIXI.Point(Math.max(t.x, e.x) + (e.x - t.x) / 3 * 2, Math.max(e.y, t.y) + 150)), {
-                    c1: i,
-                    c2: n
-                }
+            }), Object.defineProperty(e.prototype, "content", {
+                get: function () {
+                    return this._content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "overlay", {
+                get: function () {
+                    return this._overlay
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._overlay.initialize()
             }, e
         }(PIXI.Container);
-    e.PlaneTrio = a
+    e.CutinCanvasFunnel = _;
+    var u = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._telop_bg = new PIXI.Sprite, e._telop_bg.anchor.set(.5), e._laser_effect = new l, e._laser_effect.visible = !1, e._ship = new PIXI.Sprite, e._ship.alpha = 0, e._ship_mask = new PIXI.Graphics, e._plane1 = new s.Sprite, e._plane2 = new s.Sprite, e._plane3 = new s.Sprite, e.addChild(e._telop_bg), e.addChild(e._plane3), e.addChild(e._laser_effect), e.addChild(e._ship), e.addChild(e._ship_mask), e.addChild(e._plane2), e.addChild(e._plane1), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "telop_bg", {
+            get: function () {
+                return this._telop_bg
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "laser_effect", {
+            get: function () {
+                return this._laser_effect
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "ship", {
+            get: function () {
+                return this._ship
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "ship_mask", {
+            get: function () {
+                return this._ship_mask
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "plane1", {
+            get: function () {
+                return this._plane1
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "plane2", {
+            get: function () {
+                return this._plane2
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "plane3", {
+            get: function () {
+                return this._plane3
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.initialize = function (t) {
+            this._ship_mask.beginFill(16711680, .3), 1 == t ? (this._telop_bg.texture = PIXI.Texture.fromFrame("battle_telop_kkcutin_f"), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height), new PIXI.Point(o.default.width / 4 * 3, o.default.height), new PIXI.Point(0, o.default.height / 3 * 2)])) : (this._telop_bg.texture = PIXI.Texture.fromFrame("battle_telop_kkcutin_e"), this._ship_mask.drawPolygon([new PIXI.Point(0, 0), new PIXI.Point(o.default.width, 0), new PIXI.Point(o.default.width, o.default.height / 3 * 2), new PIXI.Point(o.default.width / 4, o.default.height), new PIXI.Point(0, o.default.height)])), this._ship_mask.endFill()
+        }, e
+    }(PIXI.Container);
+    e.CutinCanvasFunnelOnce = u;
+    var l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.lineStyle(2.6, 65535), e.moveTo(24, 198), e.lineTo(-420, -105), e.moveTo(90, 174), e.lineTo(-90, -200), e.moveTo(177, 177), e.lineTo(420, -195), e
+            }
+            return n(e, t), e
+        }(PIXI.Graphics),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._content = new PIXI.Graphics, e._content.visible = !1, e._gradient = new PIXI.Sprite, e._gradient.visible = !1, e.addChild(e._content), e._content.addChild(e._gradient), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "showed", {
+                get: function () {
+                    return this._content.visible
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._gradient.texture = a.BATTLE_MAIN.getTexture(42), this._gradient.height = o.default.height, this._content.beginFill(0), this._content.drawRect(0, 0, o.default.width, o.default.height), this._content.endFill()
+            }, e.prototype.showFromRight = function (t) {
+                void 0 === t && (t = null), 1 != this._content.visible && (this._content.x = this._gradient.width + o.default.width, this._gradient.scale.x = 1, this._gradient.x = -this._gradient.width, this._show(t))
+            }, e.prototype.showFromLeft = function (t) {
+                void 0 === t && (t = null), 1 != this._content.visible && (this._content.x = -this._gradient.width - o.default.width, this._gradient.scale.x = -1, this._gradient.x = o.default.width + this._gradient.width, this._show(t))
+            }, e.prototype.hideToRight = function (t) {
+                void 0 === t && (t = null), 0 != this._content.visible && (this._gradient.scale.x = 1, this._gradient.x = -this._gradient.width, this._hide(o.default.width + this._gradient.width, t))
+            }, e.prototype.hideToLeft = function (t) {
+                void 0 === t && (t = null), 0 != this._content.visible && (this._gradient.scale.x = -1, this._gradient.x = o.default.width + this._gradient.width, this._hide(-o.default.width - this._gradient.width, t))
+            }, e.prototype._show = function (t) {
+                var e = this;
+                void 0 === t && (t = null), this._stopAnimation(), this._gradient.visible = !0, this._content.visible = !0, this._t = createjs.Tween.get(this._content).to({
+                    x: 0
+                }, 250).call(function () {
+                    e._gradient.visible = !1, null != t && t()
+                })
+            }, e.prototype._hide = function (t, e) {
+                var i = this;
+                void 0 === e && (e = null), this._stopAnimation(), this._gradient.visible = !0, this._t = createjs.Tween.get(this._content).to({
+                    x: t
+                }, 250).call(function () {
+                    i._gradient.visible = !1, i._content.visible = !1, null != e && e()
+                })
+            }, e.prototype._stopAnimation = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e
+        }(PIXI.Container)
 }

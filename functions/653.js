@@ -19,45 +19,79 @@ const function653 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(108),
-        r = i(303),
-        s = i(109),
-        a = i(1),
-        _ = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                return r._ImageManager = e, r._ev = i, r._shipId = n, r._charaPosition = {}, r._onNext = function () {
-                    r._messageBox.btn.interactive = !1, r._ev.emit("tutorial-next-scene")
-                }, r._charaPosition[o.CHARA.FUBUKI] = {
-                    x: 208,
-                    y: -22
-                }, r._charaPosition[o.CHARA.MURAKUMO] = {
-                    x: -20,
-                    y: -112
-                }, r._charaPosition[o.CHARA.SAZANAMI] = {
-                    x: 206,
-                    y: -22
-                }, r._charaPosition[o.CHARA.INADUMA] = {
-                    x: 309,
-                    y: 14
-                }, r._charaPosition[o.CHARA.SAMIDARE] = {
-                    x: 232,
-                    y: 42
-                }, r.alpha = 0, r
+    var o = i(269),
+        r = i(270),
+        s = i(34),
+        a = i(158),
+        _ = i(210),
+        u = i(128),
+        l = i(108),
+        c = i(654),
+        h = i(655),
+        p = i(656),
+        d = i(657),
+        f = i(658),
+        y = i(659),
+        m = i(660),
+        g = i(662),
+        v = i(664),
+        b = function (t) {
+            function e(e) {
+                void 0 === e && (e = 0);
+                var i = t.call(this) || this;
+                return i._sceneId = e, i._isStart = !0, i._isGoNextPath = !0, i._shipId = null, i._onSceneStart = function () {
+                    switch (i._isStart) {
+                        case !0:
+                            return i._isStart = !1, i._ViewMain.start(), i._CurrentScene.start(), i;
+                        case !1:
+                            return i._loader.hide(), i._NextScene.start(), i._isGoNextPath && i._ev.emit("tutorial-next"), i
+                    }
+                }, i._onNextScene = function () {
+                    if (i._loader.show(), i._sceneId++, i._NextScene = i._createNextScene(), i._SoundManager.voice.stopAll(), null == i._NextScene) return i.dispose(), !1;
+                    i._NextScene.initialize(), i._ViewScene.addChild(i._NextScene), i._CurrentScene.dispose(), i._CurrentScene = i._NextScene
+                }, i._onRemoveScene = function () {
+                    i._ViewScene.removeChildAt(0), i._CurrentScene = i._NextScene
+                }, i._onPlayVoice = function (t, e, n) {
+                    void 0 === n && (n = null), i._SoundManager.voice.play(t, e, n)
+                }, i._saveShipId = function (t) {
+                    i._shipId = t
+                }, i._ImageManager = new c.ImageManager(i._create.bind(i)), i._SoundManager = new o.SoundManager, i._ev = new PIXI.utils.EventEmitter, i._ev.on("tutorial-scene-start", i._onSceneStart).on("tutorial-next-scene", i._onNextScene).on("tutorial-remove-scene", i._onRemoveScene).on("tutorial-play-voice", i._onPlayVoice).on("tutorial-save-ship", i._saveShipId), i.emitter = new PIXI.utils.EventEmitter, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = this._charaPosition[this._shipId],
-                    e = new PIXI.Container,
-                    i = new PIXI.Sprite(this._ImageManager.use(o.CHARA_PREFIX + "_" + this._shipId + "_" + o.CHARA_SUFFIX.FULL));
-                i.position.set(t.x, t.y), e.addChild(i), this._messageBox = new r.MessageBoxView(this._ImageManager, this._ev), this._messageBox.message.text = "", this._messageBox.btn.on(a.EventType.CLICK, this._onNext), this.addChild(e, this._messageBox), this._ev.emit("tutorial-scene-start")
-            }, e.prototype.start = function () {
-                var t = this;
-                this.alpha = 1, this._messageBox.start(), this._messageBox.btn.interactive = !0, this._messageBox.btn.buttonMode = !0, this._messageBox.flashText("\u63d0\u7763\u3001\u304a\u75b2\u308c\u3055\u307e\u3067\u3057\u305f\uff01\n\u305d\u308d\u305d\u308d\u3001\u79c1\u305f\u3061\u306e\u300c\u6bcd\u6e2f\u300d\u306b\u3044\u304d\u307e\u3057\u3087\u3046\uff01"), this._ev.emit("tutorial-play-voice", "tutorial", "034", function () {
-                    t._ev.emit("tutorial-play-voice", "tutorial", "035")
-                })
+            return n(e, t), e.prototype.start = function () {
+                this._ViewMain.start(), this._CurrentScene.start()
+            }, e.prototype._create = function () {
+                var t = new PIXI.Sprite(this._ImageManager.use(l.IMAGE_FILE.BG));
+                this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
+            }, e.prototype._createNextScene = function () {
+                switch (this._sceneId) {
+                    case 0:
+                        return this._isGoNextPath = !0, new m.SceneInputName(this._ev);
+                    case 1:
+                        return this._isGoNextPath = !0, new g.SceneSelectShip(this._ImageManager, this._ev);
+                    case 2:
+                        return this._isGoNextPath = !0, new p.SceneExplain1(this._ev);
+                    case 3:
+                        return this._isGoNextPath = !0, new d.SceneExplain2(this._ev);
+                    case 4:
+                        return this._isGoNextPath = !0, new f.SceneExplain3(this._ev);
+                    case 5:
+                        return this._isGoNextPath = !1, new y.SceneFinal(this._ImageManager, this._ev, this._shipId);
+                    default:
+                        return null
+                }
             }, e.prototype.dispose = function () {
-                this._messageBox.btn.off(a.EventType.CLICK, this._onNext), this.alpha = 0, this._ev.emit("tutorial-remove-scene")
+                var t = this;
+                this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
+                var e = new s.APIConnector,
+                    i = parseInt(this._shipId, 10);
+                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new u.UserSlotItemAPI), e.start(function () {
+                    t._loader.hide(), createjs.Tween.get(t).to({
+                        alpha: 0
+                    }, 400, createjs.Ease.linear).call(function () {
+                        t._ViewMain.dispose(), t._CurrentScene.dispose(), t._CurrentScene = null, t._NextScene = null, t.removeChildren(), t.emitter.emit("tutorial-event-end")
+                    })
+                })
             }, e
-        }(s.SceneBase);
-    e.SceneFinal = _
+        }(PIXI.Container);
+    e.TutorialScene = b
 }

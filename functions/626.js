@@ -19,29 +19,52 @@ const function626 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e(e, i, n) {
-            var o = 1 == n ? "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x - width / 2.0 + (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x >= border) {\n                    float a = 0.0;\n                    float diff = gl_FragCoord.x - border;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        " : "\n            precision mediump float;\n            varying vec2 vTextureCoord;\n            uniform sampler2D uSampler;\n\n            uniform float x; //\u30bf\u30fc\u30b2\u30c3\u30c8\u306ex\u5ea7\u6a19(\u4e2d\u5fc3\u70b9)\n            uniform float width;\n            uniform float rate;\n            uniform float grad;\n\n            void main(void) {\n                vec4 color = texture2D(uSampler, vTextureCoord);\n                \n                float border = x + width / 2.0 - (width * rate); // alpha:1 \u3067\u8868\u793a\u3059\u308b\u90e8\u5206\u3068\u306e\u5883\n                if(gl_FragCoord.x <= border) {\n                    float a = 0.0;\n                    float diff = border - gl_FragCoord.x;\n                    if(diff <= width * grad) {\n                        a = 1.0 - (diff / (width * grad));\n                    }\n                    color.r *= a;\n                    color.g *= a;\n                    color.b *= a;\n                    if(a < color.a) {\n                        color.a = a;\n                    }\n                }\n                gl_FragColor = color;\n            }\n        ";
-            return t.call(this, null, o, {
-                x: {
-                    type: "1f",
-                    value: e
-                },
-                width: {
-                    type: "1f",
-                    value: i
-                },
-                rate: {
-                    type: "1f",
-                    value: 1
-                },
-                grad: {
-                    type: "1f",
-                    value: .5
-                }
-            }) || this
-        }
-        return n(e, t), e
-    }(PIXI.Filter);
-    e.MeltIntoSlotitemFilter = o
+    var o = i(9),
+        r = i(8),
+        s = i(31),
+        a = i(31),
+        _ = i(304),
+        u = i(204),
+        l = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._initBG = function () {
+                var t = this;
+                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
+                    t._animation()
+                })
+            }, e.prototype._createItemTobe = function (t, e) {
+                var i = o.COMMON_MISC.getTexture(49),
+                    n = new u.CenteringSprite(i);
+                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
+            }, e.prototype._change = function () {
+                var e = this;
+                t.prototype._change.call(this);
+                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
+                i.x = -i.width / 2, i.y = -i.height / 2;
+                var n = new a.Container;
+                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3,
+                    alpha: 1
+                }, 350).to({
+                    scaleX: 5,
+                    scaleY: 5
+                }, 300).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(n)
+                });
+                var s = new r.AreaBox(1, 16777215);
+                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
+                    alpha: 1
+                }, 500).wait(600).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    e._layer.removeChild(s)
+                })
+            }, e
+        }(_.ModelChangeTask);
+    e.AirunitBaseOpenTask = l
 }

@@ -19,38 +19,71 @@ const function1305 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            return t.call(this) || this
-        }
-        return n(e, t), e.prototype.isDisplaying = function () {
-            return null != this._enemy
-        }, e.prototype.show = function (t, e) {
-            void 0 === e && (e = null), null != this._enemy && this.hide(), this._enemy = t;
-            var i = t.y;
-            t.y += 30, t.alpha = 0, this.addChild(t), t.startAnimation();
-            var n = createjs.Tween.get(t);
-            n.to({
-                y: i,
-                alpha: 1
-            }, 500), n.wait(600), null != e && n.call(e)
-        }, e.prototype.hide = function (t) {
-            var e = this;
-            if (void 0 === t && (t = null), null == this._enemy) null != t && t();
-            else {
-                var i = this._enemy;
-                this._enemy = null;
-                var n = createjs.Tween.get(i);
-                n.to({
-                    y: i.y + 30,
-                    alpha: 0
-                }, 1e3), n.call(function () {
-                    e.removeChild(i), i.stopAnimation(), null != t && t()
-                })
+    var o = i(23),
+        r = i(20),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
             }
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._enemy && this._enemy.dispose(), this._enemy = null
-        }, e
-    }(PIXI.Container);
-    e.MapEnemyLayer = o
+            return n(e, t), Object.defineProperty(e.prototype, "color", {
+                get: function () {
+                    return this._color
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this.update(t)
+            }, e.prototype.update = function (t) {
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(146), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+            }, e.prototype.dispose = function () {
+                this._stopTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 300).to({
+                    alpha: 1
+                }, 300))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case -1:
+                        return r.MAP_COMMON.getTexture(152);
+                    case 1:
+                        return r.MAP_COMMON.getTexture(145);
+                    case 2:
+                    case 6:
+                        return r.MAP_COMMON.getTexture(148);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(150);
+                    case 4:
+                        return r.MAP_COMMON.getTexture(151);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(139);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(101);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(138);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(149);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(96);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(153);
+                    case 12:
+                        return r.MAP_COMMON.getTexture(154);
+                    case 13:
+                        return r.MAP_COMMON.getTexture(81);
+                    case -2:
+                        return r.MAP_COMMON.getTexture(147);
+                    case -3:
+                        return r.MAP_COMMON.getTexture(144)
+                }
+                return PIXI.Texture.EMPTY
+            }, e
+        }(o.Container);
+    e.SpotPointImage = s
 }

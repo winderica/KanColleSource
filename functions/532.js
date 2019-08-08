@@ -3,30 +3,26 @@ const function532 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(264),
-        o = i(264),
-        r = function () {
-            function t() {
-                var t = this;
-                this._onLoadCompleteInfo = function (e, i) {
-                    t._info_dic[e] = i
-                }, this._onLoadCompleteResources = function (e) {
-                    for (var i in e) 0 == t._dic.hasOwnProperty(i) && (t._dic[i] = e[i])
-                }, this._info_dic = {}, this._dic = {}
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return t.prototype.createLoaderHorizontal = function () {
-                return new n.HorizontalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
-            }, t.prototype.createLoaderVertical = function () {
-                return new o.VerticalGaugeLoader(this._onLoadCompleteInfo, this._onLoadCompleteResources)
-            }, t.prototype.getGaugeInfo = function (t) {
-                return 1 == this._info_dic.hasOwnProperty(t) ? this._info_dic[t] : null
-            }, t.prototype.getTexture = function (t) {
-                if (1 == this._dic.hasOwnProperty(t)) {
-                    var e = this._dic[t];
-                    if (null != e && null != e.texture && void 0 != e.texture) return e.texture
-                }
-                return PIXI.Texture.EMPTY
+            return Object.defineProperty(t.prototype, "id", {
+                get: function () {
+                    return n.ObjUtil.getNumber(this._o, "api_id")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.needsDisplayName = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_show_flg")
             }, t
         }();
-    e.GaugeRManager = r
+    e.EquipTypeMstModel = o
 }

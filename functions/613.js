@@ -20,43 +20,89 @@ const function613 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(6),
-        s = i(287),
-        a = i(288),
+        r = i(190),
+        s = i(614),
+        a = i(615),
         _ = i(289),
-        u = i(290),
-        l = i(156),
-        c = i(1),
-        h = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._mouse_down = !1, i._cb_onRelateOpen = null, i._cb_onRelateClose = null, i._onMouseOver = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._showWaves(), i._description.show(), null != i._cb_onRelateOpen && i._cb_onRelateOpen()
-                }, i._onMouseOut = function () {
-                    i._mouse_down = !1, i._bg_on.visible = !1, i._bg_on.deactivate(), i._img.visible = !0, i._img_on.visible = !1, i._setScale(1), i._hideWaves(), i._description.hide(), null != i._cb_onRelateClose && i._cb_onRelateClose()
-                }, i._onMouseDown = function () {
-                    i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
-                }, i._onMouseUp = function () {
-                    i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
-                }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new u.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new l.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new l, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()
+            return n(e, t), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "marriageEff", {
+                get: function () {
+                    return this._marrigaeEff
+                },
+                set: function (t) {
+                    this._marrigaeEff != t && (this._marrigaeEff = t, 1 == this._marrigaeEff ? this._showMarriageEff() : this._hideMarriageEff())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._touch_count = 0, this._ship_mst_id = t;
+                var n = o.default.model.basic.getFlagShipPosIDCli(),
+                    r = _.PortConst.getMoveXValue(t),
+                    s = 0 == n ? 0 : r,
+                    a = o.default.resources.getShip(t, e, "full");
+                this._chara.texture = a;
+                var u = new PIXI.Sprite(a);
+                this._hit_area_map = o.default.settings.renderer.extract.pixels(u), this._container.position.set(491, -88);
+                var l = this._chara.width / 2,
+                    c = this._chara.height / 2,
+                    h = o.default.model.ship_graph.get(t).getPortOffset(e);
+                this._chara.position.set(-l + h.x + s, -c + h.y), this._container.positionSet(491 + l, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
             }, e.prototype.activate = function () {
-                1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
+                null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
+                    loop: !0
+                }).to({
+                    anim_value: Math.PI
+                }, 5200)), this._timerBeLeftVoice.reset(), this._timeSignal.reset()
             }, e.prototype.deactivate = function () {
-                this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp), this._onMouseOut()
-            }, e.prototype.interactiveApply = function (t) {
-                this._hit_area.interactive = t
-            }, e.prototype.dispose = function () {
-                this._cb_onRelateOpen = null, this._cb_onRelateClose = null, this.deactivate(), this._hideWaves(), this._bg_on.dispose()
-            }, e.prototype._showWaves = function () {
-                null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
-            }, e.prototype._hideWaves = function () {
-                null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
-            }, e.prototype._setScale = function (t) {
-                this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+                null != this._loop_tween && (this._loop_tween.setPaused(!0), this._loop_tween = null), this._timerBeLeftVoice.stop(), this._timeSignal.stop()
+            }, e.prototype.onMouseMove = function (t) {
+                var e = t.getLocalPosition(this._chara);
+                return this._isCharaHit(e)
+            }, e.prototype.onClick = function (t) {
+                var e = t.getLocalPosition(this._chara),
+                    i = this._isCharaHit(e);
+                return 1 == i && this._onClick(), i
+            }, e.prototype._showMarriageEff = function () {
+                var t = new PIXI.Rectangle(600, 0, 600, 720);
+                this._ship_is_marriage = !0, this._sakura.startAnimation(t)
+            }, e.prototype._hideMarriageEff = function () {
+                this._ship_is_marriage = !1, this._sakura.stopAnimation()
+            }, e.prototype._isCharaHit = function (t, e) {
+                if (void 0 === e && (e = 0), t.x < 0 || t.y < 0 || t.x > this._chara.width) return !1;
+                var i = 4 * (Math.floor(t.x) + this._chara.width * Math.floor(t.y));
+                return null != this._hit_area_map && (!(i + 3 >= this._hit_area_map.length) && this._hit_area_map[i + 3] > e)
+            }, e.prototype._onClick = function () {
+                this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
             }, e
         }(PIXI.Container);
-    e.RingMenuBtn = h
+    e.FlagShipLayer = u;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "anim_value", {
+            get: function () {
+                return 0
+            },
+            set: function (t) {
+                var e = Math.sin(t),
+                    i = 1 + .012 * (.5 + .5 * e);
+                this.scale.set(i), this.y = this._base_y - 1.5 * e * 1.8
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.positionSet = function (t, e) {
+            this.position.set(t, e), this._base_y = e
+        }, e
+    }(PIXI.Container)
 }

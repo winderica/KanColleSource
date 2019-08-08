@@ -19,41 +19,33 @@ const function350 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = i(954),
-        s = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(68),
+        a = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i._total_num = 0, i._tabs = [];
-                for (var n = 0; n < 3; n++) {
-                    var o = new r.AirUnitPanelTab(e);
-                    o.x = 101 * n, i.addChild(o), i._tabs.push(o)
-                }
-                return i
+                return i._maps = e, i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = o.SALLY_AIRUNIT.getTexture(123), this._total_num = t;
-                for (var e = 0; e < this._tabs.length; e++) {
-                    this._tabs[e].initialize(e + 1, t)
+            return n(e, t), e.prototype._start = function () {
+                this._load()
+            }, e.prototype._load = function () {
+                for (var t = this, e = o.default.resources.gauge.createLoaderHorizontal(), i = 0, n = this._maps; i < n.length; i++) {
+                    var r = n[i];
+                    if ((0 != r.defeat_required || 0 != r.gauge_max) && 0 != r.isOpened()) {
+                        var a = r.area_id,
+                            _ = r.map_no,
+                            u = r.getGaugeNum(),
+                            l = s.GaugeSetModel.createKey(a, _, u);
+                        e.add(l)
+                    }
                 }
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this._tabs.length; e++) {
-                    var i = this._tabs[e];
-                    i.selected = i.airunit_id == t
-                }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tabs; t < e.length; t++) {
-                    e[t].dispose()
-                }
+                e.count > 0 ? e.load(function () {
+                    t._endTask()
+                }) : this._endTask()
+            }, e.prototype._endTask = function () {
+                this._maps = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.AirUnitPanelTabContainer = s
+        }(r.TaskBase);
+    e.TaskLoadGaugeResources = a
 }

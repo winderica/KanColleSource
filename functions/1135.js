@@ -19,104 +19,25 @@ const function1135 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(400),
-        s = i(401),
-        a = i(402),
-        _ = i(173),
-        u = i(173),
-        l = i(92),
-        c = i(34),
-        h = i(93),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onSelect = function (t) {
-                    if (null == t) return void n._hideDialog(!1);
-                    var e = PIXI.Texture.EMPTY;
-                    if (11 == t.type) e = o.default.resources.getShip(t.mst_id, !1, "icon_box");
-                    else if (12 == t.type) e = o.default.resources.getSlotitem(t.mst_id, "card");
-                    else if (13 == t.type) e = o.default.resources.getUseitem(t.mst_id, 2);
-                    else if (14 == t.type) {
-                        e = o.default.resources.getFurniture(t.mst_id, "reward");
-                        var i = o.default.model.furniture.getData(t.mst_id);
-                        if (null == i || 1 == i.has()) return void n._dialog.showAlert(t)
-                    }
-                    var r = new s.TaskRewardSelectConfirm(n._layer, e);
-                    r.start(function () {
-                        n._dialog.deactivate(), 1 == r.result ? (n._seleced = t, n._connectAPI()) : n._dialog.activate()
-                    })
-                }, n._layer = e, n._candidates = [new a.SelectableRewardModel({
-                    api_no: 51,
-                    api_kind: 12,
-                    api_mst_id: 238,
-                    api_slotitem_level: 0,
-                    api_count: 1
-                }), new a.SelectableRewardModel({
-                    api_no: 52,
-                    api_kind: 12,
-                    api_mst_id: 82,
-                    api_slotitem_level: 0,
-                    api_count: 1
-                }), new a.SelectableRewardModel({
-                    api_no: 53,
-                    api_kind: 13,
-                    api_mst_id: 4,
-                    api_slotitem_level: 0,
-                    api_count: 5
-                })], n._target = i, n
+    var o = i(4),
+        r = i(3),
+        s = i(33),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._message = new o.TextBox(18, 4999235), i._message.position.set(176, 47), i.addChild(i._message), i._message1 = new o.TextBox(18, 4999235), i._message1.position.set(237, 92), i.addChild(i._message1), i._message2 = new o.TextBox(18, 4999235), i._message2.position.set(399, 92), i.addChild(i._message2), i._message3 = new o.TextBox(18, 4999235), i._message3.position.set(237, 122), i.addChild(i._message3), i._message4 = new o.TextBox(18, 4999235), i._message4.position.set(399, 122), i.addChild(i._message4), i._message5 = new o.TextBox(18, 4999235), i._message5.position.set(323, 161), i.addChild(i._message5), i._btn_yes = new s.BtnBase(0, e), i._btn_yes.position.set(191, 219), i.addChild(i._btn_yes), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(399, 219), i.addChild(i._btn_back), i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                for (var t = this, e = new r.TaskLoadResources, i = 0, n = this._candidates; i < n.length; i++) {
-                    var o = n[i];
-                    11 == o.type ? e.addShip(o.mst_id) : 12 == o.type ? e.addSlotitem(o.mst_id) : 13 == o.type ? e.addUseitem(o.mst_id) : 14 == o.type && e.addFurniture(o.mst_id)
-                }
-                e.start(function () {
-                    t._showDialog()
-                })
-            }, e.prototype._showDialog = function () {
-                var t = this;
-                3 == this._candidates.length ? (this._dialog = new u.RewardSelectDialog3(!0), this._dialog.position.set(195, 164)) : (this._dialog = new _.RewardSelectDialog2(!0), this._dialog.position.set(297, 164)), this._dialog.initialize(this._candidates, this._onSelect), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
-                    alpha: 1
-                }, 150).call(function () {
-                    t._dialog.activate()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced.no,
-                    n = (o.default.view.overLayer, new l.UseItemUseAPI(e, !1, i)),
-                    r = n.result;
-                n.start(function () {
-                    1 == r.hasCaution() ? t._hideDialog(!0) : (t._result = r, t._hideDialog(!1))
-                })
-            }, e.prototype._hideDialog = function (t) {
-                var e = this;
-                createjs.Tween.get(this._dialog).to({
-                    alpha: 0
-                }, 150).call(function () {
-                    e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
-                })
-            }, e.prototype._confirm = function () {
-                var t = this,
-                    e = this._target.mstID,
-                    i = this._seleced.no,
-                    n = this._layer,
-                    o = new h.TaskItemOverflowConfirm(n);
-                o.start(function () {
-                    if (1 == o.result) {
-                        var n = new l.UseItemUseAPI(e, !0, i),
-                            r = n.result;
-                        n.start(function () {
-                            t._result = r, t._endTask()
-                        })
-                    } else t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._target = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.ITEM_ILIST_MEDAL_KOU.getTexture(2), this._message.text = "\u7532\u7a2e\u52f2\u7ae0\u306f\u3001\u4e0b\u8a18\u306e\u7269\u8cc7\u3068\u4ea4\u63db\u3059\u308b\u3053\u3068\u3082\u53ef\u80fd\u3067\u3059\u3002", this._message1.text = "\u71c3\u6599\xd710,000", this._message2.text = "\u6539\u4fee\u8cc7\u6750\xd710", this._message3.text = "\u958b\u767a\u8cc7\u6e90\xd710", this._message4.text = "\u5bb6\u5177\u7bb1(\u5927)\xd710", this._message5.text = "\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f";
+                var e = r.ITEM_ILIST_MEDAL_KOU.getTexture(1);
+                this._btn_yes.initialize(e), e = r.ITEM_ILIST_MEDAL_KOU.getTexture(0), this._btn_back.initialize(e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_back.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._message1.destroy(), this._message2.destroy(), this._message3.destroy(), this._message4.destroy(), this._message5.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(c.TaskWithResult);
-    e.TaskUseGiftBox = p
+        }(PIXI.Sprite);
+    e.TopView = a
 }

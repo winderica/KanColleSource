@@ -19,30 +19,93 @@ const function872 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(4),
-        s = i(21),
-        a = i(35),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClickYes = function () {
-                    i._cb_onComplete(!0)
-                }, i._onClickNo = function () {
-                    i._cb_onComplete(!1)
-                }, i._cb_onComplete = e;
-                var n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(63)),
-                    _ = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(83)),
-                    u = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(3));
-                i.labelUse = new r.TextBox(21, 16777215), i.labelName = new r.TextBox(21, 1949120), i.beforeCount = new r.TextBox(22, 16777215), i.afterCount = new r.TextBox(22, 16777215);
-                var l = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(0));
-                return i.labelName.text = "\u9ad8\u901f\u5efa\u9020", i.labelUse.text = "\u4f7f\u7528\u3059\u308b", i.beforeCount.anchor.x = 1, i.beforeCount.position.set(630, 217), i.afterCount.position.set(664, 217), i.labelName.position.set(307, 166), i.labelUse.position.set(513, 166), l.position.set(730, 297), u.position.set(432, -43), _.position.set(498, 210), l.position.set(639, 226), i.addChild(n, u), i._btn_yes = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(44)), i._btn_yes.interactive = !0, i._btn_yes.buttonMode = !0, i._btn_yes.position.set(540, 484), i._btn_yes.on(o.EventType.CLICK, i._onClickYes), i.addChild(i._btn_yes), i._btn_no = new PIXI.Sprite(a.ARSENAL_MAIN.getTexture(36)), i._btn_no.interactive = !0, i._btn_no.buttonMode = !0, i._btn_no.position.set(273, 484), i._btn_no.on(o.EventType.CLICK, i._onClickNo), i.addChild(i._btn_no), i.addChild(i.beforeCount, i.afterCount, l, _, i.labelName, i.labelUse), i
+    var o = i(0),
+        r = i(47),
+        s = i(14),
+        a = i(873),
+        _ = i(874),
+        u = i(115),
+        l = i(224),
+        c = i(906),
+        h = i(907),
+        p = i(115),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
+                    e.menuLayer.hasLimitOver = n, e.dockLayer.updateCondition(t, i, n)
+                }, e.onChangeArsenalTimer = function () {
+                    if (e.dockLayer.ArsenalTimerMode == u.ArsenalTimerMode.WaitComplete) {
+                        var t = Date.now();
+                        o.default.model.kdock.getAll().forEach(function (i) {
+                            if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
+                                if (i.complete_time < t) {
+                                    e.dockLayer.hideHighSpeedButton(i.id);
+                                    i.__complete__(), e.dockLayer.complete(i.id), e.dockLayer.forceComplete(i.id, i.isLargeBuild())
+                                } else e.dockLayer.notifyTime(i.id, t)
+                            }
+                        })
+                    }
+                }, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._btn_yes.off(o.EventType.CLICK, this._onClickYes), this._btn_no.off(o.EventType.CLICK, this._onClickNo), this.beforeCount.destroy(), this.afterCount.destroy(), this.labelName.destroy(), this.labelUse.destroy(), this._cb_onComplete = null, this._btn_yes = null, this._btn_no = null, this.beforeCount = null, this.afterCount = null, this.labelName = null, this.labelUse = null
-            }, e.prototype.update = function (t, e) {
-                this.beforeCount.text = t.toString(), this.afterCount.text = e.toString()
+            return n(e, t), e.prototype.start = function () {
+                var t = o.default.model.kdock.getAll();
+                this.menuLayer = new h.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new p.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new c.TopBarLayer;
+                for (var e = l.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
+                    var r = t[n];
+                    switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
+                        case 2:
+                            var s = o.default.model.ship.getMst(r.ship_mst_id),
+                                a = s.build_time,
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                u = Date.now(),
+                                d = r.isLargeBuild(),
+                                f = r.complete_time,
+                                y = !1;
+                            y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
+                            var m = .5 < Math.random(),
+                                g = .5 < Math.random() || 0 == m;
+                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, g, a, f, u, _);
+                            break;
+                        case -1:
+                            if (0 == i) {
+                                var v = 0 < o.default.model.useItem.get(49).count,
+                                    b = !0;
+                                this.dockLayer.noDock(r.id, b, v)
+                            } else {
+                                var b = !1,
+                                    v = !1;
+                                this.dockLayer.noDock(r.id, b, v)
+                            }
+                            i = !0;
+                            break;
+                        case 3:
+                            var m = .5 < Math.random(),
+                                g = .5 < Math.random() || 0 == m;
+                            this.dockLayer.updateMotivation(r.id, m, g);
+                            var s = o.default.model.ship.getMst(r.ship_mst_id),
+                                _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
+                                w = r.isLargeBuild();
+                            this.dockLayer.completed(r.id, _, w);
+                            break;
+                        case 0:
+                            this.dockLayer.standby(r.id)
+                    }
+                }
+                l.ArsenalUtil.playVoiceOnBuildComplete();
+                var x = createjs.Tween.get(this.arsenalTimerKey, {
+                    loop: !0
+                }).wait(500);
+                x.addEventListener("change", this.onChangeArsenalTimer), this.addChild(this.dockLayer, this.menuLayer, this.topBarLayer), this.arsenalTimer = x
+            }, e.prototype.getPreInitializeTask = function (t) {
+                return new _.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new a.InitializeTask
+            }, e.prototype.getFinalizeTask = function () {
+                return this.dispose(), s.UIImageLoader.clearMemoryCache("arsenal"), null
+            }, e.prototype.dispose = function () {
+                createjs.Tween.removeTweens(this.arsenalTimer.target), this.topBarLayer.dispose(), this.menuLayer.dispose(), this.dockLayer.dispose(), this.menuLayer = null, this.dockLayer = null, this.arsenalTimerKey = null, this.arsenalTimer = null, this.topBarLayer = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.HighSpeedConfirmView = _
+        }(r.SceneBase);
+    e.ArsenalScene = d
 }

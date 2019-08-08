@@ -20,28 +20,17 @@ const function333 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = function (t) {
+        r = i(1),
+        s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._light = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(3)), e._light.position.set(600, 195), e._light.anchor.set(.5, .5), e.addChild(e._light), e._light_place = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(4)), e._light_place.position.set(600, 360), e._light_place.anchor.set(.5, .5), e.addChild(e._light_place);
-                var i = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(2));
-                return i.position.set(509, 276), e.addChild(i), e
+                return e._onClick = function () {
+                    e.onClick()
+                }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "light", {
-                get: function () {
-                    return this._light
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "light_place", {
-                get: function () {
-                    return this._light_place
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._light = null, this._light_place = null
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
             }, e
         }(PIXI.Container);
-    e.FailedPenguin = r
+    e.DetachButton = s
 }

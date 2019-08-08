@@ -19,115 +19,102 @@ const function1440 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1441),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._entered = !1, n._friend = e, n._combined = i, n
+    var o = i(50),
+        r = i(1441),
+        s = i(1445),
+        a = i(480),
+        _ = i(1455),
+        u = i(1456),
+        l = i(1459),
+        c = i(1464),
+        h = i(1465),
+        p = i(1466),
+        d = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new u.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new l.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
             }
-            return n(e, t), e.prototype.isEntered = function () {
-                return this._entered
-            }, e.prototype.getBannerNum = function () {
-                return null == this._banners ? 0 : this._banners.length
-            }, e.prototype.hasBanner = function () {
-                return this.getBannerNum() > 0
-            }, e.prototype.initialize = function (t) {
-                if (this._banners = [], null != t)
-                    for (var e = 0; e < t.length; e++) {
-                        var i = t[e];
-                        if (null != i) {
-                            var n = i.mst_id,
-                                r = i.hp_now,
-                                s = i.hp_max,
-                                a = i.isTaihi(),
-                                _ = 0 == i.speed,
-                                u = new o.Banner(e, this._friend, this._combined);
-                            u.initialize(n, r, s, a, _), this._banners.push(u), this.addChild(u)
-                        }
-                    }
-            }, e.prototype.dispose = function () {
-                if (null != this._banners)
-                    for (var t = 0, e = this._banners; t < e.length; t++) {
-                        var i = e[t];
-                        i.dispose()
-                    }
-            }, e.prototype.getBanner = function (t) {
-                return null == this._banners ? null : t >= this._banners.length ? null : this._banners[t]
-            }, e.prototype.isContains = function (t) {
-                return null != this._banners && this._banners.indexOf(t) >= 0
-            }, e.prototype.enter = function () {
-                if (1 != this._entered && 0 != this.hasBanner()) {
-                    this._entered = !0;
-                    for (var t = 0, e = this._banners; t < e.length; t++) {
-                        var i = e[t];
-                        null != i && (0 == this._combined ? i.enter() : i.enterCombined())
-                    }
-                }
-            }, e.prototype.createEnterTweens = function () {
-                var t = [];
-                if (1 == this._entered) return t;
-                if (0 == this.hasBanner()) return t;
-                this._entered = !0;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = 0 == this._combined ? o.createEnterTween(e) : o.createEnterTweenCombined(e);
-                        null != r && (t.push(r), e += 100)
-                    }
-                }
-                return t
-            }, e.prototype.createSakutekiTweens = function () {
-                var t = [];
-                if (1 == this._entered) return t;
-                if (0 == this.hasBanner()) return t;
-                this._entered = !0;
-                for (var e = 0, i = this._banners; e < i.length; e++) {
-                    var n = i[e];
-                    if (null != n) {
-                        var o = n.createEnterTweenBySakuteki();
-                        null != o && t.push(o)
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweens = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = o.createMainDeckExitTween(e);
-                        t.push(r), e += 100
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweensUpward = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = 0, i = 0, n = this._banners; i < n.length; i++) {
-                    var o = n[i];
-                    if (null != o) {
-                        var r = o.createSubDeckExitTween(e, !1);
-                        t.push(r), e += 100
-                    }
-                }
-                return t
-            }, e.prototype.createExitTweensUpDown = function () {
-                var t = [];
-                if (0 == this._entered) return t;
-                if (this._entered = !1, 0 == this.hasBanner()) return t;
-                for (var e = [], i = 0; i < this._banners.length; i++) {
-                    var n = this._banners[i];
-                    null != n && 0 != n.entered && e.push(n)
-                }
-                for (var o = 0; e.length > 0;) {
-                    var r = e.shift(),
-                        s = r.createSubDeckExitTween(o, !1);
-                    t.push(s), 0 != e.length && (r = e.pop(), s = r.createSubDeckExitTween(o, !0), t.push(s), o += 100)
-                }
-                return t
+            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
+                get: function () {
+                    return this._layer_torpedo
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
+                get: function () {
+                    return this._bannerGroupLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_explosion", {
+                get: function () {
+                    return this._layer_explosion
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_damage", {
+                get: function () {
+                    return this._layer_damage
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
+                get: function () {
+                    return this._bannerInfoLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_content", {
+                get: function () {
+                    return this._layer_content
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "raderLayer", {
+                get: function () {
+                    return this._raderLayer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_gauge", {
+                get: function () {
+                    return this._layer_gauge
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "shutter", {
+                get: function () {
+                    return this._shutter
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info", {
+                get: function () {
+                    return this._layer_info
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_title", {
+                get: function () {
+                    return this._layer_title
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_info2", {
+                get: function () {
+                    return this._layer_info2
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_cutin", {
+                get: function () {
+                    return this._layer_cutin
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
             }, e
         }(PIXI.Container);
-    e.BannerGroup = r
+    e.ViewMain = d
 }

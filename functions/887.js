@@ -19,29 +19,27 @@ const function887 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(888),
-        a = function (t) {
+    var o = i(3),
+        r = i(888),
+        s = function (t) {
             function e() {
-                var e = t.call(this, .8) || this;
-                return e.alpha = 0, e
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(46));
+                return e.ship = new r.LargeBuildShip, e.ship.position.set(22, 13), i.position.set(12, 82), e.addChild(i, e.ship), e
             }
-            return n(e, t), e.prototype.show = function (t) {
-                this.removeChildren(), this.largeBuildConfirm = new s.LargeBuildConfirm(t), this.addChild(this.largeBuildConfirm), o.default.view.clickGuard = !0, createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 250).call(function () {
-                    o.default.view.clickGuard = !1
-                })
-            }, e.prototype.hide = function (t) {
-                createjs.Tween.get(this).to({
-                    alpha: 0
-                }, 250).call(function () {
-                    t()
-                })
+            return n(e, t), e.prototype.updatePhaseMax = function (t) {
+                this.phaseMax = t
+            }, e.prototype.update = function (t) {
+                if (0 == t) this.ship.update(0);
+                else {
+                    var e = Math.floor(this.phaseMax * t);
+                    0 == e && (e = 1), this.ship.update(e)
+                }
+            }, e.prototype.forceComplete = function () {
+                this.ship.update(this.phaseMax)
             }, e.prototype.dispose = function () {
-                createjs.Tween.removeTweens(this), this.removeChildren(), this.largeBuildConfirm.dispose(), this.largeBuildConfirm = null
+                this.ship.dispose(), this.ship = null, this.phaseMax = null, this.removeChildren()
             }, e
-        }(r.AreaBox);
-    e.LargeBuildConfirmContainer = a
+        }(PIXI.Container);
+    e.LargeBuildStage = s
 }

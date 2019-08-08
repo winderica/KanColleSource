@@ -20,29 +20,28 @@ const function1196 = function (t, e, i) {
         value: !0
     });
     var o = i(11),
-        r = i(6),
-        s = i(240),
-        a = i(175),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._model = e, n._holder = i, n
+        r = i(241),
+        s = i(1),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._waitClick = function () {
+                    i._layer.buttonMode = !0, i._layer.once(s.EventType.CLICK, i._onClick)
+                }, i._onClick = function () {
+                    i._layer.buttonMode = !1, i._chara.texture = PIXI.Texture.fromFrame(r.POSTER_KEY_2), createjs.Tween.get(i._chara).wait(300).to({
+                        x: 1200
+                    }, 500, createjs.Ease.sineInOut).call(function () {
+                        i._layer.removeChild(i._chara), i._endTask()
+                    })
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
-                    t._update()
-                })
-            }, e.prototype._update = function () {
-                var t = this,
-                    e = this._holder.selected_page_no,
-                    i = this._holder.selected_type;
-                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
-                    t._endTask()
-                })
+                this._chara = PIXI.Sprite.fromFrame(r.POSTER_KEY_1), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    y: 45
+                }, 500).call(this._waitClick)
             }, e.prototype._endTask = function () {
-                this._model = null, this._holder = null, t.prototype._endTask.call(this)
+                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskExecutedDutySelect = _
+    e.TaskPosterGirl = a
 }

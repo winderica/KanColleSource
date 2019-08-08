@@ -19,22 +19,19 @@ const function301 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(46),
         r = function (t) {
             function e(e) {
-                void 0 === e && (e = !1);
                 var i = t.call(this) || this;
-                i._isOldType = e, i._img = new PIXI.Sprite, i.addChild(i._img);
-                var n = new PIXI.Graphics;
-                return n.beginFill(0), n.drawRect(0, 0, 240, 300), n.endFill(), n.position.set(3, 4), i.addChild(n), i._img.mask = n, i._isOldType && (i._frame = new PIXI.Sprite, i.addChild(i._frame)), i
+                return i._value = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._isOldType ? (this.texture = o.COMMON_MISC.getTexture(52), this._frame.texture = o.COMMON_MISC.getTexture(54)) : this.texture = o.COMMON_MISC.getTexture(53)
-            }, e.prototype.update = function (t) {
-                this._img.texture = t
-            }, e.prototype.clean = function () {
-                this._img.texture = PIXI.Texture.EMPTY
-            }, e
-        }(PIXI.Sprite);
-    e.FurnitureThumbnail = r
+            return n(e, t), Object.defineProperty(e.prototype, "value", {
+                get: function () {
+                    return this._value
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(o.RewardModel);
+    e.RewardModelWarResult = r
 }

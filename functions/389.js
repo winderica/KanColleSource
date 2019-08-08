@@ -19,28 +19,105 @@ const function389 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(171),
-        a = i(335),
-        _ = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._layer = e, n._mst_id = i, n._marriageAnimation = new a.MarriageAnimation(i), n
+    var o = i(131),
+        r = i(390),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i.TABMAX_SHIP = 6, i.TABMAX_SLOT = 6, i._ship_tabs = [];
+                for (var n = 0; n < i.TABMAX_SHIP; n++) {
+                    var o = new r.TabBtn(1, n, e);
+                    o.position.set(0, 53 * n), o.visible = !0, i.addChild(o), i._ship_tabs.push(o)
+                }
+                i._slot_tabs = [];
+                for (var n = 0; n < i.TABMAX_SLOT; n++) {
+                    var o = new r.TabBtn(2, n, e);
+                    o.position.set(0, 53 * n), o.visible = !1, i.addChild(o), i._slot_tabs.push(o)
+                }
+                return i
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._marriageAnimation.PreLoad(function () {
-                    t._marriageAnimation.Initialize(), o.default.view.overLayer.addChild(t._marriageAnimation), t._marriageAnimation.Play(!0, function () {
-                        o.default.view.overLayer.removeChild(t._marriageAnimation), t._resetBGM()
-                    })
-                })
-            }, e.prototype._resetBGM = function () {
-                var t = s.AlbumConst.BGM_ID_FOR_SHIP;
-                o.default.sound.bgm.play(t), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._btn = null, this._marriageAnimation.Dispose(), this._marriageAnimation = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this._initializeTabBtns(this._ship_tabs), this._initializeTabBtns(this._slot_tabs)
+            }, e.prototype.update = function (t, e) {
+                if (1 == t)
+                    for (var i = 0, n = this._ship_tabs; i < n.length; i++) {
+                        var o = n[i];
+                        o.selected = o.no == e
+                    } else
+                        for (var r = 0, s = this._ship_tabs; r < s.length; r++) {
+                            var o = s[r];
+                            o.selected = !1
+                        }
+                if (2 == t)
+                    for (var a = 0, _ = this._slot_tabs; a < _.length; a++) {
+                        var o = _[a];
+                        o.selected = o.no == e
+                    } else
+                        for (var u = 0, l = this._slot_tabs; u < l.length; u++) {
+                            var o = l[u];
+                            o.selected = !1
+                        }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
+                    var i = e[t];
+                    i.activate()
+                }
+                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
+                    var i = o[n];
+                    i.activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
+                    var i = e[t];
+                    i.deactivate()
+                }
+                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
+                    var i = o[n];
+                    i.deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t = 0, e = this._ship_tabs; t < e.length; t++) {
+                    var i = e[t];
+                    i.dispose()
+                }
+                for (var n = 0, o = this._slot_tabs; n < o.length; n++) {
+                    var i = o[n];
+                    i.dispose()
+                }
+                this._ship_tabs = null, this._slot_tabs = null
+            }, e.prototype.switchViewAlbumMode = function (t) {
+                switch (t) {
+                    case 1:
+                        this._ship_tabs.forEach(function (t) {
+                            return t.visible = !0
+                        }), this._slot_tabs.forEach(function (t) {
+                            return t.visible = !1
+                        });
+                        break;
+                    case 2:
+                        this._ship_tabs.forEach(function (t) {
+                            return t.visible = !1
+                        }), this._slot_tabs.forEach(function (t) {
+                            return t.visible = !0
+                        })
+                }
+            }, e.prototype._getBtnTextureNo = function (t, e) {
+                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [80, 82, 84, 86, 88, 90][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [68, 70, 72, 74, 76, 78][e] : -1
+            }, e.prototype._getBtnOnTextureNo = function (t, e) {
+                return 1 == t ? e >= 0 && e < this.TABMAX_SHIP ? [81, 83, 85, 87, 89, 91][e] : -1 : 2 == t && e >= 0 && e < this.TABMAX_SLOT ? [69, 71, 73, 75, 77, 79][e] : -1
+            }, e.prototype._initializeTabBtns = function (t) {
+                for (var e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        r = n.mode,
+                        s = n.no,
+                        a = this._getBtnTextureNo(r, s),
+                        _ = -1 == a ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(a),
+                        u = this._getBtnOnTextureNo(r, s),
+                        l = -1 == u ? PIXI.Texture.EMPTY : o.ALBUM_MAIN.getTexture(u);
+                    n.initialize(_, l)
+                }
             }, e
-        }(r.TaskBase);
-    e.TaskWedding = _
+        }(PIXI.Container);
+    e.TabBtnContainer = s
 }

@@ -19,19 +19,30 @@ const function727 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var o = i(18),
         r = i(2),
-        s = i(217),
+        s = i(14),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                s.OrganizeSceneMemory.pageIndex = 0, s.OrganizeSceneMemory.filterStatus = o.default.model.basic.getFilterStatusOrganizeList(), s.OrganizeSceneMemory.japanese = o.default.model.basic.isJapaneseOrganizeList(), this._scene.initialize(), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+                var t = this,
+                    e = new s.UIImageLoader("organize");
+                switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
+                    case 2:
+                        e.add("organize_hokyu_dialog_xmas.json");
+                        break;
+                    case 4:
+                        e.add("organize_hokyu_dialog_summer.json");
+                        break;
+                    default:
+                        e.add("organize_hokyu_dialog_default.json")
+                }
+                e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(r.TaskBase);
-    e.InitializeTask = a
+    e.TaskLoadResourcesOrganize = a
 }

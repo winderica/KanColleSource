@@ -19,25 +19,56 @@ const function1025 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(83),
-        s = i(33),
-        a = i(15),
-        _ = i(53),
-        u = function (t) {
+    var o = i(0),
+        r = i(1026),
+        s = i(225),
+        a = i(169),
+        _ = i(1027),
+        u = i(1032),
+        l = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._changeToInfo = function () {
+                    e._showInfo()
+                }, e._changeToDeck = function () {
+                    e._showDeck()
+                }, e._onStartPractice = function () {
+                    for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, u = new s.DeckModelReplica(i, !0, n, _), l = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
+                        var p = c[h];
+                        if (null == p) l.push(null);
+                        else {
+                            var d = p.id,
+                                f = p.level,
+                                y = new a.ShipModelReplica(1, !0, h, d, -h, f);
+                            l.push(y)
+                        }
+                    }
+                    var m = e._selected_rival.id,
+                        g = e._selected_rival.medal_num,
+                        v = e._selected_rival.name,
+                        b = e._selected_rival.deck_name,
+                        w = new s.DeckModelReplica(m, !0, g, v, 0, b, l),
+                        x = new r.PracticeSceneModel(u, w);
+                    o.default.scene.change(32, x), e.emit("close")
+                }, e._onClose = function () {
+                    e.emit("close")
+                }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new u.PanelDeckSelect(e._onClose), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(_.SALLY_PRACTICE.getTexture(34));
-                this._banner = new s.ShipBanner, this._name = new o.TextBox(21, 4999235), this._level = new o.TextBox(20, 4999235), this._star = new r.StarRateView, this._container = new PIXI.Container, t.position.set(330, 12);
-                var e = a.CreateRect.gradientLeftToRight(95, this._name.height, .85, .9);
-                this._container.position.set(243, 0), this._level.position.set(392, 11), this._level.anchor.set(1, 0), this._star.position.set(295, 40), this.addChild(t), this.addChild(this._banner), this.addChild(this._container), this._container.addChild(this._name, e), this._container.mask = e, this.addChild(this._level), this.addChild(this._star)
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
             }, e.prototype.update = function (t) {
-                null == t ? this.visible = !1 : (this._container.cacheAsBitmap = !1, this._name.text = t.name, this._level.text = t.level.toString(), this._star.update(t.star + 1), this._banner.updateImage(t.id, !1), this.visible = !0, this._container.cacheAsBitmap = !0)
+                this._selected_rival = t, this._info.update(t), this._showInfo()
+            }, e.prototype.activate = function () {
+                1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
+            }, e.prototype.deactivate = function () {
+                this._info.deactivate(), this._deck.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._container.cacheAsBitmap = !1, this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._name.destroy(), this._level.destroy(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
+                this._info.dispose(), this._deck.dispose()
+            }, e.prototype._showInfo = function () {
+                1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
+            }, e.prototype._showDeck = function () {
+                1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
             }, e
         }(PIXI.Container);
-    e.CompRivalShip = u
+    e.ContainerOverlay = l
 }

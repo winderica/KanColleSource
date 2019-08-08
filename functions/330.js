@@ -19,20 +19,38 @@ const function330 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(15),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/lock", i.api_slotitem_id = e, i
+    var o = i(3),
+        r = i(328),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(25)),
+                    n = new r.MaterialMeterView,
+                    s = new r.MaterialMeterView;
+                return n.position.set(12, 8), s.position.set(119, 8), e.addChild(i, n, s), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = s, e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_slotitem_id = this.api_slotitem_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = 1 == s.ObjUtil.getNumber(this._raw_data, "api_locked");
-                o.default.model.slot.get(this.api_slotitem_id).__setLocked__(e), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i, n) {
+                this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
             }, e
-        }(r.APIBase);
-    e.SlotItemLockAPI = a
+        }(PIXI.Container);
+    e.MaterialView = s;
+    var a = i(750),
+        _ = i(9),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(_.COMMON_MISC.getTexture(144)),
+                    n = new a.MaterialMeterViewS,
+                    o = new a.MaterialMeterViewS;
+                return n.position.set(29, 6), o.position.set(165, 6), e.addChild(i, n, o), e.fuelMaterialMeterView = n, e.ammoMaterialMeterView = o, e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.fuelMaterialMeterView.dispose(), this.ammoMaterialMeterView.dispose(), this.fuelMaterialMeterView = null, this.ammoMaterialMeterView = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i, n) {
+                this.fuelMaterialMeterView.update(t, e), this.ammoMaterialMeterView.update(i, n)
+            }, e
+        }(PIXI.Container);
+    e.MaterialViewS = u
 }

@@ -19,30 +19,81 @@ const function791 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(10),
-        a = function (t) {
-            function e(e, i, n, o, r, s) {
-                var a = t.call(this) || this;
-                return a._url = "api_req_kaisou/slot_deprive", a.api_unset_idx = e, a.api_set_slot_kind = i, a.api_unset_slot_kind = n, a.api_unset_ship = o, a.api_set_idx = r, a.api_set_ship = s, a
-            }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_unset_idx = this.api_unset_idx, this._post_data.api_set_slot_kind = this.api_set_slot_kind, this._post_data.api_unset_slot_kind = this.api_unset_slot_kind, this._post_data.api_unset_ship = this.api_unset_ship, this._post_data.api_set_idx = this.api_set_idx, this._post_data.api_set_ship = this.api_set_ship, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.ObjUtil.getObject(this._raw_data, "api_ship_data"),
-                    i = r.ObjUtil.getObject(e, "api_set_ship"),
-                    n = r.ObjUtil.getObject(e, "api_unset_ship"),
-                    s = r.ObjUtil.getObject(this._raw_data, "api_unset_list"),
-                    a = r.ObjUtil.getNumber(s, "api_type3No"),
-                    _ = r.ObjUtil.getNumArray(s, "api_slot_list");
-                o.default.model.ship.get(i.api_id).__update__(i), o.default.model.ship.get(n.api_id).__update__(n), o.default.model.slot.updateUnsetData(a, _), this._set_bauxite(), t.prototype._completedEnd.call(this)
-            }, e.prototype._set_bauxite = function () {
-                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
-                    var t = r.ObjUtil.getNumber(this._raw_data, "api_bauxite");
-                    o.default.model.useItem.get(34).__setCount__(t)
+    var o = i(86),
+        r = i(792),
+        s = i(21),
+        a = i(211),
+        _ = i(88),
+        u = i(793),
+        l = i(794),
+        c = i(795),
+        h = i(796),
+        p = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._onClick = function (t, i) {
+                    e.onClick(t, i)
+                }, e._onClickLock = function (t, i) {
+                    e.onClickLock(t, i)
+                }, e.sortSoubiTxtNone = new PIXI.Sprite(a.COMMON_SORT.getTexture(55)), e.headerSoubiSentaku = new _.TitleBar, e.headerSoubiSentaku.initialize(s.COMMON_MAIN.getTexture(2), 26);
+                var i = s.COMMON_MAIN.getTexture(37),
+                    n = new PIXI.Sprite(s.COMMON_MAIN.getTexture(13));
+                e._listHeader = new c.ListHeader, e._pagerView = new o.PagerView, e._slotItemFilterView = new r.SlotItemFilterView, e.lines = new Array, e._changeListSwitch = new u.ChangeListSwitch, e.listItems = new Array, e._inUseMarker = new l.InUseMarker, n.interactive = !0;
+                for (var p = new PIXI.Point(54, 54), d = p.x, f = 0; f < 10; f++) {
+                    var y = new PIXI.Sprite(i),
+                        m = new h.ListItem(f),
+                        g = 45 * f + p.y;
+                    m.position.set(d, g), m.onClick = e._onClick, m.onClickLock = e._onClickLock, y.width += 45, y.position.set(d + 30, g + 45 - y.height), e.lines.push(y), e.listItems.push(m)
                 }
+                return e.sortSoubiTxtNone.position.set(90, 65), e._pagerView.position.set(96, 525), e._listHeader.position.set(90, 12), e._slotItemFilterView.position.set(246, 14), e._changeListSwitch.position.set(569, 12), e.headerSoubiSentaku.position.set(0, -39), e._inUseMarker.position.y = 12, e.addChild(n), e.listItems.forEach(function (t) {
+                    return e.addChild(t)
+                }), e.lines.forEach(function (t) {
+                    return e.addChild(t)
+                }), e.addChild(e._pagerView, e._listHeader, e.sortSoubiTxtNone, e._slotItemFilterView, e._changeListSwitch, e.headerSoubiSentaku, e._inUseMarker), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "pagerView", {
+                get: function () {
+                    return this._pagerView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "slotItemFilterView", {
+                get: function () {
+                    return this._slotItemFilterView
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "changeListSwitch", {
+                get: function () {
+                    return this._changeListSwitch
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "inUseMarker", {
+                get: function () {
+                    return this._inUseMarker
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "listHeader", {
+                get: function () {
+                    return this._listHeader
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose();
+                this._pagerView.dispose(), this._slotItemFilterView.dispose(), this._changeListSwitch.dispose(), this._inUseMarker.dispose(), this._listHeader.dispose(), this.headerSoubiSentaku.dispose(), this.onClick = null, this.onClickLock = null, this._pagerView = null, this._slotItemFilterView = null, this._changeListSwitch = null, this._inUseMarker = null, this._listHeader = null, this.lines = null, this.listItems = null, this.headerSoubiSentaku = null, this.sortSoubiTxtNone = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i, n, o, r, s) {
+                var a = this.listItems[t];
+                a.update(e, i, n, o, r, s), a.visible = !0
+            }, e.prototype.visibleEmptyText = function () {
+                this.sortSoubiTxtNone.visible = !0
+            }, e.prototype.clear = function () {
+                this.listItems.forEach(function (t) {
+                    t.visible = !1
+                }), this.sortSoubiTxtNone.visible = !1
             }, e
-        }(s.APIBase);
-    e.SlotDepriveAPI = a
+        }(PIXI.Container);
+    e.SlotItemList = p
 }

@@ -3,102 +3,153 @@ const function533 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t, e, i) {
-                void 0 === e && (e = 219), void 0 === i && (i = 14), this._barW_default = 219, this._barH_default = 14, this._o = t, this._barW_default = e, this._barH_default = i
+    var n = i(42),
+        o = i(7),
+        r = function () {
+            function t(t) {
+                this._o = t
             }
-            return Object.defineProperty(t.prototype, "x", {
+            return Object.defineProperty(t.prototype, "mstID", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "x")
+                    return o.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "y", {
+            }), Object.defineProperty(t.prototype, "name", {
                 get: function () {
-                    return n.ObjUtil.getNumber(this._o, "y")
+                    return o.ObjUtil.getString(this._o, "api_name")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "image_path", {
+            }), Object.defineProperty(t.prototype, "cardType", {
                 get: function () {
-                    return n.ObjUtil.getString(this._o, "img")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[1]
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "image_light_path", {
+            }), Object.defineProperty(t.prototype, "equipType", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "img_l");
-                    return null == t || "" == t ? this.image_path + "_light" : t
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[2]
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "lightX", {
+            }), Object.defineProperty(t.prototype, "equipTypeSp", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "light");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+                    return 128 == this.mstID ? 38 : 142 == this.mstID ? 93 : 151 == this.mstID ? 94 : 281 == this.mstID ? 38 : this.equipType
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "lightY", {
+            }), Object.defineProperty(t.prototype, "iconType", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "light");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 4 ? -1 : t[3]
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "barX", {
+            }), Object.defineProperty(t.prototype, "planeIconType", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "bar");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+                    var t = o.ObjUtil.getNumArray(this._o, "api_type");
+                    return null == t || t.length < 5 ? -1 : t[4]
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "barY", {
+            }), Object.defineProperty(t.prototype, "range", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "bar");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+                    return o.ObjUtil.getNumber(this._o, "api_leng")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "barW", {
+            }), Object.defineProperty(t.prototype, "karyoku", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "bar");
-                    return null == t ? this._barW_default : n.ObjUtil.getNumber(t, "w", this._barW_default)
+                    return o.ObjUtil.getNumber(this._o, "api_houg")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "barH", {
+            }), Object.defineProperty(t.prototype, "raisou", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "bar");
-                    return null == t ? this._barH_default : n.ObjUtil.getNumber(t, "h", this._barH_default)
+                    return o.ObjUtil.getNumber(this._o, "api_raig")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "barColor", {
+            }), Object.defineProperty(t.prototype, "taiku", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "bar");
-                    return null == t ? 16711680 : n.ObjUtil.getNumber(t, "color", 16711680)
+                    return o.ObjUtil.getNumber(this._o, "api_tyku")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "transportX", {
+            }), Object.defineProperty(t.prototype, "taisen", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "transport");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "x")
+                    return o.ObjUtil.getNumber(this._o, "api_tais")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "transportY", {
+            }), Object.defineProperty(t.prototype, "bakusou", {
                 get: function () {
-                    var t = n.ObjUtil.getString(this._o, "transport");
-                    return null == t ? 0 : n.ObjUtil.getNumber(t, "y")
+                    return o.ObjUtil.getNumber(this._o, "api_baku")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t.prototype.isTransport = function () {
-                return this._o.hasOwnProperty("transport")
+            }), Object.defineProperty(t.prototype, "meichu", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houm")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "kaihi", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_houk")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "sakuteki", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_saku")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "soukou", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_souk")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rarity", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_rare", 0)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "version", {
+                get: function () {
+                    return o.ObjUtil.getString(this._o, "api_version", "1")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "distance", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_distance")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "cost", {
+                get: function () {
+                    return o.ObjUtil.getNumber(this._o, "api_cost")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isPlane = function () {
+                return -1 != n.PlaneConst.PLANE.indexOf(this.cardType)
+            }, t.prototype.getMaterialsFromBroken = function () {
+                var t = o.ObjUtil.getNumArray(this._o, "api_broken");
+                return {
+                    fuel: t[0],
+                    ammo: t[1],
+                    steel: t[2],
+                    baux: t[3]
+                }
             }, t
         }();
-    e.GaugeModel = o
+    e.SlotitemMstModel = r
 }

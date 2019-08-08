@@ -19,60 +19,61 @@ const function580 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(192),
-        r = i(581),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._fileName = "", i._frame_index = 0, i._frameCount = 0, i._frameMax = 0, i._loopCount = 0, i._end = !1, i._offset = null, i._model = e, i._updateTexture(), i._updateAlpha(), i._updateFrameMax(), i._updateOffset(), i
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "fileName", {
+            get: function () {
+                return this._fileName
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.isEnd = function () {
+            return this._end
+        }, e.prototype.getOffset = function () {
+            return this._offset
+        }, e.prototype.reset = function () {
+            this._frame_index = 0, this._frameCount = 0, this._loopCount = 0, this._end = !1, this._updateTexture(), this._updateAlpha(), this._updateFrameMax()
+        }, e.prototype.update = function () {
+            if (this._end) return null;
+            var t = this._model.frames[this._frame_index];
+            this._frameCount++;
+            var e = 0 == this._frame_index && 1 == this._frameCount && 0 == this._loopCount;
+            if (this._frameCount < this._frameMax) return this._updateAlpha(), e ? t : null;
+            if (this._frame_index + 1 < this._model.frames.length) this._frame_index = this._frame_index + 1, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset();
+            else {
+                if (this._loopCount += 1, !(this._model.loopMax < 0 || this._loopCount <= this._model.loopMax)) return this._end = !0, e ? t : null;
+                this._frame_index = 0, this._frameCount = 0, this._updateTexture(), this._updateAlpha(), this._updateFrameMax(), this._updateOffset()
             }
-            return n(e, t), Object.defineProperty(e.prototype, "jukebox_table", {
-                get: function () {
-                    return this._table3
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "jukebox_btn_up2", {
-                get: function () {
-                    return this._btn_up2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "jukebox_btn_down2", {
-                get: function () {
-                    return this._btn_down2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.init = function () {
-                this._table3 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(11)), this._table3.position.set(10, 194), this._table3.alpha = 0, this._table3.interactive = !0, this.addChild(this._table3), this._param_mask = new Array(3), this._param_mask[0] = new PIXI.Graphics, this._param_mask[0].beginFill(16777215), this._param_mask[0].drawRect(43, 286, 358, 150), this._param_mask[0].endFill(), this.addChild(this._param_mask[0]), this._param_mask[1] = new PIXI.Graphics, this._param_mask[1].beginFill(16777215), this._param_mask[1].drawRect(405, 286, 166, 150), this._param_mask[1].endFill(), this.addChild(this._param_mask[1]), this._param_mask[2] = new PIXI.Graphics, this._param_mask[2].beginFill(16777215), this._param_mask[2].drawRect(575, 286, 100, 150), this._param_mask[2].endFill(), this.addChild(this._param_mask[2]), this._bgmList = [];
-                for (var t = 0; t < 5; t++) {
-                    var e = new r.BGMList(t, 10, 194, this._param_mask);
-                    this.addChild(e), this._bgmList.push(e)
-                }
-                this._btn_up2 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(8)), this._btn_up2.position.set(346, 248), this._btn_up2.alpha = 1, this._btn_up2.interactive = this._btn_up2.buttonMode = !0, this.addChild(this._btn_up2), this._btn_down2 = new PIXI.Sprite(o.JUKEBOX_COMMON.getTexture(7)), this._btn_down2.position.set(346, 450), this._btn_down2.alpha = 1, this._btn_down2.interactive = this._btn_down2.buttonMode = !0, this.addChild(this._btn_down2)
-            }, e.prototype.discard = function () {
-                this.removeChildren();
-                for (var t = 0, e = this._bgmList; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype.setBGMBtnEvent = function (t, e, i) {
-                for (var n = this, o = 0; o < this._bgmList.length; o++) ! function (o) {
-                    n._bgmList[o].Btn.on(s.EventType.MOUSEOVER, t), n._bgmList[o].Btn.on(s.EventType.MOUSEOUT, e), n._bgmList[o].Btn.on(s.EventType.CLICK, function () {
-                        i(o)
-                    })
-                }(o)
-            }, e.prototype.removeBGMBtnEvent = function (t, e, i) {
-                for (var n = this, o = 0; o < this._bgmList.length; o++) ! function (o) {
-                    n._bgmList[o].Btn.off(s.EventType.MOUSEOVER, t), n._bgmList[o].Btn.off(s.EventType.MOUSEOUT, e), n._bgmList[o].Btn.off(s.EventType.CLICK, function () {
-                        i(o)
-                    })
-                }(o)
-            }, e.prototype.playBGMListFadeInOut = function (t, e) {
-                for (var i = 0; i < this._bgmList.length; i++) this._bgmList[i].playFadeInOut(t, e)
-            }, e.prototype.redrawBGMList = function (t, e) {
-                for (var i = 0; i < this._bgmList.length; i++) this._bgmList[i].setText(t[i + e])
-            }, e
-        }(PIXI.Container);
-    e.JukeBoxList = a
+            return t = this._model.frames[this._frame_index], 0 == t.frame && (this._end = !0), t
+        }, e.prototype._updateTexture = function () {
+            var t = this._model.frames[this._frame_index];
+            this._fileName != t.filename && (this._fileName = t.filename, "" == this._fileName ? this.texture = PIXI.Texture.EMPTY : this.texture = this._getTextureByName(this._fileName))
+        }, e.prototype._updateAlpha = function () {
+            var t = this._model.frames[this._frame_index];
+            if (t.alpha[0] == t.alpha[1]) this.alpha = t.alpha[0];
+            else {
+                var e = (t.alpha[1] - t.alpha[0]) / (this._frameMax - 1),
+                    i = t.alpha[0] + e * this._frameCount;
+                i = Math.max(0, i), this.alpha = Math.min(1, i)
+            }
+        }, e.prototype._updateFrameMax = function () {
+            var t = this._model.frames[this._frame_index];
+            if (this._frameMax = t.frame, t.framerand > 0) {
+                var e = Math.random() * t.framerand;
+                this._frameMax = this._frameMax + Math.floor(e)
+            }
+        }, e.prototype._updateOffset = function () {
+            null == this._offset && (this._offset = new PIXI.Point);
+            var t = this._model.frames[this._frame_index],
+                e = t.offsetData;
+            null != e && e.length >= 2 && (this._offset.x = e[0], this._offset.y = e[1])
+        }, e.prototype._getTextureByName = function (t) {
+            var e = PIXI.utils.TextureCache[t];
+            return e || PIXI.Texture.EMPTY
+        }, e
+    }(PIXI.Sprite);
+    e.FurnitureLayer = o
 }

@@ -19,89 +19,48 @@ const function280 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(22),
-        a = i(2),
-        _ = i(281),
-        u = i(33),
-        l = i(13),
-        c = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._deck = r.default.model.deck.get(e), n._ships = n._deck.getShipList(), n._result = i, n
+    var o = i(591),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                r.default.view.clickGuard = !0, this._loadResources()
-            }, e.prototype._loadResources = function () {
-                for (var t = this, e = new l.ShipLoader, i = 0, n = this._ships; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && e.add(o.mstID, o.isDamaged(), "banner")
-                }
-                e.load(function () {
-                    t._initCutin()
-                })
-            }, e.prototype._initCutin = function () {
-                this._cutin = new _.ExpeditionCutin, this._cutin.initialize(!1), this._createShipContainerU(), this._createShipContainerB(), this._cutin.bg.scale.set(1, 0), this._cutin.message.position.set(1440, o.default.height / 2), this._cutin.banner_top.position.set(0, 243), this._cutin.banner_top.alpha = 0, this._cutin.banner_bottom.position.set(o.default.width - this._cutin.banner_bottom.width, 417), this._cutin.banner_bottom.alpha = 0, this._playCutin()
-            }, e.prototype._playCutin = function () {
-                var t = this;
-                r.default.view.overLayer.addChild(this._cutin);
-                var e = this._ships[0],
-                    i = e.mstID.toString();
-                r.default.sound.voice.play(i, 7), createjs.Tween.get(this._cutin.bg.scale).to({
-                    y: 2
-                }, 300).wait(1500).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._endTask()
-                }), createjs.Tween.get(this._cutin.message).wait(400).to({
-                    x: 660
-                }, 400).to({
-                    x: 525
-                }, 800).to({
-                    x: 420,
-                    alpha: 0
-                }, 400), createjs.Tween.get(this._cutin.banner_top).wait(300).to({
+            return n(e, t), e.prototype.initialize = function () {
+                this._skipTween(), null == this._content && (this._content = new s, this._content.initialize(this._getTexture(0), this._getTextureOver(0)), this.addChild(this._content))
+            }, e.prototype.dispose = function () {
+                this._stopTween(), null != this._content && this._content.dispose(), null != this._content_tmp && this._content_tmp.dispose()
+            }, e.prototype.startAnimation = function (t) {
+                var e = this;
+                this._skipTween(), this._content_tmp = new s, this._content_tmp.initialize(this._getTexture(t), this._getTextureOver(t)), this._content_tmp.alpha = 0, this.addChild(this._content_tmp), this._tween = createjs.Tween.get(this._content_tmp).to({
                     alpha: 1
-                }, 100).to({
-                    x: o.default.width / 2 - this._cutin.banner_top.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: o.default.width - this._cutin.banner_top.width,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this._cutin.banner_bottom).wait(300).to({
-                    alpha: 1
-                }, 100).to({
-                    x: o.default.width / 2 - this._cutin.banner_bottom.width / 2
-                }, 800, createjs.Ease.cubicInOut).to({
-                    x: 0,
-                    alpha: 0
-                }, 800, createjs.Ease.cubicInOut), createjs.Tween.get(this).wait(700).call(function () {
-                    t._cutin.particles.startAnim()
+                }, 600).call(function () {
+                    e._content.dispose(), e.removeChild(e._content), e._content = e._content_tmp, e._content_tmp = null
                 })
-            }, e.prototype._createShipContainerU = function () {
-                var t, e = this._ships[0],
-                    i = this._ships[2],
-                    n = this._ships[4];
-                t = null == i ? [e] : null == n ? [i, e] : [i, e, n];
-                for (var o = 0; o < t.length; o++) {
-                    var r = t[o],
-                        a = new u.ShipBanner;
-                    a.update(r, !1), a.position.x = s.BannerSize.W * o, this._cutin.banner_top.addChild(a)
-                }
-            }, e.prototype._createShipContainerB = function () {
-                var t, e = this._ships[1],
-                    i = this._ships[3],
-                    n = this._ships[5],
-                    o = this._ships[6];
-                t = null == n ? null == i ? null == e ? [] : [e] : [e, i] : null == o ? [n, e, i] : [n, e, i, o];
-                for (var r = 0; r < t.length; r++) {
-                    var a = t[r],
-                        _ = new u.ShipBanner;
-                    _.update(a, !1), _.position.x = s.BannerSize.W * r, this._cutin.banner_bottom.addChild(_)
-                }
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), r.default.view.overLayer.removeChild(this._cutin), this._cutin.dispose(), r.default.view.clickGuard = !1, t.prototype._endTask.call(this)
+            }, e.prototype._stopTween = function () {
+                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+            }, e.prototype._skipTween = function () {
+                this._stopTween(), null != this._content_tmp && (this._content.dispose(), this.removeChild(this._content), this._content_tmp.alpha = 1, this._content = this._content_tmp, this._content_tmp = null)
+            }, e.prototype._getTexture = function (t) {
+                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(4) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(6) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(8) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(12) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(10) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(0) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(14) : o.PORT_SKIN_CIRCLE_2.getTexture(2)
+            }, e.prototype._getTextureOver = function (t) {
+                return 11 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(5) : 12 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(7) : 13 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(9) : 14 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(13) : 15 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(11) : 31 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(1) : 16 == t ? o.PORT_SKIN_CIRCLE_2.getTexture(15) : o.PORT_SKIN_CIRCLE_2.getTexture(3)
             }, e
-        }(a.TaskBase);
-    e.TaskExpeditionEndCutin = c
+        }(PIXI.Container);
+    e.CircleContentWithSwitching = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._under = new PIXI.Sprite, e.addChild(e._under), e._over = new PIXI.Sprite, e.addChild(e._over), e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._under.texture = t, this._over.texture = e, this.pivot.x = Math.round(this._under.width / 2), this.pivot.y = Math.round(this._under.height / 2), this._over.alpha = 0, this._tween = createjs.Tween.get(this._over, {
+                loop: !0
+            }).to({
+                alpha: .6
+            }, 1e3, createjs.Ease.getPowOut(4)).to({
+                alpha: 0
+            }, 1e3, createjs.Ease.getPowIn(4))
+        }, e.prototype.dispose = function () {
+            null != this._tween && this._tween.setPaused(!0), this._tween = null
+        }, e
+    }(PIXI.Container)
 }

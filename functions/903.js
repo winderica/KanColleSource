@@ -19,48 +19,53 @@ const function903 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._url = "api_req_kousyou/createitem", r.api_item1 = e, r.api_item2 = i, r.api_item3 = n, r.api_item4 = o, r
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "api_create_flag", {
-                get: function () {
-                    return this._api_create_flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_slotitem_memid", {
-                get: function () {
-                    return this._api_slotitem_memid
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_slotitem_mstid", {
-                get: function () {
-                    return this._api_slotitem_mstid
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_item1 = this.api_item1, this._post_data.api_item2 = this.api_item2, this._post_data.api_item3 = this.api_item3, this._post_data.api_item4 = this.api_item4, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._raw_data.api_create_flag,
-                    i = (this._raw_data.api_shizai_flag, this._raw_data.api_material);
-                switch (o.default.model.useItem.get(31).__setCount__(i[0]), o.default.model.useItem.get(32).__setCount__(i[1]), o.default.model.useItem.get(33).__setCount__(i[2]), o.default.model.useItem.get(34).__setCount__(i[3]), o.default.model.useItem.get(2).__setCount__(i[4]), o.default.model.useItem.get(1).__setCount__(i[5]), o.default.model.useItem.get(3).__setCount__(i[6]), o.default.model.useItem.get(4).__setCount__(i[7]), e) {
-                    case 0:
-                        this._api_slotitem_memid = 0, this._api_slotitem_mstid = 0;
-                        break;
-                    case 1:
-                        var n = this._raw_data.api_slot_item,
-                            r = this._raw_data.api_type3,
-                            s = this._raw_data.api_unsetslot;
-                        this._api_slotitem_memid = n.api_id, this._api_slotitem_mstid = n.api_slotitem_id, o.default.model.slot.addMemData([n]), o.default.model.slot.updateUnsetData(r, s)
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.animation = {};
+                var i = o.ARSENAL_ANIMATION.getTexture(2);
+                e.scatterCircles = new Array;
+                for (var n = 0; n < 40; n++) {
+                    var r = new s(i);
+                    e.scatterCircles.push(r), e.addChild(r)
                 }
-                this._api_create_flag = e, t.prototype._completedEnd.call(this)
+                return e
+            }
+            return n(e, t), e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.removeTweens(this.animation);
+                for (var e = createjs.Tween.get(this.animation), i = 0; i < this.scatterCircles.length; i++) {
+                    this.scatterCircles[i].reset()
+                }
+                e.call(function () {
+                    e.removeAllEventListeners("change"), e.addEventListener("change", function () {
+                        for (var e = 0; e < t.scatterCircles.length; e++) {
+                            t.scatterCircles[e].update()
+                        }
+                    })
+                }).to({}, 5e3).call(function () {
+                    e.removeAllEventListeners("change")
+                }), e.play(null)
             }, e
-        }(r.APIBase);
-    e.CreateItemAPI = s
+        }(PIXI.Container);
+    e.ScatterCircleParticle = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this, e) || this;
+            return i.updateCount = 0, i
+        }
+        return n(e, t), e.prototype.reset = function () {
+            var t = 1.999 * Math.random() * Math.PI,
+                e = .2 * Math.random() + .8,
+                i = 30 * e * Math.cos(t),
+                n = 30 * e * Math.sin(t),
+                o = 15 * (.2 * Math.random() + .8),
+                r = -1 * (.2 * Math.random() + .8);
+            this.updateCount = 0, this.vx = i, this.vy = n, this.x = 0, this.y = 0, this.scale.x = 1, this.scale.y = 1, this.alpha = 1, this.vScale = o, this.vAlpha = r
+        }, e.prototype.update = function () {
+            this.updateCount++;
+            this.x += this.vx * Math.exp(-.05 * this.updateCount) * 1, this.y += 1 * (2 + this.vy * Math.exp(-.05 * this.updateCount)), this.scale.x += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.scale.y += this.vScale * Math.exp(-.05 * this.updateCount) / 100 * 1, this.alpha += this.vAlpha * (1 - Math.exp(-.05 * this.updateCount)) / 100 * 1
+        }, e
+    }(PIXI.Sprite)
 }

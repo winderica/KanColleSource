@@ -19,25 +19,31 @@ const function1125 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(34),
-        a = function (t) {
+    var o = i(33),
+        r = i(1126),
+        s = i(1127),
+        a = i(1128),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(167, 96), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(167, 126), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(11, e), i._btn_shigen.position.set(146, 180), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(13, e), i._btn_kanmi.position.set(284, 180), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(12, e), i._btn_shizai.position.set(422, 180), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 278), i.addChild(i._btn_back), i
+                return i._count = 0, i._onSelectFromTop = function (t) {
+                    if (-1 == t) {
+                        if (null == i._cb_onResult) return;
+                        i._cb_onResult(t)
+                    } else null != i._confirm_view && (null != i._confirm_view.parent && i._confirm_view.parent.removeChild(i._confirm_view), i._confirm_view.dispose(), i._confirm_view = null), 1 == t ? (i._confirm_view = new a.ConfirmRemodelPlanView(1, i._onSelectFromConfirm), i._confirm_view.position.set(220, 171)) : 0 == t ? (i._confirm_view = new s.ConfirmView(0, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)) : 2 == t && (i._confirm_view = new s.ConfirmView(2, i._onSelectFromConfirm), i._confirm_view.position.set(225, 208)), i._confirm_view.initialize(i._count), i.addChild(i._confirm_view), i._top_view.visible = !1
+                }, i._onSelectFromConfirm = function (t) {
+                    null != i._confirm_view && i._confirm_view.dispose(), null != i._cb_onResult && i._cb_onResult(t)
+                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(225, 208), i.addChild(i._top_view), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(9), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 339 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 339 - this._message2.width / 2;
-                var t = r.ITEM_ILIST_PRESENTBOX.getTexture(3);
-                this._btn_shigen.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(0), this._btn_back.initialize(t)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._count = t, this._top_view.initialize(t)
             }, e.prototype.activate = function () {
-                this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
+                this._top_view.activate()
             }, e.prototype.deactivate = function () {
-                this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
+                this._top_view.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
+                this._top_view.dispose()
             }, e
-        }(PIXI.Sprite);
-    e.TopView = a
+        }(o.DialogBase);
+    e.MedalUseDialog = _
 }

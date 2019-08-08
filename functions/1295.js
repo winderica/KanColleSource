@@ -19,77 +19,52 @@ const function1295 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1296),
-        r = i(1298),
-        s = i(1300),
-        a = i(1303),
-        _ = i(1305),
-        u = i(1306),
-        l = i(1308),
-        c = i(15),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new s.MapBackGround, e.addChild(e._bg), e._spotLayer = new a.MapSpotLayer, e.addChild(e._spotLayer), e._ship_layer = new PIXI.Container, e._ship_icon = new o.CompShipIcon, e._enemy_layer = new _.MapEnemyLayer, e._airbaseLayer = new l.AirBaseLayer, e.addChild(e._airbaseLayer), e._ship_layer.addChild(e._ship_icon), e.addChild(e._ship_layer), e.addChild(e._enemy_layer), e._plane_layer = new u.MapPlaneLayer, e.addChild(e._plane_layer), e
+    var o = i(20),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
+                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "complete", {
                 get: function () {
-                    return this._bg
+                    return this._complete
+                },
+                set: function (t) {
+                    this._complete = t, this.buttonMode = t, this._update()
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "ship_icon", {
-                get: function () {
-                    return this._ship_icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "spotLayer", {
-                get: function () {
-                    return this._spotLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "airbaseLayer", {
-                get: function () {
-                    return this._airbaseLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "enemy_layer", {
-                get: function () {
-                    return this._enemy_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane_layer", {
-                get: function () {
-                    return this._plane_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._bg.dispose(), this._spotLayer.dispose(), this._enemy_layer.dispose(), this._plane_layer.dispose()
-            }, e.prototype.addSpot = function (t, e, i) {
-                var n = i.getSpot(e),
-                    o = new r.CompSpot(e, n.offsetDic);
-                if (o.position.set(n.x, n.y), null != n.route) {
-                    var s = n.route,
-                        a = c.MapUtil.toResKey(t),
-                        _ = "map" + a + "_" + s.img,
-                        u = PIXI.Texture.fromFrame(_);
-                    o.setRoute(u, s.x, s.y, s.r)
+            }), e.prototype.initialize = function (t) {
+                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
+            }, e.prototype.update = function (t) {
+                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
+            }, e.prototype.dispose = function () {
+                this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._update = function () {
+                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(173), this._img.position.set(0, 0);
+                else {
+                    switch (this._airunit_id) {
+                        case 0:
+                            this._img.texture = o.MAP_COMMON.getTexture(169);
+                            break;
+                        case 1:
+                            this._img.texture = o.MAP_COMMON.getTexture(170);
+                            break;
+                        case 2:
+                            this._img.texture = o.MAP_COMMON.getTexture(171);
+                            break;
+                        case 3:
+                            this._img.texture = o.MAP_COMMON.getTexture(172);
+                            break;
+                        default:
+                            this._img.texture = PIXI.Texture.EMPTY
+                    }
+                    this._img.position.set(11, 9)
                 }
-                var l = n.line;
-                if (null != l) {
-                    var a = c.MapUtil.toResKey(t),
-                        h = void 0;
-                    h = null != l.img && l.img.length > 0 ? "map" + a + "_" + l.img : "map" + a + "_route_" + e;
-                    var u = PIXI.Texture.fromFrame(h);
-                    o.setLine(u, l.x, l.y, l.r)
-                }
-                this._spotLayer.addSpot(o)
             }, e
         }(PIXI.Container);
-    e.MapView = h
+    e.AirUnitAppointmentTitle = s
 }

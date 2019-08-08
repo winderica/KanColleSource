@@ -3,6 +3,10 @@ const function1009 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(1010);
-    e.EventSortieCondition = n.EventSortieCondition
+    ! function (t) {
+        function e(t) {
+            return PIXI.Texture.fromFrame("sally_strategymap_" + t)
+        }
+        t.getTexture = e
+    }(e.SALLY_STRATEGYMAP || (e.SALLY_STRATEGYMAP = {}))
 }

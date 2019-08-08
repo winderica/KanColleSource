@@ -19,89 +19,132 @@ const function909 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(164),
-        a = i(125),
-        _ = i(87),
-        u = i(213),
-        l = i(4),
-        c = i(6),
+    var o, r = i(5),
+        s = i(0),
+        a = i(1),
+        _ = i(49),
+        u = i(8),
+        l = i(116),
+        c = i(4),
         h = i(21),
         p = i(35),
         d = i(90),
-        f = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.ITEM_NUM = 10, e._onClick = function (t, i) {
-                    e.onClickShip(t, i)
-                };
-                var i = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12));
-                i.interactive = !0, e.addChild(i);
-                var n = new PIXI.Sprite(h.COMMON_MAIN.getTexture(39));
-                e.listItems = new Array, n.position.set(45, 12), e.addChild(n);
-                for (var o = 0; o < e.ITEM_NUM; o++) {
-                    var r = new y,
-                        s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(37));
-                    r.onClick = e._onClick, s.position.set(48, 46 * o + 46 + 43), r.position.set(0, 46 * o + 46), e.addChild(s, r), e.listItems.push(r)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0; t < this.listItems.length; t++) this.listItems[t].dispose(), this.listItems[t] = null;
-                this.listItems = null, this._onClick = this.onClickShip = null, this.removeChildren()
-            }, e.prototype.update = function (t) {
-                for (var e = 0; e < this.listItems.length; e++) {
-                    var i = this.listItems[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e],
-                            r = o.default.model.deck.isInDeck(n.memID),
-                            s = 0 == d.Util.ShipDisassemblyValidation(n.memID) ? 1 : 2;
-                        i.update(n.memID, n.shipTypeName, n.name, n.level, n.hpMax, n.karyoku, n.raisou, n.taiku, n.speed, n.isLocked(), n.hasLockedSlotitem(), r, s, e), i.visible = !0
-                    }
-                }
-            }, e.prototype.toggleCheckBox = function (t) {
-                this.listItems[t].toggleCheckBox()
-            }, e
-        }(PIXI.Container);
-    e.ShipDisassemblyChoice = f;
-    var y = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._onClick = function () {
-                e.onClick(e.memShipId, e.arrayIndex)
-            }, e._onMouseOver = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !0, e.textShipType.style.fill = e.textName.style.fill = e.textLevel.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 16777215, e.containerShipTypeAndName.cacheAsBitmap = !0
-            }, e._onMouseOut = function () {
-                e.containerShipTypeAndName.cacheAsBitmap = !1, e.background.visible = !1, e.textLevel.style.fill = e.mouseoutColor, e.textShipType.style.fill = e.textName.style.fill = e.textTaikyu.style.fill = e.textKaryoku.style.fill = e.textRaiso.style.fill = e.textTaiku.style.fill = 5523516, e.containerShipTypeAndName.cacheAsBitmap = !0
-            };
-            e.shipInDeckFlag = new _.ShipInDeckFlag, e.textShipType = new l.TextBox(18, 5523516), e.textName = new l.TextBox(20, 5523516), e.textLevel = new l.TextBox(22, 5523516), e.textTaikyu = new l.TextBox(18, 5523516), e.textKaryoku = new l.TextBox(18, 5523516), e.textRaiso = new l.TextBox(18, 5523516), e.textTaiku = new l.TextBox(18, 5523516), e.iconLockedShip = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(88)), e.iconLockedItem = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(80)), e.shipSpeedImage = new u.ShipSpeedImage, e.background = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), e.clickArea = new PIXI.Graphics, e.containerShipTypeAndName = new PIXI.Container, e.iconCheckState = new PIXI.Sprite;
-            var i = Math.floor(22.5) + 1,
-                n = a.CreateRect.gradientLeftToRight(240, 45, .85, .9);
-            return e.shipInDeckFlag.scale.set(.8, .8), e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 645, 45), e.clickArea.endFill(), e.clickArea.on(r.EventType.CLICK, e._onClick), e.clickArea.on(r.EventType.MOUSEOVER, e._onMouseOver), e.clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e.clickArea.interactive = e.clickArea.buttonMode = !0, e.background.visible = !1, e.iconCheckState.position.set(12, 12), e.containerShipTypeAndName.position.set(79, 0), e.textShipType.anchor.set(0, 0), e.textShipType.position.set(0, Math.floor(i - e.textShipType.height / 2)), e.textName.anchor.set(0, 0), e.textName.position.set(90, Math.floor(i - e.textName.height / 2) + 0), e.textLevel.position.set(336, Math.floor(i - e.textLevel.height / 2)), e.textTaikyu.position.set(393, Math.floor(i - e.textTaikyu.height / 2)), e.textKaryoku.position.set(439, Math.floor(i - e.textKaryoku.height / 2)), e.textRaiso.position.set(486, Math.floor(i - e.textRaiso.height / 2)), e.textTaiku.position.set(531, Math.floor(i - e.textTaiku.height / 2)), e.shipSpeedImage.position.set(540, i), e.iconLockedShip.position.set(591, Math.floor(i - e.iconLockedShip.height / 2)), e.iconLockedItem.position.set(591, Math.floor(i - e.iconLockedItem.height / 2)), e.shipInDeckFlag.position.set(47, i), e.background.position.set(75, 0), e.background.scale.x = 1.05, e.textLevel.anchor.set(1, 0), e.textTaikyu.anchor.set(1, 0), e.textKaryoku.anchor.set(1, 0), e.textRaiso.anchor.set(1, 0), e.textTaiku.anchor.set(1, 0), e.shipSpeedImage.anchor.set(0, .5), e.iconLockedShip.anchor.set(0, 0), e.iconLockedItem.anchor.set(0, 0), e.shipInDeckFlag.anchor.set(0, .5), e.containerShipTypeAndName.mask = n, e.containerShipTypeAndName.addChild(e.textShipType, e.textName), e.addChild(e.background, e.iconCheckState, e.shipInDeckFlag, e.textLevel, e.containerShipTypeAndName, e.textLevel, e.textTaikyu, e.textKaryoku, e.textRaiso, e.textTaiku, e.iconLockedShip, e.iconLockedItem, e.shipSpeedImage, e.clickArea), e
+        f = i(342),
+        y = i(344);
+    ! function (t) {
+        t[t.CANCEL = 0] = "CANCEL", t[t.DEVELOP = 1] = "DEVELOP", t[t.GOTO_STORE = 2] = "GOTO_STORE"
+    }(o = e.Result || (e.Result = {}));
+    var m = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            i.animation = {
+                progress: 0
+            }, i._onChangeValue = function () {
+                var t = i.fuel,
+                    e = i.ammo,
+                    n = i.steel,
+                    o = i.bauxite,
+                    r = i.devKit,
+                    s = d.Util.DevelopValidation(t, e, n, o, r);
+                i.update(s)
+            }, i._onClickShop = function () {
+                i.onComplete(o.GOTO_STORE)
+            }, i._onClickBuild = function () {
+                i.onComplete(o.DEVELOP)
+            }, i._onClickBackground = function () {
+                i.onComplete(o.CANCEL)
+            }, i.mainView = e;
+            i.configureMaterialView_fuel = new f.MaterialAmountView(31, 10, 300), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 10, 300), i.configureMaterialView_steel = new f.MaterialAmountView(33, 10, 300), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 10, 300), i.btn_kaihatsu = new l.SimpleButton(p.ARSENAL_MAIN.getTexture(25), p.ARSENAL_MAIN.getTexture(27));
+            var n = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(26)),
+                s = new PIXI.Sprite(h.COMMON_MAIN.getTexture(12)),
+                m = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(139)),
+                g = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(156)),
+                v = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(74)),
+                b = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(73));
+            i.textDevKitBefore = new c.TextBox(24, 5523516), i.textDevKitAfter = new c.TextBox(24, 12467003), i.shopButton = new y.ShopButton, i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kaihatsu.on(a.EventType.CLICK, i._onClickBuild), s.interactive = !0, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, n.position.set(532, 486), i.btn_kaihatsu.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), v.position.set(394, 441), b.position.set(594, 442), m.position.set(60, 426), g.position.set(424, 442), i.shopButton.position.set(473, 496), i.addChild(s, i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, n, g, v, b, i.textDevKitBefore, i.textDevKitAfter, i.btn_kaihatsu, i.shopButton), i.shopButton.play();
+            var w = new PIXI.Sprite(h.COMMON_MAIN.getTexture(64));
+            w.position.set(0, -37);
+            var x = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(7));
+            x.anchor.set(0, .5), x.position.set(22, Math.floor(w.height / 2 - 4)), w.addChild(x), i.addChild(w);
+            return i.dialogBackground = new u.AreaBox(_.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = r.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.position.set(1200, 139), i.dialogBackground.on(a.EventType.CLICK, i._onClickBackground), i
         }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this.shipInDeckFlag.dispose(), this.containerShipTypeAndName.cacheAsBitmap = !1, this.containerShipTypeAndName.mask = null, this.containerShipTypeAndName.removeChildren(), this.shipSpeedImage.dispose(), this.clickArea.off(r.EventType.CLICK), this.clickArea.off(r.EventType.MOUSEOUT), this.clickArea.off(r.EventType.MOUSEOVER), this.clickArea.clear(), this.textShipType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textTaikyu.destroy(), this.textKaryoku.destroy(), this.textRaiso.destroy(), this.textTaiku.destroy(), this.onClick = null, this.shipInDeckFlag = null, this.containerShipTypeAndName = null, this.iconLockedShip = null, this.iconLockedItem = null, this.shipSpeedImage = null, this.background = null, this.clickArea = null, this.textShipType = null, this.textName = null, this.textLevel = null, this.textTaikyu = null, this.textKaryoku = null, this.textRaiso = null, this.textTaiku = null, this.mouseoutColor = null, this.iconCheckState = null, this.checkState = null, this.arrayIndex = null
-        }, e.prototype.update = function (t, e, i, n, o, r, a, _, u, l, c, h, d, f) {
-            switch (void 0 === h && (h = null), this.arrayIndex = f, this.containerShipTypeAndName.cacheAsBitmap = !1, this.memShipId = t, this.textShipType.text = e + " ", this.textName.text = i, this.textLevel.text = n.toString(), this.textTaikyu.text = o.toString(), this.textKaryoku.text = r.toString(), this.textRaiso.text = a.toString(), this.textTaiku.text = _.toString(), this.shipSpeedImage.update(u), this.textName.position.x = this.textShipType.position.x + this.textShipType.width, this.iconLockedShip.visible = !1, this.iconLockedItem.visible = !1, l ? this.iconLockedShip.visible = !0 : c && (this.iconLockedItem.visible = !0), d) {
-                case 1:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(12);
-                    break;
-                case 2:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13);
-                    break;
-                case 3:
-                    this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14)
-            }
-            this.checkState = d, this.textLevel.style.fill = this.mouseoutColor = s.ColorUtil.getLevelColor(n), this.shipInDeckFlag.visible = !1, h && (this.shipInDeckFlag.update(h), this.shipInDeckFlag.visible = !0), this.containerShipTypeAndName.cacheAsBitmap = !0
-        }, e.prototype.toggleCheckBox = function () {
-            switch (c.SE.play("239"), this.checkState) {
-                case 2:
-                    this.checkState = 3, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(14);
-                    break;
-                case 3:
-                    this.checkState = 2, this.iconCheckState.texture = p.ARSENAL_MAIN.getTexture(13)
-            }
+        return n(e, t), Object.defineProperty(e.prototype, "fuel", {
+            get: function () {
+                return this.configureMaterialView_fuel.value
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "ammo", {
+            get: function () {
+                return this.configureMaterialView_ammo.value
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "steel", {
+            get: function () {
+                return this.configureMaterialView_steel.value
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "bauxite", {
+            get: function () {
+                return this.configureMaterialView_bauxite.value
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "devKit", {
+            get: function () {
+                return 1
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            this.removeChildren(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this), this.dialogBackground.off(a.EventType.CLICK, this._onClickBackground), this.configureMaterialView_fuel.dispose(), this.configureMaterialView_ammo.dispose(), this.configureMaterialView_steel.dispose(), this.configureMaterialView_bauxite.dispose(), this.btn_kaihatsu.dispose(), this.shopButton.dispose(), this.textDevKitBefore.destroy(), this.textDevKitAfter.destroy(), this.configureMaterialView_fuel = null, this.configureMaterialView_ammo = null, this.configureMaterialView_steel = null, this.configureMaterialView_bauxite = null, this.btn_kaihatsu = null, this.textDevKitBefore = null, this.textDevKitAfter = null, this.onChangeValue = null, this.shopButton = null, this.mainView = null, this.dialogBackground = null, this.animation = null
+        }, e.prototype.initialize = function (t, e, i, n, o) {
+            this.configureMaterialView_fuel.setAvail(t), this.configureMaterialView_ammo.setAvail(e), this.configureMaterialView_steel.setAvail(i), this.configureMaterialView_bauxite.setAvail(n), this.textDevKitBefore.text = o.toString(), this.textDevKitAfter.style.fill = 12467003, this.textDevKitAfter.text = "0", 0 <= o - 1 && (this.textDevKitAfter.style.fill = 5523516, this.textDevKitAfter.text = (o - 1).toString())
+        }, e.prototype.play = function (t, e, i, n) {
+            var o = s.default.model.useItem.get(31).count,
+                r = s.default.model.useItem.get(32).count,
+                a = s.default.model.useItem.get(33).count,
+                _ = s.default.model.useItem.get(34).count,
+                u = s.default.model.useItem.get(3).count,
+                l = d.Util.DevelopValidation(t, e, i, n, 1);
+            this.initialize(o, r, a, _, u), this.config(t, e, i, n, 1), this.update(l), this.onChangeValue = this._onChangeValue, s.default.view.clickGuard = !0, this.show(function () {
+                s.default.view.clickGuard = !1
+            })
+        }, e.prototype.show = function (t) {
+            var e = this;
+            this.animation.progress = 0;
+            var i = createjs.Tween.get(this.animation),
+                n = function () {
+                    e.x = 1200 - 788 * e.animation.progress, e.dialogBackground.alpha = e.animation.progress
+                };
+            n(), i.call(function () {
+                i.addEventListener("change", n)
+            }).to({
+                progress: 1
+            }, 200).call(function () {
+                i.removeAllEventListeners("change"), createjs.Tween.removeTweens(i.target), e.animation.progress = 1, e.dialogBackground.width = 444, n(), t()
+            }), i.play(null)
+        }, e.prototype.hide = function (t) {
+            var e = this;
+            this.animation.progress = 0, this.dialogBackground.width = r.default.width;
+            var i = createjs.Tween.get(this.animation),
+                n = function () {
+                    e.x = 1200 - 788 * (1 - e.animation.progress), e.dialogBackground.alpha = 1 - e.animation.progress
+                };
+            n(), i.call(function () {
+                i.addEventListener("change", n)
+            }).to({
+                progress: 1
+            }, 200).call(function () {
+                i.removeAllEventListeners("change"), createjs.Tween.removeTweens(i.target), e.animation.progress = 1, n(), t()
+            }), i.play(null)
+        }, e.prototype.config = function (t, e, i, n, o) {
+            this.configureMaterialView_fuel.updateValue(t), this.configureMaterialView_ammo.updateValue(e), this.configureMaterialView_steel.updateValue(i), this.configureMaterialView_bauxite.updateValue(n)
+        }, e.prototype.update = function (t) {
+            this.btn_kaihatsu.visible = !!t
         }, e
-    }(PIXI.Container)
+    }(PIXI.Container);
+    e.MaterialAmountContainerSlot = m
 }

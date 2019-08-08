@@ -19,21 +19,38 @@ const function1121 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(34),
-        a = i(398),
-        _ = i(399),
-        u = function (t) {
+    var o = i(1),
+        r = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._message = new o.TextBox(18, 4999235), n._message.position.set(230, 33), n.addChild(n._message), n._icon = new _.MedalIcon, n._icon.position.set(308, 116), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(179, 215), n.addChild(n._btn_yes), n._btn_no = new s.BtnBase(-1, i), n._btn_no.position.set(389, 215), n.addChild(n._btn_no), 0 == e ? n._message.text = "\u52f2\u7ae0\u3092\u300c\u8cc7\u6e90\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f" : 2 == e && (n._message.text = "\u52f2\u7ae0\u3092\u300c\u6539\u4fee\u8cc7\u6750\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"), n
+                return n._activated = !1, n._enabled = !0, n._onClick = function () {
+                    null != n._cb_onClick && n._cb_onClick(n._target)
+                }, n._target = e, n._cb_onClick = i, n.interactive = !0, n
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.ITEM_ILIST_MEDAL.getTexture(7), this._initialize(t, 1)
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                set: function (t) {
+                    this._enabled != t && (this._enabled = t, 1 == this._enabled ? 1 == this._activated && this._activate() : 1 == this._activated && this._deactivate(), this._update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                void 0 === e && (e = null), this._t = t, this._t_off = null == e ? t : e, this._update()
+            }, e.prototype.activate = function () {
+                1 != this._activated && (this._activated = !0, 0 != this._enabled && this._activate())
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._message.destroy()
+                this.deactivate(), this._cb_onClick = null, this._t = null, this._t_off = null
+            }, e.prototype._update = function () {
+                0 == this._enabled ? this.texture = this._t_off : this.texture = this._t
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.CLICK, this._onClick)
             }, e
-        }(a.ConfirmViewBase);
-    e.ConfirmView = u
+        }(PIXI.Sprite);
+    e.BtnBase = r
 }

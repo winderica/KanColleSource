@@ -19,275 +19,60 @@ const function431 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(243),
+    var o = i(121),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._POSITIONS_TANJUU = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-29, -11],
-                        [8, -11]
-                    ],
-                    [
-                        [-47, -11],
-                        [-11, -11],
-                        [26, -11]
-                    ],
-                    [
-                        [-63, -11],
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11]
-                    ],
-                    [
-                        [-80, -11],
-                        [-47, -11],
-                        [-11, -11],
-                        [26, -11],
-                        [59, -11]
-                    ],
-                    [
-                        [-98, -11],
-                        [-63, -11],
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11],
-                        [77, -11]
-                    ],
-                    [
-                        [-101, -11],
-                        [-71, -11],
-                        [-41, -11],
-                        [-11, -11],
-                        [20, -11],
-                        [50, -11],
-                        [80, -11]
-                    ]
-                ], i._POSITIONS_FUKUJUU = [null, [
-                        [-11, -11]
-                    ], null, [
-                        [-29, -27],
-                        [8, -27],
-                        [-29, 6]
-                    ],
-                    [
-                        [-29, -27],
-                        [8, -27],
-                        [-29, 6],
-                        [8, 6]
-                    ],
-                    [
-                        [-47, -27],
-                        [-11, -27],
-                        [26, -27],
-                        [-47, 6],
-                        [-11, 6]
-                    ],
-                    [
-                        [-47, -27],
-                        [-11, -27],
-                        [26, -27],
-                        [-47, 6],
-                        [-11, 6],
-                        [26, 6]
-                    ],
-                    [
-                        [-65, -27],
-                        [-29, -27],
-                        [8, -27],
-                        [-65, 6],
-                        [-29, 6],
-                        [8, 6],
-                        [44, -11]
-                    ]
-                ], i._POSITIONS_RINKEI = [null, [
-                        [-11, -11]
-                    ], null, null, [
-                        [-11, -11],
-                        [-46, -11],
-                        [8, -44],
-                        [8, 23]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [-47, -11],
-                        [-11, -44],
-                        [-11, 23]
-                    ],
-                    [
-                        [-29, -11],
-                        [8, -11],
-                        [42, -11],
-                        [-63, -11],
-                        [-11, -60],
-                        [-11, 39]
-                    ],
-                    [
-                        [-11, -11],
-                        [51, -11],
-                        [-72, -11],
-                        [-42, -65],
-                        [-42, 44],
-                        [21, -65],
-                        [21, 44]
-                    ]
-                ], i._POSITIONS_TEIKEI = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-23, -23],
-                        [0, 0]
-                    ],
-                    [
-                        [-33, -33],
-                        [-11, -11],
-                        [12, 12]
-                    ],
-                    [
-                        [-44, -44],
-                        [-21, -21],
-                        [0, 0],
-                        [24, 24]
-                    ],
-                    [
-                        [-56, -56],
-                        [-33, -33],
-                        [-11, -11],
-                        [12, 12],
-                        [35, 35]
-                    ],
-                    [
-                        [-66, -66],
-                        [-44, -44],
-                        [-21, -21],
-                        [0, 0],
-                        [24, 24],
-                        [47, 47]
-                    ],
-                    [
-                        [-69, -69],
-                        [-50, -50],
-                        [-30, -30],
-                        [-11, -11],
-                        [9, 9],
-                        [29, 29],
-                        [48, 48]
-                    ]
-                ], i._POSITIONS_TANOU = [null, [
-                        [-11, -11]
-                    ],
-                    [
-                        [-11, -27],
-                        [-11, 6]
-                    ],
-                    [
-                        [-11, -43],
-                        [-11, -11],
-                        [-11, 23]
-                    ],
-                    [
-                        [-11, -60],
-                        [-11, -27],
-                        [-11, 6],
-                        [-11, 39]
-                    ],
-                    [
-                        [-11, -77],
-                        [-11, -44],
-                        [-11, -11],
-                        [-11, 23],
-                        [-11, 56]
-                    ],
-                    [
-                        [-11, -93],
-                        [-11, -60],
-                        [-11, -27],
-                        [-11, 6],
-                        [-11, 39],
-                        [-11, 72]
-                    ],
-                    [
-                        [-11, -101],
-                        [-11, -71],
-                        [-11, -41],
-                        [-11, -11],
-                        [-11, 20],
-                        [-11, 50],
-                        [-11, 80]
-                    ]
-                ], i._POSITIONS_KEIKAI = [null, [
-                        [-11, -11]
-                    ], null, null, [
-                        [-11, -11],
-                        [26, -11],
-                        [-47, -41],
-                        [-47, 20]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [-60, -11],
-                        [-41, -41],
-                        [-41, 20]
-                    ],
-                    [
-                        [-11, -11],
-                        [26, -11],
-                        [62, -11],
-                        [-60, -11],
-                        [-41, -41],
-                        [-41, 20]
-                    ],
-                    [
-                        [-3, -11],
-                        [33, -11],
-                        [69, -11],
-                        [-89, -11],
-                        [-53, -11],
-                        [-33, -41],
-                        [-33, 20]
-                    ]
-                ], i._friend = e, i._points = [], i
-            }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                void 0 === i && (i = -1), this._clearPoints(), i <= 0 && (i = e);
-                var n = this._getPositionsList(t);
-                if (null != n) {
-                    var r = n[e];
-                    if (null != r) {
-                        r = n[i];
-                        for (var s = 0; s < r.length; s++) {
-                            var a = new o.FormationPoint,
-                                _ = r[s][0],
-                                u = r[s][1];
-                            a.position.set(_, u), a.initialize(this._friend), a.visible = !1, this.addChild(a), this._points.push(a)
-                        }
-                    }
+            function e() {
+                var e = t.call(this) || this;
+                e._particle = new Array;
+                for (var i = [600], n = [243], o = 0; o < 8; o++) i.push(555 + 90 * Math.random()), n.push(243 - 90 * Math.random());
+                for (var o = 0; o < i.length; o++) {
+                    var r = new s;
+                    r.position.set(i[o], n[o]), e.addChild(r), e._particle.push(r)
                 }
-            }, e.prototype.show = function (t) {
-                void 0 === t && (t = 100);
-                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        e.wait(t), e.call(function () {
-                            i.visible = !0
+                return e
+            }
+            return n(e, t), e.prototype.activate = function () {
+                this.initialize()
+            }, e.prototype.initialize = function () {
+                for (var t = 0, e = this._particle; t < e.length; t++) {
+                    var i = e[t];
+                    ! function (t) {
+                        createjs.Tween.get(null).wait(1e3 * Math.random()).call(function () {
+                            t.initialize(), t.alpha = 1, t.startAnim()
                         })
-                    }(o)
+                    }(i)
                 }
             }, e.prototype.dispose = function () {
-                this._clearPoints()
-            }, e.prototype._getPositionsList = function (t) {
-                return 1 == t ? this._POSITIONS_TANJUU : 2 == t ? this._POSITIONS_FUKUJUU : 3 == t ? this._POSITIONS_RINKEI : 4 == t ? this._POSITIONS_TEIKEI : 5 == t ? this._POSITIONS_TANOU : 6 == t ? this._POSITIONS_KEIKAI : null
-            }, e.prototype._clearPoints = function () {
-                for (var t = 0, e = this._points; t < e.length; t++) {
+                for (var t = 0, e = this._particle; t < e.length; t++) {
                     var i = e[t];
-                    this.removeChild(i)
+                    i.alpha = 0, i.stopAnim()
                 }
-                this._points = []
             }, e
         }(PIXI.Container);
-    e.FormationPoints = r
+    e.RevampRingParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            return t.call(this) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.alpha = 0, this.anchor.set(.5, .5), this.scale.set(.5, .5), this._initXYSpeed(), this.texture = o.REVAMP_REVAMP.getTexture(13)
+        }, e.prototype.startAnim = function () {
+            this._anim()
+        }, e.prototype.stopAnim = function () {
+            null != this._tween && (this._tween.setPaused(!0), this._tween = null)
+        }, e.prototype._initXYSpeed = function () {
+            this._vx = (2 * Math.random() < 1 ? 1 : -1) * (6 * Math.random() + 6), this._vy = -(6 * Math.random() + 6), this._rot = .025 * (this._vx > 0 ? 1 : -1)
+        }, e.prototype._anim = function () {
+            var t = this;
+            this._tween = createjs.Tween.get(this).to({
+                alpha: 1
+            }, 0).to({
+                x: this.x + this._vx,
+                y: this.y + this._vy,
+                rotation: this.rotation + this._rot
+            }, 20).call(function () {
+                t._tween = null, t.y > 1200 && (t.y = 243 - 90 * Math.random(), t.x = 555 + 90 * Math.random(), t._initXYSpeed()), t._vy += .4, t._anim()
+            })
+        }, e
+    }(PIXI.Sprite)
 }

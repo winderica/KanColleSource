@@ -19,36 +19,49 @@ const function1083 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(85),
-        s = i(3),
-        a = i(4),
-        _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._target)
-                }, i._cb_onClick = e;
-                var n = new PIXI.Container;
-                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new a.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
-                var o = new PIXI.Container;
-                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), o.addChild(i._img), i.addChild(o), i.scale.set(1), i._bg.interactive = !0, i
+    var o = i(2),
+        r = i(13),
+        s = i(385),
+        a = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                return r._onClose = function () {
+                    r._panel.deactivate(), r._hideFade()
+                }, r._layer = e, r._model = i, r._option = n, r._mainView = o, r
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._no.texture = s.ALBUM_MAIN.getTexture(19), this._bg.texture = s.ALBUM_MAIN.getTexture(16)
-            }, e.prototype.update = function (t) {
-                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, null == t) return null;
-                var e = t.mst_ids[0];
-                new r.TaskLoadSlotResource("card_t", this._img, e).start()
-            }, e.prototype.updateLabel = function (t) {
-                this._label.text = t
-            }, e.prototype.activate = function () {
-                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._no = null, this._label = null, this._cb_onClick = null
+            return n(e, t), e.prototype._start = function () {
+                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+            }, e.prototype._loadImages = function () {
+                var t = this,
+                    e = this._model.mst_ids,
+                    i = new r.ShipLoader;
+                i.add(e[0], !1, "album_status");
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = i.getSpecificAlbumImageLoadList(s);
+                    1 == i.needCard(a.typeList) && i.add(s, !1, "card"), 1 == i.needCharaFull(a.typeList) && i.add(s, !1, "character_full"), 1 == i.needCharaUp(a.typeList) && i.add(s, !1, "character_up"), 1 == this._model.hasTaiha(s) && (null == a.typeList ? (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")) : a.hasTaiha && (i.add(s, !0, "character_full"), i.add(s, !0, "character_up")))
+                }
+                i.load(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = new s.ShipDetailPanel(this._onClose);
+                this._panel = e, e.initialize(this._model, this._option), e.alpha = 0, this._layer.addChild(e), e.preactivate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.activate(), t._mainView.visible = !1
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
+                    alpha: 0
+                }, 300), this._layer.hide(500, function () {
+                    t._layer.visible = !1, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, this._option = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.MainItemSlot = _
+        }(o.TaskBase);
+    e.TaskShowShipDetail = a
 }

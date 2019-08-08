@@ -19,35 +19,17 @@ const function434 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(13),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._ship_mst_id = i, o._ship_damaged = n, o
+    var o = i(138),
+        r = function (t) {
+            function e() {
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ShipLoader;
-                e.add(this._ship_mst_id, this._ship_damaged, "full"), e.load(function () {
-                    t._loadComplete()
-                })
-            }, e.prototype._loadComplete = function () {
-                var t = this,
-                    e = o.default.resources.getShip(this._ship_mst_id, this._ship_damaged, "full"),
-                    i = PIXI.Sprite.from(e.baseTexture);
-                i.alpha = 0;
-                var n = o.default.model.ship_graph.get(this._ship_mst_id).getMapOffset(this._ship_damaged);
-                i.position.set(n.x - 80, n.y - 93), this._scene.view.chara_layer.addChild(i), createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 300).wait(700).to({
-                    alpha: 0,
-                    x: i.x - 75
-                }, 300).call(function () {
-                    t._scene.view.chara_layer.removeChild(i), t._endTask()
-                })
+            return n(e, t), e.prototype.update = function (t) {
+                this.texture = this._getTexture(t)
+            }, e.prototype._getTexture = function (t) {
+                var e = -1;
+                return 31 == t ? e = 3 : 32 == t ? e = 9 : 33 == t ? e = 10 : 34 == t ? e = 11 : 2 == t ? e = 4 : 1 == t ? e = 12 : 3 == t ? e = 13 : 4 == t ? e = 8 : 44 == t ? e = 14 : 10 == t ? e = 5 : 11 == t ? e = 6 : 12 == t && (e = 7), e < 0 ? PIXI.Texture.EMPTY : o.SALLY_MAP_PARTS.getTexture(e)
             }, e
-        }(r.TaskBase);
-    e.AnimFlagShip = a
+        }(PIXI.Sprite);
+    e.CompDropItemIcon = r
 }

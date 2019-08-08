@@ -19,27 +19,31 @@ const function814 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(37),
-        a = i(3),
-        _ = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(10));
-                i.position.set(2, 2), e.addChild(i), e._shipCanvas = new PIXI.Sprite, e.addChild(e._shipCanvas), e._levelText = new r.TextBox(66, 16777215), e._levelText.position.set(809, 89), e.addChild(e._levelText);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(11));
-                n.position.set(0, 3), e.addChild(n);
-                var o = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(12));
-                return o.position.set(705, 95), e.addChild(o), e._nameText = new r.TextBox(39, 16777215), e._nameText.anchor.x = 1, e._nameText.position.set(969, 17), e.addChild(e._nameText), e
+                var e = t.call(this) || this;
+                e.rollR = [0, 0, 0, 0], e.rot = [0, 0, 0, 0], e.spd = 2, e.balls = [], e.RESIDS = [4, 5, 6, 7];
+                for (var i = 0; i < e.RESIDS.length; i++) {
+                    var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(e.RESIDS[i]));
+                    n.anchor.set(.5, .5), e.addChild(n), e.balls.push(n)
+                }
+                return createjs.Tween.get(e, {
+                    loop: !0
+                }).wait(1 / 60).call(function () {
+                    e.__ENTERFRAME__()
+                }).play(null), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = t.mstID,
-                    i = t.isDamaged();
-                1 == o.default.resources.isLoadedShip(e, i, "remodel") ? this._shipCanvas.texture = o.default.resources.getShip(e, i, "remodel") : (this._shipCanvas.texture = PIXI.Texture.EMPTY, new s.TaskLoadShipResource("remodel", this._shipCanvas, e, i).start()), this._levelText.text = t.level.toString(), this._nameText.text = t.shipTypeName + " " + t.name
+            return n(e, t), e.prototype.updateRotationTable = function () {
+                for (var t = 0; t < this.RESIDS.length; t++) this.rollR[t] = Math.floor(121 * Math.random()) - 60, this.rot[t] = Math.floor(360 * Math.random())
+            }, e.prototype.__ENTERFRAME__ = function () {
+                for (var t = 0; t < 4; t++) {
+                    var e = this.balls[t];
+                    e.x = this.rollR[t] * Math.cos(this.rot[t] / 180 * Math.PI), e.y = this.rollR[t] * Math.sin(this.rot[t] / 180 * Math.PI), this.rot[t] += this.spd
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._levelText.destroy(), this._nameText.destroy(), this._shipCanvas = null, this._levelText = null, this._nameText = null
+                createjs.Tween.removeTweens(this), this.rollR = null, this.rot = null, this.spd = null, this.balls = null, this.RESIDS = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.KaizoDetailHeader = _
+    e.PowerElement = r
 }

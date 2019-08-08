@@ -19,51 +19,66 @@ const function1461 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(274),
-        r = i(1462),
-        s = i(1469),
-        a = i(1473),
-        _ = i(1505),
-        u = i(1506),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._view = new u.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
+    var o = i(245),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._friend = e, i._points = [], i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bonus", {
-                get: function () {
-                    return this._layer_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (e) {
-                var i = this;
-                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
-                    i._main()
-                })
-            }, e.prototype._main = function () {
-                var t = this;
-                new a.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
-                var t = this;
-                new _.TaskEnd(this).start(function () {
-                    t.emit("complete")
-                })
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                if (this._clearPoints(), e <= 0) return !1;
+                var n;
+                switch (t) {
+                    case 11:
+                        n = this._get11Points(e);
+                        break;
+                    case 12:
+                        n = this._get12Points(e);
+                        break;
+                    case 13:
+                        n = this._get13Points(e);
+                        break;
+                    case 14:
+                        n = this._get14Points(e)
+                }
+                if (null == n) return !1;
+                for (var r = 0; r < n.length; r++) {
+                    var s = new o.FormationPoint,
+                        a = n[r];
+                    s.position.set(a.x, a.y), s.initializeForCombinedMain(this._friend, i), s.visible = !1, this.addChild(s), this._points.push(s)
+                }
+                return !0
+            }, e.prototype.show = function (t) {
+                void 0 === t && (t = 100);
+                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        e.wait(t), e.call(function () {
+                            i.visible = !0
+                        })
+                    }(o)
+                }
+            }, e.prototype.dispose = function () {
+                this._clearPoints()
+            }, e.prototype._clearPoints = function () {
+                for (var t = 0, e = this._points; t < e.length; t++) {
+                    var i = e[t];
+                    this.removeChild(i)
+                }
+                this._points = []
+            }, e.prototype._get11Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-24, -20)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -20)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-24, -44)), t > 5 && e.push(new PIXI.Point(-24, 26)), e
+            }, e.prototype._get12Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-24, -21)), t > 1 && e.push(new PIXI.Point(-24, 0)), t > 2 && e.push(new PIXI.Point(-44, -21)), t > 3 && e.push(new PIXI.Point(-44, 0)), t > 4 && e.push(new PIXI.Point(-63, -21)), t > 5 && e.push(new PIXI.Point(-63, 0)), e
+            }, e.prototype._get13Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-12, -21)), t > 1 && e.push(new PIXI.Point(-12, 0)), t > 2 && e.push(new PIXI.Point(-32, -21)), t > 3 && e.push(new PIXI.Point(-32, 0)), t > 4 && e.push(new PIXI.Point(11, -21)), t > 5 && e.push(new PIXI.Point(11, 0)), e
+            }, e.prototype._get14Points = function (t) {
+                var e = [];
+                return t > 0 && e.push(new PIXI.Point(-45, -21)), t > 1 && e.push(new PIXI.Point(-45, 0)), t > 2 && e.push(new PIXI.Point(-63, -21)), t > 3 && e.push(new PIXI.Point(-63, 0)), t > 4 && e.push(new PIXI.Point(-9, -12)), t > 5 && e.push(new PIXI.Point(-27, -12)), e
             }, e
-        }(o.BattleResultSceneBase);
-    e.BattleResultScene = l
+        }(PIXI.Container);
+    e.FormationPointsCombinedMain = r
 }

@@ -19,33 +19,30 @@ const function370 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(371),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.IMAGE_WIDTH = 56, e.PADDING = 4;
-                for (var i = new PIXI.Container, n = new Array, r = 0, s = 0; s < 6; s++) {
-                    var a = new o.ShipShadow;
-                    a.position.x = r, n.push(a), i.addChild(a), r += e.IMAGE_WIDTH + e.PADDING
-                }
-                return e.addChild(i), e._shipShadows = n, e._container = i, e
+    var o = i(43),
+        r = i(233),
+        s = i(1008),
+        a = i(1011),
+        _ = i(358),
+        u = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                n._onMouseOver = function (t) {
+                    n._strategy_map.update(t)
+                }, n._onMouseOut = function (t) {};
+                var r = o.SALLY_EVENT.getTexture(4),
+                    _ = new PIXI.Sprite(r);
+                return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
             }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = t.filter(function (t) {
-                        return 0 != t
-                    }), i = 0; i < this._shipShadows.length; i++) {
-                    var n = this._shipShadows[i];
-                    if (n.visible = !1, i < e.length) {
-                        var o = e[i];
-                        n.update(o), n.visible = !0
-                    }
-                }
-                this._container.x = -e.length * this.IMAGE_WIDTH
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e);
+                var i = e[this.offset].mst_id;
+                this._strategy_map.update(i), this._airunitbtn.initialize()
+            }, e.prototype.updateAirUnitEnabled = function (e) {
+                t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._container.removeChildren(), this._shipShadows.forEach(function (t) {
-                    return t.dispose()
-                }), this._container = null, this._shipShadows = null
+                t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
             }, e
-        }(PIXI.Container);
-    e.FleetShadow = r
+        }(r.LayoutBase);
+    e.EventLayoutBase = u
 }

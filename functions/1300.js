@@ -20,46 +20,73 @@ const function1300 = function (t, e, i) {
         value: !0
     });
     var o = i(5),
-        r = i(62),
-        s = i(1301),
-        a = function (t) {
+        r = i(18),
+        s = i(4),
+        a = i(30),
+        _ = i(43),
+        u = i(20),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bgDic = {}, e._bgLayer = new PIXI.Container, e.addChild(e._bgLayer), e
+                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "extraLayer", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._extraLayer
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "mapAnime", {
+            }), Object.defineProperty(e.prototype, "icon", {
                 get: function () {
-                    return this._mapAnime
+                    return this._icon
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.dispose = function () {
-                this._mapAnime && this._mapAnime.dispose()
-            }, e.prototype.addBGLayer = function (t, e) {
-                var i = new PIXI.Sprite(t);
-                if (null != e && e.length > 0) {
-                    if (1 == this._bgDic.hasOwnProperty(e)) {
-                        var n = this._bgDic[e];
-                        null != n && n.parent == this._bgLayer && this._bgLayer.removeChild(n)
-                    }
-                    this._bgDic[e] = i
+            }), Object.defineProperty(e.prototype, "text", {
+                get: function () {
+                    return this._text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = u.MAP_COMMON.getTexture(25)
+            }, e.prototype.update = function (t, e) {
+                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
+            }, e.prototype._update = function (t, e) {
+                void 0 === e && (e = "");
+                var i;
+                switch (t) {
+                    case 1:
+                        i = a.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        i = a.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        i = a.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        i = a.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        i = a.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        i = a.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        i = a.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        i = PIXI.Texture.EMPTY
                 }
-                i.x = Math.round((o.default.width - i.width) / 2), i.y = Math.round((o.default.height - i.height) / 2), this._bgLayer.addChild(i)
-            }, e.prototype.getBGLayer = function (t) {
-                return 0 == this._bgDic.hasOwnProperty(t) ? null : this._bgDic[t]
-            }, e.prototype.addLabel = function (t, e, i) {
-                null == this._extraLayer && (this._extraLayer = new PIXI.Container, this.addChild(this._extraLayer));
-                var n = new r.CenteringSprite(t);
-                n.x = e + Math.round(n.width / 2), n.y = i + Math.round(n.height / 2), this._extraLayer.addChild(n)
-            }, e.prototype.setMapAnime = function () {
-                this._mapAnime = new s.MapAnime, this._mapAnime.position.set(899, 370), this._bgLayer.addChildAt(this._mapAnime, 2), this._mapAnime.startAnimation()
+                this._icon.texture = i, this._text.text = e
+            }, e.prototype._updateForEventMap = function (t) {
+                void 0 === t && (t = "");
+                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
             }, e
         }(PIXI.Container);
-    e.MapBackGround = a
+    e.CompUpperBar = l
 }

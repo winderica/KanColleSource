@@ -19,22 +19,35 @@ const function1049 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(7),
-        a = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
+    var o = i(150),
+        r = i(58),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id).expedition,
-                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
-                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(68)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(r.APIBase);
-    e.ExpeditionCancelAPI = a
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

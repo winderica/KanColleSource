@@ -19,20 +19,29 @@ const function337 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e.WIDTH = 150;
-            var i = new PIXI.Graphics;
-            i.beginFill(16777215, 1), i.drawRect(0, 0, e.WIDTH, 3), i.endFill();
-            var n = new PIXI.Graphics;
-            n.beginFill(0, 1), n.drawRect(0, 0, e.WIDTH, 1), n.endFill();
-            var o = n.clone();
-            return n.position.y = 3, o.position.y = 0, e.addChild(i, n, o), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren()
-        }, e
-    }(PIXI.Container);
-    e.Wire = o
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._light = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(3)), e._light.position.set(600, 195), e._light.anchor.set(.5, .5), e.addChild(e._light), e._light_place = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(4)), e._light_place.position.set(600, 360), e._light_place.anchor.set(.5, .5), e.addChild(e._light_place);
+                var i = new PIXI.Sprite(o.COMMON_ANIMATION.getTexture(2));
+                return i.position.set(509, 276), e.addChild(i), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "light", {
+                get: function () {
+                    return this._light
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "light_place", {
+                get: function () {
+                    return this._light_place
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._light = null, this._light_place = null
+            }, e
+        }(PIXI.Container);
+    e.FailedPenguin = r
 }

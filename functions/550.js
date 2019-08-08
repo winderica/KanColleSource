@@ -25,18 +25,13 @@ const function550 = function (t, e, i) {
         a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._url = "api_get_member/require_info", e
+                return e._url = "api_start2/getData", e
             }
             return n(e, t), e.prototype._completedEnd = function () {
-                var e = o.default.model.basic;
-                e.setUserData(s.ObjUtil.getObject(this._raw_data, "api_basic")), e.setExtraSupplyFlag(s.ObjUtil.getNumArray(this._raw_data, "api_extra_supply"));
-                var i = s.ObjUtil.getObject(this._raw_data, "api_oss_setting"),
-                    n = s.ObjUtil.getNumArray(i, "api_oss_items", []),
-                    r = 0 == s.ObjUtil.getNumber(i, "api_language_type");
-                e.updateOrganizeListSetting(n.map(function (t) {
-                    return 1 == t
-                }), r), e.setUISkinID(s.ObjUtil.getNumber(this._raw_data, "api_skin_id")), o.default.model.slot.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_slot_item")), o.default.model.slot.setUnsetData(s.ObjUtil.getObject(this._raw_data, "api_unsetslot")), o.default.model.useItem.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_useitem")), o.default.model.furniture.setMemData(s.ObjUtil.getObjectArray(this._raw_data, "api_furniture")), o.default.model.kdock.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_kdock")), t.prototype._completedEnd.call(this)
+                o.default.model.const.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_const")), o.default.model.shipType.__setData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_stype")), o.default.model.shipType.__setEquipTypeExData__(s.ObjUtil.getNumArray(this._raw_data, "api_mst_equip_exslot")), o.default.model.ship.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_ship")), o.default.model.ship_upgrade.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipupgrade")), o.default.model.slot.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem")), o.default.model.slot.setMstEquipTypeData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_slotitem_equiptype")), o.default.model.furniture_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furnituregraph")), o.default.model.useItem.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_useitem")), o.default.model.expedition.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mission")), o.default.model.map.setAreaMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_maparea")), o.default.model.map.setMapMst(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapinfo")), o.default.model.mst_bgm.setMstBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_bgm")), o.default.model.mst_bgm.setMapBGMData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_mapbgm")), o.default.model.slot.setExtraEquipShipData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_exslot_ship"));
+                var e = o.default.model.payitem;
+                e.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_payitem")), e.setOrders(s.ObjUtil.getObject(this._raw_data, "api_mst_item_shop")), o.default.model.equip.__initData__(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_equip_ship")), o.default.model.furniture.setMstData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_furniture")), o.default.model.ship_graph.setData(s.ObjUtil.getObjectArray(this._raw_data, "api_mst_shipgraph")), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.RequireInfoAPI = a
+    e.GetDataAPI = a
 }

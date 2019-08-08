@@ -19,210 +19,275 @@ const function436 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(19),
-        a = i(50),
-        _ = i(55),
-        u = i(25),
-        l = i(7),
-        c = i(68),
-        h = function (t) {
-            function e(e, i, n, o, r, s, a, _, u) {
-                void 0 === u && (u = !0);
-                var l = t.call(this) || this;
-                return l._map_id = e, l._mapInfo = i, l._view = n, l._stage = o, l._from = l._mapInfo.spots.length, l._mapAnime = r, l._gaugeAnime = s, l._enemyAnime = a, l._shutterAnime = _, l._gaugeLeft = u, l
+    var o = i(245),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._POSITIONS_TANJUU = [null, [
+                        [-11, -11]
+                    ],
+                    [
+                        [-29, -11],
+                        [8, -11]
+                    ],
+                    [
+                        [-47, -11],
+                        [-11, -11],
+                        [26, -11]
+                    ],
+                    [
+                        [-63, -11],
+                        [-29, -11],
+                        [8, -11],
+                        [42, -11]
+                    ],
+                    [
+                        [-80, -11],
+                        [-47, -11],
+                        [-11, -11],
+                        [26, -11],
+                        [59, -11]
+                    ],
+                    [
+                        [-98, -11],
+                        [-63, -11],
+                        [-29, -11],
+                        [8, -11],
+                        [42, -11],
+                        [77, -11]
+                    ],
+                    [
+                        [-101, -11],
+                        [-71, -11],
+                        [-41, -11],
+                        [-11, -11],
+                        [20, -11],
+                        [50, -11],
+                        [80, -11]
+                    ]
+                ], i._POSITIONS_FUKUJUU = [null, [
+                        [-11, -11]
+                    ], null, [
+                        [-29, -27],
+                        [8, -27],
+                        [-29, 6]
+                    ],
+                    [
+                        [-29, -27],
+                        [8, -27],
+                        [-29, 6],
+                        [8, 6]
+                    ],
+                    [
+                        [-47, -27],
+                        [-11, -27],
+                        [26, -27],
+                        [-47, 6],
+                        [-11, 6]
+                    ],
+                    [
+                        [-47, -27],
+                        [-11, -27],
+                        [26, -27],
+                        [-47, 6],
+                        [-11, 6],
+                        [26, 6]
+                    ],
+                    [
+                        [-65, -27],
+                        [-29, -27],
+                        [8, -27],
+                        [-65, 6],
+                        [-29, 6],
+                        [8, 6],
+                        [44, -11]
+                    ]
+                ], i._POSITIONS_RINKEI = [null, [
+                        [-11, -11]
+                    ], null, null, [
+                        [-11, -11],
+                        [-46, -11],
+                        [8, -44],
+                        [8, 23]
+                    ],
+                    [
+                        [-11, -11],
+                        [26, -11],
+                        [-47, -11],
+                        [-11, -44],
+                        [-11, 23]
+                    ],
+                    [
+                        [-29, -11],
+                        [8, -11],
+                        [42, -11],
+                        [-63, -11],
+                        [-11, -60],
+                        [-11, 39]
+                    ],
+                    [
+                        [-11, -11],
+                        [51, -11],
+                        [-72, -11],
+                        [-42, -65],
+                        [-42, 44],
+                        [21, -65],
+                        [21, 44]
+                    ]
+                ], i._POSITIONS_TEIKEI = [null, [
+                        [-11, -11]
+                    ],
+                    [
+                        [-23, -23],
+                        [0, 0]
+                    ],
+                    [
+                        [-33, -33],
+                        [-11, -11],
+                        [12, 12]
+                    ],
+                    [
+                        [-44, -44],
+                        [-21, -21],
+                        [0, 0],
+                        [24, 24]
+                    ],
+                    [
+                        [-56, -56],
+                        [-33, -33],
+                        [-11, -11],
+                        [12, 12],
+                        [35, 35]
+                    ],
+                    [
+                        [-66, -66],
+                        [-44, -44],
+                        [-21, -21],
+                        [0, 0],
+                        [24, 24],
+                        [47, 47]
+                    ],
+                    [
+                        [-69, -69],
+                        [-50, -50],
+                        [-30, -30],
+                        [-11, -11],
+                        [9, 9],
+                        [29, 29],
+                        [48, 48]
+                    ]
+                ], i._POSITIONS_TANOU = [null, [
+                        [-11, -11]
+                    ],
+                    [
+                        [-11, -27],
+                        [-11, 6]
+                    ],
+                    [
+                        [-11, -43],
+                        [-11, -11],
+                        [-11, 23]
+                    ],
+                    [
+                        [-11, -60],
+                        [-11, -27],
+                        [-11, 6],
+                        [-11, 39]
+                    ],
+                    [
+                        [-11, -77],
+                        [-11, -44],
+                        [-11, -11],
+                        [-11, 23],
+                        [-11, 56]
+                    ],
+                    [
+                        [-11, -93],
+                        [-11, -60],
+                        [-11, -27],
+                        [-11, 6],
+                        [-11, 39],
+                        [-11, 72]
+                    ],
+                    [
+                        [-11, -101],
+                        [-11, -71],
+                        [-11, -41],
+                        [-11, -11],
+                        [-11, 20],
+                        [-11, 50],
+                        [-11, 80]
+                    ]
+                ], i._POSITIONS_KEIKAI = [null, [
+                        [-11, -11]
+                    ], null, null, [
+                        [-11, -11],
+                        [26, -11],
+                        [-47, -41],
+                        [-47, 20]
+                    ],
+                    [
+                        [-11, -11],
+                        [26, -11],
+                        [-60, -11],
+                        [-41, -41],
+                        [-41, 20]
+                    ],
+                    [
+                        [-11, -11],
+                        [26, -11],
+                        [62, -11],
+                        [-60, -11],
+                        [-41, -41],
+                        [-41, 20]
+                    ],
+                    [
+                        [-3, -11],
+                        [33, -11],
+                        [69, -11],
+                        [-89, -11],
+                        [-53, -11],
+                        [-33, -41],
+                        [-33, 20]
+                    ]
+                ], i._friend = e, i._points = [], i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._mapAnime ? this._loadInfo() : this._hideEnemy()
-            }, e.prototype._loadInfo = function () {
-                var t = this,
-                    e = (this._mapInfo.spots.length, this._mapInfo.spots.length),
-                    i = this._getPath("info" + e + ".json");
-                axios.get(i).then(function (i) {
-                    var n = l.ObjUtil.getObject(i, "data");
-                    t._mapInfo.add(n), t._loadSpriteSheet(e)
-                }).catch(function (e) {
-                    t._failedEnd()
-                })
-            }, e.prototype._loadSpriteSheet = function (t) {
-                var e = this,
-                    i = this._getPath("image" + t + ".json");
-                if (null != PIXI.utils.TextureCache[i + "_image"]) this._createLabel();
-                else {
-                    var n = new PIXI.loaders.Loader;
-                    n.add(i), n.load(function () {
-                        e._createLabel()
-                    })
-                }
-            }, e.prototype._createLabel = function () {
-                for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = _.MapUtil.toResKey(this._map_id),
-                        r = "map" + o + "_" + n.img,
-                        s = PIXI.Texture.fromFrame(r);
-                    this._view.map.bg.addLabel(s, n.x, n.y)
-                }
-                this._createSpots()
-            }, e.prototype._createSpots = function () {
-                for (var t = this._mapInfo.spots, e = this._from; e < t.length; e++) {
-                    var i = t[e].no;
-                    this._view.map.addSpot(this._map_id, i, this._mapInfo), null != t[e].landing && this._view.map.spotLayer.addFlag(i, t[e].landing.x, t[e].landing.y)
-                }
-                this._createAirBase()
-            }, e.prototype._createAirBase = function () {
-                var t = this._mapInfo.getAirBasePos();
-                null != t && this._view.map.airbaseLayer.create(t), this._initCellColor()
-            }, e.prototype._initCellColor = function () {
-                for (var t = [], e = this._view.map.spotLayer.getAllSpots(), i = this._from; i < e.length; i++) {
-                    var n = e[i];
-                    if (!(t.indexOf(n.no) >= 0)) {
-                        for (var o = 0, r = this._mapInfo.getSameSpotData(n.no), s = 0, a = r; s < a.length; s++) {
-                            var _ = a[s];
-                            t.push(_.no), 0 == o && (o = _.color)
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                void 0 === i && (i = -1), this._clearPoints(), i <= 0 && (i = e);
+                var n = this._getPositionsList(t);
+                if (null != n) {
+                    var r = n[e];
+                    if (null != r) {
+                        r = n[i];
+                        for (var s = 0; s < r.length; s++) {
+                            var a = new o.FormationPoint,
+                                _ = r[s][0],
+                                u = r[s][1];
+                            a.position.set(_, u), a.initialize(this._friend), a.visible = !1, this.addChild(a), this._points.push(a)
                         }
-                        var u = r[0].no;
-                        this._view.map.spotLayer.getSpot(u).setColor(o)
                     }
                 }
-                this.setView()
-            }, e.prototype.setView = function () {
-                this._openSpot = [];
-                for (var t = this._view.map.spotLayer.getAllSpots(), e = this._from; e < t.length; e++) this._openSpot.push(t[e]);
-                this._openSpot.length > 0 ? (this._initView(), this._hideEnemy()) : this._endTask()
-            }, e.prototype._initView = function () {
-                var t = this._view.map.bg.extraLayer;
-                if (t)
-                    for (var e = 0; e < t.children.length; e++) {
-                        var i = t.getChildAt(e);
-                        i.scale.set(0), i.alpha = 0
-                    }
-                for (var n = 0, o = this._openSpot; n < o.length; n++) {
-                    var r = o[n],
-                        s = r.point;
-                    null != s && (s.scale.set(0), s.alpha = 0);
-                    var a = r.route;
-                    null != a && (a.scale.set(0), a.alpha = 0)
-                }
-            }, e.prototype._hideEnemy = function () {
-                var t = this;
-                this._enemyAnime ? createjs.Tween.get(null).wait(2e3).call(function () {
-                    t._view.map.plane_layer.hideAll(), t._view.map.enemy_layer.hide(function () {
-                        t._loadGaugeResource()
-                    })
-                }) : this._loadGaugeResource()
-            }, e.prototype._loadGaugeResource = function () {
-                var t = this;
-                if (this._gaugeAnime) {
-                    this._view.gauge_layer.visible = !1;
-                    var e = Math.floor(this._map_id / 10),
-                        i = this._map_id % 10,
-                        n = this._stage + 1,
-                        r = c.GaugeSetModel.createKey(e, i, n),
-                        s = o.default.resources.gauge.createLoaderVertical();
-                    s.add(r), s.load(function () {
-                        t._showMap()
-                    })
-                } else this._showMap()
-            }, e.prototype._showMap = function () {
-                var t = this;
-                if (this._shutterAnime) {
-                    var e = new a.Shutter;
-                    e.initializeDark(), e.close(0), this._view.addChild(e), this._view.shutter.alpha = 0, this._view.map.alpha = 1, this._view.upper.alpha = 1, this._view.gauge_layer.alpha = 1, createjs.Tween.get(null).wait(200).call(function () {
-                        e.open(), e.once("opened", function () {
-                            t._view.removeChild(e), createjs.Tween.get(null).wait(1e3).call(function () {
-                                t.animation()
-                            })
+            }, e.prototype.show = function (t) {
+                void 0 === t && (t = 100);
+                for (var e = createjs.Tween.get(null), i = 0, n = this._points; i < n.length; i++) {
+                    var o = n[i];
+                    ! function (i) {
+                        e.wait(t), e.call(function () {
+                            i.visible = !0
                         })
-                    })
-                } else this.animation()
-            }, e.prototype.animation = function () {
-                var t = this;
-                if (this._mapAnime) {
-                    var e = new s.TweenTask,
-                        i = this._view.map.bg.extraLayer;
-                    if (i)
-                        for (var n = 0; n < i.children.length; n++) {
-                            var o = i.getChildAt(n),
-                                r = createjs.Tween.get(o);
-                            r.to({
-                                scaleX: 1.2,
-                                scaleY: 1.2,
-                                alpha: 1
-                            }, 200), r.to({
-                                scaleX: 1,
-                                scaleY: 1
-                            }, 100), e.addTween(r)
-                        }
-                    for (var a = 0, _ = this._openSpot; a < _.length; a++) {
-                        var u = _[a],
-                            l = u.point;
-                        if (null != l) {
-                            var r = createjs.Tween.get(l);
-                            r.to({
-                                scaleX: 1.2,
-                                scaleY: 1.2,
-                                alpha: 1
-                            }, 200), r.to({
-                                scaleX: 1,
-                                scaleY: 1
-                            }, 100), e.addTween(r)
-                        }
-                        var c = u.route;
-                        if (null != c) {
-                            var r = createjs.Tween.get(c);
-                            r.wait(300), r.to({
-                                scaleX: 1.2,
-                                scaleY: 1.2,
-                                alpha: 1
-                            }, 200), r.to({
-                                scaleX: 1,
-                                scaleY: 1
-                            }, 100), e.addTween(r)
-                        }
-                    }
-                    e.start(function () {
-                        t._showGauge()
-                    })
-                } else this._showGauge()
-            }, e.prototype._showGauge = function () {
-                var t = this;
-                if (this._gaugeAnime) {
-                    var e = Math.floor(this._map_id / 10),
-                        i = this._map_id % 10,
-                        n = this._stage + 1,
-                        r = c.GaugeSetModel.createKey(e, i, n),
-                        s = o.default.resources.gauge.getGaugeInfo(r);
-                    if (null == s) this._wait();
-                    else {
-                        var a = s.vertical;
-                        null != a && this._view.gauge_layer.initialize(a, 100, 100), this._view.gauge_layer.visible = !0;
-                        var _ = this._view.gauge_layer.createShowTween(this._gaugeLeft);
-                        _.wait(1500), _.call(function () {
-                            t._wait()
-                        })
-                    }
-                } else this._wait()
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(null).wait(3e3).call(function () {
-                    t._hideMap()
-                })
-            }, e.prototype._hideMap = function () {
-                var t = this;
-                if (this._shutterAnime) {
-                    var e = new a.Shutter;
-                    e.initializeDark(), this._view.addChild(e), createjs.Tween.get(null).wait(200).call(function () {
-                        e.close(), e.once("closed", function () {
-                            t._view.shutter.alpha = 1, t._view.map.alpha = 0, t._view.upper.alpha = 0, t._view.gauge_layer.alpha = 0, t._view.removeChild(e), t._endTask()
-                        })
-                    })
-                } else this._endTask()
-            }, e.prototype._getPath = function (t) {
-                var e = _.MapUtil.toAreaID(this._map_id),
-                    i = _.MapUtil.toMapNo(this._map_id);
-                return o.default.settings.path_root + "resources/map/" + u.MathUtil.zeroPadding(e, 3) + "/" + u.MathUtil.zeroPadding(i, 2) + "_" + t
+                    }(o)
+                }
+            }, e.prototype.dispose = function () {
+                this._clearPoints()
+            }, e.prototype._getPositionsList = function (t) {
+                return 1 == t ? this._POSITIONS_TANJUU : 2 == t ? this._POSITIONS_FUKUJUU : 3 == t ? this._POSITIONS_RINKEI : 4 == t ? this._POSITIONS_TEIKEI : 5 == t ? this._POSITIONS_TANOU : 6 == t ? this._POSITIONS_KEIKAI : null
+            }, e.prototype._clearPoints = function () {
+                for (var t = 0, e = this._points; t < e.length; t++) {
+                    var i = e[t];
+                    this.removeChild(i)
+                }
+                this._points = []
             }, e
-        }(r.TaskBase);
-    e.EventTaskCellOpen = h
+        }(PIXI.Container);
+    e.FormationPoints = r
 }

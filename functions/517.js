@@ -1,58 +1,61 @@
 const function517 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
+    var n = i(7),
+        o = i(263),
         r = function () {
-            function t() {}
-            return Object.defineProperty(t.prototype, "boko_max_ships", {
+            function t(t) {
+                this._o = t
+            }
+            return Object.defineProperty(t.prototype, "mst_id", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_boko_max_ships");
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                    return n.ObjUtil.getNumber(this._o, "api_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "quest_max", {
+            }), Object.defineProperty(t.prototype, "area_id", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_parallel_quest_max");
-                    return null == t ? 0 : o.ObjUtil.getNumber(t, "api_int_value")
+                    return n.ObjUtil.getNumber(this._o, "api_maparea_id")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_server", {
+            }), Object.defineProperty(t.prototype, "map_no", {
                 get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_voice_server_addr");
-                    return null == t ? "" : o.ObjUtil.getString(t, "api_string_value")
+                    return n.ObjUtil.getNumber(this._o, "api_no")
                 },
                 enumerable: !0,
                 configurable: !0
-            }), t
+            }), Object.defineProperty(t.prototype, "name", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_name")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "operation_name", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_opetext")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "operation_detail", {
+                get: function () {
+                    return n.ObjUtil.getString(this._o, "api_infotext")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "item_ids", {
+                get: function () {
+                    return n.ObjUtil.getNumArray(this._o, "api_item")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.getAllowedDeckType = function () {
+                var t = new o.AllowedDeckTypeModel,
+                    e = n.ObjUtil.getNumArray(this._o, "api_sally_flag");
+                return t.init(e), t
+            }, t
         }();
-    e.ServerConstModel = r;
-    var s = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setData = function (t) {
-            this._o = t
-        }, e
-    }(r);
-    e.ServerConstModelEdit = s
+    e.MapMstModel = r
 }

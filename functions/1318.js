@@ -20,34 +20,48 @@ const function1318 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e(e, i) {
-                void 0 === e && (e = !1), void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._night = e, n._combined = i, n
+        r = i(13),
+        s = i(442),
+        a = i(1319),
+        _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onTaihi = function () {
+                    o._view.deactivate();
+                    var t = o._model.map_info.area_id,
+                        e = o._model.map_info.map_no,
+                        i = o._model.map_info.cell_no;
+                    new s.GobackPortAPI(t, e, i, o._target.mem_id, -1).start(function () {
+                        o._target.initializeTaihi(!0), o._hideView()
+                    })
+                }, o._onTaihiSezu = function () {
+                    o._view.deactivate(), o._hideView()
+                }, o._scene = e, o._model = i, o._target = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadCommon()
-            }, e.prototype._loadCommon = function () {
+                this._loadShipResources()
+            }, e.prototype._loadShipResources = function () {
                 var t = this,
-                    e = new r.UIImageLoader("common");
-                e.add("common_explosion.json"), e.load(function () {
-                    t._loadImage()
+                    e = new r.ShipLoader;
+                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.load(function () {
+                    t._show()
                 })
-            }, e.prototype._loadImage = function () {
-                var t = this,
-                    e = new r.UIImageLoader("battle");
-                e.add("battle_telop/txt_start.png", "battle_telop_txt_start"), e.add("battle_telop/mes_bg_f.png", "battle_telop_mes_bg_f"), e.add("battle_telop/mes_bg_e.png", "battle_telop_mes_bg_e"), e.add("battle_telop/mes2_f_hbg.png", "battle_telop_mes2_f_hbg"), e.add("battle_telop/mes2_e_hbg.png", "battle_telop_mes2_e_hbg"), e.add("battle_telop/mes2_f_ybg.png", "battle_telop_mes2_f_ybg"), e.add("battle_telop/mes2_e_ybg.png", "battle_telop_mes2_e_ybg"), e.add("battle_telop/mes_f_hbg.png", "battle_telop_mes_f_hbg"), e.add("battle_telop/mes_f_ybg.png", "battle_telop_mes_f_ybg"), e.add("battle_telop/mes_e_hbg.png", "battle_telop_mes_e_hbg"), e.add("battle_telop/mes_e_ybg.png", "battle_telop_mes_e_ybg"), e.add("battle_telop/mes_f_hbg3.png", "battle_telop_kkcutin_f"), e.add("battle_telop/mes_e_hbg3.png", "battle_telop_kkcutin_e"), e.load(function () {
-                    t._loadSpriteSheet()
-                })
-            }, e.prototype._loadSpriteSheet = function () {
-                var t = this,
-                    e = new r.UIImageLoader("battle");
-                e.add("battle_main.json"), e.add("battle_cutin_anti_air.json"), 1 == this._night && (e.add("battle_night.json"), e.add("battle_telop/mes_ybg3_f.png", "battle_telop_mes_ybg3_f"), e.add("battle_telop/mes_ybg3_e.png", "battle_telop_mes_ybg3_e"), e.add("battle_telop/mes_ybg4_f.png", "battle_telop_mes_ybg4_f"), e.add("battle_telop/mes_ybg4_e.png", "battle_telop_mes_ybg4_e"), e.add("battle_telop/mes_ybg6_f.png", "battle_telop_mes_ybg6_f"), e.add("battle_telop/mes_ybg6_e.png", "battle_telop_mes_ybg6_e")), e.add("battle_jin.json"), 1 == this._combined && e.add("battle_main2.json"), e.add("battle_airunit.json"), e.load(function () {
+            }, e.prototype._show = function () {
+                this._view = new a.EscapeTankanView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
+                var t = this._target;
+                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
+                    alpha: 1
+                }, 300)
+            }, e.prototype._hideView = function () {
+                var t = this;
+                createjs.Tween.get(this._view).to({
+                    alpha: 0
+                }, 300).call(function () {
                     t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskLoadResourcesBattle = s
+    e.EscapeTankanTask = _
 }

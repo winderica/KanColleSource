@@ -19,211 +19,45 @@ const function659 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(17),
-        a = i(47),
-        _ = i(32),
-        u = i(69),
-        l = i(660),
-        c = i(671),
-        h = i(705),
-        p = i(706),
-        d = i(714),
-        f = i(215),
-        y = i(718),
-        m = i(719),
-        g = i(720),
-        v = i(725),
-        b = i(727),
-        w = i(728),
-        x = i(735),
-        I = i(736),
-        T = i(8),
-        O = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e.currentViewMode = null, e._onClickBreakDeck = function () {
-                    var t = function () {
-                        e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                            o.default.view.clickGuard = !1
-                        }) : o.default.view.clickGuard = !1
-                    };
-                    e.deckLayer.onBreakDeck(e.deckLayer.deckID, t)
-                }, e._onDragging = function (t, i) {
-                    var n = new I.ShipDragging(t, i, e.deckLayer.shipSlotDisplayLength, e._inDragging, e._onDrop, function () {
-                        o.default.view.overLayer.removeChild(n)
-                    });
-                    o.default.view.overLayer.addChild(n)
-                }, e._inDragging = function (t) {
-                    t ? (e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1) : (e.presetButtonLayer.show(), e.deckLayer.EditNameArea.writable = !0)
-                }, e._onDrop = function (t, i, n) {
-                    if (t != i) {
-                        var s = o.default.model.deck.get(e.deckLayer.deckID),
-                            a = s.getCount();
-                        if (1 != a || 1 != s.mstID) {
-                            var l = t + e.deckLayer.shipInDeckOrigin,
-                                c = i + e.deckLayer.shipInDeckOrigin;
-                            if (!(l == a - 1 && i >= t)) {
-                                var h = new _.APIConnector;
-                                if (10 == o.default.model.basic.getTutorialProgress() && h.add(new u.UpdateTutorialAPI(20)), -1 == i) return h.add(new f.ChangeAPI(!0, s.mstID, l, -1)), void e._removeShip(h, t);
-                                var p = o.default.model.ship.get(n);
-                                h.add(new f.ChangeAPI(!0, s.mstID, c, n)), r.SE.play("235"), o.default.sound.voice.play(p.mstID.toString(), 13), c >= a && (i = a - e.deckLayer.shipInDeckOrigin - 1), e._changeShipSlot(h, i)
-                            }
-                        }
-                    }
-                }, e._removeShip = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        e.deckLayer.ShipSlotLayer.ShipSlots[i].closeAnimation(function () {
-                            e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.overLayer.removeChild(n)
-                            }) : o.default.view.overLayer.removeChild(n)
-                        })
-                    })
-                }, e._changeShipSlot = function (t, i) {
-                    var n = new T.AreaBox(0);
-                    o.default.view.overLayer.addChild(n), t.start(function () {
-                        var t = function () {
-                                return e.deckLayer.update()
-                            },
-                            r = function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.overLayer.removeChild(n)
-                                }) : o.default.view.overLayer.removeChild(n)
-                            };
-                        e.deckLayer.ShipSlotLayer.shutterAnimation(i, t, r)
-                    })
-                }, e._onClickDeckFlag = function (t) {
-                    if (e.deckLayer.deckID != t) switch (e.deckLayer.shipInDeckOrigin = 0, e.currentViewMode) {
-                        case 0:
-                            e.deckLayer.updateDeck(t);
-                            break;
-                        case 1:
-                            e.deckLayer.updateDeckSelector(t), e.presetEditLayer.update(t);
-                            break;
-                        case 2:
-                            e.deckLayer.updateDeckSelector(t), e.presetExpansionLayer.update(t)
-                    }
-                }, e._onClickShipChange = function (t, i) {
-                    e.presetButtonLayer.hide(), e.deckLayer.EditNameArea.writable = !1;
-                    var n = o.default.model.deck.get(e.deckLayer.deckID),
-                        a = (n.getShipModel(i), n.getCount());
-                    e.taskChangeShip = new w.TaskChangeShip(e), e.taskChangeShip.onUpdateDeck = function () {
-                        o.default.view.clickGuard = !0;
-                        var n = o.default.model.deck.get(e.deckLayer.deckID),
-                            _ = n.getShipModel(i),
-                            u = n.getCount(),
-                            l = e.deckLayer.ShipSlotLayer.ShipSlots[t];
-                        u < a ? l.closeAnimation(function () {
-                            e.deckLayer.update(), s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        }) : (r.SE.play("235"), o.default.sound.voice.play(_.mstID.toString(), 13), a < u ? (e.deckLayer.update(), l.close(), l.openAnimation(function () {
-                            s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                o.default.view.clickGuard = !1
-                            }) : o.default.view.clickGuard = !1
-                        })) : l.closeAnimation(function () {
-                            e.deckLayer.update(), l.close(), l.openAnimation(function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.clickGuard = !1
-                                }) : o.default.view.clickGuard = !1
-                            })
-                        }))
-                    }, e.taskChangeShip.onComplete = function () {
-                        e.presetButtonLayer.show(), e.taskChangeShip.dispose(), e.taskChangeShip = null, e.deckLayer.EditNameArea.writable = !0
-                    }, e.taskChangeShip.start(e.deckLayer.deckID, i)
-                }, e._onClickShipDetail = function (t) {
-                    e.deckLayer.EditNameArea.writable = !1, e.presetButtonLayer.hide(), e.deckLayer.ShipSlotLayer.onShipDetail(t, e, function () {
-                        e.deckLayer.EditNameArea.writable = !0, e.presetButtonLayer.show()
-                    })
-                }, e._onClickPresetChange = function (t) {
-                    if (e.currentViewMode != t) {
-                        switch (e.currentViewMode) {
-                            case 1:
-                                e.presetEditLayer.hide();
-                                break;
-                            case 2:
-                                e.presetExpansionLayer.hide()
-                        }
-                        switch (t) {
-                            case 1:
-                                e._changeMode(1);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetEditLayer.show(e.deckLayer.deckID, e.presetList);
-                                break;
-                            case 2:
-                                e._changeMode(2);
-                                var i = o.default.model.deck.get(e.deckLayer.deckID);
-                                e.deckLayer.EditNameArea.reload(i.name), e.presetExpansionLayer.show(e.deckLayer.deckID, e.presetList)
-                        }
-                    }
-                }, e._onClickPresetBack = function () {
-                    e._changeMode(0), e.deckLayer.update()
-                }, e._onClickExpand = function (t) {
-                    o.default.view.clickGuard = !0;
-                    var i = new y.PresetSelectAPI(t, e.deckLayer.deckID);
-                    r.SE.play("240"), i.start(function () {
-                        for (var i = o.default.model.deck.get(e.deckLayer.deckID).getShipList(), n = new Array, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
-                            i[a + e.deckLayer.shipInDeckOrigin] && n.push(a)
-                        }
-                        s.COMBINABLE && o.default.model.deck.isCombined(), r.SE.play("235"), e.presetExpansionLayer.hide(), e.presetList.getPresetDeckData(t).__deleteLostShips__(), e._changeMode(0), e.deckLayer.update();
-                        for (var _ = function () {}, u = function () {
-                                s.COMBINABLE ? e._asyncCheckCombineStateAndRepair(function () {
-                                    o.default.view.clickGuard = !1
-                                }) : o.default.view.clickGuard = !1
-                            }, a = 0; a < e.deckLayer.ShipSlotLayer.ShipSlots.length; a++) {
-                            var l = e.deckLayer.ShipSlotLayer.ShipSlots[a];
-                            l.close()
-                        }
-                        if (0 < n.length) {
-                            for (var a = 0; a < n.length; a++) {
-                                var c = _;
-                                n.indexOf(a) == n.length - 1 && (c = u);
-                                var l = e.deckLayer.ShipSlotLayer.ShipSlots[a];
-                                l.openAnimation(c)
-                            }
-                            o.default.sound.voice.play(o.default.model.deck.get(e.deckLayer.deckID).getShipList()[0].mstID.toString(), 13)
-                        } else u()
-                    })
-                }, e
+    var o = i(108),
+        r = i(307),
+        s = i(109),
+        a = i(1),
+        _ = function (t) {
+            function e(e, i, n) {
+                var r = t.call(this) || this;
+                return r._ImageManager = e, r._ev = i, r._shipId = n, r._charaPosition = {}, r._onNext = function () {
+                    r._messageBox.btn.interactive = !1, r._ev.emit("tutorial-next-scene")
+                }, r._charaPosition[o.CHARA.FUBUKI] = {
+                    x: 208,
+                    y: -22
+                }, r._charaPosition[o.CHARA.MURAKUMO] = {
+                    x: -20,
+                    y: -112
+                }, r._charaPosition[o.CHARA.SAZANAMI] = {
+                    x: 206,
+                    y: -22
+                }, r._charaPosition[o.CHARA.INADUMA] = {
+                    x: 309,
+                    y: 14
+                }, r._charaPosition[o.CHARA.SAMIDARE] = {
+                    x: 232,
+                    y: 42
+                }, r.alpha = 0, r
             }
-            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
-                return new g.PreInitializeTask(this)
-            }, e.prototype.getInitializeTask = function (t) {
-                return new b.InitializeTask(this)
-            }, e.prototype.getPreFinalizeTask = function () {
-                return new m.PreFinalizeTask(this)
-            }, e.prototype.getFinalizeTask = function () {
-                return new v.FinalizeTask(this)
-            }, e.prototype.preInitialize = function (t) {
-                this.presetList = t, this.backgroundLayer = new l.BackgroundLayer, this.backgroundLayer.init(), this.addChild(this.backgroundLayer), this.deckLayer = new c.DeckLayer(this._onClickDeckFlag), this.deckLayer.init(this._onClickBreakDeck), this.deckLayer.ShipSlotLayer.init(this._onDragging, this._onClickShipChange, this._onClickShipDetail), this.addChild(this.deckLayer), this.deckLayer.updateDeck(1), this.presetExpansionLayer = new d.PresetExpansionLayer(this._onClickPresetBack, this._onClickExpand), this.presetExpansionLayer.hide(), this.addChild(this.presetExpansionLayer), this.presetEditLayer = new p.PresetEditLayer(this._onClickPresetBack), this.presetEditLayer.hide(), this.addChild(this.presetEditLayer), this.presetButtonLayer = new h.PresetButtonLayer, this.presetButtonLayer.position.set(66, 514), this.presetButtonLayer.onClick = this._onClickPresetChange, this.presetButtonLayer.hide(), o.default.view.overLayer.addChild(this.presetButtonLayer), this._changeMode(0)
-            }, e.prototype.initialize = function () {
-                var t = o.default.model.basic.port_bgm_id;
-                o.default.sound.bgm.play(t), this.presetButtonLayer.show(), this.deckLayer.EditNameArea.writable = !0
-            }, e.prototype.prefinalize = function () {
-                this.presetButtonLayer.hide(), this.deckLayer.EditNameArea.writable = !1
-            }, e.prototype.finalize = function () {
-                this.taskChangeShip && this.taskChangeShip.dispose(), this.taskChangeShip = null, this.presetEditLayer.dispose(), this.presetEditLayer = null, this.presetExpansionLayer.dispose(), this.presetExpansionLayer = null, this.deckLayer.dispose(), this.deckLayer = null, this.presetButtonLayer.dispose(), this.presetButtonLayer = null, this.backgroundLayer.dispose(), this.backgroundLayer = null, this.presetList = null, this.currentViewMode = null, this.removeChildren()
-            }, e.prototype._changeMode = function (t) {
-                switch (this.deckLayer.hide(), this.deckLayer.show(t), this.presetButtonLayer.update(t), t) {
-                    case 0:
-                        this.deckLayer.EditNameArea.writable = !0, this.deckLayer.EditNameArea.editable = !0;
-                        break;
-                    case 1:
-                    case 2:
-                        this.deckLayer.EditNameArea.editable = !1, this.deckLayer.EditNameArea.writable = !1
-                }
-                this.currentViewMode = t
-            }, e.prototype._asyncCheckCombineStateAndRepair = function (t) {
-                var e = this,
-                    i = new x.TaskCheckCombineStateAndRepair(o.default.view.overLayer);
-                i.onBroken = function () {
-                    e.deckLayer.update()
-                }, i.onComplete = function () {
-                    i.dispose(), t()
-                }, i.start()
+            return n(e, t), e.prototype.initialize = function () {
+                var t = this._charaPosition[this._shipId],
+                    e = new PIXI.Container,
+                    i = new PIXI.Sprite(this._ImageManager.use(o.CHARA_PREFIX + "_" + this._shipId + "_" + o.CHARA_SUFFIX.FULL));
+                i.position.set(t.x, t.y), e.addChild(i), this._messageBox = new r.MessageBoxView(this._ImageManager, this._ev), this._messageBox.message.text = "", this._messageBox.btn.on(a.EventType.CLICK, this._onNext), this.addChild(e, this._messageBox), this._ev.emit("tutorial-scene-start")
+            }, e.prototype.start = function () {
+                var t = this;
+                this.alpha = 1, this._messageBox.start(), this._messageBox.btn.interactive = !0, this._messageBox.btn.buttonMode = !0, this._messageBox.flashText("\u63d0\u7763\u3001\u304a\u75b2\u308c\u3055\u307e\u3067\u3057\u305f\uff01\n\u305d\u308d\u305d\u308d\u3001\u79c1\u305f\u3061\u306e\u300c\u6bcd\u6e2f\u300d\u306b\u3044\u304d\u307e\u3057\u3087\u3046\uff01"), this._ev.emit("tutorial-play-voice", "tutorial", "034", function () {
+                    t._ev.emit("tutorial-play-voice", "tutorial", "035")
+                })
+            }, e.prototype.dispose = function () {
+                this._messageBox.btn.off(a.EventType.CLICK, this._onNext), this.alpha = 0, this._ev.emit("tutorial-remove-scene")
             }, e
-        }(a.SceneBase);
-    e.OrganizeScene = O
+        }(s.SceneBase);
+    e.SceneFinal = _
 }

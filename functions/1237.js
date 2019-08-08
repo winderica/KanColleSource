@@ -1,42 +1,36 @@
 const function1237 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = function () {
-            function t(t) {
-                this._o = t
+    var o = i(10),
+        r = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = -1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
             }
-            return Object.defineProperty(t.prototype, "no", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "no")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "type", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "type")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "from", {
-                get: function () {
-                    var t = n.ObjUtil.getNumber(this._o, "from"),
-                        e = new PIXI.Point;
-                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "to", {
-                get: function () {
-                    var t = n.ObjUtil.getNumber(this._o, "to"),
-                        e = new PIXI.Point;
-                    return e.x = n.ObjUtil.getNumber(t, "x"), e.y = n.ObjUtil.getNumber(t, "y"), e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
-        }();
-    e.AirRaidData = o
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.APIMapNext = r
 }

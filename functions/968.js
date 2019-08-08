@@ -19,97 +19,26 @@ const function968 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(17),
-        a = i(2),
-        _ = i(18),
-        u = i(969),
-        l = i(971),
-        c = i(346),
-        h = i(354),
-        p = function (t) {
-            function e(e, i, n, o, s) {
-                var a = t.call(this) || this;
-                return a._showBeginnerAlert = function () {
-                    new u.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
-                }, a._showMapIntro = function () {
-                    var t = r.default.model.basic.level,
-                        e = [];
-                    t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
-                    var i = a._model.getSelectedOperationType();
-                    new l.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
-                        var t = a._model.getSelectedOperationType(),
-                            e = 0 == t;
-                        i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
-                            a._mapThumbnailPanel.updateGauge(a._model), a._hideFade(e)
-                        }) : a._hideFade(e)
-                    })
-                }, a._model = e, a._before_selected_type = i, a._layer = n, a._mapThumbnailPanel = o, a._detailPanel = s, a
+    var o = i(4),
+        r = i(26),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._fuel_max = 0, e._baux_max = 0, e._key = null, e._title = new PIXI.Sprite, e._title.position.set(15, 17), e.addChild(e._title), e._icon_fuel = new PIXI.Sprite, e._icon_fuel.position.set(17, 75), e.addChild(e._icon_fuel), e._icon_baux = new PIXI.Sprite, e._icon_baux.position.set(158, 75), e.addChild(e._icon_baux), e._txt_fuel = new o.TextBox(28, 5523516), e._txt_fuel.y = 158, e.addChild(e._txt_fuel), e._txt_baux = new o.TextBox(28, 5523516), e._txt_baux.y = 158, e.addChild(e._txt_baux), e
             }
-            return n(e, t), e.prototype._start = function () {
-                if (this._model.area_id == s.EVENT_AREA_ID) {
-                    this._fade = new _.FadeBox(.6), this._fade.hide(0), this._layer.addChild(this._fade);
-                    var t = this._model.map_no,
-                        e = r.default.model.basic.level;
-                    1 == t || e < 35 ? this._fade.show(300, this._showBeginnerAlert) : this._fade.show(300, this._showMapIntro);
-                    var i = this._voicePlayList(t);
-                    null != i && this._voicePlay(i)
-                } else this._showDetailPanel()
-            }, e.prototype._voicePlayList = function (t) {
-                switch (t) {
-                    case 1:
-                        return {
-                            voice: [411, 415, 424], delay: [0, 200, 200]
-                        };
-                    case 2:
-                        return {
-                            voice: [411, 416, 423, 424], delay: [0, 200, 200, 200]
-                        };
-                    case 3:
-                        return {
-                            voice: [411, 417, 422, 424], delay: [0, 200, 200, 200]
-                        };
-                    case 4:
-                        return {
-                            voice: [412, 418, 422, 424], delay: [0, 200, 200, 200]
-                        };
-                    case 5:
-                        return {
-                            voice: [412, 421, 422, 424], delay: [0, 200, 200, 200]
-                        };
-                    default:
-                        return null
-                }
-            }, e.prototype._voicePlay = function (t) {
-                var e = this,
-                    i = t.voice,
-                    n = t.delay;
-                h.EventOperationVoice.voice = r.default.sound.voice.play("9999", i[0], function () {
-                    i.shift(), n.shift(), i.length > 0 && e._voiceNextDelay(t)
-                })
-            }, e.prototype._voiceNextDelay = function (t) {
-                var e = this,
-                    i = t.delay;
-                i[0] <= 0 ? this._voicePlay(t) : h.EventOperationVoice.tween = createjs.Tween.get(null).wait(i[0]).call(function () {
-                    e._voicePlay(t)
-                })
-            }, e.prototype._hideFade = function (t) {
-                var e = this;
-                this._fade.hide(300, function () {
-                    e._layer.removeChild(e._fade), t ? e._endTask(!0) : e._showDetailPanel()
-                })
-            }, e.prototype._showDetailPanel = function () {
-                var t = this,
-                    e = this._detailPanel;
-                e.update(this._model), e.x = o.default.width, e.visible = !0, createjs.Tween.get(e).to({
-                    x: 840
-                }, 200).call(function () {
-                    e.activate(), t._endTask()
-                })
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), this._model = null, this._layer = null, this._mapThumbnailPanel = null, this._detailPanel = null, this._fade = null, t.prototype._endTask.call(this, e)
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._fuel_max = t, this._baux_max = e, this._title.texture = r.SALLY_AIRUNIT.getTexture(118), this._icon_fuel.texture = r.SALLY_AIRUNIT.getTexture(12), this._icon_baux.texture = r.SALLY_AIRUNIT.getTexture(11)
+            }, e.prototype.show = function (t, e, i) {
+                void 0 === i && (i = null), this._key = i;
+                var n = t > this._fuel_max ? 16711680 : 5523516;
+                this._txt_fuel.style.fill = n, this._txt_fuel.text = t.toString(), this._txt_fuel.x = 144 - this._txt_fuel.width;
+                var o = e > this._baux_max ? 16711680 : 5523516;
+                this._txt_baux.style.fill = o, this._txt_baux.text = e.toString(), this._txt_baux.x = 285 - this._txt_baux.width
+            }, e.prototype.hide = function (t) {
+                void 0 === t && (t = null), null != t && t != this._key || (this._key = null, this._txt_fuel.text = "", this._txt_baux.text = "")
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._txt_fuel.destroy(), this._txt_baux.destroy()
             }, e
-        }(a.TaskBase);
-    e.TaskShowDetailPanel = p
+        }(PIXI.Container);
+    e.AirUnitSupplyPanelTitle = s
 }

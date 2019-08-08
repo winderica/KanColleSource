@@ -20,41 +20,15 @@ const function1198 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(1199),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+        r = i(10),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._url = "api_get_member/furniture", e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
-                })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            return n(e, t), e.prototype._completedEnd = function () {
+                o.default.model.furniture.setMemData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            var t = this._getBGMID();
-            o.default.sound.bgm.play(t), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e.prototype._getBGMID = function () {
-            var t = o.default.model.deck.get(1).getShipModel(1);
-            return null == t ? 206 : 466 != t.mstID && 467 != t.mstID ? 206 : 0 == o.default.model.useItem.get(71).count ? 206 : 126
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+        }(r.APIBase);
+    e.UserFurnitureAPI = s
 }

@@ -19,37 +19,52 @@ const function1303 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1304),
+    var o = i(20),
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._spots = {}, e._flags = {}, e
+                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
             }
-            return n(e, t), e.prototype.addSpot = function (t) {
-                this._spots[t.no] = t, this.addChild(t)
-            }, e.prototype.addFlag = function (t, e, i) {
-                var n = new o.LandingFlag;
-                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-            }, e.prototype.getAllSpots = function () {
-                var t = [];
-                for (var e in this._spots) {
-                    var i = this._spots[e];
-                    t.push(i)
-                }
-                return t
-            }, e.prototype.getSpot = function (t) {
-                var e = t.toString();
-                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-            }, e.prototype.getFlag = function (t) {
-                var e = t.toString();
-                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+            return n(e, t), e.prototype.update = function (t) {
+                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
+            }, e.prototype.activate = function () {
+                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
+                    loop: !0
+                }).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
+                    loop: !0
+                }).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
+                    loop: !0
+                }).wait(500).to({
+                    alpha: 1
+                }, 900).to({
+                    alpha: 0
+                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
+                    loop: !0
+                }).wait(500).to({
+                    x: .7,
+                    y: .7
+                }, 900).to({
+                    x: 1,
+                    y: 1
+                }, 400))
+            }, e.prototype.deactivate = function () {
+                this._stopTween()
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t in this._spots) {
-                    this._spots[t].dispose()
-                }
-                this._spots = null
+                this._stopTween()
+            }, e.prototype._stopTween = function () {
+                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
+                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
             }, e
         }(PIXI.Container);
-    e.MapSpotLayer = r
+    e.CompShipWave = r
 }

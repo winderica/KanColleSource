@@ -21,85 +21,97 @@ const function266 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(150),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._before = e, o._after = i, o._model = n, o
+        s = i(68),
+        a = i(7),
+        _ = i(29),
+        u = i(14),
+        l = function () {
+            function t(t, e) {
+                var i = this;
+                this._onImageLoadComplete = function (t, e) {
+                    null != t && i._cb_onLoadCompleteResources(t.resources), null != i._cb_onTaskComplete && i._cb_onTaskComplete(), i._cb_onLoadCompleteInfo = null, i._cb_onLoadCompleteResources = null, i._cb_onTaskComplete = null, i._keys = null, i._version_map = null
+                }, this._cb_onLoadCompleteInfo = t, this._cb_onLoadCompleteResources = e, this._keys = [], this._version_map = {}
             }
-            return n(e, t), Object.defineProperty(e.prototype, "before", {
+            return Object.defineProperty(t.prototype, "count", {
                 get: function () {
-                    return this._before
+                    return this._keys.length
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "after", {
-                get: function () {
-                    return this._after
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                o.default.view.clickGuard = !0, this._doPrefinalize()
-            }, e.prototype._doPrefinalize = function () {
-                var t = this;
-                s.TaskLoadBase.abortAll();
-                var e = o.default.view.getNowScene(),
-                    i = e.getPreFinalizeTask();
-                null != i ? i.start(function () {
-                    t._fadeOn()
-                }) : this._fadeOn()
-            }, e.prototype._fadeOn = function () {
-                var t = this,
-                    e = this._getFadeBox(this._before, this._after);
-                e.visible = !0, e.show(300, function () {
-                    t._doFinalize()
-                })
-            }, e.prototype._doFinalize = function () {
-                var t = this,
-                    e = o.default.view.getNowScene(),
-                    i = e.getFinalizeTask();
-                null != i ? i.start(function () {
-                    t._loadBackground()
-                }) : this._loadBackground()
-            }, e.prototype._loadBackground = function () {
-                var t = this;
-                o.default.view.bg.setImage(this._after, function () {
-                    t._change()
-                })
-            }, e.prototype._change = function () {
-                if (o.default.view.portMain.playChangeAnimation(this._after), 0 == this._after) o.default.view.portMain.setContent(null), o.default.view.portMain.update(0), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null);
-                else {
-                    var t = e.__factory__(this._after);
-                    33 == this._after || 32 == this._after ? (o.default.view.portMain.setContent(null), o.default.view.portMain.visible = !1, o.default.view.mapLayer.setContent(t)) : (o.default.view.portMain.setContent(t), o.default.view.portMain.update(this._after), o.default.view.portMain.visible = !0, o.default.view.mapLayer.setContent(null))
+            }), t.prototype.add = function (t) {
+                if (-1 == this._keys.indexOf(t)) {
+                    this._keys.push(t);
+                    var e = s.GaugeSetModel.getMapId(t);
+                    this._version_map[t] = u.UIImageLoader.getResourceVersionMap(e)
                 }
-                this._doPreInitialize()
-            }, e.prototype._doPreInitialize = function () {
-                var t = this,
-                    e = o.default.view.getNowScene(),
-                    i = e.getPreInitializeTask(this._before, this._model);
-                null != i ? i.start(function () {
-                    t._fadeOff()
-                }) : this._fadeOff()
-            }, e.prototype._fadeOff = function () {
-                var t = this,
-                    e = this._getFadeBox(this._before, this._after),
-                    i = 0 == this._after;
-                i && o.default.view.portMain.ringMenu.prePosition(), e.hide(300, function () {
-                    e.visible = !1, t._doInitialize(), i && o.default.view.portMain.ringMenu.startAnimation()
+                return this
+            }, t.prototype.load = function (t) {
+                var e = this;
+                void 0 === t && (t = null), this._cb_onTaskComplete = t;
+                for (var i = {}, n = new _.SerialTask, o = 0, r = this._keys; o < r.length; o++) {
+                    var s = r[o],
+                        a = this._version_map[s];
+                    n.add(new p(s, a, i))
+                }
+                n.start(function () {
+                    e._onInfoLoadComplete(i)
                 })
-            }, e.prototype._doInitialize = function () {
-                var t = this,
-                    e = o.default.view.getNowScene(),
-                    i = e.getInitializeTask(this._before);
-                null != i ? i.start(function () {
-                    t._preEnd()
-                }) : this._preEnd()
-            }, e.prototype._preEnd = function () {
-                o.default.view.clickGuard = !1, this._endTask()
-            }, e.prototype._getFadeBox = function (t, e) {
-                return 23 == t || 23 == e ? o.default.view.fadeLayer : 25 == t || 25 == e ? o.default.view.fadeLayer : 33 == t || 33 == e ? o.default.view.fadeLayer : 32 == t || 32 == e ? o.default.view.fadeLayer : o.default.view.portMain.fadeLayer
-            }, e
-        }(r.TaskBase);
-    e.TaskSceneChange = a
+            }, t
+        }();
+    e.GaugeLoader = l;
+    var c = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
+            var e = new PIXI.loaders.Loader(o.default.settings.path_root),
+                i = [];
+            for (var n in t) {
+                var r = t[n];
+                this._cb_onLoadCompleteInfo(n, r);
+                var s = this._version_map[n] ? "?version=" + this._version_map[n] : "",
+                    a = r.image_path; - 1 == i.indexOf(a) && null == PIXI.utils.TextureCache[a] && (i.push(a), e.add(a, "resources/gauge/" + a + ".png" + s)), a = r.image_light_path, -1 == i.indexOf(a) && null == PIXI.utils.TextureCache[a] && (i.push(a), e.add(a, "resources/gauge/" + a + ".png" + s))
+            }
+            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
+        }, e
+    }(l);
+    e.HorizontalGaugeLoader = c;
+    var h = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype._onInfoLoadComplete = function (t) {
+            var e = new PIXI.loaders.Loader(o.default.settings.path_root),
+                i = [];
+            for (var n in t) {
+                var r = t[n];
+                this._cb_onLoadCompleteInfo(n, r);
+                var s = r.vertical;
+                if (null != s) {
+                    var a = this._version_map[n] ? "?version=" + this._version_map[n] : "",
+                        _ = s.image_path; - 1 == i.indexOf(_) && null == PIXI.utils.TextureCache[_] && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png" + a)), _ = r.vertical.image_light_path, -1 == i.indexOf(_) && null == PIXI.utils.TextureCache[_] && (i.push(_), e.add(_, "resources/gauge/" + _ + ".png?" + a))
+                }
+            }
+            0 == i.length ? this._onImageLoadComplete(null, null) : e.load(this._onImageLoadComplete)
+        }, e
+    }(l);
+    e.VerticalGaugeLoader = h;
+    var p = function (t) {
+        function e(e, i, n) {
+            var o = t.call(this) || this;
+            return o._onLoadComplete = function (t) {
+                if (200 == a.ObjUtil.getNumber(t, "status")) {
+                    var e = a.ObjUtil.getObject(t, "data");
+                    null != e && (o._dic[o._key] = new s.GaugeSetModel(e)), o._endTask()
+                } else o._failedEnd()
+            }, o._onLoadFailed = function (t) {
+                o._failedEnd()
+            }, o._key = e, o._version = i, o._dic = n, o
+        }
+        return n(e, t), e.prototype._start = function () {
+            var t = this._version ? "?version=" + this._version : "",
+                e = o.default.settings.path_root + "resources/gauge/" + this._key + ".json" + t;
+            axios.get(e).then(this._onLoadComplete).catch(this._onLoadFailed)
+        }, e
+    }(r.TaskBase)
 }

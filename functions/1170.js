@@ -19,38 +19,15 @@ const function1170 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(1171),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(31),
+        r = i(3),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
-                var t = this;
-                (new s.TaskLoadResources).start(function () {
-                    t._showTopView()
-                })
-            }, e.prototype._showTopView = function () {
-                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
+            return n(e, t), e.prototype._update = function (t) {
+                this.texture = 0 == t ? r.ITEM_FSHOP.getTexture(19) : r.ITEM_FSHOP.getTexture(20)
             }, e
-        }(r.TaskBase);
-    e.PreInitializeTask = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._scene = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._playBGM()
-        }, e.prototype._playBGM = function () {
-            o.default.sound.bgm.play(104), this._startScene()
-        }, e.prototype._startScene = function () {
-            this._endTask()
-        }, e
-    }(r.TaskBase);
-    e.InitializeTask = _
+        }(o.BtnBase);
+    e.BackBtn = s
 }

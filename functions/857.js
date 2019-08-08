@@ -19,31 +19,27 @@ const function857 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._onMouseOver = function () {
-                    e.popup.visible = !0
-                }, e._onMouseOut = function () {
-                    e.popup.visible = !1
-                }, e._onClick = function () {
-                    e.hasKey ? e.onClick(e.memDockId) : r.SE.play("248")
-                };
-                var i = new PIXI.Sprite(o.REPAIR_MAIN.getTexture(11)),
-                    n = new PIXI.Sprite;
-                n.position.set(462, -24), e.addChild(i, n);
-                var a = o.REPAIR_MAIN.getTexture(25),
-                    _ = o.REPAIR_MAIN.getTexture(24);
-                return e.background = i, e.background.addListener(s.EventType.MOUSEOVER, e._onMouseOver), e.background.addListener(s.EventType.MOUSEOUT, e._onMouseOut), e.background.addListener(s.EventType.CLICK, e._onClick), e.popup = n, e.huki_r_01 = _, e.huki_r_02 = a, e
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o.MINIMUM_TIME = 6e4, o._url = "api_req_nyukyo/start", o.api_ship_id = i, o.api_ndock_id = e, o.api_highspeed = n, o
             }
-            return n(e, t), e.prototype.update = function (t, e, i) {
-                this.popup.texture = PIXI.Texture.EMPTY, this.popup.visible = !1, this.popup.texture = this.huki_r_01, this.hasKey = i, i && (this.popup.texture = this.huki_r_02), this.background.interactive = this.background.buttonMode = !1, e && (this.background.interactive = this.background.buttonMode = !0), this.memDockId = t
-            }, e.prototype.dispose = function () {
-                this.removeChild(this.background), this.removeChild(this.popup), this.background.removeAllListeners(s.EventType.MOUSEOVER), this.background.removeAllListeners(s.EventType.MOUSEOUT), this.background.removeAllListeners(s.EventType.CLICK), this.background.interactive = this.background.buttonMode = !1, this.background.texture = PIXI.Texture.EMPTY, this.popup.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onMouseOut = null, this._onMouseOver = null, this.huki_r_01 = null, this.huki_r_02 = null, this.background = null, this.popup = null, this.memDockId = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_highspeed = this.api_highspeed ? 1 : 0, this._post_data.api_ndock_id = this.api_ndock_id, this._post_data.api_ship_id = this.api_ship_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.ship.get(this.api_ship_id),
+                    i = o.default.model.useItem.get(31),
+                    n = o.default.model.useItem.get(33);
+                if (i.__setCount__(i.count - e.getRepairFuel()), n.__setCount__(n.count - e.getRepairSteel()), this.api_highspeed) {
+                    var r = o.default.model.useItem.get(1);
+                    r.__setCount__(r.count - 1), this.immediateRepair(e)
+                } else e.getRepairTime() <= this.MINIMUM_TIME && this.immediateRepair(e);
+                t.prototype._completedEnd.call(this)
+            }, e.prototype.immediateRepair = function (t) {
+                t.__updateNowHp__(t.hpMax), t.__updateNDockTime__(0), t.__updateNDockItem__([0, 0]), t.tired < 40 && t.__updateCond__(40)
             }, e
-        }(PIXI.Container);
-    e.ExtensionDock = a
+        }(r.APIBase);
+    e.StartAPI = s
 }

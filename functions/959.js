@@ -20,35 +20,57 @@ const function959 = function (t, e, i) {
         value: !0
     });
     var o = i(26),
-        r = i(352),
+        r = i(1),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._txt = new PIXI.Sprite, e.addChild(e._txt), e._txt_on = new PIXI.Sprite, e._txt_on.alpha = 0, e.addChild(e._txt_on), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._activated = !1, i._selected = !1, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i._airunit_id)
+                }, i._cb_onClick = e, i._bg = new PIXI.Sprite, i.addChild(i._bg), i._label = new PIXI.Sprite, i._label.position.set(8, 11), i.addChild(i._label), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.SALLY_AIRUNIT.getTexture(61)
-            }, e.prototype.update = function (t, e) {
-                switch (this.visible = t, this._deactivate(), e) {
-                    case r.ListType.RELOCATION:
-                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(128), this._txt_on.texture = o.SALLY_AIRUNIT.getTexture(129), this._txt.position.set(479, 12), this._txt_on.position.set(467, -2), 1 == t && this._activate();
+            return n(e, t), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 1 == this._activated && 0 == this._selected ? this.activate() : this._deactivate(), 1 == this.visible && this.update())
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "airunit_id", {
+                get: function () {
+                    return this._airunit_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                if (this._airunit_id = t, t > e) return void(this.visible = !1);
+                if (1 == e && 1 == t) this._label.texture = o.SALLY_AIRUNIT.getTexture(119);
+                else switch (t) {
+                    case 1:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(120);
                         break;
-                    case r.ListType.DEPLOYMENT:
-                        this._txt.texture = o.SALLY_AIRUNIT.getTexture(131), this._txt.position.set(577, 2)
+                    case 2:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(121);
+                        break;
+                    case 3:
+                        this._label.texture = o.SALLY_AIRUNIT.getTexture(122);
+                        break;
+                    default:
+                        this._label.texture = PIXI.Texture.EMPTY
                 }
+                this.update(), this.visible = !0
+            }, e.prototype.update = function () {
+                1 == this._selected ? this._bg.texture = o.SALLY_AIRUNIT.getTexture(125) : this._bg.texture = o.SALLY_AIRUNIT.getTexture(124)
+            }, e.prototype.activate = function () {
+                this._activated = !0, 1 != this._selected && 1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this._deactivate()
-            }, e.prototype._activate = function () {
-                null == this._t && (this._txt_on.alpha = 0, this._t = createjs.Tween.get(this._txt_on, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 800).to({
-                    alpha: 0
-                }, 400))
+                this._deactivate(), this._cb_onClick = null
             }, e.prototype._deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._txt_on.alpha = 0)
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
             }, e
-        }(PIXI.Sprite);
-    e.AirUnitListItemExtraLayer = s
+        }(PIXI.Container);
+    e.AirUnitPanelTab = s
 }

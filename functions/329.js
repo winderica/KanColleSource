@@ -19,18 +19,38 @@ const function329 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(1),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick()
-                }, e.slotIconDelete = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(50)), e.clickArea = new PIXI.Graphics, e.clickArea.beginFill(0, 0), e.clickArea.drawRect(0, 0, 30, 45), e.clickArea.y = -e.clickArea.height / 2 + e.slotIconDelete.height / 2, e.clickArea.endFill(), e.clickArea.renderable = !1, e.addChild(e.clickArea, e.slotIconDelete), e.interactive = e.buttonMode = !0, e.on(r.EventType.CLICK, e._onClick), e
+    var o = i(0),
+        r = i(10),
+        s = i(7),
+        a = function (t) {
+            function e(e, i, n) {
+                void 0 === n && (n = !0);
+                var o = t.call(this) || this;
+                return o._usedBauxite = !1, o._url = "api_req_hokyu/charge", o._kind = e, o._id_items = i, o._onslot = n, o
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.off(r.EventType.CLICK), this.clickArea.clear(), this.slotIconDelete = null, this.clickArea = null, this.onClick = null
+            return n(e, t), Object.defineProperty(e.prototype, "usedBauxite", {
+                get: function () {
+                    return this._usedBauxite
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_kind = this._kind, this._post_data.api_id_items = this._id_items.join(","), this._post_data.api_onslot = this._onslot ? 1 : 0, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = s.ObjUtil.getNumArray(this._raw_data, "api_material");
+                o.default.model.useItem.get(31).__setCount__(e[0]), o.default.model.useItem.get(32).__setCount__(e[1]), o.default.model.useItem.get(33).__setCount__(e[2]), o.default.model.useItem.get(34).__setCount__(e[3]), o.default.view.portMain.updateInfo();
+                for (var i = s.ObjUtil.getObjectArray(this._raw_data, "api_ship"), n = 0; n < i.length; n++) {
+                    var r = i[n],
+                        a = s.ObjUtil.getNumber(r, "api_id"),
+                        _ = s.ObjUtil.getNumber(r, "api_fuel"),
+                        u = s.ObjUtil.getNumber(r, "api_bull"),
+                        l = s.ObjUtil.getNumArray(r, "api_onslot", []),
+                        c = o.default.model.ship.get(a);
+                    c.__updateFuel__(_), c.__updateAmmo__(u), c.__updateOnSlot__(l)
+                }
+                var h = s.ObjUtil.getNumber(this._raw_data, "api_use_bou");
+                this._usedBauxite = !!h, t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.DetachButton = s
+        }(r.APIBase);
+    e.ChargeAPI = a
 }

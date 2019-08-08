@@ -19,115 +19,81 @@ const function486 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(487),
-        s = function () {
-            function t(t) {
-                this.name_tmp = null, this._state_tmp = -1, this._o = t, this._squadrons = [];
-                for (var e = o.ObjUtil.getObjectArray(t, "api_plane_info"), i = 0, n = e; i < n.length; i++) {
-                    var s = n[i],
-                        a = new r.AirUnitSquadronModelEdit(s);
-                    this._squadrons.push(a)
-                }
+    var o = i(170),
+        r = i(4),
+        s = i(36),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._user_name = new r.TextBox(21, 16774898), e._user_name.position.set(12, 11), e.addChild(e._user_name), e._level = new _, e._level.position.set(276, 12), e.addChild(e._level), e._deck_name = new u, e._deck_name.position.set(12, 54), e.addChild(e._deck_name), e._medal = new o.MedalIcon, e._medal.position.set(420, 47), e.addChild(e._medal), e
             }
-            return Object.defineProperty(t.prototype, "area_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "user_name", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_area_id")
+                    return this._user_name
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "id", {
+            }), Object.defineProperty(e.prototype, "level", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_rid")
+                    return this._level
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name_raw", {
+            }), Object.defineProperty(e.prototype, "deck_name", {
                 get: function () {
-                    return o.ObjUtil.getString(this._o, "api_name")
+                    return this._deck_name
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "name", {
+            }), Object.defineProperty(e.prototype, "medal", {
                 get: function () {
-                    return null != this.name_tmp ? this.name_tmp : this.name_raw
+                    return this._medal
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "state_tmp", {
+            }), e.prototype.dispose = function () {
+                this.removeChildren(), this._user_name.destroy(), this._level.dispose(), this._deck_name.dispose(), this._medal.dispose()
+            }, e
+        }(PIXI.Container);
+    e.DeckInfo = a;
+    var _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._text = new r.TextBox(21, 16774898), e._text.x = 29, e._text.y = -1, e.addChild(e._text), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "text", {
                 get: function () {
-                    return this._state_tmp
+                    return this._text.text
                 },
                 set: function (t) {
-                    this._state_tmp = t
+                    this._text.text = t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "state_raw", {
+            }), e.prototype.initialize = function () {
+                this.texture = s.BATTLE_RESULT_MAIN.getTexture(68)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
+            }, e
+        }(PIXI.Sprite),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._text = new r.TextBox(21, 16774898), e._text.x = 71, e._text.y = -3, e.addChild(e._text), e
+            }
+            return n(e, t), Object.defineProperty(e.prototype, "text", {
                 get: function () {
-                    return o.ObjUtil.getNumber(this._o, "api_action_kind")
+                    return this._text.text
+                },
+                set: function (t) {
+                    this._text.text = t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "airUnitState", {
-                get: function () {
-                    return -1 != this._state_tmp ? this._state_tmp : this.state_raw
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "distance_base", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_distance");
-                    return o.ObjUtil.getNumber(t, "api_base")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "distance_bonus", {
-                get: function () {
-                    var t = o.ObjUtil.getObject(this._o, "api_distance");
-                    return o.ObjUtil.getNumber(t, "api_bonus")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "distance", {
-                get: function () {
-                    return this.distance_base + this.distance_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "squadrons", {
-                get: function () {
-                    return this._squadrons
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.updateStateFromTemporaryInfo = function () {
-                return -1 != this.state_tmp && (this.state_tmp != this.state_raw && (this._o.api_action_kind = this._state_tmp, this._state_tmp = -1, !0))
-            }, t.prototype.updateNameFromTemporaryInfo = function () {
-                return null != this.name_tmp && (this.name_tmp != this.name_raw && (this._o.api_name = this.name_tmp, this.name_tmp = null, !0))
-            }, t.prototype.hasActiveSquadron = function () {
-                if (null == this._squadrons) return !1;
-                for (var t = 0, e = this._squadrons; t < e.length; t++) {
-                    var i = e[t];
-                    if (1 == i.state && !(i.mem_id <= 0 || i.count <= 0)) return !0
-                }
-                return !1
-            }, t
-        }();
-    e.AirUnitModel = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.updateSquadronData = function (t, e) {
-            var i = this._o.api_distance;
-            if (e.api_base >= 0 && (i.api_base = e.api_base), i.api_bonus = e.api_bonus, null != t)
-                for (var n = 0, r = t; n < r.length; n++)
-                    for (var s = r[n], a = o.ObjUtil.getNumber(s, "api_squadron_id"), _ = 0, u = this.squadrons; _ < u.length; _++) {
-                        var l = u[_];
-                        l.id == a && l.update(s)
-                    }
-        }, e
-    }(s);
-    e.AirUnitModelEdit = a
+            }), e.prototype.initialize = function () {
+                this.texture = s.BATTLE_RESULT_MAIN.getTexture(76)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
+            }, e
+        }(PIXI.Sprite)
 }

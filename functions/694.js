@@ -1,58 +1,36 @@
 const function694 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(695),
-        o = i(700),
-        r = i(702),
-        s = i(704),
-        a = i(106),
-        _ = i(210),
-        u = i(32),
-        l = i(0),
-        c = function () {
-            function t(t, e) {
-                var i = this;
-                this.onCompleteConfirmUseMamiyaIrako = function (t) {
-                    switch (t) {
-                        case !1:
-                            l.default.view.clickGuard = !0, i.taskConfirmUseMamiyaIrako.hide(function () {
-                                i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, l.default.view.clickGuard = !1, i.onComplete()
-                            });
-                            break;
-                        case !0:
-                            l.default.view.clickGuard = !0;
-                            var e = new s.ItemUseCondAPI(!0, i.deckId, i.sweetType),
-                                n = new a.UseItemAPI,
-                                o = new _.UserShipAPI,
-                                r = new u.APIConnector;
-                            r.add(e), r.add(n), r.add(o), r.start(i.onCompleteCallAPI)
-                    }
-                }, this.onCompleteCallAPI = function () {
-                    i.taskConfirmUseMamiyaIrako.dispose(), i.taskConfirmUseMamiyaIrako = null, i.taskAnimationMamiyaIrako = new r.TaskAnimationMamiyaIrako(i.OrganizeView), l.default.view.overLayer.addChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.preLoad(function () {
-                        i.taskAnimationMamiyaIrako.play(i.sweetType, function () {
-                            i.onWhiteOut()
-                        }, function () {
-                            i.onCompleteAnimation()
-                        })
-                    })
-                }, this.onCompleteAnimation = function () {
-                    l.default.view.overLayer.removeChild(i.taskAnimationMamiyaIrako.mainLayer), i.taskAnimationMamiyaIrako.dispose(), i.taskAnimationMamiyaIrako = null, l.default.view.clickGuard = !1, i.onComplete()
-                }, this.mainView = t, this.OrganizeView = e
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_member/updatedeckname", o.api_deck_id = e, o.api_name = i, o.api_name_id = n, o
             }
-            return t.prototype.start = function (t) {
-                var e = this;
-                this.deckId = t, this.taskChoiceMamiyaIrako = new n.TaskChoiceMamiyaIrako(this.mainView), this.taskChoiceMamiyaIrako.onClickBack = function () {
-                    l.default.view.clickGuard = !0, e.taskChoiceMamiyaIrako.hide(function () {
-                        e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, l.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this.taskChoiceMamiyaIrako.onClickUse = function (t) {
-                    e.taskChoiceMamiyaIrako.dispose(), e.taskChoiceMamiyaIrako = null, e.taskConfirmUseMamiyaIrako = new o.TaskConfirmUseMamiyaIrako(e.mainView), e.taskConfirmUseMamiyaIrako.onComplete = e.onCompleteConfirmUseMamiyaIrako, e.sweetType = t, e.taskConfirmUseMamiyaIrako.start(t)
-                }, this.taskChoiceMamiyaIrako.start(this.deckId)
-            }, t.prototype.dispose = function () {
-                this.taskChoiceMamiyaIrako && (this.taskChoiceMamiyaIrako.dispose(), this.taskChoiceMamiyaIrako = null), this.taskConfirmUseMamiyaIrako && (this.taskConfirmUseMamiyaIrako.dispose(), this.taskConfirmUseMamiyaIrako = null), this.taskAnimationMamiyaIrako && (this.taskAnimationMamiyaIrako.dispose(), this.taskAnimationMamiyaIrako = null), this.onComplete = null, this.onWhiteOut = null, this.mainView = null, this.deckId = null, this.sweetType = null
-            }, t
-        }();
-    e.TaskMamiyaIrako = c
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_deck_id = this.api_deck_id, this._post_data.api_name = this.api_name, this._post_data.api_name_id = this.api_name_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                o.default.model.deck.get(this.api_deck_id).updateName(this.api_name, this.api_name_id), t.prototype._completedEnd.call(this)
+            }, e
+        }(r.APIBase);
+    e.UpdateDeckNameAPI = s
 }

@@ -19,34 +19,34 @@ const function1038 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1039),
-        r = i(58),
-        s = i(30),
-        a = function (t) {
-            function e() {
-                for (var e = t.call(this) || this, i = new Array, n = 47, a = 0; a < 8; a++) {
-                    var _ = new o.ExpeditionListItem;
-                    _.x = 8, _.y = n, i.push(_), n += 45
-                }
-                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(91));
-                i.forEach(function (t) {
-                    e.addChild(t)
-                }), e.addChild(u), u.position.y = -1;
-                var l = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51)),
-                    c = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(19));
-                return l.addChild(c), c.anchor.set(0, .5), c.position.set(40, 20), l.position.set(-20, -90), e.addChild(l), e._listItems = i, e
+    var o = i(10),
+        r = i(7),
+        s = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/change_matching_kind", n._selected_type = e, n._res_model = new a, n._debug = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "items", {
+            return n(e, t), Object.defineProperty(e.prototype, "res_model", {
                 get: function () {
-                    return this._listItems
+                    return this._res_model
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.dispose = function () {
-                this.removeChildren(), this._listItems.forEach(function (t) {
-                    return t.dispose()
-                }), this._listItems = null
+            }), e.prototype._connect = function () {
+                this._post_data.api_selected_kind = this._selected_type, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._res_model.setData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.ExpeditionList = a
+        }(o.APIBase);
+    e.ChangeMatchingAPI = s;
+    var a = function () {
+        function t() {}
+        return t.prototype.setData = function (t) {
+            this._o = t
+        }, t.prototype.isSucceed = function () {
+            return 1 == r.ObjUtil.getNumber(this._o, "api_update_flag")
+        }, t
+    }();
+    e.ChangeMatchingAPIResultModel = a
 }

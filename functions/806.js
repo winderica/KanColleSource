@@ -19,42 +19,47 @@ const function806 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(10),
-        s = i(149),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_kaisou/powerup", n.api_id = e, n.api_id_items = i, n
+    var o = i(212),
+        r = i(130),
+        s = function (t) {
+            function e() {
+                var e = this,
+                    i = r.REMODEL_POWERUP.getTexture(13);
+                e = t.call(this, i) || this;
+                var n = r.REMODEL_POWERUP.getTexture(22);
+                return e._taikyuArrow = new PIXI.Sprite(n), e._taikyuArrow.position.set(106, 8), e._taikyuArrow.visible = !1, e.addChild(e._taikyuArrow), e._taisenArrow = new PIXI.Sprite(n), e._taisenArrow.position.set(245, 110), e._taisenArrow.visible = !1, e.addChild(e._taisenArrow), e._luckyArrow = new PIXI.Sprite(n), e._luckyArrow.position.set(245, 179), e._luckyArrow.visible = !1, e.addChild(e._luckyArrow), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "api_powerup_flag", {
-                get: function () {
-                    return 1 == this._raw_data.api_powerup_flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_ship", {
-                get: function () {
-                    return this._raw_data.api_ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "api_deck", {
-                get: function () {
-                    return this._raw_data.api_deck
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_id = this.api_id, this._post_data.api_id_items = this.api_id_items.toString(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                for (var e = 0; e < this.api_id_items.length; e++) {
-                    var i = this.api_id_items[e];
-                    o.default.model.ship.delete(i, !1)
-                }
-                var n = new s.ShipModelEdit(this.api_ship);
-                o.default.model.ship.get(n.memID).__update__(this.api_ship), o.default.model.deck.setData(this.api_deck), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._taikyuArrow = null, this._taisenArrow = null, this._luckyArrow = null
+            }, e.prototype.clear = function () {
+                this._textHp.text = "", this._textSoukou.text = "", this._textKaihi.text = "", this._textTousai.text = "", this._textKaryoku.text = "", this._textRaisou.text = "", this._textTaiku.text = "", this._textTaisen.text = "", this._textSakuteki.text = "", this._textLucky.text = ""
+            }, e.prototype.updateKaryoku = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textKaryoku.style.fill = i, this._textKaryoku.text = "" + e
+            }, e.prototype.updateRaisou = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textRaisou.style.fill = i, this._textRaisou.text = "" + e
+            }, e.prototype.updateSoukou = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textSoukou.style.fill = i, this._textSoukou.text = "" + e
+            }, e.prototype.updateTaiku = function (t, e) {
+                var i = 5523516;
+                t != e && (i = 1949120), this._textTaiku.style.fill = i, this._textTaiku.text = "" + e
+            }, e.prototype.updateLucky = function (t, e, i) {
+                this._textLucky.visible = !1, this._luckyArrow.visible = !1;
+                var n = 5523516,
+                    o = "",
+                    r = t != e;
+                i ? this._luckyArrow.visible = !0 : r ? (n = 1949120, o = "" + e, this._textLucky.visible = !0) : (o = "" + e, this._textLucky.visible = !0), this._textLucky.style.fill = n, this._textLucky.text = o
+            }, e.prototype.updateTaikyu = function (t, e) {
+                this._textHp.visible = !1, this._taikyuArrow.visible = !1, e ? this._taikyuArrow.visible = !0 : (this._textHp.visible = !0, this._textHp.text = "" + t)
+            }, e.prototype.updateTaisen = function (t, e) {
+                this._taisenArrow.visible = !1, this._textTaisen.visible = !1, e ? this._taisenArrow.visible = !0 : (this._textTaisen.visible = !0, this._textTaisen.text = "" + t)
+            }, e.prototype.updateCommon = function (t, e, i, n, o, r, s) {
+                this._textHp.text = "" + t, this._textKaihi.text = "" + e, this._textTousai.text = "" + i, this._textTaisen.text = "" + r, this._textSakuteki.text = "" + s, this._sokuryoku.update(n), this._shatei.update(o), this._sokuryoku.position.set(111 - Math.floor(this._sokuryoku.width / 2), 142), this._shatei.position.set(110 - Math.floor(this._shatei.width / 2), 175)
+            }, e.prototype._alignment = function () {
+                this._textHp.position.set(134, 3), this._textSoukou.position.set(134, 38), this._textKaihi.position.set(134, 72), this._textTousai.position.set(134, 107), this._sokuryoku.position.set(111, 143), this._shatei.position.set(111, 177), this._textKaryoku.position.set(273, 3), this._textRaisou.position.set(273, 38), this._textTaiku.position.set(273, 72), this._textTaisen.position.set(273, 106), this._textSakuteki.position.set(273, 139), this._textLucky.position.set(273, 174)
             }, e
-        }(r.APIBase);
-    e.PowerUpAPI = a
+        }(o.ShipParameterViewBase);
+    e.ShipParameterChecker = s
 }

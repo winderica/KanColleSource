@@ -19,41 +19,53 @@ const function969 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(970),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onClick = function () {
-                    i._dialog.interactive = !1, i._dialog.buttonMode = !1, i._close()
-                }, i._layer = e, i
+    var o = i(5),
+        r = i(0),
+        s = i(2),
+        a = i(17),
+        _ = i(970),
+        u = i(1),
+        l = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._result = !1, s._onCancel = function () {
+                    s._result = !1, s._close()
+                }, s._onChange = function () {
+                    s._result = !0, s._close()
+                }, s._layer = e, s._area_id = i, s._airunit_id = n, s._index = o, s._item = r, s
             }
-            return n(e, t), e.prototype._start = function () {
-                this._dialog = new r.IntroAlertDialog, this._dialog.chara.alpha = 0, this._dialog.board.scale.y = 0, this._dialog.initialize(), this._open()
-            }, e.prototype._open = function () {
-                var t = this;
-                this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 1
-                }, 250), createjs.Tween.get(this._dialog.board).wait(150).to({
-                    scaleY: 1
-                }, 250).call(function () {
-                    t._wait()
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.cancel = function () {
+                this._onCancel()
+            }, e.prototype._start = function () {
+                this._cancel_area = new a.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
+            }, e.prototype._openPanel = function () {
+                var t = this,
+                    e = null,
+                    i = r.default.model.airunit.getAirUnit(this._area_id, this._airunit_id),
+                    n = i.squadrons[this._index];
+                n.mem_id > 0 && (e = r.default.model.slot.get(n.mem_id));
+                var s = this._item;
+                this._panel = new _.AirUnitChangeConfirmPanel(this._onChange), this._panel.initialize(), this._panel.update(e, s), this._panel.position.set(o.default.width, 102), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({
+                    x: 840
+                }, 200).call(function () {
+                    t._cancel_area.on(u.EventType.CLICK, t._onCancel), t._cancel_area.buttonMode = !0, t._panel.activate()
                 })
-            }, e.prototype._wait = function () {
-                this._dialog.interactive = !0, this._dialog.buttonMode = !0, this._dialog.once(s.EventType.CLICK, this._onClick)
             }, e.prototype._close = function () {
                 var t = this;
-                createjs.Tween.get(this._dialog.chara).to({
-                    alpha: 0
-                }, 150), createjs.Tween.get(this._dialog.board).wait(100).to({
-                    scaleY: 0
-                }, 150).call(function () {
-                    t._layer.removeChild(t._dialog), t._endTask()
+                this._cancel_area.off(u.EventType.CLICK, this._onCancel), this._cancel_area.buttonMode = !1, this._panel.deactivate(), createjs.Tween.get(this._panel).to({
+                    x: o.default.width
+                }, 200).call(function () {
+                    t._panel.dispose(), t._layer.removeChild(t._panel), t._layer.removeChild(t._cancel_area), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._dialog = null, t.prototype._endTask.call(this)
+                this._layer = null, this._cancel_area = null, this._panel = null, this._item = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.ShowIntroAlertDialogTask = a
+        }(s.TaskBase);
+    e.TaskShowAirUnitChangeConfirm = l
 }

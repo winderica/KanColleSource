@@ -19,19 +19,27 @@ const function293 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(46),
+    var o = i(107),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._flag = e, i
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "flag", {
-                get: function () {
-                    return this._flag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e
-        }(o.RewardModel);
-    e.RewardModelExtraSupply = r
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = this._getTexture(t), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e.prototype._getTexture = function (t) {
+                var e;
+                if (11 == t) e = 15;
+                else if (12 == t) e = 29;
+                else if (13 == t) e = 17;
+                else if (14 == t) e = 19;
+                else if (15 == t) e = 5;
+                else {
+                    if (31 != t) return PIXI.Texture.EMPTY;
+                    e = 21
+                }
+                return o.PORT_RINGMENU.getTexture(e)
+            }, e
+        }(PIXI.Container);
+    e.RingMenuBtnImg = r
 }

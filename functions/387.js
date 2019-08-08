@@ -19,43 +19,42 @@ const function387 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = i(3),
-        s = i(1),
-        a = function (t) {
+    var o = i(388),
+        r = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._update(!0)
-                }, i._onMouseOut = function () {
-                    i._update(!1)
-                }, i._onClick = function (t) {
-                    null != i._cb_onClick && i._cb_onClick(t)
-                }, i._icon = new o.Sprite, i._icon.position.set(19, 19), i._icon.anchor.set(.5), i._icon.scale.set(.5), i.addChild(i._icon), i._t = createjs.Tween.get(i._icon, {
-                    loop: !0
-                }).to({
-                    scaleX: .8,
-                    scaleY: .8
-                }, 1e3).to({
-                    scaleX: .5,
-                    scaleY: .5
-                }, 1e3), i._t.setPaused(!0), i._cb_onClick = e, i.interactive = !0, i
+                i.PAGE_NUM = 7, i._pagers = [];
+                for (var n = 0; n < i.PAGE_NUM; n++) {
+                    var r = new o.Pager(e);
+                    r.x = 138 * n, i.addChild(r), i._pagers.push(r)
+                }
+                return i
             }
             return n(e, t), e.prototype.initialize = function () {
-                var t = this;
-                this._icon.texture = r.ALBUM_MAIN.getTexture(11), this._update(!1, function () {
-                    var e = t.texture;
-                    t.hitArea = new PIXI.Rectangle(0, 0, e.width, e.height)
-                })
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].initialize()
+                }
+            }, e.prototype.update = function (t, e) {
+                for (var i = 0; i < this._pagers.length; i++) {
+                    var n = this._pagers[i],
+                        o = t + 10 * i;
+                    n.update(o), n.selected = e >= o && e < o + 10
+                }
             }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].activate()
+                }
             }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._t.setPaused(!0), createjs.Tween.removeTweens(this._icon), this._icon = null, this._t = null, this._cb_onClick = null
-            }, e.prototype._update = function (t, e) {
-                void 0 === e && (e = null), 0 == t ? (this.texture = r.ALBUM_MAIN.getTexture(0), this._icon.visible = !0, this._t.setPaused(!1)) : (this.texture = r.ALBUM_MAIN.getTexture(14), this._icon.visible = !1, this._t.setPaused(!0)), null !== e && e()
+                this.removeChildren();
+                for (var t = 0, e = this._pagers; t < e.length; t++) {
+                    e[t].dispose()
+                }
+                this._pagers = null
             }, e
-        }(PIXI.Sprite);
-    e.VoiceBtn = a
+        }(PIXI.Container);
+    e.PagerContainer = r
 }

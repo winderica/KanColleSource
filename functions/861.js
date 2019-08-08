@@ -19,186 +19,106 @@ const function861 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(337),
-        s = i(862),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e.CATAPULT_WIDTH = 1245, e._tween = null, e._craneTexture = {
-                    yellow: [o.REPAIR_MAIN.getTexture(19), o.REPAIR_MAIN.getTexture(20)],
-                    red: [o.REPAIR_MAIN.getTexture(17), o.REPAIR_MAIN.getTexture(18)],
-                    orange: [o.REPAIR_MAIN.getTexture(15), o.REPAIR_MAIN.getTexture(16)]
-                }, e._core = new PIXI.Sprite, e._arm = new PIXI.Sprite, e._arm.anchor.set(.8, 1);
-                var i = function () {
-                    e._arm.position.set(.8 * e._arm.width - 51, -82 + e._arm.height)
+    var o = i(862),
+        r = i(863),
+        s = i(868),
+        a = i(3),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onClickExtension = function (t) {
+                    i.onClickExtension(t)
+                }, i._onClickHiSpeed = function (t) {
+                    i.onClickHiSpeed(t)
+                }, i._onClickEmptySlot = function (t) {
+                    i.onClickEmptySlot(t)
                 };
-                e._wire = new r.Wire, e._wire.scale.x = .69, e._wireHand = new s.WireHand, e._randomColor(i), e._wireHand.update(.3);
-                var n = e._armsPosition(0);
-                return e._arm.rotation = n.arm.rotation, e._wireHand.x = n.wireHand.x, e._wireHand.y = n.wireHand.y, e._wire.rotation = n.wire.rotation, e._wire.x = n.wire.x, e._wire.y = n.wire.y, e._crane = new PIXI.Container, e._crane.y = 60, e._crane.x = e.CATAPULT_WIDTH, e._crane.addChild(e._wireHand, e._wire, e._arm, e._core), e.addChild(e._crane), e
+                var n = new PIXI.Sprite(a.COMMON_MAIN.getTexture(64));
+                n.position.set(0, 105);
+                var _ = new PIXI.Sprite(a.REPAIR_MAIN.getTexture(0));
+                _.anchor.y = .5, _.position.set(199, 20), n.addChild(_), i.addChild(n);
+                var u = new PIXI.Container;
+                u.position.set(195, 180);
+                for (var l = [], c = [], h = [], p = 0; p < 4; p++) {
+                    var d = e[p],
+                        f = new s.EmptyDock;
+                    f.onClick = i._onClickEmptySlot, f.position.set(0, 123 * p), f.visible = !1, l.push(f), u.addChild(f);
+                    var y = new r.ShipInDock;
+                    if (y.onClickHiSpeed = i._onClickHiSpeed, y.position.set(0, 123 * p), y.visible = !1, c.push(y), u.addChild(y), -1 === d.state) {
+                        var m = new o.ExtensionDock;
+                        m.update(-1, !1, !1), m.onClick = i._onClickExtension, m.position.set(0, 123 * p), m.visible = !1, h.push(m), u.addChild(m)
+                    } else h.push(null)
+                }
+                return i.emptyDocks = l, i.shipInDocks = c, i.extensionDocks = h, i.addChild(u), i
             }
-            return n(e, t), e.prototype.play = function () {
-                var t = this;
-                if (null === this._tween) {
-                    this.end();
-                    var e = new createjs.Timeline([], {
-                            start: 0
-                        }, {
-                            loop: !0,
-                            paused: !0
-                        }),
-                        i = 6e3 - 1e3 * Math.random(),
-                        n = {
-                            crane: this._cranePosition(0),
-                            arms: this._armsPosition(0),
-                            wireHand: this._wireHand.getPosition(.35)
-                        },
-                        o = {
-                            duration: i,
-                            crane: this._cranePosition(.7)
-                        },
-                        r = {
-                            duration: 1e3,
-                            arms: this._armsPosition(1),
-                            wireHand: this._wireHand.getPosition(.7)
-                        },
-                        s = {
-                            duration: 500,
-                            crane: this._cranePosition(.745)
-                        },
-                        a = {
-                            duration: 500,
-                            wireHand: this._wireHand.getPosition(.4)
-                        },
-                        _ = {
-                            duration: 500,
-                            wireHand: this._wireHand.getPosition(.8)
-                        },
-                        u = {
-                            duration: 500,
-                            crane: this._cranePosition(.7),
-                            arms: this._armsPosition(0),
-                            wireHand: this._wireHand.getPosition(.35)
-                        },
-                        l = {
-                            duration: i,
-                            crane: this._cranePosition(0)
-                        },
-                        c = this._getTimeLineObj();
-                    c.crane.to(n.crane).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
-                        t._wireHand.hideMaterial()
-                    }).wait(_.duration).to(u.crane, u.duration).to(l.crane, l.duration).call(function () {
-                        t._randomColor(), t._wireHand.initialize()
-                    }), c.arm.to(n.arms.arm).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.arm, u.duration).wait(l.duration), c.wire.to(n.arms.wire).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wire, u.duration).wait(l.duration), c.wireHand.to(n.arms.wireHand).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wireHand, u.duration).wait(l.duration), c.wireHandWire.to(n.wireHand.wire).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(u.wireHand.wire, u.duration).wait(l.duration), c.wireHandContainer.to(n.wireHand.container).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(u.wireHand.container, u.duration).wait(l.duration), e.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), e.gotoAndPlay("start"), this._tween = e
+            return n(e, t), e.prototype.updateTime = function (t, e) {
+                for (var i = 0; i < e.length; i++) {
+                    var n = e[i],
+                        o = this.shipInDocks[i];
+                    1 == n.state && o.updateTime(t, n.completeTime)
                 }
-            }, e.prototype.timeLimit = function () {
-                this.end(), createjs.Tween.get(this._crane).to({
-                    x: this.CATAPULT_WIDTH
-                }, 1e3, createjs.Ease.linear)
-            }, e.prototype.highSpeed = function () {
-                var t = this,
-                    e = null !== this._tween ? 1e3 : 100;
-                this.end();
-                var i = new createjs.Timeline([], {
-                        start: 0
-                    }, {
-                        loop: !1,
-                        paused: !0
-                    }),
-                    n = {
-                        duration: e,
-                        crane: this._cranePosition(0),
-                        wireHand: this._wireHand.getPosition(.4)
-                    },
-                    o = {
-                        duration: 1400,
-                        crane: this._cranePosition(.7)
-                    },
-                    r = {
-                        duration: 1e3,
-                        arms: this._armsPosition(1),
-                        wireHand: this._wireHand.getPosition(.8)
-                    },
-                    s = {
-                        duration: 500,
-                        crane: this._cranePosition(.745)
-                    },
-                    a = {
-                        duration: 500,
-                        wireHand: this._wireHand.getPosition(.5)
-                    },
-                    _ = {
-                        duration: 500,
-                        wireHand: this._wireHand.getPosition(.8)
-                    },
-                    u = {
-                        duration: 500,
-                        crane: this._cranePosition(.7),
-                        arms: this._armsPosition(0),
-                        wireHand: this._wireHand.getPosition(.3)
-                    },
-                    l = {
-                        duration: 1e3,
-                        crane: this._cranePosition(0)
-                    },
-                    c = this._getTimeLineObj();
-                c.crane.to(n.crane, n.duration).call(function () {
-                    t._wireHand.bucketMaterial()
-                }).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
-                    t._wireHand.hideMaterial(), t.emit("high_speed_timer_stop")
-                }).wait(_.duration).to(u.crane, u.duration).to(l.crane, l.duration).call(function () {
-                    t.end(), t.emit("high_speed_complete")
-                }), c.arm.wait(n.duration).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.arm, u.duration).wait(l.duration), c.wire.wait(n.duration).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wire, u.duration).wait(l.duration), c.wireHand.wait(n.duration).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(u.arms.wireHand, u.duration).wait(l.duration), c.wireHandWire.to(n.wireHand.wire, n.duration).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(u.wireHand.wire, u.duration).wait(l.duration), c.wireHandContainer.to(n.wireHand.container, n.duration).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(u.wireHand.container, u.duration).wait(l.duration), i.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), i.gotoAndPlay("start"), this._tween = i
-            }, e.prototype.end = function () {
-                null !== this._tween && (this._tween.removeAllEventListeners("change"), this._tween.setPaused(!0)), this._tween = null
-            }, e.prototype._randomColor = function (t) {
-                void 0 === t && (t = null);
-                var e = 100 * Math.random();
-                if (e <= 30) {
-                    var i = this._craneTexture.yellow;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                } else if (e <= 60) {
-                    var i = this._craneTexture.red;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                } else {
-                    var i = this._craneTexture.orange;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                }
-                null !== t && t()
-            }, e.prototype._getTimeLineObj = function () {
-                var t = this._wireHand.obj;
-                return {
-                    crane: createjs.Tween.get(this._crane),
-                    arm: createjs.Tween.get(this._arm),
-                    wire: createjs.Tween.get(this._wire),
-                    wireHand: createjs.Tween.get(this._wireHand),
-                    wireHandWire: createjs.Tween.get(t.wire),
-                    wireHandContainer: createjs.Tween.get(t.container)
-                }
-            }, e.prototype._cranePosition = function (t) {
-                return {
-                    x: this.CATAPULT_WIDTH * (1 - t)
-                }
-            }, e.prototype._armsPosition = function (t) {
-                var e = 22 * t,
-                    i = -4 * t;
-                return {
-                    arm: {
-                        rotation: Math.PI / 180 * (14.5 * t)
-                    },
-                    wireHand: {
-                        x: -42 + e,
-                        y: -78 + i
-                    },
-                    wire: {
-                        rotation: Math.PI / 180 * (47 + 13 * t),
-                        x: -37 + e,
-                        y: -78 + i
+            }, e.prototype.highSpeedAnimation = function (t, e) {
+                this.shipInDocks[t].playHispeed(e)
+            }, e.prototype.hideAnimation = function (t, e) {
+                for (var i = Date.now(), n = !1, o = 0; o < t.length; o++) {
+                    var r = this.shipInDocks[o];
+                    if (0 == t[o].state) {
+                        var s = function () {};
+                        0 == n && (s = function () {
+                            e()
+                        }, n = !0), r.playTimelimit(i, s)
                     }
                 }
+            }, e.prototype.updateHighSpeedButton = function (t, e) {
+                this.shipInDocks[t].updateUsable(e)
+            }, e.prototype.updateExtensionState = function (t, e) {
+                for (var i = !1, n = 0; n < this.extensionDocks.length; n++) {
+                    var o = this.extensionDocks[n];
+                    if (null !== o) {
+                        var r = t[n];
+                        0 == i ? (o.update(r.mstID, !0, e), i = !0) : o.update(r.mstID, !1, !1)
+                    }
+                }
+            }, e.prototype.updateDockInfo = function (t, e, i, n) {
+                this.shipInDocks[t].updateDockInfo(i, n), this.emptyDocks[t].update(i);
+                var o = this.extensionDocks[t];
+                null !== o && o.update(i, !1, !1)
+            }, e.prototype.stopAnimation = function (t) {
+                this.shipInDocks[t].stopAnimation()
+            }, e.prototype.playAnimation = function (t) {
+                this.shipInDocks[t].playAnimation()
+            }, e.prototype.unLockAnimation = function (t, e) {
+                this.emptyDocks[t].alpha = 0, this.emptyDocks[t].visible = !0, this.extensionDocks[t].visible = !1, createjs.Tween.get(this.emptyDocks[t]).to({
+                    alpha: 1
+                }, 1500).call(function () {
+                    e()
+                }).play(null)
+            }, e.prototype.updateViewState = function (t, e) {
+                var i = this.shipInDocks[t];
+                i.updateState(e), this.emptyDocks[t].visible = !1, i.visible = !1;
+                var n = this.extensionDocks[t];
+                switch (null !== n && (n.visible = !1), e) {
+                    case -1:
+                        n.visible = !0;
+                        break;
+                    case 0:
+                        this.emptyDocks[t].visible = !0;
+                        break;
+                    case 1:
+                        i.visible = !0
+                }
+            }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a, _, u) {
+                this.shipInDocks[t].updateShipInfo(r, o, a, e, i, n, _, u)
+            }, e.prototype.dockState = function (t) {
+                return this.shipInDocks[t].state
+            }, e.prototype.forceEnd = function (t) {
+                this.updateViewState(t, 0), this.shipInDocks[t].playTimelimit(Date.now(), function () {})
             }, e.prototype.dispose = function () {
-                this.end(), this._core = null, this._arm = null, this._wire.dispose(), this._wire = null, this._wireHand.dispose(), this._wireHand = null, this._crane.removeChildren(), this._crane = null, this.removeChildren()
+                for (var t = 0; t < this.emptyDocks.length; t++) this.emptyDocks[t].dispose(), this.emptyDocks[t] = null;
+                for (var t = 0; t < this.shipInDocks.length; t++) this.shipInDocks[t].dispose(), this.shipInDocks[t] = null;
+                for (var t = 0; t < this.extensionDocks.length; t++) null !== this.extensionDocks[t] && (this.extensionDocks[t].dispose(), this.extensionDocks[t] = null);
+                this.onClickHiSpeed = null, this.onClickEmptySlot = null, this.onClickExtension = null, this.emptyDocks = null, this.shipInDocks = null, this.extensionDocks = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.CraneAnimation = a
+    e.MainView = _
 }

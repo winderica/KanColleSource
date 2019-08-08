@@ -19,72 +19,51 @@ const function359 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(325),
-        a = i(8),
-        _ = i(985),
-        u = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this) || this;
-                r._ships = e, r._rader = i, r._onUpdate = n, r._fuel = 0, r._ammo = 0;
-                for (var s = 0; s < e.length; s++) {
-                    var a = e[s];
-                    null != a && (r._fuel += a.getFuelForSupply(), r._ammo += a.getAmmoForSupply())
-                }
-                var _ = o.default.model.useItem.getCount(31),
-                    u = o.default.model.useItem.getCount(32);
-                return r._fuelActive = r._fuel > 0 && r._fuel <= _, r._ammoActive = r._ammo > 0 && r._ammo <= u, r
+    var o = i(30),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._selected = !1, i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick(i)
+                }, i._area_id = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype._start = function () {
-                this._clickGuard = new a.AreaBox(0), o.default.view.overLayer.addChild(this._clickGuard), this._hideRader()
-            }, e.prototype._hideRader = function () {
-                var t = this;
-                createjs.Tween.get(this._rader.scale).to({
-                    x: 0,
-                    y: 0
-                }, 300, createjs.Ease.quadIn).call(function () {
-                    t._showSupplyAnimationBox()
-                })
-            }, e.prototype._showSupplyAnimationBox = function () {
-                var t = this;
-                this._box = new _.TempSupplyBox, this._box.initialize(), this._box.x = 360, this._box.y = 120, this._box.alpha = 0;
-                var e = this._rader.parent;
-                null != e && e.addChild(this._box), this._box.update(this._fuel, this._ammo), createjs.Tween.get(this._box).to({
-                    alpha: 1
-                }, 500).call(function () {
-                    t._playSupplyAnimation()
-                })
-            }, e.prototype._playSupplyAnimation = function () {
-                var t = this;
-                this._box.play(this._fuelActive, this._ammoActive, function () {
-                    1 == t._fuelActive && (t._fuel = 0), 1 == t._ammoActive && (t._ammo = 0), t._box.update(t._fuel, t._ammo), t._connectionAPI()
-                })
-            }, e.prototype._getSupplyType = function () {
-                return 1 == this._fuelActive ? 1 == this._ammoActive ? 3 : 1 : 1 == this._ammoActive ? 2 : 0
-            }, e.prototype._connectionAPI = function () {
-                for (var t = this, e = this._getSupplyType(), i = [], n = 0; n < this._ships.length; n++) {
-                    var o = this._ships[n];
-                    null != o && i.push(o.memID)
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
+                get: function () {
+                    return this._area_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected != t && (this._selected = t, this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._cb_onClick = t, this._update(!1)
+            }, e.prototype.activate = function () {
+                0 == this.buttonMode && 0 == this._selected && (this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype.dispose = function () {
+                this.interactive = !1, this.deactivate(), this._cb_onClick = null
+            }, e.prototype._update = function (t) {
+                if (1 == t || 1 == this._selected) {
+                    var e = [-1, 2, 4, 6, 10, 12, 14, 8];
+                    this._area_id > 0 && this._area_id < e.length ? this.texture = o.SALLY_COMMON.getTexture(e[this._area_id]) : this.texture = PIXI.Texture.EMPTY
+                } else {
+                    var e = [-1, 1, 3, 5, 9, 11, 13, 7];
+                    this._area_id > 0 && this._area_id < e.length ? this.texture = o.SALLY_COMMON.getTexture(e[this._area_id]) : this.texture = PIXI.Texture.EMPTY
                 }
-                new s.ChargeAPI(e, i, !1).start(function () {
-                    createjs.Tween.get(t._box).to({
-                        alpha: 0
-                    }, 500).call(function () {
-                        t._reShowRader()
-                    })
-                })
-            }, e.prototype._reShowRader = function () {
-                var t = this;
-                null != this._onUpdate && this._onUpdate(), null != this._box.parent && this._box.parent.removeChild(this._box), createjs.Tween.get(this._rader.scale).to({
-                    x: 1,
-                    y: 1
-                }, 300, createjs.Ease.quadOut).call(function () {
-                    null != t._clickGuard.parent && t._clickGuard.parent.removeChild(t._clickGuard), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._ships = null, this._rader = null, this._onUpdate = null, this._clickGuard = null, this._box && this._box.dispose(), this._box = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskTemporarySupply = u
+        }(PIXI.Sprite);
+    e.AreaIconBtn = s
 }

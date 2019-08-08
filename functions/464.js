@@ -19,74 +19,79 @@ const function464 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(72),
-        s = i(27),
-        a = i(19),
-        _ = i(29),
-        u = i(38),
-        l = i(6),
-        c = i(140),
-        h = i(180),
-        p = i(141),
-        d = i(463),
-        f = i(182),
-        y = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(6),
+        r = i(2),
+        s = i(22),
+        a = i(1380),
+        _ = i(54),
+        u = function (t) {
+            function e(e, i, n, o, r) {
+                var s = t.call(this) || this;
+                return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1], s._scene.data.model.deck_f.ships[2]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinColoradoAttack(s._attackers), s
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                this._canvas = new c.AirWarCanvas(!1), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new s.ParallelTask,
-                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
-                e.add((new a.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
-                    t._fireDogFight()
-                }, 750)), e.add(new r.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new r.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new _.SerialTask).add(new u.WaitTask(1700)).add((new s.ParallelTask).add(new d.TaskAirSupportTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new f.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new r.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
                 })
-            }, e.prototype._createFriendPlanes = function () {
-                for (var t = 0, e = this.data_.getShipList(), i = 0, n = e; i < n.length; i++) {
-                    var r = n[i],
-                        s = r.mem_id,
-                        a = o.default.model.ship.get(s);
-                    if (null != a)
-                        for (var _ = a.getSlotitems(), u = 0; u < _.length; u++) {
-                            var l = _[u];
-                            if (null != l) {
-                                var c = a.getSlotitemTousai(u);
-                                l.taisen > 0 && c > 0 && t++
-                            }
-                        }
+            }, e.prototype._completePreload = function () {
+                for (var t = this, e = this._attackers[0].friend, i = [], n = [], o = 0; o < this._attackers.length; o++) {
+                    var r = this._attackers[o].index,
+                        s = this._scene.view.bannerGroupLayer.getBanner(!!e, r);
+                    i.push(s), s.moveFront()
                 }
-                for (var h = [], u = 0; u < t; u++) {
-                    var d = new p.Plane,
-                        f = new PIXI.Point(45 * Math.random() - 75 - 23, 360 / t * u + 150 + (45 * Math.random() - 23)),
-                        y = new PIXI.Point;
-                    d.initialize(16, !0, f, y), h.push(d)
+                for (var o = 0; o < this._defenders.length; o++) {
+                    var a = this._defenders[o].index,
+                        _ = this._scene.view.bannerGroupLayer.getBanner(!e, a);
+                    n.push(_)
                 }
-                this._canvas.addPlanes_f(h)
-            }, e
-        }(h.TaskAircraftFlightBase);
-    e.TaskSupportTaisen = y
+                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
+                    t._explosion(i, n, 0)
+                })
+            }, e.prototype._explosion = function (t, e, i) {
+                var n = this,
+                    o = e[i].getGlobalPos(!0),
+                    r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
+                    a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
+                    _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
+                    u = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
+                createjs.Tween.get(null).wait(200).call(function () {
+                    e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
+                }).wait(150).call(function () {
+                    n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
+                }).wait(100).call(function () {
+                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                        n._attack(t, e, i)
+                    })
+                })
+            }, e.prototype._attack = function (t, e, i) {
+                o.SE.play("102"), this._damageEffect(t, e, i)
+            }, e.prototype._damageEffect = function (t, e, i) {
+                1 == this._shields[i] && this._showShield(e[i]), e[i].moveAtDamage(this._shields[i]), this._playExplosion(e[i], this._damages[i]), this._playDamageEffect(t, e, i)
+            }, e.prototype._showShield = function (t) {
+                var e = this._scene.view.bannerGroupLayer.getShieldTargetBanner(t);
+                this._scene.view.layer_damage.showShieldAtBanner(e)
+            }, e.prototype._playExplosion = function (t, e) {
+                var i = t.getGlobalPos(!0);
+                this._scene.view.layer_explosion.playDamageExplosion(i.x, i.y, e)
+            }, e.prototype._playDamageEffect = function (t, e, i) {
+                var n = this;
+                this._scene.view.layer_damage.showAtBanner(e[i], this._damages[i], this._hits[i]);
+                var o = createjs.Tween.get(null);
+                o.wait(200), o.call(function () {
+                    if (n._damage_cutin.causeDamage(n._defenders[i], n._damages[i]), e[i].updateHp(n._defenders[i].hp_now), i + 1 >= n._defenders.length)
+                        for (var o = 0; o < n._attackers.length; o++) t[o].moveDefault()
+                }), i + 1 >= this._defenders.length ? (o.wait(1e3), o.call(function () {
+                    n._endTask()
+                })) : (o.wait(150), o.call(function () {
+                    n._explosion(t, e, i + 1)
+                }))
+            }, e.prototype._endTask = function () {
+                var e = this;
+                this._damage_cutin.start(function () {
+                    t.prototype._endTask.call(e)
+                })
+            }, e.prototype._log = function (t) {}, e
+        }(r.TaskBase);
+    e.PhaseColoradoAttack = u
 }

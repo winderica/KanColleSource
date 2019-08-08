@@ -1,61 +1,54 @@
 const function416 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(15),
-        o = function () {
-            function t() {
-                this._o = {}
+    var o = i(10),
+        r = i(412),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_quest/clearitemget", n._duty_id = e, n._selected_no_list = i, n._result = new a(e), n
             }
-            return Object.defineProperty(t.prototype, "remodel_id", {
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
                 get: function () {
-                    return n.ObjUtil.getNumArray(this._o, "api_remodel_id")
+                    return this._result
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_ship_id", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_voice_ship_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "voice_id", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_voice_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "after_materials", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_after_material");
-                    for (null == t && (t = []); t.length < 8;) t.push(0);
-                    return t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "target_slotitem_memid", {
-                get: function () {
-                    var t = this.getItemObject();
-                    return n.ObjUtil.getNumber(t, "api_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "use_slotitem_memids", {
-                get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_use_slot_id");
-                    return null == t ? [] : t
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isSuccess = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_remodel_flag")
-            }, t.prototype.isChanged = function () {
-                var t = n.ObjUtil.getNumArray(this._o, "api_remodel_id");
-                return t[0] != t[1]
-            }, t.prototype.getItemObject = function () {
-                return n.ObjUtil.getObject(this._o, "api_after_slot")
-            }, t
-        }();
-    e.RevampRemodelSlotModel = o
+            }), e.prototype._connect = function () {
+                if (this._post_data.api_quest_id = this._duty_id, null != this._selected_no_list && this._selected_no_list.length > 0) {
+                    this._post_data.api_select_no = this._selected_no_list[0];
+                    for (var e = 1; e < this._selected_no_list.length; e++) this._post_data["api_select_no" + (e + 1)] = this._selected_no_list[e]
+                }
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result.initialize(this._raw_data), t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.DutyEndAPI = s;
+    var a = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            this._o = t, this._initialize()
+        }, e
+    }(r.DutyEndModel)
 }

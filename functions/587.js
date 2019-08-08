@@ -19,38 +19,31 @@ const function587 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(195),
-        s = i(196),
-        a = i(277),
-        _ = i(278),
-        u = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(0),
+        r = i(4),
+        s = i(192),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._coin = o.default.model.useItem.getCount(44), i._furnitureJukeBoxBGMLineModel = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._background.texture = r.PORT_SKIN_3.getTexture(0), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
+            return n(e, t), Object.defineProperty(e.prototype, "btn_kagu", {
+                get: function () {
+                    return this._btn_kagu
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "btn_back3", {
+                get: function () {
+                    return this._btn_back3
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.init = function () {
+                this._pop_jukeboxbg2 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(18)), this._pop_jukeboxbg2.position.set(301, 232), this.addChild(this._pop_jukeboxbg2), 1 == this._furnitureJukeBoxBGMLineModel.api_bgm_flag && (this._jukebox_icon_bgm = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(10)), this._jukebox_icon_bgm.position.set(469, 305), this.addChild(this._jukebox_icon_bgm)), this._bgm_name = new r.TextBox(17, 4473924), this._bgm_name.position.set(658, 301), this._bgm_name.text = this._furnitureJukeBoxBGMLineModel.api_name + "", this.addChild(this._bgm_name), this._bgm_coin_price = new r.TextBox(17, 4473924), this._bgm_coin_price.position.set(746, 340), this._bgm_coin_price.anchor.set(1, 0), this._bgm_coin_price.text = this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_price), this._bgm_coin_now = new r.TextBox(17, 4473924), this._bgm_coin_now.position.set(746, 379), this._bgm_coin_now.anchor.set(1, 0), this._bgm_coin_now.text = this._coin + "", this.addChild(this._bgm_coin_now), this._coin < this._furnitureJukeBoxBGMLineModel.api_use_coin ? (this._bgm_coin_now.style.fill = 14483456, this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(3)), this._btn_kagu.interactive = !1) : (this._arrow_mini = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(0)), this._arrow_mini.position.set(751, 385), this.addChild(this._arrow_mini), this._bgm_coin_after = new r.TextBox(17, 4473924), this._bgm_coin_after.position.set(836, 379), this._bgm_coin_after.anchor.set(1, 0), this._bgm_coin_after.text = this._coin - this._furnitureJukeBoxBGMLineModel.api_use_coin + "", this.addChild(this._bgm_coin_after), this._btn_kagu = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(2)), this._btn_kagu.interactive = this._btn_kagu.buttonMode = !0), this._btn_kagu.position.set(370, 412), this.addChild(this._btn_kagu), this._btn_back3 = new PIXI.Sprite(s.JUKEBOX_COMMON.getTexture(1)), this._btn_back3.interactive = this._btn_back3.buttonMode = !0, this._btn_back3.position.set(689, 412), this.addChild(this._btn_back3)
+            }, e.prototype.discard = function () {
+                this.removeChildren(), this._bgm_name.destroy(), this._bgm_coin_price.destroy(), this._bgm_coin_now.destroy(), this._bgm_coin_after && this._bgm_coin_after.destroy()
             }, e
-        }(a.CircleContentSkin2);
-    e.CircleContentSkin3 = u;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._background = new PIXI.Sprite, e.addChild(e._background), e._content = new c, e.addChild(e._content), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 95), e._hit_area.endFill(), e._hit_area.position.set(68, 60), e.addChild(e._hit_area), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._background.texture = s.PORT_SKIN_3K.getTexture(2), this._background.position.set(-40, -49), this._content.initialize(), this._content.position.set(67, 58), this._hit_area.interactive = !0, this._hit_area.buttonMode = !0, this._hit_area.on(o.EventType.CLICK, this._onClick), this._startAnimation()
-        }, e
-    }(u);
-    e.CircleContentSkin3k = l;
-    var c = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype._getTexture = function (t) {
-            return 11 == t ? s.PORT_SKIN_3K.getTexture(7) : 12 == t ? s.PORT_SKIN_3K.getTexture(9) : 13 == t ? s.PORT_SKIN_3K.getTexture(11) : 14 == t ? s.PORT_SKIN_3K.getTexture(15) : 15 == t ? s.PORT_SKIN_3K.getTexture(13) : 31 == t ? s.PORT_SKIN_3K.getTexture(0) : 16 == t ? s.PORT_SKIN_3K.getTexture(17) : s.PORT_SKIN_3K.getTexture(4)
-        }, e.prototype._getTextureOver = function (t) {
-            return 11 == t ? s.PORT_SKIN_3K.getTexture(8) : 12 == t ? s.PORT_SKIN_3K.getTexture(10) : 13 == t ? s.PORT_SKIN_3K.getTexture(12) : 14 == t ? s.PORT_SKIN_3K.getTexture(16) : 15 == t ? s.PORT_SKIN_3K.getTexture(14) : 31 == t ? s.PORT_SKIN_3K.getTexture(1) : 16 == t ? s.PORT_SKIN_3K.getTexture(18) : s.PORT_SKIN_3K.getTexture(5)
-        }, e
-    }(_.CircleContentWithSwitching)
+        }(PIXI.Container);
+    e.JukeBoxConfirm = a
 }

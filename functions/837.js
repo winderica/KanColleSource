@@ -21,19 +21,17 @@ const function837 = function (t, e, i) {
     });
     var o = i(0),
         r = i(10),
-        s = i(51),
-        a = function (t) {
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._url = "api_req_kaisou/open_exslot", i.api_id = e, i
+                return i._url = "api_req_kaisou/marriage", i.api_id = e, i
             }
             return n(e, t), e.prototype._connect = function () {
                 this._post_data.api_id = this.api_id, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e = o.default.model.useItem.get(s.RemodelConst.REINFORCEMENT_WORK_ITEMID),
-                    i = e.count - 1;
-                e.__setCount__(i), o.default.model.ship.get(this.api_id).__updateExtraSlot__(-1), t.prototype._completedEnd.call(this)
+                var e = o.default.model.useItem.get(55);
+                e.__setCount__(e.count - 1), o.default.model.ship.updateData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.OpenExSlotAPI = a
+    e.MarriageAPI = s
 }

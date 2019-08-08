@@ -1,52 +1,75 @@
 const function689 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(0),
-        o = i(49),
-        r = i(8),
-        s = i(314),
-        a = i(690),
-        _ = i(691),
-        u = i(692),
-        l = i(216),
-        c = function () {
-            function t(t) {
-                this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new u.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
+    var o = i(3),
+        r = i(690),
+        s = i(691),
+        a = i(214),
+        _ = i(57),
+        u = i(1),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._onMouseDown = function () {
+                    i.onDragging(i.slotPosition, i.memShipId)
+                }, i.___onMouseDown = function (t) {
+                    i.onMouseDown(i.slotPosition, i.slotNo, i.memShipId)
+                }, i._onClickChange = function () {
+                    i.onClickChange(i.slotPosition, i.slotNo)
+                }, i._onClickDetail = function () {
+                    i.onClickDetail(i.memShipId)
+                }, i.shipSlotShutter = new s.ShipSlotShutter, i.shipInfo = new r.ShipInfo, i.deckIndexEmblem = new a.DeckIndexEmblem;
+                var n = o.ORGANIZE_MAIN.getTexture(23),
+                    l = o.ORGANIZE_MAIN.getTexture(24),
+                    c = o.ORGANIZE_MAIN.getTexture(25),
+                    h = o.ORGANIZE_MAIN.getTexture(9),
+                    p = o.ORGANIZE_MAIN.getTexture(10);
+                return i.disableChangeButton = new PIXI.Sprite(n), i.changeButton = new _.SimpleButton(l, c), i.detailButton = new _.SimpleButton(h, p), i.shipBannerDragArea = new PIXI.Graphics, i.shipBannerDragArea.beginFill(0, 0), i.shipBannerDragArea.drawRect(0, 0, 240, 60), i.shipBannerDragArea.endFill(), i.shipBannerDragArea.position.set(245, 18), i.shipBannerDragArea.interactive = !0, i.shipBannerDragArea.buttonMode = !0, i.shipBannerDragArea.renderable = !1, i.shipBannerDragArea.on(u.EventType.MOUSEDOWN, i._onMouseDown), i.changeButton.onClick = i._onClickChange, i.detailButton.onClick = i._onClickDetail, i.disableChangeButton.position.set(379, 103), i.changeButton.position.set(379, 103), i.detailButton.position.set(250, 103), i.deckIndexEmblem.position.set(-15, 0), i.slotPosition = e, i
             }
-            return t.prototype.dispose = function () {
-                this.combineTypeSelectDialog.dispose(), this.combineConfirmDialog.dispose(), this.combineConfirmAlertDialog.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineConfirmAlertDialog), this.mainView.removeChild(this.combineConfirmDialog), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineTypeSelectDialog.onClickBack = null, this.combineTypeSelectDialog.onClickKido = null, this.combineTypeSelectDialog.onClickSuijo = null, this.combineTypeSelectDialog.onClickYuso = null, this.combineConfirmDialog.onClickNO = null, this.combineConfirmDialog.onClickYES = null, this.combineConfirmAlertDialog.onClickYES = null, this.onCombined = null, this.onComplete = null, this.mainView = null, this.dialogBackground = null, this.combineTypeSelectDialog = null, this.combineConfirmDialog = null, this.combineConfirmAlertDialog = null
-            }, t.prototype.start = function () {
-                var t = this;
-                this.combineTypeSelectDialog.position.set(304, 232), this.combineTypeSelectDialog.update(!0, !0, !0), this.combineTypeSelectDialog.onClickBack = function () {
-                    t.onComplete()
-                }, this.combineConfirmAlertDialog.position.set(216, 186), this.combineTypeSelectDialog.onClickKido = function () {
-                    t._onClickType(1)
-                }, this.combineTypeSelectDialog.onClickSuijo = function () {
-                    t._onClickType(2)
-                }, this.combineTypeSelectDialog.onClickYuso = function () {
-                    t._onClickType(3)
-                }, this.mainView.addChild(this.dialogBackground, this.combineTypeSelectDialog)
-            }, t.prototype._onClickType = function (t) {
-                var e = this,
-                    i = n.default.model.deck.get(1),
-                    o = n.default.model.deck.get(2);
-                this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineConfirmDialog.position.set(171, 186);
-                var r = s.CombineUtil.checkCombinable(i, o, t),
-                    a = r[0],
-                    _ = r[1],
-                    u = r[2];
-                a ? (this.combineConfirmDialog.updateViewType(t), this.combineConfirmDialog.updateCombineDeck(i, o), this.combineConfirmDialog.onClickNO = function () {
-                    e.onComplete()
-                }, this.combineConfirmDialog.onClickYES = function () {
-                    n.default.view.clickGuard = !0, new l.CombinedAPI(t).start(function () {
-                        e.onCombined(), n.default.view.clickGuard = !1, e.onComplete()
-                    })
-                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, u), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
-                    e.onComplete()
-                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmAlertDialog))
-            }, t
-        }();
-    e.TaskCombineTypeSelect = c
+            return n(e, t), e.prototype.activate = function (t, e, i) {
+                this.deactivate(), this.onDragging = t, this.onClickChange = e, this.onClickDetail = i
+            }, e.prototype.deactivate = function () {
+                this.onDragging = null, this.onClickChange = null, this.onClickDetail = null
+            }, e.prototype.dispose = function () {
+                this.deactivate(), this.shipBannerDragArea.off(u.EventType.MOUSEDOWN, this._onMouseDown), this.shipSlotShutter.dispose(), this.shipInfo.dispose(), this.deckIndexEmblem.dispose(), this.changeButton.dispose(), this.shipSlotShutter = null, this.shipInfo = null, this.deckIndexEmblem = null, this.changeButton = null, this.removeChildren()
+            }, e.prototype.update = function (t, e, i) {
+                this.removeChildren();
+                var n = e.memID;
+                this.shipInfo.update(e, i), this.deckIndexEmblem.update(t), i ? this.addChild(this.shipInfo, this.deckIndexEmblem, this.disableChangeButton, this.detailButton, this.shipSlotShutter) : this.addChild(this.shipInfo, this.deckIndexEmblem, this.changeButton, this.detailButton, this.shipBannerDragArea, this.shipSlotShutter), this.memShipId = n, this.slotNo = t
+            }, e.prototype.close = function () {
+                this.shipSlotShutter.close(), this.deckIndexEmblem.visible = !1
+            }, e.prototype.closeAnimation = function (t, e) {
+                void 0 === e && (e = 250), this.deckIndexEmblem.visible = !1, this.shipSlotShutter.closeAnimation(function () {
+                    t()
+                }, e)
+            }, e.prototype.open = function () {
+                this.deckIndexEmblem.visible = !0, this.shipSlotShutter.open()
+            }, e.prototype.openAnimation = function (t, e) {
+                var i = this;
+                void 0 === e && (e = 250), this.shipSlotShutter.openAnimation(function () {
+                    i.deckIndexEmblem.visible = !0, t()
+                }, e)
+            }, e.prototype.updateEmpty = function (t, e) {
+                this.removeChildren(), this.memShipId = null, this.slotNo = t, e ? this.addChild(this.shipSlotShutter, this.changeButton) : this.addChild(this.shipSlotShutter)
+            }, e
+        }(PIXI.Container);
+    e.ShipSlot = l
 }

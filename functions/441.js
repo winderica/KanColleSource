@@ -19,91 +19,210 @@ const function441 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = (i(0), i(42)),
-        s = i(72),
-        a = i(27),
-        _ = i(19),
-        u = i(29),
-        l = i(38),
-        c = i(6),
-        h = i(1340),
-        p = i(140),
-        d = i(180),
-        f = i(141),
-        y = i(182),
-        m = i(443),
-        g = function (t) {
-            function e() {
-                var e = null !== t && t.apply(this, arguments) || this;
-                return e._showResult = function () {
-                    if (null == e._scene.data.model.gekimetsu_data) {
-                        var t = e._scene.view.layer_info2,
-                            i = new h.AirUnitAttackResultTelop,
-                            n = e._data.plane_count_f.count,
-                            o = e._data.plane_count_f.count_stage2;
-                        i.play(t, n, o)
-                    }
-                }, e
+    var o = i(0),
+        r = i(2),
+        s = i(19),
+        a = i(50),
+        _ = i(55),
+        u = i(25),
+        l = i(7),
+        c = i(68),
+        h = function (t) {
+            function e(e, i, n, o, r, s, a, _, u) {
+                void 0 === u && (u = !0);
+                var l = t.call(this) || this;
+                return l._map_id = e, l._mapInfo = i, l._view = n, l._stage = o, l._from = l._mapInfo.spots.length, l._mapAnime = r, l._gaugeAnime = s, l._enemyAnime = a, l._shutterAnime = _, l._gaugeLeft = u, l
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data_", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new p.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._mapAnime ? this._loadInfo() : this._hideEnemy()
+            }, e.prototype._loadInfo = function () {
                 var t = this,
-                    e = new a.ParallelTask,
-                    i = createjs.Tween.get(null).call(c.SE.play, ["114"]).wait(3450);
-                e.add((new _.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
-                    t._showResult(), t._fireDogFight()
-                }, 750)), e.add(new s.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 900)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 1050)), e.add(new s.FuncTask(function () {
-                    t._antiAircraft()
-                }, 1200)), e.add(new s.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 1350)), e.add((new u.SerialTask).add(new l.WaitTask(1700)).add((new a.ParallelTask).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 2950)), e.add(new s.FuncTask(function () {
-                    t._showDamage()
-                }, 3300)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+                    e = (this._mapInfo.spots.length, this._mapInfo.spots.length),
+                    i = this._getPath("info" + e + ".json");
+                axios.get(i).then(function (i) {
+                    var n = l.ObjUtil.getObject(i, "data");
+                    t._mapInfo.add(n), t._loadSpriteSheet(e)
+                }).catch(function (e) {
+                    t._failedEnd()
                 })
-            }, e.prototype._antiAircraft = function () {
-                null == this._scene.data.model.gekimetsu_data && t.prototype._antiAircraft.call(this)
-            }, e.prototype._showSeikuResult = function () {
-                if (null != this._scene.data.model.gekimetsu_data) {
-                    var t = this._scene.view.layer_content;
-                    new m.TaskAirWarShowSeiku(t, this.data_.seiku).start()
+            }, e.prototype._loadSpriteSheet = function (t) {
+                var e = this,
+                    i = this._getPath("image" + t + ".json");
+                if (null != PIXI.utils.TextureCache[i + "_image"]) this._createLabel();
+                else {
+                    var n = new PIXI.loaders.Loader;
+                    n.add(i), n.load(function () {
+                        e._createLabel()
+                    })
                 }
-            }, e.prototype._createFriendPlanes = function () {
-                for (var t = (this.data_.airunit_id, this.data_.squadrons.length), e = o.default.height / Math.max(t, 8), i = o.default.height / 2 - e * t / 2, n = [], r = 0; r < t; r++) {
-                    var s = this.data_.squadrons[r],
-                        a = s.mst_id,
-                        _ = new PIXI.Point(-75, i + e * r + .5 * e);
-                    if (s.count > 0) {
-                        var u = new f.Plane,
-                            l = new PIXI.Point(45, 18);
-                        u.initialize(a, !0, _, l), n.push(u)
-                    }
-                    if (s.count > 6) {
-                        var u = new f.Plane,
-                            l = new PIXI.Point(18, -27);
-                        u.initialize(a, !0, _, l), n.push(u)
+            }, e.prototype._createLabel = function () {
+                for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = _.MapUtil.toResKey(this._map_id),
+                        r = "map" + o + "_" + n.img,
+                        s = PIXI.Texture.fromFrame(r);
+                    this._view.map.bg.addLabel(s, n.x, n.y)
+                }
+                this._createSpots()
+            }, e.prototype._createSpots = function () {
+                for (var t = this._mapInfo.spots, e = this._from; e < t.length; e++) {
+                    var i = t[e].no;
+                    this._view.map.addSpot(this._map_id, i, this._mapInfo), null != t[e].landing && this._view.map.spotLayer.addFlag(i, t[e].landing.x, t[e].landing.y)
+                }
+                this._createAirBase()
+            }, e.prototype._createAirBase = function () {
+                var t = this._mapInfo.getAirBasePos();
+                null != t && this._view.map.airbaseLayer.create(t), this._initCellColor()
+            }, e.prototype._initCellColor = function () {
+                for (var t = [], e = this._view.map.spotLayer.getAllSpots(), i = this._from; i < e.length; i++) {
+                    var n = e[i];
+                    if (!(t.indexOf(n.no) >= 0)) {
+                        for (var o = 0, r = this._mapInfo.getSameSpotData(n.no), s = 0, a = r; s < a.length; s++) {
+                            var _ = a[s];
+                            t.push(_.no), 0 == o && (o = _.color)
+                        }
+                        var u = r[0].no;
+                        this._view.map.spotLayer.getSpot(u).setColor(o)
                     }
                 }
-                this._canvas.addPlanes_f(n)
-            }, e.prototype._getPlaneType = function () {
-                return r.PlaneConst.getAirUnitPlaneType()
+                this.setView()
+            }, e.prototype.setView = function () {
+                this._openSpot = [];
+                for (var t = this._view.map.spotLayer.getAllSpots(), e = this._from; e < t.length; e++) this._openSpot.push(t[e]);
+                this._openSpot.length > 0 ? (this._initView(), this._hideEnemy()) : this._endTask()
+            }, e.prototype._initView = function () {
+                var t = this._view.map.bg.extraLayer;
+                if (t)
+                    for (var e = 0; e < t.children.length; e++) {
+                        var i = t.getChildAt(e);
+                        i.scale.set(0), i.alpha = 0
+                    }
+                for (var n = 0, o = this._openSpot; n < o.length; n++) {
+                    var r = o[n],
+                        s = r.point;
+                    null != s && (s.scale.set(0), s.alpha = 0);
+                    var a = r.route;
+                    null != a && (a.scale.set(0), a.alpha = 0)
+                }
+            }, e.prototype._hideEnemy = function () {
+                var t = this;
+                this._enemyAnime ? createjs.Tween.get(null).wait(2e3).call(function () {
+                    t._view.map.plane_layer.hideAll(), t._view.map.enemy_layer.hide(function () {
+                        t._loadGaugeResource()
+                    })
+                }) : this._loadGaugeResource()
+            }, e.prototype._loadGaugeResource = function () {
+                var t = this;
+                if (this._gaugeAnime) {
+                    this._view.gauge_layer.visible = !1;
+                    var e = Math.floor(this._map_id / 10),
+                        i = this._map_id % 10,
+                        n = this._stage + 1,
+                        r = c.GaugeSetModel.createKey(e, i, n),
+                        s = o.default.resources.gauge.createLoaderVertical();
+                    s.add(r), s.load(function () {
+                        t._showMap()
+                    })
+                } else this._showMap()
+            }, e.prototype._showMap = function () {
+                var t = this;
+                if (this._shutterAnime) {
+                    var e = new a.Shutter;
+                    e.initializeDark(), e.close(0), this._view.addChild(e), this._view.shutter.alpha = 0, this._view.map.alpha = 1, this._view.upper.alpha = 1, this._view.gauge_layer.alpha = 1, createjs.Tween.get(null).wait(200).call(function () {
+                        e.open(), e.once("opened", function () {
+                            t._view.removeChild(e), createjs.Tween.get(null).wait(1e3).call(function () {
+                                t.animation()
+                            })
+                        })
+                    })
+                } else this.animation()
+            }, e.prototype.animation = function () {
+                var t = this;
+                if (this._mapAnime) {
+                    var e = new s.TweenTask,
+                        i = this._view.map.bg.extraLayer;
+                    if (i)
+                        for (var n = 0; n < i.children.length; n++) {
+                            var o = i.getChildAt(n),
+                                r = createjs.Tween.get(o);
+                            r.to({
+                                scaleX: 1.2,
+                                scaleY: 1.2,
+                                alpha: 1
+                            }, 200), r.to({
+                                scaleX: 1,
+                                scaleY: 1
+                            }, 100), e.addTween(r)
+                        }
+                    for (var a = 0, _ = this._openSpot; a < _.length; a++) {
+                        var u = _[a],
+                            l = u.point;
+                        if (null != l) {
+                            var r = createjs.Tween.get(l);
+                            r.to({
+                                scaleX: 1.2,
+                                scaleY: 1.2,
+                                alpha: 1
+                            }, 200), r.to({
+                                scaleX: 1,
+                                scaleY: 1
+                            }, 100), e.addTween(r)
+                        }
+                        var c = u.route;
+                        if (null != c) {
+                            var r = createjs.Tween.get(c);
+                            r.wait(300), r.to({
+                                scaleX: 1.2,
+                                scaleY: 1.2,
+                                alpha: 1
+                            }, 200), r.to({
+                                scaleX: 1,
+                                scaleY: 1
+                            }, 100), e.addTween(r)
+                        }
+                    }
+                    e.start(function () {
+                        t._showGauge()
+                    })
+                } else this._showGauge()
+            }, e.prototype._showGauge = function () {
+                var t = this;
+                if (this._gaugeAnime) {
+                    var e = Math.floor(this._map_id / 10),
+                        i = this._map_id % 10,
+                        n = this._stage + 1,
+                        r = c.GaugeSetModel.createKey(e, i, n),
+                        s = o.default.resources.gauge.getGaugeInfo(r);
+                    if (null == s) this._wait();
+                    else {
+                        var a = s.vertical;
+                        null != a && this._view.gauge_layer.initialize(a, 100, 100), this._view.gauge_layer.visible = !0;
+                        var _ = this._view.gauge_layer.createShowTween(this._gaugeLeft);
+                        _.wait(1500), _.call(function () {
+                            t._wait()
+                        })
+                    }
+                } else this._wait()
+            }, e.prototype._wait = function () {
+                var t = this;
+                createjs.Tween.get(null).wait(3e3).call(function () {
+                    t._hideMap()
+                })
+            }, e.prototype._hideMap = function () {
+                var t = this;
+                if (this._shutterAnime) {
+                    var e = new a.Shutter;
+                    e.initializeDark(), this._view.addChild(e), createjs.Tween.get(null).wait(200).call(function () {
+                        e.close(), e.once("closed", function () {
+                            t._view.shutter.alpha = 1, t._view.map.alpha = 0, t._view.upper.alpha = 0, t._view.gauge_layer.alpha = 0, t._view.removeChild(e), t._endTask()
+                        })
+                    })
+                } else this._endTask()
+            }, e.prototype._getPath = function (t) {
+                var e = _.MapUtil.toAreaID(this._map_id),
+                    i = _.MapUtil.toMapNo(this._map_id);
+                return o.default.settings.path_root + "resources/map/" + u.MathUtil.zeroPadding(e, 3) + "/" + u.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
-        }(d.TaskAircraftFlightBase);
-    e.TaskAirUnit = g
+        }(r.TaskBase);
+    e.EventTaskCellOpen = h
 }

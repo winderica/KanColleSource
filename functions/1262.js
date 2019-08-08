@@ -19,121 +19,44 @@ const function1262 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(124),
-        r = i(176),
-        s = i(1),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
+    var o = i(2),
+        r = i(29),
+        s = i(20),
+        a = i(1263),
+        _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._buff = function () {
+                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
+                    e.start(o._hideBalloon)
+                }, o._hideBalloon = function () {
+                    var t = o._balloon.y + 23;
+                    createjs.Tween.get(o._balloon).to({
+                        y: t,
+                        alpha: 0
+                    }, 100).call(function () {
+                        o._balloon.parent.removeChild(o._balloon), o._endTask()
+                    })
+                }, o._scene = e, o._buff_count = i, o._offset = n, o
             }
-            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
-                get: function () {
-                    return this._enabled
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i, n) {
-                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
-            }, e.prototype.activate = function () {
-                1 == this._enabled && this._btn.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn.deactivate()
-            }, e.prototype.dispose = function () {
-                this._btn.dispose()
-            }, e.prototype._getTexture = function (t, e) {
-                switch (t) {
-                    case 1:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(14);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(15);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(16);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(17)
-                        }
-                        break;
-                    case 2:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(34);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(35);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(36);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(37)
-                        }
-                        break;
-                    case 3:
-                        switch (e) {
-                            case 11:
-                                return r.SALLY_JIN.getTexture(39);
-                            case 12:
-                                return r.SALLY_JIN.getTexture(40);
-                            case 13:
-                                return r.SALLY_JIN.getTexture(41);
-                            case 14:
-                                return r.SALLY_JIN.getTexture(42)
-                        }
-                }
-                return PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._start = function () {
+                this._showBalloon()
+            }, e.prototype._showBalloon = function () {
+                var t = this._scene.view.map.ship_icon;
+                this._balloon = new u, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
+                    y: this._balloon.y - 23,
+                    alpha: 1
+                }, 100).wait(200).call(this._buff)
             }, e
-        }(PIXI.Container);
-    e.FormationBoxCombined = a;
-    var _ = function (t) {
+        }(o.TaskBase);
+    e.TaskReplenishmentBalloonEffect = _;
+    var u = function (t) {
         function e() {
             var e = t.call(this) || this;
-            return e._onMouseOver = function () {
-                e._update(!0)
-            }, e._onMouseOut = function () {
-                e._update(!1)
-            }, e._onClick = function () {
-                null != e._cb_onClick && e._cb_onClick(e._type)
-            }, e.interactive = !0, e
+            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
         }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            this._type = t, this._cb_onClick = e, this._update(!1)
-        }, e.prototype.activate = function () {
-            if (1 != this.buttonMode) {
-                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
-                var t = o.InteractiveUtil.isOnMouse(this);
-                this._update(t)
-            }
-        }, e.prototype.deactivate = function () {
-            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
-        }, e.prototype._update = function (t) {
-            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
-        }, e.prototype._getTexture = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(19);
-                case 12:
-                    return r.SALLY_JIN.getTexture(21);
-                case 13:
-                    return r.SALLY_JIN.getTexture(23);
-                case 14:
-                    return r.SALLY_JIN.getTexture(25);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-        }, e.prototype._getTextureOn = function () {
-            switch (this._type) {
-                case 11:
-                    return r.SALLY_JIN.getTexture(20);
-                case 12:
-                    return r.SALLY_JIN.getTexture(22);
-                case 13:
-                    return r.SALLY_JIN.getTexture(24);
-                case 14:
-                    return r.SALLY_JIN.getTexture(26);
-                default:
-                    return PIXI.Texture.EMPTY
-            }
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.MAP_COMMON.getTexture(49), this._icon.texture = s.MAP_COMMON.getTexture(77), this._label.texture = s.MAP_COMMON.getTexture(175)
         }, e
-    }(PIXI.Sprite)
+    }(PIXI.Container)
 }

@@ -19,17 +19,26 @@ const function409 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._url = "api_get_member/questlist", o._page_no = e, o._type = i, o._data_holder = n, o
+    var o = i(0),
+        r = i(10),
+        s = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_furniture/buy", n._model = e, n._discount = i, n
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_page_no = this._page_no, this._post_data.api_tab_id = this._type, t.prototype._connect.call(this)
+                this._post_data.api_type = this._model.type, this._post_data.api_no = this._model.no, 1 == this._discount && (this._post_data.api_discount_flag = 1), t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                this._data_holder.update(this._type, this._raw_data), this._data_holder = null, t.prototype._completedEnd.call(this)
+                if (1 == this._discount || 1 == this._model.isNeedCraftsman()) {
+                    var e = o.default.model.useItem.get(52);
+                    e.__setCount__(e.count - 1)
+                }
+                var i = this._model.price;
+                1 == this._discount && (i = this._model.getDiscountPrice());
+                var n = o.default.model.useItem.get(44);
+                n.__setCount__(n.count - i), this._model.updateHasFlag(!0), t.prototype._completedEnd.call(this)
             }, e
-        }(o.APIBase);
-    e.DutyListAPI = r
+        }(r.APIBase);
+    e.FurnitureExchangeAPI = s
 }

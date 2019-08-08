@@ -19,16 +19,39 @@ const function398 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
+    var o = i(1109),
         r = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+            function e(e) {
+                var i = t.call(this) || this;
+                i._btns = [], i._btns.push(new o.TabBtn(0, e)), i._btns.push(new o.TabBtn(1, e)), i._btns.push(new o.TabBtn(2, e));
+                for (var n = 0; n < i._btns.length; n++) {
+                    var r = i._btns[n];
+                    r.y = 61 * n, i.addChild(r)
+                }
+                return i
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._icon && this._icon.dispose(), this._btn_yes.dispose(), this._btn_no.dispose()
-            }, e.prototype._initialize = function (t, e) {
-                this._icon.initialize(t, e), this._btn_yes.initialize(o.ITEM_ILIST_MEDAL.getTexture(6)), this._btn_no.initialize(o.ITEM_ILIST_MEDAL.getTexture(0)), this._btn_yes.activate(), this._btn_no.activate()
+            return n(e, t), e.prototype.initialize = function (t) {
+                for (var e = 0; e < this._btns.length; e++) {
+                    this._btns[e].initialize(t)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = n.target == t
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(PIXI.Sprite);
-    e.ConfirmViewBase = r
+        }(PIXI.Container);
+    e.TabContainer = r
 }
