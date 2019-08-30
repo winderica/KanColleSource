@@ -19,103 +19,67 @@ const function1336 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(19),
-        s = i(16),
-        a = [{
-            x: 0,
-            y: 0,
-            delay: 0
-        }, {
-            x: 0,
-            y: -23,
-            delay: 60
-        }, {
-            x: -45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 45,
-            y: 15,
-            delay: 60
-        }, {
-            x: 0,
-            y: 30,
-            delay: 120
-        }, {
-            x: -75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 75,
-            y: -38,
-            delay: 120
-        }, {
-            x: 0,
-            y: -53,
-            delay: 180
-        }, {
-            x: -98,
-            y: 45,
-            delay: 180
-        }, {
-            x: 98,
-            y: 45,
-            delay: 180
-        }],
-        _ = function (t) {
+    var o = i(0),
+        r = i(1),
+        s = i(2),
+        a = i(8),
+        _ = i(81),
+        l = i(13),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._layer = e, n._pos = i, n
+                return n._onClick = function () {
+                    n._messagebox.deactivate(), n._layer.removeChild(n._click_area), createjs.Tween.get(n._fade).to({
+                        alpha: 0
+                    }, 500).wait(300).call(function () {
+                        n._layer.removeChild(n._messagebox), n._layer.removeChild(n._chara), n._layer.removeChild(n._fade), n._endTask()
+                    }), createjs.Tween.get(n._chara).to({
+                        y: n._chara.y + 327,
+                        alpha: 0
+                    }, 300), createjs.Tween.get(n._messagebox).to({
+                        y: n._messagebox.y + 98,
+                        alpha: 0
+                    }, 100)
+                }, n._layer = e, n._model = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._container = new PIXI.Container, this._container.x = this._pos.x, this._container.y = this._pos.y, this._layer.addChild(this._container);
-                for (var e = new r.TweenTask, i = 0, n = a; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (i) {
-                        var n = new u;
-                        n.Initialize(), n.x = i.x + 24 * Math.random() - 12, n.y = i.y + 6 * Math.random() - 3, n.x -= 18, n.y -= 18, n.alpha = 0;
-                        var o = .6 * Math.random(),
-                            r = createjs.Tween.get(n);
-                        r.wait(i.delay), r.call(function () {
-                            n.activate(), t._container.addChild(n)
-                        }), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * o), r.to({
-                            alpha: 0
-                        }, 100), r.wait(100), r.to({
-                            alpha: 1
-                        }, 100), r.wait(.2 + Math.random() * (.6 - o)), r.to({
-                            alpha: 0
-                        }, 200), r.call(function () {
-                            t._container.removeChild(n), n.deactivate()
-                        }), e.addTween(r)
-                    }(o)
-                }
-                e.start(function () {
-                    t._layer.removeChild(t._container), t._endTask()
+                this._showFade()
+            }, e.prototype._showFade = function () {
+                this._fade = new a.AreaBox(1), this._fade.alpha = 0, this._layer.addChild(this._fade), createjs.Tween.get(this._fade).to({
+                    alpha: 1
+                }, 500), this._loadResource()
+            }, e.prototype._loadResource = function () {
+                var t = this,
+                    e = this._model.mst_id,
+                    i = new l.ShipLoader;
+                i.add(e, !1, "full"), i.load(function () {
+                    t._showChara()
+                })
+            }, e.prototype._showChara = function () {
+                var t = this,
+                    e = this._model.mst_id,
+                    i = o.default.resources.getShip(e, !1, "full");
+                this._chara = new PIXI.Sprite(i), this._chara.x = this._model.offset_x, this._chara.y = this._model.offset_y + 327, this._chara.alpha = 0, this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
+                    y: this._model.offset_y,
+                    alpha: 1
+                }, 800).call(function () {
+                    t._showMessageBox()
+                })
+            }, e.prototype._showMessageBox = function () {
+                var t = this,
+                    e = this._model.stype,
+                    i = this._model.name,
+                    n = this._model.message;
+                this._messagebox = new _.MessageBox(!1), this._messagebox.initializeForShip(e, i, n), this._messagebox.y = 578, this._layer.addChild(this._messagebox);
+                var s = this._messagebox.y - 98;
+                createjs.Tween.get(this._messagebox).to({
+                    y: s
+                }, 200).call(function () {
+                    t._messagebox.activate(), o.default.sound.voice.play("9998", t._model.voice_id), t._click_area = new a.AreaBox(0), t._click_area.buttonMode = !0, t._layer.addChild(t._click_area), t._click_area.once(r.EventType.CLICK, t._onClick)
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, this._pos = null, this._container = null, t.prototype._endTask.call(this)
+                this._layer = null, this._model = null, this._fade = null, this._chara = null, this._messagebox.dispose(), this._messagebox = null, this._click_area = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskBannerParticle = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._update = function (t) {
-                e._img.texture = 1 == t ? s.BATTLE_MAIN.getTexture(62) : s.BATTLE_MAIN.getTexture(63), e._img.x = e._img.width / 2, e._img.y = e._img.height / 2
-            }, e._img = new PIXI.Sprite, e.addChild(e._img), e
-        }
-        return n(e, t), e.prototype.Initialize = function () {
-            this._update(!0)
-        }, e.prototype.activate = function () {
-            null == this._t && (this._update(!0), this._t = createjs.Tween.get(null, {
-                loop: !0
-            }).wait(300).call(this._update, [!1]).wait(300).call(this._update, [!0]))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+        }(s.TaskBase);
+    e.TaskBossCutin = u
 }

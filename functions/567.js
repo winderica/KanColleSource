@@ -19,13 +19,13 @@ const function567 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(274),
+    var o = i(275),
         r = i(25),
         s = i(190),
         a = i(568),
         _ = i(569),
-        u = i(570),
-        l = i(572),
+        l = i(570),
+        u = i(572),
         c = i(582),
         h = function (t) {
             function e() {
@@ -42,7 +42,7 @@ const function567 = function (t, e, i) {
                         }
                         e._timeChkCount++, requestAnimationFrame(e.animate), e._Floor.animate(), e._Wall.animate(), e._Window.animate(), e._Object.animate(), e._Chest.animate(), e._Desk.animate()
                     } else e._kaikyo.finalize(), e._shogo.stopAnimation(), e._Floor.restart(), e._Wall.restart(), e._Window.restart(), e._Object.restart(), e._Chest.restart(), e._Desk.restart()
-                }, e._Floor = new l.Furniture(0), e._Wall = new l.Furniture(1), e._Window = new l.Furniture(2), e._Object = new l.Furniture(3), e._Chest = new l.Furniture(4), e._Desk = new l.Furniture(5), e._outside = new a.FurnitureOutside, e._outside.x = 294, e._sakura = new s.Sakura, e._isSakura = !1, e.addChild(e._Floor), e.addChild(e._Wall), e.addChild(e._outside), e.addChild(e._Window), e.addChild(e._Object), e.addChild(e._sakura), e.addChild(e._Chest), e.addChild(e._Desk), e._kaikyo = new _.Kaikyo, e.addChild(e._kaikyo), e._shogo = new u.Shogo, e.addChild(e._shogo), e
+                }, e._Floor = new u.Furniture(0), e._Wall = new u.Furniture(1), e._Window = new u.Furniture(2), e._Object = new u.Furniture(3), e._Chest = new u.Furniture(4), e._Desk = new u.Furniture(5), e._outside = new a.FurnitureOutside, e._outside.x = 294, e._sakura = new s.Sakura, e._isSakura = !1, e.addChild(e._Floor), e.addChild(e._Wall), e.addChild(e._outside), e.addChild(e._Window), e.addChild(e._Object), e.addChild(e._sakura), e.addChild(e._Chest), e.addChild(e._Desk), e._kaikyo = new _.Kaikyo, e.addChild(e._kaikyo), e._shogo = new l.Shogo, e.addChild(e._shogo), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "outside", {
                 get: function () {

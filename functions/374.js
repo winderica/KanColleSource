@@ -19,35 +19,24 @@ const function374 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(234),
-        r = function (t) {
+    var o = i(30),
+        r = i(1),
+        s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                i.IMAGE_WIDTH = 39, i.PADDING = 16;
-                var n = new PIXI.Container,
-                    r = new Array,
-                    s = 0;
-                i._shadowType = e, i._shadowType == o.ShadowType.DETAIL ? (i.IMAGE_WIDTH = 41, i.PADDING = 2) : (i.IMAGE_WIDTH = 39, i.PADDING = 16);
-                for (var a = 0; a < 6; a++) {
-                    var _ = new o.ShipShadow;
-                    _.position.x = s, r.push(_), n.addChild(_), s += i.IMAGE_WIDTH + i.PADDING
-                }
-                return i.addChild(n), i._shipShadows = r, i._container = n, i
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i.interactive = !0, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                for (var e = 0; e < this._shipShadows.length; e++) {
-                    var i = this._shipShadows[e];
-                    if (i.visible = !1, e < t.length) {
-                        var n = t[e];
-                        i.update(n, this._shadowType), i.visible = !0
-                    }
-                }
-                this._shadowType == o.ShadowType.DETAIL ? this._container.x = -t.length * this.IMAGE_WIDTH : this._container.x = -t.length * (this.IMAGE_WIDTH + this.PADDING)
+            return n(e, t), e.prototype.initialize = function () {
+                this.texture = o.SALLY_COMMON.getTexture(26)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick))
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._container.removeChildren(), this._shipShadows.forEach(function (t) {
-                    return t.dispose()
-                }), this._container = null, this._shipShadows = null
+                this.deactivate(), this._cb_onClick = null
             }, e
-        }(PIXI.Container);
-    e.FleetShadow = r
+        }(PIXI.Sprite);
+    e.CloseBtn = s
 }

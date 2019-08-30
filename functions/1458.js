@@ -19,44 +19,17 @@ const function1458 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
+    var o = i(15),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e.alpha = 0, e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.BATTLE_MAIN.getTexture(110)
-            }, e.prototype.play = function () {
-                var t = this,
-                    e = {
-                        a: 0,
-                        r: 255,
-                        g: 255,
-                        b: 255
-                    },
-                    i = function (e) {
-                        var i = e.target.target;
-                        t.alpha = i.a;
-                        var n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t.tint = n
-                    };
-                createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: 1
-                }, 100).to({
-                    r: 128
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    a: 0
-                }, 100).call(function () {
-                    null != t.parent && t.parent.removeChild(t)
-                })
+            return n(e, t), e.prototype.draw = function (t) {
+                t = Math.max(t, 0), t = Math.min(t, 1), this.clear();
+                var e = o.MathUtil.getColor(t),
+                    i = 60 * t;
+                this.beginFill(e), this.drawRect(0, 60 - i, 10, i), this.endFill()
             }, e
-        }(PIXI.Sprite);
-    e.Shield = r
+        }(PIXI.Graphics);
+    e.BannerHPBar = r
 }

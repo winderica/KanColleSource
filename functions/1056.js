@@ -19,21 +19,39 @@ const function1056 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(0),
+        r = i(11),
+        s = i(1057),
+        a = i(15),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new r.UIImageLoader("record");
-                e.add("record_parts.json").add("record_mini.json").add("record_menu.json"), e.load(function () {
-                    t._endTask()
+                this._loadResources()
+            }, e.prototype._loadResources = function () {
+                var t = this;
+                (new s.TaskLoadResources).start(function () {
+                    t._showTopView()
                 })
+            }, e.prototype._showTopView = function () {
+                this._scene.initialize(), this._scene.startTopTask(), this._scene = null, this._endTask()
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(r.TaskBase);
+    e.PreInitializeTask = _;
+    var l = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._scene = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._playBGM(), a.EditTextBoxUtil.setVisibility(!0)
+        }, e.prototype._playBGM = function () {
+            o.default.sound.bgm.play(102), this._startScene()
+        }, e.prototype._startScene = function () {
+            this._endTask()
+        }, e
+    }(r.TaskBase);
+    e.InitializeTask = l
 }

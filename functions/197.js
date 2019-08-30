@@ -29,8 +29,8 @@ const function197 = function (t, e, i) {
                     s = new PIXI.Sprite(i),
                     a = new PIXI.Sprite(i),
                     _ = new PIXI.Sprite(i),
-                    u = new PIXI.Sprite(i);
-                return e.addChild(n, r, s, a, _, u), a.scale.x = _.scale.x = u.scale.x = -1, n.anchor.set(.5, .613793103448276), r.anchor.set(.5, .613793103448276), s.anchor.set(.5, .613793103448276), a.anchor.set(.5, .613793103448276), _.anchor.set(.5, .613793103448276), u.anchor.set(.5, .613793103448276), n.alpha = r.alpha = s.alpha = 0, a.alpha = _.alpha = u.alpha = 0, e.kemuri_L_0 = n, e.kemuri_L_1 = r, e.kemuri_L_2 = s, e.kemuri_R_0 = a, e.kemuri_R_1 = _, e.kemuri_R_2 = u, e.stop(), e
+                    l = new PIXI.Sprite(i);
+                return e.addChild(n, r, s, a, _, l), a.scale.x = _.scale.x = l.scale.x = -1, n.anchor.set(.5, .613793103448276), r.anchor.set(.5, .613793103448276), s.anchor.set(.5, .613793103448276), a.anchor.set(.5, .613793103448276), _.anchor.set(.5, .613793103448276), l.anchor.set(.5, .613793103448276), n.alpha = r.alpha = s.alpha = 0, a.alpha = _.alpha = l.alpha = 0, e.kemuri_L_0 = n, e.kemuri_L_1 = r, e.kemuri_L_2 = s, e.kemuri_R_0 = a, e.kemuri_R_1 = _, e.kemuri_R_2 = l, e.stop(), e
             }
             return n(e, t), e.prototype.play = function (t) {
                 switch (t) {

@@ -31,11 +31,11 @@ const function89 = function (t, e, i) {
             return e += 0 == t ? 0 : 0 < t % n.RemodelConst.ITEM_NUM ? 1 : 0, e = Math.floor(e)
         }
 
-        function u(t, e) {
+        function l(t, e) {
             return 0 == t.isExtraSlot() && t.level >= n.RemodelConst.EXTRA_SLOT_LEVEL && 0 < e
         }
 
-        function l(t) {
+        function u(t) {
             var e = new Array,
                 i = t.powUp;
             0 < i[0] && e.push(o.PowerUpCategory.Karyoku), 0 < i[1] && e.push(o.PowerUpCategory.Raisou), 0 < i[2] && e.push(o.PowerUpCategory.Taiku), 0 < i[3] && e.push(o.PowerUpCategory.Soukou);
@@ -47,10 +47,10 @@ const function89 = function (t, e, i) {
             function i(t, e, i, n) {
                 return t.getClassType() == e && (void 0 == i[t.yomi] && (i[t.yomi] = 0), ++i[t.yomi] >= n)
             }
-            for (var n = t[0], o = t[1], r = o.hougMax - o.hougMin, s = o.raigMax - o.raigMin, _ = o.tykuMax - o.tykuMin, u = o.soukMax - o.soukMin, l = 0, c = 0, h = 0, p = 0, d = 0, f = 0; f < e.length; f++) {
+            for (var n = t[0], o = t[1], r = o.hougMax - o.hougMin, s = o.raigMax - o.raigMin, _ = o.tykuMax - o.tykuMin, l = o.soukMax - o.soukMin, u = 0, c = 0, h = 0, p = 0, d = 0, f = 0; f < e.length; f++) {
                 var y = e[f],
                     m = y.powUp;
-                l += m[0], c += m[1], h += m[2], p += m[3], d += m[4]
+                u += m[0], c += m[1], h += m[2], p += m[3], d += m[4]
             }
             for (var g = 0, v = {}, b = {}, w = {}, x = !1, I = !1, f = 0; f < e.length; f++) {
                 var T = e[f],
@@ -72,17 +72,17 @@ const function89 = function (t, e, i) {
                 }
                 M ? S = !0 : x && [62, 72].indexOf(k) >= 0 ? S = !0 : I && [72, 62, 41, 37].indexOf(k) >= 0 && (S = !0)
             }
-            l = Math.floor(1.2 * l + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3), d = Math.floor(1.2 * d + .3);
-            var E = n.gradeUpHoug + l,
+            u = Math.floor(1.2 * u + .3), c = Math.floor(1.2 * c + .3), h = Math.floor(1.2 * h + .3), p = Math.floor(1.2 * p + .3), d = Math.floor(1.2 * d + .3);
+            var E = n.gradeUpHoug + u,
                 j = n.gradeUpRaig + c,
                 N = n.gradeUpTyku + h,
                 L = n.gradeUpSouk + p;
-            r <= E && (l = r - n.gradeUpHoug), s <= j && (c = s - n.gradeUpRaig), _ <= N && (h = _ - n.gradeUpTyku), u <= L && (p = u - n.gradeUpSouk);
+            r <= E && (u = r - n.gradeUpHoug), s <= j && (c = s - n.gradeUpRaig), _ <= N && (h = _ - n.gradeUpTyku), l <= L && (p = l - n.gradeUpSouk);
             var B = Math.max(o.luckMax - o.luckMin - n.gradeUpLuck, 0);
             d = Math.min(d, B);
             var R = !1,
                 D = !1;
-            return g >= 1 && (R = !0, D = !0, B <= 0 && (D = !1), n.gradeUpTaisen >= n.VAS ? R = !1 : n.taisenMax <= 0 && (R = !1)), new a.PowerUpCheckModel(l, c, h, p, d, D, S, R)
+            return g >= 1 && (R = !0, D = !0, B <= 0 && (D = !1), n.gradeUpTaisen >= n.VAS ? R = !1 : n.taisenMax <= 0 && (R = !1)), new a.PowerUpCheckModel(u, c, h, p, d, D, S, R)
         }
 
         function h() {
@@ -102,24 +102,24 @@ const function89 = function (t, e, i) {
                 -1 < n.indexOf(t) && a.push(t)
             });
             var _ = s.default.model.slot.createUnsetList(a),
-                u = []; - 1 < r.indexOf(17) && (u = s.default.model.slot.createUnsetListFromMstId(33));
-            for (var l = [], c = (new Array, 0); c < o.length; c++) {
+                l = []; - 1 < r.indexOf(17) && (l = s.default.model.slot.createUnsetListFromMstId(33));
+            for (var u = [], c = (new Array, 0); c < o.length; c++) {
                 var h = o[c],
                     p = s.default.model.slot.createUnsetListFromMstId(h);
-                l = l.concat(p)
+                u = u.concat(p)
             }
             for (var d = 0; d < _.length; d++) {
                 var f = _[d],
                     y = -1 < i.indexOf(f) == 0;
                 y && i.push(f)
             }
-            for (var d = 0; d < u.length; d++) {
-                var f = u[d],
+            for (var d = 0; d < l.length; d++) {
+                var f = l[d],
                     y = -1 < i.indexOf(f) == 0;
                 y && i.push(f)
             }
-            for (var d = 0; d < l.length; d++) {
-                var f = l[d],
+            for (var d = 0; d < u.length; d++) {
+                var f = u[d],
                     y = -1 < i.indexOf(f) == 0;
                 y && i.push(f)
             }
@@ -135,8 +135,8 @@ const function89 = function (t, e, i) {
             o.push(_), a.forEach(function (t) {
                 t && o.push(t.memID)
             });
-            var u = [],
-                l = {},
+            var l = [],
+                u = {},
                 c = s.default.model.shipType.getAllExId(),
                 h = s.default.model.slot.getExtraEquipShipData(e),
                 p = s.default.model.equip.get(e).equip_type,
@@ -161,25 +161,25 @@ const function89 = function (t, e, i) {
             }
             for (var w = 0; w < f[0].length; w++) {
                 var I = f[0][w],
-                    T = -1 < u.indexOf(I) == 0;
-                T && (u.push(I), l[I.memID] = f[1][I.memID])
+                    T = -1 < l.indexOf(I) == 0;
+                T && (l.push(I), u[I.memID] = f[1][I.memID])
             }
             for (var w = 0; w < y[0].length; w++) {
                 var I = y[0][w],
-                    T = -1 < u.indexOf(I) == 0;
-                T && (u.push(I), l[I.memID] = y[1][I.memID])
+                    T = -1 < l.indexOf(I) == 0;
+                T && (l.push(I), u[I.memID] = y[1][I.memID])
             }
             for (var w = 0; w < m[0].length; w++) {
                 var I = m[0][w],
-                    T = -1 < u.indexOf(I) == 0;
-                T && (u.push(I), l[I.memID] = m[1][I.memID])
+                    T = -1 < l.indexOf(I) == 0;
+                T && (l.push(I), u[I.memID] = m[1][I.memID])
             }
-            return u = u.filter(function (t) {
+            return l = l.filter(function (t) {
                 return -1 == o.indexOf(t.memID)
             }), o.forEach(function (t) {
-                delete l[t]
-            }), [u, l]
+                delete u[t]
+            }), [l, u]
         }
-        t.canKaizo = e, t.isSpKaizo = i, t.calcPageCount = _, t.testExtensionableExtraslot = u, t.genPowUpCategories = l, t.calcPowerUpParams = c, t.createShipListForPowerUp = h, t.createUnSetListEx = p, t.createSetListEx = d
+        t.canKaizo = e, t.isSpKaizo = i, t.calcPageCount = _, t.testExtensionableExtraslot = l, t.genPowUpCategories = u, t.calcPowerUpParams = c, t.createShipListForPowerUp = h, t.createUnSetListEx = p, t.createSetListEx = d
     }(e.RemodelUtil || (e.RemodelUtil = {}))
 }

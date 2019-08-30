@@ -20,7 +20,7 @@ const function982 = function (t, e, i) {
         value: !0
     });
     var o = i(17),
-        r = i(43),
+        r = i(41),
         s = i(1),
         a = function (t) {
             function e() {
@@ -52,7 +52,7 @@ const function982 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._bg.texture = r.SALLY_EVENT.getTexture(26), this._btn_no.initialize(), this._btn_yes.initialize()
+                this._bg.texture = r.SALLY_EVENT.getTexture(28), this._btn_no.initialize(), this._btn_yes.initialize()
             }, e
         }(PIXI.Container);
     e.OperationSelectConfirmDialog = a;
@@ -75,7 +75,7 @@ const function982 = function (t, e, i) {
             this._cb_onClick = null, this.interactive = !1, this.buttonMode = !1, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick)
         }, e.prototype._update = function (t) {
             var e;
-            e = 1 == t ? this._is_yes ? 19 : 16 : this._is_yes ? 18 : 15, this.texture = r.SALLY_EVENT.getTexture(e)
+            e = 1 == t ? this._is_yes ? 21 : 18 : this._is_yes ? 20 : 17, this.texture = r.SALLY_EVENT.getTexture(e)
         }, e
     }(PIXI.Sprite)
 }

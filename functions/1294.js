@@ -19,34 +19,75 @@ const function1294 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onMouseOver = function () {
-                    i._stopTween()
-                }, i._onMouseOut = function () {
-                    i._startTween()
-                }, i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
+    var o = i(5),
+        r = i(2),
+        s = i(12),
+        a = i(8),
+        _ = i(19),
+        l = i(1295),
+        u = i(1),
+        c = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._shutter = e, n._item_ids = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
-            }, e.prototype.dispose = function () {
-                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._startTween = function () {
-                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
-                    loop: !0
-                }).to({
-                    alpha: .1
-                }, 1e3).to({
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._view = new l.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
+                var e = _.MAP_COMMON.getTexture(113);
+                this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
+                    scaleY: 1
+                }, 300).call(function () {
+                    t._showMessage()
+                })
+            }, e.prototype._showMessage = function () {
+                var t = this,
+                    e = _.MAP_COMMON.getTexture(116);
+                this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
+                    x: o.default.width / 2 + 180,
                     alpha: 1
-                }, 400))
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
+                }, 300).to({
+                    x: o.default.width / 2
+                }, 400).to({
+                    x: o.default.width / 2 - 60,
+                    alpha: 0
+                }, 400).call(function () {
+                    t._shutter.removeChild(t._telopText), t._closeTelop()
+                })
+            }, e.prototype._closeTelop = function () {
+                var t = this;
+                createjs.Tween.get(this._telopBG).to({
+                    scaleY: 0
+                }, 300).call(function () {
+                    t._shutter.removeChild(t._telopBG)
+                }), createjs.Tween.get(this._view).to({
+                    alpha: 1
+                }, 200).call(function () {
+                    t._showContent()
+                })
+            }, e.prototype._showContent = function () {
+                var t = this;
+                this._shutter.close(), this._shutter.once("closed", function () {
+                    createjs.Tween.get(t._view.content).to({
+                        alpha: 1
+                    }, 200).call(function () {
+                        t._waitClick()
+                    })
+                })
+            }, e.prototype._waitClick = function () {
+                var t = this,
+                    e = new a.AreaBox(0);
+                e.interactive = !0, e.buttonMode = !0, this._shutter.addChild(e), this._view.gearBtn.visible = !0, this._view.gearBtn.activate(), e.once(u.EventType.CLICK, function () {
+                    t._shutter.removeChild(e), t._hideView()
+                })
+            }, e.prototype._hideView = function () {
+                var t = this;
+                createjs.Tween.get(this._view).to({
+                    alpha: 0
+                }, 200).call(function () {
+                    t._view.gearBtn.deactivate(), t._shutter.removeChild(t._view), t._endTask()
+                })
             }, e
-        }(PIXI.Container);
-    e.PanelCancelBtn = s
+        }(r.TaskBase);
+    e.TaskShowMapEndView = c
 }

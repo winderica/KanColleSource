@@ -24,8 +24,8 @@ const function726 = function (t, e, i) {
         s = i(727),
         a = i(134),
         _ = i(21),
-        u = i(56),
-        l = i(309),
+        l = i(56),
+        u = i(310),
         c = i(728),
         h = function (t) {
             function e(e) {
@@ -54,8 +54,8 @@ const function726 = function (t, e, i) {
                 })
             }, e.prototype._uploadToGPU_organize = function () {
                 var t = this;
-                o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
-                    o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
+                o.default.settings.renderer.plugins.prepare.upload(l.ORGANIZE_MAIN.getTexture(0).baseTexture, function () {
+                    o.default.settings.renderer.plugins.prepare.upload(u.ORGANIZE_SHIP.getTexture(0).baseTexture, function () {
                         t._loadPreset()
                     })
                 })

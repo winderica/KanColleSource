@@ -19,74 +19,52 @@ const function1300 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(18),
-        s = i(4),
-        a = i(30),
-        _ = i(43),
-        u = i(20),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
+    var o = i(19),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
+                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+            return n(e, t), Object.defineProperty(e.prototype, "complete", {
                 get: function () {
-                    return this._bg
+                    return this._complete
+                },
+                set: function (t) {
+                    this._complete = t, this.buttonMode = t, this._update()
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "icon", {
-                get: function () {
-                    return this._icon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "text", {
-                get: function () {
-                    return this._text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = u.MAP_COMMON.getTexture(25)
-            }, e.prototype.update = function (t, e) {
-                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
+            }), e.prototype.initialize = function (t) {
+                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
+            }, e.prototype.update = function (t) {
+                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._text.destroy()
-            }, e.prototype._update = function (t, e) {
-                void 0 === e && (e = "");
-                var i;
-                switch (t) {
-                    case 1:
-                        i = a.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        i = a.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        i = a.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        i = a.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        i = a.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        i = a.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        i = a.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        i = PIXI.Texture.EMPTY
+                this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._update = function () {
+                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(180), this._img.position.set(0, 0);
+                else {
+                    switch (this._airunit_id) {
+                        case 0:
+                            this._img.texture = o.MAP_COMMON.getTexture(176);
+                            break;
+                        case 1:
+                            this._img.texture = o.MAP_COMMON.getTexture(177);
+                            break;
+                        case 2:
+                            this._img.texture = o.MAP_COMMON.getTexture(178);
+                            break;
+                        case 3:
+                            this._img.texture = o.MAP_COMMON.getTexture(179);
+                            break;
+                        default:
+                            this._img.texture = PIXI.Texture.EMPTY
+                    }
+                    this._img.position.set(11, 9)
                 }
-                this._icon.texture = i, this._text.text = e
-            }, e.prototype._updateForEventMap = function (t) {
-                void 0 === t && (t = "");
-                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
             }, e
         }(PIXI.Container);
-    e.CompUpperBar = l
+    e.AirUnitAppointmentTitle = s
 }

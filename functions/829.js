@@ -26,16 +26,16 @@ const function829 = function (t, e, i) {
             function e(e, i, n, r) {
                 var s = t.call(this) || this,
                     a = (new PIXI.Graphics).beginFill(16777215).drawRect(0, 0, 1200, 720).endFill(),
-                    l = new o.FlashFilter;
-                a.filters = [l];
+                    u = new o.FlashFilter;
+                a.filters = [u];
                 var c = (new PIXI.Graphics).beginFill(0).drawRect(0, 0, 1200, 720).endFill(),
                     h = new PIXI.Sprite(n),
                     p = new PIXI.Sprite(r),
                     d = new _(i),
                     f = new PIXI.Sprite(e),
                     y = new PIXI.Container,
-                    m = new u;
-                return d.position.set(.5 * -i.width, .5 * -i.height), h.position.set(12, 12), p.position.set(12, 720 - p.height - 12), y.addChild(d), s.addChild(a), s.addChild(y), s.addChild(f, h, p), s.addChild(c), s.addChild(m), s._textClass = h, s._textName = p, s._camera = y, s._backGround = a, s._blackOver = c, s._ship = d, s._backgroundColorFilter = l, s._goBackArea = m, s
+                    m = new l;
+                return d.position.set(.5 * -i.width, .5 * -i.height), h.position.set(12, 12), p.position.set(12, 720 - p.height - 12), y.addChild(d), s.addChild(a), s.addChild(y), s.addChild(f, h, p), s.addChild(c), s.addChild(m), s._textClass = h, s._textName = p, s._camera = y, s._backGround = a, s._blackOver = c, s._ship = d, s._backgroundColorFilter = u, s._goBackArea = m, s
             }
             return n(e, t), Object.defineProperty(e.prototype, "camera", {
                 get: function () {
@@ -116,7 +116,7 @@ const function829 = function (t, e, i) {
         }, e
     }(PIXI.Container);
     e.Ship = _;
-    var u = function (t) {
+    var l = function (t) {
         function e() {
             var e = t.call(this) || this;
             e._onClick = function () {

@@ -123,9 +123,9 @@ const function491 = function (t, e, i) {
             var i = this._o.api_distance;
             if (e.api_base >= 0 && (i.api_base = e.api_base), i.api_bonus = e.api_bonus, null != t)
                 for (var n = 0, r = t; n < r.length; n++)
-                    for (var s = r[n], a = o.ObjUtil.getNumber(s, "api_squadron_id"), _ = 0, u = this.squadrons; _ < u.length; _++) {
-                        var l = u[_];
-                        l.id == a && l.update(s)
+                    for (var s = r[n], a = o.ObjUtil.getNumber(s, "api_squadron_id"), _ = 0, l = this.squadrons; _ < l.length; _++) {
+                        var u = l[_];
+                        u.id == a && u.update(s)
                     }
         }, e
     }(s);

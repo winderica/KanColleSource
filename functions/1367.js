@@ -19,210 +19,98 @@ const function1367 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(19),
-        s = i(23),
-        a = i(6),
-        _ = i(16),
-        u = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = 0);
-                var r = t.call(this) || this;
-                return r._layer = e, r._x = i, r._y = n, r._delay = o, r
-            }
-            return n(e, t), e.prototype._start = function () {
-                this._wait()
-            }, e.prototype._wait = function () {
-                var t = this;
-                if (this._delay <= 0) return void this._anim();
-                createjs.Tween.get(null).wait(this._delay).call(function () {
-                    t._anim()
-                })
-            }, e.prototype._anim = function () {
-                var t = this,
-                    e = new l;
-                e.x = this._x, e.y = this._y, this._layer.addChild(e);
-                var i = new r.TweenTask;
-                e.bomb0.position.set(39, -71), e.bomb0.scale.set(0), e.bomb0.alpha = 1, i.addTween(createjs.Tween.get(e.bomb0).wait(270).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), e.bomb1.scale.set(.3), e.bomb1.alpha = 0, i.addTween(createjs.Tween.get(e.bomb1).to({
-                    alpha: 1,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 120).to({
-                    alpha: .8,
-                    scaleX: 1.05,
-                    scaleY: 1.05
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 90)), e.bomb2.scale.set(0), e.bomb2.alpha = 0, i.addTween(createjs.Tween.get(e.bomb2).to({
-                    alpha: .6,
-                    scaleX: .8,
-                    scaleY: .8
-                }, 90).to({
-                    alpha: 1,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90).to({
-                    alpha: .7,
-                    scaleX: 1.15,
-                    scaleY: 1.15
-                }, 150).to({
-                    alpha: 0
-                }, 240)), e.bomb3.position.set(-29, -72), e.bomb3.scale.set(.8), e.bomb3.alpha = 0, i.addTween(createjs.Tween.get(e.bomb3).wait(300).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    alpha: 1,
-                    scaleX: .95,
-                    scaleY: .95
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 150)), e.bomb4.position.set(11, -72), e.bomb4.scale.set(.8), e.bomb4.alpha = 0, i.addTween(createjs.Tween.get(e.bomb4).wait(330).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    scaleX: .95,
-                    scaleY: .95
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1.1,
-                    scaleY: 1.1
-                }, 90)), e.bomb5.position.set(-14, -17), e.bomb5.scale.set(.8), e.bomb5.alpha = 0, i.addTween(createjs.Tween.get(e.bomb5).wait(270).to({
-                    alpha: 1,
-                    scaleX: .85,
-                    scaleY: .85
-                }, 60).to({
-                    scaleX: .9,
-                    scaleY: .9
-                }, 120).to({
-                    alpha: 0,
-                    scaleX: 1.2,
-                    scaleY: 1.2
-                }, 120)), e.bomb6.position.set(36, 0), e.bomb6.scale.set(0), e.bomb6.alpha = 1, i.addTween(createjs.Tween.get(e.bomb6).wait(200).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), e.bomb7.position.set(-39, -21), e.bomb7.scale.set(0), e.bomb7.alpha = 1, i.addTween(createjs.Tween.get(e.bomb7).wait(90).to({
-                    scaleX: .7,
-                    scaleY: .7
-                }, 60).to({
-                    alpha: 0,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 90)), i.addTween(createjs.Tween.get(null).call(function () {
-                    a.SE.play("102")
-                }).wait(200).call(function () {
-                    a.SE.play("102")
-                }).wait(200).call(function () {
-                    a.SE.play("102")
-                })), i.start(function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
-            }, e
-        }(o.TaskBase);
-    e.TaskRocketHit = u;
-    var l = function (t) {
+    var o = i(17),
+        r = i(12),
+        s = i(16),
+        a = i(184),
+        _ = i(143),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._bomb0 = new d, e.addChild(e._bomb0), e._bomb1 = new h, e.addChild(e._bomb1), e._bomb2 = new c, e.addChild(e._bomb2), e._bomb3 = new p, e.addChild(e._bomb3), e._bomb4 = new p, e.addChild(e._bomb4), e._bomb5 = new p, e.addChild(e._bomb5), e._bomb6 = new d, e.addChild(e._bomb6), e._bomb7 = new d, e.addChild(e._bomb7), e
+                e._bg = new o.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._telop_bg = new a.TelopBG, e._telop_bg.position.set(600, 150), e._telop_bg.alpha = 0, e.addChild(e._telop_bg), e._slot_bg1 = new a.TelopBG, e.addChild(e._slot_bg1), e._slot1 = new r.Sprite, e._slot1.anchor.set(.5), e._slot1.scale.set(.9), e._slot1.alpha = 0, e.addChild(e._slot1), e._slot_bg2 = new a.TelopBG, e.addChild(e._slot_bg2), e._slot2 = new r.Sprite, e._slot2.anchor.set(.5), e._slot2.scale.set(.9), e._slot2.alpha = 0, e._slot1_text = new r.Sprite, e._slot1_text.scale.set(.76), e._slot1_text.alpha = 0, e._slot2_text = new r.Sprite, e._slot2_text.scale.set(.76), e._slot2_text.alpha = 0, e._telop = new r.Sprite, e._telop.anchor.set(.5), e._telop.position.set(600, 150), e._telop.alpha = 0, e._plane = new _.Plane(.88), e.addChild(e._slot2), e.addChild(e._slot1_text), e.addChild(e._slot2_text), e.addChild(e._telop), e.addChild(e._plane);
+                var i = new PIXI.Graphics;
+                return i.beginFill(0), i.drawRect(0, 321, 1200, 138), i.endFill(), e.addChild(i), e._slot1.mask = i, i = new PIXI.Graphics, i.beginFill(0), i.drawRect(0, 530, 1200, 138), i.endFill(), e.addChild(i), e._slot2.mask = i, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bomb0", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._bomb0
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb1", {
+            }), Object.defineProperty(e.prototype, "chara", {
                 get: function () {
-                    return this._bomb1
+                    return this._chara
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb2", {
+            }), Object.defineProperty(e.prototype, "telop_bg", {
                 get: function () {
-                    return this._bomb2
+                    return this._telop_bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb3", {
+            }), Object.defineProperty(e.prototype, "slot_bg1", {
                 get: function () {
-                    return this._bomb3
+                    return this._slot_bg1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb4", {
+            }), Object.defineProperty(e.prototype, "slot1", {
                 get: function () {
-                    return this._bomb4
+                    return this._slot1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb5", {
+            }), Object.defineProperty(e.prototype, "slot_bg2", {
                 get: function () {
-                    return this._bomb5
+                    return this._slot_bg2
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb6", {
+            }), Object.defineProperty(e.prototype, "slot2", {
                 get: function () {
-                    return this._bomb6
+                    return this._slot2
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bomb7", {
+            }), Object.defineProperty(e.prototype, "slot1_text", {
                 get: function () {
-                    return this._bomb7
+                    return this._slot1_text
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e
-        }(PIXI.Container),
-        c = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(32));
-                return i.x = -90, i.y = -113, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(33));
-                return i.x = -74, i.y = -107, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(34));
-                return i.x = -60, i.y = -45, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(_.BATTLE_MAIN.getTexture(35));
-                return i.x = -26, i.y = -39, e.addChild(i), e
-            }
-            return n(e, t), e
-        }(s.Container)
+            }), Object.defineProperty(e.prototype, "slot2_text", {
+                get: function () {
+                    return this._slot2_text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "telop", {
+                get: function () {
+                    return this._telop
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "plane", {
+                get: function () {
+                    return this._plane
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e) {
+                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
+                    case 1:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
+                        break;
+                    case 2:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
+                        break;
+                    default:
+                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
+                }
+            }, e.prototype.dispose = function () {
+                this.removeChildren()
+            }, e
+        }(PIXI.Container);
+    e.CutinDanchakuCanvas = l
 }

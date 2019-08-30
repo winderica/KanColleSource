@@ -25,13 +25,13 @@ const function701 = function (t, e, i) {
                 var e = this;
                 this.sweetsSelectView.position.set(147, 267), this.sweetsSelectView.onClickBack = this._onClickBack, this.sweetsSelectView.onClickIrako = this._onClickIrako, this.sweetsSelectView.onClickMamiya = this._onClickMamiya, this.sweetsSelectView.onClickMamiyaAndIrako = this._onClickMamiyaAndIrako;
                 for (var i = n.default.model.deck.get(t), o = i.getShipList(), r = n.default.model.useItem.get(54).count, s = n.default.model.useItem.get(59).count, a = !1, _ = 0; _ < o.length; _++) {
-                    var u = o[_];
-                    u && u.tired < 40 && (a = !0)
+                    var l = o[_];
+                    l && l.tired < 40 && (a = !0)
                 }
-                var l = 0 < r && a,
+                var u = 0 < r && a,
                     c = 0 < s,
                     h = 0 < r && 0 < s;
-                this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(l, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
+                this.mainView.addChild(this.dialogBackground, this.sweetsSelectView), this.sweetsSelectView.update(u, c, h), this.dialogBackground.alpha = 0, n.default.view.clickGuard = !0, this.sweetsSelectView.visible = !1, createjs.Tween.get(this.dialogBackground).to({
                     alpha: 1
                 }, 125).call(function () {
                     e.sweetsSelectView.visible = !0, n.default.view.clickGuard = !1

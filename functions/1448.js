@@ -23,65 +23,34 @@ const function1448 = function (t, e, i) {
         r = i(16),
         s = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._splash1 = new o.Sprite, e._splash2 = new o.Sprite, e._splash3 = new o.Sprite, e._splash1.anchor.set(.56, .95), e._splash1.position.set(129, 26), e._splash2.anchor.set(.77, .79), e._splash2.position.set(131, 26), e._splash3.anchor.set(.59, .9), e._splash3.position.set(137, 21), e._init(), e.addChild(e._splash1), e.addChild(e._splash2), e.addChild(e._splash3), e
             }
-            return n(e, t), e.prototype.show = function () {
-                var t = this,
-                    e = r.BATTLE_MAIN.getTexture(109);
-                this._content = new o.Sprite(e), this._content.anchor.set(.5), this._content.scale.set(0), this.addChild(this._content), this._t = createjs.Tween.get(this._content, {
-                    loop: !0
-                }).to({
-                    x: 5,
-                    y: -7,
-                    scaleX: .14,
-                    scaleY: .14
-                }, 200).to({
-                    x: 7,
-                    y: -15,
-                    scaleX: .25,
-                    scaleY: .25
-                }, 200).to({
-                    x: 12,
-                    y: -21,
-                    scaleX: .35,
-                    scaleY: .35
-                }, 200).to({
-                    x: 14,
-                    y: -29,
-                    scaleX: .46,
-                    scaleY: .46
-                }, 200).to({
-                    x: 15,
-                    y: -36,
-                    scaleX: .57,
-                    scaleY: .57
-                }, 200).to({
-                    x: 17,
-                    y: -42,
-                    scaleX: .68,
-                    scaleY: .68
-                }, 200).to({
-                    x: 17,
-                    y: -50,
-                    scaleX: .78,
-                    scaleY: .78
-                }, 200).to({
-                    x: 21,
-                    y: -57,
-                    scaleX: .89,
-                    scaleY: .89
-                }, 200).to({
-                    x: 24,
-                    y: -65,
+            return n(e, t), e.prototype.initialize = function () {
+                this._splash1.texture = r.BATTLE_MAIN.getTexture(115), this._splash2.texture = r.BATTLE_MAIN.getTexture(114), this._splash3.texture = r.BATTLE_MAIN.getTexture(116)
+            }, e.prototype.play = function () {
+                var t = this;
+                createjs.Tween.get(this._splash1).to({
                     scaleX: 1,
-                    scaleY: 1,
+                    scaleY: 1
+                }, 233).to({
                     alpha: 0
-                }, 200).call(function () {
-                    t._content.scale.set(0), t._content.alpha = 1, t._content.position.set(0, 0)
+                }, 333), createjs.Tween.get(this._splash2).wait(166).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).to({
+                    alpha: 0
+                }, 200), createjs.Tween.get(this._splash3).wait(300).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 133).to({
+                    alpha: 0
+                }, 133).call(function () {
+                    t._init(), t.emit("complete")
                 })
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), null != this._t && (this._t.setPaused(!0), this._t = null)
+            }, e.prototype._init = function () {
+                this._splash1.alpha = 1, this._splash1.scale.set(0), this._splash2.alpha = 1, this._splash2.scale.set(0), this._splash3.alpha = 1, this._splash3.scale.set(0)
             }, e
         }(PIXI.Container);
-    e.BannerBabble = s
+    e.WaterColumn = s
 }

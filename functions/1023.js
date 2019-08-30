@@ -24,7 +24,7 @@ const function1023 = function (t, e, i) {
         s = i(17),
         a = i(1024),
         _ = i(1025),
-        u = function (t) {
+        l = function (t) {
             function e(e, i, n) {
                 var r = t.call(this) || this;
                 return r._hideDetailInfo = function () {
@@ -59,5 +59,5 @@ const function1023 = function (t, e, i) {
                 })
             }, e
         }(r.TaskBase);
-    e.TaskDetailInfo = u
+    e.TaskDetailInfo = l
 }

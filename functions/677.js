@@ -24,8 +24,8 @@ const function677 = function (t, e, i) {
         s = i(159),
         a = i(111),
         _ = i(34),
-        u = i(69),
-        l = i(6),
+        l = i(69),
+        u = i(6),
         c = i(678),
         h = i(679),
         p = i(680),
@@ -186,7 +186,7 @@ const function677 = function (t, e, i) {
                         if (window.removeEventListener("message", r), s.origin == n) {
                             var a = s.data;
                             new v.UpdateDeckNameAPI(t, i, a).start(function () {
-                                o.default.model.deck.get(t).updateName(i, a), l.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
+                                o.default.model.deck.get(t).updateName(i, a), u.SE.play("246"), e.editNameArea.writable = !0, o.default.view.clickGuard = !1
                             })
                         }
                     };
@@ -201,7 +201,7 @@ const function677 = function (t, e, i) {
                     n = o.default.model.deck.get(t).getShipList();
                 o.default.view.clickGuard = !0;
                 var r = new _.APIConnector;
-                r.add(new m.ChangeAPI(!1, t, 0, -2)), 10 == o.default.model.basic.getTutorialProgress() && r.add(new u.UpdateTutorialAPI(20)), r.start(function () {
+                r.add(new m.ChangeAPI(!1, t, 0, -2)), 10 == o.default.model.basic.getTutorialProgress() && r.add(new l.UpdateTutorialAPI(20)), r.start(function () {
                     for (var r = o.default.model.deck.get(t).getShipList(), s = Array(), a = 0; a < i.shipSlotLayer.ShipSlots.length; a++) {
                         var _ = a + i._shipInDeckOrigin;
                         null != n[_] && null == r[_] && s.push(a)
@@ -209,9 +209,9 @@ const function677 = function (t, e, i) {
                     if (0 < s.length) {
                         for (var a = 0; a < i.shipSlotLayer.ShipSlots.length; a++)
                             if (-1 != s.indexOf(a)) {
-                                var u = i.shipSlotLayer.ShipSlots[a],
-                                    l = function () {};
-                                s.indexOf(a) == s.length - 1 && (l = e), u.closeAnimation(l)
+                                var l = i.shipSlotLayer.ShipSlots[a],
+                                    u = function () {};
+                                s.indexOf(a) == s.length - 1 && (u = e), l.closeAnimation(u)
                             }
                     } else e()
                 })

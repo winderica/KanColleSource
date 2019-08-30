@@ -19,27 +19,100 @@ const function248 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gear = new PIXI.Sprite, e._gear.anchor.set(.5), e._gear.position.set(32, 45), e.addChild(e._gear), e._text = new PIXI.Sprite, e._text.x = 60, e.addChild(e._text), e
+    var o = i(5),
+        r = i(0),
+        s = i(66),
+        a = i(8),
+        _ = i(40),
+        l = i(67),
+        u = i(207),
+        c = i(1280),
+        h = i(209),
+        p = i(1),
+        d = function (t) {
+            function e(e, i, n, l, u) {
+                void 0 === u && (u = null);
+                var c = t.call(this) || this;
+                return c._moveCard = function () {
+                    null != c._pre_task && (c._pre_task.dispose(), c._pre_task = null), c._play_bgm && r.default.sound.bgm.play(132, !0, 1e3);
+                    var t = new PIXI.Point(c._insert.card.x, c._insert.card.y),
+                        e = new PIXI.Point(o.default.width / 2, o.default.height / 2),
+                        i = new PIXI.Point(t.x + 300, t.y),
+                        n = new PIXI.Point(e.x + 150, e.y + 150);
+                    s.TweenUtil.create3BezierTween(c._insert.card, t, i, n, e, 700), createjs.Tween.get(c._insert.card).to({
+                        scaleX: .86,
+                        scaleY: .86,
+                        rotation: 4 * Math.PI
+                    }, 700).to({
+                        scaleX: 1,
+                        scaleY: 1
+                    }, 133).wait(700).call(function () {
+                        c._insert.particle.activate()
+                    }).wait(1e3).call(c._flash)
+                }, c._flash = function () {
+                    var t = c._mst_id,
+                        e = c._count,
+                        i = r.default.model.useItem.get(t),
+                        n = null == i ? "" : i.name;
+                    c._bonus.alpha = 1, c._bonus.initialize(t, e, n), createjs.Tween.get(c._insert.card).to({
+                        alpha: 0
+                    }, 800), createjs.Tween.get(c._insert.bg_dark).to({
+                        alpha: 0
+                    }, 800), createjs.Tween.get(c._insert.flash).to({
+                        scaleX: 3.5,
+                        scaleY: 3.5
+                    }, 800), createjs.Tween.get(c._insert).wait(800).to({
+                        alpha: 0
+                    }, 200).call(function () {
+                        c._layer.removeChild(c._insert), c._insert.dispose(), c._insert = null, c._showBonus()
+                    })
+                }, c._showMessageBox = function () {
+                    createjs.Tween.get(c._bonus.message_box).to({
+                        y: 480
+                    }, 300).call(c._waitClick)
+                }, c._waitClick = function () {
+                    c._bonus.message_box.activate();
+                    var t = new _.GearBtnHome;
+                    t.position.set(1140, 660), t.initialize(), t.activate(), c._bonus.addChild(t);
+                    var e = new a.AreaBox(0);
+                    e.interactive = !0, e.buttonMode = !0, c._bonus.addChild(e), e.once(p.EventType.CLICK, function () {
+                        c._bonus.removeChild(e), c._finalize(t)
+                    })
+                }, c._layer = e, c._mst_id = i, c._count = n, c._pre_task = u, c._play_bgm = l, c
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                0 == t ? (this._bg.texture = o.COMMON_MISC.getTexture(180), this._gear.texture = o.COMMON_MISC.getTexture(182)) : (this._bg.texture = o.COMMON_MISC.getTexture(181), this._gear.texture = o.COMMON_MISC.getTexture(183))
-            }, e.prototype.update = function (t) {
-                this._text.texture = t, this._text.y = Math.round(45 - this._text.height / 2)
-            }, e.prototype.activate = function () {
-                null == this._t && (this._t = createjs.Tween.get(this._gear, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 6e3))
-            }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
+            return n(e, t), e.prototype._start = function () {
+                this._bonus = new c.BonusUseItem, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new u.BonusInsert, this._loadBG()
+            }, e.prototype._loadBG = function () {
+                var t = this;
+                this._bonus.bg.initiailzeForUseitem(function () {
+                    t._loadImage()
+                })
+            }, e.prototype._loadImage = function () {
+                var t = this,
+                    e = new l.UseitemLoader;
+                e.add(this._mst_id, 1), e.load(function () {
+                    t._insert.preload(function () {
+                        t._showInsert()
+                    })
+                })
+            }, e.prototype._showInsert = function () {
+                this._insert.initialize(6), this._insert.alpha = 0, this._insert.card.scale.set(.38), this._insert.card.position.set(o.default.width / 2 - 228, o.default.height / 2 + 521), this._insert.flash.position.set(o.default.width / 2, o.default.height / 2), this._layer.addChild(this._insert), createjs.Tween.get(this._insert).to({
+                    alpha: 1
+                }, 500).call(this._moveCard)
+            }, e.prototype._showBonus = function () {
+                this._bonus.particle.activate(), createjs.Tween.get(this._bonus.white).to({
+                    alpha: 0
+                }, 500).call(this._showMessageBox)
+            }, e.prototype._finalize = function (t) {
+                var e = this;
+                this._play_bgm && r.default.sound.bgm.fadeOut(1200), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.deactivate(), e._bonus.removeChild(t), e._endTask()
+                })
             }, e.prototype.dispose = function () {
-                this.deactivate()
+                this._bonus.dispose(), this._layer.removeChild(this._bonus), this._layer = null, this._bonus = null
             }, e
-        }(PIXI.Container);
-    e.PhaseTitle = r
+        }(h.TaskBonusBase);
+    e.TaskBonusUseItem = d
 }

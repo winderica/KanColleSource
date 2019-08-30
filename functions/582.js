@@ -9,8 +9,8 @@ const function582 = function (t, e, i) {
         s = i(191),
         a = i(191),
         _ = i(191),
-        u = i(14),
-        l = i(8),
+        l = i(14),
+        u = i(8),
         c = i(585),
         h = i(587),
         p = i(588),
@@ -46,9 +46,9 @@ const function582 = function (t, e, i) {
                 var t = this;
                 if (!this._jukemode) {
                     this._jukemode = !0;
-                    var e = new l.AreaBox(0);
+                    var e = new u.AreaBox(0);
                     o.default.view.overLayer.addChild(e);
-                    var i = new u.UIImageLoader("jukebox");
+                    var i = new l.UIImageLoader("jukebox");
                     i.add("jukebox_common.json"), i.load(function () {
                         t._furnitureJukeBoxBGMModel = new r.FurnitureJukeBoxBGMModel, new s.UserFurnitureJukeBoxMusicListAPI(t._furnitureJukeBoxBGMModel).start(function () {
                             for (o.default.view.overLayer.removeChild(e), t._ListMax = 0; t._ListMax < t._furnitureJukeBoxBGMModel.list.length && t._furnitureJukeBoxBGMModel.list[t._ListMax].isLoaded; t._ListMax++);

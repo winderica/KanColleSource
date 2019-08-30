@@ -24,14 +24,14 @@ const function712 = function (t, e, i) {
         s = i(8),
         a = i(113),
         _ = i(6),
-        u = i(21),
-        l = i(163),
+        l = i(21),
+        u = i(163),
         c = i(713),
-        h = i(322),
+        h = i(323),
         p = i(715),
-        d = i(324),
+        d = i(325),
         f = i(57),
-        y = i(325),
+        y = i(326),
         m = i(718),
         g = i(719),
         v = function (t) {
@@ -51,10 +51,10 @@ const function712 = function (t, e, i) {
                             var _ = i.presetList.getPresetDeckData(a + 1);
                             e.push(_)
                         }
-                        i.presetList.maxNum < l.OrganizeConst.EXTENDS_MAX && e.push(null);
-                        var u = e.slice(i.headIndex, i.headIndex + i.PAGE_NUM),
+                        i.presetList.maxNum < u.OrganizeConst.EXTENDS_MAX && e.push(null);
+                        var l = e.slice(i.headIndex, i.headIndex + i.PAGE_NUM),
                             c = 0 < o.default.model.useItem.get(i.OPEN_KEY_ITEMID).count;
-                        i.presetEditContainer.update(u, s, r, c), o.default.view.clickGuard = !1, i.presets = e
+                        i.presetEditContainer.update(l, s, r, c), o.default.view.clickGuard = !1, i.presets = e
                     })
                 }, i._onClickSave = function (t) {
                     var e = o.default.model.deck.get(i.deckId),
@@ -66,14 +66,14 @@ const function712 = function (t, e, i) {
                             s = null != r.expedition,
                             a = 0 < r.getCount();
                         i.presetList.updateData(n.result);
-                        for (var u = i.presetList.getPresetDeckData(t), c = 0; c < i.presetList.maxNum; c++) {
+                        for (var l = i.presetList.getPresetDeckData(t), c = 0; c < i.presetList.maxNum; c++) {
                             var h = i.presetList.getPresetDeckData(c + 1);
                             e.push(h)
                         }
-                        i.presetList.maxNum < l.OrganizeConst.EXTENDS_MAX && e.push(null);
+                        i.presetList.maxNum < u.OrganizeConst.EXTENDS_MAX && e.push(null);
                         var p = e.slice(i.headIndex, i.headIndex + i.PAGE_NUM),
                             d = 0 < o.default.model.useItem.get(i.OPEN_KEY_ITEMID).count;
-                        i.presetEditContainer.update(p, a, s, d, u.presetID), o.default.view.clickGuard = !1, i.presets = e
+                        i.presetEditContainer.update(p, a, s, d, l.presetID), o.default.view.clickGuard = !1, i.presets = e
                     })
                 }, i._onClickExtension = function () {
                     var t = new b(o.default.view.overLayer);
@@ -90,13 +90,13 @@ const function712 = function (t, e, i) {
                                             var r = i.presetList.getPresetDeckData(n + 1);
                                             e.push(r)
                                         }
-                                        i.presetList.maxNum < l.OrganizeConst.EXTENDS_MAX && e.push(null), i.arrowBottomButton.visible = !1, i.arrowTopButton.visible = !1, i.headIndex + i.PAGE_NUM < e.length && (e.length == i.presetEditContainer.slotsLength + 1 && (i.arrowTopButton.activate(), i.arrowBottomButton.activate()), i.arrowBottomButton.visible = !0), 0 < i.headIndex && (i.presetTitle.hideTxt2(), i.arrowTopButton.visible = !0);
+                                        i.presetList.maxNum < u.OrganizeConst.EXTENDS_MAX && e.push(null), i.arrowBottomButton.visible = !1, i.arrowTopButton.visible = !1, i.headIndex + i.PAGE_NUM < e.length && (e.length == i.presetEditContainer.slotsLength + 1 && (i.arrowTopButton.activate(), i.arrowBottomButton.activate()), i.arrowBottomButton.visible = !0), 0 < i.headIndex && (i.presetTitle.hideTxt2(), i.arrowTopButton.visible = !0);
                                         var s = o.default.model.deck.get(i.deckId),
                                             a = 0 < s.getCount(),
                                             _ = null != s.expedition,
-                                            u = e.slice(i.headIndex, i.headIndex + i.PAGE_NUM),
+                                            l = e.slice(i.headIndex, i.headIndex + i.PAGE_NUM),
                                             c = 0 < o.default.model.useItem.get(i.OPEN_KEY_ITEMID).count;
-                                        i.presetEditContainer.update(u, a, _, c), t.dispose(), o.default.view.clickGuard = !1, i.presets = e
+                                        i.presetEditContainer.update(l, a, _, c), t.dispose(), o.default.view.clickGuard = !1, i.presets = e
                                     })
                             }
                         })
@@ -123,7 +123,7 @@ const function712 = function (t, e, i) {
                     var a = 0 < o.default.model.useItem.get(i.OPEN_KEY_ITEMID).count;
                     i.presetEditContainer.update(e, s, r, a), i.headIndex = t
                 }, i.clickBack = e;
-                var n = u.COMMON_MAIN.getTexture(4);
+                var n = l.COMMON_MAIN.getTexture(4);
                 return i.btnBack = new f.SimpleButton(n, n), i.btnBack.position.set(173, 638), i.btnBack.onClick = i._onClickBack, i.arrowTopButton = new a.ArrowButton, i.arrowTopButton.initialize(i._onClickPrev), i.arrowTopButton.position.set(446, 217), i.arrowBottomButton = new a.ArrowButton(!0), i.arrowBottomButton.initialize(i._onClickNext), i.arrowBottomButton.position.set(443, 667), i.presetEditContainer = new p.PresetEditContainer(i._onClickSave, i._onClickDelete, i._onClickExtension), i.presetEditContainer.position.set(168, 248), i.presetTitle = new d.PresetTitle(1), i.presetTitle.position.set(162, 195), i.presetTitle.showTxt2(), i.longShipBannerContainer = new h.LongShipBannerContainer, i.longShipBannerContainer.position.set(720, 213), i.arrowTopButton.initialize(i._onClickPrev), i.arrowBottomButton.initialize(i._onClickNext), i.addChild(i.presetTitle, i.presetEditContainer, i.btnBack, i.longShipBannerContainer, i.arrowTopButton, i.arrowBottomButton), i
             }
             return n(e, t), e.prototype.dispose = function () {
@@ -136,7 +136,7 @@ const function712 = function (t, e, i) {
                     var r = this.presetList.getPresetDeckData(n + 1);
                     i.push(r)
                 }
-                this.presetList.maxNum < l.OrganizeConst.EXTENDS_MAX && i.push(null), this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0, this.arrowTopButton.activate(), this.arrowBottomButton.activate()), this.presets = i, this.headIndex = 0, this.updateDeck(t)
+                this.presetList.maxNum < u.OrganizeConst.EXTENDS_MAX && i.push(null), this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, 0 + this.PAGE_NUM < i.length && (this.arrowBottomButton.visible = !0, this.arrowTopButton.activate(), this.arrowBottomButton.activate()), this.presets = i, this.headIndex = 0, this.updateDeck(t)
             }, e.prototype.update = function (t) {
                 this.updateDeck(t)
             }, e.prototype.hide = function () {

@@ -20,11 +20,11 @@ const function636 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(305),
+        r = i(306),
         s = i(4),
         a = i(78),
         _ = i(48),
-        u = function (t) {
+        l = function (t) {
             function e(e, i) {
                 return t.call(this, e, i) || this
             }
@@ -51,5 +51,5 @@ const function636 = function (t, e, i) {
                 null != this._thumb && null != this._thumb.parent && this._thumb.parent.removeChild(this._thumb), this._thumb = null, null != this._text && (null != this._text.parent && this._text.parent.removeChild(this._text), this._text.destroy()), this._text = null
             }, e
         }(_.TaskRewardDialogBase);
-    e.TaskRewardDialogFurniture = u
+    e.TaskRewardDialogFurniture = l
 }

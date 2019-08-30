@@ -23,9 +23,9 @@ const function819 = function (t, e, i) {
         r = i(114),
         s = i(3),
         a = i(3),
-        _ = i(335),
-        u = i(88),
-        l = i(820),
+        _ = i(336),
+        l = i(88),
+        u = i(820),
         c = i(821),
         h = i(822),
         p = i(823),
@@ -53,7 +53,7 @@ const function819 = function (t, e, i) {
                 g.position.set(413, 473), e.addChild(g);
                 e._textAmmoNow = new o.TextBox(24, 4999235), e._textAmmoNow.anchor.x = 1, e._textAmmoNow.position.set(330, 414), e.addChild(e._textAmmoNow), e._textAmmoNeed = new o.TextBox(24, 4999235), e._textAmmoNeed.anchor.x = 1, e._textAmmoNeed.position.set(700, 414), e.addChild(e._textAmmoNeed), e._textSteelNow = new o.TextBox(24, 4999235), e._textSteelNow.anchor.x = 1, e._textSteelNow.position.set(330, 469), e.addChild(e._textSteelNow), e._textSteelNeed = new o.TextBox(24, 4999235), e._textSteelNeed.anchor.x = 1, e._textSteelNeed.position.set(700, 469), e.addChild(e._textSteelNeed), e._cancelBtn = new _.CancelButton, e._cancelBtn.position.set(516, 507), e._cancelBtn.initialize(e._onClickCancel), e.addChild(e._cancelBtn), e._startBtn = new p.KaizoStartButton, e._startBtn.position.set(732, 489), e._startBtn.initialize(e._onClickStart), e.addChild(e._startBtn);
                 var v = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(26));
-                return v.position.set(720, 446), e.addChild(v), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new l.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new u.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
+                return v.position.set(720, 446), e.addChild(v), e._arrow = new r.DownArrowAnimationView, e._arrow.position.set(354, Math.floor(297 + e._arrow.width / 2)), e._arrow.rotation = -90 * Math.PI / 180, e.addChild(e._arrow), e._alertPanel = new h.KaizoRequireItemPanel, e._alertPanel.position.set(723, 215), e.addChild(e._alertPanel), e._alertMessage = new o.TextBox(15, 12467003), e._alertMessage.anchor.set(1, 0), e._alertMessage.position.set(505, 522), e.addChild(e._alertMessage), e._alertOverLimit = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(14)), e._alertOverLimit.position.set(680, 405), e._alertOverLimit.visible = !1, e.addChild(e._alertOverLimit), e._header = new u.KaizoDetailHeader, e.addChild(e._header), e._titleBar = new l.TitleBar, e._titleBar.initialize(a.REMODEL_GRADEUP.getTexture(2), 26), e._titleBar.position.set(0, -39), e.addChild(e._titleBar), e
             }
             return n(e, t), e.prototype.activate = function (t, e) {
                 this._cb_onStart = t, this._cb_onCancel = e
@@ -64,14 +64,14 @@ const function819 = function (t, e, i) {
                     s = e.getRequire(78),
                     a = e.getRequire(75),
                     _ = e.getRequire(77),
-                    u = e.getRequire(3),
-                    l = e.getRequire(2),
+                    l = e.getRequire(3),
+                    u = e.getRequire(2),
                     c = !1;
-                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, u, l) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, u, l) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, u, l) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, u, l) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, u, l) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, u, l) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, u, l) : u > 0 || l > 0 ? this._alertPanel.showMessageKits(u, l) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
+                if (0 == e.validate(58) ? (this._alertPanel.showAlertLackOfItem(58, o), c = !0) : 0 == e.validate(65) ? (this._alertPanel.showAlertLackOfItem(65, r), c = !0) : 0 == e.validate(75) ? (this._alertPanel.showAlertLackOfItem(75, a), c = !0) : 0 == e.validate(77) ? (this._alertPanel.showAlertLackOfItem(77, _), c = !0) : 0 == e.validate(78) ? (this._alertPanel.showAlertLackOfItem(78, s), c = !0) : o > 0 && r > 0 && s > 0 && _ > 0 ? this._alertPanel.showMessageFourItems(58, o, 65, r, 78, s, 77, _, l, u) : o > 0 && r > 0 && s > 0 ? this._alertPanel.showMessageThreeItems(58, o, 65, r, 78, s, l, u) : o > 0 && r > 0 ? this._alertPanel.showMessageTwoItems(58, o, 65, r, l, u) : o > 0 && s > 0 && a > 0 ? this._alertPanel.showMessageThreeItems(78, s, 75, a, 58, o, l, u) : o > 0 && s > 0 ? this._alertPanel.showMessageTwoItems(58, o, 78, s, l, u) : o > 0 ? this._alertPanel.showMessageOneItem(58, o, l, u) : s > 0 ? this._alertPanel.showMessageOneItem(78, s, l, u) : l > 0 || u > 0 ? this._alertPanel.showMessageKits(l, u) : this._alertPanel.hideAll(), this._alertMessage.visible = !1, this._alertOverLimit.visible = !1, 0 == c) {
                     var h = e.validate(32),
                         p = e.validate(33),
-                        d = !(l > 0) || e.validate(2),
-                        f = !(u > 0) || e.validate(3),
+                        d = !(u > 0) || e.validate(2),
+                        f = !(l > 0) || e.validate(3),
                         y = h && p,
                         m = d && f;
                     0 == y && 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u53ca\u3073\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == y ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6e90\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == m ? (this._alertMessage.text = "\u6539\u88c5\u306b\u5fc5\u8981\u306a\u8cc7\u6750\u304c\u4e0d\u8db3\u3057\u3066\u3044\u307e\u3059\u3002", this._alertMessage.visible = !0) : 0 == n && (this._alertOverLimit.visible = !0)

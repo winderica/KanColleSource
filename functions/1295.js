@@ -19,52 +19,45 @@ const function1295 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
-        r = i(1),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._airunit_count = 0, i._airunit_id = 0, i._complete = !1, i._onClick = function () {
-                    null != i._cb_onClick && 0 != i.buttonMode && i._cb_onClick()
-                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i.addChild(i._img), i.interactive = !0, i
+    var o = i(0),
+        r = i(40),
+        s = i(19),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.position.set(86, 60), e._content = new _, e._content.position.set(390, 153), e.addChild(e._bg), e.addChild(e._content), e._gearBtn = new r.GearBtnHome, e._gearBtn.position.set(1127, 653), e.addChild(e._gearBtn), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "complete", {
+            return n(e, t), Object.defineProperty(e.prototype, "content", {
                 get: function () {
-                    return this._complete
+                    return this._content
                 },
-                set: function (t) {
-                    this._complete = t, this.buttonMode = t, this._update()
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gearBtn", {
+                get: function () {
+                    return this._gearBtn
                 },
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t) {
-                this._airunit_count = t, this.on(r.EventType.CLICK, this._onClick)
-            }, e.prototype.update = function (t) {
-                this._airunit_count > 1 ? this._airunit_id = t : this._airunit_id = 0, this.complete = !1, this._update()
-            }, e.prototype.dispose = function () {
-                this.off(r.EventType.CLICK, this._onClick)
-            }, e.prototype._update = function () {
-                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(173), this._img.position.set(0, 0);
-                else {
-                    switch (this._airunit_id) {
-                        case 0:
-                            this._img.texture = o.MAP_COMMON.getTexture(169);
-                            break;
-                        case 1:
-                            this._img.texture = o.MAP_COMMON.getTexture(170);
-                            break;
-                        case 2:
-                            this._img.texture = o.MAP_COMMON.getTexture(171);
-                            break;
-                        case 3:
-                            this._img.texture = o.MAP_COMMON.getTexture(172);
-                            break;
-                        default:
-                            this._img.texture = PIXI.Texture.EMPTY
-                    }
-                    this._img.position.set(11, 9)
-                }
+                this._bg.texture = s.MAP_COMMON.getTexture(168), this._content.initialize(t), this._gearBtn.initialize()
             }, e
         }(PIXI.Container);
-    e.AirUnitAppointmentTitle = s
+    e.MapEndView = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._line = new PIXI.Graphics, e._line.lineStyle(3, 16774898), e._line.moveTo(0, 0), e._line.lineTo(0, 323), e._line.position.set(0, 36), e.addChild(e._line), e._title = new PIXI.Sprite, e.addChild(e._title), e
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            if (this._title.texture = s.MAP_COMMON.getTexture(188), null != t)
+                for (var e = 0; e < t.length; e++) {
+                    var i = t[e],
+                        n = o.default.resources.getUseitem(i, 0),
+                        r = new PIXI.Sprite(n);
+                    r.x = 33 + e % 5 * 75, r.y = 56 + 75 * Math.floor(e / 5), this.addChild(r)
+                }
+        }, e
+    }(PIXI.Container);
+    e.MapEndContentView = _
 }

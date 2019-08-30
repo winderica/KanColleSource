@@ -19,102 +19,27 @@ const function1440 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(50),
-        r = i(1441),
-        s = i(1445),
-        a = i(480),
-        _ = i(1455),
-        u = i(1456),
-        l = i(1459),
-        c = i(1464),
-        h = i(1465),
-        p = i(1466),
-        d = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._layer_torpedo = new r.LayerTorpedo, e._layer_explosion = new a.LayerExplosion, e._layer_damage = new u.LayerDamage, e._layer_content = new PIXI.Container, e._layer_gauge = new c.LayerGauge, e._shutter = new o.Shutter(38), e._layer_info = new PIXI.Container, e._layer_title = new h.LayerTitle, e._layer_info2 = new p.LayerInfo, e._layer_cutin = new PIXI.Container, e.addChild(e._layer_torpedo), e._bannerGroupLayer = new s.BannerGroupLayer, e.addChild(e._bannerGroupLayer), e.addChild(e._layer_explosion), e.addChild(e._layer_damage), e._bannerInfoLayer = new _.BannerInfoLayer, e.addChild(e._bannerInfoLayer), e.addChild(e._layer_content), e._raderLayer = new l.RaderLayer, e.addChild(e._raderLayer), e.addChild(e._layer_gauge), e.addChild(e._shutter), e.addChild(e._layer_info), e.addChild(e._layer_title), e.addChild(e._layer_info2), e.addChild(e._layer_cutin), e
+    var o = i(7),
+        r = i(186),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._initPlaneFrom(), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "layer_torpedo", {
+            return n(e, t), Object.defineProperty(e.prototype, "squadrons", {
                 get: function () {
-                    return this._layer_torpedo
+                    for (var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_air_base_data"), i = 0, n = e; i < n.length; i++) {
+                        var r = n[i];
+                        t.push({
+                            mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
+                            count: o.ObjUtil.getNumber(r, "api_count")
+                        })
+                    }
+                    return t
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerGroupLayer", {
-                get: function () {
-                    return this._bannerGroupLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_explosion", {
-                get: function () {
-                    return this._layer_explosion
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_damage", {
-                get: function () {
-                    return this._layer_damage
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "bannerInfoLayer", {
-                get: function () {
-                    return this._bannerInfoLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_content", {
-                get: function () {
-                    return this._layer_content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "raderLayer", {
-                get: function () {
-                    return this._raderLayer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_gauge", {
-                get: function () {
-                    return this._layer_gauge
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info", {
-                get: function () {
-                    return this._layer_info
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_title", {
-                get: function () {
-                    return this._layer_title
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_info2", {
-                get: function () {
-                    return this._layer_info2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_cutin", {
-                get: function () {
-                    return this._layer_cutin
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                this._bannerGroupLayer.dispose(), this._bannerInfoLayer.dispose()
-            }, e
-        }(PIXI.Container);
-    e.ViewMain = d
+            }), e
+        }(r.AirWarDataBase);
+    e.AirUnitJetData = s
 }

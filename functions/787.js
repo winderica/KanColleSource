@@ -24,8 +24,8 @@ const function787 = function (t, e, i) {
         s = i(4),
         a = i(61),
         _ = i(3),
-        u = i(3),
-        l = i(31),
+        l = i(3),
+        u = i(31),
         c = i(84),
         h = i(1),
         p = function (t) {
@@ -36,8 +36,8 @@ const function787 = function (t, e, i) {
                 }, e._onClickNo = function () {
                     e.onClickNo()
                 };
-                var i = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(42));
-                e.buttonYes = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(6)), e.buttonNo = new PIXI.Sprite(u.REMODEL_MAIN.getTexture(0)), e.downArrowAnimationView = new r.DownArrowAnimationView, e.fromShipBanner = new l.ShipBanner, e.toShipBanner = new l.ShipBanner;
+                var i = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(42));
+                e.buttonYes = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(6)), e.buttonNo = new PIXI.Sprite(l.REMODEL_MAIN.getTexture(0)), e.downArrowAnimationView = new r.DownArrowAnimationView, e.fromShipBanner = new u.ShipBanner, e.toShipBanner = new u.ShipBanner;
                 var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(45));
                 e.iconWeapon = new a.IconWeapon;
                 var c = new s.TextBox(21, 3355443),

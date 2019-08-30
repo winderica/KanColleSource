@@ -24,8 +24,8 @@ const function716 = function (t, e, i) {
         s = i(37),
         a = i(56),
         _ = i(717),
-        u = i(57),
-        l = function (t) {
+        l = i(57),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i._onMouseOut = function (t) {
@@ -44,9 +44,9 @@ const function716 = function (t, e, i) {
                 var n = a.ORGANIZE_MAIN.getTexture(33);
                 i.presetFocuses = new PIXI.Sprite(n), i.presetFocuses.x = -6, i.presetFocuses.y = -3, i.presetFocuses.visible = !1, i.addChild(i.presetFocuses), i.shipBanner = new PIXI.Sprite, i.shipBanner.position.set(307, 7), i.deckName = new r.TextBox(21, 5523516), i.deckName.position.set(3, 4), i.deckCount = new r.TextBox(21, 5523516), i.deckCount.position.set(1, 36), i.addChild(i.shipBanner), i.addChild(i.deckName), i.addChild(i.deckCount);
                 var s = a.ORGANIZE_MAIN.getTexture(4),
-                    l = a.ORGANIZE_MAIN.getTexture(5),
+                    u = a.ORGANIZE_MAIN.getTexture(5),
                     c = a.ORGANIZE_MAIN.getTexture(1);
-                return i.saveButton = new u.SimpleButton(s, s), i.deleteButton = new u.SimpleButton(c, c), i.offSaveButton = new PIXI.Sprite(l), i.deleteButton.interactive = i.deleteButton.buttonMode = !0, i.saveButton.interactive = i.saveButton.buttonMode = !0, i.deleteButton.position.set(490, 36), i.saveButton.x = i.offSaveButton.x = 250, i.saveButton.y = i.offSaveButton.y = 36, i.saveButton.onClick = function () {
+                return i.saveButton = new l.SimpleButton(s, s), i.deleteButton = new l.SimpleButton(c, c), i.offSaveButton = new PIXI.Sprite(u), i.deleteButton.interactive = i.deleteButton.buttonMode = !0, i.saveButton.interactive = i.saveButton.buttonMode = !0, i.deleteButton.position.set(490, 36), i.saveButton.x = i.offSaveButton.x = 250, i.saveButton.y = i.offSaveButton.y = 36, i.saveButton.onClick = function () {
                     i._onClickSave()
                 }, i.deleteButton.onClick = function () {
                     i._onClickDelete()
@@ -86,5 +86,5 @@ const function716 = function (t, e, i) {
                 this.offSaveButton.visible = !1, this.saveButton.visible = !1, e ? (this.offSaveButton.visible = o && !i, this.saveButton.visible = !o && !i) : (this.offSaveButton.visible = !0, this.saveButton.visible = !1), this.deleteButton.visible = !n, this._presetId = t
             }, e
         }(PIXI.Container);
-    e.PresetEditSlot = l
+    e.PresetEditSlot = u
 }

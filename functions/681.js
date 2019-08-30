@@ -37,9 +37,9 @@ const function681 = function (t, e, i) {
                 var i = o.ORGANIZE_MAIN.getTexture(27),
                     n = o.ORGANIZE_MAIN.getTexture(57),
                     _ = o.ORGANIZE_MAIN.getTexture(58),
-                    u = o.ORGANIZE_MAIN.getTexture(59),
-                    l = new PIXI.Sprite(i);
-                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, u), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(l.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(l.width, 1), e.addChild(l, e.editButton, e.updateButton, e._mirrorText), e
+                    l = o.ORGANIZE_MAIN.getTexture(59),
+                    u = new PIXI.Sprite(i);
+                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, l), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(u.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(u.width, 1), e.addChild(u, e.editButton, e.updateButton, e._mirrorText), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "text", {
                 get: function () {

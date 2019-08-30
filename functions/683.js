@@ -9,14 +9,14 @@ const function683 = function (t, e, i) {
         s = i(28),
         a = i(8),
         _ = i(37),
-        u = i(6),
-        l = i(684),
+        l = i(6),
+        u = i(684),
         c = function () {
             function t(t) {
                 var e = this;
                 this._onClickBack = function () {
                     e.onClickBack()
-                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new l.ShipDetailView
+                }, this.mainView = t, this.dialogBackground = new a.AreaBox(.5), this.shipDetailView = new u.ShipDetailView
             }
             return t.prototype.start = function (t) {
                 var e = o.default.model.ship.get(t),
@@ -24,11 +24,11 @@ const function683 = function (t, e, i) {
                     a = s.ShipUtil.isMaxGradeUp(e, i, !1),
                     _ = o.default.model.deck.isInDeck(e.memID);
                 this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBack);
-                var l = !1;
+                var u = !1;
                 if (_) {
-                    l = null != o.default.model.deck.get(_[0]).expedition
+                    u = null != o.default.model.deck.get(_[0]).expedition
                 }
-                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, l), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, u.SE.play("249");
+                this.shipDetailView.updateBox1(e.name, e.level, e.hpNow, e.hpMax, e.starNum, a), this.shipDetailView.updateBox2(e, e.getSlotitems()), this.shipDetailView.updateBox3(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this.shipDetailView.updateBox4(e, e.getSlotitemEx(), e.isExtraSlot()), this.shipDetailView.updateBox5(e, u), this.shipDetailView.position.set(n.default.width, 141), this.mainView.addChild(this.dialogBackground, this.shipDetailView), o.default.view.clickGuard = !0, l.SE.play("249");
                 createjs.Tween.get(this.dialogBackground).to({
                     alpha: 1
                 }, 125), createjs.Tween.get(this.shipDetailView).to({

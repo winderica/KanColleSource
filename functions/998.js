@@ -24,8 +24,8 @@ const function998 = function (t, e, i) {
         s = i(999),
         a = i(1e3),
         _ = i(1001),
-        u = i(1006),
-        l = i(1007),
+        l = i(1006),
+        u = i(1007),
         c = i(1013),
         h = i(1),
         p = function (t) {
@@ -53,9 +53,9 @@ const function998 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
             }, e.prototype._updateNormalArea = function (t, e, i) {
-                this._removePreContent(), this._content = 0 == e ? new u.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
+                this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
             }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), this._content = e >= 1 ? new l.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
+                this._removePreContent(), this._content = e >= 1 ? new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap2(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._next_btn.hide(), this._back_btn.hide()
             }, e.prototype._removePreContent = function () {
                 null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
             }, e.prototype._updateBackBtn = function (t) {

@@ -6,14 +6,14 @@ const function0 = function (t, e, i) {
     var n = i(489),
         o = i(536),
         r = i(539),
-        s = i(269),
+        s = i(270),
         a = i(543),
         _ = i(544),
-        u = i(545),
-        l = i(548),
+        l = i(545),
+        u = i(548),
         c = function () {
             function t() {
-                this._view = new u.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new l.FriendlyRequestModel
+                this._view = new l.RootView, this._settings = new _.SettingsModel, this._option = new a.OptionModel, this._option.initialize(), this._model = new n.ModelManager, this._resource = new o.ResourceManager, this._scene = new r.SceneManager, this._sound = new s.SoundManager, this._friendlyRequest = new u.FriendlyRequestModel
             }
             return t._getInstance = function () {
                 return null == this._instance && (this._instance = new t), this._instance

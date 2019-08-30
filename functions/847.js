@@ -24,13 +24,13 @@ const function847 = function (t, e, i) {
         s = i(47),
         a = i(848),
         _ = i(849),
-        u = i(850),
-        l = i(852),
+        l = i(850),
+        u = i(852),
         c = i(853),
         h = i(854),
         p = i(855),
         d = i(856),
-        f = i(340),
+        f = i(341),
         y = i(857),
         m = i(858),
         g = i(859),
@@ -46,7 +46,7 @@ const function847 = function (t, e, i) {
                 var e = t.call(this) || this;
                 return e.nDocks = [], e.listPageIndex = 0, e.shipSortKeyType = 4, e._onClickEmptySlot = function (t) {
                     e.timerState = x.TimerState.UpdateOnly;
-                    var i = new u.PhaseRepairShipChoice(e, e.repairShipChoiceView, e.pagerView, e.shipSortButton, e.repairShipChoiceBackground);
+                    var i = new l.PhaseRepairShipChoice(e, e.repairShipChoiceView, e.pagerView, e.shipSortButton, e.repairShipChoiceBackground);
                     i.onComplete = function (n) {
                         e._onCompletePhaseRepairShipChoice(t, i, n)
                     }, i.start(e.listPageIndex, e.shipSortKeyType)
@@ -90,7 +90,7 @@ const function847 = function (t, e, i) {
                             break;
                         case !0:
                             var o = i.memShipId,
-                                s = new l.PhaseRepairShipConfig(e, e.repairShipConfigView, e.repairShipConfigBackground);
+                                s = new u.PhaseRepairShipConfig(e, e.repairShipConfigView, e.repairShipConfigBackground);
                             s.onComplete = function (n) {
                                 e._onCompletePhaseRepairShipConfig(t, i, s, n)
                             }, s.start(o)
@@ -118,16 +118,16 @@ const function847 = function (t, e, i) {
                         case !0:
                             var a = i.memShipId,
                                 _ = n.useHiSpeed,
-                                u = t - 1,
-                                l = r.default.model.ship.get(a),
+                                l = t - 1,
+                                u = r.default.model.ship.get(a),
                                 c = {
-                                    hpNow: l.hpNow,
-                                    hpMax: l.hpMax,
-                                    damaged: l.isDamaged(),
-                                    completeTime: l.getRepairTime()
+                                    hpNow: u.hpNow,
+                                    hpMax: u.hpMax,
+                                    damaged: u.isDamaged(),
+                                    completeTime: u.getRepairTime()
                                 },
                                 h = new y.StartAPI(t, i.memShipId, _);
-                            e.mainView.stopAnimation(u), h.start(function () {
+                            e.mainView.stopAnimation(l), h.start(function () {
                                 var s = (r.default.model.useItem.get(31), r.default.model.useItem.get(33), r.default.model.useItem.get(1)),
                                     a = new f.NDockAPI;
                                 r.default.view.portMain.updateInfo(), a.start(function () {
@@ -136,14 +136,14 @@ const function847 = function (t, e, i) {
                                         var d = e.nDocks[h];
                                         0 != d.state || 1 != e.mainView.dockState(h) ? 1 == d.state && e.mainView.updateHighSpeedButton(h, a) : e.mainView.forceEnd(h)
                                     }
-                                    var f = e.nDocks[u];
-                                    _ || 1 == f.state ? (e.mainView.updateViewState(u, 1), e.mainView.updateShipInfo(u, c.hpNow, c.hpMax, l.level, l.mstID, l.name, l.memID, c.damaged, l.starNum, l.isMarriage()), e.mainView.updateDockInfo(u, 1, t, c.completeTime + Date.now())) : e.mainView.updateViewState(u, f.state), i.dispose(), n.dispose(), o.hide(function () {
+                                    var f = e.nDocks[l];
+                                    _ || 1 == f.state ? (e.mainView.updateViewState(l, 1), e.mainView.updateShipInfo(l, c.hpNow, c.hpMax, u.level, u.mstID, u.name, u.memID, c.damaged, u.starNum, u.isMarriage()), e.mainView.updateDockInfo(l, 1, t, c.completeTime + Date.now())) : e.mainView.updateViewState(l, f.state), i.dispose(), n.dispose(), o.hide(function () {
                                         o.dispose();
                                         var i = r.default.model.ndock.get(t);
-                                        _ ? e.mainView.highSpeedAnimation(u, function () {
-                                            e.mainView.updateViewState(u, i.state), e.timerState = x.TimerState.WaitComplete
-                                        }) : (1 == i.state && e.mainView.playAnimation(u), e.timerState = x.TimerState.WaitComplete);
-                                        var n = l.mstID,
+                                        _ ? e.mainView.highSpeedAnimation(l, function () {
+                                            e.mainView.updateViewState(l, i.state), e.timerState = x.TimerState.WaitComplete
+                                        }) : (1 == i.state && e.mainView.playAnimation(l), e.timerState = x.TimerState.WaitComplete);
+                                        var n = u.mstID,
                                             s = c.hpNow / c.hpMax > .5 ? 11 : 12;
                                         r.default.sound.voice.play(n.toString(), s)
                                     })
@@ -174,8 +174,8 @@ const function847 = function (t, e, i) {
                                     a = r.default.model.useItem.get(1),
                                     _ = 0 < a.count;
                                 r.default.view.portMain.updateInfo();
-                                for (var u = 0; u < n.length; u++) {
-                                    1 == n[u].state && e.mainView.updateHighSpeedButton(u, _)
+                                for (var l = 0; l < n.length; l++) {
+                                    1 == n[l].state && e.mainView.updateHighSpeedButton(l, _)
                                 }
                                 i.hide(function () {
                                     var n = r.default.model.ship.get(s).mstID;
@@ -201,10 +201,10 @@ const function847 = function (t, e, i) {
                     a = new T.PagerView,
                     _ = new PIXI.Graphics;
                 _.beginFill(0, .3), _.drawRect(0, 103, o.default.width, o.default.height - 103), _.endFill();
-                var u = new PIXI.Graphics;
-                u.beginFill(0, .3), u.drawRect(0, 103, o.default.width, o.default.height - 103), u.endFill();
                 var l = new PIXI.Graphics;
-                l.beginFill(0, 1), l.drawRect(0, 0, o.default.width, o.default.height), l.endFill(), this.repairShipConfigBackground = u, this.repairShipChoiceBackground = _, t.onClickHiSpeed = this._onClickHiSpeed, t.onClickEmptySlot = this._onClickEmptySlot, t.onClickExtension = this._onClickExtension, this.addChild(t), this.mainView = t, this.repairShipChoiceView = e, this.repairShipConfigView = i, this.useRepairConfirmView = n, this.useHiSpeedRepairConfirmView = r, this.shipSortButton = s, this.pagerView = a, this.repairShipConfigBackground = u, this.repairShipChoiceBackground = _, this.repairConfirmBackground = l
+                l.beginFill(0, .3), l.drawRect(0, 103, o.default.width, o.default.height - 103), l.endFill();
+                var u = new PIXI.Graphics;
+                u.beginFill(0, 1), u.drawRect(0, 0, o.default.width, o.default.height), u.endFill(), this.repairShipConfigBackground = l, this.repairShipChoiceBackground = _, t.onClickHiSpeed = this._onClickHiSpeed, t.onClickEmptySlot = this._onClickEmptySlot, t.onClickExtension = this._onClickExtension, this.addChild(t), this.mainView = t, this.repairShipChoiceView = e, this.repairShipConfigView = i, this.useRepairConfirmView = n, this.useHiSpeedRepairConfirmView = r, this.shipSortButton = s, this.pagerView = a, this.repairShipConfigBackground = l, this.repairShipChoiceBackground = _, this.repairConfirmBackground = u
             }, e.prototype.updateNDocks = function (t) {
                 for (var e = r.default.model.useItem.get(1), i = 0 < e.count, n = 0; n < t.length; n++) {
                     var o = t[n];

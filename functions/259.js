@@ -1,64 +1,84 @@
 const function259 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.ITEMUP_REPLACE = {
-        516: 516,
-        517: 517,
-        518: 518,
-        519: 516,
-        520: 517,
-        521: 518,
-        522: 516,
-        523: 516,
-        524: 517,
-        525: 518,
-        526: 518,
-        546: 518,
-        547: 547,
-        548: 548,
-        549: 549,
-        550: 3,
-        551: 128,
-        552: 76,
-        553: 3,
-        554: 554,
-        555: 555,
-        556: 556,
-        557: 557,
-        558: 558,
-        561: 561,
-        562: 562,
-        563: 162,
-        564: 549,
-        565: 79,
-        566: 547,
-        567: 13,
-        568: 161,
-        569: 562,
-        570: 15,
-        571: 571,
-        572: 572,
-        573: 573,
-        574: 574,
-        575: 574,
-        576: 231,
-        577: 245,
-        578: 190,
-        579: 7,
-        580: 58,
-        581: 581,
-        582: 582,
-        583: 583,
-        584: 7,
-        585: 161,
-        586: 574,
-        587: 298,
-        588: 266,
-        589: 310,
-        590: 309,
-        591: 284,
-        592: 332,
-        593: 314
-    }
+    });
+    var o = i(22),
+        r = i(27),
+        s = i(144),
+        a = i(123),
+        _ = i(1371),
+        l = i(1372),
+        u = i(39),
+        c = function (t) {
+            function e(e, i, n, l, u, c) {
+                var h = t.call(this, e, i, -1, l, u, c) || this;
+                h._fire = function (t, e) {
+                    var i = h._scene.view.layer_content,
+                        n = t.getGlobalPos(),
+                        s = 1;
+                    1 == t.friend ? n.x += o.BannerSize.W / 2 : (n.x -= o.BannerSize.W / 2, s = -1);
+                    var l = new _.TaskRocketFire(i, n.x, n.y, s, 0);
+                    if (0 == h._daihatsu_eff) l.start(function () {
+                        h._impact(t, e)
+                    });
+                    else {
+                        var u = new a.TaskDaihatsuEff(i, t, e, h._daihatsu_eff),
+                            c = new r.ParallelTask;
+                        c.add(l), c.add(u), c.start(function () {
+                            h._impact(t, e)
+                        })
+                    }
+                }, h._defender = n;
+                var p = h._scene.data.isNight();
+                return h._cutin = new s.CutinAttack(h._attacker, h._slot, p, !0, !0), h
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._cutin.getPreloadTask().start(function () {
+                    t._completePreload()
+                })
+            }, e.prototype._completePreload = function () {
+                var t, e, i = this,
+                    n = this._attacker.friend,
+                    o = this._attacker.index,
+                    r = this._defender.index;
+                1 == n ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, o), e = this._scene.view.bannerGroupLayer.getBanner(!1, r)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, o), e = this._scene.view.bannerGroupLayer.getBanner(!0, r)), t.moveFront(), 0 == this._shield && e.moveFront(), this._cutin.view.once("attack", function () {
+                    i._playVoice(), i._fire(t, e)
+                }), this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start()
+            }, e.prototype._impact = function (t, e) {
+                var i = this,
+                    n = this._scene.view.layer_content,
+                    r = e.getGlobalPos();
+                1 == e.friend ? r.x += o.BannerSize.W / 2 : r.x -= o.BannerSize.W / 2;
+                new l.TaskRocketHit(n, r.x, r.y, 300).start(function () {
+                    i._damageEffect(t, e)
+                })
+            }, e.prototype._damageEffect = function (t, e) {
+                var i = this;
+                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
+                var n = e.getGlobalPos(!0);
+                this._scene.view.layer_explosion.playExplosionMiddle(n.x - o.BannerSize.W / 4 * (e.friend ? -1 : 1), n.y), createjs.Tween.get(this).wait(500).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
+            }, e
+        }(u.PhaseAttackBase);
+    e.PhaseAttackRocket = c
 }

@@ -24,12 +24,12 @@ const function950 = function (t, e, i) {
         s = i(147),
         a = i(8),
         _ = i(4),
-        u = i(26),
-        l = i(351),
-        c = i(352),
-        h = i(353),
+        l = i(26),
+        u = i(352),
+        c = i(353),
+        h = i(354),
         p = i(958),
-        d = i(355),
+        d = i(356),
         f = function (t) {
             function e(e, i, n) {
                 var r = t.call(this) || this;
@@ -51,7 +51,7 @@ const function950 = function (t, e, i) {
                     null != r._cb_onSupply && r._cb_onSupply(-1)
                 }, r._onSupply = function (t) {
                     null != r._cb_onSupply && r._cb_onSupply(t)
-                }, r._cb_onDrop = e, r._cb_onSupply = i, r._area = new PIXI.Graphics, r.addChild(r._area), r._tabs = new p.AirUnitPanelTabContainerWithExtend(r._onChangeTab, n), r._tabs.x = 30, r.addChild(r._tabs), r._base = new PIXI.Sprite, r._base.position.set(0, 21), r.addChild(r._base), r._banner = new l.AirUnitPanelBanner, r._banner.position.set(26, 45), r.addChild(r._banner), r._name = new _.TextBox(21, 0), r._name.position.set(33, 119), r.addChild(r._name), r._tag = new d.AirUnitPanelWoodenTag, r._tag.position.set(314, 47), r.addChild(r._tag), r._items = [];
+                }, r._cb_onDrop = e, r._cb_onSupply = i, r._area = new PIXI.Graphics, r.addChild(r._area), r._tabs = new p.AirUnitPanelTabContainerWithExtend(r._onChangeTab, n), r._tabs.x = 30, r.addChild(r._tabs), r._base = new PIXI.Sprite, r._base.position.set(0, 21), r.addChild(r._base), r._banner = new u.AirUnitPanelBanner, r._banner.position.set(26, 45), r.addChild(r._banner), r._name = new _.TextBox(21, 0), r._name.position.set(33, 119), r.addChild(r._name), r._tag = new d.AirUnitPanelWoodenTag, r._tag.position.set(314, 47), r.addChild(r._tag), r._items = [];
                 for (var s = 0; s < 4; s++) {
                     var a = new c.AirUnitPanelItem(r._onMouseDownAtItem, r._onSupply);
                     a.position.set(17, 164 + 90 * s), r.addChild(a), r._items.push(a)
@@ -65,7 +65,7 @@ const function950 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e) {
-                this._area_id = t, this._models = e, this._tabs.initialize(this._models.length), this._base.texture = u.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
+                this._area_id = t, this._models = e, this._tabs.initialize(this._models.length), this._base.texture = l.SALLY_AIRUNIT.getTexture(8), this._area.beginFill(0, 0), this._area.drawRect(this._base.x, this._base.y, this._base.width, this._base.height), this._area.endFill(), this._banner.initialize(t);
                 for (var i = 0; i < this._items.length; i++) {
                     this._items[i].initialize(i)
                 }
@@ -81,11 +81,11 @@ const function950 = function (t, e, i) {
                         }
                     }
                     this._updateTabs(t), this._name.text = i.name, s.EditTextBoxUtil.text = i.name;
-                    for (var a = i.squadrons, _ = 0, u = !1, l = 0; l < this._items.length; l++) {
-                        var c = l < a.length ? a[l] : null;
-                        this._items[l].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), u = u || c.count < c.countMax
+                    for (var a = i.squadrons, _ = 0, l = !1, u = 0; u < this._items.length; u++) {
+                        var c = u < a.length ? a[u] : null;
+                        this._items[u].update(c), 0 == _ && null != c && 1 == c.state && (_ = c.mst_id), l = l || c.count < c.countMax
                     }
-                    this._banner.update(t, _, i.distance_base, i.distance_bonus), this._tag.skipAnimation(), 0 == _ ? (this._tag.update(0, !1), this._tag.enabled = !1) : (this._tag.update(i.airUnitState, !1), this._tag.enabled = !0), this._supply_btn.update(u)
+                    this._banner.update(t, _, i.distance_base, i.distance_bonus), this._tag.skipAnimation(), 0 == _ ? (this._tag.update(0, !1), this._tag.enabled = !1) : (this._tag.update(i.airUnitState, !1), this._tag.enabled = !0), this._supply_btn.update(l)
                 }
             }, e.prototype.updateAfterExtend = function (t) {
                 this._models = t, this._tabs.initialize(this._models.length), this._updateTabs(this._selected_airunit_id)
@@ -144,15 +144,15 @@ const function950 = function (t, e, i) {
                             var _ = new PIXI.Graphics;
                             _.beginFill(6710886, .5), _.drawRect(0, 0, 150, 30), _.endFill(), _.position.set(-75, -15), s._drag.addChild(_)
                         } else {
-                            var u = new PIXI.Sprite(a);
-                            u.scale.set(.5), u.anchor.set(.5), u.alpha = .5, s._drag.addChild(u)
+                            var l = new PIXI.Sprite(a);
+                            l.scale.set(.5), l.anchor.set(.5), l.alpha = .5, s._drag.addChild(l)
                         }
                         s.addChild(s._drag), s._drag.x = t.data.global.x, s._drag.y = t.data.global.y
                     }
                 } else {
                     s._drag.x = t.data.global.x, s._drag.y = t.data.global.y;
-                    for (var l = 0; l < s._items.length; l++) {
-                        var e = s._items[l],
+                    for (var u = 0; u < s._items.length; u++) {
+                        var e = s._items[u],
                             i = t.data.getLocalPosition(e);
                         1 == e.contains(i.x, i.y) ? e.alpha = 1 : e.alpha = .5
                     }

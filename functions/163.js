@@ -24,9 +24,9 @@ const function163 = function (t, e, i) {
         s = i(703),
         a = i(704),
         _ = i(705),
-        u = i(319),
         l = i(320),
-        c = i(321);
+        u = i(321),
+        c = i(322);
     ! function (t) {
         function e() {
             switch (r.MAMIYA_IRAKO_SEASON) {
@@ -80,7 +80,7 @@ const function163 = function (t, e, i) {
     var p = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
-                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = u.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
+                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_info3", {
                 get: function () {
@@ -159,7 +159,7 @@ const function163 = function (t, e, i) {
         d = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
-                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = u.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
+                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_info3", {
                 get: function () {
@@ -242,7 +242,7 @@ const function163 = function (t, e, i) {
         f = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
-                return e._DIALOG = a.ORGANIZE_HOKYU_DIALOG_XMAS, e._ANIMATION = l.ORGANIZE_MAMIYA_ANIMATION_XMAS, e
+                return e._DIALOG = a.ORGANIZE_HOKYU_DIALOG_XMAS, e._ANIMATION = u.ORGANIZE_MAMIYA_ANIMATION_XMAS, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_info3", {
                 get: function () {
@@ -327,7 +327,7 @@ const function163 = function (t, e, i) {
         y = function (t) {
             function e() {
                 var e = null !== t && t.apply(this, arguments) || this;
-                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = u.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
+                return e._DIALOG = s.ORGANIZE_HOKYU_DIALOG_DEFAULT, e._ANIMATION = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_info3", {
                 get: function () {

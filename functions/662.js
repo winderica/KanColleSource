@@ -24,8 +24,8 @@ const function662 = function (t, e, i) {
         s = i(108),
         a = i(109),
         _ = i(663),
-        u = i(1),
-        l = function (t) {
+        l = i(1),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 n._ImageManager = e, n._ev = i, n._current = 0, n._prefix = "chara", n._suffix = {
@@ -41,14 +41,14 @@ const function662 = function (t, e, i) {
                         var a = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.full)),
                             _ = n._charaPosition[i];
                         a.name = n._suffix.full, a.position.set(_.x + n._charaMoveX, _.y), a.alpha = 0;
-                        var u = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.bg));
-                        u.name = n._suffix.bg, u.anchor.set(.5, 0), u.position.set(r.default.width / 2, 100), u.alpha = 0;
-                        var l = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.txt));
-                        l.name = n._suffix.txt, l.position.set(110, 120), l.alpha = 0, s.addChild(u, a, l), n._charaContainer.addChild(s)
+                        var l = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.bg));
+                        l.name = n._suffix.bg, l.anchor.set(.5, 0), l.position.set(r.default.width / 2, 100), l.alpha = 0;
+                        var u = new PIXI.Sprite(n._ImageManager.use(o + "_" + n._suffix.txt));
+                        u.name = n._suffix.txt, u.position.set(110, 120), u.alpha = 0, s.addChild(l, a, u), n._charaContainer.addChild(s)
                     }
                     n._ev.emit("tutorial-scene-start")
                 }, n._getEventTextureKey = function (t) {
-                    return t == u.EventType.MOUSEOVER ? "hover" : "def"
+                    return t == l.EventType.MOUSEOVER ? "hover" : "def"
                 }, n._onToggleSubmitBtn = function (t) {
                     var e = n._getEventTextureKey(t.type);
                     n._btnSubmit.texture = n._btn.submit[e]
@@ -65,7 +65,7 @@ const function662 = function (t, e, i) {
                     var t = n._current - 1;
                     t < 0 && (t = n._chara.length - 1), n._currentHide(n._current, t)
                 }, n._onSubmit = function () {
-                    n._btnSubmit.interactive = !1, n._btnSubmit.off(u.EventType.CLICK, n._onSubmit), n._messageContainer = new _.SceneSelectShipView(n._ImageManager, n._ev);
+                    n._btnSubmit.interactive = !1, n._btnSubmit.off(l.EventType.CLICK, n._onSubmit), n._messageContainer = new _.SceneSelectShipView(n._ImageManager, n._ev);
                     var t = n._chara[n._current],
                         e = n._charaContainer.getChildAt(n._current),
                         i = e.getChildByName(n._suffix.full),
@@ -80,8 +80,8 @@ const function662 = function (t, e, i) {
                         y: o.move.y
                     }, 250, r), n._selectedDispose(e), n.addChild(n._messageContainer)
                 };
-                for (var a = n._ImageManager.charaImagesList(), l = 0, c = a.length; l < c; l++) {
-                    var h = a[l];
+                for (var a = n._ImageManager.charaImagesList(), u = 0, c = a.length; u < c; u++) {
+                    var h = a[u];
                     n._ImageManager.add(h[0], h[1])
                 }
                 return n._charaPosition[s.CHARA.FUBUKI] = {
@@ -137,11 +137,11 @@ const function662 = function (t, e, i) {
             return n(e, t), e.prototype.initialize = function () {
                 this._charaContainer = new PIXI.Container;
                 var t = new PIXI.Container;
-                t.position.set(0, 600), this._btnSubmit = new PIXI.Sprite(this._btn.submit.def), this._btnSubmit.name = "submit", this._btnSubmit.anchor.set(.5, 0), this._btnSubmit.position.set(r.default.width / 2, 0), this._btnSubmit.interactive = !0, this._btnSubmit.buttonMode = !0, this._btnSubmit.on(u.EventType.CLICK, this._onSubmit).on(u.EventType.MOUSEOVER, this._onToggleSubmitBtn).on(u.EventType.MOUSEOUT, this._onToggleSubmitBtn);
+                t.position.set(0, 600), this._btnSubmit = new PIXI.Sprite(this._btn.submit.def), this._btnSubmit.name = "submit", this._btnSubmit.anchor.set(.5, 0), this._btnSubmit.position.set(r.default.width / 2, 0), this._btnSubmit.interactive = !0, this._btnSubmit.buttonMode = !0, this._btnSubmit.on(l.EventType.CLICK, this._onSubmit).on(l.EventType.MOUSEOVER, this._onToggleSubmitBtn).on(l.EventType.MOUSEOUT, this._onToggleSubmitBtn);
                 var e = Math.floor(this._btnSubmit.width / 2),
                     i = Math.floor(this._btnSubmit.height / 2),
                     n = this._btnSubmit.x;
-                this._btnPrev = new PIXI.Sprite(this._btn.prev.def), this._btnPrev.anchor.set(1, .5), this._btnPrev.position.set(n - e - 20, i), this._btnPrev.interactive = !0, this._btnPrev.buttonMode = !0, this._btnPrev.on(u.EventType.CLICK, this._onPrevChara).on(u.EventType.MOUSEOVER, this._onTogglePrevBtn).on(u.EventType.MOUSEOUT, this._onTogglePrevBtn), this._btnNext = new PIXI.Sprite(this._btn.next.def), this._btnNext.anchor.set(0, .5), this._btnNext.position.set(n + e + 20, i), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(u.EventType.CLICK, this._onNextChara).on(u.EventType.MOUSEOVER, this._onToggleNextBtn).on(u.EventType.MOUSEOUT, this._onToggleNextBtn), t.addChild(this._btnPrev, this._btnNext, this._btnSubmit), this.addChild(this._charaContainer, t), this._ImageManager.load(this._create)
+                this._btnPrev = new PIXI.Sprite(this._btn.prev.def), this._btnPrev.anchor.set(1, .5), this._btnPrev.position.set(n - e - 20, i), this._btnPrev.interactive = !0, this._btnPrev.buttonMode = !0, this._btnPrev.on(l.EventType.CLICK, this._onPrevChara).on(l.EventType.MOUSEOVER, this._onTogglePrevBtn).on(l.EventType.MOUSEOUT, this._onTogglePrevBtn), this._btnNext = new PIXI.Sprite(this._btn.next.def), this._btnNext.anchor.set(0, .5), this._btnNext.position.set(n + e + 20, i), this._btnNext.interactive = !0, this._btnNext.buttonMode = !0, this._btnNext.on(l.EventType.CLICK, this._onNextChara).on(l.EventType.MOUSEOVER, this._onToggleNextBtn).on(l.EventType.MOUSEOUT, this._onToggleNextBtn), t.addChild(this._btnPrev, this._btnNext, this._btnSubmit), this.addChild(this._charaContainer, t), this._ImageManager.load(this._create)
             }, e.prototype.start = function () {
                 this.alpha = 1, this._ev.emit("tutorial-title", !0, 22), this._nextShow(0)
             }, e.prototype._currentHide = function (t, e) {
@@ -172,15 +172,15 @@ const function662 = function (t, e, i) {
                     s = o.getChildByName(this._suffix.txt),
                     a = o.getChildByName(this._suffix.full),
                     _ = this._charaPosition[i],
-                    u = createjs.Ease.linear;
+                    l = createjs.Ease.linear;
                 createjs.Tween.get(r).to({
                     alpha: 1
-                }, 100, u), createjs.Tween.get(s).to({
+                }, 100, l), createjs.Tween.get(s).to({
                     alpha: 1
-                }, 100, u), createjs.Tween.get(a).wait(150).to({
+                }, 100, l), createjs.Tween.get(a).wait(150).to({
                     alpha: 1,
                     x: _.x
-                }, 150, u).call(function () {
+                }, 150, l).call(function () {
                     e._btnNext.interactive = !0, e._btnPrev.interactive = !0, e._btnSubmit.interactive = !0, e._ev.emit("tutorial-play-voice", n.toString(), 13)
                 }), this._current = t
             }, e.prototype._selectedDispose = function (t) {
@@ -195,15 +195,15 @@ const function662 = function (t, e, i) {
                 }, 100, o), createjs.Tween.get(this._btnSubmit).to({
                     alpha: 0
                 }, 100, o).call(function () {
-                    e._btnSubmit.interactive = !1, e._btnSubmit.buttonMode = !1, e._btnSubmit.off(u.EventType.CLICK, e._onSubmit), e._btnSubmit.off(u.EventType.MOUSEOVER, e._onToggleSubmitBtn), e._btnSubmit.off(u.EventType.MOUSEOUT, e._onToggleSubmitBtn), e._btnSubmit = null
+                    e._btnSubmit.interactive = !1, e._btnSubmit.buttonMode = !1, e._btnSubmit.off(l.EventType.CLICK, e._onSubmit), e._btnSubmit.off(l.EventType.MOUSEOVER, e._onToggleSubmitBtn), e._btnSubmit.off(l.EventType.MOUSEOUT, e._onToggleSubmitBtn), e._btnSubmit = null
                 }), createjs.Tween.get(this._btnPrev).to({
                     alpha: 0
                 }, 100, o).call(function () {
-                    e._btnPrev.interactive = !1, e._btnPrev.buttonMode = !1, e._btnPrev.off(u.EventType.CLICK, e._onPrevChara), e._btnPrev.off(u.EventType.MOUSEOVER, e._onTogglePrevBtn), e._btnPrev.off(u.EventType.MOUSEOUT, e._onTogglePrevBtn), e._btnPrev = null
+                    e._btnPrev.interactive = !1, e._btnPrev.buttonMode = !1, e._btnPrev.off(l.EventType.CLICK, e._onPrevChara), e._btnPrev.off(l.EventType.MOUSEOVER, e._onTogglePrevBtn), e._btnPrev.off(l.EventType.MOUSEOUT, e._onTogglePrevBtn), e._btnPrev = null
                 }), createjs.Tween.get(this._btnNext).to({
                     alpha: 0
                 }, 100, o).call(function () {
-                    e._btnNext.interactive = !1, e._btnNext.buttonMode = !1, e._btnNext.off(u.EventType.CLICK, e._onNextChara), e._btnNext.off(u.EventType.MOUSEOVER, e._onToggleNextBtn), e._btnNext.off(u.EventType.MOUSEOUT, e._onToggleNextBtn), e._btnNext = null
+                    e._btnNext.interactive = !1, e._btnNext.buttonMode = !1, e._btnNext.off(l.EventType.CLICK, e._onNextChara), e._btnNext.off(l.EventType.MOUSEOVER, e._onToggleNextBtn), e._btnNext.off(l.EventType.MOUSEOUT, e._onToggleNextBtn), e._btnNext = null
                 })
             }, e.prototype.dispose = function () {
                 var t = this;
@@ -214,5 +214,5 @@ const function662 = function (t, e, i) {
                 }), this._messageContainer.dispose()
             }, e
         }(a.SceneBase);
-    e.SceneSelectShip = l
+    e.SceneSelectShip = u
 }

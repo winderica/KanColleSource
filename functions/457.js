@@ -24,16 +24,16 @@ const function457 = function (t, e, i) {
         s = i(6),
         a = i(185),
         _ = i(185),
-        u = i(185),
         l = i(185),
+        u = i(185),
         c = i(39),
         h = function (t) {
             function e(e, i, n, r, s, c, h, p, d, f) {
                 var y = t.call(this, e, n, s, p, d, f) || this;
                 if (y._slot2 = o.default.model.slot.getMst(c), y._slot3 = o.default.model.slot.getMst(h), y._defender = r, 3 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3);
                 else if (4 == i) y._cutin = new _.CutinDanchaku2(n, y._slot, y._slot2, y._slot3);
-                else if (5 == i) y._cutin = new u.CutinDanchaku3(n, y._slot, y._slot2, y._slot3);
-                else if (6 == i) y._cutin = new l.CutinDanchaku4(n, y._slot, y._slot2, y._slot3);
+                else if (5 == i) y._cutin = new l.CutinDanchaku3(n, y._slot, y._slot2, y._slot3);
+                else if (6 == i) y._cutin = new u.CutinDanchaku4(n, y._slot, y._slot2, y._slot3);
                 else if (200 == i) y._cutin = new a.CutinDanchaku1(n, y._slot, y._slot2, y._slot3, 1);
                 else {
                     if (201 != i) throw new Error;
@@ -58,13 +58,13 @@ const function457 = function (t, e, i) {
                         s = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
                         a = Math.random() * r.BannerSize.H - r.BannerSize.H / 2,
                         _ = Math.random() * r.BannerSize.W - r.BannerSize.W / 2,
-                        u = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
+                        l = Math.random() * r.BannerSize.H - r.BannerSize.H / 2;
                     createjs.Tween.get(null).wait(800).call(function () {
                         e.moveAtDamage(i._shield), i._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n)
                     }).wait(150).call(function () {
                         i._scene.view.layer_explosion.playExplosionSmall(o.x + s, o.y + a)
                     }).wait(100).call(function () {
-                        i._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                        i._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + l, function () {
                             i._attack(t, e)
                         })
                     })

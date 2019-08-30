@@ -24,19 +24,19 @@ const function913 = function (t, e, i) {
         s = i(1),
         a = i(49),
         _ = i(28),
-        u = i(8),
-        l = i(86),
+        l = i(8),
+        u = i(86),
         c = i(222),
         h = i(37),
         p = i(6),
         d = i(21),
         f = i(35),
-        y = i(347),
+        y = i(348),
         m = i(90),
         g = i(914),
         v = i(915),
         b = i(917),
-        w = i(349),
+        w = i(350),
         x = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -106,8 +106,8 @@ const function913 = function (t, e, i) {
                     _.ShipUtil.sort(i.ships, t);
                     var e = i._getShipsInPage(i.ships, i._pageIndex);
                     i.shipDisassemblyChoice.update(e), i.shipSortButton.update(t), y.ArsenalSceneMemory.shipSortKeyType = i.shipSortKeyType = t
-                }, i.mainView = e, i.list_tit_bg_0 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.list_tit_bg_1 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.shipSortButton = new c.ShipSortButton, i.shipSortButton.position.set(582, 7), i.shipSortButton.onClick = i._onClickSort, i.pagerView = new l.PagerView, i.pagerView.position.set(42, 529), i.pagerView.onChangePage = i._onChangePage, i.shipDisassemblyChoice = new g.ShipDisassemblyChoice, i.shipDisassemblyChoice.onClickShip = i._onClickShip, i.shipDisassemblyChoice.addChild(i.shipSortButton, i.pagerView), i.shipDisassemblyConfirm = new v.ShipDisassemblyConfirm, i.shipDisassemblyConfirm.position.set(651, -16), i.shipDisassemblyConfirm.onClickStart = i._onClickDisassembly, i.blue_txt_01 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(0)), i.blue_txt_01.anchor.set(0, .5), i.blue_txt_01.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.blue_txt_11 = new PIXI.Sprite(f.ARSENAL_MAIN.getTexture(9)), i.blue_txt_11.anchor.set(0, .5), i.blue_txt_11.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.list_tit_bg_0.position.set(0, -37), i.list_tit_bg_1.position.set(654, -37), i.list_tit_bg_0.addChild(i.blue_txt_01), i.list_tit_bg_1.addChild(i.blue_txt_11), i.addChild(i.shipDisassemblyChoice, i.shipDisassemblyConfirm, i.list_tit_bg_0, i.list_tit_bg_1), i.position.set(1200, 139);
-                return i.dialogBackground = new u.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = o.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.checkedMemShipIdList = [], i.dialogBackground.on(s.EventType.CLICK, i._onClickBackground), i
+                }, i.mainView = e, i.list_tit_bg_0 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.list_tit_bg_1 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(64)), i.shipSortButton = new c.ShipSortButton, i.shipSortButton.position.set(582, 7), i.shipSortButton.onClick = i._onClickSort, i.pagerView = new u.PagerView, i.pagerView.position.set(42, 529), i.pagerView.onChangePage = i._onChangePage, i.shipDisassemblyChoice = new g.ShipDisassemblyChoice, i.shipDisassemblyChoice.onClickShip = i._onClickShip, i.shipDisassemblyChoice.addChild(i.shipSortButton, i.pagerView), i.shipDisassemblyConfirm = new v.ShipDisassemblyConfirm, i.shipDisassemblyConfirm.position.set(651, -16), i.shipDisassemblyConfirm.onClickStart = i._onClickDisassembly, i.blue_txt_01 = new PIXI.Sprite(d.COMMON_MAIN.getTexture(0)), i.blue_txt_01.anchor.set(0, .5), i.blue_txt_01.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.blue_txt_11 = new PIXI.Sprite(f.ARSENAL_MAIN.getTexture(9)), i.blue_txt_11.anchor.set(0, .5), i.blue_txt_11.position.set(22, i.list_tit_bg_0.height / 2 - 4), i.list_tit_bg_0.position.set(0, -37), i.list_tit_bg_1.position.set(654, -37), i.list_tit_bg_0.addChild(i.blue_txt_01), i.list_tit_bg_1.addChild(i.blue_txt_11), i.addChild(i.shipDisassemblyChoice, i.shipDisassemblyConfirm, i.list_tit_bg_0, i.list_tit_bg_1), i.position.set(1200, 139);
+                return i.dialogBackground = new l.AreaBox(a.UISettings.DIALOG_BG_ALPHA), i.dialogBackground.alpha = 0, i.dialogBackground.position.set(0, 103), i.dialogBackground.height = o.default.height - 103, i.mainView.addChild(i.dialogBackground), i.mainView.addChild(i), i.checkedMemShipIdList = [], i.dialogBackground.on(s.EventType.CLICK, i._onClickBackground), i
             }
             return n(e, t), Object.defineProperty(e.prototype, "useShipSortKeyType", {
                 get: function () {
@@ -133,13 +133,13 @@ const function913 = function (t, e, i) {
                     i.x = 1200 - 945 * i.animation.progress, i.dialogBackground.alpha = i.animation.progress
                 };
                 createjs.Tween.removeTweens(this.animation);
-                var u = createjs.Tween.get(this.animation);
-                u.call(function () {
-                    i.position.x = 1200, u.addEventListener("change", a)
+                var l = createjs.Tween.get(this.animation);
+                l.call(function () {
+                    i.position.x = 1200, l.addEventListener("change", a)
                 }).to({
                     progress: 1
                 }, 200).call(function () {
-                    u.removeAllEventListeners("change"), createjs.Tween.removeTweens(u.target), i.animation.progress = 1, a(), i.dialogBackground.width = 288, r.default.view.clickGuard = !1
+                    l.removeAllEventListeners("change"), createjs.Tween.removeTweens(l.target), i.animation.progress = 1, a(), i.dialogBackground.width = 288, r.default.view.clickGuard = !1
                 })
             }, e.prototype.hide = function (t) {
                 var e = this;

@@ -33,10 +33,10 @@ const function722 = function (t, e, i) {
                 var n = o.ORGANIZE_MAIN.getTexture(36),
                     a = o.ORGANIZE_MAIN.getTexture(40),
                     _ = o.ORGANIZE_MAIN.getTexture(12),
-                    u = o.ORGANIZE_MAIN.getTexture(13);
+                    l = o.ORGANIZE_MAIN.getTexture(13);
                 i._background = new PIXI.Sprite(n);
-                var l = new PIXI.Sprite(a);
-                return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(u), l.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, l, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
+                var u = new PIXI.Sprite(a);
+                return i.textMessage = new r.TextBox(16, "red"), i._positiveButton = new PIXI.Sprite(_), i.negativeButton = new PIXI.Sprite(l), u.position.set(279, -13), i.textMessage.position.set(13, 9), i._positiveButton.position.set(237, 42), i.negativeButton.position.set(237, 42), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i._positiveButton.visible = !1, i.negativeButton.visible = !1, i.addChild(i._background, u, i.textMessage, i.negativeButton, i._positiveButton), i._background.anchor.set(.5, 0), i._background.x = 285, i.textMessage.anchor.set(.5, 0), i
             }
             return n(e, t), Object.defineProperty(e.prototype, "index", {
                 get: function () {
@@ -76,10 +76,10 @@ const function722 = function (t, e, i) {
             var n = o.ORGANIZE_MAIN.getTexture(37),
                 a = o.ORGANIZE_MAIN.getTexture(40),
                 _ = o.ORGANIZE_MAIN.getTexture(13),
-                u = o.ORGANIZE_MAIN.getTexture(11);
+                l = o.ORGANIZE_MAIN.getTexture(11);
             i._background = new PIXI.Sprite(n);
-            var l = new PIXI.Sprite(a);
-            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(u), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", l.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, l, i.textMessage, i._negativeButton, i._positiveButton), i
+            var u = new PIXI.Sprite(a);
+            return i.textMessage = new r.TextBox(18, "red"), i._negativeButton = new PIXI.Sprite(_), i._positiveButton = new PIXI.Sprite(l), i.textMessage.text = "\u65e2\u306b\u5b58\u5728\u3057\u306a\u3044\u8266\u5a18\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059\u3002", u.position.set(160, -12), i.textMessage.position.set(10, 10), i._negativeButton.position.set(18, 39), i._positiveButton.position.set(34, 39), i._background.on(s.EventType.MOUSEOUT, i._onMouseOut), i._background.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.MOUSEOUT, i._onMouseOut), i._positiveButton.on(s.EventType.MOUSEOVER, i._onMouseOver), i._positiveButton.on(s.EventType.CLICK, i._onClick), i._negativeButton.visible = !1, i._background.interactive = !0, i._positiveButton.interactive = !0, i._positiveButton.buttonMode = !0, i.addChild(i._background, u, i.textMessage, i._negativeButton, i._positiveButton), i
         }
         return n(e, t), Object.defineProperty(e.prototype, "index", {
             get: function () {

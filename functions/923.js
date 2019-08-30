@@ -24,8 +24,8 @@ const function923 = function (t, e, i) {
         s = i(926),
         a = i(927),
         _ = i(928),
-        u = i(929),
-        l = i(931),
+        l = i(929),
+        u = i(931),
         c = i(932),
         h = i(934),
         p = i(1018),
@@ -63,7 +63,7 @@ const function923 = function (t, e, i) {
                     var o = new p.ViewMain(this._expedition_available, function (t) {
                             e.openView(t)
                         }),
-                        r = new u.PracticeAPI;
+                        r = new l.PracticeAPI;
                     r.start(function () {
                         o.initialize(), o.update(r.res_model), e._openView(o, i)
                     })
@@ -71,7 +71,7 @@ const function923 = function (t, e, i) {
                     var s = new d.ViewMain(this._expedition_available, function (t) {
                         e.openView(t)
                     });
-                    (new l.ExpeditionAPI).start(function () {
+                    (new u.ExpeditionAPI).start(function () {
                         s.initialize(), e._openView(s, i)
                     })
                 }

@@ -9,8 +9,8 @@ const function798 = function (t, e, i) {
         s = i(8),
         a = i(6),
         _ = i(89),
-        u = i(799),
-        l = i(807),
+        l = i(799),
+        u = i(807),
         c = i(809),
         h = i(812),
         p = i(813),
@@ -81,10 +81,10 @@ const function798 = function (t, e, i) {
                         var s, a = r.api_powerup_flag,
                             _ = n.length;
                         s = 1 == a ? new d.PowerUpAnimationSuccess(_, e.mainView) : new p.PowerUpAnimationFailed(_, e.mainView);
-                        var u = t.mstID,
-                            l = t.isDamaged(),
-                            c = o.default.model.ship_graph.get(u).getCenterOffset(l);
-                        s.preload(u, l, c, function () {
+                        var l = t.mstID,
+                            u = t.isDamaged(),
+                            c = o.default.model.ship_graph.get(l).getCenterOffset(u);
+                        s.preload(l, u, c, function () {
                             o.default.view.clickGuard = !1, o.default.view.overLayer.addChild(e.animationClickGuard, s), s.play(function () {
                                 e.targetShips.length = 0, e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(t, i, 0, 0, 0, 0, 0, !1, !1, !1), o.default.view.overLayer.removeChild(e.clickGuardConfirm), o.default.view.overLayer.removeChild(e.powerUpStartConfirm)
                             }, function () {
@@ -113,7 +113,7 @@ const function798 = function (t, e, i) {
                     var s = _.RemodelUtil.calcPowerUpParams([i, n], r);
                     e.powerUpEdit.targetShipBox.update(e.targetShips), e._updatePowerUp_(i, n, s.karyoku, s.raiso, s.taiku, s.souko, s.lucky, s.checkBonusLucky, s.checkBonusTaikyu, s.checkBonusTaisen)
                 }, this.mainView = t;
-                this.clickGuardKindaika = new s.AreaBox(.5), this.clickGuardKindaika.height = n.default.height - 103, this.clickGuardKindaika.position.set(0, 103), this.clickGuardConfirm = new s.AreaBox(1), this.clickGuardConfirm.height = n.default.height, this.clickGuardConfirm.position.set(0, 0), this.animationClickGuard = new s.AreaBox(0), this.animationClickGuard.renderable = !1, this.powerUpStartConfirm = new l.PowerUpStartConfirm, this.powerUpEdit = new u.PowerUpEdit
+                this.clickGuardKindaika = new s.AreaBox(.5), this.clickGuardKindaika.height = n.default.height - 103, this.clickGuardKindaika.position.set(0, 103), this.clickGuardConfirm = new s.AreaBox(1), this.clickGuardConfirm.height = n.default.height, this.clickGuardConfirm.position.set(0, 0), this.animationClickGuard = new s.AreaBox(0), this.animationClickGuard.renderable = !1, this.powerUpStartConfirm = new u.PowerUpStartConfirm, this.powerUpEdit = new l.PowerUpEdit
             }
             return t.prototype.start = function (t) {
                 var e = this;
@@ -131,13 +131,13 @@ const function798 = function (t, e, i) {
                 })
             }, t.prototype.dispose = function () {
                 this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null, this.mainView.removeChild(this.clickGuardKindaika), this.mainView.removeChild(this.powerUpEdit), this._onClickEmpty = null, this._onClickSlotIn = null, this.onComplete = null, this.onUpdateShip = null, this.mainView = null, this.powerUpEdit && (this.powerUpEdit.containerShipFull.cacheAsBitmap = !1, this.powerUpEdit.dispose()), this.powerUpEdit = null, this.clickGuardKindaika = null, this.animationClickGuard = null, this.powerUpStartConfirm && this.powerUpStartConfirm.dispose(), this.powerUpStartConfirm = null, this.clickGuardConfirm = null, this.targetShips = null, this.memShipId = null, this.taskShipChoice && this.taskShipChoice.dispose(), this.taskShipChoice = null
-            }, t.prototype._updatePowerUp_ = function (t, e, i, n, o, r, s, a, _, u) {
-                var l = t.karyoku - (e.hougMin + t.gradeUpHoug),
+            }, t.prototype._updatePowerUp_ = function (t, e, i, n, o, r, s, a, _, l) {
+                var u = t.karyoku - (e.hougMin + t.gradeUpHoug),
                     c = t.raisou - (e.raigMin + t.gradeUpRaig),
                     h = t.taiku - (e.tykuMin + t.gradeUpTyku),
                     p = t.soukou - (e.soukMin + t.gradeUpSouk),
                     d = t.lucky - (e.luckMin + t.gradeUpLuck),
-                    f = e.hougMax + l <= t.karyoku,
+                    f = e.hougMax + u <= t.karyoku,
                     y = e.raigMax + c <= t.raisou,
                     m = e.tykuMax + h <= t.taiku,
                     g = e.soukMax + p <= t.soukou,
@@ -147,13 +147,13 @@ const function798 = function (t, e, i) {
                     x = Math.min(t.gradeUpTyku + e.tykuMin + o, e.tykuMax),
                     I = Math.min(t.gradeUpSouk + e.soukMin + r, e.soukMax),
                     T = Math.min(t.gradeUpLuck + e.luckMin + s, e.luckMax),
-                    O = b + l,
+                    O = b + u,
                     C = w + c,
                     P = x + h,
                     k = I + p,
                     S = T + d;
-                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, S, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, u);
-                var M = [a, _, u].some(function (t) {
+                this.powerUpEdit.shipParameterChecker.clear(), this.powerUpEdit.shipParameterChecker.updateCommon(t.hpMax, t.kaihi, t.tousai, t.speed, t.range, t.taisen, t.sakuteki), this.powerUpEdit.shipParameterChecker.updateKaryoku(t.karyoku, O), this.powerUpEdit.shipParameterChecker.updateRaisou(t.raisou, C), this.powerUpEdit.shipParameterChecker.updateSoukou(t.soukou, k), this.powerUpEdit.shipParameterChecker.updateTaiku(t.taiku, P), this.powerUpEdit.karyokuBeforeAfterConfirm.update(t.karyoku, O, f), this.powerUpEdit.raisouBeforeAfterConfirm.update(t.raisou, C, y), this.powerUpEdit.soukouBeforeAfterConfirm.update(t.soukou, k, g), this.powerUpEdit.taikuBeforeAfterConfirm.update(t.taiku, P, m), this.powerUpEdit.SetPos_karyokuBeforeAfterConfirm(f), this.powerUpEdit.SetPos_raisouBeforeAfterConfirm(y), this.powerUpEdit.SetPos_soukouBeforeAfterConfirm(g), this.powerUpEdit.SetPos_taikuBeforeAfterConfirm(m), this.powerUpEdit.shipParameterChecker.updateLucky(t.lucky, S, a), this.powerUpEdit.shipParameterChecker.updateTaikyu(t.taikyu, _), this.powerUpEdit.shipParameterChecker.updateTaisen(t.taisen, l);
+                var M = [a, _, l].some(function (t) {
                         return 1 == t
                     }),
                     A = [f, y, m, g, v].some(function (t) {

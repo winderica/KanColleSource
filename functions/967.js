@@ -53,7 +53,7 @@ const function967 = function (t, e, i) {
                         }
                         n._cb_onSupply(t, e, i), n.fuelContainer.playSupply(function () {}), n.bauxContainer.playSupply(function () {})
                     }
-                }, n._cb_onSupply = e, n._cb_onPreSupply = i, n._bg = new PIXI.Sprite, n.addChild(n._bg), n._title = new s.AirUnitSupplyPanelTitle, n.addChild(n._title), n._btn = new u(n._onMouseOverBtn, n._onMouseOutBtn, n._onClick), n._btn.position.set(32, 438), n._btn_all = new l(n._onMouseOverBtnAll, n._onMouseOutBtnAll, n._onClickAll), n._btn_all.position.set(32, 495), n.interactive = !0, n
+                }, n._cb_onSupply = e, n._cb_onPreSupply = i, n._bg = new PIXI.Sprite, n.addChild(n._bg), n._title = new s.AirUnitSupplyPanelTitle, n.addChild(n._title), n._btn = new l(n._onMouseOverBtn, n._onMouseOutBtn, n._onClick), n._btn.position.set(32, 438), n._btn_all = new u(n._onMouseOverBtnAll, n._onMouseOutBtnAll, n._onClickAll), n._btn_all.position.set(32, 495), n.interactive = !0, n
             }
             return n(e, t), e.prototype.initialize = function (t, e, i, n) {
                 if (this._fuelNow = t, this._bauxNow = e, this._airunit = i, this._squadron = n, this._bg.texture = r.SALLY_AIRUNIT.getTexture(35), this._title.initialize(t, e), this.fuelContainer = new o.FuelContainer, this.fuelContainer.position.set(17, 206), this.addChild(this.fuelContainer), this.bauxContainer = new o.BauxContainer, this.bauxContainer.position.set(158, 206), this.addChild(this.bauxContainer), null == this._squadron) this._btn.initialize(!1), this._btn_all.initialize(!1);
@@ -99,7 +99,7 @@ const function967 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.AirUnitSupplyPanel = _;
-    var u = function (t) {
+    var l = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._onMouseOver = function () {
@@ -122,7 +122,7 @@ const function967 = function (t, e, i) {
                 0 == this._enabled ? this.texture = r.SALLY_AIRUNIT.getTexture(18) : this.texture = 0 == t ? r.SALLY_AIRUNIT.getTexture(17) : r.SALLY_AIRUNIT.getTexture(19)
             }, e
         }(PIXI.Sprite),
-        l = function (t) {
+        u = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o._onMouseOver = function () {

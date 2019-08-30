@@ -20,31 +20,20 @@ const function285 = function (t, e, i) {
         value: !0
     });
     var o = i(286),
-        r = i(21),
-        s = function (t) {
+        r = function (t) {
             function e() {
-                for (var e = t.call(this) || this, i = e.__getPositions__(), n = r.COMMON_MAIN.getTexture(33), s = r.COMMON_MAIN.getTexture(34), a = new Array, _ = 0; _ < i.length; _++) {
-                    var u = new PIXI.Sprite,
-                        l = i[_];
-                    u.position.x = l[0], u.position.y = l[1], u.alpha = 1;
-                    var c = new o.KiraAnimation(u, n, s);
-                    a.push(c), e.addChild(u)
-                }
-                return e.kiraAnimations = a, e.visible = !1, e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.play = function () {
-                this.visible = !0;
-                for (var t = 0; t < this.kiraAnimations.length; t++) {
-                    var e = Math.floor(3 * Math.random());
-                    this.kiraAnimations[t].play(e)
-                }
-            }, e.prototype.stop = function () {
-                this.visible = !1;
-                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].stop()
-            }, e.prototype.dispose = function () {
-                for (var t = 0; t < this.kiraAnimations.length; t++) this.kiraAnimations[t].dispose(), this.kiraAnimations[t] = null;
-                this.kiraAnimations = null, this.removeChildren()
+            return n(e, t), e.prototype.__getPositions__ = function () {
+                return [
+                    [27.75, -14.25],
+                    [38.25, 21.75],
+                    [-8.25, 35.25],
+                    [183, -23.25],
+                    [219, -.75],
+                    [210.75, 35.25]
+                ]
             }, e
-        }(PIXI.Container);
-    e.BaseKirakira = s
+        }(o.BaseKirakira);
+    e.BannerKirakira = r
 }

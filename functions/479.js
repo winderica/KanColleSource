@@ -9,15 +9,15 @@ const function479 = function (t, e, i) {
                 this._list = [];
                 var e = n.ObjUtil.getObjectArray(t, "api_df_list");
                 if (null != e)
-                    for (var i = n.ObjUtil.getNumArray(t, "api_at_eflag"), o = n.ObjUtil.getNumArray(t, "api_sp_list"), s = n.ObjUtil.getNumArray(t, "api_at_list"), a = n.ObjUtil.getObjectArray(t, "api_si_list"), _ = n.ObjUtil.getObjectArray(t, "api_cl_list"), u = n.ObjUtil.getObjectArray(t, "api_damage"), l = n.ObjUtil.getObjectArray(t, "api_n_mother_list"), c = 0; c < e.length; c++) {
+                    for (var i = n.ObjUtil.getNumArray(t, "api_at_eflag"), o = n.ObjUtil.getNumArray(t, "api_sp_list"), s = n.ObjUtil.getNumArray(t, "api_at_list"), a = n.ObjUtil.getObjectArray(t, "api_si_list"), _ = n.ObjUtil.getObjectArray(t, "api_cl_list"), l = n.ObjUtil.getObjectArray(t, "api_damage"), u = n.ObjUtil.getObjectArray(t, "api_n_mother_list"), c = 0; c < e.length; c++) {
                         var h = i[c],
                             p = o[c],
                             d = s[c],
                             f = e[c],
                             y = a[c],
                             m = _[c],
-                            g = u[c],
-                            v = 1 == l[c],
+                            g = l[c],
+                            v = 1 == u[c],
                             b = new r(h, p, d, f, y, m, g, v);
                         this._list.push(b)
                     }

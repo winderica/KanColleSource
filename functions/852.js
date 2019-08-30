@@ -31,12 +31,12 @@ const function852 = function (t, e, i) {
                     s = o.default.model.useItem.get(31).count,
                     a = n.getRepairSteel() <= r,
                     _ = n.getRepairFuel() <= s,
-                    u = o.default.model.deck.isInDeck(t),
-                    l = o.default.model.useItem.get(1),
-                    c = 0 < l.count,
+                    l = o.default.model.deck.isInDeck(t),
+                    u = o.default.model.useItem.get(1),
+                    c = 0 < u.count,
                     h = o.default.model.ndock.getShipMemIDs(),
                     p = -1 < h.indexOf(t);
-                null != u && (i = null != o.default.model.deck.get(u[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
+                null != l && (i = null != o.default.model.deck.get(l[0]).expedition), this.repairShipConfigView.update(n, a, _, i, p, c);
                 var d = createjs.Tween.get(this.repairShipConfigView);
                 createjs.Tween.get(this.background).to({
                     alpha: 1

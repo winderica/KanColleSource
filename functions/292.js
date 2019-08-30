@@ -23,33 +23,21 @@ const function292 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._img.visible = !1, e.addChild(e._img), e
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                var e;
-                if (11 == t) e = 9;
-                else if (12 == t) e = 14;
-                else if (13 == t) e = 10;
-                else if (14 == t) e = 11;
-                else if (15 == t) e = 8;
-                else {
-                    if (31 != t) return void(this._img.texture = PIXI.Texture.EMPTY);
-                    e = 12
-                }
-                this._img.texture = o.PORT_RINGMENU.getTexture(e)
-            }, e.prototype.show = function () {
-                var t = this;
-                1 != this._img.visible && null == this._t && (this._img.position.set(5, -23), this._img.alpha = 0, this._img.visible = !0, this._t = createjs.Tween.get(this._img).wait(400).to({
-                    x: 35,
-                    alpha: 1
-                }, 100).call(function () {
-                    t._t = null
-                }))
-            }, e.prototype.hide = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null), this._img.visible = !1
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = o.PORT_RINGMENU.getTexture(7), this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(this, {
+                    loop: !0
+                }).to({
+                    rotation: 2 * Math.PI
+                }, 24e3))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e.prototype.dispose = function () {
-                this.hide()
+                this.deactivate()
             }, e
         }(PIXI.Container);
-    e.RingMenuBtnDescription = r
+    e.RingMenuBtnBgOn = r
 }

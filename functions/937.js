@@ -89,7 +89,7 @@ const function937 = function (t, e, i) {
             }, t
         }();
     e.SortieModel = _;
-    var u = function (t) {
+    var l = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }
@@ -106,5 +106,5 @@ const function937 = function (t, e, i) {
             this._data.push(new a.NextModel(t))
         }, e
     }(_);
-    e.SortieModelEdit = u
+    e.SortieModelEdit = l
 }

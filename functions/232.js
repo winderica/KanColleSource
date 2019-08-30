@@ -20,7 +20,7 @@ const function232 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
+        r = i(10),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -83,7 +83,7 @@ const function232 = function (t, e, i) {
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new u, e._now.x = 30, e._max = new u, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
+                return e._enabled = !1, e._title = new PIXI.Sprite, e._slash = new PIXI.Sprite, e._slash.x = 62, e._now = new l, e._now.x = 30, e._max = new l, e._max.x = 68, e.addChild(e._title), e.addChild(e._slash), e.addChild(e._now), e.addChild(e._max), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "enabled", {
                 get: function () {
@@ -100,12 +100,12 @@ const function232 = function (t, e, i) {
                 this._now.update(t), this._max.update(e)
             }, e
         }(PIXI.Container),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e._nums = [];
                 for (var i = 0; i < 4; i++) {
-                    var n = new l;
+                    var n = new u;
                     n.x = 8 * i, e.addChild(n), e._nums.push(n)
                 }
                 return e
@@ -120,7 +120,7 @@ const function232 = function (t, e, i) {
                         for (var i = 0; i < this._nums.length; i++) i == this._nums.length - 1 ? this._nums[i].update(0) : this._nums[i].update(-1)
             }, e
         }(PIXI.Container),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }

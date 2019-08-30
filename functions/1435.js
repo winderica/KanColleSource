@@ -1,45 +1,46 @@
 const function1435 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(186),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this, e) || this;
-                return i._initPlaneFrom(), i
+    var n = i(7),
+        o = function () {
+            function t(t) {
+                this._o = t
             }
-            return n(e, t), Object.defineProperty(e.prototype, "squadrons", {
+            return t.prototype.isSuccess_f = function () {
+                return this._isSuccess(this._data_f)
+            }, t.prototype.isSuccess_e = function () {
+                return this._isSuccess(this._data_e)
+            }, t.prototype.hasPlane_f = function () {
+                return this._hasPlane(this._data_f)
+            }, t.prototype.hasPlane_e = function () {
+                return this._hasPlane(this._data_e)
+            }, t.prototype.hasMikikan_f = function () {
+                return this._hasMikikan(this._data_f)
+            }, t.prototype.hasMikikan_e = function () {
+                return this._hasMikikan(this._data_e)
+            }, Object.defineProperty(t.prototype, "_data_f", {
                 get: function () {
-                    for (var t = [], e = o.ObjUtil.getObjectArray(this._o, "api_air_base_data"), i = 0, n = e; i < n.length; i++) {
-                        var r = n[i];
-                        t.push({
-                            mst_id: o.ObjUtil.getNumber(r, "api_mst_id"),
-                            count: o.ObjUtil.getNumber(r, "api_count")
-                        })
-                    }
-                    return t
+                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
+                    return null != t && t.length > 0 ? t[0] : -1
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e
-        }(r.AirWarDataBase);
-    e.AirUnitJetData = s
+            }), Object.defineProperty(t.prototype, "_data_e", {
+                get: function () {
+                    var t = n.ObjUtil.getNumArray(this._o, "api_search");
+                    return null != t && t.length > 1 ? t[1] : -1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype._isSuccess = function (t) {
+                return 1 == t || 2 == t || 5 == t
+            }, t.prototype._hasPlane = function (t) {
+                return 1 == t || 2 == t || 3 == t || 4 == t
+            }, t.prototype._hasMikikan = function (t) {
+                return 2 == t || 3 == t
+            }, t
+        }();
+    e.SakutekiData = o
 }

@@ -20,50 +20,82 @@ const function1410 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(22),
-        s = i(1411),
-        a = i(124),
-        _ = i(39),
-        u = function (t) {
-            function e(e, i, n, r, s, a, _, u, l, c) {
-                var h = t.call(this, e, n, s, u, l, c) || this;
-                return h._slot2 = o.default.model.slot.getMst(a), h._slot3 = o.default.model.slot.getMst(_), h._defender = r, h
+        r = i(2),
+        s = i(17),
+        a = i(13),
+        _ = i(24),
+        l = i(1411),
+        u = i(65),
+        c = i(44),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new PIXI.Container, e
             }
-            return n(e, t), e.prototype.preload = function (t) {
-                this._cutin = new s.CutinSpSSS, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
-            }, e.prototype._start = function () {
-                var t, e, i = this._attacker.friend,
-                    n = this._attacker.index,
-                    o = this._defender.index;
-                1 == i ? (t = this._scene.view.bannerGroupLayer.getBanner(!0, n), e = this._scene.view.bannerGroupLayer.getBanner(!1, o)) : (t = this._scene.view.bannerGroupLayer.getBanner(!1, n), e = this._scene.view.bannerGroupLayer.getBanner(!0, o)), this._playPicket(t, e)
-            }, e.prototype._playPicket = function (t, e) {
-                var i = this;
-                if (this._attacker.hasSlot(129, !0)) {
-                    var n = new PIXI.Point;
-                    n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                    var o = new a.Picket;
-                    o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
-                        i._playCutin(t, e)
+            return n(e, t), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.preload = function (t, e, i, n) {
+                var o = this;
+                this._attacker = t, this._slot1 = e, this._slot2 = i;
+                var r = new a.ShipLoader;
+                r.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), r.load(function () {
+                    var t = null == o._slot1 ? 0 : o._slot1.mstID,
+                        e = null == o._slot2 ? 0 : o._slot2.mstID,
+                        i = new _.SlotLoader;
+                    t > 0 && (i.add(t, "item_up"), i.add(t, "btxt_flat")), e > 0 && (i.add(e, "item_up"), i.add(e, "btxt_flat")), i.load(function () {
+                        null != n && n()
                     })
-                } else this._playCutin(t, e)
-            }, e.prototype._playCutin = function (t, e) {
-                var i = this;
-                this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    t.moveFront(), e.moveFront(), i._damageEffect(t, e)
-                }), this._cutin.view.once("attack", function () {
-                    i._playVoice()
                 })
-            }, e.prototype._damageEffect = function (t, e) {
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var i = this._getDamage(this._defender);
-                this._playExplosion(e, i), this._playDamageEffect(t, e, this._defender, i, this._hit)
-            }, e.prototype._playVoice = function () {
-                if (this._attacker.friend) {
-                    var t = this._attacker.mst_id,
-                        e = 17;
-                    432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
-                }
-            }, e.prototype._log = function (t) {}, e
-        }(_.PhaseAttackBase);
-    e.PhaseAttackSpSSS = u
+            }, e.prototype._start = function () {
+                this._canvas = new l.CutinCanvasSpRR, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+            }, e.prototype._ready = function () {
+                var t = this._attacker.mst_id,
+                    e = this._attacker.isDamaged(),
+                    i = o.default.model.ship_graph.get(t).getBattleOffset(e);
+                this._ship.texture = o.default.resources.getShip(t, e, "full"), this._ship.position.set(i.x, i.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(t, e, "full")), this._shipFlash.position.set(i.x, i.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -225, this._canvas.chara.y = -87) : (this._canvas.chara.x = 483, this._canvas.chara.y = -138), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID), this._anim1()
+            }, e.prototype._anim1 = function () {
+                var t = this;
+                this._canvas.bg.show(366), createjs.Tween.get(this._canvas.chara).wait(200).to({
+                    x: (this._attacker.friend ? 0 : 465) - 104,
+                    alpha: 1
+                }, 366).wait(1200).call(function () {
+                    t._anim2()
+                }), this._canvas.layer_item1.show(400), this._canvas.layer_item2.show(833), this._canvas.layer_item3.show(1266), this._canvas.layer_wave.show(533), this._canvas.layer_names.show(400)
+            }, e.prototype._anim2 = function () {
+                var t = this;
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
+                    t._shipFlash.play()
+                }).wait(200).call(function () {
+                    t._anim3()
+                })
+            }, e.prototype._anim3 = function () {
+                var t = this,
+                    e = new u.IntensiveLines;
+                e.initialize(), e.alpha = 0, this._view.addChild(e), e.activate(), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 200);
+                var i = new s.FadeBox(1, 16777215);
+                i.alpha = 0, this._view.addChild(i), createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._anim4(e, i)
+                })
+            }, e.prototype._anim4 = function (t, e) {
+                var i = this;
+                this._canvas.dispose(), createjs.Tween.get(t).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(e).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t.deactivate(), i._view.removeChild(t), i._view.removeChild(e), i._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._attacker = null, this._slot1 = null, this._slot2 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase);
+    e.CutinSpRR = h
 }

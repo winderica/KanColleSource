@@ -19,55 +19,15 @@ const function1297 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(1298),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClick = function (t) {
-                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
-                }, n._onDoubleClick = function (t) {
-                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
-                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
+    var o = i(11),
+        r = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_req_map/start_air_base", o._airunit1 = e, o._airunit2 = i, o._airunit3 = n, o
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._clear(), e = this._dedupeCells(e);
-                for (var n = 0, o = e; n < o.length; n++) {
-                    var s = o[n],
-                        a = s.no,
-                        _ = i.getCellInfo(a);
-                    if (!(_.distance <= 0)) {
-                        var u = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
-                        u.initialize(a, _, t), u.x = s.x + s.point.x, u.y = s.y + s.point.y, this.addChild(u), this._points[a] = u
-                    }
-                }
-            }, e.prototype.update = function () {
-                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
-                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
-                for (var i in this._points) {
-                    var n = this._points[i];
-                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
-                }
-            }, e.prototype.dispose = function () {
-                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
-            }, e.prototype._clear = function () {
-                for (var t in this._points) this._points[t].dispose();
-                this.removeChildren(), this._points = []
-            }, e.prototype._dedupeCells = function (t) {
-                for (var e = [], i = t.concat(); i.length > 0;) {
-                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
-                        var a = s[r],
-                            _ = n.x - a.x,
-                            u = n.y - a.y;
-                        if (Math.sqrt(_ * _ + u * u) <= 10) {
-                            o = !0;
-                            break
-                        }
-                    }
-                    0 == o && e.push(n)
-                }
-                return e
+            return n(e, t), e.prototype._connect = function () {
+                null != this._airunit1 && this._airunit1.length > 0 && (this._post_data.api_strike_point_1 = this._airunit1.join(",")), null != this._airunit2 && this._airunit2.length > 0 && (this._post_data.api_strike_point_2 = this._airunit2.join(",")), null != this._airunit3 && this._airunit3.length > 0 && (this._post_data.api_strike_point_3 = this._airunit3.join(",")), t.prototype._connect.call(this)
             }, e
-        }(PIXI.Container);
-    e.AirUnitAppointmentLayer = s
+        }(o.APIBase);
+    e.AirUnitGoAPI = r
 }

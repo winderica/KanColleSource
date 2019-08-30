@@ -25,24 +25,23 @@ const function1361 = function (t, e, i) {
         a = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
-                return s._attacker = e, s._plane_mst_id = i, s._slot_mst_id1 = n, s._slot_mst_id2 = o, s._type = r, s
+                return s._ship_mst_id = e, s._damaged = i, s._plane1 = n, s._plane2 = o, s._plane3 = r, s
             }
             return n(e, t), e.prototype._start = function () {
                 this._loadShipImage()
             }, e.prototype._loadShipImage = function () {
                 var t = this,
                     e = new r.ShipLoader;
-                e.add(this._attacker.mst_id, this._attacker.isDamaged(), "full"), e.load(function () {
-                    t._loadSlotTextImage()
+                e.add(this._ship_mst_id, this._damaged, "full"), e.load(function () {
+                    t._loadPlaneImage()
                 })
-            }, e.prototype._loadSlotTextImage = function () {
-                var t = this;
-                this._plane_mst_id <= 0 && this._slot_mst_id1 <= 0 && this._slot_mst_id2 <= 0 && this._endTask();
-                var e = new s.SlotLoader;
-                this._plane_mst_id > 0 && e.add(this._plane_mst_id, "item_up"), this._slot_mst_id1 > 0 && (e.add(this._slot_mst_id1, "item_up"), 0 == this._type && e.add(this._slot_mst_id1, "btxt_flat")), this._slot_mst_id2 > 0 && (e.add(this._slot_mst_id2, "item_up"), e.add(this._slot_mst_id2, "btxt_flat")), e.load(function () {
+            }, e.prototype._loadPlaneImage = function () {
+                var t = this,
+                    e = new s.SlotLoader;
+                this._plane1 > 0 && e.add(this._plane1, "item_up"), this._plane2 > 0 && e.add(this._plane2, "item_up"), this._plane3 > 0 && e.add(this._plane3, "item_up"), e.load(function () {
                     t._endTask()
                 })
             }, e
         }(o.TaskBase);
-    e.PreloadCutinDanchaku = a
+    e.PreloadCutinFunnel = a
 }

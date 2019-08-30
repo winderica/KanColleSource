@@ -20,14 +20,14 @@ const function446 = function (t, e, i) {
         value: !0
     });
     var o = i(5),
-        r = (i(0), i(42)),
+        r = (i(0), i(43)),
         s = i(72),
         a = i(27),
-        _ = i(19),
-        u = i(29),
-        l = i(38),
+        _ = i(20),
+        l = i(29),
+        u = i(38),
         c = i(6),
-        h = i(1346),
+        h = i(1351),
         p = i(141),
         d = i(180),
         f = i(142),
@@ -70,7 +70,7 @@ const function446 = function (t, e, i) {
                     t._antiAircraft()
                 }, 1200)), e.add(new s.FuncTask(function () {
                     t._damageAtStage2()
-                }, 1350)), e.add((new u.SerialTask).add(new l.WaitTask(1700)).add((new a.ParallelTask).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
+                }, 1350)), e.add((new l.SerialTask).add(new u.WaitTask(1700)).add((new a.ParallelTask).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new y.TaskAirWarTorpedo(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new s.FuncTask(function () {
                     t._showBakuExplosion()
                 }, 2950)), e.add(new s.FuncTask(function () {
                     t._showDamage()
@@ -90,14 +90,14 @@ const function446 = function (t, e, i) {
                         a = s.mst_id,
                         _ = new PIXI.Point(-75, i + e * r + .5 * e);
                     if (s.count > 0) {
-                        var u = new f.Plane,
-                            l = new PIXI.Point(45, 18);
-                        u.initialize(a, !0, _, l), n.push(u)
+                        var l = new f.Plane,
+                            u = new PIXI.Point(45, 18);
+                        l.initialize(a, !0, _, u), n.push(l)
                     }
                     if (s.count > 6) {
-                        var u = new f.Plane,
-                            l = new PIXI.Point(18, -27);
-                        u.initialize(a, !0, _, l), n.push(u)
+                        var l = new f.Plane,
+                            u = new PIXI.Point(18, -27);
+                        l.initialize(a, !0, _, u), n.push(l)
                     }
                 }
                 this._canvas.addPlanes_f(n)

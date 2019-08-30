@@ -19,83 +19,75 @@ const function1285 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(1),
-        s = i(2),
-        a = i(6),
-        _ = i(440),
-        u = i(1286),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._selected_no = -1, n._onClick = function (t) {
-                    n._selected_no = t;
-                    for (var e = n._scene.view.map, i = 0, o = n._cellWaves; i < o.length; i++) {
-                        var r = o[i];
-                        e.spotLayer.removeChild(r), r.dispose()
-                    }
-                    n._balloon.close(function () {
-                        n._scene.view.map.ship_icon.removeChild(n._balloon), createjs.Tween.get(null).wait(1e3).call(function () {
-                            n._endTask()
-                        })
-                    })
-                }, n._scene = e, n._model = i, n
+    var o = i(5),
+        r = i(0),
+        s = i(146),
+        a = i(7),
+        _ = i(2),
+        l = i(244),
+        u = i(50),
+        c = i(6),
+        h = i(1286),
+        p = i(1287),
+        d = function (t) {
+            function e(e, i, n, o, r, s, a, _, l, u) {
+                var c = t.call(this) || this;
+                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = l, c._battle_cls = u, c
             }
-            return n(e, t), Object.defineProperty(e.prototype, "selected_no", {
-                get: function () {
-                    return this._selected_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._scene.view.message_box.text = "\u8266\u968a\u306e\u91dd\u8def\u3092\u9078\u629e\u3067\u304d\u307e\u3059\u3002\n\u63d0\u7763\u3001\u3069\u3061\u3089\u306e\u91dd\u8def\u3092\u3068\u3089\u308c\u307e\u3059\u304b\uff1f", this._showHukidashi()
-            }, e.prototype._showHukidashi = function () {
+            return n(e, t), e.prototype._start = function () {
+                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
+            }, e.prototype._flightEnemyAirUnit = function () {
                 var t = this,
-                    e = this._model.sortie.getNextCell(),
-                    i = this._scene.resInfo.getBranchOption(e.no);
-                if (this._balloon = new u.BranchBalloon, null == i) {
-                    var n = this._model.sortie.map_id,
-                        o = e.no,
-                        r = 1;
-                    425 == n && 6 == o && (r = 2), 432 == n && (7 != o && 17 != o || (r = 0)), 433 == n && (1 == o ? r = 0 : 7 != o && 21 != o || (r = 2, this._balloon.position.set(-6, 27))), this._balloon.initialize(r, 0)
-                } else this._balloon.initialize(i.type, i.beak, i.offset);
-                this._scene.view.map.ship_icon.addChild(this._balloon), this._balloon.open(function () {
-                    t._showWaves()
+                    e = this._mapinfo.getAirBaseRaidOption();
+                this._plane_layer.show(this._PLANEKEY, e, 2e3, this._map_no, this._area_id, function () {
+                    t._showTelop()
                 })
-            }, e.prototype._showWaves = function () {
-                this._cellWaves = [];
-                for (var t = this._model.sortie.getNextCell().getSelectableRoutes(), e = 0, i = t; e < i.length; e++) {
-                    var n = i[e],
-                        o = this._scene.view.map,
-                        r = o.spotLayer.getSpot(n),
-                        s = new c(r, this._onClick);
-                    s.position.set(r.x, r.y), o.spotLayer.addChild(s), this._cellWaves.push(s), s.activate()
-                }
+            }, e.prototype._showTelop = function () {
+                var t = this,
+                    e = new h.AirRaidTelop;
+                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
+                    t._telop_layer.removeChild(e), t._fadeoutBGM()
+                })
+            }, e.prototype._fadeoutBGM = function () {
+                var t = this;
+                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
+                    t._startBattle()
+                })) : this._startBattle()
+            }, e.prototype._startBattle = function () {
+                var t = this,
+                    e = new l.BattleSceneModel(!1);
+                e.setGekimetsuData(this._battle_obj);
+                var i = new u.Shutter;
+                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
+                var n = new this._battle_cls;
+                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
+                    alpha: 1
+                }, 200), createjs.Tween.get(n).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    n.once("complete", function () {
+                        t._hideBattle(i, n)
+                    }), n.start()
+                })
+            }, e.prototype._hideBattle = function (t, e) {
+                var i = this;
+                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
+                    alpha: 0
+                }, 300).wait(400).call(function () {
+                    i._battle_layer.removeChild(t), i._showResultTelop()
+                })
+            }, e.prototype._showResultTelop = function () {
+                var t = this,
+                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
+                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
+                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
+                    n = new p.AirRaidResultTelop;
+                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
+                    t._telop_layer.removeChild(n), t._endTask()
+                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
             }, e.prototype._endTask = function () {
-                this._scene.view.message_box.text = "";
-                var e = this._model.deck_f.ships[0],
-                    i = e.mst_id;
-                o.default.sound.voice.play(i.toString(), 26), this._scene = null, this._model = null, this._balloon = null, this._cellWaves = null, t.prototype._endTask.call(this)
+                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
             }, e
-        }(s.TaskBase);
-    e.TaskBranchRoute = l;
-    var c = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._onMouseOver = function () {
-                n._stopTween(), n._wave.scale.set(1), n._wave.alpha = 1, n._target.showLine(), a.SE.play("242")
-            }, n._onMouseOut = function () {
-                n._startTween(), n._target.hideLine()
-            }, n._onClick = function () {
-                null != n._cb_onClick && n._cb_onClick(n._target.no)
-            }, n._target = e, n._cb_onClick = i, n.beginFill(16711680, 0), n.drawCircle(0, 0, 38), n.endFill(), n
-        }
-        return n(e, t), e.prototype.activate = function () {
-            1 != this._activated && (t.prototype.activate.call(this), this.buttonMode = !0, this.interactive = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            t.prototype.deactivate.call(this), this.buttonMode = !1, this.interactive = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
-        }, e.prototype.dispose = function () {
-            t.prototype.dispose.call(this), this._target = null, this._cb_onClick = null
-        }, e
-    }(_.CellWave)
+        }(_.TaskBase);
+    e.AirRaidTask = d
 }

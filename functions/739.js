@@ -9,7 +9,7 @@ const function739 = function (t, e, i) {
         s = i(8),
         a = i(37),
         _ = i(740),
-        u = function () {
+        l = function () {
             function t(t) {
                 var e = this;
                 this._onClickBackground = function () {
@@ -53,15 +53,15 @@ const function739 = function (t, e, i) {
                     a = o.default.model.deck.isInDeck(i),
                     _ = null;
                 if (a) {
-                    var u = a[0];
-                    _ = o.default.model.deck.get(u)
+                    var l = a[0];
+                    _ = o.default.model.deck.get(l)
                 }
                 if (null == r && _ && 1 == _.mstID && 1 == _.getCount()) return !1;
                 if (null == r && _ && n && _.mstID == n.mstID) return !1;
                 if (s && _ && _.expedition) return !1;
                 if (s && r && s.memID == r.memID) return !1;
-                for (var l = n.getShipList(), c = 0; c < l.length; c++) {
-                    var h = l[c];
+                for (var u = n.getShipList(), c = 0; c < u.length; c++) {
+                    var h = u[c];
                     if (s && h && h.yomi == s.yomi && c != e) {
                         if (!_) return !1;
                         if (n.mstID != _.mstID) return !1
@@ -75,5 +75,5 @@ const function739 = function (t, e, i) {
                 return !0
             }, t
         }();
-    e.TaskConfirmChangeShip = u
+    e.TaskConfirmChangeShip = l
 }

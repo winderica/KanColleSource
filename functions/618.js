@@ -21,11 +21,11 @@ const function618 = function (t, e, i) {
     });
     var o = i(0),
         r = i(6),
-        s = i(291),
-        a = i(292),
-        _ = i(293),
-        u = i(294),
-        l = i(157),
+        s = i(292),
+        a = i(293),
+        _ = i(294),
+        l = i(295),
+        u = i(157),
         c = i(1),
         h = function (t) {
             function e(e) {
@@ -38,7 +38,7 @@ const function618 = function (t, e, i) {
                     i._mouse_down = !0, i._bg_on.visible = !0, i._bg_on.deactivate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(.9), i._hideWaves(), i._description.hide()
                 }, i._onMouseUp = function () {
                     i._bg_on.visible = !0, i._bg_on.activate(), i._img.visible = !1, i._img_on.visible = !0, i._setScale(1), i._showWaves(), i._description.show(), 1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
-                }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new u.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new l.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
+                }, i._type = e, i._bg_on = new s.RingMenuBtnBgOn, i.addChild(i._bg_on), i._img = new _.RingMenuBtnImg, i.addChild(i._img), i._img_on = new l.RingMenuBtnImgOn, i.addChild(i._img_on), i._waves = new u.RingMenuWaves, i._description = new a.RingMenuBtnDescription, i.addChild(i._description), i._hit_area = new PIXI.Graphics, i._hit_area.beginFill(0, 0), i._hit_area.drawCircle(0, 0, 71), i._hit_area.endFill(), i.addChild(i._hit_area), i._hit_area.interactive = !0, i
             }
             return n(e, t), e.prototype.initialize = function (t, e) {
                 void 0 === t && (t = null), void 0 === e && (e = null), this._cb_onRelateOpen = t, this._cb_onRelateClose = e, this._bg_on.initialize(), this._img.initialize(this._type), this._img_on.initialize(this._type), this._waves.initialize(), this._description.initialize(this._type), this._onMouseOut()

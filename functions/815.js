@@ -20,13 +20,13 @@ const function815 = function (t, e, i) {
         value: !0
     });
     var o = i(5),
-        r = i(19),
+        r = i(20),
         s = i(8),
         a = i(40),
         _ = i(12),
-        u = i(6),
-        l = i(3),
-        c = i(338),
+        l = i(6),
+        u = i(3),
+        c = i(339),
         h = i(1),
         p = function (t) {
             function e(e, i) {
@@ -37,8 +37,8 @@ const function815 = function (t, e, i) {
                 this._04_showTelop()
             }, e.prototype._04_showTelop = function () {
                 var t = this;
-                this._telopBG.texture = l.REMODEL_ANIMATION.getTexture(2), this._telopBG.alpha = .35, this._telopBG.anchor.set(.5), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.scale.y = 0, this.addChild(this._telopBG);
-                var e = l.REMODEL_ANIMATION.getTexture(3);
+                this._telopBG.texture = u.REMODEL_ANIMATION.getTexture(2), this._telopBG.alpha = .35, this._telopBG.anchor.set(.5), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.scale.y = 0, this.addChild(this._telopBG);
+                var e = u.REMODEL_ANIMATION.getTexture(3);
                 this._telopLineTop.texture = e, this._telopLineTop.anchor.set(.5), this._telopLineTop.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineTop), this._telopLineBottom.texture = e, this._telopLineBottom.anchor.set(.5), this._telopLineBottom.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._telopLineBottom);
                 var i, n = new r.TweenTask;
                 i = createjs.Tween.get(this._telopBG.scale).to({
@@ -48,10 +48,10 @@ const function815 = function (t, e, i) {
                 }, 300), n.addTween(i), i = createjs.Tween.get(this._telopLineBottom).to({
                     y: o.default.height / 2 + 155
                 }, 300), n.addTween(i), n.start(function () {
-                    t._telopText.texture = l.REMODEL_ANIMATION.getTexture(9), t._telopText.x = o.default.width, t._telopText.y = Math.round(o.default.height / 2 - t._telopText.height / 2), t.addChild(t._telopText), createjs.Tween.get(t._telopText).to({
+                    t._telopText.texture = u.REMODEL_ANIMATION.getTexture(9), t._telopText.x = o.default.width, t._telopText.y = Math.round(o.default.height / 2 - t._telopText.height / 2), t.addChild(t._telopText), createjs.Tween.get(t._telopText).to({
                         x: 178
                     }, 400).call(function () {
-                        u.SE.play("226"), t.addChild(t._particles), t._particles.play()
+                        l.SE.play("226"), t.addChild(t._particles), t._particles.play()
                     }).to({
                         x: 63
                     }, 1700).call(function () {
@@ -99,7 +99,7 @@ const function815 = function (t, e, i) {
                     [239, 63],
                     [308, -54],
                     [420, 45]
-                ], n = l.REMODEL_ANIMATION.getTexture(8), o = 0; o < 12; o++) {
+                ], n = u.REMODEL_ANIMATION.getTexture(8), o = 0; o < 12; o++) {
                 var r = new _.Sprite(n);
                 r.anchor.set(.5), r.scale.set(0), r.x = i[o][0] + 600, r.y = i[o][1] + 360, e.addChild(r), e._particles.push(r)
             }

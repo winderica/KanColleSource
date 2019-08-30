@@ -21,11 +21,11 @@ const function619 = function (t, e, i) {
     });
     var o = i(0),
         r = i(6),
-        s = i(291),
-        a = i(292),
-        _ = i(293),
-        u = i(294),
-        l = i(157),
+        s = i(292),
+        a = i(293),
+        _ = i(294),
+        l = i(295),
+        u = i(157),
         c = i(1),
         h = function (t) {
             function e(e) {
@@ -88,7 +88,7 @@ const function619 = function (t, e, i) {
                 e._bg_on.visible = !0, e._bg_on.deactivate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(.9), e._hideWaves(), e._description.hide(), null != e._cb_onMouseDown && e._cb_onMouseDown()
             }, e._onMouseUp = function () {
                 e._bg_on.visible = !0, e._bg_on.activate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(1), e._showWaves(), e._description.show(), null != e._cb_onMouseUp && e._cb_onMouseUp()
-            }, e._bg_on = new s.RingMenuBtnBgOn, e.addChild(e._bg_on), e._img = new _.RingMenuBtnImg, e.addChild(e._img), e._img_on = new u.RingMenuBtnImgOn, e.addChild(e._img_on), e._waves = new l.RingMenuWaves, e._description = new a.RingMenuBtnDescription, e.addChild(e._description), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 71), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e
+            }, e._bg_on = new s.RingMenuBtnBgOn, e.addChild(e._bg_on), e._img = new _.RingMenuBtnImg, e.addChild(e._img), e._img_on = new l.RingMenuBtnImgOn, e.addChild(e._img_on), e._waves = new u.RingMenuWaves, e._description = new a.RingMenuBtnDescription, e.addChild(e._description), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 71), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e
         }
         return n(e, t), e.prototype.initialize = function (t, e, i, n, o) {
             this._bg_on.initialize(), this._img.initialize(t), this._img_on.initialize(t), this._waves.initialize(), this._description.initialize(t), this._onMouseOut(), this._cb_onMouseOver = e, this._cb_onMouseOut = i, this._cb_onMouseDown = n, this._cb_onMouseUp = o

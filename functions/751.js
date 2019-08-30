@@ -8,8 +8,8 @@ const function751 = function (t, e, i) {
         r = i(3),
         s = i(752),
         a = i(753),
-        _ = i(332),
-        u = function () {
+        _ = i(333),
+        l = function () {
             function t(t) {
                 var e = this;
                 this.LIST_MAX = 10, this._onChangePage = function (t) {
@@ -22,8 +22,8 @@ const function751 = function (t, e, i) {
                             _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
                         if (_) {
                             t++;
-                            var u = e.supplyEditor.containts(a.memID);
-                            u && i++
+                            var l = e.supplyEditor.containts(a.memID);
+                            l && i++
                         }
                     }
                     if (i < t) {
@@ -41,8 +41,8 @@ const function751 = function (t, e, i) {
                                 var a = o[s],
                                     _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
                                 if (_) {
-                                    var u = e.supplyEditor.containts(a.memID);
-                                    u && e.supplyEditor.remove(a.memID)
+                                    var l = e.supplyEditor.containts(a.memID);
+                                    l && e.supplyEditor.remove(a.memID)
                                 }
                             }
                         r.SE.play("238")
@@ -50,8 +50,8 @@ const function751 = function (t, e, i) {
                     e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
                 }, this.mainView = t, this.otherSupplyListItems = [];
                 for (var i = 0; i < this.LIST_MAX; i++) {
-                    var u = new s.OtherSupplyListItem(i);
-                    u.position.set(155, 44 * i + 206), this.otherSupplyListItems.push(u)
+                    var l = new s.OtherSupplyListItem(i);
+                    l.position.set(155, 44 * i + 206), this.otherSupplyListItems.push(l)
                 }
                 this.pagerView = new o.PagerView, this.pagerView.position.set(285, 663), this.supplySelectAllButton = new a.SupplySelectAllButton, this.supplyEditor = new _.SupplyEditor
             }
@@ -86,8 +86,8 @@ const function751 = function (t, e, i) {
                         s.update(r, a, _)
                     }
                 }
-                var u = 1;
-                0 < e && (u = 2, i == e && (u = 3)), this.supplySelectAllButton.update(u), this.pagerView.changePage(t), this._pageIndex = t
+                var l = 1;
+                0 < e && (l = 2, i == e && (l = 3)), this.supplySelectAllButton.update(l), this.pagerView.changePage(t), this._pageIndex = t
             }, t.prototype.dispose = function () {
                 var t = this;
                 this.mainView.removeChildren(), this.otherSupplyListItems.forEach(function (e) {
@@ -98,5 +98,5 @@ const function751 = function (t, e, i) {
                 return i += 0 == t ? 0 : 0 < t % e ? 1 : 0, i = Math.floor(i)
             }, t
         }();
-    e.TaskEditSupplyOther = u
+    e.TaskEditSupplyOther = l
 }

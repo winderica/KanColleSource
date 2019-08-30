@@ -44,9 +44,9 @@ const function772 = function (t, e, i) {
                 _.position.set(9, s[a]), e.addChild(_)
             }
             e.addChild(i, n), e.indexEmblems = new Array;
-            for (var u = 0; u < s.length; u++) {
-                var l = new r.DeckIndexEmblem;
-                l.position.set(-15, s[u] + 30), e.indexEmblems.push(l), e.addChild(l)
+            for (var l = 0; l < s.length; l++) {
+                var u = new r.DeckIndexEmblem;
+                u.position.set(-15, s[l] + 30), e.indexEmblems.push(u), e.addChild(u)
             }
             return e
         }

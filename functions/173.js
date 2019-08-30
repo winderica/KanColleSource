@@ -21,11 +21,11 @@ const function173 = function (t, e, i) {
     });
     var o = i(1),
         r = i(74),
-        s = i(1143),
-        a = i(1146),
-        _ = i(1147),
-        u = i(1148),
+        s = i(1144),
+        a = i(1147),
+        _ = i(1148),
         l = i(1149),
+        u = i(1150),
         c = function (t) {
             function e(e) {
                 void 0 === e && (e = !1);
@@ -51,7 +51,7 @@ const function173 = function (t, e, i) {
                 }
             }, e.prototype.showAlert = function (t) {
                 var e = this._getBtn(t);
-                null != e && (null == this._alert && (this._alert = new l.RewardSelectDialogFurnitureAlert, this._alert.initialize(), this.addChild(this._alert)), this._alert.x = e.x + 71, this._alert.y = e.y - 20, this._alert.show())
+                null != e && (null == this._alert && (this._alert = new u.RewardSelectDialogFurnitureAlert, this._alert.initialize(), this.addChild(this._alert)), this._alert.x = e.x + 71, this._alert.y = e.y - 20, this._alert.show())
             }, e.prototype._createBtn = function (t, e) {
                 if (11 == t.type) {
                     var i = new a.RewardSelectDialogShipBtn(e);
@@ -62,7 +62,7 @@ const function173 = function (t, e, i) {
                     return i.initialize(t), i
                 }
                 if (13 == t.type) {
-                    var i = new u.RewardSelectDialogUseitemBtn(e);
+                    var i = new l.RewardSelectDialogUseitemBtn(e);
                     return i.initialize(t), i
                 }
                 if (14 == t.type) {

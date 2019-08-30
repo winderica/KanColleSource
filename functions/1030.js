@@ -24,7 +24,7 @@ const function1030 = function (t, e, i) {
         s = i(32),
         a = i(15),
         _ = i(53),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 return t.call(this) || this
             }
@@ -39,5 +39,5 @@ const function1030 = function (t, e, i) {
                 this.removeChildren(), this._container.cacheAsBitmap = !1, this._container.removeChildren(), this._banner.dispose(), this._star.dispose(), this._name.destroy(), this._level.destroy(), this._container.mask = null, this._name = null, this._level = null, this._star = null, this._container = null
             }, e
         }(PIXI.Container);
-    e.CompRivalShip = u
+    e.CompRivalShip = l
 }

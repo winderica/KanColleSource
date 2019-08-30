@@ -24,8 +24,8 @@ const function969 = function (t, e, i) {
         s = i(2),
         a = i(17),
         _ = i(970),
-        u = i(1),
-        l = function (t) {
+        l = i(1),
+        u = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
                 return s._result = !1, s._onCancel = function () {
@@ -54,11 +54,11 @@ const function969 = function (t, e, i) {
                 this._panel = new _.AirUnitChangeConfirmPanel(this._onChange), this._panel.initialize(), this._panel.update(e, s), this._panel.position.set(o.default.width, 102), this._layer.addChild(this._panel), createjs.Tween.get(this._panel).to({
                     x: 840
                 }, 200).call(function () {
-                    t._cancel_area.on(u.EventType.CLICK, t._onCancel), t._cancel_area.buttonMode = !0, t._panel.activate()
+                    t._cancel_area.on(l.EventType.CLICK, t._onCancel), t._cancel_area.buttonMode = !0, t._panel.activate()
                 })
             }, e.prototype._close = function () {
                 var t = this;
-                this._cancel_area.off(u.EventType.CLICK, this._onCancel), this._cancel_area.buttonMode = !1, this._panel.deactivate(), createjs.Tween.get(this._panel).to({
+                this._cancel_area.off(l.EventType.CLICK, this._onCancel), this._cancel_area.buttonMode = !1, this._panel.deactivate(), createjs.Tween.get(this._panel).to({
                     x: o.default.width
                 }, 200).call(function () {
                     t._panel.dispose(), t._layer.removeChild(t._panel), t._layer.removeChild(t._cancel_area), t._endTask()
@@ -67,5 +67,5 @@ const function969 = function (t, e, i) {
                 this._layer = null, this._cancel_area = null, this._panel = null, this._item = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.TaskShowAirUnitChangeConfirm = l
+    e.TaskShowAirUnitChangeConfirm = u
 }

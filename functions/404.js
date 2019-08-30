@@ -19,18 +19,16 @@ const function404 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = function (t) {
+    var o = i(3),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._arrow = new r.TextBox(22, 4999235), e._arrow.position.set(152, 20), e.addChild(e._arrow), e._from = new r.TextBox(24, 4999235), e._from.y = 20, e.addChild(e._from), e._tobe = new r.TextBox(24, 4999235), e._tobe.position.set(188, 20), e.addChild(e._tobe), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                void 0 === e && (e = 1), this.texture = o.default.resources.getUseitem(57, 0), this._arrow.text = "\u2192", this._from.text = t.toString(), this._from.x = 147 - this._from.width, this._tobe.text = (t - e).toString()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._arrow.destroy(), this._from.destroy(), this._tobe.destroy()
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._icon && this._icon.dispose(), this._btn_yes.dispose(), this._btn_no.dispose()
+            }, e.prototype._initialize = function (t, e) {
+                this._icon.initialize(t, e), this._btn_yes.initialize(o.ITEM_ILIST_MEDAL.getTexture(6)), this._btn_no.initialize(o.ITEM_ILIST_MEDAL.getTexture(0)), this._btn_yes.activate(), this._btn_no.activate()
             }, e
         }(PIXI.Sprite);
-    e.MedalIcon = s
+    e.ConfirmViewBase = r
 }

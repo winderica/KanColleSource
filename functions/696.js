@@ -35,17 +35,17 @@ const function696 = function (t, e, i) {
                     var _ = new s.ShipBanner;
                     _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
                 }
-                var l = new PIXI.Container;
-                l.position.set(678, 153), e.secondShipInDeckBanners = new Array;
+                var u = new PIXI.Container;
+                u.position.set(678, 153), e.secondShipInDeckBanners = new Array;
                 for (var n = 0; n < 6; n++) {
                     var _ = new s.ShipBanner;
-                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), l.addChild(_)
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), u.addChild(_)
                 }
                 e.background = new PIXI.Sprite;
                 var c = o.ORGANIZE_MAIN.getTexture(16),
                     h = new PIXI.Sprite(c),
                     p = o.ORGANIZE_MAIN.getTexture(8);
-                return e.buttonBack = new PIXI.Sprite(p), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(12, 16777215), e.secondDeckName = new r.TextBox(12, 16777215), e.toFirstDeckErrorMessageView = new u, e.toSecondDeckErrorMessageView = new u, e.firstDeckName.position.set(60, 123), e.secondDeckName.position.set(667, 123), h.position.set(300, 420), e.buttonBack.position.set(480, 420), e.toFirstDeckErrorMessageView.position.set(276, 103), e.toSecondDeckErrorMessageView.position.set(325, 331), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.addListener(a.EventType.CLICK, e._onClickYES), e.addChild(e.background, e.message, h, e.buttonBack, e.firstDeckName, e.secondDeckName, i, l, e.toFirstDeckErrorMessageView, e.toSecondDeckErrorMessageView), e
+                return e.buttonBack = new PIXI.Sprite(p), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(12, 16777215), e.secondDeckName = new r.TextBox(12, 16777215), e.toFirstDeckErrorMessageView = new l, e.toSecondDeckErrorMessageView = new l, e.firstDeckName.position.set(60, 123), e.secondDeckName.position.set(667, 123), h.position.set(300, 420), e.buttonBack.position.set(480, 420), e.toFirstDeckErrorMessageView.position.set(276, 103), e.toSecondDeckErrorMessageView.position.set(325, 331), e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonBack.addListener(a.EventType.CLICK, e._onClickYES), e.addChild(e.background, e.message, h, e.buttonBack, e.firstDeckName, e.secondDeckName, i, u, e.toFirstDeckErrorMessageView, e.toSecondDeckErrorMessageView), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren();
@@ -97,7 +97,7 @@ const function696 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.CombineConfirmAlertDialog = _;
-    var u = function (t) {
+    var l = function (t) {
         function e() {
             var e = t.call(this) || this,
                 i = new PIXI.Sprite(o.ORGANIZE_RENGO.getTexture(16));
@@ -111,5 +111,5 @@ const function696 = function (t, e, i) {
             this.cacheAsBitmap = !1, this.mask = null, this.removeChildren(), this._message.destroy(), this._message = null
         }, e
     }(PIXI.Container);
-    e.RengoErrorMessageView = u
+    e.RengoErrorMessageView = l
 }

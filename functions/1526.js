@@ -19,43 +19,55 @@ const function1526 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(36),
+    var o = i(1527),
         r = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._items = new Array, e
             }
-            return n(e, t), e.prototype.show = function () {
-                this.hide(), this._current = new s, this._current.y = 17, this._current.alpha = 0, this._current.activate(), this.addChild(this._current), createjs.Tween.get(this._current).to({
-                    alpha: 1
-                }, 800)
-            }, e.prototype.hide = function () {
-                var t = this;
-                if (null != this._current) {
-                    var e = this._current;
-                    this._current = null, createjs.Tween.get(e).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.deactivate(), t.removeChild(e)
-                    })
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._resetItems();
+                var e = 0;
+                e = 7 == t.length ? 0 : 68;
+                for (var i = 0; i < t.length; i++) {
+                    var n = t[i];
+                    if (null != n) {
+                        var r = new o.BannerInfoEnemy;
+                        r.alpha = 0, r.y = e + 68 * i, this._items.push(r);
+                        var s = n.name,
+                            a = 0;
+                        "elite" == n.yomi ? a = 1 : "flagship" == n.yomi && (a = 2), r.initialize(s, a), this.addChild(r)
+                    }
                 }
             }, e.prototype.dispose = function () {
-                this.hide()
+                this._resetItems(), this.removeChildren(), this._items = null
+            }, e.prototype.createShowTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i];
+                    n.x += 15;
+                    var o = createjs.Tween.get(n).wait(t + 100 * i).to({
+                        x: n.x - 15,
+                        alpha: 1
+                    }, 300);
+                    e.push(o)
+                }
+                return e
+            }, e.prototype.createHideTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i],
+                        o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
+                            x: n.x + 15,
+                            alpha: 0
+                        }, 300);
+                    e.push(o)
+                }
+                return e
+            }, e.prototype._resetItems = function () {
+                for (null == this._items && (this._items = []); this._items.length > 0;) {
+                    var t = this._items.pop();
+                    null != t.parent && t.parent.removeChild(t), t.dispose()
+                }
             }, e
         }(PIXI.Container);
-    e.LayerTitle = r;
-    var s = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(65)), e._gear = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(66)), e._gear.anchor.set(.5), e._gear.position.set(32, 45), e._text = new PIXI.Sprite(o.BATTLE_RESULT_MAIN.getTexture(67)), e._text.position.set(60, 23), e.addChild(e._bg), e.addChild(e._gear), e.addChild(e._text), e
-        }
-        return n(e, t), e.prototype.activate = function () {
-            null == this._t && (this._t = createjs.Tween.get(this._gear, {
-                loop: !0
-            }).to({
-                rotation: 2 * Math.PI
-            }, 6e3))
-        }, e.prototype.deactivate = function () {
-            null != this._t && (this._t.setPaused(!0), this._t = null)
-        }, e
-    }(PIXI.Container)
+    e.BannerInfoEnemyCanvas = r
 }

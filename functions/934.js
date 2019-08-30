@@ -22,10 +22,10 @@ const function934 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(18),
-        a = i(262),
+        a = i(263),
         _ = i(29),
-        u = i(17),
-        l = i(34),
+        l = i(17),
+        u = i(34),
         c = i(69),
         h = i(225),
         p = i(30),
@@ -34,7 +34,7 @@ const function934 = function (t, e, i) {
         y = i(227),
         m = i(228),
         g = i(936),
-        v = i(350),
+        v = i(351),
         b = i(945),
         w = i(973),
         x = i(983),
@@ -68,11 +68,11 @@ const function934 = function (t, e, i) {
                         var o = r.default.model.map.getMapMem(t),
                             s = r.default.view.overLayer,
                             _ = n._layout.content,
-                            u = n._detailPanel,
-                            l = r.default.model.map.getMapMem(t - 1),
+                            l = n._detailPanel,
+                            u = r.default.model.map.getMapMem(t - 1),
                             c = 0;
-                        null != l && (c = l.getSelectedOperationType());
-                        new w.TaskShowDetailPanel(o, c, s, _, u).start(null, function () {
+                        null != u && (c = u.getSelectedOperationType());
+                        new w.TaskShowDetailPanel(o, c, s, _, l).start(null, function () {
                             n._cancelArea.interactive = !1, n._cancelArea.buttonMode = !1, n._cancelArea.hide(200, function () {
                                 n._cancelArea.visible = !1
                             })
@@ -111,9 +111,9 @@ const function934 = function (t, e, i) {
                             s = i.getShipModel(0),
                             a = s.mstID;
                         r.default.sound.voice.playAtRandom(a.toString(), [13, 14], [50, 50]);
-                        var _ = new l.APIConnector,
-                            u = r.default.model.map.getMapMem(t),
-                            p = new g.APIMapStart(u, e, n._serial_id),
+                        var _ = new u.APIConnector,
+                            l = r.default.model.map.getMapMem(t),
+                            p = new g.APIMapStart(l, e, n._serial_id),
                             d = p.model;
                         _.add(p), 30 == r.default.model.basic.getTutorialProgress() && _.add(new c.UpdateTutorialAPI(40)), _.start(function () {
                             var t = r.default.model.basic.medal_num,
@@ -127,7 +127,7 @@ const function934 = function (t, e, i) {
                     null == n._airunit_task && (n._airunit_task = new b.TaskShowAirUnitPanel(n, n._selected_area_id), n._airunit_task.start(function () {
                         n._airunit_task = null
                     }))
-                }, n._layout = new C.ContainerLayout(n._onSelect, n._onSelectAirUnit, n._onBack, n._onNext), n._switch = new m.CompSwitchBtns(0, e, i), n._switch.position.set(795, 162), n._area_icons = new I.CompAreaIcons(n._onChangeArea), n._area_icons.position.set(188, 633), n._airUnitBtn = new x.AirUnitBtn(n._onSelectAirUnit), n._airUnitBtn.position.set(651, 165), n._airUnitBtn.visible = !1, n._cancelArea = new u.FadeBox(.3), n._cancelArea.hide(), n._cancelArea.visible = !1, n._detailPanel = new O.PanelDetail(n._onDecision), n._detailPanel.position.set(o.default.width, 0), n._detailPanel.visible = !1, n._offset_list = [], n
+                }, n._layout = new C.ContainerLayout(n._onSelect, n._onSelectAirUnit, n._onBack, n._onNext), n._switch = new m.CompSwitchBtns(0, e, i), n._switch.position.set(795, 162), n._area_icons = new I.CompAreaIcons(n._onChangeArea), n._area_icons.position.set(188, 633), n._airUnitBtn = new x.AirUnitBtn(n._onSelectAirUnit), n._airUnitBtn.position.set(651, 165), n._airUnitBtn.visible = !1, n._cancelArea = new l.FadeBox(.3), n._cancelArea.hide(), n._cancelArea.visible = !1, n._detailPanel = new O.PanelDetail(n._onDecision), n._detailPanel.position.set(o.default.width, 0), n._detailPanel.visible = !1, n._offset_list = [], n
             }
             return n(e, t), e.prototype.initialize = function () {
                 var t = new PIXI.Sprite(p.SALLY_COMMON.getTexture(27));

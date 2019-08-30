@@ -24,8 +24,8 @@ const function101 = function (t, e, i) {
         s = i(2),
         a = i(12),
         _ = i(14),
-        u = i(6),
-        l = i(1368),
+        l = i(6),
+        u = i(1373),
         c = i(63),
         h = function (t) {
             function e(e, i) {
@@ -154,18 +154,18 @@ const function101 = function (t, e, i) {
                 var s = new _.UIImageLoader("battle"),
                     a = "battle_jin/" + r.MathUtil.zeroPadding(t, 3) + "_f.png";
                 s.add(a, "battle_jin_f");
-                var u = "battle_jin/" + r.MathUtil.zeroPadding(e, 3) + "_e.png";
-                s.add(u, "battle_jin_e"), s.load(function () {
+                var l = "battle_jin/" + r.MathUtil.zeroPadding(e, 3) + "_e.png";
+                s.add(l, "battle_jin_e"), s.load(function () {
                     n._formation_name_f.texture = PIXI.Texture.fromFrame("battle_jin_f"), n._formation_name_f.x = o.default.width + n._formation_name_f.width / 2, n._formation_name_f.y = o.default.height / 2 + 243, n._formation_name_e.texture = PIXI.Texture.fromFrame("battle_jin_e"), n._formation_name_e.x = 0 - n._formation_name_e.width / 2, n._formation_name_e.y = o.default.height / 2 - 243, i()
                 })
             }, e.prototype.initialize = function (t) {
                 if (this._cross = new d, this._cross.position.set(o.default.width / 2, o.default.height / 2), this.addChild(this._cross), this._cross.initialize(t), 3 == t) {
                     this._cross.y -= 38;
-                    var e = l.BATTLE_JIN.getTexture(6);
+                    var e = u.BATTLE_JIN.getTexture(6);
                     this._advantageous = new a.Sprite(e)
                 } else if (4 == t) {
                     this._cross.y -= 38;
-                    var e = l.BATTLE_JIN.getTexture(5);
+                    var e = u.BATTLE_JIN.getTexture(5);
                     this._advantageous = new a.Sprite(e)
                 } else this._advantageous = new a.Sprite(PIXI.Texture.EMPTY);
                 this._advantageous.anchor.set(.5), this._advantageous.position.set(o.default.width / 2, 458), this._advantageous.scale.set(2), this._advantageous.alpha = 0, this.addChild(this._advantageous)
@@ -182,11 +182,11 @@ const function101 = function (t, e, i) {
             function e() {
                 var e = t.call(this) || this;
                 return e._playSE = function () {
-                    u.SE.play("109")
+                    l.SE.play("109")
                 }, e._c1 = new a.Sprite, e._c2 = new a.Sprite, e._c3 = new a.Sprite, e._c1.anchor.set(.5), e._c2.anchor.set(.5), e._c3.anchor.set(.5), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._c1.position.x = -278, this._c3.position.x = 278, this._c1.scale.set(2), this._c2.scale.set(2), this._c3.scale.set(2), 1 == t ? (this._c1.texture = l.BATTLE_JIN.getTexture(0), this._c2.texture = l.BATTLE_JIN.getTexture(2), this._c3.texture = l.BATTLE_JIN.getTexture(3)) : 2 == t ? (this._c1.texture = l.BATTLE_JIN.getTexture(1), this._c2.texture = l.BATTLE_JIN.getTexture(2), this._c3.texture = l.BATTLE_JIN.getTexture(3)) : (this._c1.texture = l.BATTLE_JIN.getTexture(4), this._c2.texture = l.BATTLE_JIN.getTexture(7), this._c3.texture = l.BATTLE_JIN.getTexture(3))
+                this._c1.position.x = -278, this._c3.position.x = 278, this._c1.scale.set(2), this._c2.scale.set(2), this._c3.scale.set(2), 1 == t ? (this._c1.texture = u.BATTLE_JIN.getTexture(0), this._c2.texture = u.BATTLE_JIN.getTexture(2), this._c3.texture = u.BATTLE_JIN.getTexture(3)) : 2 == t ? (this._c1.texture = u.BATTLE_JIN.getTexture(1), this._c2.texture = u.BATTLE_JIN.getTexture(2), this._c3.texture = u.BATTLE_JIN.getTexture(3)) : (this._c1.texture = u.BATTLE_JIN.getTexture(4), this._c2.texture = u.BATTLE_JIN.getTexture(7), this._c3.texture = u.BATTLE_JIN.getTexture(3))
             }, e.prototype.play = function () {
                 var t = this;
                 createjs.Tween.get(this._c1).call(function () {

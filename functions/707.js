@@ -24,7 +24,7 @@ const function707 = function (t, e, i) {
         s = i(163),
         a = i(57),
         _ = i(18),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e._onClickYES = function () {
@@ -79,5 +79,5 @@ const function707 = function (t, e, i) {
                 }
             }, e
         }(PIXI.Container);
-    e.UseSweetConfirm = u
+    e.UseSweetConfirm = l
 }

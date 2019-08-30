@@ -24,7 +24,7 @@ const function620 = function (t, e, i) {
         s = i(107),
         a = i(157),
         _ = i(1),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._down_flg = !1, e._onMouseOver = function () {
@@ -35,7 +35,7 @@ const function620 = function (t, e, i) {
                     e._off.visible = !1, e._on.visible = !0, e._on.deactivate(), null != e._waves.parent && (e.removeChild(e._waves), e._waves.stopAnimation()), e._on.scale.set(.9, .9), e._hideDescription(), e._down_flg = !0
                 }, e._onMouseUp = function () {
                     e._off.visible = !1, e._on.visible = !0, e._on.activate(), null == e._waves.parent && (e.addChild(e._waves), e._waves.startAnimation()), e._on.scale.set(1, 1), e._showDescription(), 1 == e._down_flg && 1 == o.default.scene.change(16) && r.SE.play("246"), e._down_flg = !1
-                }, e._off = new l, e.addChild(e._off), e._on = new c, e._on.visible = !1, e.addChild(e._on), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 102), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e._waves = new a.RingMenuWaves, e
+                }, e._off = new u, e.addChild(e._off), e._on = new c, e._on.visible = !1, e.addChild(e._on), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 102), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e._waves = new a.RingMenuWaves, e
             }
             return n(e, t), e.prototype.initialize = function () {
                 this._off.initialize(), this._on.initialize(), this._waves.initialize()
@@ -57,8 +57,8 @@ const function620 = function (t, e, i) {
                 null != this._description_tween && (this._description_tween.setPaused(!0), this._description_tween = null), null != this._description && null != this._description.parent && this.removeChild(this._description)
             }, e
         }(PIXI.Container);
-    e.RingMenuBtnSally = u;
-    var l = function (t) {
+    e.RingMenuBtnSally = l;
+    var u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._left = new PIXI.Sprite, e._left.position.set(-125, 2), e.addChild(e._left), e._right = new PIXI.Sprite, e._right.position.set(-50, 2), e.addChild(e._right), e._gear = new PIXI.Sprite, e._gear.position.set(-102, -101), e.addChild(e._gear), e._ship = new PIXI.Sprite, e._ship.position.set(-102, -86), e.addChild(e._ship), e._text = new PIXI.Sprite, e._text.position.set(-69, -18), e.addChild(e._text), e

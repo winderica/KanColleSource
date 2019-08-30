@@ -24,9 +24,9 @@ const function720 = function (t, e, i) {
         s = i(113),
         a = i(721),
         _ = i(57),
-        u = i(324),
-        l = i(322),
-        c = i(325),
+        l = i(325),
+        u = i(323),
+        c = i(326),
         h = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -46,8 +46,8 @@ const function720 = function (t, e, i) {
                             var _ = n.presetList.getPresetDeckData(a + 1);
                             0 < _.getRealShipCount() && e.push(_)
                         }
-                        var u = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
-                        n.presetExpansionContainer.update(n.deckId, n.presetList, u, s, r), o.default.view.clickGuard = !1, n.presets = e
+                        var l = e.slice(n.headIndex, n.headIndex + n.PAGE_NUM);
+                        n.presetExpansionContainer.update(n.deckId, n.presetList, l, s, r), o.default.view.clickGuard = !1, n.presets = e
                     })
                 }, n._onClickNext = function () {
                     n.arrowBottomButton.visible = !1;
@@ -65,7 +65,7 @@ const function720 = function (t, e, i) {
                         r = (i.getShipList(), null != i.expedition),
                         s = (i.getShipMemIDList(), 0 < i.getCount());
                     t < 0 && (t = 0), n.arrowBottomButton.visible = !1, t + n.PAGE_NUM < n.presets.length && (n.arrowBottomButton.visible = !0), n.presetTitle.showTxt2(), n.arrowTopButton.visible = !1, 0 < t && (n.arrowTopButton.visible = !0, n.presetTitle.hideTxt2()), n.presetExpansionContainer.update(n.deckId, n.presetList, e, s, r), n.headIndex = t
-                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new u.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new l.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
+                }, n.clickBack = e, n.clickExpand = i, n.presetTitle = new l.PresetTitle(2), n.presetTitle.position.set(162, 195), n.presetTitle.showTxt2(), n.longShipBannerContainer = new u.LongShipBannerContainer, n.longShipBannerContainer.position.set(720, 213);
                 var h = r.COMMON_MAIN.getTexture(4);
                 return n.btnBack = new _.SimpleButton(h, h), n.btnBack.position.set(173, 638), n.btnBack.onClick = n._onClickBack, n.arrowTopButton = new s.ArrowButton, n.arrowTopButton.initialize(n._onClickPrev), n.arrowTopButton.position.set(446, 217), n.arrowBottomButton = new s.ArrowButton(!0), n.arrowBottomButton.initialize(n._onClickNext), n.arrowBottomButton.position.set(443, 667), n.presetExpansionContainer = new a.PresetExpansionContainer, n.presetExpansionContainer.position.set(168, 248), n.presetExpansionContainer.onClickExpand = n._onClickExpand, n.addChild(n.presetTitle, n.btnBack, n.presetExpansionContainer, n.longShipBannerContainer, n.arrowTopButton, n.arrowBottomButton), n
             }

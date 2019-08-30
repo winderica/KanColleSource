@@ -24,21 +24,21 @@ const function973 = function (t, e, i) {
         s = i(18),
         a = i(2),
         _ = i(17),
-        u = i(974),
-        l = i(976),
-        c = i(350),
-        h = i(358),
+        l = i(974),
+        u = i(976),
+        c = i(351),
+        h = i(359),
         p = function (t) {
             function e(e, i, n, o, s) {
                 var a = t.call(this) || this;
                 return a._showBeginnerAlert = function () {
-                    new u.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
+                    new l.ShowIntroAlertDialogTask(a._layer).start(a._showMapIntro)
                 }, a._showMapIntro = function () {
                     var t = r.default.model.basic.level,
                         e = [];
                     t >= 80 && (4 == a._before_selected_type || 3 == a._before_selected_type ? e.push(4) : 0 == a._before_selected_type && e.push(4)), t >= 35 && e.push(3), e.push(2), e.push(1);
                     var i = a._model.getSelectedOperationType();
-                    new l.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
+                    new u.ShowMapIntroDialogTask(a._layer, a._model, e).start(function () {
                         var t = a._model.getSelectedOperationType(),
                             e = 0 == t;
                         i != t && null != a._mapThumbnailPanel ? new c.TaskLoadGaugeResources([a._model]).start(function () {
@@ -64,19 +64,11 @@ const function973 = function (t, e, i) {
                         };
                     case 2:
                         return {
-                            voice: [411, 416, 423, 424], delay: [0, 200, 200, 200]
+                            voice: [411, 416, 422, 424], delay: [0, 200, 200, 200]
                         };
                     case 3:
                         return {
-                            voice: [411, 417, 422, 424], delay: [0, 200, 200, 200]
-                        };
-                    case 4:
-                        return {
-                            voice: [412, 418, 422, 424], delay: [0, 200, 200, 200]
-                        };
-                    case 5:
-                        return {
-                            voice: [412, 421, 422, 424], delay: [0, 200, 200, 200]
+                            voice: [412, 421, 424], delay: [0, 200, 200]
                         };
                     default:
                         return null

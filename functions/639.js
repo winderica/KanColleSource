@@ -20,8 +20,8 @@ const function639 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(303),
-        s = i(304),
+        r = i(304),
+        s = i(305),
         a = i(48),
         _ = function (t) {
             function e(e, i, n, o) {
@@ -52,8 +52,8 @@ const function639 = function (t, e, i) {
                 }
                 this.model.need_basic_update = e.isNeedUpdateUserBasic(), this.model.need_useitem_update = e.isNeedUpdateUseitem();
                 var _ = o.default.view.overLayer,
-                    u = new s.ModelChangeTask(_, e);
-                this._fade.visible = !1, u.start(function () {
+                    l = new s.ModelChangeTask(_, e);
+                this._fade.visible = !1, l.start(function () {
                     t._fade.visible = !0, t._showContentComplete()
                 })
             }, e.prototype._removeContent = function () {}, e.prototype._showContentComplete = function () {

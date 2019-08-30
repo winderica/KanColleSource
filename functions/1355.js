@@ -1,12 +1,55 @@
 const function1355 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    ! function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("common_explosion_" + t)
+    var o = i(2),
+        r = i(23),
+        s = i(16),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke = new _, i._smoke.position.set(69, 45), i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._smoke.x - 105,
+                    i = this._smoke.y - 9;
+                createjs.Tween.get(this._smoke).call(function () {
+                    t._layer.addChild(t._smoke)
+                }).to({
+                    x: e,
+                    y: i,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 500).call(function () {
+                    t._layer.removeChild(t._smoke), t._endTask()
+                })
+            }, e
+        }(o.TaskBase);
+    e.AnimAntiAircraftKoukaku = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(149)), e._img.position.set(-44, -63), e.addChild(e._img), e
         }
-        t.getTexture = e
-    }(e.COMMON_EXPLOSION || (e.COMMON_EXPLOSION = {}))
+        return n(e, t), e
+    }(r.Container)
 }

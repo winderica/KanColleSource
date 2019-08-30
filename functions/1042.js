@@ -28,14 +28,14 @@ const function1042 = function (t, e, i) {
                     var _ = new o.ExpeditionListItem;
                     _.x = 8, _.y = n, i.push(_), n += 45
                 }
-                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
-                u.position.y = -1;
-                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
-                l.anchor.set(0, .5), l.position.set(40, 20);
+                var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(90));
+                l.position.y = -1;
+                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(18));
+                u.anchor.set(0, .5), u.position.set(40, 20);
                 var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(51));
-                return c.addChild(l), c.position.set(-20, -90), i.forEach(function (t) {
+                return c.addChild(u), c.position.set(-20, -90), i.forEach(function (t) {
                     e.addChild(t)
-                }), e.addChild(u), e.addChild(c), e._listItems = i, e
+                }), e.addChild(l), e.addChild(c), e._listItems = i, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "items", {
                 get: function () {

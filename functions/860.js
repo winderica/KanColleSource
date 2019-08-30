@@ -24,12 +24,12 @@ const function860 = function (t, e, i) {
         s = i(13),
         a = i(14),
         _ = i(861),
-        u = i(340),
-        l = function (t) {
+        l = i(341),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._updateNDock = function () {
-                    (new u.NDockAPI).start(i._loadAtlas)
+                    (new l.NDockAPI).start(i._loadAtlas)
                 }, i._loadAtlas = function () {
                     var t = new a.UIImageLoader("repair");
                     t.add("repair_main.json"), t.load(i._loadShipBanner)
@@ -55,5 +55,5 @@ const function860 = function (t, e, i) {
                 this._updateNDock()
             }, e
         }(r.TaskBase);
-    e.PreInitializeTask = l
+    e.PreInitializeTask = u
 }

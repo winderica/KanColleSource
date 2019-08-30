@@ -24,22 +24,22 @@ const function1027 = function (t, e, i) {
         s = i(37),
         a = i(1028),
         _ = i(1029),
-        u = i(372),
-        l = i(1030),
+        l = i(373),
+        u = i(1030),
         c = i(1031),
-        h = i(373),
+        h = i(374),
         p = i(1),
         d = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._onClose = function () {
                     null != n._cb_onClose && n._cb_onClose()
-                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new u.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
+                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
             }
             return n(e, t), e.prototype.initialize = function () {
                 this._bg.initialize(), this._detail.initialize();
                 for (var t = 0; t < 6; t++) {
-                    var e = new l.CompRivalShip;
+                    var e = new u.CompRivalShip;
                     e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
                 }
                 this._btn.initialize(), this._btn_close.initialize()

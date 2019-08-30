@@ -24,14 +24,14 @@ const function894 = function (t, e, i) {
         s = i(1),
         a = i(49),
         _ = i(8),
-        u = i(116),
-        l = i(4),
+        l = i(116),
+        u = i(4),
         c = i(21),
         h = i(35),
         p = i(90),
         d = i(895),
-        f = i(342),
-        y = i(344),
+        f = i(343),
+        y = i(345),
         m = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -57,14 +57,14 @@ const function894 = function (t, e, i) {
                     i._cb_onComplete(!1)
                 }, i.mainView = e;
                 var n = new PIXI.Sprite(c.COMMON_MAIN.getTexture(12));
-                n.interactive = !0, i.addChild(n), i.configureMaterialView_fuel = new f.MaterialAmountView(31, 30, 999), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 30, 999), i.configureMaterialView_steel = new f.MaterialAmountView(33, 30, 999), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 30, 999), i.highSpeedToggle = new d.HighSpeedToggle, i.btn_great_off = new u.SimpleButton(h.ARSENAL_MAIN.getTexture(18), h.ARSENAL_MAIN.getTexture(18)), i.btn_kenzo = new u.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
+                n.interactive = !0, i.addChild(n), i.configureMaterialView_fuel = new f.MaterialAmountView(31, 30, 999), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 30, 999), i.configureMaterialView_steel = new f.MaterialAmountView(33, 30, 999), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 30, 999), i.highSpeedToggle = new d.HighSpeedToggle, i.btn_great_off = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(18), h.ARSENAL_MAIN.getTexture(18)), i.btn_kenzo = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
                 var r = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(32)),
                     m = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(139)),
                     g = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(156)),
                     v = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(153)),
                     b = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(74)),
                     w = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(73));
-                i.huki1 = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(66)), i.textDevKitBefore = new l.TextBox(24, 5523516), i.textDevKitAfter = new l.TextBox(24, 5523516), i.shopButton = new y.ShopButton, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, r.position.set(532, 486), i.btn_kenzo.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), i.highSpeedToggle.position.set(207, 435), b.position.set(394, 441), w.position.set(594, 442), m.position.set(60, 426), g.position.set(424, 442), v.position.set(78, 439), i.btn_great_off.position.set(60, 492), i.huki1.position.set(84, 441), i.shopButton.position.set(473, 496), i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kenzo.on(s.EventType.CLICK, i._onClickBuild), i.btn_great_off.onMouseOut = i._onMouseOutKenzoOff, i.btn_great_off.onMouseOver = i._onMouseOverKenzoOff, i.huki1.visible = !1, i.shopButton.play(), i.addChild(i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, r, i.btn_great_off, g, v, b, w, i.highSpeedToggle, i.textDevKitBefore, i.textDevKitAfter, i.btn_kenzo), i.btn_great = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(17)), i.btn_great.interactive = !0, i.btn_great.buttonMode = !0, i.btn_great.position.set(60, 492), i.addChild(i.btn_great), i.addChild(i.huki1, i.shopButton);
+                i.huki1 = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(66)), i.textDevKitBefore = new u.TextBox(24, 5523516), i.textDevKitAfter = new u.TextBox(24, 5523516), i.shopButton = new y.ShopButton, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, r.position.set(532, 486), i.btn_kenzo.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), i.highSpeedToggle.position.set(207, 435), b.position.set(394, 441), w.position.set(594, 442), m.position.set(60, 426), g.position.set(424, 442), v.position.set(78, 439), i.btn_great_off.position.set(60, 492), i.huki1.position.set(84, 441), i.shopButton.position.set(473, 496), i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kenzo.on(s.EventType.CLICK, i._onClickBuild), i.btn_great_off.onMouseOut = i._onMouseOutKenzoOff, i.btn_great_off.onMouseOver = i._onMouseOverKenzoOff, i.huki1.visible = !1, i.shopButton.play(), i.addChild(i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, r, i.btn_great_off, g, v, b, w, i.highSpeedToggle, i.textDevKitBefore, i.textDevKitAfter, i.btn_kenzo), i.btn_great = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(17)), i.btn_great.interactive = !0, i.btn_great.buttonMode = !0, i.btn_great.position.set(60, 492), i.addChild(i.btn_great), i.addChild(i.huki1, i.shopButton);
                 var x = new PIXI.Sprite(c.COMMON_MAIN.getTexture(64)),
                     I = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(5));
                 i.position.set(1200, 139), i.addChild(x), I.anchor.set(0, .5), I.position.set(22, Math.floor(x.height / 2 - 4)), x.addChild(I), x.position.set(0, -37), x.addChild(I);
@@ -111,15 +111,15 @@ const function894 = function (t, e, i) {
             }, e.prototype.play = function (t, e, i, n, o, s, a) {
                 var _ = this;
                 this._cb_onComplete = o, this._cb_onGoToLargeBuild = s, this._cb_onGoToShop = a;
-                var u = r.default.model.useItem.get(31).count,
-                    l = r.default.model.useItem.get(32).count,
+                var l = r.default.model.useItem.get(31).count,
+                    u = r.default.model.useItem.get(32).count,
                     c = r.default.model.useItem.get(33).count,
                     h = r.default.model.useItem.get(34).count,
                     d = r.default.model.useItem.get(3).count,
                     f = r.default.model.useItem.get(2).count,
                     y = p.Util.BuildValidation(e.fuel, e.ammo, e.steel, e.baux, 1, e.buildKit),
                     m = 0 < f;
-                if (this.configureMaterialView_fuel.setAvail(u), this.configureMaterialView_ammo.setAvail(l), this.configureMaterialView_steel.setAvail(c), this.configureMaterialView_bauxite.setAvail(h), this.textDevKitBefore.text = d.toString(), this.textDevKitAfter.style.fill = 12467003, this.textDevKitAfter.text = "0", 0 <= d - 1 && (this.textDevKitAfter.style.fill = 5523516, this.textDevKitAfter.text = (d - 1).toString()), this.btn_great_off.visible = !1, this.btn_great.visible = !1, n ? this.btn_great.visible = !0 : this.btn_great_off.visible = !0, this.configureMaterialView_fuel.updateValue(e.fuel), this.configureMaterialView_ammo.updateValue(e.ammo), this.configureMaterialView_steel.updateValue(e.steel), this.configureMaterialView_bauxite.updateValue(e.baux), this.highSpeedToggle.changeToggleState(0 < f), this.highSpeedToggle.update(m), 0 == m && this.highSpeedToggle.changeToggleState(!1), this.update(y), i) {
+                if (this.configureMaterialView_fuel.setAvail(l), this.configureMaterialView_ammo.setAvail(u), this.configureMaterialView_steel.setAvail(c), this.configureMaterialView_bauxite.setAvail(h), this.textDevKitBefore.text = d.toString(), this.textDevKitAfter.style.fill = 12467003, this.textDevKitAfter.text = "0", 0 <= d - 1 && (this.textDevKitAfter.style.fill = 5523516, this.textDevKitAfter.text = (d - 1).toString()), this.btn_great_off.visible = !1, this.btn_great.visible = !1, n ? this.btn_great.visible = !0 : this.btn_great_off.visible = !0, this.configureMaterialView_fuel.updateValue(e.fuel), this.configureMaterialView_ammo.updateValue(e.ammo), this.configureMaterialView_steel.updateValue(e.steel), this.configureMaterialView_bauxite.updateValue(e.baux), this.highSpeedToggle.changeToggleState(0 < f), this.highSpeedToggle.update(m), 0 == m && this.highSpeedToggle.changeToggleState(!1), this.update(y), i) {
                     r.default.view.clickGuard = !0;
                     var g = {
                             progress: 0

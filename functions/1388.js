@@ -19,65 +19,99 @@ const function1388 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(17),
-        s = i(27),
-        a = i(6),
-        _ = i(1389),
-        u = i(1391),
-        l = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._banner_f = i, r._banner_e = n, r._search_light_task = o, r
+    var o = i(5),
+        r = i(153),
+        s = i(16),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._bg.anchor.set(.5, .5), e._bg.position.set(o.default.width / 2, o.default.height / 2), e.addChild(e._bg), e._message = new u, e.addChild(e._message), e._banner_top = new _, e.addChild(e._banner_top), e._banner_bottom = new _, e.addChild(e._banner_bottom), e._particles = new l, e.addChild(e._particles), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._banner_f,
-                    i = this._banner_e;
-                1 == (null != e || null != i) ? this._effectWithFlare(e, i) : null == this._search_light_task ? this._preEndTask() : this._search_light_task.start(function () {
-                    t._search_light_task = null, t._preEndTask()
-                })
-            }, e.prototype._effectWithFlare = function (t, e) {
-                var i = this,
-                    n = new s.ParallelTask;
-                n.add(new _.TaskBannerFlareFire(t)), n.add(new _.TaskBannerFlareFire(e)), n.start(function () {
-                    createjs.Tween.get(null).wait(1170).call(function () {
-                        i._flareAnimation(t, e)
-                    }), null != i._search_light_task && createjs.Tween.get(null).wait(3200).call(function () {
-                        i._search_light_task.start(function () {
-                            i._search_light_task = null, i._preEndTask()
-                        })
-                    })
-                })
-            }, e.prototype._flareAnimation = function (t, e) {
-                var i = this;
-                this._flare_light_task = new s.ParallelTask;
-                var n = this._layer;
-                this._flare_light_task.add(new c(n));
-                var o;
-                null != t && (o = new PIXI.Point(855, 255), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), null != e && (o = new PIXI.Point(345, 150), this._flare_light_task.add(new u.TaskFlareAnimation(n, o))), this._flare_light_task.start(function () {
-                    i._flare_light_task = null, i._preEndTask()
-                })
-            }, e.prototype._preEndTask = function () {
-                null == this._search_light_task && null == this._flare_light_task && this._endTask()
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._banner_f = null, this._banner_e = null, this._search_light_task = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message", {
+                get: function () {
+                    return this._message
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_top", {
+                get: function () {
+                    return this._banner_top
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "banner_bottom", {
+                get: function () {
+                    return this._banner_bottom
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particles", {
+                get: function () {
+                    return this._particles
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = r.COMMON_EXPEDITION.getTexture(10), this._message.initialize(s.BATTLE_MAIN.getTexture(30)), this._particles.initialize()
+            }, e.prototype.dispose = function () {
+                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
             }, e
-        }(o.TaskBase);
-    e.TaskFlareEffect = l;
-    var c = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._layer = e, i
-        }
-        return n(e, t), e.prototype._start = function () {
-            var t = this,
-                e = new r.FadeBox(.5, 16777215);
-            e.hide(0), this._layer.addChild(e), a.SE.play("120"), e.show(170, function () {
-                e.hide(170, function () {
-                    t._layer.removeChild(e), t._endTask()
-                })
-            })
-        }, e
-    }(o.TaskBase)
+        }(PIXI.Container);
+    e.SupportDeckCutin = a;
+    var _ = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                this._particles = new Array;
+                for (var t in this.XPOS) {
+                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
+                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
+                }
+            }, e.prototype.startAnim = function () {
+                if (null == this._tweens) {
+                    this._tweens = [];
+                    for (var t = 0; t < this._particles.length; t++) {
+                        var e = this._particles[t],
+                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
+                                x: 1,
+                                y: 1
+                            }, 100).to({
+                                x: 0,
+                                y: 0
+                            }, 100);
+                        this._tweens.push(i)
+                    }
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._tweens; t < e.length; t++) {
+                    e[t].setPaused(!0)
+                }
+                this._tweens = null, this._particles = null, this.removeChildren()
+            }, e
+        }(PIXI.Container),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._img.texture = t, this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e
+        }(PIXI.Container)
 }

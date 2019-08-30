@@ -1,61 +1,101 @@
 const function270 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(8),
-        s = function (t) {
-            function e() {
-                for (var e = t.call(this, 0, 0, o.default.width, o.default.height) || this, i = 0; i < 20; i++) {
-                    var n = 4.5 * i;
-                    e.beginFill(0, .8 * Math.cos(n * Math.PI / 180)), e.drawRect(0, o.default.height - 3 * i, o.default.width, 3), e.endFill()
-                }
-                return e._arc = PIXI.Sprite.fromImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA1ElEQVQ4jaWUzRGCMBBGv8x4xw60Ay3BDrQDSqEFO4gl2IF0gFagHUQreB5EHcku4PBu7LBvfxKQOgALIAKJnAYouzkZQGUkWzTAaqrkzdWSlH9KUtYRr51Mk7SiOFnSijyuQNEZ35b0iPzKDjMnfg4hXIyihaS18f7dE82d+EbS0YjXfTv6ucFAwesiWsSZpJukpVHlAMwlndvnvTPWp6Oqp6sxJKAYankM3xUAK+yvfYiYDdnK/umscvb1OZnTgCBh/JOCI9xK2hmnWUvahxAe3ZwnVxLPxY8eTuoAAAAASUVORK5CYII="), e._arc.anchor.set(.5, .5), e._arc.x = o.default.width - 23, e._arc.y = o.default.height - 23, e._arc.scale.set(1.5), e._arc.alpha = .8, e.addChild(e._arc), e
+    var n = i(0),
+        o = i(25),
+        r = i(105),
+        s = i(540),
+        a = i(18),
+        _ = function () {
+            function t() {
+                this._bgm = new l, this._se = new u, this._voice = new s.VoiceManagerHolder
             }
-            return n(e, t), e.prototype.show = function (t, e) {
-                var i = this;
-                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), this._setVisiblity(!0), t <= 0 ? (this.alpha = 1, null != e && e()) : this._tween = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, t).call(function () {
-                    i._tween = null, null != e && e()
-                })
-            }, e.prototype.hide = function (t, e) {
-                var i = this;
-                void 0 === t && (t = 0), void 0 === e && (e = null), this._stopTween(), t <= 0 ? (this.alpha = 0, this._setVisiblity(!1), null != e && e()) : this._tween = createjs.Tween.get(this).to({
-                    alpha: 0
-                }, t).call(function () {
-                    i._setVisiblity(!1), i._tween = null, null != e && e()
-                })
-            }, e.prototype._setVisiblity = function (t) {
-                this.visible = t, 1 == t ? this._startArcTween() : this._stopArcTween()
-            }, e.prototype._startArcTween = function () {
-                null == this._tween_arc && (this._arc.rotation = 0, this._tween_arc = createjs.Tween.get(this._arc, {
-                    loop: !0
-                }).to({
-                    rotation: 2 * Math.PI
-                }, 1200))
-            }, e.prototype._stopArcTween = function () {
-                null != this._tween_arc && (this._tween_arc.setPaused(!0), this._tween_arc = null)
-            }, e.prototype._stopTween = function () {
-                null != this._tween && (this._tween.setPaused(!0), this._tween = null)
-            }, e
-        }(r.AreaBox);
-    e.LoadingBox = s
+            return Object.defineProperty(t.prototype, "bgm", {
+                get: function () {
+                    return this._bgm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "se", {
+                get: function () {
+                    return this._se
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "voice", {
+                get: function () {
+                    return this._voice
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t
+        }();
+    e.SoundManager = _;
+    var l = function () {
+            function t() {
+                this._sub_id = "", this._bgm_id = 0, this._bgm = null
+            }
+            return Object.defineProperty(t.prototype, "bgm_id", {
+                get: function () {
+                    return this._bgm_id
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "playing", {
+                get: function () {
+                    return null != this._bgm
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.playBattleBGM = function (t, e, i, n) {
+                void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === n && (n = null), this.play(t, e, i, "battle", n)
+            }, t.prototype.play = function (t, e, i, s, _) {
+                if (void 0 === e && (e = !0), void 0 === i && (i = 0), void 0 === s && (s = "port"), void 0 === _ && (_ = null), (null == this._bgm || this._sub_id != s || this._bgm_id != t) && s) {
+                    this.stop(), this._bgm_id = t, this._sub_id = s;
+                    var l = n.default.option.vol_bgm / 100;
+                    if (0 != l) {
+                        var u = o.MathUtil.zeroPadding(t, 3),
+                            c = r.SuffixUtil.create(t, "bgm_" + s),
+                            h = u + "_" + c,
+                            p = n.default.settings.path_root + "resources/bgm/" + s + "/" + h + ".mp3",
+                            d = {
+                                src: [p],
+                                html5: a.HTML5_AUDIO,
+                                onend: _
+                            };
+                        d.autoplay = !0, d.loop = e, i > 0 ? (d.volume = 0, this._bgm = new Howl(d), this._bgm.fade(0, l, i)) : (d.volume = l, this._bgm = new Howl(d))
+                    }
+                }
+            }, t.prototype.stop = function () {
+                null != this._bgm && (this._bgm.stop(), this._bgm.unload(), this._bgm = null)
+            }, t.prototype.fadeOut = function (t) {
+                var e = this;
+                if (null != this._bgm && 1 == this._bgm.playing()) {
+                    var i = this._bgm.volume();
+                    this._bgm.fade(i, 0, t);
+                    var n = this._bgm;
+                    setTimeout(function () {
+                        n.stop(), n.unload(), n == e._bgm && (e._bgm = null)
+                    }, t)
+                }
+            }, t.prototype.changeVolume = function (t) {
+                if (null == this._bgm) return !1;
+                this._bgm.volume(t / 100)
+            }, t
+        }(),
+        u = function () {
+            function t() {}
+            return t.prototype.play = function (t) {
+                if (0 != n.default.option.vol_se) {
+                    var e, i = {
+                        src: [t]
+                    };
+                    i.autoplay = !0, i.volume = n.default.option.vol_se / 100, i.onend = function () {
+                        e && (e.unload(), e = null)
+                    }, e = new Howl(i)
+                }
+            }, t
+        }()
 }

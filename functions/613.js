@@ -23,11 +23,11 @@ const function613 = function (t, e, i) {
         r = i(190),
         s = i(614),
         a = i(615),
-        _ = i(289),
-        u = function (t) {
+        _ = i(290),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new l, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
+                return e._touch_count = 0, e._marrigaeEff = !1, e._sakura = new r.Sakura, e._container = new u, e._chara = new PIXI.Sprite, e.addChild(e._sakura), e._container.addChild(e._chara), e.addChild(e._container), e._timerBeLeftVoice = new s.BeLeftVoiceTimer, e._timeSignal = new a.TimeSignal(e._timerBeLeftVoice), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "chara", {
                 get: function () {
@@ -51,12 +51,12 @@ const function613 = function (t, e, i) {
                     s = 0 == n ? 0 : r,
                     a = o.default.resources.getShip(t, e, "full");
                 this._chara.texture = a;
-                var u = new PIXI.Sprite(a);
-                this._hit_area_map = o.default.settings.renderer.extract.pixels(u), this._container.position.set(491, -88);
-                var l = this._chara.width / 2,
+                var l = new PIXI.Sprite(a);
+                this._hit_area_map = o.default.settings.renderer.extract.pixels(l), this._container.position.set(491, -88);
+                var u = this._chara.width / 2,
                     c = this._chara.height / 2,
                     h = o.default.model.ship_graph.get(t).getPortOffset(e);
-                this._chara.position.set(-l + h.x + s, -c + h.y), this._container.positionSet(491 + l, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
+                this._chara.position.set(-u + h.x + s, -c + h.y), this._container.positionSet(491 + u, -88 + c), this._timerBeLeftVoice.initialize(t, i), this._timeSignal.initialize(t)
             }, e.prototype.activate = function () {
                 null == this._loop_tween && (this._loop_tween = createjs.Tween.get(this._container, {
                     loop: !0
@@ -85,8 +85,8 @@ const function613 = function (t, e, i) {
                 this._touch_count < 4 ? 1 == this._ship_is_marriage && 0 == this._touch_count ? o.default.sound.voice.play(this._ship_mst_id.toString(), 28) : o.default.sound.voice.playAtRandom(this._ship_mst_id.toString(), [2, 3, 4], [60, 30, 10]) : o.default.sound.voice.play(this._ship_mst_id.toString(), 4), this._touch_count++, this._timerBeLeftVoice.reset()
             }, e
         }(PIXI.Container);
-    e.FlagShipLayer = u;
-    var l = function (t) {
+    e.FlagShipLayer = l;
+    var u = function (t) {
         function e() {
             return null !== t && t.apply(this, arguments) || this
         }

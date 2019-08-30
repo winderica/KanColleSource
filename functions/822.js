@@ -40,16 +40,16 @@ const function822 = function (t, e, i) {
                 this.addChild(this._current)
             }, e.prototype.showMessageTwoItems = function (t, e, i, n, o, r) {
                 this.hideAll();
-                var s = new u;
+                var s = new l;
                 s.update(t, e, i, n, o, r), this.addChild(s), this._current = s
             }, e.prototype.showMessageThreeItems = function (t, e, i, n, o, r, s, a) {
                 this.hideAll();
-                var _ = new l;
+                var _ = new u;
                 _.update(t, e, i, n, o, r, s, a), this.addChild(_), this._current = _
-            }, e.prototype.showMessageFourItems = function (t, e, i, n, o, r, s, a, _, u) {
+            }, e.prototype.showMessageFourItems = function (t, e, i, n, o, r, s, a, _, l) {
                 this.hideAll();
-                var l = new c;
-                l.update(t, e, i, n, o, r, s, a, _, u), this.addChild(l), this._current = l
+                var u = new c;
+                u.update(t, e, i, n, o, r, s, a, _, l), this.addChild(u), this._current = u
             }, e.prototype.showMessageKits = function (t, e) {
                 this.hideAll();
                 var i = new p;
@@ -85,7 +85,7 @@ const function822 = function (t, e, i) {
                 this.removeChildren(), this._message.destroy(), this._icon = null, this._message = null
             }, e
         }(PIXI.Container),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._icon1 = new PIXI.Sprite, e._icon1.position.set(30, 0), e.addChild(e._icon1), e._icon2 = new PIXI.Sprite, e._icon2.position.set(153, 0), e.addChild(e._icon2), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(0, 150), e.addChild(e._message2), e
@@ -106,46 +106,46 @@ const function822 = function (t, e, i) {
                 this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._message = null, this._message2 = null
             }, e
         }(PIXI.Container),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this,
                     i = 3;
                 return e._icon1 = new PIXI.Sprite, e._icon1.position.set(i, 0), e.addChild(e._icon1), i += 85, e._icon2 = new PIXI.Sprite, e._icon2.position.set(i, 0), e.addChild(e._icon2), i += 85, e._icon3 = new PIXI.Sprite, e._icon3.position.set(i, 0), e.addChild(e._icon3), e._message = new r.TextBox(17, 1644567), e._message.position.set(3, 81), e.addChild(e._message), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(3, 155), e.addChild(e._message2), e
             }
-            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u) {
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, l) {
                 this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r);
-                var l = "\u672c\u6539\u88c5\u306b\u306f";
+                var u = "\u672c\u6539\u88c5\u306b\u306f";
                 switch (t) {
                     case 78:
-                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + e + "\u90e8\u3068\n";
+                        u += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + e + "\u90e8\u3068\n";
                         break;
                     case 58:
-                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
+                        u += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + e + "\u679a\u3068\n";
                         break;
                     default:
-                        l += ""
+                        u += ""
                 }
                 switch (i) {
                     case 75:
-                        l += "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63" + o + "\u3064\u3068\n";
+                        u += "\uff62\u65b0\u578b\u7832\u7195\u5175\u88c5\u8cc7\u6750\uff63" + o + "\u3064\u3068\n";
                         break;
                     case 65:
-                        l += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n";
+                        u += "\uff62\u8a66\u88fd\u7532\u677f\u30ab\u30bf\u30d1\u30eb\u30c8\uff63\u3068\n";
                         break;
                     default:
-                        l += ""
+                        u += ""
                 }
                 switch (r) {
                     case 58:
-                        l += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + a + "\u679a";
+                        u += "\uff62\u6539\u88c5\u8a2d\u8a08\u56f3\uff63" + a + "\u679a";
                         break;
                     case 78:
-                        l += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + a + "\u90e8";
+                        u += "\uff62\u6226\u95d8\u8a73\u5831\uff63" + a + "\u90e8";
                         break;
                     default:
-                        l += ""
+                        u += ""
                 }
-                this._message.text = l + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(_, u)
+                this._message.text = u + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(_, l)
             }, e.prototype.dispose = function () {
                 this.removeChildren(), this._message.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._message = null, this._message2 = null
             }, e
@@ -156,7 +156,7 @@ const function822 = function (t, e, i) {
                     i = 5;
                 return e._icon1 = new PIXI.Sprite, e._icon1.width = 60, e._icon1.height = 60, e._icon1.position.set(i, 8), e.addChild(e._icon1), i += 65, e._icon2 = new PIXI.Sprite, e._icon2.width = 60, e._icon2.height = 60, e._icon2.position.set(i, 8), e.addChild(e._icon2), i += 65, e._icon3 = new PIXI.Sprite, e._icon3.width = 60, e._icon3.height = 60, e._icon3.position.set(i, 8), e.addChild(e._icon3), i += 65, e._icon4 = new PIXI.Sprite, e._icon4.width = 60, e._icon4.height = 60, e._icon4.position.set(i, 8), e.addChild(e._icon4), e._message1 = new r.TextBox(17, 1644567), e._message1.position.set(2, 74), e.addChild(e._message1), e._message2 = new r.TextBox(17, 1644567), e._message2.position.set(2, 153), e.addChild(e._message2), e
             }
-            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, u, l, c) {
+            return o(e, t), e.prototype.update = function (t, e, i, o, r, a, _, l, u, c) {
                 this._icon1.texture = s.COMMON_ITEMICONS.getTextureFromMstID(t), this._icon2.texture = s.COMMON_ITEMICONS.getTextureFromMstID(i), this._icon3.texture = s.COMMON_ITEMICONS.getTextureFromMstID(r), this._icon4.texture = s.COMMON_ITEMICONS.getTextureFromMstID(_);
                 var h = "\u672c\u6539\u88c5\u306b\u306f";
                 switch (t) {
@@ -182,12 +182,12 @@ const function822 = function (t, e, i) {
                 }
                 switch (_) {
                     case 77:
-                        h += "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750" + (u > 1 ? "x" + u : "") + "\uff63";
+                        h += "\uff62\u65b0\u578b\u822a\u7a7a\u5175\u88c5\u8cc7\u6750" + (l > 1 ? "x" + l : "") + "\uff63";
                         break;
                     default:
                         h += ""
                 }
-                this._message1.text = h + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(l, c)
+                this._message1.text = h + "\u304c\u5fc5\u8981\u3067\u3059\u3002", this._message2.text = n(u, c)
             }, e.prototype.dispose = function () {
                 this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._icon1 = null, this._icon2 = null, this._icon3 = null, this._icon4 = null, this._message1 = null, this._message2 = null
             }, e

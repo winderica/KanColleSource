@@ -24,12 +24,12 @@ const function1018 = function (t, e, i) {
         s = i(1020),
         a = i(1022),
         _ = i(1036),
-        u = i(1037),
-        l = function (t) {
+        l = i(1037),
+        u = function (t) {
             function e(e, i) {
                 var n = t.call(this, e, i) || this;
                 n._timer_id = 0, n._onChangeMatching = function (t) {
-                    new u.TaskChangeMatching(t, n).start()
+                    new l.TaskChangeMatching(t, n).start()
                 }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
                 for (var o = 0; o < 5; o++) {
                     var r = new a.CompRivalDeck;
@@ -94,5 +94,5 @@ const function1018 = function (t, e, i) {
                 this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
             }, e
         }(r.ViewMainBase);
-    e.ViewMain = l
+    e.ViewMain = u
 }

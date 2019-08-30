@@ -19,28 +19,55 @@ const function1045 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(360),
-        r = i(1046),
+    var o = i(41),
+        r = i(1),
         s = function (t) {
             function e(e) {
-                var i = t.call(this, e) || this;
-                return i._panel = new r.PanelDeckSelect(i._onGo), i._panel.position.set(1200, 102), i.addChild(i._panel), i
+                var i = t.call(this) || this;
+                return i._activated = !1, i._selected = !1, i._onMouseOver = function () {
+                    i._update(!0)
+                }, i._onMouseOut = function () {
+                    i._update(!1)
+                }, i._onClick = function () {
+                    null != i.onClick && i.onClick(i._area_id)
+                }, i._area_id = e, i._light = new PIXI.Sprite, i.addChild(i._light), i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "panel", {
+            return n(e, t), Object.defineProperty(e.prototype, "area_id", {
                 get: function () {
-                    return this._panel
+                    return this._area_id
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._panel.initialize(t, e, i)
+            }), Object.defineProperty(e.prototype, "selected", {
+                get: function () {
+                    return this._selected
+                },
+                set: function (t) {
+                    this._selected = t, 1 == this._selected ? this.deactivate() : this.activate(), this._update(!1)
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.texture = o.SALLY_EVENT.getTexture(2), this._light.texture = o.SALLY_EVENT.getTexture(3), this._update(!1)
             }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._panel.activate()
+                1 != this._activated && (this._activated = !0, this.interactive = this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick))
             }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._panel.deactivate()
+                this._activated = !1, this.interactive = this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._panel.dispose()
+                this._stopTween(), this.deactivate(), this.onClick = null
+            }, e.prototype._update = function (t) {
+                this.selected || t ? (this._light.visible = !0, this._stopTween()) : this._startTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._light.alpha = 1, this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 700).to({
+                    alpha: 1
+                }, 700))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(o.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = s
+        }(PIXI.Sprite);
+    e.ExpeditionEventAreaIconBtn = s
 }

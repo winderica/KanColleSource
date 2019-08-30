@@ -79,9 +79,9 @@ const function502 = function (t, e, i) {
                     if (_ > 0) {
                         var n = this.get(_);
                         if (null != n) {
-                            var u = r.ObjUtil.getNumber(a, "api_state"),
-                                l = u;
-                            n.__setState__(l)
+                            var l = r.ObjUtil.getNumber(a, "api_state"),
+                                u = l;
+                            n.__setState__(u)
                         }
                     }
                 }

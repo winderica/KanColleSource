@@ -24,8 +24,8 @@ const function104 = function (t, e, i) {
         s = i(29),
         a = i(38),
         _ = i(13),
-        u = i(54),
-        l = i(63),
+        l = i(54),
+        u = i(63),
         c = i(465),
         h = i(466),
         p = i(467),
@@ -34,7 +34,7 @@ const function104 = function (t, e, i) {
         y = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n._damage_cutin = new u.PhaseDamageCutin(n._scene), n
+                return n._scene = e, n._record = i, n._damage_cutin = new l.PhaseDamageCutin(n._scene), n
             }
             return n(e, t), e.prototype._start = function () {
                 var t = this._record.raw.support_air;
@@ -48,15 +48,15 @@ const function104 = function (t, e, i) {
                 this._endTask()
             }, e.prototype._supportAir = function (t) {
                 var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
                     e._scene.view.layer_title.show(1);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
+                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
+                        var u = l[_];
+                        if (null != u) {
+                            var c = o.default.model.ship.get(u.mem_id);
                             null != c ? r.push({
                                 mst_id: c.mstID,
-                                damaged: l.damaged
+                                damaged: u.damaged
                             }) : r.push(null)
                         } else r.push(null)
                     }
@@ -78,15 +78,15 @@ const function104 = function (t, e, i) {
                 })
             }, e.prototype._supportHou = function (t) {
                 var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
                     e._scene.view.layer_title.show(2);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var h = o.default.model.ship.get(l.mem_id);
+                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
+                        var u = l[_];
+                        if (null != u) {
+                            var h = o.default.model.ship.get(u.mem_id);
                             null != h ? r.push({
                                 mst_id: h.mstID,
-                                damaged: l.damaged
+                                damaged: u.damaged
                             }) : r.push(null)
                         } else r.push(null)
                     }
@@ -105,15 +105,15 @@ const function104 = function (t, e, i) {
                 })
             }, e.prototype._supportRai = function (t) {
                 var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
                     e._scene.view.layer_title.show(3);
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
+                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
+                        var u = l[_];
+                        if (null != u) {
+                            var c = o.default.model.ship.get(u.mem_id);
                             null != c ? r.push({
                                 mst_id: c.mstID,
-                                damaged: l.damaged
+                                damaged: u.damaged
                             }) : r.push(null)
                         } else r.push(null)
                     }
@@ -132,14 +132,14 @@ const function104 = function (t, e, i) {
                 })
             }, e.prototype._supportTaisen = function (t) {
                 var e = this;
-                new l.PhaseEnemyEnter(this._scene, this._record).start(function () {
-                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, u = n; _ < u.length; _++) {
-                        var l = u[_];
-                        if (null != l) {
-                            var c = o.default.model.ship.get(l.mem_id);
+                new u.PhaseEnemyEnter(this._scene, this._record).start(function () {
+                    for (var i = e._scene.view.layer_cutin, n = t.getShipList(), r = [], _ = 0, l = n; _ < l.length; _++) {
+                        var u = l[_];
+                        if (null != u) {
+                            var c = o.default.model.ship.get(u.mem_id);
                             null != c ? r.push({
                                 mst_id: c.mstID,
-                                damaged: l.damaged
+                                damaged: u.damaged
                             }) : r.push(null)
                         } else r.push(null)
                     }

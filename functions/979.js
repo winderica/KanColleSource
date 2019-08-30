@@ -20,11 +20,11 @@ const function979 = function (t, e, i) {
         value: !0
     });
     var o = i(12),
-        r = i(43),
+        r = i(41),
         s = i(980),
         a = i(0),
         _ = i(14),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
@@ -39,20 +39,14 @@ const function979 = function (t, e, i) {
                 var e = a.default.settings.path_root + "img/sally/event_maesetsu",
                     i = "?version=" + _.UIImageLoader.getVersion("sally");
                 switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
-                    case 441:
-                        this._content.position.set(-303, -227), this._content.texture = PIXI.Texture.fromImage(e + "/233_a4ce6.png" + i);
+                    case 451:
+                        this._content.position.set(-330, -224), this._content.texture = PIXI.Texture.fromImage(e + "/238_70639.png" + i);
                         break;
-                    case 442:
-                        this._content.position.set(-286, -228), this._content.texture = PIXI.Texture.fromImage(e + "/234_d6775.png" + i);
+                    case 452:
+                        this._content.position.set(-286, -220), this._content.texture = PIXI.Texture.fromImage(e + "/239_993e0.png" + i);
                         break;
-                    case 443:
-                        this._content.position.set(-295, -216), this._content.texture = PIXI.Texture.fromImage(e + "/235_5caf8.png" + i);
-                        break;
-                    case 444:
-                        this._content.position.set(-309, -223), this._content.texture = PIXI.Texture.fromImage(e + "/236_c9c552.png" + i);
-                        break;
-                    case 445:
-                        this._content.position.set(-307, -221), this._content.texture = PIXI.Texture.fromImage(e + "/237_d9557a.png" + i);
+                    case 453:
+                        this._content.position.set(-295, -216), this._content.texture = PIXI.Texture.fromImage(e + "/240_99999.png" + i);
                         break;
                     default:
                         this._content.texture = PIXI.Texture.EMPTY
@@ -65,5 +59,5 @@ const function979 = function (t, e, i) {
                 null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
         }(o.Sprite);
-    e.MapIntroBoard = u
+    e.MapIntroBoard = l
 }

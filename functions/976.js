@@ -24,7 +24,7 @@ const function976 = function (t, e, i) {
         s = i(978),
         a = i(981),
         _ = i(1),
-        u = function (t) {
+        l = function (t) {
             function e(e, i, n, o) {
                 void 0 === o && (o = !1);
                 var s = t.call(this) || this;
@@ -84,5 +84,5 @@ const function976 = function (t, e, i) {
                 this._layer = null, this._model = null, this._selectable = null, this._dialog = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.ShowMapIntroDialogTask = u
+    e.ShowMapIntroDialogTask = l
 }

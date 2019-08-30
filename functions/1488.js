@@ -19,55 +19,83 @@ const function1488 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(9),
-        s = i(36),
+    var o = i(0),
+        r = i(2),
+        s = i(27),
         a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._anim2 = function () {
-                    o.SE.play("222"), e._t = createjs.Tween.get(e._message).to({
-                        x: 38,
-                        alpha: 1
-                    }, 200).to({
-                        x: 0
-                    }, 66).wait(700).to({
-                        x: -38
-                    }, 66).to({
-                        x: -132,
-                        alpha: 0
-                    }, 200).call(function () {
-                        e._t = null, e.emit("complete")
-                    })
-                }, e._bg = new PIXI.Sprite, e._bg.anchor.set(.5), e._bg.alpha = 0, e._message = new PIXI.Sprite, e._message.anchor.set(.5), e._message.alpha = 0, e._message.x = 132, e.addChild(e._bg), e.addChild(e._message), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
-            return n(e, t), e.prototype.initializeForShip = function (t) {
-                void 0 === t && (t = !1), this._bg.texture = r.COMMON_MISC.getTexture(120);
-                var e = 31;
-                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(e), 1 == t && (this._message.y = -30, e = 25, this._sub_message = new PIXI.Sprite(s.BATTLE_RESULT_MAIN.getTexture(e)), this._sub_message.anchor.set(.5), this._sub_message.position.y = 80, this._message.addChild(this._sub_message))
-            }, e.prototype.initializeForSlot = function () {
-                this._bg.texture = r.COMMON_MISC.getTexture(120);
-                this._message.texture = s.BATTLE_RESULT_MAIN.getTexture(26)
-            }, e.prototype.initializeForUseitem = function (t) {
-                this._bg.texture = r.COMMON_MISC.getTexture(120);
-                var e = -1;
-                60 == t ? e = 27 : 62 == t ? e = 28 : 68 == t ? e = 29 : 72 == t ? e = 30 : 85 != t && 86 != t && 87 != t && 88 != t || (e = 21), this._message.texture = -1 == e ? PIXI.Texture.EMPTY : s.BATTLE_RESULT_MAIN.getTexture(e)
-            }, e.prototype.dispose = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype.play = function () {
-                var t = this;
-                if (null == this._t) {
-                    var e = s.BATTLE_RESULT_MAIN.getTexture(24),
-                        i = new PIXI.Sprite(e);
-                    i.anchor.set(.5), i.alpha = 0, this.addChild(i), this._t = createjs.Tween.get(i).to({
-                        alpha: 1
-                    }, 200).call(function () {
-                        t._bg.alpha = 1
-                    }).to({
-                        alpha: 0
-                    }, 266).call(this._anim2)
-                }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = new s.ParallelTask;
+                e.add(new _(this._scene)), e.add(new l(this._scene)), e.add(new u(this._scene)), e.start(function () {
+                    t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Container);
-    e.BonusTelop = a
+        }(r.TaskBase);
+    e.TaskShowExtraResults = a;
+    var _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.data.extra_war_results;
+                if (e > 0) {
+                    var i = this._scene.view.panel_exp.extra_result.extra_war_result;
+                    i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({
+                        alpha: 1
+                    }, 300).call(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase),
+        l = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.data.extra_useitem_mst_id;
+                if (e > 0) {
+                    var i = o.default.resources.getUseitem(e, 0),
+                        n = this._scene.view.panel_exp.extra_result.useitem_icon;
+                    n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({
+                        alpha: 1
+                    }, 300).call(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                if (1 == this._scene.data.extra_result) {
+                    var e = this._scene.view.panel_exp.extra_result.map_incentive;
+                    e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({
+                        alpha: 1
+                    }, 300).call(function () {
+                        t._endTask()
+                    })
+                } else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, t.prototype._endTask.call(this)
+            }, e
+        }(r.TaskBase)
 }

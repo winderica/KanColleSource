@@ -24,7 +24,7 @@ const function723 = function (t, e, i) {
         s = i(4),
         a = i(37),
         _ = i(56),
-        u = function (t) {
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i.HEIGHT = 76, i.problem = !1, i.isOver = !1, i._onMouseOver = function (t) {
@@ -76,11 +76,11 @@ const function723 = function (t, e, i) {
                 if (s) {
                     this.presetId = i.presetID, this.frame_bg.visible = !0;
                     var _ = 0 == i.getShipCount(),
-                        u = i.hasLostShip(),
-                        l = i.hasOtherDeckShip(t);
+                        l = i.hasLostShip(),
+                        u = i.hasOtherDeckShip(t);
                     if (!_) {
                         i.getShipsAfterExpanded(t).length;
-                        u ? a = !0 : l && (a = !0), this.updateShip(i), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0
+                        l ? a = !0 : u && (a = !0), this.updateShip(i), this.shipBanner.visible = !0, this.deckName.visible = !0, this.deckCount.visible = !0
                     }
                     var c = 0 < i.getShipCount();
                     this.updateButton(i.presetID, n, r, c, a);
@@ -97,5 +97,5 @@ const function723 = function (t, e, i) {
                 this.expandButton.visible = !1, this.expandButton.visible = !e || !i, this.presetId = t, this.problem = o
             }, e
         }(PIXI.Container);
-    e.PresetExpansionSlot = u
+    e.PresetExpansionSlot = l
 }

@@ -365,8 +365,8 @@ const function150 = function (t, e, i) {
                         if (null != a) {
                             var _ = o.default.model.slot.getMst(a.mstID);
                             if (null != _) {
-                                var u = _.getMaterialsFromBroken();
-                                e.fuel += u.fuel, e.ammo += u.ammo, e.steel += u.steel, e.baux += u.baux
+                                var l = _.getMaterialsFromBroken();
+                                e.fuel += l.fuel, e.ammo += l.ammo, e.steel += l.steel, e.baux += l.baux
                             }
                         }
                     }

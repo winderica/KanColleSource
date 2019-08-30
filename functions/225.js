@@ -3,14 +3,14 @@ const function225 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(260),
+    var n = i(261),
         o = i(169),
         r = function () {
-            function t(t, e, i, o, r, s, a, _, u) {
-                if (void 0 === _ && (_ = -1), void 0 === u && (u = ""), this._medal_num = 0, this._id_second = -1, this._name_second = "", this._practice = e, this._medal_num = i, this._user_name = o, t instanceof n.DeckModel) {
-                    var l = t;
-                    this._id = l.mstID, this._type = l.getCombinedType(), this._name = l.name, this.updateShipList(l), this._id_second = l.getSubDeckID(), this._name_second = l.getSubDeckName()
-                } else this._id = t, this._type = r, this._name = s, this._ships = a.concat(), this._id_second = _, this._name_second = u;
+            function t(t, e, i, o, r, s, a, _, l) {
+                if (void 0 === _ && (_ = -1), void 0 === l && (l = ""), this._medal_num = 0, this._id_second = -1, this._name_second = "", this._practice = e, this._medal_num = i, this._user_name = o, t instanceof n.DeckModel) {
+                    var u = t;
+                    this._id = u.mstID, this._type = u.getCombinedType(), this._name = u.name, this.updateShipList(u), this._id_second = u.getSubDeckID(), this._name_second = u.getSubDeckName()
+                } else this._id = t, this._type = r, this._name = s, this._ships = a.concat(), this._id_second = _, this._name_second = l;
                 if (0 != this._type) {
                     for (; this._ships.length < 12;) this._ships.push(null);
                     if (this._ships.length > 12) throw new Error("DeckModelReplica")

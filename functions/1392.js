@@ -19,26 +19,23 @@ const function1392 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(22),
-        r = i(2),
-        s = i(1393),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._banner = e, n._large = i, n
+    var o = i(471),
+        r = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this, e, i) || this;
+                return r._model = n, r._bannerGroup = o, r
             }
-            return n(e, t), e.prototype._start = function () {
-                if (null == this._banner) return void this._endTask();
-                this._effect()
-            }, e.prototype._effect = function () {
-                var t = this,
-                    e = new s.SearchLight;
-                e.initialize(this._large), 1 == this._banner.friend ? e.x = o.BannerSize.W + 15 : (e.x = -15, e.scale.x = -1), e.y = o.BannerSize.H / 2, this._banner.addChild(e), e.getAnimationTask().start(function () {
-                    t._banner.removeChild(e), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._banner = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._getShips_f = function () {
+                return this._model.ships
+            }, e.prototype._getShips_e = function () {
+                return this._scene.data.model.deck_e.ships
+            }, e.prototype._getFlareBanner_f = function () {
+                var t = this._model.getFlareIndex_f();
+                return this._bannerGroup.getBanner(t)
+            }, e.prototype._getFlareBanner_e = function () {
+                var t = this._model.getFlareIndex_e();
+                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
             }, e
-        }(r.TaskBase);
-    e.TaskSearchLightAnimation = a
+        }(o.PhaseLightingBase);
+    e.PhaseAllyLighting = r
 }

@@ -36,10 +36,10 @@ const function205 = function (t, e, i) {
             }, e.prototype._load = function (t, e, i) {
                 var n = this,
                     _ = s.MathUtil.zeroPadding(t, 3),
-                    u = s.MathUtil.zeroPadding(e, 2),
-                    l = r.MapUtil.toMapID(t, e),
-                    c = a.UIImageLoader.getResourceVersionMap(l),
-                    h = o.default.settings.path_root + "resources/map/" + _ + "/" + u + ".png" + (c ? "?version=" + c : "");
+                    l = s.MathUtil.zeroPadding(e, 2),
+                    u = r.MapUtil.toMapID(t, e),
+                    c = a.UIImageLoader.getResourceVersionMap(u),
+                    h = o.default.settings.path_root + "resources/map/" + _ + "/" + l + ".png" + (c ? "?version=" + c : "");
                 if (null != PIXI.utils.TextureCache[h]) return this.texture = PIXI.utils.TextureCache[h], void(null != i && i());
                 this._loader = new PIXI.loaders.Loader, this._loader.add(h), this._loader.load(function (t) {
                     if (n._loader == t) {

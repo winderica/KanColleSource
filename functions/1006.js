@@ -26,8 +26,8 @@ const function1006 = function (t, e, i) {
                 for (var r = t.call(this, e) || this, s = 0; s < 4; s++) {
                     var a = new o.MapThumbnail(4, i, n, null, null),
                         _ = s % 2 == 0 ? 188 : 689,
-                        u = s < 2 ? 207 : 422;
-                    a.position.set(_, u), r.addChild(a), r._maps.push(a)
+                        l = s < 2 ? 207 : 422;
+                    a.position.set(_, l), r.addChild(a), r._maps.push(a)
                 }
                 return r
             }

@@ -24,8 +24,8 @@ const function872 = function (t, e, i) {
         s = i(14),
         a = i(873),
         _ = i(874),
-        u = i(115),
-        l = i(224),
+        l = i(115),
+        u = i(224),
         c = i(906),
         h = i(907),
         p = i(115),
@@ -35,7 +35,7 @@ const function872 = function (t, e, i) {
                 return e.arsenalTimerKey = {}, e.updateCondition = function (t, i, n) {
                     e.menuLayer.hasLimitOver = n, e.dockLayer.updateCondition(t, i, n)
                 }, e.onChangeArsenalTimer = function () {
-                    if (e.dockLayer.ArsenalTimerMode == u.ArsenalTimerMode.WaitComplete) {
+                    if (e.dockLayer.ArsenalTimerMode == l.ArsenalTimerMode.WaitComplete) {
                         var t = Date.now();
                         o.default.model.kdock.getAll().forEach(function (i) {
                             if (2 == i.state || 2 == e.dockLayer.getKDockView(i.id).state) {
@@ -51,21 +51,21 @@ const function872 = function (t, e, i) {
             return n(e, t), e.prototype.start = function () {
                 var t = o.default.model.kdock.getAll();
                 this.menuLayer = new h.MenuLayer, this.menuLayer.onUpdateCondition = this.updateCondition, this.dockLayer = new p.DockLayer, this.dockLayer.position.set(528, 177), this.dockLayer.onUpdateCondition = this.updateCondition, this.topBarLayer = new c.TopBarLayer;
-                for (var e = l.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
+                for (var e = u.ArsenalUtil.developLimit(), i = !1, n = 0; n < t.length; n++) {
                     var r = t[n];
                     switch (this.updateCondition(r.id, e.forShip, e.forSlot), this.dockLayer.hideHighSpeedButton(r.id), r.state) {
                         case 2:
                             var s = o.default.model.ship.getMst(r.ship_mst_id),
                                 a = s.build_time,
                                 _ = o.default.model.shipType.get(s.shipTypeID).build_phase_num,
-                                u = Date.now(),
+                                l = Date.now(),
                                 d = r.isLargeBuild(),
                                 f = r.complete_time,
                                 y = !1;
                             y = d ? 9 < o.default.model.useItem.get(2).count : 0 < o.default.model.useItem.get(2).count;
                             var m = .5 < Math.random(),
                                 g = .5 < Math.random() || 0 == m;
-                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, g, a, f, u, _);
+                            this.dockLayer.showHighSpeedButton(r.id, y), this.dockLayer.resume(r.id, d, y, m, g, a, f, l, _);
                             break;
                         case -1:
                             if (0 == i) {
@@ -92,7 +92,7 @@ const function872 = function (t, e, i) {
                             this.dockLayer.standby(r.id)
                     }
                 }
-                l.ArsenalUtil.playVoiceOnBuildComplete();
+                u.ArsenalUtil.playVoiceOnBuildComplete();
                 var x = createjs.Tween.get(this.arsenalTimerKey, {
                     loop: !0
                 }).wait(500);

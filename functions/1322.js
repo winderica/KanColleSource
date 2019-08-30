@@ -19,49 +19,46 @@ const function1322 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(275),
+    var o = i(2),
         r = i(1323),
-        s = i(1332),
-        a = i(1427),
-        _ = i(1440),
-        u = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
+        s = i(1325),
+        a = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._scene = e, n._model = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
-                get: function () {
-                    return this._data
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (e) {
-                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
-            }, e.prototype.dispose = function () {
-                this._view.dispose(), t.prototype.dispose.call(this)
-            }, e.prototype.start = function () {
+            return n(e, t), e.prototype._start = function () {
                 var t = this;
-                new r.TaskInit(this).start(function () {
-                    t._main()
-                })
-            }, e.prototype._main = function () {
-                var t = this;
-                new s.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
-                var t = this.data.model.deck_f.ships,
-                    e = this.data.model.deck_e.ships;
-                this.data.model.ship_info.add(t, e);
-                var i = (new Date).getTime();
-                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
+                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
+                var e = this._model.escape,
+                    i = e.getTargetShipIndexes(),
+                    n = e.getTowingShipIndexes(),
+                    o = null;
+                if (i.length > 0) {
+                    var a = i[0];
+                    o = this._model.deck_f.ships[a]
+                }
+                var _ = null;
+                if (n.length > 0) {
+                    var l = n[0];
+                    _ = this._model.deck_f.ships[l]
+                }
+                if (null != o)
+                    if (null != _) {
+                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    } else {
+                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
+                        u.start(function () {
+                            t._endTask()
+                        })
+                    }
+                else this._endTask()
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._model = null, t.prototype._endTask.call(this)
             }, e
-        }(o.BattleSceneBase);
-    e.BattleScene = u
+        }(o.TaskBase);
+    e.EscapeTask = a
 }

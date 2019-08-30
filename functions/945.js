@@ -24,15 +24,15 @@ const function945 = function (t, e, i) {
         s = i(1),
         a = i(2),
         _ = i(34),
-        u = i(8),
-        l = i(17),
+        l = i(8),
+        u = i(17),
         c = i(6),
         h = i(946),
         p = i(947),
         d = i(948),
         f = i(949),
         y = i(950),
-        m = i(356),
+        m = i(357),
         g = i(967),
         v = i(969),
         b = i(971),
@@ -61,8 +61,8 @@ const function945 = function (t, e, i) {
                         var o = n._area_id,
                             a = r.default.model.airunit.getAirUnit(o, t),
                             _ = a.squadrons[e],
-                            u = a.squadrons[i];
-                        if (null != u && 2 == u.state) return;
+                            l = a.squadrons[i];
+                        if (null != l && 2 == l.state) return;
                         var s = new h.AirUnitEditAPI(o, t, i, _.mem_id);
                         s.start(function () {
                             n._panel.update(t, !0)
@@ -87,7 +87,7 @@ const function945 = function (t, e, i) {
                     var e = n._panel.selected_airunit_id;
                     n._openSupply(e, t)
                 }, n._onPreSupply = function () {
-                    null == n._clickGuard && (n._clickGuard = new u.AreaBox(0), r.default.view.overLayer.addChild(n._clickGuard))
+                    null == n._clickGuard && (n._clickGuard = new l.AreaBox(0), r.default.view.overLayer.addChild(n._clickGuard))
                 }, n._onSupply = function (t, e, i) {
                     if (null == i || 0 == i.length) return null !== n._clickGuard && (r.default.view.overLayer.removeChild(n._clickGuard), n._clickGuard = null), void n._closeSupply();
                     n._t = createjs.Tween.get(null), n._supply.playSupplyAnimation(function () {
@@ -124,7 +124,7 @@ const function945 = function (t, e, i) {
                 }
                 return t.length > 0 && i.add(new d.AirUnitChangeActionStateAPI(this._area_id, t, e)), i
             }, e.prototype._start = function () {
-                this._cancel_area = new l.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
+                this._cancel_area = new u.FadeBox(.2), this._layer.addChild(this._cancel_area), this._openPanel()
             }, e.prototype._openPanel = function () {
                 var t = this,
                     e = this._area_id,

@@ -1,15 +1,16 @@
 const function263 = function (t, e, i) {
     "use strict";
+
+    function n(t, e, i) {
+        var n = (new Date).getTime(),
+            r = Math.floor(n / 1e3);
+        e = Math.round(e) % 1e3 + 1e3, i = Math.round(i) % 1e3 + 1e3;
+        var s = 1e4 * e + i;
+        return s *= o.PORT_API_SEED[t % 10], r.toString() + s.toString()
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = function () {
-        function t() {
-            this.normal = 0, this.rengo = 0, this.yugeki = 0
-        }
-        return t.prototype.init = function (t) {
-            this.normal = 0, this.rengo = 0, this.yugeki = 0, null != t && (t.length < 1 || (this.normal = t[0], t.length < 2 || (this.rengo = t[1], t.length < 3 || (this.yugeki = t[2]))))
-        }, t
-    }();
-    e.AllowedDeckTypeModel = n
+    var o = i(18);
+    e.__create_serial_id__ = n
 }

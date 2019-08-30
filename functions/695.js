@@ -6,14 +6,14 @@ const function695 = function (t, e, i) {
     var n = i(0),
         o = i(49),
         r = i(8),
-        s = i(318),
+        s = i(319),
         a = i(696),
         _ = i(697),
-        u = i(698),
-        l = i(216),
+        l = i(698),
+        u = i(216),
         c = function () {
             function t(t) {
-                this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new u.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
+                this.mainView = t, this.dialogBackground = new r.AreaBox(o.UISettings.DIALOG_BG_ALPHA), this.combineTypeSelectDialog = new l.CombineTypeSelectDialog, this.combineConfirmDialog = new _.CombineConfirmDialog, this.combineConfirmAlertDialog = new a.CombineConfirmAlertDialog
             }
             return t.prototype.dispose = function () {
                 this.combineTypeSelectDialog.dispose(), this.combineConfirmDialog.dispose(), this.combineConfirmAlertDialog.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.combineConfirmAlertDialog), this.mainView.removeChild(this.combineConfirmDialog), this.mainView.removeChild(this.combineTypeSelectDialog), this.combineTypeSelectDialog.onClickBack = null, this.combineTypeSelectDialog.onClickKido = null, this.combineTypeSelectDialog.onClickSuijo = null, this.combineTypeSelectDialog.onClickYuso = null, this.combineConfirmDialog.onClickNO = null, this.combineConfirmDialog.onClickYES = null, this.combineConfirmAlertDialog.onClickYES = null, this.onCombined = null, this.onComplete = null, this.mainView = null, this.dialogBackground = null, this.combineTypeSelectDialog = null, this.combineConfirmDialog = null, this.combineConfirmAlertDialog = null
@@ -36,14 +36,14 @@ const function695 = function (t, e, i) {
                 var r = s.CombineUtil.checkCombinable(i, o, t),
                     a = r[0],
                     _ = r[1],
-                    u = r[2];
+                    l = r[2];
                 a ? (this.combineConfirmDialog.updateViewType(t), this.combineConfirmDialog.updateCombineDeck(i, o), this.combineConfirmDialog.onClickNO = function () {
                     e.onComplete()
                 }, this.combineConfirmDialog.onClickYES = function () {
-                    n.default.view.clickGuard = !0, new l.CombinedAPI(t).start(function () {
+                    n.default.view.clickGuard = !0, new u.CombinedAPI(t).start(function () {
                         e.onCombined(), n.default.view.clickGuard = !1, e.onComplete()
                     })
-                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, u), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
+                }, this.mainView.addChild(this.dialogBackground, this.combineConfirmDialog)) : (this.combineConfirmAlertDialog.updateCombineDeck(i, o, _, l), this.combineConfirmAlertDialog.updateViewType(t), this.combineConfirmAlertDialog.onClickYES = function () {
                     e.onComplete()
                 }, this.mainView.addChild(this.dialogBackground, this.combineConfirmAlertDialog))
             }, t

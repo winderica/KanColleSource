@@ -24,8 +24,8 @@ const function994 = function (t, e, i) {
         s = i(30),
         a = i(52),
         _ = i(995),
-        u = i(996),
-        l = i(997),
+        l = i(996),
+        u = i(997),
         c = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -47,7 +47,7 @@ const function994 = function (t, e, i) {
                 var c = new PIXI.Sprite(s.SALLY_COMMON.getTexture(47));
                 c.position.set(27, 530), this.addChild(c);
                 var h = new PIXI.Graphics;
-                h.lineStyle(1, 13421772), h.moveTo(21, 224), h.lineTo(336, 224), h.moveTo(21, 309), h.lineTo(336, 309), this.addChild(h), this._map_name_txt = new r.TextBox(21, 4999235), this._map_name_txt.position.set(24, 156), this.addChild(this._map_name_txt), this._areaText = new _.AreaTextImage, this._areaText.position.set(29, 185), this.addChild(this._areaText), this._ope_name_txt = new r.TextBox(21, 4999235), this._ope_name_txt.position.set(24, 249), this.addChild(this._ope_name_txt), this._ope_detail_txt = new r.TextBox(21, 4999235), this._ope_detail_txt.position.set(24, 342), this._ope_detail_txt.style.wordWrap = !0, this._ope_detail_txt.style.breakWords = !0, this._ope_detail_txt.style.wordWrapWidth = 323, this.addChild(this._ope_detail_txt), this._err_txt = new r.TextBox(17, 12467003), this._err_txt.position.set(24, 465), this.addChild(this._err_txt), this._shop = new l.BtnShop2, this._shop.position.set(271, 468), this._shop.initialize(), this.addChild(this._shop), this._items = new Array;
+                h.lineStyle(1, 13421772), h.moveTo(21, 224), h.lineTo(336, 224), h.moveTo(21, 309), h.lineTo(336, 309), this.addChild(h), this._map_name_txt = new r.TextBox(21, 4999235), this._map_name_txt.position.set(24, 156), this.addChild(this._map_name_txt), this._areaText = new _.AreaTextImage, this._areaText.position.set(29, 185), this.addChild(this._areaText), this._ope_name_txt = new r.TextBox(21, 4999235), this._ope_name_txt.position.set(24, 249), this.addChild(this._ope_name_txt), this._ope_detail_txt = new r.TextBox(21, 4999235), this._ope_detail_txt.position.set(24, 342), this._ope_detail_txt.style.wordWrap = !0, this._ope_detail_txt.style.breakWords = !0, this._ope_detail_txt.style.wordWrapWidth = 323, this.addChild(this._ope_detail_txt), this._err_txt = new r.TextBox(17, 12467003), this._err_txt.position.set(24, 465), this.addChild(this._err_txt), this._shop = new u.BtnShop2, this._shop.position.set(271, 468), this._shop.initialize(), this.addChild(this._shop), this._items = new Array;
                 for (var p = 0; p < 4; p++) {
                     var d = new PIXI.Sprite;
                     d.position.set(26 + 81 * p, 555), this._items.push(d)
@@ -56,9 +56,9 @@ const function994 = function (t, e, i) {
                     var m = y[f];
                     this.addChild(m)
                 }
-                this._btn = new u.BtnDicision, this._btn.position.set(33, 638), this._btn.initialize(), this._btn.on("dicision", this._onClick), this.addChild(this._btn)
+                this._btn = new l.BtnDicision, this._btn.position.set(33, 638), this._btn.initialize(), this._btn.on("dicision", this._onClick), this.addChild(this._btn)
             }, e.prototype.update = function (t) {
-                this._selected_id = t.mst_id, 44 == t.area_id ? (this._map_name_txt.position.set(24, 156), this._areaText.position.set(18, 179), this._map_name_txt.text = t.name) : (this._map_name_txt.position.set(24, 156), this._areaText.position.set(29, 185), this._map_name_txt.text = t.name), this._areaText.update(t.area_id), this._ope_name_txt.text = t.operation_name, this._ope_detail_txt.text = t.operation_detail.replace(/<br.*?>/g, "\n"), this._err_txt.text = "";
+                this._selected_id = t.mst_id, 45 == t.area_id ? (this._map_name_txt.position.set(24, 156), this._areaText.position.set(18, 179), this._map_name_txt.text = t.name) : (this._map_name_txt.position.set(24, 156), this._areaText.position.set(29, 185), this._map_name_txt.text = t.name), this._areaText.update(t.area_id), this._ope_name_txt.text = t.operation_name, this._ope_detail_txt.text = t.operation_detail.replace(/<br.*?>/g, "\n"), this._err_txt.text = "";
                 for (var e = t.item_ids, i = 0; i < this._items.length; i++) {
                     var n = this._items[i];
                     if (null != e && e.length > i && e[i] > 0) {
@@ -69,10 +69,10 @@ const function994 = function (t, e, i) {
                 var s = o.default.model.const.boko_max_ships,
                     a = o.default.model.basic.shipMax,
                     _ = a < s,
-                    u = o.default.model.ship.num,
-                    l = o.default.model.basic.slotMax,
+                    l = o.default.model.ship.num,
+                    u = o.default.model.basic.slotMax,
                     c = o.default.model.slot.num;
-                a - u < 1 ? (this._err_txt.text = "\u8266\u5a18\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : l - c < 4 ? (this._err_txt.text = "\u88c5\u5099\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : this._shop.visible = !1
+                a - l < 1 ? (this._err_txt.text = "\u8266\u5a18\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : u - c < 4 ? (this._err_txt.text = "\u88c5\u5099\u4fdd\u6709\u6570\u304c\u4e0a\u9650\u4e00\u676f\u306e\u305f\u3081\u3001\n\u51fa\u6483\u306b\u3088\u308b\u65b0\u3057\u3044\u8266\u5a18\u306e\u7372\u5f97\n\u306f\u3067\u304d\u307e\u305b\u3093\u3002", 1 == _ && (this._shop.visible = !0)) : this._shop.visible = !1
             }, e.prototype.activate = function () {
                 this._shop.activate(), this._btn.activate()
             }, e.prototype.deactivate = function () {

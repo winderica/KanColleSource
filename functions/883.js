@@ -20,7 +20,7 @@ const function883 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(286),
+        r = i(287),
         s = i(115),
         a = function (t) {
             function e(e) {
@@ -36,8 +36,8 @@ const function883 = function (t, e, i) {
                 i.effect = new PIXI.Container, i.sprite.texture = o.ARSENAL_MAIN.getTexture(i.WALK[0]), i.sprite.position.set(45, 0), i.sprite.anchor.set(.5, 1), i.burner_1_l.anchor.set(1, .69), i.burner_1_l.position.set(-40, -9), i.burner_1_l.scale.set(0, 0), i.effect.position.x = -45, i.effect.addChild(i.burner_1_l), i.sprite.addChild(i.effect), i.addChild(i.sprite);
                 for (var a = 0; a < 5; a++) {
                     var _ = new PIXI.Sprite,
-                        u = new r.KiraAnimation(_, n, s);
-                    i.kiraAnimations.push(u), i.kiras.push(_), i.effect.addChild(_), _.x = i.RANGE.fx + (i.RANGE.tx - i.RANGE.fx) * Math.random(), _.y = i.RANGE.fy + (i.RANGE.ty - i.RANGE.fy) * Math.random(), _.alpha = 0
+                        l = new r.KiraAnimation(_, n, s);
+                    i.kiraAnimations.push(l), i.kiras.push(_), i.effect.addChild(_), _.x = i.RANGE.fx + (i.RANGE.tx - i.RANGE.fx) * Math.random(), _.y = i.RANGE.fy + (i.RANGE.ty - i.RANGE.fy) * Math.random(), _.alpha = 0
                 }
                 return i.syncAnimationKey = e, i
             }

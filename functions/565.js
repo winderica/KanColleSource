@@ -24,8 +24,8 @@ const function565 = function (t, e, i) {
         s = i(566),
         a = i(69),
         _ = i(589),
-        u = i(593),
-        l = i(602),
+        l = i(593),
+        u = i(602),
         c = i(603),
         h = i(606),
         p = i(608),
@@ -45,9 +45,9 @@ const function565 = function (t, e, i) {
                     1 == e._flagShip_layer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : 1 == e.furnitureLayer.onMouseMove(t.data) ? e._underLayer.buttonMode = !0 : e._underLayer.buttonMode = !1
                 }, e._onClick = function (t) {
                     e._flagShip_layer.onClick(t.data) || e._furniture_layer.onClick(t.data) || e._only_furniture && e.showPortUI(!0)
-                }, e._flagShip_layer = new y.FlagShipLayer, e.addChild(e._flagShip_layer), e._underLayer = new r.AreaBox(0), e.addChild(e._underLayer), e._ringMenu = new g.RingMenuLayer, e.addChild(e._ringMenu), e.addChild(e._contentLayer), e.addChild(e._fadeLayer), e._logBox = new l.LogBox, e.addChild(e._logBox), e._upperBar = new d.UpperBar, e.addChild(e._upperBar), e._frame_layer = new m.FrameLayer, e.addChild(e._frame_layer), e._sideMenu = new h.SideMenu, e.addChild(e._sideMenu), e._tutorial = new p.Tutorial(function () {
+                }, e._flagShip_layer = new y.FlagShipLayer, e.addChild(e._flagShip_layer), e._underLayer = new r.AreaBox(0), e.addChild(e._underLayer), e._ringMenu = new g.RingMenuLayer, e.addChild(e._ringMenu), e.addChild(e._contentLayer), e.addChild(e._fadeLayer), e._logBox = new u.LogBox, e.addChild(e._logBox), e._upperBar = new d.UpperBar, e.addChild(e._upperBar), e._frame_layer = new m.FrameLayer, e.addChild(e._frame_layer), e._sideMenu = new h.SideMenu, e.addChild(e._sideMenu), e._tutorial = new p.Tutorial(function () {
                     new a.UpdateTutorialAPI(100).start(), e._tutorial.dispose(), e.removeChild(e._tutorial), e._tutorial = null
-                }), e.addChild(e._tutorial), e._clock_layer = new f.ClockLayer, e.addChild(e._clock_layer), e._circle = new _.Circle, e.addChild(e._circle), e.addChild(e._overLayer), e._expedition_alert = new u.ExpeditionAlert, e._expedition_alert.visible = !1, e.addChild(e._expedition_alert), e._option = new c.Option, e.addChild(e._option), e._underLayer.on(x.EventType.MOUSEMOVE, e._onMouseMove), e._underLayer.on(x.EventType.CLICK, e._onClick), e
+                }), e.addChild(e._tutorial), e._clock_layer = new f.ClockLayer, e.addChild(e._clock_layer), e._circle = new _.Circle, e.addChild(e._circle), e.addChild(e._overLayer), e._expedition_alert = new l.ExpeditionAlert, e._expedition_alert.visible = !1, e.addChild(e._expedition_alert), e._option = new c.Option, e.addChild(e._option), e._underLayer.on(x.EventType.MOUSEMOVE, e._onMouseMove), e._underLayer.on(x.EventType.CLICK, e._onClick), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "flagShip", {
                 get: function () {

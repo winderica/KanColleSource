@@ -24,13 +24,13 @@ const function971 = function (t, e, i) {
         s = i(18),
         a = i(1),
         _ = i(2),
-        u = i(23),
-        l = i(8),
+        l = i(23),
+        u = i(8),
         c = i(4),
         h = i(25),
         p = i(67),
         d = i(6),
-        f = i(9),
+        f = i(10),
         y = i(26),
         m = i(972),
         g = function (t) {
@@ -46,7 +46,7 @@ const function971 = function (t, e, i) {
                 }, o._layer = e, o._area_id = i, o._cb_onUpdateInAnimation = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._bg = new l.AreaBox(.6), this._layer.addChild(this._bg), this._dialog = new v(this._onSelect), this._dialog.initialize();
+                this._bg = new u.AreaBox(.6), this._layer.addChild(this._bg), this._dialog = new v(this._onSelect), this._dialog.initialize();
                 var t = this._area_id,
                     e = r.default.model.useItem.getCount(73);
                 this._dialog.update(t, e), this._dialog.activate(), this._layer.addChild(this._dialog)
@@ -76,7 +76,7 @@ const function971 = function (t, e, i) {
                 })
             }, e.prototype._showCard = function () {
                 var t = this;
-                this._card = new u.Container, this._card.position.set(o.default.width / 2, o.default.height / 2), this._card.scale.set(0), this._layer.addChild(this._card);
+                this._card = new l.Container, this._card.position.set(o.default.width / 2, o.default.height / 2), this._card.scale.set(0), this._layer.addChild(this._card);
                 var e = r.default.resources.getUseitem(73, 1),
                     i = new PIXI.Sprite(e);
                 i.position.set(-i.width / 2, -i.height / 2), this._card.addChild(i), d.SE.play("230"), createjs.Tween.get(this._card).to({
@@ -94,7 +94,7 @@ const function971 = function (t, e, i) {
                 })
             }, e.prototype._showFlash = function () {
                 var t = this,
-                    e = new u.Container;
+                    e = new l.Container;
                 e.position.set(o.default.width / 2, o.default.height / 2), e.scale.set(1.25), e.alpha = 0, this._layer.addChild(e);
                 var i = new PIXI.Sprite(f.COMMON_MISC.getTexture(68));
                 i.position.set(-i.width / 2, -i.height / 2), e.addChild(i), createjs.Tween.get(e).to({
@@ -104,7 +104,7 @@ const function971 = function (t, e, i) {
                 }, 350).to({
                     scaleX: 2.8,
                     scaleY: 2.8
-                }, 300), this._white = new l.AreaBox(1, 16777215), this._white.alpha = 0, this._layer.addChild(this._white), createjs.Tween.get(this._white).wait(200).to({
+                }, 300), this._white = new u.AreaBox(1, 16777215), this._white.alpha = 0, this._layer.addChild(this._white), createjs.Tween.get(this._white).wait(200).to({
                     alpha: 1
                 }, 450).call(function () {
                     null != t._cb_onUpdateInAnimation && t._cb_onUpdateInAnimation(), t._layer.removeChild(t._card), t._card = null, t._layer.removeChild(e), t._showText()

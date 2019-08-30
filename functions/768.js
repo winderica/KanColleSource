@@ -7,10 +7,10 @@ const function768 = function (t, e, i) {
         o = i(34),
         r = i(28),
         s = i(21),
-        a = i(9),
+        a = i(10),
         _ = i(71),
-        u = i(219),
-        l = i(166),
+        l = i(219),
+        u = i(166),
         c = i(220),
         h = i(769),
         p = i(770),
@@ -120,7 +120,7 @@ const function768 = function (t, e, i) {
                     var t = e.memShipId,
                         i = new o.APIConnector,
                         r = new c.SlotSetExAPI(t, -1),
-                        s = new l.Ship3API(t),
+                        s = new u.Ship3API(t),
                         a = function () {
                             n.default.view.clickGuard = !1, e._updateShipDetail_(t)
                         };
@@ -129,15 +129,15 @@ const function768 = function (t, e, i) {
                     var t = e.memShipId,
                         i = new o.APIConnector,
                         r = new h.UnsetSlotAll(t),
-                        s = new l.Ship3API(t),
+                        s = new u.Ship3API(t),
                         a = function () {
                             n.default.view.clickGuard = !1, e._updateShipDetail_(t)
                         };
                     S.SE.play("106"), n.default.view.clickGuard = !0, i.add(r).add(s), i.start(a)
                 }, this._onClickDetach = function (t) {
                     var i = e.memShipId,
-                        r = new u.SlotSetAPI(i, -1, t),
-                        s = new l.Ship3API(i),
+                        r = new l.SlotSetAPI(i, -1, t),
+                        s = new u.Ship3API(i),
                         a = new o.APIConnector;
                     S.SE.play("106");
                     var _ = function () {
@@ -186,7 +186,7 @@ const function768 = function (t, e, i) {
                 }, this._removeSlotItem = function (t) {
                     S.SE.play("106");
                     var i = new L.AreaBox(0);
-                    n.default.view.overLayer.addChild(i), (new o.APIConnector).add(new u.SlotSetAPI(e.memShipId, -1, t)).add(new l.Ship3API(e.memShipId)).start(function () {
+                    n.default.view.overLayer.addChild(i), (new o.APIConnector).add(new l.SlotSetAPI(e.memShipId, -1, t)).add(new u.Ship3API(e.memShipId)).start(function () {
                         n.default.view.portMain.updateInfo(), e._updateShipDetail_(e.memShipId), n.default.view.overLayer.removeChild(i)
                     })
                 }, this._onClickShipDetailSlot = function (t) {
@@ -295,10 +295,10 @@ const function768 = function (t, e, i) {
                     a = !1,
                     _ = n.default.model.deck.isInDeck(e.memID);
                 if (_) {
-                    var u = _[0];
-                    a = null != n.default.model.deck.get(u).expedition
+                    var l = _[0];
+                    a = null != n.default.model.deck.get(l).expedition
                 }
-                var l = n.default.model.useItem.get(w.RemodelConst.REINFORCEMENT_WORK_ITEMID).count,
+                var u = n.default.model.useItem.get(w.RemodelConst.REINFORCEMENT_WORK_ITEMID).count,
                     c = e.isRepair(),
                     h = 0 == a && 0 == c,
                     p = e.getSlotitems(),
@@ -308,7 +308,7 @@ const function768 = function (t, e, i) {
                     m = h && 0 == a && 0 == c && 0 == s;
                 this.kindaikaButton.update(m);
                 var g = h && b.RemodelUtil.canKaizo(e.mstID, e.level);
-                this.kaizoButton.update(g), this.shipDetail.update(e.name, y, e.hpNow, e.hpMax, e.starNum, o), this.shipCard.update(e, a), this.shipParameter.update(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this._updateExtraSlot_(d, f), this._updateExtensionButton_(e, l), this._updateMarriageButton_(y, a, c);
+                this.kaizoButton.update(g), this.shipDetail.update(e.name, y, e.hpNow, e.hpMax, e.starNum, o), this.shipCard.update(e, a), this.shipParameter.update(e.hpMax, e.soukou, e.kaihi, e.tousai, e.speed, e.range, e.karyoku, e.raisou, e.taiku, e.taisen, e.sakuteki, e.lucky), this._updateExtraSlot_(d, f), this._updateExtensionButton_(e, u), this._updateMarriageButton_(y, a, c);
                 var v = p.length,
                     x = 0 < v,
                     I = 0 != p.indexOf(null),

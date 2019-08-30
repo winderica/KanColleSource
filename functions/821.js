@@ -32,10 +32,10 @@ const function821 = function (t, e, i) {
                 a.position.set(164, 143);
                 var _ = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(16));
                 _.position.set(21, 101);
-                var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(17));
-                u.position.set(21, 143);
-                var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(18));
-                l.position.set(162, 101), e.addChild(i, n, a, _, u, l), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
+                var l = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(17));
+                l.position.set(21, 143);
+                var u = new PIXI.Sprite(r.REMODEL_GRADEUP.getTexture(18));
+                u.position.set(162, 101), e.addChild(i, n, a, _, l, u), e._unknown = new PIXI.Sprite, e._unknown.position.set(27, 18), e.addChild(e._unknown), e._containerName = new PIXI.Container, e._textName = new o.TextBox(36, 4999235), e._textName.position.set(11, 8);
                 var c = s.CreateRect.gradientLeftToRight(200, 55, .9, .97);
                 e._textName.mask = c, e._containerName.addChild(e._textName, c), e.addChild(e._containerName), e._textShipType = new o.TextBox(22, 4999235), e._textShipType.position.set(14, 60), e.addChild(e._textShipType), e._textLevel = new o.TextBox(29, 4999235), e._textLevel.position.set(231, 16), e.addChild(e._textLevel);
                 return e._textKaryoku = new o.TextBox(24, 4999235), e._textKaryoku.position.set(141, 99), e._textKaryoku.anchor.x = 1, e.addChild(e._textKaryoku), e._textRaiso = new o.TextBox(24, 4999235), e._textRaiso.position.set(141, 142), e._textRaiso.anchor.x = 1, e.addChild(e._textRaiso), e._textTaiku = new o.TextBox(24, 4999235), e._textTaiku.position.set(284, 99), e._textTaiku.anchor.x = 1, e.addChild(e._textTaiku), e._textSouko = new o.TextBox(24, 4999235), e._textSouko.position.set(284, 142), e._textSouko.anchor.x = 1, e.addChild(e._textSouko), e

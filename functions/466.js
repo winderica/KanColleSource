@@ -24,7 +24,7 @@ const function466 = function (t, e, i) {
         s = i(6),
         a = i(16),
         _ = i(54),
-        u = function (t) {
+        l = function (t) {
             function e(e, i, n) {
                 var o = t.call(this) || this;
                 return o.DELAYS = [0, 250, 33, 366, 133, 200], o._scene = e, o._data = i, o._ships_e = n, o._damage_cutin = new _.PhaseDamageCutin(e), o
@@ -33,16 +33,16 @@ const function466 = function (t, e, i) {
                 for (var t = this, e = this._scene.view.layer_content, i = new r.ParallelTask, n = [], o = this._ships_e, a = 0; a < o.length; a++) {
                     var _ = o[a];
                     if (null != _ && !(_.hp_now <= 0)) {
-                        var u = this._scene.view.bannerGroupLayer.getBanner(_);
-                        if (null != u) {
-                            var d = new l;
+                        var l = this._scene.view.bannerGroupLayer.getBanner(_);
+                        if (null != l) {
+                            var d = new u;
                             d.initialize(), d.x = 180 - 24 * a, d.y = -90;
-                            var f = u.getGlobalPos(),
+                            var f = l.getGlobalPos(),
                                 y = new c(e, d, f, this.DELAYS[a]);
                             i.add(y);
                             var m = new h(this._scene, this._data, this._damage_cutin, _, 1500);
                             if (i.add(m), 1 == this._data.isShield(a)) {
-                                var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(u); - 1 == n.indexOf(g) && n.push(g)
+                                var g = this._scene.view.bannerGroupLayer.getShieldTargetBanner(l); - 1 == n.indexOf(g) && n.push(g)
                             }
                         }
                     }
@@ -58,8 +58,8 @@ const function466 = function (t, e, i) {
                 this._scene = null, this._data = null, this._ships_e = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.PhaseSupportRai = u;
-    var l = function (t) {
+    e.PhaseSupportRai = l;
+    var u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.anchor.x = 1, e.anchor.y = .5, e

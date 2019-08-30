@@ -1,58 +1,78 @@
 const function1437 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(475),
-        s = i(474),
-        a = i(476),
-        _ = i(1438),
-        u = i(1439),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._o = e, i._raw = new u.RawNightBattleData(e), i._common = new a.BattleCommonModel(e), i
+    var n = i(7),
+        o = function () {
+            function t(t, e, i) {
+                this._friend = t, this._o = {};
+                for (var n in e) {
+                    var o = e[n];
+                    this._o[n] = [];
+                    for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
+                    for (; this._o[n].length < 6;) this._o[n].push(0)
+                }
+                if (null != i)
+                    for (var n in i) {
+                        var o = i[n];
+                        if (null != o) {
+                            0 == this._o.hasOwnProperty(n) && (this._o = [0, 0, 0, 0, 0, 0]);
+                            for (var r = 0; r < o.length; r++) this._o[n].push(o[r]);
+                            for (; this._o[n].length < 12;) this._o[n].push(0)
+                        }
+                    }
             }
-            return n(e, t), Object.defineProperty(e.prototype, "phase", {
+            return Object.defineProperty(t.prototype, "friend", {
                 get: function () {
-                    return "night"
+                    return this._friend
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "raw", {
-                get: function () {
-                    return this._raw
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.getAllyAttack = function () {
-                var t = o.ObjUtil.getObject(this._o, "api_friendly_info"),
-                    e = o.ObjUtil.getObject(this._o, "api_friendly_battle");
-                return null == t || null == e ? null : new _.AllyAttackModel(t, e)
-            }, e.prototype.getRation = function () {
-                return this._raw.ration
-            }, e.prototype.getRationCombined = function () {
-                return this._raw.ration_combined
-            }, e.prototype.getDayRecord = function () {
-                return 1 == this.raw.hasDayBattle() ? new s.BattleRecordDay(this._o) : null
-            }, e
-        }(r.BattleRecord);
-    e.BattleRecordNight = l
+            }), t.prototype.hasDamage = function () {
+                var t = this._friend ? "api_fdam" : "api_edam";
+                return this._hasDamage(this._o, t)
+            }, t.prototype._hasDamage = function (t, e) {
+                var i = n.ObjUtil.getNumArray(t, e);
+                if (null != i)
+                    for (var o = 0, r = i; o < r.length; o++) {
+                        var s = r[o];
+                        if (s > 0) return !0
+                    }
+                return !1
+            }, t.prototype.beBombed = function () {
+                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    e = n.ObjUtil.getNumArray(this._o, t);
+                if (null == e) return !1;
+                for (var i = Math.min(e.length, 6), o = 0; o < i; o++)
+                    if (e[o] > 0) return !0;
+                return !1
+            }, t.prototype.beBombedCombined = function () {
+                var t = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    e = n.ObjUtil.getNumArray(this._o, t);
+                if (null == e) return !1;
+                for (var i = 6; i < e.length; i++)
+                    if (e[i] > 0) return !0;
+                return !1
+            }, t.prototype.getDamage = function (t) {
+                var e = this._friend ? "api_fdam" : "api_edam",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return null == i || i.length <= t ? 0 : Math.floor(i[t])
+            }, t.prototype.getBak = function (t) {
+                var e = this._friend ? "api_fbak_flag" : "api_ebak_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return !(null == i || i.length <= t) && 1 == i[t]
+            }, t.prototype.getRai = function (t) {
+                var e = this._friend ? "api_frai_flag" : "api_erai_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return !(null == i || i.length <= t) && 1 == i[t]
+            }, t.prototype.getHitType = function (t) {
+                var e = this._friend ? "api_fcl_flag" : "api_ecl_flag",
+                    i = n.ObjUtil.getNumArray(this._o, e);
+                return null == i || i.length <= t ? 0 : i[t] + 1
+            }, t.prototype.isShield = function (t) {
+                return this.getDamage(t) % 1 != 0
+            }, t
+        }();
+    e.AirWarStage3Model = o
 }

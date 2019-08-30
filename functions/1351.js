@@ -19,37 +19,38 @@ const function1351 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(23),
-        s = i(16),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i._smoke = new _, i._smoke.position.set(75, 46), i
+    var o = i(5),
+        r = i(447),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._smoke.x - 105,
-                    i = this._smoke.y - 12;
-                createjs.Tween.get(this._smoke).call(function () {
-                    t._layer.addChild(t._smoke)
-                }).to({
-                    x: e,
-                    y: i,
-                    alpha: 0,
-                    scaleX: 1.5,
-                    scaleY: 1.5
-                }, 500).call(function () {
-                    t._layer.removeChild(t._smoke), t._endTask()
-                })
+            return n(e, t), e.prototype._initialize = function (t, e) {
+                if (0 == e) this._img.texture = r.BATTLE_AIRUNIT.getTexture(3);
+                else {
+                    var i = e / t;
+                    if (i < .25) this._img.texture = r.BATTLE_AIRUNIT.getTexture(2);
+                    else {
+                        if (!(i < .4)) return this._img.texture = PIXI.Texture.EMPTY, !1;
+                        this._img.texture = r.BATTLE_AIRUNIT.getTexture(1)
+                    }
+                }
+                return this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2), !0
+            }, e.prototype.play = function (t, e, i, n) {
+                var r = this;
+                return void 0 === n && (n = null), null == t ? void(null != n && n()) : (this.alpha = 0, 0 == this._initialize(e, i) ? void(null != n && n()) : (this.x = o.default.width / 2 + 24, this.y = o.default.height - 90, t.addChild(this), void createjs.Tween.get(this).to({
+                    x: o.default.width / 2 + 12,
+                    alpha: 1
+                }, 300).to({
+                    x: o.default.width / 2 - 12
+                }, 1500).to({
+                    x: o.default.width / 2 - 24,
+                    alpha: 0
+                }, 300).call(function () {
+                    t.removeChild(r), null != n && n()
+                })))
             }, e
-        }(o.TaskBase);
-    e.AnimAntiAircraftSanshikidan = a;
-    var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._img = new PIXI.Sprite(s.BATTLE_MAIN.getTexture(147)), e._img.position.set(-140, -213), e.addChild(e._img), e
-        }
-        return n(e, t), e
-    }(r.Container)
+        }(PIXI.Container);
+    e.AirUnitAttackResultTelop = s
 }

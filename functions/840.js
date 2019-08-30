@@ -9,7 +9,7 @@ const function840 = function (t, e, i) {
         s = i(51),
         a = i(841),
         _ = i(842),
-        u = function () {
+        l = function () {
             function t(t) {
                 var e = this;
                 this._onClickNo = function () {
@@ -52,5 +52,5 @@ const function840 = function (t, e, i) {
                 this.extensionConfirm.dispose(), this.onUpdateShip = null, this.onComplete = null, this.extensionConfirm = null, this.clickGuardConfirm = null, this.mainView = null, this.memShipId = null
             }, t
         }();
-    e.TaskExtension = u
+    e.TaskExtension = l
 }

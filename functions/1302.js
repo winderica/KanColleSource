@@ -19,110 +19,55 @@ const function1302 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(6),
-        s = i(20),
-        a = i(1303),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._direction = 2, e._wave = new a.CompShipWave, e._under = new PIXI.Container, e._ship = new o.Sprite, e._ship.anchor.set(.5, 1), e._over = new PIXI.Container, e.addChild(e._wave), e.addChild(e._under), e.addChild(e._ship), e.addChild(e._over), e
+    var o = i(6),
+        r = i(1303),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onClick = function (t) {
+                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
+                }, n._onDoubleClick = function (t) {
+                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
+                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "direction", {
-                get: function () {
-                    return this._direction
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "under", {
-                get: function () {
-                    return this._under
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "ship", {
-                get: function () {
-                    return this._ship
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                var e;
-                e = 1 == t ? 141 : 2 == t ? 142 : 3 == t ? 143 : 140, this._ship.texture = s.MAP_COMMON.getTexture(e)
-            }, e.prototype.startWaveWhite = function () {
-                this._startWave(48)
-            }, e.prototype.startWaveRed = function (t) {
-                var e = this;
-                this._startWave(47);
-                var i = new u;
-                i.initialize(), i.alpha = 0, i.scale.set(0), i.y = -51, this._over.addChild(i), createjs.Tween.get(i).to({
-                    y: -75,
-                    alpha: 1,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    y: -68
-                }, 200).to({
-                    y: -78,
-                    scaleX: 1.3,
-                    scaleY: .6
-                }, 200).to({
-                    y: -59,
-                    scaleX: 1,
-                    scaleY: 1
-                }, 200).to({
-                    y: -68
-                }, 200).to({
-                    alpha: 0
-                }, 100).call(function () {
-                    e._over.removeChild(i), t()
-                })
-            }, e.prototype.stopWave = function () {
-                this._wave.deactivate()
-            }, e.prototype.turn = function (t, e, i) {
-                if (void 0 === e && (e = null), void 0 === i && (i = 300), this._direction == t) null != e && e();
-                else {
-                    this._direction = t;
-                    var n = 2 == t ? 1 : -1,
-                        o = createjs.Tween.get(this._ship);
-                    o.to({
-                        scaleX: n
-                    }, i), null != e && o.call(e)
+            return n(e, t), e.prototype.initialize = function (t, e, i) {
+                this._clear(), e = this._dedupeCells(e);
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n],
+                        a = s.no,
+                        _ = i.getCellInfo(a);
+                    if (!(_.distance <= 0)) {
+                        var l = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
+                        l.initialize(a, _, t), l.x = s.x + s.point.x, l.y = s.y + s.point.y, this.addChild(l), this._points[a] = l
+                    }
                 }
-            }, e.prototype._startWave = function (t) {
-                this._wave.update(t), this._wave.activate(), createjs.Tween.get(this).wait(500).call(function () {
-                    r.SE.play("252")
-                }).wait(2e3).call(function () {
-                    r.SE.play("252")
-                })
+            }, e.prototype.update = function () {
+                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
+                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
+                for (var i in this._points) {
+                    var n = this._points[i];
+                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
+                }
+            }, e.prototype.dispose = function () {
+                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
+            }, e.prototype._clear = function () {
+                for (var t in this._points) this._points[t].dispose();
+                this.removeChildren(), this._points = []
+            }, e.prototype._dedupeCells = function (t) {
+                for (var e = [], i = t.concat(); i.length > 0;) {
+                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
+                        var a = s[r],
+                            _ = n.x - a.x,
+                            l = n.y - a.y;
+                        if (Math.sqrt(_ * _ + l * l) <= 10) {
+                            o = !0;
+                            break
+                        }
+                    }
+                    0 == o && e.push(n)
+                }
+                return e
             }, e
         }(PIXI.Container);
-    e.CompShipIcon = _;
-    var u = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "scaleX", {
-            get: function () {
-                return this.scale.x
-            },
-            set: function (t) {
-                this.scale.x = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "scaleY", {
-            get: function () {
-                return this.scale.y
-            },
-            set: function (t) {
-                this.scale.y = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            this.texture = s.MAP_COMMON.getTexture(94)
-        }, e
-    }(PIXI.Sprite)
+    e.AirUnitAppointmentLayer = s
 }

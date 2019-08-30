@@ -25,8 +25,8 @@ const function39 = function (t, e, i) {
         a = i(54),
         _ = function (t) {
             function e(e, i, n, r, s, _) {
-                var u = t.call(this) || this;
-                return u._scene = e, u._attacker = i, u._slot = o.default.model.slot.getMst(n), u._hit = s, u._damage = r, u._shield = _, u._daihatsu_eff = 0, u._damage_cutin = new a.PhaseDamageCutin(e), u
+                var l = t.call(this) || this;
+                return l._scene = e, l._attacker = i, l._slot = o.default.model.slot.getMst(n), l._hit = s, l._damage = r, l._shield = _, l._daihatsu_eff = 0, l._damage_cutin = new a.PhaseDamageCutin(e), l
             }
             return n(e, t), e.prototype.preload = function (t) {
                 null != t && t()

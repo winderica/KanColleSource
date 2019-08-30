@@ -19,13 +19,13 @@ const function626 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(10),
         r = i(8),
         s = i(31),
         a = i(31),
-        _ = i(304),
-        u = i(204),
-        l = function (t) {
+        _ = i(305),
+        l = i(204),
+        u = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
@@ -36,7 +36,7 @@ const function626 = function (t, e, i) {
                 })
             }, e.prototype._createItemTobe = function (t, e) {
                 var i = o.COMMON_MISC.getTexture(49),
-                    n = new u.CenteringSprite(i);
+                    n = new l.CenteringSprite(i);
                 return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
             }, e.prototype._change = function () {
                 var e = this;
@@ -66,5 +66,5 @@ const function626 = function (t, e, i) {
                 })
             }, e
         }(_.ModelChangeTask);
-    e.AirunitBaseOpenTask = l
+    e.AirunitBaseOpenTask = u
 }

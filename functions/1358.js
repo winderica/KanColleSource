@@ -19,55 +19,83 @@ const function1358 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(2),
-        s = i(447),
+    var o = i(2),
+        r = i(12),
+        s = i(16),
         a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._scene = e, o._type = i, o._plane = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this._telop = new _, this._telop.x = o.default.width / 2, this._telop.y = o.default.height / 2, this._telop.bg.scale.y = 0, this._telop.text.x = 150, this._telop.text.alpha = 0, this._layer.addChild(this._telop), createjs.Tween.get(this._telop.text).wait(300).to({
-                    x: 90,
-                    alpha: 1
-                }, 300).to({
-                    x: -90
-                }, 350).to({
-                    x: -150,
+                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
+            }, e.prototype._animSanshiki = function () {
+                var t = this,
+                    e = new _(5);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
                     alpha: 0
-                }, 500), createjs.Tween.get(this._telop.bg.scale).to({
-                    y: 1
-                }, 300).wait(1150).to({
-                    y: 0
-                }, 300).call(function () {
-                    t._layer.removeChild(t._telop), t._endTask()
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
+                })
+            }, e.prototype._animKoukaku = function () {
+                var t = this,
+                    e = new _(2);
+                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), t._endTask()
+                })
+            }, e.prototype._animFunshin = function () {
+                var t = this,
+                    e = new _(3);
+                e.position.set(0, -15), this._plane.addChild(e);
+                var i = new _(3);
+                i.position.set(-15, 0), this._plane.addChild(i);
+                var n = new _(3);
+                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(i).wait(100).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700), createjs.Tween.get(n).wait(200).to({
+                    scaleX: 1,
+                    scaleY: 1
+                }, 100).to({
+                    scaleX: 2,
+                    scaleY: 2,
+                    alpha: 0
+                }, 700).call(function () {
+                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
                 })
             }, e.prototype._endTask = function () {
-                this._layer = null, t.prototype._endTask.call(this)
+                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskAirUnitAttackStartTelop = a;
+        }(o.TaskBase);
+    e.TaskAirWarAntiAircraftExplosion = a;
     var _ = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            e._bg = new PIXI.Container;
-            var i = PIXI.Sprite.fromFrame("battle_telop_mes_bg_f");
-            return i.x = -Math.round(i.width / 2), i.y = -Math.round(i.height / 2), e._bg.addChild(i), e.addChild(e._bg), e._text = new PIXI.Sprite(s.BATTLE_AIRUNIT.getTexture(0)), e._text.anchor.set(.5), e.addChild(e._text), e
+        function e(e) {
+            var i, n = t.call(this) || this;
+            return 5 == e ? (i = 148, n.anchor.set(.5, .91)) : 2 == e ? (i = 149, n.anchor.set(.5, .85)) : 3 == e && (i = 148, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
         }
-        return n(e, t), Object.defineProperty(e.prototype, "bg", {
-            get: function () {
-                return this._bg
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "text", {
-            get: function () {
-                return this._text
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e
-    }(PIXI.Container)
+        return n(e, t), e
+    }(r.Sprite)
 }

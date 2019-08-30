@@ -1,29 +1,10 @@
 const function1215 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
+
+    function n(t) {
+        for (var i in t) e.hasOwnProperty(i) || (e[i] = t[i])
+    }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    var o = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e
-    }(PIXI.Container);
-    e.ViewMainBase = o
+    }), n(i(1216)), n(i(1217)), n(i(427)), n(i(426)), n(i(1218)), n(i(1219)), n(i(429)), n(i(430)), n(i(428)), n(i(431)), n(i(432))
 }

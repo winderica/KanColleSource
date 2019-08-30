@@ -22,9 +22,9 @@ const function463 = function (t, e, i) {
     var o = i(6),
         r = i(2),
         s = i(22),
-        a = i(1378),
+        a = i(1383),
         _ = i(54),
-        u = function (t) {
+        l = function (t) {
             function e(e, i, n, o, r) {
                 var s = t.call(this) || this;
                 return s._scene = e, s._attackers = [s._scene.data.model.deck_f.ships[0], s._scene.data.model.deck_f.ships[1]], s._defenders = i, s._hits = o, s._damages = n, s._shields = r, s._damage_cutin = new _.PhaseDamageCutin(e), s._cutin = new a.CutinMutsuAttack(s._attackers), s
@@ -54,13 +54,13 @@ const function463 = function (t, e, i) {
                     r = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
                     a = Math.random() * s.BannerSize.H - s.BannerSize.H / 2,
                     _ = Math.random() * s.BannerSize.W - s.BannerSize.W / 2,
-                    u = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
+                    l = Math.random() * s.BannerSize.H - s.BannerSize.H / 2;
                 createjs.Tween.get(null).wait(200).call(function () {
                     e[i].moveAtDamage(n._shields[i]), n._scene.view.layer_explosion.playDamageExplosion(o.x, o.y, n._damages[i])
                 }).wait(150).call(function () {
                     n._scene.view.layer_explosion.playExplosionSmall(o.x + r, o.y + a)
                 }).wait(100).call(function () {
-                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + u, function () {
+                    n._scene.view.layer_explosion.playExplosionSmall(o.x + _, o.y + l, function () {
                         n._attack(t, e, i)
                     })
                 })
@@ -93,5 +93,5 @@ const function463 = function (t, e, i) {
                 })
             }, e.prototype._log = function (t) {}, e
         }(r.TaskBase);
-    e.PhaseMutsuAttack = u
+    e.PhaseMutsuAttack = l
 }

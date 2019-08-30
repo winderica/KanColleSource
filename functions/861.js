@@ -37,19 +37,19 @@ const function861 = function (t, e, i) {
                 n.position.set(0, 105);
                 var _ = new PIXI.Sprite(a.REPAIR_MAIN.getTexture(0));
                 _.anchor.y = .5, _.position.set(199, 20), n.addChild(_), i.addChild(n);
-                var u = new PIXI.Container;
-                u.position.set(195, 180);
-                for (var l = [], c = [], h = [], p = 0; p < 4; p++) {
+                var l = new PIXI.Container;
+                l.position.set(195, 180);
+                for (var u = [], c = [], h = [], p = 0; p < 4; p++) {
                     var d = e[p],
                         f = new s.EmptyDock;
-                    f.onClick = i._onClickEmptySlot, f.position.set(0, 123 * p), f.visible = !1, l.push(f), u.addChild(f);
+                    f.onClick = i._onClickEmptySlot, f.position.set(0, 123 * p), f.visible = !1, u.push(f), l.addChild(f);
                     var y = new r.ShipInDock;
-                    if (y.onClickHiSpeed = i._onClickHiSpeed, y.position.set(0, 123 * p), y.visible = !1, c.push(y), u.addChild(y), -1 === d.state) {
+                    if (y.onClickHiSpeed = i._onClickHiSpeed, y.position.set(0, 123 * p), y.visible = !1, c.push(y), l.addChild(y), -1 === d.state) {
                         var m = new o.ExtensionDock;
-                        m.update(-1, !1, !1), m.onClick = i._onClickExtension, m.position.set(0, 123 * p), m.visible = !1, h.push(m), u.addChild(m)
+                        m.update(-1, !1, !1), m.onClick = i._onClickExtension, m.position.set(0, 123 * p), m.visible = !1, h.push(m), l.addChild(m)
                     } else h.push(null)
                 }
-                return i.emptyDocks = l, i.shipInDocks = c, i.extensionDocks = h, i.addChild(u), i
+                return i.emptyDocks = u, i.shipInDocks = c, i.extensionDocks = h, i.addChild(l), i
             }
             return n(e, t), e.prototype.updateTime = function (t, e) {
                 for (var i = 0; i < e.length; i++) {
@@ -107,8 +107,8 @@ const function861 = function (t, e, i) {
                     case 1:
                         i.visible = !0
                 }
-            }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a, _, u) {
-                this.shipInDocks[t].updateShipInfo(r, o, a, e, i, n, _, u)
+            }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a, _, l) {
+                this.shipInDocks[t].updateShipInfo(r, o, a, e, i, n, _, l)
             }, e.prototype.dockState = function (t) {
                 return this.shipInDocks[t].state
             }, e.prototype.forceEnd = function (t) {

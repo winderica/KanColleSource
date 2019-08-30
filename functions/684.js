@@ -20,14 +20,14 @@ const function684 = function (t, e, i) {
         value: !0
     });
     var o = i(112),
-        r = i(314),
+        r = i(315),
         s = i(83),
         a = i(4),
         _ = i(21),
-        u = i(9),
-        l = i(315),
+        l = i(10),
+        u = i(316),
         c = i(686),
-        h = i(316),
+        h = i(317),
         p = i(15),
         d = function (t) {
             function e() {
@@ -35,8 +35,8 @@ const function684 = function (t, e, i) {
                     i = new PIXI.Sprite;
                 i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
                 var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
-                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new l.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
-                var d = new PIXI.Sprite(u.COMMON_MISC.getTexture(184));
+                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new u.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
+                var d = new PIXI.Sprite(l.COMMON_MISC.getTexture(184));
                 e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
                 var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
                 e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
@@ -51,8 +51,8 @@ const function684 = function (t, e, i) {
                 this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
             }, e.prototype.updateBox2 = function (t, e) {
                 this.slotItemSlotContainer.updateSlot(t, e)
-            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, u, l, c) {
-                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, u, l, c)
+            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, l, u, c) {
+                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, l, u, c)
             }, e.prototype.updateBox4 = function (t, e, i) {
                 this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.updateExSlot(e), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
             }, e.prototype.updateBox5 = function (t, e) {

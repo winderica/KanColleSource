@@ -22,17 +22,17 @@ const function826 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(1),
-        a = i(19),
+        a = i(20),
         _ = i(8),
-        u = i(40),
-        l = i(60),
+        l = i(40),
+        u = i(60),
         c = i(13),
         h = i(3),
         p = i(827),
         d = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new l.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
+                return e._white = new _.AreaBox(1, 16777215), e._holoBG = new u.RarityBG, e._holoBG.visible = !1, e._textKaiso = new PIXI.Sprite(h.REMODEL_ANIMATION.getTexture(10)), e._textKaiso.visible = !1, e._cutinBar = new p.CutinBar, e._shipFull = new PIXI.Sprite, e._shipFull.visible = !1, e._shipCard = new PIXI.Sprite, e._shipCard.visible = !1, e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this._cb_onComplete = null, this._offset = null, this._white = null, this._commonBG.dispose(), this._commonBG = null, this._holoBG.dispose(), this._holoBG = null, this._textKaiso = null, this._cutinBar = null, this._shipFull = null, this._shipCard = null, this.removeChildren()
@@ -41,7 +41,7 @@ const function826 = function (t, e, i) {
                 this._ship_mstid = t, this._offset = i;
                 var s = new c.ShipLoader;
                 s.add(t, e, "full"), s.add(t, e, "card"), s.load(function () {
-                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new l.RarityBG, o._commonBG.initiailzeForShip(3, function () {
+                    o._shipFull.texture = r.default.resources.getShip(t, e, "full"), o._shipCard.texture = r.default.resources.getShip(t, e, "card"), o._commonBG = new u.RarityBG, o._commonBG.initiailzeForShip(3, function () {
                         o._holoBG.initiailzeForShip(6, function () {
                             null != n && n()
                         })
@@ -122,7 +122,7 @@ const function826 = function (t, e, i) {
                 })
             }, e.prototype._03_waitClick = function () {
                 var t = this,
-                    e = new u.GearBtnHome;
+                    e = new l.GearBtnHome;
                 e.initialize(), e.x = o.default.width - e.width / 2, e.y = o.default.height - e.height / 2, e.activate(), this.addChild(e);
                 var i = new _.AreaBox(0);
                 i.buttonMode = !0, this.addChild(i), i.once(s.EventType.CLICK, function () {

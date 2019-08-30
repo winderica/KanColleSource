@@ -19,52 +19,74 @@ const function1490 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1491),
-        s = i(1497),
-        a = i(1502),
-        _ = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(206),
+        a = i(482),
+        _ = i(248),
+        l = i(1492),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._mapClear()
-            }, e.prototype._mapClear = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.shutter,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.battle_model.deck_f.ships[0],
-                        s = o.mst_id,
-                        a = o.isDamaged(),
-                        _ = this._scene.data.getClearMapSuffix();
-                    new r.TaskEventClear(e, i, n, s, a, _).start(function () {
-                        t._ending()
-                    })
-                } else this._ending()
-            }, e.prototype._ending = function () {
-                var t = this;
-                if (1 == this._scene.data.isFirstClear()) {
-                    var e = this._scene.layer_bonus,
-                        i = this._scene.data.battle_model.map_info.area_id,
-                        n = this._scene.data.battle_model.map_info.map_no,
-                        o = this._scene.data.getClearOperationSuffix();
-                    new s.TaskEventEnding(e, i, n, o).start(function () {
-                        t._mapOpen()
-                    })
-                } else this._mapOpen()
-            }, e.prototype._mapOpen = function () {
+                this._useitemBonus()
+            }, e.prototype._useitemBonus = function () {
                 var t = this,
-                    e = this._scene.data.getOpenedMapIDs();
-                if (e.length > 0) {
-                    var i = this._scene.layer_bonus;
-                    new a.TaskMapOpen(i, e).start(function () {
-                        t._endTask()
+                    e = this._scene.data.getBonusUseitem();
+                if (null != e) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var i = this._scene.view.layer_cutin,
+                        n = e.mst_id;
+                    new l.TaskBonusTelop(i, 6, n).start(function () {
+                        var e = new _.TaskBonusUseItem(i, n, 1, !1);
+                        e.start(function () {
+                            t._slotitemBonus(e)
+                        })
                     })
-                } else this._endTask()
+                } else this._slotitemBonus(null)
+            }, e.prototype._slotitemBonus = function (t) {
+                var e = this,
+                    i = this._scene.data.getBonusSlot();
+                if (null != i) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var n = this._scene.view.layer_cutin,
+                        r = i.mst_id;
+                    new l.TaskBonusTelop(n, 2, r).start(function () {
+                        var i = new a.TaskBonusSlot(n, r, 1, 1, !1, t);
+                        i.start(function () {
+                            e._shipBonus(i)
+                        })
+                    })
+                } else this._shipBonus(t)
+            }, e.prototype._shipBonus = function (t) {
+                var e = this,
+                    i = this._scene.data.getBonusShip();
+                if (null != i) {
+                    this._play_bgm || (this._play_bgm = !0, o.default.sound.bgm.play(132, !0, 1e3));
+                    var n = this._scene.view.layer_cutin,
+                        r = i.mst_id,
+                        a = this._scene.data.battle_model.map_info.area_id,
+                        _ = this._scene.data.battle_model.map_info.map_no,
+                        u = 1 == a && (1 == _ || 2 == _ || 3 == _);
+                    new l.TaskBonusTelop(n, 3, r, u).start(function () {
+                        var i = new s.TaskBonusShip(n, r, !1, t);
+                        i.start(function () {
+                            e._closeShutter(i)
+                        })
+                    })
+                } else this._closeShutter(null)
+            }, e.prototype._closeShutter = function (t) {
+                var e = this;
+                this._play_bgm && o.default.sound.bgm.fadeOut(1200);
+                var i = this._scene.view.shutter;
+                i.close(), i.once("closed", function () {
+                    null != t && t.dispose(), e._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._play_bgm = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.PhaseClear = _
+        }(r.TaskBase);
+    e.TaskNormalBonus = u
 }

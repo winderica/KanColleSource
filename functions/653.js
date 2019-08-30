@@ -19,13 +19,13 @@ const function653 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(269),
-        r = i(270),
+    var o = i(270),
+        r = i(271),
         s = i(34),
         a = i(158),
         _ = i(210),
-        u = i(128),
-        l = i(108),
+        l = i(128),
+        u = i(108),
         c = i(654),
         h = i(655),
         p = i(656),
@@ -60,7 +60,7 @@ const function653 = function (t, e, i) {
             return n(e, t), e.prototype.start = function () {
                 this._ViewMain.start(), this._CurrentScene.start()
             }, e.prototype._create = function () {
-                var t = new PIXI.Sprite(this._ImageManager.use(l.IMAGE_FILE.BG));
+                var t = new PIXI.Sprite(this._ImageManager.use(u.IMAGE_FILE.BG));
                 this._ViewMain = new h.ViewMain(this._ImageManager, this._ev), this._ViewScene = new PIXI.Container, this._CurrentScene = this._createNextScene(), this._CurrentScene.initialize(), this._ViewScene.addChild(this._CurrentScene), this._loader = new r.LoadingBox, this._loader.hide(), this.addChild(t, this._ViewScene, this._ViewMain, this._loader)
             }, e.prototype._createNextScene = function () {
                 switch (this._sceneId) {
@@ -84,7 +84,7 @@ const function653 = function (t, e, i) {
                 this._ev.off("tutorial-scene-start", this._onSceneStart).off("tutorial-next-scene", this._onNextScene).off("tutorial-remove-scene", this._onRemoveScene).off("tutorial-play-voice", this._onPlayVoice).off("tutorial-save-ship", this._saveShipId);
                 var e = new s.APIConnector,
                     i = parseInt(this._shipId, 10);
-                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new u.UserSlotItemAPI), e.start(function () {
+                e.add(new v.APIFirstShip(i)), e.add(new a.UserDataAPI), e.add(new _.UserShipAPI), e.add(new l.UserSlotItemAPI), e.start(function () {
                     t._loader.hide(), createjs.Tween.get(t).to({
                         alpha: 0
                     }, 400, createjs.Ease.linear).call(function () {

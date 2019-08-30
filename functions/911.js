@@ -20,12 +20,12 @@ const function911 = function (t, e, i) {
         value: !0
     });
     var o = i(5),
-        r = i(336),
-        s = i(19),
+        r = i(337),
+        s = i(20),
         a = i(8),
-        _ = i(337),
-        u = i(40),
-        l = i(81),
+        _ = i(338),
+        l = i(40),
+        u = i(81),
         c = i(3),
         h = i(3),
         p = i(3),
@@ -34,7 +34,7 @@ const function911 = function (t, e, i) {
         y = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._clickGuard = new a.AreaBox(0), e._bg_itemlost = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(0)), e._penguin = new _.FailedPenguin, e._leafDashes = new d.LeafDashes, e._obj_leaf = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(1)), e._obj_leaf.anchor.set(.5, .5), e._messageBox = new l.MessageBox(!1), e._gearBtnHome = new u.GearBtnHome, e._gearBtnHome.initialize(), e._gearBtnHome.x = 1140, e._gearBtnHome.y = 660, e._white = new a.AreaBox(1, 16777215), e._leafTween = r.LeafAnimationUtil.LeafWithDashAnimation(e._obj_leaf, e._leafDashes.dashes, new PIXI.Point(0, 60)), e._leafTween.setPaused(!0), e
+                return e._clickGuard = new a.AreaBox(0), e._bg_itemlost = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(0)), e._penguin = new _.FailedPenguin, e._leafDashes = new d.LeafDashes, e._obj_leaf = new PIXI.Sprite(h.COMMON_ANIMATION.getTexture(1)), e._obj_leaf.anchor.set(.5, .5), e._messageBox = new u.MessageBox(!1), e._gearBtnHome = new l.GearBtnHome, e._gearBtnHome.initialize(), e._gearBtnHome.x = 1140, e._gearBtnHome.y = 660, e._white = new a.AreaBox(1, 16777215), e._leafTween = r.LeafAnimationUtil.LeafWithDashAnimation(e._obj_leaf, e._leafDashes.dashes, new PIXI.Point(0, 60)), e._leafTween.setPaused(!0), e
             }
             return n(e, t), e.prototype.play = function (t) {
                 this._cb_onComplete = t, this.addChild(this._clickGuard), this.addChild(this._bg_itemlost), this._penguin.light.alpha = 0, this._penguin.light_place.alpha = 0, this.addChild(this._penguin);

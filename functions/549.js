@@ -27,11 +27,11 @@ const function549 = function (t, e, i) {
         s = i(7),
         a = i(34),
         _ = i(550),
-        u = i(555),
-        l = i(556),
+        l = i(555),
+        u = i(556),
         c = i(2),
         h = i(557),
-        p = i(268),
+        p = i(269),
         d = i(560),
         f = i(562),
         y = i(563),
@@ -98,7 +98,7 @@ const function549 = function (t, e, i) {
                 })
             }, e.prototype._connectAPI = function () {
                 var t = this;
-                (new a.APIConnector).add(new l.GetIncentiveAPI).add(new _.GetDataAPI).add(new u.RequireInfoAPI).start(function () {
+                (new a.APIConnector).add(new u.GetIncentiveAPI).add(new _.GetDataAPI).add(new l.RequireInfoAPI).start(function () {
                     t._end_connect_api = !0, r.default.model.basic.firstFlag ? (t._TutorialScene = new v.TutorialScene, t._TutorialScene.visible = !1, t._TutorialScene.alpha = 0, t._TutorialScene.emitter.on("tutorial-event-end", t._tutorialEnd), t._isTutorialEnd = !1, t._preInitPort()) : (t._isTutorialEnd = !0, t._preInitPort())
                 })
             }, e.prototype._preInitPort = function () {
@@ -138,15 +138,15 @@ const function549 = function (t, e, i) {
         T = i(847),
         O = i(872),
         C = i(923),
-        P = i(1054),
-        k = i(1070),
-        S = i(1102),
-        M = i(1175),
-        A = i(1184),
-        E = i(1203),
-        j = i(1219),
-        N = i(437),
-        L = i(1322),
-        B = i(1467),
+        P = i(1055),
+        k = i(1071),
+        S = i(1103),
+        M = i(1176),
+        A = i(1185),
+        E = i(1204),
+        j = i(1220),
+        N = i(438),
+        L = i(1327),
+        B = i(1472),
         R = i(18)
 }

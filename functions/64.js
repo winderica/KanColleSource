@@ -19,12 +19,12 @@ const function64 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(249),
-        r = i(250),
+    var o = i(250),
+        r = i(251),
         s = i(450),
         a = i(183),
         _ = i(452),
-        u = function (t) {
+        l = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
             }
@@ -94,5 +94,5 @@ const function64 = function (t, e, i) {
                 return 0 == this._record.raw.sakuteki.isSuccess_e() ? e = !0 : 0 == this._data.plane_from_e.length ? e = !0 : 1 == this._scene.data.model.deck_f.isSubmarineAll() && (e = !0), 1 != t || 1 != e
             }, e
         }(o.PhaseAirBase);
-    e.PhaseAirWar = u
+    e.PhaseAirWar = l
 }

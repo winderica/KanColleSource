@@ -19,41 +19,30 @@ const function1267 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1268),
-        r = function (t) {
+    var o = i(9),
+        r = i(7),
+        s = i(0),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._count = 0, e._boxes = [], e
+                return e._url = "api_req_map/anchorage_repair", e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "count", {
+            return n(e, t), Object.defineProperty(e.prototype, "used_ship", {
                 get: function () {
-                    return this._count
+                    return this._used_ship
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._count = 0;
-                for (var n = [11, 12, 13, 14], r = 0; r < n.length; r++) {
-                    var s = new o.FormationBoxCombined,
-                        a = [626, 873, 626, 873][r],
-                        _ = [96, 96, 302, 302][r];
-                    s.position.set(a, _);
-                    var u = n[r];
-                    s.initialize(t, u, e, i), 1 == s.enabled && this._count++, this.addChild(s), this._boxes.push(s)
+            }), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._used_ship = r.ObjUtil.getNumber(this._raw_data, "api_used_ship");
+                for (var e = r.ObjUtil.getObjectArray(this._raw_data, "api_ship_data"), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    s.default.model.ship.updateData(o)
                 }
-            }, e.prototype.activate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].activate()
-                }
-            }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._boxes; t < e.length; t++) {
-                    e[t].dispose()
-                }
+                t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.FormationBoxContainerCombined = r
+        }(o.APIBase);
+    e.APIAnchorageRepair = a
 }

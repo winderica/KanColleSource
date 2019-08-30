@@ -43,7 +43,7 @@ const function924 = function (t, e, i) {
             }, e
         }(s.TaskBase);
     e.PreInitializeTask = _;
-    var u = function (t) {
+    var l = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._scene = e, i
@@ -56,5 +56,5 @@ const function924 = function (t, e, i) {
             this._scene.startTopTask(), this._endTask()
         }, e
     }(s.TaskBase);
-    e.InitializeTask = u
+    e.InitializeTask = l
 }

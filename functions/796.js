@@ -24,8 +24,8 @@ const function796 = function (t, e, i) {
         s = i(45),
         a = i(161),
         _ = i(61),
-        u = i(87),
-        l = i(162),
+        l = i(87),
+        u = i(162),
         c = i(4),
         h = i(21),
         p = i(71),
@@ -41,7 +41,7 @@ const function796 = function (t, e, i) {
                     t.target != i.clickArea && t.target != i.lockIcon || i.mouseover()
                 }, i._onMouseOut = function (t) {
                     t.target != i.clickArea && t.target != i.lockIcon && i.mouseout()
-                }, i.index = e, i.iconWeapon = new _.IconWeapon, i.focus = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), i.textRare = new c.TextBox(15, 5523516), i.itemSummary = new v(5523516), i.itemSummary.position.set(395, 0), i.shipSummary = new g, i.shipSummary.position.set(306, 0), i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, i.slotItemLevel = new l.SlotItemLevel, i.airPlaneLevel = new a.AirPlaneLevel, i.airPlaneLevel.position.set(232, 3), i.slotItemLevel.position.set(260, 13), i.clickArea = new PIXI.Graphics, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, i.focus.width + 180, i.focus.height), i.clickArea.endFill(), i.clickArea.on(d.EventType.CLICK, i._onClick), i.clickArea.on(d.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(d.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.renderable = !1, i.clickArea.interactive = i.clickArea.buttonMode = !0;
+                }, i.index = e, i.iconWeapon = new _.IconWeapon, i.focus = new PIXI.Sprite(h.COMMON_MAIN.getTexture(17)), i.textRare = new c.TextBox(15, 5523516), i.itemSummary = new v(5523516), i.itemSummary.position.set(395, 0), i.shipSummary = new g, i.shipSummary.position.set(306, 0), i.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), i.maskName.position.x = 172, i.slotItemLevel = new u.SlotItemLevel, i.airPlaneLevel = new a.AirPlaneLevel, i.airPlaneLevel.position.set(232, 3), i.slotItemLevel.position.set(260, 13), i.clickArea = new PIXI.Graphics, i.clickArea.beginFill(0, 0), i.clickArea.drawRect(0, 0, i.focus.width + 180, i.focus.height), i.clickArea.endFill(), i.clickArea.on(d.EventType.CLICK, i._onClick), i.clickArea.on(d.EventType.MOUSEOVER, i._onMouseOver), i.clickArea.on(d.EventType.MOUSEOUT, i._onMouseOut), i.clickArea.renderable = !1, i.clickArea.interactive = i.clickArea.buttonMode = !0;
                 var n = new PIXI.Graphics;
                 n.beginFill(0, 0), n.drawRect(0, 0, 245, 45), n.endFill(), i.textName = new c.TextBox(21, 5523516);
                 var o = Math.floor(i.center - i.textName.height / 2);
@@ -59,8 +59,8 @@ const function796 = function (t, e, i) {
                         break;
                     case 1:
                         this.shipSummary.visible = !0, this.textRare.visible = !1, this.itemSummary.visible = !1, this.lockIcon.visible = !1;
-                        var u = e.isRepair();
-                        this._updateInteractive_(n), this._updateShipSummary_(e.name, e.level, i, n, u);
+                        var l = e.isRepair();
+                        this._updateInteractive_(n), this._updateShipSummary_(e.name, e.level, i, n, l);
                         break;
                     case 2:
                         this.textRare.visible = !0, this.itemSummary.visible = !0, this.lockIcon.visible = !0, this.shipSummary.visible = !1, this._updateTextRare_(a), this._updateItemSummary_(t, _)
@@ -140,7 +140,7 @@ const function796 = function (t, e, i) {
         g = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.center = 23, e.shipInDeckFlag = new u.ShipInDeckFlag, e.textStatus = new c.TextBox(18, 5523516), e.textNameAndLevel = new m, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskName.position.x = 80;
+                e.center = 23, e.shipInDeckFlag = new l.ShipInDeckFlag, e.textStatus = new c.TextBox(18, 5523516), e.textNameAndLevel = new m, e.maskName = new PIXI.Sprite(h.COMMON_MAIN.getTexture(38)), e.maskName.position.x = 80;
                 var i = new PIXI.Graphics;
                 return i.beginFill(0, 0), i.drawRect(0, 0, 170, 45), i.endFill(), e.textNameAndLevel.mask = i, e.textNameAndLevel.addChild(i), e.shipInDeckFlag.position.x = 188, e.shipInDeckFlag.scale.set(.75, .75), e.textStatus.position.x = 225, e.textStatus.position.y = e.center - Math.floor(e.textStatus.height / 2), e.addChild(e.textNameAndLevel, e.maskName, e.shipInDeckFlag, e.textStatus), e
             }

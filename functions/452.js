@@ -22,10 +22,10 @@ const function452 = function (t, e, i) {
     var o = i(27),
         r = i(29),
         s = i(72),
-        a = i(19),
+        a = i(20),
         _ = i(38),
-        u = i(6),
-        l = i(141),
+        l = i(6),
+        u = i(141),
         c = i(180),
         h = i(448),
         p = i(182),
@@ -42,11 +42,11 @@ const function452 = function (t, e, i) {
             }), e.prototype._start = function () {
                 this._log();
                 var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new l.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+                this._canvas = new u.AirWarCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
             }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
                 var t = this,
                     e = new o.ParallelTask,
-                    i = createjs.Tween.get(null).call(u.SE.play, ["114"]).wait(3450);
+                    i = createjs.Tween.get(null).call(l.SE.play, ["114"]).wait(3450);
                 e.add((new a.TweenTask).addTween(i)), e.add(new s.FuncTask(function () {
                     t._fireDogFight()
                 }, 750)), e.add(new s.FuncTask(function () {

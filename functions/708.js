@@ -9,9 +9,9 @@ const function708 = function (t, e, i) {
         s = i(14),
         a = i(6),
         _ = i(709),
-        u = i(319),
         l = i(320),
-        c = i(321),
+        u = i(321),
+        c = i(322),
         h = i(163),
         p = function () {
             function t(t) {
@@ -57,13 +57,13 @@ const function708 = function (t, e, i) {
                             var i;
                             switch (r.MAMIYA_IRAKO_SEASON) {
                                 case 2:
-                                    i = l.ORGANIZE_MAMIYA_ANIMATION_XMAS.getTexture(0).baseTexture;
+                                    i = u.ORGANIZE_MAMIYA_ANIMATION_XMAS.getTexture(0).baseTexture;
                                     break;
                                 case 4:
                                     i = c.ORGANIZE_MAMIYA_ANIMATION_SUMMER.getTexture(0).baseTexture;
                                     break;
                                 default:
-                                    i = u.ORGANIZE_MAMIYA_ANIMATION_DEFAULT.getTexture(0).baseTexture
+                                    i = l.ORGANIZE_MAMIYA_ANIMATION_DEFAULT.getTexture(0).baseTexture
                             }
                             n.default.settings.renderer.plugins.prepare.upload(i, function () {
                                 e._get_flash = new PIXI.Sprite(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(0)), e._get_flash.visible = !1, e._get_flash.anchor.set(.5), e._get_flash.position.set(o.default.width / 2, o.default.height / 2), e._white = new PIXI.Graphics, e._white.visible = !1, e._white.beginFill(16777215, 1), e._white.drawRect(0, 0, o.default.width, o.default.height), e._white.endFill(), e._txt_supply = new PIXI.Sprite(_.ORGANIZE_MAMIYA_ANIMATION_COMMON.getTexture(2)), e._txt_supply.visible = !1, e._txt_supply.anchor.set(.5), e._ship = [];
@@ -99,7 +99,7 @@ const function708 = function (t, e, i) {
                     }
                 };
                 this._callback = i;
-                var s, _, u;
+                var s, _, l;
                 switch (t) {
                     case 1:
                     case 2:
@@ -122,7 +122,7 @@ const function708 = function (t, e, i) {
                                     y: 0
                                 }, 200)
                             }
-                        }, u = function () {
+                        }, l = function () {
                             for (var e = 0; e < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; e++) n._kirakira[e].visible = !1;
                             createjs.Tween.get(n._ship[t - 1].scale).to({
                                 x: 3,
@@ -168,7 +168,7 @@ const function708 = function (t, e, i) {
                                 x: 0,
                                 y: 0
                             }, 200)
-                        }, u = function () {
+                        }, l = function () {
                             for (var t = 0; t < h.OrganizeConst.MAMIYA_MAX_EFFECT / 2; t++) n._kirakira[t].visible = !1;
                             createjs.Tween.get(n._ship[0].scale).to({
                                 x: 3,
@@ -221,7 +221,7 @@ const function708 = function (t, e, i) {
                 }).wait(1e3).call(function () {
                     _()
                 }).wait(h.OrganizeConst.MAMIYA_EFFECT_WAIT).call(function () {
-                    n._white.alpha = 1, null != e && e(), u(), n._OrganizeView.visible = !0, createjs.Tween.get(n._white).to({
+                    n._white.alpha = 1, null != e && e(), l(), n._OrganizeView.visible = !0, createjs.Tween.get(n._white).to({
                         alpha: 0
                     }, 1e3).set({
                         visible: !1

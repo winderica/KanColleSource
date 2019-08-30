@@ -7,10 +7,10 @@ const function786 = function (t, e, i) {
         o = i(0),
         r = i(45),
         s = i(34),
-        a = i(334),
+        a = i(335),
         _ = i(85),
-        u = i(6),
-        l = i(137),
+        l = i(6),
+        u = i(137),
         c = i(51),
         h = i(136),
         p = i(89),
@@ -74,11 +74,11 @@ const function786 = function (t, e, i) {
                         case h.SlotListMode.UNSET:
                             ;
                             o.default.view.clickGuard = !0;
-                            var u = void 0;
-                            u = i.isEditExtraSlot ? new x.SlotSetExAPI(i.memShipId, i.memSlotItemId) : new w.SlotSetAPI(i.memShipId, i.memSlotItemId, i.slotIndex);
-                            var l = new s.APIConnector,
+                            var l = void 0;
+                            l = i.isEditExtraSlot ? new x.SlotSetExAPI(i.memShipId, i.memSlotItemId) : new w.SlotSetAPI(i.memShipId, i.memSlotItemId, i.slotIndex);
+                            var u = new s.APIConnector,
                                 c = new v.Ship3API(i.memShipId);
-                            l.add(u).add(c).start(function () {
+                            u.add(l).add(c).start(function () {
                                 i.isEditExtraSlot || o.default.view.portMain.updateInfo(), i.onUpdateSlotItem(), createjs.Tween.get(i.backArea).to({
                                     alpha: 0
                                 }, 125), createjs.Tween.get(i.slotItemList).to({
@@ -97,7 +97,7 @@ const function786 = function (t, e, i) {
                 }, this._onClickYesOtherShipChange = function () {
                     o.default.view.clickGuard = !0, i.slotInShipChangeConfirm.hide(function () {
                         i.changeConfrimFromOtherShip.deactivate(), i.slotInShipChangeConfirm.dispose(), o.default.view.overLayer.removeChild(i.slotInShipChangeConfirm);
-                        for (var t = i.slotIndex, e = i.memShipId, r = i.isEditExtraSlot ? 1 : 0, s = i.memSlotItemId, a = i.setList[1]["" + s], _ = -1, u = 0, l = o.default.model.ship.get(a), c = l.getSlotitems(), h = 0; h < c.length; h++) {
+                        for (var t = i.slotIndex, e = i.memShipId, r = i.isEditExtraSlot ? 1 : 0, s = i.memSlotItemId, a = i.setList[1]["" + s], _ = -1, l = 0, u = o.default.model.ship.get(a), c = u.getSlotitems(), h = 0; h < c.length; h++) {
                             var p = c[h];
                             if (p && p.memID == s) {
                                 _ = h;
@@ -105,10 +105,10 @@ const function786 = function (t, e, i) {
                             }
                         }
                         if (-1 == _) {
-                            var d = l.getSlotitemEx();
-                            null != d && d.memID == s && (_ = 0, u = 1)
+                            var d = u.getSlotitemEx();
+                            null != d && d.memID == s && (_ = 0, l = 1)
                         }
-                        new b.SlotDepriveAPI(_, r, u, a, t, e).start(function () {
+                        new b.SlotDepriveAPI(_, r, l, a, t, e).start(function () {
                             o.default.view.portMain.updateInfo(), i.onUpdateSlotItem(), createjs.Tween.get(i.doubleBackArea).to({
                                 alpha: 0
                             }, 125), createjs.Tween.get(i.backArea).to({
@@ -131,7 +131,7 @@ const function786 = function (t, e, i) {
                 }, this._onChangeFilterKeyType = function (t) {
                     i._updateSource_(i.mode, t), i.slotItemList.slotItemFilterView.hideFilterListImmidiate(), i._changePage_(0)
                 }, this._onClickChangeListSwitch = function () {
-                    switch (u.SE.play("219"), i.mode) {
+                    switch (l.SE.play("219"), i.mode) {
                         case h.SlotListMode.UNSET:
                             i._initSetList_(i.memShipId, i.isEditExtraSlot, i.slotIndex), i._updateSource_(h.SlotListMode.SET, 0), i._changePage_(0);
                             break;
@@ -158,13 +158,13 @@ const function786 = function (t, e, i) {
                     o.default.view.clickGuard = !0;
                     var r = function () {
                         var n = o.default.model.slot.get(e);
-                        n.isLocked() ? u.SE.play("242") : u.SE.play("255");
+                        n.isLocked() ? l.SE.play("242") : l.SE.play("255");
                         var r = null;
-                        i.mode == h.SlotListMode.SET && (r = 15 == l.SceneMemory.slotItemFilter ? o.default.model.ship.get(i.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(i.setList[1][n.memID.toString()])), i._updateListItem_(t, n, r), o.default.view.clickGuard = !1
+                        i.mode == h.SlotListMode.SET && (r = 15 == u.SceneMemory.slotItemFilter ? o.default.model.ship.get(i.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(i.setList[1][n.memID.toString()])), i._updateListItem_(t, n, r), o.default.view.clickGuard = !1
                     };
                     n.start(r)
                 }, this._onChangePage = function (t) {
-                    l.SceneMemory.slotItemPage != t && i._changePage_(t)
+                    u.SceneMemory.slotItemPage != t && i._changePage_(t)
                 }, this.slotItemList = new g.SlotItemList, this.changeConfirm = new y.ChangeConfirm, this.changeConfrimFromOtherShip = new d.ChangeConfirmFromOtherShip, this.backArea = new f.BackArea, this.doubleBackArea = new f.DoubleBackArea, this.slotItemList.pagerView.onChangePage = this._onChangePage, this.slotItemList.onClick = this._onClickListItem, this.slotItemList.onClickLock = this._onClickLock, this.backArea.onClick = this._onClickBackArea, this.doubleBackArea.onClickLeft = this._onClickDoubleBackAreaLeft, this.doubleBackArea.onClickRight = this._onClickDoubleBackAreaRight, this.changeConfirm.onClick = this._onClickChangeButton, this.changeConfrimFromOtherShip.onClickYes = this._onClickYesOtherShipChange, this.changeConfrimFromOtherShip.onClickNo = this._onClickNoOtherShipChange, this.slotItemList.slotItemFilterView.onClick = this._onChangeFilterKeyType, this.slotItemList.changeListSwitch.onClick = this._onClickChangeListSwitch, this.shipDetail = e, this.mainView = t
             }
             return t.prototype.dispose = function () {
@@ -179,9 +179,9 @@ const function786 = function (t, e, i) {
                     for (var i = 0; i < e.length; i++) {
                         var n = e[i],
                             r = null;
-                        this.mode == h.SlotListMode.SET && (r = 15 == l.SceneMemory.slotItemFilter ? o.default.model.ship.get(this.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(this.setList[1][n.memID.toString()])), this._updateListItem_(i, n, r)
+                        this.mode == h.SlotListMode.SET && (r = 15 == u.SceneMemory.slotItemFilter ? o.default.model.ship.get(this.setList_all[1][n.memID.toString()]) : o.default.model.ship.get(this.setList[1][n.memID.toString()])), this._updateListItem_(i, n, r)
                     }
-                this.slotItemList.pagerView.changePage(t), l.SceneMemory.slotItemPage = t
+                this.slotItemList.pagerView.changePage(t), u.SceneMemory.slotItemPage = t
             }, t.prototype._updateListItem_ = function (t, e, i) {
                 var n = null,
                     r = !1,
@@ -189,15 +189,15 @@ const function786 = function (t, e, i) {
                     a = !1,
                     _ = !1;
                 i ? (n = o.default.model.deck.isInDeck(i.memID)) && (s = o.default.model.deck.get(n[0]), null != s.expedition && (r = !0)) : -1 != this.sortieSlotItems.indexOf(e) && (a = !0);
-                var u, l = o.default.model.ship.get(this.memShipId);
-                this.isEditExtraSlot || (u = o.default.model.equip.get(l.mstID), (-1 == u.equip_type.indexOf(e.equipTypeSp) || this._excludeList.indexOf(e.equipTypeSp) > -1) && (_ = !0), 392 == l.mstID && 11 == e.equipType && 194 != e.mstID && (_ = !0)), this.slotItemList.update(t, e, i, n, r, a, _)
+                var l, u = o.default.model.ship.get(this.memShipId);
+                this.isEditExtraSlot || (l = o.default.model.equip.get(u.mstID), (-1 == l.equip_type.indexOf(e.equipTypeSp) || this._excludeList.indexOf(e.equipTypeSp) > -1) && (_ = !0), 392 == u.mstID && 11 == e.equipType && 194 != e.mstID && (_ = !0)), this.slotItemList.update(t, e, i, n, r, a, _)
             }, t.prototype.start = function (t, e, i) {
                 var r = this;
                 o.default.view.clickGuard = !0;
                 var s = -1 == e;
-                this.shipVoice = i, this._excludeList = this._excludeEquipList(t, e, s), this._initUnSetList_(t, e, s), this._initSortieSlotItems_(), this.mode = l.SceneMemory.listMode, this.slotIndex = e, this.memShipId = t, this.isEditExtraSlot = s, this.mode == h.SlotListMode.SET && this._initSetList_(this.memShipId, this.isEditExtraSlot, this.slotIndex), this._updateSlotItemFilter_(s), this._updateSource_(this.mode, l.SceneMemory.slotItemFilter);
+                this.shipVoice = i, this._excludeList = this._excludeEquipList(t, e, s), this._initUnSetList_(t, e, s), this._initSortieSlotItems_(), this.mode = u.SceneMemory.listMode, this.slotIndex = e, this.memShipId = t, this.isEditExtraSlot = s, this.mode == h.SlotListMode.SET && this._initSetList_(this.memShipId, this.isEditExtraSlot, this.slotIndex), this._updateSlotItemFilter_(s), this._updateSource_(this.mode, u.SceneMemory.slotItemFilter);
                 var a = Math.ceil(this.sourceSlotItems.length / c.RemodelConst.ITEM_NUM);
-                a <= l.SceneMemory.slotItemPage && (l.SceneMemory.slotItemPage = a - 1, l.SceneMemory.slotItemPage < 0 && (l.SceneMemory.slotItemPage = 0)), this._changePage_(l.SceneMemory.slotItemPage), this.slotItemList.position.set(n.default.width, 141), this.backArea.alpha = 0, this.mainView.addChild(this.backArea), this.mainView.addChild(this.slotItemList), createjs.Tween.get(this.slotItemList).to({
+                a <= u.SceneMemory.slotItemPage && (u.SceneMemory.slotItemPage = a - 1, u.SceneMemory.slotItemPage < 0 && (u.SceneMemory.slotItemPage = 0)), this._changePage_(u.SceneMemory.slotItemPage), this.slotItemList.position.set(n.default.width, 141), this.backArea.alpha = 0, this.mainView.addChild(this.backArea), this.mainView.addChild(this.slotItemList), createjs.Tween.get(this.slotItemList).to({
                     x: 501
                 }, 125), createjs.Tween.get(this.backArea).to({
                     alpha: 1
@@ -220,11 +220,11 @@ const function786 = function (t, e, i) {
                         _ = [];
                     if (i) r = p.RemodelUtil.createUnSetListEx(a.mstID, a.shipTypeID);
                     else {
-                        var u = o.default.model.equip.get(a.mstID),
-                            l = void 0;
-                        l = this._excludeList.length > 0 ? u.equip_type.filter(function (t) {
+                        var l = o.default.model.equip.get(a.mstID),
+                            u = void 0;
+                        u = this._excludeList.length > 0 ? l.equip_type.filter(function (t) {
                             return -1 === n._excludeList.indexOf(t)
-                        }) : u.equip_type, r = o.default.model.slot.createUnsetList(l, null, a.mstID), s = o.default.model.slot.createUnsetList_unType(u.equip_type, a.mstID), _ = o.default.model.slot.createUnsetList(u.equip_type, null, a.mstID)
+                        }) : l.equip_type, r = o.default.model.slot.createUnsetList(u, null, a.mstID), s = o.default.model.slot.createUnsetList_unType(l.equip_type, a.mstID), _ = o.default.model.slot.createUnsetList(l.equip_type, null, a.mstID)
                     }
                     this.unsetList = r, this.unsetList_all = _.concat(s)
                 }
@@ -233,24 +233,24 @@ const function786 = function (t, e, i) {
                 if (!this.setList) {
                     var r, s, a = o.default.model.ship.get(t),
                         _ = {},
-                        u = new Array;
+                        l = new Array;
                     if (e ? r = p.RemodelUtil.createSetListEx(a.memID, a.mstID, a.shipTypeID) : (s = o.default.model.equip.get(a.mstID), r = o.default.model.slot.createSetList(s.equip_type, null, -1, a.mstID)), r[0] = r[0].filter(function (t) {
                             var e = r[1][t.memID] == a.memID;
                             return e && delete r[1][t.memID], 0 == e
                         }), !e) {
-                        for (var l = 0; l < r[0].length; l++) u.push(r[0][l]);
+                        for (var u = 0; u < r[0].length; u++) l.push(r[0][u]);
                         for (var c in r[1]) {
                             var h = parseInt(c);
                             _[h] = r[1][c]
                         }
                         var d = void 0;
                         d = o.default.model.slot.createSetList_unType(s.equip_type);
-                        for (var l = 0; l < d[0].length; l++) u.push(d[0][l]);
+                        for (var u = 0; u < d[0].length; u++) l.push(d[0][u]);
                         for (var c in d[1]) {
                             var h = parseInt(c);
                             _[h] = d[1][c]
                         }
-                        this.setList_all = [u, _]
+                        this.setList_all = [l, _]
                     }
                     392 == a.mstID && (r[0] = r[0].filter(function (t) {
                         return 11 != t.equipType || 194 == t.mstID
@@ -270,7 +270,7 @@ const function786 = function (t, e, i) {
                     case h.SlotListMode.UNSET:
                         this.slotItemList.listHeader.update(this.slotItemList.listHeader.TYPE_UNSET), this.slotItemList.changeListSwitch.update(this.slotItemList.changeListSwitch.TYPE_UNEQUIPS)
                 }
-                this.mode = t, l.SceneMemory.listMode = t
+                this.mode = t, u.SceneMemory.listMode = t
             }, t.prototype._genSource_ = function (t, e) {
                 switch (t) {
                     case h.SlotListMode.SET:
@@ -283,7 +283,7 @@ const function786 = function (t, e, i) {
                 var e = p.RemodelUtil.calcPageCount(t.length);
                 this.slotItemList.pagerView.init(e)
             }, t.prototype._updateFilter_ = function (t) {
-                this.slotItemList.slotItemFilterView.updateFilterType(t), l.SceneMemory.slotItemFilter = t
+                this.slotItemList.slotItemFilterView.updateFilterType(t), u.SceneMemory.slotItemFilter = t
             }, t.prototype._genFilterSlotItems_ = function (t, e, i) {
                 if (0 == e || 15 == e) return r.SlotUtil.sort(i, 0), i;
                 if (13 == e) return r.SlotUtil.sort(i, 1), i;

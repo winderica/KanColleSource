@@ -24,8 +24,8 @@ const function764 = function (t, e, i) {
         s = i(14),
         a = i(765),
         _ = i(767),
-        u = i(768),
-        l = i(72),
+        l = i(768),
+        u = i(72),
         c = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
@@ -36,12 +36,12 @@ const function764 = function (t, e, i) {
                 return new _.InitializeTask(this)
             }, e.prototype.getFinalizeTask = function () {
                 var t = this;
-                return new l.FuncTask(function () {
+                return new u.FuncTask(function () {
                     t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
                 })
             }, e.prototype.start = function () {
                 var t = o.default.model.deck.get(1).getShipMemID(0);
-                this.taskIdleMain = new u.TaskIdleMain(this), this.taskIdleMain.start(1, t)
+                this.taskIdleMain = new l.TaskIdleMain(this), this.taskIdleMain.start(1, t)
             }, e
         }(r.SceneBase);
     e.RemodelScene = c

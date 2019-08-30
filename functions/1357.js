@@ -19,48 +19,39 @@ const function1357 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(27),
-        s = i(29),
-        a = i(72),
-        _ = i(19),
-        u = i(38),
-        l = i(6),
-        c = i(452),
-        h = i(445),
-        p = i(449),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(62),
+        s = i(16),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke1 = new r.CenteringSprite, i._smoke1.position.set(263, -2), i._smoke2 = new r.CenteringSprite, i._smoke2.position.set(272, 20), i
             }
             return n(e, t), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new h.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new r.ParallelTask,
-                    i = createjs.Tween.get(null).call(l.SE.play, ["220"]).wait(1700);
-                e.add((new _.TweenTask).addTween(i)), e.add(new a.FuncTask(function () {
-                    t._fireDogFight()
-                }, 350)), e.add(new a.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 450)), e.add(new a.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 500)), e.add(new a.FuncTask(function () {
-                    t._antiAircraft()
-                }, 600)), e.add(new a.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 700)), e.add((new s.SerialTask).add(new u.WaitTask(850)).add((new r.ParallelTask).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new a.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 1500)), e.add(new a.FuncTask(function () {
-                    t._showDamage()
-                }, 1650)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+                var t = this;
+                this._smoke1.texture = s.BATTLE_MAIN.getTexture(37), this._smoke1.alpha = 0, this._layer.addChild(this._smoke1), createjs.Tween.get(this._smoke1).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke1.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700), this._smoke2.texture = s.BATTLE_MAIN.getTexture(38), this._smoke2.alpha = 0, this._layer.addChild(this._smoke2), createjs.Tween.get(this._smoke2).wait(200).to({
+                    alpha: 1
+                }, 100).to({
+                    x: this._smoke2.x - 4,
+                    alpha: 0,
+                    scaleX: 1.1,
+                    scaleY: 1.1
+                }, 700);
+                var e = [s.BATTLE_MAIN.getTexture(86), s.BATTLE_MAIN.getTexture(87), s.BATTLE_MAIN.getTexture(88), s.BATTLE_MAIN.getTexture(89), s.BATTLE_MAIN.getTexture(90), s.BATTLE_MAIN.getTexture(91), s.BATTLE_MAIN.getTexture(92), s.BATTLE_MAIN.getTexture(93), s.BATTLE_MAIN.getTexture(94), s.BATTLE_MAIN.getTexture(95), s.BATTLE_MAIN.getTexture(96), s.BATTLE_MAIN.getTexture(97), s.BATTLE_MAIN.getTexture(98), s.BATTLE_MAIN.getTexture(99), s.BATTLE_MAIN.getTexture(100), s.BATTLE_MAIN.getTexture(101), s.BATTLE_MAIN.getTexture(102), s.BATTLE_MAIN.getTexture(103), s.BATTLE_MAIN.getTexture(104), s.BATTLE_MAIN.getTexture(105), s.BATTLE_MAIN.getTexture(106), s.BATTLE_MAIN.getTexture(107)],
+                    i = new PIXI.extras.AnimatedSprite(e);
+                i.position.set(252, -27), i.loop = !1, i.animationSpeed = 30 / createjs.Ticker.framerate, this._layer.addChild(i), createjs.Tween.get(null).wait(300).call(function () {
+                    i.play(), i.onComplete = function () {
+                        i.onComplete = null, t._layer.removeChild(i), t._endTask()
+                    }
                 })
-            }, e.prototype._showSeikuResult = function () {}, e.prototype._getPlaneType = function () {
-                return o.PlaneConst.getJetPlaneType()
             }, e
-        }(c.TaskAirWar);
-    e.TaskAirWarJet = d
+        }(o.TaskBase);
+    e.AnimAntiAircraftSanshikidan2 = a
 }

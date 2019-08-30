@@ -21,17 +21,17 @@ const function441 = function (t, e, i) {
     });
     var o = i(0),
         r = i(2),
-        s = i(19),
+        s = i(20),
         a = i(50),
         _ = i(55),
-        u = i(25),
-        l = i(7),
+        l = i(25),
+        u = i(7),
         c = i(68),
         h = function (t) {
-            function e(e, i, n, o, r, s, a, _, u) {
-                void 0 === u && (u = !0);
-                var l = t.call(this) || this;
-                return l._map_id = e, l._mapInfo = i, l._view = n, l._stage = o, l._from = l._mapInfo.spots.length, l._mapAnime = r, l._gaugeAnime = s, l._enemyAnime = a, l._shutterAnime = _, l._gaugeLeft = u, l
+            function e(e, i, n, o, r, s, a, _, l, u) {
+                void 0 === l && (l = !0), void 0 === u && (u = !0);
+                var c = t.call(this) || this;
+                return c._map_id = e, c._mapInfo = i, c._view = n, c._stage = o, c._from = c._mapInfo.spots.length, c._mapAnime = r, c._gaugeAnime = s, c._enemyAnime = a, c._shutterAnime = _, c._gaugeLeft = l, c._gaugeView = u, c
             }
             return n(e, t), e.prototype._start = function () {
                 this._mapAnime ? this._loadInfo() : this._hideEnemy()
@@ -40,7 +40,7 @@ const function441 = function (t, e, i) {
                     e = (this._mapInfo.spots.length, this._mapInfo.spots.length),
                     i = this._getPath("info" + e + ".json");
                 axios.get(i).then(function (i) {
-                    var n = l.ObjUtil.getObject(i, "data");
+                    var n = u.ObjUtil.getObject(i, "data");
                     t._mapInfo.add(n), t._loadSpriteSheet(e)
                 }).catch(function (e) {
                     t._failedEnd()
@@ -74,17 +74,51 @@ const function441 = function (t, e, i) {
                 var t = this._mapInfo.getAirBasePos();
                 null != t && this._view.map.airbaseLayer.create(t), this._initCellColor()
             }, e.prototype._initCellColor = function () {
-                for (var t = [], e = this._view.map.spotLayer.getAllSpots(), i = this._from; i < e.length; i++) {
-                    var n = e[i];
-                    if (!(t.indexOf(n.no) >= 0)) {
-                        for (var o = 0, r = this._mapInfo.getSameSpotData(n.no), s = 0, a = r; s < a.length; s++) {
-                            var _ = a[s];
-                            t.push(_.no), 0 == o && (o = _.color)
-                        }
-                        var u = r[0].no;
-                        this._view.map.spotLayer.getSpot(u).setColor(o)
+                var t = [],
+                    e = this._view.map.spotLayer.getAllSpots();
+                if (453 == this._map_id && 29 == this._from) {
+                    for (var i = [], n = this._from; n < e.length; n++) {
+                        var o = e[n];
+                        i.push(o.no)
                     }
-                }
+                    for (var r = [], s = this, a = 0, _ = i; a < _.length; a++) {
+                        var l = _[a];
+                        ! function (t) {
+                            if (r.indexOf(t) >= 0) return "continue";
+                            var e = s._mapInfo.getSameSpotData(t),
+                                n = e.filter(function (e) {
+                                    return e.no != t
+                                });
+                            if (n.length > 0) {
+                                if (n.some(function (t) {
+                                        return i.indexOf(t.no) >= 0
+                                    }) && r.indexOf(t) < 0) {
+                                    var o = s._view.map.spotLayer.getSpot(t),
+                                        a = s._mapInfo.getSpot(t).color;
+                                    o.setColor(a), n.forEach(function (t) {
+                                        return r.push(t.no)
+                                    })
+                                }
+                            } else {
+                                var o = s._view.map.spotLayer.getSpot(t),
+                                    a = s._mapInfo.getSpot(t).color;
+                                o.setColor(a)
+                            }
+                        }(l)
+                    }
+                } else
+                    for (var n = this._from; n < e.length; n++) {
+                        var o = e[n];
+                        if (!(t.indexOf(o.no) >= 0)) {
+                            for (var u = 0, c = this._mapInfo.getSameSpotData(o.no), h = 0, p = c; h < p.length; h++) {
+                                var d = p[h];
+                                t.push(d.no), 0 == u && (u = d.color)
+                            }
+                            var f = c[0].no,
+                                y = this._view.map.spotLayer.getSpot(f);
+                            y.setColor(u)
+                        }
+                    }
                 this.setView()
             }, e.prototype.setView = function () {
                 this._openSpot = [];
@@ -128,7 +162,7 @@ const function441 = function (t, e, i) {
                 var t = this;
                 if (this._shutterAnime) {
                     var e = new a.Shutter;
-                    e.initializeDark(), e.close(0), this._view.addChild(e), this._view.shutter.alpha = 0, this._view.map.alpha = 1, this._view.upper.alpha = 1, this._view.gauge_layer.alpha = 1, createjs.Tween.get(null).wait(200).call(function () {
+                    e.initializeDark(), e.close(0), this._view.addChild(e), this._view.shutter.alpha = 0, this._view.map.alpha = 1, this._view.upper.alpha = 1, this._view.gauge_layer.alpha = this._gaugeView ? 1 : 0, createjs.Tween.get(null).wait(200).call(function () {
                         e.open(), e.once("opened", function () {
                             t._view.removeChild(e), createjs.Tween.get(null).wait(1e3).call(function () {
                                 t.animation()
@@ -155,10 +189,10 @@ const function441 = function (t, e, i) {
                             }, 100), e.addTween(r)
                         }
                     for (var a = 0, _ = this._openSpot; a < _.length; a++) {
-                        var u = _[a],
-                            l = u.point;
-                        if (null != l) {
-                            var r = createjs.Tween.get(l);
+                        var l = _[a],
+                            u = l.point;
+                        if (null != u) {
+                            var r = createjs.Tween.get(u);
                             r.to({
                                 scaleX: 1.2,
                                 scaleY: 1.2,
@@ -168,7 +202,7 @@ const function441 = function (t, e, i) {
                                 scaleY: 1
                             }, 100), e.addTween(r)
                         }
-                        var c = u.route;
+                        var c = l.route;
                         if (null != c) {
                             var r = createjs.Tween.get(c);
                             r.wait(300), r.to({
@@ -221,7 +255,7 @@ const function441 = function (t, e, i) {
             }, e.prototype._getPath = function (t) {
                 var e = _.MapUtil.toAreaID(this._map_id),
                     i = _.MapUtil.toMapNo(this._map_id);
-                return o.default.settings.path_root + "resources/map/" + u.MathUtil.zeroPadding(e, 3) + "/" + u.MathUtil.zeroPadding(i, 2) + "_" + t
+                return o.default.settings.path_root + "resources/map/" + l.MathUtil.zeroPadding(e, 3) + "/" + l.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
         }(r.TaskBase);
     e.EventTaskCellOpen = h

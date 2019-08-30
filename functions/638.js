@@ -24,8 +24,8 @@ const function638 = function (t, e, i) {
         s = i(4),
         a = i(48),
         _ = i(6),
-        u = i(9),
-        l = function (t) {
+        l = i(10),
+        u = function (t) {
             function e(e, i) {
                 return t.call(this, e, i) || this
             }
@@ -65,7 +65,7 @@ const function638 = function (t, e, i) {
                 null != t && null != t.parent && t.parent.removeChild(t)
             }, e
         }(a.TaskRewardDialogBase);
-    e.TaskRewardDialogMap = l;
+    e.TaskRewardDialogMap = u;
     var c = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -108,7 +108,7 @@ const function638 = function (t, e, i) {
                 }, e._img = new o.Sprite, e._img.anchor.set(.5), e._img.scale.set(0), e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = u.COMMON_MISC.getTexture(115)
+                this._img.texture = l.COMMON_MISC.getTexture(115)
             }, e.prototype.startAnimation = function () {
                 null == this._t1 && this._animation()
             }, e.prototype.stopAnimation = function () {

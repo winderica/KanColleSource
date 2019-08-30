@@ -24,8 +24,8 @@ const function1025 = function (t, e, i) {
         s = i(225),
         a = i(169),
         _ = i(1027),
-        u = i(1032),
-        l = function (t) {
+        l = i(1032),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._changeToInfo = function () {
@@ -33,26 +33,26 @@ const function1025 = function (t, e, i) {
                 }, e._changeToDeck = function () {
                     e._showDeck()
                 }, e._onStartPractice = function () {
-                    for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, u = new s.DeckModelReplica(i, !0, n, _), l = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
+                    for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, l = new s.DeckModelReplica(i, !0, n, _), u = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
                         var p = c[h];
-                        if (null == p) l.push(null);
+                        if (null == p) u.push(null);
                         else {
                             var d = p.id,
                                 f = p.level,
                                 y = new a.ShipModelReplica(1, !0, h, d, -h, f);
-                            l.push(y)
+                            u.push(y)
                         }
                     }
                     var m = e._selected_rival.id,
                         g = e._selected_rival.medal_num,
                         v = e._selected_rival.name,
                         b = e._selected_rival.deck_name,
-                        w = new s.DeckModelReplica(m, !0, g, v, 0, b, l),
-                        x = new r.PracticeSceneModel(u, w);
+                        w = new s.DeckModelReplica(m, !0, g, v, 0, b, u),
+                        x = new r.PracticeSceneModel(l, w);
                     o.default.scene.change(32, x), e.emit("close")
                 }, e._onClose = function () {
                     e.emit("close")
-                }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new u.PanelDeckSelect(e._onClose), e
+                }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new l.PanelDeckSelect(e._onClose), e
             }
             return n(e, t), e.prototype.initialize = function (t, e) {
                 this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
@@ -70,5 +70,5 @@ const function1025 = function (t, e, i) {
                 1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
             }, e
         }(PIXI.Container);
-    e.ContainerOverlay = l
+    e.ContainerOverlay = u
 }

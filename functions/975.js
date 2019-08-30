@@ -20,7 +20,7 @@ const function975 = function (t, e, i) {
         value: !0
     });
     var o = i(12),
-        r = i(43),
+        r = i(41),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
@@ -39,7 +39,7 @@ const function975 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(25)
+                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(27)
             }, e
         }(PIXI.Container);
     e.IntroAlertDialog = s;
@@ -49,7 +49,7 @@ const function975 = function (t, e, i) {
             return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
         }
         return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-360, -215), this._content.texture = r.SALLY_EVENT.getTexture(35)
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-345, -215), this._content.texture = r.SALLY_EVENT.getTexture(40)
         }, e
     }(o.Sprite)
 }

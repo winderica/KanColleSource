@@ -19,24 +19,24 @@ const function472 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(251),
-        r = i(252),
-        s = i(253),
-        a = i(254),
-        _ = i(1395),
-        u = i(1398),
-        l = i(256),
-        c = i(1401),
-        h = i(1404),
-        p = i(1407),
-        d = i(1410),
+    var o = i(252),
+        r = i(253),
+        s = i(254),
+        a = i(255),
+        _ = i(1400),
+        l = i(1403),
+        u = i(257),
+        c = i(1406),
+        h = i(1409),
+        p = i(1412),
+        d = i(1415),
         f = i(459),
-        y = i(258),
+        y = i(259),
         m = i(461),
         g = i(462),
         v = i(463),
         b = i(464),
-        w = i(1413),
+        w = i(1418),
         x = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
@@ -58,35 +58,35 @@ const function472 = function (t, e, i) {
                     n = this._getDShip(t.d_indexes[0], t.flag);
                 if (null != i && null != n) {
                     var _ = t.getSlotitem(0),
-                        u = t.getDamage(0),
-                        l = t.getHitType(0),
+                        l = t.getDamage(0),
+                        u = t.getHitType(0),
                         c = t.isShield(0),
                         h = this._getNormalAttackType(i, n, _, t.yasen_kubo),
                         p = this._getDaihatsuEffectType(i, n);
                     if (1 == this._hasRocketEffect(i, n, h)) {
-                        var d = new y.PhaseAttackRocket(this._scene, i, n, u, l, c);
+                        var d = new y.PhaseAttackRocket(this._scene, i, n, l, u, c);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
                     } else if (0 == h) {
-                        var d = new o.PhaseAttackNormal(this._scene, i, n, _, u, l, c);
+                        var d = new o.PhaseAttackNormal(this._scene, i, n, _, l, u, c);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
                     } else if (1 == h) {
                         var f = t.yasen_kubo,
-                            d = new r.PhaseAttackKansaiki(this._scene, i, n, _, u, l, c, f);
+                            d = new r.PhaseAttackKansaiki(this._scene, i, n, _, l, u, c, f);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
                     } else if (2 == h) {
-                        var d = new s.PhaseAttackBakurai(this._scene, i, n, _, u, l, c);
+                        var d = new s.PhaseAttackBakurai(this._scene, i, n, _, l, u, c);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
                     } else {
                         if (3 != h) throw new Error;
-                        var d = new a.PhaseAttackRaigeki(this._scene, i, n, _, u, l, c);
+                        var d = new a.PhaseAttackRaigeki(this._scene, i, n, _, l, u, c);
                         d.setOptionalEffects(p), d.start(function () {
                             e._hougekiCycle()
                         })
@@ -101,11 +101,11 @@ const function472 = function (t, e, i) {
                     s = t.getDamage(0),
                     a = t.getHitType(0),
                     _ = t.isShield(0),
-                    u = t.getSlotitem(1),
+                    l = t.getSlotitem(1),
                     c = t.getDamage(1),
                     h = t.getHitType(1),
                     p = t.isShield(1);
-                new l.PhaseAttackDouble(this._scene, i, n, r, s, a, _, o, u, c, h, p).start(function () {
+                new u.PhaseAttackDouble(this._scene, i, n, r, s, a, _, o, l, c, h, p).start(function () {
                     e._hougekiCycle()
                 })
             }, e.prototype._kuboCI = function (t) {
@@ -117,11 +117,11 @@ const function472 = function (t, e, i) {
                     s = t.getSlotitem(1),
                     a = t.getSlotitem(2),
                     _ = t.getDamage(0),
-                    u = t.getHitType(0),
-                    l = t.isShield(0),
+                    l = t.getHitType(0),
+                    u = t.isShield(0),
                     c = this._getDaihatsuEffectType(n, o),
                     h = t.yasen_kubo,
-                    p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, u, l, h);
+                    p = new f.PhaseAttackKuboCutin(i, n, o, r, s, a, _, l, u, h);
                 p.setOptionalEffects(c), p.start(function () {
                     e._hougekiCycle()
                 })
@@ -177,17 +177,17 @@ const function472 = function (t, e, i) {
                     r = t.getSlotitem(1),
                     s = t.getSlotitem(2),
                     a = t.getDamage(0),
-                    l = t.getHitType(0),
+                    u = t.getHitType(0),
                     c = t.isShield(0),
                     h = t.type;
                 if (7 == h) {
-                    var p = new u.PhaseAttackSpSRD(this._scene, i, n, o, r, s, a, l, c);
+                    var p = new l.PhaseAttackSpSRD(this._scene, i, n, o, r, s, a, u, c);
                     p.start(function () {
                         e._hougekiCycle()
                     })
                 } else {
                     if (8 != h) throw new Error;
-                    var p = new _.PhaseAttackSpRDJ(this._scene, i, n, o, r, s, a, l, c);
+                    var p = new _.PhaseAttackSpRDJ(this._scene, i, n, o, r, s, a, u, c);
                     p.start(function () {
                         e._hougekiCycle()
                     })
@@ -200,20 +200,20 @@ const function472 = function (t, e, i) {
                     s = t.getSlotitem(1),
                     a = t.getSlotitem(2),
                     _ = t.getHitType(0),
-                    u = t.isShield(0),
-                    l = t.type;
-                if (2 == l) {
+                    l = t.isShield(0),
+                    u = t.type;
+                if (2 == u) {
                     var f = t.getDamage(0) + t.getDamage(1);
-                    e = new c.PhaseAttackSpSR(this._scene, t.type, n, o, r, s, f, _, u)
-                } else if (3 == l) {
+                    e = new c.PhaseAttackSpSR(this._scene, t.type, n, o, r, s, f, _, l)
+                } else if (3 == u) {
                     var f = t.getDamage(0) + t.getDamage(1);
-                    e = new h.PhaseAttackSpRR(this._scene, t.type, n, o, r, s, f, _, u)
-                } else if (4 == l) {
+                    e = new h.PhaseAttackSpRR(this._scene, t.type, n, o, r, s, f, _, l)
+                } else if (4 == u) {
                     var f = t.getDamage(0);
-                    e = new p.PhaseAttackSpSSF(this._scene, t.type, n, o, r, s, a, f, _, u)
-                } else if (5 == l) {
+                    e = new p.PhaseAttackSpSSF(this._scene, t.type, n, o, r, s, a, f, _, l)
+                } else if (5 == u) {
                     var f = t.getDamage(0);
-                    e = new d.PhaseAttackSpSSS(this._scene, t.type, n, o, r, s, a, f, _, u)
+                    e = new d.PhaseAttackSpSSS(this._scene, t.type, n, o, r, s, a, f, _, l)
                 }
                 if (null == e) throw new Error;
                 e.preload(function () {

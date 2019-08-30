@@ -19,37 +19,52 @@ const function1309 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1310),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._spots = {}, e._flags = {}, e
+    var o = i(62),
+        r = i(1310),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
             }
-            return n(e, t), e.prototype.addSpot = function (t) {
-                this._spots[t.no] = t, this.addChild(t)
-            }, e.prototype.addFlag = function (t, e, i) {
-                var n = new o.LandingFlag;
-                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
-            }, e.prototype.getAllSpots = function () {
-                var t = [];
-                for (var e in this._spots) {
-                    var i = this._spots[e];
-                    t.push(i)
-                }
-                return t
-            }, e.prototype.getSpot = function (t) {
-                var e = t.toString();
-                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
-            }, e.prototype.getFlag = function (t) {
-                var e = t.toString();
-                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+            return n(e, t), Object.defineProperty(e.prototype, "no", {
+                get: function () {
+                    return this._no
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "route", {
+                get: function () {
+                    return this._route
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "point", {
+                get: function () {
+                    return this._point
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.isAddedSpot = function () {
+                return null != this._route
+            }, e.prototype.showLine = function () {
+                null != this._line && (this._line.visible = !0)
+            }, e.prototype.hideLine = function () {
+                null != this._line && (this._line.visible = !1)
+            }, e.prototype.setColor = function (t) {
+                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
+            }, e.prototype.getColor = function () {
+                return this._point.color
+            }, e.prototype.setRoute = function (t, e, i, n) {
+                null != this._route && (this.removeChild(this._route), this._route = null);
+                var r = new o.CenteringSprite(t);
+                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
+            }, e.prototype.setLine = function (t, e, i, n) {
+                null != this._line && (this.removeChild(this._line), this._line = null);
+                var o = new PIXI.Sprite(t);
+                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
             }, e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t in this._spots) {
-                    this._spots[t].dispose()
-                }
-                this._spots = null
+                this._point.dispose()
             }, e
         }(PIXI.Container);
-    e.MapSpotLayer = r
+    e.CompSpot = s
 }

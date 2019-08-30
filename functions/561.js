@@ -33,11 +33,11 @@ const function561 = function (t, e, i) {
             return n && e.appendChild(t.c.createTextNode(n)), e
         }
 
-        function u(t, e, i) {
+        function l(t, e, i) {
             t = t.c.getElementsByTagName(e)[0], t || (t = document.documentElement), t.insertBefore(i, t.lastChild)
         }
 
-        function l(t) {
+        function u(t) {
             t.parentNode && t.parentNode.removeChild(t)
         }
 
@@ -89,7 +89,7 @@ const function561 = function (t, e, i) {
                 o = !0, s = Error("Stylesheet failed to load"), n()
             }) : setTimeout(function () {
                 o = !0, n()
-            }, 0), u(t, "head", e)
+            }, 0), l(t, "head", e)
         }
 
         function f(t, e, i, n) {
@@ -208,7 +208,7 @@ const function561 = function (t, e, i) {
         }
 
         function N(t) {
-            u(t.c, "body", t.a)
+            l(t.c, "body", t.a)
         }
 
         function L(t) {
@@ -251,7 +251,7 @@ const function561 = function (t, e, i) {
 
         function V(t, e) {
             setTimeout(s(function () {
-                l(this.g.a), l(this.h.a), l(this.j.a), l(this.m.a), e(this.a)
+                u(this.g.a), u(this.h.a), u(this.j.a), u(this.m.a), e(this.a)
             }, t), 0)
         }
 
@@ -275,21 +275,21 @@ const function561 = function (t, e, i) {
                 if (0 === i.length && r) S(e.a);
                 else {
                     e.f += i.length, r && (e.j = r);
-                    var _, u = [];
+                    var _, l = [];
                     for (_ = 0; _ < i.length; _++) {
-                        var l = i[_],
-                            h = a[l.c],
+                        var u = i[_],
+                            h = a[u.c],
                             p = e.a,
-                            d = l;
+                            d = u;
                         if (p.g && c(p.f, [p.a.c("wf", d.c, T(d).toString(), "loading")]), M(p, "fontloading", d), p = null, null === _t)
                             if (window.FontFace) {
                                 var d = /Gecko.*Firefox\/(\d+)/.exec(window.navigator.userAgent),
                                     f = /OS X.*Version\/10\..*Safari/.exec(window.navigator.userAgent) && /Apple/.exec(window.navigator.vendor);
                                 _t = d ? 42 < parseInt(d[1], 10) : !f
                             } else _t = !1;
-                        p = _t ? new B(s(e.g, e), s(e.h, e), e.c, l, e.s, h) : new R(s(e.g, e), s(e.h, e), e.c, l, e.s, t, h), u.push(p)
+                        p = _t ? new B(s(e.g, e), s(e.h, e), e.c, u, e.s, h) : new R(s(e.g, e), s(e.h, e), e.c, u, e.s, t, h), l.push(p)
                     }
-                    for (_ = 0; _ < u.length; _++) u[_].start()
+                    for (_ = 0; _ < l.length; _++) l[_].start()
                 }
             }, 0)
         }
@@ -314,7 +314,7 @@ const function561 = function (t, e, i) {
         }
 
         function J(t, e) {
-            this.c = t || ut, this.a = [], this.f = [], this.g = e || ""
+            this.c = t || lt, this.a = [], this.f = [], this.g = e || ""
         }
 
         function Z(t, e) {
@@ -345,23 +345,23 @@ const function561 = function (t, e, i) {
                 if (2 <= n.length) {
                     var s, a = n[1];
                     if (s = [], a)
-                        for (var a = a.split(","), _ = a.length, u = 0; u < _; u++) {
-                            var l;
-                            if (l = a[u], l.match(/^[\w-]+$/)) {
-                                var c = pt.exec(l.toLowerCase());
-                                if (null == c) l = "";
+                        for (var a = a.split(","), _ = a.length, l = 0; l < _; l++) {
+                            var u;
+                            if (u = a[l], u.match(/^[\w-]+$/)) {
+                                var c = pt.exec(u.toLowerCase());
+                                if (null == c) u = "";
                                 else {
-                                    if (l = c[2], l = null == l || "" == l ? "n" : ht[l], null == (c = c[1]) || "" == c) c = "4";
+                                    if (u = c[2], u = null == u || "" == u ? "n" : ht[u], null == (c = c[1]) || "" == c) c = "4";
                                     else var h = ct[c],
                                         c = h || (isNaN(c) ? "4" : c.substr(0, 1));
-                                    l = [l, c].join("")
+                                    u = [u, c].join("")
                                 }
-                            } else l = "";
-                            l && s.push(l)
+                            } else u = "";
+                            u && s.push(u)
                         }
-                    0 < s.length && (r = s), 3 == n.length && (n = n[2], s = [], n = n ? n.split(",") : s, 0 < n.length && (n = lt[n[0]]) && (t.c[o] = n))
+                    0 < s.length && (r = s), 3 == n.length && (n = n[2], s = [], n = n ? n.split(",") : s, 0 < n.length && (n = ut[n[0]]) && (t.c[o] = n))
                 }
-                for (t.c[o] || (n = lt[o]) && (t.c[o] = n), n = 0; n < r.length; n += 1) t.a.push(new w(o, r[n]))
+                for (t.c[o] || (n = ut[o]) && (t.c[o] = n), n = 0; n < r.length; n += 1) t.a.push(new w(o, r[n]))
             }
         }
 
@@ -465,14 +465,14 @@ const function561 = function (t, e, i) {
             var a = [];
             for (e = 0, i = o.length; e < i; e++)
                 if (n = o[e].split(":"), n[1])
-                    for (var _ = n[1].split(","), u = 0; u < _.length; u += 1) a.push(new w(n[0], _[u]));
+                    for (var _ = n[1].split(","), l = 0; l < _.length; l += 1) a.push(new w(n[0], _[l]));
                 else a.push(new w(n[0]));
             g(s, function () {
                 t(a, r)
             })
         };
-        var ut = "https://fonts.googleapis.com/css",
-            lt = {
+        var lt = "https://fonts.googleapis.com/css",
+            ut = {
                 latin: "BESbswy",
                 "latin-ext": "\xe7\xf6\xfc\u011f\u015f",
                 cyrillic: "\u0439\u044f\u0416",

@@ -37,17 +37,17 @@ const function697 = function (t, e, i) {
                     var _ = new s.ShipBanner;
                     _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.firstShipInDeckBanners.push(_), i.addChild(_)
                 }
-                var u = new PIXI.Container;
-                u.position.set(678, 153), e.secondShipInDeckBanners = new Array;
+                var l = new PIXI.Container;
+                l.position.set(678, 153), e.secondShipInDeckBanners = new Array;
                 for (var n = 0; n < 6; n++) {
                     var _ = new s.ShipBanner;
-                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), u.addChild(_)
+                    _.scale.set(.75, .75), _.y = 51 * n, _.visible = !1, e.secondShipInDeckBanners.push(_), l.addChild(_)
                 }
                 e.background = new PIXI.Sprite;
-                var l = o.ORGANIZE_MAIN.getTexture(15);
-                e.buttonOrganize = new PIXI.Sprite(l);
+                var u = o.ORGANIZE_MAIN.getTexture(15);
+                e.buttonOrganize = new PIXI.Sprite(u);
                 var c = o.ORGANIZE_MAIN.getTexture(8);
-                return e.buttonBack = new PIXI.Sprite(c), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(18, 16777215), e.secondDeckName = new r.TextBox(18, 16777215), e.firstDeckName.position.set(60, 122), e.secondDeckName.position.set(667, 122), e.buttonOrganize.position.set(300, 420), e.buttonBack.position.set(480, 420), e.buttonOrganize.interactive = e.buttonOrganize.buttonMode = !0, e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonOrganize.addListener(a.EventType.CLICK, e._onClickYES), e.buttonBack.addListener(a.EventType.CLICK, e._onClickNO), e.addChild(e.background, e.message, e.buttonOrganize, e.buttonBack, e.firstDeckName, e.secondDeckName, i, u), e
+                return e.buttonBack = new PIXI.Sprite(c), e.message = new PIXI.Sprite, e.firstDeckName = new r.TextBox(18, 16777215), e.secondDeckName = new r.TextBox(18, 16777215), e.firstDeckName.position.set(60, 122), e.secondDeckName.position.set(667, 122), e.buttonOrganize.position.set(300, 420), e.buttonBack.position.set(480, 420), e.buttonOrganize.interactive = e.buttonOrganize.buttonMode = !0, e.buttonBack.interactive = e.buttonBack.buttonMode = !0, e.buttonOrganize.addListener(a.EventType.CLICK, e._onClickYES), e.buttonBack.addListener(a.EventType.CLICK, e._onClickNO), e.addChild(e.background, e.message, e.buttonOrganize, e.buttonBack, e.firstDeckName, e.secondDeckName, i, l), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren();

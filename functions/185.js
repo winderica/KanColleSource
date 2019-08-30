@@ -23,15 +23,15 @@ const function185 = function (t, e, i) {
         r = i(0),
         s = i(45),
         a = i(7),
-        _ = i(42),
-        u = i(2),
-        l = i(17),
+        _ = i(43),
+        l = i(2),
+        u = i(17),
         c = i(6),
         h = i(44),
-        p = i(1361),
-        d = i(1362),
+        p = i(1366),
+        d = i(1367),
         f = i(65),
-        y = i(255),
+        y = i(256),
         m = function (t) {
             function e(e, i, n, s, a) {
                 void 0 === a && (a = 0);
@@ -106,10 +106,10 @@ const function185 = function (t, e, i) {
                         t.deactivate(), _._view.removeChild(t), _._view.removeChild(e), _._endTask()
                     })
                 }, _._attacker = e, _._plane = i, _._slot1 = n, _._slot2 = s, _._telopType = a, _._friend = _._attacker.friend, _._canvas = new d.CutinDanchakuCanvas, _._view = new PIXI.Container, _.view.addChild(_._canvas), _._ship = new PIXI.Sprite;
-                var u = null == _._plane ? 0 : _._plane.mstID,
-                    l = null == _._slot1 ? 0 : _._slot1.mstID,
+                var l = null == _._plane ? 0 : _._plane.mstID,
+                    u = null == _._slot1 ? 0 : _._slot1.mstID,
                     f = null == _._slot2 ? 0 : _._slot2.mstID;
-                return _._preload_task = new p.PreloadCutinDanchaku(e, u, l, f, _._telopType), _
+                return _._preload_task = new p.PreloadCutinDanchaku(e, l, u, f, _._telopType), _
             }
             return n(e, t), Object.defineProperty(e.prototype, "view", {
                 get: function () {
@@ -122,7 +122,7 @@ const function185 = function (t, e, i) {
             }, e.prototype._start = function () {
                 var t = this;
                 this._canvas.initialize(this._friend, this._telopType);
-                var e = new l.FadeBox(1);
+                var e = new u.FadeBox(1);
                 e.hide(0), this._canvas.addChild(e), e.show(50, function () {
                     e.hide(50, function () {
                         t._canvas.removeChild(e), t._canvas.bg.show(250, t._preAnim)
@@ -162,7 +162,7 @@ const function185 = function (t, e, i) {
                 }).to({
                     alpha: 1
                 }, 200);
-                var e = new l.FadeBox(1, 16777215);
+                var e = new u.FadeBox(1, 16777215);
                 e.alpha = 0, this._view.addChild(e), createjs.Tween.get(e).wait(300).to({
                     alpha: 1
                 }, 500).call(this._anim6, [t, e])
@@ -175,18 +175,18 @@ const function185 = function (t, e, i) {
                         n = a.ObjUtil.getNumber(i, "x"),
                         o = a.ObjUtil.getNumber(i, "y"),
                         r = a.ObjUtil.getNumber(i, "r"),
-                        u = a.ObjUtil.getNumber(i, "sx", 1);
+                        l = a.ObjUtil.getNumber(i, "sx", 1);
                     return {
                         x: n,
                         y: o,
                         rotation: -r / 180 * Math.PI * (this._friend ? 1 : -1),
-                        scale_x: u * e * (this._friend ? 1 : -1),
-                        scale_y: Math.abs(u)
+                        scale_x: l * e * (this._friend ? 1 : -1),
+                        scale_y: Math.abs(l)
                     }
                 }
                 return null
             }, e
-        }(u.TaskBase);
+        }(l.TaskBase);
     e.CutinDanchaku = m;
     var g = function (t) {
         function e() {

@@ -5,12 +5,12 @@ const function834 = function (t, e, i) {
     });
     var n = i(0),
         o = i(8),
-        r = i(339),
+        r = i(340),
         s = i(51),
         a = i(837),
         _ = i(838),
-        u = i(839),
-        l = function () {
+        l = i(839),
+        u = function () {
             function t(t) {
                 var e = this;
                 this._onClickSign = function () {
@@ -41,7 +41,7 @@ const function834 = function (t, e, i) {
                     }, 250).call(function () {
                         n.default.view.clickGuard = !1, n.default.view.overLayer.removeChild(e.clickGuardMarriageConfirm), n.default.view.overLayer.removeChild(e.marriageAlert), e.onComplete()
                     })
-                }, this.mainView = t, this.marriageConfirm = new u.MarriageConfirm(this._onClickSign, this._onClickConfirmBack), this.marriageAlert = new _.MarriageAlert, this.clickGuardMarriageConfirm = new o.AreaBox(.5)
+                }, this.mainView = t, this.marriageConfirm = new l.MarriageConfirm(this._onClickSign, this._onClickConfirmBack), this.marriageAlert = new _.MarriageAlert, this.clickGuardMarriageConfirm = new o.AreaBox(.5)
             }
             return t.prototype.start = function (t) {
                 var e = n.default.model.useItem.get(s.RemodelConst.MARRIAGE_RING_ITEMID).count;
@@ -62,5 +62,5 @@ const function834 = function (t, e, i) {
                 this.marriageAlert.onClickBack = this._onClickAlertBack = null, this.onUpdateShip = null, this.onComplete = null, this.mainView = null, this.marriageConfirm && this.marriageConfirm.dispose(), this.marriageAlert && this.marriageAlert.dispose(), this.marriageConfirm = null, this.marriageAlert = null, this.clickGuardMarriageConfirm = null, this.memShipId = null
             }, t
         }();
-    e.TaskMarriage = l
+    e.TaskMarriage = u
 }

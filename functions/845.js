@@ -24,7 +24,7 @@ const function845 = function (t, e, i) {
         s = i(51),
         a = i(3),
         _ = i(846),
-        u = function (t) {
+        l = function (t) {
             function e(e, i, n, o, r, s, a) {
                 var _ = t.call(this, 0) || this;
                 return _._onMove = function (t) {
@@ -59,11 +59,11 @@ const function845 = function (t, e, i) {
                     r.hitArea = new PIXI.Rectangle(0, 0, s.RemodelConst.DETAIL_LISTITEM.WIDTH, s.RemodelConst.DETAIL_LISTITEM.HEIGHT);
                     var _ = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(22));
                     _.alpha = 0, _.name = "over", _.position.set(-30, 0), r.addChild(_);
-                    var u = t.x + i._slotItems[n].x,
-                        l = t.y + i._slotItems[n].y;
-                    r.position.set(u, l), i._slotArea.push(r), i._drag.addChild(r)
+                    var l = t.x + i._slotItems[n].x,
+                        u = t.y + i._slotItems[n].y;
+                    r.position.set(l, u), i._slotArea.push(r), i._drag.addChild(r)
                 }), this._dragSlotItem = new _.SimpleSlotItemSlot, this._dragSlotItem.update(this._equipmentList[this._beforeIndex]), this._dragSlotItem.pivot.set(Math.round(this._dragSlotItem.width / 2), Math.round(this._dragSlotItem.height / 2)), this._dragSlotItem.position.set(e.x, e.y), this._drag.addChild(this._dragSlotItem), this.addChild(this._drag), a.SE.play("237"), this.on(r.EventType.MOUSEMOVE, this._onMove), this.on(r.EventType.MOUSEUP, this._onUp), this.on(r.EventType.MOUSEOUT, this._onOut)
             }, e
         }(o.AreaBox);
-    e.SlotItemDragging = u
+    e.SlotItemDragging = l
 }

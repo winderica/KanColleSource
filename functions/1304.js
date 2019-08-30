@@ -19,52 +19,84 @@ const function1304 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(62),
-        r = i(1305),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._no = e, n._offsets = i, n._point = new r.SpotPointImage, n.addChild(n._point), n
+    var o = i(152),
+        r = i(50),
+        s = i(434),
+        a = i(1305),
+        _ = i(1306),
+        l = i(1320),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new l.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e._anchorage_repair_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e.addChild(e._anchorage_repair_layer), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "no", {
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
                 get: function () {
-                    return this._no
+                    return this._bg
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "route", {
+            }), Object.defineProperty(e.prototype, "shutter", {
                 get: function () {
-                    return this._route
+                    return this._shutter
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "point", {
+            }), Object.defineProperty(e.prototype, "map", {
                 get: function () {
-                    return this._point
+                    return this._map
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.isAddedSpot = function () {
-                return null != this._route
-            }, e.prototype.showLine = function () {
-                null != this._line && (this._line.visible = !0)
-            }, e.prototype.hideLine = function () {
-                null != this._line && (this._line.visible = !1)
-            }, e.prototype.setColor = function (t) {
-                this._point.update(t), this._offsets.hasOwnProperty(t.toString()) ? (this._point.x = this._offsets[t].x, this._point.y = this._offsets[t].y) : (this._point.x = 0, this._point.y = 0)
-            }, e.prototype.getColor = function () {
-                return this._point.color
-            }, e.prototype.setRoute = function (t, e, i, n) {
-                null != this._route && (this.removeChild(this._route), this._route = null);
-                var r = new o.CenteringSprite(t);
-                r.x = e + Math.round(r.width / 2), r.y = i + Math.round(r.height / 2), r.rotation = n / 180 * Math.PI, this.addChildAt(r, 0), this._route = r
-            }, e.prototype.setLine = function (t, e, i, n) {
-                null != this._line && (this.removeChild(this._line), this._line = null);
-                var o = new PIXI.Sprite(t);
-                o.x = e, o.y = i, o.rotation = n / 180 * Math.PI, o.visible = !1, this.addChild(o), this._line = o
+            }), Object.defineProperty(e.prototype, "upper", {
+                get: function () {
+                    return this._upper
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "gauge_layer", {
+                get: function () {
+                    return this._gauge_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara_layer", {
+                get: function () {
+                    return this._chara_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "universal_layer", {
+                get: function () {
+                    return this._universal_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "top_layer", {
+                get: function () {
+                    return this._top_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "anchorage_repair_leyer", {
+                get: function () {
+                    return this._anchorage_repair_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
             }, e.prototype.dispose = function () {
-                this._point.dispose()
+                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
+            }, e.prototype.frontOfGaugeLayer = function () {
+                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
             }, e
         }(PIXI.Container);
-    e.CompSpot = s
+    e.ViewMain = u
 }

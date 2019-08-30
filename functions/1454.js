@@ -20,83 +20,69 @@ const function1454 = function (t, e, i) {
         value: !0
     });
     var o = i(22),
-        r = function (t) {
+        r = i(23),
+        s = i(12),
+        a = i(16),
+        _ = i(1455),
+        l = i(1456),
+        u = i(1459),
+        c = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._friend = !1, e._combined = !1, e.visible = !1, e
+                return e._img = new _.BannerImage, e._flagship_mark = new PIXI.Sprite, e._flagship_mark.position.set(210, 6), e._frame = new l.BannerFrame, e._frame.alpha = 0, e._layer_color = new u.BannerOverlay, e._layer_over = new PIXI.Sprite, e.addChild(e._img), e.addChild(e._flagship_mark), e.addChild(e._frame), e.addChild(e._layer_color), e.addChild(e._layer_over), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "combined", {
-                set: function (t) {
-                    this._combined = t
+            return n(e, t), Object.defineProperty(e.prototype, "img", {
+                get: function () {
+                    return this._img
                 },
                 enumerable: !0,
                 configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                this._friend = t, this._combined = e
-            }, e.prototype.show = function (t, e) {
-                void 0 === t && (t = 16711680), void 0 === e && (e = .5), this._draw(t, e), this.alpha = 1, this.visible = !0
-            }, e.prototype.playDamageAnimation = function () {
-                var t = this;
-                this._stop(), this.alpha = 0, this.visible = !0, this._draw(16711680, .5), this._t = createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 300).to({
-                    alpha: 0
-                }, 500).call(function () {
-                    t.visible = !1, t._t = null
+            }), Object.defineProperty(e.prototype, "flagship_mark", {
+                get: function () {
+                    return this._flagship_mark
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "frame", {
+                get: function () {
+                    return this._frame
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_color", {
+                get: function () {
+                    return this._layer_color
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "layer_over", {
+                get: function () {
+                    return this._layer_over
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n, r, s, _, l) {
+                if (this._img.initialize(t, e, i, _, l, s, r), 1 == s && (1 == r ? this._img.x += 7 : this._img.x -= 78), 0 == n && (this._flagship_mark.texture = a.BATTLE_MAIN.getTexture(48), 0 == r && 1 == s && (this._flagship_mark.alpha = .5, this._flagship_mark.x = 135)), this._frame.initialize(e, i, n, r, s), s) {
+                    var u = new PIXI.Graphics;
+                    u.beginFill(0), u.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), u.endFill(), this._img.mask = u, this.addChild(u)
+                }
+                this.layer_color.initialize(r, s)
+            }, e.prototype.updateHp = function (t, e) {
+                this._img.update(t, e), this._frame.updateHp(t, e)
+            }, e.prototype.waveOver = function (t) {
+                var e = this,
+                    i = new s.Sprite(a.BATTLE_MAIN.getTexture(84));
+                i.position.set(o.BannerSize.W / 2, o.BannerSize.H / 2), i.scale.set(0), i.anchor.set(.5), this._layer_over.addChild(i), createjs.Tween.get(i).wait(t).to({
+                    scaleX: .75,
+                    scaleY: .75
+                }, 400).to({
+                    alpha: 0,
+                    scaleX: 1,
+                    scaleY: 1
+                }, 200).call(function () {
+                    e._layer_over.removeChild(i)
                 })
-            }, e.prototype.playShieldAnimation = function () {
-                var t = this;
-                this._stop(), this._draw(16777088, 0), this.alpha = 1, this.visible = !0;
-                var e = {
-                        r: 255,
-                        g: 255,
-                        b: 128,
-                        a: 0
-                    },
-                    i = function (e) {
-                        var i = e.target.target,
-                            n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t._draw(n, i.a)
-                    };
-                this._t = createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: .75
-                }, 233).to({
-                    r: 128,
-                    g: 255,
-                    b: 255
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    r: 255,
-                    g: 255,
-                    b: 255
-                }, 166).call(function () {
-                    t.visible = !1, t._t = null
-                })
-            }, e.prototype._stop = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e.prototype._draw = function (t, e) {
-                if (this.clear(), this._combined)
-                    if (this._friend) {
-                        for (var i = o.BannerSize.W / 5 * 2 - Math.ceil(e / .025), n = i; n < o.BannerSize.W / 5 * 2; n++) {
-                            var r = Math.min(.025 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                        this.beginFill(t, e), this.drawRect(o.BannerSize.W / 5 * 2, 0, o.BannerSize.W - o.BannerSize.W / 5 * 2, o.BannerSize.H), this.endFill()
-                    } else {
-                        var i = o.BannerSize.W / 5 * 3;
-                        this.beginFill(t, e), this.drawRect(0, 0, i, o.BannerSize.H), this.endFill();
-                        for (var n = i; n < o.BannerSize.W; n++) {
-                            var r = Math.min(1 - .05 * (n - i), e);
-                            this.beginFill(t, r), this.drawRect(n, 0, 1, o.BannerSize.H), this.endFill()
-                        }
-                    }
-                else this.beginFill(t, e), this.drawRect(0, 0, o.BannerSize.W, o.BannerSize.H), this.endFill()
             }, e
-        }(PIXI.Graphics);
-    e.BannerOverlay = r
+        }(r.Container);
+    e.BannerContent = c
 }

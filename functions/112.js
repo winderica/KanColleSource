@@ -32,12 +32,12 @@ const function112 = function (t, e, i) {
                     a = new PIXI.Graphics,
                     _ = new PIXI.Graphics;
                 i = o.default.resources.getUIImage("hpgauge/hp_gauge_mask.png", "common");
-                var u = new PIXI.Sprite(i);
+                var l = new PIXI.Sprite(i);
                 s.position.set(-34, -27), s.texture = o.default.resources.getUIImage("hpgauge/hp_s_red_light.png", "common"), s.visible = !1, a.beginFill(16777215), a.drawRect(0, 0, 98, 11), a.endFill();
-                var l = new PIXI.Container;
-                l.mask = n, l.addChild(a, n), l.cacheAsBitmap = !0;
+                var u = new PIXI.Container;
+                u.mask = n, u.addChild(a, n), u.cacheAsBitmap = !0;
                 var c = new PIXI.Container;
-                return c.mask = u, c.addChild(_, u), e.addChild(l, s, c, r), e.spriteRedLight = s, e.graphicsGauge = _, e.containerGaugeBackground = l, e.containerGauge = c, e
+                return c.mask = l, c.addChild(_, l), e.addChild(u, s, c, r), e.spriteRedLight = s, e.graphicsGauge = _, e.containerGaugeBackground = u, e.containerGauge = c, e
             }
             return n(e, t), e.prototype.update = function (t, e) {
                 var i = t / e * 100;

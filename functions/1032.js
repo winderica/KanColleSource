@@ -23,14 +23,14 @@ const function1032 = function (t, e, i) {
         r = i(4),
         s = i(111),
         a = i(37),
-        _ = i(9),
-        u = i(53),
-        l = i(229),
-        c = i(362),
+        _ = i(10),
+        l = i(53),
+        u = i(229),
+        c = i(363),
         h = i(230),
-        p = i(366),
+        p = i(367),
         d = i(1033),
-        f = i(373),
+        f = i(374),
         y = i(1034),
         m = function (t) {
             function e(e) {
@@ -46,14 +46,14 @@ const function1032 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function (t, e, i, n) {
-                this._bg.texture = u.SALLY_PRACTICE.getTexture(35);
-                var a = new PIXI.Sprite(u.SALLY_PRACTICE.getTexture(29));
-                a.position.set(40, 57), this._bg.addChild(a), a = new PIXI.Sprite(u.SALLY_PRACTICE.getTexture(33)), a.position.set(102, 64), this._bg.addChild(a);
+                this._bg.texture = l.SALLY_PRACTICE.getTexture(35);
+                var a = new PIXI.Sprite(l.SALLY_PRACTICE.getTexture(29));
+                a.position.set(40, 57), this._bg.addChild(a), a = new PIXI.Sprite(l.SALLY_PRACTICE.getTexture(33)), a.position.set(102, 64), this._bg.addChild(a);
                 for (var f = 0; f < 6; f++) {
                     var m = new c.CompBannerAndLack;
                     m.initialize(), m.position.set(0, 76 * f), this._ship_container.addChild(m), this._ships.push(m)
                 }
-                if (this._deck_selection = new h.CompDeckBtns(this._onChangeDeck), this._deck_selection.initialize(t), this._btn_back = new d.BackBtn(n), this._btn_back.initialize(), this._btn = new y.StartPracticeBtn(i), this._btn.initialize(), this._rader = new p.Rader, this._rader.initialize(), this._arrow = new l.CompArrow2, this._arrow.initialize(), this._err_message = new r.TextBox(16, 16724736), this._deck_selection.position.set(270, 120), this._btn_back.position.set(306, 615), this._btn.position.set(558, 615), this._rader.position.set(556, 138), this._arrow.position.set(823, 616), this._err_message.anchor.set(.5, 0), this._err_message.position.set(750, 576), this.addChild(this._deck_selection), this.addChild(this._rader), this.addChild(this._arrow), this.addChild(this._btn_back), this.addChild(this._btn), this.addChild(this._err_message), o.default.model.deck.exist3rdUnit) {
+                if (this._deck_selection = new h.CompDeckBtns(this._onChangeDeck), this._deck_selection.initialize(t), this._btn_back = new d.BackBtn(n), this._btn_back.initialize(), this._btn = new y.StartPracticeBtn(i), this._btn.initialize(), this._rader = new p.Rader, this._rader.initialize(), this._arrow = new u.CompArrow2, this._arrow.initialize(), this._err_message = new r.TextBox(16, 16724736), this._deck_selection.position.set(270, 120), this._btn_back.position.set(306, 615), this._btn.position.set(558, 615), this._rader.position.set(556, 138), this._arrow.position.set(823, 616), this._err_message.anchor.set(.5, 0), this._err_message.position.set(750, 576), this.addChild(this._deck_selection), this.addChild(this._rader), this.addChild(this._arrow), this.addChild(this._btn_back), this.addChild(this._btn), this.addChild(this._err_message), o.default.model.deck.exist3rdUnit) {
                     var g = new PIXI.Sprite(_.COMMON_MISC.getTexture(185));
                     g.position.set(346, 98), this.addChild(g)
                 }
@@ -86,9 +86,9 @@ const function1032 = function (t, e, i) {
                 var i = t.getCount();
                 if (0 == i) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");
                 if (i > 6) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u904a\u6483\u90e8\u968a \u7b2c\u4e09\u90e8\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
-                for (var n = o.default.model.ndock.getShipMemIDs(), r = !1, s = !1, a = !0, _ = 0, u = e; _ < u.length; _++) {
-                    var l = u[_];
-                    null != l && (-1 != n.indexOf(l.memID) && (r = !0), (l.fuelNow <= 0 || l.ammoNow <= 0) && (s = !0), (l.fuelNow < l.fuelMax || l.ammoNow < l.ammoMax) && (a = !1))
+                for (var n = o.default.model.ndock.getShipMemIDs(), r = !1, s = !1, a = !0, _ = 0, l = e; _ < l.length; _++) {
+                    var u = l[_];
+                    null != u && (-1 != n.indexOf(u.memID) && (r = !0), (u.fuelNow <= 0 || u.ammoNow <= 0) && (s = !0), (u.fuelNow < u.fuelMax || u.ammoNow < u.ammoMax) && (a = !1))
                 }
                 if (this._arrow.update(a), t.isCombined_Main() || t.isCombined_Sub()) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "\u9023\u5408\u8266\u968a\u3067\u306f\u51fa\u6483\u3067\u304d\u307e\u305b\u3093\u3002");
                 if (null != t.expedition) return this._arrow.enabled = !1, this._btn.setEnabled(!1), void(this._err_message.text = "");

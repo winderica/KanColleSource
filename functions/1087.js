@@ -20,37 +20,46 @@ const function1087 = function (t, e, i) {
         value: !0
     });
     var o = i(1),
-        r = i(70),
-        s = i(37),
-        a = i(3),
-        _ = i(4),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                i._onClick = function () {
-                    null != i._cb_onClick && i._cb_onClick(i._target)
-                }, i._cb_onClick = e;
-                var n = new PIXI.Container;
-                i._no = new PIXI.Sprite, i._no.position.set(0, 10), n.addChild(i._no), i._label = new _.TextBox(28, 4999235), i._label.position.set(37, 0), i._label.text = "", n.addChild(i._label), i.addChild(n);
-                var o = new PIXI.Container;
-                return o.position.set(0, 34), i._bg = new PIXI.Sprite, o.addChild(i._bg), i._img = new PIXI.Sprite, i._img.position.set(2, 2), i._img.scale.set(.5), o.addChild(i._img), i._ring = new r.RingMiddle, i._ring.position.set(114, 175), i._ring.visible = !1, o.addChild(i._ring), i.addChild(o), i._bg.interactive = !0, i
+        r = i(131),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._activated = !1, n._onMouseOver = function () {
+                    n._update(!0)
+                }, n._onMouseOut = function () {
+                    n._update(!1)
+                }, n._onClick = function () {
+                    null != n._cb_onClick && null != n._cb_onChange && (n._cb_onClick(), n._cb_onChange(n._mode, 0))
+                }, n._mode = 1, n._cb_onChange = i, n._cb_onClick = e, n.interactive = !0, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._no.texture = a.ALBUM_MAIN.getTexture(19), this._bg.texture = a.ALBUM_MAIN.getTexture(15)
+            return n(e, t), Object.defineProperty(e.prototype, "mode", {
+                get: function () {
+                    return this._mode
+                },
+                set: function (t) {
+                    this._mode = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._ship_texture_cache = r.ALBUM_MAIN.getTexture(24), this._ship_texture_on_cache = r.ALBUM_MAIN.getTexture(25), this._slot_texture_cache = r.ALBUM_MAIN.getTexture(22), this._slot_texture_on_cache = r.ALBUM_MAIN.getTexture(23), this._update(!1)
             }, e.prototype.update = function (t) {
-                if (this._target = t, this._img.texture = PIXI.Texture.EMPTY, this._ring.visible = !1, null != t) {
-                    var e = t.mst_ids[0];
-                    this._ring.initialize(), this._ring.visible = t.hasMarriage(), this._ring.deactivate(), 1 == this._ring.visible && this._ring.activate(), new s.TaskLoadShipResource("card", this._img, e, !1).start()
-                }
-            }, e.prototype.updateLabel = function (t) {
-                this._label.text = t
+                this._update(t)
             }, e.prototype.activate = function () {
-                null != this._target && 1 != this._bg.buttonMode && (this._bg.buttonMode = !0, this._bg.on(o.EventType.CLICK, this._onClick), this._ring.activate())
+                1 != this._activated && (this._activated = !0, this._activate())
             }, e.prototype.deactivate = function () {
-                this._bg.buttonMode = !1, this._bg.off(o.EventType.CLICK, this._onClick), this._ring.deactivate()
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this.deactivate(), this._ring.dispose(), this._label.destroy(), this._target = null, this._bg = null, this._img = null, this._ring = null, this._no = null, this._label = null, this._cb_onClick = null
+                this.deactivate(), this._slot_texture_cache = null, this._slot_texture_on_cache = null, this._ship_texture_cache = null, this._ship_texture_on_cache = null, this._cb_onChange = null, this._cb_onClick = null
+            }, e.prototype.addOnceClickEvent = function () {
+                this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._update = function (t) {
+                1 == t ? 1 == this._mode ? this.texture = this._slot_texture_on_cache : this.texture = this._ship_texture_on_cache : 1 == this._mode ? this.texture = this._slot_texture_cache : this.texture = this._ship_texture_cache
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.once(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
             }, e
-        }(PIXI.Container);
-    e.MainItemShip = u
+        }(PIXI.Sprite);
+    e.AlbumModeSwitchBtn = s
 }

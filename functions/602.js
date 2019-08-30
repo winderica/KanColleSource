@@ -30,9 +30,9 @@ const function602 = function (t, e, i) {
                     1 == e._opened ? e.close() : e.open()
                 }, e._onAnimationComplete = function () {
                     e._tween = null, e._opened = !e._opened, e._btn.update(e._opened), e._btn.activate(e._onClick)
-                }, e._bg = new PIXI.Sprite, e._bg.y = -32, e.addChild(e._bg), e._btn = new u, e._btn.position.set(3, -27), e.addChild(e._btn), e._items = [];
+                }, e._bg = new PIXI.Sprite, e._bg.y = -32, e.addChild(e._bg), e._btn = new l, e._btn.position.set(3, -27), e.addChild(e._btn), e._items = [];
                 for (var i = 0; i < 5; i++) {
-                    var n = new l;
+                    var n = new u;
                     n.position.set(54, 51 + 36 * i), e.addChild(n), e._items.push(n)
                 }
                 return e
@@ -73,7 +73,7 @@ const function602 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.LogBox = _;
-    var u = function (t) {
+    var l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._onClick = function () {
@@ -90,7 +90,7 @@ const function602 = function (t, e, i) {
                 this._cb_onClick = null, this.deactivate()
             }, e
         }(PIXI.Graphics),
-        l = function (t) {
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._type = new PIXI.Sprite, e._type.position.set(-23, -12), e.addChild(e._type), e._text = new r.TextBox(17, 1949120), e._text.position.set(33, -12), e.addChild(e._text), e

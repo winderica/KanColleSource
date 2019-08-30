@@ -22,12 +22,12 @@ const function1039 = function (t, e, i) {
     var o = i(0),
         r = i(227),
         s = i(1040),
-        a = i(1045),
-        _ = i(1051),
-        u = i(378),
-        l = i(1052),
+        a = i(1046),
+        _ = i(1052),
+        l = i(379),
+        u = i(1053),
         c = i(84),
-        h = i(377),
+        h = i(378),
         p = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
@@ -48,7 +48,9 @@ const function1039 = function (t, e, i) {
                     return t.onClick = function (t) {
                         return n._onClickArea(t)
                     }
-                }), r.list.items.forEach(function (t) {
+                }), r.eventAreaIcon.onClick = function (t) {
+                    return n._onClickArea(t)
+                }, r.list.items.forEach(function (t) {
                     t.onClick = function (t) {
                         return n._onClickListItem(t)
                     }
@@ -71,7 +73,7 @@ const function1039 = function (t, e, i) {
             }, e.prototype.activate = function () {
                 this._expeditionStage.interactive = !0, this._expeditionStage.interactiveChildren = !0, this._expeditionStage.compSwitch.activate(), this._expeditionStage.nextButton.activate(), this._expeditionStage.prevButton.activate(), this._startCycle()
             }, e.prototype.deactivate = function () {
-                this._expeditionStage.interactive = !1, this._expeditionStage.interactiveChildren = !1, this._deckSelect && this._deckSelect.deactivate()
+                this._expeditionStage.interactive = !1, this._expeditionStage.interactiveChildren = !1, this._deckSelect && this._deckSelect.deactivate(), this._expeditionStage.eventAreaIcon.deactivate()
             }, e.prototype.dispose = function () {
                 this._stopCycle(), this._deckSelect && (this._deckSelect.dispose(), this._deckSelect = null), this._expeditionStage.dispose(), this._expeditionStage = null, this._area_mst_id = null, this._pageSeekIndex = null, this._requestAnimationFrameID = null, this._switch_func = null, this._deckInfo = null, this._area_expeditions = null, this._lastFrameUpdateTimeMS = null, this._INTERVAL_UPDATE_TIME = null
             }, e.prototype._startCycle = function () {
@@ -125,17 +127,17 @@ const function1039 = function (t, e, i) {
                     s.getShipList().forEach(function (t) {
                         t && _.push(t.shipTypeID)
                     });
-                    var u = s.getShipModel(0);
-                    this._expeditionStage.detail.updateMember(a.state, a.complete_unixtime, _, r, s.name, u, !1), this._expeditionStage.detail.updateInterface(Date.now())
+                    var l = s.getShipModel(0);
+                    this._expeditionStage.detail.updateMember(a.state, a.complete_unixtime, _, r, s.name, l, !1), this._expeditionStage.detail.updateInterface(Date.now())
                 } else {
-                    var l = 0 < e.reset_type,
+                    var u = 0 < e.reset_type,
                         c = 2 == e.state,
                         p = this._expeditionStage.list.items.some(function (e) {
                             var i = e.expedition_mst_id == t ? e.expeditionStateIcon.viewState : h.ExpeditionState.NONE;
                             return h.ExpeditionState.TIME_OVER_MONTHLY == i
                         }),
                         d = !0;
-                    l && (c || p) && (d = !1), this._expeditionStage.detail.updateMember(0, null, null, null, null, null, d)
+                    u && (c || p) && (d = !1), this._expeditionStage.detail.updateMember(0, null, null, null, null, null, d)
                 }
             }, e.prototype._updateDeckInfo = function () {
                 for (var t = {}, e = o.default.model.deck.getAll(), i = 0; i < e.length; i++) {
@@ -152,12 +154,12 @@ const function1039 = function (t, e, i) {
                         s = 0 == n ? h.ListType.HEADER : n == this._expeditionStage.list.items.length - 1 ? h.ListType.FOOTER : h.ListType.CENTER;
                         var a = i[n],
                             _ = a.win_mat_level,
-                            u = this._genWinItemInfo(a),
-                            l = a.sample_fleet.filter(function (t) {
+                            l = this._genWinItemInfo(a),
+                            u = a.sample_fleet.filter(function (t) {
                                 return 0 != t
                             }),
                             c = 0 < a.reset_type;
-                        r.updateMaster(a.mstID, a.dispID, a.name, a.difficulty, a.time, a.damage_type, l, a.required_num, _[0], _[1], _[2], _[3], u.rewardBuildKit, u.rewardRepairKit, u.rewardDevKit, u.rewardOtherItem, c);
+                        r.updateMaster(a.mstID, a.dispID, a.name, a.difficulty, a.time, a.damage_type, u, a.required_num, _[0], _[1], _[2], _[3], l.rewardBuildKit, l.rewardRepairKit, l.rewardDevKit, l.rewardOtherItem, c);
                         var p = this._verificationTimeMS + 60 * a.time * 1e3,
                             d = p > 1e3 * e;
                         if (this._deckInfo[a.mstID]) {
@@ -170,12 +172,16 @@ const function1039 = function (t, e, i) {
                 this._expeditionStage.prevButton.visible = !1, 0 < t && (this._expeditionStage.prevButton.visible = !0), this._expeditionStage.nextButton.visible = !1, t + this._expeditionStage.list.items.length < this._area_expeditions.length && (this._expeditionStage.nextButton.visible = !0), this._pageSeekIndex = t
             }, e.prototype._updateArea = function (t) {
                 var e = this;
-                this._area_mst_id != t && (this._expeditionStage.detail.visible = !1, this._expeditionStage.emptyDetail.visible = !0, this._expeditionStage.areaIcons.forEach(function (i) {
-                    var n = i.area_mst_id == t;
-                    i.focus(n), n && e._expeditionStage.seekHukidashi(i.x + .5 * i.width - 20)
-                }));
-                var i = o.default.model.expedition.getInArea(t, !0);
-                this._area_expeditions = i, this._area_mst_id = t
+                if (this._area_mst_id != t) {
+                    this._expeditionStage.detail.visible = !1, this._expeditionStage.emptyDetail.visible = !0, this._expeditionStage.areaIcons.forEach(function (i) {
+                        var n = i.area_mst_id == t;
+                        i.focus(n), n && e._expeditionStage.seekHukidashi(i.x + .5 * i.width - 20)
+                    });
+                    var i = this._expeditionStage.eventAreaIcon.area_id == t;
+                    this._expeditionStage.eventAreaIcon.selected = i, 1 == i && this._expeditionStage.seekHukidashi(this._expeditionStage.eventAreaIcon.x + .5 * this._expeditionStage.eventAreaIcon.width - 35)
+                }
+                var n = o.default.model.expedition.getInArea(t, !0);
+                this._area_expeditions = n, this._area_mst_id = t
             }, e.prototype._onClickListItem = function (t) {
                 this._updateDetail(t)
             }, e.prototype._onClickStart = function (t) {
@@ -194,7 +200,7 @@ const function1039 = function (t, e, i) {
             }, e.prototype._onClickCancel = function (t) {
                 var e = this,
                     i = this._deckInfo[t];
-                new l.CancelExpeditionTask(i).start(function () {
+                new u.CancelExpeditionTask(i).start(function () {
                     e._updateDeckInfo(), e._updateList(e._pageSeekIndex), e._updateDetail(t)
                 })
             }, e.prototype._onClickArea = function (t) {
@@ -212,7 +218,7 @@ const function1039 = function (t, e, i) {
             }, e.prototype._callDeckAPI = function (t, e) {
                 var i = this,
                     n = o.default.model.deck.get(t).getShipModel(0).mstID;
-                o.default.sound.voice.play(n.toString(), 26), (new u.DeckAPI).start(function () {
+                o.default.sound.voice.play(n.toString(), 26), (new l.DeckAPI).start(function () {
                     var n = o.default.model.expedition.get(e);
                     0 == n.state && n.__setState__(1), i._closeAnimationDeckInfo(t, e)
                 })

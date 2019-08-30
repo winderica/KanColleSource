@@ -21,13 +21,13 @@ const function1024 = function (t, e, i) {
     });
     var o = i(0),
         r = i(18),
-        s = i(10),
+        s = i(9),
         a = i(7),
         _ = function (t) {
             function e(e, i, n, o) {
                 void 0 === o && (o = !1);
                 var r = t.call(this) || this;
-                return r._url = "api_req_member/get_practice_enemyinfo", r._rival_id = e, r._flag_type = i, r._medal_num = n, r._res_model = new u, r._debug = o, r
+                return r._url = "api_req_member/get_practice_enemyinfo", r._rival_id = e, r._flag_type = i, r._medal_num = n, r._res_model = new l, r._debug = o, r
             }
             return n(e, t), Object.defineProperty(e.prototype, "res_model", {
                 get: function () {
@@ -42,7 +42,7 @@ const function1024 = function (t, e, i) {
             }, e
         }(s.APIBase);
     e.RivalDetailAPI = _;
-    var u = function () {
+    var l = function () {
         function t() {}
         return Object.defineProperty(t.prototype, "id", {
             get: function () {
@@ -149,15 +149,15 @@ const function1024 = function (t, e, i) {
             var o = a.ObjUtil.getObject(e, "api_deck");
             if (null != o)
                 for (var r = a.ObjUtil.getObjectArray(o, "api_ships"), s = 0, _ = r; s < _.length; s++) {
-                    var u = _[s],
-                        c = new l(u);
+                    var l = _[s],
+                        c = new u(l);
                     1 == c.isValid() ? this._ships.push(c) : this._ships.push(null)
                 }
             for (; this._ships.length < 6;) this._ships.push(null)
         }, t
     }();
-    e.RivalDetailAPIResultModel = u;
-    var l = function () {
+    e.RivalDetailAPIResultModel = l;
+    var u = function () {
         function t(t) {
             this._o = t
         }
@@ -196,5 +196,5 @@ const function1024 = function (t, e, i) {
             configurable: !0
         }), t
     }();
-    e.RivalShipModel = l
+    e.RivalShipModel = u
 }

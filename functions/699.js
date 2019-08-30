@@ -19,7 +19,7 @@ const function699 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(10),
         r = i(1),
         s = i(8),
         a = function (t) {
@@ -36,8 +36,8 @@ const function699 = function (t, e, i) {
                     a._dispose(), a._cbDrop(!1)
                 }, a._drag = new PIXI.Container, a._flagIcon = new PIXI.Sprite(o.COMMON_MISC.getTexture(77)), a._flagIcon.anchor.set(.5), a._flagIcon.position.set(i.x, i.y);
                 var _ = a._flagIcon.width,
-                    u = a._flagIcon.height;
-                return a._reactionArea = new s.AreaBox(0, 16777215, _, u), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, u), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
+                    l = a._flagIcon.height;
+                return a._reactionArea = new s.AreaBox(0, 16777215, _, l), a._reactionArea.hitArea = new PIXI.Rectangle(0, 0, _, l), a._reactionArea.position.set(e.x, e.y), a._drag.addChild(a._reactionArea, a._flagIcon), a.addChild(a._drag), a.on(r.EventType.MOUSEMOVE, a._onMove), a.on(r.EventType.MOUSEOUT, a._onOut), a.on(r.EventType.MOUSEUP, a._onUp), a
             }
             return n(e, t), e.prototype._dispose = function () {
                 this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp)

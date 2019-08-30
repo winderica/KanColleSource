@@ -51,11 +51,11 @@ const function655 = function (t, e, i) {
                 var a = new PIXI.Container;
                 a.position.set(0, 50), a.alpha = 0, a.name = "titleBar";
                 var _ = new PIXI.Sprite(e.use(s.IMAGE_FILE.TITLE_BG)),
-                    u = Math.floor(_.height / 2);
-                n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), u), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, u), a.addChild(_, n._titleIcon, n._titleMessage);
-                var l = new PIXI.Container,
+                    l = Math.floor(_.height / 2);
+                n._titleIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(10)), n._titleIcon.anchor.set(.5, .5), n._titleIcon.position.set(20 + Math.floor(n._titleIcon.width / 2), l), n._titleMessage = new PIXI.Sprite, n._titleMessage.anchor.set(0, .5), n._titleMessage.position.set(80, l), a.addChild(_, n._titleIcon, n._titleMessage);
+                var u = new PIXI.Container,
                     c = new PIXI.Sprite(e.use(s.IMAGE_FILE.CRUMB));
-                return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), l.position.set(r.default.width - c.width - 12, 0), l.addChild(c, n._currentTutorialIcon), n.addChild(a, l), n
+                return n._currentTutorialIcon = new PIXI.Sprite(o.TUTORIAL_MAIN.getTexture(9)), n._currentTutorialIcon.anchor.set(.5, .5), n._currentTutorialIcon.position.set(345, Math.floor(c.height / 2) - 3), u.position.set(r.default.width - c.width - 12, 0), u.addChild(c, n._currentTutorialIcon), n.addChild(a, u), n
             }
             return n(e, t), e.prototype.start = function () {
                 var t = {

@@ -9,8 +9,8 @@ const function809 = function (t, e, i) {
         s = i(137),
         a = i(51),
         _ = i(89),
-        u = i(810),
-        l = i(811),
+        l = i(810),
+        u = i(811),
         c = function () {
             function t(t) {
                 var e = this;
@@ -48,7 +48,7 @@ const function809 = function (t, e, i) {
                             s.SceneMemory.shipSortKeyType = 1
                     }
                     e._updateSort_(s.SceneMemory.shipSortKeyType), e._updatePage_(e.pageIndex)
-                }, this.mainView = t, this.backAreaChoiceShip = new u.BackAreaChoiceShip, this.shipList = new l.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
+                }, this.mainView = t, this.backAreaChoiceShip = new l.BackAreaChoiceShip, this.shipList = new u.ShipList, this.shipList.pagerView.onChangePage = this._onClickPager_, this.shipList.shipSortButton.onClick = this._onClickSort_, this.backAreaChoiceShip.onClick = this._onClickBack, this.shipList.onClick = this._onClickShip
             }
             return t.prototype.dispose = function () {
                 this.mainView.removeChild(this.backAreaChoiceShip), this.mainView.removeChild(this.shipList), this.onClickShip = null, this.onComplete = null, this._onClickBack = null, this._onClickShip = null, this.backAreaChoiceShip && this.backAreaChoiceShip.dispose(), this.shipList && this.shipList.dispose(), this.mainView = null, this.backAreaChoiceShip = null, this.shipList = null, this.targets = null, this.pageIndex = null

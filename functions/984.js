@@ -22,9 +22,9 @@ const function984 = function (t, e, i) {
     var o = i(0),
         r = i(18),
         s = i(52),
-        a = i(359),
+        a = i(360),
         _ = i(985),
-        u = function (t) {
+        l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 i._initialized = !1, i._activated = !1, i._onSelectArea = function (t) {
@@ -77,5 +77,5 @@ const function984 = function (t, e, i) {
                 this._btns = null
             }, e
         }(PIXI.Container);
-    e.CompAreaIcons = u
+    e.CompAreaIcons = l
 }

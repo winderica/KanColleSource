@@ -24,8 +24,8 @@ const function743 = function (t, e, i) {
         s = i(28),
         a = i(47),
         _ = i(111),
-        u = i(34),
-        l = i(329),
+        l = i(34),
+        u = i(330),
         c = i(69),
         h = i(218),
         p = i(744),
@@ -61,10 +61,10 @@ const function743 = function (t, e, i) {
                         s = o.ammo,
                         a = o.fuel,
                         _ = r.default.model.useItem.get(31).count,
-                        u = r.default.model.useItem.get(32).count,
-                        l = s <= u,
+                        l = r.default.model.useItem.get(32).count,
+                        u = s <= l,
                         c = a <= _;
-                    e._updateTypeSelectButton(l, c, s, a), e._updateButtonAlls(), t && e._updateShowcase(l, c, s, a)
+                    e._updateTypeSelectButton(u, c, s, a), e._updateButtonAlls(), t && e._updateShowcase(u, c, s, a)
                 }, e._onUpdateCheckFoShowcase = function () {
                     var t = e.taskEditSupplyDeck.getSupplyEdit(),
                         i = t.getMemShipIds(),
@@ -73,9 +73,9 @@ const function743 = function (t, e, i) {
                         s = n.fuel,
                         a = r.default.model.useItem.get(31).count,
                         _ = r.default.model.useItem.get(32).count,
-                        u = o <= _,
-                        l = s <= a;
-                    e._updateShowcase(u, l, o, s)
+                        l = o <= _,
+                        u = s <= a;
+                    e._updateShowcase(l, u, o, s)
                 }, e._onUpdateCheckForOther = function () {
                     var t = e.taskEditSupplyOther.getSupplyEdit(),
                         i = t.getMemShipIds(),
@@ -84,9 +84,9 @@ const function743 = function (t, e, i) {
                         s = n.fuel,
                         a = r.default.model.useItem.get(31).count,
                         _ = r.default.model.useItem.get(32).count,
-                        u = o <= _,
-                        l = s <= a;
-                    e._updateShowcase(u, l, o, s), e._updateTypeSelectButton(u, l, o, s), e.supplyTypeSelectButton.updateButton(!1, !1)
+                        l = o <= _,
+                        u = s <= a;
+                    e._updateShowcase(l, u, o, s), e._updateTypeSelectButton(l, u, o, s), e.supplyTypeSelectButton.updateButton(!1, !1)
                 }, e
             }
             return n(e, t), e.prototype.preInitialize = function () {
@@ -149,7 +149,7 @@ const function743 = function (t, e, i) {
                             e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
                         })
                     },
-                    u = function () {
+                    l = function () {
                         r.default.view.clickGuard = !0;
                         var t = e.taskEditSupplyDeck.getSupplyEdit(),
                             i = t.getMemShipIds();
@@ -157,7 +157,7 @@ const function743 = function (t, e, i) {
                             e.taskEditSupplyDeck.updateDeck(e.deckId), r.default.view.clickGuard = !1
                         })
                     };
-                this.taskEditSupplyDeck = new y.TaskEditSupplyDeck(this.layerTaskMain), this.taskEditSupplyDeck.onUpdateSupplyEdit = this._onUpdateCheckForDeck, this.taskEditSupplyDeck.onClickSupplyAll = i, this.supplyTypeSelectButton.onClickAmmo = u, this.supplyTypeSelectButton.onClickFuel = _, this.supplyTypeSelectButton.onClickAll = i, this.supplyTypeSelectButton.onMouseOverAll2 = n, this.supplyTypeSelectButton.onMouseOutAll2 = o, this.supplyTypeSelectButton.onClickAll2 = s, this.supplyTypeSelectButton.onClickBaux = a, this.taskEditSupplyDeck.start(t)
+                this.taskEditSupplyDeck = new y.TaskEditSupplyDeck(this.layerTaskMain), this.taskEditSupplyDeck.onUpdateSupplyEdit = this._onUpdateCheckForDeck, this.taskEditSupplyDeck.onClickSupplyAll = i, this.supplyTypeSelectButton.onClickAmmo = l, this.supplyTypeSelectButton.onClickFuel = _, this.supplyTypeSelectButton.onClickAll = i, this.supplyTypeSelectButton.onMouseOverAll2 = n, this.supplyTypeSelectButton.onMouseOutAll2 = o, this.supplyTypeSelectButton.onClickAll2 = s, this.supplyTypeSelectButton.onClickBaux = a, this.taskEditSupplyDeck.start(t)
             }, e.prototype._startTaskEditSupplyOther = function () {
                 var t = this;
                 this.taskEditSupplyOther = new m.TaskEditSupplyOther(this.layerTaskMain), this.taskEditSupplyOther.onUpdateSupplyEdit = this._onUpdateCheckForOther;
@@ -219,8 +219,8 @@ const function743 = function (t, e, i) {
                 0 < o.ammo && o.ammo <= s && this.supplyShowcaseView.playSupplyAmmo(function () {});
                 var a = r.default.model.useItem.get(31).count;
                 0 < o.fuel && o.fuel <= a && this.supplyShowcaseView.playSupplyFuel(function () {});
-                var _ = new u.APIConnector,
-                    p = new l.ChargeAPI(3, t);
+                var _ = new l.APIConnector,
+                    p = new u.ChargeAPI(3, t);
                 _.add(p), 40 == r.default.model.basic.getTutorialProgress() && _.add(new c.UpdateTutorialAPI(50)), _.start(function () {
                     r.default.sound.voice.play(e.toString(), 27);
                     var t = r.default.model.useItem.get(31).count,
@@ -230,8 +230,8 @@ const function743 = function (t, e, i) {
             }, e.prototype._CallSupplyAmmo = function (t, e) {
                 var i = this;
                 this.supplyShowcaseView.playSupplyAmmo(function () {});
-                var n = new u.APIConnector,
-                    o = new l.ChargeAPI(2, t);
+                var n = new l.APIConnector,
+                    o = new u.ChargeAPI(2, t);
                 n.add(o), 40 == r.default.model.basic.getTutorialProgress() && n.add(new c.UpdateTutorialAPI(50)), n.start(function () {
                     var t = r.default.model.useItem.get(31).count,
                         n = r.default.model.useItem.get(32).count;
@@ -240,8 +240,8 @@ const function743 = function (t, e, i) {
             }, e.prototype._CallSupplyFuel = function (t, e) {
                 var i = this;
                 r.default.view.clickGuard = !0, this.supplyShowcaseView.playSupplyFuel(function () {});
-                var n = new u.APIConnector,
-                    o = new l.ChargeAPI(1, t);
+                var n = new l.APIConnector,
+                    o = new u.ChargeAPI(1, t);
                 n.add(o), 40 == r.default.model.basic.getTutorialProgress() && n.add(new c.UpdateTutorialAPI(50)), n.start(function () {
                     var t = r.default.model.useItem.get(31).count,
                         n = r.default.model.useItem.get(32).count;
@@ -250,8 +250,8 @@ const function743 = function (t, e, i) {
             }, e.prototype._CallSupplyBaux = function (t, e, i) {
                 var n = this;
                 r.default.view.clickGuard = !0;
-                var o = new u.APIConnector,
-                    s = new l.ChargeAPI(0, t);
+                var o = new l.APIConnector,
+                    s = new u.ChargeAPI(0, t);
                 o.add(s), 40 == r.default.model.basic.getTutorialProgress() && o.add(new c.UpdateTutorialAPI(50)), o.start(function () {
                     r.default.sound.voice.play(e.toString(), 27), s.usedBauxite && n._animationBauxTelop(), i()
                 })
@@ -268,13 +268,13 @@ const function743 = function (t, e, i) {
                         s = r.default.model.useItem.get(31).count,
                         a = r.default.model.useItem.get(32).count,
                         _ = r.default.model.useItem.get(34).count,
-                        u = 0 < n || 0 < i || 0 < o,
-                        l = 0 < o,
+                        l = 0 < n || 0 < i || 0 < o,
+                        u = 0 < o,
                         c = i <= a,
                         p = n <= s,
                         d = o <= _,
-                        f = l && d,
-                        y = u && p && c && d;
+                        f = u && d,
+                        y = l && p && c && d;
                     this.supplyTypeSelectButton.updateButton(f, y)
                 }
             }, e.prototype._updateShowcase = function (t, e, i, n) {

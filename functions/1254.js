@@ -20,43 +20,41 @@ const function1254 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(20),
+        r = i(19),
         s = function (t) {
-            function e(e, i, n, o) {
-                void 0 === o && (o = null);
-                var r = t.call(this) || this;
-                return r._ship = e, r._type = i, r._directionType = n, r._offset = o, r
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._wait = function () {
+                    o._layer.removeChild(o._plane), createjs.Tween.get(null).wait(200).call(function () {
+                        o._endTask()
+                    })
+                }, o.run = function () {
+                    o._timer <= 0 && o._isTurn || (o._movePlane(), o._timer -= 1e3 / 60, o._timer <= 0 && !o._isTurn && (o._timer = o._baseTime, o._isTurn = !o._isTurn))
+                }, o._layer = e, o._from = i, o._to = n, o._baseTime = 1500, o._timer = o._baseTime, o
             }
             return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new a(this._offset);
-                e.initialize(this._type, this._directionType), e.alpha = 0, this._ship.addChild(e), createjs.Tween.get(e).to({
-                    y: -23,
-                    alpha: 1
-                }, 100).wait(2e3).to({
-                    y: 0,
-                    alpha: 0
-                }, 100).call(function () {
-                    t._ship.removeChild(e), t._endTask()
+                var t = this;
+                this._plane = new PIXI.Sprite;
+                var e = this._to.x > this._from.x ? 1 : -1,
+                    i = this._to.x > this._from.x ? -.1 : .1;
+                this._plane.texture = r.MAP_COMMON.getTexture(106), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
+                    x: -1 * this._plane.scale.x,
+                    y: 1
+                }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({
+                    x: i,
+                    y: .1
+                }, 200).call(function () {
+                    t._wait()
+                }), this._bezierTween = createjs.Tween.get(null).wait(3e3).addEventListener("change", function () {
+                    t.run()
                 })
+            }, e.prototype._movePlane = function () {
+                var t = (this._baseTime - this._timer) / this._baseTime,
+                    e = this._isTurn ? 1 * t : 1 * t - 1;
+                this._plane.position.x = this._from.x + .9 * this._to.x - .9 * this._to.x * e * e, this._plane.position.y = this._from.y + .9 * this._to.y - .9 * this._to.y * e * e, 0 != e && (this._plane.position.y += ((Math.abs(e) - .5) * (Math.abs(e) - .5) * 38 * 4 - 38) * (Math.abs(e) / e))
+            }, e.prototype._endTask = function () {
+                this._bezierTween = null, this._plane = null, this._layer = null, this._from = null, this._to = null, this._baseTime = null, this._timer = null, this._isTurn = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.AnimBalloon = s;
-    var a = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._offset = e, i._img = new PIXI.Sprite, i.addChild(i._img), i
-        }
-        return n(e, t), e.prototype.initialize = function (t, e) {
-            1 == t ? this._initializeFoundEnemy(e) : 2 == t && this._initializeFoundTarget(e), 3 == t && this._initializePatrol(e), this._addOffset(e)
-        }, e.prototype._initializeFoundEnemy = function (t) {
-            0 == t ? (this._img.texture = r.MAP_COMMON.getTexture(45), this._img.position.set(-66, -77)) : 1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(27), this._img.position.set(-15, -68)) : 2 == t ? (this._img.texture = r.MAP_COMMON.getTexture(26), this._img.position.set(0, -36)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(28), this._img.position.set(-114, -68))
-        }, e.prototype._initializeFoundTarget = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(29), this._img.position.set(-15, -68)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(30), this._img.position.set(-140, -66))
-        }, e.prototype._initializePatrol = function (t) {
-            1 == t ? (this._img.texture = r.MAP_COMMON.getTexture(31), this._img.position.set(-14, -66)) : 7 == t && (this._img.texture = r.MAP_COMMON.getTexture(32), this._img.position.set(-114, -66))
-        }, e.prototype._addOffset = function (t) {
-            0 == t ? (this._img.x += -3, this._img.y += -9) : 1 == t ? (this._img.x += 21, this._img.y += -6) : 2 == t ? (this._img.x += 39, this._img.y += 9) : 3 == t || 4 == t || 5 == t || 6 == t || 7 == t && (this._img.x += -21, this._img.y += -6), this._offset && (this._img.x += this._offset.x, this._img.y += this._offset.y)
-        }, e
-    }(PIXI.Container)
+    e.AnimPlane = s
 }

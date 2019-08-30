@@ -19,36 +19,30 @@ const function371 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(43),
-        r = i(231),
-        s = i(1012),
-        a = function (t) {
-            function e(e, i, n, o, r) {
-                return t.call(this, e, i, n, o, r) || this
+    var o = i(41),
+        r = i(233),
+        s = i(1008),
+        a = i(1011),
+        _ = i(359),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this, e) || this;
+                n._onMouseOver = function (t) {
+                    n._strategy_map.update(t)
+                }, n._onMouseOut = function (t) {};
+                var r = o.SALLY_EVENT.getTexture(4),
+                    _ = new PIXI.Sprite(r);
+                return _.position.set(182, 207), n.addChild(_), n._strategy_map = new s.StrategyMap, n._strategy_map.position.set(204, 261), n.addChild(n._strategy_map), n._airunitbtn = new a.AirUnitBtn(i), n._airunitbtn.position.set(206, 570), n._airunitbtn.visible = !1, n.addChild(n._airunitbtn), n
             }
-            return n(e, t), e.prototype._setPositions = function () {
-                1 == this._type ? this._clear.position.set(600, 0) : 2 == this._type ? this._clear.position.set(600, 0) : 3 == this._type ? this._clear.position.set(600, 0) : 3 == this._type && this._clear.position.set(612, -6)
-            }, e.prototype._getNoneTexture = function () {
-                switch (this._type) {
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(32);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(33)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._getFocusTexture = function () {
-                switch (this._type) {
-                    case 1:
-                        return o.SALLY_EVENT.getTexture(31);
-                    case 2:
-                        return o.SALLY_EVENT.getTexture(29);
-                    case 3:
-                        return o.SALLY_EVENT.getTexture(30)
-                }
-                return PIXI.Texture.EMPTY
-            }, e.prototype._createLock = function () {
-                return new s.EventMapThumbnailLocked(this._type)
+            return n(e, t), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e);
+                var i = e[this.offset].mst_id;
+                this._strategy_map.update(i), this._airunitbtn.initialize()
+            }, e.prototype.updateAirUnitEnabled = function (e) {
+                t.prototype.updateAirUnitEnabled.call(this, e), this._airunitbtn.visible = e, 1 == e ? this._airunitbtn.activate() : this._airunitbtn.deactivate()
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._strategy_map.dispose(), this._airunitbtn.dispose(), _.EventOperationVoice.killVoice()
             }, e
-        }(r.MapThumbnail);
-    e.EventMapThumbnail = a
+        }(r.LayoutBase);
+    e.EventLayoutBase = l
 }

@@ -21,11 +21,11 @@ const function749 = function (t, e, i) {
     });
     var o = i(1),
         r = i(8),
-        s = i(323),
+        s = i(324),
         a = i(21),
         _ = i(160),
-        u = i(330),
         l = i(331),
+        u = i(332),
         c = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -38,11 +38,11 @@ const function749 = function (t, e, i) {
                 c.position.x = 38, c.texture = a.COMMON_MAIN.getTexture(19);
                 var h = new s.LongShipBanner;
                 h.position.x = 38;
-                var p = new l.SupplyCheckBox;
+                var p = new u.SupplyCheckBox;
                 p.position.set(0, 24);
                 var d = new PIXI.Sprite(_.SUPPLY_MAIN.getTexture(26));
                 d.position.x = 33, d.position.y = -5;
-                var f = new u.MaterialView;
+                var f = new l.MaterialView;
                 return f.position.set(517, 6), i.emptyBackground = c, i.supplyCheckBox = p, i.longShipBanner = h, i.clickArea = n, i.focusFrame = d, i.index = e, i.materialView = f, i
             }
             return n(e, t), e.prototype.dispose = function () {

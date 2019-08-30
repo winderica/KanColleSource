@@ -19,13 +19,13 @@ const function775 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(10),
         r = i(3),
         s = i(3),
         a = i(4),
         _ = i(83),
-        u = i(112),
-        l = i(314),
+        l = i(112),
+        u = i(315),
         c = i(776),
         h = i(777),
         p = i(779),
@@ -39,7 +39,7 @@ const function775 = function (t, e, i) {
         w = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e.headerKansenStatus = new v.TitleBar, e.headerKansenStatus.initialize(s.COMMON_MAIN.getTexture(1), 35), e.background = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.starRateView = new _.StarRateView, e.hpGaugeView = new u.HpGaugeView, e.textImageLv = new PIXI.Sprite(o.COMMON_MISC.getTexture(184)), e.remodelMaxMedal = new PIXI.Sprite(s.COMMON_MAIN.getTexture(28)), e._shipCard = new l.ShipCard(!1, !1), e._shipParameter = new c.ShipParameter, e._slotItemSlotBox = new h.SlotItemSlotBox, e._kaizoButton = new p.KaizoButton, e._kindaikaButton = new d.KindaikaButton, e._extraSlotItemSlot = new f.ExtraSlotItemSlot, e._detachAllButton = new y.DetachAllButton, e._extensionButton = new m.ExtensionButton, e._marriageButton = new g.MarriageButton, e.containerName = new PIXI.Container, e.containerName.position.set(42, 20), e.textName = new a.TextBox(27, 5523516), e.maskTextName = b.CreateRect.gradientLeftToRight(210, 45, .88, .91), e.containerName.mask = e.maskTextName, e.containerName.addChild(e.textName, e.maskTextName), e.headerKansenStatus.position.set(0, -39), e._detachAllButton.position.set(6, 101), e._slotItemSlotBox.position.set(57, 101), e._kaizoButton.position.set(546, 483), e._kindaikaButton.position.set(372, 483), e._extraSlotItemSlot.position.set(636, 311), e.textImageLv.position.set(238, 30), e.hpGaugeView.position.set(44, 72), e.textHp.position.set(152, 68), e.starRateView.position.set(228, 72), e.remodelMaxMedal.position.set(323, 20), e._shipCard.position.set(369, 26), e._extensionButton.position.set(369, 301), e._shipParameter.position.set(51, 351), e._marriageButton.position.set(212, 6), e.addChild(e.background, e._shipCard, e.hpGaugeView, e.textHp, e.starRateView, e._shipParameter, e._slotItemSlotBox, e._kaizoButton, e._kindaikaButton, e._detachAllButton, e._extraSlotItemSlot, e._extensionButton, e.remodelMaxMedal, e._marriageButton, e.textImageLv, e.textLevel, e.headerKansenStatus, e.containerName), e
+                return e.headerKansenStatus = new v.TitleBar, e.headerKansenStatus.initialize(s.COMMON_MAIN.getTexture(1), 35), e.background = new PIXI.Sprite(s.COMMON_MAIN.getTexture(12)), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.starRateView = new _.StarRateView, e.hpGaugeView = new l.HpGaugeView, e.textImageLv = new PIXI.Sprite(o.COMMON_MISC.getTexture(184)), e.remodelMaxMedal = new PIXI.Sprite(s.COMMON_MAIN.getTexture(28)), e._shipCard = new u.ShipCard(!1, !1), e._shipParameter = new c.ShipParameter, e._slotItemSlotBox = new h.SlotItemSlotBox, e._kaizoButton = new p.KaizoButton, e._kindaikaButton = new d.KindaikaButton, e._extraSlotItemSlot = new f.ExtraSlotItemSlot, e._detachAllButton = new y.DetachAllButton, e._extensionButton = new m.ExtensionButton, e._marriageButton = new g.MarriageButton, e.containerName = new PIXI.Container, e.containerName.position.set(42, 20), e.textName = new a.TextBox(27, 5523516), e.maskTextName = b.CreateRect.gradientLeftToRight(210, 45, .88, .91), e.containerName.mask = e.maskTextName, e.containerName.addChild(e.textName, e.maskTextName), e.headerKansenStatus.position.set(0, -39), e._detachAllButton.position.set(6, 101), e._slotItemSlotBox.position.set(57, 101), e._kaizoButton.position.set(546, 483), e._kindaikaButton.position.set(372, 483), e._extraSlotItemSlot.position.set(636, 311), e.textImageLv.position.set(238, 30), e.hpGaugeView.position.set(44, 72), e.textHp.position.set(152, 68), e.starRateView.position.set(228, 72), e.remodelMaxMedal.position.set(323, 20), e._shipCard.position.set(369, 26), e._extensionButton.position.set(369, 301), e._shipParameter.position.set(51, 351), e._marriageButton.position.set(212, 6), e.addChild(e.background, e._shipCard, e.hpGaugeView, e.textHp, e.starRateView, e._shipParameter, e._slotItemSlotBox, e._kaizoButton, e._kindaikaButton, e._detachAllButton, e._extraSlotItemSlot, e._extensionButton, e.remodelMaxMedal, e._marriageButton, e.textImageLv, e.textLevel, e.headerKansenStatus, e.containerName), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "slotItemSlotBox", {
                 get: function () {

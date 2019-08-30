@@ -24,10 +24,10 @@ const function1015 = function (t, e, i) {
         s = i(2),
         a = i(1016),
         _ = i(1017),
-        u = function () {
+        l = function () {
             function t() {}
             return t.prototype.getPreLoadTask = function () {
-                return this._model = new a.EventSortieConditionModel, new l(this._model)
+                return this._model = new a.EventSortieConditionModel, new u(this._model)
             }, t.prototype.update = function (t) {
                 this._map = t
             }, t.prototype.check = function (t, e) {
@@ -65,98 +65,61 @@ const function1015 = function (t, e, i) {
                 } : null)
             }, t.prototype._check = function (t, e) {
                 var i = this._map.mst_id;
-                if (441 == i)
-                    for (var n = [9, 10, 8, 11, 18, 7, 17], o = 0, r = e; o < r.length; o++) {
+                if (451 == i)
+                    for (var n = [11, 18], o = 0, r = e; o < r.length; o++) {
                         var s = r[o];
                         if (null != s) {
                             var a = s.shipTypeID;
                             if (n.indexOf(a) > -1) return {
                                 result: !1,
-                                reason: 45
+                                reason: 38
                             }
                         }
-                    } else if (442 == i)
-                        for (var n = [11, 18], _ = 0, u = e; _ < u.length; _++) {
-                            var s = u[_];
+                    }
+                var _ = this._map.getSelectedOperationType(),
+                    l = [3, 4].indexOf(_) > -1,
+                    u = 4 == _;
+                if (l)
+                    if (451 == i)
+                        for (var c = 0, h = e; c < h.length; c++) {
+                            var s = h[c];
                             if (null != s) {
-                                var a = s.shipTypeID;
-                                if (n.indexOf(a) > -1) return {
-                                    result: !1,
-                                    reason: 38
-                                }
-                            }
-                        }
-                if ([3, 4].indexOf(this._map.getSelectedOperationType()) > -1)
-                    if (441 == i)
-                        for (var l = 0, c = e; l < c.length; l++) {
-                            var s = c[l];
-                            if (null != s) {
-                                var h = s.label;
-                                if (0 != h && 1 != h) return {
+                                var p = s.label;
+                                if (0 != p && 1 != p) return {
                                     result: !1,
                                     reason: 19
                                 }
                             }
-                        } else if (442 == i)
-                            for (var p = 0, d = e; p < d.length; p++) {
-                                var s = d[p];
+                        } else if (452 == i)
+                            for (var d = 0, f = e; d < f.length; d++) {
+                                var s = f[d];
                                 if (null != s) {
-                                    var h = s.label;
-                                    if (0 != h && 2 != h) return {
+                                    var p = s.label;
+                                    if (0 != p && 2 != p) return {
                                         result: !1,
                                         reason: 19
                                     }
                                 }
-                            } else if (443 == i)
-                                for (var f = 0, y = e; f < y.length; f++) {
-                                    var s = y[f];
-                                    if (null != s) {
-                                        var h = s.label;
-                                        if (0 != h && 3 != h) return {
-                                            result: !1,
-                                            reason: 19
-                                        }
-                                    }
-                                } else if (444 == i)
-                                    if (1 == t)
-                                        for (var m = 0, g = e; m < g.length; m++) {
-                                            var s = g[m];
-                                            if (null != s) {
-                                                var h = s.label;
-                                                if (0 != h && 4 != h) return {
-                                                    result: !1,
-                                                    reason: 47
-                                                }
-                                            }
-                                        } else
-                                            for (var v = 0, b = e; v < b.length; v++) {
-                                                var s = b[v];
-                                                if (null != s) {
-                                                    var h = s.label;
-                                                    if (0 != h && 5 != h) return {
-                                                        result: !1,
-                                                        reason: 48
-                                                    }
-                                                }
-                                            } else if (445 == i && !this._map.isCleared())
-                                                for (var w = 0, x = e; w < x.length; w++) {
-                                                    var s = x[w];
-                                                    if (null != s) {
-                                                        var h = s.label;
-                                                        if (0 != h && 6 != h) return {
-                                                            result: !1,
-                                                            reason: 49
-                                                        }
-                                                    }
-                                                }
+                            }
+                if (u && 453 == i && !this._map.isCleared())
+                    for (var y = 0, m = e; y < m.length; y++) {
+                        var s = m[y];
+                        if (null != s) {
+                            var p = s.label;
+                            if (0 != p && 3 != p) return {
+                                result: !1,
+                                reason: 19
+                            }
+                        }
+                    }
                 return {
                     result: !0,
                     reason: 0
                 }
             }, t
         }();
-    e.EventSortieCondition = u;
-    var l = function (t) {
+    e.EventSortieCondition = l;
+    var u = function (t) {
         function e(e) {
             var i = t.call(this) || this;
             return i._onComplete = function () {

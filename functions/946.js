@@ -21,7 +21,7 @@ const function946 = function (t, e, i) {
     });
     var o = i(0),
         r = i(7),
-        s = i(10),
+        s = i(9),
         a = function (t) {
             function e(e, i, n, o) {
                 var r = t.call(this) || this;
@@ -39,8 +39,8 @@ const function946 = function (t, e, i) {
                     s = this._airunit_id,
                     a = this._squadron_index,
                     _ = r.ObjUtil.getObjectArray(this._raw_data, "api_plane_info"),
-                    u = r.ObjUtil.getObject(this._raw_data, "api_distance");
-                o.default.model.airunit.updateData(n, s, a, _, u), t.prototype._completedEnd.call(this)
+                    l = r.ObjUtil.getObject(this._raw_data, "api_distance");
+                o.default.model.airunit.updateData(n, s, a, _, l), t.prototype._completedEnd.call(this)
             }, e
         }(s.APIBase);
     e.AirUnitEditAPI = a

@@ -8,21 +8,21 @@ const function993 = function (t, e, i) {
         };
         var _ = o(t, e);
         if (null != _) return _;
-        var u = t.mst_id,
-            l = e.getShipListAll();
-        if (16 == u && null != (_ = r(l))) return _;
-        if (63 == u && null != (_ = s(l))) return _;
-        if (64 == u && null != (_ = a(l))) return _;
+        var l = t.mst_id,
+            u = e.getShipListAll();
+        if (16 == l && null != (_ = r(u))) return _;
+        if (63 == l && null != (_ = s(u))) return _;
+        if (64 == l && null != (_ = a(u))) return _;
         if (null != e.expedition) return {
             result: !1,
             reason: 30
         };
         if (null != n) {
             var c = e.getCombinedType(),
-                h = n.check(c, l);
+                h = n.check(c, u);
             if (0 == h.result || 0 != h.reason) return h
         }
-        for (var p = !1, d = !1, f = 0, y = l; f < y.length; f++) {
+        for (var p = !1, d = !1, f = 0, y = u; f < y.length; f++) {
             var m = y[f];
             null != m && (-1 != i.indexOf(m.memID) && (p = !0), (m.fuelNow <= 0 || m.ammoNow <= 0) && (d = !0))
         }
@@ -34,13 +34,13 @@ const function993 = function (t, e, i) {
             result: !1,
             reason: 2
         };
-        var g = l[0].getDamageType();
+        var g = u[0].getDamageType();
         if (0 != e.getCombinedType()) {
             if (50 == g || 25 == g || 0 == g) return {
                 result: !1,
                 reason: 21
             };
-            var v = l[6].getDamageType();
+            var v = u[6].getDamageType();
             if (50 == v || 25 == v || 0 == v) return {
                 result: !1,
                 reason: 21

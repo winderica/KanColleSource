@@ -22,10 +22,10 @@ const function622 = function (t, e, i) {
     var o = i(1),
         r = i(23),
         s = i(12),
-        a = i(302),
+        a = i(303),
         _ = i(4),
-        u = i(9),
-        l = function (t) {
+        l = i(10),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e._bg = new s.Sprite, e._bg.anchor.set(.5), e.addChild(e._bg), e._light = new c, e.addChild(e._light), e._container = new r.Container, e.addChild(e._container), e._message = new h, e._message.position.set(-360, -291), e.addChild(e._message), e._get_icon = new a.GetIcon, e._get_icon.position.set(223, -181), e.addChild(e._get_icon), e._close_btn = new p, e._close_btn.position.set(-90, 222), e.addChild(e._close_btn), e
@@ -67,19 +67,19 @@ const function622 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.initialize = function () {
-                this._bg.texture = u.COMMON_MISC.getTexture(186), this._light.initialize(), this._get_icon.initialize(), this._close_btn.initialize()
+                this._bg.texture = l.COMMON_MISC.getTexture(186), this._light.initialize(), this._get_icon.initialize(), this._close_btn.initialize()
             }, e.prototype.dispose = function () {
                 this._light.dispose(), this._message.dispose(), this._get_icon.dispose(), this._close_btn.dispose()
             }, e
         }(r.Container);
-    e.RewardDialog = l;
+    e.RewardDialog = u;
     var c = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 return e.anchor.set(.5), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(69)
+                this.texture = l.COMMON_MISC.getTexture(69)
             }, e.prototype.activate = function () {
                 null == this._t && (this.rotation = 0, this._t = createjs.Tween.get(this, {
                     loop: !0
@@ -123,7 +123,7 @@ const function622 = function (t, e, i) {
                 }, e.interactive = !0, e.visible = !1, e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this.texture = u.COMMON_MISC.getTexture(22)
+                this.texture = l.COMMON_MISC.getTexture(22)
             }, e.prototype.activate = function (t) {
                 this._cb_onClick = t, 1 != this.buttonMode && (this.buttonMode = !0, this.on(o.EventType.CLICK, this._onClick), this.visible = !0)
             }, e.prototype.deactivate = function () {

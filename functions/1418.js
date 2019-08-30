@@ -19,114 +19,49 @@ const function1418 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(76),
-        r = i(1419),
-        s = i(95),
-        a = i(96),
-        _ = i(97),
-        u = i(64),
-        l = i(104),
-        c = i(100),
-        h = i(99),
-        p = i(101),
-        d = i(98),
-        f = i(102),
-        y = i(77),
-        m = i(103),
-        g = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, !1) || this;
-                return n._record = i, n
+    var o = i(0),
+        r = i(2),
+        s = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                this.scene.bg.setDay(function () {
-                    t._shutterOpen()
-                })
-            }, e.prototype._shutterOpen = function () {
-                var t = this,
-                    e = this.scene.view;
-                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
-                    e.shutter.once("opened", function () {
-                        t._moveBanner()
-                    }), e.shutter.open()
-                })
-            }, e.prototype._moveBanner = function () {
-                var t = this;
-                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
-                    t._jetAirUnit()
-                })
-            }, e.prototype._jetAirUnit = function () {
-                var t = this;
-                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
-                    t._jetAirWar()
-                })
-            }, e.prototype._jetAirWar = function () {
-                var t = this;
-                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
-                    t._airUnit()
-                })
-            }, e.prototype._airUnit = function () {
-                var t = this;
-                new _.PhaseAirUnit(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new l.PhaseSupport(this.scene, this._record).start(function () {
-                    t._airWar()
-                })
-            }, e.prototype._airWar = function () {
-                var t = this;
-                new u.PhaseAirWar(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._openingAttack = function () {
-                var t = this;
-                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
-                    t._openingTorpedo()
-                })
-            }, e.prototype._openingTorpedo = function () {
-                var t = this;
-                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
-                    t._formation()
-                })
-            }, e.prototype._formation = function () {
-                var t = this;
-                new p.PhaseFormation(this.scene, this._record).start(function () {
-                    t._airWar2()
-                })
-            }, e.prototype._airWar2 = function () {
-                var t = this;
-                new d.PhaseAirWar2(this.scene, this._record).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
-                    t._torpedo()
-                })
-            }, e.prototype._torpedo = function () {
-                var t = this;
-                new y.PhaseRaigeki(this.scene, this._record).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new m.PhaseEnding(this.scene, this._record).start(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype._getNormalAttackType = function (t, e, i, n) {
+                if (1 == n) return 1;
+                var r = t.stype;
+                if (7 == r && 1 == e.isSubMarine()) return 2;
+                if (7 == r || 11 == r || 18 == r) {
+                    var s = t.mst_id,
+                        a = t.name;
+                    return 432 == s || 353 == s || 433 == s ? 0 : "\u30ea\u30b3\u30ea\u30b9\u68f2\u59eb" == a ? 0 : "\u6df1\u6d77\u6d77\u6708\u59eb" == a ? 0 : 1
+                }
+                if (t.isSubMarine()) return 3;
+                if (e.isSubMarine()) return 6 == r || 10 == r || 16 == r || 17 == r ? 1 : 2;
+                var _ = o.default.model.slot.getMst(i);
+                return null == _ || 5 != _.equipTypeSp && 32 != _.equipTypeSp ? 0 : 3
+            }, e.prototype._hasRocketEffect = function (t, e, i) {
+                if (0 == e.isGround()) return !1;
+                if (1 == i) return !1;
+                for (var n = t.slots, o = 0, r = n; o < r.length; o++) {
+                    var s = r[o];
+                    if (null != s) {
+                        var a = s.mst_id;
+                        if (126 == a || 346 == a || 347 == a || 348 == a || 349 == a) return !0
+                    }
+                }
+                return !1
+            }, e.prototype._getDaihatsuEffectType = function (t, e) {
+                var i = ["\u96e2\u5cf6\u68f2\u59eb", "\u7832\u53f0\u5c0f\u9b3c", "\u96c6\u7a4d\u5730\u68f2\u59eb", "\u96c6\u7a4d\u5730\u68f2\u59eb-\u58ca", "\u6cca\u5730\u6c34\u9b3c \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode", "\u96c6\u7a4d\u5730\u68f2\u59eb \u30d0\u30ab\u30f3\u30b9mode-\u58ca", "\u98db\u884c\u5834\u59eb"];
+                if (1 == t.hasSlot(355) && 1 == e.isGround()) return 6;
+                if (1 == t.hasSlot(230)) return 1 == e.isGround() ? 5 : 0;
+                if (1 == t.hasSlot(355) && i.indexOf(e.name) >= 0) return 6;
+                if (1 == t.hasSlot(167)) {
+                    if (1 == t.isSubMarine()) {
+                        if (1 == e.isGround()) return 4
+                    } else if (i.indexOf(e.name) >= 0) return 4;
+                    return 0
+                }
+                return 1 == t.hasSlot(166) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(193) && i.indexOf(e.name) >= 0 ? 3 : 1 == t.hasSlot(68) && i.indexOf(e.name) >= 0 ? 3 : 0
             }, e
-        }(o.PhaseCombatBase);
-    e.PhaseDayFromNight = g
+        }(r.TaskBase);
+    e.PhaseHougekiBase = s
 }

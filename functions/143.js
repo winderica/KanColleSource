@@ -20,11 +20,11 @@ const function143 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(42),
+        r = i(43),
         s = i(23),
         a = i(45),
         _ = i(7),
-        u = function (t) {
+        l = function (t) {
             function e(e) {
                 void 0 === e && (e = 1);
                 var i = t.call(this) || this;
@@ -36,10 +36,10 @@ const function143 = function (t, e, i) {
                 if (1 == r.PlaneConst.OFFSET.hasOwnProperty(t.toString())) {
                     var n = r.PlaneConst.OFFSET[t],
                         s = _.ObjUtil.getNumber(n, "x"),
-                        u = _.ObjUtil.getNumber(n, "y"),
-                        l = _.ObjUtil.getNumber(n, "r"),
+                        l = _.ObjUtil.getNumber(n, "y"),
+                        u = _.ObjUtil.getNumber(n, "r"),
                         c = _.ObjUtil.getNumber(n, "sx", 1);
-                    this._content.position.set(s, u), this._content.rotation = -l / 180 * Math.PI * (e ? 1 : -1), this._content.scale.x = this._base_scale * c * i * (e ? 1 : -1), this._content.scale.y = this._base_scale * Math.abs(c)
+                    this._content.position.set(s, l), this._content.rotation = -u / 180 * Math.PI * (e ? 1 : -1), this._content.scale.x = this._base_scale * c * i * (e ? 1 : -1), this._content.scale.y = this._base_scale * Math.abs(c)
                 } else this._content.position.set(0, 0), this._content.rotation = 0, this._content.scale.x = this._base_scale * i * (e ? 1 : -1), this._content.scale.y = this._base_scale;
                 138 == t && (this._content.scale.x *= 1.4, this._content.scale.y *= 1.4), this._baseY = this._content.y, this._rad_accel = 60 * (.05 + .05 * Math.random()) / createjs.Ticker.framerate
             }, e.prototype.activate = function () {
@@ -58,5 +58,5 @@ const function143 = function (t, e, i) {
                 null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
         }(s.Container);
-    e.Plane = u
+    e.Plane = l
 }

@@ -24,13 +24,13 @@ const function907 = function (t, e, i) {
         s = i(116),
         a = i(1),
         _ = i(224),
-        u = i(908),
-        l = i(80),
+        l = i(908),
+        u = i(80),
         c = i(909),
-        h = i(345),
+        h = i(346),
         p = i(910),
         d = i(911),
-        f = i(347),
+        f = i(348),
         y = i(913),
         m = i(918),
         g = function (t) {
@@ -63,7 +63,7 @@ const function907 = function (t, e, i) {
                                 r = e._materialAmountContainer.steel,
                                 s = e._materialAmountContainer.bauxite;
                             e.itemMemory.fuel = i, e.itemMemory.ammo = n, e.itemMemory.steel = r, e.itemMemory.bauxite = s;
-                            var a = new u.CreateItemAPI(i, n, r, s);
+                            var a = new l.CreateItemAPI(i, n, r, s);
                             o.default.view.clickGuard = !0, a.start(function () {
                                 var t = 1 == a.api_create_flag,
                                     i = a.api_slotitem_mstid;
@@ -71,7 +71,7 @@ const function907 = function (t, e, i) {
                             }), e._materialAmountContainer.dispose(), e._materialAmountContainer = null, e.focusBuild();
                             break;
                         case c.Result.GOTO_STORE:
-                            o.default.scene.change(24, new l.ItemSceneModel)
+                            o.default.scene.change(24, new u.ItemSceneModel)
                     }
                 }, e._onClickMenuShipDisassembly = function () {
                     e.focusShipDisassembly(), o.default.view.clickGuard = !0, e.shipDisassembly && (e.shipDisassembly.dispose(), e.shipDisassembly = null), e.shipDisassembly = new y.ShipDisassemblyContainer(e.parent), e.shipDisassembly.onComplete = function () {
@@ -117,17 +117,17 @@ const function907 = function (t, e, i) {
                             s = "",
                             a = o.default.model.slot.getEquipTypeById(r.equipType);
                         s = a.needsDisplayName() ? "\u300c" + a.name + "\u3000" + r.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01" : "\u300c" + r.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01";
-                        var u = new p.RewardAnimationSlot;
-                        u.preload(e, s, r.rarity, function () {
+                        var l = new p.RewardAnimationSlot;
+                        l.preload(e, s, r.rarity, function () {
                             n.play(function () {
-                                _.ArsenalUtil.playFlagshipVoice(26), n.dispose(), o.default.view.overLayer.removeChild(n), o.default.view.overLayer.addChild(u), u.play(function () {
+                                _.ArsenalUtil.playFlagshipVoice(26), n.dispose(), o.default.view.overLayer.removeChild(n), o.default.view.overLayer.addChild(l), l.play(function () {
                                     o.default.view.portMain.updateInfo();
                                     for (var t = _.ArsenalUtil.developLimit(), e = o.default.model.kdock.getAll(), n = 0; n < e.length; n++) {
                                         var r = e[n];
                                         i.onUpdateCondition(r.id, t.forShip, t.forSlot)
                                     }
                                 }, function () {
-                                    u.dispose(), o.default.view.overLayer.removeChild(u), _.ArsenalUtil.playVoiceOnBuildComplete()
+                                    l.dispose(), o.default.view.overLayer.removeChild(l), _.ArsenalUtil.playVoiceOnBuildComplete()
                                 })
                             })
                         })

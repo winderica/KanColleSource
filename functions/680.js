@@ -19,7 +19,7 @@ const function680 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
+    var o = i(10),
         r = i(0),
         s = i(1),
         a = function (t) {
@@ -28,10 +28,10 @@ const function680 = function (t, e, i) {
                 e._onClickDeckFlag = function (t) {
                     e.onClickDeckFlag(t)
                 }, e.interactiveDeckFlag_1 = new _, e.interactiveDeckFlag_2 = new _, e.interactiveDeckFlag_3 = new _, e.interactiveDeckFlag_4 = new _;
-                var i = new u,
-                    n = new u,
-                    s = new u,
-                    a = new u;
+                var i = new l,
+                    n = new l,
+                    s = new l,
+                    a = new l;
                 return i.x = e.interactiveDeckFlag_1.x = 0, n.x = e.interactiveDeckFlag_2.x = 45, s.x = e.interactiveDeckFlag_3.x = 90, a.x = e.interactiveDeckFlag_4.x = 135, e.interactiveDeckFlag_1.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_2.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_3.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_4.onClick = e._onClickDeckFlag, e.interactiveDeckFlag_1.update(1), e.interactiveDeckFlag_2.update(2), e.interactiveDeckFlag_3.update(3), e.interactiveDeckFlag_4.update(4), i.update(1), n.update(2), s.update(3), a.update(4), e.addChild(i, n, s, a, e.interactiveDeckFlag_1, e.interactiveDeckFlag_2, e.interactiveDeckFlag_3, e.interactiveDeckFlag_4), r.default.model.deck.exist3rdUnit && (e.icon3rdUnit = new PIXI.Sprite(o.COMMON_MISC.getTexture(185)), e.icon3rdUnit.position.set(77, -22), e.addChild(e.icon3rdUnit)), e
             }
             return n(e, t), e.prototype.initialize = function (t, e, i, n) {
@@ -67,24 +67,24 @@ const function680 = function (t, e, i) {
         }, e.prototype.update = function (t) {
             this.memDeckId = t
         }, e.prototype.hover = function () {
-            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "on"));
+            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "on"));
             this.texture = t
         }, e.prototype.normal = function () {
-            var t = o.COMMON_MISC.getTexture(l.getResourceId(this.memDeckId, "off"));
+            var t = o.COMMON_MISC.getTexture(u.getResourceId(this.memDeckId, "off"));
             this.texture = t
         }, e
     }(PIXI.Sprite);
     e.InteractiveDeckFlag = _;
-    var u = function (t) {
+    var l = function (t) {
         function e() {
             return t.call(this) || this
         }
         return n(e, t), e.prototype.update = function (t) {
-            this.texture = o.COMMON_MISC.getTexture(l.getResourceId(t, "no")), this.memDeckId = t
+            this.texture = o.COMMON_MISC.getTexture(u.getResourceId(t, "no")), this.memDeckId = t
         }, e
     }(PIXI.Sprite);
-    e.DisableDeckFlag = u;
-    var l;
+    e.DisableDeckFlag = l;
+    var u;
     ! function (t) {
         function e(t, e) {
             switch (t) {
@@ -131,5 +131,5 @@ const function680 = function (t, e, i) {
             return -1
         }
         t.getResourceId = e
-    }(l || (l = {}))
+    }(u || (u = {}))
 }

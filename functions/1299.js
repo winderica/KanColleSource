@@ -19,78 +19,34 @@ const function1299 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(152),
-        r = i(50),
-        s = i(433),
-        a = i(1300),
-        _ = i(1301),
-        u = i(1315),
-        l = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new o.MapBG, e._shutter = new r.Shutter, e._map = new _.MapView, e._upper = new a.CompUpperBar, e._gauge_layer = new u.GaugeLayer, e._chara_layer = new PIXI.Sprite, e._universal_layer = new PIXI.Container, e._message_box = new s.CompMessageBox, e._top_layer = new PIXI.Container, e.addChild(e._bg), e.addChild(e._shutter), e.addChild(e._map), e.addChild(e._upper), e.addChild(e._gauge_layer), e.addChild(e._chara_layer), e.addChild(e._universal_layer), e.addChild(e._message_box), e.addChild(e._top_layer), e
+    var o = i(19),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._stopTween()
+                }, i._onMouseOut = function () {
+                    i._startTween()
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "shutter", {
-                get: function () {
-                    return this._shutter
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "map", {
-                get: function () {
-                    return this._map
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "upper", {
-                get: function () {
-                    return this._upper
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "gauge_layer", {
-                get: function () {
-                    return this._gauge_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara_layer", {
-                get: function () {
-                    return this._chara_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "universal_layer", {
-                get: function () {
-                    return this._universal_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message_box", {
-                get: function () {
-                    return this._message_box
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "top_layer", {
-                get: function () {
-                    return this._top_layer
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this.shutter.initializeLight(), this._upper.initialize(), this._message_box.initialize()
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._bg.dispose(), this._map.dispose(), this._upper.dispose(), this._gauge_layer.dispose(), this._message_box.dispose(), this._message_box = null
-            }, e.prototype.frontOfGaugeLayer = function () {
-                this.addChild(this._gauge_layer), this.addChild(this._top_layer)
+                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
+                    loop: !0
+                }).to({
+                    alpha: .1
+                }, 1e3).to({
+                    alpha: 1
+                }, 400))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
             }, e
         }(PIXI.Container);
-    e.ViewMain = l
+    e.PanelCancelBtn = s
 }

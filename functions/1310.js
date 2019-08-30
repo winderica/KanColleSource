@@ -20,15 +20,72 @@ const function1310 = function (t, e, i) {
         value: !0
     });
     var o = i(23),
-        r = i(20),
+        r = i(19),
         s = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+                return e._light = new PIXI.Sprite, e._light.anchor.set(.5), e.addChild(e._light), e._cell = new PIXI.Sprite, e._cell.anchor.set(.5), e.addChild(e._cell), e._color = 0, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = r.MAP_COMMON.getTexture(95), this._img.y = -39
+            return n(e, t), Object.defineProperty(e.prototype, "color", {
+                get: function () {
+                    return this._color
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this.update(t)
+            }, e.prototype.update = function (t) {
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(153), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+            }, e.prototype.dispose = function () {
+                this._stopTween()
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._t = createjs.Tween.get(this._light, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 300).to({
+                    alpha: 1
+                }, 300))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._light.alpha = 0)
+            }, e.prototype._getTexture = function (t) {
+                switch (t) {
+                    case -1:
+                        return r.MAP_COMMON.getTexture(159);
+                    case 1:
+                        return r.MAP_COMMON.getTexture(152);
+                    case 2:
+                    case 6:
+                        return r.MAP_COMMON.getTexture(155);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(157);
+                    case 4:
+                        return r.MAP_COMMON.getTexture(158);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(146);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(108);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(145);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(156);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(101);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(160);
+                    case 12:
+                        return r.MAP_COMMON.getTexture(161);
+                    case 13:
+                        return r.MAP_COMMON.getTexture(83);
+                    case -2:
+                        return r.MAP_COMMON.getTexture(154);
+                    case -3:
+                        return r.MAP_COMMON.getTexture(151);
+                    case 14:
+                        return r.MAP_COMMON.getTexture(152)
+                }
+                return PIXI.Texture.EMPTY
             }, e
         }(o.Container);
-    e.LandingFlag = s
+    e.SpotPointImage = s
 }

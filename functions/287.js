@@ -1,40 +1,54 @@
 const function287 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var n = function () {
+        function t(t, e, i) {
+            this.UpdateInterval = 1e3 / 30;
+            var n = -(.3 * Math.random() + .1);
+            this.kira = t, this.light_ss_yellow_01 = e, this.light_ss_yellow_02 = i, this.animationSpeed = n
+        }
+        return t.prototype.play = function (t) {
+            this._stop(), this._playAlphaTween(), this._playTextureSwitchTween(t)
+        }, t.prototype.stop = function () {
+            this._stop()
+        }, t.prototype.dispose = function () {
+            this._stop(), this.kira = null, this.light_ss_yellow_01 = null, this.light_ss_yellow_02 = null, this.animationSpeed = null
+        }, t.prototype._playTextureSwitchTween = function (t) {
+            var e = this,
+                i = createjs.Tween.get(this);
+            switch (i.loop = !0, t) {
+                case 0:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(2 * this.UpdateInterval);
+                    break;
+                case 1:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(4 * this.UpdateInterval);
+                    break;
+                case 2:
+                    i.call(function () {
+                        e.kira.texture = e.light_ss_yellow_01
+                    }).wait(3 * this.UpdateInterval).call(function () {
+                        e.kira.texture = e.light_ss_yellow_02
+                    }).wait(40)
             }
-            return n(e, t), e.prototype._start = function () {
-                this._check()
-            }, e.prototype._check = function () {
-                var t = o.default.model.deck.getAll();
-                t = t.filter(function (t, e, i) {
-                    return null != t.expedition && 2 == t.expedition.state
-                });
-                var e = o.default.view.portMain.expedition_alert;
-                t.length > 0 ? (e.initialize(t[0].mstID), e.activate(), e.visible = !0) : (e.deactive(), e.visible = !1), this._endTask()
-            }, e
-        }(r.TaskBase);
-    e.TaskExpeditionAlertUpdate = s
+        }, t.prototype._playAlphaTween = function () {
+            var t = this,
+                e = createjs.Tween.get(this);
+            e.loop = !0, e.wait(40).call(function () {
+                t.kira.alpha += t.animationSpeed, 1 < t.kira.alpha ? t.animationSpeed = -(.3 * Math.random() + .1) : t.kira.alpha < .3 && (t.animationSpeed = .3 * Math.random() + .1)
+            })
+        }, t.prototype._stop = function () {
+            createjs.Tween.removeTweens(this), this.kira.alpha = 0
+        }, t
+    }();
+    e.KiraAnimation = n
 }

@@ -8,8 +8,8 @@ const function735 = function (t, e, i) {
         s = i(1),
         a = i(28),
         _ = i(8),
-        u = i(86),
-        l = i(736),
+        l = i(86),
+        u = i(736),
         c = i(6),
         h = i(217),
         p = i(737),
@@ -64,7 +64,7 @@ const function735 = function (t, e, i) {
             }, this.mainView = t;
             var i = h.OrganizeSceneMemory.filterStatus,
                 o = h.OrganizeSceneMemory.japanese;
-            this.shipChoiceView = new p.ShipChoiceView(i, o, this._onFilter), this.dialogBackground = new _.AreaBox(.5), this.pagerView = new u.PagerView, this.shipSortButton = new l.ShipSortButton
+            this.shipChoiceView = new p.ShipChoiceView(i, o, this._onFilter), this.dialogBackground = new _.AreaBox(.5), this.pagerView = new l.PagerView, this.shipSortButton = new u.ShipSortButton
         }
         return Object.defineProperty(t.prototype, "memShipId", {
             get: function () {

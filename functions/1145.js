@@ -22,38 +22,42 @@ const function1145 = function (t, e, i) {
     var o = i(74),
         r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._num = new PIXI.Sprite, e.addChild(e._num), e
+                return t.call(this) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.COMMON_SELECTABLE_REWARD.getTexture(0)
-            }, e.prototype.update = function (t) {
-                88 == t ? this._num.position.set(25, 19) : this._num.position.set(29, 15), this._num.texture = this._getNumImage(t), this.visible = this._num.texture != PIXI.Texture.EMPTY
-            }, e.prototype._getNumImage = function (t) {
-                switch (t) {
-                    case 1:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(24);
-                    case 2:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(25);
-                    case 3:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(26);
-                    case 4:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(27);
-                    case 5:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(28);
-                    case 6:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(29);
-                    case 7:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(30);
-                    case 8:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(31);
-                    case 9:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(33);
-                    case 88:
-                        return o.COMMON_SELECTABLE_REWARD.getTexture(32)
+            return n(e, t), e.prototype.update = function (t) {
+                if (null == this._star && (this._star = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(13)), this.addChild(this._star)), null == this._plus && (this._plus = new PIXI.Sprite(o.COMMON_SELECTABLE_REWARD.getTexture(23)), this._plus.position.set(21, 5), this.addChild(this._plus)), null == this._level && (this._level = new PIXI.Sprite, this._level.position.set(39, 2), this.addChild(this._level)), t < 1 || 9 < t) this._star.visible = !1, this._plus.visible = !1, this._level.visible = !1;
+                else {
+                    switch (t) {
+                        case 1:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(14);
+                            break;
+                        case 2:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(15);
+                            break;
+                        case 3:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(16);
+                            break;
+                        case 4:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(17);
+                            break;
+                        case 5:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(18);
+                            break;
+                        case 6:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(19);
+                            break;
+                        case 7:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(20);
+                            break;
+                        case 8:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(21);
+                            break;
+                        case 9:
+                            this._level.texture = o.COMMON_SELECTABLE_REWARD.getTexture(22)
+                    }
+                    this._star.visible = !0, this._plus.visible = !0, this._level.visible = !0
                 }
-                return PIXI.Texture.EMPTY
             }, e
-        }(PIXI.Sprite);
-    e.RewardSelectDialogCount = r
+        }(PIXI.Container);
+    e.LevelStar = r
 }

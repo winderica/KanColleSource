@@ -9,7 +9,7 @@ const function939 = function (t, e, i) {
         s = i(942),
         a = i(943),
         _ = i(944),
-        u = function () {
+        l = function () {
             function t(t) {
                 this._o = t
             }
@@ -113,6 +113,8 @@ const function939 = function (t, e, i) {
                 return null == t ? null : new o.AirReconnaissanceModel(t)
             }, t.prototype.isUsableRation = function () {
                 return 1 == n.ObjUtil.getNumber(this._o, "api_ration_flag")
+            }, t.prototype.getAnchorageRepair = function () {
+                return 1 == n.ObjUtil.getNumber(this._o, "api_anchorage_flag")
             }, t.prototype.getM1 = function () {
                 return n.ObjUtil.getNumber(this._o, "api_m1")
             }, t.prototype.hasEventMapData = function () {
@@ -130,5 +132,5 @@ const function939 = function (t, e, i) {
                 configurable: !0
             }), t
         }();
-    e.NextModel = u
+    e.NextModel = l
 }

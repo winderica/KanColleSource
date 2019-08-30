@@ -32,14 +32,14 @@ const function577 = function (t, e, i) {
                 for (var e = o.ObjUtil.getObject(t, "setting"), i = o.ObjUtil.getNumArray(e, "loop"), r = o.ObjUtil.getObjectArray(t, "data"), s = 0; s < r.length; s++) {
                     var a = r[s],
                         _ = null != i && s < i.length ? i[s] : 0,
-                        u = new n.FurnitureLayerModel(a, _);
-                    this._layers.push(u)
+                        l = new n.FurnitureLayerModel(a, _);
+                    this._layers.push(l)
                 }
-                var l = o.ObjUtil.getObject(t, "hitarea");
-                null != l && (this._hitArea = {
-                    filename: o.ObjUtil.getString(l, "filename"),
-                    offset: o.ObjUtil.getNumArray(l, "offset"),
-                    state: o.ObjUtil.getString(l, "state")
+                var u = o.ObjUtil.getObject(t, "hitarea");
+                null != u && (this._hitArea = {
+                    filename: o.ObjUtil.getString(u, "filename"),
+                    offset: o.ObjUtil.getNumArray(u, "offset"),
+                    state: o.ObjUtil.getString(u, "state")
                 }), this._timeTable = o.ObjUtil.getObject(t, "timetable")
             }, t.prototype.hasLoop = function () {
                 for (var t = 0, e = this._layers; t < e.length; t++) {

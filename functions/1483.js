@@ -19,83 +19,18 @@ const function1483 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
+    var o = i(9),
+        r = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/battle_result", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.ParallelTask;
-                e.add(new _(this._scene)), e.add(new u(this._scene)), e.add(new l(this._scene)), e.start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.setData(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskShowExtraResults = a;
-    var _ = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_war_results;
-                if (e > 0) {
-                    var i = this._scene.view.panel_exp.extra_result.extra_war_result;
-                    i.update(e), i.alpha = 0, i.visible = !0, createjs.Tween.get(i).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = this._scene.data.extra_useitem_mst_id;
-                if (e > 0) {
-                    var i = o.default.resources.getUseitem(e, 0),
-                        n = this._scene.view.panel_exp.extra_result.useitem_icon;
-                    n.texture = i, n.alpha = 0, n.visible = !0, createjs.Tween.get(n).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase),
-        l = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene = e, i
-            }
-            return n(e, t), e.prototype._start = function () {
-                var t = this;
-                if (1 == this._scene.data.extra_result) {
-                    var e = this._scene.view.panel_exp.extra_result.map_incentive;
-                    e.alpha = 0, e.visible = !0, createjs.Tween.get(e).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        t._endTask()
-                    })
-                } else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, t.prototype._endTask.call(this)
-            }, e
-        }(r.TaskBase)
+        }(o.APIBase);
+    e.APIPracticeResult = r
 }

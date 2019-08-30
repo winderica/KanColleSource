@@ -20,40 +20,33 @@ const function1163 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(6),
-        s = i(110),
-        a = i(91),
-        _ = i(1164),
-        u = i(1166),
-        l = i(1172),
-        c = i(1173),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    r.SE.play("240"), null == e._sub_view && (e._sub_view = new u.FShopListView(e._onUnSelect, e._onExchange), e.addChild(e._sub_view)), e._sub_view.initialize(t), e._sub_view.activate(), e._sub_view.visible = !0, e._main_view.deactivate(), e._main_view.visible = !1
-                }, e._onUnSelect = function () {
-                    e._main_view.activate(), e._main_view.visible = !0, e._sub_view.deactivate(), e._sub_view.visible = !1
-                }, e._onExchange = function (t) {
-                    var i = o.default.view.overLayer,
-                        n = new c.TaskExchange(i, t);
-                    n.start(function () {
-                        1 == n.result && (e.update(), null != e._sub_view && 1 == e._sub_view.visible && e._sub_view.update())
+        r = i(2),
+        s = i(8),
+        a = i(1),
+        _ = i(239),
+        l = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._bg.buttonMode = !1, o._bg.off(a.EventType.CLICK, o._onClose), null != o._t && (o._t.setPaused(!0), o._t = null), createjs.Tween.get(o._chara).to({
+                        y: 450,
+                        alpha: 0
+                    }, 300).call(function () {
+                        o._layer.removeChild(o._bg), o._layer.removeChild(o._chara), o._endTask()
                     })
-                }, e._header = new PIXI.Sprite, e._header.position.set(0, 102), e.addChild(e._header), e._main_view = new _.FurnitureShopMainView(e._onSelect), e.addChild(e._main_view), e._coin = new l.CoinBox, e._coin.position.set(984, 640), e.addChild(e._coin), e
+                }, o._layer = e, o._page_no = i, o._count = n, o
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_FSHOP.getTexture(55), this._main_view.initialize(), this._coin.initialize(), this.update()
-            }, e.prototype.update = function () {
-                var t = o.default.model.useItem.getCount(44);
-                this._coin.update(t)
-            }, e.prototype.activate = function () {
-                1 == this._main_view.visible && this._main_view.activate()
-            }, e.prototype.deactivate = function () {
-                this._main_view.deactivate(), this._main_view.visible = !0, null != this._sub_view && (this._sub_view.visible = !1)
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._main_view.dispose(), null != this._sub_view && this._sub_view.dispose(), this._coin.dispose()
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                this._bg = new s.AreaBox(0, 0, 1200, 720), this._layer.addChild(this._bg);
+                var e = PIXI.Sprite.fromFrame(_.POSTER_KEY_1),
+                    i = _.getPosterOffsetWelcome();
+                null != i && (e.x = i.x, e.y = i.y), this._chara = new PIXI.Sprite, this._chara.addChild(e), this._chara.position.set(1200, 0), this._layer.addChild(this._chara), 0 == this._page_no ? this._count <= 1 && o.default.sound.voice.playAtRandom("9999", [311, 312], [60, 40]) : o.default.sound.voice.play("9999", 315), this._bg.interactive = !0, this._bg.buttonMode = !0, this._bg.once(a.EventType.CLICK, this._onClose), this._t = createjs.Tween.get(this._chara).to({
+                    x: 660
+                }, 300).call(function () {
+                    t._t = null
+                })
             }, e
-        }(a.ViewBase);
-    e.FurnitureShopMain = h
+        }(r.TaskBase);
+    e.TaskWelcomeCutin = l
 }

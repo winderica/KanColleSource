@@ -19,50 +19,59 @@ const function1320 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(13),
-        s = i(442),
-        a = i(1321),
-        _ = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onTaihi = function () {
-                    r._view.deactivate();
-                    var t = r._model.map_info.area_id,
-                        e = r._model.map_info.map_no,
-                        i = r._model.map_info.cell_no;
-                    new s.GobackPortAPI(t, e, i, r._target.mem_id, r._towing.mem_id).start(function () {
-                        r._target.initializeTaihi(!0), r._towing.initializeTaihi(!0), r._hideView()
-                    })
-                }, r._onTaihiSezu = function () {
-                    r._view.deactivate(), r._hideView()
-                }, r._scene = e, r._model = i, r._target = n, r._towing = o, r
+    var o = i(5),
+        r = i(31),
+        s = i(1321),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._loadShipResources()
-            }, e.prototype._loadShipResources = function () {
-                var t = this,
-                    e = new r.ShipLoader;
-                e.add(this._target.mst_id, this._target.isDamaged(), "banner"), e.add(this._towing.mst_id, this._towing.isDamaged(), "banner"), e.load(function () {
-                    t._show()
+            return n(e, t), e.prototype.initialize = function (t, e, i, n) {
+                void 0 === n && (n = 1), null != this._gauge && (this._gauge.dispose(), null != this._gauge.parent && this._gauge.parent.removeChild(this._gauge), this._gauge = null), this._gauge = new s.GaugeVertical, this._gauge.initialize(t), this._gauge.update(e, i), this._gauge.position.set(t.x, t.y), this._gauge.alpha = n, this.addChild(this._gauge)
+            }, e.prototype.dispose = function () {
+                this._stopTween(), null != this._gauge && this._gauge.dispose()
+            }, e.prototype.update = function (t, e, i, n) {
+                var o = this;
+                if (void 0 === i && (i = 0), void 0 === n && (n = null), this._stopTween(), i <= 0) this._gauge.update(t, e);
+                else {
+                    var r = {
+                            now: this._gauge.now,
+                            max: this._gauge.max
+                        },
+                        s = function (t) {
+                            o._gauge.update(r.now, r.max)
+                        };
+                    this._t = createjs.Tween.get(r, {
+                        onChange: s
+                    }).to({
+                        now: t,
+                        max: e
+                    }, i).call(function () {
+                        o._t = null, null != n && n()
+                    })
+                }
+            }, e.prototype.vanish = function (t) {
+                void 0 === t && (t = null), this._stopTween();
+                var e = new r.Container;
+                e.x = this._gauge.x + Math.round(this._gauge.width / 2), e.y = this._gauge.y + Math.round(this._gauge.height / 2), this.addChild(e), this._gauge.x = -Math.round(this._gauge.width / 2), this._gauge.y = -Math.round(this._gauge.height / 2), e.addChild(this._gauge), this._t = createjs.Tween.get(e).wait(800).wait(200).to({
+                    scaleX: 1.1,
+                    scaleY: .9
+                }, 35).to({
+                    scaleX: 0,
+                    scaleY: 1.4
+                }, 200).call(function () {
+                    null != t && t()
                 })
-            }, e.prototype._show = function () {
-                this._view = new a.EscapeGoeiView(this._onTaihi, this._onTaihiSezu), this._view.initialize();
-                var t = this._target,
-                    e = this._towing;
-                this._view.updateTargetShipBanner(t.mst_id, t.level, t.isMarriage(), t.hp_now, t.hp_max), this._view.updateTowingShipBanner(e.mst_id, e.isMarriage(), e.hp_now, e.hp_max), this._view.activate(), this._view.alpha = 0, this._scene.addChild(this._view), createjs.Tween.get(this._view).to({
+            }, e.prototype.createShowTween = function (t) {
+                if (null == this._gauge) return null;
+                var e = this._gauge.x;
+                return this._gauge.x = t ? -this._gauge.width : o.default.width + this._gauge.width, this._gauge.alpha = 0, createjs.Tween.get(this._gauge).to({
+                    x: e,
                     alpha: 1
-                }, 300)
-            }, e.prototype._hideView = function () {
-                var t = this;
-                createjs.Tween.get(this._view).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.removeChild(this._view), this._scene = null, this._model = null, this._target = null, this._towing = null, this._view.dispose(), this._view = null, t.prototype._endTask.call(this)
+                }, 500, createjs.Ease.quadOut)
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null)
             }, e
-        }(o.TaskBase);
-    e.EscapeGoeiTask = _
+        }(PIXI.Container);
+    e.GaugeLayer = a
 }

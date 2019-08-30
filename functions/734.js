@@ -9,7 +9,7 @@ const function734 = function (t, e, i) {
         s = i(215),
         a = i(735),
         _ = i(739),
-        u = function () {
+        l = function () {
             function t(t) {
                 var e = this;
                 this._onCompleteChoiceShip = function (t) {
@@ -56,5 +56,5 @@ const function734 = function (t, e, i) {
                 1 == i.mstID && 1 == i.getCount() ? o = !1 : i.getShipModel(e) && (o = !0), this.taskChoiceShip = new a.TaskChoiceShip(this.mainView), this.taskChoiceShip.onComplete = this._onCompleteChoiceShip, this.taskChoiceShip.start(o)
             }, t
         }();
-    e.TaskChangeShip = u
+    e.TaskChangeShip = l
 }

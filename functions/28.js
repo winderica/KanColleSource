@@ -48,15 +48,15 @@ const function28 = function (t, e, i) {
             })
         }
 
-        function u(t, e) {
+        function l(t, e) {
             for (var i = [], n = 0, o = e; n < o.length; n++) {
                 var r = o[n];
                 0 == r ? (i.push(8), i.push(9), i.push(10), i.push(12)) : 1 == r ? (i.push(7), i.push(11), i.push(18)) : 2 == r ? (i.push(5), i.push(6)) : 3 == r ? (i.push(3), i.push(4), i.push(21)) : 4 == r ? i.push(2) : 5 == r ? i.push(1) : 6 == r ? (i.push(13), i.push(14)) : 7 == r && (i.push(15), i.push(16), i.push(17), i.push(19), i.push(20), i.push(22))
             }
-            return l(t, i)
+            return u(t, i)
         }
 
-        function l(t, e) {
+        function u(t, e) {
             return null == t ? null : t.filter(function (t, i, n) {
                 var o = t.shipTypeID;
                 return e.indexOf(o) >= 0
@@ -90,9 +90,9 @@ const function28 = function (t, e, i) {
                 s = t.soukou - (e.soukMin + t.gradeUpSouk),
                 a = (t.lucky, e.luckMin, t.gradeUpLuck, e.hougMax + n <= t.karyoku),
                 _ = e.raigMax + o <= t.raisou,
-                u = e.tykuMax + r <= t.taiku,
-                l = e.soukMax + s <= t.soukou;
-            if (a && _ && u && l) {
+                l = e.tykuMax + r <= t.taiku,
+                u = e.soukMax + s <= t.soukou;
+            if (a && _ && l && u) {
                 if (!i) return !0;
                 var c = 0 == e.luckMax - t.lucky,
                     h = !0;
@@ -116,6 +116,6 @@ const function28 = function (t, e, i) {
                     return ""
             }
         }
-        t.isEnemy = e, t.getSpeedType = i, t.getDamageType = o, t.isDamaged = r, t.isMarriage = s, t.sort = a, t.filter = _, t.filterByShipFilterType = u, t.filterByShipType = l, t.getMemIDsInAllDeck = c, t.getMemIDsInExpedition = h, t.isMaxGradeUp = p, t.getShipClassTypeSpRemodelText = d
+        t.isEnemy = e, t.getSpeedType = i, t.getDamageType = o, t.isDamaged = r, t.isMarriage = s, t.sort = a, t.filter = _, t.filterByShipFilterType = l, t.filterByShipType = u, t.getMemIDsInAllDeck = c, t.getMemIDsInExpedition = h, t.isMaxGradeUp = p, t.getShipClassTypeSpRemodelText = d
     }(e.ShipUtil || (e.ShipUtil = {}))
 }

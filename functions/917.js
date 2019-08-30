@@ -20,7 +20,7 @@ const function917 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(10),
+        r = i(9),
         s = i(7),
         a = function (t) {
             function e(e, i) {
@@ -37,11 +37,11 @@ const function917 = function (t, e, i) {
                 for (var n = 0, r = this.api_ship_ids.length; n < r; n++) {
                     var a = this.api_ship_ids[n],
                         _ = o.default.model.ship.get(a),
-                        u = o.default.model.deck.isInDeck(a);
-                    if (u) {
-                        var l = u[0],
-                            c = u[1];
-                        o.default.model.deck.get(l).__remove__(c)
+                        l = o.default.model.deck.isInDeck(a);
+                    if (l) {
+                        var u = l[0],
+                            c = l[1];
+                        o.default.model.deck.get(u).__remove__(c)
                     }
                     o.default.model.ship.delete(_.memID, i)
                 }

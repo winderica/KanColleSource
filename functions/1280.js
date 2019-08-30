@@ -19,75 +19,45 @@ const function1280 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(0),
-        s = i(146),
-        a = i(7),
-        _ = i(2),
-        u = i(244),
-        l = i(50),
-        c = i(6),
-        h = i(1281),
-        p = i(1282),
-        d = function (t) {
-            function e(e, i, n, o, r, s, a, _, u, l) {
-                var c = t.call(this) || this;
-                return c._PLANEKEY = "airbaseraid", c._area_id = e, c._map_no = i, c._battle_obj = n, c._has_boku_airunit = o, c._mapinfo = r, c._plane_layer = s, c._telop_layer = a, c._battle_layer = _, c._airbase_layer = u, c._battle_cls = l, c
+    var o = i(0),
+        r = i(8),
+        s = i(60),
+        a = i(81),
+        _ = i(208),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new s.RarityBG, e._item = new PIXI.Sprite, e._item.anchor.set(.5), e._particle = new _.BonusParticle, e._message_box = new a.MessageBox, e._message_box.y = 721, e._white = new r.AreaBox(1, 16777215), e.addChild(e._bg), e.addChild(e._item), e.addChild(e._particle), e.addChild(e._message_box), e.addChild(e._white), e
             }
-            return n(e, t), e.prototype._start = function () {
-                null == this._battle_obj ? this._endTask() : (c.SE.play("253"), this._flightEnemyAirUnit())
-            }, e.prototype._flightEnemyAirUnit = function () {
-                var t = this,
-                    e = this._mapinfo.getAirBaseRaidOption();
-                this._plane_layer.show(this._PLANEKEY, e, 2e3, function () {
-                    t._showTelop()
-                })
-            }, e.prototype._showTelop = function () {
-                var t = this,
-                    e = new h.AirRaidTelop;
-                e.initialize(this._has_boku_airunit), e.x = o.default.width / 2, e.y = o.default.height / 2, this._telop_layer.addChild(e), e.playAnimation(function () {
-                    t._telop_layer.removeChild(e), t._fadeoutBGM()
-                })
-            }, e.prototype._fadeoutBGM = function () {
-                var t = this;
-                1 == r.default.sound.bgm.playing ? (r.default.sound.bgm.fadeOut(1e3), createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._startBattle()
-                })) : this._startBattle()
-            }, e.prototype._startBattle = function () {
-                var t = this,
-                    e = new u.BattleSceneModel(!1);
-                e.setGekimetsuData(this._battle_obj);
-                var i = new l.Shutter;
-                i.initializeDark(), i.close(0), this._battle_layer.addChild(i);
-                var n = new this._battle_cls;
-                n.initialize(e), this._battle_layer.addChild(n), i.alpha = 0, n.alpha = 0, createjs.Tween.get(i).to({
-                    alpha: 1
-                }, 200), createjs.Tween.get(n).to({
-                    alpha: 1
-                }, 300).call(function () {
-                    n.once("complete", function () {
-                        t._hideBattle(i, n)
-                    }), n.start()
-                })
-            }, e.prototype._hideBattle = function (t, e) {
-                var i = this;
-                this._plane_layer.hide(this._PLANEKEY), this._battle_layer.removeChild(e), e.dispose(), createjs.Tween.get(t).wait(800).to({
-                    alpha: 0
-                }, 300).wait(400).call(function () {
-                    i._battle_layer.removeChild(t), i._showResultTelop()
-                })
-            }, e.prototype._showResultTelop = function () {
-                var t = this,
-                    e = s.MapConst.getMapBGMID(this._area_id, this._map_no);
-                1 == e.battle_bgm ? r.default.sound.bgm.playBattleBGM(e.id) : r.default.sound.bgm.play(e.id);
-                var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
-                    n = new p.AirRaidResultTelop;
-                n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
-                    t._telop_layer.removeChild(n), t._endTask()
-                }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
-            }, e.prototype._endTask = function () {
-                this._battle_obj = null, this._mapinfo = null, this._plane_layer = null, this._telop_layer = null, this._battle_layer = null, this._battle_cls = null, t.prototype._endTask.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "particle", {
+                get: function () {
+                    return this._particle
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "message_box", {
+                get: function () {
+                    return this._message_box
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "white", {
+                get: function () {
+                    return this._white
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i) {
+                this._item.texture = o.default.resources.getUseitem(t, 1), this._item.position.set(600, 255), 85 == t || 85 == t || 85 == t || 85 == t ? this._message_box.initializeForFood(i) : this._message_box.initializeForUseitem(i, e)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._bg = null, this._item = null, this._particle.dispose(), this._particle = null, this._message_box.dispose(), this._message_box = null, this._white = null
             }, e
-        }(_.TaskBase);
-    e.AirRaidTask = d
+        }(PIXI.Container);
+    e.BonusUseItem = l
 }

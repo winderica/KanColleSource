@@ -36,10 +36,10 @@ const function961 = function (t, e, i) {
                     null != i._cb_onChangePage && i._cb_onChangePage(t)
                 }, i._cb_onChangePage = e, i._pages = [];
                 for (var n = 0; n < 5; n++) {
-                    var o = new u(i._onChange);
+                    var o = new l(i._onChange);
                     o.x = 33 + 51 * n, i.addChild(o), i._pages.push(o)
                 }
-                return i._prev = new l(i._onPrev5), i._prev.position.set(0, 8), i.addChild(i._prev), i._next = new l(i._onNext5), i._next.position.set(290, 8), i.addChild(i._next), i
+                return i._prev = new u(i._onPrev5), i._prev.position.set(0, 8), i.addChild(i._prev), i._next = new u(i._onNext5), i._next.position.set(290, 8), i.addChild(i._next), i
             }
             return n(e, t), e.prototype.initialize = function () {
                 for (var t = 0, e = this._pages; t < e.length; t++) {
@@ -64,7 +64,7 @@ const function961 = function (t, e, i) {
             }, e
         }(PIXI.Container);
     e.AirUnitListPager = _;
-    var u = function (t) {
+    var l = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._onClick = function () {
@@ -83,7 +83,7 @@ const function961 = function (t, e, i) {
                 this.deactivate(), this.removeChildren(), this._text.destroy(), this._cb_onClick = null, this._hitArea = null
             }, e
         }(PIXI.Container),
-        l = function (t) {
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._onClick = function () {

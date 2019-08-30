@@ -24,13 +24,13 @@ const function482 = function (t, e, i) {
         s = i(1),
         a = i(66),
         _ = i(8),
-        u = i(40),
-        l = i(24),
+        l = i(40),
+        u = i(24),
         c = i(207),
-        h = i(1486),
+        h = i(1491),
         p = i(209),
         d = function (t) {
-            function e(e, i, n, l, c, h) {
+            function e(e, i, n, u, c, h) {
                 void 0 === h && (h = null);
                 var p = t.call(this) || this;
                 return p._moveCard = function () {
@@ -69,13 +69,13 @@ const function482 = function (t, e, i) {
                     }, 300).call(p._waitClick)
                 }, p._waitClick = function () {
                     p._bonus.message_box.activate();
-                    var t = new u.GearBtnHome;
+                    var t = new l.GearBtnHome;
                     t.position.set(1140, 660), t.initialize(), t.activate(), p._bonus.addChild(t);
                     var e = new _.AreaBox(0);
                     e.interactive = !0, e.buttonMode = !0, p._bonus.addChild(e), e.once(s.EventType.CLICK, function () {
                         p._bonus.removeChild(e), p._finalize(t)
                     })
-                }, p._layer = e, p._mst_id = i, p._count = n, p._level = l, p._pre_task = h, p._play_bgm = c, p
+                }, p._layer = e, p._mst_id = i, p._count = n, p._level = u, p._pre_task = h, p._play_bgm = c, p
             }
             return n(e, t), e.prototype._start = function () {
                 this._bonus = new h.BonusSlot, this._bonus.alpha = 0, this._layer.addChild(this._bonus), this._insert = new c.BonusInsert, this._loadBG()
@@ -87,7 +87,7 @@ const function482 = function (t, e, i) {
                 })
             }, e.prototype._loadSlotImage = function () {
                 var t = this,
-                    e = new l.SlotLoader;
+                    e = new u.SlotLoader;
                 e.add(this._mst_id, "card"), e.load(function () {
                     t._insert.preload(function () {
                         t._showInsert()

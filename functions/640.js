@@ -36,9 +36,9 @@ const function640 = function (t, e, i) {
                     a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
                 }
                 this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
-                for (var _ = this._icons.length, u = [0, 0, 96, 75, 45, 30, 15][_], l = 75 * _ + u * (_ - 1), c = 0; c < _; c++) {
+                for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
                     var a = this._icons[c];
-                    a.x = -l / 2 + (75 + u) * c
+                    a.x = -u / 2 + (75 + l) * c
                 }
                 this._showDialog()
             }, e.prototype._removeContent = function () {

@@ -19,98 +19,48 @@ const function1362 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(12),
-        s = i(16),
-        a = i(184),
-        _ = i(143),
-        u = function (t) {
+    var o = i(43),
+        r = i(27),
+        s = i(29),
+        a = i(72),
+        _ = i(20),
+        l = i(38),
+        u = i(6),
+        c = i(452),
+        h = i(445),
+        p = i(449),
+        d = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._bg = new o.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._telop_bg = new a.TelopBG, e._telop_bg.position.set(600, 150), e._telop_bg.alpha = 0, e.addChild(e._telop_bg), e._slot_bg1 = new a.TelopBG, e.addChild(e._slot_bg1), e._slot1 = new r.Sprite, e._slot1.anchor.set(.5), e._slot1.scale.set(.9), e._slot1.alpha = 0, e.addChild(e._slot1), e._slot_bg2 = new a.TelopBG, e.addChild(e._slot_bg2), e._slot2 = new r.Sprite, e._slot2.anchor.set(.5), e._slot2.scale.set(.9), e._slot2.alpha = 0, e._slot1_text = new r.Sprite, e._slot1_text.scale.set(.76), e._slot1_text.alpha = 0, e._slot2_text = new r.Sprite, e._slot2_text.scale.set(.76), e._slot2_text.alpha = 0, e._telop = new r.Sprite, e._telop.anchor.set(.5), e._telop.position.set(600, 150), e._telop.alpha = 0, e._plane = new _.Plane(.88), e.addChild(e._slot2), e.addChild(e._slot1_text), e.addChild(e._slot2_text), e.addChild(e._telop), e.addChild(e._plane);
-                var i = new PIXI.Graphics;
-                return i.beginFill(0), i.drawRect(0, 321, 1200, 138), i.endFill(), e.addChild(i), e._slot1.mask = i, i = new PIXI.Graphics, i.beginFill(0), i.drawRect(0, 530, 1200, 138), i.endFill(), e.addChild(i), e._slot2.mask = i, e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop_bg", {
-                get: function () {
-                    return this._telop_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg1", {
-                get: function () {
-                    return this._slot_bg1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1", {
-                get: function () {
-                    return this._slot1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg2", {
-                get: function () {
-                    return this._slot_bg2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2", {
-                get: function () {
-                    return this._slot2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1_text", {
-                get: function () {
-                    return this._slot1_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2_text", {
-                get: function () {
-                    return this._slot2_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop", {
-                get: function () {
-                    return this._telop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane", {
-                get: function () {
-                    return this._plane
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
-                    case 1:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
-                        break;
-                    case 2:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
-                        break;
-                    default:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
-                }
-            }, e.prototype.dispose = function () {
-                this.removeChildren()
+            return n(e, t), e.prototype._start = function () {
+                this._log();
+                var t = this._scene.data.model.map_info.isAirRaid();
+                this._canvas = new h.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
+            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
+                var t = this,
+                    e = new r.ParallelTask,
+                    i = createjs.Tween.get(null).call(u.SE.play, ["220"]).wait(1700);
+                e.add((new _.TweenTask).addTween(i)), e.add(new a.FuncTask(function () {
+                    t._fireDogFight()
+                }, 350)), e.add(new a.FuncTask(function () {
+                    t._showTaikuCutin()
+                }, 450)), e.add(new a.FuncTask(function () {
+                    t._damageAtStage1()
+                }, 500)), e.add(new a.FuncTask(function () {
+                    t._antiAircraft()
+                }, 600)), e.add(new a.FuncTask(function () {
+                    t._damageAtStage2()
+                }, 700)), e.add((new s.SerialTask).add(new l.WaitTask(850)).add((new r.ParallelTask).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new a.FuncTask(function () {
+                    t._showBakuExplosion()
+                }, 1500)), e.add(new a.FuncTask(function () {
+                    t._showDamage()
+                }, 1650)), this._main_task = e, this._main_task.start(function () {
+                    t._showDamageNumber()
+                })
+            }, e.prototype._showSeikuResult = function () {}, e.prototype._getPlaneType = function () {
+                return o.PlaneConst.getJetPlaneType()
             }, e
-        }(PIXI.Container);
-    e.CutinDanchakuCanvas = u
+        }(c.TaskAirWar);
+    e.TaskAirWarJet = d
 }

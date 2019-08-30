@@ -21,11 +21,11 @@ const function95 = function (t, e, i) {
     });
     var o = i(29),
         r = i(38),
-        s = i(249),
-        a = i(250),
+        s = i(250),
+        a = i(251),
         _ = i(63),
-        u = i(1345),
-        l = i(183),
+        l = i(1350),
+        u = i(183),
         c = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
@@ -55,14 +55,14 @@ const function95 = function (t, e, i) {
                     e = this._data,
                     i = e.getTouchPlaneFriend(),
                     n = e.getTouchPlaneEnemy();
-                new l.TaskShowTouchPlane(this._scene, i, n).start(function () {
+                new u.TaskShowTouchPlane(this._scene, i, n).start(function () {
                     t._animation(e)
                 })
             }, e.prototype._animation = function (t) {
                 var e = this,
                     i = this._scene.data.model.deck_f.ships,
                     n = this._scene.data.model.deck_e.ships;
-                new u.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
+                new l.TaskAirUnitJet(this._scene, t, i, n, this._damage_cutin, this._aaCutin).start(function () {
                     e._afterAnimetion()
                 })
             }, e.prototype._afterAnimetion = function () {

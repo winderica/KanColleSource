@@ -20,12 +20,12 @@ const function737 = function (t, e, i) {
         value: !0
     });
     var o = i(3),
-        r = i(327),
+        r = i(328),
         s = i(4),
         a = i(213),
         _ = i(164),
-        u = i(112),
-        l = i(70),
+        l = i(112),
+        u = i(70),
         c = i(87),
         h = i(15),
         p = i(1),
@@ -59,8 +59,8 @@ const function737 = function (t, e, i) {
                 }
                 var a = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(2)),
                     _ = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(0)),
-                    u = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(44)),
-                    l = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
+                    l = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(44)),
+                    u = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
                 s.allFilterTxt = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(45)), s.allFilterTxt.position.set(240, 265), s.allFilterTxt.visible = !1, s.txtSwitchBase = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(46)), s.txtSwitch = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(48)), s.txtSwitchBase.interactive = s.txtSwitchBase.buttonMode = !0, s.txtSwitchBase.addListener(p.EventType.CLICK, s.onClickTxtSwitch), s.txtSwitchBase.position.set(51, 41), s.txtSwitch.position.set(53, 43), s.allSelectBase = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(4)), s.allSelect = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(5)), s.allSelectBase.interactive = s.allSelectBase.buttonMode = !0, s.allSelectBase.addListener(p.EventType.CLICK, s.onClickSelectAll), s.allSelectBase.position.set(594, 15), s.allSelect.position.set(598, 19), s.detach = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(42)), s.detach.interactive = s.detach.buttonMode = !0, s.detach.addListener(p.EventType.MOUSEOVER, function () {
                     s.detach.texture = r.ORGANIZE_FILTER.getTexture(43)
                 }), s.detach.addListener(p.EventType.MOUSEOUT, function () {
@@ -74,9 +74,9 @@ const function737 = function (t, e, i) {
                     var d = new PIXI.Sprite(r.ORGANIZE_FILTER.getTexture(1));
                     d.anchor.set(0, 1), d.x = h.x, d.y = h.y + 43, s.lineLayer.addChild(d)
                 }
-                _.position.set(57, 46), s.detach.position.set(594, 522), u.position.set(0, -33), l.position.set(22, 10), a.interactive = !0;
+                _.position.set(57, 46), s.detach.position.set(594, 522), l.position.set(0, -33), u.position.set(22, 10), a.interactive = !0;
                 for (var m = 0, c = 0; c < e.length; c++) e[c] || m++;
-                return s.updateSelectAll(m), s.allFilterTxt.visible = m == e.length, s.lineLayer.visible = m != e.length, u.addChild(l), s.addChild(a, s.detach, u, _, s.allFilterTxt), s.filterBtns.forEach(function (t) {
+                return s.updateSelectAll(m), s.allFilterTxt.visible = m == e.length, s.lineLayer.visible = m != e.length, l.addChild(u), s.addChild(a, s.detach, l, _, s.allFilterTxt), s.filterBtns.forEach(function (t) {
                     return s.addChild(t)
                 }), s.addChild(s.lineLayer), s.listItems.forEach(function (t) {
                     return s.addChild(t)
@@ -127,7 +127,7 @@ const function737 = function (t, e, i) {
                 }, e._onClickHeart = function () {
                     e.onClickLock(e.memShipId)
                 }, e.textureLockOn = o.ORGANIZE_MAIN.getTexture(42), e.textureLockOff = o.ORGANIZE_MAIN.getTexture(41);
-                e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new l.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new u.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
+                e.shipInDeckFlag = new c.ShipInDeckFlag, e.textType = new s.TextBox(18, 5523516), e.textLevel = new s.TextBox(21, 5523516), e.textTyku = new s.TextBox(17, 5523516), e.textHoug = new s.TextBox(17, 5523516), e.textRaig = new s.TextBox(17, 5523516), e.textTaik = new s.TextBox(17, 5523516), e.ring = new u.RingSmall, e.sokuryoku = new a.ShipSpeedImage, e.lockedHeart = new PIXI.Sprite, e.hpGauge = new l.HpGaugeView, e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(17));
                 var i = new m,
                     n = new m,
                     r = new m;
@@ -143,8 +143,8 @@ const function737 = function (t, e, i) {
                 this.containerTypeAndName.cacheAsBitmap = !1, this.containerTypeAndName.removeChildren(), this.containerTypeAndName.mask = null, this.containerTypeAndName = null, this.ring.dispose(), this.itemHitArea.off(p.EventType.MOUSEOVER), this.itemHitArea.off(p.EventType.MOUSEOUT), this.itemHitArea.off(p.EventType.CLICK), this.lockedHeart.off(p.EventType.MOUSEOVER), this.lockedHeart.off(p.EventType.MOUSEOUT), this.lockedHeart.off(p.EventType.CLICK), this.textType.destroy(), this.textName.destroy(), this.textLevel.destroy(), this.textTyku.destroy(), this.textHoug.destroy(), this.textRaig.destroy(), this.textTaik.destroy(), this.onMouseOver = this.onMouseOut = this._onClickHitArea = this.onMouseOver = this.onMouseOut = this._onClickHeart = null, this.kirakira = null, this.hpGauge = null, this.onClickItem = null, this.onClickLock = null, this.shipInDeckFlag = null, this.textType = null, this.textName = null, this.textLevel = null, this.textTyku = null, this.textHoug = null, this.textRaig = null, this.textTaik = null, this.sokuryoku = null, this.background = null, this.lockedHeart = null, this.itemHitArea = null, this.locked = null, this.memShipId = null, this.ring = null, this.textureLockOn = null, this.textureLockOff = null
             }, e.prototype._updateTypeAndName_ = function (t, e) {
                 this.containerTypeAndName.cacheAsBitmap = !1, this.textType.text = t + " ", this.textName.text = e, this.textName.position.x = this.textType.x + this.textType.width, this.containerTypeAndName.cacheAsBitmap = !0
-            }, e.prototype.update = function (t, e, i, n, o, r, s, a, u, l, c, h, p, d) {
-                this.memShipId = t, this.locked = c, this.textLevel.text = "" + n, this.textTyku.text = "" + o, this.textHoug.text = "" + s, this.textRaig.text = "" + a, this.textTaik.text = "" + u, this.hpGauge.update(o, r), this.sokuryoku.update(l), this.textLevel.style.fill = _.ColorUtil.getLevelColor(n), this.mouseoutLevelColor = this.textLevel.style.fill, this._updateCondition_(p), this._updateRing_(d), this._updateLock_(c), this._updateInDeck_(h), this._updateTypeAndName_(e, i)
+            }, e.prototype.update = function (t, e, i, n, o, r, s, a, l, u, c, h, p, d) {
+                this.memShipId = t, this.locked = c, this.textLevel.text = "" + n, this.textTyku.text = "" + o, this.textHoug.text = "" + s, this.textRaig.text = "" + a, this.textTaik.text = "" + l, this.hpGauge.update(o, r), this.sokuryoku.update(u), this.textLevel.style.fill = _.ColorUtil.getLevelColor(n), this.mouseoutLevelColor = this.textLevel.style.fill, this._updateCondition_(p), this._updateRing_(d), this._updateLock_(c), this._updateInDeck_(h), this._updateTypeAndName_(e, i)
             }, e.prototype._updateCondition_ = function (t) {
                 this.kirakira.forEach(function (t) {
                     t.visible = !1

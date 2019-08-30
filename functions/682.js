@@ -23,8 +23,8 @@ const function682 = function (t, e, i) {
         r = i(683),
         s = i(113),
         a = i(689),
-        _ = i(317),
-        u = function (t) {
+        _ = i(318),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e.SLOT_MAX = 6, e.shipSlots = [];
@@ -75,15 +75,15 @@ const function682 = function (t, e, i) {
             }, e.prototype.update = function (t, e) {
                 for (var i = o.default.model.deck.get(t), n = null != i.expedition, r = i.getCount(), s = i.getShipList().length, a = 0; a < this.shipSlots.length; a++) {
                     var _ = this.shipSlots[a],
-                        u = a + e,
-                        l = i.getShipModel(u);
-                    if (_.visible = !1, l) _.visible = !0, _.update(u, l, n), _.open();
-                    else if (u < s) {
+                        l = a + e,
+                        u = i.getShipModel(l);
+                    if (_.visible = !1, u) _.visible = !0, _.update(l, u, n), _.open();
+                    else if (l < s) {
                         var c = r < s,
-                            h = u == r,
+                            h = l == r,
                             p = 0 == n,
                             d = p && c && h;
-                        _.visible = !0, _.updateEmpty(u, d), _.close()
+                        _.visible = !0, _.updateEmpty(l, d), _.close()
                     }
                 }
                 this.arrowBottomButton.visible = !1, this.arrowTopButton.visible = !1, this.arrowBottomButton.deactivate(), this.arrowTopButton.deactivate(), 0 < e && (this.arrowTopButton.visible = !0, this.arrowTopButton.activate()), this.shipSlots.length + e < s && (this.arrowBottomButton.visible = !0, this.arrowBottomButton.activate())
@@ -106,5 +106,5 @@ const function682 = function (t, e, i) {
                 }, this.taskShipDetail.start(t)
             }, e
         }(PIXI.Container);
-    e.ShipSlotLayer = u
+    e.ShipSlotLayer = l
 }

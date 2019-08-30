@@ -80,6 +80,9 @@ const function123 = function (t, e, i) {
                 case 5:
                     this._img.texture = s.BATTLE_MAIN.getTexture(146), this._img.position.set(-45, -26);
                     break;
+                case 6:
+                    this._img.texture = s.BATTLE_MAIN.getTexture(147), this._img.position.set(-45, -26);
+                    break;
                 default:
                     this._img.texture = PIXI.Texture.EMPTY
             }

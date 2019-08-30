@@ -19,12 +19,12 @@ const function898 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
+    var o = i(9),
         r = i(0),
         s = function (t) {
             function e(e, i, n, o, r, s, a, _) {
-                var u = t.call(this) || this;
-                return u._url = "api_req_kousyou/createship", u.api_kdock_id = e, u.api_large_flag = i, u.api_item1_fuel = n, u.api_item2_ammo = o, u.api_item3_steel = r, u.api_item4_baux = s, u.api_item5_devkit = a, u.api_highspeed = _, u
+                var l = t.call(this) || this;
+                return l._url = "api_req_kousyou/createship", l.api_kdock_id = e, l.api_large_flag = i, l.api_item1_fuel = n, l.api_item2_ammo = o, l.api_item3_steel = r, l.api_item4_baux = s, l.api_item5_devkit = a, l.api_highspeed = _, l
             }
             return n(e, t), e.prototype._connect = function () {
                 this._post_data.api_kdock_id = this.api_kdock_id, this._post_data.api_large_flag = this.api_large_flag, this._post_data.api_item1 = this.api_item1_fuel, this._post_data.api_item2 = this.api_item2_ammo, this._post_data.api_item3 = this.api_item3_steel, this._post_data.api_item4 = this.api_item4_baux, this._post_data.api_item5 = this.api_item5_devkit, this._post_data.api_highspeed = this.api_highspeed, t.prototype._connect.call(this)

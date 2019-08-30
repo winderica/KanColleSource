@@ -19,53 +19,32 @@ const function1386 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(29),
-        r = i(19),
-        s = i(2),
-        a = i(1387),
-        _ = i(1394),
-        u = i(472),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+    var o = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            e._chara = [];
+            for (var i = 0; i < 3; i++) {
+                var n = new PIXI.Container;
+                e._chara.push(n), e.addChild(n)
             }
-            return n(e, t), e.prototype._start = function () {
-                this._model = this._record.getAllyAttack(), null == this._model ? this._endTask() : this._opening()
-            }, e.prototype._opening = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = this._scene.view.layer_cutin,
-                    n = new _.PhaseAllyOpening(this._model, e, i);
-                n.preload(function () {
-                    e.addAllyBannerGroup(t._model.ships), n.start(function () {
-                        t._light()
-                    })
-                })
-            }, e.prototype._light = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer.ally;
-                new a.PhaseAllyLighting(this._scene, this._record, this._model, e).start(function () {
-                    t._hougeki()
-                })
-            }, e.prototype._hougeki = function () {
-                var t = this,
-                    e = this._model.getHougekiData(),
-                    i = this._model.ships,
-                    n = this._scene.data.model.deck_e.ships;
-                new u.PhaseHougeki(this._scene, e, i, n).start(function () {
-                    t._moveShips()
-                })
-            }, e.prototype._moveShips = function () {
-                var t = this,
-                    e = this._scene.view.bannerGroupLayer,
-                    i = new o.SerialTask;
-                i.add((new r.TweenTask).addTweens(e.ally.createExitTweensUpward())), i.add(e.createFriendEnterTask()), i.start(function () {
-                    e.removeAllyBannerGroup(), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null, this._model = null, t.prototype._endTask.call(this)
-            }, e
-        }(s.TaskBase);
-    e.PhaseAllyAttack = l
+            return e._explosion = new PIXI.Container, e.addChild(e._explosion), e
+        }
+        return n(e, t), Object.defineProperty(e.prototype, "chara", {
+            get: function () {
+                return this._chara
+            },
+            enumerable: !0,
+            configurable: !0
+        }), Object.defineProperty(e.prototype, "explosion", {
+            get: function () {
+                return this._explosion
+            },
+            enumerable: !0,
+            configurable: !0
+        }), e.prototype.dispose = function () {
+            for (var t = 0; t < 3; t++) this._chara[t].removeChildren(), this._chara[t] = null;
+            this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
+        }, e
+    }(PIXI.Container);
+    e.CutinColoradoAttackCanvas = o
 }

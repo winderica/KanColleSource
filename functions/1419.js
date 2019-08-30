@@ -19,43 +19,40 @@ const function1419 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(29),
-        s = i(19),
-        a = i(2),
-        _ = function (t) {
+    var o = i(471),
+        r = function (t) {
             function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._record = i, n
+                return t.call(this, e, i) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new o.ParallelTask;
-                e.add(this._createTween_f()), e.add(this._createTween_e()), e.start(function () {
-                    t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null
-            }, e.prototype._createTween_f = function () {
-                var t = this._scene.view.bannerGroupLayer;
-                if (0 == t.isEnteredFriend()) return t.createFriendEnterTask();
-                var e = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_f.isCombined()) {
-                    var i = this._record.common.getActiveDeckFriend();
-                    1 == i ? e.addTweens(t.friends_combined.createExitTweensUpDown()) : 2 == i && (e.addTweens(t.friends.createExitTweens()), e.addTweens(t.createFriendSubDeckMoveTween(200)))
+            return n(e, t), e.prototype._getShips_f = function () {
+                var t = this._scene.data.model.deck_f;
+                if (1 == t.isCombined()) {
+                    switch (this._record.common.getActiveDeckFriend()) {
+                        case 1:
+                            return t.ships_main;
+                        case 2:
+                            return t.ships_sub
+                    }
                 }
-                return e
-            }, e.prototype._createTween_e = function () {
-                var t = this._record.common.getActiveDeckEnemy(),
-                    e = this._scene.view.bannerGroupLayer;
-                if (0 == e.isEnteredEnemy()) return 1 == t ? e.createEnemyEnterTask() : 2 == t ? new r.SerialTask(e.createEnemyEnterTask(), (new s.TweenTask).addTweens(e.enemies.createExitTweens()).addTweens(e.createEnemySubDeckMoveTween(200))) : e.createEnemyEnterTask();
-                var i = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_e.isCombined()) {
-                    var n = this._record.common.getActiveDeckEnemy();
-                    1 == n ? i.addTweens(e.enemies_combined.createExitTweensUpDown()) : 2 == n && (i.addTweens(e.enemies.createExitTweens()), i.addTweens(e.createEnemySubDeckMoveTween(200)))
+                return t.ships
+            }, e.prototype._getShips_e = function () {
+                var t = this._scene.data.model.deck_e;
+                if (1 == t.isCombined()) {
+                    switch (this._record.common.getActiveDeckEnemy()) {
+                        case 1:
+                            return t.ships_main;
+                        case 2:
+                            return t.ships_sub
+                    }
                 }
-                return i
+                return t.ships
+            }, e.prototype._getFlareBanner_f = function () {
+                var t = this._record.raw.getFlareLightFriend();
+                return this._scene.view.bannerGroupLayer.getBanner(!0, t)
+            }, e.prototype._getFlareBanner_e = function () {
+                var t = this._record.raw.getFlareLightEnemy();
+                return this._scene.view.bannerGroupLayer.getBanner(!1, t)
             }, e
-        }(a.TaskBase);
-    e.TaskMoveBannerDay = _
+        }(o.PhaseLightingBase);
+    e.PhaseLighting = r
 }

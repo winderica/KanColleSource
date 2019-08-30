@@ -8,39 +8,19 @@ const function1474 = function (t, e, i) {
             function t(t) {
                 this._o = t
             }
-            return Object.defineProperty(t.prototype, "mst_id", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_id")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "level", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_slot_level")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "count", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_value")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.isUseitem = function () {
-                return 1 == this._type
-            }, t.prototype.isShip = function () {
-                return 2 == this._type
-            }, t.prototype.isSlotitem = function () {
-                return 3 == this._type
-            }, t.prototype.isFurniture = function () {
-                return 5 == this._type
-            }, Object.defineProperty(t.prototype, "_type", {
-                get: function () {
-                    return n.ObjUtil.getNumber(this._o, "api_type")
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t
+            return t.prototype.getTargetShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_escape_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
+            }, t.prototype.getTowingShipIndexes = function () {
+                if (null == this._o) return [];
+                var t = n.ObjUtil.getNumArray(this._o, "api_tow_idx");
+                if (null == t) return [];
+                for (var e = [], i = 0; i < t.length; i++) e.push(t[i] - 1);
+                return e
+            }, t
         }();
-    e.MapBonusModel = o
+    e.EscapeCandidateModel = o
 }

@@ -19,23 +19,37 @@ const function1314 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(20),
+    var o = i(1315),
         r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._spots = {}, e._flags = {}, e
             }
-            return n(e, t), e.prototype.create = function (t) {
-                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(82), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
-            }, e.prototype.shake = function () {
-                var t = this;
-                if (null != this._airbase)
-                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
-                        i.wait(50), i.call(function () {
-                            Math.random();
-                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
-                        })
-                    }(n)
+            return n(e, t), e.prototype.addSpot = function (t) {
+                this._spots[t.no] = t, this.addChild(t)
+            }, e.prototype.addFlag = function (t, e, i) {
+                var n = new o.LandingFlag;
+                n.x = e, n.y = i, n.initialize(), this.addChild(n), this._flags[t] = n
+            }, e.prototype.getAllSpots = function () {
+                var t = [];
+                for (var e in this._spots) {
+                    var i = this._spots[e];
+                    t.push(i)
+                }
+                return t
+            }, e.prototype.getSpot = function (t) {
+                var e = t.toString();
+                return 1 == this._spots.hasOwnProperty(e) ? this._spots[t] : null
+            }, e.prototype.getFlag = function (t) {
+                var e = t.toString();
+                return 1 == this._flags.hasOwnProperty(e) ? this._flags[t] : null
+            }, e.prototype.dispose = function () {
+                this.removeChildren();
+                for (var t in this._spots) {
+                    this._spots[t].dispose()
+                }
+                this._spots = null
             }, e
         }(PIXI.Container);
-    e.AirBaseLayer = r
+    e.MapSpotLayer = r
 }

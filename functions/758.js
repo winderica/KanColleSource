@@ -29,12 +29,12 @@ const function758 = function (t, e, i) {
                     n = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(31)),
                     a = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(2)),
                     _ = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(1)),
-                    u = new r.TextBox(28, 5523516),
                     l = new r.TextBox(28, 5523516),
+                    u = new r.TextBox(28, 5523516),
                     c = new r.TextBox(16, 12467003),
                     h = new s.FuelContainer,
                     p = new s.AmmoContainer;
-                return u.anchor.set(1, 0), l.anchor.set(1, 0), i.position.set(0, 0), n.position.set(17, 24), a.position.set(18, 83), _.position.set(159, 83), h.position.set(18, 209), p.position.set(159, 209), u.position.set(144, 166), l.position.set(285, 166), c.position.set(155, 441), c.anchor.set(.5, 0), c.visible = !1, e.addChild(i, n, a, _, l, u, c, h, p), e.textAmmo = l, e.textFuel = u, e.textAlert = c, e.fuelContainer = h, e.ammoContainer = p, e
+                return l.anchor.set(1, 0), u.anchor.set(1, 0), i.position.set(0, 0), n.position.set(17, 24), a.position.set(18, 83), _.position.set(159, 83), h.position.set(18, 209), p.position.set(159, 209), l.position.set(144, 166), u.position.set(285, 166), c.position.set(155, 441), c.anchor.set(.5, 0), c.visible = !1, e.addChild(i, n, a, _, u, l, c, h, p), e.textAmmo = u, e.textFuel = l, e.textAlert = c, e.fuelContainer = h, e.ammoContainer = p, e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.removeChildren(), this.textAmmo.destroy(), this.textFuel.destroy(), this.textAlert.destroy(), this.fuelContainer.dispose(), this.fuelContainer = null, this.ammoContainer.dispose(), this.ammoContainer = null, this.textFuel = null, this.textAmmo = null, this.textAlert = null

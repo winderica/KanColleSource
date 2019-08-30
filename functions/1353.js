@@ -20,82 +20,46 @@ const function1353 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(12),
-        s = i(16),
-        a = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._scene = e, o._type = i, o._plane = n, o
+        r = i(23),
+        s = i(20),
+        a = i(16),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._layer = e, i._smoke1 = new l, i._smoke1.position.set(45, 39), i._smoke2 = new l, i._smoke2.position.set(54, 48), i._smoke3 = new l, i._smoke3.position.set(36, 65), i
             }
             return n(e, t), e.prototype._start = function () {
-                null == this._plane ? this._endTask() : 5 == this._type ? this._animSanshiki() : 2 == this._type ? this._animKoukaku() : 3 == this._type ? this._animFunshin() : this._endTask()
-            }, e.prototype._animSanshiki = function () {
                 var t = this,
-                    e = new _(5);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
+                    e = new s.TweenTask;
+                e.addTween(this._createTween(this._smoke1, 0)), e.addTween(this._createTween(this._smoke2, 100)), e.addTween(this._createTween(this._smoke3, 400)), e.start(function () {
+                    t._endTask()
                 })
-            }, e.prototype._animKoukaku = function () {
-                var t = this,
-                    e = new _(2);
-                e.x = this._plane.x, e.y = this._plane.y, this._scene.view.layer_cutin.addChild(e), createjs.Tween.get(e).to({
+            }, e.prototype._createTween = function (t, e) {
+                var i = this,
+                    n = t.x - 105,
+                    o = t.y - 8;
+                return t.scale.set(0), createjs.Tween.get(t).wait(e).call(function () {
+                    i._layer.addChild(t)
+                }).to({
                     scaleX: 1,
                     scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), t._endTask()
+                }, 200).to({
+                    x: n,
+                    y: o,
+                    alpha: 0,
+                    scaleX: 1.5,
+                    scaleY: 1.5
+                }, 400).call(function () {
+                    i._layer.removeChild(t)
                 })
-            }, e.prototype._animFunshin = function () {
-                var t = this,
-                    e = new _(3);
-                e.position.set(0, -15), this._plane.addChild(e);
-                var i = new _(3);
-                i.position.set(-15, 0), this._plane.addChild(i);
-                var n = new _(3);
-                n.position.set(23, 0), this._plane.addChild(n), createjs.Tween.get(e).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(i).wait(100).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700), createjs.Tween.get(n).wait(200).to({
-                    scaleX: 1,
-                    scaleY: 1
-                }, 100).to({
-                    scaleX: 2,
-                    scaleY: 2,
-                    alpha: 0
-                }, 700).call(function () {
-                    e.parent.removeChild(e), i.parent.removeChild(i), n.parent.removeChild(n), t._endTask()
-                })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._type = null, this._plane = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskAirWarAntiAircraftExplosion = a;
-    var _ = function (t) {
-        function e(e) {
-            var i, n = t.call(this) || this;
-            return 5 == e ? (i = 147, n.anchor.set(.5, .91)) : 2 == e ? (i = 148, n.anchor.set(.5, .85)) : 3 == e && (i = 147, n.anchor.set(.5, .76)), n.texture = s.BATTLE_MAIN.getTexture(i), n.scale.set(0), n
+    e.AnimAntiAircraftFunshin = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._img = new PIXI.Sprite(a.BATTLE_MAIN.getTexture(150)), e._img.position.set(-32, -42), e.addChild(e._img), e
         }
         return n(e, t), e
-    }(r.Sprite)
+    }(r.Container)
 }

@@ -19,16 +19,21 @@ const function1206 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
+    var o = i(2),
         r = i(14),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._scene_dispose_delegate = e, i
+            function e() {
+                return t.call(this) || this
             }
             return n(e, t), e.prototype._start = function () {
-                null != this._scene_dispose_delegate && this._scene_dispose_delegate(), r.UIImageLoader.clearMemoryCache("revamp"), this._endTask()
+                this._load()
+            }, e.prototype._load = function () {
+                var t = this,
+                    e = new r.UIImageLoader("revamp");
+                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    t._endTask()
+                })
             }, e
         }(o.TaskBase);
-    e.TaskItemSceneFinalize = s
+    e.TaskLoadResources = s
 }

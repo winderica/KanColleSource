@@ -19,48 +19,56 @@ const function1345 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(42),
-        r = i(72),
-        s = i(27),
-        a = i(29),
-        _ = i(19),
-        u = i(38),
-        l = i(6),
-        c = i(445),
-        h = i(446),
-        p = i(449),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(2),
+        r = i(12),
+        s = i(179),
+        a = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._ready2 = function () {
+                    i._gray = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(7)), i._gray.anchor.set(.5), i._gray.position.set(600, 300), i._gray.alpha = 0, i._gray_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(5)), i._gray_lost.anchor.set(.5), i._gray_lost.position.set(600, 420), i._gray_lost.alpha = 0, i._hideText()
+                }, i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new c.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createFriendPlanes(), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
-                var t = this,
-                    e = new s.ParallelTask,
-                    i = createjs.Tween.get(null).call(l.SE.play, ["220"]).wait(1700);
-                e.add((new _.TweenTask).addTween(i)), e.add(new r.FuncTask(function () {
-                    t._showResult(), t._fireDogFight()
-                }, 350)), e.add(new r.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 450)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 500)), e.add(new r.FuncTask(function () {
-                    t._antiAircraft()
-                }, 600)), e.add(new r.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 700)), e.add((new a.SerialTask).add(new u.WaitTask(850)).add((new s.ParallelTask).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new r.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 1500)), e.add(new r.FuncTask(function () {
-                    t._showDamage()
-                }, 1650)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+                this._ready()
+            }, e.prototype._ready = function () {
+                this._blue = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(6)), this._blue.anchor.set(.5), this._blue.scale.set(.58), this._blue.position.set(600, 330), this._blue.alpha = 0, this._blue_lost = new r.Sprite(s.BATTLE_CUTIN_GOUCHIN.getTexture(4)), this._blue_lost.anchor.set(.5), this._blue_lost.scale.set(.58), this._blue_lost.position.set(600, 390), this._blue_lost.alpha = 0, this._showText()
+            }, e.prototype._showText = function () {
+                this._layer.addChild(this._blue), this._layer.addChild(this._blue_lost), createjs.Tween.get(this._blue).to({
+                    y: 300,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._blue_lost).to({
+                    y: 420,
+                    scaleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 300).wait(500).call(this._ready2)
+            }, e.prototype._hideText = function () {
+                var t = this;
+                this._layer.addChild(this._gray), this._layer.addChild(this._gray_lost), createjs.Tween.get(this._gray).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray)
+                }), createjs.Tween.get(this._gray_lost).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    t._layer.removeChild(t._blue_lost)
+                }).wait(500).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._layer.removeChild(t._gray_lost)
+                }).wait(500).call(function () {
+                    t._endTask()
                 })
-            }, e.prototype._getPlaneType = function () {
-                return o.PlaneConst.getJetAirUnitPlaneType()
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._blue = null, this._blue_lost = null, this._gray = null, this._gray_lost = null, t.prototype._endTask.call(this)
             }, e
-        }(h.TaskAirUnit);
-    e.TaskAirUnitJet = d
+        }(o.TaskBase);
+    e.TaskGouchinCutinText = a
 }

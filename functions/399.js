@@ -19,15 +19,39 @@ const function399 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(31),
-        r = i(3),
-        s = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+    var o = i(1110),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                i._btns = [], i._btns.push(new o.TabBtn(0, e)), i._btns.push(new o.TabBtn(1, e)), i._btns.push(new o.TabBtn(2, e));
+                for (var n = 0; n < i._btns.length; n++) {
+                    var r = i._btns[n];
+                    r.y = 61 * n, i.addChild(r)
+                }
+                return i
             }
-            return n(e, t), e.prototype._update = function (t) {
-                0 == this._enabled ? this.texture = r.ITEM_COMMON.getTexture(1) : this.texture = 0 == t ? r.ITEM_COMMON.getTexture(0) : r.ITEM_COMMON.getTexture(2)
+            return n(e, t), e.prototype.initialize = function (t) {
+                for (var e = 0; e < this._btns.length; e++) {
+                    this._btns[e].initialize(t)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.update = function (t) {
+                for (var e = 0, i = this._btns; e < i.length; e++) {
+                    var n = i[e];
+                    n.selected = n.target == t
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].deactivate()
+                }
+            }, e.prototype.dispose = function () {
+                for (var t = 0, e = this._btns; t < e.length; t++) {
+                    e[t].dispose()
+                }
             }, e
-        }(o.BtnBase);
-    e.BackBtn = s
+        }(PIXI.Container);
+    e.TabContainer = r
 }

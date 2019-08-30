@@ -23,23 +23,23 @@ const function616 = function (t, e, i) {
         r = i(194),
         s = i(195),
         a = i(196),
-        _ = i(288),
-        u = i(1),
-        l = i(0),
-        c = i(290),
-        h = i(289),
+        _ = i(289),
+        l = i(1),
+        u = i(0),
+        c = i(291),
+        h = i(290),
         p = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._side.interactive = !0, e._side.buttonMode = !0;
                 var i = e._side.position.y;
-                return e._side.addListener(u.EventType.MOUSEOVER, function () {
-                    e._side.buttonMode = 0 == l.default.scene.now
-                }), e._side.addListener(u.EventType.CLICK, function () {
-                    if (0 == l.default.scene.now) {
-                        var t = l.default.model.deck.get(1).getShipModel(0),
-                            n = l.default.model.basic.getFlagShipPosIDCli(),
-                            o = l.default.view.getNowScene().flagShip.chara,
+                return e._side.addListener(l.EventType.MOUSEOVER, function () {
+                    e._side.buttonMode = 0 == u.default.scene.now
+                }), e._side.addListener(l.EventType.CLICK, function () {
+                    if (0 == u.default.scene.now) {
+                        var t = u.default.model.deck.get(1).getShipModel(0),
+                            n = u.default.model.basic.getFlagShipPosIDCli(),
+                            o = u.default.view.getNowScene().flagShip.chara,
                             r = h.PortConst.getMoveXValue(t.mstID),
                             s = 0;
                         0 == n ? (s = o.position.x + r, n = 1) : (s = o.position.x - r, n = 0);
@@ -70,8 +70,8 @@ const function616 = function (t, e, i) {
                                 x: s
                             }, 600, createjs.Ease.cubicOut)
                         });
-                        l.default.view.clickGuard = !0, a.execute(function () {
-                            a.dispose(), l.default.view.clickGuard = !1, l.default.model.basic.setFlagShipPosIDCli(n)
+                        u.default.view.clickGuard = !0, a.execute(function () {
+                            a.dispose(), u.default.view.clickGuard = !1, u.default.model.basic.setFlagShipPosIDCli(n)
                         })
                     }
                 }), e._btm = new PIXI.Sprite, e.addChild(e._btm), e

@@ -9,8 +9,8 @@ const function850 = function (t, e, i) {
         s = i(168),
         a = i(851),
         _ = i(3),
-        u = i(1),
-        l = function () {
+        l = i(1),
+        u = function () {
             function t(t, e, i, n, o) {
                 var a = this;
                 this._pageIndex = 0, this._onClickPage = function (t) {
@@ -40,7 +40,7 @@ const function850 = function (t, e, i) {
                     r.ShipUtil.sort(a.ships, t);
                     var e = a.ships.slice(a._pageIndex * s.RepairConst.ITEM_IN_COUNT, a._pageIndex * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
                     a.repairShipChoiceView.update(e, a.repairingIds), a.shipSortButton.update(t), a._shipSortKeyType = t
-                }, n.onClick = this._onClickSort, i.onChangePage = this._onClickPage, e.onClickListItem = this._onClickListItem, o.interactive = !0, o.addListener(u.EventType.CLICK, this._onClickBack), o.alpha = 0, t.addChild(o, e), e.addChild(i, n), e.position.set(1200, 142), n.position.set(585, 6), i.position.set(69, 528), this.repairShipChoiceView = e, this.shipSortButton = n, this.pagerView = i, this.mainView = t, this.background = o
+                }, n.onClick = this._onClickSort, i.onChangePage = this._onClickPage, e.onClickListItem = this._onClickListItem, o.interactive = !0, o.addListener(l.EventType.CLICK, this._onClickBack), o.alpha = 0, t.addChild(o, e), e.addChild(i, n), e.position.set(1200, 142), n.position.set(585, 6), i.position.set(69, 528), this.repairShipChoiceView = e, this.shipSortButton = n, this.pagerView = i, this.mainView = t, this.background = o
             }
             return Object.defineProperty(t.prototype, "memShipId", {
                 get: function () {
@@ -64,15 +64,15 @@ const function850 = function (t, e, i) {
                 var i = this;
                 _.SE.play("249"), o.default.view.clickGuard = !0;
                 var n = o.default.model.ndock.getAll(),
-                    u = [];
+                    l = [];
                 n.forEach(function (t) {
-                    u.push(t.shipMemID)
+                    l.push(t.shipMemID)
                 });
-                var l = o.default.model.ship.getAll(),
-                    c = a.RepairUtil.calcPageCount(l.length);
-                r.ShipUtil.sort(l, e);
-                var h = l.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
-                this.repairShipChoiceView.update(h, u), this.shipSortButton.update(e), this.ships = l, this._pageIndex = t, this._shipSortKeyType = e, this.pagerView.init(c), this.pagerView.changePage(t), this.repairingIds = u;
+                var u = o.default.model.ship.getAll(),
+                    c = a.RepairUtil.calcPageCount(u.length);
+                r.ShipUtil.sort(u, e);
+                var h = u.slice(t * s.RepairConst.ITEM_IN_COUNT, t * s.RepairConst.ITEM_IN_COUNT + s.RepairConst.ITEM_IN_COUNT);
+                this.repairShipChoiceView.update(h, l), this.shipSortButton.update(e), this.ships = u, this._pageIndex = t, this._shipSortKeyType = e, this.pagerView.init(c), this.pagerView.changePage(t), this.repairingIds = l;
                 var p = createjs.Tween.get(this.repairShipChoiceView);
                 createjs.Tween.get(this.background).to({
                     alpha: 1
@@ -92,8 +92,8 @@ const function850 = function (t, e, i) {
                     t()
                 }).play(null)
             }, t.prototype.dispose = function () {
-                this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipChoiceView), this.repairShipChoiceView.removeChild(this.shipSortButton), this.repairShipChoiceView.removeChild(this.pagerView), this.background.removeAllListeners(u.EventType.CLICK), this.onComplete = null, this._memShipId = null, this.repairShipChoiceView = null, this.shipSortButton = null, this.pagerView = null, this.ships = null, this._shipSortKeyType = null, this._pageIndex = null
+                this.mainView.removeChild(this.background), this.mainView.removeChild(this.repairShipChoiceView), this.repairShipChoiceView.removeChild(this.shipSortButton), this.repairShipChoiceView.removeChild(this.pagerView), this.background.removeAllListeners(l.EventType.CLICK), this.onComplete = null, this._memShipId = null, this.repairShipChoiceView = null, this.shipSortButton = null, this.pagerView = null, this.ships = null, this._shipSortKeyType = null, this._pageIndex = null
             }, t
         }();
-    e.PhaseRepairShipChoice = l
+    e.PhaseRepairShipChoice = u
 }

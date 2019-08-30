@@ -37,10 +37,10 @@ const function182 = function (t, e, i) {
                                 r = e._scene.view.bannerGroupLayer.getBanner(i),
                                 s = 1 == i.friend ? e._data.stage3_f : e._data.stage3_e,
                                 _ = s.getDamage(i.index),
-                                u = s.isShield(i.index),
-                                l = new a(e._scene, o, r, _, u);
-                            e._tasks.push(l), l.start(function () {
-                                t._taskComplete(i, l)
+                                l = s.isShield(i.index),
+                                u = new a(e._scene, o, r, _, l);
+                            e._tasks.push(u), u.start(function () {
+                                t._taskComplete(i, u)
                             })
                         }
                     }(o)

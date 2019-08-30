@@ -19,8 +19,8 @@ const function1012 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(43),
-        r = i(369),
+    var o = i(41),
+        r = i(370),
         s = function (t) {
             function e() {
                 return null !== t && t.apply(this, arguments) || this
@@ -28,9 +28,9 @@ const function1012 = function (t, e, i) {
             return n(e, t), e.prototype._getBlackTexture = function () {
                 switch (this._type) {
                     case 2:
-                        return o.SALLY_EVENT.getTexture(27);
+                        return o.SALLY_EVENT.getTexture(31);
                     case 3:
-                        return o.SALLY_EVENT.getTexture(28)
+                        return o.SALLY_EVENT.getTexture(30)
                 }
                 return PIXI.Texture.EMPTY
             }, e.prototype._setPositions = function () {

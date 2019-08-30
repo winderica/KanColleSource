@@ -19,83 +19,126 @@ const function1450 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(22),
-        s = i(28),
-        a = i(154),
-        _ = i(155),
-        u = i(16),
-        l = function (t) {
+    var o = i(29),
+        r = i(20),
+        s = i(1451),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e._icon = new a.BannerIcon, e._soot = new _.BannerSoot, e.addChild(e._img), e.addChild(e._icon), e.addChild(e._soot), e
+                return e._ally = null, e._friends_combined = new s.BannerGroup(!0, !0), e._friends_combined.position.set(228, 117), e.addChild(e._friends_combined), e._enemies_combined = new s.BannerGroup(!1, !0), e._enemies_combined.position.set(753, 220), e.addChild(e._enemies_combined), e._friends = new s.BannerGroup(!0, !1), e._friends.position.set(0, 117), e.addChild(e._friends), e._enemies = new s.BannerGroup(!1, !1), e._enemies.position.set(960, 220), e.addChild(e._enemies), e._effect_layer = new PIXI.Container, e.addChild(e._effect_layer), e
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i, n, o, s, a) {
-                if (this._mst_id = t, this._updateState(e, i), this._taihi = n, this._icon.initialize(o), this._combined = s, this._friend = a, this._updateImage(s, a), this._updateIcon(e, i), this._friend && this._combined) {
-                    var _ = new PIXI.Graphics;
-                    _.beginFill(16711680, .5), _.drawRect(r.BannerSize.W / 2, 0, r.BannerSize.W / 2, r.BannerSize.H), _.endFill(), this._soot.addChild(_), this._soot.mask = _
+            return n(e, t), Object.defineProperty(e.prototype, "friends", {
+                get: function () {
+                    return this._friends
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemies", {
+                get: function () {
+                    return this._enemies
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "friends_combined", {
+                get: function () {
+                    return this._friends_combined
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "enemies_combined", {
+                get: function () {
+                    return this._enemies_combined
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "ally", {
+                get: function () {
+                    return this._ally
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "effect_layer", {
+                get: function () {
+                    return this._effect_layer
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._friends.initialize(t), this._enemies.initialize(e), this._friends_combined.initialize(i), this._enemies_combined.initialize(n)
+            }, e.prototype.addAllyBannerGroup = function (t) {
+                this._ally = new s.BannerGroup(!0, !1), this._ally.x = this._friends.x, this._ally.y = this._friends.y, this._ally.initialize(t);
+                var e = this.getChildIndex(this._effect_layer);
+                this.addChildAt(this._ally, e)
+            }, e.prototype.removeAllyBannerGroup = function () {
+                null != this._ally && (null != this._ally.parent && this._ally.parent.removeChild(this._ally), this._ally = null)
+            }, e.prototype.dispose = function () {
+                this._friends.dispose(), this._enemies.dispose(), this._friends_combined.dispose(), this._enemies_combined.dispose()
+            }, e.prototype.getBanner = function (t, e) {
+                if (void 0 === e && (e = -1), -1 == e) {
+                    var i = t;
+                    return this._getBanner(i.friend, i.index)
                 }
-            }, e.prototype.update = function (t, e) {
-                this._updateState(t, e), this._updateImage(this._combined, this._friend), this._updateIcon(t, e)
-            }, e.prototype.getAnimationTweens = function (t) {
-                var e = this;
-                this._combined = !1;
-                var i = this._img.texture,
-                    n = new PIXI.Sprite(i);
-                n.x = this._img.x, n.y = this._img.y;
-                var o = this.getChildIndex(this._img);
-                this.addChildAt(n, o), this._img.texture = this._getTexture(), this._img.alpha = 0;
-                var r = [createjs.Tween.get(this._img).wait(t).to({
-                    alpha: 1
-                }, 600).call(function () {
-                    e.removeChild(n);
-                    var t = e._img.mask;
-                    t && (t.parent.removeChild(t), e._img.mask = null)
-                })];
-                if (this._soot.mask) {
-                    var s = this._soot.mask;
-                    this._soot.removeChild(s), this._soot.mask = null, this._soot.alpha = 0;
-                    var a = new _.BannerSoot;
-                    a.texture = this._soot.texture, a.addChild(s), a.mask = s, this.addChildAt(a, this.getChildIndex(this._soot)), r.push(createjs.Tween.get(this._soot).wait(t).to({
-                        alpha: 1
-                    }, 600)), r.push(createjs.Tween.get(a).wait(t).to({
-                        alpha: 0
-                    }, 600).call(function () {
-                        e.removeChild(a)
-                    }))
+                var n = t;
+                return this._getBanner(n, e)
+            }, e.prototype._getBanner = function (t, e) {
+                var i;
+                if (1 == t) {
+                    if (null != this._ally) return this._ally.getBanner(e);
+                    i = this._friends.getBanner(e), null == i && (i = this._friends_combined.getBanner(e - 6))
+                } else null == (i = this._enemies.getBanner(e)) && (i = this._enemies_combined.getBanner(e - 6));
+                return i
+            }, e.prototype.getShieldTargetBanner = function (t) {
+                if (null == t) return null;
+                if (1 == t.friend) {
+                    if (this._friends.isContains(t)) return this._friends.getBanner(0);
+                    if (this._friends_combined.isContains(t)) return this._friends_combined.getBanner(0);
+                    if (null != this._ally && this._ally.isContains(t)) return this._ally.getBanner(0)
+                } else {
+                    if (this._enemies.isContains(t)) return this._enemies.getBanner(0);
+                    if (this._enemies_combined.isContains(t)) return this._enemies_combined.getBanner(0)
                 }
-                return r
-            }, e.prototype._updateState = function (t, e) {
-                t <= 0 ? this._damaged = 2 : s.ShipUtil.isDamaged(t, e) ? this._damaged = 1 : this._damaged = 0
-            }, e.prototype._updateImage = function (t, e) {
-                if (this._mst_id < 0) switch (this._mst_id) {
-                    case -1:
-                        this._img.texture = u.BATTLE_MAIN.getTexture(0);
-                        break;
-                    case -2:
-                        this._img.texture = u.BATTLE_MAIN.getTexture(1);
-                        break;
-                    case -3:
-                        this._img.texture = u.BATTLE_MAIN.getTexture(2)
-                } else this._img.texture = t ? e ? this._getTextureCombinedFriend() : this._getTextureCombinedEnemy() : this._getTexture()
-            }, e.prototype._getTexture = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner")
-            }, e.prototype._getTextureCombinedFriend = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner2_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner2")
-            }, e.prototype._getTextureCombinedEnemy = function () {
-                if (2 == this._damaged || 1 == this._taihi) return o.default.resources.getShip(this._mst_id, !0, "banner3_g");
-                var t = 0 != this._damaged;
-                return o.default.resources.getShip(this._mst_id, t, "banner3")
-            }, e.prototype._updateIcon = function (t, e) {
-                if (0 == this._taihi) {
-                    var i = s.ShipUtil.getDamageType(t, e);
-                    this._icon.setDamagedIcon(i), this._soot.update(i)
-                } else this._icon.setTaihiIcon()
+                return null
+            }, e.prototype.isEnteredFriend = function () {
+                return this._friends.isEntered() || this._friends_combined.isEntered()
+            }, e.prototype.isEnteredEnemy = function () {
+                return this._enemies.isEntered() || this._enemies_combined.isEntered()
+            }, e.prototype.createFriendEnterTask = function () {
+                return this._createEnterTask(!0)
+            }, e.prototype.createEnemyEnterTask = function () {
+                return this._createEnterTask(!1)
+            }, e.prototype.createFriendSubDeckMoveTween = function (t) {
+                return this._createBannerMoveTween(t, !0)
+            }, e.prototype.createEnemySubDeckMoveTween = function (t) {
+                return this._createBannerMoveTween(t, !1)
+            }, e.prototype._createEnterTask = function (t) {
+                var e = t ? this._friends : this._enemies,
+                    i = t ? this._friends_combined : this._enemies_combined,
+                    n = new o.SerialTask,
+                    s = e.createEnterTweens();
+                if (s.length > 0) {
+                    var a = new r.TweenTask;
+                    a.addTweens(s), n.add(a)
+                }
+                var _ = i.createEnterTweens();
+                if (_.length > 0) {
+                    var a = new r.TweenTask;
+                    a.addTweens(_), n.add(a)
+                }
+                return n
+            }, e.prototype._createBannerMoveTween = function (t, e) {
+                var i = [],
+                    n = e ? this._friends : this._enemies,
+                    o = e ? this._friends_combined : this._enemies_combined,
+                    r = n.x - o.x;
+                o.x = n.x;
+                for (var s = 0; s < o.getBannerNum(); s++) {
+                    var a = o.getBanner(s);
+                    a.x -= r;
+                    var _ = a.createSubDeckMoveTween(t);
+                    null != _ && i.push.apply(this, _), t += 100
+                }
+                return i
             }, e
         }(PIXI.Container);
-    e.BannerImage = l
+    e.BannerGroupLayer = a
 }
