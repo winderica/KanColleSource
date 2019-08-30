@@ -76,26 +76,32 @@ const function987 = function (t, e, i) {
                 }
                 this._rader.update(i);
                 var _ = o.default.model.ndock.getShipMemIDs(),
-                    l = y.check(this._selected_map, e, _, this._event_sortie_condition);
-                this._btn.enabled = l.result;
-                var u = this._airunit_limit,
-                    c = this._selected_map.area_id,
-                    h = o.default.model.airunit.getReadyAirUnitList(c);
-                if (this._btn.air_unit = u > 0 && h.length > 0, this._alert.update(l.reason), this._arrow.enabled = l.result, this._arrow.update(r), this._arrow.activate(), 0 == o.default.model.basic.getExtraSupplySortie()) this._temp_supply_btn.visible = !1;
-                else if (r) this._temp_supply_btn.visible = !1;
-                else if (0 != l.reason && 2 != l.reason && 14 != l.reason) this._temp_supply_btn.visible = !1;
-                else {
-                    for (var p = 0, d = 0, s = 0; s < n.length; s++) {
-                        var a = n[s];
-                        null != a && (p += a.getFuelForSupply(), d += a.getAmmoForSupply())
+                    l = this._airunit_limit,
+                    u = this._selected_map.area_id,
+                    c = o.default.model.airunit.getReadyAirUnitList(u),
+                    h = !1,
+                    p = this._selected_map.mst_id;
+                if (451 == p || 452 == p)
+                    for (var d = 0, f = c; d < f.length; d++) {
+                        var m = f[d];
+                        m.distance + m.distance_bonus <= 1 && (h = !0)
                     }
-                    var f = o.default.model.useItem.getCount(31),
-                        m = o.default.model.useItem.getCount(32),
-                        g = p > 0 && p <= f,
-                        v = d > 0 && d <= m;
-                    this._temp_supply_btn.enabled = 0 != g || 0 != v, this._temp_supply_btn.visible = !0
+                var g = y.check(this._selected_map, e, _, this._event_sortie_condition, h);
+                if (this._btn.enabled = g.result, this._btn.air_unit = l > 0 && c.length > 0, this._alert.update(g.reason), this._arrow.enabled = g.result, this._arrow.update(r), this._arrow.activate(), 0 == o.default.model.basic.getExtraSupplySortie()) this._temp_supply_btn.visible = !1;
+                else if (r) this._temp_supply_btn.visible = !1;
+                else if (0 != g.reason && 2 != g.reason && 14 != g.reason) this._temp_supply_btn.visible = !1;
+                else {
+                    for (var v = 0, b = 0, s = 0; s < n.length; s++) {
+                        var a = n[s];
+                        null != a && (v += a.getFuelForSupply(), b += a.getAmmoForSupply())
+                    }
+                    var w = o.default.model.useItem.getCount(31),
+                        x = o.default.model.useItem.getCount(32),
+                        I = v > 0 && v <= w,
+                        T = b > 0 && b <= x;
+                    this._temp_supply_btn.enabled = 0 != I || 0 != T, this._temp_supply_btn.visible = !0
                 }
-                this._shop.visible = l.result, this._banners.update(n)
+                this._shop.visible = g.result, this._banners.update(n)
             }, e
         }(PIXI.Container);
     e.PanelDeckSelect = g

@@ -1,57 +1,60 @@
 const function993 = function (t, e, i) {
     "use strict";
 
-    function n(t, e, i, n) {
+    function n(t, e, i, n, _) {
         if (0 == e.getCount()) return {
             result: !1,
             reason: 31
         };
-        var _ = o(t, e);
-        if (null != _) return _;
-        var l = t.mst_id,
-            u = e.getShipListAll();
-        if (16 == l && null != (_ = r(u))) return _;
-        if (63 == l && null != (_ = s(u))) return _;
-        if (64 == l && null != (_ = a(u))) return _;
+        var l = o(t, e);
+        if (null != l) return l;
+        var u = t.mst_id,
+            c = e.getShipListAll();
+        if (16 == u && null != (l = r(c))) return l;
+        if (63 == u && null != (l = s(c))) return l;
+        if (64 == u && null != (l = a(c))) return l;
         if (null != e.expedition) return {
             result: !1,
             reason: 30
         };
         if (null != n) {
-            var c = e.getCombinedType(),
-                h = n.check(c, u);
-            if (0 == h.result || 0 != h.reason) return h
+            var h = e.getCombinedType(),
+                p = n.check(h, c);
+            if (0 == p.result || 0 != p.reason) return p
         }
-        for (var p = !1, d = !1, f = 0, y = u; f < y.length; f++) {
-            var m = y[f];
-            null != m && (-1 != i.indexOf(m.memID) && (p = !0), (m.fuelNow <= 0 || m.ammoNow <= 0) && (d = !0))
+        for (var d = !1, f = !1, y = 0, m = c; y < m.length; y++) {
+            var g = m[y];
+            null != g && (-1 != i.indexOf(g.memID) && (d = !0), (g.fuelNow <= 0 || g.ammoNow <= 0) && (f = !0))
         }
-        if (1 == p) return {
+        if (1 == d) return {
             result: !1,
             reason: 1
         };
-        if (1 == d) return {
+        if (1 == f) return {
             result: !1,
             reason: 2
         };
-        var g = u[0].getDamageType();
+        var v = c[0].getDamageType();
         if (0 != e.getCombinedType()) {
-            if (50 == g || 25 == g || 0 == g) return {
-                result: !1,
-                reason: 21
-            };
-            var v = u[6].getDamageType();
             if (50 == v || 25 == v || 0 == v) return {
                 result: !1,
                 reason: 21
+            };
+            var b = c[6].getDamageType();
+            if (50 == b || 25 == b || 0 == b) return {
+                result: !1,
+                reason: 21
             }
-        } else if (25 == g || 0 == g) return {
+        } else if (25 == v || 0 == v) return {
             result: !1,
             reason: 3
         };
         return 1 == e.isCombined_Sub() ? {
             result: !1,
             reason: 20
+        } : 1 == _ ? {
+            result: !1,
+            reason: 51
         } : {
             result: !0,
             reason: 0

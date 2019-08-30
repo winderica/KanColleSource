@@ -30,7 +30,7 @@ const function650 = function (t, e, i) {
                 }, e
             }
             return n(e, t), e.prototype._start = function () {
-                -1 != o.default.model.deck.combined.type ? this._endTask() : this._breakCombined()
+                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
             }, e.prototype._breakCombined = function () {
                 o.default.model.deck.combined.__update__(0), this._showDialog()
             }, e.prototype._showDialog = function () {
