@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "detector",
-            "script": "utils/detector.js",
+            "script": "detector.js",
             "watch": false,
             "cwd": "utils/"
         }
