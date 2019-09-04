@@ -89,7 +89,7 @@ const function1274 = function (t, e, i) {
         function e() {
             var e = t.call(this) || this;
             e.scale.y = .5;
-            var i = s.MAP_COMMON.getTexture(181);
+            var i = s.MAP_COMMON.getTexture(183);
             return e._content = new PIXI.Sprite(i), e._content.anchor.set(.5), e.addChild(e._content), e
         }
         return n(e, t), e.prototype.activate = function () {

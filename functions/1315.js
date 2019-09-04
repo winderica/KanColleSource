@@ -27,7 +27,7 @@ const function1315 = function (t, e, i) {
                 return e._img = new PIXI.Sprite, e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._img.texture = r.MAP_COMMON.getTexture(99), this._img.y = -39
+                this._img.texture = r.MAP_COMMON.getTexture(101), this._img.y = -39
             }, e
         }(o.Container);
     e.LandingFlag = s

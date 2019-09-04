@@ -47,7 +47,7 @@ const function1503 = function (t, e, i) {
             }, e.prototype._createStampLast = function () {
                 var t = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(1),
                     e = new o.Sprite(t);
-                return e.anchor.set(.5), e.position.set(952, 283.5), e.alpha = 0, e
+                return e.anchor.set(.5), e.position.set(1001, 275.5), e.alpha = 0, e
             }, e
         }(s.TaskEventEndingBase);
     e.TaskEventEnding2 = a;
@@ -56,7 +56,7 @@ const function1503 = function (t, e, i) {
             return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(5), this._text1.position.set(126, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(6), this._text2.position.set(243, 508)
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(5), this._text1.position.set(108, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(6), this._text2.position.set(243, 508)
         }, e
     }(s.TextsBase)
 }

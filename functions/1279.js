@@ -177,18 +177,18 @@ const function1279 = function (t, e, i) {
                 return e._bg = new PIXI.Sprite, e._bg.position.set(-369, -125), e.addChild(e._bg), e._txt1 = new PIXI.Sprite, e._txt1.position.set(-189, 6), e.addChild(e._txt1), e._txt2 = new PIXI.Sprite, e._txt2.position.set(12, 50), e.addChild(e._txt2), e._txt3 = new PIXI.Sprite, e._txt3.position.set(39, 48), e.addChild(e._txt3), e._img = new PIXI.Sprite, e._img.position.set(203, -48), e.addChild(e._img), e
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._bg.texture = p.MAP_COMMON.getTexture(162), this._txt1.texture = p.MAP_COMMON.getTexture(165), this._txt2.texture = p.MAP_COMMON.getTexture(166), this._txt3.texture = p.MAP_COMMON.getTexture(167), this._img.texture = p.MAP_COMMON.getTexture(163)
+                this._bg.texture = p.MAP_COMMON.getTexture(164), this._txt1.texture = p.MAP_COMMON.getTexture(167), this._txt2.texture = p.MAP_COMMON.getTexture(168), this._txt3.texture = p.MAP_COMMON.getTexture(169), this._img.texture = p.MAP_COMMON.getTexture(165)
             }, e.prototype.activate = function () {
                 var t = this;
-                null == this._t && (this._img.texture = p.MAP_COMMON.getTexture(163), this._t = createjs.Tween.get(null, {
+                null == this._t && (this._img.texture = p.MAP_COMMON.getTexture(165), this._t = createjs.Tween.get(null, {
                     loop: !0
                 }).wait(300).call(function () {
-                    t._img.texture = p.MAP_COMMON.getTexture(164)
+                    t._img.texture = p.MAP_COMMON.getTexture(166)
                 }).wait(300).call(function () {
-                    t._img.texture = p.MAP_COMMON.getTexture(163)
+                    t._img.texture = p.MAP_COMMON.getTexture(165)
                 }))
             }, e.prototype.deactivate = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this._img.texture = p.MAP_COMMON.getTexture(163))
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._img.texture = p.MAP_COMMON.getTexture(165))
             }, e.prototype.dispose = function () {
                 this.deactivate()
             }, e

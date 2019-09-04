@@ -28,7 +28,7 @@ const function1286 = function (t, e, i) {
                 return e._bg = new r.CenteringSprite, e._bg.y = -45, e.addChild(e._bg), e._txt1 = new r.CenteringSprite, e._txt1.y = -45, e.addChild(e._txt1), e._txt2 = new r.CenteringSprite, e._txt2.y = 90, e.addChild(e._txt2), e
             }
             return n(e, t), e.prototype.initialize = function (t) {
-                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(112), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(117), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(119) : s.MAP_COMMON.getTexture(118)
+                this._bg.alpha = 0, this._bg.scale.y = 0, this._bg.texture = s.MAP_COMMON.getTexture(114), this._txt1.alpha = 0, this._txt1.x = 150, this._txt1.texture = s.MAP_COMMON.getTexture(119), this._txt2.alpha = 0, this._txt2.texture = 1 == t ? s.MAP_COMMON.getTexture(121) : s.MAP_COMMON.getTexture(120)
             }, e.prototype.playAnimation = function (t) {
                 this._animation1(t)
             }, e.prototype._animation1 = function (t) {

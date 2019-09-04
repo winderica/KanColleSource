@@ -37,7 +37,7 @@ const function1254 = function (t, e, i) {
                 this._plane = new PIXI.Sprite;
                 var e = this._to.x > this._from.x ? 1 : -1,
                     i = this._to.x > this._from.x ? -.1 : .1;
-                this._plane.texture = r.MAP_COMMON.getTexture(106), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
+                this._plane.texture = r.MAP_COMMON.getTexture(108), this._plane.anchor.set(.5, 1), this._plane.scale.set(e, 1), this._layer.addChild(this._plane), createjs.Tween.get(this._plane.scale).wait(1200).to({
                     x: -1 * this._plane.scale.x,
                     y: 1
                 }, 600).wait(3e3 - 3e3 * (.4 + .2)).to({

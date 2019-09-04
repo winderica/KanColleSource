@@ -111,10 +111,10 @@ const function1277 = function (t, e, i) {
         return n(e, t), e.prototype.initialize = function (t) {
             switch (t) {
                 case 2:
-                    this._img.texture = a.MAP_COMMON.getTexture(106), this._img.position.set(-74, -84);
+                    this._img.texture = a.MAP_COMMON.getTexture(108), this._img.position.set(-74, -84);
                     break;
                 case 1:
-                    this._img.texture = a.MAP_COMMON.getTexture(107), this._img.position.set(-74, -101);
+                    this._img.texture = a.MAP_COMMON.getTexture(109), this._img.position.set(-74, -101);
                     break;
                 default:
                     this._img.texture = null

@@ -56,7 +56,7 @@ const function1263 = function (t, e, i) {
             return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._bg.texture = s.MAP_COMMON.getTexture(50), this._icon.texture = s.MAP_COMMON.getTexture(79), this._label.texture = s.MAP_COMMON.getTexture(182)
+            this._bg.texture = s.MAP_COMMON.getTexture(50), this._icon.texture = s.MAP_COMMON.getTexture(79), this._label.texture = s.MAP_COMMON.getTexture(184)
         }, e
     }(PIXI.Container)
 }

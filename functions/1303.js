@@ -51,74 +51,74 @@ const function1303 = function (t, e, i) {
                     if (e.passed) {
                         switch (n) {
                             case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(132);
+                                this._effect.texture = o.MAP_COMMON.getTexture(134);
                                 break;
                             case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(131);
+                                this._effect.texture = o.MAP_COMMON.getTexture(133);
                                 break;
                             case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(130)
+                                this._effect.texture = o.MAP_COMMON.getTexture(132)
                         }
                         this._effect.y = 0, this._effect.y = -2
                     } else {
                         switch (n) {
                             case "red":
-                                this._effect.texture = o.MAP_COMMON.getTexture(129);
+                                this._effect.texture = o.MAP_COMMON.getTexture(131);
                                 break;
                             case "yellow":
-                                this._effect.texture = o.MAP_COMMON.getTexture(128);
+                                this._effect.texture = o.MAP_COMMON.getTexture(130);
                                 break;
                             case "blue":
-                                this._effect.texture = o.MAP_COMMON.getTexture(127)
+                                this._effect.texture = o.MAP_COMMON.getTexture(129)
                         }
                         this._effect.x = 0, this._effect.y = 0
                     }
                 else if (10 == e.color && e.passed) {
                     switch (n) {
                         case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(135);
+                            this._effect.texture = o.MAP_COMMON.getTexture(137);
                             break;
                         case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(134);
+                            this._effect.texture = o.MAP_COMMON.getTexture(136);
                             break;
                         case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(133)
+                            this._effect.texture = o.MAP_COMMON.getTexture(135)
                     }
                     this._effect.x = -11, this._effect.y = 9
                 } else if (13 == e.color && e.passed) {
                     switch (n) {
                         case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(126);
+                            this._effect.texture = o.MAP_COMMON.getTexture(128);
                             break;
                         case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(125);
+                            this._effect.texture = o.MAP_COMMON.getTexture(127);
                             break;
                         case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(124)
+                            this._effect.texture = o.MAP_COMMON.getTexture(126)
                     }
                     this._effect.x = -1, this._effect.y = 1
                 } else if (8 == e.color && e.passed) {
                     switch (n) {
                         case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(141);
+                            this._effect.texture = o.MAP_COMMON.getTexture(143);
                             break;
                         case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(140);
+                            this._effect.texture = o.MAP_COMMON.getTexture(142);
                             break;
                         case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(139)
+                            this._effect.texture = o.MAP_COMMON.getTexture(141)
                     }
                     this._effect.x = 0, this._effect.y = 0
                 } else {
                     switch (n) {
                         case "red":
-                            this._effect.texture = o.MAP_COMMON.getTexture(138);
+                            this._effect.texture = o.MAP_COMMON.getTexture(140);
                             break;
                         case "yellow":
-                            this._effect.texture = o.MAP_COMMON.getTexture(137);
+                            this._effect.texture = o.MAP_COMMON.getTexture(139);
                             break;
                         case "blue":
-                            this._effect.texture = o.MAP_COMMON.getTexture(136)
+                            this._effect.texture = o.MAP_COMMON.getTexture(138)
                     }
                     this._effect.x = 0, this._effect.y = 0
                 }
@@ -127,13 +127,13 @@ const function1303 = function (t, e, i) {
             }, e.prototype.update = function (t) {
                 switch (t) {
                     case 1:
-                        this._img.texture = o.MAP_COMMON.getTexture(173);
+                        this._img.texture = o.MAP_COMMON.getTexture(175);
                         break;
                     case 2:
-                        this._img.texture = o.MAP_COMMON.getTexture(174);
+                        this._img.texture = o.MAP_COMMON.getTexture(176);
                         break;
                     case 3:
-                        this._img.texture = o.MAP_COMMON.getTexture(175);
+                        this._img.texture = o.MAP_COMMON.getTexture(177);
                         break;
                     default:
                         this._img.texture = PIXI.Texture.EMPTY

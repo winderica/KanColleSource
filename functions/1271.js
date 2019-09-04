@@ -33,7 +33,7 @@ const function1271 = function (t, e, i) {
                 var r = t.call(this) || this;
                 return r._selected_formation = 12, r._showText = function () {
                     var t = r._telopContainer.text;
-                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(115), createjs.Tween.get(t).to({
+                    t.position.set(750, o.default.height / 2), t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(117), createjs.Tween.get(t).to({
                         x: 630,
                         alpha: 1
                     }, 500).to({
@@ -88,7 +88,7 @@ const function1271 = function (t, e, i) {
                 }, r._showText2 = function () {
                     var t = r._telopContainer.bg,
                         e = r._telopContainer.text;
-                    e.position.set(o.default.width / 2, o.default.height / 2), e.texture = c.MAP_COMMON.getTexture(114), createjs.Tween.get(t).to({
+                    e.position.set(o.default.width / 2, o.default.height / 2), e.texture = c.MAP_COMMON.getTexture(116), createjs.Tween.get(t).to({
                         alpha: 1,
                         scaleY: 1
                     }, 200).wait(950).to({
@@ -137,7 +137,7 @@ const function1271 = function (t, e, i) {
                 })
             }, e.prototype._showTelopBG = function () {
                 var t = this._telopContainer.bg;
-                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(112), createjs.Tween.get(t).to({
+                t.position.set(o.default.width / 2, o.default.height / 2), t.scaleY = 0, t.alpha = 0, t.texture = c.MAP_COMMON.getTexture(114), createjs.Tween.get(t).to({
                     alpha: 1,
                     scaleY: 1
                 }, 500).call(this._showText)

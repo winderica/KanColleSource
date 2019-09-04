@@ -35,7 +35,7 @@ const function1310 = function (t, e, i) {
             }), e.prototype.initialize = function (t) {
                 this.update(t)
             }, e.prototype.update = function (t) {
-                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(153), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
+                this._color = t, 5 == t ? (this._light.texture = r.MAP_COMMON.getTexture(155), this._startTween(), this._light.visible = !0, this._cell.x = 0, this._cell.y = -5) : (this._stopTween(), this._light.visible = !1, 13 == t ? (this._cell.x = 10, this._cell.y = -12) : (this._cell.x = 0, this._cell.y = 0)), this._cell.texture = this._getTexture(t)
             }, e.prototype.dispose = function () {
                 this._stopTween()
             }, e.prototype._startTween = function () {
@@ -51,38 +51,38 @@ const function1310 = function (t, e, i) {
             }, e.prototype._getTexture = function (t) {
                 switch (t) {
                     case -1:
-                        return r.MAP_COMMON.getTexture(159);
+                        return r.MAP_COMMON.getTexture(161);
                     case 1:
-                        return r.MAP_COMMON.getTexture(152);
+                        return r.MAP_COMMON.getTexture(154);
                     case 2:
                     case 6:
-                        return r.MAP_COMMON.getTexture(155);
-                    case 3:
                         return r.MAP_COMMON.getTexture(157);
+                    case 3:
+                        return r.MAP_COMMON.getTexture(159);
                     case 4:
-                        return r.MAP_COMMON.getTexture(158);
-                    case 5:
-                        return r.MAP_COMMON.getTexture(146);
-                    case 7:
-                        return r.MAP_COMMON.getTexture(108);
-                    case 8:
-                        return r.MAP_COMMON.getTexture(145);
-                    case 9:
-                        return r.MAP_COMMON.getTexture(156);
-                    case 10:
-                        return r.MAP_COMMON.getTexture(101);
-                    case 11:
                         return r.MAP_COMMON.getTexture(160);
+                    case 5:
+                        return r.MAP_COMMON.getTexture(148);
+                    case 7:
+                        return r.MAP_COMMON.getTexture(110);
+                    case 8:
+                        return r.MAP_COMMON.getTexture(147);
+                    case 9:
+                        return r.MAP_COMMON.getTexture(158);
+                    case 10:
+                        return r.MAP_COMMON.getTexture(103);
+                    case 11:
+                        return r.MAP_COMMON.getTexture(162);
                     case 12:
-                        return r.MAP_COMMON.getTexture(161);
+                        return r.MAP_COMMON.getTexture(163);
                     case 13:
                         return r.MAP_COMMON.getTexture(83);
                     case -2:
-                        return r.MAP_COMMON.getTexture(154);
+                        return r.MAP_COMMON.getTexture(156);
                     case -3:
-                        return r.MAP_COMMON.getTexture(151);
+                        return r.MAP_COMMON.getTexture(153);
                     case 14:
-                        return r.MAP_COMMON.getTexture(152)
+                        return r.MAP_COMMON.getTexture(154)
                 }
                 return PIXI.Texture.EMPTY
             }, e

@@ -29,7 +29,7 @@ const function1264 = function (t, e, i) {
                 return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(142)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(143)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(144)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(144)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(145)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(146)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
             }, e.prototype._anim = function () {
                 var t = this;
                 s.SE.play("213"), createjs.Tween.get(this._img1).to({

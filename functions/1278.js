@@ -27,7 +27,7 @@ const function1278 = function (t, e, i) {
                 return e._bg = new PIXI.Sprite, e._bg.x = -11, e._bg.y = -128, e.addChild(e._bg), e._label1 = new PIXI.Sprite, e.addChild(e._label1), e._label2 = new PIXI.Sprite, e.addChild(e._label2), e._icon = new PIXI.Sprite, e._icon.anchor.x = 1, e._icon.position.set(44, -80), e.addChild(e._icon), e
             }
             return n(e, t), e.prototype.initialize = function (t, e, i) {
-                switch (this._bg.texture = o.MAP_COMMON.getTexture(50), 2 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(183), this._label1.position.set(20, -117), this._label2.texture = o.MAP_COMMON.getTexture(185), this._label2.position.set(20, -41)) : 1 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(184), this._label1.position.set(24, -117), this._label2.texture = o.MAP_COMMON.getTexture(185), this._label2.position.set(20, -41)) : (this._label1.texture = o.MAP_COMMON.getTexture(186), this._label1.position.set(11, -86), this._label2.texture = PIXI.Texture.EMPTY), e) {
+                switch (this._bg.texture = o.MAP_COMMON.getTexture(50), 2 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(185), this._label1.position.set(20, -117), this._label2.texture = o.MAP_COMMON.getTexture(187), this._label2.position.set(20, -41)) : 1 == t ? (this._label1.texture = o.MAP_COMMON.getTexture(186), this._label1.position.set(24, -117), this._label2.texture = o.MAP_COMMON.getTexture(187), this._label2.position.set(20, -41)) : (this._label1.texture = o.MAP_COMMON.getTexture(188), this._label1.position.set(11, -86), this._label2.texture = PIXI.Texture.EMPTY), e) {
                     case 2:
                         this._icon.texture = o.MAP_COMMON.getTexture(80);
                         break;

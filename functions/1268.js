@@ -75,9 +75,9 @@ const function1268 = function (t, e, i) {
             }), e.prototype.getPreLoadTask = function () {
                 return this._poreload_task
             }, e.prototype.initilize = function () {
-                this._get_flash = new PIXI.Sprite(s.MAP_COMMON.getTexture(45)), this._get_flash.visible = !1, this._get_flash.anchor.set(.5), this._get_flash.position.set(r.default.width / 2, r.default.height / 2), this._get_flash.alpha = 0, this._get_flash.scale.set(.3), this._white = new PIXI.Graphics, this._white.visible = !1, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, r.default.width, r.default.height), this._white.endFill(), this._white.alpha = 0, this._txt_repair = new PIXI.Sprite(s.MAP_COMMON.getTexture(187)), this._txt_repair.visible = !1, this._txt_repair.anchor.set(0, .5), this._txt_repair.position.set(1200, 487), this._kirakira = [];
+                this._get_flash = new PIXI.Sprite(s.MAP_COMMON.getTexture(45)), this._get_flash.visible = !1, this._get_flash.anchor.set(.5), this._get_flash.position.set(r.default.width / 2, r.default.height / 2), this._get_flash.alpha = 0, this._get_flash.scale.set(.3), this._white = new PIXI.Graphics, this._white.visible = !1, this._white.beginFill(16777215, 1), this._white.drawRect(0, 0, r.default.width, r.default.height), this._white.endFill(), this._white.alpha = 0, this._txt_repair = new PIXI.Sprite(s.MAP_COMMON.getTexture(189)), this._txt_repair.visible = !1, this._txt_repair.anchor.set(0, .5), this._txt_repair.position.set(1200, 487), this._kirakira = [];
                 for (var t = 0; t < this._EFFECT_MAX; t++) {
-                    var e = new PIXI.Sprite(s.MAP_COMMON.getTexture(100));
+                    var e = new PIXI.Sprite(s.MAP_COMMON.getTexture(102));
                     e.anchor.set(.5), this._kirakira.push(e)
                 }
                 var i = o.default.resources.getShip(this._ship_mst_id, !1, "full");

@@ -83,6 +83,9 @@ const function1285 = function (t, e, i) {
                 var i = a.ObjUtil.getNumber(this._battle_obj, "api_lost_kind"),
                     n = new p.AirRaidResultTelop;
                 n.initialize(i), n.x = o.default.width / 2, n.y = o.default.height / 2, this._telop_layer.addChild(n), n.playAnimation(function () {
+                    var e = a.ObjUtil.getNumber(t._battle_obj, "api_m2");
+                    45 == t._area_id && 3 == t._map_no && 1 == e && c.SE.play("258")
+                }, function () {
                     t._telop_layer.removeChild(n), t._endTask()
                 }), 4 != i && null != this._airbase_layer && this._airbase_layer.shake()
             }, e.prototype._endTask = function () {

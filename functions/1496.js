@@ -153,7 +153,7 @@ const function1496 = function (t, e, i) {
                     var o = new g.UIImageLoader("battle_result");
                     o.add("battle_result_event_e3_" + e + ".json"), o.load(function () {
                         n._img1.texture = y.BATTLE_RESULT_EVENT_E3_ZMNIYZFCNPNXRFVT.getTexture(0), n._img2.texture = y.BATTLE_RESULT_EVENT_E3_ZMNIYZFCNPNXRFVT.getTexture(1), i()
-                    }), this._img1.position.set(-496, -156), this._img2.position.set(-505, 7);
+                    }), this._img1.position.set(-424, -133), this._img2.position.set(-425, -46);
                     break;
                 default:
                     this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY, i()

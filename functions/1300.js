@@ -44,20 +44,20 @@ const function1300 = function (t, e, i) {
             }, e.prototype.dispose = function () {
                 this.off(r.EventType.CLICK, this._onClick)
             }, e.prototype._update = function () {
-                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(180), this._img.position.set(0, 0);
+                if (1 == this.complete) this._img.texture = o.MAP_COMMON.getTexture(182), this._img.position.set(0, 0);
                 else {
                     switch (this._airunit_id) {
                         case 0:
-                            this._img.texture = o.MAP_COMMON.getTexture(176);
-                            break;
-                        case 1:
-                            this._img.texture = o.MAP_COMMON.getTexture(177);
-                            break;
-                        case 2:
                             this._img.texture = o.MAP_COMMON.getTexture(178);
                             break;
-                        case 3:
+                        case 1:
                             this._img.texture = o.MAP_COMMON.getTexture(179);
+                            break;
+                        case 2:
+                            this._img.texture = o.MAP_COMMON.getTexture(180);
+                            break;
+                        case 3:
+                            this._img.texture = o.MAP_COMMON.getTexture(181);
                             break;
                         default:
                             this._img.texture = PIXI.Texture.EMPTY

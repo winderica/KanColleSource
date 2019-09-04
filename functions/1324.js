@@ -36,7 +36,7 @@ const function1324 = function (t, e, i) {
                 }, n._cb_onYes = e, n._cb_onNo = i, n._taihi = new h(n._onClickTaihi), n._taihi.position.set(438, 563), n.addChild(n._taihi), n._taihisezu = new p(n._onClickTaihiSezu), n._taihisezu.position.set(771, 563), n.addChild(n._taihisezu), n._ship_target = new s.ShipBanner, n._ship_target.position.set(344, 255), n.addChild(n._ship_target), n._txt1 = new PIXI.Sprite, n._txt1.position.set(584, 258), n.addChild(n._txt1), n._txt2 = new PIXI.Sprite, n._txt2.position.set(266, 347), n.addChild(n._txt2), n._ship_name = new r.TextBox(27, 16777215), n._ship_name.y = 258, n.addChild(n._ship_name), n._ship_level = new r.TextBox(18, 16777215), n._ship_level.y = 258, n.addChild(n._ship_level), n._ship_hp = new r.TextBox(18, 16777215), n._ship_hp.y = 291, n.addChild(n._ship_hp), n._title = new a.PhaseTitle, n._title.y = 17, n.addChild(n._title), n
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._taihi.initialize(), this._taihisezu.initialize(), this._txt1.texture = l.MAP_COMMON.getTexture(169), this._txt2.texture = l.MAP_COMMON.getTexture(172), this._title.initialize(!1), this._title.update(l.MAP_COMMON.getTexture(111)), this._title.activate()
+                this._taihi.initialize(), this._taihisezu.initialize(), this._txt1.texture = l.MAP_COMMON.getTexture(171), this._txt2.texture = l.MAP_COMMON.getTexture(174), this._title.initialize(!1), this._title.update(l.MAP_COMMON.getTexture(113)), this._title.activate()
             }, e.prototype.updateTargetShipBanner = function (t, e, i, n, r) {
                 var s = "",
                     a = o.default.model.ship.getMst(t);

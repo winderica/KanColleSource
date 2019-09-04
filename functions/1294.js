@@ -34,7 +34,7 @@ const function1294 = function (t, e, i) {
             return n(e, t), e.prototype._start = function () {
                 var t = this;
                 this._view = new l.MapEndView, this._view.initialize(this._item_ids), this._view.alpha = 0, this._view.content.alpha = 0, this._view.gearBtn.visible = !1, this._shutter.addChild(this._view);
-                var e = _.MAP_COMMON.getTexture(113);
+                var e = _.MAP_COMMON.getTexture(115);
                 this._telopBG = new s.Sprite(e), this._telopBG.position.set(o.default.width / 2, o.default.height / 2), this._telopBG.anchor.set(.5), this._telopBG.scale.y = 0, this._shutter.addChild(this._telopBG), createjs.Tween.get(this._telopBG).to({
                     scaleY: 1
                 }, 300).call(function () {
@@ -42,7 +42,7 @@ const function1294 = function (t, e, i) {
                 })
             }, e.prototype._showMessage = function () {
                 var t = this,
-                    e = _.MAP_COMMON.getTexture(116);
+                    e = _.MAP_COMMON.getTexture(118);
                 this._telopText = new s.Sprite(e), this._telopText.position.set(o.default.width / 2 + 240, o.default.height / 2), this._telopText.anchor.set(.5), this._telopText.alpha = 0, this._shutter.addChild(this._telopText), createjs.Tween.get(this._telopText).to({
                     x: o.default.width / 2 + 180,
                     alpha: 1

@@ -46,7 +46,9 @@ const function43 = function (t, e, i) {
                 583: 15,
                 586: 12,
                 594: 16,
-                595: 16
+                595: 16,
+                597: 17,
+                598: 17
             };
             return 1 == e.hasOwnProperty(t.toString()) ? e[t] : 1
         }, t.PLANE = [5, 7, 15, 16, 33, 36, 40, 43, 44], t.SAKUTEKI = [9, 10, 11, 41, 59, 94], t._PLANE_TYPE_ = [6, 7, 8, 11, 25, 26, 45, 56, 57, 58], t.ATTACKABLE_TYPE = [6, 45, 56], t.SAKUTEKI_SPSCALE_MSTID = {

@@ -56,7 +56,7 @@ const function1501 = function (t, e, i) {
             return null !== t && t.apply(this, arguments) || this
         }
         return n(e, t), e.prototype.initialize = function () {
-            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(4), this._text1.position.set(128, 314), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(5), this._text2.position.set(316, 533), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(6), this._text3.position.set(312, 596)
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(4), this._text1.position.set(128, 314), this._text2.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(5), this._text2.position.set(316, 533), this._text3.texture = r.BATTLE_RESULT_EVENT_ED1_XCGJWNGQLDWMGDMQ.getTexture(7), this._text3.position.set(348, 596)
         }, e
     }(s.TextsBase)
 }

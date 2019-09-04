@@ -126,6 +126,8 @@ const function1473 = function (t, e, i) {
                 return o.ObjUtil.getString(this._o, "api_m_suffix")
             }, t.prototype.getClearOperationSuffix = function () {
                 return o.ObjUtil.getString(this._o, "api_ope_suffix")
+            }, t.prototype.getM2 = function () {
+                return o.ObjUtil.getNumber(this._o, "api_m2")
             }, t
         }();
     e.BattleResultData = u

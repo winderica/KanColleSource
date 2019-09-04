@@ -48,7 +48,7 @@ const function1307 = function (t, e, i) {
                 configurable: !0
             }), e.prototype.initialize = function (t) {
                 var e;
-                e = 1 == t ? 148 : 2 == t ? 149 : 3 == t ? 150 : 147, this._ship.texture = s.MAP_COMMON.getTexture(e)
+                e = 1 == t ? 150 : 2 == t ? 151 : 3 == t ? 152 : 149, this._ship.texture = s.MAP_COMMON.getTexture(e)
             }, e.prototype.startWaveWhite = function () {
                 this._startWave(49)
             }, e.prototype.startWaveRed = function (t) {
@@ -122,7 +122,7 @@ const function1307 = function (t, e, i) {
             enumerable: !0,
             configurable: !0
         }), e.prototype.initialize = function () {
-            this.texture = s.MAP_COMMON.getTexture(98)
+            this.texture = s.MAP_COMMON.getTexture(100)
         }, e
     }(PIXI.Sprite)
 }

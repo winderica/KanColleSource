@@ -46,7 +46,7 @@ const function979 = function (t, e, i) {
                         this._content.position.set(-286, -220), this._content.texture = PIXI.Texture.fromImage(e + "/239_993e0.png" + i);
                         break;
                     case 453:
-                        this._content.position.set(-295, -216), this._content.texture = PIXI.Texture.fromImage(e + "/240_99999.png" + i);
+                        this._content.position.set(-337, -213), this._content.texture = PIXI.Texture.fromImage(e + "/240_9df3d.png" + i);
                         break;
                     default:
                         this._content.texture = PIXI.Texture.EMPTY

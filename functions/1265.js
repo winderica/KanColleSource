@@ -138,8 +138,8 @@ const function1265 = function (t, e, i) {
                 configurable: !0
             }), e.prototype.initialize = function () {
                 this._box.texture = a.MAP_COMMON.getTexture(51), this._beak.texture = a.MAP_COMMON.getTexture(77);
-                var t = a.MAP_COMMON.getTexture(103),
-                    e = a.MAP_COMMON.getTexture(105);
+                var t = a.MAP_COMMON.getTexture(105),
+                    e = a.MAP_COMMON.getTexture(107);
                 this._btn_yes.initialize(t, e), t = a.MAP_COMMON.getTexture(85), e = a.MAP_COMMON.getTexture(86), this._btn_no.initialize(t, e)
             }, e.prototype.activate = function () {
                 this._btn_yes.activate(), this._btn_no.activate()

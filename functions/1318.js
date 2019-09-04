@@ -42,10 +42,13 @@ const function1318 = function (t, e, i) {
                     case 4:
                         this._img1.texture = o.MAP_COMMON.getTexture(96), this._img2.texture = o.MAP_COMMON.getTexture(97);
                         break;
+                    case 5:
+                        this._img1.texture = o.MAP_COMMON.getTexture(98), this._img2.texture = o.MAP_COMMON.getTexture(99);
+                        break;
                     default:
                         this._img1.texture = PIXI.Texture.EMPTY, this._img2.texture = PIXI.Texture.EMPTY
                 }
-                3 == t && (this._img3.texture = o.MAP_COMMON.getTexture(95), this._basePos1.x = -5, this._basePos1.y = -25, this._basePos2.x = -40, this._basePos2.y = -50, this._basePos3.x = -45, this._basePos3.y = 0), 4 == t ? (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 12, this._basePos1.y = 20, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0) : (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 0, this._basePos1.y = 0, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0), this._img1.x = this._basePos1.x, this._img1.y = this._basePos1.y, this._img2.x = this._basePos2.x, this._img2.y = this._basePos2.y, this._img3.x = this._basePos3.x, this._img3.y = this._basePos3.y
+                3 == t && (this._img3.texture = o.MAP_COMMON.getTexture(95), this._basePos1.x = -5, this._basePos1.y = -25, this._basePos2.x = -40, this._basePos2.y = -50, this._basePos3.x = -45, this._basePos3.y = 0), 4 == t || 5 == t ? (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 12, this._basePos1.y = 20, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0) : (this._img3.texture = PIXI.Texture.EMPTY, this._basePos1.x = 0, this._basePos1.y = 0, this._basePos2.x = -15, this._basePos2.y = -15, this._basePos3.x = 0, this._basePos3.y = 0), this._img1.x = this._basePos1.x, this._img1.y = this._basePos1.y, this._img2.x = this._basePos2.x, this._img2.y = this._basePos2.y, this._img3.x = this._basePos3.x, this._img3.y = this._basePos3.y
             }, e.prototype.activate = function () {
                 this._stopTweens(), this._startAnimation()
             }, e.prototype.deactivate = function () {

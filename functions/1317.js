@@ -85,9 +85,12 @@ const function1317 = function (t, e, i) {
             var s = function () {
                 var i = r.default.model.map.getMapMst(e, t).mst_id,
                     o = r.default.model.map.getMapMem(i),
-                    s = [452, 453].indexOf(o.mst_id) >= 0,
-                    a = [4, 3].indexOf(o.getSelectedOperationType()) >= 0;
-                return "airbaseraid" == n._key && s && a ? 4 : n._data.type
+                    s = [4, 3].indexOf(o.getSelectedOperationType()) >= 0;
+                if ("airbaseraid" == n._key && s) {
+                    if (452 == o.mst_id) return 4;
+                    if (453 == o.mst_id) return 5
+                }
+                return n._data.type
             }();
             this._plane = new o.MapPlane, this._plane.alpha = 0, this._plane.initialize(s), this._data.from.x < this._data.to.x && (this._plane.scale.x = -1), this._plane.x = this._data.from.x, this._plane.y = this._data.from.y, this._layer.addChild(this._plane), this._plane.activate();
             var a = this._time;

@@ -30,7 +30,8 @@ const function1484 = function (t, e, i) {
         h = i(1489),
         p = i(1495),
         d = i(1507),
-        f = function (t) {
+        f = i(3),
+        y = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
@@ -42,8 +43,11 @@ const function1484 = function (t, e, i) {
                 })
             }, e.prototype._showShips = function () {
                 var t, e = this,
-                    i = this._scene.data.battle_model.deck_e.isCombined();
-                t = 0 == i ? new y(this._scene) : new m(this._scene), t.start(function () {
+                    i = this._scene.data.battle_model.deck_e.isCombined(),
+                    n = this._scene.data.getM2(),
+                    o = this._scene.data.battle_model.map_info.area_id,
+                    r = this._scene.data.battle_model.map_info.map_no;
+                45 == o && 3 == r && 1 == n && f.SE.play("258"), t = 0 == i ? new m(this._scene) : new g(this._scene), t.start(function () {
                     e._showRank()
                 })
             }, e.prototype._showRank = function () {
@@ -79,8 +83,8 @@ const function1484 = function (t, e, i) {
                 })
             }, e
         }(l.TaskBase);
-    e.TaskMain = f;
-    var y = function (t) {
+    e.TaskMain = y;
+    var m = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
@@ -134,7 +138,7 @@ const function1484 = function (t, e, i) {
                 configurable: !0
             }), e
         }(l.TaskBase),
-        m = function (t) {
+        g = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._scene = e, i
