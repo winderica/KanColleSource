@@ -23,7 +23,7 @@ const function529 = function (t, e, i) {
         r = i(530),
         s = function () {
             function t() {
-                this._USE_DEVKIT_GROUP_ = [503, 504]
+                this._USE_DEVKIT_GROUP_ = [503, 504, 520]
             }
             return t.prototype.getRequiredLevel = function (t) {
                 var e = this._getMst(t);
@@ -117,6 +117,8 @@ const function529 = function (t, e, i) {
                         return 80;
                     case 350:
                         return 30;
+                    case 520:
+                        return 90;
                     default:
                         return 0 != e && -1 == this._USE_DEVKIT_GROUP_.indexOf(t) ? 0 : i < 4500 ? 0 : i < 5500 ? 10 : i < 6500 ? 15 : 20
                 }
@@ -149,6 +151,7 @@ const function529 = function (t, e, i) {
                     case 599:
                         return 30;
                     case 596:
+                    case 520:
                         return 10;
                     default:
                         return 0
