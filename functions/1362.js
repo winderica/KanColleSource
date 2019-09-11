@@ -19,48 +19,65 @@ const function1362 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(43),
+    var o = i(2),
         r = i(27),
-        s = i(29),
-        a = i(72),
-        _ = i(20),
-        l = i(38),
-        u = i(6),
-        c = i(452),
-        h = i(445),
-        p = i(449),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+        s = function (t) {
+            function e(e, i, n, o, r, s) {
+                var a = t.call(this) || this;
+                return a._scene = e, a._data = i, a._ships_f = o, a._ships_e = r, a._hunshin_danmaku = s, a._damage_cutin = n, a
             }
             return n(e, t), e.prototype._start = function () {
-                this._log();
-                var t = this._scene.data.model.map_info.isAirRaid();
-                this._canvas = new h.AirWarJetCanvas(t), this._scene.view.layer_content.addChild(this._canvas), this._createPlanes(this._data.plane_from_f, this._ships_f), this._createPlanes(this._data.plane_from_e, this._ships_e), this._startAircraftFlightAnimation(), this._startMainTask()
-            }, e.prototype._log = function () {}, e.prototype._startMainTask = function () {
                 var t = this,
-                    e = new r.ParallelTask,
-                    i = createjs.Tween.get(null).call(u.SE.play, ["220"]).wait(1700);
-                e.add((new _.TweenTask).addTween(i)), e.add(new a.FuncTask(function () {
-                    t._fireDogFight()
-                }, 350)), e.add(new a.FuncTask(function () {
-                    t._showTaikuCutin()
-                }, 450)), e.add(new a.FuncTask(function () {
-                    t._damageAtStage1()
-                }, 500)), e.add(new a.FuncTask(function () {
-                    t._antiAircraft()
-                }, 600)), e.add(new a.FuncTask(function () {
-                    t._damageAtStage2()
-                }, 700)), e.add((new s.SerialTask).add(new l.WaitTask(850)).add((new r.ParallelTask).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_f, this._ships_e)).add(new p.TaskAerialTorpedoJet(this._scene, this._data, this._canvas.planes_e, this._ships_f)))), e.add(new a.FuncTask(function () {
-                    t._showBakuExplosion()
-                }, 1500)), e.add(new a.FuncTask(function () {
-                    t._showDamage()
-                }, 1650)), this._main_task = e, this._main_task.start(function () {
-                    t._showDamageNumber()
+                    e = this._ships_f,
+                    i = this._data.stage3_f,
+                    n = this._createParallel(e, i, this._hunshin_danmaku);
+                e = this._ships_e, i = this._data.stage3_e;
+                var o = this._createParallel(e, i, this._hunshin_danmaku);
+                new r.ParallelTask(n, o).start(function () {
+                    t._endTask()
                 })
-            }, e.prototype._showSeikuResult = function () {}, e.prototype._getPlaneType = function () {
-                return o.PlaneConst.getJetPlaneType()
+            }, e.prototype._createParallel = function (t, e, i) {
+                for (var n = new r.ParallelTask, o = 0, s = t; o < s.length; o++) {
+                    var _ = s[o];
+                    if (null != _) {
+                        if (i.indexOf(_) >= 0) {
+                            if (Math.floor(e.getDamage(_.index)) <= 0) continue
+                        }
+                        var l = new a(this._scene, _, e, this._damage_cutin);
+                        n.add(l)
+                    }
+                }
+                return n
+            }, e.prototype._endTask = function () {
+                this._scene = null, this._data = null, this._ships_f = null, this._ships_e = null, this._damage_cutin = null, t.prototype._endTask.call(this)
             }, e
-        }(c.TaskAirWar);
-    e.TaskAirWarJet = d
+        }(o.TaskBase);
+    e.TaskAirWarDamageNumber = s;
+    var a = function (t) {
+        function e(e, i, n, o) {
+            var r = t.call(this) || this;
+            return r._scene = e, r._ship = i, r._data = n, r._damage_cutin = o, r
+        }
+        return n(e, t), e.prototype._start = function () {
+            var t = this,
+                e = this._ship,
+                i = this._data,
+                n = e.index,
+                o = e.friend,
+                r = i.getRai(n),
+                s = i.getBak(n),
+                a = i.getDamage(n);
+            if (r || s || a > 0) {
+                1 == this._scene.data.model.isPractice() && (a = Math.min(a, e.hp_now - 1));
+                var _ = i.getHitType(n),
+                    l = this._scene.view.bannerGroupLayer.getBanner(o, n);
+                this._scene.view.layer_damage.showAtBanner(l, a, _, function () {
+                    t._endTask()
+                }), this._damage_cutin.causeDamage(e, a), l.updateHp(e.hp_now)
+            } else this._endTask()
+        }, e.prototype._endTask = function () {
+            this._scene = null, this._ship = null, this._data = null, this._damage_cutin = null, t.prototype._endTask.call(this)
+        }, e
+    }(o.TaskBase);
+    e.TaskAirWarDamageNumberOnce = a
 }

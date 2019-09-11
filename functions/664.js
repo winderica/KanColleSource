@@ -21,15 +21,15 @@ const function664 = function (t, e, i) {
     });
     var o = i(11),
         r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._shipId = e, i._url = "api_req_init/firstship", i
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._name = e, n._nickNameId = i, n._url = "api_req_init/nickname", n
             }
             return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_ship_id = this._shipId, t.prototype._connect.call(this)
+                this._post_data.api_nickname = this._name, this._post_data.api_nickname_id = this._nickNameId, t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
                 t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIFirstShip = r
+    e.APISaveNickName = r
 }

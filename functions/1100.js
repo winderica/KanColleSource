@@ -19,89 +19,58 @@ const function1100 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = function (t) {
+    var o = i(0),
+        r = i(42),
+        s = i(1),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._items = [];
-                for (var i = 0; i < 6; i++) {
-                    var n = new a;
-                    n.x = i % 2 * 225, n.y = 39 * Math.floor(i / 2), e.addChild(n), e._items.push(n)
-                }
-                return e
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren();
-                for (var t = 0; t < this._items.length; t++) this._items[t].dispose(), this._items[t] = null;
-                this._items = null
-            }, e.prototype.update = function (t) {
-                var e = [];
-                this._addParamData(e, 0, t.soukou), this._addParamData(e, 1, t.karyoku), this._addParamData(e, 2, t.raisou), this._addParamData(e, 3, t.baku), this._addParamData(e, 4, t.taiku), this._addParamData(e, 5, t.taisen), this._addParamData(e, 6, t.meichu), this._addParamData(e, 7, t.kaihi), this._addParamData(e, 8, t.sakuteki), this._addParamData(e, 9, t.syatei);
-                for (var i = t.equipType, n = 0; n < this._items.length; n++)
-                    if (e.length <= n) this._items[n].visible = !1;
-                    else {
-                        var o = e[n];
-                        this._items[n].update(o.type, o.value, i), this._items[n].visible = !0
+                return e._onPrev = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i - 1;
+                            n < 0 && (n = e._data_list.length - 1), e._current = e._data_list[n], e._update()
+                        }
                     }
-            }, e.prototype._addParamData = function (t, e, i) {
-                null != t && 0 != i && t.push({
-                    type: e,
-                    value: i
-                })
+                }, e._onNext = function (t) {
+                    if (t.stopPropagation(), null != e._current) {
+                        var i = e._data_list.indexOf(e._current);
+                        if (!(i < 0)) {
+                            var n = i + 1;
+                            n >= e._data_list.length && (n = 0), e._current = e._data_list[n], e._update()
+                        }
+                    }
+                }, e._canvas = new PIXI.Sprite, e.addChild(e._canvas), e._prevBtn = new r.PrevBtn(e._onPrev), e._prevBtn.position.set(10, 582), e.addChild(e._prevBtn), e._nextBtn = new r.NextBtn(e._onNext), e._nextBtn.position.set(55, 582), e.addChild(e._nextBtn), e._canvas.interactive = !0, e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._data_list = [];
+                for (var e = 0, i = t.mst_ids; e < i.length; e++) {
+                    var n = i[e],
+                        r = o.default.resources.getSlotitem(n, "card");
+                    this._addImageData(n, r, new PIXI.Point(20, 142)), r = o.default.resources.getSlotitem(n, "item_up"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_on"), this._addImageData(n, r), r = o.default.resources.getSlotitem(n, "item_character"), this._addImageData(n, r)
+                }
+                this._data_list.length > 0 && (this._current = this._data_list[0], this._update()), this._prevBtn.initialize(), this._nextBtn.initialize()
+            }, e.prototype.activate = function () {
+                1 != this._canvas.buttonMode && (this._canvas.buttonMode = !0, this._canvas.on(s.EventType.CLICK, this._onNext), this._prevBtn.activate(), this._nextBtn.activate())
+            }, e.prototype.deactivate = function () {
+                this._canvas.buttonMode = !1, this._canvas.off(s.EventType.CLICK, this._onNext), this._prevBtn.deactivate(), this._nextBtn.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._prevBtn.dispose(), this._nextBtn.dispose();
+                for (var t = 0; t < this._data_list.length; t++) this._data_list[t] = null;
+                this._data_list = null, this._current = null, this._canvas = null, this._prevBtn = null, this._nextBtn = null
+            }, e.prototype._addImageData = function (t, e, i) {
+                if (void 0 === i && (i = null), e != PIXI.Texture.EMPTY) {
+                    var n = new _;
+                    n.mst_id = t, n.texture = e, n.offset = i, this._data_list.push(n)
+                }
+            }, e.prototype._update = function () {
+                null != this._current && (this._canvas.texture = this._current.texture, null != this._current.offset ? (this._canvas.x = this._current.offset.x, this._canvas.y = this._current.offset.y) : this._canvas.position.set(0, 0))
             }, e
         }(PIXI.Container);
-    e.SlotParamsContainer = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._value_text = new o.TextBox(19, 16774898), e._value_text.position.set(189, 2), e._value_text.anchor.x = 1, e.addChild(e._value_text), e._value_img = new PIXI.Sprite, e._value_img.position.set(184, 13), e._value_img.anchor.set(1, .5), e.addChild(e._value_img), e
-        }
-        return n(e, t), e.prototype.dispose = function () {
-            this.removeChildren(), this._value_text.destroy(), this._value_text = null, this._value_img = null
-        }, e.prototype.update = function (t, e, i) {
-            if (this.texture = this._getTexture(t, i), 9 == t) {
-                this._value_text.visible = !1;
-                var n = [97, 98, 96, 95, 99][e];
-                this._value_img.texture = r.ALBUM_MAIN.getTexture(n), this._value_img.visible = !0
-            } else this._value_img.visible = !1, this._value_text.text = e > 0 ? "+" + e : e.toString(), this._value_text.visible = !0
-        }, e.prototype._getTexture = function (t, e) {
-            var i;
-            switch (t) {
-                case 0:
-                    i = 34;
-                    break;
-                case 1:
-                    i = 37;
-                    break;
-                case 2:
-                    i = 38;
-                    break;
-                case 3:
-                    i = 31;
-                    break;
-                case 4:
-                    i = 39;
-                    break;
-                case 5:
-                    i = 28;
-                    break;
-                case 6:
-                    i = 48 == e ? 32 : 30;
-                    break;
-                case 7:
-                    i = 48 == e ? 33 : 35;
-                    break;
-                case 8:
-                    i = 29;
-                    break;
-                case 9:
-                    i = 36;
-                    break;
-                default:
-                    return PIXI.Texture.EMPTY
-            }
-            return r.ALBUM_MAIN.getTexture(i)
-        }, e
-    }(PIXI.Sprite)
+    e.SlotDetailContent = a;
+    var _ = function () {
+        function t() {}
+        return t
+    }()
 }

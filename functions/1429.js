@@ -104,16 +104,16 @@ const function1429 = function (t, e, i) {
             }, e.prototype._attack2 = function () {
                 var t = this;
                 new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
                     t._torpedo()
                 })
             }, e.prototype._torpedo = function () {
                 var t = this;
                 new y.PhaseRaigeki(this.scene, this._record).start(function () {
+                    t._attack3()
+                })
+            }, e.prototype._attack3 = function () {
+                var t = this;
+                new d.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
                     t._ending()
                 })
             }, e.prototype._ending = function () {
@@ -123,5 +123,5 @@ const function1429 = function (t, e, i) {
                 })
             }, e
         }(o.PhaseCombatBase);
-    e.PhaseDay_Suijo = v
+    e.PhaseDay_Kido_vs12 = v
 }

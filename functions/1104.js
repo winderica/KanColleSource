@@ -19,64 +19,48 @@ const function1104 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = function () {
-            function t() {
-                this._dic = {}
+    var o = i(11),
+        r = i(24),
+        s = i(42),
+        a = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._onClose = function () {
+                    o._panel.deactivate(), o._hideFade()
+                }, o._layer = e, o._model = i, o._mainView = n, o
             }
-            return t.prototype.getCount = function (t) {
-                var e = this.getData(t);
-                return null == e ? 0 : e.count
-            }, t.prototype.getData = function (t) {
-                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
-            }, t.prototype.setData = function (t) {
-                if (this._dic = {}, null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var n = i[e],
-                            o = new a(n);
-                        this._dic[o.id] = o
-                    }
-            }, t
-        }();
-    e.PurchasedItemModelHolder = r;
-    var s = function () {
-        function t(t) {
-            this._o = t
-        }
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return parseInt(o.ObjUtil.getString(this._o, "api_payitem_id"))
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_description")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_count")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }();
-    e.PurchasedItemModel = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setCount = function (t) {
-            this._o.api_count = t
-        }, e
-    }(s);
-    e.PurchasedItemModelEdit = a
+            return n(e, t), e.prototype._start = function () {
+                this._layer.hide(0), this._layer.visible = !0, this._layer.show(300), this._loadImages()
+            }, e.prototype._loadImages = function () {
+                var t = this,
+                    e = this._model.mst_ids,
+                    i = new r.SlotLoader;
+                i.add(e[0], "statustop_item");
+                for (var n = 0, o = e; n < o.length; n++) {
+                    var s = o[n];
+                    i.add(s, "card"), i.add(s, "item_up"), i.add(s, "item_on"), i.add(s, "item_character")
+                }
+                i.load(function () {
+                    t._showPanel()
+                })
+            }, e.prototype._showPanel = function () {
+                var t = this,
+                    e = new s.SlotDetailPanel(this._onClose);
+                this._panel = e, e.initialize(this._model), e.alpha = 0, this._layer.addChild(e), createjs.Tween.get(e).to({
+                    alpha: 1
+                }, 500).call(function () {
+                    e.activate(), t._mainView.visible = !1
+                })
+            }, e.prototype._hideFade = function () {
+                var t = this;
+                this._mainView.visible = !0, createjs.Tween.get(this._panel).to({
+                    alpha: 0
+                }, 300), this._layer.hide(500, function () {
+                    t._layer.visible = !1, t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._model = null, null != this._panel.parent && this._panel.parent.removeChild(this._panel), this._panel.dispose(), this._panel = null, t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.TaskShowSlotDetail = a
 }

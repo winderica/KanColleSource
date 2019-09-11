@@ -19,63 +19,45 @@ const function982 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
+    var o = i(12),
         r = i(41),
-        s = i(1),
-        a = function (t) {
+        s = i(983),
+        a = i(0),
+        _ = i(14),
+        l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._fade = new o.FadeBox(.3), e._bg = new PIXI.Sprite, e._bg.position.set(219, 207), e.addChild(e._fade), e.addChild(e._bg), e._btn_no = new _(!1), e._btn_no.position.set(168, 216), e._btn_yes = new _(!0), e._btn_yes.position.set(417, 216), e.bg.addChild(e._btn_no), e.bg.addChild(e._btn_yes), e
+                return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "fade", {
+            return n(e, t), Object.defineProperty(e.prototype, "selectView", {
                 get: function () {
-                    return this._fade
+                    return this._createSelectView(), this._selectView
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_no", {
-                get: function () {
-                    return this._btn_no
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "btn_yes", {
-                get: function () {
-                    return this._btn_yes
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._bg.texture = r.SALLY_EVENT.getTexture(28), this._btn_no.initialize(), this._btn_yes.initialize()
+            }), e.prototype.initialize = function (t) {
+                var e = a.default.settings.path_root + "img/sally/event_maesetsu",
+                    i = "?version=" + _.UIImageLoader.getVersion("sally");
+                switch (this.texture = r.SALLY_EVENT.getTexture(5), t) {
+                    case 451:
+                        this._content.position.set(-330, -224), this._content.texture = PIXI.Texture.fromImage(e + "/238_70639.png" + i);
+                        break;
+                    case 452:
+                        this._content.position.set(-286, -220), this._content.texture = PIXI.Texture.fromImage(e + "/239_993e0.png" + i);
+                        break;
+                    case 453:
+                        this._content.position.set(-337, -213), this._content.texture = PIXI.Texture.fromImage(e + "/240_9df3d.png" + i);
+                        break;
+                    default:
+                        this._content.texture = PIXI.Texture.EMPTY
+                }
+            }, e.prototype.showSelectView = function () {
+                return this._content.visible = !1, this._createSelectView(), this.addChild(this._selectView), this._selectView
+            }, e.prototype.dispose = function () {
+                null != this._selectView && this._selectView.dispose()
+            }, e.prototype._createSelectView = function () {
+                null == this._selectView && (this._selectView = new s.OperationSelectView)
             }, e
-        }(PIXI.Container);
-    e.OperationSelectConfirmDialog = a;
-    var _ = function (t) {
-        function e(e) {
-            var i = t.call(this) || this;
-            return i._onMouseOver = function () {
-                i._update(!0)
-            }, i._onMouseOut = function () {
-                i._update(!1)
-            }, i._onClick = function () {
-                null != i._cb_onClick && i._cb_onClick()
-            }, i._is_yes = e, i
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this._update(!1)
-        }, e.prototype.activate = function (t) {
-            this._cb_onClick = t, 1 != this.interactive && (this.interactive = !0, this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick))
-        }, e.prototype.deactivate = function () {
-            this._cb_onClick = null, this.interactive = !1, this.buttonMode = !1, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick)
-        }, e.prototype._update = function (t) {
-            var e;
-            e = 1 == t ? this._is_yes ? 21 : 18 : this._is_yes ? 20 : 17, this.texture = r.SALLY_EVENT.getTexture(e)
-        }, e
-    }(PIXI.Sprite)
+        }(o.Sprite);
+    e.MapIntroBoard = l
 }

@@ -19,81 +19,189 @@ const function1487 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._combined = i, n._tasks = [], n
+    var o = i(5),
+        r = i(0),
+        s = i(18),
+        a = i(20),
+        _ = i(27),
+        l = i(2),
+        u = i(1488),
+        c = i(1489),
+        h = i(1492),
+        p = i(1498),
+        d = i(1510),
+        f = i(3),
+        y = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._showComponent()
-            }, e.prototype._showComponent = function () {
-                for (var t = this._scene.data.getLevelupInfoList(this._combined), e = this._scene.view.layer_banner.info_f.items, i = this._scene.data.getShipExp(this._combined), n = [], o = 0; o < e.length; o++) {
-                    var r = e[o],
-                        a = o < i.length ? i[o] : 0;
-                    if (!(a < 0)) {
-                        var _ = t[o],
-                            l = new s(r, a, _);
-                        n.push(l), this._tasks.push(l)
-                    }
+                var t = this;
+                this._scene.view.layer_deck_info.show(function () {
+                    t._showShips()
+                })
+            }, e.prototype._showShips = function () {
+                var t, e = this,
+                    i = this._scene.data.battle_model.deck_e.isCombined(),
+                    n = this._scene.data.getM2(),
+                    o = this._scene.data.battle_model.map_info.area_id,
+                    r = this._scene.data.battle_model.map_info.map_no;
+                45 == o && 3 == r && 1 == n && f.SE.play("258"), t = 0 == i ? new m(this._scene) : new g(this._scene), t.start(function () {
+                    e._showRank()
+                })
+            }, e.prototype._showRank = function () {
+                var t = this,
+                    e = this._scene.data.battle_model.map_info.area_id;
+                if (e == s.EVENT_AREA_ID && 1 == this._scene.data.isFirstClear()) {
+                    var i = this._scene.data.battle_model.map_info.map_no,
+                        n = r.default.model.map.getMapMsts(e);
+                    null != n && n.length > 0 && n[n.length - 1].map_no == i ? r.default.sound.voice.play("9999", 427) : r.default.sound.voice.play("9999", 425)
                 }
-                0 == n.length ? this._endTask() : this._startTasks(n)
-            }, e.prototype._startTasks = function (t) {
-                for (var e = this, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    ! function (t) {
-                        t.start(function () {
-                            var i = e._tasks.indexOf(t);
-                            e._tasks.splice(i, 1), 0 == e._tasks.length && e._endTask()
-                        })
-                    }(o)
-                }
+                new u.TaskRank(this._scene).start(function () {
+                    t._showExp()
+                })
+            }, e.prototype._showExp = function () {
+                var t = this;
+                new c.TaskExp(this._scene).start(function () {
+                    t._showTransportResult()
+                })
+            }, e.prototype._showTransportResult = function () {
+                var t = this;
+                new d.PhaseTransportResult(this._scene).start(function () {
+                    t._phaseBonus()
+                })
+            }, e.prototype._phaseBonus = function () {
+                var t = this;
+                new h.PhaseBonus(this._scene).start(function () {
+                    t._phaseClear()
+                })
+            }, e.prototype._phaseClear = function () {
+                var t = this;
+                new p.PhaseClear(this._scene).start(function () {
+                    t._endTask()
+                })
             }, e
-        }(o.TaskBase);
-    e.TaskShowLevelup = r;
-    var s = function (t) {
-        function e(e, i, n) {
-            var o = t.call(this) || this;
-            o._onChange = function (t) {
-                if (null != o._banner_info) {
-                    var e = t.target.target.value;
-                    e >= o._borders[0] && (o._borders.shift(), o._banner_info.levelup());
-                    var i = -1;
-                    o._borders.length > 0 && (i = o._borders[0] - e), o._banner_info.up_to_the_next_level.update(i)
-                }
-            }, o._banner_info = e, o._exp = i, null != n && n.length > 1 ? o._initial_value = n[0] : o._initial_value = -1, o._borders = new Array;
-            for (var r = 1; r < n.length; r++) o._borders.push(n[r]);
-            return o
-        }
-        return n(e, t), e.prototype._start = function () {
-            this._initial_value < 0 ? this._endTask() : this._init()
-        }, e.prototype._init = function () {
-            var t = this,
-                e = this._banner_info.up_to_the_next_level;
-            e.alpha = 0, e.x -= 15;
-            var i = this._borders[0] - this._initial_value;
-            e.initialize(i), createjs.Tween.get(e).to({
-                x: e.x + 15,
-                alpha: 1
-            }, 500).call(function () {
-                e.showExpText(), t._completedShow()
-            })
-        }, e.prototype._completedShow = function () {
-            var t = this,
-                e = this._borders[this._borders.length - 1] - this._initial_value - this._exp,
-                i = this._initial_value + this._exp,
-                n = {
-                    value: this._initial_value
-                };
-            createjs.Tween.get(n, {
-                onChange: this._onChange
-            }).to({
-                value: i
-            }, 2e3).call(function () {
-                i === t._borders[0] && t._banner_info.levelup(), t._banner_info.up_to_the_next_level.update(e), t._endTask()
-            })
-        }, e.prototype._endTask = function () {
-            this._banner_info = null, t.prototype._endTask.call(this)
-        }, e
-    }(o.TaskBase)
+        }(l.TaskBase);
+    e.TaskMain = y;
+    var m = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.data.battle_model.deck_f.ships_main;
+                this._layer.banners_f.initialize(e), this._layer.info_f.initialize(e);
+                var i = this._scene.data.battle_model.deck_e.ships_main;
+                this._layer.banners_e.initialize(i), this._layer.info_e.initialize(i);
+                var n = new a.TweenTask,
+                    o = this._layer.banners_f.createShowTweens(200);
+                n.addTweens(o), o = this._layer.banners_e.createShowTweens(200), n.addTweens(o), n.start(function () {
+                    t._showNames()
+                })
+            }, e.prototype._showNames = function () {
+                var t = this,
+                    e = new a.TweenTask,
+                    i = this._layer.info_f.createShowTweens(200);
+                e.addTweens(i), i = this._layer.info_e.createShowTweens(200), e.addTweens(i), e.start(function () {
+                    t._showGauge()
+                })
+            }, e.prototype._showGauge = function () {
+                var t = this,
+                    e = new _.ParallelTask,
+                    i = this._scene.data.battle_model,
+                    n = this._scene.view.layer_deck_info,
+                    o = i.ship_info.getFirstData(!1).getTotalHP(),
+                    r = i.ship_info.getLastData(!1).getTotalHP();
+                e.add(n.friend.createTaskShowGauge(o, r, 200));
+                var s = i.ship_info.getFirstData(!0).getTotalHP(),
+                    a = i.ship_info.getLastData(!0).getTotalHP();
+                e.add(n.enemy.createTaskShowGauge(s, a, o, r, 200)), e.start(function () {
+                    t._hideEnemySide()
+                })
+            }, e.prototype._hideEnemySide = function () {
+                var t = this,
+                    e = new a.TweenTask;
+                e.addTween(createjs.Tween.get(this._scene.view.layer_deck_info.enemy).wait(500).to({
+                    x: o.default.width
+                }, 300));
+                var i = this._scene.view.layer_banner.createSlideOutEnemyTweens(300, 500);
+                e.addTweens(i), e.start(function () {
+                    t._endTask()
+                })
+            }, Object.defineProperty(e.prototype, "_layer", {
+                get: function () {
+                    return this._scene.view.layer_banner
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(l.TaskBase),
+        g = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._scene = e, i
+            }
+            return n(e, t), e.prototype._start = function () {
+                var t = this,
+                    e = this._scene.data.battle_model.deck_f.ships_main;
+                this._layer.banners_f.initialize(e), this._layer.info_f.initialize(e);
+                var i = this._scene.data.battle_model.deck_e.ships_sub;
+                this._layer.banners_e.initialize(i), this._layer.info_e.initialize(i);
+                var n = new a.TweenTask,
+                    o = this._layer.banners_f.createShowTweens(200);
+                n.addTweens(o), o = this._layer.banners_e.createShowTweens(200), n.addTweens(o), n.start(function () {
+                    t._showNames()
+                })
+            }, e.prototype._showNames = function () {
+                var t = this,
+                    e = new a.TweenTask,
+                    i = this._layer.info_f.createShowTweens(200);
+                e.addTweens(i), i = this._layer.info_e.createShowTweens(200), e.addTweens(i), e.start(function () {
+                    t._hideEnemyBannerAndNames()
+                })
+            }, e.prototype._hideEnemyBannerAndNames = function () {
+                var t = this,
+                    e = new a.TweenTask,
+                    i = this._layer.banners_e.createHideTweens(500);
+                e.addTweens(i), i = this._layer.info_e.createHideTweens(500), e.addTweens(i), e.start(function () {
+                    t._showGauge()
+                })
+            }, e.prototype._showGauge = function () {
+                var t = this,
+                    e = new _.ParallelTask,
+                    i = this._scene.data.battle_model.deck_e.ships_main;
+                this._layer.banners_e.initialize(i), this._layer.info_e.initialize(i);
+                var n = new a.TweenTask,
+                    o = this._layer.banners_e.createShowTweens(500);
+                n.addTweens(o), o = this._layer.info_e.createShowTweens(500), n.addTweens(o), e.add(n);
+                var r = this._scene.data.battle_model,
+                    s = this._scene.view.layer_deck_info,
+                    l = r.ship_info.getFirstData(!1).getTotalHP(),
+                    u = r.ship_info.getLastData(!1).getTotalHP();
+                e.add(s.friend.createTaskShowGauge(l, u, 500));
+                var c = r.ship_info.getFirstData(!0).getTotalHP(),
+                    h = r.ship_info.getLastData(!0).getTotalHP();
+                e.add(s.enemy.createTaskShowGauge(c, h, l, u, 500)), e.start(function () {
+                    t._hideEnemySide()
+                })
+            }, e.prototype._hideEnemySide = function () {
+                var t = this,
+                    e = new a.TweenTask;
+                e.addTween(createjs.Tween.get(this._scene.view.layer_deck_info.enemy).wait(500).to({
+                    x: o.default.width
+                }, 300));
+                var i = this._scene.view.layer_banner.createSlideOutEnemyTweens(300, 500);
+                e.addTweens(i), e.start(function () {
+                    t._endTask()
+                })
+            }, Object.defineProperty(e.prototype, "_layer", {
+                get: function () {
+                    return this._scene.view.layer_banner
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
+        }(l.TaskBase)
 }

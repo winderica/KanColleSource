@@ -19,131 +19,106 @@ const function1114 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(3),
-        s = i(91),
-        a = i(118),
-        _ = i(402),
-        l = i(1116),
-        u = i(240),
-        c = i(1),
-        h = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onSelect = function (t) {
-                    e._detail_panel.update(t)
-                }, e._onUse = function (t) {
-                    var i = o.default.model.useItem.get(t);
-                    if (null != i) {
-                        var n = o.default.view.overLayer,
-                            r = new u.TaskUseItem(n, i);
-                        r.start(function () {
-                            1 == r.result && (e.update(!1), e.activate(), e._detail_panel.update(-1))
-                        })
-                    }
-                }, e._onExOpen = function () {
-                    e._openExShelf(300)
-                }, e._onExClose = function () {
-                    e._closeExShelf(300)
-                }, e._bg_layer = new PIXI.Container, e.addChild(e._bg_layer), e._btn_ex_close = new f, e._btn_ex_close.position.set(186, 205), e.addChild(e._btn_ex_close), e._btn_ex_open = new d, e._btn_ex_open.position.set(735, 205), e.addChild(e._btn_ex_open), e._shelf_layer = new PIXI.Container, e.addChild(e._shelf_layer), e._shelf_mask = new PIXI.Graphics, e._shelf_mask.beginFill(0), e._shelf_mask.drawRect(180, 240, 727, 427), e._shelf_mask.endFill(), e.addChild(e._shelf_mask), e._shelf_layer.mask = e._shelf_mask, e._shelf_grad = new PIXI.Sprite, e._shelf_grad.position.set(180, 240), e._shelf_grad.visible = !1, e.addChild(e._shelf_grad), e._detail_panel = new l.OwnedItemDetailPanel(e._onUse), e._detail_panel.position.set(904, 201), e.addChild(e._detail_panel), e
+    var o = i(1),
+        r = i(396),
+        s = i(397),
+        a = i(398),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._selected = !1, n._activated = !1, n._onClick = function () {
+                    null != n._cb_onClick && n._cb_onClick(n._target)
+                }, n._onMouseOver = function () {
+                    n._update(!0)
+                }, n._onMouseOut = function () {
+                    n._update(!1)
+                }, n._target = e, n._cb_onClick = i, n.interactive = !0, n._base = new PIXI.Sprite, n.addChild(n._base), n._over = new PIXI.Sprite, n.addChild(n._over), n._light = new l, n.addChild(n._light), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(16));
-                t.position.set(180, 202), this._bg_layer.addChild(t), this._btn_ex_open.initialize(this._onExOpen), this._btn_ex_close.initialize(this._onExClose), t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(18)), t.position.set(180, 240), this._shelf_layer.addChild(t), t = new PIXI.Sprite(r.ITEM_ILIST.getTexture(19)), t.position.set(907, 240), this._shelf_layer.addChild(t), this._shelf_grad.texture = r.ITEM_ILIST.getTexture(0), this._detail_panel.initialize(), this._icons = [];
-                for (var e = a.ITEMLIST_ORDER.length, i = 0; i < e; i++) {
-                    var n = new _.ItemIcon(this._onSelect);
-                    if (i < 32) {
-                        var o = Math.floor(i / 8);
-                        n.x = 213 + i % 8 * 84, n.y = 260 + 104 * o, o >= 2 && (n.y -= 1)
-                    } else {
-                        var s = i - 32,
-                            o = Math.floor(s / 3);
-                        n.x = 928 + s % 3 * 84, n.y = 260 + 104 * o, o >= 2 && (n.y -= 1)
-                    }
-                    n.initialize(), this._shelf_layer.addChild(n), this._icons.push(n)
-                }
-            }, e.prototype.update = function (t) {
-                void 0 === t && (t = !0), t && this._closeExShelf(0), this._detail_panel.update(-1);
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e],
-                        n = a.ITEMLIST_ORDER[e],
-                        r = o.default.model.useItem.get(n),
-                        s = null == r ? 0 : r.count;
-                    i.update(n, s)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "target", {
+                get: function () {
+                    return this._target
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "selected", {
+                set: function (t) {
+                    this._selected != t && (this._selected = t, 0 == this._selected && 1 == this._activated ? this._activate() : this._deactivate(), this._update(!1))
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._deactivate(), 0 == this._selected && 1 == this._activated && this.activate(), this._base.texture = this._getTexture(t), this._over.texture = this._getTextureOn(t), this._light.initialize(this._getTextureOn(t)), 201 == t ? (this._over.y = -3, this._light.y = -3) : (this._over.y = 0, this._light.y = 0), this._update(!1)
             }, e.prototype.activate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].activate()
-                }
-                this._btn_ex_open.activate(), this._btn_ex_close.activate()
+                this._activated = !0, 1 != this.buttonMode && 1 != this._selected && this._activate()
             }, e.prototype.deactivate = function () {
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    e[t].deactivate()
-                }
-                this._btn_ex_open.deactivate(), this._btn_ex_close.deactivate()
+                this._activated = !1, this._deactivate()
             }, e.prototype.dispose = function () {
-                this._shelf_layer.removeChildren(), this._shelf_layer = null;
-                for (var t = 0, e = this._icons; t < e.length; t++) {
-                    var i = e[t];
-                    i.deactivate(), i.dispose()
+                this.deactivate(), this._cb_onClick = null
+            }, e.prototype._activate = function () {
+                this.buttonMode = !0, this.on(o.EventType.MOUSEOVER, this._onMouseOver), this.on(o.EventType.MOUSEOUT, this._onMouseOut), this.on(o.EventType.CLICK, this._onClick)
+            }, e.prototype._deactivate = function () {
+                this.buttonMode = !1, this.off(o.EventType.MOUSEOVER, this._onMouseOver), this.off(o.EventType.MOUSEOUT, this._onMouseOut), this.off(o.EventType.CLICK, this._onClick)
+            }, e.prototype._update = function (t) {
+                0 == t || 1 == this._selected ? (this._base.visible = !0, this._over.visible = !1) : (this._base.visible = !1, this._over.visible = !0), 1 == this._selected ? this._light.activate() : this._light.deactivate()
+            }, e.prototype._getTexture = function (t) {
+                if (101 == t || 102 == t) {
+                    if (0 == this._target) return r.ITEM_MENU_1.getTexture(0);
+                    if (1 == this._target) return r.ITEM_MENU_1.getTexture(2);
+                    if (2 == this._target) return r.ITEM_MENU_1.getTexture(4)
+                } else if (201 == t) {
+                    if (0 == this._target) return s.ITEM_MENU_2.getTexture(0);
+                    if (1 == this._target) return s.ITEM_MENU_2.getTexture(2);
+                    if (2 == this._target) return s.ITEM_MENU_2.getTexture(4)
+                } else if (301 == t) {
+                    if (0 == this._target) return a.ITEM_MENU_3.getTexture(0);
+                    if (1 == this._target) return a.ITEM_MENU_3.getTexture(2);
+                    if (2 == this._target) return a.ITEM_MENU_3.getTexture(4)
+                } else if (311 == t) {
+                    if (0 == this._target) return a.ITEM_MENU_3.getTexture(6);
+                    if (1 == this._target) return a.ITEM_MENU_3.getTexture(8);
+                    if (2 == this._target) return a.ITEM_MENU_3.getTexture(10)
                 }
-                this._icons = null, this._btn_ex_open.dispose(), this._btn_ex_close.dispose(), this._detail_panel.dispose(), this.removeChildren()
-            }, e.prototype._openExShelf = function (t) {
-                var e = this;
-                this._btn_ex_open.hide(), this._shelf_grad.visible = !0, createjs.Tween.get(this._shelf_layer).to({
-                    x: -282
-                }, t, createjs.Ease.cubicOut).call(function () {
-                    e._btn_ex_close.show()
-                })
-            }, e.prototype._closeExShelf = function (t) {
-                var e = this;
-                this._btn_ex_close.hide(), createjs.Tween.get(this._shelf_layer).to({
-                    x: 0
-                }, t, createjs.Ease.cubicOut).call(function () {
-                    e._shelf_grad.visible = !1, e._btn_ex_open.show()
-                })
+                return PIXI.Texture.EMPTY
+            }, e.prototype._getTextureOn = function (t) {
+                if (101 == t || 102 == t) {
+                    if (0 == this._target) return r.ITEM_MENU_1.getTexture(1);
+                    if (1 == this._target) return r.ITEM_MENU_1.getTexture(3);
+                    if (2 == this._target) return r.ITEM_MENU_1.getTexture(5)
+                } else if (201 == t) {
+                    if (0 == this._target) return s.ITEM_MENU_2.getTexture(1);
+                    if (1 == this._target) return s.ITEM_MENU_2.getTexture(3);
+                    if (2 == this._target) return s.ITEM_MENU_2.getTexture(5)
+                } else if (301 == t) {
+                    if (0 == this._target) return a.ITEM_MENU_3.getTexture(1);
+                    if (1 == this._target) return a.ITEM_MENU_3.getTexture(3);
+                    if (2 == this._target) return a.ITEM_MENU_3.getTexture(5)
+                } else if (311 == t) {
+                    if (0 == this._target) return a.ITEM_MENU_3.getTexture(7);
+                    if (1 == this._target) return a.ITEM_MENU_3.getTexture(9);
+                    if (2 == this._target) return a.ITEM_MENU_3.getTexture(11)
+                }
+                return PIXI.Texture.EMPTY
             }, e
-        }(s.ViewBase);
-    e.OwnedItemListMain = h;
-    var p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._onMouseOver = function () {
-                    e._update(!0)
-                }, e._onMouseOut = function () {
-                    e._update(!1)
-                }, e._onClick = function () {
-                    null != e._cb_onClick && e._cb_onClick()
-                }, e.interactive = !0, e
-            }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this._cb_onClick = t, this._update(!1)
-            }, e.prototype.activate = function () {
-                1 != this.buttonMode && (this.buttonMode = !0, this.on(c.EventType.MOUSEOVER, this._onMouseOver), this.on(c.EventType.MOUSEOUT, this._onMouseOut), this.on(c.EventType.CLICK, this._onClick))
-            }, e.prototype.deactivate = function () {
-                this.buttonMode = !1, this.off(c.EventType.MOUSEOVER, this._onMouseOver), this.off(c.EventType.MOUSEOUT, this._onMouseOut), this.off(c.EventType.CLICK, this._onClick)
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype.show = function () {
-                this.visible = !0
-            }, e.prototype.hide = function () {
-                this.visible = !1, this._update(!1)
-            }, e
-        }(PIXI.Sprite),
-        d = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? r.ITEM_ILIST.getTexture(20) : r.ITEM_ILIST.getTexture(21)
-            }, e
-        }(p),
-        f = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._update = function (t) {
-                this.texture = 0 == t ? r.ITEM_ILIST.getTexture(22) : r.ITEM_ILIST.getTexture(23)
-            }, e
-        }(p)
+        }(PIXI.Sprite);
+    e.TabBtn = _;
+    var l = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function (t) {
+            this.texture = t, this.visible = !1
+        }, e.prototype.activate = function () {
+            this.alpha = 0, this.visible = !0, this._tween = createjs.Tween.get(this, {
+                loop: !0
+            }).to({
+                alpha: 1
+            }, 3e3).to({
+                alpha: 0
+            }, 3e3)
+        }, e.prototype.deactivate = function () {
+            this.visible = !1, null != this._tween && this._tween.setPaused(!0), this._tween = null
+        }, e.prototype.dispose = function () {
+            this.deactivate()
+        }, e
+    }(PIXI.Sprite)
 }

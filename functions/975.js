@@ -19,37 +19,21 @@ const function975 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(41),
+    var o = i(0),
+        r = i(9),
         s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._board = new a, e._board.position.set(726, 346), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_air_corps/expand_base", i._area_id = e, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "board", {
-                get: function () {
-                    return this._board
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(27)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_area_id = this._area_id, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = this._raw_data[0];
+                o.default.model.airunit.addData(e);
+                var i = o.default.model.useItem.get(73);
+                i.__setCount__(i.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.IntroAlertDialog = s;
-    var a = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-345, -215), this._content.texture = r.SALLY_EVENT.getTexture(40)
-        }, e
-    }(o.Sprite)
+        }(r.APIBase);
+    e.AirUnitExtendAPI = s
 }

@@ -19,36 +19,34 @@ const function1105 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(80),
-        a = i(238),
-        _ = i(1106),
-        l = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                return o._purchasedItems = e, o._scene_model = i, o._delegate_initialize = n, o
+    var o = i(2),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._switchOrder = [1, 2], n._switch_btn = e, n._tab_container = i;
+                var o = n._switchOrder.indexOf(n._switch_btn.mode);
+                return n._switchMode = o + 1 >= n._switchOrder.length ? n._switchOrder[0] : n._switchOrder[o + 1], n
             }
             return n(e, t), e.prototype._start = function () {
-                this._loadResources()
-            }, e.prototype._loadResources = function () {
+                this._switch_btn.mode = this._switchMode, this._tab_container.switchViewAlbumMode(this._switchMode), this._animate()
+            }, e.prototype._animate = function () {
                 var t = this;
-                (new _.TaskLoadResources).start(function () {
-                    if (null != t._delegate_initialize) {
-                        o.default.model.useItem.updateCount();
-                        var e = 0;
-                        t._scene_model instanceof s.ItemSceneModel && (e = t._scene_model.subtype), t._delegate_initialize(e)
-                    }
-                    t._connectAPI()
-                })
-            }, e.prototype._connectAPI = function () {
-                var t = this;
-                new a.PayItemAPI(this._purchasedItems).start(function () {
-                    t._endTask()
+                createjs.Tween.get(this._switch_btn).to({
+                    alpha: 0
+                }, 0).to({
+                    x: -137
+                }, 0).wait(300).call(function () {
+                    t._switch_btn.update(!1), createjs.Tween.get(t._switch_btn).to({
+                        alpha: 1
+                    }, 0).wait(100).to({
+                        x: 0
+                    }, 450, createjs.Ease.quintOut).call(function () {
+                        t._endTask()
+                    })
                 })
             }, e.prototype._endTask = function () {
-                this._purchasedItems = null, this._scene_model = null, this._delegate_initialize = null, t.prototype._endTask.call(this)
+                this._switch_btn.addOnceClickEvent(), t.prototype._endTask.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskItemScenePreInitialize = l
+        }(o.TaskBase);
+    e.TaskSwitchAlbumMode = r
 }

@@ -20,41 +20,60 @@ const function1106 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(14),
-        a = i(239),
-        _ = function (t) {
+        r = i(47),
+        s = i(203),
+        a = i(10),
+        _ = i(396),
+        l = i(397),
+        u = i(398),
+        c = i(238),
+        h = i(1107),
+        p = i(1108),
+        d = i(1110),
+        f = i(1111),
+        y = i(1112),
+        m = i(399),
+        g = i(401),
+        v = i(1115),
+        b = i(1158),
+        w = i(1167),
+        x = function (t) {
             function e() {
-                return t.call(this) || this
+                var e = t.call(this) || this;
+                return e._initialize = function (t) {
+                    e._selected_state = t;
+                    var i, n = o.default.model.basic.getUISkinID();
+                    101 == n || 102 == n ? (i = new PIXI.Sprite(_.ITEM_MENU_1.getTexture(6)), e._tabs.y = 193) : 201 == n ? (i = new PIXI.Sprite(l.ITEM_MENU_2.getTexture(6)), e._tabs.y = 190) : 301 != n && 311 != n || (i = new PIXI.Sprite(u.ITEM_MENU_3.getTexture(12)), e._tabs.y = 187), e._bg.addChild(i), i = new PIXI.Sprite(a.COMMON_MISC.getTexture(48)), i.position.set(171, 103), e._bg.addChild(i), e._tabs.initialize(n), e._mini_chara.initialize(), e._back_btn.initialize(e._onBack), e._showView(e._selected_state)
+                }, e._activate = function () {
+                    e._tabs.activate(), e._mini_chara.activate(), e._back_btn.activate()
+                }, e._dispose = function () {
+                    e._removeView(), null != e._ilist && (e._ilist.dispose(), e._ilist = null), null != e._ishop && (e._ishop.dispose(), e._ishop = null), null != e._fshop && (e._fshop.dispose(), e._fshop = null), e._tabs.dispose(), e._tabs = null, e._mini_chara.dispose(), e._mini_chara = null, e._back_btn.dispose(), e._back_btn = null, e._purchasedItems = null, e.removeChildren()
+                }, e._onChangeSceneState = function (t) {
+                    e._showView(t)
+                }, e._onPurchased = function () {
+                    new c.PayItemAPI(e._purchasedItems).start(function () {
+                        e._showView(0, !0)
+                    })
+                }, e._onBack = function () {
+                    o.default.scene.change(0)
+                }, e._purchasedItems = new h.PurchasedItemModelHolder, e._bg = new PIXI.Container, e.addChild(e._bg), e._tabs = new m.TabContainer(e._onChangeSceneState), e.addChild(e._tabs), e._mini_chara = new g.MiniChara, e._mini_chara.position.set(-16, 444), e.addChild(e._mini_chara), e._back_btn = new s.BackBtn, e._back_btn.position.set(0, 653), e.addChild(e._back_btn), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("item_common.json"), e.add("item_ilist.json"), e.add("item_payitemicon.json"), e.add("item_ishop.json"), e.add("item_fshop.json"), e.add("item_mini.json"), e.load(function () {
-                    t._load2()
-                })
-            }, e.prototype._load2 = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("item_ilist_medal.json"), e.add("item_ilist_medal_kou.json"), e.add("item_ilist_presentbox.json"), e.add("item_ilist_hishimochi.json"), e.load(function () {
-                    t._loadSkinResource()
-                })
-            }, e.prototype._loadSkinResource = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item"),
-                    i = o.default.model.basic.getUISkinID();
-                101 == i || 102 == i ? e.add("item_menu_1.json") : 201 == i ? e.add("item_menu_2.json") : 301 != i && 311 != i || e.add("item_menu_3.json"), e.load(function () {
-                    t._loadAkashiResoueces()
-                })
-            }, e.prototype._loadAkashiResoueces = function () {
-                var t = this,
-                    e = new s.UIImageLoader("item");
-                e.add("akashi/" + a.POSTER_TYPE + "1.png", a.POSTER_KEY_1), e.add("akashi/" + a.POSTER_TYPE + "2.png", a.POSTER_KEY_2), e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), e.prototype.getPreInitializeTask = function (t, e) {
+                return new p.TaskItemScenePreInitialize(this._purchasedItems, e, this._initialize)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new d.TaskItemSceneInitialize(this._activate)
+            }, e.prototype.getFinalizeTask = function () {
+                return new f.TaskItemSceneFinalize(this._dispose)
+            }, e.prototype._removeView = function () {
+                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null)
+            }, e.prototype._showView = function (t, e) {
+                if (void 0 === e && (e = !1), this._removeView(), this._tabs.update(t), 0 == t ? (null == this._ilist && (this._ilist = new v.ItemListMain(this._purchasedItems), this._ilist.initialize()), this._current = this._ilist) : 1 == t ? (null == this._ishop && (this._ishop = new b.ItemShopMain(this._purchasedItems, this._onPurchased), this._ishop.initialize()), this._current = this._ishop) : 2 == t && (null == this._fshop && (this._fshop = new w.FurnitureShopMain, this._fshop.initialize()), this._current = this._fshop), 0 == t && 1 == e) {
+                    this._ilist.updateForPurchasedView();
+                    var i = o.default.view.overLayer;
+                    new y.TaskPurchased(i).start()
+                } else this._current.update();
+                this._current.activate(), this.addChild(this._current)
             }, e
-        }(r.TaskBase);
-    e.TaskLoadResources = _
+        }(r.SceneBase);
+    e.ItemScene = x
 }

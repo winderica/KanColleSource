@@ -20,18 +20,20 @@ const function1338 = function (t, e, i) {
         value: !0
     });
     var o = i(9),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                return s = null != o ? o.isCombined() : e.model.map_info.isVS12(), i._url = 1 == s ? "api_req_combined_battle/ec_midnight_battle" : 0 == r ? "api_req_battle_midnight/battle" : "api_req_combined_battle/midnight_battle", i._data = e, i
+        r = i(140),
+        s = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/battle", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                var e = this._data.model.deck_f,
+                    i = this._data.model.deck_e;
+                this._post_data.api_deck_id = e.id, this._post_data.api_formation_id = e.formation, this._post_data.api_enemy_id = i.id, 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._data.addDayRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
         }(o.APIBase);
-    e.APIBattleDayToNight = r
+    e.APIPracticeStart = s
 }

@@ -1,53 +1,75 @@
 const function628 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(10),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._text = new o.TextBox(27, 16777215), e.addChild(e._text), e
+    var n = i(0),
+        o = function () {
+            function t() {
+                this._melt_into_items = []
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.texture = r.COMMON_MISC.getTexture(120), this._text.text = t, this._text.x = 615 - Math.round(this._text.width / 2), this._text.y = 159 - Math.round(this._text.height / 2)
-            }, e.prototype.changeText = function (t) {
-                var e = this;
-                createjs.Tween.get(this._text).to({
-                    alpha: 0
-                }, 200).call(function () {
-                    e._startAnimation(t)
-                })
-            }, e.prototype.dispose = function () {
-                this._stopAnimation(), this.removeChildren(), this._text.destroy()
-            }, e.prototype._startAnimation = function (t) {
-                var e = this;
-                null == this._t && null != t && 0 != t.length && (this._message = t, this._text.text = "", this._text.alpha = 1, this._text.x = 246, this._text.y = 87, this._t = createjs.Tween.get(null, {
-                    loop: !0
-                }).wait(100).call(function () {
-                    var t = e._message.substr(0, 1);
-                    " " == e._text.text ? e._text.text = t : e._text.text += t, e._message = e._message.substr(1), 0 == e._message.length && e._stopAnimation()
-                }))
-            }, e.prototype._stopAnimation = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null)
-            }, e
-        }(PIXI.Sprite);
-    e.ModelChangeMessageBox = s
+            return Object.defineProperty(t.prototype, "mst_id_from", {
+                get: function () {
+                    return this._mst_id_from
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "mst_id_tobe", {
+                get: function () {
+                    return this._mst_id_tobe
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "rarity_tobe", {
+                get: function () {
+                    if (1 == this.isUseitemTo()) return 0;
+                    var t = n.default.model.slot.getMst(this._mst_id_tobe);
+                    return null == t ? 0 : t.rarity
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message1", {
+                get: function () {
+                    return this._message1
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "message2", {
+                get: function () {
+                    return this._message2.replace(/<br>/, "\n")
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(t.prototype, "melt_into_items", {
+                get: function () {
+                    return this._melt_into_items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), t.prototype.isUseitemFrom = function () {
+                return 6 == this._type_from
+            }, t.prototype.isUseitemTo = function () {
+                return 6 == this._type_tobe
+            }, t.prototype.isNeedUpdateUserBasic = function () {
+                if (0 == this.isNeedUpdateUseitem()) return !1;
+                if (1 == this.isUseitemFrom() && 44 == this._mst_id_from) return !0;
+                if (1 == this.isUseitemTo() && 44 == this._mst_id_tobe) return !0;
+                for (var t = 0, e = this.melt_into_items; t < e.length; t++)
+                    for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                        var r = o[n];
+                        if (6 == r.type && 44 == r.id) return !0
+                    }
+                return !1
+            }, t.prototype.isNeedUpdateUseitem = function () {
+                if (1 == this.isUseitemFrom()) return !0;
+                if (1 == this.isUseitemTo()) return !0;
+                for (var t = 0, e = this.melt_into_items; t < e.length; t++)
+                    for (var i = e[t], n = 0, o = i.items; n < o.length; n++) {
+                        var r = o[n];
+                        if (6 == r.type) return !0
+                    }
+                return !1
+            }, t
+        }();
+    e.ModelChangeModel = o
 }

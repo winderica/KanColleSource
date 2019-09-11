@@ -19,33 +19,16 @@ const function1342 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(12),
-        r = i(16),
-        s = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._wave1 = new o.Sprite, e._wave1.anchor.set(.5), e._wave2 = new o.Sprite, e._wave2.anchor.set(.5), e.addChild(e._wave1), e.addChild(e._wave2), e
+    var o = i(9),
+        r = function (t) {
+            function e(e, i) {
+                void 0 === i && (i = !1);
+                var n = t.call(this) || this;
+                return n._url = "api_req_practice/midnight_battle", n._data = e, n._debug = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._wave1.scale.set(0), this._wave2.scale.set(0), this._wave1.alpha = 0, this._wave2.alpha = 0, this._wave1.texture = r.BATTLE_MAIN.getTexture(108), this._wave2.texture = r.BATTLE_MAIN.getTexture(108)
-            }, e.prototype.play = function () {
-                var t = this;
-                createjs.Tween.get(this._wave1).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 300), createjs.Tween.get(this._wave2).wait(600).to({
-                    scaleX: 1,
-                    scaleY: 1,
-                    alpha: 1
-                }, 1e3).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    t.removeChildren(), null != t.parent && t.parent.removeChild(t)
-                })
+            return n(e, t), e.prototype._completedEnd = function () {
+                this._data.addNightRecord(this._raw_data), this._data = null, t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.SubMarineWave = s
+        }(o.APIBase);
+    e.APIPracticeDayToNight = r
 }

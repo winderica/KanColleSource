@@ -19,80 +19,117 @@ const function1018 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(37),
-        r = i(1019),
-        s = i(1020),
-        a = i(1022),
-        _ = i(1036),
-        l = i(1037),
-        u = function (t) {
-            function e(e, i) {
-                var n = t.call(this, e, i) || this;
-                n._timer_id = 0, n._onChangeMatching = function (t) {
-                    new l.TaskChangeMatching(t, n).start()
-                }, n._sub_title = new _.CompSubTitle, n._sub_title.position.set(202, 204), n._rivals = new Array;
-                for (var o = 0; o < 5; o++) {
-                    var r = new a.CompRivalDeck;
-                    r.position.set(211, 267 + 82 * o), n._rivals.push(r)
+    var o = i(0),
+        r = i(18),
+        s = i(2),
+        a = i(1019),
+        _ = i(1020),
+        l = function () {
+            function t() {}
+            return t.prototype.getPreLoadTask = function () {
+                return this._model = new a.EventSortieConditionModel, new u(this._model)
+            }, t.prototype.update = function (t) {
+                this._map = t
+            }, t.prototype.check = function (t, e) {
+                if (this._map.area_id != r.EVENT_AREA_ID) return {
+                    result: !0,
+                    reason: 0
+                };
+                var i = this._checkCommon();
+                return null != i ? i : (i = this._check(t, e), null != i ? i : {
+                    result: !0,
+                    reason: 0
+                })
+            }, t.prototype._checkCommon = function () {
+                var t = this._model.win_count,
+                    e = this._model.lose_count;
+                if (0 == t && 0 == e) return {
+                    result: !1,
+                    reason: 13
+                };
+                if (this._model.win_rate < .75) return {
+                    result: !1,
+                    reason: 15
+                };
+                var i = o.default.model.basic.shipMax,
+                    n = o.default.model.ship.num;
+                return i - n < 5 ? {
+                    result: !1,
+                    reason: 16
+                } : (i = o.default.model.basic.slotMax, n = o.default.model.slot.num, i - n < 20 ? {
+                    result: !1,
+                    reason: 17
+                } : 0 == this._map.getSelectedOperationType() ? {
+                    result: !1,
+                    reason: 18
+                } : null)
+            }, t.prototype._check = function (t, e) {
+                var i = this._map.mst_id;
+                if (451 == i)
+                    for (var n = [11, 18], o = 0, r = e; o < r.length; o++) {
+                        var s = r[o];
+                        if (null != s) {
+                            var a = s.shipTypeID;
+                            if (n.indexOf(a) > -1) return {
+                                result: !1,
+                                reason: 38
+                            }
+                        }
+                    }
+                var _ = this._map.getSelectedOperationType(),
+                    l = [3, 4].indexOf(_) > -1,
+                    u = 4 == _;
+                if (l)
+                    if (451 == i)
+                        for (var c = 0, h = e; c < h.length; c++) {
+                            var s = h[c];
+                            if (null != s) {
+                                var p = s.label;
+                                if (0 != p && 1 != p) return {
+                                    result: !1,
+                                    reason: 19
+                                }
+                            }
+                        } else if (452 == i)
+                            for (var d = 0, f = e; d < f.length; d++) {
+                                var s = f[d];
+                                if (null != s) {
+                                    var p = s.label;
+                                    if (0 != p && 2 != p) return {
+                                        result: !1,
+                                        reason: 19
+                                    }
+                                }
+                            }
+                if (u && 453 == i && !this._map.isCleared())
+                    for (var y = 0, m = e; y < m.length; y++) {
+                        var s = m[y];
+                        if (null != s) {
+                            var p = s.label;
+                            if (0 != p && 3 != p) return {
+                                result: !1,
+                                reason: 19
+                            }
+                        }
+                    }
+                return {
+                    result: !0,
+                    reason: 0
                 }
-                return n._matching_btns = new s.CompMatchingSelectBtns(n._onChangeMatching), n._matching_btns.position.set(460, 669), n
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "rivals", {
-                get: function () {
-                    return this._rivals
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "matching_btns", {
-                get: function () {
-                    return this._matching_btns
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                t.prototype.initialize.call(this), this._sub_title.initialize(), this.addChild(this._sub_title);
-                for (var e = 0, i = this._rivals; e < i.length; e++) {
-                    var n = i[e];
-                    n.initialize(), this.addChild(n)
-                }
-                this._matching_btns.initialize(), this.addChild(this._matching_btns)
-            }, e.prototype.update = function (t) {
-                o.TaskLoadShipResource.abortBy(this), this._sub_title.update(t.matching_type);
-                for (var e = t.rivals, i = 0; i < this._rivals.length; i++) {
-                    var n = this._rivals[i];
-                    e.length <= i ? n.visible = !1 : (n.update(e[i]), n.visible = !0)
-                }
-                this._selected_matching_type = t.matching_type_next;
-                var r = t.remain_time;
-                this._startTimer(1e3 * r), this._matching_btns.update(r > 0, t.matching_type_next)
-            }, e.prototype.updateMatchingState = function (t, e) {
-                this._selected_matching_type = e, this._matching_btns.update(t, e), this._matching_btns.activate()
-            }, e.prototype.activate = function () {
-                t.prototype.activate.call(this);
-                for (var e = 0, i = this.rivals; e < i.length; e++) {
-                    i[e].activate()
-                }
-                this._matching_btns.activate()
-            }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this);
-                for (var e = 0, i = this.rivals; e < i.length; e++) {
-                    i[e].deactivate()
-                }
-                this._matching_btns.deactivate(), o.TaskLoadShipResource.abortBy(this)
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._sub_title.dispose();
-                for (var e = 0, i = this.rivals; e < i.length; e++) {
-                    i[e].dispose()
-                }
-                this._matching_btns.dispose(), this._stopTimer()
-            }, e.prototype._startTimer = function (t) {
-                var e = this;
-                this._stopTimer(), t > 0 && (this._timer_id = setTimeout(function () {
-                    e.updateMatchingState(!1, e._selected_matching_type), e._timer_id = 0
-                }, t))
-            }, e.prototype._stopTimer = function () {
-                this._timer_id > 0 && clearTimeout(this._timer_id), this._timer_id = 0
-            }, e
-        }(r.ViewMainBase);
-    e.ViewMain = u
+            }, t
+        }();
+    e.EventSortieCondition = l;
+    var u = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._onComplete = function () {
+                i._endTask()
+            }, i._model = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            new _.APIEventSortieCondition(this._model).start(this._onComplete)
+        }, e.prototype._endTask = function () {
+            this._model = null, t.prototype._endTask.call(this)
+        }, e
+    }(s.TaskBase)
 }

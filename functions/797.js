@@ -19,30 +19,21 @@ const function797 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(7),
-        s = i(9),
-        a = function (t) {
-            function e(e, i, n, o, r, s) {
-                var a = t.call(this) || this;
-                return a._url = "api_req_kaisou/slot_deprive", a.api_unset_idx = e, a.api_set_slot_kind = i, a.api_unset_slot_kind = n, a.api_unset_ship = o, a.api_set_idx = r, a.api_set_ship = s, a
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e.btnSoubi3Light = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(17)), e.btnSoubi3 = new PIXI.Sprite(o.REMODEL_MAIN.getTexture(16)), e.btnSoubi3Light.position.set(-14, -14), e.btnSoubi3Light.alpha = 0, e.addChild(e.btnSoubi3Light, e.btnSoubi3), e.tween = createjs.Tween.get(e.btnSoubi3Light).to({
+                    alpha: 0
+                }).to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3), e.tween.loop = !0, e.tween.play(null), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_unset_idx = this.api_unset_idx, this._post_data.api_set_slot_kind = this.api_set_slot_kind, this._post_data.api_unset_slot_kind = this.api_unset_slot_kind, this._post_data.api_unset_ship = this.api_unset_ship, this._post_data.api_set_idx = this.api_set_idx, this._post_data.api_set_ship = this.api_set_ship, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = r.ObjUtil.getObject(this._raw_data, "api_ship_data"),
-                    i = r.ObjUtil.getObject(e, "api_set_ship"),
-                    n = r.ObjUtil.getObject(e, "api_unset_ship"),
-                    s = r.ObjUtil.getObject(this._raw_data, "api_unset_list"),
-                    a = r.ObjUtil.getNumber(s, "api_type3No"),
-                    _ = r.ObjUtil.getNumArray(s, "api_slot_list");
-                o.default.model.ship.get(i.api_id).__update__(i), o.default.model.ship.get(n.api_id).__update__(n), o.default.model.slot.updateUnsetData(a, _), this._set_bauxite(), t.prototype._completedEnd.call(this)
-            }, e.prototype._set_bauxite = function () {
-                if (this._raw_data && this._raw_data.hasOwnProperty("api_bauxite")) {
-                    var t = r.ObjUtil.getNumber(this._raw_data, "api_bauxite");
-                    o.default.model.useItem.get(34).__setCount__(t)
-                }
+            return n(e, t), e.prototype.dispose = function () {
+                this.tween.setPaused(!0), createjs.Tween.removeTweens(this.btnSoubi3Light), this.btnSoubi3 = null, this.btnSoubi3Light = null, this.tween = null, this.removeChildren()
             }, e
-        }(s.APIBase);
-    e.SlotDepriveAPI = a
+        }(PIXI.Container);
+    e.InUseMarker = r
 }

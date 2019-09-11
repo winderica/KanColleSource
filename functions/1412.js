@@ -21,16 +21,17 @@ const function1412 = function (t, e, i) {
     });
     var o = i(0),
         r = i(22),
-        s = i(1413),
-        a = i(124),
-        _ = i(39),
-        l = function (t) {
-            function e(e, i, n, r, s, a, _, l, u, c) {
-                var h = t.call(this, e, n, s, l, u, c) || this;
-                return h._slot2 = o.default.model.slot.getMst(a), h._slot3 = o.default.model.slot.getMst(_), h._defender = r, h
+        s = i(6),
+        a = i(1413),
+        _ = i(124),
+        l = i(39),
+        u = function (t) {
+            function e(e, i, n, r, s, a, _, l, u) {
+                var c = t.call(this, e, n, s, _, l, u) || this;
+                return c._slot2 = o.default.model.slot.getMst(a), c._defender = r, c
             }
             return n(e, t), e.prototype.preload = function (t) {
-                this._cutin = new s.CutinSpSSF, this._cutin.preload(this._attacker, this._slot, this._slot2, this._slot3, t)
+                this._cutin = new a.CutinSpRR, this._cutin.preload(this._attacker, this._slot, this._slot2, t)
             }, e.prototype._start = function () {
                 var t, e, i = this._attacker.friend,
                     n = this._attacker.index,
@@ -41,7 +42,7 @@ const function1412 = function (t, e, i) {
                 if (this._attacker.hasSlot(129, !0)) {
                     var n = new PIXI.Point;
                     n.x = this._attacker.friend ? r.BannerSize.W : 0;
-                    var o = new a.Picket;
+                    var o = new _.Picket;
                     o.position.set(n.x, n.y), o.initialize(), t.addChild(o), o.play(), o.once("complete", function () {
                         i._playCutin(t, e)
                     })
@@ -49,34 +50,35 @@ const function1412 = function (t, e, i) {
             }, e.prototype._playCutin = function (t, e) {
                 var i = this;
                 this._scene.view.layer_cutin.addChild(this._cutin.view), this._cutin.start(function () {
-                    createjs.Tween.get(i).call(function () {
-                        i._damageEffect1(t, e)
-                    }).wait(300).call(function () {
-                        i._damageEffect2(t, e)
-                    }).wait(300).call(function () {
-                        i._damageEffect2(t, e)
-                    }).wait(800).call(function () {
-                        i._damageEffect3(t, e)
-                    })
+                    i._shoot(t, e)
                 }), this._cutin.view.once("attack", function () {
-                    i._playVoice(), t.moveFront(), e.moveFront()
+                    i._playVoice()
                 })
-            }, e.prototype._damageEffect1 = function (t, e) {
-                e.moveAtDamage(this._shield);
-                var i = e.getGlobalPos(!0),
-                    n = this._scene.view.layer_explosion;
-                n.playExplosionLarge(i.x, i.y), e.friend ? n.playTorpedoWaterColumnToFriend(i.x + r.BannerSize.W / 3 * 2, i.y) : n.playTorpedoWaterColumnToEnemy(i.x - r.BannerSize.W / 3 * 2, i.y)
-            }, e.prototype._damageEffect2 = function (t, e) {
-                e.moveAtDamage(this._shield);
-                var i = e.getGlobalPos(!0);
-                this._scene.view.layer_explosion.playExplosionLarge(i.x, i.y)
-            }, e.prototype._damageEffect3 = function (t, e) {
-                1 == this._shield && this._showShield(e), e.moveAtDamage(this._shield);
-                var i = e.getGlobalPos(!0),
-                    n = this._scene.view.layer_explosion;
-                n.playExplosionLarge(i.x, i.y), e.friend ? n.playTorpedoWaterColumnToFriend(i.x + r.BannerSize.W / 3 * 2, i.y) : n.playTorpedoWaterColumnToEnemy(i.x - r.BannerSize.W / 3 * 2, i.y);
-                var o = this._getDamage(this._defender);
-                this._playDamageEffect(t, e, this._defender, o, this._hit)
+            }, e.prototype._shoot = function (t, e) {
+                var i = this;
+                t.moveShoot(function () {
+                    i._torpedo(t, e)
+                })
+            }, e.prototype._torpedo = function (t, e) {
+                var i = this,
+                    n = t.friend ? 1 : -1,
+                    o = t.getGlobalPos(!0);
+                o.x += r.BannerSize.W / 3 * n;
+                var a = e.getGlobalPos(!0);
+                a.x -= r.BannerSize.W / 3 * n, s.SE.play("112");
+                var _ = this._scene.view.layer_torpedo;
+                _.playTorpedoAtNight(o, a, 800, function () {
+                    _.playTorpedoWaterColumn(e), i._explosion(t, e)
+                })
+            }, e.prototype._explosion = function (t, e) {
+                var i = this,
+                    n = e.getGlobalPos(!0);
+                createjs.Tween.get(this).wait(300).call(function () {
+                    i._scene.view.layer_explosion.playExplosionSmall(n.x, n.y), 1 == i._shield && i._showShield(e), e.moveAtDamage(i._shield)
+                }).wait(350).call(function () {
+                    var n = i._getDamage(i._defender);
+                    i._playExplosion(e, n), i._playDamageEffect(t, e, i._defender, n, i._hit)
+                })
             }, e.prototype._playVoice = function () {
                 if (this._attacker.friend) {
                     var t = this._attacker.mst_id,
@@ -84,6 +86,6 @@ const function1412 = function (t, e, i) {
                     432 != t && 353 != t || (e = 917), o.default.sound.voice.play(t.toString(), e)
                 }
             }, e.prototype._log = function (t) {}, e
-        }(_.PhaseAttackBase);
-    e.PhaseAttackSpSSF = l
+        }(l.PhaseAttackBase);
+    e.PhaseAttackSpRR = u
 }

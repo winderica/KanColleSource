@@ -54,37 +54,24 @@ const function1416 = function (t, e, i) {
                     })
                 })
             }, e.prototype._start = function () {
-                this._canvas = new l.CutinCanvasSpSSS, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
+                this._canvas = new l.CutinCanvasSpSSF, this.view.addChild(this._canvas), this._ship = new PIXI.Sprite, this._ready()
             }, e.prototype._ready = function () {
                 var t, e, i = this._attacker.mst_id,
                     n = this._attacker.isDamaged();
-                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -150, this._canvas.chara.y = -87) : (this._canvas.chara.x = 173, this._canvas.chara.y = -64), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
+                571 != i && 576 != i || 0 != n ? 541 == i && 0 == n ? (t = new PIXI.Point(-227, 165), e = "special") : 573 == i && 0 == n ? (t = new PIXI.Point(-115, 184), e = "special") : 601 != i && 1496 != i || 0 != n ? (t = o.default.model.ship_graph.get(i).getBattleOffset(n), e = "full") : (t = new PIXI.Point(-90, 87), e = "special") : (t = new PIXI.Point(-139, 201), e = "special"), this._ship.texture = o.default.resources.getShip(i, n, e), this._ship.position.set(t.x, t.y), this._canvas.chara.addChild(this._ship), this._shipFlash = new c.ShipFlash(o.default.resources.getShip(i, n, e)), this._shipFlash.position.set(t.x, t.y), this._canvas.chara.addChild(this._shipFlash), this._canvas.chara.alpha = 0, this._attacker.friend ? (this._canvas.chara.x = -180, this._canvas.chara.y = -107) : (this._canvas.chara.x = 173, this._canvas.chara.y = -65), this._canvas.initialize(this._attacker.friend, this._slot1.mstID, this._slot2.mstID, this._slot3.mstID), this._anim1()
             }, e.prototype._anim1 = function () {
                 var t = this;
                 this._canvas.bg.show(333), createjs.Tween.get(this._canvas.chara).wait(166).to({
-                    x: 48 + (this._attacker.friend ? 0 : 336),
+                    x: 158 + (this._attacker.friend ? 0 : 203),
                     alpha: 1
-                }, 300), this._canvas.item1.show(400), this._canvas.item2.show(833), this._canvas.item3.show(1266);
-                var e = this._attacker.friend ? 75 : 1125;
-                createjs.Tween.get(this._canvas.name1).wait(400).to({
-                    x: e,
-                    alpha: 1
-                }, 200), createjs.Tween.get(this._canvas.name2).wait(833).to({
-                    x: e,
-                    alpha: 1
-                }, 200), createjs.Tween.get(this._canvas.name3).wait(1266).to({
-                    x: e,
-                    alpha: 1
-                }, 200).call(function () {
+                }, 300), this._canvas.bg_box.show(266), this._canvas.item_layer.show(400), this._canvas.name_layer.show(600), this._canvas.name_layer.once("complete", function () {
                     t._anim2()
                 })
             }, e.prototype._anim2 = function () {
                 var t = this;
-                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).wait(133).call(function () {
+                this.view.emit("attack"), createjs.Tween.get(this._canvas.chara).call(function () {
                     t._shipFlash.play()
                 }).wait(200).call(function () {
-                    t._shipFlash.play()
-                }).wait(133).call(function () {
                     t._anim3()
                 })
             }, e.prototype._anim3 = function () {
@@ -112,5 +99,5 @@ const function1416 = function (t, e, i) {
                 this._attacker = null, this._slot1 = null, this._slot2 = null, this._slot3 = null, null != this._view.parent && this._view.parent.removeChild(this._view), this._view = null, this._canvas = null, this._ship = null, t.prototype._endTask.call(this)
             }, e
         }(r.TaskBase);
-    e.CutinSpSSS = h
+    e.CutinSpSSF = h
 }

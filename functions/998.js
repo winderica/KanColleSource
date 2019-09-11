@@ -21,58 +21,30 @@ const function998 = function (t, e, i) {
     });
     var o = i(0),
         r = i(18),
-        s = i(999),
-        a = i(1e3),
-        _ = i(1001),
-        l = i(1006),
-        u = i(1007),
-        c = i(1013),
-        h = i(1),
-        p = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._onSelect = function (t, e) {
-                    r._cb_select(t, e)
-                }, r._onSelectAirUnit = function () {
-                    null != r._cb_onSelectAirUnit && r._cb_onSelectAirUnit()
-                }, r._cb_select = e, r._cb_onSelectAirUnit = i, r._cb_back = n, r._cb_next = o, r._back_btn = new s.BtnBack, r._next_btn = new a.BtnNext, r
+        s = i(15),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._area_id = -1, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "content", {
-                get: function () {
-                    return this._content
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function () {
-                this._back_btn.on(h.EventType.CLICK, this._cb_back), this._next_btn.on(h.EventType.CLICK, this._cb_next), this.addChild(this._back_btn), this.addChild(this._next_btn)
-            }, e.prototype.update = function (t, e, i) {
-                var n = o.default.model.map.getMapMems(t);
-                t == r.EVENT_AREA_ID ? this._updateEventArea(t, e, n) : this._updateNormalArea(t, e, n), this._content.updateAirUnitEnabled(i)
-            }, e.prototype.deactivate = function () {
-                this._content.deactivate()
-            }, e.prototype.dispose = function () {
-                this._back_btn.off(h.EventType.CLICK, this._cb_back), this._next_btn.off(h.EventType.CLICK, this._cb_next), this._back_btn.dispose(), this._next_btn.dispose(), this._cb_select = null, this._cb_back = null, this._cb_next = null, this._removePreContent(), this.removeChildren(), this._back_btn = null, this._next_btn = null
-            }, e.prototype._updateNormalArea = function (t, e, i) {
-                this._removePreContent(), this._content = 0 == e ? new l.LayoutMap4(e, this._onSelect, this._onSelectAirUnit) : new _.LayoutMap3(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(), this._updateNextBtn(t, e, i)
-            }, e.prototype._updateEventArea = function (t, e, i) {
-                this._removePreContent(), this._content = e >= 1 ? new u.LayoutEventMap1(e, this._onSelect, this._onSelectAirUnit) : new c.LayoutEventMap2(e, this._onSelect, this._onSelectAirUnit), this._content.initialize(i), this.addChildAt(this._content, 0), this._content.activate(), this._updateBackBtn(!0), this._updateNextBtn(t, e, i)
-            }, e.prototype._removePreContent = function () {
-                null != this._content && (this._content.deactivate(), this.removeChild(this._content), this._content.dispose(), this._content = null)
-            }, e.prototype._updateBackBtn = function (t) {
-                void 0 === t && (t = !1), this._content.offset > 0 ? (this._back_btn.update(t), this._back_btn.show()) : this._back_btn.hide()
-            }, e.prototype._updateNextBtn = function (t, e, i) {
-                var n = !1,
-                    o = this._content.offset + this._content.num;
-                if (o < i.length) {
-                    var r = i[o];
-                    if (1 == r.isOpened()) n = !0;
-                    else if (65 == r.mst_id) {
-                        var s = i[o - 1];
-                        1 == s.isCleared() && (n = !0)
-                    }
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
                 }
-                1 == n ? (this._next_btn.update(t, e), this._next_btn.show()) : this._next_btn.hide()
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
+            }, e.prototype.dispose = function () {
+                this.clear()
             }, e
         }(PIXI.Container);
-    e.ContainerLayout = p
+    e.AreaTextImage = a
 }

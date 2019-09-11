@@ -5,8 +5,12 @@ const function673 = function (t, e, i) {
     });
     ! function (t) {
         function e(t) {
-            return PIXI.Texture.fromFrame("item_ilist_medal_" + t)
+            try {
+                return PIXI.Texture.fromFrame("album_slot3_id_" + t)
+            } catch (t) {
+                return PIXI.Texture.EMPTY
+            }
         }
-        t.getTexture = e
-    }(e.ITEM_ILIST_MEDAL || (e.ITEM_ILIST_MEDAL = {}))
+        t.getTextureFromMstID = e
+    }(e.ALBUM_SLOT3 || (e.ALBUM_SLOT3 = {}))
 }

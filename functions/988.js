@@ -19,45 +19,26 @@ const function988 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(30),
-        r = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(41),
+        r = i(360),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this, e) || this;
+                return i._overlay = new PIXI.Sprite, i.addChild(i._overlay), i._t = createjs.Tween.get(i._overlay, {
+                    loop: !0
+                }).to({
+                    alpha: 0
+                }, 600).to({
+                    alpha: 1
+                }, 600), i._t.setPaused(!0), i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._fuel = new a, this._ammo = new _, this._fuel.initialize(), this._ammo.initialize(), this._ammo.position.set(38, 0), this.addChild(this._fuel), this.addChild(this._ammo)
-            }, e.prototype.update = function (t) {
-                null == t ? this.visible = !1 : (this.visible = !0, this._fuel.update(t.fuelNow / t.fuelMax), this._ammo.update(t.ammoNow / t.ammoMax))
+            return n(e, t), e.prototype.initialize = function (e) {
+                this._overlay.texture = o.SALLY_EVENT.getTexture(1), this.texture = o.SALLY_EVENT.getTexture(0), t.prototype.initialize.call(this, e)
+            }, e.prototype.dispose = function () {
+                t.prototype.dispose.call(this), this._t.setPaused(!0), this._t = null
+            }, e.prototype._update = function (t) {
+                1 == this.selected ? (this._t.setPaused(!0), this._overlay.alpha = 1) : 1 == t ? (this._t.setPaused(!0), this._overlay.alpha = 1) : this._t.setPaused(!1)
             }, e
-        }(PIXI.Container);
-    e.CompLackAlerts = r;
-    var s = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype.initialize = function () {
-                var t = new PIXI.Sprite(this._getTexture());
-                this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
-            }, e.prototype.update = function (t) {
-                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(33), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : this.visible = !1
-            }, e.prototype._getTexture = function () {
-                return null
-            }, e
-        }(PIXI.Container),
-        a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(30)
-            }, e
-        }(s),
-        _ = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
-            }
-            return n(e, t), e.prototype._getTexture = function () {
-                return o.SALLY_COMMON.getTexture(31)
-            }, e
-        }(s)
+        }(r.AreaIconBtn);
+    e.EventAreaIconBtn = s
 }

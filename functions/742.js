@@ -1,69 +1,79 @@
 const function742 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
+    var n = i(5),
+        o = i(0),
         r = i(1),
         s = i(8),
-        a = i(318),
-        _ = [];
-    a.ShipAreaPosition.forEach(function (t) {
-        _.push([t[0] + a.ShipOffsetPosition[0], t[1] + a.ShipOffsetPosition[1]])
-    });
-    var l = function (t) {
-        function e(e, i, n, s, a, l) {
-            var u = t.call(this, 0) || this;
-            return u._beforeIndex = e, u._memShipId = i, u._maskMax = n, u._inDragging = s, u._cbOnDrop = a, u._end = l, u._drag = null, u._shipSlotMaskLayers = [], u._afterIndex = -1, u._onMove = function (t) {
-                var e = t.data.global;
-                if (null == u._drag) {
-                    u._inDragging(!0), u._drag = new PIXI.Container;
-                    for (var i = 0; i < u._maskMax; i++) {
-                        var n = new PIXI.Graphics;
-                        n.beginFill(16777215, .6).moveTo(0, 15).lineTo(14.5, 0).lineTo(480, 0).lineTo(495.5, 17.5).lineTo(495.5, 141).lineTo(480, 158).lineTo(14, 158).lineTo(0, 143).lineTo(0, 15).endFill(), n.alpha = 0, n.hitArea = new PIXI.Rectangle(0, 0, n.width, n.height);
-                        var r = _[i];
-                        n.position.set(r[0], r[1]), u._drag.addChild(n), u._shipSlotMaskLayers.push(n)
-                    }
-                    u._shipSlotMaskLayers[u._beforeIndex].alpha = 1;
-                    var s = o.default.model.ship.get(u._memShipId);
-                    u._shipBanner = new PIXI.Sprite, u._shipBanner.anchor.set(.5), u._shipBanner.texture = o.default.resources.getShip(s.mstID, s.isDamaged(), "banner"), u._shipBanner.position.set(e.x, e.y), u._drag.addChild(u._shipBanner), u._afterIndex = u._beforeIndex, u.addChild(u._drag)
-                } else {
-                    u._shipBanner.position.set(e.x, e.y);
-                    for (var a = -1, i = 0, l = u._shipSlotMaskLayers.length; i < l; i++) {
-                        var c = u._shipSlotMaskLayers[i],
-                            h = t.data.getLocalPosition(c);
-                        1 == c.hitArea.contains(h.x, h.y) ? (c.alpha = 1, a = i) : c.alpha = 0
-                    }
-                    u._afterIndex = a
+        a = i(37),
+        _ = i(743),
+        l = function () {
+            function t(t) {
+                var e = this;
+                this._onClickBackground = function () {
+                    e.onComplete(!1)
+                }, this._onClickChange = function () {
+                    e.onComplete(!0)
+                }, this.mainView = t, this.shipChangeConfirm = new _.ShipChangeConfirm, this.dialogBackground = new s.AreaBox(.5)
+            }
+            return t.prototype.start = function (t, e, i) {
+                this.shipChangeConfirm.position.set(1200, 138), this.shipChangeConfirm.onClick = this._onClickChange, this.dialogBackground.alpha = 0, this.dialogBackground.on(r.EventType.CLICK, this._onClickBackground);
+                var n = o.default.model.ship.get(i),
+                    s = o.default.model.deck.isInDeck(i),
+                    a = this.__validationOrganize__(t, e, i),
+                    _ = !1;
+                if (s) {
+                    _ = null != o.default.model.deck.get(s[0]).expedition
                 }
-            }, u._onOut = function () {
-                u._inDragging(!1), u._dispose()
-            }, u._onUp = function () {
-                if (u._inDragging(!1), null == u._drag) return void u._dispose();
-                u._cbOnDrop(u._beforeIndex, u._afterIndex, u._memShipId), u._dispose()
-            }, u.on(r.EventType.MOUSEMOVE, u._onMove), u.on(r.EventType.MOUSEOUT, u._onOut), u.on(r.EventType.MOUSEUP, u._onUp), u
-        }
-        return n(e, t), e.prototype._dispose = function () {
-            this.off(r.EventType.MOUSEMOVE, this._onMove), this.off(r.EventType.MOUSEOUT, this._onOut), this.off(r.EventType.MOUSEUP, this._onUp), this.interactive = !1, null != this._drag && this._drag.removeChildren(), this._shipBanner = null, this._shipSlotMaskLayers.forEach(function (t) {
-                null
-            }), this._shipSlotMaskLayers = null, this.removeChildren(), this._drag = null, this._inDragging = null, this._cbOnDrop = null, this._end()
-        }, e
-    }(s.AreaBox);
-    e.ShipDragging = l
+                this.shipChangeConfirm.updatePosition(n.getSlotViewMax()), this.shipChangeConfirm.updateBanner(n, _), this.shipChangeConfirm.updateMaterial(n.fuelNow, n.fuelMax, n.ammoNow, n.ammoMax), this.shipChangeConfirm.updateParams(n.karyoku, n.raisou, n.taiku, n.soukou), this.shipChangeConfirm.updateShip(n.mstID, n.isDamaged(), n.name, n.level, n.starNum, n.hpNow, n.hpMax, n.hpNow / n.hpMax), this.shipChangeConfirm.updateSlots(n, n.getSlotitems()), this.shipChangeConfirm.updateChangable(a), this.mainView.addChild(this.dialogBackground, this.shipChangeConfirm), this.toDeckId = t, this.toIndex = e, this.memShipId = i, o.default.view.clickGuard = !0;
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 1
+                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
+                    x: 882
+                }, 125).call(function () {
+                    o.default.view.clickGuard = !1
+                })
+            }, t.prototype.hide = function (t) {
+                a.TaskLoadShipResource.abortBy(this.shipChangeConfirm);
+                createjs.Tween.get(this.dialogBackground).to({
+                    alpha: 0
+                }, 125), createjs.Tween.get(this.shipChangeConfirm).to({
+                    x: n.default.width
+                }, 125).call(function () {
+                    t()
+                })
+            }, t.prototype.dispose = function () {
+                this.dialogBackground.off(r.EventType.CLICK, this._onClickBackground), this.shipChangeConfirm.dispose(), this.mainView.removeChild(this.dialogBackground), this.mainView.removeChild(this.shipChangeConfirm), this.shipChangeConfirm.onClick = this._onClickChange = null, this.onComplete = null, this.mainView = null, this.shipChangeConfirm = null, this.dialogBackground = null, this.toDeckId = null, this.toIndex = null, this.memShipId = null, this.deckEditor = null, this.organizable = null
+            }, t.prototype.__validationOrganize__ = function (t, e, i) {
+                var n = o.default.model.deck.get(t),
+                    r = n.getShipModel(e),
+                    s = o.default.model.ship.get(i),
+                    a = o.default.model.deck.isInDeck(i),
+                    _ = null;
+                if (a) {
+                    var l = a[0];
+                    _ = o.default.model.deck.get(l)
+                }
+                if (null == r && _ && 1 == _.mstID && 1 == _.getCount()) return !1;
+                if (null == r && _ && n && _.mstID == n.mstID) return !1;
+                if (s && _ && _.expedition) return !1;
+                if (s && r && s.memID == r.memID) return !1;
+                for (var u = n.getShipList(), c = 0; c < u.length; c++) {
+                    var h = u[c];
+                    if (s && h && h.yomi == s.yomi && c != e) {
+                        if (!_) return !1;
+                        if (n.mstID != _.mstID) return !1
+                    }
+                }
+                if (r && s && _)
+                    for (var p = _.getShipList(), d = _.isInDeck(s.memID), f = 0; f < p.length; f++) {
+                        var y = p[f];
+                        if (r && y && y.yomi == r.yomi && n.mstID != _.mstID && f != d) return !1
+                    }
+                return !0
+            }, t
+        }();
+    e.TaskConfirmChangeShip = l
 }

@@ -20,83 +20,43 @@ const function1266 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(6),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._layer = e, i
+        r = i(29),
+        s = i(19),
+        a = i(1267),
+        _ = function (t) {
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._buff = function () {
+                    for (var t = o._scene.view.map.ship_icon.under, e = new r.SerialTask, i = 0; i < o._buff_count; i++) e.add(new a.TaskReplenishmentBuff(t));
+                    e.start(o._hideBalloon)
+                }, o._hideBalloon = function () {
+                    var t = o._balloon.y + 23;
+                    createjs.Tween.get(o._balloon).to({
+                        y: t,
+                        alpha: 0
+                    }, 100).call(function () {
+                        o._balloon.parent.removeChild(o._balloon), o._endTask()
+                    })
+                }, o._scene = e, o._buff_count = i, o._offset = n, o
             }
             return n(e, t), e.prototype._start = function () {
-                this._preLoad()
-            }, e.prototype._preLoad = function () {
-                this._layer.initilize(), this._anim()
-            }, e.prototype._anim = function () {
-                var t = this,
-                    e = function () {
-                        for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) {
-                            var i = t._layer.kiraPos[e];
-                            t._layer.kirakira[e].position.set(i.x + 10, i.y + 25), t._layer.kirakira[e].visible = !0, createjs.Tween.get(t._layer.kirakira[e].scale).wait(70 * e).to({
-                                x: 1,
-                                y: 1
-                            }, 140).to({
-                                x: 0,
-                                y: 0
-                            }, 140)
-                        }
-                    };
-                createjs.Tween.get(null).call(function () {
-                    t._layer.get_flash.visible = !0, createjs.Tween.get(t._layer.get_flash.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 500), createjs.Tween.get(t._layer.get_flash).to({
-                        alpha: 1
-                    }, 500).to({
-                        alpha: 0
-                    }, 150), createjs.Tween.get(t._layer.white).wait(400).set({
-                        visible: !0
-                    }).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        createjs.Tween.get(t._layer.txt_repair).wait(100).set({
-                            visible: !0
-                        }).to({
-                            x: 77
-                        }, 600, createjs.Ease.sineOut).to({
-                            x: 47
-                        }, 733)
-                    })
-                }).wait(133).call(function () {
-                    r.SE.play("230")
-                }).wait(2e3).call(function () {
-                    createjs.Tween.get(t._layer.txt_repair).to({
-                        x: -1107
-                    }, 300, createjs.Ease.sineIn).set({
-                        visible: !1
-                    }), t._layer.ship_layer.visible = !0, createjs.Tween.get(t._layer.ship_layer).wait(180).to({
-                        alpha: 1
-                    }, 500), createjs.Tween.get(t._layer.ship_layer.scale).wait(180).to({
-                        x: 1,
-                        y: 1
-                    }, 500, createjs.Ease.cubicOut)
-                }).wait(680).call(function () {
-                    e()
-                }).wait(100 * (this._layer.EFFECT_MAX / 2 - 1) + 540).call(function () {
-                    t._layer.white.alpha = 1;
-                    for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) t._layer.kirakira[e].visible = !1;
-                    createjs.Tween.get(t._layer.ship_layer.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 633), createjs.Tween.get(t._layer.ship_layer).to({
-                        alpha: 0
-                    }, 633), createjs.Tween.get(t._layer.white).to({
-                        alpha: 0
-                    }, 633).set({
-                        visible: !1
-                    })
-                }).wait(1e3).call(function () {
-                    t._endTask()
-                })
+                this._showBalloon()
+            }, e.prototype._showBalloon = function () {
+                var t = this._scene.view.map.ship_icon;
+                this._balloon = new l, this._balloon.initialize(), this._balloon.x = t.x + 21, this._balloon.y = t.y - 6, this._balloon.alpha = 0, null != this._offset && (this._balloon.x += this._offset.x, this._balloon.y += this._offset.y), this._scene.view.universal_layer.addChild(this._balloon), createjs.Tween.get(this._balloon).wait(200).to({
+                    y: this._balloon.y - 23,
+                    alpha: 1
+                }, 100).wait(200).call(this._buff)
             }, e
         }(o.TaskBase);
-    e.TaskAnchorageRepairEffect = s
+    e.TaskReplenishmentBalloonEffect = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e._bg.position.set(-11, -128), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(-3, -105), e.addChild(e._icon), e._label = new PIXI.Sprite, e._label.position.set(9, -47), e.addChild(e._label), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._bg.texture = s.MAP_COMMON.getTexture(50), this._icon.texture = s.MAP_COMMON.getTexture(79), this._label.texture = s.MAP_COMMON.getTexture(184)
+        }, e
+    }(PIXI.Container)
 }

@@ -19,29 +19,34 @@ const function986 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(361),
-        s = i(987),
-        a = function (t) {
-            function e(e, i, n) {
-                var r = t.call(this, n) || this;
-                return r._panel = new s.PanelDeckSelect(e, i, r._onGo), r._panel.position.set(o.default.width, 102), r.addChild(r._panel), r
+    var o = i(26),
+        r = i(1),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._flash = new PIXI.Sprite(o.SALLY_AIRUNIT.getTexture(7)), i._flash.position.set(-14, -14), i._flash.alpha = 0, i.addChild(i._flash), i.interactive = !0, i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "panel", {
-                get: function () {
-                    return this._panel
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e, i) {
-                this._panel.initialize(t, e, i)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._cb_onClick = null, this._flash = null
+            }, e.prototype.initialize = function () {
+                this.texture = o.SALLY_AIRUNIT.getTexture(6)
             }, e.prototype.activate = function () {
-                t.prototype.activate.call(this), this._panel.activate()
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this.playFlash())
             }, e.prototype.deactivate = function () {
-                t.prototype.deactivate.call(this), this._panel.deactivate()
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._panel.dispose(), this._panel = null
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this.stopFlash()
+            }, e.prototype.playFlash = function () {
+                this.stopFlash(), this._tween = createjs.Tween.get(this._flash, {
+                    loop: !0
+                }), this._tween.to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3)
+            }, e.prototype.stopFlash = function () {
+                this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._flash), this._tween = null, this._flash.alpha = 0)
             }, e
-        }(r.ContainerDeckSelectBase);
-    e.ContainerDeckSelect = a
+        }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

@@ -19,29 +19,40 @@ const function1464 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1465),
-        r = function (t) {
+    var o = i(22),
+        r = i(1465),
+        s = i(1466),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._rader_f = new o.Rader(!0), e._rader_f.position.set(112, 603), e._rader_e = new o.Rader(!1), e._rader_e.position.set(1088, 117), e.resetChildren(), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), Object.defineProperty(e.prototype, "rader_f", {
-                get: function () {
-                    return this._rader_f
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "rader_e", {
-                get: function () {
-                    return this._rader_e
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._rader_f.y = t ? 642 : 603, this._rader_f.initialize(), this._rader_e.initialize()
-            }, e.prototype.resetChildren = function () {
-                this.addChild(this._rader_f), this.addChild(this._rader_e)
+            return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
+                void 0 === n && (n = null);
+                var o = t.getGlobalPos(!0),
+                    r = 1 == t.friend ? o.x + 23 : o.x - 74,
+                    s = o.y + 7;
+                this.show(r, s, e, i, n)
+            }, e.prototype.show = function (t, e, i, n, o) {
+                var s = this;
+                void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
+                var a = new r.DamageNumber;
+                a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
+                    createjs.Tween.get(a).to({
+                        alpha: 0
+                    }, 230).call(function () {
+                        s.removeChild(a), null != o && o()
+                    })
+                })
+            }, e.prototype.showShieldAtBanner = function (t) {
+                var e = t.getGlobalPos(!0),
+                    i = e.x,
+                    n = e.y,
+                    r = t.friend;
+                1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
+            }, e.prototype.showShield = function (t, e, i) {
+                var n = new s.Shield;
+                n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
             }, e
         }(PIXI.Container);
-    e.RaderLayer = r
+    e.LayerDamage = a
 }

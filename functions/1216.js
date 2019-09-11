@@ -19,11 +19,17 @@ const function1216 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e
-    }(PIXI.Container);
-    e.ViewMainBase = o
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._url = "api_req_kousyou/remodel_slotlist", i._revampSlotlistModel = e, i
+            }
+            return n(e, t), e.prototype._connect = function () {
+                t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._revampSlotlistModel.SetAll(this._raw_data), t.prototype._completedEnd.call(this)
+            }, e
+        }(o.APIBase);
+    e.RevampSlotlistAPI = r
 }

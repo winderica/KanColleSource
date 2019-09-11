@@ -19,21 +19,30 @@ const function1206 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(11),
+        r = i(6),
+        s = i(242),
+        a = i(175),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._model = e, n._holder = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
+                var t = this;
+                r.SE.play("240"), new s.DutyCancelAPI(this._model.id).start(function () {
+                    t._update()
+                })
+            }, e.prototype._update = function () {
                 var t = this,
-                    e = new r.UIImageLoader("revamp");
-                e.add("revamp_box.json"), e.add("revamp_list.json"), e.add("revamp_pager.json"), e.add("revamp_revamp.json"), e.load(function () {
+                    e = this._holder.selected_page_no,
+                    i = this._holder.selected_type;
+                new a.TaskUpdateDutyListData(e, i, this._holder).start(function () {
                     t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._model = null, this._holder = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskLoadResources = s
+    e.TaskExecutedDutySelect = _
 }

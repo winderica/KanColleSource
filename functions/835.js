@@ -4,9 +4,6 @@ const function835 = function (t, e, i) {
         value: !0
     });
     ! function (t) {
-        function e(t) {
-            return PIXI.Texture.fromFrame("wedding_marriage_bg_" + t)
-        }
-        t.getTexture = e
-    }(e.WEDDING_MARRIAGE_BG || (e.WEDDING_MARRIAGE_BG = {}))
+        t[t.DELAY = 1] = "DELAY", t[t.SHIP_CAMERA = 2] = "SHIP_CAMERA", t[t.CLASS_TEXT = 3] = "CLASS_TEXT", t[t.NAME_TEXT = 4] = "NAME_TEXT", t[t.BACK_GROUND = 5] = "BACK_GROUND", t[t.PLAY_VOICE = 6] = "PLAY_VOICE"
+    }(e.SpecialRemodelStartKey || (e.SpecialRemodelStartKey = {}))
 }

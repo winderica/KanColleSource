@@ -23,58 +23,53 @@ const function1524 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._items = [], e
+                return e._banners = [], e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "items", {
-                get: function () {
-                    return this._items
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._resetItems();
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._resetBanners();
                 var e = 0;
                 e = 7 == t.length ? 0 : 68;
                 for (var i = 0; i < t.length; i++) {
                     var n = t[i];
-                    if (null != n) {
-                        var r = new o.BannerInfoFriend;
-                        r.y = e + 68 * i;
-                        var s = n.name,
-                            a = n.level;
-                        r.name_and_level.alpha = 0, r.name_and_level.initialize(s, a), this.addChild(r), this._items.push(r)
-                    }
+                    if (null == n) return;
+                    var r = new o.ShipBannerClone(n.isTaihi());
+                    r.y = e + 68 * i, r.alpha = 0, this._banners.push(r);
+                    var s = n.mst_id,
+                        a = n.hp_now,
+                        _ = n.hp_max;
+                    r.updateTexture(s, a, _), r.updateIcon(n.damageType, n.isGround()), this.addChild(r)
                 }
             }, e.prototype.dispose = function () {
-                this._resetItems(), this.removeChildren(), this._items = null
+                this._resetBanners(), this._banners = null, this.removeChildren()
             }, e.prototype.createShowTweens = function (t) {
-                for (var e = [], i = 0; i < this._items.length; i++) {
-                    var n = this._items[i],
-                        o = n.name_and_level;
-                    o.x -= 15;
-                    var r = createjs.Tween.get(o).wait(t + 100 * i).to({
-                        x: o.x + 15,
+                for (var e = [], i = 0; i < this._banners.length; i++) {
+                    var n = this._banners[i];
+                    n.y += 30;
+                    var o = createjs.Tween.get(n).wait(t + 50 * i).to({
+                        y: n.y - 30,
                         alpha: 1
-                    }, 300);
-                    e.push(r)
-                }
-                return e
-            }, e.prototype.createHideTweens = function (t) {
-                for (var e = [], i = 0; i < this._items.length; i++) {
-                    var n = this._items[i],
-                        o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
-                            x: n.x - 15,
-                            alpha: 0
-                        }, 300);
+                    }, 150);
                     e.push(o)
                 }
                 return e
-            }, e.prototype._resetItems = function () {
-                for (null == this._items && (this._items = []); this._items.length > 0;) {
-                    var t = this._items.pop();
+            }, e.prototype.createHideTweens = function (t) {
+                for (var e = [], i = 0; i < this._banners.length; i++) {
+                    var n = this._banners[i],
+                        o = createjs.Tween.get(n).wait(t + 100 * (this._banners.length - 1 - i)).to({
+                            y: n.y + 30,
+                            alpha: 0
+                        }, 200);
+                    e.push(o)
+                }
+                return e
+            }, e.prototype.getBanner = function (t) {
+                return t >= 0 && null != this._banners && t < this._banners.length ? this._banners[t] : null
+            }, e.prototype._resetBanners = function () {
+                for (null == this._banners && (this._banners = []); this._banners.length > 0;) {
+                    var t = this._banners.pop();
                     null != t.parent && t.parent.removeChild(t), t.dispose()
                 }
             }, e
         }(PIXI.Container);
-    e.BannerInfoFriendCanvas = r
+    e.BannerSet = r
 }

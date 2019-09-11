@@ -19,28 +19,49 @@ const function1330 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = i(140),
-        s = i(13),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this,
-                    n = e.model.deck_f,
-                    o = e.model.deck_e,
-                    r = n.isCombined(),
-                    s = !1;
-                if (s = null != o ? o.isCombined() : e.model.map_info.isVS12(), 0 == r) i._url = 0 == s ? "api_req_sortie/battle" : "api_req_combined_battle/ec_battle";
-                else {
-                    var a = n.type;
-                    1 == a || 3 == a ? i._url = 0 == s ? "api_req_combined_battle/battle" : "api_req_combined_battle/each_battle" : 2 == a && (i._url = 0 == s ? "api_req_combined_battle/battle_water" : "api_req_combined_battle/each_battle_water")
-                }
-                return i._data = e, i
+    var o = i(276),
+        r = i(1331),
+        s = i(1340),
+        a = i(1435),
+        _ = i(1448),
+        l = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._view = new _.ViewMain, e._view.shutter.initializeLight(), e._view.shutter.close(0), e.content.addChild(e._view), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_formation = this._data.model.deck_f.formation, this._post_data.api_recovery_type = this._data.model.flag, 0 == this._data.model.supplied ? this._post_data.api_supply_flag = 0 : 1 == this._data.model.supplied && (this._post_data.api_supply_flag = 1), 0 == this._data.model.use_ration ? this._post_data.api_ration_flag = 0 : 1 == this._data.model.use_ration && (this._post_data.api_ration_flag = 1), 1 == r.isNeedKeyAtBattleStartAPI() && (this._post_data.api_start = Math.floor(8999 * Math.random()) + 1001), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._data.addDayRecord(this._raw_data), this._data.isBossDamaged() ? s.ShipLoader.hasai = this._data.model.deck_e.ships_main[0].mst_id : s.ShipLoader.hasai = null, this._data = null, t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "data", {
+                get: function () {
+                    return this._data
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "view", {
+                get: function () {
+                    return this._view
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (e) {
+                t.prototype.initialize.call(this, e), this._data = new a.BattleData(e), e.isPractice()
+            }, e.prototype.dispose = function () {
+                this._view.dispose(), t.prototype.dispose.call(this)
+            }, e.prototype.start = function () {
+                var t = this;
+                new r.TaskInit(this).start(function () {
+                    t._main()
+                })
+            }, e.prototype._main = function () {
+                var t = this;
+                new s.TaskMain(this).start(function () {
+                    t._end()
+                })
+            }, e.prototype._end = function () {
+                var t = this.data.model.deck_f.ships,
+                    e = this.data.model.deck_e.ships;
+                this.data.model.ship_info.add(t, e);
+                var i = (new Date).getTime();
+                this.data.model.actual_survey_time = i - this.data.model.actual_survey_time, this.data.model.prediction_time = this.data.model.actual_survey_time, this.emit("complete")
             }, e
-        }(o.APIBase);
-    e.APIBattleStart = a
+        }(o.BattleSceneBase);
+    e.BattleScene = l
 }

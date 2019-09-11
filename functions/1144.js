@@ -19,23 +19,25 @@ const function1144 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(74),
-        s = i(174),
+    var o = i(4),
+        r = i(3),
+        s = i(33),
         a = function (t) {
-            function e() {
-                return null !== t && t.apply(this, arguments) || this
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._message = new o.TextBox(22, 1381651), n._message.position.set(123, 77), n.addChild(n._message), n._icon = new PIXI.Sprite, n._icon.position.set(152, 144), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(129, 260), n.addChild(n._btn_yes), n._btn_back = new s.BtnBase(-1, i), n._btn_back.position.set(279, 260), n.addChild(n._btn_back), n
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(5);
-                var t = new PIXI.Graphics;
-                t.beginFill(6710886, 0), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
-                var e = this._candidate.mst_id,
-                    i = o.default.resources.getFurniture(e, "reward"),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(10), this._message.text = "\u300c\u83f1\u9905\u300d\u3092\u4ea4\u63db\u3057\u307e\u3059\u304b\uff1f", 21 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(7) : 23 == t ? this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(6) : 22 == t && (this._icon.texture = r.ITEM_ILIST_HISHIMOCHI.getTexture(8));
+                var e = r.ITEM_ILIST_HISHIMOCHI.getTexture(2);
+                this._btn_yes.initialize(e), e = r.ITEM_ILIST_HISHIMOCHI.getTexture(1), this._btn_back.initialize(e)
+            }, e.prototype.activate = function () {
+                this._btn_yes.activate(), this._btn_back.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn_yes.deactivate(), this._btn_back.deactivate()
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._message.destroy(), this._btn_yes.dispose(), this._btn_back.dispose()
             }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogFurnitureBtn = a
+        }(PIXI.Sprite);
+    e.ConfirmView = a
 }

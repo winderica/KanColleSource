@@ -19,15 +19,30 @@ const function767 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i.remodelScene = e, i
+    var o = i(0),
+        r = i(47),
+        s = i(14),
+        a = i(768),
+        _ = i(770),
+        l = i(771),
+        u = i(72),
+        c = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
-                this._endTask()
+            return n(e, t), e.prototype.getPreInitializeTask = function (t) {
+                return new a.PreInitializeTask(this)
+            }, e.prototype.getInitializeTask = function (t) {
+                return new _.InitializeTask(this)
+            }, e.prototype.getFinalizeTask = function () {
+                var t = this;
+                return new u.FuncTask(function () {
+                    t.taskIdleMain.dispose(), t.taskIdleMain = null, s.UIImageLoader.clearMemoryCache("remodel")
+                })
+            }, e.prototype.start = function () {
+                var t = o.default.model.deck.get(1).getShipMemID(0);
+                this.taskIdleMain = new l.TaskIdleMain(this), this.taskIdleMain.start(1, t)
             }, e
-        }(o.TaskBase);
-    e.InitializeTask = r
+        }(r.SceneBase);
+    e.RemodelScene = c
 }

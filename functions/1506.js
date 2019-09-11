@@ -19,44 +19,44 @@ const function1506 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(23),
-        s = i(30),
-        a = i(41),
-        _ = function (t) {
+    var o = i(12),
+        r = i(1507),
+        s = i(484),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._img = new PIXI.Sprite, e.addChild(e._img), e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                if (t == o.EVENT_AREA_ID) this._img.texture = a.SALLY_EVENT.getTexture(0);
-                else switch (t) {
-                    case 1:
-                        this._img.texture = s.SALLY_COMMON.getTexture(1);
-                        break;
-                    case 2:
-                        this._img.texture = s.SALLY_COMMON.getTexture(3);
-                        break;
-                    case 3:
-                        this._img.texture = s.SALLY_COMMON.getTexture(5);
-                        break;
-                    case 4:
-                        this._img.texture = s.SALLY_COMMON.getTexture(9);
-                        break;
-                    case 5:
-                        this._img.texture = s.SALLY_COMMON.getTexture(11);
-                        break;
-                    case 6:
-                        this._img.texture = s.SALLY_COMMON.getTexture(13);
-                        break;
-                    case 7:
-                        this._img.texture = s.SALLY_COMMON.getTexture(7);
-                        break;
-                    default:
-                        this._img.texture = PIXI.Texture.EMPTY
+            return n(e, t), e.prototype._initializeMapImages = function () {
+                this._maps = [];
+                for (var t = 0; t < 3; t++) {
+                    var e = new PIXI.Sprite;
+                    e.texture = [r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(2), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(3), r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(4)][t], e.x = 276 + 225 * t, e.y = 83, e.alpha = 0, this._layer.addChild(e), this._maps.push(e)
                 }
-                this._img.x = -Math.round(this._img.width / 2), this._img.y = -Math.round(this._img.height / 2)
+            }, e.prototype._createMapShowTweens = function () {
+                return this.__createMapShowTweens(700)
+            }, e.prototype._initializeStampImages = function () {
+                this._stamps = [];
+                for (var t = 0; t < 2; t++) {
+                    var e = new o.Sprite;
+                    e.anchor.set(.5), e.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(0), e.x = 433 + 225 * t, e.y = 233.5, e.scale.set(2), e.alpha = 0, this._layer.addChild(e), this._stamps.push(e)
+                }
+            }, e.prototype._createStampShowTweens = function () {
+                return this.__createStampShowTweens(700)
+            }, e.prototype._showText = function () {
+                this.__showText(new _)
+            }, e.prototype._createStampLast = function () {
+                var t = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(1),
+                    e = new o.Sprite(t);
+                return e.anchor.set(.5), e.position.set(1001, 275.5), e.alpha = 0, e
             }, e
-        }(r.Container);
-    e.AreaIcon = _
+        }(s.TaskEventEndingBase);
+    e.TaskEventEnding2 = a;
+    var _ = function (t) {
+        function e() {
+            return null !== t && t.apply(this, arguments) || this
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this._text1.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(5), this._text1.position.set(108, 248), this._text2.texture = r.BATTLE_RESULT_EVENT_ED2_VMONSVNUSUBKIXIW.getTexture(6), this._text2.position.set(243, 508)
+        }, e
+    }(s.TextsBase)
 }

@@ -20,187 +20,122 @@ const function1252 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(244),
-        a = i(27),
-        _ = i(15),
-        l = i(1253),
-        u = i(1254),
-        c = i(1255),
-        h = i(1256),
-        p = i(1258),
-        d = i(1260),
-        f = i(1261),
-        y = i(1265),
-        m = i(1269),
-        g = i(1274),
-        v = i(1275),
-        b = i(1276),
-        w = i(1277),
-        x = i(1279),
-        I = i(1281),
-        T = i(1285),
-        O = i(441),
-        C = function (t) {
-            function e(e, i, n, o, r) {
-                var s = t.call(this) || this;
-                return s._scene = e, s._model = i, s._repair_item = n, s._battle_cls = o, s._battle_result_cls = r, s._cell_open = !1, s
+        r = i(55),
+        s = i(25),
+        a = i(7),
+        _ = i(2),
+        l = i(14),
+        u = function (t) {
+            function e(e, i, n, o) {
+                var r = t.call(this) || this;
+                if (r._map_id = e, r._mapView = i, r._mapInfo = n, r._memDataNum = 0, r._memData = {}, null != o)
+                    for (var s = 0, a = o; s < a.length; s++) {
+                        var _ = a[s];
+                        r._memData[_.no] = _, r._memDataNum++
+                    }
+                return r._version = l.UIImageLoader.getResourceVersionMap(r._map_id), r
             }
-            return n(e, t), Object.defineProperty(e.prototype, "battle_model", {
-                get: function () {
-                    return this._battle_model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "cell_open", {
-                get: function () {
-                    return this._cell_open
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._next = this._model.sortie.getNextCell(), this._init()
-            }, e.prototype._init = function () {
-                this._scene.view.message_box.text = "", this._compass()
-            }, e.prototype._compass = function () {
+            return n(e, t), e.prototype._start = function () {
                 var t = this,
-                    e = this._scene.view.map.ship_icon,
-                    i = new PIXI.Point(e.x, e.y),
-                    n = this._scene.view.map.spotLayer.getSpot(this._next.no),
-                    o = new PIXI.Point(n.x, n.y);
-                if (1 == this._next.hasCompass()) {
-                    this._scene.view.message_box.text = "\u3069\u3053\u306b\u9032\u3080\uff1f";
-                    var r = new p.AnimCompass;
-                    this._scene.view.addChild(r), r.initialize(this._next.rashin_id), r.Play(i, o, function () {
-                        r.Dispose(), t._scene.view.removeChild(r), t._scene.view.message_box.text = "", t._turn(o)
-                    })
-                } else this._turn(o)
-            }, e.prototype._turn = function (t) {
-                var e, i = this,
-                    n = this._scene.view.map.ship_icon,
-                    o = this._scene.resInfo.getShipDirection(this._next.no);
-                e = 1 == o ? 1 : 2 == o ? 2 : n.x > t.x ? 1 : n.x < t.x ? 2 : n.direction, n.turn(e, function () {
-                    i._jake()
+                    e = this._getPath("info.json" + (this._version ? "?version=" + this._version : ""));
+                axios.get(e).then(function (e) {
+                    var i = a.ObjUtil.getObject(e, "data");
+                    t._mapInfo.add(i), t._loadSpriteSheet()
+                }).catch(function (e) {
+                    t._failedEnd()
                 })
-            }, e.prototype._jake = function () {
-                var t = this;
-                if (this._next.jakeID > 0) {
-                    var e = this._scene.view.map.ship_icon,
-                        i = new PIXI.Point(0, 0),
-                        n = this._scene.view.map.spotLayer.getSpot(this._next.no),
-                        o = new PIXI.Point(n.x - e.x, n.y - e.y);
-                    new u.AnimPlane(e, i, o).start(function () {
-                        t._balloon()
-                    })
-                } else this._balloon()
-            }, e.prototype._balloon = function () {
-                var t = this;
-                if (0 == this._next.balloonID) this._underwayReplenishment();
+            }, e.prototype._loadSpriteSheet = function () {
+                var t = this,
+                    e = this._getPath("image.json");
+                if (null != PIXI.utils.TextureCache[e + "_image"]) this._loadAddingInfo();
                 else {
-                    var e = this._model.deck_f.ships[0],
-                        i = e.mst_id;
-                    o.default.sound.voice.play(i.toString(), 26);
-                    var n = this._scene.view.map.ship_icon,
-                        r = this._next.balloonID,
-                        s = 1;
-                    1 == n.direction && (s = 7);
-                    var _ = this._model.sortie.map_id,
-                        l = this._next.no,
-                        u = null;
-                    if (423 == _) {
-                        if (11 == l) s = 1;
-                        else if (13 == l || 21 == l) s = 7;
-                        else if (25 == l) {
-                            var p = this._scene.model.sortie.map.getGaugeNum();
-                            2 == p ? s = 1 : 3 == p && (u = new PIXI.Point(21, 0))
+                    var i = new PIXI.loaders.Loader;
+                    null != this._version && (i.defaultQueryString = "version=" + this._version), i.add(e), i.load(function () {
+                        t._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._loadAddingInfo = function () {
+                var t = this;
+                if (this._mapInfo.spots.length >= this._memDataNum)
+                    if (445 == this._map_id) {
+                        var e = new l.UIImageLoader("map");
+                        e.add("map_event_anime.json"), e.load(function () {
+                            t._createMapBackGround()
+                        })
+                    } else this._createMapBackGround();
+                else {
+                    var i = this._mapInfo.spots.length,
+                        n = this._getPath("info" + i + ".json" + (this._version ? "?version=" + this._version : ""));
+                    axios.get(n).then(function (e) {
+                        var n = a.ObjUtil.getObject(e, "data");
+                        t._mapInfo.add(n), t._loadAddingSpriteSheet(i)
+                    }).catch(function (e) {
+                        t._failedEnd()
+                    })
+                }
+            }, e.prototype._loadAddingSpriteSheet = function (t) {
+                var e = this,
+                    i = this._getPath("image" + t + ".json");
+                if (null != PIXI.utils.TextureCache[i + "_image"]) this._loadAddingInfo();
+                else {
+                    var n = new PIXI.loaders.Loader;
+                    null != this._version && (n.defaultQueryString = "version=" + this._version), n.add(i), n.load(function () {
+                        e._loadAddingInfo()
+                    })
+                }
+            }, e.prototype._createMapBackGround = function () {
+                for (var t = this._mapInfo.backgrounds, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addBGLayer(a, n.name)
+                }
+                445 == this._map_id && this._mapView.bg.setMapAnime(), this._createLabel()
+            }, e.prototype._createLabel = function () {
+                for (var t = this._mapInfo.labels, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = r.MapUtil.toResKey(this._map_id),
+                        s = "map" + o + "_" + n.img,
+                        a = PIXI.Texture.fromFrame(s);
+                    this._mapView.bg.addLabel(a, n.x, n.y)
+                }
+                this._createSpots()
+            }, e.prototype._createSpots = function () {
+                for (var t = this._mapInfo.spots, e = 0, i = t; e < i.length; e++) {
+                    var n = i[e],
+                        o = n.no;
+                    if (!(this._memDataNum > 0 && null == this._memData[o]) && (this._mapView.addSpot(this._map_id, o, this._mapInfo), null != n.landing)) {
+                        var r = n.x + n.landing.x,
+                            s = n.y + n.landing.y;
+                        this._mapView.spotLayer.addFlag(o, r, s)
+                    }
+                }
+                this._createAirBase()
+            }, e.prototype._createAirBase = function () {
+                var t = this._mapInfo.getAirBasePos();
+                null != t && this._mapView.airbaseLayer.create(t), this._initCellColor()
+            }, e.prototype._initCellColor = function () {
+                for (var t = [], e = this._mapView.spotLayer.getAllSpots(), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i];
+                    if (!(t.indexOf(o.no) >= 0)) {
+                        for (var r = !1, s = 0, a = 0, _ = this._mapInfo.getSameSpotData(o.no), l = 0, u = _; l < u.length; l++) {
+                            var c = u[l];
+                            t.push(c.no), 0 == s && (s = c.color);
+                            var h = this._memData[c.no];
+                            null != h && (r = r || h.passed, 0 == a && (a = h.color))
                         }
-                    } else 425 == _ && (35 != l && 40 != l || (s = 2));
-                    var d = new a.ParallelTask;
-                    d.add(new h.AnimShowMapEnemy(this._scene, this._model, 500)), d.add(new c.AnimBalloon(n, r, s, u)), d.start(function () {
-                        t._underwayReplenishment()
-                    })
+                        var p = _[0].no,
+                            d = this._mapView.spotLayer.getSpot(p);
+                        1 == r ? d.setColor(a) : d.setColor(s)
+                    }
                 }
-            }, e.prototype._underwayReplenishment = function () {
-                var t = this;
-                new f.TaskConfirmReplenishment(this._scene, this._model).start(function () {
-                    t._ration()
-                })
-            }, e.prototype._ration = function () {
-                var t = this;
-                new d.TaskConfirmRation(this._scene, this._model).start(function () {
-                    t._move()
-                })
-            }, e.prototype._move = function () {
-                var t = this;
-                new l.AnimShipMove(this._scene, this._model).start(function () {
-                    t._showEnemy()
-                })
-            }, e.prototype._showEnemy = function () {
-                var t = this;
-                if (1 == this._scene.view.map.enemy_layer.isDisplaying()) this._gimmick();
-                else {
-                    new h.AnimShowMapEnemy(this._scene, this._model).start(function () {
-                        t._gimmick()
-                    })
-                }
-            }, e.prototype._gimmick = function () {
-                this._AirRaidBattle()
-            }, e.prototype._AirRaidBattle = function () {
-                var t = this,
-                    e = this._scene.model.sortie.area_id,
-                    i = this._scene.model.sortie.map_no,
-                    n = this._scene.model.sortie.getNextCell(),
-                    r = n.getAirraidDataObject(),
-                    s = n.hasBokuAirUnit(),
-                    a = this._scene.resInfo,
-                    l = this._scene.view.map.plane_layer,
-                    u = o.default.view.overLayer,
-                    c = this._scene,
-                    h = this._scene.view.map.airbaseLayer;
-                new T.AirRaidTask(e, i, r, s, a, l, u, c, h, this._battle_cls).start(function () {
-                    var n = _.ObjUtil.getNumber(r, "api_m1");
-                    return 45 == e && 3 == i && 2 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1).start(function () {
-                        t._endTask()
-                    }), void(t._cell_open = !0)) : 45 == e && 3 == i && 3 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1, !0).start(function () {
-                        t._endTask()
-                    }), void(t._cell_open = !0)) : 45 == e && 3 == i && 4 == n ? (new O.EventTaskCellOpen(t._model.sortie.map_id, a, t._scene.view, t._model.sortie.map.getGaugeNum(), !0, !1, !0, !1, !1, !1).start(function () {
-                        t._endTask()
-                    }), void(t._cell_open = !0)) : void t._cellEvent()
-                })
-            }, e.prototype._cellEvent = function () {
-                var t, e = this,
-                    i = this._model.sortie.area_id,
-                    n = this._model.sortie.map_no,
-                    o = this._next.no,
-                    r = this._next.event_id;
-                39 != i || 1 != n || 13 != o && 18 != o ? 2 == r ? t = new v.CellTaskItem(this._scene, this._model) : 3 == r ? t = new g.CellTaskHappening(this._scene, this._model) : 4 == r ? t = this._createCellTaskBattle(!1) : 5 == r ? t = this._createCellTaskBattle(!0) : 6 == r ? t = new b.CellTaskFancy(this._scene, this._model) : 7 == r ? t = new w.CellTaskAirReconnaissance(this._scene, this._model) : 8 == r ? t = new x.CellTaskAnchor(this._scene, this._model) : 9 == r ? t = new I.CellTaskLanding(this._scene, this._model) : 10 == r && (t = new y.CellTaskAnchorageRepair(this._scene, this._model)) : t = new v.CellTaskItem(this._scene, this._model), null != t ? t.start(function () {
-                    e._endTask()
-                }) : this._endTask()
-            }, e.prototype._createCellTaskBattle = function (t) {
-                var e = this._model.sortie.getNextCell();
-                this._battle_model = new s.BattleSceneModel(!1), this._battle_model.updateDeckData(this._model.deck_f, null);
-                var i = this._scene.user_select.supply_on_the_sea,
-                    n = this._scene.user_select.ration;
-                this._battle_model.setMapData(this._repair_item, i, n);
-                var o = this._model.sortie.area_id,
-                    r = this._model.sortie.map_no,
-                    a = e.no,
-                    _ = this._next.event_detail_id;
-                if (this._battle_model.map_info.init(o, r, a, t, _), 1 == e.hasEventMapData()) {
-                    var l = this._model.sortie.getNextCell().gauge_max,
-                        u = this._model.sortie.getNextCell().gauge_now,
-                        c = (this._model.sortie.getGaugeKey(), this._model.sortie.map.gauge_type),
-                        h = this._model.sortie.map.getGaugeNum();
-                    this._battle_model.setMapGaugeInfo(u, l, c, h)
-                } else {
-                    var l = this._model.sortie.map.defeat_required,
-                        u = l - this._model.sortie.map.defeat_count,
-                        c = (this._model.sortie.getGaugeKey(), 1),
-                        h = this._model.sortie.map.getGaugeNum();
-                    this._battle_model.setMapGaugeInfo(u, l, c, h)
-                }
-                return new m.CellTaskBattle(this._scene, this._battle_model, this._battle_cls, this._battle_result_cls)
+                this._endTask()
+            }, e.prototype._getPath = function (t) {
+                var e = r.MapUtil.toAreaID(this._map_id),
+                    i = r.MapUtil.toMapNo(this._map_id);
+                return o.default.settings.path_root + "resources/map/" + s.MathUtil.zeroPadding(e, 3) + "/" + s.MathUtil.zeroPadding(i, 2) + "_" + t
             }, e
-        }(r.TaskBase);
-    e.TaskNextSpot = C
+        }(_.TaskBase);
+    e.TaskCreateMap = u
 }

@@ -19,25 +19,18 @@ const function1132 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
-        s = i(33),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(167, 96), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(167, 126), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(11, e), i._btn_shigen.position.set(146, 180), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(13, e), i._btn_kanmi.position.set(284, 180), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(12, e), i._btn_shizai.position.set(422, 180), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 278), i.addChild(i._btn_back), i
+    var o = i(3),
+        r = i(33),
+        s = i(404),
+        a = i(405),
+        _ = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._bg = new PIXI.Sprite, n._bg.position.set(-106, 37), n.addChild(n._bg), n._message = new PIXI.Sprite, n._message.position.set(282, 74), n.addChild(n._message), n._icon = new a.MedalIcon, n._icon.position.set(358, 152), n.addChild(n._icon), n._btn_yes = new r.BtnBase(e, i), n._btn_yes.position.set(241, 251), n.addChild(n._btn_yes), n._btn_no = new r.BtnBase(-1, i), n._btn_no.position.set(451, 251), n.addChild(n._btn_no), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(9), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 339 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 339 - this._message2.width / 2;
-                var t = r.ITEM_ILIST_PRESENTBOX.getTexture(3);
-                this._btn_shigen.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(0), this._btn_back.initialize(t)
-            }, e.prototype.activate = function () {
-                this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._bg.texture = o.ITEM_ILIST_MEDAL.getTexture(8), this._message.texture = o.ITEM_ILIST_MEDAL.getTexture(9), this._initialize(t, 4)
             }, e
-        }(PIXI.Sprite);
-    e.TopView = a
+        }(s.ConfirmViewBase);
+    e.ConfirmRemodelPlanView = _
 }

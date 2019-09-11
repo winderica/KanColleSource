@@ -19,30 +19,21 @@ const function1131 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(33),
-        r = i(1132),
-        s = i(1133),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._onSelectFromTop = function (t) {
-                    if (i._top_view.deactivate(), -1 == t) {
-                        if (null == i._cb_onResult) return;
-                        i._cb_onResult(t)
-                    } else i._confirm_view = new s.ConfirmView(t, i._onSelectFromConfirm), i._confirm_view.position.set(387, 171), i.addChild(i._confirm_view), i._confirm_view.initialize(t), i._confirm_view.activate(), i._top_view.dispose(), i.removeChild(i._top_view), i._top_view = null
-                }, i._onSelectFromConfirm = function (t) {
-                    null != i._cb_onResult && i._cb_onResult(t)
-                }, i._cb_onResult = e, i._top_view = new r.TopView(i._onSelectFromTop), i._top_view.position.set(312, 171), i.addChild(i._top_view), i
+    var o = i(4),
+        r = i(3),
+        s = i(33),
+        a = i(404),
+        _ = i(405),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._message = new o.TextBox(18, 4999235), n._message.position.set(230, 33), n.addChild(n._message), n._icon = new _.MedalIcon, n._icon.position.set(308, 116), n.addChild(n._icon), n._btn_yes = new s.BtnBase(e, i), n._btn_yes.position.set(179, 215), n.addChild(n._btn_yes), n._btn_no = new s.BtnBase(-1, i), n._btn_no.position.set(389, 215), n.addChild(n._btn_no), 0 == e ? n._message.text = "\u52f2\u7ae0\u3092\u300c\u8cc7\u6e90\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f" : 2 == e && (n._message.text = "\u52f2\u7ae0\u3092\u300c\u6539\u4fee\u8cc7\u6750\u300d\u306b\u4ea4\u63db\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"), n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._top_view.initialize()
-            }, e.prototype.activate = function () {
-                null != this._top_view && this._top_view.activate(), null != this._confirm_view && this._confirm_view.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._top_view && this._top_view.deactivate(), null != this._confirm_view && this._confirm_view.deactivate()
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = r.ITEM_ILIST_MEDAL.getTexture(7), this._initialize(t, 1)
             }, e.prototype.dispose = function () {
-                null != this._top_view && this._top_view.dispose(), null != this._confirm_view && this._confirm_view.dispose()
+                t.prototype.dispose.call(this), this._message.destroy()
             }, e
-        }(o.DialogBase);
-    e.PresentBoxUseDialog = a
+        }(a.ConfirmViewBase);
+    e.ConfirmView = l
 }

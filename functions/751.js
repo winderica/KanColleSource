@@ -1,102 +1,57 @@
 const function751 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(218),
-        o = i(86),
-        r = i(3),
-        s = i(752),
-        a = i(753),
-        _ = i(333),
-        l = function () {
-            function t(t) {
-                var e = this;
-                this.LIST_MAX = 10, this._onChangePage = function (t) {
-                    e._pageIndex != t && e._updatePage(t)
-                }, this._onClickListItem = function (t, i) {
-                    e.supplyEditor.containts(i) ? (r.SE.play("238"), e.supplyEditor.remove(i)) : (r.SE.play("241"), e.supplyEditor.push(i)), e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
-                }, this._onClickSupplySelectAll = function () {
-                    for (var t = 0, i = 0, o = e.otherShips.slice(e._pageIndex * e.otherSupplyListItems.length, e._pageIndex * e.otherSupplyListItems.length + e.otherSupplyListItems.length), s = 0; s < o.length; s++) {
-                        var a = o[s],
-                            _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                        if (_) {
-                            t++;
-                            var l = e.supplyEditor.containts(a.memID);
-                            l && i++
-                        }
-                    }
-                    if (i < t) {
-                        for (var s = 0; s < o.length; s++) {
-                            var a = o[s],
-                                _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                            if (_) {
-                                0 == e.supplyEditor.containts(a.memID) && e.supplyEditor.push(a.memID)
-                            }
-                        }
-                        r.SE.play("241")
-                    } else {
-                        if (i == t)
-                            for (var s = 0; s < o.length; s++) {
-                                var a = o[s],
-                                    _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                                if (_) {
-                                    var l = e.supplyEditor.containts(a.memID);
-                                    l && e.supplyEditor.remove(a.memID)
-                                }
-                            }
-                        r.SE.play("238")
-                    }
-                    e._updatePage(e._pageIndex), e.onUpdateSupplyEdit()
-                }, this.mainView = t, this.otherSupplyListItems = [];
-                for (var i = 0; i < this.LIST_MAX; i++) {
-                    var l = new s.OtherSupplyListItem(i);
-                    l.position.set(155, 44 * i + 206), this.otherSupplyListItems.push(l)
-                }
-                this.pagerView = new o.PagerView, this.pagerView.position.set(285, 663), this.supplySelectAllButton = new a.SupplySelectAllButton, this.supplyEditor = new _.SupplyEditor
+    var o = i(3),
+        r = i(1),
+        s = i(8),
+        a = i(0),
+        _ = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._canMouseOver = !1, e._onMouseOver = function () {
+                    e._canMouseOver = !0, e.onMouseOver(), e._supplyAllOn.alpha = 1, e._clickArea.interactive = e._clickArea.buttonMode = !0
+                }, e._onMouseOut = function () {
+                    e.onMouseOut(), e._supplyAllOn.alpha = 0, e._clickArea.interactive = e._clickArea.buttonMode = !1
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onTouchDown = function () {
+                    e._canMouseOver || (e._touchActivate(), e.onMouseOver(), e._supplyAllOn.alpha = 1)
+                }, e._touchActivate = function () {
+                    e._guardLayer = new s.AreaBox(0), e._touchArea = new s.AreaBox(0, 0, e._clickArea.width, e._clickArea.height), e._touchArea.hitArea = new PIXI.Rectangle(0, 0, e._clickArea.width, e._clickArea.height);
+                    var t = e._clickArea.getGlobalPosition();
+                    e._touchArea.position.set(t.x, t.y), e._guardLayer.addChild(e._touchArea), a.default.view.overLayer.addChild(e._guardLayer), e._guardLayer.on(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.on(r.EventType.MOUSEUP, e._onTouchUp)
+                }, e._onTouchMove = function (t) {
+                    var i = t.data.getLocalPosition(e._touchArea);
+                    1 === e._supplyAllOn.alpha && !1 === e._touchArea.hitArea.contains(i.x, i.y) && (e.onMouseOut(), e._supplyAllOn.alpha = 0)
+                }, e._onTouchUp = function () {
+                    1 === e._supplyAllOn.alpha && e.onClick(), e._touchDeactivate()
+                }, e._touchDeactivate = function () {
+                    e._guardLayer.off(r.EventType.MOUSEMOVE, e._onTouchMove), e._guardLayer.off(r.EventType.MOUSEUP, e._onTouchUp), e._guardLayer.removeChildren(), e._touchArea = null, a.default.view.overLayer.removeChild(e._guardLayer), e._guardLayer = null
+                }, e._supplyAllOff = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(29)), e._supplyAllOn = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(30)), e._clickArea = new PIXI.Graphics, e._clickArea.beginFill(0, 0), e._clickArea.drawRect(0, 0, 62, 62), e._clickArea.endFill(), e._supplyAllOn.position.set(-26, -26), e._clickArea.position.set(-15, -15), e.addChild(e._supplyAllOff, e._supplyAllOn, e._clickArea), e._supplyAllOff.on(r.EventType.MOUSEOVER, e._onMouseOver), e._supplyAllOff.on(r.EventType.MOUSEDOWN, e._onTouchDown), e._clickArea.on(r.EventType.MOUSEOUT, e._onMouseOut), e._clickArea.on(r.EventType.CLICK, e._onClick), e
             }
-            return t.prototype.getSupplyEdit = function () {
-                return this.supplyEditor
-            }, Object.defineProperty(t.prototype, "pageIndex", {
-                get: function () {
-                    return this._pageIndex
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.start = function (t, e) {
-                this.supplyEditor.clear(), this.otherShips = t, this.supplySelectAllButton.position.set(162, 164), this.mainView.addChild(this.supplySelectAllButton);
-                for (var i = 0; i < this.otherSupplyListItems.length; i++) {
-                    var n = this.otherSupplyListItems[i];
-                    n.onClick = this._onClickListItem, this.mainView.addChild(n)
-                }
-                var o = this.calcPageCount(this.otherShips.length, this.otherSupplyListItems.length);
-                this.pagerView.init(o), this.mainView.addChild(this.pagerView), this.pagerView.onChangePage = this._onChangePage, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll, this._updatePage(e), this.onUpdateSupplyEdit()
-            }, t.prototype.reload = function () {
-                this.supplyEditor.clear(), this._updatePage(this.pageIndex), this.onUpdateSupplyEdit()
-            }, t.prototype._updatePage = function (t) {
-                for (var e = 0, i = 0, o = this.otherShips.slice(t * this.otherSupplyListItems.length, t * this.otherSupplyListItems.length + this.otherSupplyListItems.length), r = 0; r < this.otherSupplyListItems.length; r++) {
-                    var s = this.otherSupplyListItems[r];
-                    if (s.empty(), r < o.length) {
-                        var a = o[r],
-                            _ = n.SupplyUtil.CheckRequireSupplyShip(a.memID);
-                        if (s.checkDisable(), _) {
-                            e++, s.checkOff();
-                            this.supplyEditor.containts(a.memID) && (i++, s.checkOn())
-                        }
-                        s.update(r, a, _)
-                    }
-                }
-                var l = 1;
-                0 < e && (l = 2, i == e && (l = 3)), this.supplySelectAllButton.update(l), this.pagerView.changePage(t), this._pageIndex = t
-            }, t.prototype.dispose = function () {
-                var t = this;
-                this.mainView.removeChildren(), this.otherSupplyListItems.forEach(function (e) {
-                    e.onClick = t._onClickListItem = null, e.dispose(), e = null
-                }), this.pagerView.onChangePage = this._onChangePage = null, this.supplySelectAllButton.onClick = this._onClickSupplySelectAll = null, this.onUpdateSupplyEdit = null, this.mainView = null, this.otherSupplyListItems = null, this.pagerView.dispose(), this.pagerView = null, this.supplySelectAllButton.dispose(), this.supplySelectAllButton = null, this.supplyEditor = null, this.otherShips = null, this._pageIndex = null
-            }, t.prototype.calcPageCount = function (t, e) {
-                var i = 0 == t ? 0 : t / e;
-                return i += 0 == t ? 0 : 0 < t % e ? 1 : 0, i = Math.floor(i)
-            }, t
-        }();
-    e.TaskEditSupplyOther = l
+            return n(e, t), e.prototype.dispose = function () {
+                this._supplyAllOff.texture = PIXI.Texture.EMPTY, this._supplyAllOn.texture = PIXI.Texture.EMPTY, this._clickArea.clear(), this._supplyAllOff.off(r.EventType.MOUSEOVER, this._onMouseOver), this._supplyAllOff.off(r.EventType.MOUSEDOWN, this._onTouchDown), this._clickArea.off(r.EventType.MOUSEOUT, this._onMouseOut), this._clickArea.off(r.EventType.CLICK, this._onClick), this.onMouseOver = this._onMouseOver = null, this.onMouseOut = this._onMouseOut = null, this.onClick = this._onClick = null, this._supplyAllOff = null, this._supplyAllOn = null, this._clickArea = null, this._guardLayer = null, this._touchArea = null, this.removeChildren()
+            }, e.prototype.updateClickable = function (t) {
+                this._clickArea.interactive = this._clickArea.buttonMode = !1, this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !1, this._supplyAllOn.alpha = 0, this._clickArea.visible = !1, t && (this._supplyAllOff.interactive = this._supplyAllOff.buttonMode = !0, this._clickArea.visible = !0)
+            }, e
+        }(PIXI.Container);
+    e.SupplyAllButton = _
 }

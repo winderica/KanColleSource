@@ -19,18 +19,19 @@ const function1081 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(14),
+    var o = i(9),
+        r = i(7),
         s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._view = e, i
+            function e(e, i, n) {
+                var o = t.call(this) || this;
+                return o._url = "api_get_member/picture_book", o._mode = e, o._no = i, o._modelManager = n, o
             }
-            return n(e, t), e.prototype._start = function () {
-                this._view.dispose(), r.UIImageLoader.clearMemoryCache("album"), this._endTask()
-            }, e.prototype._endTask = function () {
-                this._view = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_type = this._mode, this._post_data.api_no = this._no + 1, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = r.ObjUtil.getObjectArray(this._raw_data, "api_list");
+                null != e && (1 == this._mode ? this._modelManager.addShipData(this._no, e) : this._modelManager.addSlotData(this._no, e)), this._modelManager = null, t.prototype._completedEnd.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskSceneFinalize = s
+        }(o.APIBase);
+    e.AlbumAPI = s
 }

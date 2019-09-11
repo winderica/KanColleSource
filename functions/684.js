@@ -19,45 +19,55 @@ const function684 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(112),
-        r = i(315),
-        s = i(83),
+    var o = i(3),
+        r = i(57),
+        s = i(15),
         a = i(4),
-        _ = i(21),
-        l = i(10),
-        u = i(316),
-        c = i(686),
-        h = i(317),
-        p = i(15),
-        d = function (t) {
+        _ = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite;
-                i.texture = _.COMMON_MAIN.getTexture(64), i.position.set(0, -37);
-                var n = new PIXI.Sprite(_.COMMON_MAIN.getTexture(1));
-                n.position.set(22, Math.floor(i.height / 2 - 4)), n.anchor.set(0, .5), i.addChild(n), e.textName = new a.TextBox(25, 5523516), e.textLevel = new a.TextBox(28, 5523516), e.textHp = new a.TextBox(15, 5523516), e.rateView = new s.StarRateView, e.slotItemSlotContainer = new h.SlotItemSlotContainer(5), e.extraSlotItemViewContainer = new h.SlotItemSlotContainer(1), e.hpGaugeView = new o.HpGaugeView, e.shipParameterView = new c.ShipParameterView, e.expGaugeView = new u.ExpGaugeView, e.textExp = new a.TextBox(16, 5523516);
-                var d = new PIXI.Sprite(l.COMMON_MISC.getTexture(184));
-                e.remodelMaxMedal = new PIXI.Sprite(_.COMMON_MAIN.getTexture(28));
-                var f = new PIXI.Sprite(_.COMMON_MAIN.getTexture(65));
-                e.shipCard = new r.ShipCard(!0, !0), e.sixSlotMessage = new PIXI.Sprite(_.COMMON_MAIN.getTexture(66));
-                var y = new PIXI.Sprite(_.COMMON_MAIN.getTexture(12));
-                e.containerName = new PIXI.Container, e.containerName.position.set(42, 23);
-                var m = p.CreateRect.gradientLeftToRight(185, 45, .94, .95);
-                return e.containerName.mask = m, e.containerName.addChild(e.textName, m), e.textLevel.anchor.x = 1, e.slotItemSlotContainer.position.set(51, 100), e.extraSlotItemViewContainer.position.set(405, 516), d.position.set(229, 30), f.position.set(364, 478), e.shipParameterView.position.set(51, 351), e.hpGaugeView.position.set(43, 72), e.textHp.position.set(152, 68), e.rateView.position.set(228, 72), e.expGaugeView.position.set(451, 481), e.textLevel.position.set(321, 24), e.remodelMaxMedal.position.set(322, 19), e.textExp.position.set(465, 493), e.textExp.anchor.x = 1, e.shipCard.position.set(369, 25), e.sixSlotMessage.position.set(531, 499), e.addChild(y, e.containerName, e.textLevel, e.hpGaugeView, e.textHp, e.expGaugeView, e.rateView, e.slotItemSlotContainer, e.extraSlotItemViewContainer, e.shipParameterView, e.shipCard, f, d, e.textExp, e.sixSlotMessage, e.remodelMaxMedal, i), e
+                var e = t.call(this) || this;
+                e._onClickUpdate = function () {
+                    e.onClickUpdate(), e.baseText = e._mirrorText.text, e._onKeyDown()
+                }, e._onKeyDown = function () {
+                    var t = s.EditTextBoxUtil.text;
+                    e._mirrorText.text = t;
+                    var i = s.EditTextBoxUtil.validation(t, e.baseText);
+                    e.__updateButton__(i, e._editable)
+                };
+                var i = o.ORGANIZE_MAIN.getTexture(27),
+                    n = o.ORGANIZE_MAIN.getTexture(57),
+                    _ = o.ORGANIZE_MAIN.getTexture(58),
+                    l = o.ORGANIZE_MAIN.getTexture(59),
+                    u = new PIXI.Sprite(i);
+                return e.editButton = new PIXI.Sprite(n), e.updateButton = new r.SimpleButton(_, l), s.EditTextBoxUtil.init(780, 155, 332.25, 20.25, 4999235, "font_j"), s.EditTextBoxUtil.onLengthCheck(12, e._onKeyDown), e._mirrorText = new a.TextBox(27, 4999235), e._mirrorText.position.set(87, 4), e._mirrorText.visible = !1, e.updateButton.position.set(u.width, 1), e.updateButton.onClick = e._onClickUpdate, e.editButton.position.set(u.width, 1), e.addChild(u, e.editButton, e.updateButton, e._mirrorText), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.hpGaugeView.dispose(), this.expGaugeView.dispose(), this.shipParameterView.dispose(), this.slotItemSlotContainer.dispose(), this.rateView.dispose(), this.extraSlotItemViewContainer.dispose(), this.shipCard.dispose(), this.containerName.cacheAsBitmap = !1, this.containerName.removeChildren(), this.containerName.mask = null, this.textName.destroy(), this.textLevel.destroy(), this.textHp.destroy(), this.textExp.destroy(), this.hpGaugeView = null, this.expGaugeView = null, this.shipParameterView = null, this.slotItemSlotContainer = null, this.rateView = null, this.extraSlotItemViewContainer = null, this.shipCard = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textExp = null, this.remodelMaxMedal = null, this.sixSlotMessage = null, this.containerName = null
-            }, e.prototype.updateBox1 = function (t, e, i, n, o, r) {
-                this.containerName.cacheAsBitmap = !1, this.textName.text = t, this.containerName.cacheAsBitmap = !0, this.textHp.text = i + "/" + n, this.hpGaugeView.update(i, n), this.rateView.update(o), this.textLevel.text = e.toString(), this.remodelMaxMedal.visible = !!r
-            }, e.prototype.updateBox2 = function (t, e) {
-                this.slotItemSlotContainer.updateSlot(t, e)
-            }, e.prototype.updateBox3 = function (t, e, i, n, o, r, s, a, _, l, u, c) {
-                this.shipParameterView.update(t, e, i, n, o, r, s, a, _, l, u, c)
-            }, e.prototype.updateBox4 = function (t, e, i) {
-                this.expGaugeView.update(t.expNowRate), this.textExp.text = t.expNextLevel.toString(), i ? (this.extraSlotItemViewContainer.updateExSlot(e), this.extraSlotItemViewContainer.visible = !0, this.sixSlotMessage.visible = !0) : (this.extraSlotItemViewContainer.visible = !1, this.sixSlotMessage.visible = !1)
-            }, e.prototype.updateBox5 = function (t, e) {
-                this.shipCard.update(t, e)
-            }, e
+            return n(e, t), Object.defineProperty(e.prototype, "text", {
+                get: function () {
+                    return s.EditTextBoxUtil.text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.__updateButton__ = function (t, e) {
+                this.updateButton.interactive = !1, this.editButton.visible = !1, this.updateButton.visible = !1, t && e ? (this.updateButton.reset(), this.updateButton.interactive = !0, this.editButton.visible = !1, this.updateButton.visible = !0) : e && (this.editButton.visible = !0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.updateButton.dispose(), this._mirrorText.destroy(), this.onClickUpdate = null, this.updateButton = null, this.editButton = null, this.baseText = null, this._mirrorText = null, this._editable = null
+            }, e.prototype.reload = function (t) {
+                this.baseText = this._mirrorText.text = s.EditTextBoxUtil.text = t;
+                var e = s.EditTextBoxUtil.validation(t, this.baseText);
+                this.__updateButton__(e, this._editable)
+            }, Object.defineProperty(e.prototype, "writable", {
+                set: function (t) {
+                    s.EditTextBoxUtil.setVisibility(t), this._mirrorText.visible = !t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "editable", {
+                set: function (t) {
+                    this.editButton.visible = this._editable = t
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e
         }(PIXI.Container);
-    e.ShipDetailView = d
+    e.EditNameArea = _
 }

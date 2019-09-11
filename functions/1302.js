@@ -19,55 +19,34 @@ const function1302 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(6),
-        r = i(1303),
+    var o = i(19),
+        r = i(1),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClick = function (t) {
-                    n._selected_spot_no.length >= 2 || (o.SE.play("224"), n._selected_spot_no.push(t), n._cb_onChange())
-                }, n._onDoubleClick = function (t) {
-                    var e = n._selected_spot_no.lastIndexOf(t); - 1 != e && (n._selected_spot_no.splice(e, 1), n._cb_onChange())
-                }, n._selected_spot_no = e, n._cb_onChange = i, n._points = {}, n
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onMouseOver = function () {
+                    i._stopTween()
+                }, i._onMouseOut = function () {
+                    i._startTween()
+                }, i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._img = new PIXI.Sprite, i._img.position.set(11, 11), i.addChild(i._img), i._over = new PIXI.Sprite, i.addChild(i._over), i.visible = !1, i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function (t, e, i) {
-                this._clear(), e = this._dedupeCells(e);
-                for (var n = 0, o = e; n < o.length; n++) {
-                    var s = o[n],
-                        a = s.no,
-                        _ = i.getCellInfo(a);
-                    if (!(_.distance <= 0)) {
-                        var l = new r.AirUnitAppointmentPoint(this._onClick, this._onDoubleClick);
-                        l.initialize(a, _, t), l.x = s.x + s.point.x, l.y = s.y + s.point.y, this.addChild(l), this._points[a] = l
-                    }
-                }
-            }, e.prototype.update = function () {
-                var t = this._selected_spot_no.length > 0 ? this._selected_spot_no[0] : -1,
-                    e = this._selected_spot_no.length > 1 ? this._selected_spot_no[1] : -1;
-                for (var i in this._points) {
-                    var n = this._points[i];
-                    n.no == e ? t == e ? n.update(3) : n.update(2) : n.no == t ? n.update(1) : n.update(0)
-                }
+            return n(e, t), e.prototype.initialize = function () {
+                this._img.texture = o.MAP_COMMON.getTexture(1), this._over.texture = o.MAP_COMMON.getTexture(2), this.buttonMode = !0, this.on(r.EventType.MOUSEOVER, this._onMouseOver), this.on(r.EventType.MOUSEOUT, this._onMouseOut), this.on(r.EventType.CLICK, this._onClick), this._startTween()
             }, e.prototype.dispose = function () {
-                this._clear(), this._selected_spot_no = null, this._points = null, this._cb_onChange = null
-            }, e.prototype._clear = function () {
-                for (var t in this._points) this._points[t].dispose();
-                this.removeChildren(), this._points = []
-            }, e.prototype._dedupeCells = function (t) {
-                for (var e = [], i = t.concat(); i.length > 0;) {
-                    for (var n = i.shift(), o = !1, r = 0, s = e; r < s.length; r++) {
-                        var a = s[r],
-                            _ = n.x - a.x,
-                            l = n.y - a.y;
-                        if (Math.sqrt(_ * _ + l * l) <= 10) {
-                            o = !0;
-                            break
-                        }
-                    }
-                    0 == o && e.push(n)
-                }
-                return e
+                this._stopTween(), this.buttonMode = !1, this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this.off(r.EventType.CLICK, this._onClick)
+            }, e.prototype._startTween = function () {
+                null == this._t && (this._over.alpha = 1, this._t = createjs.Tween.get(this._over, {
+                    loop: !0
+                }).to({
+                    alpha: .1
+                }, 1e3).to({
+                    alpha: 1
+                }, 400))
+            }, e.prototype._stopTween = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this._over.alpha = 1)
             }, e
         }(PIXI.Container);
-    e.AirUnitAppointmentLayer = s
+    e.PanelCancelBtn = s
 }

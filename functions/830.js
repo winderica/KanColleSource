@@ -19,92 +19,20 @@ const function830 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = function (t) {
-        function e() {
-            return t.call(this, PIXI.Filter.defaultVertexSrc, ["varying vec2 vTextureCoord;", "varying vec2 vFilterCoord;", "uniform sampler2D uSampler;", "uniform sampler2D filterSampler;", "uniform float factor;", "uniform float mr;", "uniform float mg;", "uniform float mb;", "uniform float ma;", "uniform float ar;", "uniform float ag;", "uniform float ab;", "uniform float aa;", "void main(void){", "   vec4 sample = texture2D(uSampler, vTextureCoord);", "   vec4 ratio = vec4(sample.r * mr + ar  , sample.g * mg + ag , sample.b * mb + ab , sample.a * ma + aa);", "   vec4 blending = mix(sample,ratio ,factor);", "   gl_FragColor = blending;", "   gl_FragColor *= sample.a;", "}"].join("\n")) || this
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "mr", {
-            get: function () {
-                return this.uniforms.mr
-            },
-            set: function (t) {
-                this.uniforms.mr = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "mg", {
-            get: function () {
-                return this.uniforms.mg
-            },
-            set: function (t) {
-                this.uniforms.mg = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "mb", {
-            get: function () {
-                return this.uniforms.mb
-            },
-            set: function (t) {
-                this.uniforms.mb = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "ma", {
-            get: function () {
-                return this.uniforms.ma
-            },
-            set: function (t) {
-                this.uniforms.ma = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "ar", {
-            get: function () {
-                return this.uniforms.ar
-            },
-            set: function (t) {
-                this.uniforms.ar = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "ag", {
-            get: function () {
-                return this.uniforms.ag
-            },
-            set: function (t) {
-                this.uniforms.ag = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "ab", {
-            get: function () {
-                return this.uniforms.ab
-            },
-            set: function (t) {
-                this.uniforms.ab = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "aa", {
-            get: function () {
-                return this.uniforms.aa
-            },
-            set: function (t) {
-                this.uniforms.aa = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "factor", {
-            get: function () {
-                return this.uniforms.factor
-            },
-            set: function (t) {
-                this.uniforms.factor = t
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e
-    }(PIXI.Filter);
-    e.FlashFilter = o
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(0));
+                e.addChild(i);
+                var n = new PIXI.Sprite(o.REMODEL_ANIMATION.getTexture(1));
+                e.addChild(n);
+                var r = new PIXI.Graphics;
+                return r.beginFill(16711935, .5), r.drawRect(-i.width / 2, -i.height / 2, i.width, i.height), r.endFill(), r.position.set(i.width / 2, i.height / 2), e.addChild(r), e.mask = r, e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.mask = null
+            }, e
+        }(PIXI.Container);
+    e.CutinBar = r
 }

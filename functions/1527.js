@@ -19,18 +19,62 @@ const function1527 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(36),
-        s = function (t) {
+    var o = i(1528),
+        r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._name = new o.TextBox(18, 16774898), e._name_mask = new PIXI.Graphics, e._name.addChild(e._name_mask), e._name.mask = e._name_mask, e._enemy_type = new PIXI.Sprite, e._enemy_type.position.set(2, 29), e.addChild(e._name), e.addChild(e._enemy_type), e
+                return e._items = [], e
             }
-            return n(e, t), e.prototype.initialize = function (t, e) {
-                this._name.text = t, this._name_mask.clear(), this._name_mask.beginFill(0), this._name_mask.drawRect(0, 0, 246, this._name.height), this._name_mask.endFill(), this._enemy_type.texture = 1 == e ? r.BATTLE_RESULT_MAIN.getTexture(7) : 2 == e ? r.BATTLE_RESULT_MAIN.getTexture(8) : PIXI.Texture.EMPTY
+            return n(e, t), Object.defineProperty(e.prototype, "items", {
+                get: function () {
+                    return this._items
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                this._resetItems();
+                var e = 0;
+                e = 7 == t.length ? 0 : 68;
+                for (var i = 0; i < t.length; i++) {
+                    var n = t[i];
+                    if (null != n) {
+                        var r = new o.BannerInfoFriend;
+                        r.y = e + 68 * i;
+                        var s = n.name,
+                            a = n.level;
+                        r.name_and_level.alpha = 0, r.name_and_level.initialize(s, a), this.addChild(r), this._items.push(r)
+                    }
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._name = null, this._name_mask = null, this._enemy_type = null
+                this._resetItems(), this.removeChildren(), this._items = null
+            }, e.prototype.createShowTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i],
+                        o = n.name_and_level;
+                    o.x -= 15;
+                    var r = createjs.Tween.get(o).wait(t + 100 * i).to({
+                        x: o.x + 15,
+                        alpha: 1
+                    }, 300);
+                    e.push(r)
+                }
+                return e
+            }, e.prototype.createHideTweens = function (t) {
+                for (var e = [], i = 0; i < this._items.length; i++) {
+                    var n = this._items[i],
+                        o = createjs.Tween.get(n).wait(t + 100 * (this._items.length - 1 - i)).to({
+                            x: n.x - 15,
+                            alpha: 0
+                        }, 300);
+                    e.push(o)
+                }
+                return e
+            }, e.prototype._resetItems = function () {
+                for (null == this._items && (this._items = []); this._items.length > 0;) {
+                    var t = this._items.pop();
+                    null != t.parent && t.parent.removeChild(t), t.dispose()
+                }
             }, e
         }(PIXI.Container);
-    e.BannerInfoEnemy = s
+    e.BannerInfoFriendCanvas = r
 }

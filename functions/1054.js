@@ -19,22 +19,47 @@ const function1054 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = i(7),
-        a = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
+    var o = i(58),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._icons = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id).expedition,
-                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
-                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._icons.length; t++) {
+                    this._icons[t].visible = !1
+                }
+            }, e.prototype.update = function (t) {
+                var e = [];
+                if (null != t) {
+                    var i = t.getSlotitems();
+                    i = i.concat(t.getSlotitemEx());
+                    for (var n = 0, o = i; n < o.length; n++) {
+                        var r = o[n];
+                        if (null != r) {
+                            var s = r.equipType;
+                            if (24 == s) {
+                                355 != r.mstID && e.push(r)
+                            } else 46 == s && e.push(r)
+                        }
+                    }
+                }
+                this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e];
+                    if (e >= t.length) i.visible = !1;
+                    else {
+                        var n = t[e].equipType;
+                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
+                    }
+                }
             }, e
-        }(r.APIBase);
-    e.ExpeditionCancelAPI = a
+        }(PIXI.Container);
+    e.CompSupportBoatCount = r
 }

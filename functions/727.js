@@ -19,30 +19,24 @@ const function727 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(18),
-        r = i(2),
-        s = i(14),
-        a = function (t) {
-            function e() {
-                return t.call(this) || this
+    var o = i(11),
+        r = i(0),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._url = "api_req_hensei/preset_select", n.presetNo = e, n.deckId = i, n
             }
-            return n(e, t), e.prototype._start = function () {
-                var t = this,
-                    e = new s.UIImageLoader("organize");
-                switch (e.add("organize_main.json"), e.add("organize_ship.json"), e.add("organize_rengo.json"), e.add("organize_rengo.json"), e.add("organize_filter.json"), o.MAMIYA_IRAKO_SEASON) {
-                    case 2:
-                        e.add("organize_hokyu_dialog_xmas.json");
-                        break;
-                    case 4:
-                        e.add("organize_hokyu_dialog_summer.json");
-                        break;
-                    default:
-                        e.add("organize_hokyu_dialog_default.json")
-                }
-                e.load(function () {
-                    t._endTask()
-                })
+            return n(e, t), Object.defineProperty(e.prototype, "result", {
+                get: function () {
+                    return this._result
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_preset_no = this.presetNo, this._post_data.api_deck_id = this.deckId, t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                this._result = this._raw_data, r.default.model.deck.updateData(this._raw_data), t.prototype._completedEnd.call(this)
             }, e
-        }(r.TaskBase);
-    e.TaskLoadResourcesOrganize = a
+        }(o.APIBase);
+    e.PresetSelectAPI = s
 }

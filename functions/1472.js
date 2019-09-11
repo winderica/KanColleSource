@@ -19,51 +19,54 @@ const function1472 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(277),
-        r = i(1473),
-        s = i(1480),
-        a = i(1484),
-        _ = i(1514),
-        l = i(1515),
-        u = function (t) {
+    var o = i(5),
+        r = i(232),
+        s = i(6),
+        a = i(181),
+        _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._view = new l.ViewMain, e.addChild(e._view), e._layer_bonus = new PIXI.Container, e.addChild(e._layer_bonus), e
+                return e._now = 0, e._max = 0, e._animation_gauge = !1, e._ready_for_explode = !1, e._animation_explode = !1, e._exploded = !1, e._playExplosion = function (t, i) {
+                    var n = new a.Explosion;
+                    n.position.set(e._gauge.x + t, e._gauge.y + i), e.addChild(n), s.SE.play("102"), n.play(function () {
+                        e.removeChild(n)
+                    })
+                }, e._onCompleteAnimation = function () {
+                    e._animation_gauge = !1, 1 == e._ready_for_explode && (e._ready_for_explode = !1, e.explode())
+                }, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "data", {
+            return n(e, t), Object.defineProperty(e.prototype, "now", {
                 get: function () {
-                    return this._data
+                    return this._now
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(e.prototype, "view", {
-                get: function () {
-                    return this._view
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "layer_bonus", {
-                get: function () {
-                    return this._layer_bonus
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.start = function (e) {
-                var i = this;
-                t.prototype.start.call(this, e), this._data = new r.BattleResultData(e), new s.TaskInit(this).start(function () {
-                    i._main()
+            }), e.prototype.hasGauge = function () {
+                return null != this._gauge
+            }, e.prototype.isExploded = function () {
+                return this._exploded
+            }, e.prototype.isAnimation = function () {
+                return this._animation_gauge || this._animation_explode
+            }, e.prototype.show = function (t, e, i, n) {
+                var s = this;
+                this._now = e, this._max = i, this._gauge = new r.GaugeHorizontal, this._gauge.initialize(t), this._gauge.x = o.default.width - this._gauge.width, this._gauge.y = -15, this._gauge.alpha = 0, this.addChild(this._gauge), createjs.Tween.get(this._gauge).to({
+                    y: 0,
+                    alpha: 1
+                }, 300).call(function () {
+                    s._gauge.update(e, i, function () {}), null != n && n()
                 })
-            }, e.prototype._main = function () {
+            }, e.prototype.update = function (t) {
+                0 != this.hasGauge() && (this._animation_gauge = !0, this._now = t, this._gauge.update(t, this._max, this._onCompleteAnimation))
+            }, e.prototype.explode = function () {
                 var t = this;
-                new a.TaskMain(this).start(function () {
-                    t._end()
-                })
-            }, e.prototype._end = function () {
-                var t = this;
-                new _.TaskEnd(this).start(function () {
-                    t.emit("complete")
-                })
+                if (0 != this.hasGauge() && !(this._now > 0)) return 1 == this._animation_gauge ? void(this._ready_for_explode = !0) : void(1 != this._ready_for_explode && 1 != this._animation_explode && 1 != this._exploded && (this._animation_explode = !0, createjs.Tween.get(null).call(this._playExplosion, [107, 20]).wait(250).call(this._playExplosion, [209, 57]).call(function () {
+                    createjs.Tween.get(t._gauge).to({
+                        alpha: 0
+                    }, 350).call(function () {
+                        t.removeChild(t._gauge), t._gauge = null, t._animation_explode = !1, t._exploded = !0
+                    })
+                }).wait(100).call(this._playExplosion, [309, 24])))
             }, e
-        }(o.BattleResultSceneBase);
-    e.BattleResultScene = u
+        }(PIXI.Container);
+    e.LayerGauge = _
 }

@@ -19,114 +19,62 @@ const function1423 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(76),
-        r = i(1424),
-        s = i(95),
-        a = i(96),
-        _ = i(97),
-        l = i(64),
-        u = i(104),
-        c = i(100),
-        h = i(99),
-        p = i(101),
-        d = i(98),
-        f = i(102),
-        y = i(77),
-        m = i(103),
-        g = function (t) {
+    var o = i(27),
+        r = i(20),
+        s = i(2),
+        a = function (t) {
             function e(e, i) {
-                var n = t.call(this, e, !1) || this;
-                return n._record = i, n
+                var n = t.call(this) || this;
+                return n._scene = e, n._record = i, n
             }
             return n(e, t), e.prototype._start = function () {
+                this._enterBanners()
+            }, e.prototype._enterBanners = function () {
                 var t = this;
-                this.scene.bg.setDay(function () {
-                    t._shutterOpen()
-                })
-            }, e.prototype._shutterOpen = function () {
-                var t = this,
-                    e = this.scene.view;
-                1 == e.shutter.isOpened() ? this._jetAirUnit() : createjs.Tween.get(null).wait(3e3).call(function () {
-                    e.shutter.once("opened", function () {
-                        t._moveBanner()
-                    }), e.shutter.open()
-                })
-            }, e.prototype._moveBanner = function () {
-                var t = this;
-                new r.TaskMoveBannerDay(this.scene, this._record).start(function () {
-                    t._jetAirUnit()
-                })
-            }, e.prototype._jetAirUnit = function () {
-                var t = this;
-                new s.PhaseAirUnitJet(this.scene, this._record).start(function () {
-                    t._jetAirWar()
-                })
-            }, e.prototype._jetAirWar = function () {
-                var t = this;
-                new a.PhaseAirWarJet(this.scene, this._record).start(function () {
-                    t._airUnit()
-                })
-            }, e.prototype._airUnit = function () {
-                var t = this;
-                new _.PhaseAirUnit(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._support = function () {
-                var t = this;
-                new u.PhaseSupport(this.scene, this._record).start(function () {
-                    t._airWar()
-                })
-            }, e.prototype._airWar = function () {
-                var t = this;
-                new l.PhaseAirWar(this.scene, this._record).start(function () {
-                    t._support()
-                })
-            }, e.prototype._openingAttack = function () {
-                var t = this;
-                new c.PhaseHougekiOpening(this.scene, this._record, this._record.raw.hougeki_opening).start(function () {
-                    t._openingTorpedo()
-                })
-            }, e.prototype._openingTorpedo = function () {
-                var t = this;
-                new h.PhaseRaigekiOpening(this.scene, this._record).start(function () {
-                    t._formation()
-                })
-            }, e.prototype._formation = function () {
-                var t = this;
-                new p.PhaseFormation(this.scene, this._record).start(function () {
-                    t._airWar2()
-                })
-            }, e.prototype._airWar2 = function () {
-                var t = this;
-                new d.PhaseAirWar2(this.scene, this._record).start(function () {
-                    t._attack1()
-                })
-            }, e.prototype._attack1 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki1).start(function () {
-                    t._attack2()
-                })
-            }, e.prototype._attack2 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki2).start(function () {
-                    t._attack3()
-                })
-            }, e.prototype._attack3 = function () {
-                var t = this;
-                new f.PhaseHougeki(this.scene, this._record, this._record.raw.hougeki3).start(function () {
-                    t._torpedo()
-                })
-            }, e.prototype._torpedo = function () {
-                var t = this;
-                new y.PhaseRaigeki(this.scene, this._record).start(function () {
-                    t._ending()
-                })
-            }, e.prototype._ending = function () {
-                var t = this;
-                new m.PhaseEnding(this.scene, this._record).start(function () {
+                if (1 == this._scene.data.model.map_info.isNightStart()) {
+                    var e = this._scene.view.bannerGroupLayer,
+                        i = new o.ParallelTask;
+                    i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
+                        t._endTask()
+                    });
+                    var n = this._scene.data.model.deck_f,
+                        s = n.formation,
+                        a = n.type,
+                        _ = n.getCountMainDeck(),
+                        l = n.getCountSubDeck();
+                    this._scene.view.raderLayer.rader_f.show(s, a, _, l, !1);
+                    var u = this._scene.data.model.deck_e,
+                        c = u.formation,
+                        h = u.type,
+                        p = u.getCountMainDeck(),
+                        d = u.getCountSubDeck();
+                    return void this._scene.view.raderLayer.rader_e.show(c, h, p, d, !1)
+                }
+                var f = new r.TweenTask;
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
+                    var y = this._record.common.getActiveDeckFriend();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
+                    var y = this._record.common.getActiveDeckEnemy();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                f.start(function () {
                     t._endTask()
                 })
             }, e
-        }(o.PhaseCombatBase);
-    e.PhaseDayFromNight = g
+        }(s.TaskBase);
+    e.PhaseMoveShips = a
 }

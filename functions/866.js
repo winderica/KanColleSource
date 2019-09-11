@@ -19,186 +19,128 @@ const function866 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(3),
-        r = i(342),
-        s = i(867),
-        a = function (t) {
+    var o = i(867),
+        r = i(868),
+        s = i(83),
+        a = i(4),
+        _ = i(223),
+        l = i(3),
+        u = i(25),
+        c = i(15),
+        h = i(869),
+        p = i(1),
+        d = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e.CATAPULT_WIDTH = 1245, e._tween = null, e._craneTexture = {
-                    yellow: [o.REPAIR_MAIN.getTexture(19), o.REPAIR_MAIN.getTexture(20)],
-                    red: [o.REPAIR_MAIN.getTexture(17), o.REPAIR_MAIN.getTexture(18)],
-                    orange: [o.REPAIR_MAIN.getTexture(15), o.REPAIR_MAIN.getTexture(16)]
-                }, e._core = new PIXI.Sprite, e._arm = new PIXI.Sprite, e._arm.anchor.set(.8, 1);
-                var i = function () {
-                    e._arm.position.set(.8 * e._arm.width - 51, -82 + e._arm.height)
+                e.hpAnimationParams = {
+                    nowHp: 0,
+                    maxHp: 0,
+                    progress: 0
+                }, e.completeTime = 0, e._craneAnimation = null, e.ANIMATION_HIGHSPEED = {}, e._onClickUseItem = function () {
+                    e.onClickHiSpeed(e.memDockId)
+                }, e._onUseRepairItemAnimation = function () {
+                    null != e.useRepairItemTween && e.useRepairItemTween.setPaused(!0);
+                    var t = {
+                            progress: 0
+                        },
+                        i = createjs.Tween.get(t).to({
+                            progress: 0
+                        }, 0).to({
+                            progress: 1
+                        }, 1500),
+                        n = e.completeTime - Date.now();
+                    i.addEventListener("change", function () {
+                        var i = e.hpAnimationParams.nowHp + t.progress * (e.hpAnimationParams.maxHp - e.hpAnimationParams.nowHp),
+                            o = Math.floor(n * t.progress),
+                            r = Math.floor(n - o);
+                        u.MathUtil.timeToString(r);
+                        e.repairHpGaugeView.update(i, e.hpAnimationParams.maxHp), e.textHp.text = (Math.floor(i) + "/" + e.hpAnimationParams.maxHp).toString()
+                    }), e.useRepairItemTween = i
                 };
-                e._wire = new r.Wire, e._wire.scale.x = .69, e._wireHand = new s.WireHand, e._randomColor(i), e._wireHand.update(.3);
-                var n = e._armsPosition(0);
-                return e._arm.rotation = n.arm.rotation, e._wireHand.x = n.wireHand.x, e._wireHand.y = n.wireHand.y, e._wire.rotation = n.wire.rotation, e._wire.x = n.wire.x, e._wire.y = n.wire.y, e._crane = new PIXI.Container, e._crane.y = 60, e._crane.x = e.CATAPULT_WIDTH, e._crane.addChild(e._wireHand, e._wire, e._arm, e._core), e.addChild(e._crane), e
+                var i = new PIXI.Sprite(l.REPAIR_MAIN.getTexture(10)),
+                    n = new PIXI.Sprite(l.REPAIR_MAIN.getTexture(42));
+                n.anchor.set(1, 1), n.position.set(95, 25);
+                var h = new a.TextBox(22, 16777215);
+                h.style.lineHeight = 1, h.anchor.set(1, 1), h.position.set(145, 30);
+                var p = new s.StarRateView;
+                p.position.set(150, 10);
+                var d = new a.TextBox(27, 16774898);
+                d.anchor.set(0, 1);
+                var f = c.CreateRect.gradientLeftToRight(185, 40, .7, .9);
+                f.anchor.set(0, 1);
+                var y = new PIXI.Container;
+                y.position.set(0, 64), y.mask = f, y.addChild(d, f);
+                var m = new a.TextBox(18, 16777215);
+                m.anchor.set(1, 1), m.position.set(234, 64);
+                var g = new _.RepairHpGaugeView;
+                g.position.set(0, 66);
+                var v = new PIXI.Container;
+                v.name = "info", v.position.set(436, 20), v.addChild(n, h, p, y, m, g);
+                var b = new a.TextBox(28, 5523516);
+                b.position.set(735, 55);
+                var w = new o.UseItemButton;
+                w.onClick = e._onClickUseItem, w.position.set(876, 4), e._craneContainer = new PIXI.Container;
+                var x = new r.RepairShipBanner;
+                return x.position.set(66, 36), e.addChild(i, v, b, w, e._craneContainer, x), e.useItemButton = w, e.repairShipBanner = x, e.textHp = m, e.textLevel = h, e.textName = d, e.textTime = b, e.starRateView = p, e.repairHpGaugeView = g, e.containerName = y, e.informationContainer = v, e
             }
-            return n(e, t), e.prototype.play = function () {
-                var t = this;
-                if (null === this._tween) {
-                    this.end();
-                    var e = new createjs.Timeline([], {
-                            start: 0
-                        }, {
-                            loop: !0,
-                            paused: !0
-                        }),
-                        i = 6e3 - 1e3 * Math.random(),
-                        n = {
-                            crane: this._cranePosition(0),
-                            arms: this._armsPosition(0),
-                            wireHand: this._wireHand.getPosition(.35)
-                        },
-                        o = {
-                            duration: i,
-                            crane: this._cranePosition(.7)
-                        },
-                        r = {
-                            duration: 1e3,
-                            arms: this._armsPosition(1),
-                            wireHand: this._wireHand.getPosition(.7)
-                        },
-                        s = {
-                            duration: 500,
-                            crane: this._cranePosition(.745)
-                        },
-                        a = {
-                            duration: 500,
-                            wireHand: this._wireHand.getPosition(.4)
-                        },
-                        _ = {
-                            duration: 500,
-                            wireHand: this._wireHand.getPosition(.8)
-                        },
-                        l = {
-                            duration: 500,
-                            crane: this._cranePosition(.7),
-                            arms: this._armsPosition(0),
-                            wireHand: this._wireHand.getPosition(.35)
-                        },
-                        u = {
-                            duration: i,
-                            crane: this._cranePosition(0)
-                        },
-                        c = this._getTimeLineObj();
-                    c.crane.to(n.crane).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
-                        t._wireHand.hideMaterial()
-                    }).wait(_.duration).to(l.crane, l.duration).to(u.crane, u.duration).call(function () {
-                        t._randomColor(), t._wireHand.initialize()
-                    }), c.arm.to(n.arms.arm).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.arm, l.duration).wait(u.duration), c.wire.to(n.arms.wire).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wire, l.duration).wait(u.duration), c.wireHand.to(n.arms.wireHand).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wireHand, l.duration).wait(u.duration), c.wireHandWire.to(n.wireHand.wire).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(l.wireHand.wire, l.duration).wait(u.duration), c.wireHandContainer.to(n.wireHand.container).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(l.wireHand.container, l.duration).wait(u.duration), e.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), e.gotoAndPlay("start"), this._tween = e
-                }
-            }, e.prototype.timeLimit = function () {
-                this.end(), createjs.Tween.get(this._crane).to({
-                    x: this.CATAPULT_WIDTH
-                }, 1e3, createjs.Ease.linear)
-            }, e.prototype.highSpeed = function () {
-                var t = this,
-                    e = null !== this._tween ? 1e3 : 100;
-                this.end();
-                var i = new createjs.Timeline([], {
-                        start: 0
-                    }, {
-                        loop: !1,
-                        paused: !0
-                    }),
-                    n = {
-                        duration: e,
-                        crane: this._cranePosition(0),
-                        wireHand: this._wireHand.getPosition(.4)
+            return n(e, t), Object.defineProperty(e.prototype, "state", {
+                get: function () {
+                    return this._state
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.updateDockInfo = function (t, e) {
+                this.memDockId = t, this.completeTime = e, this.textTime.text = u.MathUtil.timeToString(e - Date.now())
+            }, e.prototype.updateShipInfo = function (t, e, i, n, o, r, s, a) {
+                this.containerName.cacheAsBitmap = !1, this.name = t;
+                var _ = n + "/" + o,
+                    l = r.toString(),
+                    u = t;
+                this.textName.style.fill = 16774898, a && (this.textName.style.fill = 16766947), this.repairShipBanner.update(e, i, a), this.textHp.text = _, this.textLevel.text = l, this.textName.text = u, this.starRateView.update(s), this.repairHpGaugeView.update(n, o), this.hpAnimationParams.nowHp = n, this.hpAnimationParams.maxHp = o, this.containerName.cacheAsBitmap = !0
+            }, e.prototype.updateState = function (t) {
+                this._state = t
+            }, e.prototype.stopAnimation = function () {
+                null != this.craneCarTween && this.craneCarTween.setPaused(!0), this.craneCarTween = null, null !== this._craneAnimation && (this._craneAnimation.off("high_speed_timer_stop"), this._craneAnimation.off("high_speed_complete"), this._craneAnimation.end())
+            }, e.prototype.playAnimation = function () {
+                null == this.craneCarTween && (this._craneContainer.removeChildren(), this._craneAnimation = new h.CraneAnimation, this._craneContainer.addChild(this._craneAnimation), this._craneAnimation.play())
+            }, e.prototype.playTimelimit = function (t, e) {
+                var i = this;
+                null != this.craneCarTween && (this.craneCarTween.setPaused(!0), this.craneCarTween = null);
+                var n = {
+                        progress: 0
                     },
-                    o = {
-                        duration: 1400,
-                        crane: this._cranePosition(.7)
-                    },
-                    r = {
-                        duration: 1e3,
-                        arms: this._armsPosition(1),
-                        wireHand: this._wireHand.getPosition(.8)
-                    },
-                    s = {
-                        duration: 500,
-                        crane: this._cranePosition(.745)
-                    },
-                    a = {
-                        duration: 500,
-                        wireHand: this._wireHand.getPosition(.5)
-                    },
-                    _ = {
-                        duration: 500,
-                        wireHand: this._wireHand.getPosition(.8)
-                    },
-                    l = {
-                        duration: 500,
-                        crane: this._cranePosition(.7),
-                        arms: this._armsPosition(0),
-                        wireHand: this._wireHand.getPosition(.3)
-                    },
-                    u = {
-                        duration: 1e3,
-                        crane: this._cranePosition(0)
-                    },
-                    c = this._getTimeLineObj();
-                c.crane.to(n.crane, n.duration).call(function () {
-                    t._wireHand.bucketMaterial()
-                }).to(o.crane, o.duration).wait(r.duration).to(s.crane, s.duration).wait(a.duration).call(function () {
-                    t._wireHand.hideMaterial(), t.emit("high_speed_timer_stop")
-                }).wait(_.duration).to(l.crane, l.duration).to(u.crane, u.duration).call(function () {
-                    t.end(), t.emit("high_speed_complete")
-                }), c.arm.wait(n.duration).wait(o.duration).to(r.arms.arm, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.arm, l.duration).wait(u.duration), c.wire.wait(n.duration).wait(o.duration).to(r.arms.wire, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wire, l.duration).wait(u.duration), c.wireHand.wait(n.duration).wait(o.duration).to(r.arms.wireHand, r.duration).wait(s.duration).wait(a.duration).wait(_.duration).to(l.arms.wireHand, l.duration).wait(u.duration), c.wireHandWire.to(n.wireHand.wire, n.duration).wait(o.duration).to(r.wireHand.wire, r.duration).wait(s.duration).to(a.wireHand.wire, a.duration).to(_.wireHand.wire, _.duration).to(l.wireHand.wire, l.duration).wait(u.duration), c.wireHandContainer.to(n.wireHand.container, n.duration).wait(o.duration).to(r.wireHand.container, r.duration).wait(s.duration).to(a.wireHand.container, a.duration).to(_.wireHand.container, _.duration).to(l.wireHand.container, l.duration).wait(u.duration), i.addTween(c.crane, c.arm, c.wire, c.wireHand, c.wireHandWire, c.wireHandContainer), i.gotoAndPlay("start"), this._tween = i
-            }, e.prototype.end = function () {
-                null !== this._tween && (this._tween.removeAllEventListeners("change"), this._tween.setPaused(!0)), this._tween = null
-            }, e.prototype._randomColor = function (t) {
-                void 0 === t && (t = null);
-                var e = 100 * Math.random();
-                if (e <= 30) {
-                    var i = this._craneTexture.yellow;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                } else if (e <= 60) {
-                    var i = this._craneTexture.red;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                } else {
-                    var i = this._craneTexture.orange;
-                    this._core.texture = i[0], this._arm.texture = i[1]
-                }
-                null !== t && t()
-            }, e.prototype._getTimeLineObj = function () {
-                var t = this._wireHand.obj;
-                return {
-                    crane: createjs.Tween.get(this._crane),
-                    arm: createjs.Tween.get(this._arm),
-                    wire: createjs.Tween.get(this._wire),
-                    wireHand: createjs.Tween.get(this._wireHand),
-                    wireHandWire: createjs.Tween.get(t.wire),
-                    wireHandContainer: createjs.Tween.get(t.container)
-                }
-            }, e.prototype._cranePosition = function (t) {
-                return {
-                    x: this.CATAPULT_WIDTH * (1 - t)
-                }
-            }, e.prototype._armsPosition = function (t) {
-                var e = 22 * t,
-                    i = -4 * t;
-                return {
-                    arm: {
-                        rotation: Math.PI / 180 * (14.5 * t)
-                    },
-                    wireHand: {
-                        x: -42 + e,
-                        y: -78 + i
-                    },
-                    wire: {
-                        rotation: Math.PI / 180 * (47 + 13 * t),
-                        x: -37 + e,
-                        y: -78 + i
-                    }
-                }
+                    o = createjs.Tween.get(n);
+                o.to({
+                    progress: 1
+                }, 1e3), o.call(function () {
+                    o.removeAllEventListeners("change"), null !== i._craneAnimation && (i._craneAnimation.dispose(), i._craneAnimation = null, i._craneContainer.removeChildren()), e()
+                }), o.addEventListener("change", function () {
+                    var t = i.hpAnimationParams.nowHp + n.progress * (i.hpAnimationParams.maxHp - i.hpAnimationParams.nowHp);
+                    i.repairHpGaugeView.update(t, i.hpAnimationParams.maxHp), i.textHp.text = (Math.floor(t) + "/" + i.hpAnimationParams.maxHp).toString(), null !== i._craneAnimation && i._craneAnimation.timeLimit()
+                }), o.play(null), this.craneCarTween = o
+            }, e.prototype.playHispeed = function (t) {
+                var e = this;
+                this.useItemButton.visible = !0, this.useItemButton.interactive = !1, this.useItemButton.emit(p.EventType.MOUSEOVER), null != this.craneCarTween && (this.craneCarTween.setPaused(!0), this.craneCarTween = null);
+                var i = createjs.Tween.get(this.ANIMATION_HIGHSPEED, {
+                    loop: !0
+                });
+                null === this._craneAnimation && (this._craneAnimation = new h.CraneAnimation, this._craneContainer.addChild(this._craneAnimation)), this._craneAnimation.once("high_speed_timer_stop", function () {
+                    i.setPaused(!0), e._onUseRepairItemAnimation()
+                }).once("high_speed_complete", function () {
+                    e._craneAnimation.dispose(), e._craneAnimation = null, e._craneContainer.removeChildren(), e.useItemButton.interactive = !0, e.useItemButton.emit(p.EventType.MOUSEOUT), t()
+                }), this._craneAnimation.highSpeed(), i.wait(500).call(function () {
+                    e.updateTime(Date.now(), e.completeTime)
+                }), i.play(null)
+            }, e.prototype.updateTime = function (t, e) {
+                this._updateTime(t, e)
+            }, e.prototype._updateTime = function (t, e) {
+                var i = "00:00:00";
+                0 < e - t && (i = u.MathUtil.timeToString(e - t)), this.textTime.text = i
+            }, e.prototype.updateUsable = function (t) {
+                t ? this.useItemButton.active() : this.useItemButton.disable()
             }, e.prototype.dispose = function () {
-                this.end(), this._core = null, this._arm = null, this._wire.dispose(), this._wire = null, this._wireHand.dispose(), this._wireHand = null, this._crane.removeChildren(), this._crane = null, this.removeChildren()
+                this.removeChildren(), this.containerName.cacheAsBitmap = !1, createjs.Tween.removeTweens(this.ANIMATION_HIGHSPEED), this.useItemButton.dispose(), this.repairShipBanner.dispose(), this.starRateView.dispose(), this.repairHpGaugeView.dispose(), null != this.craneCarTween && (this.craneCarTween.setPaused(!0), createjs.Tween.removeTweens(this.craneCarTween.target)), null != this.useRepairItemTween && (this.useRepairItemTween.setPaused(!0), createjs.Tween.removeTweens(this.useRepairItemTween.target)), this.informationContainer.removeChildren(), this.textHp.destroy(), this.textLevel.destroy(), this.textName.destroy(), this.textTime.destroy(), this.onClickHiSpeed = null, this.useItemButton = null, this.repairShipBanner = null, this.starRateView = null, this.textName = null, this.textLevel = null, this.textHp = null, this.textTime = null, this.repairHpGaugeView = null, this.memDockId = null, this.craneCarTween = null, this.hpAnimationParams = null, this.completeTime = null, this.useRepairItemTween = null, this.informationContainer = null, null !== this._craneAnimation && (this._craneAnimation.dispose(), this._craneAnimation = null, this._craneContainer.removeChildren()), this._craneContainer = null
             }, e
         }(PIXI.Container);
-    e.CraneAnimation = a
+    e.ShipInDock = d
 }
