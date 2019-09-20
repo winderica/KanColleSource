@@ -29,9 +29,9 @@ const function612 = function (t, e, i) {
                 e._bg = new o.AreaBox(.6), e._bg.interactive = !0, e.addChild(e._bg), e._container = new PIXI.Container, e._container.position.set(129, 210), e._container.interactive = !0, e.addChild(e._container);
                 var i = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(0));
                 i.position.set(0, 0), e._container.addChild(i);
-                var n = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(29));
+                var n = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(22));
                 n.position.set(73, 34), e._container.addChild(n);
-                var s = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(18));
+                var s = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(11));
                 s.position.set(70, 132), e._container.addChild(s), e._flg = a.default.friendlyRequest.flg, e._requestFlg = new u, e._requestFlg.position.set(58, 85), e._container.addChild(e._requestFlg), e._type = a.default.friendlyRequest.type, e._requestType = new c, e._requestType.position.set(58, 133), e._container.addChild(e._requestType), e._closeBtn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(1)), e._closeBtn.interactive = !0, e._closeBtn.buttonMode = !0, e._closeBtn.position.set(255, 242), e._container.addChild(e._closeBtn);
                 var _ = a.default.model.basic.getCNum(),
                     l = e._getShipId(_),
@@ -56,41 +56,27 @@ const function612 = function (t, e, i) {
                 })
             }, e.prototype._getShipId = function (t) {
                 var e = Math.floor(100 * Math.random());
-                return t < 1 ? e >= 50 ? 5 : e >= 40 ? 17 : 6 : t >= 1 ? e >= 85 ? 3 : e >= 70 ? 16 : e >= 60 ? 5 : e >= 55 ? 17 : e >= 45 ? 6 : e >= 15 ? 8 : 15 : void 0
+                return t < 1 ? e >= 50 ? 3 : e >= 40 ? 10 : 4 : 1 == t ? e >= 85 ? 2 : e >= 70 ? 9 : e >= 60 ? 3 : e >= 55 ? 10 : e >= 45 ? 4 : e >= 15 ? 5 : 8 : t > 1 ? e >= 84 ? 6 : e >= 68 ? 7 : e >= 58 ? 9 : e >= 48 ? 8 : e >= 34 ? 5 : e >= 22 ? 2 : e >= 12 ? 3 : e >= 4 ? 4 : 10 : void 0
             }, e.prototype._getShipPos = function (t) {
                 switch (t) {
                     case 2:
-                        return [618, 18];
-                    case 3:
                         return [678, 48];
-                    case 4:
-                        return [590, 90];
                     case 9:
-                        return [722, 70];
-                    case 11:
-                        return [598, 140];
-                    case 12:
-                        return [658, 104];
-                    case 10:
-                        return [559, 33];
-                    case 14:
-                        return [498, 75];
-                    case 16:
                         return [622, 106];
-                    case 13:
-                        return [669, 72];
-                    case 7:
-                        return [597, -25];
-                    case 5:
+                    case 3:
                         return [763, 96];
-                    case 6:
+                    case 4:
                         return [545, 108];
-                    case 8:
+                    case 5:
                         return [671, 114];
-                    case 15:
+                    case 8:
                         return [515, 87];
-                    case 17:
-                        return [629, 139]
+                    case 10:
+                        return [629, 139];
+                    case 6:
+                        return [617, 60];
+                    case 7:
+                        return [583, 120]
                 }
             }, e
         }(PIXI.Container);
@@ -98,8 +84,8 @@ const function612 = function (t, e, i) {
     var l = function (t) {
             function e() {
                 var e = t.call(this) || this,
-                    i = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(30));
-                return e.addChild(i), e._ball = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(31)), e.addChild(e._ball), i.position.set(Math.round(e._ball.width / 2), 9), e._rightX = i.width, e.interactive = !0, e.buttonMode = !0, e
+                    i = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(23));
+                return e.addChild(i), e._ball = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(24)), e.addChild(e._ball), i.position.set(Math.round(e._ball.width / 2), 9), e._rightX = i.width, e.interactive = !0, e.buttonMode = !0, e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this.off(s.EventType.CLICK), this.removeChildren(), this._ball = null
@@ -111,9 +97,9 @@ const function612 = function (t, e, i) {
                     t(), i.onClick(e)
                 })
             }, e.prototype.disabled = function () {
-                this.interactive = !1, this._ball.texture = r.PORT_FRIENDLY_REQUEST.getTexture(32)
+                this.interactive = !1, this._ball.texture = r.PORT_FRIENDLY_REQUEST.getTexture(25)
             }, e.prototype.resume = function () {
-                this.interactive = !0, this._ball.texture = r.PORT_FRIENDLY_REQUEST.getTexture(31)
+                this.interactive = !0, this._ball.texture = r.PORT_FRIENDLY_REQUEST.getTexture(24)
             }, e.prototype.onClick = function (t) {
                 var e = this;
                 void 0 === t && (t = null);
@@ -128,7 +114,7 @@ const function612 = function (t, e, i) {
         u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._request = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(19)), e._request.interactive = !0, e._request.buttonMode = !0, e.addChild(e._request), e._requestOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(20)), e.addChild(e._requestOn), e._unnecessary = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(21)), e._unnecessary.position.set(318, 0), e._unnecessary.interactive = !0, e._unnecessary.buttonMode = !0, e.addChild(e._unnecessary), e._unnecessaryOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(22)), e._unnecessaryOn.position.set(318, 0), e.addChild(e._unnecessaryOn), e._btn = new l, e._btn.position.set(205, 8), e.addChild(e._btn), e
+                return e._request = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(12)), e._request.interactive = !0, e._request.buttonMode = !0, e.addChild(e._request), e._requestOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(13)), e.addChild(e._requestOn), e._unnecessary = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(14)), e._unnecessary.position.set(318, 0), e._unnecessary.interactive = !0, e._unnecessary.buttonMode = !0, e.addChild(e._unnecessary), e._unnecessaryOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(15)), e._unnecessaryOn.position.set(318, 0), e.addChild(e._unnecessaryOn), e._btn = new l, e._btn.position.set(205, 8), e.addChild(e._btn), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this._unnecessary.off(s.EventType.CLICK), this._request.off(s.EventType.CLICK), this._btn.dispose(), this.removeChildren(), this._unnecessary = null, this._unnecessaryOn = null, this._request = null, this._requestOn = null, this._btn = null
@@ -156,7 +142,7 @@ const function612 = function (t, e, i) {
         c = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._powerfulInfo = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(27)), e._powerfulInfo.position.set(12, 45), e.addChild(e._powerfulInfo), e._normalInfo = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(28)), e._normalInfo.position.set(330, 45), e.addChild(e._normalInfo), e._powerful = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(23)), e._powerful.interactive = !0, e._powerful.buttonMode = !0, e.addChild(e._powerful), e._powerfulOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(24)), e.addChild(e._powerfulOn), e._normal = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(25)), e._normal.position.set(318, 0), e._normal.interactive = !0, e._normal.buttonMode = !0, e.addChild(e._normal), e._normalOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(26)), e._normalOn.position.set(318, 0), e.addChild(e._normalOn), e._btn = new l, e._btn.position.set(205, 8), e.addChild(e._btn), e
+                return e._powerfulInfo = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(20)), e._powerfulInfo.position.set(12, 45), e.addChild(e._powerfulInfo), e._normalInfo = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(21)), e._normalInfo.position.set(330, 45), e.addChild(e._normalInfo), e._powerful = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(16)), e._powerful.interactive = !0, e._powerful.buttonMode = !0, e.addChild(e._powerful), e._powerfulOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(17)), e.addChild(e._powerfulOn), e._normal = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(18)), e._normal.position.set(318, 0), e._normal.interactive = !0, e._normal.buttonMode = !0, e.addChild(e._normal), e._normalOn = new PIXI.Sprite(r.PORT_FRIENDLY_REQUEST.getTexture(19)), e._normalOn.position.set(318, 0), e.addChild(e._normalOn), e._btn = new l, e._btn.position.set(205, 8), e.addChild(e._btn), e
             }
             return n(e, t), e.prototype.dispose = function () {
                 this._powerful.off(s.EventType.CLICK), this._normal.off(s.EventType.CLICK), this._btn.dispose(), this.removeChildren(), this._powerful = null, this._powerfulOn = null, this._powerfulInfo = null, this._normal = null, this._normalOn = null, this._normalInfo = null, this._btn = null
