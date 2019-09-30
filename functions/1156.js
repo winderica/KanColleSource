@@ -19,40 +19,96 @@ const function1156 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(132),
-        s = i(172),
-        a = i(1157),
-        _ = function (t) {
+    var o = i(0),
+        r = i(34),
+        s = i(130),
+        a = i(167),
+        _ = i(158),
+        l = i(129),
+        u = i(106),
+        c = i(6),
+        h = i(133),
+        p = i(1157),
+        d = i(91),
+        f = i(118),
+        y = i(118),
+        m = i(118),
+        g = i(118),
+        v = i(118),
+        b = i(242),
+        w = i(402),
+        x = i(1158),
+        I = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i._onPickup = function () {
-                    null != i._cb_onPickup && i._cb_onPickup(i._model)
-                }, i._cb_onPickup = e, i._name = new o.TextBox(22, 16777215), i._name.position.set(0, 18), i.addChild(i._name), i._icon = new PIXI.Sprite, i._icon.position.set(105, 81), i.addChild(i._icon), i._count = new l, i._count.position.set(243, 84), i.addChild(i._count), i._description = new o.TextBox(18, 16777215), i._description.position.set(22, 186), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 264, i.addChild(i._description), i._pickup_btn = new a.PickupBtn, i._pickup_btn.position.set(66, 388), i._pickup_btn.visible = !1, i.addChild(i._pickup_btn), i
+                return i._onSelect = function (t) {
+                    var e = i._purchasedItems.getData(t);
+                    i._detail_panel.update(e)
+                }, i._onPickup = function (t) {
+                    if (16 == t.id) {
+                        var e = o.default.model.const.boko_max_ships,
+                            n = o.default.model.basic.shipMax;
+                        if (n >= e) return void c.SE.play("248");
+                        c.SE.play("244")
+                    } else c.SE.play("243");
+                    var r = new p.PurchasedItemPickupAPI(t.id, !1),
+                        s = r.result;
+                    r.start(function () {
+                        i._detail_panel.update(null), 1 == s.hasCaution() ? i._confirm(t) : i._AfterPickup(t)
+                    })
+                }, i._purchasedItems = e, i._bg = new PIXI.Sprite, i._bg.position.set(202, 201), i.addChild(i._bg), i._detail_panel = new x.PurchasedItemDetailPanel(i._onPickup), i._detail_panel.position.set(904, 201), i.addChild(i._detail_panel), i._icon_layer = new PIXI.Container, i.addChild(i._icon_layer), i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._pickup_btn.initialize(this._onPickup)
-            }, e.prototype.update = function (t) {
-                return null != t && this._model == t ? void this._onPickup() : (this._model = t, null == this._model ? void this._clean() : (this._name.text = this._model.name, this._name.x = Math.round(154 - this._name.width / 2), this._icon.texture = s.getPayitemIcon(this._model.id), this._count.update(this._model.count), this._count.visible = !0, this._description.text = this._model.description.replace(/<br>/g, "\n"), this._pickup_btn.visible = !0, void this._pickup_btn.activate()))
+                this._bg.texture = h.ITEM_ILIST.getTexture(14), this._detail_panel.initialize(), this._icons = [];
+                for (var t = f.PAYITEMLIST_ORDER.length, e = 0; e < t; e++) {
+                    var i = new w.PayItemIcon(this._onSelect);
+                    i.x = 238 + e % 7 * 84, e % 7 >= 3 && (i.x += 54), i.y = 265 + 112 * Math.floor(e / 7), i.initialize(), this._icon_layer.addChild(i), this._icons.push(i)
+                }
+            }, e.prototype.update = function () {
+                this._detail_panel.update(null);
+                for (var t = 0; t < this._icons.length; t++) {
+                    var e = this._icons[t],
+                        i = f.PAYITEMLIST_ORDER[t],
+                        n = this._purchasedItems.getData(i),
+                        o = null == n ? 0 : n.count;
+                    e.update(i, o)
+                }
+            }, e.prototype.activate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].activate()
+                }
+            }, e.prototype.deactivate = function () {
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    e[t].deactivate()
+                }
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._name.destroy(), this._count.dispose(), this._description.destroy(), this._pickup_btn.dispose(), this._cb_onPickup = null
-            }, e.prototype._clean = function () {
-                this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._pickup_btn.visible = !1, this._pickup_btn.deactivate()
+                this._icon_layer.removeChildren(), this._icon_layer = null;
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    i.deactivate(), i.dispose()
+                }
+                this._icons = null, this._detail_panel.dispose(), this._detail_panel = null, this._purchasedItems = null, this.removeChildren()
+            }, e.prototype._confirm = function (t) {
+                var e = this,
+                    i = o.default.view.overLayer,
+                    n = new b.TaskItemOverflowConfirm(i);
+                n.start(function () {
+                    if (1 == n.result) {
+                        var i = new p.PurchasedItemPickupAPI(t.id, !0);
+                        i.result;
+                        i.start(function () {
+                            e._AfterPickup(t)
+                        })
+                    }
+                })
+            }, e.prototype._AfterPickup = function (t) {
+                var e = this,
+                    i = t.id,
+                    n = new r.APIConnector;
+                m.RELATED_USERDATA_PAYITEM.indexOf(i) >= 0 && n.add(new _.UserDataAPI), g.RELATED_SLOTITEM_PAYITEM.indexOf(i) >= 0 && (n.add(new l.UserSlotItemAPI), n.add(new s.UnsetSlotAPI)), v.RELATED_USEITEM_PAYITEM.indexOf(i) >= 0 && n.add(new u.UseItemAPI), y.RELATED_MATERIAL_PAYITEM.indexOf(i) >= 0 && n.add(new a.MaterialAPI), n.start(function () {
+                    t.setCount(t.count - 1), e.update(), o.default.model.useItem.updateCount(), o.default.view.portMain.updateInfo()
+                })
             }, e
-        }(PIXI.Sprite);
-    e.PurchasedItemDetailPanel = _;
-    var l = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new o.TextBox(30, 16777215), e._text.y = 28, e.addChild(e._text), e
-        }
-        return n(e, t), e.prototype.initialize = function () {
-            this.update(0)
-        }, e.prototype.update = function (t) {
-            var e;
-            e = t < 100 ? 24 : t < 1e3 ? 25 : 26, this._bg.texture = r.ITEM_ILIST.getTexture(e), this._bg.x = -Math.round(this._bg.width / 2), this._text.text = t.toString(), this._text.x = -Math.round(this._text.width / 2)
-        }, e.prototype.dispose = function () {
-            this.removeChildren(), this._text.destroy()
-        }, e
-    }(PIXI.Container)
+        }(d.ViewBase);
+    e.PurchasedItemListMain = I
 }

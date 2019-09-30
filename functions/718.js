@@ -19,34 +19,18 @@ const function718 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(84),
-        r = i(719),
+    var o = i(11),
+        r = i(0),
         s = function (t) {
-            function e(e, i, n) {
-                var o = t.call(this) || this;
-                o.HEIGHT = 76, o.presetEditSlots = [];
-                for (var s = 0; s < 5; s++) {
-                    var a = new r.PresetEditSlot(s);
-                    a.onClickSave = e, a.onClickDelete = i, a.onClickExtension = n, a.position.y = o.HEIGHT * s, o.presetEditSlots.push(a)
-                }
-                return o.presetEditSlots.forEach(function (t) {
-                    return o.addChild(t)
-                }), o
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i.OPEN_KEY_ITEMID = 49, i._url = "api_req_hensei/preset_expand", i
             }
-            return n(e, t), Object.defineProperty(e.prototype, "slotsLength", {
-                get: function () {
-                    return this.presetEditSlots.length
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.dispose = function () {
-                o.TaskLoadShipResource.abortBy(this), this.presetEditSlots.forEach(function (t) {
-                    t.dispose(), t = null
-                }), this.presetEditSlots = null, this.removeChildren()
-            }, e.prototype.update = function (t, e, i, n, r) {
-                void 0 === r && (r = null), o.TaskLoadShipResource.abortBy(this);
-                for (var s = !1, a = 0; a < 5; a++) s = this.presetEditSlots[a].update(t[a], e, i, n, r, s)
+            return n(e, t), e.prototype._completedEnd = function () {
+                var e = r.default.model.useItem.get(this.OPEN_KEY_ITEMID);
+                e.__setCount__(e.count - 1), t.prototype._completedEnd.call(this)
             }, e
-        }(PIXI.Container);
-    e.PresetEditContainer = s
+        }(o.APIBase);
+    e.PresetExpandAPI = s
 }

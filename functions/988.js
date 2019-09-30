@@ -19,26 +19,34 @@ const function988 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(41),
-        r = i(360),
+    var o = i(26),
+        r = i(1),
         s = function (t) {
             function e(e) {
-                var i = t.call(this, e) || this;
-                return i._overlay = new PIXI.Sprite, i.addChild(i._overlay), i._t = createjs.Tween.get(i._overlay, {
-                    loop: !0
-                }).to({
-                    alpha: 0
-                }, 600).to({
-                    alpha: 1
-                }, 600), i._t.setPaused(!0), i
+                var i = t.call(this) || this;
+                return i._onClick = function () {
+                    null != i._cb_onClick && i._cb_onClick()
+                }, i._cb_onClick = e, i._flash = new PIXI.Sprite(o.SALLY_AIRUNIT.getTexture(7)), i._flash.position.set(-14, -14), i._flash.alpha = 0, i.addChild(i._flash), i.interactive = !0, i
             }
-            return n(e, t), e.prototype.initialize = function (e) {
-                this._overlay.texture = o.SALLY_EVENT.getTexture(1), this.texture = o.SALLY_EVENT.getTexture(0), t.prototype.initialize.call(this, e)
-            }, e.prototype.dispose = function () {
-                t.prototype.dispose.call(this), this._t.setPaused(!0), this._t = null
-            }, e.prototype._update = function (t) {
-                1 == this.selected ? (this._t.setPaused(!0), this._overlay.alpha = 1) : 1 == t ? (this._t.setPaused(!0), this._overlay.alpha = 1) : this._t.setPaused(!1)
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this.deactivate(), this._cb_onClick = null, this._flash = null
+            }, e.prototype.initialize = function () {
+                this.texture = o.SALLY_AIRUNIT.getTexture(6)
+            }, e.prototype.activate = function () {
+                1 != this.buttonMode && (this.buttonMode = !0, this.on(r.EventType.CLICK, this._onClick), this.playFlash())
+            }, e.prototype.deactivate = function () {
+                this.buttonMode = !1, this.off(r.EventType.CLICK, this._onClick), this.stopFlash()
+            }, e.prototype.playFlash = function () {
+                this.stopFlash(), this._tween = createjs.Tween.get(this._flash, {
+                    loop: !0
+                }), this._tween.to({
+                    alpha: 1
+                }, 1e3).to({
+                    alpha: 0
+                }, 1e3)
+            }, e.prototype.stopFlash = function () {
+                this._tween && (this._tween.setPaused(!0), createjs.Tween.removeTweens(this._flash), this._tween = null, this._flash.alpha = 0)
             }, e
-        }(r.AreaIconBtn);
-    e.EventAreaIconBtn = s
+        }(PIXI.Sprite);
+    e.AirUnitBtn = s
 }

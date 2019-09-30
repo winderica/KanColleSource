@@ -20,46 +20,14 @@ const function1054 = function (t, e, i) {
         value: !0
     });
     var o = i(58),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._icons = [];
-                for (var i = 0; i < 4; i++) {
-                    var n = new PIXI.Sprite;
-                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
-                }
-                return e
+        r = i(369),
+        s = function (t) {
+            function e(e) {
+                return t.call(this, e) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                for (var t = 0; t < this._icons.length; t++) {
-                    this._icons[t].visible = !1
-                }
-            }, e.prototype.update = function (t) {
-                var e = [];
-                if (null != t) {
-                    var i = t.getSlotitems();
-                    i = i.concat(t.getSlotitemEx());
-                    for (var n = 0, o = i; n < o.length; n++) {
-                        var r = o[n];
-                        if (null != r) {
-                            var s = r.equipType;
-                            if (24 == s) {
-                                355 != r.mstID && e.push(r)
-                            } else 46 == s && e.push(r)
-                        }
-                    }
-                }
-                this._update(e)
-            }, e.prototype._update = function (t) {
-                for (var e = 0; e < this._icons.length; e++) {
-                    var i = this._icons[e];
-                    if (e >= t.length) i.visible = !1;
-                    else {
-                        var n = t[e].equipType;
-                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
-                    }
-                }
+            return n(e, t), e.prototype._updateTexture = function () {
+                0 == this._enabled ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(23) : 1 == this._overed ? this._btn.texture = o.SALLY_EXPEDITION.getTexture(24) : this._btn.texture = o.SALLY_EXPEDITION.getTexture(22)
             }, e
-        }(PIXI.Container);
-    e.CompSupportBoatCount = r
+        }(r.BtnGoBase);
+    e.BtnGo = s
 }

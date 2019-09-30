@@ -19,93 +19,61 @@ const function284 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(5),
-        r = i(153),
-        s = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "message", {
-                get: function () {
-                    return this._message
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_top", {
-                get: function () {
-                    return this._banner_top
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "banner_bottom", {
-                get: function () {
-                    return this._banner_bottom
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "particles", {
-                get: function () {
-                    return this._particles
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t) {
-                this._bg = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(10)), this._bg.anchor.set(.5, .5), this._bg.position.set(o.default.width / 2, o.default.height / 2), this._message = 1 == t ? new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(4)) : new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(3)), this._message.anchor.set(.5, .5), this._banner_top = new a, this._banner_bottom = new a, this._particles = new _, this._particles.initialize(), this.addChild(this._bg), this.addChild(this._message), this.addChild(this._banner_top), this.addChild(this._banner_bottom), this.addChild(this._particles)
-            }, e.prototype.dispose = function () {
-                this._bg = null, this._message = null, null != this._banner_top && this._banner_top.dispose(), this._banner_top = null, null != this._banner_bottom && this._banner_bottom.dispose(), this._banner_bottom = null, null != this._particles && this._particles.dispose(), this._particles = null
-            }, e
-        }(PIXI.Container);
-    e.ExpeditionCutin = s;
-    var a = function (t) {
-            function e() {
-                return t.call(this) || this
-            }
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0, e = this.children; t < e.length; t++) {
-                    var i = e[t],
-                        n = i;
-                    null != n && n.dispose()
-                }
-                this.removeChildren()
-            }, e
-        }(PIXI.Container),
+    var o = i(0),
+        r = i(18),
+        s = i(9),
+        a = i(7),
         _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.XPOS = [-164, -116, -102, -62, -36, 0, 65, 90, 141, 195, 215, 270], e.YPOS = [-33, 32, -51, -24, 48, -3, -47, 51, -30, 29, -45, -14], e
+            function e(e) {
+                void 0 === e && (e = !1);
+                var i = t.call(this) || this;
+                return i._url = "api_port/port", i._debug = e, i
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._particles = new Array;
-                for (var t in this.XPOS) {
-                    var e = new PIXI.Sprite(r.COMMON_EXPEDITION.getTexture(5));
-                    e.anchor.set(.5, .5), e.scale.set(0, 0), e.position.set(this.XPOS[t] + o.default.width / 2, this.YPOS[t] + o.default.height / 2), this.addChild(e), this._particles.push(e)
-                }
-            }, e.prototype.startAnim = function () {
-                if (null == this._tweens) {
-                    this._tweens = [];
-                    for (var t = 0; t < this._particles.length; t++) {
-                        var e = this._particles[t],
-                            i = createjs.Tween.get(e.scale).wait(100 * t).to({
-                                x: 1,
-                                y: 1
-                            }, 100).to({
-                                x: 0,
-                                y: 0
-                            }, 100);
-                        this._tweens.push(i)
-                    }
-                }
-            }, e.prototype.dispose = function () {
-                for (var t = 0, e = this._tweens; t < e.length; t++) {
-                    e[t].setPaused(!0)
-                }
-                this._tweens = null, this._particles = null, this.removeChildren()
+            return n(e, t), e.prototype._connect = function () {
+                this._post_data.api_sort_key = 5, this._post_data.spi_sort_order = 2, this._post_data.api_port = this._createKey(o.default.model.basic.member_id), t.prototype._connect.call(this)
+            }, e.prototype._completedEnd = function () {
+                var e = o.default.model.basic;
+                e.setUserData(a.ObjUtil.getObject(this._raw_data, "api_basic")), e.setPortBGMID(a.ObjUtil.getNumber(this._raw_data, "api_p_bgm_id")), e.setDutyExcutableCount(a.ObjUtil.getNumber(this._raw_data, "api_parallel_quest_count")), e.setDestroyShipSlotType(a.ObjUtil.getNumber(this._raw_data, "api_dest_ship_slot")), e.setEventData(a.ObjUtil.getObject(this._raw_data, "api_event_object")), e.setCFlag(a.ObjUtil.getNumber(this._raw_data, "api_c_flag")), o.default.model.deck.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_deck_port")), o.default.model.deck.combined.__update__(a.ObjUtil.getNumber(this._raw_data, "api_combined_flag")), o.default.model.log.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_log")), o.default.model.ship.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ship")), o.default.model.useItem.setMaterialData(a.ObjUtil.getObjectArray(this._raw_data, "api_material")), o.default.model.ndock.setData(a.ObjUtil.getObjectArray(this._raw_data, "api_ndock"));
+                var i = a.ObjUtil.getObject(this._raw_data, "api_friendly_setting"),
+                    n = a.ObjUtil.getNumber(i, "api_request_flag"),
+                    r = a.ObjUtil.getNumber(i, "api_request_type");
+                o.default.friendlyRequest.setData(n, r);
+                var s = o.default.model.slot,
+                    _ = a.ObjUtil.getObject(this._raw_data, "api_plane_info");
+                if (null != _) {
+                    var l = a.ObjUtil.getNumArray(_, "api_base_convert_slot");
+                    null != l ? s.setAirUnitRelocation(l) : s.setAirUnitRelocation(null);
+                    var u = a.ObjUtil.getObjectArray(_, "api_unset_slot");
+                    if (null != u)
+                        for (var c = 0, h = u; c < h.length; c++) {
+                            var p = h[c],
+                                d = a.ObjUtil.getNumber(p, "api_type3No"),
+                                f = a.ObjUtil.getNumArray(p, "api_slot_list");
+                            s.updateUnsetData(d, f)
+                        }
+                } else s.setAirUnitRelocation(null);
+                t.prototype._completedEnd.call(this)
+            }, e.prototype._getSeed = function (t) {
+                return r.PORT_API_SEED[t % 10]
+            }, e.prototype._createKey = function (t) {
+                var e = this._getSeed(t),
+                    i = Math.floor(Date.now() / 1e3),
+                    n = 1e3 * (Math.floor(9 * Math.random()) + 1) + t % 1e3,
+                    o = Math.floor(8999 * Math.random()) + 1e3,
+                    r = Math.floor(32767 * Math.random()) + 32768,
+                    s = Math.floor(10 * Math.random()),
+                    a = Math.floor(10 * Math.random()),
+                    _ = Math.floor(10 * Math.random()),
+                    l = parseInt(t.toString().substr(0, 4)),
+                    u = (4132653 + r) * (l + 1e3) - i + (1875979 + 9 * r),
+                    c = u - t,
+                    h = c * e,
+                    p = n.toString() + h.toString() + o.toString();
+                p = s.toString() + p;
+                var d = p.substr(0, 8),
+                    f = p.substr(8);
+                return p = d + a + f, d = p.substr(0, 18), f = p.substr(18), (p = d + _ + f) + r.toString()
             }, e
-        }(PIXI.Container)
+        }(s.APIBase);
+    e.PortAPI = _
 }

@@ -19,27 +19,26 @@ const function823 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(4),
-        s = i(37),
-        a = i(3),
-        _ = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(10));
-                i.position.set(2, 2), e.addChild(i), e._shipCanvas = new PIXI.Sprite, e.addChild(e._shipCanvas), e._levelText = new r.TextBox(66, 16777215), e._levelText.position.set(809, 89), e.addChild(e._levelText);
-                var n = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(11));
-                n.position.set(0, 3), e.addChild(n);
-                var o = new PIXI.Sprite(a.REMODEL_GRADEUP.getTexture(12));
-                return o.position.set(705, 95), e.addChild(o), e._nameText = new r.TextBox(39, 16777215), e._nameText.anchor.x = 1, e._nameText.position.set(969, 17), e.addChild(e._nameText), e
+                var e = t.call(this) || this;
+                return e._onMouseOver = function () {
+                    e.texture = e._textureOn
+                }, e._onMouseOut = function () {
+                    e.texture = e._textureOff
+                }, e._onClick = function () {
+                    null != e._cb_onClick && e._cb_onClick()
+                }, e._textureNone = o.REMODEL_GRADEUP.getTexture(5), e._textureOff = o.REMODEL_GRADEUP.getTexture(6), e._textureOn = o.REMODEL_GRADEUP.getTexture(7), e.texture = e._textureNone, e.on(r.EventType.CLICK, e._onClick), e.on(r.EventType.MOUSEOVER, e._onMouseOver), e.on(r.EventType.MOUSEOUT, e._onMouseOut), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                var e = t.mstID,
-                    i = t.isDamaged();
-                1 == o.default.resources.isLoadedShip(e, i, "remodel") ? this._shipCanvas.texture = o.default.resources.getShip(e, i, "remodel") : (this._shipCanvas.texture = PIXI.Texture.EMPTY, new s.TaskLoadShipResource("remodel", this._shipCanvas, e, i).start()), this._levelText.text = t.level.toString(), this._nameText.text = t.shipTypeName + " " + t.name
+            return n(e, t), e.prototype.initialize = function (t) {
+                this._cb_onClick = t
+            }, e.prototype.update = function (t) {
+                1 == t ? (this.texture = this._textureOff, this.interactive = this.buttonMode = !0) : (this.texture = this._textureNone, this.interactive = this.buttonMode = !1)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._levelText.destroy(), this._nameText.destroy(), this._shipCanvas = null, this._levelText = null, this._nameText = null
+                this._textureNone = null, this._textureOff = null, this._textureOn = null, this.off(r.EventType.CLICK, this._onClick), this.off(r.EventType.MOUSEOVER, this._onMouseOver), this.off(r.EventType.MOUSEOUT, this._onMouseOut), this._cb_onClick = null, this.removeChildren()
             }, e
-        }(PIXI.Container);
-    e.KaizoDetailHeader = _
+        }(PIXI.Sprite);
+    e.KaizoStartButton = s
 }

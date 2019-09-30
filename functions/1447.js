@@ -1,110 +1,58 @@
 const function1447 = function (t, e, i) {
     "use strict";
+    var n = this && this.__extends || function () {
+        var t = Object.setPrototypeOf || {
+            __proto__: []
+        }
+        instanceof Array && function (t, e) {
+            t.__proto__ = e
+        } || function (t, e) {
+            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
+        };
+        return function (e, i) {
+            function n() {
+                this.constructor = e
+            }
+            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
+        }
+    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var n = i(7),
-        o = i(477),
-        r = i(479),
-        s = i(478),
-        a = function () {
-            function t(t) {
-                this._o = t
+    var o = i(7),
+        r = i(475),
+        s = i(474),
+        a = i(476),
+        _ = i(1448),
+        l = i(1449),
+        u = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._o = e, i._raw = new l.RawNightBattleData(e), i._common = new a.BattleCommonModel(e), i
             }
-            return Object.defineProperty(t.prototype, "ration", {
+            return n(e, t), Object.defineProperty(e.prototype, "phase", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration");
-                    return null == t ? [] : t
+                    return "night"
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "ration_combined", {
+            }), Object.defineProperty(e.prototype, "raw", {
                 get: function () {
-                    var t = n.ObjUtil.getNumArray(this._o, "api_combat_ration_combined");
-                    return null == t ? [] : t
+                    return this._raw
                 },
                 enumerable: !0,
                 configurable: !0
-            }), Object.defineProperty(t.prototype, "support_air", {
-                get: function () {
-                    if (1 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_hou", {
-                get: function () {
-                    if (2 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_rai", {
-                get: function () {
-                    if (3 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_hourai");
-                    return new s.SupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "support_taisen", {
-                get: function () {
-                    if (4 != n.ObjUtil.getNumber(this._o, "api_n_support_flag")) return null;
-                    var t = n.ObjUtil.getObject(this._o, "api_n_support_info");
-                    if (null == t) return null;
-                    var e = n.ObjUtil.getObject(t, "api_support_airatack");
-                    return new o.AirSupportData(e)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_hougeki");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki1", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki1");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(t.prototype, "hougeki2", {
-                get: function () {
-                    var t = n.ObjUtil.getObject(this._o, "api_n_hougeki2");
-                    return null == t ? null : new r.HougekiListNightData(t)
-                },
-                enumerable: !0,
-                configurable: !0
-            }), t.prototype.getTouchPlaneFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 1 ? -1 : t[0]
-            }, t.prototype.getTouchPlaneEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_touch_plane");
-                return null == t || t.length < 2 ? -1 : t[1]
-            }, t.prototype.getFlareLightFriend = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 1 ? -1 : t[0]
-            }, t.prototype.getFlareLightEnemy = function () {
-                if (null == this._o) return -1;
-                var t = n.ObjUtil.getNumArray(this._o, "api_flare_pos");
-                return null == t ? -1 : t.length < 2 ? -1 : t[1]
-            }, t.prototype.hasDayBattle = function () {
-                return 1 == n.ObjUtil.getNumber(this._o, "api_day_flag")
-            }, t
-        }();
-    e.RawNightBattleData = a
+            }), e.prototype.getAllyAttack = function () {
+                var t = o.ObjUtil.getObject(this._o, "api_friendly_info"),
+                    e = o.ObjUtil.getObject(this._o, "api_friendly_battle");
+                return null == t || null == e ? null : new _.AllyAttackModel(t, e)
+            }, e.prototype.getRation = function () {
+                return this._raw.ration
+            }, e.prototype.getRationCombined = function () {
+                return this._raw.ration_combined
+            }, e.prototype.getDayRecord = function () {
+                return 1 == this.raw.hasDayBattle() ? new s.BattleRecordDay(this._o) : null
+            }, e
+        }(r.BattleRecord);
+    e.BattleRecordNight = u
 }

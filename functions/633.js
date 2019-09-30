@@ -20,166 +20,65 @@ const function633 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(2),
-        s = i(24),
-        a = i(67),
-        _ = i(23),
-        l = i(66),
-        u = i(10),
-        c = i(634),
-        h = i(635),
-        p = i(636),
-        d = i(204),
-        f = function (t) {
-            function e(e, i, n, o) {
-                var r = t.call(this) || this;
-                return r._layer = e, r._items = i, r._direction = n, r._effType = o, r
+        r = i(23),
+        s = i(67),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._items = [], e._canvas = new PIXI.Container, e.addChild(e._canvas), e._images = [], e
             }
-            return n(e, t), e.prototype._start = function () {
-                switch (this._effType) {
-                    case 0:
-                        this._effctSlotitem();
-                        break;
+            return n(e, t), e.prototype.add = function (t) {
+                this._items.push(t)
+            }, e.prototype.initialize = function (t) {
+                this._loadUseitemResources(t)
+            }, e.prototype._loadUseitemResources = function (t) {
+                for (var e = this, i = new s.UseitemLoader, n = 0, o = this._items; n < o.length; n++) {
+                    var r = o[n];
+                    6 == r.type && i.add(r.id, 2)
+                }
+                i.load(function () {
+                    e._loadSlotitemResources(t)
+                })
+            }, e.prototype._loadSlotitemResources = function (t) {
+                for (var e = this, i = new r.SlotLoader, n = 0, o = this._items; n < o.length; n++) {
+                    var s = o[n];
+                    2 == s.type && i.add(s.id, "card")
+                }
+                i.load(function () {
+                    e._display(), t && t()
+                })
+            }, e.prototype._display = function () {
+                for (var t = 0, e = this._items; t < e.length; t++) {
+                    var i = e[t];
+                    if (6 == i.type) {
+                        var n = new PIXI.Sprite;
+                        n.texture = o.default.resources.getUseitem(i.id, 2), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(135 / n.width), this._canvas.addChild(n), this._images.push(n)
+                    } else {
+                        var n = new PIXI.Sprite;
+                        n.texture = o.default.resources.getSlotitem(i.id, "card"), i.size > 0 ? n.scale.set(i.size / n.width) : n.scale.set(168 / n.width), this._canvas.addChild(n), this._images.push(n)
+                    }
+                }
+                this._layout()
+            }, e.prototype._layout = function () {
+                for (var t = 0, e = 0, i = 0, n = this._images; i < n.length; i++) {
+                    var o = n[i];
+                    t = Math.max(t, o.width), e = Math.max(e, o.height)
+                }
+                switch (this._images.length) {
                     case 1:
-                        this._effctUseitem();
+                        this._images[0].x = 0, this._images[0].y = 0;
                         break;
                     case 2:
-                        this._effctTojoin()
+                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height;
+                        break;
+                    case 3:
+                        this._images[0].x = 0, this._images[0].y = e - this._images[0].height, this._images[1].x = this._images[0].width + 4, this._images[1].y = e - this._images[1].height, this._images[2].x = this._images[1].x + this._images[1].width + 4, this._images[2].y = e - this._images[2].height;
+                        break;
+                    case 4:
+                        this._images[0].x = t - this._images[0].width - Math.round(2), this._images[0].y = e - this._images[0].height - Math.round(2), this._images[1].x = t + Math.round(2), this._images[1].y = e - this._images[1].height - Math.round(2), this._images[2].x = t - this._images[2].width - Math.round(2), this._images[2].y = e + Math.round(2), this._images[3].x = t + Math.round(2), this._images[3].y = e + Math.round(2)
                 }
-            }, e.prototype._effctSlotitem = function () {
-                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
-                    var o = n[i];
-                    e.add(o)
-                }
-                e.initialize(function () {
-                    var i = 1 == t._direction,
-                        n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
-                        o = 600 + e.width / 4 * (i ? -1 : 1),
-                        r = n + .5 * (o - n);
-                    e.x = n, e.y = 720, t._layer.addChild(e);
-                    var s = new c.MeltIntoSlotitemFilter(o, e.width, t._direction);
-                    e.filters = [s];
-                    for (var a = new PIXI.Point(n, 720), h = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, h, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
-                        var v = g[m];
-                        y.to({
-                            x: v.x,
-                            y: v.y
-                        }, v.t)
-                    }
-                    var b = {
-                        rate: 1,
-                        grad: .4
-                    };
-                    createjs.Tween.get(b, {
-                        onChange: function () {
-                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
-                        }
-                    }).wait(600).to({
-                        rate: -.4
-                    }, 400).wait(500).call(function () {
-                        t._layer.removeChild(e), t._endTask()
-                    });
-                    var w = new PIXI.Sprite(u.COMMON_MISC.getTexture(116));
-                    w.anchor.set(.5), w.alpha = 0;
-                    var x = new _.Container;
-                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
-                        scaleX: 1,
-                        scaleY: 1
-                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({
-                        alpha: .9
-                    }, 200).wait(150).to({
-                        alpha: 0
-                    }, 450).call(function () {
-                        var t = x.parent;
-                        null != t && t.removeChild(x)
-                    })
-                })
-            }, e.prototype._effctUseitem = function () {
-                for (var t = this, e = new p.MeltIntoSprite, i = 0, n = this._items; i < n.length; i++) {
-                    var o = n[i];
-                    e.add(o)
-                }
-                e.initialize(function () {
-                    var i = 1 == t._direction,
-                        n = (i ? 0 : 1200) + e.width / 2 * (i ? -1 : 1),
-                        o = 600 + e.width / 4 * (i ? -1 : 1),
-                        r = n + .5 * (o - n);
-                    e.x = n, e.y = 720, t._layer.addChild(e);
-                    var s = new h.MeltIntoUseitemFilter(o, 240, e.width, e.height, t._direction);
-                    e.filters = [s];
-                    for (var a = new PIXI.Point(n, 720), c = new PIXI.Point(r, 0), p = new PIXI.Point(o, 240), d = l.TweenUtil.signOut, f = l.TweenUtil.create2BezierPoints(a, c, p, 1e3, d), y = createjs.Tween.get(e), m = 0, g = f; m < g.length; m++) {
-                        var v = g[m];
-                        y.to({
-                            x: v.x,
-                            y: v.y
-                        }, v.t)
-                    }
-                    var b = {
-                        rate: 1,
-                        grad: .4
-                    };
-                    createjs.Tween.get(b, {
-                        onChange: function () {
-                            s.uniforms.x = e.x, s.uniforms.rate = b.rate, s.uniforms.grad = b.grad
-                        }
-                    }).wait(600).to({
-                        rate: -.4
-                    }, 400).wait(500).call(function () {
-                        t._layer.removeChild(e), t._endTask()
-                    });
-                    var w = new PIXI.Sprite(u.COMMON_MISC.getTexture(116));
-                    w.anchor.set(.5), w.alpha = 0;
-                    var x = new _.Container;
-                    x.x = o, x.y = 240, x.scale.set(.5), x.addChild(w), t._layer.addChild(x), createjs.Tween.get(x).wait(600).to({
-                        scaleX: 1,
-                        scaleY: 1
-                    }, 800, createjs.Ease.cubicOut), createjs.Tween.get(w).wait(600).to({
-                        alpha: .9
-                    }, 200).wait(150).to({
-                        alpha: 0
-                    }, 450).call(function () {
-                        var t = x.parent;
-                        null != t && t.removeChild(x)
-                    })
-                })
-            }, e.prototype._effctTojoin = function () {
-                var t = this,
-                    e = this._items[0].id,
-                    i = this._items[0].type;
-                this._getTextureForTojoinEffct(e, i, function (e) {
-                    var i = new d.CenteringSprite(e);
-                    i.x = 600 + 195 * (1 == t._direction ? -1 : 1), i.y = 240, i.scale.set(1.1), i.alpha = 0, t._layer.addChild(i), createjs.Tween.get(i).to({
-                        scaleX: 1,
-                        scaleY: 1,
-                        alpha: 1
-                    }, 300).wait(250).to({
-                        x: 600,
-                        alpha: 0
-                    }, 600, createjs.Ease.sineIn).wait(500).call(function () {
-                        t._layer.removeChild(i), t._endTask()
-                    })
-                })
-            }, e.prototype._getTextureForTojoinEffct = function (t, e, i) {
-                if (6 == e) {
-                    var n = new a.UseitemLoader;
-                    n.add(t, 1), n.load(function () {
-                        if (i) {
-                            var e = o.default.resources.getUseitem(t, 1);
-                            return i(e)
-                        }
-                    })
-                } else if (2 == e) {
-                    var n = new s.SlotLoader;
-                    n.add(t, "card"), n.load(function () {
-                        if (i) {
-                            var e = o.default.resources.getSlotitem(t, "card");
-                            return i(e)
-                        }
-                    })
-                }
-            }, e.prototype._endTask = function () {
-                this._layer = null, this._items = null, t.prototype._endTask.call(this)
+                this._canvas.x = -Math.round(this._canvas.width / 2), this._canvas.y = -Math.round(this._canvas.height / 2)
             }, e
-        }(r.TaskBase);
-    e.MeltIntoTask = f
+        }(PIXI.Container);
+    e.MeltIntoSprite = a
 }

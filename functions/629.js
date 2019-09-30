@@ -20,51 +20,48 @@ const function629 = function (t, e, i) {
         value: !0
     });
     var o = i(10),
-        r = i(8),
-        s = i(31),
-        a = i(31),
-        _ = i(305),
-        l = i(204),
-        u = function (t) {
+        r = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = t.call(this) || this;
+                return e._onUpdate = function () {
+                    if (e.children.length < 20 && Math.random() < .1) {
+                        var t = new s;
+                        e.addChild(t)
+                    }
+                    for (var i = 0, n = e.children; i < n.length; i++) {
+                        var o = n[i],
+                            t = o;
+                        null != t && t.update()
+                    }
+                }, e
             }
-            return n(e, t), e.prototype._initBG = function () {
-                var t = this;
-                this._bg = new s.RarityBG, this._bg.initiailzeForUseitem(function () {
-                    t._animation()
-                })
-            }, e.prototype._createItemTobe = function (t, e) {
-                var i = o.COMMON_MISC.getTexture(49),
-                    n = new l.CenteringSprite(i);
-                return n.position.set(600, 240), n.alpha = 0, n.scale.set(.7), n
-            }, e.prototype._change = function () {
-                var e = this;
-                t.prototype._change.call(this);
-                var i = new PIXI.Sprite(o.COMMON_MISC.getTexture(68));
-                i.x = -i.width / 2, i.y = -i.height / 2;
-                var n = new a.Container;
-                n.addChild(i), n.alpha = 0, n.x = 600, n.y = 360, this._layer.addChild(n), createjs.Tween.get(n).wait(650).to({
-                    scaleX: 3.3,
-                    scaleY: 3.3,
-                    alpha: 1
-                }, 350).to({
-                    scaleX: 5,
-                    scaleY: 5
-                }, 300).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._layer.removeChild(n)
-                });
-                var s = new r.AreaBox(1, 16777215);
-                s.alpha = 0, this._layer.addChild(s), createjs.Tween.get(s).wait(650).wait(200).to({
-                    alpha: 1
-                }, 500).wait(600).to({
-                    alpha: 0
-                }, 300).call(function () {
-                    e._layer.removeChild(s)
-                })
+            return n(e, t), e.prototype.activate = function () {
+                null == this._t && (this._t = createjs.Tween.get(null, {
+                    loop: !0
+                }).wait(35).call(this._onUpdate))
+            }, e.prototype.deactivate = function () {
+                null != this._t && (this._t.setPaused(!0), this._t = null, this.removeChildren())
+            }, e.prototype.dispose = function () {
+                this.deactivate()
             }, e
-        }(_.ModelChangeTask);
-    e.AirunitBaseOpenTask = u
+        }(PIXI.Container);
+    e.ModelChangeParticleLayer = r;
+    var s = function (t) {
+        function e() {
+            var e = t.call(this, o.COMMON_MISC.getTexture(51)) || this;
+            return e._state = 0, e.anchor.set(.5), e.x = 600, e.y = 360 + 300 * Math.random() - 225, e.scale.set(.1), e.alpha = 0, e._dir = Math.random() < .5 ? 1 : -1, e._life = 60 * Math.random() + 30, e._xspd = 1.2 * (7 * Math.random() + 6) * e._dir, e._yspd = 1.2 * -9, e._gg = .36, e
+        }
+        return n(e, t), e.prototype.update = function () {
+            switch (this.x += this._xspd, this.y += this._yspd, this._yspd += this._gg, this.scale.x < .6 && (this.scale.x = this.scale.x + .1, this.scale.y = this.scale.y + .1), this.rotation += 3 * this._dir / 180 * Math.PI, this._state) {
+                case 0:
+                    this.alpha += .1, this.alpha >= 1 && (this._state = 1);
+                    break;
+                case 1:
+                    this._life--, this._life <= 0 && (this._state = 2);
+                    break;
+                case 2:
+                    this.parent.removeChild(this)
+            }
+        }, e
+    }(PIXI.Sprite)
 }

@@ -10,8 +10,17 @@ const function90 = function (t, e, i) {
             return !(n.default.model.useItem.get(31).count < t) && (!(n.default.model.useItem.get(32).count < e) && (!(n.default.model.useItem.get(33).count < i) && (!(n.default.model.useItem.get(34).count < o) && (!(n.default.model.useItem.get(3).count < r) && !(n.default.model.useItem.get(2).count < s)))))
         }
 
-        function i(t, e, i, o, r) {
-            return !(n.default.model.useItem.get(31).count < t) && (!(n.default.model.useItem.get(32).count < e) && (!(n.default.model.useItem.get(33).count < i) && (!(n.default.model.useItem.get(34).count < o) && !(n.default.model.useItem.get(3).count < r))))
+        function i(t, e, i, o, r, s) {
+            var a = n.default.model.useItem.get(31).count;
+            if (s && (t *= 3), a < t) return !1;
+            var _ = n.default.model.useItem.get(32).count;
+            if (s && (e *= 3), _ < e) return !1;
+            var l = n.default.model.useItem.get(33).count;
+            if (s && (i *= 3), l < i) return !1;
+            var u = n.default.model.useItem.get(34).count;
+            if (s && (o *= 3), u < o) return !1;
+            var c = n.default.model.useItem.get(3).count;
+            return s && (r *= 3), !(c < r)
         }
 
         function o(t) {
@@ -30,25 +39,25 @@ const function90 = function (t, e, i) {
         function r(t) {
             switch (t) {
                 case 0:
-                    return 165;
-                case 1:
-                    return 166;
-                case 2:
-                    return 167;
-                case 3:
                     return 168;
-                case 4:
+                case 1:
                     return 169;
-                case 5:
+                case 2:
                     return 170;
-                case 6:
+                case 3:
                     return 171;
-                case 7:
+                case 4:
                     return 172;
-                case 8:
+                case 5:
                     return 173;
+                case 6:
+                    return 174;
+                case 7:
+                    return 175;
+                case 8:
+                    return 176;
                 case 9:
-                    return 174
+                    return 177
             }
             throw new Error("unsupported param:" + t)
         }

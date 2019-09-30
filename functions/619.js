@@ -19,74 +19,93 @@ const function619 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(193),
-        r = i(194),
-        s = i(195),
-        a = i(196),
-        _ = i(289),
-        l = i(1),
-        u = i(0),
-        c = i(291),
-        h = i(290),
-        p = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                e._gear = new _.Gear, e._gear.position.set(1242, 758), e.addChild(e._gear), e._side = new PIXI.Sprite, e.addChild(e._side), e._side.interactive = !0, e._side.buttonMode = !0;
-                var i = e._side.position.y;
-                return e._side.addListener(l.EventType.MOUSEOVER, function () {
-                    e._side.buttonMode = 0 == u.default.scene.now
-                }), e._side.addListener(l.EventType.CLICK, function () {
-                    if (0 == u.default.scene.now) {
-                        var t = u.default.model.deck.get(1).getShipModel(0),
-                            n = u.default.model.basic.getFlagShipPosIDCli(),
-                            o = u.default.view.getNowScene().flagShip.chara,
-                            r = h.PortConst.getMoveXValue(t.mstID),
-                            s = 0;
-                        0 == n ? (s = o.position.x + r, n = 1) : (s = o.position.x - r, n = 0);
-                        var a = c.$_$.Parallel(function () {
-                            return c.$_$.Sequence(function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i - 20
-                                }, 150)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i + 15
-                                }, 150)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i - 10
-                                }, 100)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i + 5
-                                }, 100)
-                            }, function () {
-                                return c.$_$.Value(e._side.position, {
-                                    y: i
-                                }, 100)
-                            })
-                        }, function () {
-                            return c.$_$.Value(o.position, {
-                                x: s
-                            }, 600, createjs.Ease.cubicOut)
-                        });
-                        u.default.view.clickGuard = !0, a.execute(function () {
-                            a.dispose(), u.default.view.clickGuard = !1, u.default.model.basic.setFlagShipPosIDCli(n)
-                        })
-                    }
-                }), e._btm = new PIXI.Sprite, e.addChild(e._btm), e
+    var o = i(0),
+        r = i(6),
+        s = i(294),
+        a = i(295),
+        _ = i(296),
+        l = i(297),
+        u = i(157),
+        c = i(1),
+        h = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._mouse_down = !1, i._open_force = !1, i._onMouseOver = function () {
+                    i._mouse_down = !1, i._open()
+                }, i._onMouseOut = function () {
+                    i._mouse_down = !1, i._close()
+                }, i._onMouseDown = function () {
+                    i._mouse_down = !0
+                }, i._onMouseUp = function () {
+                    1 == i._mouse_down && o.default.scene.change(i._type) && r.SE.play("246"), i._mouse_down = !1
+                }, i._type = e, i._content = new p, i._content.alpha = 0, i.addChild(i._content), i
             }
-            return n(e, t), e.prototype.initialize = function (t) {
-                this.changeSkin(t), this._gear.activate()
-            }, e.prototype.changeSkin = function (t) {
-                101 == t || 102 == t ? (this._side.texture = o.PORT_SKIN_1.getTexture(13), this._btm.texture = o.PORT_SKIN_1.getTexture(11), this._btm.position.set(388, 706)) : 201 == t ? (this._side.texture = r.PORT_SKIN_2.getTexture(5), this._btm.texture = r.PORT_SKIN_2.getTexture(3), this._btm.position.set(382, 705)) : 301 == t ? (this._side.texture = s.PORT_SKIN_3.getTexture(5), this._btm.texture = s.PORT_SKIN_3.getTexture(3), this._btm.position.set(387, 707)) : 311 == t ? (this._side.texture = a.PORT_SKIN_3K.getTexture(21), this._btm.texture = a.PORT_SKIN_3K.getTexture(19), this._btm.position.set(387, 707)) : (this._side.texture = PIXI.Texture.EMPTY, this._btm.texture = PIXI.Texture.EMPTY);
-                var e = PIXI.Texture.EMPTY;
-                e = 101 == t || 102 == t ? o.PORT_SKIN_1.getTexture(2) : 201 == t ? r.PORT_SKIN_2.getTexture(2) : 301 == t ? s.PORT_SKIN_3.getTexture(2) : 311 == t ? a.PORT_SKIN_3K.getTexture(6) : PIXI.Texture.EMPTY, this._gear.setUp(e)
-            }, e.prototype.update = function (t) {
-                0 == t ? (this.visible = !0, this._gear.visible = !0) : 11 == t || 12 == t || 13 == t || 14 == t || 15 == t || 31 == t || 16 == t ? (this.visible = !0, this._gear.visible = !1) : (this.visible = !1, this._gear.visible = !1)
+            return n(e, t), e.prototype.initialize = function () {
+                this._content.initialize(this._type, this._onMouseOver, this._onMouseOut, this._onMouseDown, this._onMouseUp), this._onMouseOut()
+            }, e.prototype.activate = function () {
+                this._content.activate()
+            }, e.prototype.deactivate = function () {
+                this._content.deactivate(), this._onMouseOut()
+            }, e.prototype.interactiveApply = function (t) {
+                this._content.interactiveApply(t)
             }, e.prototype.dispose = function () {
-                this._gear.dispose()
+                this._content.dispose(), this._stopOpenTween(), this._stopCloseTween()
+            }, e.prototype.open = function () {
+                this._open_force = !0, this._open()
+            }, e.prototype.close = function () {
+                this._open_force = !1, this._close()
+            }, e.prototype._open = function () {
+                var t = this;
+                this._stopCloseTween(), null == this._t_open && (this._t_open = createjs.Tween.get(this._content).to({
+                    x: 75,
+                    alpha: 1
+                }, 700).call(function () {
+                    t._t_open = null
+                }))
+            }, e.prototype._close = function () {
+                var t = this;
+                1 != this._open_force && (this._stopOpenTween(), null == this._t_close && (this._t_close = createjs.Tween.get(this._content).to({
+                    x: 0,
+                    alpha: 0
+                }, 700).call(function () {
+                    t._t_close = null
+                })))
+            }, e.prototype._stopOpenTween = function () {
+                null != this._t_open && (this._t_open.setPaused(!0), this._t_open = null)
+            }, e.prototype._stopCloseTween = function () {
+                null != this._t_close && (this._t_close.setPaused(!0), this._t_close = null)
             }, e
         }(PIXI.Container);
-    e.FrameLayer = p
+    e.RingMenuBtnRevamp = h;
+    var p = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._bg_on.visible = !0, e._bg_on.activate(), e._img.visible = !1, e._img_on.visible = !0, e._showWaves(), e._description.show(), null != e._cb_onMouseOver && e._cb_onMouseOver()
+            }, e._onMouseOut = function () {
+                e._bg_on.visible = !1, e._bg_on.deactivate(), e._img.visible = !0, e._img_on.visible = !1, e._setScale(1), e._hideWaves(), e._description.hide(), null != e._cb_onMouseOut && e._cb_onMouseOut()
+            }, e._onMouseDown = function () {
+                e._bg_on.visible = !0, e._bg_on.deactivate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(.9), e._hideWaves(), e._description.hide(), null != e._cb_onMouseDown && e._cb_onMouseDown()
+            }, e._onMouseUp = function () {
+                e._bg_on.visible = !0, e._bg_on.activate(), e._img.visible = !1, e._img_on.visible = !0, e._setScale(1), e._showWaves(), e._description.show(), null != e._cb_onMouseUp && e._cb_onMouseUp()
+            }, e._bg_on = new s.RingMenuBtnBgOn, e.addChild(e._bg_on), e._img = new _.RingMenuBtnImg, e.addChild(e._img), e._img_on = new l.RingMenuBtnImgOn, e.addChild(e._img_on), e._waves = new u.RingMenuWaves, e._description = new a.RingMenuBtnDescription, e.addChild(e._description), e._hit_area = new PIXI.Graphics, e._hit_area.beginFill(0, 0), e._hit_area.drawCircle(0, 0, 71), e._hit_area.endFill(), e.addChild(e._hit_area), e._hit_area.interactive = !0, e
+        }
+        return n(e, t), e.prototype.initialize = function (t, e, i, n, o) {
+            this._bg_on.initialize(), this._img.initialize(t), this._img_on.initialize(t), this._waves.initialize(), this._description.initialize(t), this._onMouseOut(), this._cb_onMouseOver = e, this._cb_onMouseOut = i, this._cb_onMouseDown = n, this._cb_onMouseUp = o
+        }, e.prototype.activate = function () {
+            1 != this._hit_area.buttonMode && (this._hit_area.buttonMode = !0, this._hit_area.on(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.on(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.on(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.on(c.EventType.MOUSEUP, this._onMouseUp))
+        }, e.prototype.deactivate = function () {
+            this._hit_area.buttonMode = !1, this._hit_area.off(c.EventType.MOUSEOVER, this._onMouseOver), this._hit_area.off(c.EventType.MOUSEOUT, this._onMouseOut), this._hit_area.off(c.EventType.MOUSEDOWN, this._onMouseDown), this._hit_area.off(c.EventType.MOUSEUP, this._onMouseUp)
+        }, e.prototype.interactiveApply = function (t) {
+            this._hit_area.interactive = t
+        }, e.prototype.dispose = function () {
+            this.deactivate(), this._hideWaves(), this._bg_on.dispose(), this._cb_onMouseOver = null, this._cb_onMouseOut = null, this._cb_onMouseDown = null, this._cb_onMouseUp = null
+        }, e.prototype._showWaves = function () {
+            null == this._waves.parent && (this.addChild(this._waves), this._waves.startAnimation())
+        }, e.prototype._hideWaves = function () {
+            null != this._waves.parent && (this.removeChild(this._waves), this._waves.stopAnimation())
+        }, e.prototype._setScale = function (t) {
+            this._bg_on.scale.set(t), this._img.scale.set(t), this._img_on.scale.set(t)
+        }, e
+    }(PIXI.Container)
 }

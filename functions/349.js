@@ -29,16 +29,16 @@ const function349 = function (t, e, i) {
             return n(e, t), e.prototype.update = function (t, e) {
                 switch (t) {
                     case 31:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(157);
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(160);
                         break;
                     case 32:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(159);
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(162);
                         break;
                     case 33:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(161);
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(164);
                         break;
                     case 34:
-                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(163)
+                        this.iconMaterial.texture = r.ARSENAL_MAIN.getTexture(166)
                 }
                 this.textCount.text = e.toString()
             }, e.prototype.dispose = function () {

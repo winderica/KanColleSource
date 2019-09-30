@@ -19,98 +19,101 @@ const function1370 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(17),
-        r = i(12),
-        s = i(16),
-        a = i(184),
-        _ = i(143),
+    var o = i(4),
+        r = i(61),
+        s = i(70),
+        a = i(25),
+        _ = i(16),
         l = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                e._bg = new o.FadeBox(.7, 8900331), e._bg.hide(0), e.addChild(e._bg), e._chara = new PIXI.Container, e.addChild(e._chara), e._telop_bg = new a.TelopBG, e._telop_bg.position.set(600, 150), e._telop_bg.alpha = 0, e.addChild(e._telop_bg), e._slot_bg1 = new a.TelopBG, e.addChild(e._slot_bg1), e._slot1 = new r.Sprite, e._slot1.anchor.set(.5), e._slot1.scale.set(.9), e._slot1.alpha = 0, e.addChild(e._slot1), e._slot_bg2 = new a.TelopBG, e.addChild(e._slot_bg2), e._slot2 = new r.Sprite, e._slot2.anchor.set(.5), e._slot2.scale.set(.9), e._slot2.alpha = 0, e._slot1_text = new r.Sprite, e._slot1_text.scale.set(.76), e._slot1_text.alpha = 0, e._slot2_text = new r.Sprite, e._slot2_text.scale.set(.76), e._slot2_text.alpha = 0, e._telop = new r.Sprite, e._telop.anchor.set(.5), e._telop.position.set(600, 150), e._telop.alpha = 0, e._plane = new _.Plane(.88), e.addChild(e._slot2), e.addChild(e._slot1_text), e.addChild(e._slot2_text), e.addChild(e._telop), e.addChild(e._plane);
-                var i = new PIXI.Graphics;
-                return i.beginFill(0), i.drawRect(0, 321, 1200, 138), i.endFill(), e.addChild(i), e._slot1.mask = i, i = new PIXI.Graphics, i.beginFill(0), i.drawRect(0, 530, 1200, 138), i.endFill(), e.addChild(i), e._slot2.mask = i, e
+                return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._gauge = new c, e.addChild(e._gauge), e._ship_name = new u(46, 16774898), e.addChild(e._ship_name), e._level = new o.TextBox(32, 16774898), e.addChild(e._level), e._karyoku = new o.TextBox(24, 16774898), e._raisou = new o.TextBox(24, 16774898), e._taiku = new o.TextBox(24, 16774898), e._soukou = new o.TextBox(24, 16774898), e.addChild(e._karyoku), e.addChild(e._raisou), e.addChild(e._taiku), e.addChild(e._soukou), e._ring = new s.RingSmall, e._ring.visible = !1, e.addChild(e._ring), e._slotIcons = [], e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "bg", {
-                get: function () {
-                    return this._bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "chara", {
-                get: function () {
-                    return this._chara
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop_bg", {
-                get: function () {
-                    return this._telop_bg
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg1", {
-                get: function () {
-                    return this._slot_bg1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1", {
-                get: function () {
-                    return this._slot1
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot_bg2", {
-                get: function () {
-                    return this._slot_bg2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2", {
-                get: function () {
-                    return this._slot2
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot1_text", {
-                get: function () {
-                    return this._slot1_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "slot2_text", {
-                get: function () {
-                    return this._slot2_text
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "telop", {
-                get: function () {
-                    return this._telop
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "plane", {
-                get: function () {
-                    return this._plane
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.initialize = function (t, e) {
-                switch (this._telop_bg.initialize(t, !0), this._slot_bg1.initialize(t, !0), this._slot_bg2.initialize(t, !0), 1 == t ? (this._slot_bg1.position.set(0 - this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(1200 + this._slot_bg2.width / 2, 600)) : (this._slot_bg1.position.set(1200 + this._slot_bg1.width / 2, 390), this._slot_bg2.position.set(0 - this._slot_bg2.width / 2, 600)), e) {
-                    case 1:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(141);
-                        break;
-                    case 2:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(135);
-                        break;
-                    default:
-                        this._telop.texture = s.BATTLE_MAIN.getTexture(139)
-                }
+            return n(e, t), e.prototype.initilize = function (t) {
+                var e = t.friend,
+                    i = t.slots,
+                    n = t.isMarriage();
+                this._updateBackground(e, i), this._updateHPGauge(e, t.hp_now, t.hp_max), this._updateShipNameText(t.name, e, i, n), 1 == t.friend ? (this._level.position.set(56, 66), this._karyoku.position.set(94, 108), this._raisou.position.set(214, 108), this._taiku.position.set(334, 108), this._soukou.position.set(448, 108)) : (this._level.position.set(131, 66), this._karyoku.position.set(168, 108), this._raisou.position.set(288, 108), this._taiku.position.set(408, 108), this._soukou.position.set(522, 108)), n ? (this._ring.x = 1 == t.friend ? 152 : 233, this._ring.y = 69, this._ring.initialize(), this._ring.activate(), this._ring.visible = !0) : (this._ring.deactivate(), this._ring.visible = !1), this._level.text = t.level.toString(), this._karyoku.text = t.karyoku.toString(), this._raisou.text = t.raisou.toString(), this._taiku.text = t.taiku.toString(), this._soukou.text = t.soukou.toString(), this._updateSlot(e, i)
             }, e.prototype.dispose = function () {
-                this.removeChildren()
+                if (this.removeChildren(), this._bg = null, this._gauge = null, null != this._slotIcons)
+                    for (var t = 0, e = this._slotIcons; t < e.length; t++) {
+                        var i = e[t];
+                        i.dispose()
+                    }
+                this._slotIcons = null, this._ship_name.dispose(), this._ship_name = null, this._level.destroy(), this._level = null, this._karyoku.destroy(), this._karyoku = null, this._raisou.destroy(), this._raisou = null, this._taiku.destroy(), this._taiku = null, this._soukou.destroy(), this._soukou = null, this._ring.dispose(), this._ring = null
+            }, e.prototype._updateBackground = function (t, e) {
+                var i;
+                i = e.length >= 5 ? t ? 120 : 118 : t ? 119 : 117, this._bg.texture = _.BATTLE_MAIN.getTexture(i)
+            }, e.prototype._updateHPGauge = function (t, e, i) {
+                this._gauge.x = t ? 192 : 267, this._gauge.y = 81, this._gauge.initialize(e / i)
+            }, e.prototype._updateShipNameText = function (t, e, i, n) {
+                this._ship_name.position.set(e ? 15 : 92, 6);
+                var o = {
+                    text: t,
+                    color: n ? 16766947 : 16774898,
+                    maskW: i.length >= 5 ? 185 : 230,
+                    maskH: 53
+                };
+                this._ship_name.update(o)
+            }, e.prototype._updateSlot = function (t, e) {
+                for (; this._slotIcons.length > 0;) {
+                    var i = this._slotIcons.pop();
+                    null != i.parent && i.parent.removeChild(i)
+                }
+                if (null != e) {
+                    var n;
+                    n = t ? e.length >= 5 ? 203 : 263 : e.length >= 5 ? 282 : 342;
+                    for (var o = 0; o < e.length; o++) {
+                        var r = new h;
+                        r.x = n + 60 * o, r.y = 18;
+                        var s = e[o];
+                        null == s ? r.visible = !1 : r.initialize(s.iconType), this.addChild(r), this._slotIcons.push(r)
+                    }
+                }
             }, e
         }(PIXI.Container);
-    e.CutinDanchakuCanvas = l
+    e.CutinStatusBox = l;
+    var u = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._text = new o.TextBox(e, i), n.addChild(n._text);
+                var r = new PIXI.Graphics;
+                return n.addChild(r), n.mask = r, n
+            }
+            return n(e, t), e.prototype.update = function (t) {
+                if (this.cacheAsBitmap = !1, null != t.text && t.text.length > 0 && (this._text.text = t.text), null != t.color && (this._text.style.fill = t.color), t.maskW > 0 && t.maskH > 0) {
+                    this.mask.beginFill(0, 0).drawRect(0, 0, t.maskW, t.maskH).endFill()
+                }
+                this.cacheAsBitmap = !0
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy(), this.cacheAsBitmap = !1, this.mask = null
+            }, e
+        }(PIXI.Container),
+        c = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._GAUGE_WIDTH_ = 300, e._GAUGE_HEIGHT_ = 12, e._bar = new PIXI.Graphics, e.addChild(e._bar);
+                var i = new PIXI.Graphics;
+                return e._drawShape(i, 0), e.addChild(i), e._bar.mask = i, e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                t = Math.max(t, 0), t = Math.min(t, 1), this._bar.x = -this._GAUGE_WIDTH_ * (1 - t);
+                var e = a.MathUtil.getColor(t);
+                this._drawShape(this._bar, e)
+            }, e.prototype._drawShape = function (t, e) {
+                var i = this._GAUGE_HEIGHT_ / 2;
+                t.beginFill(e), t.arc(i, i, i, Math.PI / 2, Math.PI / 2 * 3), t.arc(this._GAUGE_WIDTH_ - i, i, i, -Math.PI / 2, Math.PI / 2), t.endFill()
+            }, e
+        }(PIXI.Container),
+        h = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._icon = new r.IconWeapon, e.addChild(e._icon), e
+            }
+            return n(e, t), e.prototype.initialize = function (t) {
+                this.texture = _.BATTLE_MAIN.getTexture(56), this._icon.update(t)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._icon.dispose()
+            }, e
+        }(PIXI.Sprite)
 }

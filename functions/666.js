@@ -19,27 +19,22 @@ const function666 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(308),
-        r = i(1),
-        s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._ImageManager = e, n._ev = i, n._onNext = function () {
-                    n.messageBox.interactive = !1, n._ev.emit("tutorial-next-scene")
-                }, n.alpha = 0, n.messageBox = new o.MessageBoxView(n._ImageManager, n._ev), n.messageBox.message.text = "", n.messageBox.on(r.EventType.CLICK, n._onNext), n.addChild(n.messageBox), n
+    var o = i(3),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(0));
+                return i.position.set(195, 10), e.conBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(14)), e.titBg = new PIXI.Sprite(o.COMMON_MAIN.getTexture(64)), e.titBg.addChild(i), e.addChild(e.conBg), e.addChild(e.titBg), e
             }
-            return n(e, t), e.prototype.start = function () {
-                var t = this;
-                this.messageBox.start(), createjs.Tween.get(this).to({
-                    alpha: 1
-                }, 200, createjs.Ease.linear).call(function () {
-                    t.messageBox.interactive = !0, t.messageBox.buttonMode = !0, t._ev.emit("tutorial-play-voice", "tutorial", "021", function () {
-                        t._ev.emit("tutorial-play-voice", "tutorial", "022")
-                    }), t.messageBox.flashText("\u63d0\u7763\u3001\u304a\u5f85\u3061\u3057\u3066\u3044\u307e\u3057\u305f\uff01\n\u300c\u8266\u968a\u3053\u308c\u304f\u3057\u3087\u3093\u2014\u8266\u3053\u308c\u2014\u300d\u306e\u4e16\u754c\u3078\u3088\u3046\u3053\u305d\u2014\u2014\u3002")
-                })
-            }, e.prototype.dispose = function () {
-                this.messageBox.dispose(), this.messageBox.off(r.EventType.CLICK, this._onNext)
+            return n(e, t), e.prototype.dispose = function () {
+                this.conBg = null, this.titBg = null, this.removeChildren()
+            }, e.prototype.init = function () {
+                this.conBg.position.set(148, 145), this.titBg.position.set(0, 105)
+            }, e.prototype.show = function () {
+                this.visible = !0
+            }, e.prototype.hide = function () {
+                this.visible = !1
             }, e
         }(PIXI.Container);
-    e.SceneSelectShipView = s
+    e.BackgroundLayer = r
 }

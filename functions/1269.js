@@ -20,83 +20,48 @@ const function1269 = function (t, e, i) {
         value: !0
     });
     var o = i(2),
-        r = i(6),
-        s = function (t) {
+        r = i(12),
+        s = i(6),
+        a = i(19),
+        _ = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
                 return i._layer = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                this._preLoad()
-            }, e.prototype._preLoad = function () {
-                this._layer.initilize(), this._anim()
+                this._img1 = new r.Sprite(a.MAP_COMMON.getTexture(144)), this._img1.anchor.set(.5), this._img1.scale.set(.6), this._img1.y = -4, this._img1.alpha = 0, this._layer.addChild(this._img1), this._img2 = new r.Sprite(a.MAP_COMMON.getTexture(145)), this._img2.anchor.set(.5), this._img2.scale.set(.6), this._img2.y = -4, this._img2.alpha = 0, this._layer.addChild(this._img2), this._img3 = new r.Sprite(a.MAP_COMMON.getTexture(146)), this._img3.anchor.set(.5), this._img3.scale.set(.6), this._img3.y = -4, this._img3.alpha = 0, this._layer.addChild(this._img3), this._anim()
             }, e.prototype._anim = function () {
-                var t = this,
-                    e = function () {
-                        for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) {
-                            var i = t._layer.kiraPos[e];
-                            t._layer.kirakira[e].position.set(i.x + 10, i.y + 25), t._layer.kirakira[e].visible = !0, createjs.Tween.get(t._layer.kirakira[e].scale).wait(70 * e).to({
-                                x: 1,
-                                y: 1
-                            }, 140).to({
-                                x: 0,
-                                y: 0
-                            }, 140)
-                        }
-                    };
-                createjs.Tween.get(null).call(function () {
-                    t._layer.get_flash.visible = !0, createjs.Tween.get(t._layer.get_flash.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 500), createjs.Tween.get(t._layer.get_flash).to({
-                        alpha: 1
-                    }, 500).to({
-                        alpha: 0
-                    }, 150), createjs.Tween.get(t._layer.white).wait(400).set({
-                        visible: !0
-                    }).to({
-                        alpha: 1
-                    }, 300).call(function () {
-                        createjs.Tween.get(t._layer.txt_repair).wait(100).set({
-                            visible: !0
-                        }).to({
-                            x: 77
-                        }, 600, createjs.Ease.sineOut).to({
-                            x: 47
-                        }, 733)
-                    })
-                }).wait(133).call(function () {
-                    r.SE.play("230")
-                }).wait(2e3).call(function () {
-                    createjs.Tween.get(t._layer.txt_repair).to({
-                        x: -1107
-                    }, 300, createjs.Ease.sineIn).set({
-                        visible: !1
-                    }), t._layer.ship_layer.visible = !0, createjs.Tween.get(t._layer.ship_layer).wait(180).to({
-                        alpha: 1
-                    }, 500), createjs.Tween.get(t._layer.ship_layer.scale).wait(180).to({
-                        x: 1,
-                        y: 1
-                    }, 500, createjs.Ease.cubicOut)
-                }).wait(680).call(function () {
-                    e()
-                }).wait(100 * (this._layer.EFFECT_MAX / 2 - 1) + 540).call(function () {
-                    t._layer.white.alpha = 1;
-                    for (var e = 0; e < t._layer.EFFECT_MAX / 2; e++) t._layer.kirakira[e].visible = !1;
-                    createjs.Tween.get(t._layer.ship_layer.scale).to({
-                        x: 2,
-                        y: 2
-                    }, 633), createjs.Tween.get(t._layer.ship_layer).to({
-                        alpha: 0
-                    }, 633), createjs.Tween.get(t._layer.white).to({
-                        alpha: 0
-                    }, 633).set({
-                        visible: !1
-                    })
-                }).wait(1e3).call(function () {
-                    t._endTask()
+                var t = this;
+                s.SE.play("213"), createjs.Tween.get(this._img1).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img2).wait(133).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.2,
+                    scaleY: 1.2,
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._img3).wait(266).to({
+                    sceleX: 1,
+                    scaleY: 1,
+                    alpha: 1
+                }, 200).to({
+                    sceleX: 1.3,
+                    scaleY: 1.3,
+                    alpha: 0
+                }, 300).wait(300).call(function () {
+                    t._layer.removeChild(t._img1), t._layer.removeChild(t._img2), t._layer.removeChild(t._img3), t._endTask()
                 })
+            }, e.prototype._endTask = function () {
+                this._layer = null, t.prototype._endTask.call(this)
             }, e
         }(o.TaskBase);
-    e.TaskAnchorageRepairEffect = s
+    e.TaskReplenishmentBuff = _
 }

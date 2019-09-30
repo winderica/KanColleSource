@@ -19,24 +19,28 @@ const function846 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(1),
-        r = i(8),
-        s = i(32),
-        a = i(71),
+    var o = i(3),
+        r = i(61),
+        s = i(4),
+        a = i(15),
         _ = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._onClick = function () {
-                    e.onClick(e.index, e.memId)
-                }, e.shipBanner = new s.ShipBanner, e.emptyShipBanner = new PIXI.Sprite(a.REMODEL_MAIN.getTexture(18)), e.clickArea = new r.AreaBox(0, 0, 240, 60), e.clickArea.buttonMode = !0, e.clickArea.on(o.EventType.CLICK, e._onClick), e
+                return e.background = new PIXI.Sprite(o.COMMON_MAIN.getTexture(45)), e.containerItemName = new PIXI.Container, e.containerItemName.position.set(50, 11), e.textItemName = new s.TextBox(19, 5523516), e.maskItemName = a.CreateRect.gradientLeftToRight(244, 35, .65, .7), e.iconWeapon = new r.IconWeapon, e.containerItemName.mask = e.maskItemName, e.containerItemName.addChild(e.textItemName, e.maskItemName), e.addChild(e.background, e.containerItemName, e.iconWeapon), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.shipBanner.dispose(), this.clickArea.off(o.EventType.CLICK, this._onClick), this.onClick = null, this.shipBanner = null, this.emptyShipBanner = null, this.index = null, this.memId = null, this.clickArea = null
-            }, e.prototype.update = function (t, e, i) {
-                this.removeChildren(), this.shipBanner.update(e, i), this.memId = e.memID, this.index = t, this.addChild(this.shipBanner, this.clickArea)
+            return n(e, t), e.prototype.update = function (t) {
+                this._update_(t.name, t.iconType)
             }, e.prototype.empty = function () {
-                this.removeChildren(), this.addChild(this.emptyShipBanner)
+                this._updateIconType_(0), this._updateItemName_("")
+            }, e.prototype._update_ = function (t, e) {
+                this._updateIconType_(e), this._updateItemName_(t)
+            }, e.prototype._updateItemName_ = function (t) {
+                this.textItemName.text = t
+            }, e.prototype._updateIconType_ = function (t) {
+                this.iconWeapon.update(t)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.iconWeapon.dispose(), this.containerItemName.removeChildren(), this.containerItemName.mask = null, this.textItemName.destroy(), this.iconWeapon = null, this.background = null, this.textItemName = null, this.background = null, this.containerItemName = null
             }, e
         }(PIXI.Container);
-    e.ShipSlot = _
+    e.SimpleSlotItemSlot = _
 }

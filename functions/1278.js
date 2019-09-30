@@ -19,89 +19,121 @@ const function1278 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(27),
-        a = i(439),
-        _ = i(440),
-        l = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._anim = function () {
-                    var t = n._getRandomShip(),
-                        e = t.mst_id;
-                    o.default.sound.voice.play(e.toString(), 26);
-                    var i = new _.AnimFlagShip(n._scene, e, t.isDamaged()),
-                        r = new u(n._scene, n._drop_items);
-                    new s.ParallelTask(i, r).start(function () {
-                        n._endTask()
-                    })
-                }, n._scene = e, n._model = i, n
+    var o = i(126),
+        r = i(176),
+        s = i(1),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._enabled = !1, e._bg = new PIXI.Sprite, e.addChild(e._bg), e._btn = new _, e._btn.position.set(17, 143), e.addChild(e._btn), e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._drop_items = this._model.sortie.getNextCell().getDropItems();
-                for (var t = 0, e = this._drop_items; t < e.length; t++) {
-                    var i = e[t];
-                    i.icon_id;
-                    if (4 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    } else if (5 == i.type) {
-                        var n = i.getUseitemMstID();
-                        this._model.sortie.obtained_items.push(n)
-                    }
+            return n(e, t), Object.defineProperty(e.prototype, "enabled", {
+                get: function () {
+                    return this._enabled
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t, e, i, n) {
+                this._bg.texture = this._getTexture(t, e), this._enabled = !(13 == e && i < 5) && !(14 == e && i < 4), 1 == this._enabled ? this._btn.initialize(e, n) : this.visible = !1
+            }, e.prototype.activate = function () {
+                1 == this._enabled && this._btn.activate()
+            }, e.prototype.deactivate = function () {
+                this._btn.deactivate()
+            }, e.prototype.dispose = function () {
+                this._btn.dispose()
+            }, e.prototype._getTexture = function (t, e) {
+                switch (t) {
+                    case 1:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(14);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(15);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(16);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(17)
+                        }
+                        break;
+                    case 2:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(34);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(35);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(36);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(37)
+                        }
+                        break;
+                    case 3:
+                        switch (e) {
+                            case 11:
+                                return r.SALLY_JIN.getTexture(39);
+                            case 12:
+                                return r.SALLY_JIN.getTexture(40);
+                            case 13:
+                                return r.SALLY_JIN.getTexture(41);
+                            case 14:
+                                return r.SALLY_JIN.getTexture(42)
+                        }
                 }
-                var o = this._drop_items.concat();
-                this._animItem(o, this._anim)
-            }, e.prototype._animItem = function (t, e) {
-                var i = this;
-                if (0 == t.length) return void(null != e && e());
-                var n = t.shift(),
-                    o = n.getUseitemMstID(),
-                    r = n.count,
-                    s = new a.CompDropItem;
-                s.initialize(o, r);
-                var _ = this._scene.view.map.ship_icon;
-                s.position.set(_.x, _.y), this._scene.view.addChild(s), createjs.Tween.get(s).to({
-                    y: _.y - 60
-                }, 400).to({
-                    y: _.y - 75,
-                    alpha: 0
-                }, 200).call(function () {
-                    i._scene.view.removeChild(s), s.dispose(), _.startWaveWhite(), i._animItem(t, e)
-                })
-            }, e.prototype._endTask = function () {
-                this._scene.view.map.ship_icon.stopWave(), this._scene.view.message_box.text = "", t.prototype._endTask.call(this)
-            }, e.prototype._getRandomShip = function () {
-                for (var t = this._model.deck_f.ships, e = new Array, i = 0, n = t; i < n.length; i++) {
-                    var o = n[i];
-                    null != o && (0 != o.damageType && 1 != o.isTaihi() && e.push(o))
-                }
-                return e[Math.floor(Math.random() * e.length)]
+                return PIXI.Texture.EMPTY
             }, e
-        }(r.TaskBase);
-    e.CellTaskItem = l;
-    var u = function (t) {
-        function e(e, i) {
-            var n = t.call(this) || this;
-            return n._scene = e, n._items = i, n
+        }(PIXI.Container);
+    e.FormationBoxCombined = a;
+    var _ = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._onMouseOver = function () {
+                e._update(!0)
+            }, e._onMouseOut = function () {
+                e._update(!1)
+            }, e._onClick = function () {
+                null != e._cb_onClick && e._cb_onClick(e._type)
+            }, e.interactive = !0, e
         }
-        return n(e, t), e.prototype._start = function () {
-            this._current_index = 0, this._loop()
-        }, e.prototype._loop = function () {
-            if (this._current_index < this._items.length) {
-                var t = this._items[this._current_index];
-                this._current_index++, this._show(t)
-            } else this._endTask()
-        }, e.prototype._show = function (t) {
-            var e = this,
-                i = t.getUseitemMstID(),
-                n = t.count;
-            this._scene.view.message_box.showItemGetText(i, n), createjs.Tween.get(null).wait(2e3).call(function () {
-                e._loop()
-            })
-        }, e.prototype._endTask = function () {
-            this._scene = null, this._items = null, t.prototype._endTask.call(this)
+        return n(e, t), e.prototype.initialize = function (t, e) {
+            this._type = t, this._cb_onClick = e, this._update(!1)
+        }, e.prototype.activate = function () {
+            if (1 != this.buttonMode) {
+                this.buttonMode = !0, this.on(s.EventType.MOUSEOVER, this._onMouseOver), this.on(s.EventType.MOUSEOUT, this._onMouseOut), this.on(s.EventType.CLICK, this._onClick);
+                var t = o.InteractiveUtil.isOnMouse(this);
+                this._update(t)
+            }
+        }, e.prototype.deactivate = function () {
+            this.buttonMode = !1, this.off(s.EventType.MOUSEOVER, this._onMouseOver), this.off(s.EventType.MOUSEOUT, this._onMouseOut), this.off(s.EventType.CLICK, this._onClick)
+        }, e.prototype.dispose = function () {
+            1 == this.buttonMode && this.deactivate(), this._cb_onClick = null
+        }, e.prototype._update = function (t) {
+            this.texture = 0 == t ? this._getTexture() : this._getTextureOn()
+        }, e.prototype._getTexture = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(19);
+                case 12:
+                    return r.SALLY_JIN.getTexture(21);
+                case 13:
+                    return r.SALLY_JIN.getTexture(23);
+                case 14:
+                    return r.SALLY_JIN.getTexture(25);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
+        }, e.prototype._getTextureOn = function () {
+            switch (this._type) {
+                case 11:
+                    return r.SALLY_JIN.getTexture(20);
+                case 12:
+                    return r.SALLY_JIN.getTexture(22);
+                case 13:
+                    return r.SALLY_JIN.getTexture(24);
+                case 14:
+                    return r.SALLY_JIN.getTexture(26);
+                default:
+                    return PIXI.Texture.EMPTY
+            }
         }, e
-    }(r.TaskBase)
+    }(PIXI.Sprite)
 }

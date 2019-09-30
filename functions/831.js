@@ -1,87 +1,208 @@
 const function831 = function (t, e, i) {
     "use strict";
-    var n = this && this.__extends || function () {
-        var t = Object.setPrototypeOf || {
-            __proto__: []
-        }
-        instanceof Array && function (t, e) {
-            t.__proto__ = e
-        } || function (t, e) {
-            for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i])
-        };
-        return function (e, i) {
-            function n() {
-                this.constructor = e
-            }
-            t(e, i), e.prototype = null === i ? Object.create(i) : (n.prototype = i.prototype, new n)
-        }
-    }();
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(8),
-        s = i(14),
-        a = i(13),
-        _ = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e.bg = new r.AreaBox(1, 16777215), e.black = new r.AreaBox(1), e.bgGrad = new PIXI.Sprite, e.ship = new PIXI.Sprite, e.silhouette = new PIXI.Sprite, e.shipLayer1 = new PIXI.Container, e.shipLayer2 = new PIXI.Container, e.bg.alpha = 0, e.black.alpha = 0, e.bgGrad.alpha = 0, e.shipLayer1.alpha = 0, e.shipLayer2.alpha = 0, e.shipLayer1.x = -290, e.shipLayer2.x = -290, e.shipLayer1.scale.set(.8), e.shipLayer2.scale.set(.8), e.shipLayer1.addChild(e.ship), e.shipLayer2.addChild(e.silhouette), e.addChild(e.bg, e.shipLayer1, e.shipLayer2, e.bgGrad, e.black), e
+    var n = i(293),
+        o = i(832),
+        r = i(833),
+        s = i(13),
+        a = i(0),
+        _ = function () {
+            function t(t, e, i) {
+                this._stage = e, this._animationKeys = i, this._easingMap = r.genEasingMap(), this._ship_mst_id = t
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this.bg = null, this.bgGrad = null, this.black = null, this.shipLayer1 = null, this.shipLayer2 = null, this.ship = null, this.silhouette = null, this._cb_onComplete = null
-            }, e.prototype.play = function (t, e, i) {
-                var n = this;
-                this._callback = e, this._cb_onComplete = i, this._preload(t, function () {
-                    createjs.Tween.get(n.bg).to({
-                        alpha: 1
-                    }, 500).call(function () {
-                        n.anim1()
-                    })
-                })
-            }, e.prototype._preload = function (t, e) {
-                var i = this,
-                    n = new s.UIImageLoader("remodel");
-                n.add("bg/vignette_frame.png", "vignette_frame"), n.load(function () {
-                    var n = new a.ShipLoader;
-                    n.add(t[0], !1, "full"), n.add(t[1], !1, "full"), n.load(function () {
-                        i.bgGrad.texture = o.default.resources.getUIImage("vignette_frame"), i.ship.texture = o.default.resources.getShip(t[0], !1, "full"), i.silhouette.texture = o.default.resources.getShip(t[1], !1, "full"), i.silhouette.tint = 0;
-                        var n = o.default.model.ship_graph.get(t[0]).getCenterOffset(!1),
-                            r = o.default.model.ship_graph.get(t[1]).getCenterOffset(!1);
-                        i.ship.x = 330 + n.x, i.ship.y = n.y - 50, i.silhouette.x = 330 + r.x, i.silhouette.y = r.y - 50, e()
-                    })
-                })
-            }, e.prototype.anim1 = function () {
+            return t.prototype._genAnimation = function (t) {
+                var e = this;
+                switch (t.type) {
+                    case o.SpecialRemodelStartKey.SHIP_CAMERA:
+                        var i = t,
+                            r = 0,
+                            s = Object(i).hasOwnProperty("duration");
+                        s && (r = i.duration);
+                        var _ = this._getEasing(t),
+                            l = n.$_$.Parallel(),
+                            u = Object(i).hasOwnProperty("position");
+                        u && l.push(function () {
+                            return n.$_$.Value(e._stage.camera.position, {
+                                x: i.position.x,
+                                y: i.position.y
+                            }, r, _)
+                        }), Object(i).hasOwnProperty("scale") && l.push(function () {
+                            return n.$_$.Value(e._stage.camera.scale, {
+                                x: i.scale,
+                                y: i.scale
+                            }, r, _)
+                        });
+                        var c = Object(i).hasOwnProperty("alpha");
+                        return c && l.push(function () {
+                            return n.$_$.Value(e._stage.camera, {
+                                alpha: i.alpha
+                            }, r, _)
+                        }), l;
+                    case o.SpecialRemodelStartKey.DELAY:
+                        var h = t,
+                            p = h.duration;
+                        return n.$_$.Delay(p);
+                    case o.SpecialRemodelStartKey.PLAY_VOICE:
+                        return n.$_$.Call(function () {
+                            a.default.sound.voice.play(e._ship_mst_id.toString(), 10)
+                        });
+                    case o.SpecialRemodelStartKey.NAME_TEXT:
+                        var d = t,
+                            f = this._getEasing(d),
+                            y = 0,
+                            s = Object(d).hasOwnProperty("duration");
+                        s && (y = d.duration);
+                        var l = n.$_$.Parallel(),
+                            c = Object(d).hasOwnProperty("alpha");
+                        if (c) {
+                            var m = d.alpha;
+                            l.push(function () {
+                                return n.$_$.Value(e._stage.textName, {
+                                    alpha: m
+                                }, y, f)
+                            })
+                        }
+                        var u = Object(d).hasOwnProperty("position");
+                        if (u) {
+                            var g = d.position;
+                            l.push(function () {
+                                return n.$_$.Value(e._stage.textName.position, {
+                                    x: g.x,
+                                    y: g.y
+                                }, y, f)
+                            })
+                        }
+                        return l;
+                    case o.SpecialRemodelStartKey.CLASS_TEXT:
+                        var v = t,
+                            b = this._getEasing(v),
+                            w = 0,
+                            s = Object(v).hasOwnProperty("duration");
+                        s && (w = v.duration);
+                        var l = n.$_$.Parallel(),
+                            c = Object(v).hasOwnProperty("alpha");
+                        if (c) {
+                            var x = v.alpha;
+                            l.push(function () {
+                                return n.$_$.Value(e._stage.textClass, {
+                                    alpha: x
+                                }, w, b)
+                            })
+                        }
+                        var u = Object(v).hasOwnProperty("position");
+                        if (u) {
+                            var I = v.position;
+                            l.push(function () {
+                                return n.$_$.Value(e._stage.textClass.position, {
+                                    x: I.x,
+                                    y: I.y
+                                }, w, b)
+                            })
+                        }
+                        return l;
+                    case o.SpecialRemodelStartKey.BACK_GROUND:
+                        var T = t,
+                            p = T.duration,
+                            O = T.color,
+                            C = this._getEasing(T);
+                        return this._stage.backgroundColorFilter.ma = 1, this._stage.backgroundColorFilter.aa = 1, this._stage.backgroundColorFilter.ar = ((16711680 & O) >> 16) / 255, this._stage.backgroundColorFilter.ag = ((65280 & O) >> 8) / 255, this._stage.backgroundColorFilter.ab = (255 & O) / 255, n.$_$.Value(this._stage.backgroundColorFilter, {
+                            factor: 1
+                        }, p, C);
+                    default:
+                        return n.$_$.Call(function () {})
+                }
+            }, t.prototype._getEasing = function (t, e) {
+                void 0 === e && (e = r.Easing.linear);
+                return t.hasOwnProperty("easing") ? this._easingMap[t.easing] : this._easingMap[e]
+            }, t.prototype.play = function () {
+                this._play()
+            }, t.prototype._play = function () {
                 var t = this;
-                createjs.Tween.get(this.bgGrad).to({
-                    alpha: 1
-                }, 1e3), createjs.Tween.get(this.shipLayer1).to({
-                    alpha: 1
-                }, 1e3).wait(300).call(function () {
-                    t.anim2()
+                this._stage.goBackArea.visible = !1, this._stage.goBackArea.interactive = !1, this._stage.ship.shadow.x = 20, this._stage.textClass.alpha = 0, this._stage.textName.alpha = 0, this._stage.backGround.alpha = 1;
+                var e = this._genSequenceAnimations(this._animationKeys),
+                    i = n.$_$.Parallel(function () {
+                        return e
+                    }, function () {
+                        return n.$_$.Value(t._stage.ship.shadow, {
+                            x: 35
+                        }, 5e3)
+                    }, function () {
+                        return n.$_$.Value(t._stage.blackOver, {
+                            alpha: 0
+                        }, 3e3)
+                    }),
+                    o = n.$_$.Sequence(function () {
+                        return i
+                    }, function () {
+                        return n.$_$.Delay(300)
+                    });
+                this._animation = e, o.execute(function () {
+                    o.dispose(), t._animation = null, t._onCompleteAnimation()
                 })
-            }, e.prototype.anim2 = function () {
-                createjs.Tween.get(this.shipLayer1).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer1).wait(300).to({
+            }, t.prototype._onCompleteAnimation = function () {
+                var t = this;
+                this._stage.goBackArea.visible = !0, this._stage.goBackArea.interactive = !0, this._stage.goBackArea.onClick = function () {
+                    return t._onClickGoBack()
+                }
+            }, t.prototype._onClickGoBack = function () {
+                var t = this;
+                this._stage.goBackArea.onClick = function () {};
+                var e = n.$_$.Value(this._stage, {
                     alpha: 0
-                }, 1500), createjs.Tween.get(this.shipLayer2).to({
-                    x: 0
-                }, 2300, createjs.Ease.quintOut), createjs.Tween.get(this.shipLayer2).wait(300).to({
-                    alpha: 1
-                }, 1500), this.anim3()
-            }, e.prototype.anim3 = function () {
-                var t = this;
-                createjs.Tween.get(this.black).wait(1300).to({
-                    alpha: 1
-                }, 1e3).call(function () {
-                    t.bg.visible = !1, t.shipLayer2.visible = !1, t._callback(), createjs.Tween.get(t).to({
-                        alpha: 0
-                    }, 1e3).call(function () {
-                        t._cb_onComplete()
-                    })
+                }, 150);
+                e.execute(function () {
+                    e.dispose(), t.onComplete()
                 })
-            }, e
-        }(PIXI.Container);
-    e.SpKaizoIntro = _
+            }, t.prototype.dispose = function () {
+                this._animation && (this._animation.interrupt(), this._animation.dispose()), this.onComplete = null, this._animation = null, this._animationKeys = null, this._stage = null
+            }, t.prototype._genSequenceAnimations = function (t) {
+                var e = this,
+                    i = n.$_$.Sequence();
+                return t.forEach(function (t) {
+                    var n = null;
+                    if (t instanceof Array) {
+                        var o = e._genParallelAnimations(t);
+                        n = function () {
+                            return o
+                        }
+                    } else n = function () {
+                        return e._genAnimation(t)
+                    };
+                    i.push(n)
+                }), i
+            }, t.prototype._genParallelAnimations = function (t) {
+                var e = this,
+                    i = n.$_$.Parallel();
+                return t.forEach(function (t) {
+                    var n = null;
+                    if (t instanceof Array) {
+                        var o = e._genSequenceAnimations(t);
+                        n = function () {
+                            return o
+                        }
+                    } else n = function () {
+                        return e._genAnimation(t)
+                    };
+                    i.push(n)
+                }), i
+            }, t
+        }();
+    e.SpecialRemodelStart = _;
+    var l = function () {
+        function t(t) {
+            this._ship_mst_id = t
+        }
+        return t.prototype.start = function () {
+            var t = this,
+                e = new s.ShipLoader;
+            e.add(this._ship_mst_id, !1, "full_x2"), e.add(this._ship_mst_id, !1, "text_class"), e.add(this._ship_mst_id, !1, "text_name"), e.load(function () {
+                t.onComplete()
+            })
+        }, t.prototype.dispose = function () {
+            this.onComplete = null, this._ship_mst_id = null
+        }, t
+    }();
+    e.SpecialRemodelStartInitializer = l
 }

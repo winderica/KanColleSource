@@ -19,15 +19,21 @@ const function956 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(26),
-        r = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._bg = new PIXI.Sprite, e._bg.position.set(11, 0), e.addChild(e._bg), e._icon = new PIXI.Sprite, e._icon.position.set(0, 20), e.addChild(e._icon), e
+    var o = i(2),
+        r = i(23),
+        s = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._mstid = e, i
             }
-            return n(e, t), e.prototype.update = function (t) {
-                3 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(37), this._icon.texture = o.SALLY_AIRUNIT.getTexture(43), this.visible = !0) : 2 == t ? (this._bg.texture = o.SALLY_AIRUNIT.getTexture(36), this._icon.texture = o.SALLY_AIRUNIT.getTexture(42), this.visible = !0) : this.visible = !1
+            return n(e, t), e.prototype._start = function () {
+                var t = this;
+                (new r.SlotLoader).add(this._mstid, "airunit_banner").add(this._mstid, "airunit_name").load(function () {
+                    t._endTask()
+                })
+            }, e.prototype.cancel = function () {
+                this._cb = null, this._cb_failed = null
             }, e
-        }(PIXI.Container);
-    e.AirUnitPanelItemFatigueIcon = r
+        }(o.TaskBase);
+    e.TaskAirUnitImageLoader = s
 }

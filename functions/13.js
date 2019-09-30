@@ -34,6 +34,14 @@ const function13 = function (t, e, i) {
                     null != d && (p = "_" + d.unique_key)
                 }
                 return n.default.settings.path_root + "resources/ship/" + l + "/" + (h + t.hSuffix(e, _)) + "_" + c + p + ".png" + a.VersionUtil.getResourceVersion(0, parseInt(h))
+            }, t.clearMemoryCache = function () {
+                for (var t = Object.keys(PIXI.utils.TextureCache), e = t.filter(function (t) {
+                        return /^resources\/ship\/.+/.test(t)
+                    }), i = 0, n = e; i < n.length; i++) {
+                    var o = n[i],
+                        r = PIXI.utils.TextureCache[o];
+                    r && r.destroy(!0), delete PIXI.utils.TextureCache[o]
+                }
             }, t.prototype.add = function (e, i, n) {
                 var o = t.getPath(e, i, n);
                 return this._url_list.push(o), this

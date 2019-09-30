@@ -19,16 +19,32 @@ const function874 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(875),
+        a = i(3),
+        _ = i(3),
+        l = i(3),
+        u = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
-                return i.repairScene = e, i.repairScene.dispose(), i
+                return i._uploadTexture = function () {
+                    o.default.settings.renderer.plugins.prepare.upload(l.ARSENAL_ANIMATION.getTexture(0).baseTexture, function () {
+                        o.default.settings.renderer.plugins.prepare.upload(_.ARSENAL_MAIN.getTexture(0).baseTexture, function () {
+                            o.default.settings.renderer.plugins.prepare.upload(a.COMMON_SORT.getTexture(0).baseTexture, function () {
+                                i.arsenalScene.start(), i.arsenalScene = null, i._endTask()
+                            })
+                        })
+                    })
+                }, i.arsenalScene = e, i
             }
             return n(e, t), e.prototype._start = function () {
-                r.UIImageLoader.clearMemoryCache("repair"), this._endTask()
+                var t = this,
+                    e = o.default.model.basic.getUISkinID();
+                new s.TaskLoadResourcesArsenal(e).start(function () {
+                    t._uploadTexture()
+                })
             }, e
-        }(o.TaskBase);
-    e.DisposeTask = s
+        }(r.TaskBase);
+    e.PreInitializeTask = u
 }

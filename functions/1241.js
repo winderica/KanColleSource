@@ -19,18 +19,32 @@ const function1241 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(9),
-        r = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = -1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_map/next", o._model = e, o._repair_item = i, o._next_cell_no = n, o
+    var o = i(4),
+        r = i(140),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._bg = new PIXI.Sprite, e._text = new o.TextBox(39, 16774898), e._text.anchor.set(.5, 0), e.addChild(e._bg), e.addChild(e._text), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_recovery_type = this._repair_item, this._next_cell_no >= 0 && (this._post_data.api_cell_id = this._next_cell_no), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._model.__add__(this._raw_data), t.prototype._completedEnd.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "text", {
+                get: function () {
+                    return this._text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function (t) {
+                void 0 === t && (t = ""), this._bg.texture = r.PRAC_MAIN.getTexture(7), this._text.position.set(this._bg.width / 2, 9), this.update(t)
+            }, e.prototype.update = function (t) {
+                this._text.text = t
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._text.destroy()
             }, e
-        }(o.APIBase);
-    e.APIMapNext = r
+        }(PIXI.Container);
+    e.PracticeTitleBar = s
 }

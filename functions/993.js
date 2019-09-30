@@ -19,24 +19,45 @@ const function993 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(165),
-        s = i(165),
-        a = i(30),
-        _ = function (t) {
+    var o = i(30),
+        r = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e._fuelTitle = new PIXI.Sprite, e.addChild(e._fuelTitle), e._ammoTitle = new PIXI.Sprite, e._ammoTitle.x = 141, e.addChild(e._ammoTitle), e._fuelBox = new r.FuelContainer, e._fuelBox.y = 126, e.addChild(e._fuelBox), e._ammoBox = new s.AmmoContainer, e._ammoBox.x = 141, e._ammoBox.y = 126, e.addChild(e._ammoBox), e._fuelText = new o.TextBox(28, 4999235), e._fuelText.y = 84, e.addChild(e._fuelText), e._ammoText = new o.TextBox(28, 4999235), e._ammoText.y = 84, e.addChild(e._ammoText), e
+                return t.call(this) || this
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._fuelTitle.texture = a.SALLY_COMMON.getTexture(17), this._ammoTitle.texture = a.SALLY_COMMON.getTexture(16)
-            }, e.prototype.update = function (t, e) {
-                this._fuelText.text = t.toString(), this._fuelText.x = 128 - this._fuelText.width, this._ammoText.text = e.toString(), this._ammoText.x = 269 - this._ammoText.width, this._fuelBox.update(t), this._ammoBox.update(e)
-            }, e.prototype.play = function (t, e, i) {
-                1 == t ? (this._fuelBox.playSupply(i), 1 == e && this._ammoBox.playSupply(function () {})) : 1 == e ? this._ammoBox.playSupply(i) : i()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._fuelBox.dispose(), this._ammoBox.dispose(), this._fuelText.destroy(), this._ammoText.destroy()
+                this._fuel = new a, this._ammo = new _, this._fuel.initialize(), this._ammo.initialize(), this._ammo.position.set(38, 0), this.addChild(this._fuel), this.addChild(this._ammo)
+            }, e.prototype.update = function (t) {
+                null == t ? this.visible = !1 : (this.visible = !0, this._fuel.update(t.fuelNow / t.fuelMax), this._ammo.update(t.ammoNow / t.ammoMax))
             }, e
         }(PIXI.Container);
-    e.TempSupplyBox = _
+    e.CompLackAlerts = r;
+    var s = function (t) {
+            function e() {
+                return t.call(this) || this
+            }
+            return n(e, t), e.prototype.initialize = function () {
+                var t = new PIXI.Sprite(this._getTexture());
+                this._alert = new PIXI.Sprite, t.position.set(-14, -14), this._alert.position.set(0, -11), this.addChild(t), this.addChild(this._alert)
+            }, e.prototype.update = function (t) {
+                t <= .5 ? (this._alert.texture = o.SALLY_COMMON.getTexture(33), this.visible = !0) : t < 1 ? (this._alert.texture = o.SALLY_COMMON.getTexture(32), this.visible = !0) : this.visible = !1
+            }, e.prototype._getTexture = function () {
+                return null
+            }, e
+        }(PIXI.Container),
+        a = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._getTexture = function () {
+                return o.SALLY_COMMON.getTexture(30)
+            }, e
+        }(s),
+        _ = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
+            }
+            return n(e, t), e.prototype._getTexture = function () {
+                return o.SALLY_COMMON.getTexture(31)
+            }, e
+        }(s)
 }

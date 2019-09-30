@@ -21,52 +21,66 @@ const function347 = function (t, e, i) {
     });
     var o = i(5),
         r = i(8),
-        s = i(40),
-        a = i(60),
-        _ = i(81),
-        l = i(908),
-        u = i(1),
+        s = i(208),
+        a = i(24),
+        _ = i(12),
+        l = i(3),
+        u = i(906),
         c = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._message = "", e._clickGuard = new r.AreaBox(0), e._rarityBG = new a.RarityBG, e._target = new PIXI.Sprite, e._materialCircleRollAnimation = new l.MaterialCircleRollAnimation, e._materialCircleRollAnimation.x = o.default.width / 2, e._materialCircleRollAnimation.y = o.default.height / 2, e._messageBox = new _.MessageBox, e._gearBtnHome = new s.GearBtnHome, e._gearBtnHome.position.set(1140, 660), e._gearBtnHome.initialize(), e._white = new r.AreaBox(1, 16777215), e
+            function e(e) {
+                var i = t.call(this) || this;
+                i._clickGuard = new r.AreaBox(0), i.addChild(i._clickGuard), i._bg = new s.GetBG, i._card = new a.Container;
+                var n = new PIXI.Sprite(l.ARSENAL_ANIMATION.getTexture(4));
+                return n.width = 393, n.height = e, n.x = -n.width / 2, n.y = -n.height / 2, i._card.addChild(n), i._bigflash = new _.Sprite(l.ARSENAL_ANIMATION.getTexture(0)), i._particles = new u.ScatterCircleParticle, i._white = new r.AreaBox(1, 16777215), i
             }
-            return n(e, t), e.prototype.play = function (t, e) {
-                this._cb_onWhiteOut = t, this._cb_onComplete = e, this.addChild(this._clickGuard), this.addChild(this._rarityBG), this.addChild(this._target), this.addChild(this._materialCircleRollAnimation), this._01_whiteOut()
-            }, e.prototype._01_whiteOut = function () {
+            return n(e, t), e.prototype.preload = function (t) {
+                this._bg.initiailzeGetBG1(function () {
+                    null != t && t()
+                })
+            }, e.prototype.play = function (t) {
+                var e = this;
+                this._cb_onComplete = t, this._bg.alpha = 0, this.addChild(this._bg), createjs.Tween.get(this._bg).to({
+                    alpha: 1
+                }, 100).call(function () {
+                    e._01_flyCard()
+                })
+            }, e.prototype._01_flyCard = function () {
                 var t = this;
-                this._materialCircleRollAnimation.play(), this.addChild(this._white), createjs.Tween.get(this._white).to({
-                    alpha: 0
+                this._card.position.set(o.default.width / 2, o.default.height / 2 + 540), this._card.alpha = 0, this._card.scale.set(0), this.addChild(this._card), createjs.Tween.get(this._card).to({
+                    y: o.default.height / 2 - 660,
+                    scaleX: .57,
+                    scaleY: .57,
+                    alpha: 1
+                }, 700).to({
+                    y: o.default.height / 2,
+                    scaleX: 1,
+                    scaleY: 1
                 }, 500).call(function () {
-                    t.removeChild(t._white), t._02_showMessageBox()
+                    t._01_light()
                 })
-            }, e.prototype._02_showMessageBox = function () {
+            }, e.prototype._01_light = function () {
                 var t = this;
-                this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
-                    y: 480
-                }, 300, createjs.Ease.cubicOut).call(function () {
-                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), t._messageBox.activate(), t._03_waitClick()
+                this._bigflash.x = o.default.width / 2, this._bigflash.y = o.default.height / 2, this._bigflash.scale.set(0), this._bigflash.anchor.set(.5, .5), this.addChild(this._bigflash), createjs.Tween.get(this._bigflash).to({
+                    scaleX: 3.3,
+                    scaleY: 3.3
+                }, 300).to({
+                    scaleX: 2,
+                    scaleY: 2
+                }, 1700), createjs.Tween.get(null).wait(1500).call(function () {
+                    t._particles.x = o.default.width / 2, t._particles.y = o.default.height / 2, t.addChild(t._particles), t._particles.play()
+                }).wait(2e3).call(function () {
+                    t._02_whiteIn()
                 })
-            }, e.prototype._03_waitClick = function () {
-                var t = this,
-                    e = new r.AreaBox(0);
-                e.buttonMode = !0, this.addChild(e), e.once(u.EventType.CLICK, function () {
-                    t._04_whiteInOut()
-                })
-            }, e.prototype._04_whiteInOut = function () {
+            }, e.prototype._02_whiteIn = function () {
                 var t = this;
                 this._white.alpha = 0, this.addChild(this._white), createjs.Tween.get(this._white).to({
                     alpha: 1
-                }, 100).call(function () {
-                    t.removeChild(t._rarityBG), t.removeChild(t._target), t.removeChild(t._materialCircleRollAnimation), t.removeChild(t._messageBox), t._messageBox.deactivate(), t.removeChild(t._gearBtnHome), t._gearBtnHome.deactivate(), null != t._cb_onWhiteOut && t._cb_onWhiteOut()
-                }).to({
-                    alpha: 0
                 }, 500).call(function () {
-                    t.removeChild(t._white), null != t._cb_onComplete && t._cb_onComplete()
+                    null != t._cb_onComplete && t._cb_onComplete()
                 })
             }, e.prototype.dispose = function () {
-                this._cb_onWhiteOut = null, this._cb_onComplete = null, this.removeChildren(), this._clickGuard = null, this._rarityBG.dispose(), this._rarityBG = null, this._target = null, this._materialCircleRollAnimation.dispose(), this._materialCircleRollAnimation = null, this._messageBox.dispose(), this._messageBox = null, this._gearBtnHome.dispose(), this._gearBtnHome = null, this._white = null
+                this._cb_onComplete = null, this.removeChildren(), this._clickGuard = null, this._bg = null, this._card = null, this._bigflash = null, this._particles = null, this._white = null
             }, e
         }(PIXI.Container);
-    e.RewardAnimation = c
+    e.ReceiveAnimation = c
 }

@@ -19,25 +19,36 @@ const function640 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(10),
+    var o = i(0),
+        r = i(4),
         s = i(48),
         a = function (t) {
             function e(e, i) {
-                return t.call(this, e, i) || this
+                var n = t.call(this, e, null) || this;
+                return n._models = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "model", {
-                get: function () {
-                    return this._model
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._createContent = function () {
-                var t = r.COMMON_MISC.getTexture(147);
-                this._img = new PIXI.Sprite(t), this._img.x = -135, this._img.y = -135, this._dialog.container.addChild(this._img), this._text1 = new o.TextBox(25, 16774898), this._text1.text = "\u5927\u578b\u8266\u5efa\u9020\u304c", this._text1.x = -Math.round(this._text1.width / 2), this._text2 = new o.TextBox(25, 16774898), this._text2.text = "\u958b\u653e\u3055\u308c\u307e\u3057\u305f\uff01", this._text2.x = -Math.round(this._text2.width / 2), this._text2.y = this._text1.y + this._text1.height, this._dialog.container.addChild(this._text1), this._dialog.container.addChild(this._text2), this._showDialog()
+            return n(e, t), e.prototype._createContent = function () {
+                this._icons = [], this._text = new r.TextBox(25, 16774898), this._dialog.container.addChild(this._text);
+                for (var t = "", e = 0, i = this._models.rewards; e < i.length; e++) {
+                    var n = i[e],
+                        s = o.default.resources.getUseitem(n.mst_id, 0),
+                        a = new PIXI.Sprite(s);
+                    a.y = -121, this._dialog.container.addChild(a), this._icons.push(a), t += n.name + "\xd7" + n.count + "\n"
+                }
+                this._text.text = t, this._text.x = -Math.round(this._text.width / 2), this._models.rewards.length >= 6 ? this._text.y = -30 : 5 == this._models.rewards.length ? this._text.y = -15 : this._text.y = 0;
+                for (var _ = this._icons.length, l = [0, 0, 96, 75, 45, 30, 15][_], u = 75 * _ + l * (_ - 1), c = 0; c < _; c++) {
+                    var a = this._icons[c];
+                    a.x = -u / 2 + (75 + l) * c
+                }
+                this._showDialog()
             }, e.prototype._removeContent = function () {
-                this._dialog.container.removeChild(this._img), this._img = null, this._dialog.container.removeChild(this._text1), this._dialog.container.removeChild(this._text2), this._text1.destroy(), this._text1 = null, this._text2.destroy(), this._text2 = null
+                this._dialog.container.removeChild(this._text), this._text.destroy(), this._text = null;
+                for (var t = 0, e = this._icons; t < e.length; t++) {
+                    var i = e[t];
+                    this._dialog.container.removeChild(i)
+                }
+                this._icons = null
             }, e
         }(s.TaskRewardDialogBase);
-    e.TaskRewardDialogLargeBuild = a
+    e.TaskRewardDialogMultiUseitem = a
 }

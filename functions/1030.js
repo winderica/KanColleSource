@@ -19,48 +19,56 @@ const function1030 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(8),
-        s = i(37),
-        a = i(1031),
+    var o = i(0),
+        r = i(1031),
+        s = i(227),
+        a = i(169),
         _ = i(1032),
-        l = i(373),
-        u = i(1033),
-        c = i(1034),
-        h = i(374),
-        p = i(1),
-        d = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._onClose = function () {
-                    null != n._cb_onClose && n._cb_onClose()
-                }, n._cb_onClose = i, n._bg = new a.UserinfoPanelBG, n.addChild(n._bg), n._detail = new _.UserinfoPanelInfoDetail, n.addChild(n._detail), n._deck_name = new o.TextBox(25, 4999235), n._deck_name.anchor.set(.5, 0), n._deck_name.position.set(885, 132), n.addChild(n._deck_name), n._flag = new l.CompFlag, n._flag.position.set(1065, 129), n.addChild(n._flag), n._ship_container = new PIXI.Container, n._ship_container.position.set(711, 172), n.addChild(n._ship_container), n._ships = [], n._area_close = new r.AreaBox(0), n.addChild(n._area_close), n._btn = new c.GoPracticeBtn(e), n._btn.position.set(249, 583), n.addChild(n._btn), n._btn_close = new h.CloseBtn(i), n._btn_close.position.set(1108, 27), n.addChild(n._btn_close), n
+        l = i(1037),
+        u = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._changeToInfo = function () {
+                    e._showInfo()
+                }, e._changeToDeck = function () {
+                    e._showDeck()
+                }, e._onStartPractice = function () {
+                    for (var t = e._deck.selected_deck_id, i = o.default.model.deck.get(t), n = o.default.model.basic.medal_num, _ = o.default.model.basic.nickName, l = new s.DeckModelReplica(i, !0, n, _), u = new Array, c = e._selected_rival.ships, h = 0; h < c.length; h++) {
+                        var p = c[h];
+                        if (null == p) u.push(null);
+                        else {
+                            var d = p.id,
+                                f = p.level,
+                                y = new a.ShipModelReplica(1, !0, h, d, -h, f);
+                            u.push(y)
+                        }
+                    }
+                    var m = e._selected_rival.id,
+                        g = e._selected_rival.medal_num,
+                        v = e._selected_rival.name,
+                        b = e._selected_rival.deck_name,
+                        w = new s.DeckModelReplica(m, !0, g, v, 0, b, u),
+                        x = new r.PracticeSceneModel(l, w);
+                    o.default.scene.change(32, x), e.emit("close")
+                }, e._onClose = function () {
+                    e.emit("close")
+                }, e._info = new _.UserinfoPanel(e._changeToDeck, e._onClose), e._deck = new l.PanelDeckSelect(e._onClose), e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._bg.initialize(), this._detail.initialize();
-                for (var t = 0; t < 6; t++) {
-                    var e = new u.CompRivalShip;
-                    e.initialize(), e.y = 80 * t, this._ship_container.addChild(e), this._ships.push(e)
-                }
-                this._btn.initialize(), this._btn_close.initialize()
+            return n(e, t), e.prototype.initialize = function (t, e) {
+                this._info.initialize(), this._deck.visible = !1, this._deck.initialize(t, e, this._onStartPractice, this._changeToInfo), this.addChild(this._info), this.addChild(this._deck)
             }, e.prototype.update = function (t) {
-                this._detail.update(t), this._flag.update(t.flag_type);
-                for (var e = 0; e < this._ships.length; e++) {
-                    var i = this._ships[e],
-                        n = t.ships[e];
-                    i.update(n)
-                }
+                this._selected_rival = t, this._info.update(t), this._showInfo()
             }, e.prototype.activate = function () {
-                this._area_close.on(p.EventType.CLICK, this._onClose), this._btn.activate(), this._btn_close.activate()
+                1 == this._info.visible ? (this._info.activate(), this._deck.deactivate()) : (this._deck.activate(), this._info.deactivate())
             }, e.prototype.deactivate = function () {
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.deactivate(), this._btn_close.deactivate()
+                this._info.deactivate(), this._deck.deactivate()
             }, e.prototype.dispose = function () {
-                s.TaskLoadShipResource.abortBy(this._ship_container), this._detail.dispose(), this._deck_name.destroy();
-                for (var t = 0, e = this._ships; t < e.length; t++) {
-                    e[t].dispose()
-                }
-                this._area_close.off(p.EventType.CLICK, this._onClose), this._btn.dispose(), this._btn_close.dispose(), this._cb_onClose = null
+                this._info.dispose(), this._deck.dispose()
+            }, e.prototype._showInfo = function () {
+                1 != this._info.visible && (this._deck.deactivate(), this._info.visible = !0, this._deck.visible = !1, this._info.activate())
+            }, e.prototype._showDeck = function () {
+                1 != this._deck.visible && (this._info.deactivate(), this._deck.visible = !0, this._info.visible = !1, this._deck.activate())
             }, e
         }(PIXI.Container);
-    e.UserinfoPanel = d
+    e.ContainerOverlay = u
 }

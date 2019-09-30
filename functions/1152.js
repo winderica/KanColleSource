@@ -20,22 +20,28 @@ const function1152 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(74),
-        s = i(174),
-        a = function (t) {
+        r = i(174),
+        s = function (t) {
             function e() {
-                return null !== t && t.apply(this, arguments) || this
+                var e = null !== t && t.apply(this, arguments) || this;
+                return e._onMouseOver = function () {
+                    e._canvas.scale.set(1.05)
+                }, e._onMouseOut = function () {
+                    e._canvas.scale.set(1)
+                }, e
             }
-            return n(e, t), e.prototype._initialize = function () {
-                this._icon.texture = r.COMMON_SELECTABLE_REWARD.getTexture(7);
+            return n(e, t), e.prototype.load = function (t) {
+                t()
+            }, e.prototype._initialize = function () {
+                this._icon.visible = !1;
+                this._canvas.x = 103, this._canvas.y = 121, this._canvas.scale.set(1);
                 var t = new PIXI.Graphics;
-                t.beginFill(6710886, .1), t.drawRect(-97.5, -97.5, 195, 195), t.endFill(), this._canvas.addChild(t);
+                t.beginFill(6710886, .1), t.drawRect(-88, -121, 176, 242), t.endFill(), this._canvas.addChild(t);
                 var e = this._candidate.mst_id,
-                    i = o.default.resources.getUseitem(e, 1),
-                    n = new PIXI.Sprite(i),
-                    s = Math.min(195 / n.width, 195 / n.height);
-                n.scale.set(s), n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
+                    i = o.default.resources.getShip(e, !1, "card_round"),
+                    n = new PIXI.Sprite(i);
+                n.position.set(-Math.round(n.width / 2), -Math.round(n.height / 2)), this._canvas.addChild(n)
             }, e
-        }(s.RewardSelectDialogBtnBase);
-    e.RewardSelectDialogUseitemBtn = a
+        }(r.RewardSelectDialogBtnBase);
+    e.RewardSelectDialogShipBtn = s
 }

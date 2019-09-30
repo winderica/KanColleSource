@@ -19,20 +19,25 @@ const function931 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(9),
-        s = i(7),
-        a = function (t) {
-            function e() {
-                var e = t.call(this) || this;
-                return e._url = "api_get_member/mapinfo", e
+    var o = i(11),
+        r = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._view = e, i
             }
-            return n(e, t), e.prototype._completedEnd = function () {
-                var e = s.ObjUtil.getObjectArray(this._raw_data, "api_map_info");
-                o.default.model.map.setMapMem(e);
-                var i = s.ObjUtil.getObjectArray(this._raw_data, "api_air_base");
-                o.default.model.airunit.setData(i), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype._start = function () {
+                this._view = null, this._endTask()
             }, e
-        }(r.APIBase);
-    e.MapInfoAPI = a
+        }(o.TaskBase);
+    e.PreFinalizeTask = r;
+    var s = function (t) {
+        function e(e) {
+            var i = t.call(this) || this;
+            return i._view = e, i
+        }
+        return n(e, t), e.prototype._start = function () {
+            this._view.dispose(), this._view = null, this._endTask()
+        }, e
+    }(o.TaskBase);
+    e.FinalizeTask = s
 }

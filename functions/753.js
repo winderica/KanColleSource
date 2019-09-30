@@ -19,47 +19,32 @@ const function753 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(10),
-        r = function (t) {
+    var o = i(3),
+        r = i(1),
+        s = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite,
+                var e = t.call(this) || this;
+                e._onClick = function () {
+                    e.onClick()
+                };
+                var i = new PIXI.Sprite(o.SUPPLY_MAIN.getTexture(19)),
                     n = new PIXI.Sprite;
-                return n.position.set(-29, -27), n.alpha = 0, e.addChild(n, i), e.meter = i, e.meterLight = n, e
+                return n.position.set(3, 3), n.buttonMode = !0, n.addListener(r.EventType.CLICK, e._onClick), e.addChild(i, n), e.background = i, e.checkState = n, e
             }
-            return n(e, t), e.prototype.update = function (t, e) {
-                this.meter.texture = o.COMMON_MISC.getTexture(133), this.meterLight.texture = o.COMMON_MISC.getTexture(145);
-                var i;
-                0 == t ? i = 0 : t == e ? i = 10 : (i = Math.floor(9 * t / e) + 1, 10 < i && (i = 10), i < 0 && (i = 0));
-                this.meter.texture = o.COMMON_MISC.getTexture(this.getResIDProgressImage(i))
-            }, e.prototype.getResIDProgressImage = function (t) {
-                switch (t) {
-                    case 0:
-                        return 133;
+            return n(e, t), e.prototype.update = function (t) {
+                switch (this.checkState.interactive = !1, t) {
                     case 1:
-                        return 134;
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(18), this.checkState.texture = o.SUPPLY_MAIN.getTexture(20);
+                        break;
                     case 2:
-                        return 136;
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(21), this.checkState.interactive = !0;
+                        break;
                     case 3:
-                        return 137;
-                    case 4:
-                        return 138;
-                    case 5:
-                        return 139;
-                    case 6:
-                        return 140;
-                    case 7:
-                        return 141;
-                    case 8:
-                        return 142;
-                    case 9:
-                        return 143;
-                    case 10:
-                        return 135
+                        this.background.texture = o.SUPPLY_MAIN.getTexture(19), this.checkState.texture = o.SUPPLY_MAIN.getTexture(22), this.checkState.interactive = !0
                 }
             }, e.prototype.dispose = function () {
-                this.removeChild(this.meter), this.removeChild(this.meterLight), this.meter = null, this.meterLight = null
+                this.background = null, this.checkState.removeListener(r.EventType.CLICK, this._onClick), this.checkState = null, this.onClick = null, this.removeChildren()
             }, e
         }(PIXI.Container);
-    e.MaterialMeterViewS = r
+    e.SupplySelectAllButton = s
 }

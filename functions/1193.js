@@ -23,41 +23,35 @@ const function1193 = function (t, e, i) {
         r = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._star1 = new PIXI.Sprite, e._star1.position.set(73, 42), e._star1.visible = !1, e.addChild(e._star1), e._star2 = new PIXI.Sprite, e._star2.position.set(93, 27), e._star2.visible = !1, e.addChild(e._star2), e
+                return e._dic = {}, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.DUTY_COMMON.getTexture(42), this._star1.texture = o.DUTY_COMMON.getTexture(45), this._star2.texture = o.DUTY_COMMON.getTexture(44)
-            }, e.prototype.activate = function () {
-                null == this._t && this._wait()
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
-            }, e.prototype.dispose = function () {
-                this.deactivate()
-            }, e.prototype._wait = function () {
-                var t = this;
-                this._stopTween(), this._t = createjs.Tween.get(null).wait(3e3 * Math.random() + 1e3).call(function () {
-                    t._wink()
-                })
-            }, e.prototype._wink = function () {
-                0 == Math.floor(4 * Math.random()) ? this._anim() : this._wait()
-            }, e.prototype._anim = function () {
-                var t = this;
-                this._stopTween(), this.texture = o.DUTY_COMMON.getTexture(43), this._t = createjs.Tween.get(null).wait(150).call(function () {
-                    t.texture = o.DUTY_COMMON.getTexture(42)
-                }).wait(150).call(function () {
-                    t.texture = o.DUTY_COMMON.getTexture(43)
-                }).wait(150).call(function () {
-                    t._star1.visible = !0, t.texture = o.DUTY_COMMON.getTexture(42)
-                }).wait(100).call(function () {
-                    t._star2.visible = !0
-                }).wait(600).call(function () {
-                    t._star1.visible = !1
-                }).wait(30).call(function () {
-                    t._star2.visible = !1, t._wait()
-                })
-            }, e.prototype._stopTween = function () {
-                null != this._t && (this._t.setPaused(!0), this._t = null, this.texture = o.DUTY_COMMON.getTexture(42), this._star1.visible = !1, this._star2.visible = !1)
+            return n(e, t), e.prototype.showAlert = function (t) {
+                var e, i = t.model.alert,
+                    n = 384,
+                    r = 0;
+                if (1 == i) e = 1, n = 444, r = -7;
+                else if (2 == i) e = 2;
+                else if (3 == i) e = 3;
+                else if (4 == i) e = 4;
+                else {
+                    if (5 != i) return;
+                    e = 5
+                }
+                var s = new PIXI.Sprite(o.DUTY_COMMON.getTexture(e));
+                s.x = t.x + n, s.y = t.y + r, this.addChild(s), this._dic[t.model.id] = s
+            }, e.prototype.hideAlert = function (t) {
+                if (void 0 === t && (t = null), null == t)
+                    for (var e in this._dic) this._hideAlert(e);
+                else {
+                    var i = t.model.id;
+                    this._hideAlert(i.toString())
+                }
+            }, e.prototype._hideAlert = function (t) {
+                if (1 == this._dic.hasOwnProperty(t)) {
+                    var e = this._dic[t];
+                    null != e.parent && (e.parent.removeChild(e), delete this._dic[t])
+                }
             }, e
-        }(PIXI.Sprite);
-    e.MiniChara = r
+        }(PIXI.Container);
+    e.AlertLayer = r
 }

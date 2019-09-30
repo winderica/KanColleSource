@@ -19,64 +19,47 @@ const function1056 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(17),
-        a = i(58),
-        _ = i(1057),
-        l = i(1),
-        u = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._showDialog = function () {
-                    i._dialog = new c, i._dialog.alpha = 0, i._dialog.initialize(), o.default.view.overLayer.addChild(i._dialog), createjs.Tween.get(i._dialog).to({
-                        alpha: 1
-                    }, 150).call(i._waitClick)
-                }, i._waitClick = function () {
-                    i._dialog.btn_y.interactive = i._dialog.btn_y.buttonMode = !0, i._dialog.btn_y.once(l.EventType.CLICK, i._onClickYes), i._dialog.btn_n.interactive = i._dialog.btn_n.buttonMode = !0, i._dialog.btn_n.once(l.EventType.CLICK, i._onClickNo)
-                }, i._onClickYes = function () {
-                    i._deactivate(), new _.ExpeditionCancelAPI(i._deck_id).start(i._hideDialog)
-                }, i._onClickNo = function () {
-                    i._deactivate(), i._hideDialog()
-                }, i._hideDialog = function () {
-                    createjs.Tween.get(i._dialog).to({
-                        alpha: 0
-                    }, 150).call(function () {
-                        i._dialog.parent.removeChild(i._dialog), i._fade.hide(100, function () {
-                            i._fade.parent.removeChild(i._fade), i._endTask()
-                        })
-                    })
-                }, i._deck_id = e, i
+    var o = i(58),
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._icons = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, 0, 49, 49][i], n.y = [0, -15, 0, -15][i], e.addChild(n), e._icons.push(n)
+                }
+                return e
             }
-            return n(e, t), e.prototype._start = function () {
-                this._fade = new s.FadeBox(.6), this._fade.hide(), o.default.view.overLayer.addChild(this._fade), this._fade.show(100, this._showDialog)
-            }, e.prototype._deactivate = function () {
-                this._dialog.btn_y.interactive = this._dialog.btn_y.buttonMode = !1, this._dialog.btn_y.off(l.EventType.CLICK, this._onClickYes), this._dialog.btn_n.interactive = this._dialog.btn_n.buttonMode = !1, this._dialog.btn_n.off(l.EventType.CLICK, this._onClickNo)
-            }, e.prototype._endTask = function (e) {
-                void 0 === e && (e = !1), this._fade = null, this._dialog = null, t.prototype._endTask.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                for (var t = 0; t < this._icons.length; t++) {
+                    this._icons[t].visible = !1
+                }
+            }, e.prototype.update = function (t) {
+                var e = [];
+                if (null != t) {
+                    var i = t.getSlotitems();
+                    i = i.concat(t.getSlotitemEx());
+                    for (var n = 0, o = i; n < o.length; n++) {
+                        var r = o[n];
+                        if (null != r) {
+                            var s = r.equipType;
+                            if (24 == s) {
+                                355 != r.mstID && e.push(r)
+                            } else 46 == s && e.push(r)
+                        }
+                    }
+                }
+                this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._icons.length; e++) {
+                    var i = this._icons[e];
+                    if (e >= t.length) i.visible = !1;
+                    else {
+                        var n = t[e].equipType;
+                        24 == n ? i.texture = o.SALLY_EXPEDITION.getTexture(64) : 46 == n && (i.texture = o.SALLY_EXPEDITION.getTexture(80)), i.visible = !0
+                    }
+                }
             }, e
-        }(r.TaskBase);
-    e.CancelExpeditionTask = u;
-    var c = function (t) {
-        function e() {
-            var e = t.call(this) || this;
-            return e._activated = !1, e
-        }
-        return n(e, t), Object.defineProperty(e.prototype, "btn_y", {
-            get: function () {
-                return this._btn_y
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(e.prototype, "btn_n", {
-            get: function () {
-                return this._btn_n
-            },
-            enumerable: !0,
-            configurable: !0
-        }), e.prototype.initialize = function () {
-            var t = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(105));
-            this._btn_y = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(21)), this._btn_n = new PIXI.Sprite(a.SALLY_EXPEDITION.getTexture(20)), t.position.set(219, 207), this._btn_y.position.set(375, 411), this._btn_n.position.set(645, 411), this.addChild(t), this.addChild(this._btn_y), this.addChild(this._btn_n)
-        }, e
-    }(PIXI.Container)
+        }(PIXI.Container);
+    e.CompSupportBoatCount = r
 }

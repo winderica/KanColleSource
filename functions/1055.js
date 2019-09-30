@@ -19,26 +19,35 @@ const function1055 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(11),
-        s = i(15),
-        a = function (t) {
-            function e(e, i, n) {
-                void 0 === n && (n = !1);
-                var o = t.call(this) || this;
-                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o._expiredFlag = !1, o
+    var o = i(150),
+        r = i(58),
+        s = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._drums = [];
+                for (var i = 0; i < 4; i++) {
+                    var n = new PIXI.Sprite;
+                    n.x = [0, -19, 0, -19][i], n.y = [0, 0, -27, -27][i], n.visible = !1, e._drums.push(n), e.addChild(n)
+                }
+                return e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "expiredFlag", {
-                get: function () {
-                    return this._expiredFlag
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._connect = function () {
-                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                this._expiredFlag = s.ObjUtil.getBoolean(this._raw_data, "api_expired_flag"), t.prototype._completedEnd.call(this)
+            return n(e, t), e.prototype.initialize = function () {
+                this.update(0);
+                for (var t = 0, e = this._drums; t < e.length; t++) {
+                    e[t].texture = r.SALLY_EXPEDITION.getTexture(68)
+                }
+            }, e.prototype.update = function (t) {
+                t instanceof o.ShipModel ? this._updateFromShipModel(t) : this._update(t)
+            }, e.prototype._updateFromShipModel = function (t) {
+                for (var e = 0, i = t.getSlotitems(), n = 0, o = i; n < o.length; n++) {
+                    var r = o[n];
+                    null != r && (75 == r.mstID && e++)
+                }
+                var s = t.getSlotitemEx();
+                null != s && 75 == s.mstID && e++, this._update(e)
+            }, e.prototype._update = function (t) {
+                for (var e = 0; e < this._drums.length; e++) this._drums[e].visible = e < t
             }, e
-        }(r.APIBase);
-    e.ExpeditionStartAPI = a
+        }(PIXI.Container);
+    e.CompDrumCount = s
 }

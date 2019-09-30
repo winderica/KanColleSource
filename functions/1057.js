@@ -20,21 +20,25 @@ const function1057 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(9),
-        s = i(7),
+        r = i(11),
+        s = i(15),
         a = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                return n._url = "api_req_mission/return_instruction", n._deck_id = e, n._debug = i, n
+            function e(e, i, n) {
+                void 0 === n && (n = !1);
+                var o = t.call(this) || this;
+                return o._url = "api_req_mission/start", o._expedition_id = e, o._deck_id = i, o._debug = n, o._expiredFlag = !1, o
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_deck_id = this._deck_id, t.prototype._connect.call(this)
+            return n(e, t), Object.defineProperty(e.prototype, "expiredFlag", {
+                get: function () {
+                    return this._expiredFlag
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._connect = function () {
+                this._post_data.api_mission_id = this._expedition_id, this._post_data.api_deck_id = this._deck_id, this._post_data.api_mission = Math.round(100 * Math.random()), this._post_data.api_serial_cid = o.default.model.expedition.getserialID(), t.prototype._connect.call(this)
             }, e.prototype._completedEnd = function () {
-                var e = o.default.model.deck.get(this._deck_id).expedition,
-                    i = s.ObjUtil.getNumArray(this._raw_data, "api_mission");
-                null == i || e.__update__(i), t.prototype._completedEnd.call(this)
+                this._expiredFlag = s.ObjUtil.getBoolean(this._raw_data, "api_expired_flag"), t.prototype._completedEnd.call(this)
             }, e
         }(r.APIBase);
-    e.ExpeditionCancelAPI = a
+    e.ExpeditionStartAPI = a
 }

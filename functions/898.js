@@ -42,7 +42,7 @@ const function898 = function (t, e, i) {
                     }, 300).on("change", function () {
                         .5 < e.animationParams.progress ? e.background_on.visible = !1 : e.background_on.visible = !0, e.toggle.x = 3 + 103 * e.animationParams.progress
                     }), i.play(null), e.tween = i
-                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(150)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(151)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(152)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(106, 0), e.addChild(e.background_off, e.background_on, e.toggle), e
+                }, e.toggle = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(150)), e.background_off = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(151)), e.background_on = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(153)), e.background_off.on(r.EventType.CLICK, e._onClick), e.toggle.position.set(106, 0), e.addChild(e.background_off, e.background_on, e.toggle), e
             }
             return n(e, t), Object.defineProperty(e.prototype, "state", {
                 get: function () {

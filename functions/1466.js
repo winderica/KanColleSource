@@ -19,44 +19,40 @@ const function1466 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(16),
-        r = function (t) {
+    var o = i(22),
+        r = i(1467),
+        s = i(1468),
+        a = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                return e.anchor.set(.5), e.alpha = 0, e
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = o.BATTLE_MAIN.getTexture(110)
-            }, e.prototype.play = function () {
-                var t = this,
-                    e = {
-                        a: 0,
-                        r: 255,
-                        g: 255,
-                        b: 255
-                    },
-                    i = function (e) {
-                        var i = e.target.target;
-                        t.alpha = i.a;
-                        var n = (Math.round(i.r) << 16) + (Math.round(i.g) << 8) + Math.round(i.b);
-                        t.tint = n
-                    };
-                createjs.Tween.get(e, {
-                    onChange: i
-                }).to({
-                    a: 1
-                }, 100).to({
-                    r: 128
-                }, 100).to({
-                    r: 255,
-                    g: 192,
-                    b: 192
-                }, 100).to({
-                    a: 0
-                }, 100).call(function () {
-                    null != t.parent && t.parent.removeChild(t)
+            return n(e, t), e.prototype.showAtBanner = function (t, e, i, n) {
+                void 0 === n && (n = null);
+                var o = t.getGlobalPos(!0),
+                    r = 1 == t.friend ? o.x + 23 : o.x - 74,
+                    s = o.y + 7;
+                this.show(r, s, e, i, n)
+            }, e.prototype.show = function (t, e, i, n, o) {
+                var s = this;
+                void 0 === o && (o = null), i <= 0 ? n = 0 : i >= 40 ? n = 2 : i < 15 && 2 == n && (n = 1);
+                var a = new r.DamageNumber;
+                a.position.set(t, e), a.initialize(i, n), this.addChild(a), a.play(function () {
+                    createjs.Tween.get(a).to({
+                        alpha: 0
+                    }, 230).call(function () {
+                        s.removeChild(a), null != o && o()
+                    })
                 })
+            }, e.prototype.showShieldAtBanner = function (t) {
+                var e = t.getGlobalPos(!0),
+                    i = e.x,
+                    n = e.y,
+                    r = t.friend;
+                1 == r ? i += o.BannerSize.W / 2 + 30 : i -= o.BannerSize.W / 2 + 30, this.showShield(i, n, r)
+            }, e.prototype.showShield = function (t, e, i) {
+                var n = new s.Shield;
+                n.position.set(t, e), n.scale.x = i ? 1 : -1, n.initialize(), this.addChild(n), n.play()
             }, e
-        }(PIXI.Sprite);
-    e.Shield = r
+        }(PIXI.Container);
+    e.LayerDamage = a
 }

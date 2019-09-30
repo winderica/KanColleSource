@@ -19,43 +19,68 @@ const function1427 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(27),
-        r = i(29),
-        s = i(20),
-        a = i(2),
-        _ = function (t) {
+    var o = i(0),
+        r = i(2),
+        s = i(179),
+        a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), Object.defineProperty(e.prototype, "scene", {
+                get: function () {
+                    return this._scene
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "record", {
+                get: function () {
+                    return this._record
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype._start = function () {
+                this._scene.view.layer_title.hide(), this._endTouchPlane()
+            }, e.prototype._endTouchPlane = function () {
+                var t = this._scene.view.raderLayer;
+                t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
+            }, e.prototype._waitGaugeExplodeAnimation = function () {
+                var t = this;
+                1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
+                    t._waitGaugeExplodeAnimation()
+                }) : this._fadeOutBGM()
+            }, e.prototype._fadeOutBGM = function () {
                 var t = this,
-                    e = new o.ParallelTask;
-                e.add(this._createTween_f()), e.add(this._createTween_e()), e.start(function () {
+                    e = this._scene.data.model.map_info.area_id,
+                    i = this._scene.data.model.map_info.map_no,
+                    n = this._scene.data.model.map_info.isBoss();
+                if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
+                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
+                    t._playBossLastGasp()
+                })) : this._playBossLastGasp()
+            }, e.prototype._playBossLastGasp = function () {
+                if (o.default.option.vol_voice <= 0) return void this._wait();
+                var t = this._scene.data.model.deck_e.ships[0];
+                if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
+                var e = this._scene.view.layer_gauge.isExploded(),
+                    i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
+                return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
+            }, e.prototype._playBossVoice = function (t) {
+                var e = this;
+                o.default.sound.voice.play("9998", t, function () {
+                    e._wait()
+                })
+            }, e.prototype._wait = function () {
+                var t = this;
+                createjs.Tween.get(this).wait(1e3).call(function () {
+                    t._shutter_close()
+                })
+            }, e.prototype._shutter_close = function () {
+                var t = this;
+                this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
                     t._endTask()
                 })
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._record = null
-            }, e.prototype._createTween_f = function () {
-                var t = this._scene.view.bannerGroupLayer;
-                if (0 == t.isEnteredFriend()) return t.createFriendEnterTask();
-                var e = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_f.isCombined()) {
-                    var i = this._record.common.getActiveDeckFriend();
-                    1 == i ? e.addTweens(t.friends_combined.createExitTweensUpDown()) : 2 == i && (e.addTweens(t.friends.createExitTweens()), e.addTweens(t.createFriendSubDeckMoveTween(200)))
-                }
-                return e
-            }, e.prototype._createTween_e = function () {
-                var t = this._record.common.getActiveDeckEnemy(),
-                    e = this._scene.view.bannerGroupLayer;
-                if (0 == e.isEnteredEnemy()) return 1 == t ? e.createEnemyEnterTask() : 2 == t ? new r.SerialTask(e.createEnemyEnterTask(), (new s.TweenTask).addTweens(e.enemies.createExitTweens()).addTweens(e.createEnemySubDeckMoveTween(200))) : e.createEnemyEnterTask();
-                var i = new s.TweenTask;
-                if (1 == this._scene.data.model.deck_e.isCombined()) {
-                    var n = this._record.common.getActiveDeckEnemy();
-                    1 == n ? i.addTweens(e.enemies_combined.createExitTweensUpDown()) : 2 == n && (i.addTweens(e.enemies.createExitTweens()), i.addTweens(e.createEnemySubDeckMoveTween(200)))
-                }
-                return i
             }, e
-        }(a.TaskBase);
-    e.TaskMoveBannerDay = _
+        }(r.TaskBase);
+    e.PhaseEnding = a
 }

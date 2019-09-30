@@ -30,8 +30,8 @@ const function897 = function (t, e, i) {
         h = i(35),
         p = i(90),
         d = i(898),
-        f = i(343),
-        y = i(345),
+        f = i(344),
+        y = i(346),
         m = function (t) {
             function e(e) {
                 var i = t.call(this) || this;
@@ -60,8 +60,8 @@ const function897 = function (t, e, i) {
                 n.interactive = !0, i.addChild(n), i.configureMaterialView_fuel = new f.MaterialAmountView(31, 30, 999), i.configureMaterialView_ammo = new f.MaterialAmountView(32, 30, 999), i.configureMaterialView_steel = new f.MaterialAmountView(33, 30, 999), i.configureMaterialView_bauxite = new f.MaterialAmountView(34, 30, 999), i.highSpeedToggle = new d.HighSpeedToggle, i.btn_great_off = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(18), h.ARSENAL_MAIN.getTexture(18)), i.btn_kenzo = new l.SimpleButton(h.ARSENAL_MAIN.getTexture(31), h.ARSENAL_MAIN.getTexture(33));
                 var r = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(32)),
                     m = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(139)),
-                    g = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(156)),
-                    v = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(153)),
+                    g = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(159)),
+                    v = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(155)),
                     b = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(74)),
                     w = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(73));
                 i.huki1 = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(66)), i.textDevKitBefore = new u.TextBox(24, 5523516), i.textDevKitAfter = new u.TextBox(24, 5523516), i.shopButton = new y.ShopButton, i.textDevKitBefore.anchor.x = 1, i.textDevKitAfter.anchor.x = 0, r.position.set(532, 486), i.btn_kenzo.position.set(532, 486), i.textDevKitBefore.position.set(591, 438), i.textDevKitAfter.position.set(619, 438), i.configureMaterialView_fuel.position.set(60, 33), i.configureMaterialView_ammo.position.set(60, 228), i.configureMaterialView_steel.position.set(402, 33), i.configureMaterialView_bauxite.position.set(402, 228), i.highSpeedToggle.position.set(207, 435), b.position.set(394, 441), w.position.set(594, 442), m.position.set(60, 426), g.position.set(424, 442), v.position.set(78, 439), i.btn_great_off.position.set(60, 492), i.huki1.position.set(84, 441), i.shopButton.position.set(473, 496), i.configureMaterialView_fuel.onChangeValue = i._onChangeValue, i.configureMaterialView_ammo.onChangeValue = i._onChangeValue, i.configureMaterialView_steel.onChangeValue = i._onChangeValue, i.configureMaterialView_bauxite.onChangeValue = i._onChangeValue, i.shopButton.onClick = i._onClickShop, i.btn_kenzo.on(s.EventType.CLICK, i._onClickBuild), i.btn_great_off.onMouseOut = i._onMouseOutKenzoOff, i.btn_great_off.onMouseOver = i._onMouseOverKenzoOff, i.huki1.visible = !1, i.shopButton.play(), i.addChild(i.configureMaterialView_fuel, i.configureMaterialView_ammo, i.configureMaterialView_steel, i.configureMaterialView_bauxite, m, r, i.btn_great_off, g, v, b, w, i.highSpeedToggle, i.textDevKitBefore, i.textDevKitAfter, i.btn_kenzo), i.btn_great = new PIXI.Sprite(h.ARSENAL_MAIN.getTexture(17)), i.btn_great.interactive = !0, i.btn_great.buttonMode = !0, i.btn_great.position.set(60, 492), i.addChild(i.btn_great), i.addChild(i.huki1, i.shopButton);

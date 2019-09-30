@@ -19,68 +19,62 @@ const function1425 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(2),
-        s = i(178),
+    var o = i(27),
+        r = i(20),
+        s = i(2),
         a = function (t) {
             function e(e, i) {
                 var n = t.call(this) || this;
                 return n._scene = e, n._record = i, n
             }
-            return n(e, t), Object.defineProperty(e.prototype, "scene", {
-                get: function () {
-                    return this._scene
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "record", {
-                get: function () {
-                    return this._record
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._start = function () {
-                this._scene.view.layer_title.hide(), this._endTouchPlane()
-            }, e.prototype._endTouchPlane = function () {
-                var t = this._scene.view.raderLayer;
-                t.rader_f.touch_plane.hide(), t.rader_e.touch_plane.hide(), this._waitGaugeExplodeAnimation()
-            }, e.prototype._waitGaugeExplodeAnimation = function () {
+            return n(e, t), e.prototype._start = function () {
+                this._enterBanners()
+            }, e.prototype._enterBanners = function () {
                 var t = this;
-                1 == this._scene.view.layer_gauge.isAnimation() ? createjs.Tween.get(null).wait(500).call(function () {
-                    t._waitGaugeExplodeAnimation()
-                }) : this._fadeOutBGM()
-            }, e.prototype._fadeOutBGM = function () {
-                var t = this,
-                    e = this._scene.data.model.map_info.area_id,
-                    i = this._scene.data.model.map_info.map_no,
-                    n = this._scene.data.model.map_info.isBoss();
-                if (1 == o.default.model.mst_bgm.isSameBGM(e, i, n) && 1 == this._record.raw.hasDayBattle()) return void this._playBossLastGasp();
-                1 == o.default.sound.bgm.playing ? (o.default.sound.bgm.fadeOut(1200), createjs.Tween.get(this).wait(1200).call(function () {
-                    t._playBossLastGasp()
-                })) : this._playBossLastGasp()
-            }, e.prototype._playBossLastGasp = function () {
-                if (o.default.option.vol_voice <= 0) return void this._wait();
-                var t = this._scene.data.model.deck_e.ships[0];
-                if (0 == (0 == t.damageType && t.hp_init > 0)) return void this._wait();
-                var e = this._scene.view.layer_gauge.isExploded(),
-                    i = s.EnemyVoiceConst.getLastGaspVoiceID(this._scene, t);
-                return e && i > 0 ? void this._playBossVoice(i) : (i = s.EnemyVoiceConst.getSourGrapesVoiceID(this._scene, t)) > 0 ? void this._playBossVoice(i) : void this._wait()
-            }, e.prototype._playBossVoice = function (t) {
-                var e = this;
-                o.default.sound.voice.play("9998", t, function () {
-                    e._wait()
-                })
-            }, e.prototype._wait = function () {
-                var t = this;
-                createjs.Tween.get(this).wait(1e3).call(function () {
-                    t._shutter_close()
-                })
-            }, e.prototype._shutter_close = function () {
-                var t = this;
-                this.scene.shutter2.close(), this.scene.shutter2.once("closed", function () {
+                if (1 == this._scene.data.model.map_info.isNightStart()) {
+                    var e = this._scene.view.bannerGroupLayer,
+                        i = new o.ParallelTask;
+                    i.add(e.createFriendEnterTask()), i.add(e.createEnemyEnterTask()), i.start(function () {
+                        t._endTask()
+                    });
+                    var n = this._scene.data.model.deck_f,
+                        s = n.formation,
+                        a = n.type,
+                        _ = n.getCountMainDeck(),
+                        l = n.getCountSubDeck();
+                    this._scene.view.raderLayer.rader_f.show(s, a, _, l, !1);
+                    var u = this._scene.data.model.deck_e,
+                        c = u.formation,
+                        h = u.type,
+                        p = u.getCountMainDeck(),
+                        d = u.getCountSubDeck();
+                    return void this._scene.view.raderLayer.rader_e.show(c, h, p, d, !1)
+                }
+                var f = new r.TweenTask;
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredFriend() && 1 == this._scene.data.model.deck_f.isCombined()) {
+                    var y = this._record.common.getActiveDeckFriend();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.friends.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createFriendSubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                if (1 == this._scene.view.bannerGroupLayer.isEnteredEnemy() && 1 == this._scene.data.model.deck_e.isCombined()) {
+                    var y = this._record.common.getActiveDeckEnemy();
+                    if (1 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies_combined.createExitTweensUpDown();
+                        f.addTweens(m)
+                    } else if (2 == y) {
+                        var m = this._scene.view.bannerGroupLayer.enemies.createExitTweens();
+                        f.addTweens(m), m = this._scene.view.bannerGroupLayer.createEnemySubDeckMoveTween(200), f.addTweens(m)
+                    }
+                }
+                f.start(function () {
                     t._endTask()
                 })
             }, e
-        }(r.TaskBase);
-    e.PhaseEnding = a
+        }(s.TaskBase);
+    e.PhaseMoveShips = a
 }

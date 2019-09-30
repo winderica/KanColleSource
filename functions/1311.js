@@ -19,52 +19,74 @@ const function1311 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(19),
-        r = function (t) {
+    var o = i(5),
+        r = i(18),
+        s = i(4),
+        a = i(30),
+        _ = i(41),
+        l = i(19),
+        u = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._wave1 = new PIXI.Sprite, e._wave1.anchor.set(.5, .5), e._wave1.scale.set(0), e._wave1.alpha = 0, e._wave2 = new PIXI.Sprite, e._wave2.anchor.set(.5, .5), e._wave2.scale.set(0), e._wave2.alpha = 0, e._tweens = new Array(4), e.addChild(e._wave1), e.addChild(e._wave2), e
+                return e.SPACE = 10, e._bg = new PIXI.Sprite, e._bg.position.set(35, 35), e._icon = new PIXI.Sprite, e._icon.anchor.set(1), e._icon.position.set(o.default.width / 2, 82), e._text = new s.TextBox(30, 16774898), e._text.anchor.set(0, 0), e._text.position.set(o.default.width / 2, 48), e.addChild(e._bg), e.addChild(e._icon), e.addChild(e._text), e
             }
-            return n(e, t), e.prototype.update = function (t) {
-                this._wave1.texture = o.MAP_COMMON.getTexture(t), this._wave2.texture = o.MAP_COMMON.getTexture(t)
-            }, e.prototype.activate = function () {
-                null != this._tweens && this._tweens.length > 0 && null != this._tweens[0] || (this._tweens[0] = createjs.Tween.get(this._wave1, {
-                    loop: !0
-                }).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400).wait(500), this._tweens[1] = createjs.Tween.get(this._wave1.scale, {
-                    loop: !0
-                }).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400).wait(500), this._tweens[2] = createjs.Tween.get(this._wave2, {
-                    loop: !0
-                }).wait(500).to({
-                    alpha: 1
-                }, 900).to({
-                    alpha: 0
-                }, 400), this._tweens[3] = createjs.Tween.get(this._wave2.scale, {
-                    loop: !0
-                }).wait(500).to({
-                    x: .7,
-                    y: .7
-                }, 900).to({
-                    x: 1,
-                    y: 1
-                }, 400))
-            }, e.prototype.deactivate = function () {
-                this._stopTween()
+            return n(e, t), Object.defineProperty(e.prototype, "bg", {
+                get: function () {
+                    return this._bg
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "icon", {
+                get: function () {
+                    return this._icon
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "text", {
+                get: function () {
+                    return this._text
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._bg.texture = l.MAP_COMMON.getTexture(25)
+            }, e.prototype.update = function (t, e) {
+                void 0 === e && (e = ""), t == r.EVENT_AREA_ID ? this._updateForEventMap(e) : this._update(t, e), this._text.position.x = o.default.width / 2 - Math.floor(this._text.width / 2) + this.SPACE + this.icon.width, this.icon.position.set(this._text.x - this.SPACE, 82)
             }, e.prototype.dispose = function () {
-                this._stopTween()
-            }, e.prototype._stopTween = function () {
-                for (var t = 0; t < this._tweens.length; t++) null != this._tweens[t] && (this._tweens[t].setPaused(!0), this._tweens[t] = null);
-                this._wave1.scale.set(0), this._wave1.alpha = 0, this._wave2.scale.set(0), this._wave2.alpha = 0
+                this.removeChildren(), this._text.destroy()
+            }, e.prototype._update = function (t, e) {
+                void 0 === e && (e = "");
+                var i;
+                switch (t) {
+                    case 1:
+                        i = a.SALLY_COMMON.getTexture(1);
+                        break;
+                    case 2:
+                        i = a.SALLY_COMMON.getTexture(3);
+                        break;
+                    case 3:
+                        i = a.SALLY_COMMON.getTexture(5);
+                        break;
+                    case 4:
+                        i = a.SALLY_COMMON.getTexture(9);
+                        break;
+                    case 5:
+                        i = a.SALLY_COMMON.getTexture(11);
+                        break;
+                    case 6:
+                        i = a.SALLY_COMMON.getTexture(13);
+                        break;
+                    case 7:
+                        i = a.SALLY_COMMON.getTexture(7);
+                        break;
+                    default:
+                        i = PIXI.Texture.EMPTY
+                }
+                this._icon.texture = i, this._text.text = e
+            }, e.prototype._updateForEventMap = function (t) {
+                void 0 === t && (t = "");
+                this._icon.texture = _.SALLY_EVENT.getTexture(0), this._text.text = t
             }, e
         }(PIXI.Container);
-    e.CompShipWave = r
+    e.CompUpperBar = u
 }

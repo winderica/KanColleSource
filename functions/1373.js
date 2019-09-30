@@ -22,7 +22,7 @@ const function1373 = function (t, e, i) {
     var o = i(5),
         r = i(0),
         s = i(12),
-        a = i(258),
+        a = i(260),
         _ = i(44),
         l = function (t) {
             function e(e, i, n, o) {
@@ -40,26 +40,22 @@ const function1373 = function (t, e, i) {
                 this._ship_sprite = new s.Sprite(r.default.resources.getShip(e, i, "full")), this._shipFlash = new _.ShipFlash(r.default.resources.getShip(e, i, "full"));
                 var n = r.default.model.ship_graph.get(e).getBattleOffset(i);
                 this._ship_sprite.x = n.x, this._ship_sprite.y = n.y;
-                var a = this._base_pos,
-                    l = this._friend ? 1 : -1;
-                this._view.chara.position.set(a.x - 180 * l, a.y + 120), this._view.chara.alpha = 0;
-                var u = 344 - n.x,
-                    c = 597 - n.y;
-                if (this._ship_sprite.x += u, this._ship_sprite.y += c, this._ship_sprite.anchor.set(u / this._ship_sprite.width, c / this._ship_sprite.height), this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._view.chara).wait(235).to({
-                        x: a.x - 30 * l,
-                        y: a.y + 15,
+                var a = this._base_pos;
+                this._view.chara.position.set(a.x, a.y);
+                var l = 344 - n.x,
+                    u = 597 - n.y;
+                if (this._ship_sprite.x += l, this._ship_sprite.y += u, this._ship_sprite.anchor.set(l / this._ship_sprite.width, u / this._ship_sprite.height), this._ship_sprite.scale.set(1.25), this._ship_sprite.alpha = 0, this._shipFlash.position = this._ship_sprite.position, this._shipFlash.anchor = this._ship_sprite.anchor, this._shipFlash.scale = this._ship_sprite.scale, this._view.chara.addChild(this._ship_sprite), this._view.chara.addChild(this._shipFlash), createjs.Tween.get(this._ship_sprite).wait(235).to({
+                        scaleX: 1,
+                        scaleY: 1,
                         alpha: 1
-                    }, 300).to({
-                        x: a.x,
-                        y: a.y
-                    }, 250).call(function () {
-                        t._view.emit("attack"), t._shipFlash.play()
+                    }, 533, createjs.Ease.sineOut).call(function () {
+                        t._view.emit("attack"), t._shipFlash.scale = t._ship_sprite.scale, t._shipFlash.play()
                     }).wait(135), null != this._slot1 || null != this._slot2) {
-                    var h = this._view.box;
-                    h.initilize(this._attacker);
-                    var p = 0;
-                    1 == this._attacker.friend ? h.x = -60 : (p = o.default.width - h.width, h.x = p + 60), h.y = o.default.height - h.height, h.alpha = 0, createjs.Tween.get(h).wait(365).to({
-                        x: p,
+                    var c = this._view.box;
+                    c.initilize(this._attacker);
+                    var h = 0;
+                    1 == this._attacker.friend ? c.x = -60 : (h = o.default.width - c.width, c.x = h + 60), c.y = o.default.height - c.height, c.alpha = 0, createjs.Tween.get(c).wait(365).to({
+                        x: h,
                         alpha: 1
                     }, 165).wait(900).to({
                         alpha: 0
@@ -70,12 +66,13 @@ const function1373 = function (t, e, i) {
                 createjs.Tween.get(this._ship_sprite).call(function () {
                     t._view.emit("attack"), t._shipFlash.play()
                 }).wait(135).wait(200).to({
-                    scaleY: 1.66,
+                    scaleX: 1.25,
+                    scaleY: 1.25,
                     alpha: 0
                 }, 466).call(function () {
                     t._ship_sprite.parent.removeChild(t._ship_sprite), t._endTask()
                 })
             }, e
         }(a.CutinDouble);
-    e.CutinDouble4 = l
+    e.CutinDouble2 = l
 }

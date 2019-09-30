@@ -20,34 +20,31 @@ const function1000 = function (t, e, i) {
         value: !0
     });
     var o = i(0),
-        r = i(80),
-        s = i(30),
-        a = i(1),
-        _ = function (t) {
+        r = i(18),
+        s = i(15),
+        a = function (t) {
             function e() {
                 var e = t.call(this) || this;
-                return e._flg = !1, e._overed = !1, e._updateTexture = function () {
-                    e._flg = !e._flg, 1 == e._flg || 1 == e._overed ? e._icon.texture = s.SALLY_COMMON.getTexture(42) : e._icon.texture = s.SALLY_COMMON.getTexture(41)
-                }, e._onMouseOver = function () {
-                    e._overed = !0, e._updateTexture(), e._over.visible = !0
-                }, e._onMouseOut = function () {
-                    e._overed = !1, e._updateTexture(), e._over.visible = !1
-                }, e._onClick = function () {
-                    o.default.scene.change(24, new r.ItemSceneModel)
-                }, e._icon = new PIXI.Sprite, e._over = new PIXI.Sprite, e._over.position.set(-187, -40), e._over.visible = !1, e._icon.interactive = !0, e
+                return e._area_id = -1, e
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this._icon.texture = s.SALLY_COMMON.getTexture(41), this._over.texture = s.SALLY_COMMON.getTexture(45), this.addChild(this._over), this.addChild(this._icon)
-            }, e.prototype.activate = function () {
-                var t = this;
-                null == this._t && (this._icon.buttonMode = !0, this._icon.on(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.on(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.on(a.EventType.CLICK, this._onClick), this._t = createjs.Tween.get(this, {
-                    loop: !0
-                }).wait(300).call(function () {
-                    t._updateTexture()
-                }))
-            }, e.prototype.deactivate = function () {
-                this._icon.off(a.EventType.MOUSEOVER, this._onMouseOver), this._icon.off(a.EventType.MOUSEOUT, this._onMouseOut), this._icon.off(a.EventType.CLICK, this._onClick), null != this._t && (this._t.setPaused(!0), this._t = null), this._icon.buttonMode = !1
+            return n(e, t), e.prototype.update = function (t, e) {
+                var i = this;
+                if (void 0 === e && (e = null), this._area_id == t) return void(null != e && e());
+                this._area_id = t;
+                var n = s.MathUtil.zeroPadding(t, 3),
+                    a = o.default.settings.path_root + "resources/area/sally/" + n + ".png";
+                if (a = a + "?" + r.START_TIME, this.clear(), this._img = new PIXI.Sprite, this.addChild(this._img), null != PIXI.utils.TextureCache[a]) this._img.texture = PIXI.utils.TextureCache[a], null != e && e();
+                else {
+                    var _ = new PIXI.loaders.Loader;
+                    _.add(a), _.load(function () {
+                        i._img.texture = _.resources[a].texture, null != e && e()
+                    })
+                }
+            }, e.prototype.clear = function () {
+                null != this._img && (null != this._img.parent && this._img.parent.removeChild(this._img), this._img = null)
+            }, e.prototype.dispose = function () {
+                this.clear()
             }, e
         }(PIXI.Container);
-    e.BtnShop2 = _
+    e.AreaTextImage = a
 }

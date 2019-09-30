@@ -35,7 +35,7 @@ const function1128 = function (t, e, i) {
                 this._showDialog()
             }, e.prototype._showDialog = function () {
                 var t = this;
-                this._dialog = new _.MedalUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                this._dialog = new _.FBoxUseDialog(this._onResult), this._dialog.initialize(this._target.count), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
                     alpha: 1
                 }, 150).call(function () {
                     t._dialog.activate()
@@ -74,5 +74,5 @@ const function1128 = function (t, e, i) {
                 this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskWithResult);
-    e.TaskUseMedal = l
+    e.TaskUseFurnitureBox = l
 }

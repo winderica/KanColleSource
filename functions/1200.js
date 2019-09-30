@@ -19,29 +19,24 @@ const function1200 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(11),
-        r = i(241),
-        s = i(1),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._waitClick = function () {
-                    i._layer.buttonMode = !0, i._layer.once(s.EventType.CLICK, i._onClick)
-                }, i._onClick = function () {
-                    i._layer.buttonMode = !1, i._chara.texture = PIXI.Texture.fromFrame(r.POSTER_KEY_2), createjs.Tween.get(i._chara).wait(300).to({
-                        x: 1200
-                    }, 500, createjs.Ease.sineInOut).call(function () {
-                        i._layer.removeChild(i._chara), i._endTask()
-                    })
-                }, i._layer = e, i
+    var o = i(0),
+        r = i(11),
+        s = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._data = e, n._scene_activate_delegate = i, n
             }
             return n(e, t), e.prototype._start = function () {
-                this._chara = PIXI.Sprite.fromFrame(r.POSTER_KEY_1), this._chara.position.set(760, 705), this._layer.addChild(this._chara), createjs.Tween.get(this._chara).to({
-                    y: 45
-                }, 500).call(this._waitClick)
+                this._playBGM()
+            }, e.prototype._playBGM = function () {
+                o.default.sound.bgm.play(102), this._playVoice()
+            }, e.prototype._playVoice = function () {
+                1 == o.default.option.voice_duty && (1 == this._data.hasComplete() ? o.default.sound.voice.playAtRandom("9999", [401, 402, 403, 404, 405], [20, 20, 20, 20, 20]) : o.default.sound.voice.playAtRandom("9999", [406, 407], [50, 50])), this._startScene()
+            }, e.prototype._startScene = function () {
+                null != this._scene_activate_delegate && this._scene_activate_delegate(), this._endTask()
             }, e.prototype._endTask = function () {
-                this._layer = null, this._chara = null, t.prototype._endTask.call(this)
+                this._data = null, this._scene_activate_delegate = null, t.prototype._endTask.call(this)
             }, e
-        }(o.TaskBase);
-    e.TaskPosterGirl = a
+        }(r.TaskBase);
+    e.TaskDutySceneInitialize = s
 }

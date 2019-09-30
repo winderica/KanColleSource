@@ -19,64 +19,34 @@ const function1107 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = function () {
-            function t() {
-                this._dic = {}
+    var o = i(2),
+        r = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                n._switchOrder = [1, 2], n._switch_btn = e, n._tab_container = i;
+                var o = n._switchOrder.indexOf(n._switch_btn.mode);
+                return n._switchMode = o + 1 >= n._switchOrder.length ? n._switchOrder[0] : n._switchOrder[o + 1], n
             }
-            return t.prototype.getCount = function (t) {
-                var e = this.getData(t);
-                return null == e ? 0 : e.count
-            }, t.prototype.getData = function (t) {
-                return 1 == this._dic.hasOwnProperty(t.toString()) ? this._dic[t] : null
-            }, t.prototype.setData = function (t) {
-                if (this._dic = {}, null != t)
-                    for (var e = 0, i = t; e < i.length; e++) {
-                        var n = i[e],
-                            o = new a(n);
-                        this._dic[o.id] = o
-                    }
-            }, t
-        }();
-    e.PurchasedItemModelHolder = r;
-    var s = function () {
-        function t(t) {
-            this._o = t
-        }
-        return Object.defineProperty(t.prototype, "id", {
-            get: function () {
-                return parseInt(o.ObjUtil.getString(this._o, "api_payitem_id"))
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "name", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_name")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "description", {
-            get: function () {
-                return o.ObjUtil.getString(this._o, "api_description")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), Object.defineProperty(t.prototype, "count", {
-            get: function () {
-                return o.ObjUtil.getNumber(this._o, "api_count")
-            },
-            enumerable: !0,
-            configurable: !0
-        }), t
-    }();
-    e.PurchasedItemModel = s;
-    var a = function (t) {
-        function e() {
-            return null !== t && t.apply(this, arguments) || this
-        }
-        return n(e, t), e.prototype.setCount = function (t) {
-            this._o.api_count = t
-        }, e
-    }(s);
-    e.PurchasedItemModelEdit = a
+            return n(e, t), e.prototype._start = function () {
+                this._switch_btn.mode = this._switchMode, this._tab_container.switchViewAlbumMode(this._switchMode), this._animate()
+            }, e.prototype._animate = function () {
+                var t = this;
+                createjs.Tween.get(this._switch_btn).to({
+                    alpha: 0
+                }, 0).to({
+                    x: -137
+                }, 0).wait(300).call(function () {
+                    t._switch_btn.update(!1), createjs.Tween.get(t._switch_btn).to({
+                        alpha: 1
+                    }, 0).wait(100).to({
+                        x: 0
+                    }, 450, createjs.Ease.quintOut).call(function () {
+                        t._endTask()
+                    })
+                })
+            }, e.prototype._endTask = function () {
+                this._switch_btn.addOnceClickEvent(), t.prototype._endTask.call(this)
+            }, e
+        }(o.TaskBase);
+    e.TaskSwitchAlbumMode = r
 }

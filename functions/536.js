@@ -6,12 +6,12 @@ const function536 = function (t, e, i) {
     var n = i(18),
         o = i(78),
         r = i(13),
-        s = i(24),
+        s = i(23),
         a = i(14),
         _ = i(67),
         l = i(537),
         u = i(10),
-        c = i(268),
+        c = i(270),
         h = function () {
             function t() {
                 this._gauge = new l.GaugeRManager

@@ -19,54 +19,40 @@ const function1158 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(0),
-        r = i(6),
-        s = i(133),
-        a = i(91),
-        _ = i(1159),
-        l = i(1160),
-        u = i(1161),
-        c = i(1162),
-        h = i(1166),
-        p = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._count = 0, n._onChangePage = function () {
-                    var t = n._views.indexOf(n._current);
-                    n._showView(t ? 0 : 1)
-                }, n._onSelect = function (t, e) {
-                    r.SE.play("214");
-                    var i = 10;
-                    27 == e.id && (i = 10, i -= n._purchasedItems.getCount(27), i -= o.default.model.useItem.getCount(73));
-                    var s = new c.TaskPurchaseConfirm(t, e, i);
-                    n.addChild(s.layer), s.start(function () {
-                        s.count > 0 && null != n._cb_onPurchased && n._cb_onPurchased()
-                    })
-                }, n._purchasedItems = e, n._cb_onPurchased = i, n._header = new PIXI.Sprite, n._header.position.set(226, 114), n.addChild(n._header), n._tab = new _.TabContainer(n._onChangePage), n.addChild(n._tab), n._views = [], n._views.push(new l.NormalItemShopMain(n._onSelect)), n._views.push(new u.SpecialItemShopMain(n._onSelect)), n
+    var o = i(4),
+        r = i(133),
+        s = i(172),
+        a = i(1159),
+        _ = function (t) {
+            function e(e) {
+                var i = t.call(this) || this;
+                return i._onPickup = function () {
+                    null != i._cb_onPickup && i._cb_onPickup(i._model)
+                }, i._cb_onPickup = e, i._name = new o.TextBox(22, 16777215), i._name.position.set(0, 18), i.addChild(i._name), i._icon = new PIXI.Sprite, i._icon.position.set(105, 81), i.addChild(i._icon), i._count = new l, i._count.position.set(243, 84), i.addChild(i._count), i._description = new o.TextBox(18, 16777215), i._description.position.set(22, 186), i._description.style.breakWords = !0, i._description.style.wordWrap = !0, i._description.style.wordWrapWidth = 264, i.addChild(i._description), i._pickup_btn = new a.PickupBtn, i._pickup_btn.position.set(66, 388), i._pickup_btn.visible = !1, i.addChild(i._pickup_btn), i
             }
             return n(e, t), e.prototype.initialize = function () {
-                this._header.texture = s.ITEM_ISHOP.getTexture(35);
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].initialize()
-                }
-            }, e.prototype.update = function () {
-                this._count = 0, this._showView(0)
-            }, e.prototype.activate = function () {
-                null != this._current && this._current.activate(), this._tab.activate()
-            }, e.prototype.deactivate = function () {
-                null != this._current && this._current.deactivate(), this._tab.deactivate()
+                this._pickup_btn.initialize(this._onPickup)
+            }, e.prototype.update = function (t) {
+                return null != t && this._model == t ? void this._onPickup() : (this._model = t, null == this._model ? void this._clean() : (this._name.text = this._model.name, this._name.x = Math.round(154 - this._name.width / 2), this._icon.texture = s.getPayitemIcon(this._model.id), this._count.update(this._model.count), this._count.visible = !0, this._description.text = this._model.description.replace(/<br>/g, "\n"), this._pickup_btn.visible = !0, void this._pickup_btn.activate()))
             }, e.prototype.dispose = function () {
-                this._purchasedItems = null, this._tab.dispose(), this._removeView();
-                for (var t = 0, e = this._views; t < e.length; t++) {
-                    e[t].dispose()
-                }
-            }, e.prototype._removeView = function () {
-                null != this._current && (this.removeChild(this._current), this._current.deactivate(), this._current = null, this._tab.deactivate())
-            }, e.prototype._showView = function (t) {
-                this._removeView(), this._tab.update(t), this._tab.activate(), this._current = this._views[t], this._current.update(), this._current.activate(), this.addChild(this._current), this._count += 0 == t ? 1 : 0;
-                var e = o.default.view.overLayer;
-                new h.TaskWelcomeCutin(e, t, this._count).start()
+                this.removeChildren(), this._name.destroy(), this._count.dispose(), this._description.destroy(), this._pickup_btn.dispose(), this._cb_onPickup = null
+            }, e.prototype._clean = function () {
+                this._name.text = "", this._icon.texture = PIXI.Texture.EMPTY, this._count.visible = !1, this._description.text = "", this._pickup_btn.visible = !1, this._pickup_btn.deactivate()
             }, e
-        }(a.ViewBase);
-    e.ItemShopMain = p
+        }(PIXI.Sprite);
+    e.PurchasedItemDetailPanel = _;
+    var l = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e._bg = new PIXI.Sprite, e.addChild(e._bg), e._text = new o.TextBox(30, 16777215), e._text.y = 28, e.addChild(e._text), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.update(0)
+        }, e.prototype.update = function (t) {
+            var e;
+            e = t < 100 ? 24 : t < 1e3 ? 25 : 26, this._bg.texture = r.ITEM_ILIST.getTexture(e), this._bg.x = -Math.round(this._bg.width / 2), this._text.text = t.toString(), this._text.x = -Math.round(this._text.width / 2)
+        }, e.prototype.dispose = function () {
+            this.removeChildren(), this._text.destroy()
+        }, e
+    }(PIXI.Container)
 }

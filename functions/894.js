@@ -26,8 +26,10 @@ const function894 = function (t, e, i) {
             function e() {
                 var e = t.call(this) || this;
                 e.completeTime = 0, e.now = 0, e.timeCounter = new r.TextBox(31, 5523516), e.textBuildState = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(60));
-                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(154));
-                return i.anchor.x = .5, i.position.set(75, 10), e.textBuildState.position.set(21, -33), e.timeCounter.position.set(5, 39), e.timeCounter.text = s.MathUtil.timeToString(0), e.addChild(e.timeCounter, e.textBuildState, i), e
+                var i = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(144));
+                i.position.set(-4, -30);
+                var n = new PIXI.Sprite(o.ARSENAL_MAIN.getTexture(156));
+                return n.anchor.x = .5, n.position.set(54, 16), e.textBuildState.position.set(16, -28), e.timeCounter.position.set(-14, 42), e.timeCounter.text = s.MathUtil.timeToString(0), e.addChild(i, e.timeCounter, e.textBuildState, n), e
             }
             return n(e, t), e.prototype.build = function (t) {
                 this.timeCounter.alpha = 1, this.completeTime = t, this.textBuildState.texture = o.ARSENAL_MAIN.getTexture(58)

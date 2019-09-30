@@ -20,7 +20,7 @@ const function370 = function (t, e, i) {
         value: !0
     });
     var o = i(52),
-        r = i(1008),
+        r = i(1010),
         s = function (t) {
             function e(e) {
                 var i = t.call(this) || this;

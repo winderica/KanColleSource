@@ -27,7 +27,7 @@ const function431 = function (t, e, i) {
         l = i(60),
         u = i(432),
         c = i(40),
-        h = i(24),
+        h = i(23),
         p = function (t) {
             function e() {
                 var e = t.call(this) || this;

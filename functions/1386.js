@@ -31,15 +31,15 @@ const function1386 = function (t, e, i) {
                 var i = t.call(this) || this;
                 i._preAnim = function () {
                     for (var t = 0; t < i._canvas.chara.length; t++) i._canvas.chara[t].alpha = 0;
-                    i._mutsu.texture = r.default.resources.getShip(i._attackers[0].mst_id, !1, "special"), i._mutsu.position.set(-99, 170), i._mutsu.alpha = 0;
+                    i._nagato.texture = r.default.resources.getShip(i._attackers[0].mst_id, !1, "special"), i._nagato.position.set(-240, 160), i._nagato.alpha = 0;
                     for (var t = 0; t < i._attackers.length; t++) {
                         var e = i._attackers[t].mst_id,
                             n = 0 != t && i._attackers[t].isDamaged();
                         if (0 == t) {
                             i._ships[t].texture = r.default.resources.getShip(e, n, "full");
                             var s = r.default.model.ship_graph.get(e).getBattleOffset(n);
-                            i._ships[t].position.set(s.x, s.y), i._canvas.chara[t].position.set(-1e3, -133)
-                        } else if (1 == t && 541 == i._attackers[t].mst_id && 0 == n) i._ships[t].texture = r.default.resources.getShip(e, !1, "special"), i._ships[t].position.set(-90, 120), i._canvas.chara[t].position.set(-700, 0);
+                            i._ships[t].position.set(s.x, s.y), i._canvas.chara[t].position.set(-1e3, -134)
+                        } else if (1 == t && 573 == i._attackers[t].mst_id && 0 == n) i._ships[t].texture = r.default.resources.getShip(e, !1, "special"), i._ships[t].position.set(67, 138), i._canvas.chara[t].position.set(-800, 0);
                         else {
                             i._ships[t].texture = r.default.resources.getShip(e, n, "full");
                             var a = r.default.model.ship_graph.get(e).getFaceRect(n);
@@ -47,22 +47,20 @@ const function1386 = function (t, e, i) {
                         }
                         i._canvas.chara[t].addChild(i._ships[t])
                     }
-                    i._canvas.chara[0].addChild(i._mutsu), i._anim1()
+                    i._canvas.chara[0].addChild(i._nagato), i._anim1()
                 }, i._anim2 = function () {
                     createjs.Tween.get(null).wait(500).call(function () {
                         createjs.Tween.get(i._ships[0]).to({
                             alpha: 0
-                        }, 400), createjs.Tween.get(i._mutsu).to({
+                        }, 400), createjs.Tween.get(i._nagato).to({
                             alpha: 1
                         }, 400);
-                        var t = i._createSmoke(76, 1040, 600);
-                        i._canvas.explosion.addChild(t), t.createTweens(900, null);
-                        var e = i._createSmoke(78, 855, 490);
-                        i._canvas.explosion.addChild(e), e.createTweens(850, null);
-                        var n = i._createSmoke(77, 382, 705);
-                        i._canvas.explosion.addChild(n), n.createTweens(800, null);
-                        var o = i._createSmoke(78, 165, 520);
-                        i._canvas.explosion.addChild(o), o.createTweens(750, i._anim3)
+                        var t = i._createSmoke(77, 1068, 440);
+                        i._canvas.explosion.addChild(t), t.createTweens(700, null);
+                        var e = i._createSmoke(78, 930, 616);
+                        i._canvas.explosion.addChild(e), e.createTweens(800, null);
+                        var n = i._createSmoke(76, 65, 506);
+                        i._canvas.explosion.addChild(n), n.createTweens(900, i._anim3)
                     })
                 }, i._anim3 = function () {
                     createjs.Tween.get(i._canvas.chara[0]).wait(400).to({
@@ -84,7 +82,7 @@ const function1386 = function (t, e, i) {
                     }).wait(600).call(function () {
                         i._endTask()
                     })
-                }, i._attackers = e, i._canvas = new u.CutinMutsuAttackCanvas, i._view = new PIXI.Container, i.view.addChild(i._canvas), i._mutsu = new PIXI.Sprite, i._ships = [];
+                }, i._attackers = e, i._canvas = new u.CutinNagatoAttackCanvas, i._view = new PIXI.Container, i.view.addChild(i._canvas), i._nagato = new PIXI.Sprite, i._ships = [];
                 for (var n = 0; n < i._attackers.length; n++) i._ships.push(new PIXI.Sprite);
                 return i._preload_task = new h(e), i
             }
@@ -103,18 +101,18 @@ const function1386 = function (t, e, i) {
                 })
             }, e.prototype._anim1 = function () {
                 for (var t = 0; t < this._canvas.chara.length; t++) this._canvas.chara[t].alpha = 0;
-                this._attackers.length >= 2 && 541 == this._attackers[1].mst_id ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 902) : this._attackers.length >= 2 && (80 == this._attackers[1].mst_id || 275 == this._attackers[1].mst_id) ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 901) : r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 900), createjs.Tween.get(this._canvas.chara[0]).to({
-                    x: -175,
+                this._attackers.length >= 2 && 573 == this._attackers[1].mst_id ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 902) : this._attackers.length >= 2 && (81 == this._attackers[1].mst_id || 276 == this._attackers[1].mst_id) ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 901) : this._attackers.length >= 2 && "\u30cd\u30eb\u30bd\u30f3" == this._attackers[1].yomi ? r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 903) : r.default.sound.voice.play(this._attackers[0].mst_id.toString(), 900), createjs.Tween.get(this._canvas.chara[0]).to({
+                    x: -159,
                     alpha: 1
                 }, 600).call(this._anim2)
             }, e.prototype._createSmoke = function (t, e, i) {
                 var n = new p;
                 return n.initialize(t), n.x = e, n.y = i, n
             }, e.prototype._endTask = function () {
-                this._canvas.dispose(), this._view.removeChildren(), null != this._view.parent && this._view.parent.removeChild(this._view), this._attackers = null, this._view = null, this._canvas = null, this._ships = null, this._mutsu = null, this._preload_task = null, t.prototype._endTask.call(this)
+                this._canvas.dispose(), this._view.removeChildren(), null != this._view.parent && this._view.parent.removeChild(this._view), this._attackers = null, this._view = null, this._canvas = null, this._ships = null, this._nagato = null, this._preload_task = null, t.prototype._endTask.call(this)
             }, e
         }(s.TaskBase);
-    e.CutinMutsuAttack = c;
+    e.CutinNagatoAttack = c;
     var h = function (t) {
         function e(e) {
             var i = t.call(this) || this;
@@ -128,14 +126,14 @@ const function1386 = function (t, e, i) {
             e.add(this._attackers[0].mst_id, !1, "full"), e.add(this._attackers[0].mst_id, !1, "special");
             for (var i = 1; i < this._attackers.length; i++) {
                 var n = this._attackers[i].isDamaged();
-                1 == i && 541 == this._attackers[i].mst_id && 0 == n ? e.add(this._attackers[i].mst_id, !1, "special") : e.add(this._attackers[i].mst_id, n, "full")
+                1 == i && 573 == this._attackers[i].mst_id && 0 == n ? e.add(this._attackers[i].mst_id, n, "special") : e.add(this._attackers[i].mst_id, n, "full")
             }
             e.load(function () {
                 t._endTask()
             })
         }, e
     }(s.TaskBase);
-    e.PreloadCutin = h;
+    e.PreloadCutinNagatoAttack = h;
     var p = function (t) {
         function e() {
             var e = t.call(this) || this;

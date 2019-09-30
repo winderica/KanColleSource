@@ -20,34 +20,18 @@ const function317 = function (t, e, i) {
         value: !0
     });
     var o = i(21),
-        r = i(691),
-        s = function (t) {
-            function e(e, i) {
-                void 0 === i && (i = !1);
-                var n = t.call(this) || this;
-                n.maxSlot = e, n.emptyViews = [];
-                for (var s = 0; s < e; s++) {
-                    var a = new PIXI.Sprite(o.COMMON_MAIN.getTexture(46));
-                    a.position.set(0, 47 * s), a.visible = !1, n.addChild(a), n.emptyViews.push(a)
-                }
-                n.normalViews = [];
-                for (var s = 0; s < e; s++) {
-                    var _ = new r.SlotItemSlotView(i);
-                    _.position.set(0, 47 * s), _.visible = !1, n.addChild(_), n.normalViews.push(_)
-                }
-                return n
+        r = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e.bar = new PIXI.Sprite(o.COMMON_MAIN.getTexture(21));
+                var i = new PIXI.Sprite(o.COMMON_MAIN.getTexture(20));
+                return e.bar.x = 3, e.bar.y = 3, e.bar.scale.x = 0, e.addChild(i, e.bar), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                for (var t = 0; t < this.normalViews.length; t++) this.normalViews[t].dispose(), this.normalViews[t] = null;
-                this.maxSlot = null, this.emptyViews = null, this.normalViews = null, this.removeChildren()
-            }, e.prototype.updateSlot = function (t, e) {
-                for (var i = t.getSlotViewMax(), n = 0; n < this.maxSlot; n++) {
-                    var o = e[n];
-                    n < t.slotNum ? (this.normalViews[n].visible = !0, this.emptyViews[n].visible = !1, o ? this.normalViews[n].update(o.iconType, o.name, o.isPlane(), t.getSlotitemTousai(n), o.level, o.skillLevel, o.isLocked()) : this.normalViews[n].clear()) : (this.normalViews[n].visible = !1, this.emptyViews[n].visible = n < i)
-                }
-            }, e.prototype.updateExSlot = function (t) {
-                this.normalViews[0].visible = !1, this.emptyViews[0].visible = !1, t ? (this.normalViews[0].visible = !0, this.normalViews[0].update(t.iconType, t.name, t.isPlane(), -1, t.level, t.skillLevel, t.isLocked())) : this.emptyViews[0].visible = !0
+            return n(e, t), e.prototype.update = function (t) {
+                this.bar.scale.x = .01 * t, 1 <= this.bar.scale.x ? this.bar.scale.x = 1 : this.bar.scale.x <= 0 && (this.bar.scale.x = 0)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this.bar = null
             }, e
         }(PIXI.Container);
-    e.SlotItemSlotContainer = s
+    e.ExpGaugeView = r
 }

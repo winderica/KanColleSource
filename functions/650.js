@@ -19,22 +19,40 @@ const function650 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(14),
-        s = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._skinID = e, i
+    var o = i(0),
+        r = i(2),
+        s = i(651),
+        a = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                return e._onClick = function () {
+                    e._view.deactivate(), e._hideDialog()
+                }, e
             }
             return n(e, t), e.prototype._start = function () {
-                this._load()
-            }, e.prototype._load = function () {
+                o.default.model.deck.combined.type >= 0 ? this._endTask() : this._breakCombined()
+            }, e.prototype._breakCombined = function () {
+                o.default.model.deck.combined.__update__(0), this._showDialog()
+            }, e.prototype._showDialog = function () {
                 var t = this,
-                    e = new r.UIImageLoader("port");
-                e.add("port_main.json"), e.add("port_ringmenu.json"), e.add("port_sidemenu.json"), e.add("port_option.json"), e.add("port_friendly_request.json"), 101 == this._skinID || 102 == this._skinID ? e.add("port_skin_1.json") : 201 == this._skinID ? (e.add("port_skin_2.json"), e.add("port_skin_circle_2.json")) : 301 == this._skinID ? (e.add("port_skin_3.json"), e.add("port_skin_circle_2.json")) : 311 == this._skinID && e.add("port_skin_3k.json"), e.load(function () {
-                    t._endTask()
+                    e = o.default.view.overLayer;
+                this._view = new s.CompCombinedAlert(this._onClick), this._view.bg.alpha = 0, this._view.btn.alpha = 0, this._view.initialize(), e.addChild(this._view), createjs.Tween.get(this._view.bg).to({
+                    alpha: 1
+                }, 300), createjs.Tween.get(this._view.btn).wait(100).to({
+                    alpha: 1
+                }, 300).call(function () {
+                    t._view.activate()
+                })
+            }, e.prototype._hideDialog = function () {
+                var t = this;
+                createjs.Tween.get(this._view.btn).to({
+                    alpha: 0
+                }, 300), createjs.Tween.get(this._view.bg).wait(100).to({
+                    alpha: 0
+                }, 300).call(function () {
+                    t._view.parent.removeChild(t._view), t._endTask()
                 })
             }, e
-        }(o.TaskBase);
-    e.TaskLoadResources = s
+        }(r.TaskBase);
+    e.TaskCombinedAlert = a
 }

@@ -19,25 +19,61 @@ const function1135 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(4),
-        r = i(3),
+    var o = i(0),
+        r = i(92),
         s = i(33),
-        a = function (t) {
-            function e(e) {
-                var i = t.call(this) || this;
-                return i._message1 = new o.TextBox(22, 1381651), i._message1.position.set(167, 96), i.addChild(i._message1), i._message2 = new o.TextBox(22, 1381651), i._message2.position.set(167, 126), i.addChild(i._message2), i._btn_shigen = new s.BtnBase(11, e), i._btn_shigen.position.set(146, 180), i.addChild(i._btn_shigen), i._btn_kanmi = new s.BtnBase(13, e), i._btn_kanmi.position.set(284, 180), i.addChild(i._btn_kanmi), i._btn_shizai = new s.BtnBase(12, e), i._btn_shizai.position.set(422, 180), i.addChild(i._btn_shizai), i._btn_back = new s.BtnBase(-1, e), i._btn_back.position.set(585, 278), i.addChild(i._btn_back), i
+        a = i(93),
+        _ = i(1136),
+        l = function (t) {
+            function e(e, i) {
+                var n = t.call(this) || this;
+                return n._onResult = function (t) {
+                    n._dialog.deactivate(), n._seleced_use_type = t, -1 == t ? n._hideDialog(!1) : n._connectAPI()
+                }, n._layer = e, n._target = i, n
             }
-            return n(e, t), e.prototype.initialize = function () {
-                this.texture = r.ITEM_ILIST_PRESENTBOX.getTexture(9), this._message1.text = "\u300c\u30d7\u30ec\u30bc\u30f3\u30c8\u7bb1\u300d\u3092\u958b\u5c01\u3057\u307e\u3059\u3002", this._message1.x = 339 - this._message1.width / 2, this._message2.text = "\u4e0b\u8a18\u306e\u30c1\u30e7\u30a4\u30b9\u304c\u53ef\u80fd\u3067\u3059\u3002", this._message2.x = 339 - this._message2.width / 2;
-                var t = r.ITEM_ILIST_PRESENTBOX.getTexture(3);
-                this._btn_shigen.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(4), this._btn_kanmi.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(5), this._btn_shizai.initialize(t), t = r.ITEM_ILIST_PRESENTBOX.getTexture(0), this._btn_back.initialize(t)
-            }, e.prototype.activate = function () {
-                this._btn_shigen.activate(), this._btn_kanmi.activate(), this._btn_shizai.activate(), this._btn_back.activate()
-            }, e.prototype.deactivate = function () {
-                this._btn_shigen.deactivate(), this._btn_kanmi.deactivate(), this._btn_shizai.deactivate(), this._btn_back.deactivate()
-            }, e.prototype.dispose = function () {
-                this.removeChildren(), this._message1.destroy(), this._message2.destroy(), this._btn_shigen.dispose(), this._btn_kanmi.dispose(), this._btn_shizai.dispose(), this._btn_back.dispose()
+            return n(e, t), e.prototype._start = function () {
+                this._showDialog()
+            }, e.prototype._showDialog = function () {
+                var t = this;
+                this._dialog = new _.PresentBoxUseDialog(this._onResult), this._dialog.initialize(), this._dialog.alpha = 0, this._layer.addChild(this._dialog), createjs.Tween.get(this._dialog).to({
+                    alpha: 1
+                }, 150).call(function () {
+                    t._dialog.activate()
+                })
+            }, e.prototype._connectAPI = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = (o.default.view.overLayer, new r.UseItemUseAPI(e, !1, i)),
+                    s = n.result;
+                n.start(function () {
+                    1 == s.hasCaution() ? t._hideDialog(!0) : (t._result = s, t._hideDialog(!1))
+                })
+            }, e.prototype._hideDialog = function (t) {
+                var e = this;
+                createjs.Tween.get(this._dialog).to({
+                    alpha: 0
+                }, 150).call(function () {
+                    e._dialog.dispose(), e._layer.removeChild(e._dialog), e._dialog = null, 1 == t ? e._confirm() : e._endTask()
+                })
+            }, e.prototype._confirm = function () {
+                var t = this,
+                    e = this._target.mstID,
+                    i = this._seleced_use_type,
+                    n = this._layer,
+                    o = new a.TaskItemOverflowConfirm(n);
+                o.start(function () {
+                    if (1 == o.result) {
+                        var n = new r.UseItemUseAPI(e, !0, i),
+                            s = n.result;
+                        n.start(function () {
+                            t._result = s, t._endTask()
+                        })
+                    } else t._endTask()
+                })
+            }, e.prototype._endTask = function () {
+                this._layer = null, this._target = null, t.prototype._endTask.call(this)
             }, e
-        }(PIXI.Sprite);
-    e.TopView = a
+        }(s.TaskWithResult);
+    e.TaskUsePresentBox = l
 }

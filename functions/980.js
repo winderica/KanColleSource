@@ -19,31 +19,37 @@ const function980 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(7),
-        r = i(9),
+    var o = i(12),
+        r = i(41),
         s = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._url = "api_req_map/select_eventmap_rank", n._model = e, n._selected = i, n
+            function e() {
+                var e = t.call(this) || this;
+                return e._board = new a, e._board.position.set(726, 346), e._chara = new PIXI.Sprite, e._chara.position.set(17, 74), e.addChild(e._board), e.addChild(e._chara), e
             }
-            return n(e, t), e.prototype._connect = function () {
-                this._post_data.api_maparea_id = this._model.area_id, this._post_data.api_map_no = this._model.map_no, this._post_data.api_rank = this._selected, t.prototype._connect.call(this)
-            }, e.prototype._completedEnd = function () {
-                var e = this._model.getGaugeNum(),
-                    i = this._model.gauge_type,
-                    n = this._model.gauge_max,
-                    r = this._model.gauge_now,
-                    s = this._raw_data;
-                if (null != s) {
-                    if (s.hasOwnProperty("api_maphp")) {
-                        var a = s.api_maphp;
-                        a.hasOwnProperty("api_gauge_num") && (e = a.api_gauge_num), a.hasOwnProperty("api_gauge_type") && (i = a.api_gauge_type), 1 == a.hasOwnProperty("api_max_maphp") && (n = a.api_max_maphp), 1 == a.hasOwnProperty("api_now_maphp") && (r = a.api_now_maphp)
-                    }
-                    this._model.changeOperation(this._selected, e, i, n, r);
-                    var _ = o.ObjUtil.getNumArray(s, "api_sally_flag");
-                    _ && this._model.changeAllowedDeckType(_), t.prototype._completedEnd.call(this)
-                }
+            return n(e, t), Object.defineProperty(e.prototype, "board", {
+                get: function () {
+                    return this._board
+                },
+                enumerable: !0,
+                configurable: !0
+            }), Object.defineProperty(e.prototype, "chara", {
+                get: function () {
+                    return this._chara
+                },
+                enumerable: !0,
+                configurable: !0
+            }), e.prototype.initialize = function () {
+                this._board.initialize(), this._chara.texture = r.SALLY_EVENT.getTexture(27)
             }, e
-        }(r.APIBase);
-    e.APIOperationChange = s
+        }(PIXI.Container);
+    e.IntroAlertDialog = s;
+    var a = function (t) {
+        function e() {
+            var e = t.call(this) || this;
+            return e.anchor.set(.5), e._content = new PIXI.Sprite, e.addChild(e._content), e
+        }
+        return n(e, t), e.prototype.initialize = function () {
+            this.texture = r.SALLY_EVENT.getTexture(6), this._content.position.set(-345, -215), this._content.texture = r.SALLY_EVENT.getTexture(40)
+        }, e
+    }(o.Sprite)
 }

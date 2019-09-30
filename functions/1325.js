@@ -19,46 +19,23 @@ const function1325 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(2),
-        r = i(1326),
-        s = i(1328),
-        a = function (t) {
-            function e(e, i) {
-                var n = t.call(this) || this;
-                return n._scene = e, n._model = i, n
+    var o = i(19),
+        r = function (t) {
+            function e() {
+                return null !== t && t.apply(this, arguments) || this
             }
-            return n(e, t), e.prototype._start = function () {
+            return n(e, t), e.prototype.create = function (t) {
+                null != this._airbase && null != this._airbase.parent && this._airbase.parent.removeChild(this._airbase), this._airbase = new PIXI.Sprite, this._airbase.texture = o.MAP_COMMON.getTexture(84), this._airbase.x = t.x - this._airbase.width / 2, this._airbase.y = t.y - this._airbase.height / 2, this.addChild(this._airbase)
+            }, e.prototype.shake = function () {
                 var t = this;
-                if (this._scene.model.sortie.getNextCell().isDeadEnd()) return void this._endTask();
-                var e = this._model.escape,
-                    i = e.getTargetShipIndexes(),
-                    n = e.getTowingShipIndexes(),
-                    o = null;
-                if (i.length > 0) {
-                    var a = i[0];
-                    o = this._model.deck_f.ships[a]
-                }
-                var _ = null;
-                if (n.length > 0) {
-                    var l = n[0];
-                    _ = this._model.deck_f.ships[l]
-                }
-                if (null != o)
-                    if (null != _) {
-                        var u = new s.EscapeGoeiTask(this._scene, this._model, o, _);
-                        u.start(function () {
-                            t._endTask()
+                if (null != this._airbase)
+                    for (var e = this._airbase.x, i = createjs.Tween.get(this._airbase), n = 0; n < 60; n++) ! function (n) {
+                        i.wait(50), i.call(function () {
+                            Math.random();
+                            t._airbase.x = n % 2 == 0 ? e + (Math.random() + .5) : e - (Math.random() + .5)
                         })
-                    } else {
-                        var u = new r.EscapeTankanTask(this._scene, this._model, o);
-                        u.start(function () {
-                            t._endTask()
-                        })
-                    }
-                else this._endTask()
-            }, e.prototype._endTask = function () {
-                this._scene = null, this._model = null, t.prototype._endTask.call(this)
+                    }(n)
             }, e
-        }(o.TaskBase);
-    e.EscapeTask = a
+        }(PIXI.Container);
+    e.AirBaseLayer = r
 }

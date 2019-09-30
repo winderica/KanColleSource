@@ -46,5 +46,5 @@ const function1387 = function (t, e, i) {
             this._explosion.removeChildren(), this.removeChildren(), this._chara = null, this._explosion = null
         }, e
     }(PIXI.Container);
-    e.CutinMutsuAttackCanvas = o
+    e.CutinNagatoAttackCanvas = o
 }

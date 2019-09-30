@@ -23,17 +23,20 @@ const function910 = function (t, e, i) {
         r = i(3),
         s = i(116),
         a = i(1),
-        _ = i(224),
+        _ = i(225),
         l = i(911),
         u = i(80),
         c = i(912),
-        h = i(346),
-        p = i(913),
-        d = i(914),
-        f = i(348),
-        y = i(916),
-        m = i(921),
-        g = function (t) {
+        h = i(347),
+        p = i(914),
+        d = i(915),
+        f = i(916),
+        y = i(348),
+        m = i(918),
+        g = i(923);
+    d.RewardAnimationMultiSlot;
+    var v = i(208),
+        b = function (t) {
             function e() {
                 var e = t.call(this) || this;
                 e.itemMemory = {
@@ -41,7 +44,7 @@ const function910 = function (t, e, i) {
                     fuel: 10,
                     steel: 10,
                     bauxite: 10
-                }, e.shipShipPageIndex = 0, e.shipSortKeyType = f.ArsenalSceneMemory.shipSortKeyType, e._hasLimitOver = !1, e._onMouseOverDevelop = function () {
+                }, e.shipShipPageIndex = 0, e.shipSortKeyType = y.ArsenalSceneMemory.shipSortKeyType, e._hasLimitOver = !1, e._onMouseOverDevelop = function () {
                     e.alertDevelopPopup.visible = e._hasLimitOver
                 }, e._onMouseOutDevelop = function () {
                     e.alertDevelopPopup.visible = !1
@@ -63,22 +66,86 @@ const function910 = function (t, e, i) {
                                 r = e._materialAmountContainer.steel,
                                 s = e._materialAmountContainer.bauxite;
                             e.itemMemory.fuel = i, e.itemMemory.ammo = n, e.itemMemory.steel = r, e.itemMemory.bauxite = s;
-                            var a = new l.CreateItemAPI(i, n, r, s);
+                            var a = new l.CreateItemAPI(i, n, r, s, !1);
                             o.default.view.clickGuard = !0, a.start(function () {
                                 var t = 1 == a.api_create_flag,
-                                    i = a.api_slotitem_mstid;
+                                    i = a.api_slotitem_mstid.pop();
                                 e.developAnimation(t, i), o.default.view.clickGuard = !1
+                            }), e._materialAmountContainer.dispose(), e._materialAmountContainer = null, e.focusBuild();
+                            break;
+                        case c.Result.MULTIPLE_DEV:
+                            var h = e._materialAmountContainer.fuel,
+                                p = e._materialAmountContainer.ammo,
+                                d = e._materialAmountContainer.steel,
+                                f = e._materialAmountContainer.bauxite;
+                            e.itemMemory.fuel = h, e.itemMemory.ammo = p, e.itemMemory.steel = d, e.itemMemory.bauxite = f;
+                            var y = new l.CreateItemAPI(h, p, d, f, !0);
+                            o.default.view.clickGuard = !0, y.start(function () {
+                                var t = 1 == y.api_create_flag,
+                                    i = y.api_slotitem_mstid;
+                                e.multiple_bg.initiailzeGetBG1(function () {
+                                    e.multiple_bg.alpha = 0, o.default.view.overLayer.addChild(e.multiple_bg), createjs.Tween.get(e.multiple_bg).to({
+                                        alpha: 1
+                                    }, 500).set({
+                                        visible: !0
+                                    }), e.multiDevelopAnimation(t, i, 0), o.default.view.clickGuard = !1
+                                })
                             }), e._materialAmountContainer.dispose(), e._materialAmountContainer = null, e.focusBuild();
                             break;
                         case c.Result.GOTO_STORE:
                             o.default.scene.change(24, new u.ItemSceneModel)
                     }
+                }, e.multiDevelopAnimation = function (t, i, n) {
+                    var r = !t && n == i.length - 1;
+                    if (n > i.length - 1) return void(t && e._rewardResultAnimation(i));
+                    var s = new h.ReceiveAnimation(393);
+                    o.default.view.overLayer.addChild(s), s.preload(function () {
+                        if (i[n] > 0) {
+                            var a = o.default.model.slot.getMst(i[n]),
+                                l = "",
+                                u = o.default.model.slot.getEquipTypeById(a.equipType);
+                            l = u.needsDisplayName() ? "\u300c" + u.name + "\u3000" + a.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01" : "\u300c" + a.name + "\u300d\u3092\u5165\u624b\u3057\u307e\u3057\u305f\uff01";
+                            var c = new d.RewardAnimationMultiSlot(!1);
+                            c.preload(i[n], l, a.rarity, function () {
+                                s.play(function () {
+                                    _.ArsenalUtil.playFlagshipVoice(26), s.dispose(), o.default.view.overLayer.removeChild(s), o.default.view.overLayer.addChild(c), c.play(function () {
+                                        o.default.view.portMain.updateInfo();
+                                        for (var t = _.ArsenalUtil.developLimit(), i = o.default.model.kdock.getAll(), n = 0; n < i.length; n++) {
+                                            var r = i[n];
+                                            e.onUpdateCondition(r.id, t.forShip, t.forSlot)
+                                        }
+                                    }, function () {
+                                        e.multiDevelopAnimation(t, i, n + 1), c.dispose(), o.default.view.overLayer.removeChild(c)
+                                    })
+                                })
+                            })
+                        } else s.play(function () {
+                            s.dispose(), o.default.view.overLayer.removeChild(s);
+                            var a = new f.RewardAnimationSlotFailed(r);
+                            o.default.view.overLayer.addChild(a), a.play(function () {
+                                o.default.view.portMain.updateInfo(), a.dispose(), r && o.default.view.overLayer.removeChild(e.multiple_bg), o.default.view.overLayer.removeChild(a), e.multiDevelopAnimation(t, i, n + 1)
+                            })
+                        })
+                    })
+                }, e._rewardResultAnimation = function (t) {
+                    for (var i = "", n = 0, r = 0; r < t.length; r++)
+                        if (!(t[r] <= 0)) {
+                            var s = o.default.model.slot.getMst(t[r]),
+                                a = o.default.model.slot.getEquipTypeById(s.equipType),
+                                l = s.rarity;
+                            n < l && (n = l), a.needsDisplayName() ? i += "\u300c" + a.name + "\u3000" + s.name + "\u300d" : i += "\u300c" + s.name + "\u300d", i += "\n"
+                        } var u = new d.RewardAnimationMultiSlot(!0);
+                    u.preMultiload(t, i, n, function () {
+                        _.ArsenalUtil.playFlagshipVoice(26), o.default.view.overLayer.removeChild(e.multiple_bg), o.default.view.overLayer.addChild(u), u.play(function () {}, function () {
+                            u.dispose(), o.default.view.overLayer.removeChild(u), _.ArsenalUtil.playVoiceOnBuildComplete()
+                        })
+                    })
                 }, e._onClickMenuShipDisassembly = function () {
-                    e.focusShipDisassembly(), o.default.view.clickGuard = !0, e.shipDisassembly && (e.shipDisassembly.dispose(), e.shipDisassembly = null), e.shipDisassembly = new y.ShipDisassemblyContainer(e.parent), e.shipDisassembly.onComplete = function () {
+                    e.focusShipDisassembly(), o.default.view.clickGuard = !0, e.shipDisassembly && (e.shipDisassembly.dispose(), e.shipDisassembly = null), e.shipDisassembly = new m.ShipDisassemblyContainer(e.parent), e.shipDisassembly.onComplete = function () {
                         e._onCompletePhaseShipDisassembly()
                     }, e.shipDisassembly.start(e.shipSortKeyType, 0)
                 }, e._onClickMenuSlotDisassembly = function () {
-                    e.focusSlotDisassembly(), e.slotDisassembly && (e.slotDisassembly.dispose(), e.slotDisassembly = null), e.slotDisassembly = new m.SlotDisassemblyContainer(e.parent), e.slotDisassembly.onComplete = function () {
+                    e.focusSlotDisassembly(), e.slotDisassembly && (e.slotDisassembly.dispose(), e.slotDisassembly = null), e.slotDisassembly = new g.SlotDisassemblyContainer(e.parent), e.slotDisassembly.onComplete = function () {
                         e._onCompleteSlotDisassembly()
                     }, e.slotDisassembly.start(0, 0)
                 };
@@ -86,11 +153,11 @@ const function910 = function (t, e, i) {
                 e.iconBuild = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(96));
                 var n = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(90));
                 e.buttonSlotDisassembly = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(89), r.ARSENAL_MAIN.getTexture(90));
-                var h = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(92));
+                var p = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(92));
                 e.buttonDevelop = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(91), r.ARSENAL_MAIN.getTexture(92));
-                var p = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(94));
+                var b = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(94));
                 e.buttonShipDisassembly = new s.SimpleButton(r.ARSENAL_MAIN.getTexture(93), r.ARSENAL_MAIN.getTexture(94)), e.alertDevelopPopup = new PIXI.Sprite(r.ARSENAL_MAIN.getTexture(70));
-                return e.buttonDevelop.on(a.EventType.CLICK, e._onClickMenuDevelop), e.buttonDevelop.onMouseOver = e._onMouseOverDevelop, e.buttonDevelop.onMouseOut = e._onMouseOutDevelop, e.buttonSlotDisassembly.on(a.EventType.CLICK, e._onClickMenuSlotDisassembly), e.buttonShipDisassembly.on(a.EventType.CLICK, e._onClickMenuShipDisassembly), e.iconBuild.anchor.set(.5, 0), i.anchor.set(.5, 0), n.anchor.set(.5, 0), e.buttonSlotDisassembly.anchor.set(.5, 0), h.anchor.set(.5, 0), e.buttonDevelop.anchor.set(.5, 0), p.anchor.set(.5, 0), e.buttonShipDisassembly.anchor.set(.5, 0), e.iconBuild.position.set(342, 201), i.position.set(342, 201), p.position.set(342, 321), e.buttonShipDisassembly.position.set(342, 321), h.position.set(342, 435), e.buttonDevelop.position.set(342, 435), e.alertDevelopPopup.position.set(462, 435), n.position.set(342, 555), e.buttonSlotDisassembly.position.set(342, 555), e.alertDevelopPopup.visible = !1, e.addChild(i, p, h, n, e.iconBuild, e.buttonShipDisassembly, e.buttonDevelop, e.buttonSlotDisassembly, e.alertDevelopPopup), e
+                return e.buttonDevelop.on(a.EventType.CLICK, e._onClickMenuDevelop), e.buttonDevelop.onMouseOver = e._onMouseOverDevelop, e.buttonDevelop.onMouseOut = e._onMouseOutDevelop, e.buttonSlotDisassembly.on(a.EventType.CLICK, e._onClickMenuSlotDisassembly), e.buttonShipDisassembly.on(a.EventType.CLICK, e._onClickMenuShipDisassembly), e.iconBuild.anchor.set(.5, 0), i.anchor.set(.5, 0), n.anchor.set(.5, 0), e.buttonSlotDisassembly.anchor.set(.5, 0), p.anchor.set(.5, 0), e.buttonDevelop.anchor.set(.5, 0), b.anchor.set(.5, 0), e.buttonShipDisassembly.anchor.set(.5, 0), e.iconBuild.position.set(342, 201), i.position.set(342, 201), b.position.set(342, 321), e.buttonShipDisassembly.position.set(342, 321), p.position.set(342, 435), e.buttonDevelop.position.set(342, 435), e.alertDevelopPopup.position.set(462, 435), n.position.set(342, 555), e.buttonSlotDisassembly.position.set(342, 555), e.alertDevelopPopup.visible = !1, e.addChild(i, b, p, n, e.iconBuild, e.buttonShipDisassembly, e.buttonDevelop, e.buttonSlotDisassembly, e.alertDevelopPopup), e.multiple_bg = new v.GetBG, e
             }
             return n(e, t), Object.defineProperty(e.prototype, "hasLimitOver", {
                 set: function (t) {
@@ -99,7 +166,7 @@ const function910 = function (t, e, i) {
                 enumerable: !0,
                 configurable: !0
             }), e.prototype.dispose = function () {
-                this.buttonSlotDisassembly.dispose(), this.buttonDevelop.dispose(), this.buttonShipDisassembly.dispose(), this.shipDisassembly && this.shipDisassembly.dispose(), this.slotDisassembly && this.slotDisassembly.dispose(), this.onUpdateCondition = null, this.shipShipPageIndex = null, this.shipSortKeyType = null, this.iconBuild = null, this.buttonSlotDisassembly = null, this.buttonDevelop = null, this.buttonShipDisassembly = null, this.alertDevelopPopup = null, this.itemMemory = null, this._hasLimitOver = null, this.shipDisassembly = null, this.slotDisassembly = null, this._materialAmountContainer && (this._materialAmountContainer.dispose(), this._materialAmountContainer = null), this.removeChildren()
+                this.buttonSlotDisassembly.dispose(), this.buttonDevelop.dispose(), this.buttonShipDisassembly.dispose(), this.multiple_bg.dispose(), this.shipDisassembly && this.shipDisassembly.dispose(), this.slotDisassembly && this.slotDisassembly.dispose(), this.onUpdateCondition = null, this.shipShipPageIndex = null, this.shipSortKeyType = null, this.iconBuild = null, this.buttonSlotDisassembly = null, this.buttonDevelop = null, this.buttonShipDisassembly = null, this.alertDevelopPopup = null, this.itemMemory = null, this._hasLimitOver = null, this.shipDisassembly = null, this.slotDisassembly = null, this.multiple_bg = null, this._materialAmountContainer && (this._materialAmountContainer.dispose(), this._materialAmountContainer = null), this.removeChildren()
             }, e.prototype.focusBuild = function () {
                 this.iconBuild.visible = !0, this.buttonShipDisassembly.visible = !0, this.buttonDevelop.visible = !0, this.buttonSlotDisassembly.visible = !0
             }, e.prototype.focusShipDisassembly = function () {
@@ -133,7 +200,7 @@ const function910 = function (t, e, i) {
                         })
                     } else n.play(function () {
                         n.dispose(), o.default.view.overLayer.removeChild(n);
-                        var t = new d.RewardAnimationSlotFailed;
+                        var t = new f.RewardAnimationSlotFailed(!0);
                         o.default.view.overLayer.addChild(t), t.play(function () {
                             o.default.view.portMain.updateInfo(), t.dispose(), o.default.view.overLayer.removeChild(t), _.ArsenalUtil.playVoiceOnBuildComplete()
                         })
@@ -160,5 +227,5 @@ const function910 = function (t, e, i) {
                 })
             }, e
         }(PIXI.Container);
-    e.MenuLayer = g
+    e.MenuLayer = b
 }

@@ -19,190 +19,246 @@ const function1046 = function (t, e, i) {
     Object.defineProperty(e, "__esModule", {
         value: !0
     });
-    var o = i(58),
-        r = i(4),
-        s = i(87),
-        a = i(377),
-        _ = i(1),
-        l = i(0),
-        u = i(15),
-        c = i(375),
-        h = i(378),
-        p = i(235),
-        d = i(234),
-        f = function (t) {
+    var o = i(30),
+        r = i(58),
+        s = i(375),
+        a = i(87),
+        _ = i(31),
+        l = i(4),
+        u = i(1),
+        c = i(236),
+        h = i(237),
+        p = i(376),
+        d = function (t) {
             function e() {
-                var e = t.call(this) || this;
-                e._onClick = function (t) {
-                    var i = t.data,
-                        n = l.default.model.basic.member_id,
-                        o = u.__create_serial_id__(n, i.global.x, i.global.y);
-                    l.default.model.expedition.serial_id = o, e.onClick(e._expedition_mst_id)
-                }, e._onOver = function () {
-                    e._focusOver()
-                }, e._onOut = function () {
-                    e._focusOut()
-                };
-                var i = (new PIXI.Graphics).beginFill(16777215, 0).drawRect(0, 0, 655, 45).endFill(),
-                    n = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(95)),
-                    a = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, 655, 45).endFill(),
-                    h = new r.TextBox(18, 4999235, "bold"),
-                    p = new r.TextBox(20, 3768020, "bold"),
-                    f = new r.TextBox(14, 4999235, "bold"),
-                    w = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(69));
-                w.position.y = -10, w.scale.set(.75, .75);
-                var x = new c.FleetShadow(d.ShadowType.LIST);
-                x.scale.set(1, 1), x.position.set(656, 32), a.interactive = !0, a.buttonMode = !0, a.addListener(_.EventType.CLICK, e._onClick), a.addListener(_.EventType.MOUSEOVER, e._onOver), a.addListener(_.EventType.MOUSEOUT, e._onOut);
-                var I = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(92));
-                I.alpha = 0;
-                var T = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(63)),
-                    O = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(81)),
-                    C = new s.ShipInDeckFlag;
-                T.anchor.set(.5, .5), T.position.set(23, .5 * i.height), O.anchor.set(.5, .5), O.position.set(23, .5 * i.height), C.anchor.set(.5, .5), C.position.set(23, .5 * i.height), C.scale.set(.75, .75);
-                var P = new r.TextBox(15, 4999235, "bold");
-                P.position.set(42, .5 * i.height), P.anchor.set(0, .5);
-                var k = new g;
-                k.position.set(80, .5 * i.height);
-                var S = new v;
-                S.position.set(67, 0);
-                var M = new r.TextBox(22, 4999235, "bold");
-                M.position.set(95, Math.floor(.5 * i.height)), M.anchor.set(0, .5);
-                var A = new PIXI.Graphics;
-                A.beginFill(16777215, 1), A.drawRect(92, 0, 229, 44), A.endFill(), M.mask = A;
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(14)),
+                    n = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(38));
+                n.position.set(8, 36);
+                var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(120));
+                u.position.set(225, 8);
+                var h = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(69));
+                h.position.set(75, 4);
+                var p = new l.TextBox(27, 4999235, "bold");
+                p.position.set(16, 60);
+                var d = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(39));
+                d.position.set(8, 95);
+                var f = new l.TextBox(21, 4999235, "bold");
+                f.position.set(18, 119);
+                var I = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(40));
+                I.position.set(22, 256);
+                var T = new y({
+                    on: 97,
+                    off: 98
+                });
+                T.position.set(175, 268);
+                var O = new y({
+                    on: 99,
+                    off: 100
+                });
+                O.position.set(265, 268);
+                var C = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(41));
+                C.position.set(22, 289);
+                var P = new m({
+                    on: 97,
+                    off: 98
+                });
+                P.position.set(175, 301);
+                var k = new m({
+                    on: 99,
+                    off: 100
+                });
+                k.position.set(175, 326);
+                var S = new m({
+                    on: 101,
+                    off: 102
+                });
+                S.position.set(265, 301);
+                var M = new m({
+                    on: 103,
+                    off: 104
+                });
+                M.position.set(265, 326);
+                var A = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(42));
+                A.position.set(22, 345);
                 var E = new PIXI.Sprite;
-                E.position.set(294, 0), E.scale.y = .96;
-                var j = new m({
-                        on: 72,
-                        off: 73
-                    }),
-                    N = new m({
-                        on: 74,
-                        off: 75
-                    }),
-                    L = new m({
-                        on: 76,
-                        off: 77
-                    }),
-                    B = new m({
-                        on: 78,
-                        off: 79
-                    });
-                j.y = N.y = L.y = B.y = 1, j.x = 337, L.x = j.x + j.width + 2, N.x = L.x + L.width + 2, B.x = N.x + N.width + 2;
-                var R = new y({
-                        on: 82,
-                        off: 83
-                    }),
-                    D = new y({
-                        on: 84,
-                        off: 85
-                    }),
-                    U = new y({
-                        on: 86,
-                        off: 87
-                    }),
-                    X = new y({
-                        on: 88,
-                        off: 89
-                    });
-                R.position.set(431.5, 9), D.position.set(446, 9.5), U.position.set(429.5, 23), X.position.set(447, 23.5), h.position.set(645, .5 * i.height), h.anchor.set(1, .5), p.style.fill = 3768020, p.style.fontSize = 20, p.position.set(478, Math.floor(.5 * i.height) - .5), p.anchor.set(1, .5), f.position.set(p.position.x, Math.floor(.5 * i.height)), f.anchor.set(0, .5);
-                var F = new b;
-                return F.position.set(524, 7), e.addChild(i), e.addChild(n), e.addChild(I), e.addChild(T, O, C), e.addChild(P, M, A, E, h, p, f, w), e.addChild(S, k), e.addChild(j, N, L, B), e.addChild(R, D, U, X), e.addChild(x), e.addChild(F), e.addChild(a), e._textDispNo = P, e._textTime = h, e._textName = M, e._textNameGradMask = E, e._textDeckNumText = f, e._hitArea = a, e._focus = I, e._textDeckNum = p, e._exampleFleetShadow = x, e._difficulty = k, e._iconDamage = w, e._expeditionStateIcon = F, e._iconDeck = C, e._iconClear = T, e._iconNew = O, e._difficultyBG = S, e._fuel = j, e._steel = L, e._ammo = N, e._bauxite = B, e._repairKit = R, e._devKit = D, e._buildKit = U, e._otherItem = X, e._grayOut = n, e
+                E.position.set(175, 359.5), E.anchor.set(.5, .5);
+                var j = new l.TextBox(18, 4999235, "bold");
+                j.position.set(186, 349);
+                var N = new PIXI.Sprite;
+                N.position.set(233, 359.5), N.anchor.set(.5, .5);
+                var L = new l.TextBox(18, 4999235, "bold");
+                L.position.set(244, 349);
+                var B = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(70)),
+                    R = new g,
+                    D = new v,
+                    U = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(43));
+                U.position.set(8, 379);
+                var X = new _.ShipBanner;
+                X.position.set(10, 405);
+                var F = new a.ShipInDeckFlag;
+                F.anchor.set(.5, .5), F.scale.set(.75, .75), F.position.set(25, 483);
+                var V = new l.TextBox(14, 0);
+                V.position.set(86, 382);
+                var z = new l.TextBox(14, 0);
+                z.position.set(39, 467);
+                var G = new l.TextBox(14, 0);
+                G.position.set(39, 483);
+                var K = new s.FleetShadow(c.ShadowType.DETAIL);
+                K.position.set(332, 486), K.scale.set(1, 1);
+                var Y = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(45));
+                Y.position.set(305, 420), Y.anchor.set(.5, .5);
+                var H = new b;
+                H.position.x = 305, H.position.y = 420;
+                var W = new w;
+                W.position.x = 305, W.position.y = 420;
+                var q = new x;
+                q.position.x = 305, q.position.y = 420;
+                var J = new c.ShipShadow;
+                J.anchor.set(.5, 0), J.position.set(305, 380), R.position.set(40, 502), D.position.set(80, 502), B.position.set(39, 502);
+                var Z = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(19));
+                Z.anchor.set(0, .5), Z.position.set(40, 20);
+                var $ = new PIXI.Sprite(o.SALLY_COMMON.getTexture(51));
+                return $.position.set(0, -35), $.addChild(Z), R.onClick = function () {
+                    return e.onClickStart(e._expedition_mst_id)
+                }, D.onClick = function () {
+                    return e.onClickCancel(e._expedition_mst_id)
+                }, e.addChild(i), e.addChild(n, p, u, h), e.addChild(d, f), e.addChild(I, T, O), e.addChild(C, P, S, k, M), e.addChild(A, E, j, N, L), e.addChild(U, V, z, G, X, F), e.addChild(K, D, B, R), e.addChild(Y, q, W, H, J), e.addChild($), e._textExpeditionDetail = f, e._textExpeditionName = p, e._decisionButton = R, e._stopButton = D, e._useAmmo = O, e._useFuel = T, e._rewardFuel = P, e._rewardAmmo = k, e._rewardSteel = S, e._rewardBauxite = M, e._rewardItem1Icon = E, e._rewardItem1Text = j, e._rewardItem2Icon = N, e._rewardItem2Text = L, e._flagShipBanner = X, e._textDeckName = V, e._textFlagShipName = z, e._textFlagShipLevel = G, e._hexClockActive = H, e._hexClockCancel = W, e._hexClockComplete = q, e._iconMonthly = u, e._iconDamage = h, e._iconTower = B, e._iconDeck = F, e._deckFleetShadow = K, e._flagShipShadow = J, e
             }
-            return n(e, t), Object.defineProperty(e.prototype, "expedition_mst_id", {
-                get: function () {
-                    return this._expedition_mst_id
-                },
-                enumerable: !0,
-                configurable: !0
-            }), Object.defineProperty(e.prototype, "expeditionStateIcon", {
-                get: function () {
-                    return this._expeditionStateIcon
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype._focusOver = function () {
-                this._focus.alpha = 1, this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(93)
-            }, e.prototype._focusOut = function () {
-                this._focus.alpha = 0, this._grayOut.visible ? this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(94) : this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(96)
-            }, e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, l, u, c, h, d, f, y, m) {
-                this._fuel.update(_), this._ammo.update(l), this._steel.update(u), this._bauxite.update(c), this._repairKit.update(d), this._buildKit.update(h), this._devKit.update(f), this._otherItem.update(y), this._exampleFleetShadow.update(s), this._difficulty.update(n), this._textDeckNumText.text = 6 == a ? "\u96bb\u9060\u5f81" : "\u96bb\u4ee5\u4e0a", this._iconDamage.visible = !1, 0 < r && (this._iconDamage.visible = !0), this._textDispNo.text = e, this._textTime.text = p.minuteToFormatHHMM(o), this._textName.text = i, this._textDeckNum.text = "" + a, this._iconDamage.position.x = this._textName.position.x + this._textName.width - 12, this._monthly = m, this._expedition_mst_id = t
-            }, e.prototype.updateMember = function (t, e, i, n) {
-                this._expeditionStateIcon.update(h.ExpeditionState.NONE), this._expeditionStateIcon.visible = !1, this._iconDeck.visible = !1, this._iconNew.visible = !1, this._iconClear.visible = !1, this._grayOut.visible = !1, this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(96), e ? (this._iconDeck.update([e, 0]), this._expeditionStateIcon.update(h.ExpeditionState.EXPEDITION), this._expeditionStateIcon.visible = !0, this._iconDeck.visible = !0) : 2 == t ? (this._monthly && (this._expeditionStateIcon.update(h.ExpeditionState.COMPLETE_MONTHLY), this._expeditionStateIcon.visible = !0, this._grayOut.visible = !0, this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(94)), this._iconClear.visible = !0) : (0 == t && (this._iconNew.visible = !0), this._monthly && n && (this._expeditionStateIcon.update(h.ExpeditionState.TIME_OVER_MONTHLY), this._expeditionStateIcon.visible = !0, this._grayOut.visible = !0, this._textNameGradMask.texture = o.SALLY_EXPEDITION.getTexture(94))), null != i && this._difficultyBG.update(i)
+            return n(e, t), e.prototype._itemId2Texture = function (t) {
+                switch (t) {
+                    case 0:
+                        return PIXI.Texture.EMPTY;
+                    case 1:
+                        return p.SALLY_EXPEDITION_DETAIL.getTexture(0);
+                    case 2:
+                        return p.SALLY_EXPEDITION_DETAIL.getTexture(2);
+                    case 3:
+                        return p.SALLY_EXPEDITION_DETAIL.getTexture(1);
+                    default:
+                        return p.SALLY_EXPEDITION_DETAIL.getTexture(3)
+                }
+            }, e.prototype.updateMaster = function (t, e, i, n, o, r, s, a, _, l, u, c, h, p, d, f, y) {
+                this._useFuel.update(r), this._useAmmo.update(s), this._rewardFuel.update(_), this._rewardAmmo.update(l), this._rewardSteel.update(u), this._rewardBauxite.update(c), this._rewardItem1Icon.texture = this._itemId2Texture(h), this._rewardItem1Text.text = "x" + p, 0 == p ? (this._rewardItem1Icon.visible = !1, this._rewardItem1Text.visible = !1) : (this._rewardItem1Icon.visible = !0, this._rewardItem1Text.visible = !0, this._rewardItem1Icon.texture = this._itemId2Texture(h), this._rewardItem1Text.text = "\xd7" + p), 0 == f ? (this._rewardItem2Icon.visible = !1, this._rewardItem2Text.visible = !1) : (this._rewardItem2Icon.visible = !0, this._rewardItem2Text.visible = !0, this._rewardItem2Icon.texture = this._itemId2Texture(d), this._rewardItem2Text.text = "\xd7" + f), this._iconMonthly.visible = !1, 0 < i && (this._iconMonthly.visible = !0), this._iconDamage.visible = !1, 0 < n && (this._iconDamage.visible = !0), this._textExpeditionDetail.text = a.replace(/<br>/g, "\n"), this._textExpeditionName.text = e, this._cancelable = y, this._expedition_mst_id = t, this._useTime = o
+            }, e.prototype.updateMember = function (t, e, i, n, o, r, s) {
+                switch (this._flagShipBanner.visible = !1, this._textFlagShipName.visible = !1, this._textFlagShipLevel.visible = !1, this._flagShipShadow.visible = !1, r && (this._flagShipBanner.updateImage(r.mstID, r.isDamaged()), this._flagShipBanner.updateRing(r.isMarriage()), this._textFlagShipName.text = "\u65d7\u8266 [" + r.name + "]", this._textFlagShipLevel.text = "Lv." + r.level, this._flagShipBanner.visible = !0, this._textFlagShipName.visible = !0, this._textFlagShipLevel.visible = !0, this._flagShipShadow.update(r.shipTypeID, c.ShadowType.DETAIL), this._flagShipShadow.visible = !0), this._textDeckName.visible = !1, o && (this._textDeckName.text = o, this._textDeckName.visible = !0), this._hexClockActive.visible = !1, this._flagShipShadow.visible = !1, this._hexClockCancel.visible = !1, this._hexClockComplete.visible = !1, t) {
+                    case 0:
+                        break;
+                    case 1:
+                        this._hexClockActive.visible = !0, this._flagShipShadow.visible = !0;
+                        break;
+                    case 2:
+                        this._hexClockComplete.visible = !0;
+                        break;
+                    case 3:
+                        this._hexClockCancel.visible = !0, this._flagShipShadow.visible = !0
+                }
+                if (e) {
+                    var a = 60 * this._useTime * 1e3,
+                        _ = 1 - (e - Date.now()) / a,
+                        l = Math.floor((1 - _) * a);
+                    this._hexClockActive.visible && this._hexClockActive.update(_, l), this._hexClockCancel.visible && this._hexClockCancel.update(_, l)
+                }
+                this._decisionButton.setClickable(s), this._decisionButton.visible = !1, this._iconTower.visible = !1, this._stopButton.visible = !1;
+                var u = e - Date.now();
+                switch (t) {
+                    case 0:
+                        this._decisionButton.visible = !0;
+                        break;
+                    case 1:
+                        var h = u < 0,
+                            p = 0 == h && this._cancelable;
+                        this._stopButton.setClickable(p), this._stopButton.visible = !0, this._iconTower.visible = !0;
+                        break;
+                    case 2:
+                    case 3:
+                        this._stopButton.setClickable(!1), this._stopButton.visible = !0, this._iconTower.visible = !0
+                }
+                this._iconDeck.visible = !1, n && (this._iconDeck.update([n, 0]), this._iconDeck.visible = !0), this._deckFleetShadow.visible = !1, i && (this._deckFleetShadow.update(i), this._deckFleetShadow.visible = !0), this._completeTime = e, this._deckExpeditionType = t
+            }, e.prototype.updateInterface = function (t) {
+                var e = 60 * this._useTime * 1e3,
+                    i = 1 - (this._completeTime - t) / e;
+                switch (i < 0 && (i = 0), 1 <= i && (i = 1, 1 == this._deckExpeditionType && (this._deckExpeditionType = 2), this._stopButton.setClickable(!1)), this._hexClockActive.visible = !1, this._hexClockCancel.visible = !1, this._hexClockComplete.visible = !1, this._deckExpeditionType) {
+                    case 0:
+                        break;
+                    case 1:
+                        this._hexClockActive.visible = !0;
+                        break;
+                    case 2:
+                        this._hexClockComplete.visible = !0;
+                        break;
+                    case 3:
+                        this._hexClockCancel.visible = !0
+                }
+                var n = Math.floor((1 - i) * e);
+                this._hexClockActive.visible && this._hexClockActive.update(i, n), this._hexClockCancel.visible && this._hexClockCancel.update(i, n)
             }, e.prototype.dispose = function () {
-                this.removeChildren(), this._hitArea.removeAllListeners(_.EventType.CLICK), this._hitArea.removeAllListeners(_.EventType.MOUSEOVER), this._hitArea.removeAllListeners(_.EventType.MOUSEOUT), this._focus.texture = PIXI.Texture.EMPTY, this._difficulty.dispose(), this._iconDamage.texture = PIXI.Texture.EMPTY, this._iconDeck.dispose(), this._iconClear.texture = PIXI.Texture.EMPTY, this._iconNew.texture = PIXI.Texture.EMPTY, this._fuel.dispose(), this._steel.dispose(), this._ammo.dispose(), this._bauxite.dispose(), this._repairKit.dispose(), this._devKit.dispose(), this._buildKit.dispose(), this._otherItem.dispose(), this._exampleFleetShadow.dispose(), this._grayOut.texture = PIXI.Texture.EMPTY, this.onClick = null, this._textTime = null, this._textName = null, this._textDeckNum = null, this._textDeckNumText = null, this._textNameGradMask = null, this._textDispNo = null, this._hitArea = null, this._focus = null, this._difficulty = null, this._iconDamage = null, this._expeditionStateIcon = null, this._iconDeck = null, this._iconClear = null, this._iconNew = null, this._fuel = null, this._steel = null, this._ammo = null, this._bauxite = null, this._repairKit = null, this._devKit = null, this._buildKit = null, this._otherItem = null, this._exampleFleetShadow = null, this._grayOut = null, this._onClick = null, this._onOver = null, this._onOut = null
-            }, e.prototype.genEntryDeckAnimation = function (t) {
-                var e = this;
-                return a.$_$.Sequence(function () {
-                    return a.$_$.Call(function () {
-                        e._iconDeck.update([t, 0]), e._iconDeck.alpha = 0, e._iconDeck.scale.set(1.5, 1.5), e._iconDeck.visible = !0, e._iconClear.visible = !1, e._iconNew.visible = !1
-                    })
-                }, function () {
-                    return a.$_$.Parallel(function () {
-                        return a.$_$.Value(e._iconDeck, {
-                            alpha: 1
-                        }, 400)
-                    }, function () {
-                        return a.$_$.Value(e._iconDeck.scale, {
-                            x: .75,
-                            y: .75
-                        }, 400)
-                    })
-                }, function () {
-                    return a.$_$.Delay(100)
-                }, function () {
-                    return a.$_$.Call(function () {
-                        var t = [1, 0, 0, .5, 0, 1, 0, .5, 0, 0, 1, .5, 0, 0, 0, 1],
-                            i = new PIXI.filters.ColorMatrixFilter;
-                        i.matrix = t, e._iconDeck.filters = [i]
-                    })
-                }, function () {
-                    return a.$_$.Delay(100)
-                }, function () {
-                    return a.$_$.Call(function () {
-                        e._iconDeck.filters = null
-                    })
-                })
+                this.removeChildren(), this._useFuel.dispose(), this._useAmmo.dispose(), this._rewardFuel.dispose(), this._rewardAmmo.dispose(), this._rewardSteel.dispose(), this._rewardBauxite.dispose(), this._flagShipBanner.dispose(), this._hexClockActive.dispose(), this._hexClockCancel.dispose(), this._iconMonthly.texture = PIXI.Texture.EMPTY, this._iconDamage.texture = PIXI.Texture.EMPTY, this._decisionButton.dispose(), this._stopButton.dispose(), this._iconTower.texture = PIXI.Texture.EMPTY, this._iconDeck.dispose(), this._deckFleetShadow.dispose(), this._deckFleetShadow = null, this._useFuel = null, this._useAmmo = null, this._rewardFuel = null, this._rewardAmmo = null, this._rewardSteel = null, this._rewardBauxite = null, this._rewardItem1Icon = null, this._rewardItem1Text = null, this._rewardItem2Icon = null, this._rewardItem2Text = null, this._flagShipBanner = null, this._hexClockActive = null, this._hexClockCancel = null, this._iconMonthly = null, this._iconDamage = null, this._decisionButton = null, this._stopButton = null, this._iconTower = null, this._iconDeck = null, this.onClickStart = null, this.onClickCancel = null, this._textExpeditionDetail = null, this._textExpeditionName = null, this._expedition_mst_id = null, this._textFlagShipName = null, this._textFlagShipLevel = null, this._textDeckName = null
             }, e
         }(PIXI.Container);
-    e.ExpeditionListItem = f;
+    e.ExpeditionDetail = d;
+    var f = function (t) {
+        function e() {
+            var e = t.call(this) || this,
+                i = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(14)),
+                n = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(38));
+            n.position.set(8, 36);
+            var s = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(39));
+            s.position.set(8, 95);
+            var a = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(40));
+            a.position.set(22, 256);
+            var _ = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(41));
+            _.position.set(22, 289);
+            var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(42));
+            l.position.set(22, 345);
+            var u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(43));
+            u.position.set(8, 379);
+            var c = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(97)),
+                h = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(99));
+            c.anchor.set(.5, .5), c.position.set(175, 268), h.anchor.set(.5, .5), h.position.set(265, 268), e.addChild(i), e.addChild(n, s, a, _, l, u, c, h);
+            var p = new PIXI.Sprite(o.SALLY_COMMON.getTexture(51)),
+                d = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(19));
+            return e.addChild(p), p.addChild(d), d.anchor.set(0, .5), d.position.set(40, 20), p.position.set(0, -35), e.addChild(p), e
+        }
+        return n(e, t), e.prototype.dispose = function () {
+            this.removeChildren()
+        }, e
+    }(PIXI.Container);
+    e.ExpeditionEmptyDetail = f;
     var y = function (t) {
             function e(e) {
                 var i = t.call(this) || this,
-                    n = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(e.on)),
-                    r = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(e.off));
-                return r.anchor.set(.5, .5), n.anchor.set(.5, .5), i.addChild(r, n), i._iconOn = n, i
+                    n = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(36)),
+                    o = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(e.on)),
+                    s = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(e.off)),
+                    a = new l.TextBox(16, 4999235, "bold");
+                return o.anchor.set(.5, .5), s.anchor.set(.5, .5), a.anchor.set(.5, .5), n.anchor.set(0, .5), n.position.x = 18, a.position.set(40, .5), i.addChild(n, s, o, a), i._iconOn = o, i._iconOff = s, i._text = a, i
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._iconOn.texture = PIXI.Texture.EMPTY, this._iconOn = null
+                this.removeChildren(), this._iconOn.texture = PIXI.Texture.EMPTY, this._iconOff.texture = PIXI.Texture.EMPTY, this._text.texture = PIXI.Texture.EMPTY, this._iconOn = null, this._iconOff = null, this._text = null
             }, e.prototype.update = function (t) {
-                this._iconOn.visible = !1, t && (this._iconOn.visible = !0)
+                this._iconOn.visible = !1, 0 < t && (this._iconOn.visible = !0), this._text.text = h.useMaterialToString(t)
             }, e
         }(PIXI.Container),
         m = function (t) {
             function e(e) {
-                var i = t.call(this) || this,
-                    n = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(116));
-                n.anchor.set(.5, 0);
-                var r = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(e.on));
-                r.anchor.set(.5, .5), r.scale.set(.8, .8);
-                var s = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(e.off));
-                s.anchor.set(.5, .5), s.scale.set(.8, .8), s.position.y = r.position.y = 16;
-                var a = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(66));
-                a.x = .5 * -a.width, a.y = 26;
-                for (var _ = a.x, l = new Array, u = 0; u < 4; u++) {
-                    var c = new PIXI.Sprite(o.SALLY_EXPEDITION.getTexture(65));
-                    c.position.x = _, c.position.y = a.y, l.push(c), _ = c.position.x + c.width + 1
+                for (var i = t.call(this) || this, n = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(37)), o = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(e.on)), s = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(e.off)), a = new Array, _ = 0; _ < 4; _++) {
+                    var l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(67));
+                    l.position.y = -1, l.anchor.set(0, .5), a.push(l)
                 }
-                return i.addChild(n), i.addChild(s), i.addChild(r), i.addChild(a), l.forEach(function (t) {
-                    i.addChild(t)
-                }), i._dots = l, i._iconOn = r, i._triangle = n, i
+                o.anchor.set(.5, .5), s.anchor.set(.5, .5), n.anchor.set(0, .5), n.position.x = 7, i._iconOn = o, i._iconOff = s, i._dots = a, i.addChild(n, s, o);
+                for (var u = 21, _ = 0; _ < a.length; _++) {
+                    var l = a[_];
+                    l.position.x = u, u = u + l.width + 3.2, i.addChild(l)
+                }
+                return i
             }
             return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._dots.forEach(function (t) {
+                this.removeChildren(), this._iconOn.texture = PIXI.Texture.EMPTY, this._iconOff.texture = PIXI.Texture.EMPTY, this._dots.forEach(function (t) {
                     return t.texture = PIXI.Texture.EMPTY
-                }), this._iconOn.texture = PIXI.Texture.EMPTY, this._triangle.texture = PIXI.Texture.EMPTY, this._dots = null, this._iconOn = null, this._triangle = null
+                }), this._dots.length = 0, this._iconOn = null, this._iconOff = null, this._dots = null
             }, e.prototype.update = function (t) {
-                this._iconOn.visible = !1, this._triangle.visible = !1, 0 < t && (this._iconOn.visible = !0, this._triangle.visible = !0);
+                this._iconOn.visible = !1, 0 < t && (this._iconOn.visible = !0);
                 for (var e = 0; e < this._dots.length; e++) {
                     var i = this._dots[e];
                     i.visible = !1, e < t && (i.visible = !0)
@@ -211,84 +267,191 @@ const function1046 = function (t, e, i) {
         }(PIXI.Container),
         g = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite;
-                return i.anchor.set(.5, .5), e.addChild(i), e._textDiff = i, e
+                var e = t.call(this) || this;
+                e._resourceMap = {
+                    on: 18,
+                    over: 20,
+                    off: 19
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onOver = function () {
+                    e._over()
+                }, e._onOut = function () {
+                    e._on()
+                };
+                var i = o.SALLY_COMMON.getTexture(e._resourceMap.off),
+                    n = new PIXI.Sprite(i),
+                    r = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, 280, 60).endFill();
+                return e.addChild(n), e.addChild(r), r.addListener(u.EventType.CLICK, e._onClick), r.addListener(u.EventType.MOUSEOVER, e._onOver), r.addListener(u.EventType.MOUSEOUT, e._onOut), r.buttonMode = r.interactive = !0, e._image = n, e._hitArea = r, e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._textDiff.texture = PIXI.Texture.EMPTY, this._textDiff = null
-            }, e.prototype.update = function (t) {
-                var e = this._difficultyToResourceID(t);
-                this._textDiff.texture = o.SALLY_EXPEDITION.getTexture(e), this._textDiff.position.set(0, 0), 35 == e && this._textDiff.position.set(2, 0)
-            }, e.prototype._difficultyToResourceID = function (t) {
-                switch (t) {
-                    case 0:
-                        throw new Error("UNSUPPORT VALUE");
-                    case 1:
-                        return 33;
-                    case 2:
-                        return 32;
-                    case 3:
-                        return 31;
-                    case 4:
-                        return 30;
-                    case 5:
-                        return 29;
-                    case 6:
-                    case 7:
-                    case 8:
-                        return 34
-                }
-                if (9 <= t) return 35
+            return n(e, t), e.prototype.setClickable = function (t) {
+                t ? this._on() : this._off(), this._hitArea.visible = t
+            }, e.prototype._over = function () {
+                this._image.texture = o.SALLY_COMMON.getTexture(this._resourceMap.over)
+            }, e.prototype._on = function () {
+                this._image.texture = o.SALLY_COMMON.getTexture(this._resourceMap.on)
+            }, e.prototype._off = function () {
+                this._image.texture = o.SALLY_COMMON.getTexture(this._resourceMap.off)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._hitArea.removeAllListeners(u.EventType.CLICK), this._hitArea.removeAllListeners(u.EventType.MOUSEOVER), this._hitArea.removeAllListeners(u.EventType.MOUSEOUT), this._image.texture = PIXI.Texture.EMPTY, this._hitArea = null, this._image = null, this.onClick = this._onClick = null, this._onOver = null, this._onOut = null
             }, e
         }(PIXI.Container),
         v = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite;
-                return e.addChild(i), e._bg = i, e
+                var e = t.call(this) || this;
+                e._resourceMap = {
+                    off: 26,
+                    on: 25,
+                    over: 27
+                }, e._onClick = function () {
+                    e.onClick()
+                }, e._onOver = function () {
+                    0 != e._clickable && e._over()
+                }, e._onOut = function () {
+                    0 != e._clickable && e._on()
+                };
+                var i = r.SALLY_EXPEDITION.getTexture(e._resourceMap.off),
+                    n = new PIXI.Sprite(i),
+                    o = (new PIXI.Graphics).beginFill(0, 0).drawRect(0, 0, i.width, i.height).endFill();
+                return e.addChild(n), e.addChild(o), o.addListener(u.EventType.CLICK, e._onClick), o.addListener(u.EventType.MOUSEOVER, e._onOver), o.addListener(u.EventType.MOUSEOUT, e._onOut), o.buttonMode = o.interactive = !0, e._image = n, e._hitArea = o, e.setClickable(!1), e
             }
-            return n(e, t), e.prototype.dispose = function () {
-                this.removeChildren(), this._bg.texture = PIXI.Texture.EMPTY, this._bg = null
-            }, e.prototype.update = function (t) {
-                switch (this._bg.y = 0, this._bg.texture = PIXI.Texture.EMPTY, t) {
-                    case h.ListType.HEADER:
-                        this._bg.texture = o.SALLY_EXPEDITION.getTexture(16), this._bg.y = -9;
-                        break;
-                    case h.ListType.CENTER:
-                        this._bg.texture = o.SALLY_EXPEDITION.getTexture(15), this._bg.y = -2;
-                        break;
-                    case h.ListType.FOOTER:
-                        this._bg.texture = o.SALLY_EXPEDITION.getTexture(17), this._bg.y = -1
-                }
+            return n(e, t), e.prototype.setClickable = function (t) {
+                t ? this._on() : this._off(), this._hitArea.interactive = t, this._clickable = t
+            }, e.prototype._over = function () {
+                this._image.texture = r.SALLY_EXPEDITION.getTexture(this._resourceMap.over)
+            }, e.prototype._off = function () {
+                this._image.texture = r.SALLY_EXPEDITION.getTexture(this._resourceMap.off)
+            }, e.prototype._on = function () {
+                this._image.texture = r.SALLY_EXPEDITION.getTexture(this._resourceMap.on)
+            }, e.prototype.dispose = function () {
+                this.removeChildren(), this._hitArea.removeAllListeners(u.EventType.CLICK), this._hitArea.removeAllListeners(u.EventType.MOUSEOVER), this._hitArea.removeAllListeners(u.EventType.MOUSEOUT), this._image.texture = PIXI.Texture.EMPTY, this.onClick = this._onClick = null, this._onOver = null, this._onOut = null, this._hitArea = null, this._image = null
             }, e
         }(PIXI.Container),
         b = function (t) {
             function e() {
-                var e = t.call(this) || this,
-                    i = new PIXI.Sprite;
-                return e.addChild(i), e._image = i, e._viewState = h.ExpeditionState.NONE, e
-            }
-            return n(e, t), Object.defineProperty(e.prototype, "viewState", {
-                get: function () {
-                    return this._viewState
-                },
-                enumerable: !0,
-                configurable: !0
-            }), e.prototype.update = function (t) {
-                switch (this._image.texture = PIXI.Texture.EMPTY, this._viewState = t, t) {
-                    case h.ExpeditionState.EXPEDITION:
-                        this._image.texture = o.SALLY_EXPEDITION.getTexture(118);
-                        break;
-                    case h.ExpeditionState.COMPLETE_MONTHLY:
-                        this._image.texture = o.SALLY_EXPEDITION.getTexture(117);
-                        break;
-                    case h.ExpeditionState.TIME_OVER_MONTHLY:
-                        this._image.texture = o.SALLY_EXPEDITION.getTexture(119);
-                        break;
-                    default:
-                        this._viewState = h.ExpeditionState.NONE
+                var e = t.call(this) || this;
+                e._yellowMap = {
+                    1: 57,
+                    2: 58,
+                    3: 59,
+                    4: 60,
+                    5: 61,
+                    6: 62
+                }, e._lightMap = {
+                    1: 48,
+                    2: 49,
+                    3: 50,
+                    4: 51,
+                    5: 52,
+                    6: 53
+                };
+                for (var i = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(45)), n = new Array, o = 1; o <= 6; o++) {
+                    var s = e._yellowMap[o],
+                        a = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(s));
+                    a.anchor.set(.5, .5), n.push(a)
                 }
+                for (var _ = new Array, o = 1; o <= 6; o++) {
+                    var l = e._lightMap[o],
+                        u = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(l));
+                    u.anchor.set(.5, .5), _.push(u)
+                }
+                var c = new PIXI.Sprite,
+                    h = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(54)),
+                    p = new PIXI.Text;
+                p.anchor.set(1, .5), p.position.set(22, -11), p.style.fontSize = 22;
+                var d = new PIXI.Text;
+                d.anchor.set(.5, 0), d.position.y = 7, d.style.fontSize = 20;
+                var f = new PIXI.Text;
+                f.anchor.set(.5, 0), f.position.y = 27, f.style.fontSize = 17, i.anchor.set(.5, .5), c.anchor.set(.5, .5), h.anchor.set(.5, .5), e.addChild(i);
+                for (var o = 0; o < n.length; o++) {
+                    var a = n[o];
+                    e.addChild(a)
+                }
+                for (var o = 0; o < _.length; o++) {
+                    var y = _[o];
+                    y.position.x = .5, e.addChild(y)
+                }
+                return e.addChild(p, f, d, h), e._textProgress = p, e._yellows = n, e._lights = _, e._textLast = d, e._textLastSec = f, e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._yellows.forEach(function (t) {
+                    return t.texture = PIXI.Texture.EMPTY
+                }), this._lights.forEach(function (t) {
+                    return t.texture = PIXI.Texture.EMPTY
+                }), this._textProgress = null, this._textLast = null, this._yellows = null, this._lights = null
+            }, e.prototype.update = function (t, e) {
+                var i = Math.floor(e % 6e4 / 1e3);
+                this._updateYellow(1 - i / 60), this._updateGauge(t), this._textProgress.text = Math.floor(100 * t).toString(), this._textLast.text = h.millisecondToFormatHHMM(e);
+                var n = "";
+                i < 10 && (n += "0"), n += i.toString(), this._textLastSec.text = n.toString()
+            }, e.prototype._updateYellow = function (t) {
+                for (var e = Math.floor(6 * t) + 1, i = 0; i < this._yellows.length; i++) {
+                    var n = this._yellows[i];
+                    n.visible = !1, i < e && (n.visible = !0)
+                }
+            }, e.prototype._updateGauge = function (t) {
+                for (var e = Math.floor(6 * t) + 1, i = 0; i < this._lights.length; i++) {
+                    var n = this._lights[i];
+                    n.visible = !1, i < e && (n.visible = !0)
+                }
+            }, e
+        }(PIXI.Container),
+        w = function (t) {
+            function e() {
+                var e = t.call(this) || this;
+                e._yellowMap = {
+                    1: 57,
+                    2: 58,
+                    3: 59,
+                    4: 60,
+                    5: 61,
+                    6: 62
+                };
+                for (var i = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(47)), n = new Array, o = 1; o <= 6; o++) {
+                    var s = e._yellowMap[o],
+                        a = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(s));
+                    a.anchor.set(.5, .5), n.push(a)
+                }
+                var _ = new PIXI.Sprite,
+                    l = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(56)),
+                    u = new PIXI.Text;
+                u.anchor.set(.5, 0), u.position.y = 7, u.style.fontSize = 20;
+                var c = new PIXI.Text;
+                c.anchor.set(.5, 0), c.position.y = 27, c.style.fontSize = 17, i.anchor.set(.5, .5), _.anchor.set(.5, .5), l.anchor.set(.5, .5), e.addChild(i);
+                for (var o = 0; o < n.length; o++) {
+                    var a = n[o];
+                    e.addChild(a)
+                }
+                return e.addChild(c, u, l), e._yellows = n, e._textLast = u, e._textLastSec = c, e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren(), this._yellows.forEach(function (t) {
+                    return t.texture = PIXI.Texture.EMPTY
+                }), this._textLast = null, this._yellows = null
+            }, e.prototype.update = function (t, e) {
+                if (1 <= t) this._textLast.text = "", this._textLastSec.text = "";
+                else {
+                    var i = Math.floor(e % 6e4 / 1e3);
+                    this._updateYellow(1 - i / 60), this._textLast.text = h.millisecondToFormatHHMM(e);
+                    var n = "";
+                    i < 10 && (n += "0"), n += i.toString(), this._textLastSec.text = n.toString()
+                }
+            }, e.prototype._updateYellow = function (t) {
+                for (var e = Math.floor(6 * t) + 1, i = 0; i < this._yellows.length; i++) {
+                    var n = this._yellows[i];
+                    n.visible = !1, i < e && (n.visible = !0)
+                }
+            }, e
+        }(PIXI.Container),
+        x = function (t) {
+            function e() {
+                var e = t.call(this) || this,
+                    i = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(46)),
+                    n = new PIXI.Sprite(r.SALLY_EXPEDITION.getTexture(55));
+                return i.anchor.set(.5, .5), n.anchor.set(.5, .5), e.addChild(i), e.addChild(n), e
+            }
+            return n(e, t), e.prototype.dispose = function () {
+                this.removeChildren()
             }, e
         }(PIXI.Container)
 }
