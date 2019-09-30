@@ -77,12 +77,16 @@ const function1203 = function (t, e, i) {
             }, e.prototype._updateInternalData = function (t) {
                 var e = this,
                     i = new s.APIConnector;
-                i.add(new _.MaterialAPI), 1 == t.isNeedUpdateUserBasic() && i.add(new c.UserDataAPI), 1 != t.isNeedUpdateSlotitem() && 318 != this._model.id && 513 != this._model.id || i.add(new d.UserSlotItemAPI), 1 == t.isNeedUpdateSlotitem() && i.add(new l.UnsetSlotAPI);
-                var n = [511, 513, 620, 621, 688, 689, 690, 695, 696];
-                if ((1 == t.isNeedUpdateUseitem() || n.indexOf(this._model.id) >= 0) && i.add(new u.UseItemAPI), t.getRewards(2).length > 0 && i.add(new a.DeckAPI), t.getRewards(11).length > 0) i.add(new p.UserShipAPI);
+                if (i.add(new _.MaterialAPI), 653 == this._model.id) {
+                    var n = o.default.model.useItem.get(44);
+                    n.__setCount__(n.count - 6e3)
+                }
+                1 == t.isNeedUpdateUserBasic() && i.add(new c.UserDataAPI), 1 != t.isNeedUpdateSlotitem() && 318 != this._model.id && 513 != this._model.id || i.add(new d.UserSlotItemAPI), 1 == t.isNeedUpdateSlotitem() && i.add(new l.UnsetSlotAPI);
+                var r = [511, 513, 620, 621, 688, 689, 690, 695, 696];
+                if ((1 == t.isNeedUpdateUseitem() || r.indexOf(this._model.id) >= 0) && i.add(new u.UseItemAPI), t.getRewards(2).length > 0 && i.add(new a.DeckAPI), t.getRewards(11).length > 0) i.add(new p.UserShipAPI);
                 else if (318 == this._model.id || 513 == this._model.id) {
-                    var r = o.default.model.deck.get(1).getShipList()[0].memID;
-                    i.add(new p.UserShipAPI(r))
+                    var f = o.default.model.deck.get(1).getShipList()[0].memID;
+                    i.add(new p.UserShipAPI(f))
                 }
                 t.getRewards(14).length > 0 && i.add(new h.UserFurnitureAPI), i.start(function () {
                     var i = t.getRewards(6);
