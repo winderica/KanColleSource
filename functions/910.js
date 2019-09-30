@@ -98,7 +98,7 @@ const function910 = function (t, e, i) {
                 }, e.multiDevelopAnimation = function (t, i, n) {
                     var r = !t && n == i.length - 1;
                     if (n > i.length - 1) return void(t && e._rewardResultAnimation(i));
-                    var s = new h.ReceiveAnimation(393);
+                    var s = new h.ReceiveAnimation(393, !0);
                     o.default.view.overLayer.addChild(s), s.preload(function () {
                         if (i[n] > 0) {
                             var a = o.default.model.slot.getMst(i[n]),
@@ -122,8 +122,8 @@ const function910 = function (t, e, i) {
                         } else s.play(function () {
                             s.dispose(), o.default.view.overLayer.removeChild(s);
                             var a = new f.RewardAnimationSlotFailed(r);
-                            o.default.view.overLayer.addChild(a), a.play(function () {
-                                o.default.view.portMain.updateInfo(), a.dispose(), r && o.default.view.overLayer.removeChild(e.multiple_bg), o.default.view.overLayer.removeChild(a), e.multiDevelopAnimation(t, i, n + 1)
+                            o.default.view.overLayer.addChild(a), r && o.default.view.overLayer.removeChild(e.multiple_bg), a.play(function () {
+                                o.default.view.portMain.updateInfo(), a.dispose(), o.default.view.overLayer.removeChild(a), e.multiDevelopAnimation(t, i, n + 1)
                             })
                         })
                     })

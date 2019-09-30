@@ -64,13 +64,13 @@ const function916 = function (t, e, i) {
                 this._messageBox.initialize("\u88c5\u5099\u306e\u958b\u767a\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u2026\u2026\u3002\n\n\u3000"), this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
                     y: 480
                 }, 500, createjs.Ease.cubicOut).call(function () {
-                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), c.SE.play("247"), t._isLast ? (t._messageBox.activate(function () {
+                    t._gearBtnHome.activate(), t.addChild(t._gearBtnHome), c.SE.play("247"), t._isLast ? t._messageBox.activate(function () {
                         t._icon_m8 = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(74)), t._icon_m8.position.set(249, 640), t.addChild(t._icon_m8), t._messageBox.append("\u300e\u958b\u767a\u8cc7\u6750\u300f\u306f\u6d88\u8017\u3057\u307e\u305b\u3093\u3067\u3057\u305f\u3002"), t._messageBox.activate()
-                    }), t._04_waitClick()) : t._messageBox.activate(function () {
+                    }) : t._messageBox.activate(function () {
                         t._icon_m8 = new PIXI.Sprite(p.ARSENAL_MAIN.getTexture(74)), t._icon_m8.position.set(249, 640), t.addChild(t._icon_m8), t._messageBox.append("\u300e\u958b\u767a\u8cc7\u6750\u300f\u306f\u6d88\u8017\u3057\u307e\u305b\u3093\u3067\u3057\u305f\u3002"), t._messageBox.activate(function () {
                             return t._05_whiteInOut()
                         })
-                    })
+                    }), t._04_waitClick()
                 })
             }, e.prototype._04_waitClick = function () {
                 var t = this,

@@ -74,9 +74,9 @@ const function915 = function (t, e, i) {
                 this._messageBox.y = o.default.height, this.addChild(this._messageBox), createjs.Tween.get(this._messageBox).to({
                     y: 480
                 }, 300, createjs.Ease.cubicOut).call(function () {
-                    e._gearBtnHome.activate(), e.addChild(e._gearBtnHome), 1 == e._isWait ? (e._messageBox.text = e._message, e._messageBox.textCentering(), t.prototype._03_waitClick.call(e)) : e._messageBox.activate(function () {
+                    e._gearBtnHome.activate(), e.addChild(e._gearBtnHome), 1 == e._isWait ? (e._messageBox.text = e._message, e._messageBox.textCentering()) : e._messageBox.activate(function () {
                         return e._04_whiteInOut()
-                    })
+                    }), t.prototype._03_waitClick.call(e)
                 })
             }, e.prototype._04_whiteInOut = function () {
                 var t = this;
