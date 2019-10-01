@@ -50,7 +50,7 @@ const function1191 = function (t, e, i) {
                 if (null != t)
                     for (var e = 0, i = t; e < i.length; e++) {
                         var r = i[e],
-                            s = new o.DutyModel_(r);
+                            s = new o.DutyModel_(r, t);
                         if (3 == s.status) return !0
                     }
                 return !1
